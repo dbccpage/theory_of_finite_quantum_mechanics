@@ -40,12 +40,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "4045b65630fee994d4bafb7f2cfffd44120d1e898aba6efc5b38e9115f466d1e",
-  "current_scoring": null,
+  "current_contract": "a03af21d9dce4ce73fb947764a4a9e4d58890864c1515f69faf844280fd76fdb",
+  "current_scoring": "0c5d4d5748f447f2303ee72475bfeaf5c4fe4e411cb0e83954975d5c4549b73c",
   "contract_history": [
     {
-      "sha256": "4045b65630fee994d4bafb7f2cfffd44120d1e898aba6efc5b38e9115f466d1e",
-      "bytes": 930,
+      "sha256": "a03af21d9dce4ce73fb947764a4a9e4d58890864c1515f69faf844280fd76fdb",
+      "bytes": 1139,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_solvers:solver_cohomology_quotient_phi1:v1.0.0",
@@ -84,13 +84,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_solvers:solver_cohomology_quotient_phi1:v1.0.0\ntitle: Shared exact quotient-L1 optimization and independent functional replay.  The\n  solver proposes primal/dual witnesses. ...\nkind: rust_file_contract\nstatus: active\ncrate: omega_solvers\nfile: crates_rs/omega_solvers/src/solver_cohomology_quotient_phi1.rs\nmodule: solver_cohomology_quotient_phi1\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_solvers\n  module: solver_cohomology_quotient_phi1\n  file: crates_rs/omega_solvers/src/solver_cohomology_quotient_phi1.rs\nsymbols:\n- CertifiedPhi1Error\n- certified_phi1\n- LocalGreenGlobalRed\n- lggr_cochain_witness\nowns:\n- certified_phi1_error\n- certified_phi1\n- local_green_global_red\n- lggr_cochain_witness\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_solvers:solver_cohomology_quotient_phi1:v1.0.0\",\n  \"title\": \"Shared exact quotient-L1 optimization and independent functional replay.  The solver proposes primal/dual witnesses. ...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_solvers\",\n  \"file\": \"crates_rs/omega_solvers/src/solver_cohomology_quotient_phi1.rs\",\n  \"module\": \"solver_cohomology_quotient_phi1\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_solvers\",\n    \"module\": \"solver_cohomology_quotient_phi1\",\n    \"file\": \"crates_rs/omega_solvers/src/solver_cohomology_quotient_phi1.rs\"\n  },\n  \"symbols\": [\n    \"CertifiedPhi1Error\",\n    \"certified_phi1\",\n    \"LocalGreenGlobalRed\",\n    \"lggr_cochain_witness\"\n  ],\n  \"owns\": [\n    \"certified_phi1_error\",\n    \"certified_phi1\",\n    \"local_green_global_red\",\n    \"lggr_cochain_witness\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_solvers_solver_cohomology_quotient_phi1.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "0c5d4d5748f447f2303ee72475bfeaf5c4fe4e411cb0e83954975d5c4549b73c",
+      "bytes": 2265,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_solvers_solver_cohomology_quotient_phi1_contract.py",
+          "sha256": "0cb97b9111f812d57fc1a59ad0ea16ba67234df7f985b357111fb611b642d5e5"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-solvers-solver-cohomology-quotient-phi1-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_solvers_solver_cohomology_quotient_phi1_contract.py\",\n    \"sha256\": \"0cb97b9111f812d57fc1a59ad0ea16ba67234df7f985b357111fb611b642d5e5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-solvers-solver-cohomology-quotient-phi1-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_solvers_solver_cohomology_quotient_phi1_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_solvers_solver_cohomology_quotient_phi1.contract.yaml": "4045b65630fee994d4bafb7f2cfffd44120d1e898aba6efc5b38e9115f466d1e"
   },

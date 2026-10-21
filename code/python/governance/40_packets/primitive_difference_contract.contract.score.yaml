@@ -3,78 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/primitive_difference_contract.py",
   "contract": {
-    "schema_version": "v1.0.0",
-    "packet_id": "urn:omega:packet:omega:primitive_difference:v1.0.0",
-    "title": "Primitive Difference & Residual Quotient Complex",
-    "kind": "math_contract",
-    "status": "Active",
-    "layer": "Governance / Core Axiomatics",
-    "authority_effect": "None",
-    "formal_anchor": {
-      "lean_module": "OmegaCore.PrimitiveDifference",
-      "source_document": "lean4/primitive_difference.lean"
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/primitive_difference_contract.py",
+      "sha256": "b42454dfd66b67984513756f727e5185aa9d7681375601c8ef84229f88aa8bbd"
     },
-    "definition": {
-      "summary": "Minimum data and algebraic machinery for zero-difference relations, residual quotients, and delta descent.",
-      "tuple_specification": {
-        "alpha": "Base state space or object domain.",
-        "beta": "Difference codomain space.",
-        "delta": "Primitive difference operator delta: alpha -> alpha -> beta.",
-        "Zero": "Typed zero predicate Zero: beta -> Prop on difference codomain."
-      },
-      "axioms": {
-        "zero_refl": "forall x in alpha, Zero(delta(x, x))",
-        "zero_symm": "forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))",
-        "zero_trans": "forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) -> Zero(delta(x, z))"
-      }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:primitive-difference-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
     },
-    "core_structures": {
-      "ZeroRel": "Equivalence relation x ~ y iff Zero(delta(x, y)).",
-      "ResidualQuotient": "Canonical quotient space alpha / ZeroRel.",
-      "classOf": "Canonical class projection map alpha -> ResidualQuotient.",
-      "DeltaCongruent": "Congruence condition under which delta(x, y) = delta(x', y') for all x ~ x' and y ~ y'.",
-      "deltaFactor": "Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient -> beta."
-    },
-    "theorems": [
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "classOf_eq_iff_zeroRel",
-        "statement": "classOf(x) = classOf(y) iff ZeroRel(x, y)."
-      },
-      {
-        "id": "deltaFactor_requires_congruence",
-        "statement": "delta factors through ResidualQuotient iff DeltaCongruent holds."
-      },
-      {
-        "id": "invariantFactor_exists_iff_invariantCongruent",
-        "statement": "Single-relation factorization machinery for action-invariant primitive differences."
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "laws": [
-      {
-        "id": "PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO",
-        "statement": "Equivalence classes in ResidualQuotient require explicit Zero predicate certification."
-      },
-      {
-        "id": "PD_LAW_02_DELTA_DESCENT",
-        "statement": "Difference operators shall not descend to quotient spaces unless DeltaCongruent is proven."
-      }
-    ],
-    "runtime_bindings": [
-      "omega_engine.crates.type.primitive_difference",
-      "omega_engine.crates.homotopy_type_theory.primitive_difference"
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c",
-  "current_scoring": null,
+  "current_contract": "e5bfe8a617ced529373768ae77e203af0ce79b294604b3e946bcec297148b8dc",
+  "current_scoring": "3ad46ce0dd445cea39038cd3406a0d14d0d15150fc57171157ad832e9dd1b795",
   "contract_history": [
     {
-      "sha256": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c",
-      "bytes": 2265,
+      "sha256": "542dbb3c8d39b0966dbfb1aa0955e8630b9ed81a7a53a42321e607e0032ec068",
+      "bytes": 2657,
       "record": {
         "schema_version": "v1.0.0",
         "packet_id": "urn:omega:packet:omega:primitive_difference:v1.0.0",
@@ -142,13 +102,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: v1.0.0\npacket_id: urn:omega:packet:omega:primitive_difference:v1.0.0\ntitle: Primitive Difference & Residual Quotient Complex\nkind: math_contract\nstatus: Active\nlayer: Governance / Core Axiomatics\nauthority_effect: None\nformal_anchor:\n  lean_module: OmegaCore.PrimitiveDifference\n  source_document: lean4/primitive_difference.lean\ndefinition:\n  summary: Minimum data and algebraic machinery for zero-difference relations, residual\n    quotients, and delta descent.\n  tuple_specification:\n    alpha: Base state space or object domain.\n    beta: Difference codomain space.\n    delta: 'Primitive difference operator delta: alpha -> alpha -> beta.'\n    Zero: 'Typed zero predicate Zero: beta -> Prop on difference codomain.'\n  axioms:\n    zero_refl: forall x in alpha, Zero(delta(x, x))\n    zero_symm: forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))\n    zero_trans: forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) ->\n      Zero(delta(x, z))\ncore_structures:\n  ZeroRel: Equivalence relation x ~ y iff Zero(delta(x, y)).\n  ResidualQuotient: Canonical quotient space alpha / ZeroRel.\n  classOf: Canonical class projection map alpha -> ResidualQuotient.\n  DeltaCongruent: Congruence condition under which delta(x, y) = delta(x', y') for\n    all x ~ x' and y ~ y'.\n  deltaFactor: 'Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient\n    -> beta.'\ntheorems:\n- id: classOf_eq_iff_zeroRel\n  statement: classOf(x) = classOf(y) iff ZeroRel(x, y).\n- id: deltaFactor_requires_congruence\n  statement: delta factors through ResidualQuotient iff DeltaCongruent holds.\n- id: invariantFactor_exists_iff_invariantCongruent\n  statement: Single-relation factorization machinery for action-invariant primitive\n    differences.\nlaws:\n- id: PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO\n  statement: Equivalence classes in ResidualQuotient require explicit Zero predicate\n    certification.\n- id: PD_LAW_02_DELTA_DESCENT\n  statement: Difference operators shall not descend to quotient spaces unless DeltaCongruent\n    is proven.\nruntime_bindings:\n- omega_engine.crates.type.primitive_difference\n- omega_engine.crates.homotopy_type_theory.primitive_difference\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"v1.0.0\",\n  \"packet_id\": \"urn:omega:packet:omega:primitive_difference:v1.0.0\",\n  \"title\": \"Primitive Difference & Residual Quotient Complex\",\n  \"kind\": \"math_contract\",\n  \"status\": \"Active\",\n  \"layer\": \"Governance / Core Axiomatics\",\n  \"authority_effect\": \"None\",\n  \"formal_anchor\": {\n    \"lean_module\": \"OmegaCore.PrimitiveDifference\",\n    \"source_document\": \"lean4/primitive_difference.lean\"\n  },\n  \"definition\": {\n    \"summary\": \"Minimum data and algebraic machinery for zero-difference relations, residual quotients, and delta descent.\",\n    \"tuple_specification\": {\n      \"alpha\": \"Base state space or object domain.\",\n      \"beta\": \"Difference codomain space.\",\n      \"delta\": \"Primitive difference operator delta: alpha -> alpha -> beta.\",\n      \"Zero\": \"Typed zero predicate Zero: beta -> Prop on difference codomain.\"\n    },\n    \"axioms\": {\n      \"zero_refl\": \"forall x in alpha, Zero(delta(x, x))\",\n      \"zero_symm\": \"forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))\",\n      \"zero_trans\": \"forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) -> Zero(delta(x, z))\"\n    }\n  },\n  \"core_structures\": {\n    \"ZeroRel\": \"Equivalence relation x ~ y iff Zero(delta(x, y)).\",\n    \"ResidualQuotient\": \"Canonical quotient space alpha / ZeroRel.\",\n    \"classOf\": \"Canonical class projection map alpha -> ResidualQuotient.\",\n    \"DeltaCongruent\": \"Congruence condition under which delta(x, y) = delta(x', y') for all x ~ x' and y ~ y'.\",\n    \"deltaFactor\": \"Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient -> beta.\"\n  },\n  \"theorems\": [\n    {\n      \"id\": \"classOf_eq_iff_zeroRel\",\n      \"statement\": \"classOf(x) = classOf(y) iff ZeroRel(x, y).\"\n    },\n    {\n      \"id\": \"deltaFactor_requires_congruence\",\n      \"statement\": \"delta factors through ResidualQuotient iff DeltaCongruent holds.\"\n    },\n    {\n      \"id\": \"invariantFactor_exists_iff_invariantCongruent\",\n      \"statement\": \"Single-relation factorization machinery for action-invariant primitive differences.\"\n    }\n  ],\n  \"laws\": [\n    {\n      \"id\": \"PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO\",\n      \"statement\": \"Equivalence classes in ResidualQuotient require explicit Zero predicate certification.\"\n    },\n    {\n      \"id\": \"PD_LAW_02_DELTA_DESCENT\",\n      \"statement\": \"Difference operators shall not descend to quotient spaces unless DeltaCongruent is proven.\"\n    }\n  ],\n  \"runtime_bindings\": [\n    \"omega_engine.crates.type.primitive_difference\",\n    \"omega_engine.crates.homotopy_type_theory.primitive_difference\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/primitive_difference.contract.yaml"
       ]
+    },
+    {
+      "sha256": "e5bfe8a617ced529373768ae77e203af0ce79b294604b3e946bcec297148b8dc",
+      "bytes": 1780,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/primitive_difference_contract.py",
+          "sha256": "b42454dfd66b67984513756f727e5185aa9d7681375601c8ef84229f88aa8bbd"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:primitive-difference-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/primitive_difference_contract.py\",\n    \"sha256\": \"b42454dfd66b67984513756f727e5185aa9d7681375601c8ef84229f88aa8bbd\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:primitive-difference-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/primitive_difference_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "3ad46ce0dd445cea39038cd3406a0d14d0d15150fc57171157ad832e9dd1b795",
+      "bytes": 2211,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/primitive_difference_contract.py",
+          "sha256": "b42454dfd66b67984513756f727e5185aa9d7681375601c8ef84229f88aa8bbd"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:primitive-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/primitive_difference_contract.py\",\n    \"sha256\": \"b42454dfd66b67984513756f727e5185aa9d7681375601c8ef84229f88aa8bbd\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:primitive-difference-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/primitive_difference_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/primitive_difference.contract.yaml": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c"
   },

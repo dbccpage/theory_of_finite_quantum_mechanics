@@ -128,12 +128,12 @@
       "Legacy owner note: Cohomological grading: d raises degree by +1. Construction or explicit validation must witness d^2=0. See MATHEMATICAL_CONVENTIONS.md."
     ]
   },
-  "current_contract": "c42e4ab7025f260b80035e223a5eb5d57aa9b921feaa4e2a74d21c06fec32860",
-  "current_scoring": null,
+  "current_contract": "0c39440d5886ba843cdc7d7b246b7fa520feada2843d207ed99d6012f5640656",
+  "current_scoring": "d745fa98d4d0b0721eb5a85a9241d2425a22d6e61bb6eb4b5016aa9336c33684",
   "contract_history": [
     {
-      "sha256": "c42e4ab7025f260b80035e223a5eb5d57aa9b921feaa4e2a74d21c06fec32860",
-      "bytes": 4905,
+      "sha256": "0c39440d5886ba843cdc7d7b246b7fa520feada2843d207ed99d6012f5640656",
+      "bytes": 5558,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:cochain_complex:v1.0.0",
@@ -260,13 +260,75 @@
           "Legacy owner note: Cohomological grading: d raises degree by +1. Construction or explicit validation must witness d^2=0. See MATHEMATICAL_CONVENTIONS.md."
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cochain_complex:v1.0.0\ntitle: Cochain Complex\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: cochain_complex\n  symbol: C^•\n  ascii_symbol: CochainComplex\n  notation: '... → C^{n-1} → C^n → C^{n+1} → ...'\n  domain:\n  - graded cochain groups C^n over a coefficient field or ring\n  - 'degree-raising coboundary maps delta_n : C^n → C^{n+1}'\n  - a degree index set\n  codomain:\n    description: a well-formed graded complex artifact (purely structural; emits no\n      class)\n  definition:\n    degree_shift: 'delta_n : C^n → C^{n+1} raises degree by exactly 1'\n    complex_law: delta_{n+1} ∘ delta_n = 0 for all n\n    graded_module_structure: each C^n is a module over a fixed coefficient domain\nrequirements:\n  required_structures:\n  - graded module with a degree-indexed family of cochain groups C^n\n  - a complete coboundary-map table delta_n for every adjacent degree pair\n  - a single fixed coefficient domain (field or ring) shared by all C^n\n  - a complex-law witness establishing delta_{n+1} ∘ delta_n = 0\n  - an explicit finite basis hash for each cochain group\n  compatibility:\n  - all cochain groups must share the same coefficient domain\n  - source/target degrees of every coboundary map must exist in the degree index set\nlaws:\n  degree_shift: Every coboundary map raises degree by exactly one (C^n → C^{n+1}).\n  complex_law: delta_{n+1} ∘ delta_n = 0 for all n — the defining cochain-complex\n    identity.\n  graded_module_structure: Each C^n is a module over the single shared coefficient\n    domain.\n  coefficient_consistency: A complex with mixed coefficient domains is not well-formed.\n  descriptive_only: The complex is structural; it classifies nothing and confers no\n    authority.\nequivalence:\n  artifact_equality: Two complexes are equal iff their content-addressed StructureArtifact\n    hashes agree under canonical serialization.\n  coefficient_mode: Equality requires the same declared coefficient domain and degree\n    index set.\nreplay:\n  requirements:\n  - no external state, randomness, or time-dependent data\n  - graded-module and coboundary-map data fixed as canonical byte arrays\n  - coboundary composition deterministic from canonical matrices\n  - deterministic SHA-256 artifact hash reproducible from the inputs\nrelationships:\n  CochainGroup: Each degree component C^n of the complex is a [[cochain_group]].\n  Cohomology: Cohomology H^n is the homology of this complex (ker delta_n / im delta_{n-1}).\n  CechCochain: Čech cochains assemble into a cochain complex of this shape over a\n    nerve.\n  ObstructionClass: Obstruction classes are cohomology classes of a cochain complex.\n  Phi1: The degree-1 obstruction functional acts on residuals living in this complex's\n    C^1.\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: cochain_complex\n  symbols:\n  - CochainComplex\n  required_tests:\n  - test_coboundary_law_violation_rejected\n  - test_dimension_mismatch_d0\n  - dim_rejects_degree_outside_finite_support\nnegative_tests:\n- 'Coboundary map with the wrong degree shift (delta : C^n → C^m, m ≠ n+1)'\n- Complex-law violation (delta_{n+1} ∘ delta_n ≠ 0)\n- Missing cochain group for a coboundary map's source or target\n- Coefficient-domain mismatch (different fields for different groups)\n- Artifact claiming authority or admissibility\n- Unbounded complex declared without an explicit specification\ndoctrine:\n  summary: 'Graded cochain groups C^n with degree-raising coboundary maps satisfying\n    delta ∘ delta = 0 — the base structure for cocycles, coboundaries, cohomology,\n    Čech complexes, and obstruction classes. Purely structural; confers no authority.\n\n    '\n  non_role:\n  - Does not compute cohomology (see the cohomology contract).\n  - Does not specialize to Čech or de Rham complexes (separate contracts).\n  - Does not model double complexes or spectral sequences (separate contracts).\n  - Does not issue certificates, terminalize, or produce customer-facing claims.\nwip:\n- Currently targets bounded cochain complexes only; unbounded complexes deferred.\n- Čech and de Rham specializations will be separate contracts referencing this base.\n- Filtered complexes and bicomplexes are out of scope for v1.\n- Legacy owner block named promotion target omega_homology::cochain_complex.rs.\n- 'Legacy owner note: Cohomological grading: d raises degree by +1. Construction or\n  explicit validation must witness d^2=0. See MATHEMATICAL_CONVENTIONS.md.'\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:cochain_complex:v1.0.0\",\n  \"title\": \"Cochain Complex\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"cochain_complex\",\n    \"symbol\": \"C^•\",\n    \"ascii_symbol\": \"CochainComplex\",\n    \"notation\": \"... → C^{n-1} → C^n → C^{n+1} → ...\",\n    \"domain\": [\n      \"graded cochain groups C^n over a coefficient field or ring\",\n      \"degree-raising coboundary maps delta_n : C^n → C^{n+1}\",\n      \"a degree index set\"\n    ],\n    \"codomain\": {\n      \"description\": \"a well-formed graded complex artifact (purely structural; emits no class)\"\n    },\n    \"definition\": {\n      \"degree_shift\": \"delta_n : C^n → C^{n+1} raises degree by exactly 1\",\n      \"complex_law\": \"delta_{n+1} ∘ delta_n = 0 for all n\",\n      \"graded_module_structure\": \"each C^n is a module over a fixed coefficient domain\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"graded module with a degree-indexed family of cochain groups C^n\",\n      \"a complete coboundary-map table delta_n for every adjacent degree pair\",\n      \"a single fixed coefficient domain (field or ring) shared by all C^n\",\n      \"a complex-law witness establishing delta_{n+1} ∘ delta_n = 0\",\n      \"an explicit finite basis hash for each cochain group\"\n    ],\n    \"compatibility\": [\n      \"all cochain groups must share the same coefficient domain\",\n      \"source/target degrees of every coboundary map must exist in the degree index set\"\n    ]\n  },\n  \"laws\": {\n    \"degree_shift\": \"Every coboundary map raises degree by exactly one (C^n → C^{n+1}).\",\n    \"complex_law\": \"delta_{n+1} ∘ delta_n = 0 for all n — the defining cochain-complex identity.\",\n    \"graded_module_structure\": \"Each C^n is a module over the single shared coefficient domain.\",\n    \"coefficient_consistency\": \"A complex with mixed coefficient domains is not well-formed.\",\n    \"descriptive_only\": \"The complex is structural; it classifies nothing and confers no authority.\"\n  },\n  \"equivalence\": {\n    \"artifact_equality\": \"Two complexes are equal iff their content-addressed StructureArtifact hashes agree under canonical serialization.\",\n    \"coefficient_mode\": \"Equality requires the same declared coefficient domain and degree index set.\"\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"no external state, randomness, or time-dependent data\",\n      \"graded-module and coboundary-map data fixed as canonical byte arrays\",\n      \"coboundary composition deterministic from canonical matrices\",\n      \"deterministic SHA-256 artifact hash reproducible from the inputs\"\n    ]\n  },\n  \"relationships\": {\n    \"CochainGroup\": \"Each degree component C^n of the complex is a [[cochain_group]].\",\n    \"Cohomology\": \"Cohomology H^n is the homology of this complex (ker delta_n / im delta_{n-1}).\",\n    \"CechCochain\": \"Čech cochains assemble into a cochain complex of this shape over a nerve.\",\n    \"ObstructionClass\": \"Obstruction classes are cohomology classes of a cochain complex.\",\n    \"Phi1\": \"The degree-1 obstruction functional acts on residuals living in this complex's C^1.\",\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"cochain_complex\",\n    \"symbols\": [\n      \"CochainComplex\"\n    ],\n    \"required_tests\": [\n      \"test_coboundary_law_violation_rejected\",\n      \"test_dimension_mismatch_d0\",\n      \"dim_rejects_degree_outside_finite_support\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Coboundary map with the wrong degree shift (delta : C^n → C^m, m ≠ n+1)\",\n    \"Complex-law violation (delta_{n+1} ∘ delta_n ≠ 0)\",\n    \"Missing cochain group for a coboundary map's source or target\",\n    \"Coefficient-domain mismatch (different fields for different groups)\",\n    \"Artifact claiming authority or admissibility\",\n    \"Unbounded complex declared without an explicit specification\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Graded cochain groups C^n with degree-raising coboundary maps satisfying delta ∘ delta = 0 — the base structure for cocycles, coboundaries, cohomology, Čech complexes, and obstruction classes. Purely structural; confers no authority.\\n\",\n    \"non_role\": [\n      \"Does not compute cohomology (see the cohomology contract).\",\n      \"Does not specialize to Čech or de Rham complexes (separate contracts).\",\n      \"Does not model double complexes or spectral sequences (separate contracts).\",\n      \"Does not issue certificates, terminalize, or produce customer-facing claims.\"\n    ]\n  },\n  \"wip\": [\n    \"Currently targets bounded cochain complexes only; unbounded complexes deferred.\",\n    \"Čech and de Rham specializations will be separate contracts referencing this base.\",\n    \"Filtered complexes and bicomplexes are out of scope for v1.\",\n    \"Legacy owner block named promotion target omega_homology::cochain_complex.rs.\",\n    \"Legacy owner note: Cohomological grading: d raises degree by +1. Construction or explicit validation must witness d^2=0. See MATHEMATICAL_CONVENTIONS.md.\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/math_cochain_complex_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "d745fa98d4d0b0721eb5a85a9241d2425a22d6e61bb6eb4b5016aa9336c33684",
+      "bytes": 2229,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/math_cochain_complex_v1_0_0_contract.py",
+          "sha256": "81ac27aa760e69af6047012055dcba66848a60ec821d37c7607540ce91c44053"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:math-cochain-complex-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_cochain_complex_v1_0_0_contract.py\",\n    \"sha256\": \"81ac27aa760e69af6047012055dcba66848a60ec821d37c7607540ce91c44053\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-cochain-complex-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_cochain_complex_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/math_cochain_complex_v1_0_0.contract.yaml": "c42e4ab7025f260b80035e223a5eb5d57aa9b921feaa4e2a74d21c06fec32860"
   },

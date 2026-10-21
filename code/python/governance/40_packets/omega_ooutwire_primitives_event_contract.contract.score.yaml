@@ -44,12 +44,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "7d987800479c5fc810e6c5817be5260cefb7d2a5cd6735512c6c70b236405bea",
-  "current_scoring": null,
+  "current_contract": "009875cd8d0e8a971aa586597898279d80ff4ec8939dff2f3a384fed34b212e1",
+  "current_scoring": "c8c74867eac69d7b4c672e325ebf1d52cb7627a08e5c6dafab1cb3b369f4610d",
   "contract_history": [
     {
-      "sha256": "7d987800479c5fc810e6c5817be5260cefb7d2a5cd6735512c6c70b236405bea",
-      "bytes": 846,
+      "sha256": "009875cd8d0e8a971aa586597898279d80ff4ec8939dff2f3a384fed34b212e1",
+      "bytes": 1073,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_ooutwire_primitives:event:v1.0.0",
@@ -92,13 +92,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_ooutwire_primitives:event:v1.0.0\ntitle: 'Sort 4 — **Event**: a presentation or an admission.  Crate boundary: coda-carrier.  Source:\n  `model.py`, the six event...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_ooutwire_primitives\nfile: crates_rs/omega_ooutwire_primitives/src/event.rs\nmodule: event\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_ooutwire_primitives\n  module: event\n  file: crates_rs/omega_ooutwire_primitives/src/event.rs\nsymbols:\n- Event\n- is_admission\n- is_imposition\n- is_supply\n- token\n- AdmissionError\nowns:\n- event\n- is_admission\n- is_imposition\n- is_supply\n- token\n- admission_error\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_ooutwire_primitives:event:v1.0.0\",\n  \"title\": \"Sort 4 — **Event**: a presentation or an admission.  Crate boundary: coda-carrier.  Source: `model.py`, the six event...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_ooutwire_primitives\",\n  \"file\": \"crates_rs/omega_ooutwire_primitives/src/event.rs\",\n  \"module\": \"event\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_ooutwire_primitives\",\n    \"module\": \"event\",\n    \"file\": \"crates_rs/omega_ooutwire_primitives/src/event.rs\"\n  },\n  \"symbols\": [\n    \"Event\",\n    \"is_admission\",\n    \"is_imposition\",\n    \"is_supply\",\n    \"token\",\n    \"AdmissionError\"\n  ],\n  \"owns\": [\n    \"event\",\n    \"is_admission\",\n    \"is_imposition\",\n    \"is_supply\",\n    \"token\",\n    \"admission_error\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/omega_ooutwire_primitives_event.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c8c74867eac69d7b4c672e325ebf1d52cb7627a08e5c6dafab1cb3b369f4610d",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/omega_ooutwire_primitives_event_contract.py",
+          "sha256": "e89deb05b0936915c78378b0faf77a00fa3282b0a801b22b020153d3f4ced08f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:omega-ooutwire-primitives-event-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/omega_ooutwire_primitives_event_contract.py\",\n    \"sha256\": \"e89deb05b0936915c78378b0faf77a00fa3282b0a801b22b020153d3f4ced08f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:omega-ooutwire-primitives-event-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/omega_ooutwire_primitives_event_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/omega_ooutwire_primitives_event.contract.yaml": "7d987800479c5fc810e6c5817be5260cefb7d2a5cd6735512c6c70b236405bea"
   },

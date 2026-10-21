@@ -3,72 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "kind": "rust_crate_contract",
-    "contract_id": "urn:omega:rust:omega_solvers:crate:v1.0.0",
-    "title": "Omega Engine Solvers Crate Contract",
-    "status": "active",
-    "crate": "omega_solvers",
-    "file": "crates_rs/omega_solvers/src/lib.rs",
-    "role": "core_solvers_substrate",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": "required",
-    "owns": [
-      "numerical_and_krylov_linear_solvers",
-      "l1_norm_and_obstruction_solvers",
-      "network_simplex_and_flow_solvers",
-      "cdcl_and_sat_unsat_core_solvers",
-      "groebner_and_hilbert_basis_solvers",
-      "hodge_sheaf_and_cohomology_solvers",
-      "quantum_gauge_and_yang_mills_solvers",
-      "gnn_mcts_and_topological_autoencoders",
-      "distributed_candidate_validation_backends"
-    ],
-    "does_not_own": [
-      "global_authority_promotion",
-      "unverified_quantum_feynman_amplitudes",
-      "human_review_signoff"
-    ],
-    "may_call": [
-      "omega_types",
-      "omega_linear_algebra",
-      "omega_homology",
-      "omega_contracts"
-    ],
-    "must_not": [
-      "mint_certified_authority_without_proof_witness",
-      "return_uncertified_satisfiability_claims",
-      "bypass_authority_ceiling_none"
-    ],
-    "exactness": {
-      "numeric_mode": "float_and_exact_rational",
-      "exact_certificate_allowed": true
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py",
+      "sha256": "12d892955c5094fe8a69623d1af31d0e702fbec6ddf4c5f91714d313978c9905"
     },
-    "forbidden_substrings": [
-      "CertifiedAuthority",
-      "AuthorityEffect::Authorize"
-    ],
-    "required_substrings": [
-      "AuthorityEffect: None"
-    ],
-    "required_tests": [
-      "test_solvers_conformance"
-    ],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:rust-omega-solvers-crate-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_solvers:crate:v1.0.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "530d0f9dec8190d45e85d2a69844b9c7b85822b4104f0693a7bc9f22603ea6f0",
-  "current_scoring": null,
+  "current_contract": "60af0d0262a484ece5e09c6f780c445d367611ff1a8f1a7e82956b35647fc598",
+  "current_scoring": "8f1f16f52abf5ce32ede44be128d1e273b83763787059056ffbc14a611297985",
   "contract_history": [
     {
-      "sha256": "530d0f9dec8190d45e85d2a69844b9c7b85822b4104f0693a7bc9f22603ea6f0",
-      "bytes": 1389,
+      "sha256": "419c75cf33a5fb5003540e3ffad11de597ff4746fe5d3c88dd1728ab5e1c3631",
+      "bytes": 1711,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "kind": "rust_crate_contract",
@@ -130,13 +96,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_crate_contract\ncontract_id: urn:omega:rust:omega_solvers:crate:v1.0.0\ntitle: Omega Engine Solvers Crate Contract\nstatus: active\ncrate: omega_solvers\nfile: crates_rs/omega_solvers/src/lib.rs\nrole: core_solvers_substrate\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n- numerical_and_krylov_linear_solvers\n- l1_norm_and_obstruction_solvers\n- network_simplex_and_flow_solvers\n- cdcl_and_sat_unsat_core_solvers\n- groebner_and_hilbert_basis_solvers\n- hodge_sheaf_and_cohomology_solvers\n- quantum_gauge_and_yang_mills_solvers\n- gnn_mcts_and_topological_autoencoders\n- distributed_candidate_validation_backends\ndoes_not_own:\n- global_authority_promotion\n- unverified_quantum_feynman_amplitudes\n- human_review_signoff\nmay_call:\n- omega_types\n- omega_linear_algebra\n- omega_homology\n- omega_contracts\nmust_not:\n- mint_certified_authority_without_proof_witness\n- return_uncertified_satisfiability_claims\n- bypass_authority_ceiling_none\nexactness:\n  numeric_mode: float_and_exact_rational\n  exact_certificate_allowed: true\nforbidden_substrings:\n- CertifiedAuthority\n- AuthorityEffect::Authorize\nrequired_substrings:\n- 'AuthorityEffect: None'\nrequired_tests:\n- test_solvers_conformance\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_crate_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_solvers:crate:v1.0.0\",\n  \"title\": \"Omega Engine Solvers Crate Contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_solvers\",\n  \"file\": \"crates_rs/omega_solvers/src/lib.rs\",\n  \"role\": \"core_solvers_substrate\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": \"required\",\n  \"owns\": [\n    \"numerical_and_krylov_linear_solvers\",\n    \"l1_norm_and_obstruction_solvers\",\n    \"network_simplex_and_flow_solvers\",\n    \"cdcl_and_sat_unsat_core_solvers\",\n    \"groebner_and_hilbert_basis_solvers\",\n    \"hodge_sheaf_and_cohomology_solvers\",\n    \"quantum_gauge_and_yang_mills_solvers\",\n    \"gnn_mcts_and_topological_autoencoders\",\n    \"distributed_candidate_validation_backends\"\n  ],\n  \"does_not_own\": [\n    \"global_authority_promotion\",\n    \"unverified_quantum_feynman_amplitudes\",\n    \"human_review_signoff\"\n  ],\n  \"may_call\": [\n    \"omega_types\",\n    \"omega_linear_algebra\",\n    \"omega_homology\",\n    \"omega_contracts\"\n  ],\n  \"must_not\": [\n    \"mint_certified_authority_without_proof_witness\",\n    \"return_uncertified_satisfiability_claims\",\n    \"bypass_authority_ceiling_none\"\n  ],\n  \"exactness\": {\n    \"numeric_mode\": \"float_and_exact_rational\",\n    \"exact_certificate_allowed\": true\n  },\n  \"forbidden_substrings\": [\n    \"CertifiedAuthority\",\n    \"AuthorityEffect::Authorize\"\n  ],\n  \"required_substrings\": [\n    \"AuthorityEffect: None\"\n  ],\n  \"required_tests\": [\n    \"test_solvers_conformance\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "60af0d0262a484ece5e09c6f780c445d367611ff1a8f1a7e82956b35647fc598",
+      "bytes": 1846,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py",
+          "sha256": "12d892955c5094fe8a69623d1af31d0e702fbec6ddf4c5f91714d313978c9905"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:rust-omega-solvers-crate-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_solvers:crate:v1.0.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py\",\n    \"sha256\": \"12d892955c5094fe8a69623d1af31d0e702fbec6ddf4c5f91714d313978c9905\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-solvers-crate-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_solvers:crate:v1.0.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8f1f16f52abf5ce32ede44be128d1e273b83763787059056ffbc14a611297985",
+      "bytes": 2237,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py",
+          "sha256": "12d892955c5094fe8a69623d1af31d0e702fbec6ddf4c5f91714d313978c9905"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-solvers-crate-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.py\",\n    \"sha256\": \"12d892955c5094fe8a69623d1af31d0e702fbec6ddf4c5f91714d313978c9905\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-solvers-crate-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/rust_omega_solvers_crate_v1_0_0.contract.yaml": "530d0f9dec8190d45e85d2a69844b9c7b85822b4104f0693a7bc9f22603ea6f0"
   },

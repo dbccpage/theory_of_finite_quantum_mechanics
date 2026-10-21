@@ -101,12 +101,12 @@
       "Tensor algebra, symmetric algebra, exterior algebra are constructors on modules"
     ]
   },
-  "current_contract": "6f7377196c41836377d35e9fed700297d8843731a3e0b240da9f062d7110bea5",
-  "current_scoring": null,
+  "current_contract": "06e34505ff94896427ee8dea558746aa462166b900c61d495f3b2f212af51b67",
+  "current_scoring": "1049d0886642cb936ee5a413eba387b78684966f05200b0ecd4aad1b401ad2f3",
   "contract_history": [
     {
-      "sha256": "6f7377196c41836377d35e9fed700297d8843731a3e0b240da9f062d7110bea5",
-      "bytes": 3315,
+      "sha256": "06e34505ff94896427ee8dea558746aa462166b900c61d495f3b2f212af51b67",
+      "bytes": 3811,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:algebra:v0.1.0",
@@ -206,13 +206,75 @@
           "Tensor algebra, symmetric algebra, exterior algebra are constructors on modules"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:algebra:v0.1.0\ntitle: Algebra Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: algebra\n  symbol: (A, +, mu, R) or (A, +, *, 1_A, R)\n  ascii_symbol: algebra\n  notation: (A, +, mu, R) or (A, +, *, 1_A, R)\n  domain:\n  - 'underlying_module: r_module'\n  - 'base_ring: commutative_ring_R'\n  - 'multiplication: bilinear_map A x A -> A'\n  - 'unit: optional_element_1_A'\n  codomain:\n    description: 'An R-module A with a bilinear multiplication mu: A x A -> A, optional\n      unit element, and the underlying ring R of scalars.\n\n      '\nrequirements:\n  required_structures:\n  - A satisfies R-module axioms (abelian group + scalar multiplication)\n  - Multiplication is R-bilinear\n  - Multiplication is associative (if declared associative)\n  - Unit element satisfies mu(1,a) = mu(a,1) = a (if declared unital)\n  - Artifact hash is deterministically computed from structural data\nlaws:\n- A is an R-module under addition and scalar multiplication\n- mu(ra + sb, c) = r*mu(a,c) + s*mu(b,c) and mu(a, rb + sc) = r*mu(a,b) + s*mu(a,c)\n- mu(mu(a,b), c) = mu(a, mu(b,c)) for all a, b, c in A\n- mu(1_A, a) = mu(a, 1_A) = a for all a in A (if unital)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All algebra operations from canonical structure tables\n  - Rechecking must reproduce axiom_witness_hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Multiplication that is not R-bilinear must be rejected\n- Declared associative but mu(mu(a,b),c) != mu(a,mu(b,c))\n- Declared unital but unit axiom fails\n- Underlying module axioms violated\n- Artifact claiming authority or admissibility must be rejected\ndoctrine:\n  summary: 'An algebra over a ring R is an R-module A equipped with an R-bilinear\n    multiplication mu: A x A -> A. In the unital associative case, this multiplication\n    is associative and has a unit element 1_A. Algebras unify ring theory and module\n    theory, serving as the foundation for operator algebras, Lie algebras, Clifford\n    algebras, and DG-algebras.'\n  non_role:\n  - Lie algebras (non-associative, separate contract)\n  - DG-algebras (graded with differential, separate contract)\n  - C*-algebras and operator algebras (topological extensions)\n  - Coalgebras and bialgebras (dual structure, separate contract)\nwip:\n- Should commutative algebras be a separate contract or a FactEnvelope?\n- How to handle graded algebras (separate contract vs parametric extension)?\n- Should the algebra contract support non-associative algebras like Lie algebras?\n- Relationship to operad algebras and E_n-algebras?\n- Currently targets finite-dimensional associative unital algebras\n- Non-associative and non-unital variants need flags\n- Graded algebras, filtered algebras, and DG-algebras are separate contracts\n- Tensor algebra, symmetric algebra, exterior algebra are constructors on modules\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:algebra:v0.1.0\",\n  \"title\": \"Algebra Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"algebra\",\n    \"symbol\": \"(A, +, mu, R) or (A, +, *, 1_A, R)\",\n    \"ascii_symbol\": \"algebra\",\n    \"notation\": \"(A, +, mu, R) or (A, +, *, 1_A, R)\",\n    \"domain\": [\n      \"underlying_module: r_module\",\n      \"base_ring: commutative_ring_R\",\n      \"multiplication: bilinear_map A x A -> A\",\n      \"unit: optional_element_1_A\"\n    ],\n    \"codomain\": {\n      \"description\": \"An R-module A with a bilinear multiplication mu: A x A -> A, optional unit element, and the underlying ring R of scalars.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"A satisfies R-module axioms (abelian group + scalar multiplication)\",\n      \"Multiplication is R-bilinear\",\n      \"Multiplication is associative (if declared associative)\",\n      \"Unit element satisfies mu(1,a) = mu(a,1) = a (if declared unital)\",\n      \"Artifact hash is deterministically computed from structural data\"\n    ]\n  },\n  \"laws\": [\n    \"A is an R-module under addition and scalar multiplication\",\n    \"mu(ra + sb, c) = r*mu(a,c) + s*mu(b,c) and mu(a, rb + sc) = r*mu(a,b) + s*mu(a,c)\",\n    \"mu(mu(a,b), c) = mu(a, mu(b,c)) for all a, b, c in A\",\n    \"mu(1_A, a) = mu(a, 1_A) = a for all a in A (if unital)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"All algebra operations from canonical structure tables\",\n      \"Rechecking must reproduce axiom_witness_hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Multiplication that is not R-bilinear must be rejected\",\n    \"Declared associative but mu(mu(a,b),c) != mu(a,mu(b,c))\",\n    \"Declared unital but unit axiom fails\",\n    \"Underlying module axioms violated\",\n    \"Artifact claiming authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An algebra over a ring R is an R-module A equipped with an R-bilinear multiplication mu: A x A -> A. In the unital associative case, this multiplication is associative and has a unit element 1_A. Algebras unify ring theory and module theory, serving as the foundation for operator algebras, Lie algebras, Clifford algebras, and DG-algebras.\",\n    \"non_role\": [\n      \"Lie algebras (non-associative, separate contract)\",\n      \"DG-algebras (graded with differential, separate contract)\",\n      \"C*-algebras and operator algebras (topological extensions)\",\n      \"Coalgebras and bialgebras (dual structure, separate contract)\"\n    ]\n  },\n  \"wip\": [\n    \"Should commutative algebras be a separate contract or a FactEnvelope?\",\n    \"How to handle graded algebras (separate contract vs parametric extension)?\",\n    \"Should the algebra contract support non-associative algebras like Lie algebras?\",\n    \"Relationship to operad algebras and E_n-algebras?\",\n    \"Currently targets finite-dimensional associative unital algebras\",\n    \"Non-associative and non-unital variants need flags\",\n    \"Graded algebras, filtered algebras, and DG-algebras are separate contracts\",\n    \"Tensor algebra, symmetric algebra, exterior algebra are constructors on modules\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_algebra_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1049d0886642cb936ee5a413eba387b78684966f05200b0ecd4aad1b401ad2f3",
+      "bytes": 2211,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_algebra_v0_1_0_contract.py",
+          "sha256": "955dcf0f843d15f26b5858837e11ce7a6ff88e32f21ebc628c7b9b8d75623a34"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-algebra-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_algebra_v0_1_0_contract.py\",\n    \"sha256\": \"955dcf0f843d15f26b5858837e11ce7a6ff88e32f21ebc628c7b9b8d75623a34\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-algebra-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_algebra_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_algebra_v0_1_0.contract.yaml": "6f7377196c41836377d35e9fed700297d8843731a3e0b240da9f062d7110bea5"
   },

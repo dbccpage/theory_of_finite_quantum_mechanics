@@ -42,6 +42,23 @@ class PhaseScopeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'a.txt';p.write_bytes(b'axiom\nsorry\nClassical.choice\n')
             self.assertEqual(evaluate(kind,['a.txt'],d)[1:],['3','1','1','1'])
+    def test_adversarial_rejections(self):
+        # 1. Float rejection
+        with self.assertRaises(TypeError):
+            evaluate("weights", [0.1, 0.2, 0.3, 0.4])
+        # 2. Boolean rejection
+        with self.assertRaises(TypeError):
+            evaluate("weights", [True, 2, 3, 4])
+        # 3. 1025-bit integer rejection
+        with self.assertRaises(ValueError):
+            evaluate("weights", [1 << 1025, 2, 3, 4])
+        # 4. Filesystem traversal rejection
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(ValueError):
+                evaluate("corpus", ["../not_under_root.txt"], root=d)
+
     def test_corpus(self):self._inventory('corpus')
     def test_custody(self):self._inventory('custody')
 if __name__=='__main__':unittest.main()
+

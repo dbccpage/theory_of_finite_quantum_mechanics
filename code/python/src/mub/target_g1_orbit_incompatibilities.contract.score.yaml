@@ -1,0 +1,180 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/target_g1_orbit_incompatibilities.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/target_g1_orbit_incompatibilities.py",
+      "sha256": "895b611f8f9c69c605c474903f89e1d6ac99b41e764870208e762aae5d92a946"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub:target-g1-orbit-incompatibilities:v1",
+    "role": "library",
+    "purpose": "Target G1: Orbit Incompatibilities, Corner Determinant Factorization & Reindexed Pigeonhole Verifier. Firewall Line: stated region only; mints no authority",
+    "operations": {
+      "assert_no_float": "Recursively verify that zero floating-point or complex types exist.",
+      "corner_determinant": "Evaluate the 3x3 corner determinant identity:",
+      "evaluate_matrix_corner_determinant": "Evaluate corner determinant P_corner of a 6x6 CHM on rows {1,2}, cols {1,2}.",
+      "direct_3x3_determinant": "Direct exact determinant of a 3x3 matrix over Cyc24.",
+      "verify_annihilated_entry_nullstellensatz": "Evaluate the Nullstellensatz certificate for an annihilated entry branch.",
+      "verify_all_ones_nullstellensatz": "Evaluate the Nullstellensatz certificate for an all-ones non-orthogonal row branch.",
+      "verify_boundary_positivstellensatz": "Evaluate Stengle Positivstellensatz SOS certificates for |x| >= 2.",
+      "verify_t05_06_corner_factorization": "Execute complete T05_06 verification:",
+      "check_hadamard_unimodularity": "Check if all entries of matrix U satisfy |U_{jk}|^2 == 1 over Cyc24 (scale 1).",
+      "check_mu_transition_modulus": "Check if all entries of transition matrix U satisfy |U_{jk}|^2 == expected_mod_sq over Cyc24.",
+      "verify_genuine_mu_pair_transition": "Positive control verifying that a genuine MU pair satisfies |U_{jk}|^2 == 6 exactly.",
+      "verify_cross_orbit_s6_b6_obstruction": "Verify that (S6, B6) cannot form an MU pair (extending I6) on tested sample points.",
+      "verify_same_orbit_s6_s6_obstruction": "Verify that (S6, S6) cannot form an MU pair (extending I6) for tested gauge partners.",
+      "verify_same_orbit_b6_b6_obstruction": "Verify that (B6, B6) cannot form an MU pair (extending I6) for distinct tested parameter points.",
+      "verify_t05_10_cross_orbit_triad_obstruction": "Execute complete T05_10 verification:",
+      "combinations_exact": "Exact integer binomial coefficient binom(n, k).",
+      "reindexed_pigeonhole_dita_count": "Evaluate exact pigeonhole bounds for the 6 non-identity bases in a putative 7-MUB.",
+      "verify_t05_11_pigeonhole_lemma": "Execute complete T05_11 verification:",
+      "verify_pigeonhole_global_cover_bridge_integration": "Verify combinatorial consequence of reindexed pigeonhole lemma under explicit premises.",
+      "evaluate_tao_gauge_partner_transitions": "Test transition unimodularity for S6 against a comprehensive battery of gauge partners.",
+      "verify_t02_07_tao_unimodularity_failure": "Execute complete T02_07 verification.",
+      "evaluate_szollosi_parameter_pair_transition": "Evaluate U = B6(pt1)^dag B6(pt2) and verify scale-6 MU condition failure.",
+      "verify_t03_06_szollosi_unimodularity_obstruction": "Execute complete T03_06 verification:",
+      "generate_target_g1_orbit_incompatibilities_receipt": "Execute all 5 Target G1 vector verifiers and generate the certified receipt.",
+      "audit_target_g1_orbit_incompatibilities_receipt": "Audit an existing Target G1 receipt against schema, firewall, and exactness."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "b1e74d89a260053bcac794eab7c8687d4d6a3a7ef3bd2d8c8ac51e48f3c5c1be",
+  "current_scoring": "c7ae69f7afb781670f18cd1041d2c7f2f140540b982147cdee71fdcbbd4f5789",
+  "contract_history": [
+    {
+      "sha256": "b1e74d89a260053bcac794eab7c8687d4d6a3a7ef3bd2d8c8ac51e48f3c5c1be",
+      "bytes": 4570,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_g1_orbit_incompatibilities.py",
+          "sha256": "895b611f8f9c69c605c474903f89e1d6ac99b41e764870208e762aae5d92a946"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub:target-g1-orbit-incompatibilities:v1",
+        "role": "library",
+        "purpose": "Target G1: Orbit Incompatibilities, Corner Determinant Factorization & Reindexed Pigeonhole Verifier. Firewall Line: stated region only; mints no authority",
+        "operations": {
+          "assert_no_float": "Recursively verify that zero floating-point or complex types exist.",
+          "corner_determinant": "Evaluate the 3x3 corner determinant identity:",
+          "evaluate_matrix_corner_determinant": "Evaluate corner determinant P_corner of a 6x6 CHM on rows {1,2}, cols {1,2}.",
+          "direct_3x3_determinant": "Direct exact determinant of a 3x3 matrix over Cyc24.",
+          "verify_annihilated_entry_nullstellensatz": "Evaluate the Nullstellensatz certificate for an annihilated entry branch.",
+          "verify_all_ones_nullstellensatz": "Evaluate the Nullstellensatz certificate for an all-ones non-orthogonal row branch.",
+          "verify_boundary_positivstellensatz": "Evaluate Stengle Positivstellensatz SOS certificates for |x| >= 2.",
+          "verify_t05_06_corner_factorization": "Execute complete T05_06 verification:",
+          "check_hadamard_unimodularity": "Check if all entries of matrix U satisfy |U_{jk}|^2 == 1 over Cyc24 (scale 1).",
+          "check_mu_transition_modulus": "Check if all entries of transition matrix U satisfy |U_{jk}|^2 == expected_mod_sq over Cyc24.",
+          "verify_genuine_mu_pair_transition": "Positive control verifying that a genuine MU pair satisfies |U_{jk}|^2 == 6 exactly.",
+          "verify_cross_orbit_s6_b6_obstruction": "Verify that (S6, B6) cannot form an MU pair (extending I6) on tested sample points.",
+          "verify_same_orbit_s6_s6_obstruction": "Verify that (S6, S6) cannot form an MU pair (extending I6) for tested gauge partners.",
+          "verify_same_orbit_b6_b6_obstruction": "Verify that (B6, B6) cannot form an MU pair (extending I6) for distinct tested parameter points.",
+          "verify_t05_10_cross_orbit_triad_obstruction": "Execute complete T05_10 verification:",
+          "combinations_exact": "Exact integer binomial coefficient binom(n, k).",
+          "reindexed_pigeonhole_dita_count": "Evaluate exact pigeonhole bounds for the 6 non-identity bases in a putative 7-MUB.",
+          "verify_t05_11_pigeonhole_lemma": "Execute complete T05_11 verification:",
+          "verify_pigeonhole_global_cover_bridge_integration": "Verify combinatorial consequence of reindexed pigeonhole lemma under explicit premises.",
+          "evaluate_tao_gauge_partner_transitions": "Test transition unimodularity for S6 against a comprehensive battery of gauge partners.",
+          "verify_t02_07_tao_unimodularity_failure": "Execute complete T02_07 verification.",
+          "evaluate_szollosi_parameter_pair_transition": "Evaluate U = B6(pt1)^dag B6(pt2) and verify scale-6 MU condition failure.",
+          "verify_t03_06_szollosi_unimodularity_obstruction": "Execute complete T03_06 verification:",
+          "generate_target_g1_orbit_incompatibilities_receipt": "Execute all 5 Target G1 vector verifiers and generate the certified receipt.",
+          "audit_target_g1_orbit_incompatibilities_receipt": "Audit an existing Target G1 receipt against schema, firewall, and exactness."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_g1_orbit_incompatibilities.py\",\n    \"sha256\": \"895b611f8f9c69c605c474903f89e1d6ac99b41e764870208e762aae5d92a946\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub:target-g1-orbit-incompatibilities:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Target G1: Orbit Incompatibilities, Corner Determinant Factorization & Reindexed Pigeonhole Verifier. Firewall Line: stated region only; mints no authority\",\n  \"operations\": {\n    \"assert_no_float\": \"Recursively verify that zero floating-point or complex types exist.\",\n    \"corner_determinant\": \"Evaluate the 3x3 corner determinant identity:\",\n    \"evaluate_matrix_corner_determinant\": \"Evaluate corner determinant P_corner of a 6x6 CHM on rows {1,2}, cols {1,2}.\",\n    \"direct_3x3_determinant\": \"Direct exact determinant of a 3x3 matrix over Cyc24.\",\n    \"verify_annihilated_entry_nullstellensatz\": \"Evaluate the Nullstellensatz certificate for an annihilated entry branch.\",\n    \"verify_all_ones_nullstellensatz\": \"Evaluate the Nullstellensatz certificate for an all-ones non-orthogonal row branch.\",\n    \"verify_boundary_positivstellensatz\": \"Evaluate Stengle Positivstellensatz SOS certificates for |x| >= 2.\",\n    \"verify_t05_06_corner_factorization\": \"Execute complete T05_06 verification:\",\n    \"check_hadamard_unimodularity\": \"Check if all entries of matrix U satisfy |U_{jk}|^2 == 1 over Cyc24 (scale 1).\",\n    \"check_mu_transition_modulus\": \"Check if all entries of transition matrix U satisfy |U_{jk}|^2 == expected_mod_sq over Cyc24.\",\n    \"verify_genuine_mu_pair_transition\": \"Positive control verifying that a genuine MU pair satisfies |U_{jk}|^2 == 6 exactly.\",\n    \"verify_cross_orbit_s6_b6_obstruction\": \"Verify that (S6, B6) cannot form an MU pair (extending I6) on tested sample points.\",\n    \"verify_same_orbit_s6_s6_obstruction\": \"Verify that (S6, S6) cannot form an MU pair (extending I6) for tested gauge partners.\",\n    \"verify_same_orbit_b6_b6_obstruction\": \"Verify that (B6, B6) cannot form an MU pair (extending I6) for distinct tested parameter points.\",\n    \"verify_t05_10_cross_orbit_triad_obstruction\": \"Execute complete T05_10 verification:\",\n    \"combinations_exact\": \"Exact integer binomial coefficient binom(n, k).\",\n    \"reindexed_pigeonhole_dita_count\": \"Evaluate exact pigeonhole bounds for the 6 non-identity bases in a putative 7-MUB.\",\n    \"verify_t05_11_pigeonhole_lemma\": \"Execute complete T05_11 verification:\",\n    \"verify_pigeonhole_global_cover_bridge_integration\": \"Verify combinatorial consequence of reindexed pigeonhole lemma under explicit premises.\",\n    \"evaluate_tao_gauge_partner_transitions\": \"Test transition unimodularity for S6 against a comprehensive battery of gauge partners.\",\n    \"verify_t02_07_tao_unimodularity_failure\": \"Execute complete T02_07 verification.\",\n    \"evaluate_szollosi_parameter_pair_transition\": \"Evaluate U = B6(pt1)^dag B6(pt2) and verify scale-6 MU condition failure.\",\n    \"verify_t03_06_szollosi_unimodularity_obstruction\": \"Execute complete T03_06 verification:\",\n    \"generate_target_g1_orbit_incompatibilities_receipt\": \"Execute all 5 Target G1 vector verifiers and generate the certified receipt.\",\n    \"audit_target_g1_orbit_incompatibilities_receipt\": \"Audit an existing Target G1 receipt against schema, firewall, and exactness.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_g1_orbit_incompatibilities.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "c7ae69f7afb781670f18cd1041d2c7f2f140540b982147cdee71fdcbbd4f5789",
+      "bytes": 2202,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_g1_orbit_incompatibilities.py",
+          "sha256": "895b611f8f9c69c605c474903f89e1d6ac99b41e764870208e762aae5d92a946"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub:target-g1-orbit-incompatibilities:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 26 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 26,
+          "lizard_ccn": 26,
+          "weighted_control_upper_bound": 62,
+          "control_nesting": 7
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_g1_orbit_incompatibilities.py\",\n    \"sha256\": \"895b611f8f9c69c605c474903f89e1d6ac99b41e764870208e762aae5d92a946\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub:target-g1-orbit-incompatibilities:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 26 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 26,\n    \"lizard_ccn\": 26,\n    \"weighted_control_upper_bound\": 62,\n    \"control_nesting\": 7\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_g1_orbit_incompatibilities.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

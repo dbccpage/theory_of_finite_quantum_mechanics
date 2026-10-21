@@ -100,7 +100,7 @@ def test_qm223_planar_theta_vs_nonplanar_k33_2complex_torsion() -> None:
     assert k33.admissible_1d_exchange_characters == ("+1_BOSON", "-1_FERMION")
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'pauli_spin_stat.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'pauli_spin_stat.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

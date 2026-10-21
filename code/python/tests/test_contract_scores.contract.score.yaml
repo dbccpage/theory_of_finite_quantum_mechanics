@@ -6,7 +6,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/python/tests/test_contract_scores.py",
-      "sha256": "94d992e5eca63593ecec9ae2c140eab9392f3e239887855ed051cad5b0669831"
+      "sha256": "a91e7efd6de9287ae8bb723f0e6847405a7dbd3efee13b8d24209fd9330830d5"
     },
     "profile": "Exact",
     "claim": "urn:omega:fqm:tests:test-contract-scores:v1",
@@ -24,7 +24,8 @@
       "test_current_filename_is_not_mistaken_for_a_legacy_score": "Function test_current_filename_is_not_mistaken_for_a_legacy_score operation.",
       "test_readable_score_cannot_be_changed_without_matching_original": "Function test_readable_score_cannot_be_changed_without_matching_original operation.",
       "test_ambiguous_source_names_are_refused_before_deletion": "Function test_ambiguous_source_names_are_refused_before_deletion operation.",
-      "test_four_alias_writer_and_archive_copy_create_only_combined_files": "Function test_four_alias_writer_and_archive_copy_create_only_combined_files operation."
+      "test_four_alias_writer_and_archive_copy_create_only_combined_files": "Function test_four_alias_writer_and_archive_copy_create_only_combined_files operation.",
+      "test_export_v2_deterministic_canonical_schema": "Function test_export_v2_deterministic_canonical_schema operation."
     },
     "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
     "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
@@ -39,8 +40,8 @@
       }
     ]
   },
-  "current_contract": "33cd95549dc3e24b612b8b59410e9db94a1e8634433fd138f31855d7312f89f9",
-  "current_scoring": "f7f52809eed550ef7cd9d1bad76a8f37cdc9a1218652b81720aae6ec84a5829f",
+  "current_contract": "5cf17f35c744d8c7db0f282242dfab1c0b1f3c00d414c8c583284df19b3bbf8e",
+  "current_scoring": "4d5150198640fc00a85d899762e06f1f6d8a784f6af8eb3c20e8a8c82aab32d7",
   "contract_history": [
     {
       "sha256": "33cd95549dc3e24b612b8b59410e9db94a1e8634433fd138f31855d7312f89f9",
@@ -83,6 +84,52 @@
         ]
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_contract_scores.py\",\n    \"sha256\": \"94d992e5eca63593ecec9ae2c140eab9392f3e239887855ed051cad5b0669831\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:tests:test-contract-scores:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Lossless migration, historical custody and single-file writer checks.\",\n  \"operations\": {\n    \"repo\": \"Function repo operation.\",\n    \"prepare\": \"Function prepare operation.\",\n    \"test_all_versions_preserved_without_upgrading_current_assessment\": \"Function test_all_versions_preserved_without_upgrading_current_assessment operation.\",\n    \"test_existing_writer_appends_history_without_recreating_sidecars\": \"Function test_existing_writer_appends_history_without_recreating_sidecars operation.\",\n    \"test_corrupt_history_is_refused\": \"Function test_corrupt_history_is_refused operation.\",\n    \"test_invalid_input_prevents_any_deletion\": \"Function test_invalid_input_prevents_any_deletion operation.\",\n    \"test_registry_without_source_is_not_given_a_fictitious_artifact\": \"Function test_registry_without_source_is_not_given_a_fictitious_artifact operation.\",\n    \"test_escaping_index_is_refused\": \"Function test_escaping_index_is_refused operation.\",\n    \"test_current_filename_is_not_mistaken_for_a_legacy_score\": \"Function test_current_filename_is_not_mistaken_for_a_legacy_score operation.\",\n    \"test_readable_score_cannot_be_changed_without_matching_original\": \"Function test_readable_score_cannot_be_changed_without_matching_original operation.\",\n    \"test_ambiguous_source_names_are_refused_before_deletion\": \"Function test_ambiguous_source_names_are_refused_before_deletion operation.\",\n    \"test_four_alias_writer_and_archive_copy_create_only_combined_files\": \"Function test_four_alias_writer_and_archive_copy_create_only_combined_files operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_contract_scores.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "5cf17f35c744d8c7db0f282242dfab1c0b1f3c00d414c8c583284df19b3bbf8e",
+      "bytes": 3189,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_contract_scores.py",
+          "sha256": "a91e7efd6de9287ae8bb723f0e6847405a7dbd3efee13b8d24209fd9330830d5"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:tests:test-contract-scores:v1",
+        "role": "test checker",
+        "purpose": "Lossless migration, historical custody and single-file writer checks.",
+        "operations": {
+          "repo": "Function repo operation.",
+          "prepare": "Function prepare operation.",
+          "test_all_versions_preserved_without_upgrading_current_assessment": "Function test_all_versions_preserved_without_upgrading_current_assessment operation.",
+          "test_existing_writer_appends_history_without_recreating_sidecars": "Function test_existing_writer_appends_history_without_recreating_sidecars operation.",
+          "test_corrupt_history_is_refused": "Function test_corrupt_history_is_refused operation.",
+          "test_invalid_input_prevents_any_deletion": "Function test_invalid_input_prevents_any_deletion operation.",
+          "test_registry_without_source_is_not_given_a_fictitious_artifact": "Function test_registry_without_source_is_not_given_a_fictitious_artifact operation.",
+          "test_escaping_index_is_refused": "Function test_escaping_index_is_refused operation.",
+          "test_current_filename_is_not_mistaken_for_a_legacy_score": "Function test_current_filename_is_not_mistaken_for_a_legacy_score operation.",
+          "test_readable_score_cannot_be_changed_without_matching_original": "Function test_readable_score_cannot_be_changed_without_matching_original operation.",
+          "test_ambiguous_source_names_are_refused_before_deletion": "Function test_ambiguous_source_names_are_refused_before_deletion operation.",
+          "test_four_alias_writer_and_archive_copy_create_only_combined_files": "Function test_four_alias_writer_and_archive_copy_create_only_combined_files operation.",
+          "test_export_v2_deterministic_canonical_schema": "Function test_export_v2_deterministic_canonical_schema operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_contract_scores.py\",\n    \"sha256\": \"a91e7efd6de9287ae8bb723f0e6847405a7dbd3efee13b8d24209fd9330830d5\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:tests:test-contract-scores:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Lossless migration, historical custody and single-file writer checks.\",\n  \"operations\": {\n    \"repo\": \"Function repo operation.\",\n    \"prepare\": \"Function prepare operation.\",\n    \"test_all_versions_preserved_without_upgrading_current_assessment\": \"Function test_all_versions_preserved_without_upgrading_current_assessment operation.\",\n    \"test_existing_writer_appends_history_without_recreating_sidecars\": \"Function test_existing_writer_appends_history_without_recreating_sidecars operation.\",\n    \"test_corrupt_history_is_refused\": \"Function test_corrupt_history_is_refused operation.\",\n    \"test_invalid_input_prevents_any_deletion\": \"Function test_invalid_input_prevents_any_deletion operation.\",\n    \"test_registry_without_source_is_not_given_a_fictitious_artifact\": \"Function test_registry_without_source_is_not_given_a_fictitious_artifact operation.\",\n    \"test_escaping_index_is_refused\": \"Function test_escaping_index_is_refused operation.\",\n    \"test_current_filename_is_not_mistaken_for_a_legacy_score\": \"Function test_current_filename_is_not_mistaken_for_a_legacy_score operation.\",\n    \"test_readable_score_cannot_be_changed_without_matching_original\": \"Function test_readable_score_cannot_be_changed_without_matching_original operation.\",\n    \"test_ambiguous_source_names_are_refused_before_deletion\": \"Function test_ambiguous_source_names_are_refused_before_deletion operation.\",\n    \"test_four_alias_writer_and_archive_copy_create_only_combined_files\": \"Function test_four_alias_writer_and_archive_copy_create_only_combined_files operation.\",\n    \"test_export_v2_deterministic_canonical_schema\": \"Function test_export_v2_deterministic_canonical_schema operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/tests/test_contract_scores.contract.score.yaml#contract"
       ]
@@ -146,6 +193,67 @@
         ]
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_contract_scores.py\",\n    \"sha256\": \"94d992e5eca63593ecec9ae2c140eab9392f3e239887855ed051cad5b0669831\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:tests:test-contract-scores:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_contract_scores.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "4d5150198640fc00a85d899762e06f1f6d8a784f6af8eb3c20e8a8c82aab32d7",
+      "bytes": 2160,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_contract_scores.py",
+          "sha256": "a91e7efd6de9287ae8bb723f0e6847405a7dbd3efee13b8d24209fd9330830d5"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:tests:test-contract-scores:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_contract_scores.py\",\n    \"sha256\": \"a91e7efd6de9287ae8bb723f0e6847405a7dbd3efee13b8d24209fd9330830d5\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:tests:test-contract-scores:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 12 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/tests/test_contract_scores.contract.score.yaml#scoring"
       ]

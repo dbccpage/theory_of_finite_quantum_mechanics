@@ -1,0 +1,176 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_repair_hint_candidate.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_repair_hint_candidate.py",
+      "sha256": "013f472dd35dc82645b3bb51487384acc0b312694b55004b40f78a8775cf5989"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-repair-hint-candidate:v1",
+    "role": "test checker",
+    "purpose": "`RepairHintCandidateV1` -- the one type `EPIC-OE-IMMUNE-001` was missing. Seven of the epic's eight declared types already existed in",
+    "operations": {
+      "make_hit": "Function make_hit operation.",
+      "test_a_candidate_carries_the_hit_digest_it_is_bound_to": "Function test_a_candidate_carries_the_hit_digest_it_is_bound_to operation.",
+      "test_from_hit_copies_the_protection_set_off_the_hit": "The caller does not get to say what is protected.",
+      "test_binding_to_something_that_is_not_a_hit_is_refused": "Function test_binding_to_something_that_is_not_a_hit_is_refused operation.",
+      "test_a_hit_id_that_is_not_a_digest_is_refused": "Function test_a_hit_id_that_is_not_a_digest_is_refused operation.",
+      "test_targeting_a_protected_field_is_refused": "The clause the epic states most plainly: \"it cannot alter the finding\".",
+      "test_the_refusal_names_the_offending_field": "Function test_the_refusal_names_the_offending_field operation.",
+      "test_every_protected_field_is_refused_not_only_the_first": "A loop that stopped at the first hit would pass a one-field test.",
+      "test_an_unprotected_target_is_allowed": "The guard must be able to permit, or refusing proves nothing.",
+      "test_targets_default_to_empty": "A hint that names no field is prose, and prose is admissible.",
+      "test_an_approval_or_write_field_is_refused_at_deserialization": "Function test_an_approval_or_write_field_is_refused_at_deserialization operation.",
+      "test_the_refusal_names_the_smuggled_key": "Function test_the_refusal_names_the_smuggled_key operation.",
+      "test_a_smuggled_key_is_refused_not_dropped": "The distinction the spec insists on.",
+      "test_an_unknown_field_is_refused": "Unknown-field rejection, as the spec requires of the sibling types.",
+      "test_a_clean_payload_parses": "`from_mapping` must be able to succeed, or its refusals prove nothing.",
+      "test_the_forbidden_key_set_covers_the_families_the_spec_names": "approval, activation, admission, status, and write/patch.",
+      "test_authority_effect_is_none_and_anything_else_is_refused": "Function test_authority_effect_is_none_and_anything_else_is_refused operation.",
+      "test_the_candidate_id_is_content_addressed": "Function test_the_candidate_id_is_content_addressed operation.",
+      "test_a_tampered_candidate_id_is_refused": "Function test_a_tampered_candidate_id_is_refused operation.",
+      "test_an_unsupported_schema_version_is_refused": "Function test_an_unsupported_schema_version_is_refused operation.",
+      "test_to_dict_round_trips_through_from_mapping": "Function test_to_dict_round_trips_through_from_mapping operation.",
+      "test_the_type_is_exported_from_its_own_module": "Function test_the_type_is_exported_from_its_own_module operation.",
+      "test_the_adjunct_is_not_inside_the_digest_bound_detection_module": "The reason this type lives in its own file."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ff539c6297bd811844891fd43408abc19f6b9ad59c28f0973afdeebd68fb8d5a",
+  "current_scoring": "faf3c4754b40de306ce49b2ebf79daeeb66c13852ec26c26e206a83f8e73b8da",
+  "contract_history": [
+    {
+      "sha256": "ff539c6297bd811844891fd43408abc19f6b9ad59c28f0973afdeebd68fb8d5a",
+      "bytes": 4397,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_repair_hint_candidate.py",
+          "sha256": "013f472dd35dc82645b3bb51487384acc0b312694b55004b40f78a8775cf5989"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-repair-hint-candidate:v1",
+        "role": "test checker",
+        "purpose": "`RepairHintCandidateV1` -- the one type `EPIC-OE-IMMUNE-001` was missing. Seven of the epic's eight declared types already existed in",
+        "operations": {
+          "make_hit": "Function make_hit operation.",
+          "test_a_candidate_carries_the_hit_digest_it_is_bound_to": "Function test_a_candidate_carries_the_hit_digest_it_is_bound_to operation.",
+          "test_from_hit_copies_the_protection_set_off_the_hit": "The caller does not get to say what is protected.",
+          "test_binding_to_something_that_is_not_a_hit_is_refused": "Function test_binding_to_something_that_is_not_a_hit_is_refused operation.",
+          "test_a_hit_id_that_is_not_a_digest_is_refused": "Function test_a_hit_id_that_is_not_a_digest_is_refused operation.",
+          "test_targeting_a_protected_field_is_refused": "The clause the epic states most plainly: \"it cannot alter the finding\".",
+          "test_the_refusal_names_the_offending_field": "Function test_the_refusal_names_the_offending_field operation.",
+          "test_every_protected_field_is_refused_not_only_the_first": "A loop that stopped at the first hit would pass a one-field test.",
+          "test_an_unprotected_target_is_allowed": "The guard must be able to permit, or refusing proves nothing.",
+          "test_targets_default_to_empty": "A hint that names no field is prose, and prose is admissible.",
+          "test_an_approval_or_write_field_is_refused_at_deserialization": "Function test_an_approval_or_write_field_is_refused_at_deserialization operation.",
+          "test_the_refusal_names_the_smuggled_key": "Function test_the_refusal_names_the_smuggled_key operation.",
+          "test_a_smuggled_key_is_refused_not_dropped": "The distinction the spec insists on.",
+          "test_an_unknown_field_is_refused": "Unknown-field rejection, as the spec requires of the sibling types.",
+          "test_a_clean_payload_parses": "`from_mapping` must be able to succeed, or its refusals prove nothing.",
+          "test_the_forbidden_key_set_covers_the_families_the_spec_names": "approval, activation, admission, status, and write/patch.",
+          "test_authority_effect_is_none_and_anything_else_is_refused": "Function test_authority_effect_is_none_and_anything_else_is_refused operation.",
+          "test_the_candidate_id_is_content_addressed": "Function test_the_candidate_id_is_content_addressed operation.",
+          "test_a_tampered_candidate_id_is_refused": "Function test_a_tampered_candidate_id_is_refused operation.",
+          "test_an_unsupported_schema_version_is_refused": "Function test_an_unsupported_schema_version_is_refused operation.",
+          "test_to_dict_round_trips_through_from_mapping": "Function test_to_dict_round_trips_through_from_mapping operation.",
+          "test_the_type_is_exported_from_its_own_module": "Function test_the_type_is_exported_from_its_own_module operation.",
+          "test_the_adjunct_is_not_inside_the_digest_bound_detection_module": "The reason this type lives in its own file."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_repair_hint_candidate.py\",\n    \"sha256\": \"013f472dd35dc82645b3bb51487384acc0b312694b55004b40f78a8775cf5989\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-repair-hint-candidate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"`RepairHintCandidateV1` -- the one type `EPIC-OE-IMMUNE-001` was missing. Seven of the epic's eight declared types already existed in\",\n  \"operations\": {\n    \"make_hit\": \"Function make_hit operation.\",\n    \"test_a_candidate_carries_the_hit_digest_it_is_bound_to\": \"Function test_a_candidate_carries_the_hit_digest_it_is_bound_to operation.\",\n    \"test_from_hit_copies_the_protection_set_off_the_hit\": \"The caller does not get to say what is protected.\",\n    \"test_binding_to_something_that_is_not_a_hit_is_refused\": \"Function test_binding_to_something_that_is_not_a_hit_is_refused operation.\",\n    \"test_a_hit_id_that_is_not_a_digest_is_refused\": \"Function test_a_hit_id_that_is_not_a_digest_is_refused operation.\",\n    \"test_targeting_a_protected_field_is_refused\": \"The clause the epic states most plainly: \\\"it cannot alter the finding\\\".\",\n    \"test_the_refusal_names_the_offending_field\": \"Function test_the_refusal_names_the_offending_field operation.\",\n    \"test_every_protected_field_is_refused_not_only_the_first\": \"A loop that stopped at the first hit would pass a one-field test.\",\n    \"test_an_unprotected_target_is_allowed\": \"The guard must be able to permit, or refusing proves nothing.\",\n    \"test_targets_default_to_empty\": \"A hint that names no field is prose, and prose is admissible.\",\n    \"test_an_approval_or_write_field_is_refused_at_deserialization\": \"Function test_an_approval_or_write_field_is_refused_at_deserialization operation.\",\n    \"test_the_refusal_names_the_smuggled_key\": \"Function test_the_refusal_names_the_smuggled_key operation.\",\n    \"test_a_smuggled_key_is_refused_not_dropped\": \"The distinction the spec insists on.\",\n    \"test_an_unknown_field_is_refused\": \"Unknown-field rejection, as the spec requires of the sibling types.\",\n    \"test_a_clean_payload_parses\": \"`from_mapping` must be able to succeed, or its refusals prove nothing.\",\n    \"test_the_forbidden_key_set_covers_the_families_the_spec_names\": \"approval, activation, admission, status, and write/patch.\",\n    \"test_authority_effect_is_none_and_anything_else_is_refused\": \"Function test_authority_effect_is_none_and_anything_else_is_refused operation.\",\n    \"test_the_candidate_id_is_content_addressed\": \"Function test_the_candidate_id_is_content_addressed operation.\",\n    \"test_a_tampered_candidate_id_is_refused\": \"Function test_a_tampered_candidate_id_is_refused operation.\",\n    \"test_an_unsupported_schema_version_is_refused\": \"Function test_an_unsupported_schema_version_is_refused operation.\",\n    \"test_to_dict_round_trips_through_from_mapping\": \"Function test_to_dict_round_trips_through_from_mapping operation.\",\n    \"test_the_type_is_exported_from_its_own_module\": \"Function test_the_type_is_exported_from_its_own_module operation.\",\n    \"test_the_adjunct_is_not_inside_the_digest_bound_detection_module\": \"The reason this type lives in its own file.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_repair_hint_candidate.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "faf3c4754b40de306ce49b2ebf79daeeb66c13852ec26c26e206a83f8e73b8da",
+      "bytes": 2180,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_repair_hint_candidate.py",
+          "sha256": "013f472dd35dc82645b3bb51487384acc0b312694b55004b40f78a8775cf5989"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-repair-hint-candidate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 3 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 3,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_repair_hint_candidate.py\",\n    \"sha256\": \"013f472dd35dc82645b3bb51487384acc0b312694b55004b40f78a8775cf5989\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-repair-hint-candidate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 3 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 3,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_repair_hint_candidate.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

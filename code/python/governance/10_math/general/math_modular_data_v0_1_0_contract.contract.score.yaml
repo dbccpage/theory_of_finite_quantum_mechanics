@@ -111,12 +111,12 @@
       "Lean counterparts are not written"
     ]
   },
-  "current_contract": "2aa7321ce01ee2c7f7ddb0a661922d714b96aec9e690ba1f3ca6063451b577a6",
-  "current_scoring": null,
+  "current_contract": "fe66d762886e23cc083e3c5b60affd23368127af589c20d58dd2b0e3bb57a553",
+  "current_scoring": "04b83a385d2507a2b65e4a5d96e639d10e88ab08c36f91842370ceb5fa5c7e90",
   "contract_history": [
     {
-      "sha256": "2aa7321ce01ee2c7f7ddb0a661922d714b96aec9e690ba1f3ca6063451b577a6",
-      "bytes": 4303,
+      "sha256": "fe66d762886e23cc083e3c5b60affd23368127af589c20d58dd2b0e3bb57a553",
+      "bytes": 4835,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:modular_data:v0.1.0",
@@ -226,13 +226,75 @@
           "Lean counterparts are not written"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:modular_data:v0.1.0\ntitle: Modular Data Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: modular_data\n  symbol: (S~, T) with S~ = D S, T = diag(theta)\n  ascii_symbol: modular_data\n  notation: S~_{ab} = sum_c N_{a b*}^c d_c theta_c / (theta_a theta_b), p_+ = sum_a\n    d_a^2 theta_a, D^2 = sum_a d_a^2\n  domain:\n  - 'ribbon_category: a validated ribbon fusion category over an exact field K'\n  - 'dimensions: d_a in K'\n  - 'twists: theta_a in K'\n  codomain:\n    description: The unnormalised S-matrix S~, the T-matrix, D^2 and the Gauss sum\n      p_+, all elements of K, checked against the relations below exactly.\nrequirements:\n  required_structures:\n  - S~ has full rank (a degenerate braiding is refused)\n  - Every relation is checked by exact equality in K\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact field arithmetic only; no floating point and no tolerance\nlaws:\n- S~ is symmetric\n- S~^2 = D^2 C, with C_{ab} = delta_{b,a*} the charge conjugation\n- S~ conj(S~)^T = D^2 I\n- (S~ T)^3 = p_+ S~^2 (the exact in-field form; the familiar (ST)^3 = S^2 holds only\n  for the c-normalised T e^{-2 pi i c/24} and the normalised S, which need D and e^{2\n  pi i c/24} that are not in general in the field)\n- 'Verlinde: N_{ab}^c = (1/D^2) sum_x S~_{ax} S~_{bx} conj(S~_{cx}) / S~_{0x}'\n- 'Gauss-Milgram: p_+ / D = exp(2 pi i c / 8); in the field, p_+^2 / D^2 = exp(2 pi\n  i c / 4) is a root of unity that fixes c modulo 4, and when D lies in the field\n  and is positive, p_+ / D fixes c modulo 8'\n- 'Frobenius-Schur indicator (Bantay): nu_a = (1/D^2) sum_{b,c} N_{bc}^a d_b d_c (theta_b\n  / theta_c)^2, equal to +1 or -1 for a self-dual object and 0 otherwise'\n- 'ground-state degeneracy on a closed surface of genus g: sum_a (D^2 / d_a^2)^(g-1),\n  a non-negative integer'\n- topological entanglement entropy gamma = ln D is reported as the algebraic D^2;\n  no logarithm is computed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- A symmetric braiding (trivial monodromy) must be refused as degenerate\n- A perturbed S~ entry must fail the Verlinde formula\n- A supplied D whose square is not D^2, or that is not positive, must be refused by\n  the mod-8 central charge\n- A ground-state degeneracy that is not a non-negative integer must be reported, not\n  rounded\nrust_binding:\n  crate: omega_fusion_categories\n  module: modular\n  symbols:\n  - ModularData\n  - ModularDefect\n  required_tests:\n  - a_symmetric_braiding_gives_a_degenerate_s_matrix_and_is_refused\n  - the_verlinde_formula_fails_on_a_perturbed_s_matrix\n  - fibonacci_modular_data_and_central_charge_are_exact\n  - the_toric_code_is_modular_with_the_pinned_s_matrix_and_four_to_the_g_ground_states\n  - the_three_fermion_model_has_central_charge_four_modulo_eight\n  - cyclic_pointed_models_have_quadratic_gauss_sums_and_the_right_central_charges\n  - ising_modular_data_central_charge_and_ground_states_are_exact\ndoctrine:\n  summary: 'Exact modular data of a ribbon fusion category: S~ and T, the modular\n    relations in their in-field form, Verlinde, Gauss-Milgram for the central charge,\n    Bantay Frobenius-Schur indicators and genus-g ground-state counts, verified for\n    Ising, Fibonacci, semion, toric code, three-fermion, quantum doubles D(Z_n) and\n    cyclic pointed categories (cross-checked against the quadratic Gauss sums of omega_number_theory).'\n  non_role:\n  - Does not assert a material hosts any of these categories\n  - Does not compute the topological entanglement entropy (only D^2)\n  - Does not compute an SL_2(Z) representation beyond the stated relations\nwip:\n- The central charge modulo 8 needs D in the field; for Fibonacci D lies in Q(zeta_20),\n  not in Q(zeta_5)\n- Higher-genus mapping class group representations are not computed\n- Lean counterparts are not written\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:modular_data:v0.1.0\",\n  \"title\": \"Modular Data Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"modular_data\",\n    \"symbol\": \"(S~, T) with S~ = D S, T = diag(theta)\",\n    \"ascii_symbol\": \"modular_data\",\n    \"notation\": \"S~_{ab} = sum_c N_{a b*}^c d_c theta_c / (theta_a theta_b), p_+ = sum_a d_a^2 theta_a, D^2 = sum_a d_a^2\",\n    \"domain\": [\n      \"ribbon_category: a validated ribbon fusion category over an exact field K\",\n      \"dimensions: d_a in K\",\n      \"twists: theta_a in K\"\n    ],\n    \"codomain\": {\n      \"description\": \"The unnormalised S-matrix S~, the T-matrix, D^2 and the Gauss sum p_+, all elements of K, checked against the relations below exactly.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"S~ has full rank (a degenerate braiding is refused)\",\n      \"Every relation is checked by exact equality in K\"\n    ]\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Exact field arithmetic only; no floating point and no tolerance\"\n    ]\n  },\n  \"laws\": [\n    \"S~ is symmetric\",\n    \"S~^2 = D^2 C, with C_{ab} = delta_{b,a*} the charge conjugation\",\n    \"S~ conj(S~)^T = D^2 I\",\n    \"(S~ T)^3 = p_+ S~^2 (the exact in-field form; the familiar (ST)^3 = S^2 holds only for the c-normalised T e^{-2 pi i c/24} and the normalised S, which need D and e^{2 pi i c/24} that are not in general in the field)\",\n    \"Verlinde: N_{ab}^c = (1/D^2) sum_x S~_{ax} S~_{bx} conj(S~_{cx}) / S~_{0x}\",\n    \"Gauss-Milgram: p_+ / D = exp(2 pi i c / 8); in the field, p_+^2 / D^2 = exp(2 pi i c / 4) is a root of unity that fixes c modulo 4, and when D lies in the field and is positive, p_+ / D fixes c modulo 8\",\n    \"Frobenius-Schur indicator (Bantay): nu_a = (1/D^2) sum_{b,c} N_{bc}^a d_b d_c (theta_b / theta_c)^2, equal to +1 or -1 for a self-dual object and 0 otherwise\",\n    \"ground-state degeneracy on a closed surface of genus g: sum_a (D^2 / d_a^2)^(g-1), a non-negative integer\",\n    \"topological entanglement entropy gamma = ln D is reported as the algebraic D^2; no logarithm is computed\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A symmetric braiding (trivial monodromy) must be refused as degenerate\",\n    \"A perturbed S~ entry must fail the Verlinde formula\",\n    \"A supplied D whose square is not D^2, or that is not positive, must be refused by the mod-8 central charge\",\n    \"A ground-state degeneracy that is not a non-negative integer must be reported, not rounded\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_fusion_categories\",\n    \"module\": \"modular\",\n    \"symbols\": [\n      \"ModularData\",\n      \"ModularDefect\"\n    ],\n    \"required_tests\": [\n      \"a_symmetric_braiding_gives_a_degenerate_s_matrix_and_is_refused\",\n      \"the_verlinde_formula_fails_on_a_perturbed_s_matrix\",\n      \"fibonacci_modular_data_and_central_charge_are_exact\",\n      \"the_toric_code_is_modular_with_the_pinned_s_matrix_and_four_to_the_g_ground_states\",\n      \"the_three_fermion_model_has_central_charge_four_modulo_eight\",\n      \"cyclic_pointed_models_have_quadratic_gauss_sums_and_the_right_central_charges\",\n      \"ising_modular_data_central_charge_and_ground_states_are_exact\"\n    ]\n  },\n  \"doctrine\": {\n    \"summary\": \"Exact modular data of a ribbon fusion category: S~ and T, the modular relations in their in-field form, Verlinde, Gauss-Milgram for the central charge, Bantay Frobenius-Schur indicators and genus-g ground-state counts, verified for Ising, Fibonacci, semion, toric code, three-fermion, quantum doubles D(Z_n) and cyclic pointed categories (cross-checked against the quadratic Gauss sums of omega_number_theory).\",\n    \"non_role\": [\n      \"Does not assert a material hosts any of these categories\",\n      \"Does not compute the topological entanglement entropy (only D^2)\",\n      \"Does not compute an SL_2(Z) representation beyond the stated relations\"\n    ]\n  },\n  \"wip\": [\n    \"The central charge modulo 8 needs D in the field; for Fibonacci D lies in Q(zeta_20), not in Q(zeta_5)\",\n    \"Higher-genus mapping class group representations are not computed\",\n    \"Lean counterparts are not written\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_modular_data_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "04b83a385d2507a2b65e4a5d96e639d10e88ab08c36f91842370ceb5fa5c7e90",
+      "bytes": 2221,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_modular_data_v0_1_0_contract.py",
+          "sha256": "ef1fbf88eb732c4560aaad271415dc85b9b474024d159eaa3b97abebf2e43861"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-modular-data-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_modular_data_v0_1_0_contract.py\",\n    \"sha256\": \"ef1fbf88eb732c4560aaad271415dc85b9b474024d159eaa3b97abebf2e43861\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-modular-data-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_modular_data_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_modular_data_v0_1_0.contract.yaml": "2aa7321ce01ee2c7f7ddb0a661922d714b96aec9e690ba1f3ca6063451b577a6"
   },

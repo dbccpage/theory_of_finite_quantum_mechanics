@@ -1,0 +1,257 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/context_parity.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/context_parity.py",
+      "sha256": "049a74d1cba01907337a66ceb7d8930a83a6295186a141ba26e16184d1556174"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:context-parity:v1",
+    "role": "library",
+    "purpose": "QM-209 finite map: noncommuting contexts and the parity obstruction. What the L1 shadow provides: one diagonal, and diagonal operators commute. The import",
+    "operations": {
+      "ContextControlRefusal": "Typed refusal for malformed context-control inputs.",
+      "f2_eliminate": "Gaussian elimination over F_2 on the augmented system; returns rank and a solution or None.",
+      "f2_apply": "Function f2_apply operation.",
+      "context_sign": "The product of a commuting context is +I or -I; return +1 or -1, refuse otherwise.",
+      "commuting_context": "Function commuting_context operation.",
+      "peres_mermin_cokernel": "The value-assignment obstruction as a class in the F_2 cokernel of the context incidence.",
+      "mat_pow": "Function mat_pow operation.",
+      "weyl_commutator_census": "Central holonomy of (X^a, Z^b) for all a, b in Z/d: trivial exactly when d | ab.",
+      "conjugation_invariance": "The commutator holonomy is unchanged by any unitary relabelling of both contexts.",
+      "residual_import_ledger": "Function residual_import_ledger operation.",
+      "evaluate_context_parity_control": "Run the QM-209 control exactly and return JSON-serializable results."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "07ac968eb308e0baba01dea67748f098c3f596ec592a276ba786edade9bd1c83",
+  "current_scoring": "5d804b2f6bd30e85e43e811934c1f75a6cb29f48546739eec45c389b4b578c9f",
+  "contract_history": [
+    {
+      "sha256": "95d10d1836778ca3ae08958862fc506a33cc7505eefc006b013d4a2023cc10ec",
+      "bytes": 2687,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/context_parity.py",
+          "sha256": "4d0002e67b02cb2adc961426033f523a8f5c059e2d184be3f89079b5cda3890e"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:context-parity:v1",
+        "role": "library",
+        "purpose": "QM-209 finite map: noncommuting contexts and the parity obstruction. What the L1 shadow provides: one diagonal, and diagonal operators commute. The import",
+        "operations": {
+          "ContextControlRefusal": "Typed refusal for malformed context-control inputs.",
+          "f2_eliminate": "Gaussian elimination over F_2 on the augmented system; returns rank and a solution or None.",
+          "f2_apply": "Function f2_apply operation.",
+          "context_sign": "The product of a commuting context is +I or -I; return +1 or -1, refuse otherwise.",
+          "commuting_context": "Function commuting_context operation.",
+          "peres_mermin_cokernel": "The value-assignment obstruction as a class in the F_2 cokernel of the context incidence.",
+          "mat_pow": "Function mat_pow operation.",
+          "weyl_commutator_census": "Central holonomy of (X^a, Z^b) for all a, b in Z/d: trivial exactly when d | ab.",
+          "conjugation_invariance": "The commutator holonomy is unchanged by any unitary relabelling of both contexts.",
+          "residual_import_ledger": "Function residual_import_ledger operation.",
+          "evaluate_context_parity_control": "Run the QM-209 control exactly and return JSON-serializable results."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/context_parity.py\",\n    \"sha256\": \"4d0002e67b02cb2adc961426033f523a8f5c059e2d184be3f89079b5cda3890e\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:context-parity:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-209 finite map: noncommuting contexts and the parity obstruction. What the L1 shadow provides: one diagonal, and diagonal operators commute. The import\",\n  \"operations\": {\n    \"ContextControlRefusal\": \"Typed refusal for malformed context-control inputs.\",\n    \"f2_eliminate\": \"Gaussian elimination over F_2 on the augmented system; returns rank and a solution or None.\",\n    \"f2_apply\": \"Function f2_apply operation.\",\n    \"context_sign\": \"The product of a commuting context is +I or -I; return +1 or -1, refuse otherwise.\",\n    \"commuting_context\": \"Function commuting_context operation.\",\n    \"peres_mermin_cokernel\": \"The value-assignment obstruction as a class in the F_2 cokernel of the context incidence.\",\n    \"mat_pow\": \"Function mat_pow operation.\",\n    \"weyl_commutator_census\": \"Central holonomy of (X^a, Z^b) for all a, b in Z/d: trivial exactly when d | ab.\",\n    \"conjugation_invariance\": \"The commutator holonomy is unchanged by any unitary relabelling of both contexts.\",\n    \"residual_import_ledger\": \"Function residual_import_ledger operation.\",\n    \"evaluate_context_parity_control\": \"Run the QM-209 control exactly and return JSON-serializable results.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/context_parity.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "07ac968eb308e0baba01dea67748f098c3f596ec592a276ba786edade9bd1c83",
+      "bytes": 2680,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/context_parity.py",
+          "sha256": "049a74d1cba01907337a66ceb7d8930a83a6295186a141ba26e16184d1556174"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:context-parity:v1",
+        "role": "library",
+        "purpose": "QM-209 finite map: noncommuting contexts and the parity obstruction. What the L1 shadow provides: one diagonal, and diagonal operators commute. The import",
+        "operations": {
+          "ContextControlRefusal": "Typed refusal for malformed context-control inputs.",
+          "f2_eliminate": "Gaussian elimination over F_2 on the augmented system; returns rank and a solution or None.",
+          "f2_apply": "Function f2_apply operation.",
+          "context_sign": "The product of a commuting context is +I or -I; return +1 or -1, refuse otherwise.",
+          "commuting_context": "Function commuting_context operation.",
+          "peres_mermin_cokernel": "The value-assignment obstruction as a class in the F_2 cokernel of the context incidence.",
+          "mat_pow": "Function mat_pow operation.",
+          "weyl_commutator_census": "Central holonomy of (X^a, Z^b) for all a, b in Z/d: trivial exactly when d | ab.",
+          "conjugation_invariance": "The commutator holonomy is unchanged by any unitary relabelling of both contexts.",
+          "residual_import_ledger": "Function residual_import_ledger operation.",
+          "evaluate_context_parity_control": "Run the QM-209 control exactly and return JSON-serializable results."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/context_parity.py\",\n    \"sha256\": \"049a74d1cba01907337a66ceb7d8930a83a6295186a141ba26e16184d1556174\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:context-parity:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-209 finite map: noncommuting contexts and the parity obstruction. What the L1 shadow provides: one diagonal, and diagonal operators commute. The import\",\n  \"operations\": {\n    \"ContextControlRefusal\": \"Typed refusal for malformed context-control inputs.\",\n    \"f2_eliminate\": \"Gaussian elimination over F_2 on the augmented system; returns rank and a solution or None.\",\n    \"f2_apply\": \"Function f2_apply operation.\",\n    \"context_sign\": \"The product of a commuting context is +I or -I; return +1 or -1, refuse otherwise.\",\n    \"commuting_context\": \"Function commuting_context operation.\",\n    \"peres_mermin_cokernel\": \"The value-assignment obstruction as a class in the F_2 cokernel of the context incidence.\",\n    \"mat_pow\": \"Function mat_pow operation.\",\n    \"weyl_commutator_census\": \"Central holonomy of (X^a, Z^b) for all a, b in Z/d: trivial exactly when d | ab.\",\n    \"conjugation_invariance\": \"The commutator holonomy is unchanged by any unitary relabelling of both contexts.\",\n    \"residual_import_ledger\": \"Function residual_import_ledger operation.\",\n    \"evaluate_context_parity_control\": \"Run the QM-209 control exactly and return JSON-serializable results.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/context_parity.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4593a897f0ed078facafd3c27f924d25370f7a04e226f47cd321ec7fd65ae870",
+      "bytes": 2196,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/context_parity.py",
+          "sha256": "4d0002e67b02cb2adc961426033f523a8f5c059e2d184be3f89079b5cda3890e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:context-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 17,
+          "lizard_ccn": 17,
+          "weighted_control_upper_bound": 26,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/context_parity.py\",\n    \"sha256\": \"4d0002e67b02cb2adc961426033f523a8f5c059e2d184be3f89079b5cda3890e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:context-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 17,\n    \"lizard_ccn\": 17,\n    \"weighted_control_upper_bound\": 26,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/context_parity.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "5d804b2f6bd30e85e43e811934c1f75a6cb29f48546739eec45c389b4b578c9f",
+      "bytes": 2162,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/context_parity.py",
+          "sha256": "049a74d1cba01907337a66ceb7d8930a83a6295186a141ba26e16184d1556174"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:context-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 17 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 17,
+          "lizard_ccn": 17,
+          "weighted_control_upper_bound": 26,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/context_parity.py\",\n    \"sha256\": \"049a74d1cba01907337a66ceb7d8930a83a6295186a141ba26e16184d1556174\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:context-parity:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 17 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 17,\n    \"lizard_ccn\": 17,\n    \"weighted_control_upper_bound\": 26,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/context_parity.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

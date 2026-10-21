@@ -37,7 +37,7 @@ def _restore_module(name: str, previous: object) -> None:
         sys.modules[name] = previous
 
 
-class ClaimCheckError(ValueError):
+class ClaimCheckError(Exception):
     """One violated decoder-check invariant, with the measured parameters."""
 
     def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
@@ -137,9 +137,11 @@ def _load(source: str, name: str, file_path: str) -> dict[str, object]:
 
 
 def _safe_holds(namespace: dict[str, object]) -> bool:
+    law_error = namespace.get("CategoryLawError")
+    admitted = (ClaimCheckError, law_error) if isinstance(law_error, type) and issubclass(law_error, BaseException) else (ClaimCheckError,)
     try:
         _holds(namespace)
-    except (ClaimCheckError, ValueError, ArithmeticError, AssertionError):
+    except admitted:
         return False
     return True
 

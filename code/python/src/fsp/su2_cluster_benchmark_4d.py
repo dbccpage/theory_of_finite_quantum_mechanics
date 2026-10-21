@@ -121,9 +121,15 @@ class SU2ClusterBenchmarkRunner:
         cluster_size: int = 2,
         random_threshold: Fraction = Fraction(1, 2),
     ) -> L8ClusterBenchmarkReceipt:
-        """Executes a multi-turn PFP benchmark on the lattice."""
+        """Executes a multi-turn PFP benchmark on the lattice.
+
+        Note: Each round updates a bounded subset of cluster links (up to 4 sites x 2 directions = 8 links),
+        evaluating exact rational Wilson action changes under the PFP referee.
+        """
         if num_rounds <= 0:
             raise ValueError(f"num_rounds must be positive, got {num_rounds}")
+        if cluster_size < 1:
+            raise ValueError(f"cluster_size must be >= 1, got {cluster_size}")
         if not (Fraction(0, 1) <= random_threshold <= Fraction(1, 1)):
             raise ValueError("random_threshold must be in [0, 1]")
 
@@ -161,7 +167,7 @@ class SU2ClusterBenchmarkRunner:
                 lattice_dims=self.dims,
                 proposals=tuple(proposals),
                 declared_initial_action=self.lattice.total_wilson_action(),
-                declared_delta_action=Fraction(0, 1),
+                declared_delta_action=None,
             )
 
             receipt = self.referee.evaluate_proposal(packet, random_threshold=random_threshold)

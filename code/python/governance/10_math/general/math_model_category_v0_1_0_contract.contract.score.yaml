@@ -121,12 +121,12 @@
       "Quillen adjunctions and Quillen equivalences"
     ]
   },
-  "current_contract": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4",
-  "current_scoring": null,
+  "current_contract": "d308cfa322069c16b917d8eee73f7cce1527ba1e676ddfa179b86465584c10a8",
+  "current_scoring": "b334552d2b817a635195f828419aa9b0090192348434f92b4baececbf3d4ceba",
   "contract_history": [
     {
-      "sha256": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4",
-      "bytes": 3701,
+      "sha256": "d308cfa322069c16b917d8eee73f7cce1527ba1e676ddfa179b86465584c10a8",
+      "bytes": 4291,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:model_category:v0.1.0",
@@ -246,13 +246,75 @@
           "Quillen adjunctions and Quillen equivalences"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:model_category:v0.1.0\ntitle: Model Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: model_category\n  symbol: M with classes (W, F, C)\n  ascii_symbol: model_category\n  notation: M with classes (W, F, C) satisfying Quillen axioms MC1-MC5\n  domain:\n  - 'category: underlying_category'\n  - 'weak_equivalences: class_W'\n  - 'fibrations: class_F'\n  - 'cofibrations: class_C'\n  codomain:\n    description: A Quillen model category is a complete and cocomplete category M\n      equipped with three distinguished subcategories of morphisms (Weak Equivalences\n      W, Fibrations F, Cofibrations C) satisfying the two-out-of-three property, retract\n      stability, lifting properties ((W ∩ C) ⋔ F and C ⋔ (W ∩ F)), and functorial\n      factorizations.\nrequirements:\n  required_structures:\n  - Category M has finite limits and colimits.\n  - Weak equivalences satisfy two-out-of-three property.\n  - Acyclic cofibrations (W ∩ C) have left lifting property with respect to fibrations\n    F.\n  - Cofibrations C have left lifting property with respect to acyclic fibrations (W\n    ∩ F).\n  - Any morphism has both required functorial factorizations.\n  - All operations respect OperationLimits and Soviet Builder allocation caps.\n  - Deterministic content-addressed artifact hash.\nlaws:\n- 'Two-out-of-three property for weak equivalences: if f ∘ g is defined and two of\n  {f, g, f ∘ g} are in W, then so is the third'\n- 'Lifting axioms: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)'\n- 'Factorization axioms: any morphism f factors as f = p ∘ i with i ∈ W ∩ C, p ∈ F\n  and as f = q ∘ j with j ∈ C, q ∈ W ∩ F'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\n  - Given same data, produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - ModelMorphism\n  - CommutativeSquare\n  - MorphismFactorizations\n  required_tests:\n  - test_model_category_positive_verification\n  - test_kill_mut_p3_01_two_out_of_three_violation\n  - test_kill_mut_p3_02_lifting_property_violation\nlean4_binding:\n  module: HigherCategoryTheory.ModelCategory\n  symbols:\n  - ModelStructure\n  - HasLiftingProperty\n  - IsAcyclicCofibration\n  - IsAcyclicFibration\n  - identity_factorization\n  - comp_weak_equiv\n  - left_cancel_weak_equiv\n  - right_cancel_weak_equiv\nnegative_tests:\n- Weak equivalences fail two-of-three property (MUT-P3-01)\n- Lifting property fails for acyclic cofibration vs fibration (MUT-P3-02)\n- Missing morphism in factorization\n- Factorization intermediate maps not in required classes\ndoctrine:\n  summary: A model category is a category M with three distinguished classes of morphisms\n    (weak equivalences, fibrations, cofibrations) satisfying Quillen's axioms MC1-MC5.\n    Model categories provide an axiomatic framework for abstract homotopy theory.\n  non_role:\n  - Automatic construction of the homotopy category Ho(M)\n  - Non-functorial factorizations\nwip:\n- Combinatorial and cofibrantly generated model category structures\n- Quillen adjunctions and Quillen equivalences\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:model_category:v0.1.0\",\n  \"title\": \"Model Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"model_category\",\n    \"symbol\": \"M with classes (W, F, C)\",\n    \"ascii_symbol\": \"model_category\",\n    \"notation\": \"M with classes (W, F, C) satisfying Quillen axioms MC1-MC5\",\n    \"domain\": [\n      \"category: underlying_category\",\n      \"weak_equivalences: class_W\",\n      \"fibrations: class_F\",\n      \"cofibrations: class_C\"\n    ],\n    \"codomain\": {\n      \"description\": \"A Quillen model category is a complete and cocomplete category M equipped with three distinguished subcategories of morphisms (Weak Equivalences W, Fibrations F, Cofibrations C) satisfying the two-out-of-three property, retract stability, lifting properties ((W ∩ C) ⋔ F and C ⋔ (W ∩ F)), and functorial factorizations.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Category M has finite limits and colimits.\",\n      \"Weak equivalences satisfy two-out-of-three property.\",\n      \"Acyclic cofibrations (W ∩ C) have left lifting property with respect to fibrations F.\",\n      \"Cofibrations C have left lifting property with respect to acyclic fibrations (W ∩ F).\",\n      \"Any morphism has both required functorial factorizations.\",\n      \"All operations respect OperationLimits and Soviet Builder allocation caps.\",\n      \"Deterministic content-addressed artifact hash.\"\n    ]\n  },\n  \"laws\": [\n    \"Two-out-of-three property for weak equivalences: if f ∘ g is defined and two of {f, g, f ∘ g} are in W, then so is the third\",\n    \"Lifting axioms: (W ∩ C) ⋔ F and C ⋔ (W ∩ F)\",\n    \"Factorization axioms: any morphism f factors as f = p ∘ i with i ∈ W ∩ C, p ∈ F and as f = q ∘ j with j ∈ C, q ∈ W ∩ F\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\",\n      \"Given same data, produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"model_category\",\n    \"symbols\": [\n      \"ModelCategory\",\n      \"ModelMorphism\",\n      \"CommutativeSquare\",\n      \"MorphismFactorizations\"\n    ],\n    \"required_tests\": [\n      \"test_model_category_positive_verification\",\n      \"test_kill_mut_p3_01_two_out_of_three_violation\",\n      \"test_kill_mut_p3_02_lifting_property_violation\"\n    ]\n  },\n  \"lean4_binding\": {\n    \"module\": \"HigherCategoryTheory.ModelCategory\",\n    \"symbols\": [\n      \"ModelStructure\",\n      \"HasLiftingProperty\",\n      \"IsAcyclicCofibration\",\n      \"IsAcyclicFibration\",\n      \"identity_factorization\",\n      \"comp_weak_equiv\",\n      \"left_cancel_weak_equiv\",\n      \"right_cancel_weak_equiv\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Weak equivalences fail two-of-three property (MUT-P3-01)\",\n    \"Lifting property fails for acyclic cofibration vs fibration (MUT-P3-02)\",\n    \"Missing morphism in factorization\",\n    \"Factorization intermediate maps not in required classes\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A model category is a category M with three distinguished classes of morphisms (weak equivalences, fibrations, cofibrations) satisfying Quillen's axioms MC1-MC5. Model categories provide an axiomatic framework for abstract homotopy theory.\",\n    \"non_role\": [\n      \"Automatic construction of the homotopy category Ho(M)\",\n      \"Non-functorial factorizations\"\n    ]\n  },\n  \"wip\": [\n    \"Combinatorial and cofibrantly generated model category structures\",\n    \"Quillen adjunctions and Quillen equivalences\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_model_category_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "b334552d2b817a635195f828419aa9b0090192348434f92b4baececbf3d4ceba",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_model_category_v0_1_0_contract.py",
+          "sha256": "090651d7ac338f63f218cf0727ff58e8392e71a4e77d36d9064b9e607d14c3fb"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-model-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_model_category_v0_1_0_contract.py\",\n    \"sha256\": \"090651d7ac338f63f218cf0727ff58e8392e71a4e77d36d9064b9e607d14c3fb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-model-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_model_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_model_category_v0_1_0.contract.yaml": "84099dc4472462f5b2c51c0254b08080ac41e435b4d10301f02d689bf69185f4"
   },

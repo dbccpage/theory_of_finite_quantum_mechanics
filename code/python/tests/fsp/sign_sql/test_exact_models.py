@@ -260,3 +260,34 @@ def test_auxiliary_inputs_reject_unsupported_parameters(kwargs):
 def test_duplicate_hopping_bond_is_not_silently_double_counted():
     with pytest.raises(ValueError):
         model.occupation_hubbard(2,[(0,1),(1,0)],1,1)
+
+
+def test_rational_bit_length_ceiling_is_enforced():
+    with pytest.raises(ValueError, match="integer bit budget exceeded"):
+        model.rational(1 << 1024)
+    exact_limit = (1 << 1024) - 1
+    assert model.rational(exact_limit) == Fraction(exact_limit)
+
+
+def test_sql_qpow_refuses_float_and_approximate_exponents():
+    con = model.connection()
+    with pytest.raises(Exception):
+        con.execute("SELECT qpow('2', 0.5)").fetchall()
+    with pytest.raises(Exception):
+        con.execute("SELECT qpow('2', '0.5')").fetchall()
+    res = con.execute("SELECT qpow('2', 3)").fetchone()[0]
+    assert res == "8"
+
+
+@pytest.mark.parametrize("args", [
+    (2, -1, "3"),
+    (0, 1, "3"),
+    (3, 2, "3"),
+    (4, 0, "3"),
+    (4, 4, "3"),
+    (4, 2, "1/2"),
+])
+def test_meron_transfer_trace_parameter_admission_is_enforced(args):
+    with pytest.raises(ValueError):
+        model.meron_transfer_trace(*args)
+

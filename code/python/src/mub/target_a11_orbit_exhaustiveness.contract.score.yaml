@@ -1,0 +1,188 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/target_a11_orbit_exhaustiveness.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/target_a11_orbit_exhaustiveness.py",
+      "sha256": "3b07a6ec9bec60b438bfbb546b57ffd710e7854e1f384580a3be2185faf92368"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub:target-a11-orbit-exhaustiveness:v1",
+    "role": "library",
+    "purpose": "Target A11: Orbit Catalog Exhaustiveness & Invariant Verifier. Firewall Line: stated region only; mints no authority",
+    "operations": {
+      "assert_no_float": "Recursively verify that no floating-point types exist in any data structure.",
+      "matrix_adjoint": "Compute exact Hermitian adjoint (conjugate transpose) M†.",
+      "matrix_mul": "Exact matrix multiplication over Cyc24.",
+      "is_unitary_chm": "Verify that a 6x6 matrix is an exact Complex Hadamard Matrix:",
+      "dephase_hadamard_matrix": "Dephase a Complex Hadamard Matrix so that row 0 and column 0 are identically 1.",
+      "f6_fourier_matrix": "Construct standard Fourier CHM F_6 in Q(zeta_24).",
+      "tao_s6_matrix": "Construct Terence Tao's isolated spectral CHM S_6 in Q(zeta_24).",
+      "haagerup_h6_matrix": "Construct the canonical discrete Haagerup CHM basepoint H_6 in Q(zeta_24).",
+      "szollosi_b6_general": "Construct a 2-circulant Szollosi matrix B_6(a, b, c, d, e, f):",
+      "szollosi_b6_matrix": "Construct dephased discrete Szollosi 2-circulant matrix with a=1, d=1.",
+      "szollosi_b6_canonical": "Construct the canonical discrete representative of the Szollosi family B_6 in Q(zeta_24).",
+      "enumerate_225_submatrices": "Enumerate all 225 submatrix coordinate quadruples (r0, r1, c0, c1)",
+      "cross_ratio_at": "Evaluate the cross-ratio of a 2x2 submatrix:",
+      "evaluate_all_225_cross_ratios": "Evaluate all 225 submatrix cross-ratios for a 6x6 matrix m.",
+      "root24_exponent": "Extract integer exponent k in {0, ..., 23} such that z == zeta_24^k.",
+      "analyze_cross_ratio_spectrum": "Perform exact spectral decomposition of all 225 cross-ratios for matrix m.",
+      "OrbitClassificationReport": "Exact report produced by deterministic decision-tree orbit classifier.",
+      "classify_orbit": "Deterministic decision-tree orbit classifier mapping any valid 6x6 CHM into M_6.",
+      "verify_orbit_membership": "Verify that a given matrix m strictly belongs to the expected orbit.",
+      "OrbitReductionCertificate": "Certificate linking an equivalence orbit to a certified Target A10 partition cell.",
+      "certify_orbit_reduction": "Certifies orbit reduction for matrix m by mapping it into a certified Target A10 partition cell.",
+      "verify_all_canonical_orbits_reduction": "Certify all 4 canonical matrices (F_6, S_6, H_6, B_6) against Target A10.",
+      "audit_perturbed_matrix": "Negative control: Verify that perturbing a single entry breaks CHM and is rejected.",
+      "audit_misclassified_orbit_claim": "Negative control: Verify that claiming a false orbit is strictly rejected.",
+      "audit_incomplete_catalog_proposal": "Negative control: Verify that any proposed catalog missing required orbits is rejected.",
+      "audit_float_injection_rejection": "Negative control: Verify that floating point types are strictly rejected by assert_no_float.",
+      "generate_target_a11_receipt": "Generates an exact rational certificate receipt for Target A11.",
+      "audit_target_a11_receipt": "Audits and validates an exact rational Target A11 certificate receipt.",
+      "audit_corrupted_receipt_schema": "Negative control: Verify that corrupted receipt schemas are strictly rejected."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "da604d30183036224feddbc7f4d9eca6ad7afeb2842b7a055c20c034dcb15e68",
+  "current_scoring": "e6779ce9aa2a620ea6f89de8db4da92785cf8e8de56d02a1ae4b35e37393c466",
+  "contract_history": [
+    {
+      "sha256": "da604d30183036224feddbc7f4d9eca6ad7afeb2842b7a055c20c034dcb15e68",
+      "bytes": 4710,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_a11_orbit_exhaustiveness.py",
+          "sha256": "3b07a6ec9bec60b438bfbb546b57ffd710e7854e1f384580a3be2185faf92368"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub:target-a11-orbit-exhaustiveness:v1",
+        "role": "library",
+        "purpose": "Target A11: Orbit Catalog Exhaustiveness & Invariant Verifier. Firewall Line: stated region only; mints no authority",
+        "operations": {
+          "assert_no_float": "Recursively verify that no floating-point types exist in any data structure.",
+          "matrix_adjoint": "Compute exact Hermitian adjoint (conjugate transpose) M†.",
+          "matrix_mul": "Exact matrix multiplication over Cyc24.",
+          "is_unitary_chm": "Verify that a 6x6 matrix is an exact Complex Hadamard Matrix:",
+          "dephase_hadamard_matrix": "Dephase a Complex Hadamard Matrix so that row 0 and column 0 are identically 1.",
+          "f6_fourier_matrix": "Construct standard Fourier CHM F_6 in Q(zeta_24).",
+          "tao_s6_matrix": "Construct Terence Tao's isolated spectral CHM S_6 in Q(zeta_24).",
+          "haagerup_h6_matrix": "Construct the canonical discrete Haagerup CHM basepoint H_6 in Q(zeta_24).",
+          "szollosi_b6_general": "Construct a 2-circulant Szollosi matrix B_6(a, b, c, d, e, f):",
+          "szollosi_b6_matrix": "Construct dephased discrete Szollosi 2-circulant matrix with a=1, d=1.",
+          "szollosi_b6_canonical": "Construct the canonical discrete representative of the Szollosi family B_6 in Q(zeta_24).",
+          "enumerate_225_submatrices": "Enumerate all 225 submatrix coordinate quadruples (r0, r1, c0, c1)",
+          "cross_ratio_at": "Evaluate the cross-ratio of a 2x2 submatrix:",
+          "evaluate_all_225_cross_ratios": "Evaluate all 225 submatrix cross-ratios for a 6x6 matrix m.",
+          "root24_exponent": "Extract integer exponent k in {0, ..., 23} such that z == zeta_24^k.",
+          "analyze_cross_ratio_spectrum": "Perform exact spectral decomposition of all 225 cross-ratios for matrix m.",
+          "OrbitClassificationReport": "Exact report produced by deterministic decision-tree orbit classifier.",
+          "classify_orbit": "Deterministic decision-tree orbit classifier mapping any valid 6x6 CHM into M_6.",
+          "verify_orbit_membership": "Verify that a given matrix m strictly belongs to the expected orbit.",
+          "OrbitReductionCertificate": "Certificate linking an equivalence orbit to a certified Target A10 partition cell.",
+          "certify_orbit_reduction": "Certifies orbit reduction for matrix m by mapping it into a certified Target A10 partition cell.",
+          "verify_all_canonical_orbits_reduction": "Certify all 4 canonical matrices (F_6, S_6, H_6, B_6) against Target A10.",
+          "audit_perturbed_matrix": "Negative control: Verify that perturbing a single entry breaks CHM and is rejected.",
+          "audit_misclassified_orbit_claim": "Negative control: Verify that claiming a false orbit is strictly rejected.",
+          "audit_incomplete_catalog_proposal": "Negative control: Verify that any proposed catalog missing required orbits is rejected.",
+          "audit_float_injection_rejection": "Negative control: Verify that floating point types are strictly rejected by assert_no_float.",
+          "generate_target_a11_receipt": "Generates an exact rational certificate receipt for Target A11.",
+          "audit_target_a11_receipt": "Audits and validates an exact rational Target A11 certificate receipt.",
+          "audit_corrupted_receipt_schema": "Negative control: Verify that corrupted receipt schemas are strictly rejected."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_a11_orbit_exhaustiveness.py\",\n    \"sha256\": \"3b07a6ec9bec60b438bfbb546b57ffd710e7854e1f384580a3be2185faf92368\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub:target-a11-orbit-exhaustiveness:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Target A11: Orbit Catalog Exhaustiveness & Invariant Verifier. Firewall Line: stated region only; mints no authority\",\n  \"operations\": {\n    \"assert_no_float\": \"Recursively verify that no floating-point types exist in any data structure.\",\n    \"matrix_adjoint\": \"Compute exact Hermitian adjoint (conjugate transpose) M†.\",\n    \"matrix_mul\": \"Exact matrix multiplication over Cyc24.\",\n    \"is_unitary_chm\": \"Verify that a 6x6 matrix is an exact Complex Hadamard Matrix:\",\n    \"dephase_hadamard_matrix\": \"Dephase a Complex Hadamard Matrix so that row 0 and column 0 are identically 1.\",\n    \"f6_fourier_matrix\": \"Construct standard Fourier CHM F_6 in Q(zeta_24).\",\n    \"tao_s6_matrix\": \"Construct Terence Tao's isolated spectral CHM S_6 in Q(zeta_24).\",\n    \"haagerup_h6_matrix\": \"Construct the canonical discrete Haagerup CHM basepoint H_6 in Q(zeta_24).\",\n    \"szollosi_b6_general\": \"Construct a 2-circulant Szollosi matrix B_6(a, b, c, d, e, f):\",\n    \"szollosi_b6_matrix\": \"Construct dephased discrete Szollosi 2-circulant matrix with a=1, d=1.\",\n    \"szollosi_b6_canonical\": \"Construct the canonical discrete representative of the Szollosi family B_6 in Q(zeta_24).\",\n    \"enumerate_225_submatrices\": \"Enumerate all 225 submatrix coordinate quadruples (r0, r1, c0, c1)\",\n    \"cross_ratio_at\": \"Evaluate the cross-ratio of a 2x2 submatrix:\",\n    \"evaluate_all_225_cross_ratios\": \"Evaluate all 225 submatrix cross-ratios for a 6x6 matrix m.\",\n    \"root24_exponent\": \"Extract integer exponent k in {0, ..., 23} such that z == zeta_24^k.\",\n    \"analyze_cross_ratio_spectrum\": \"Perform exact spectral decomposition of all 225 cross-ratios for matrix m.\",\n    \"OrbitClassificationReport\": \"Exact report produced by deterministic decision-tree orbit classifier.\",\n    \"classify_orbit\": \"Deterministic decision-tree orbit classifier mapping any valid 6x6 CHM into M_6.\",\n    \"verify_orbit_membership\": \"Verify that a given matrix m strictly belongs to the expected orbit.\",\n    \"OrbitReductionCertificate\": \"Certificate linking an equivalence orbit to a certified Target A10 partition cell.\",\n    \"certify_orbit_reduction\": \"Certifies orbit reduction for matrix m by mapping it into a certified Target A10 partition cell.\",\n    \"verify_all_canonical_orbits_reduction\": \"Certify all 4 canonical matrices (F_6, S_6, H_6, B_6) against Target A10.\",\n    \"audit_perturbed_matrix\": \"Negative control: Verify that perturbing a single entry breaks CHM and is rejected.\",\n    \"audit_misclassified_orbit_claim\": \"Negative control: Verify that claiming a false orbit is strictly rejected.\",\n    \"audit_incomplete_catalog_proposal\": \"Negative control: Verify that any proposed catalog missing required orbits is rejected.\",\n    \"audit_float_injection_rejection\": \"Negative control: Verify that floating point types are strictly rejected by assert_no_float.\",\n    \"generate_target_a11_receipt\": \"Generates an exact rational certificate receipt for Target A11.\",\n    \"audit_target_a11_receipt\": \"Audits and validates an exact rational Target A11 certificate receipt.\",\n    \"audit_corrupted_receipt_schema\": \"Negative control: Verify that corrupted receipt schemas are strictly rejected.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_a11_orbit_exhaustiveness.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "e6779ce9aa2a620ea6f89de8db4da92785cf8e8de56d02a1ae4b35e37393c466",
+      "bytes": 2198,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_a11_orbit_exhaustiveness.py",
+          "sha256": "3b07a6ec9bec60b438bfbb546b57ffd710e7854e1f384580a3be2185faf92368"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub:target-a11-orbit-exhaustiveness:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 24 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 24,
+          "lizard_ccn": 24,
+          "weighted_control_upper_bound": 62,
+          "control_nesting": 7
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_a11_orbit_exhaustiveness.py\",\n    \"sha256\": \"3b07a6ec9bec60b438bfbb546b57ffd710e7854e1f384580a3be2185faf92368\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub:target-a11-orbit-exhaustiveness:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 24 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 24,\n    \"lizard_ccn\": 24,\n    \"weighted_control_upper_bound\": 62,\n    \"control_nesting\": 7\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_a11_orbit_exhaustiveness.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

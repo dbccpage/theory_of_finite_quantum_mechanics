@@ -81,12 +81,12 @@
       ]
     }
   },
-  "current_contract": "c98822d7aa27c7c80a7ddd1beb3ec576b4ffbb0749cdff7ea13751d1eb9400f2",
-  "current_scoring": null,
+  "current_contract": "3d76b4ec2e4be1413cb4788d7d262164f44874f5c7b816b9a714b8ec474a4c7b",
+  "current_scoring": "afe119625ce04d4cd4bf25725173084d54cc3df2f3a481a5eef0c99a1d53d708",
   "contract_history": [
     {
-      "sha256": "c98822d7aa27c7c80a7ddd1beb3ec576b4ffbb0749cdff7ea13751d1eb9400f2",
-      "bytes": 2794,
+      "sha256": "3d76b4ec2e4be1413cb4788d7d262164f44874f5c7b816b9a714b8ec474a4c7b",
+      "bytes": 3174,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:governance:council_meeting_agenda:v1.0.0",
@@ -166,13 +166,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:governance:council_meeting_agenda:v1.0.0\ntitle: CouncilMeetingAgenda\nkind: governance_contract\nstatus: mathematical_wip\nlayer: 05_governance\nrole: Policy\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - AuthInterface\n    - PolicyContract\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    - Terminalization\n    required: []\ndoctrine:\n  binding_review_20261014: The declared Rust crate/module is absent from the active\n    Cargo workspace. Withdraw this realization binding; the retained specification\n    has no executable implementation credit from it.\n  summary: 'A CouncilMeetingAgenda specifies the structure, counterargument topics,\n    and deliberative focus for a scheduled council meeting (daily during bring-up,\n    weekly in standard operation). Agendas provide the human embodiment and oppositional\n    processing framework for the system. An agenda confers NO math-layer terminal\n    authority; it guides LLM-generated deliberative theater and counterargument.\n\n    '\n  mathematical_role: 'The AgendaCat mapping `prepare_agenda : Cadence × CouncilID\n    → Agenda` formats the oppositional debate topics before a meeting convenes.\n\n    '\n  non_role:\n  - Minting or upgrading math-layer authority\n  - Signing or wrapping certificates\n  - Terminalizing or executing an operator\n  llm_boundary_law:\n    doctrine: 5\n    text: 'LLM-generated agenda items and counterargument prompts serve as deliberative,\n      dialectic, and oppositional theater. They guide human/agent debate but never\n      authorize state mutations or mathematical terminals.\n\n      '\n  authority_boundary:\n    may:\n    - Formulate debate topics, counterargument prompts, and deliberative agendas\n    - Schedule daily bring-up or weekly standing meetings\n    must_not:\n    - Mint or upgrade math-layer authority\n    - Override math-layer proof obligations or certificate gates\n  required_tests:\n  - agenda_requires_council_id_and_cadence\n  - agenda_confers_no_math_authority\n  canonical_invariant: 'A CouncilMeetingAgenda structures deliberative debate and\n    oppositional processing; it confers zero math-layer authority and is bound to\n    a declared council cadence.\n\n    '\n  references:\n  - omega_engine/crates/anomalon_councils/councils/council_governance.md\n  - omega_engine/crates/anomalon_councils/src/cadence.rs\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_governance_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:governance:council_meeting_agenda:v1.0.0\",\n  \"title\": \"CouncilMeetingAgenda\",\n  \"kind\": \"governance_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"05_governance\",\n  \"role\": \"Policy\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"AuthInterface\",\n        \"PolicyContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\",\n        \"Terminalization\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"binding_review_20261014\": \"The declared Rust crate/module is absent from the active Cargo workspace. Withdraw this realization binding; the retained specification has no executable implementation credit from it.\",\n    \"summary\": \"A CouncilMeetingAgenda specifies the structure, counterargument topics, and deliberative focus for a scheduled council meeting (daily during bring-up, weekly in standard operation). Agendas provide the human embodiment and oppositional processing framework for the system. An agenda confers NO math-layer terminal authority; it guides LLM-generated deliberative theater and counterargument.\\n\",\n    \"mathematical_role\": \"The AgendaCat mapping `prepare_agenda : Cadence × CouncilID → Agenda` formats the oppositional debate topics before a meeting convenes.\\n\",\n    \"non_role\": [\n      \"Minting or upgrading math-layer authority\",\n      \"Signing or wrapping certificates\",\n      \"Terminalizing or executing an operator\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"LLM-generated agenda items and counterargument prompts serve as deliberative, dialectic, and oppositional theater. They guide human/agent debate but never authorize state mutations or mathematical terminals.\\n\"\n    },\n    \"authority_boundary\": {\n      \"may\": [\n        \"Formulate debate topics, counterargument prompts, and deliberative agendas\",\n        \"Schedule daily bring-up or weekly standing meetings\"\n      ],\n      \"must_not\": [\n        \"Mint or upgrade math-layer authority\",\n        \"Override math-layer proof obligations or certificate gates\"\n      ]\n    },\n    \"required_tests\": [\n      \"agenda_requires_council_id_and_cadence\",\n      \"agenda_confers_no_math_authority\"\n    ],\n    \"canonical_invariant\": \"A CouncilMeetingAgenda structures deliberative debate and oppositional processing; it confers zero math-layer authority and is bound to a declared council cadence.\\n\",\n    \"references\": [\n      \"omega_engine/crates/anomalon_councils/councils/council_governance.md\",\n      \"omega_engine/crates/anomalon_councils/src/cadence.rs\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_governance_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/governance_council_meeting_agenda_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "afe119625ce04d4cd4bf25725173084d54cc3df2f3a481a5eef0c99a1d53d708",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/governance_council_meeting_agenda_v1_0_0_contract.py",
+          "sha256": "e97659a3a17e81cd8ef599cd251e37795f26920876a997002caf7f0e7d52dd12"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:governance-council-meeting-agenda-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/governance_council_meeting_agenda_v1_0_0_contract.py\",\n    \"sha256\": \"e97659a3a17e81cd8ef599cd251e37795f26920876a997002caf7f0e7d52dd12\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:governance-council-meeting-agenda-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/governance_council_meeting_agenda_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/governance_council_meeting_agenda_v1_0_0.contract.yaml": "c98822d7aa27c7c80a7ddd1beb3ec576b4ffbb0749cdff7ea13751d1eb9400f2"
   },

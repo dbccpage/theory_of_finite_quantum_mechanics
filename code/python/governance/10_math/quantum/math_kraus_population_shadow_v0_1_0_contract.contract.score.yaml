@@ -96,12 +96,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750",
-  "current_scoring": null,
+  "current_contract": "da511291a6ad15103ff6c3d92fd1a4775d71563197c460463e9d6403b15f0ba8",
+  "current_scoring": "88c3a59b1cec3ff28db9f3e1f0890b24286bc47068d320d4d0928496484f8baf",
   "contract_history": [
     {
-      "sha256": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750",
-      "bytes": 3000,
+      "sha256": "da511291a6ad15103ff6c3d92fd1a4775d71563197c460463e9d6403b15f0ba8",
+      "bytes": 3485,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:kraus_population_shadow:v0.1.0",
@@ -196,13 +196,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:kraus_population_shadow:v0.1.0\ntitle: Exact population shadows and their composition defect\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: kraus_population_shadow\n  symbol: kraus_population_shadow\n  ascii_symbol: kraus_population_shadow\n  notation: Exact population shadows and their composition defect\n  domain:\n  - Checked weighted CPTP channels over Q(i), input and output dimensions1..64; canonical\n    BasicMatrix<Q> input-row convention\n  codomain:\n    description: Declared finite results of omega_quantum_physics::population_shadow;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every entry is the actual weighted sum of squared Kraus matrix entries\n- Every row is nonnegative and sums to one\n- Stochastic kernels compose by shared exact matrix multiplication\n- A rational rotation followed by itself has a computed nonzero shadow composition\n  defect\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: population_shadow\n  symbols:\n  - population_shadow\n  - compose_kernels\n  - compose_channels\n  - composition_defect\n  required_tests:\n  - measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\nnegative_tests:\n- measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\ndoctrine:\n  summary: Every entry is the actual weighted sum of squared Kraus matrix entries;\n    Every row is nonnegative and sums to one; Stochastic kernels compose by shared\n    exact matrix multiplication; A rational rotation followed by itself has a computed\n    nonzero shadow composition defect.\n  non_role:\n  - The shadow neither determines the coherent channel nor defines a monoid homomorphism\n    on arbitrary channels\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:kraus_population_shadow:v0.1.0\",\n  \"title\": \"Exact population shadows and their composition defect\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"kraus_population_shadow\",\n    \"symbol\": \"kraus_population_shadow\",\n    \"ascii_symbol\": \"kraus_population_shadow\",\n    \"notation\": \"Exact population shadows and their composition defect\",\n    \"domain\": [\n      \"Checked weighted CPTP channels over Q(i), input and output dimensions1..64; canonical BasicMatrix<Q> input-row convention\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::population_shadow; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Every entry is the actual weighted sum of squared Kraus matrix entries\",\n    \"Every row is nonnegative and sums to one\",\n    \"Stochastic kernels compose by shared exact matrix multiplication\",\n    \"A rational rotation followed by itself has a computed nonzero shadow composition defect\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"population_shadow\",\n    \"symbols\": [\n      \"population_shadow\",\n      \"compose_kernels\",\n      \"compose_channels\",\n      \"composition_defect\"\n    ],\n    \"required_tests\": [\n      \"measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\"\n    ]\n  },\n  \"negative_tests\": [\n    \"measurement_exact_laws::population_shadows_compute_stochastic_rows_and_a_nonzero_composition_defect\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Every entry is the actual weighted sum of squared Kraus matrix entries; Every row is nonnegative and sums to one; Stochastic kernels compose by shared exact matrix multiplication; A rational rotation followed by itself has a computed nonzero shadow composition defect.\",\n    \"non_role\": [\n      \"The shadow neither determines the coherent channel nor defines a monoid homomorphism on arbitrary channels\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "88c3a59b1cec3ff28db9f3e1f0890b24286bc47068d320d4d0928496484f8baf",
+      "bytes": 2243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0_contract.py",
+          "sha256": "d81e8efdb20b463f0043ee1daa969ea6dc459e19e99ae6e21d7038b24250f7bd"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-kraus-population-shadow-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0_contract.py\",\n    \"sha256\": \"d81e8efdb20b463f0043ee1daa969ea6dc459e19e99ae6e21d7038b24250f7bd\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-kraus-population-shadow-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_kraus_population_shadow_v0_1_0.contract.yaml": "3c68c1da90d1c8d36da3850c0af96e8c4b09b1751d792a5b4d724ae1cc58f750"
   },

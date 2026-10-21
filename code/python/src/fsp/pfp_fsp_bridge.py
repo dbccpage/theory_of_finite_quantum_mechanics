@@ -58,7 +58,7 @@ class FspPfpProposalPacket:
     lattice_dims: Tuple[int, int, int, int]
     proposals: Tuple[FspLinkProposal, ...]
     declared_initial_action: Fraction
-    declared_delta_action: Fraction
+    declared_delta_action: Optional[Fraction] = None
 
     def canonical_digest(self) -> str:
         """Computes deterministic SHA-256 hash of proposal payload."""
@@ -68,7 +68,7 @@ class FspPfpProposalPacket:
             "lattice_dims": list(self.lattice_dims),
             "proposals": [p.to_dict() for p in self.proposals],
             "declared_initial_action": str(self.declared_initial_action),
-            "declared_delta_action": str(self.declared_delta_action),
+            "declared_delta_action": str(self.declared_delta_action) if self.declared_delta_action is not None else "None",
         }
         raw = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
         return hashlib.sha256(raw).hexdigest()
@@ -130,6 +130,54 @@ class FspPfpReferee:
 
         initial_action = self.lattice.total_wilson_action()
 
+        if packet.lattice_dims != self.lattice.dims:
+            return FspPfpReceipt(
+                receipt_id=f"rec_{packet.round_id}_dims_refusal",
+                round_id=packet.round_id,
+                proposer_id=packet.proposer_id,
+                is_accepted=False,
+                status_reason=f"REFUSAL: Declared lattice dimensions {packet.lattice_dims} != actual {self.lattice.dims}",
+                unitarity_verified=False,
+                determinant_verified=False,
+                involution_pairing_verified=False,
+                computed_initial_action=initial_action,
+                computed_final_action=initial_action,
+                computed_delta_action=Fraction(0, 1),
+                proposal_digest=packet.canonical_digest(),
+            )
+
+        if packet.declared_initial_action != initial_action:
+            return FspPfpReceipt(
+                receipt_id=f"rec_{packet.round_id}_action_refusal",
+                round_id=packet.round_id,
+                proposer_id=packet.proposer_id,
+                is_accepted=False,
+                status_reason=f"REFUSAL: Declared initial action {packet.declared_initial_action} != actual {initial_action}",
+                unitarity_verified=False,
+                determinant_verified=False,
+                involution_pairing_verified=False,
+                computed_initial_action=initial_action,
+                computed_final_action=initial_action,
+                computed_delta_action=Fraction(0, 1),
+                proposal_digest=packet.canonical_digest(),
+            )
+
+        if len(packet.proposals) == 0:
+            return FspPfpReceipt(
+                receipt_id=f"rec_{packet.round_id}_empty_proposals_refusal",
+                round_id=packet.round_id,
+                proposer_id=packet.proposer_id,
+                is_accepted=False,
+                status_reason="REFUSAL: Proposal packet contains no candidate links",
+                unitarity_verified=True,
+                determinant_verified=True,
+                involution_pairing_verified=False,
+                computed_initial_action=initial_action,
+                computed_final_action=initial_action,
+                computed_delta_action=Fraction(0, 1),
+                proposal_digest=packet.canonical_digest(),
+            )
+
         all_unitary = True
         all_det_one = True
         for prop in packet.proposals:
@@ -155,16 +203,52 @@ class FspPfpReferee:
             )
 
         saved_links = []
-        for prop in packet.proposals:
-            coord = Lattice4DCoord(prop.x0, prop.x1, prop.x2, prop.x3, self.lattice.dims)
-            saved_links.append((coord, prop.mu, self.lattice.get_link(coord, prop.mu)))
-            self.lattice.set_link(coord, prop.mu, prop.candidate_link)
+        try:
+            for prop in packet.proposals:
+                coord = Lattice4DCoord(prop.x0, prop.x1, prop.x2, prop.x3, self.lattice.dims)
+                saved_links.append((coord, prop.mu, self.lattice.get_link(coord, prop.mu)))
+                self.lattice.set_link(coord, prop.mu, prop.candidate_link)
+        except Exception as e:
+            for coord, mu, link in reversed(saved_links):
+                self.lattice.set_link(coord, mu, link)
+            return FspPfpReceipt(
+                receipt_id=f"rec_{packet.round_id}_mutation_error_refusal",
+                round_id=packet.round_id,
+                proposer_id=packet.proposer_id,
+                is_accepted=False,
+                status_reason=f"REFUSAL: Transaction aborted and rolled back due to error: {e}",
+                unitarity_verified=all_unitary,
+                determinant_verified=all_det_one,
+                involution_pairing_verified=False,
+                computed_initial_action=initial_action,
+                computed_final_action=initial_action,
+                computed_delta_action=Fraction(0, 1),
+                proposal_digest=packet.canonical_digest(),
+            )
 
         candidate_action = self.lattice.total_wilson_action()
         computed_delta = candidate_action - initial_action
 
+        if packet.declared_delta_action is not None and packet.declared_delta_action != computed_delta:
+            for coord, mu, link in reversed(saved_links):
+                self.lattice.set_link(coord, mu, link)
+            return FspPfpReceipt(
+                receipt_id=f"rec_{packet.round_id}_delta_mismatch_refusal",
+                round_id=packet.round_id,
+                proposer_id=packet.proposer_id,
+                is_accepted=False,
+                status_reason=f"REFUSAL: Declared delta action {packet.declared_delta_action} != computed delta {computed_delta}",
+                unitarity_verified=all_unitary,
+                determinant_verified=all_det_one,
+                involution_pairing_verified=False,
+                computed_initial_action=initial_action,
+                computed_final_action=initial_action,
+                computed_delta_action=computed_delta,
+                proposal_digest=packet.canonical_digest(),
+            )
+
         inv_check = self.lattice.verify_involution_sign_balance()
-        inv_verified = bool(inv_check["sign_cancellation_certified"])
+        inv_verified = bool(inv_check.get("action_invariance_certified", inv_check.get("sign_cancellation_certified", False)))
 
         is_accepted = False
         status_reason = ""
@@ -185,7 +269,7 @@ class FspPfpReferee:
                 status_reason = f"REJECTED: Metropolis rational ratio {alpha} < {random_threshold}"
 
         if not is_accepted:
-            for coord, mu, link in saved_links:
+            for coord, mu, link in reversed(saved_links):
                 self.lattice.set_link(coord, mu, link)
             final_action = initial_action
         else:

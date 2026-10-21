@@ -1,0 +1,164 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_qm_cross_language_parity.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_qm_cross_language_parity.py",
+      "sha256": "a492aefeacba9290a320b9d45912e8891dc211e1f8f7601e8857e1c420ba6d36"
+    },
+    "profile": "Exact",
+    "claim": "Downstream cross-language algebraic invariant parity and refusal symmetry under Hypothesis fuzzing.",
+    "role": "test checker",
+    "purpose": "Property-based cross-language parity assertions for the Theory of Finite Quantum Mechanics. Scope:",
+    "operations": {
+      "test_packet_protocol_associative_checksum_fuzzing": "Verifies that payload_checksum matches both left and right fold rational sum.",
+      "test_packet_protocol_refusal_symmetry_fuzzing": "Refuses empty tuples, negative values, floats, and booleans.",
+      "test_quantum_packet_norm_fuzzing": "Verifies exact packet norm a^2 + b^2 >= 0 and certified ray.",
+      "test_quantum_packet_pythagorean_rotation_invariance_fuzzing": "Verifies norm invariance under exact SO(2, Q) Pythagorean rotations.",
+      "test_quantum_packet_refusal_symmetry_fuzzing": "Refuses tuples of length != 2, floats, and booleans.",
+      "test_obstruction_calc_triangle_coboundary_fuzzing": "Triangle coboundary holonomy of any 0-cochain vanishes identically.",
+      "test_obstruction_calc_refusal_symmetry_fuzzing": "Refuses tuples of length != 3, floats, and booleans.",
+      "test_legacy_suites_polynomial_gap_vanishing_fuzzing": "P2^2 - (P4 + 2*P22) == 0 holds identically on all rational triples.",
+      "test_legacy_suites_refusal_symmetry_fuzzing": "Refuses length != 3, floats, and booleans.",
+      "test_observer_functor_shear_composition_trace_fuzzing": "Trace of shear product S1(a) S2(b) equals 2 + a*b.",
+      "test_report_fiber_phase_blind_sqmod_fuzzing": "Phase-blind measurement on Gaussian integer x + i*y is x^2 + y^2.",
+      "test_report_fiber_product_state_zero_entanglement_fuzzing": "Entanglement determinant on any product tensor u (x) v vanishes identically.",
+      "test_pfp_exact_matrix_algebra_fuzzing": "Verifies matrix trace cyclicity, determinant multiplicativity, and Gram PSD.",
+      "test_rational_bell_projectors_and_chsh_fuzzing": "Projectors partition identity; classical local strategies obey |S| <= 2.",
+      "test_phase_scope_algebraic_identities_fuzzing": "Probe quadratic form satisfies (ax + by)^2 - (ax - by)^2 == 4abxy.",
+      "test_l1_import_exact_cycle_vanishing_fuzzing": "Cochain differences d = [b - a, c - b, a - c] sum to 0 around any triangle.",
+      "test_cross_language_atlas_and_textbook_receipts_parity": "Verifies that all 65 atlas questions and Q58-Q65 receipts preserve exact invariants."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "90f96dcf89efb0f092b483e1ccae293bb3de3297388891e877576df0c26f3f23",
+  "current_scoring": "425f15c52a466ba52e120e11c2f66557c84dffc7234d3309598ab7316839dc80",
+  "contract_history": [
+    {
+      "sha256": "90f96dcf89efb0f092b483e1ccae293bb3de3297388891e877576df0c26f3f23",
+      "bytes": 3801,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_qm_cross_language_parity.py",
+          "sha256": "a492aefeacba9290a320b9d45912e8891dc211e1f8f7601e8857e1c420ba6d36"
+        },
+        "profile": "Exact",
+        "claim": "Downstream cross-language algebraic invariant parity and refusal symmetry under Hypothesis fuzzing.",
+        "role": "test checker",
+        "purpose": "Property-based cross-language parity assertions for the Theory of Finite Quantum Mechanics. Scope:",
+        "operations": {
+          "test_packet_protocol_associative_checksum_fuzzing": "Verifies that payload_checksum matches both left and right fold rational sum.",
+          "test_packet_protocol_refusal_symmetry_fuzzing": "Refuses empty tuples, negative values, floats, and booleans.",
+          "test_quantum_packet_norm_fuzzing": "Verifies exact packet norm a^2 + b^2 >= 0 and certified ray.",
+          "test_quantum_packet_pythagorean_rotation_invariance_fuzzing": "Verifies norm invariance under exact SO(2, Q) Pythagorean rotations.",
+          "test_quantum_packet_refusal_symmetry_fuzzing": "Refuses tuples of length != 2, floats, and booleans.",
+          "test_obstruction_calc_triangle_coboundary_fuzzing": "Triangle coboundary holonomy of any 0-cochain vanishes identically.",
+          "test_obstruction_calc_refusal_symmetry_fuzzing": "Refuses tuples of length != 3, floats, and booleans.",
+          "test_legacy_suites_polynomial_gap_vanishing_fuzzing": "P2^2 - (P4 + 2*P22) == 0 holds identically on all rational triples.",
+          "test_legacy_suites_refusal_symmetry_fuzzing": "Refuses length != 3, floats, and booleans.",
+          "test_observer_functor_shear_composition_trace_fuzzing": "Trace of shear product S1(a) S2(b) equals 2 + a*b.",
+          "test_report_fiber_phase_blind_sqmod_fuzzing": "Phase-blind measurement on Gaussian integer x + i*y is x^2 + y^2.",
+          "test_report_fiber_product_state_zero_entanglement_fuzzing": "Entanglement determinant on any product tensor u (x) v vanishes identically.",
+          "test_pfp_exact_matrix_algebra_fuzzing": "Verifies matrix trace cyclicity, determinant multiplicativity, and Gram PSD.",
+          "test_rational_bell_projectors_and_chsh_fuzzing": "Projectors partition identity; classical local strategies obey |S| <= 2.",
+          "test_phase_scope_algebraic_identities_fuzzing": "Probe quadratic form satisfies (ax + by)^2 - (ax - by)^2 == 4abxy.",
+          "test_l1_import_exact_cycle_vanishing_fuzzing": "Cochain differences d = [b - a, c - b, a - c] sum to 0 around any triangle.",
+          "test_cross_language_atlas_and_textbook_receipts_parity": "Verifies that all 65 atlas questions and Q58-Q65 receipts preserve exact invariants."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_qm_cross_language_parity.py\",\n    \"sha256\": \"a492aefeacba9290a320b9d45912e8891dc211e1f8f7601e8857e1c420ba6d36\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"Downstream cross-language algebraic invariant parity and refusal symmetry under Hypothesis fuzzing.\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Property-based cross-language parity assertions for the Theory of Finite Quantum Mechanics. Scope:\",\n  \"operations\": {\n    \"test_packet_protocol_associative_checksum_fuzzing\": \"Verifies that payload_checksum matches both left and right fold rational sum.\",\n    \"test_packet_protocol_refusal_symmetry_fuzzing\": \"Refuses empty tuples, negative values, floats, and booleans.\",\n    \"test_quantum_packet_norm_fuzzing\": \"Verifies exact packet norm a^2 + b^2 >= 0 and certified ray.\",\n    \"test_quantum_packet_pythagorean_rotation_invariance_fuzzing\": \"Verifies norm invariance under exact SO(2, Q) Pythagorean rotations.\",\n    \"test_quantum_packet_refusal_symmetry_fuzzing\": \"Refuses tuples of length != 2, floats, and booleans.\",\n    \"test_obstruction_calc_triangle_coboundary_fuzzing\": \"Triangle coboundary holonomy of any 0-cochain vanishes identically.\",\n    \"test_obstruction_calc_refusal_symmetry_fuzzing\": \"Refuses tuples of length != 3, floats, and booleans.\",\n    \"test_legacy_suites_polynomial_gap_vanishing_fuzzing\": \"P2^2 - (P4 + 2*P22) == 0 holds identically on all rational triples.\",\n    \"test_legacy_suites_refusal_symmetry_fuzzing\": \"Refuses length != 3, floats, and booleans.\",\n    \"test_observer_functor_shear_composition_trace_fuzzing\": \"Trace of shear product S1(a) S2(b) equals 2 + a*b.\",\n    \"test_report_fiber_phase_blind_sqmod_fuzzing\": \"Phase-blind measurement on Gaussian integer x + i*y is x^2 + y^2.\",\n    \"test_report_fiber_product_state_zero_entanglement_fuzzing\": \"Entanglement determinant on any product tensor u (x) v vanishes identically.\",\n    \"test_pfp_exact_matrix_algebra_fuzzing\": \"Verifies matrix trace cyclicity, determinant multiplicativity, and Gram PSD.\",\n    \"test_rational_bell_projectors_and_chsh_fuzzing\": \"Projectors partition identity; classical local strategies obey |S| <= 2.\",\n    \"test_phase_scope_algebraic_identities_fuzzing\": \"Probe quadratic form satisfies (ax + by)^2 - (ax - by)^2 == 4abxy.\",\n    \"test_l1_import_exact_cycle_vanishing_fuzzing\": \"Cochain differences d = [b - a, c - b, a - c] sum to 0 around any triangle.\",\n    \"test_cross_language_atlas_and_textbook_receipts_parity\": \"Verifies that all 65 atlas questions and Q58-Q65 receipts preserve exact invariants.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_qm_cross_language_parity.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "425f15c52a466ba52e120e11c2f66557c84dffc7234d3309598ab7316839dc80",
+      "bytes": 2226,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_qm_cross_language_parity.py",
+          "sha256": "a492aefeacba9290a320b9d45912e8891dc211e1f8f7601e8857e1c420ba6d36"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN Downstream cross-language algebraic invariant parity and refusal symmetry under Hypothesis fuzzing., exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 16 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 16,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 10,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_qm_cross_language_parity.py\",\n    \"sha256\": \"a492aefeacba9290a320b9d45912e8891dc211e1f8f7601e8857e1c420ba6d36\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN Downstream cross-language algebraic invariant parity and refusal symmetry under Hypothesis fuzzing., exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 16 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 16,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_qm_cross_language_parity.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

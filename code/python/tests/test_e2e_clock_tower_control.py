@@ -105,7 +105,7 @@ def test_negative_refusals() -> None:
         ctc.evaluate_clock_tower_control(conductor=12)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'clock_tower_control.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'clock_tower_control.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

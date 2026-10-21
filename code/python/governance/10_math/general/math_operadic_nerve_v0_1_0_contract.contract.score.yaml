@@ -126,12 +126,12 @@
       "Boardman-Vogt tensor product of operadic nerves"
     ]
   },
-  "current_contract": "2c88d4bac09cc634a9a593805914473030f4ad8a2af7c23985a13d2b1a31cded",
-  "current_scoring": null,
+  "current_contract": "d2d9d8780a504ce336a309d26cd511a82cd03925cace97ec5f28a83b6fddebb1",
+  "current_scoring": "df60dadec53d2c01bf99efe9fc612605e25a505c3f6406918b6edf6b3627c169",
   "contract_history": [
     {
-      "sha256": "2c88d4bac09cc634a9a593805914473030f4ad8a2af7c23985a13d2b1a31cded",
-      "bytes": 4250,
+      "sha256": "d2d9d8780a504ce336a309d26cd511a82cd03925cace97ec5f28a83b6fddebb1",
+      "bytes": 4865,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:operadic_nerve:v0.1.0",
@@ -256,13 +256,75 @@
           "Boardman-Vogt tensor product of operadic nerves"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:operadic_nerve:v0.1.0\ntitle: Higher-Dimensional Operadic Nerve Functor Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: operadic_nerve\n  symbol: 'N : ColouredOperad -> (∞, 1)-Cat'\n  ascii_symbol: operadic_nerve\n  notation: N(O) mapping coloured operads to Joyal quasi-categories via simplicial\n    spine nerve\n  domain:\n  - 'coloured_operad: multicategory with colours, multi-ary operations, identities,\n    and unary spine composition'\n  - 'inner_horns: simplicial inner horns Lambda^k_n for 0 < k < n'\n  codomain:\n    description: An operadic nerve functor maps each coloured operad O to a simplicial\n      set N(O) such that the underlying unary spine forms a Joyal quasi-category.\n      Every inner horn Lambda^1_2 composed of compatible operations f01 and f12 admits\n      a constructive filler whose missing face d1 is the operadic composite f12 o_1\n      f01.\nrequirements:\n  required_structures:\n  - Coloured operad with strict unary associativity and unitality.\n  - Functorial realization of underlying 1-category ColouredOperad.toCategory.\n  - Constructive inner horn filler fillInnerHorn2_1 matching outer faces d0 and d2.\n  - Quasi-category satisfaction theorem operadic_nerve_is_quasi_category in Lean 4.\n  - Strictly zero floating-point arithmetic (0 f32/f64) in Rust implementation.\n  - Soviet memory allocation bounds enforced via reserve_exact and OperationLimits.\n  - Deterministic content-addressed artifact hash.\nlaws:\n- 'Inner horn filling: every inner horn Lambda^1_2 admits a constructive filler matching\n  d0 and d2'\n- 'Composite realization: the missing face d1 produced by horn filling equals operadic\n  composition'\n- 'Identity preservation: degenerate 1-simplices correspond to operadic identity operations'\n- 'Associativity of composition: nerve 2-simplex compositions associate strictly'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Operations serialized in canonical discrete order\n  - Given identical input operad, produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: operadic_nerve\n  symbols:\n  - ColouredOperad\n  - OperadicNerve\n  - InnerHorn2_1\n  - fill_inner_horn_2_1\n  - OperadicNerve::verify_quasi_category_property\n  required_tests:\n  - test_operadic_nerve_positive_verification\n  - test_kill_mut_on_01_missing_face_d1_mismatch\n  - test_kill_mut_on_02_face_d0_mismatch\n  - test_kill_mut_on_03_face_d2_mismatch\n  - test_kill_mut_on_04_non_associative_composition\n  - test_kill_mut_on_05_non_unital_identity\n  - test_kill_mut_on_06_allocation_cap_exceeded\nlean4_binding:\n  module: HigherCategoryTheory.OperadicNerve\n  symbols:\n  - ColouredOperad\n  - OperadicNerve\n  - fillInnerHorn2_1\n  - fillInnerHorn2_1_matches_d0\n  - fillInnerHorn2_1_matches_d2\n  - missingFace_d1_source_target\n  - operadic_nerve_is_quasi_category\nnegative_tests:\n- Missing face d1 calculation mismatch (MUT-ON-01)\n- Face d0 boundary mismatch on horn filler (MUT-ON-02)\n- Face d2 boundary mismatch on horn filler (MUT-ON-03)\n- Non-associative operation composition in spine (MUT-ON-04)\n- Non-unital identity operation composition (MUT-ON-05)\n- Allocation limit exceeded in operadic nerve solver (MUT-ON-06)\ndoctrine:\n  summary: An operadic nerve functor maps coloured operads to quasi-categories. This\n    provides a bridge between multicategories/coloured operads and Joyal (infinity,\n    1)-categories, establishing that operadic composition fills inner simplicial horns.\n  non_role:\n  - Continuous topology or smooth operads\n  - Unbounded infinity-operads with non-discrete higher cells\nwip:\n- Dendroidal nerve of coloured operads to dendroidal infinity-operads\n- Boardman-Vogt tensor product of operadic nerves\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:operadic_nerve:v0.1.0\",\n  \"title\": \"Higher-Dimensional Operadic Nerve Functor Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"operadic_nerve\",\n    \"symbol\": \"N : ColouredOperad -> (∞, 1)-Cat\",\n    \"ascii_symbol\": \"operadic_nerve\",\n    \"notation\": \"N(O) mapping coloured operads to Joyal quasi-categories via simplicial spine nerve\",\n    \"domain\": [\n      \"coloured_operad: multicategory with colours, multi-ary operations, identities, and unary spine composition\",\n      \"inner_horns: simplicial inner horns Lambda^k_n for 0 < k < n\"\n    ],\n    \"codomain\": {\n      \"description\": \"An operadic nerve functor maps each coloured operad O to a simplicial set N(O) such that the underlying unary spine forms a Joyal quasi-category. Every inner horn Lambda^1_2 composed of compatible operations f01 and f12 admits a constructive filler whose missing face d1 is the operadic composite f12 o_1 f01.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Coloured operad with strict unary associativity and unitality.\",\n      \"Functorial realization of underlying 1-category ColouredOperad.toCategory.\",\n      \"Constructive inner horn filler fillInnerHorn2_1 matching outer faces d0 and d2.\",\n      \"Quasi-category satisfaction theorem operadic_nerve_is_quasi_category in Lean 4.\",\n      \"Strictly zero floating-point arithmetic (0 f32/f64) in Rust implementation.\",\n      \"Soviet memory allocation bounds enforced via reserve_exact and OperationLimits.\",\n      \"Deterministic content-addressed artifact hash.\"\n    ]\n  },\n  \"laws\": [\n    \"Inner horn filling: every inner horn Lambda^1_2 admits a constructive filler matching d0 and d2\",\n    \"Composite realization: the missing face d1 produced by horn filling equals operadic composition\",\n    \"Identity preservation: degenerate 1-simplices correspond to operadic identity operations\",\n    \"Associativity of composition: nerve 2-simplex compositions associate strictly\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Operations serialized in canonical discrete order\",\n      \"Given identical input operad, produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"operadic_nerve\",\n    \"symbols\": [\n      \"ColouredOperad\",\n      \"OperadicNerve\",\n      \"InnerHorn2_1\",\n      \"fill_inner_horn_2_1\",\n      \"OperadicNerve::verify_quasi_category_property\"\n    ],\n    \"required_tests\": [\n      \"test_operadic_nerve_positive_verification\",\n      \"test_kill_mut_on_01_missing_face_d1_mismatch\",\n      \"test_kill_mut_on_02_face_d0_mismatch\",\n      \"test_kill_mut_on_03_face_d2_mismatch\",\n      \"test_kill_mut_on_04_non_associative_composition\",\n      \"test_kill_mut_on_05_non_unital_identity\",\n      \"test_kill_mut_on_06_allocation_cap_exceeded\"\n    ]\n  },\n  \"lean4_binding\": {\n    \"module\": \"HigherCategoryTheory.OperadicNerve\",\n    \"symbols\": [\n      \"ColouredOperad\",\n      \"OperadicNerve\",\n      \"fillInnerHorn2_1\",\n      \"fillInnerHorn2_1_matches_d0\",\n      \"fillInnerHorn2_1_matches_d2\",\n      \"missingFace_d1_source_target\",\n      \"operadic_nerve_is_quasi_category\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Missing face d1 calculation mismatch (MUT-ON-01)\",\n    \"Face d0 boundary mismatch on horn filler (MUT-ON-02)\",\n    \"Face d2 boundary mismatch on horn filler (MUT-ON-03)\",\n    \"Non-associative operation composition in spine (MUT-ON-04)\",\n    \"Non-unital identity operation composition (MUT-ON-05)\",\n    \"Allocation limit exceeded in operadic nerve solver (MUT-ON-06)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An operadic nerve functor maps coloured operads to quasi-categories. This provides a bridge between multicategories/coloured operads and Joyal (infinity, 1)-categories, establishing that operadic composition fills inner simplicial horns.\",\n    \"non_role\": [\n      \"Continuous topology or smooth operads\",\n      \"Unbounded infinity-operads with non-discrete higher cells\"\n    ]\n  },\n  \"wip\": [\n    \"Dendroidal nerve of coloured operads to dendroidal infinity-operads\",\n    \"Boardman-Vogt tensor product of operadic nerves\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_operadic_nerve_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "df60dadec53d2c01bf99efe9fc612605e25a505c3f6406918b6edf6b3627c169",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_operadic_nerve_v0_1_0_contract.py",
+          "sha256": "256235b11f82d3789b08341583385e6782a511c5102c1086a6d499d6b7593cd3"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-operadic-nerve-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_operadic_nerve_v0_1_0_contract.py\",\n    \"sha256\": \"256235b11f82d3789b08341583385e6782a511c5102c1086a6d499d6b7593cd3\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-operadic-nerve-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_operadic_nerve_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_operadic_nerve_v0_1_0.contract.yaml": "2c88d4bac09cc634a9a593805914473030f4ad8a2af7c23985a13d2b1a31cded"
   },

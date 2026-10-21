@@ -38,7 +38,7 @@ def test_tier4_mub_gap_and_smith_identity():
     assert diagonal.get(0, 0) + diagonal.get(1, 1) == Fraction(4)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'continuum_lift.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'continuum_lift.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

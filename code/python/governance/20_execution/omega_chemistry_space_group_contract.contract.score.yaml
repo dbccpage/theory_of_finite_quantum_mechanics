@@ -38,12 +38,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "8bfe9f070d82110fc2a517e3de7f3ec7446a91a708682b1b0bce129fe71b7bce",
-  "current_scoring": null,
+  "current_contract": "1b6e538d46e036aa0b125f096acb07734b24733a313ac7912ac68fd70cfa4631",
+  "current_scoring": "b9f0cf758a1cc99a750da2223c1666be5f8cbad5636afe9715fce9c7e0512c7c",
   "contract_history": [
     {
-      "sha256": "8bfe9f070d82110fc2a517e3de7f3ec7446a91a708682b1b0bce129fe71b7bce",
-      "bytes": 748,
+      "sha256": "1b6e538d46e036aa0b125f096acb07734b24733a313ac7912ac68fd70cfa4631",
+      "bytes": 945,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_chemistry:space_group:v1.0.0",
@@ -80,13 +80,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_chemistry:space_group:v1.0.0\ntitle: '`space_group` — finite dual-face object for `omega_chemistry`.  AUTHORING_QUALITY:\n  human_llm_best_effort_slop (best-e...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_chemistry\nfile: crates_rs/omega_chemistry/src/space_group.rs\nmodule: space_group\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_chemistry\n  module: space_group\n  file: crates_rs/omega_chemistry/src/space_group.rs\nsymbols:\n- SpaceGroup\n- new\n- authority_fence\nowns:\n- space_group\n- new\n- authority_fence\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_chemistry:space_group:v1.0.0\",\n  \"title\": \"`space_group` — finite dual-face object for `omega_chemistry`.  AUTHORING_QUALITY: human_llm_best_effort_slop (best-e...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_chemistry\",\n  \"file\": \"crates_rs/omega_chemistry/src/space_group.rs\",\n  \"module\": \"space_group\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_chemistry\",\n    \"module\": \"space_group\",\n    \"file\": \"crates_rs/omega_chemistry/src/space_group.rs\"\n  },\n  \"symbols\": [\n    \"SpaceGroup\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"owns\": [\n    \"space_group\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_chemistry_space_group.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "b9f0cf758a1cc99a750da2223c1666be5f8cbad5636afe9715fce9c7e0512c7c",
+      "bytes": 2229,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_chemistry_space_group_contract.py",
+          "sha256": "48495d13c1a3cfcc40dc1c8db78cc0609741497da59f1b6705fdcd0c6e826d46"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-chemistry-space-group-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_chemistry_space_group_contract.py\",\n    \"sha256\": \"48495d13c1a3cfcc40dc1c8db78cc0609741497da59f1b6705fdcd0c6e826d46\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-chemistry-space-group-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_chemistry_space_group_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_chemistry_space_group.contract.yaml": "8bfe9f070d82110fc2a517e3de7f3ec7446a91a708682b1b0bce129fe71b7bce"
   },

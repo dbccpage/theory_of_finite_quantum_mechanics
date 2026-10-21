@@ -58,12 +58,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "918e1c3fd70a5b075ecb8be4c624a01313ea5e237f0cc22f5b7a82ea8954b728",
-  "current_scoring": null,
+  "current_contract": "614aa811efa0cbf7821cb278f47e4f48c82ddfbc743de4c514d88ee2142d3934",
+  "current_scoring": "1cfa1ca8b4a276bae1745f92f14d3e27a7867df1bf925a8f71201e7b01021b20",
   "contract_history": [
     {
-      "sha256": "918e1c3fd70a5b075ecb8be4c624a01313ea5e237f0cc22f5b7a82ea8954b728",
-      "bytes": 1289,
+      "sha256": "614aa811efa0cbf7821cb278f47e4f48c82ddfbc743de4c514d88ee2142d3934",
+      "bytes": 1588,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_policy:custody_manifest:v1.0.0",
@@ -120,13 +120,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_policy:custody_manifest:v1.0.0\ntitle: Custody Manifest V2, Line-Ending Normalized Checksums, Zenodo Release Envelope\n  and Lean 4 Axiom Census Audit Gate.  A...\nkind: rust_file_contract\nstatus: active\ncrate: omega_policy\nfile: crates_rs/omega_policy/src/custody_manifest.rs\nmodule: custody_manifest\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_policy\n  module: custody_manifest\n  file: crates_rs/omega_policy/src/custody_manifest.rs\nsymbols:\n- CustodyError\n- CustodyGateStatus\n- ManifestEntry\n- normalize_line_endings_and_bom\n- compute_file_attestation\n- parse_manifest_content\n- validate_two_tier_parity\n- ZenodoRelatedIdentifier\n- ZenodoMetadata\n- validate_zenodo_metadata\n- verify_zenodo_companions\n- LeanDeclarationCensus\n- AxiomCensusReport\n- parse_lean_axiom_report\n- CustodyGateInput\n- AxiomCensusSummary\n- CustodyGateOutcome\n- evaluate_custody_gate\nowns:\n- custody_error\n- custody_gate_status\n- manifest_entry\n- normalize_line_endings_and_bom\n- compute_file_attestation\n- parse_manifest_content\n- validate_two_tier_parity\n- zenodo_related_identifier\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_policy:custody_manifest:v1.0.0\",\n  \"title\": \"Custody Manifest V2, Line-Ending Normalized Checksums, Zenodo Release Envelope and Lean 4 Axiom Census Audit Gate.  A...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_policy\",\n  \"file\": \"crates_rs/omega_policy/src/custody_manifest.rs\",\n  \"module\": \"custody_manifest\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_policy\",\n    \"module\": \"custody_manifest\",\n    \"file\": \"crates_rs/omega_policy/src/custody_manifest.rs\"\n  },\n  \"symbols\": [\n    \"CustodyError\",\n    \"CustodyGateStatus\",\n    \"ManifestEntry\",\n    \"normalize_line_endings_and_bom\",\n    \"compute_file_attestation\",\n    \"parse_manifest_content\",\n    \"validate_two_tier_parity\",\n    \"ZenodoRelatedIdentifier\",\n    \"ZenodoMetadata\",\n    \"validate_zenodo_metadata\",\n    \"verify_zenodo_companions\",\n    \"LeanDeclarationCensus\",\n    \"AxiomCensusReport\",\n    \"parse_lean_axiom_report\",\n    \"CustodyGateInput\",\n    \"AxiomCensusSummary\",\n    \"CustodyGateOutcome\",\n    \"evaluate_custody_gate\"\n  ],\n  \"owns\": [\n    \"custody_error\",\n    \"custody_gate_status\",\n    \"manifest_entry\",\n    \"normalize_line_endings_and_bom\",\n    \"compute_file_attestation\",\n    \"parse_manifest_content\",\n    \"validate_two_tier_parity\",\n    \"zenodo_related_identifier\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/00_constitution/omega_policy_custody_manifest.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1cfa1ca8b4a276bae1745f92f14d3e27a7867df1bf925a8f71201e7b01021b20",
+      "bytes": 2239,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/00_constitution/omega_policy_custody_manifest_contract.py",
+          "sha256": "e44166a51ed55b3ab50bc5ddae5392997ffa3376f3c49cd28aa5c80027560838"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:00_constitution:omega-policy-custody-manifest-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/00_constitution/omega_policy_custody_manifest_contract.py\",\n    \"sha256\": \"e44166a51ed55b3ab50bc5ddae5392997ffa3376f3c49cd28aa5c80027560838\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:00_constitution:omega-policy-custody-manifest-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/00_constitution/omega_policy_custody_manifest_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/00_constitution/omega_policy_custody_manifest.contract.yaml": "918e1c3fd70a5b075ecb8be4c624a01313ea5e237f0cc22f5b7a82ea8954b728"
   },

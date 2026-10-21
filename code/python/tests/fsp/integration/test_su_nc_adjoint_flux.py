@@ -113,3 +113,25 @@ def test_multi_flavor_scaling_and_modes():
                 assert count == expected_modes
             finally:
                 engine.close()
+
+
+def test_adjoint_unbroken_string_below_threshold():
+    """
+    Validates that when the adjoint flux-tube length is below breaking threshold (R < R_break),
+    the unbroken cochain is selected, string breaking does not occur, cochain curvature is non-zero,
+    and routing fails closed to SplitBrainRefusal.
+    Also validates that raw average sign is 0.0 while GIN quotiented pairing is 0.0.
+    """
+    engine = SUNCAdjointEngine(n_c=3, n_f=2, string_tension_sigma=1.0, adjoint_mass_m=0.4, in_memory=True)
+    try:
+        # r_break = 2 * 0.4 / 1.0 = 0.8. Pass R = 0.5 < 0.8
+        receipt = engine.audit_adjoint_flux_tube(tube_length_r=0.5)
+
+        assert receipt.string_breaking_occurred is False
+        assert receipt.cochain_curvature_gamma_2 > 0.0
+        assert receipt.gin_quotiented_average_sign == 0.0
+        assert receipt.raw_average_sign == 0.0
+        assert receipt.terminal_route == "SplitBrainRefusal"
+    finally:
+        engine.close()
+

@@ -3,62 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0",
-    "title": "Exhaustion Basis",
-    "kind": "packet_contract",
-    "layer": "40_packets",
-    "role": "PacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "clean_architecture_layer": "domain",
-      "refusals": {
-        "may_emit": [
-          "FW-UNKNOWN-FIELD",
-          "FW-DUPLICATE-KEY"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py",
+      "sha256": "b6d9a1ecaf61070a6b79a50442d3ea7e9c07d84e745b1d4268df190675e19261"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-symbol-game-exhaustion-basis-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "Why the host is entitled to an exhaustive answer about one pair.",
-      "invariants": [
-        "Closure, not termination, licenses an exhaustive verdict: joinability of ONE PAIR needs complete reachable sets, while termination is what Newman needs for confluence OF A SYSTEM, which this module never claims.",
-        "A frontier that empties inside the budget certifies the set is closed under rewriting and finite."
-      ],
-      "non_roles": [
-        "authority_source",
-        "promotion_granter"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification",
-        "no_implicit_authority_upgrade"
-      ]
-    },
-    "structure": {
-      "rust_crate": "omega_symbol_game_runtime",
-      "rust_module": "rewriting",
-      "rust_type": "ExhaustionBasis",
-      "form": "enum",
-      "variants": [
-        "ClosedReachableSets"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "a1b0673ddb718d3396c6695dcce7a3540227273314da9e2da4c6915e9edc66b3",
-  "current_scoring": null,
+  "current_contract": "b7e91cb50851ace8dd939ff9454123f3c93b301b31f60f1e6e6a783d07bd4343",
+  "current_scoring": "d9924ef7f01402818aed93a13ef00b9be8307c9f8be904ecaded5424413b6935",
   "contract_history": [
     {
-      "sha256": "a1b0673ddb718d3396c6695dcce7a3540227273314da9e2da4c6915e9edc66b3",
-      "bytes": 1248,
+      "sha256": "db391207105a368425feba364950865786d47a923cd255322f3817fd0d3cf70d",
+      "bytes": 1530,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0",
@@ -110,13 +86,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0\ntitle: Exhaustion Basis\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: Why the host is entitled to an exhaustive answer about one pair.\n  invariants:\n  - 'Closure, not termination, licenses an exhaustive verdict: joinability of ONE\n    PAIR needs complete reachable sets, while termination is what Newman needs for\n    confluence OF A SYSTEM, which this module never claims.'\n  - A frontier that empties inside the budget certifies the set is closed under rewriting\n    and finite.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: rewriting\n  rust_type: ExhaustionBasis\n  form: enum\n  variants:\n  - ClosedReachableSets\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0\",\n  \"title\": \"Exhaustion Basis\",\n  \"kind\": \"packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"PacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"clean_architecture_layer\": \"domain\",\n    \"refusals\": {\n      \"may_emit\": [\n        \"FW-UNKNOWN-FIELD\",\n        \"FW-DUPLICATE-KEY\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"Why the host is entitled to an exhaustive answer about one pair.\",\n    \"invariants\": [\n      \"Closure, not termination, licenses an exhaustive verdict: joinability of ONE PAIR needs complete reachable sets, while termination is what Newman needs for confluence OF A SYSTEM, which this module never claims.\",\n      \"A frontier that empties inside the budget certifies the set is closed under rewriting and finite.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"promotion_granter\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\",\n      \"no_implicit_authority_upgrade\"\n    ]\n  },\n  \"structure\": {\n    \"rust_crate\": \"omega_symbol_game_runtime\",\n    \"rust_module\": \"rewriting\",\n    \"rust_type\": \"ExhaustionBasis\",\n    \"form\": \"enum\",\n    \"variants\": [\n      \"ClosedReachableSets\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "b7e91cb50851ace8dd939ff9454123f3c93b301b31f60f1e6e6a783d07bd4343",
+      "bytes": 1870,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py",
+          "sha256": "b6d9a1ecaf61070a6b79a50442d3ea7e9c07d84e745b1d4268df190675e19261"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-symbol-game-exhaustion-basis-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py\",\n    \"sha256\": \"b6d9a1ecaf61070a6b79a50442d3ea7e9c07d84e745b1d4268df190675e19261\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-symbol-game-exhaustion-basis-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:symbol_game:exhaustion_basis:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "d9924ef7f01402818aed93a13ef00b9be8307c9f8be904ecaded5424413b6935",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py",
+          "sha256": "b6d9a1ecaf61070a6b79a50442d3ea7e9c07d84e745b1d4268df190675e19261"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-symbol-game-exhaustion-basis-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.py\",\n    \"sha256\": \"b6d9a1ecaf61070a6b79a50442d3ea7e9c07d84e745b1d4268df190675e19261\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-symbol-game-exhaustion-basis-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_symbol_game_exhaustion_basis_v1_0_0.contract.yaml": "a1b0673ddb718d3396c6695dcce7a3540227273314da9e2da4c6915e9edc66b3"
   },

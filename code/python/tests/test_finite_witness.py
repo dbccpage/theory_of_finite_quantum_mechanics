@@ -40,7 +40,7 @@ def _all_hold(flags: tuple[bool, ...]) -> bool:
 
 
 _MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "finite_witness.py"
-_NEIGHBOR = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "spectral_claims.py"
+_NEIGHBOR = Path(__file__).resolve().parents[1] / "src" / "qm" / "spectral_claims.py"
 _MATRIX = ((5, 3), (3, 5))
 
 

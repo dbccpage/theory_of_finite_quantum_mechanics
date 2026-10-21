@@ -93,12 +93,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "f76a932ee75607cdfcdb10011000346a5078001af64106ebfd9620763ccf613e",
-  "current_scoring": null,
+  "current_contract": "2cb74b08a895b0277242e06ba6bff3d3aadb747789b248dd11c81bd966f381cf",
+  "current_scoring": "7b4e6da23a6b9bb9c8405cef235ba9c82c6e52e5cb2a4398d76c3c0d2639a387",
   "contract_history": [
     {
-      "sha256": "f76a932ee75607cdfcdb10011000346a5078001af64106ebfd9620763ccf613e",
-      "bytes": 2572,
+      "sha256": "2cb74b08a895b0277242e06ba6bff3d3aadb747789b248dd11c81bd966f381cf",
+      "bytes": 3056,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:signed_interval_reciprocal:v0.1.0",
@@ -190,13 +190,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:signed_interval_reciprocal:v0.1.0\ntitle: Exact signed interval division\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: signed_interval_reciprocal\n  symbol: signed_interval_reciprocal\n  ascii_symbol: signed_interval_reciprocal\n  notation: Exact signed interval division\n  domain:\n  - Ordered exact rational endpoint intervals with denominator excluding zero\n  codomain:\n    description: Declared finite results of omega_kernel::interval; exact and diagnostic\n      routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Reciprocal endpoints reverse monotonically for either sign\n- Division encloses all endpoint products with exact rationals\n- Zero crossing and forged reversed endpoints refuse\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_kernel\n  module: interval\n  symbols:\n  - Interval::try_reciprocal\n  - Interval::try_divide\n  required_tests:\n  - interval::reciprocal_laws::signed_reciprocal_division_and_zero_crossing_refusals\nnegative_tests:\n- interval::reciprocal_laws::signed_reciprocal_division_and_zero_crossing_refusals\ndoctrine:\n  summary: Reciprocal endpoints reverse monotonically for either sign; Division encloses\n    all endpoint products with exact rationals; Zero crossing and forged reversed\n    endpoints refuse.\n  non_role:\n  - No real division certificate for a denominator interval containing zero\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:signed_interval_reciprocal:v0.1.0\",\n  \"title\": \"Exact signed interval division\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"signed_interval_reciprocal\",\n    \"symbol\": \"signed_interval_reciprocal\",\n    \"ascii_symbol\": \"signed_interval_reciprocal\",\n    \"notation\": \"Exact signed interval division\",\n    \"domain\": [\n      \"Ordered exact rational endpoint intervals with denominator excluding zero\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_kernel::interval; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Reciprocal endpoints reverse monotonically for either sign\",\n    \"Division encloses all endpoint products with exact rationals\",\n    \"Zero crossing and forged reversed endpoints refuse\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_kernel\",\n    \"module\": \"interval\",\n    \"symbols\": [\n      \"Interval::try_reciprocal\",\n      \"Interval::try_divide\"\n    ],\n    \"required_tests\": [\n      \"interval::reciprocal_laws::signed_reciprocal_division_and_zero_crossing_refusals\"\n    ]\n  },\n  \"negative_tests\": [\n    \"interval::reciprocal_laws::signed_reciprocal_division_and_zero_crossing_refusals\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Reciprocal endpoints reverse monotonically for either sign; Division encloses all endpoint products with exact rationals; Zero crossing and forged reversed endpoints refuse.\",\n    \"non_role\": [\n      \"No real division certificate for a denominator interval containing zero\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/analysis/math_signed_interval_reciprocal_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "7b4e6da23a6b9bb9c8405cef235ba9c82c6e52e5cb2a4398d76c3c0d2639a387",
+      "bytes": 2251,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/math_signed_interval_reciprocal_v0_1_0_contract.py",
+          "sha256": "7bf8cafa76d27886829e0cdcf1c3f8cbdcd07177e8fc14ec4fe6919ba92c2d3c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:analysis:math-signed-interval-reciprocal-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/math_signed_interval_reciprocal_v0_1_0_contract.py\",\n    \"sha256\": \"7bf8cafa76d27886829e0cdcf1c3f8cbdcd07177e8fc14ec4fe6919ba92c2d3c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:math-signed-interval-reciprocal-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/math_signed_interval_reciprocal_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/analysis/math_signed_interval_reciprocal_v0_1_0.contract.yaml": "f76a932ee75607cdfcdb10011000346a5078001af64106ebfd9620763ccf613e"
   },

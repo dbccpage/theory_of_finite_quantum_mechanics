@@ -20,4 +20,15 @@ class CechTests(unittest.TestCase):
         c=case([0]*6);c['contexts']=[[0,0,2]]+CONTEXTS[1:]
         with self.assertRaises(ValueError):m.certify(c)
         with self.assertRaises(ValueError):m.rank([[True]],1)
+    def test_malformed_inputs_to_solve_and_rank(self):
+        # Finding 3 reproductions
+        with self.assertRaises(ValueError):
+            m.solve([[1], [0]], [], 1)
+        with self.assertRaises(ValueError):
+            m.rank([], -1)
+        with self.assertRaises(ValueError):
+            m.solve([[1, 0]], [0], 1)
+        with self.assertRaises(ValueError):
+            m.solve([[1]], [2], 1)
 if __name__=='__main__':unittest.main()
+

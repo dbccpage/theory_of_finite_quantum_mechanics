@@ -166,7 +166,7 @@ def test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity() -> None:
     assert r"I_1(\mathrm{Be}) = 169/500\,E_h < I_1(\mathrm{He}) = 217/256\,E_h < I_1(\mathrm{Ne}) = 13689/16000\,E_h" in manuscript_text
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'atomic_dirac.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'atomic_dirac.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

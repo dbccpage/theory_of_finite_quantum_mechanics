@@ -139,12 +139,12 @@
       ]
     }
   },
-  "current_contract": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f",
-  "current_scoring": null,
+  "current_contract": "5319918e8a1c022f79d11435e19c31b3c2b3c509afdecf1a05299e4e437c5b25",
+  "current_scoring": "abb21ff4b7f386e272c90ce09d575806ad6d9fcc70dc4de5154db7d7fe2e2116",
   "contract_history": [
     {
-      "sha256": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f",
-      "bytes": 3212,
+      "sha256": "5319918e8a1c022f79d11435e19c31b3c2b3c509afdecf1a05299e4e437c5b25",
+      "bytes": 4092,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:filesystem_adapter:v1.0.0",
@@ -282,13 +282,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:filesystem_adapter:v1.0.0\ntitle: Filesystem Host Adapter\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: FileSystemAdapter\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    proof_obligations:\n    - id: FS-INV-001\n      statement: Every operation is scoped to an exact configured root and a matching\n        host capability.\n      verification_status: open\n    - id: FS-INV-002\n      statement: Static symlink, junction, dangling redirect, and lexical path-escape\n        checks fail closed.\n      verification_status: open\n    - id: FS-INV-003\n      statement: Atomic write claims are limited to the declared filesystem and platform\n        profile.\n      verification_status: open\n    - id: FS-INV-004\n      statement: Short reads and writes are handled by checked bounded loops rather\n        than one-call assumptions.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - FILESYSTEM_ATOMICITY_REFUSED\n    - FILESYSTEM_BOUNDS_REFUSED\n    - FILESYSTEM_REDIRECT_REFUSED\n    - FILESYSTEM_SHORT_IO_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: scoped_path_request\n    type: urn:omega:oeos:type:scoped_path_request:v1.0.0\n    required: true\n  outputs:\n  - name: filesystem_operation_result\n    type: urn:omega:oeos:type:filesystem_result:v1.0.0\n    required: true\n  typed_refusals:\n  - FILESYSTEM_ATOMICITY_REFUSED\n  - FILESYSTEM_BOUNDS_REFUSED\n  - FILESYSTEM_REDIRECT_REFUSED\n  - FILESYSTEM_SHORT_IO_REFUSED\n  platform_requirements:\n  - profile: windows_filesystem\n    requirements:\n    - junction_and_reparse_point_static_checks\n    - replace_semantics_declared\n    - windows_acl_profile_declared\n    verification_status: requirements_only\n  - profile: posix_filesystem\n    requirements:\n    - symlink_static_checks\n    - rename_and_fsync_semantics_declared\n    - posix_mode_profile_declared\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded filesystem effects beneath inward-facing ports without\n    claiming universal atomicity.\n  non_role:\n  - path_policy_authorship\n  - domain_file_interpretation\n  - trace_authority\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - static_redirect_checks_do_not_establish_general_toctou_safety\n  - atomicity_is_not_claimed_across_filesystems_or_platforms\n  invariants:\n  - path_scope_is_checked_before_each_operation\n  - partial_io_never_returns_as_complete\n  allowed_operations:\n  - read_bounded_bytes\n  - write_bytes_under_declared_atomic_profile\n  - create_scoped_directory\n  forbidden_operations:\n  - escape_configured_root\n  - follow_undeclared_redirect\n  - report_partial_write_as_complete\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:filesystem_adapter:v1.0.0\",\n  \"title\": \"Filesystem Host Adapter\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"FileSystemAdapter\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"FS-INV-001\",\n          \"statement\": \"Every operation is scoped to an exact configured root and a matching host capability.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"FS-INV-002\",\n          \"statement\": \"Static symlink, junction, dangling redirect, and lexical path-escape checks fail closed.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"FS-INV-003\",\n          \"statement\": \"Atomic write claims are limited to the declared filesystem and platform profile.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"FS-INV-004\",\n          \"statement\": \"Short reads and writes are handled by checked bounded loops rather than one-call assumptions.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"FILESYSTEM_ATOMICITY_REFUSED\",\n        \"FILESYSTEM_BOUNDS_REFUSED\",\n        \"FILESYSTEM_REDIRECT_REFUSED\",\n        \"FILESYSTEM_SHORT_IO_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"scoped_path_request\",\n        \"type\": \"urn:omega:oeos:type:scoped_path_request:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"filesystem_operation_result\",\n        \"type\": \"urn:omega:oeos:type:filesystem_result:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"FILESYSTEM_ATOMICITY_REFUSED\",\n      \"FILESYSTEM_BOUNDS_REFUSED\",\n      \"FILESYSTEM_REDIRECT_REFUSED\",\n      \"FILESYSTEM_SHORT_IO_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"windows_filesystem\",\n        \"requirements\": [\n          \"junction_and_reparse_point_static_checks\",\n          \"replace_semantics_declared\",\n          \"windows_acl_profile_declared\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      },\n      {\n        \"profile\": \"posix_filesystem\",\n        \"requirements\": [\n          \"symlink_static_checks\",\n          \"rename_and_fsync_semantics_declared\",\n          \"posix_mode_profile_declared\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares bounded filesystem effects beneath inward-facing ports without claiming universal atomicity.\",\n    \"non_role\": [\n      \"path_policy_authorship\",\n      \"domain_file_interpretation\",\n      \"trace_authority\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"static_redirect_checks_do_not_establish_general_toctou_safety\",\n      \"atomicity_is_not_claimed_across_filesystems_or_platforms\"\n    ],\n    \"invariants\": [\n      \"path_scope_is_checked_before_each_operation\",\n      \"partial_io_never_returns_as_complete\"\n    ],\n    \"allowed_operations\": [\n      \"read_bounded_bytes\",\n      \"write_bytes_under_declared_atomic_profile\",\n      \"create_scoped_directory\"\n    ],\n    \"forbidden_operations\": [\n      \"escape_configured_root\",\n      \"follow_undeclared_redirect\",\n      \"report_partial_write_as_complete\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "abb21ff4b7f386e272c90ce09d575806ad6d9fcc70dc4de5154db7d7fe2e2116",
+      "bytes": 2221,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0_contract.py",
+          "sha256": "17b68e1bbc90777c8654b657b67ae785290fdbe6a7eb271b620066a33d35fd4c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:oeos-filesystem-adapter-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0_contract.py\",\n    \"sha256\": \"17b68e1bbc90777c8654b657b67ae785290fdbe6a7eb271b620066a33d35fd4c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-filesystem-adapter-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0.contract.yaml": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f"
   },

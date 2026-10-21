@@ -1,0 +1,260 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/simplicial_qm.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/simplicial_qm.py",
+      "sha256": "3300fe0fdc1bfb22d00e552a07f8f9e5d0587999b0e7fb034031076989139e65"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:simplicial-qm:v1",
+    "role": "library",
+    "purpose": "Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+    "operations": {
+      "arbitrary_degree_polynomial_reduction": "Loop 1: Generalizes polynomial frame-additivity reduction to arbitrary degree 2k on S^1.",
+      "polynomial_reduce_mod_circle": "Loop 1: Reduces a bivariate polynomial P(x, y) modulo the unit circle ideal <x^2 + y^2 - 1>.",
+      "solve_frame_additive_homogeneous_polynomial": "Loop 1: Solves frame additivity P(x, y) + P(-y, x) = 1 on S^1 for homogeneous degree-4.",
+      "tetrahedron_3cell_boundary": "Loop 1: Simplicial 3-simplex (tetrahedron) 3-cell and boundary nilpotence d2 o d3 = 0.",
+      "build_tetrahedron_packet": "Constructs the standard 4-vertex simplicial 3-simplex (tetrahedron) Delta^3.",
+      "build_octahedron_packet": "Constructs the standard 6-vertex octahedron simplicial 2-sphere complex.",
+      "cayley_evolution_on_simplicial_3complex": "Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.",
+      "build_octahedral_mub_polytope": "Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.",
+      "evaluate_octahedral_clifton_kent": "Loop 2: Evaluates the Clifton-Kent non-Bornian spectrum of the Octahedral MUB polytope.",
+      "build_octahedron_graph_state_stabilizers": "Loop 2: Constructs the 6-qubit graph state stabilizers on the Octahedron complex.",
+      "evaluate_octahedral_depolarizing_noise_threshold": "Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.",
+      "evaluate_octahedral_graph_state_entanglement": "Loop 3: Evaluates the bipartite entanglement entropy of the 6-qubit octahedral graph state."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "56b5708efea64de68a93ff7bef857ca8abb0cfe8e66f6edcbe425e4b78905140",
+  "current_scoring": "d80d44f94481ba1486695e4dd8bde3d9ace90cb7defe543b677db6aa2f75e59c",
+  "contract_history": [
+    {
+      "sha256": "1ea6c97155b6efacbbae2e6747733cf3090bbe636cceb24e9aab5d04cd4f137a",
+      "bytes": 3250,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/simplicial_qm.py",
+          "sha256": "7b87a1c446f4f7cfc8ee5b4e74a350017ce79d7bbdfd0dca2296dad150d360a6"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:simplicial-qm:v1",
+        "role": "library",
+        "purpose": "Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "operations": {
+          "arbitrary_degree_polynomial_reduction": "Loop 1: Generalizes polynomial frame-additivity reduction to arbitrary degree 2k on S^1.",
+          "polynomial_reduce_mod_circle": "Loop 1: Reduces a bivariate polynomial P(x, y) modulo the unit circle ideal <x^2 + y^2 - 1>.",
+          "solve_frame_additive_homogeneous_polynomial": "Loop 1: Solves frame additivity P(x, y) + P(-y, x) = 1 on S^1 for homogeneous degree-4.",
+          "tetrahedron_3cell_boundary": "Loop 1: Simplicial 3-simplex (tetrahedron) 3-cell and boundary nilpotence d2 o d3 = 0.",
+          "build_tetrahedron_packet": "Constructs the standard 4-vertex simplicial 3-simplex (tetrahedron) Delta^3.",
+          "build_octahedron_packet": "Constructs the standard 6-vertex octahedron simplicial 2-sphere complex.",
+          "cayley_evolution_on_simplicial_3complex": "Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.",
+          "build_octahedral_mub_polytope": "Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.",
+          "evaluate_octahedral_clifton_kent": "Loop 2: Evaluates the Clifton-Kent non-Bornian spectrum of the Octahedral MUB polytope.",
+          "build_octahedron_graph_state_stabilizers": "Loop 2: Constructs the 6-qubit graph state stabilizers on the Octahedron complex.",
+          "evaluate_octahedral_depolarizing_noise_threshold": "Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.",
+          "evaluate_octahedral_graph_state_entanglement": "Loop 3: Evaluates the bipartite entanglement entropy of the 6-qubit octahedral graph state."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/simplicial_qm.py\",\n    \"sha256\": \"7b87a1c446f4f7cfc8ee5b4e74a350017ce79d7bbdfd0dca2296dad150d360a6\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:simplicial-qm:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"arbitrary_degree_polynomial_reduction\": \"Loop 1: Generalizes polynomial frame-additivity reduction to arbitrary degree 2k on S^1.\",\n    \"polynomial_reduce_mod_circle\": \"Loop 1: Reduces a bivariate polynomial P(x, y) modulo the unit circle ideal <x^2 + y^2 - 1>.\",\n    \"solve_frame_additive_homogeneous_polynomial\": \"Loop 1: Solves frame additivity P(x, y) + P(-y, x) = 1 on S^1 for homogeneous degree-4.\",\n    \"tetrahedron_3cell_boundary\": \"Loop 1: Simplicial 3-simplex (tetrahedron) 3-cell and boundary nilpotence d2 o d3 = 0.\",\n    \"build_tetrahedron_packet\": \"Constructs the standard 4-vertex simplicial 3-simplex (tetrahedron) Delta^3.\",\n    \"build_octahedron_packet\": \"Constructs the standard 6-vertex octahedron simplicial 2-sphere complex.\",\n    \"cayley_evolution_on_simplicial_3complex\": \"Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.\",\n    \"build_octahedral_mub_polytope\": \"Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.\",\n    \"evaluate_octahedral_clifton_kent\": \"Loop 2: Evaluates the Clifton-Kent non-Bornian spectrum of the Octahedral MUB polytope.\",\n    \"build_octahedron_graph_state_stabilizers\": \"Loop 2: Constructs the 6-qubit graph state stabilizers on the Octahedron complex.\",\n    \"evaluate_octahedral_depolarizing_noise_threshold\": \"Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.\",\n    \"evaluate_octahedral_graph_state_entanglement\": \"Loop 3: Evaluates the bipartite entanglement entropy of the 6-qubit octahedral graph state.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/simplicial_qm.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "56b5708efea64de68a93ff7bef857ca8abb0cfe8e66f6edcbe425e4b78905140",
+      "bytes": 3243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/simplicial_qm.py",
+          "sha256": "3300fe0fdc1bfb22d00e552a07f8f9e5d0587999b0e7fb034031076989139e65"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:simplicial-qm:v1",
+        "role": "library",
+        "purpose": "Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes. Decomposed from foundations.py monolith. Integrates with omega_engine crates.",
+        "operations": {
+          "arbitrary_degree_polynomial_reduction": "Loop 1: Generalizes polynomial frame-additivity reduction to arbitrary degree 2k on S^1.",
+          "polynomial_reduce_mod_circle": "Loop 1: Reduces a bivariate polynomial P(x, y) modulo the unit circle ideal <x^2 + y^2 - 1>.",
+          "solve_frame_additive_homogeneous_polynomial": "Loop 1: Solves frame additivity P(x, y) + P(-y, x) = 1 on S^1 for homogeneous degree-4.",
+          "tetrahedron_3cell_boundary": "Loop 1: Simplicial 3-simplex (tetrahedron) 3-cell and boundary nilpotence d2 o d3 = 0.",
+          "build_tetrahedron_packet": "Constructs the standard 4-vertex simplicial 3-simplex (tetrahedron) Delta^3.",
+          "build_octahedron_packet": "Constructs the standard 6-vertex octahedron simplicial 2-sphere complex.",
+          "cayley_evolution_on_simplicial_3complex": "Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.",
+          "build_octahedral_mub_polytope": "Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.",
+          "evaluate_octahedral_clifton_kent": "Loop 2: Evaluates the Clifton-Kent non-Bornian spectrum of the Octahedral MUB polytope.",
+          "build_octahedron_graph_state_stabilizers": "Loop 2: Constructs the 6-qubit graph state stabilizers on the Octahedron complex.",
+          "evaluate_octahedral_depolarizing_noise_threshold": "Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.",
+          "evaluate_octahedral_graph_state_entanglement": "Loop 3: Evaluates the bipartite entanglement entropy of the 6-qubit octahedral graph state."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/simplicial_qm.py\",\n    \"sha256\": \"3300fe0fdc1bfb22d00e552a07f8f9e5d0587999b0e7fb034031076989139e65\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:simplicial-qm:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes. Decomposed from foundations.py monolith. Integrates with omega_engine crates.\",\n  \"operations\": {\n    \"arbitrary_degree_polynomial_reduction\": \"Loop 1: Generalizes polynomial frame-additivity reduction to arbitrary degree 2k on S^1.\",\n    \"polynomial_reduce_mod_circle\": \"Loop 1: Reduces a bivariate polynomial P(x, y) modulo the unit circle ideal <x^2 + y^2 - 1>.\",\n    \"solve_frame_additive_homogeneous_polynomial\": \"Loop 1: Solves frame additivity P(x, y) + P(-y, x) = 1 on S^1 for homogeneous degree-4.\",\n    \"tetrahedron_3cell_boundary\": \"Loop 1: Simplicial 3-simplex (tetrahedron) 3-cell and boundary nilpotence d2 o d3 = 0.\",\n    \"build_tetrahedron_packet\": \"Constructs the standard 4-vertex simplicial 3-simplex (tetrahedron) Delta^3.\",\n    \"build_octahedron_packet\": \"Constructs the standard 6-vertex octahedron simplicial 2-sphere complex.\",\n    \"cayley_evolution_on_simplicial_3complex\": \"Loop 1: Discrete Cayley evolution on simplicial 3-complexes with boundary 2-spheres.\",\n    \"build_octahedral_mub_polytope\": \"Loop 2: Constructs the 6-vertex Octahedral MUB frame polytope.\",\n    \"evaluate_octahedral_clifton_kent\": \"Loop 2: Evaluates the Clifton-Kent non-Bornian spectrum of the Octahedral MUB polytope.\",\n    \"build_octahedron_graph_state_stabilizers\": \"Loop 2: Constructs the 6-qubit graph state stabilizers on the Octahedron complex.\",\n    \"evaluate_octahedral_depolarizing_noise_threshold\": \"Loop 3: Computes the depolarizing noise threshold p* required to restore positive semidefiniteness.\",\n    \"evaluate_octahedral_graph_state_entanglement\": \"Loop 3: Evaluates the bipartite entanglement entropy of the 6-qubit octahedral graph state.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/simplicial_qm.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "623d75357011547ab637985f29431eec47e76e347d58fbb323c96d38d072fe07",
+      "bytes": 2194,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/simplicial_qm.py",
+          "sha256": "7b87a1c446f4f7cfc8ee5b4e74a350017ce79d7bbdfd0dca2296dad150d360a6"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:simplicial-qm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 18), Lizard CCN (max 18), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 18,
+          "lizard_ccn": 18,
+          "weighted_control_upper_bound": 28,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/simplicial_qm.py\",\n    \"sha256\": \"7b87a1c446f4f7cfc8ee5b4e74a350017ce79d7bbdfd0dca2296dad150d360a6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:simplicial-qm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 18), Lizard CCN (max 18), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 18,\n    \"lizard_ccn\": 18,\n    \"weighted_control_upper_bound\": 28,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/simplicial_qm.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "d80d44f94481ba1486695e4dd8bde3d9ace90cb7defe543b677db6aa2f75e59c",
+      "bytes": 2160,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/simplicial_qm.py",
+          "sha256": "3300fe0fdc1bfb22d00e552a07f8f9e5d0587999b0e7fb034031076989139e65"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:simplicial-qm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 18 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 18,
+          "lizard_ccn": 18,
+          "weighted_control_upper_bound": 28,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/simplicial_qm.py\",\n    \"sha256\": \"3300fe0fdc1bfb22d00e552a07f8f9e5d0587999b0e7fb034031076989139e65\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:simplicial-qm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 18 <= 20 (C), nesting depth 4 <= 4 (B); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 18,\n    \"lizard_ccn\": 18,\n    \"weighted_control_upper_bound\": 28,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/simplicial_qm.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

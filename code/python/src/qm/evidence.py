@@ -137,29 +137,60 @@ def verify_bets(project_root: Path, revision: str) -> dict:
     if not re.fullmatch(r"[0-9a-f]{40}", revision):
         raise ValueError("PINNED_COMMIT_REQUIRED")
     prefix = "omega_engine_projects/finite_qm/campaigns/c750"
-    registry = json.loads(_git(root, "cat-file", "blob", f"{revision}:{prefix}/sealed_targets.json"))
-    entries = registry.get("sealed_targets", [])
+    registry_raw = _git(root, "cat-file", "blob", f"{revision}:{prefix}/sealed_targets.json")
+    registry = json.loads(registry_raw)
+    if not isinstance(registry, dict):
+        raise ValueError("INVALID_SEALED_TARGETS_OBJECT")
+    entries = registry.get("sealed_targets")
+    if not isinstance(entries, list):
+        raise ValueError("INVALID_SEALED_TARGETS_LIST")
     expected = {
         "BET-CLAUDE-C750-B01": "a186b28c53bca455085fcb07cd01fad27245c2f24a0a9a752c656bf3080492ef",
         "BET-JC-C750-B01": "c6e481932897f8555cf92d862c99674a07b0bc6fc7c964f4f94d7fb34b2490c0",
     }
-    digests = {entry["bet_id"]: entry["sha256"] for entry in entries}
-    fill_count = sum(entry["sha256"] == "FILL_BEFORE_LAUNCH" for entry in entries)
-    matches = all(digests.get(key) == value for key, value in expected.items())
+    digests = {}
+    duplicate_bets = []
+    fill_count = 0
+    for entry in entries:
+        if not isinstance(entry, dict) or "bet_id" not in entry or "sha256" not in entry:
+            raise ValueError("INVALID_SEALED_TARGET_ENTRY")
+        bid = entry["bet_id"]
+        sha = entry["sha256"]
+        if not isinstance(bid, str) or not bid or not isinstance(sha, str) or not sha:
+            raise ValueError("INVALID_SEALED_TARGET_ENTRY")
+        if sha == "FILL_BEFORE_LAUNCH":
+            fill_count += 1
+        if bid in digests:
+            duplicate_bets.append(bid)
+            if digests[bid] != sha:
+                duplicate_bets.append(f"{bid}(CONTRADICTORY_HASH)")
+        else:
+            digests[bid] = sha
+
+    matches = (not duplicate_bets) and all(digests.get(key) == value for key, value in expected.items())
     names = set(_git(root, "ls-tree", "-r", "--name-only", revision, "--", prefix).decode("utf8").splitlines())
-    plaintexts = sorted(f"{prefix}/{directory}{key}.txt" for directory in ("", "bets/", "block_01/", "block_01/bets/", "bets/bets/") for key in expected if f"{prefix}/{directory}{key}.txt" in names)
+    all_bet_keys = set(expected.keys()) | set(digests.keys())
+    plaintexts = sorted(
+        name for name in names
+        if any(PurePosixPath(name).stem == key or PurePosixPath(name).name == f"{key}.txt" for key in all_bet_keys)
+    )
     refusal = None
-    if fill_count:
+    if duplicate_bets:
+        refusal = f"Refusal: Duplicate bet entries in registry: {sorted(set(duplicate_bets))}"
+    elif fill_count:
         refusal = f"Refusal: {fill_count} registered bet entries contain FILL_BEFORE_LAUNCH"
     elif plaintexts:
         refusal = f"Refusal: Unrevealed bet plaintext(s) found in executor path: {plaintexts}"
     elif not matches:
         refusal = "Refusal: Block 01 digests in registry do not match expected frozen hashes"
-    return {"target_id":"C750-T553", "evidence_class":"METATHEORY", "verified":not refusal,
-            "b01_digests_matched":matches, "fill_before_launch_count":fill_count,
-            "readable_plaintexts_found":plaintexts, "refusal_reason":refusal,
-            "details":{"registry_citation":registry.get("citation"), "total_sealed_targets_count":len(entries),
-                       "b01_targets":{key:{"expected":value,"actual":digests.get(key),"matched":digests.get(key)==value} for key,value in expected.items()}}}
+    return {"target_id": "C750-T553", "evidence_class": "METATHEORY", "verified": not refusal,
+            "b01_digests_matched": matches, "fill_before_launch_count": fill_count,
+            "readable_plaintexts_found": plaintexts, "refusal_reason": refusal,
+            "details": {"registry_citation": registry.get("citation"), "total_sealed_targets_count": len(entries),
+                        "checked_paths_count": len(names), "duplicate_bets_found": sorted(set(duplicate_bets)),
+                        "b01_targets": {key: {"expected": value, "actual": digests.get(key),
+                                              "matched": digests.get(key) == value and (key not in duplicate_bets)}
+                                        for key, value in expected.items()}}}
 
 
 def replay_lean(project_root: Path) -> dict:

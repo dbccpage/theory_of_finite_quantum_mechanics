@@ -1,0 +1,275 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/dressed_qed.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/dressed_qed.py",
+      "sha256": "1f4f869ccc26ee23627510d96f467702c455ae76583cd3aef177dbe875b675bf"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:qm:dressed-qed:v1",
+    "role": "library",
+    "purpose": "QM-212 finite map: dressed graph polynomials (DFM) and rational QED g-2 enclosure. This control connects three finite mechanisms in exact rational and cyclotomic",
+    "operations": {
+      "DressedQedControlRefusal": "Typed refusal for malformed dressed-graph or rational-interval inputs.",
+      "RationalInterval": "Closed rational interval [lo, hi] subset Q with exact arithmetic.",
+      "enumerate_spanning_trees": "Return all (tree_edges, cotree_edges) pairs of the connected carrier graph.",
+      "symanzik_u_polynomial": "First Symanzik polynomial U_G(alpha) = sum_{T in T(G)} prod_{e not in T} alpha_e.",
+      "kirchhoff_dual_symanzik_u": "Compute (prod_{e in E} alpha_e) * det L_G^(0)(1 / alpha_e) exactly over Q.",
+      "tree_path_on_custom_tree": "Unique vertex path from u to v along an arbitrary spanning tree of graph.",
+      "dress_cochain_on_tree": "Ravera DFM retraction Pi_{dress, T}(A): transport from root 0 along tree_edges.",
+      "cycle_basis_change_det": "Determinant of the H_1(G; Z) basis-change matrix between two spanning trees.",
+      "evaluate_dfm_symanzik_bridge": "Verify (a) Symanzik U_G == Kirchhoff dual and (b) DFM gauge & tree invariance.",
+      "pi_interval": "Machin's formula pi = 16 arctan(1/5) - 4 arctan(1/239) enclosed in Q.",
+      "polylog_half_interval": "Li_s(1/2) = sum_{k=1}^infty 1 / (k^s 2^k) enclosed in Q (s=1 is ln 2).",
+      "zeta3_interval": "Apery's alternating series zeta(3) = (5/2) sum_{k>=1} (-1)^{k-1} / (k^3 C(2k, k)).",
+      "zeta5_interval": "Euler-Maclaurin rational enclosure of zeta(5) with remainder in [0, 5 / (8 N^10)].",
+      "qed_loop_coefficients": "Compute exact rational intervals for C_1 (1-loop), C_2 (2-loop), and C_3 (3-loop).",
+      "evaluate_qed_g2_enclosure": "Enclose the L=1,2,3 and L=1..4 QED anomalous magnetic moment a_e to 12 decimals.",
+      "residual_import_ledger": "Function residual_import_ledger operation.",
+      "evaluate_dressed_qed_g2_control": "Run the full QM-212 dressed-graph and rational QED g-2 control."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "c735d583204fff181440c794686aaa5ba67baf997a6fa019c861ddbc66dc0e56",
+  "current_scoring": "35206039872a7a15cdd016a94acbc13b67399d8643742c7cf56a68105720bc76",
+  "contract_history": [
+    {
+      "sha256": "a4d50c13be5521051930e84b47ee5a625509c4d50f062ba5262d3934d1e20abe",
+      "bytes": 3494,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/dressed_qed.py",
+          "sha256": "73a77d2f6aa18c9a8c413c816cdb9772627239ac72b3fe62952dede04de4c358"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:dressed-qed:v1",
+        "role": "library",
+        "purpose": "QM-212 finite map: dressed graph polynomials (DFM) and rational QED g-2 enclosure. This control connects three finite mechanisms in exact rational and cyclotomic",
+        "operations": {
+          "DressedQedControlRefusal": "Typed refusal for malformed dressed-graph or rational-interval inputs.",
+          "RationalInterval": "Closed rational interval [lo, hi] subset Q with exact arithmetic.",
+          "enumerate_spanning_trees": "Return all (tree_edges, cotree_edges) pairs of the connected carrier graph.",
+          "symanzik_u_polynomial": "First Symanzik polynomial U_G(alpha) = sum_{T in T(G)} prod_{e not in T} alpha_e.",
+          "kirchhoff_dual_symanzik_u": "Compute (prod_{e in E} alpha_e) * det L_G^(0)(1 / alpha_e) exactly over Q.",
+          "tree_path_on_custom_tree": "Unique vertex path from u to v along an arbitrary spanning tree of graph.",
+          "dress_cochain_on_tree": "Ravera DFM retraction Pi_{dress, T}(A): transport from root 0 along tree_edges.",
+          "cycle_basis_change_det": "Determinant of the H_1(G; Z) basis-change matrix between two spanning trees.",
+          "evaluate_dfm_symanzik_bridge": "Verify (a) Symanzik U_G == Kirchhoff dual and (b) DFM gauge & tree invariance.",
+          "pi_interval": "Machin's formula pi = 16 arctan(1/5) - 4 arctan(1/239) enclosed in Q.",
+          "polylog_half_interval": "Li_s(1/2) = sum_{k=1}^infty 1 / (k^s 2^k) enclosed in Q (s=1 is ln 2).",
+          "zeta3_interval": "Apery's alternating series zeta(3) = (5/2) sum_{k>=1} (-1)^{k-1} / (k^3 C(2k, k)).",
+          "zeta5_interval": "Euler-Maclaurin rational enclosure of zeta(5) with remainder in [0, 5 / (8 N^10)].",
+          "qed_loop_coefficients": "Compute exact rational intervals for C_1 (1-loop), C_2 (2-loop), and C_3 (3-loop).",
+          "evaluate_qed_g2_enclosure": "Enclose the L=1,2,3 and L=1..4 QED anomalous magnetic moment a_e to 12 decimals.",
+          "residual_import_ledger": "Function residual_import_ledger operation.",
+          "evaluate_dressed_qed_g2_control": "Run the full QM-212 dressed-graph and rational QED g-2 control."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/dressed_qed.py\",\n    \"sha256\": \"73a77d2f6aa18c9a8c413c816cdb9772627239ac72b3fe62952dede04de4c358\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:dressed-qed:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-212 finite map: dressed graph polynomials (DFM) and rational QED g-2 enclosure. This control connects three finite mechanisms in exact rational and cyclotomic\",\n  \"operations\": {\n    \"DressedQedControlRefusal\": \"Typed refusal for malformed dressed-graph or rational-interval inputs.\",\n    \"RationalInterval\": \"Closed rational interval [lo, hi] subset Q with exact arithmetic.\",\n    \"enumerate_spanning_trees\": \"Return all (tree_edges, cotree_edges) pairs of the connected carrier graph.\",\n    \"symanzik_u_polynomial\": \"First Symanzik polynomial U_G(alpha) = sum_{T in T(G)} prod_{e not in T} alpha_e.\",\n    \"kirchhoff_dual_symanzik_u\": \"Compute (prod_{e in E} alpha_e) * det L_G^(0)(1 / alpha_e) exactly over Q.\",\n    \"tree_path_on_custom_tree\": \"Unique vertex path from u to v along an arbitrary spanning tree of graph.\",\n    \"dress_cochain_on_tree\": \"Ravera DFM retraction Pi_{dress, T}(A): transport from root 0 along tree_edges.\",\n    \"cycle_basis_change_det\": \"Determinant of the H_1(G; Z) basis-change matrix between two spanning trees.\",\n    \"evaluate_dfm_symanzik_bridge\": \"Verify (a) Symanzik U_G == Kirchhoff dual and (b) DFM gauge & tree invariance.\",\n    \"pi_interval\": \"Machin's formula pi = 16 arctan(1/5) - 4 arctan(1/239) enclosed in Q.\",\n    \"polylog_half_interval\": \"Li_s(1/2) = sum_{k=1}^infty 1 / (k^s 2^k) enclosed in Q (s=1 is ln 2).\",\n    \"zeta3_interval\": \"Apery's alternating series zeta(3) = (5/2) sum_{k>=1} (-1)^{k-1} / (k^3 C(2k, k)).\",\n    \"zeta5_interval\": \"Euler-Maclaurin rational enclosure of zeta(5) with remainder in [0, 5 / (8 N^10)].\",\n    \"qed_loop_coefficients\": \"Compute exact rational intervals for C_1 (1-loop), C_2 (2-loop), and C_3 (3-loop).\",\n    \"evaluate_qed_g2_enclosure\": \"Enclose the L=1,2,3 and L=1..4 QED anomalous magnetic moment a_e to 12 decimals.\",\n    \"residual_import_ledger\": \"Function residual_import_ledger operation.\",\n    \"evaluate_dressed_qed_g2_control\": \"Run the full QM-212 dressed-graph and rational QED g-2 control.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/dressed_qed.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "c735d583204fff181440c794686aaa5ba67baf997a6fa019c861ddbc66dc0e56",
+      "bytes": 3487,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/dressed_qed.py",
+          "sha256": "1f4f869ccc26ee23627510d96f467702c455ae76583cd3aef177dbe875b675bf"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:dressed-qed:v1",
+        "role": "library",
+        "purpose": "QM-212 finite map: dressed graph polynomials (DFM) and rational QED g-2 enclosure. This control connects three finite mechanisms in exact rational and cyclotomic",
+        "operations": {
+          "DressedQedControlRefusal": "Typed refusal for malformed dressed-graph or rational-interval inputs.",
+          "RationalInterval": "Closed rational interval [lo, hi] subset Q with exact arithmetic.",
+          "enumerate_spanning_trees": "Return all (tree_edges, cotree_edges) pairs of the connected carrier graph.",
+          "symanzik_u_polynomial": "First Symanzik polynomial U_G(alpha) = sum_{T in T(G)} prod_{e not in T} alpha_e.",
+          "kirchhoff_dual_symanzik_u": "Compute (prod_{e in E} alpha_e) * det L_G^(0)(1 / alpha_e) exactly over Q.",
+          "tree_path_on_custom_tree": "Unique vertex path from u to v along an arbitrary spanning tree of graph.",
+          "dress_cochain_on_tree": "Ravera DFM retraction Pi_{dress, T}(A): transport from root 0 along tree_edges.",
+          "cycle_basis_change_det": "Determinant of the H_1(G; Z) basis-change matrix between two spanning trees.",
+          "evaluate_dfm_symanzik_bridge": "Verify (a) Symanzik U_G == Kirchhoff dual and (b) DFM gauge & tree invariance.",
+          "pi_interval": "Machin's formula pi = 16 arctan(1/5) - 4 arctan(1/239) enclosed in Q.",
+          "polylog_half_interval": "Li_s(1/2) = sum_{k=1}^infty 1 / (k^s 2^k) enclosed in Q (s=1 is ln 2).",
+          "zeta3_interval": "Apery's alternating series zeta(3) = (5/2) sum_{k>=1} (-1)^{k-1} / (k^3 C(2k, k)).",
+          "zeta5_interval": "Euler-Maclaurin rational enclosure of zeta(5) with remainder in [0, 5 / (8 N^10)].",
+          "qed_loop_coefficients": "Compute exact rational intervals for C_1 (1-loop), C_2 (2-loop), and C_3 (3-loop).",
+          "evaluate_qed_g2_enclosure": "Enclose the L=1,2,3 and L=1..4 QED anomalous magnetic moment a_e to 12 decimals.",
+          "residual_import_ledger": "Function residual_import_ledger operation.",
+          "evaluate_dressed_qed_g2_control": "Run the full QM-212 dressed-graph and rational QED g-2 control."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/dressed_qed.py\",\n    \"sha256\": \"1f4f869ccc26ee23627510d96f467702c455ae76583cd3aef177dbe875b675bf\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:dressed-qed:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-212 finite map: dressed graph polynomials (DFM) and rational QED g-2 enclosure. This control connects three finite mechanisms in exact rational and cyclotomic\",\n  \"operations\": {\n    \"DressedQedControlRefusal\": \"Typed refusal for malformed dressed-graph or rational-interval inputs.\",\n    \"RationalInterval\": \"Closed rational interval [lo, hi] subset Q with exact arithmetic.\",\n    \"enumerate_spanning_trees\": \"Return all (tree_edges, cotree_edges) pairs of the connected carrier graph.\",\n    \"symanzik_u_polynomial\": \"First Symanzik polynomial U_G(alpha) = sum_{T in T(G)} prod_{e not in T} alpha_e.\",\n    \"kirchhoff_dual_symanzik_u\": \"Compute (prod_{e in E} alpha_e) * det L_G^(0)(1 / alpha_e) exactly over Q.\",\n    \"tree_path_on_custom_tree\": \"Unique vertex path from u to v along an arbitrary spanning tree of graph.\",\n    \"dress_cochain_on_tree\": \"Ravera DFM retraction Pi_{dress, T}(A): transport from root 0 along tree_edges.\",\n    \"cycle_basis_change_det\": \"Determinant of the H_1(G; Z) basis-change matrix between two spanning trees.\",\n    \"evaluate_dfm_symanzik_bridge\": \"Verify (a) Symanzik U_G == Kirchhoff dual and (b) DFM gauge & tree invariance.\",\n    \"pi_interval\": \"Machin's formula pi = 16 arctan(1/5) - 4 arctan(1/239) enclosed in Q.\",\n    \"polylog_half_interval\": \"Li_s(1/2) = sum_{k=1}^infty 1 / (k^s 2^k) enclosed in Q (s=1 is ln 2).\",\n    \"zeta3_interval\": \"Apery's alternating series zeta(3) = (5/2) sum_{k>=1} (-1)^{k-1} / (k^3 C(2k, k)).\",\n    \"zeta5_interval\": \"Euler-Maclaurin rational enclosure of zeta(5) with remainder in [0, 5 / (8 N^10)].\",\n    \"qed_loop_coefficients\": \"Compute exact rational intervals for C_1 (1-loop), C_2 (2-loop), and C_3 (3-loop).\",\n    \"evaluate_qed_g2_enclosure\": \"Enclose the L=1,2,3 and L=1..4 QED anomalous magnetic moment a_e to 12 decimals.\",\n    \"residual_import_ledger\": \"Function residual_import_ledger operation.\",\n    \"evaluate_dressed_qed_g2_control\": \"Run the full QM-212 dressed-graph and rational QED g-2 control.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/dressed_qed.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "58b920289320ee545109c5940601b875800f4713451c2329b069c13073c5f1ef",
+      "bytes": 2186,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/dressed_qed.py",
+          "sha256": "73a77d2f6aa18c9a8c413c816cdb9772627239ac72b3fe62952dede04de4c358"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:dressed-qed:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 13,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/dressed_qed.py\",\n    \"sha256\": \"73a77d2f6aa18c9a8c413c816cdb9772627239ac72b3fe62952dede04de4c358\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:dressed-qed:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 9), Lizard CCN (max 9), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/dressed_qed.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "35206039872a7a15cdd016a94acbc13b67399d8643742c7cf56a68105720bc76",
+      "bytes": 2153,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/dressed_qed.py",
+          "sha256": "1f4f869ccc26ee23627510d96f467702c455ae76583cd3aef177dbe875b675bf"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:dressed-qed:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 9,
+          "lizard_ccn": 9,
+          "weighted_control_upper_bound": 13,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/dressed_qed.py\",\n    \"sha256\": \"1f4f869ccc26ee23627510d96f467702c455ae76583cd3aef177dbe875b675bf\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:dressed-qed:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 9 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 13,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/dressed_qed.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

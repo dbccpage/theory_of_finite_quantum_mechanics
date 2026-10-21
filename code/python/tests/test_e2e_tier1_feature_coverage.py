@@ -52,7 +52,7 @@ def test_negative_born_purity_refuses_negative_weight() -> None:
     assert type(caught.value) is ValueError
 
 
-_MODULE_PATH = __import__("pathlib").Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'born_normalization.py'
+_MODULE_PATH = __import__("pathlib").Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'born_normalization.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

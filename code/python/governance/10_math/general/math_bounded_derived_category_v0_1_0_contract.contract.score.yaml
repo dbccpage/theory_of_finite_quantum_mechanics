@@ -111,12 +111,12 @@
       "Exact discrete cohomology vanishing checks"
     ]
   },
-  "current_contract": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99",
-  "current_scoring": null,
+  "current_contract": "760744ba8146fe88ca89721435c90d8cef69afb7f8c235b9c545a0200f704a41",
+  "current_scoring": "8c3b851d177ddefb31e1f6b02628793fb22cd5191e7843a58ac6a4dec4f7f99e",
   "contract_history": [
     {
-      "sha256": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99",
-      "bytes": 3584,
+      "sha256": "760744ba8146fe88ca89721435c90d8cef69afb7f8c235b9c545a0200f704a41",
+      "bytes": 4140,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:bounded_derived_category:v0.1.0",
@@ -226,13 +226,75 @@
           "Exact discrete cohomology vanishing checks"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_derived_category:v0.1.0\ntitle: Bounded Derived Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bounded_derived_category\n  symbol: D^b(A) \\subset D(A)\n  ascii_symbol: bounded_derived_category\n  notation: D^b(A) = { X^\\bullet \\in Ch(A) | \\exists N, \\forall |n| > N, H^n(X^\\bullet)\n    = 0 }\n  domain:\n  - 'abelian_category: base abelian category A'\n  - 'bounded_complexes: subcategory of complexes X^\\bullet with bounded cohomology:\n    \\exists a, b, \\forall n < a \\lor n > b, H^n(X) = 0'\n  - 'boundedness_variants: D^b (bounded), D^+ (bounded below), D^- (bounded above)'\n  - 'triangulated_structure: full triangulated subcategory structure inherited from\n    D(A)'\n  - 'cohomology_bounds: exact integer bounds [lower_bound, upper_bound] for non-vanishing\n    cohomology'\n  codomain:\n    description: The bounded derived category D^b(A) is the full triangulated subcategory\n      of D(A) consisting of complexes whose cohomology vanishes in all but finitely\n      many degrees. It is the primary setting for coherent sheaf theory and Serre\n      duality.\nrequirements:\n  required_structures:\n  - Base category A is abelian.\n  - All objects satisfy bounded cohomology: H^n(X) = 0 for |n| >> 0.\n  - Closed under translation [1] and [-1].\n  - Closed under mapping cones: if X, Y in D^b(A), then C(f) in D^b(A).\n  - Full embedding into D(A).\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Vanishing cohomology: \\exists a, b \\in Z such that H^n(X) = 0 for all n < a and\n  n > b'\n- 'Triangulated subcategory closure: distinguished triangle on X, Y in D^b(A) implies\n  cone object Z in D^b(A)'\n- 'Shift stability: H^n(X[k]) = H^{n+k}(X), preserving finite cohomological support'\n- 'Quasi-isomorphism preservation: every quasi-isomorphism between bounded complexes\n  inverts within D^b(A)'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Cohomology bounds and complexes serialized in canonical order\n  - Exact integer degree bounds; deterministic hashing\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: bounded_derived\n  symbols:\n  - BoundedDerivedCategory\n  - BoundedComplex\n  - CohomologyBoundValidator\n  required_tests:\n  - test_bounded_derived_category_and_truncation\nnegative_tests:\n- Complex with unbounded cohomology asserted as bounded\n- Mapping cone of bounded complexes escapes declared degree bounds\n- Non-abelian base category\ndoctrine:\n  summary: The bounded derived category D^b(A) restricts the derived category to complexes\n    with cohomology supported in finitely many degrees. It forms a full triangulated\n    subcategory and is the foundational framework for coherent sheaves, Fourier-Mukai\n    transforms, and Bridgeland stability conditions.\n  non_role:\n  - Unbounded derived categories D(A)\n  - Ind-coherent and pro-coherent extensions\n  - Infinite direct sums / Brown representability\nwip:\n- Bound propagation algorithm across mapping cones in Rust\n- Full subcategory verification in Lean 4\n- Exact discrete cohomology vanishing checks\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:bounded_derived_category:v0.1.0\",\n  \"title\": \"Bounded Derived Category Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"bounded_derived_category\",\n    \"symbol\": \"D^b(A) \\\\subset D(A)\",\n    \"ascii_symbol\": \"bounded_derived_category\",\n    \"notation\": \"D^b(A) = { X^\\\\bullet \\\\in Ch(A) | \\\\exists N, \\\\forall |n| > N, H^n(X^\\\\bullet) = 0 }\",\n    \"domain\": [\n      \"abelian_category: base abelian category A\",\n      \"bounded_complexes: subcategory of complexes X^\\\\bullet with bounded cohomology: \\\\exists a, b, \\\\forall n < a \\\\lor n > b, H^n(X) = 0\",\n      \"boundedness_variants: D^b (bounded), D^+ (bounded below), D^- (bounded above)\",\n      \"triangulated_structure: full triangulated subcategory structure inherited from D(A)\",\n      \"cohomology_bounds: exact integer bounds [lower_bound, upper_bound] for non-vanishing cohomology\"\n    ],\n    \"codomain\": {\n      \"description\": \"The bounded derived category D^b(A) is the full triangulated subcategory of D(A) consisting of complexes whose cohomology vanishes in all but finitely many degrees. It is the primary setting for coherent sheaf theory and Serre duality.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Base category A is abelian.\",\n      {\n        \"All objects satisfy bounded cohomology\": \"H^n(X) = 0 for |n| >> 0.\"\n      },\n      \"Closed under translation [1] and [-1].\",\n      {\n        \"Closed under mapping cones\": \"if X, Y in D^b(A), then C(f) in D^b(A).\"\n      },\n      \"Full embedding into D(A).\",\n      \"Structure hash is deterministically content-addressed.\"\n    ]\n  },\n  \"laws\": [\n    \"Vanishing cohomology: \\\\exists a, b \\\\in Z such that H^n(X) = 0 for all n < a and n > b\",\n    \"Triangulated subcategory closure: distinguished triangle on X, Y in D^b(A) implies cone object Z in D^b(A)\",\n    \"Shift stability: H^n(X[k]) = H^{n+k}(X), preserving finite cohomological support\",\n    \"Quasi-isomorphism preservation: every quasi-isomorphism between bounded complexes inverts within D^b(A)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Cohomology bounds and complexes serialized in canonical order\",\n      \"Exact integer degree bounds; deterministic hashing\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"bounded_derived\",\n    \"symbols\": [\n      \"BoundedDerivedCategory\",\n      \"BoundedComplex\",\n      \"CohomologyBoundValidator\"\n    ],\n    \"required_tests\": [\n      \"test_bounded_derived_category_and_truncation\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Complex with unbounded cohomology asserted as bounded\",\n    \"Mapping cone of bounded complexes escapes declared degree bounds\",\n    \"Non-abelian base category\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The bounded derived category D^b(A) restricts the derived category to complexes with cohomology supported in finitely many degrees. It forms a full triangulated subcategory and is the foundational framework for coherent sheaves, Fourier-Mukai transforms, and Bridgeland stability conditions.\",\n    \"non_role\": [\n      \"Unbounded derived categories D(A)\",\n      \"Ind-coherent and pro-coherent extensions\",\n      \"Infinite direct sums / Brown representability\"\n    ]\n  },\n  \"wip\": [\n    \"Bound propagation algorithm across mapping cones in Rust\",\n    \"Full subcategory verification in Lean 4\",\n    \"Exact discrete cohomology vanishing checks\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8c3b851d177ddefb31e1f6b02628793fb22cd5191e7843a58ac6a4dec4f7f99e",
+      "bytes": 2245,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0_contract.py",
+          "sha256": "f7de9ef9a2f6b13d3f89ca8747ba9062b8779dad2a478b4bf659ceae63f993df"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-bounded-derived-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0_contract.py\",\n    \"sha256\": \"f7de9ef9a2f6b13d3f89ca8747ba9062b8779dad2a478b4bf659ceae63f993df\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-bounded-derived-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_bounded_derived_category_v0_1_0.contract.yaml": "8a75369fc5f8b9042daf6ccaa6274da3d4b712ded00b03d637acdf0a53494d99"
   },

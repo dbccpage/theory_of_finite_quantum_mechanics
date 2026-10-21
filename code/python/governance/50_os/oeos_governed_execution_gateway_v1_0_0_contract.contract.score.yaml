@@ -127,12 +127,12 @@
       ]
     }
   },
-  "current_contract": "113f30a30103427046051a1c6bf979050c264b8ef64ef72efdcbe19ab75d6681",
-  "current_scoring": null,
+  "current_contract": "1606165e3fc423b004c7a551f1c0ec0753ae9e54d82a884257cfbf93be08de89",
+  "current_scoring": "be6fccc76dec9b44464fb4d14a5fe9b24d5f209fae0651dd8e9d3e6dbce3c690",
   "contract_history": [
     {
-      "sha256": "113f30a30103427046051a1c6bf979050c264b8ef64ef72efdcbe19ab75d6681",
-      "bytes": 3158,
+      "sha256": "1606165e3fc423b004c7a551f1c0ec0753ae9e54d82a884257cfbf93be08de89",
+      "bytes": 3936,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:governed_execution_gateway:v1.0.0",
@@ -258,13 +258,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:governed_execution_gateway:v1.0.0\ntitle: Governed Agentic Execution Gateway\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: GovernedExecutionGateway\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    - urn:omega:oeos:composition_root:v1.0.0\n    - urn:omega:oeos:daemon:v1.0.0\n    - urn:omega:oeos:telemetry_sink:v1.0.0\n    proof_obligations:\n    - id: GEG-INV-001\n      statement: Every governed host submission binds one exact task envelope, capability\n        snapshot, route plan, policy digest, and repository revision before effects.\n      verification_status: open\n    - id: GEG-INV-002\n      statement: Skill selection, context binding, invocation, and output use remain\n        distinct evidence events and no later stage is inferred.\n      verification_status: open\n    - id: GEG-INV-003\n      statement: A terminal outer receipt links exact inner receipts without taking\n        semantic ownership of Woland, OEWAS, or Symbol Game evidence.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - GOVERNED_CONTEXT_REFUSED\n    - GOVERNED_POLICY_REFUSED\n    - GOVERNED_ROUTE_REFUSED\n    - GOVERNED_TASK_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: task_envelope\n    type: urn:omega:oeos:type:task_envelope:v1.0.0\n    required: true\n  outputs:\n  - name: harness_run_receipt\n    type: urn:omega:oeos:type:harness_run_receipt:v1.0.0\n    required: true\n  typed_refusals:\n  - GOVERNED_CONTEXT_REFUSED\n  - GOVERNED_POLICY_REFUSED\n  - GOVERNED_ROUTE_REFUSED\n  - GOVERNED_TASK_REFUSED\n  platform_requirements:\n  - profile: local_single_operator_gateway\n    requirements:\n    - deterministic_route_binding\n    - hash_chained_lifecycle_events\n    - independently_verified_terminal_receipt\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares the OEOS host gateway for a governed agentic task lifecycle while\n    preserving inward semantic and admission owners.\n  non_role:\n  - anti_skill_admission_authority\n  - inner_dag_semantic_owner\n  - routing_policy_admission_authority\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - task_completion_does_not_prove_skill_fidelity_without_skill_use_events\n  invariants:\n  - one_task_id_binds_one_hash_chained_lifecycle\n  - route_and_policy_digests_precede_worker_dispatch\n  allowed_operations:\n  - accept_governed_task_envelope\n  - coordinate_preflight_execution_and_verification\n  - seal_non_authoritative_run_receipt\n  forbidden_operations:\n  - admit_routing_or_anti_skill_policy\n  - infer_unobserved_native_sessions\n  - promote_inner_receipt_authority\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:governed_execution_gateway:v1.0.0\",\n  \"title\": \"Governed Agentic Execution Gateway\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"GovernedExecutionGateway\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\",\n        \"urn:omega:oeos:composition_root:v1.0.0\",\n        \"urn:omega:oeos:daemon:v1.0.0\",\n        \"urn:omega:oeos:telemetry_sink:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"GEG-INV-001\",\n          \"statement\": \"Every governed host submission binds one exact task envelope, capability snapshot, route plan, policy digest, and repository revision before effects.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"GEG-INV-002\",\n          \"statement\": \"Skill selection, context binding, invocation, and output use remain distinct evidence events and no later stage is inferred.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"GEG-INV-003\",\n          \"statement\": \"A terminal outer receipt links exact inner receipts without taking semantic ownership of Woland, OEWAS, or Symbol Game evidence.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"GOVERNED_CONTEXT_REFUSED\",\n        \"GOVERNED_POLICY_REFUSED\",\n        \"GOVERNED_ROUTE_REFUSED\",\n        \"GOVERNED_TASK_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"task_envelope\",\n        \"type\": \"urn:omega:oeos:type:task_envelope:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"harness_run_receipt\",\n        \"type\": \"urn:omega:oeos:type:harness_run_receipt:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"GOVERNED_CONTEXT_REFUSED\",\n      \"GOVERNED_POLICY_REFUSED\",\n      \"GOVERNED_ROUTE_REFUSED\",\n      \"GOVERNED_TASK_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"local_single_operator_gateway\",\n        \"requirements\": [\n          \"deterministic_route_binding\",\n          \"hash_chained_lifecycle_events\",\n          \"independently_verified_terminal_receipt\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares the OEOS host gateway for a governed agentic task lifecycle while preserving inward semantic and admission owners.\",\n    \"non_role\": [\n      \"anti_skill_admission_authority\",\n      \"inner_dag_semantic_owner\",\n      \"routing_policy_admission_authority\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"task_completion_does_not_prove_skill_fidelity_without_skill_use_events\"\n    ],\n    \"invariants\": [\n      \"one_task_id_binds_one_hash_chained_lifecycle\",\n      \"route_and_policy_digests_precede_worker_dispatch\"\n    ],\n    \"allowed_operations\": [\n      \"accept_governed_task_envelope\",\n      \"coordinate_preflight_execution_and_verification\",\n      \"seal_non_authoritative_run_receipt\"\n    ],\n    \"forbidden_operations\": [\n      \"admit_routing_or_anti_skill_policy\",\n      \"infer_unobserved_native_sessions\",\n      \"promote_inner_receipt_authority\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/oeos_governed_execution_gateway_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "be6fccc76dec9b44464fb4d14a5fe9b24d5f209fae0651dd8e9d3e6dbce3c690",
+      "bytes": 2237,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/oeos_governed_execution_gateway_v1_0_0_contract.py",
+          "sha256": "d92ee43b9310519d7dfa8a2701e89c9ca0bc2bd6f255155273d9869aed3d7896"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:oeos-governed-execution-gateway-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_governed_execution_gateway_v1_0_0_contract.py\",\n    \"sha256\": \"d92ee43b9310519d7dfa8a2701e89c9ca0bc2bd6f255155273d9869aed3d7896\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-governed-execution-gateway-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_governed_execution_gateway_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/oeos_governed_execution_gateway_v1_0_0.contract.yaml": "113f30a30103427046051a1c6bf979050c264b8ef64ef72efdcbe19ab75d6681"
   },

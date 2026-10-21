@@ -3,86 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:gov:governance_obstruction_packet:v1.0.0",
-    "title": "Packet Contract: Governance Obstruction Packet",
-    "kind": "governance_packet_contract",
-    "layer": "40_packets",
-    "role": "TheoryPacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "clean_architecture_layer": "domain",
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:governance:base_contract:v1.0.0"
-        ],
-        "lean4_theorems": []
-      },
-      "terminals": {
-        "may_emit": [
-          "urn:omega:packet:work_packet:v1.0.0"
-        ],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "REFUSAL_INVALID_ARGUMENTS",
-          "REFUSAL_GATE_FAILED",
-          "REFUSAL_INVARIANT_BREACH",
-          "REFUSAL_UNAUTHORIZED_TRANSITION"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py",
+      "sha256": "dd58a877970b07fe19a328b5cec20b3b24f4f21ba4b0e9bb3388536975a87b11"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-gov-governance-obstruction-packet-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:gov:governance_obstruction_packet:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ],
-      "realizes": []
-    },
-    "doctrine": {
-      "summary": "deferred_residuals: none",
-      "invariants": [
-        "AuthorityEffect is strictly None.",
-        "Packet specification serves as declarative theoretical boundary.",
-        "No operational authority is minted without typed descent and execution receipt."
-      ],
-      "non_roles": [
-        "authority_source",
-        "runtime_oracle",
-        "coercion_engine"
-      ],
-      "required_negative_capabilities": [
-        "no_llm_self_certification",
-        "no_implicit_authority_upgrade"
-      ]
-    },
-    "specification": {
-      "algebraic_structure": {
-        "carrier_type": "GovPacket_governance_obstruction_packet",
-        "operations": []
-      },
-      "ports": {
-        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
-        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
-        "error_type": "Refusal"
-      },
-      "verification": {
-        "fitness_test": "tests/test_governance_contracts_regime.py",
-        "lean4_file": null
-      }
-    }
+    ]
   },
-  "current_contract": "02c18f2df2978c3899ecb90a666fb328dfed21be57933b572d0ed0e52f4db1cc",
-  "current_scoring": null,
+  "current_contract": "64e393eac409f1ec993201fde2e1f94cffc50ebc30b764fd0cc54a4e70cdc433",
+  "current_scoring": "9b17838a3a1a269ad1a915ba5b4e1a20624b48c23a937804fbe4f4550b427af9",
   "contract_history": [
     {
-      "sha256": "02c18f2df2978c3899ecb90a666fb328dfed21be57933b572d0ed0e52f4db1cc",
-      "bytes": 1668,
+      "sha256": "bf134ae5c9ac28de617d8d0f4b699c332850822a2957d4443e04db58bb2d9aec",
+      "bytes": 2098,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:gov:governance_obstruction_packet:v1.0.0",
@@ -158,13 +110,110 @@
           }
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:gov:governance_obstruction_packet:v1.0.0\ntitle: 'Packet Contract: Governance Obstruction Packet'\nkind: governance_packet_contract\nlayer: 40_packets\nrole: TheoryPacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:governance:base_contract:v1.0.0\n    lean4_theorems: []\n  terminals:\n    may_emit:\n    - urn:omega:packet:work_packet:v1.0.0\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\n    - REFUSAL_UNAUTHORIZED_TRANSITION\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  realizes: []\ndoctrine:\n  summary: 'deferred_residuals: none'\n  invariants:\n  - AuthorityEffect is strictly None.\n  - Packet specification serves as declarative theoretical boundary.\n  - No operational authority is minted without typed descent and execution receipt.\n  non_roles:\n  - authority_source\n  - runtime_oracle\n  - coercion_engine\n  required_negative_capabilities:\n  - no_llm_self_certification\n  - no_implicit_authority_upgrade\nspecification:\n  algebraic_structure:\n    carrier_type: GovPacket_governance_obstruction_packet\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: tests/test_governance_contracts_regime.py\n    lean4_file: null\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:gov:governance_obstruction_packet:v1.0.0\",\n  \"title\": \"Packet Contract: Governance Obstruction Packet\",\n  \"kind\": \"governance_packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"TheoryPacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"clean_architecture_layer\": \"domain\",\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:governance:base_contract:v1.0.0\"\n      ],\n      \"lean4_theorems\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [\n        \"urn:omega:packet:work_packet:v1.0.0\"\n      ],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"REFUSAL_INVALID_ARGUMENTS\",\n        \"REFUSAL_GATE_FAILED\",\n        \"REFUSAL_INVARIANT_BREACH\",\n        \"REFUSAL_UNAUTHORIZED_TRANSITION\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ],\n    \"realizes\": []\n  },\n  \"doctrine\": {\n    \"summary\": \"deferred_residuals: none\",\n    \"invariants\": [\n      \"AuthorityEffect is strictly None.\",\n      \"Packet specification serves as declarative theoretical boundary.\",\n      \"No operational authority is minted without typed descent and execution receipt.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"runtime_oracle\",\n      \"coercion_engine\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_llm_self_certification\",\n      \"no_implicit_authority_upgrade\"\n    ]\n  },\n  \"specification\": {\n    \"algebraic_structure\": {\n      \"carrier_type\": \"GovPacket_governance_obstruction_packet\",\n      \"operations\": []\n    },\n    \"ports\": {\n      \"input_packet\": \"urn:omega:packet:work_packet:v1.0.0\",\n      \"output_packet\": \"urn:omega:packet:swarm_run_receipt:v1.0.0\",\n      \"error_type\": \"Refusal\"\n    },\n    \"verification\": {\n      \"fitness_test\": \"tests/test_governance_contracts_regime.py\",\n      \"lean4_file\": null\n    }\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_gov_governance_obstruction_packet.contract.yaml"
       ]
+    },
+    {
+      "sha256": "64e393eac409f1ec993201fde2e1f94cffc50ebc30b764fd0cc54a4e70cdc433",
+      "bytes": 1871,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py",
+          "sha256": "dd58a877970b07fe19a328b5cec20b3b24f4f21ba4b0e9bb3388536975a87b11"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-gov-governance-obstruction-packet-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:gov:governance_obstruction_packet:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py\",\n    \"sha256\": \"dd58a877970b07fe19a328b5cec20b3b24f4f21ba4b0e9bb3388536975a87b11\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-gov-governance-obstruction-packet-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:gov:governance_obstruction_packet:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "9b17838a3a1a269ad1a915ba5b4e1a20624b48c23a937804fbe4f4550b427af9",
+      "bytes": 2251,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py",
+          "sha256": "dd58a877970b07fe19a328b5cec20b3b24f4f21ba4b0e9bb3388536975a87b11"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-gov-governance-obstruction-packet-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.py\",\n    \"sha256\": \"dd58a877970b07fe19a328b5cec20b3b24f4f21ba4b0e9bb3388536975a87b11\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-gov-governance-obstruction-packet-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_gov_governance_obstruction_packet_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_gov_governance_obstruction_packet.contract.yaml": "02c18f2df2978c3899ecb90a666fb328dfed21be57933b572d0ed0e52f4db1cc"
   },

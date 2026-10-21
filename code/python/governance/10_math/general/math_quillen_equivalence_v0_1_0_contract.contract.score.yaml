@@ -106,12 +106,12 @@
       ]
     }
   },
-  "current_contract": "1da00771885439a9fa6786d010e83d4d0d9c118e1902299d83d6d7492cb3f4bb",
-  "current_scoring": null,
+  "current_contract": "1da64b87118e65b44f72ae890c87a8640159675c4ccfce3bc3284cf9e06d1210",
+  "current_scoring": "081924c2f4362221935affad8778da2957cb4c5eefbc3187a01d625ea7766b1c",
   "contract_history": [
     {
-      "sha256": "1da00771885439a9fa6786d010e83d4d0d9c118e1902299d83d6d7492cb3f4bb",
-      "bytes": 3189,
+      "sha256": "1da64b87118e65b44f72ae890c87a8640159675c4ccfce3bc3284cf9e06d1210",
+      "bytes": 3706,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:quillen_equivalence:v0.1.0",
@@ -216,13 +216,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quillen_equivalence:v0.1.0\ntitle: Quillen Equivalence\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quillen_equivalence\n  symbol: 'F ⊣ G : M ⇆ N (Quillen equivalence)'\n  ascii_symbol: quillen_equivalence\n  notation: 'F ⊣ G : M ⇆ N (Quillen equivalence)'\n  domain:\n  - 'quillen_adjunction: F ⊣ G between model categories M and N'\n  - 'derived_unit: η: Id → RG ∘ LF (natural isomorphism on Ho(M))'\n  - 'derived_counit: ε: LF ∘ RG → Id (natural isomorphism on Ho(N))'\n  codomain:\n    description: 'A Quillen adjunction F ⊣ G : M ⇆ N together with witnesses that\n      the derived unit and counit are natural isomorphisms on homotopy categories\n      Ho(M) and Ho(N).\n\n      '\nrequirements:\n  required_structures:\n  - The underlying adjunction must be a Quillen adjunction\n  - Derived unit must be a natural isomorphism on Ho(M)\n  - Derived counit must be a natural isomorphism on Ho(N)\n  - Artifact hash must be deterministic and reproducible\nlaws:\n- F ⊣ G is a Quillen adjunction\n- 'Derived unit η: Id → RG ∘ LF is a natural isomorphism'\n- 'Derived counit ε: LF ∘ RG → Id is a natural isomorphism'\n- 'For X cofibrant and Y fibrant, F(X) → Y is a weak equivalence iff X → G(Y) is a\n  weak equivalence\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\n  - Computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- quillen_adjunction_id does not resolve to valid Quillen adjunction\n- Derived unit fails to be an isomorphism on some object\n- Derived counit fails to be an isomorphism\ndoctrine:\n  summary: 'A Quillen equivalence is a Quillen adjunction F ⊣ G : M ⇆ N where the\n    derived adjunction LF ⊣ RG is an equivalence of homotopy categories. Equivalently,\n    for cofibrant X and fibrant Y, F(X) → Y is a weak equivalence iff X → G(Y) is.'\n  non_role:\n  - Does not construct specific model categories\n  - Does not compute homotopy limits or colimits\n  - Does not provide zig-zag equivalence composition algorithms\nwip:\n- Quillen equivalence implies equivalence of ∞-categories\n- Zig-zag of Quillen equivalences also gives equivalence\n- 'Detecting Quillen equivalence: check on generators'\n- Contract defines the core structure but ∞-category equivalence needs formalization\n- Zig-zag composition algorithm not yet specified\n- Generator-based detection would improve efficiency for large model categories\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - ModelMorphism\n  required_tests:\n  - test_model_category_positive_verification\n  - test_kill_mut_p3_01_two_out_of_three_violation\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quillen_equivalence:v0.1.0\",\n  \"title\": \"Quillen Equivalence\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quillen_equivalence\",\n    \"symbol\": \"F ⊣ G : M ⇆ N (Quillen equivalence)\",\n    \"ascii_symbol\": \"quillen_equivalence\",\n    \"notation\": \"F ⊣ G : M ⇆ N (Quillen equivalence)\",\n    \"domain\": [\n      \"quillen_adjunction: F ⊣ G between model categories M and N\",\n      \"derived_unit: η: Id → RG ∘ LF (natural isomorphism on Ho(M))\",\n      \"derived_counit: ε: LF ∘ RG → Id (natural isomorphism on Ho(N))\"\n    ],\n    \"codomain\": {\n      \"description\": \"A Quillen adjunction F ⊣ G : M ⇆ N together with witnesses that the derived unit and counit are natural isomorphisms on homotopy categories Ho(M) and Ho(N).\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The underlying adjunction must be a Quillen adjunction\",\n      \"Derived unit must be a natural isomorphism on Ho(M)\",\n      \"Derived counit must be a natural isomorphism on Ho(N)\",\n      \"Artifact hash must be deterministic and reproducible\"\n    ]\n  },\n  \"laws\": [\n    \"F ⊣ G is a Quillen adjunction\",\n    \"Derived unit η: Id → RG ∘ LF is a natural isomorphism\",\n    \"Derived counit ε: LF ∘ RG → Id is a natural isomorphism\",\n    \"For X cofibrant and Y fibrant, F(X) → Y is a weak equivalence iff X → G(Y) is a weak equivalence\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\",\n      \"Computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"quillen_adjunction_id does not resolve to valid Quillen adjunction\",\n    \"Derived unit fails to be an isomorphism on some object\",\n    \"Derived counit fails to be an isomorphism\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Quillen equivalence is a Quillen adjunction F ⊣ G : M ⇆ N where the derived adjunction LF ⊣ RG is an equivalence of homotopy categories. Equivalently, for cofibrant X and fibrant Y, F(X) → Y is a weak equivalence iff X → G(Y) is.\",\n    \"non_role\": [\n      \"Does not construct specific model categories\",\n      \"Does not compute homotopy limits or colimits\",\n      \"Does not provide zig-zag equivalence composition algorithms\"\n    ]\n  },\n  \"wip\": [\n    \"Quillen equivalence implies equivalence of ∞-categories\",\n    \"Zig-zag of Quillen equivalences also gives equivalence\",\n    \"Detecting Quillen equivalence: check on generators\",\n    \"Contract defines the core structure but ∞-category equivalence needs formalization\",\n    \"Zig-zag composition algorithm not yet specified\",\n    \"Generator-based detection would improve efficiency for large model categories\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"model_category\",\n    \"symbols\": [\n      \"ModelCategory\",\n      \"ModelMorphism\"\n    ],\n    \"required_tests\": [\n      \"test_model_category_positive_verification\",\n      \"test_kill_mut_p3_01_two_out_of_three_violation\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_quillen_equivalence_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "081924c2f4362221935affad8778da2957cb4c5eefbc3187a01d625ea7766b1c",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_quillen_equivalence_v0_1_0_contract.py",
+          "sha256": "915ac2e0b4803086dbb79ee956dc41853b51602bb7b6168251975b450144031f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-quillen-equivalence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_quillen_equivalence_v0_1_0_contract.py\",\n    \"sha256\": \"915ac2e0b4803086dbb79ee956dc41853b51602bb7b6168251975b450144031f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-quillen-equivalence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quillen_equivalence_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_quillen_equivalence_v0_1_0.contract.yaml": "1da00771885439a9fa6786d010e83d4d0d9c118e1902299d83d6d7492cb3f4bb"
   },

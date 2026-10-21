@@ -137,3 +137,9 @@ class TestSU2ClusterBenchmarkRunner:
         assert receipt.num_rounds == 2
         assert receipt.involution_pairing_certified is True
         assert receipt.unitarity_certified is True
+
+    def test_empty_cluster_size_rejected(self):
+        """Verifies that cluster_size < 1 is rejected rather than admitting empty proposal passes."""
+        runner = SU2ClusterBenchmarkRunner(lattice_dim=2)
+        with pytest.raises(ValueError, match="cluster_size must be >= 1"):
+            runner.run_benchmark(num_rounds=1, cluster_size=0)

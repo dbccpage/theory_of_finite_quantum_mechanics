@@ -3,113 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "kind": "rust_file_contract",
-    "contract_id": "urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0",
-    "title": "Bounded numerical density admission and trace distance with retained inputs",
-    "status": "active_provisional",
-    "crate": "omega_functional",
-    "file": "crates_rs/omega_functional/src/distinguishability.rs",
-    "layer": "functional",
-    "role": "immutable_approximate_state_trace_distance_diagnostic",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": true,
-    "owns": [
-      "explicit_spectral_policy_and_state_tolerance_in_EPSILON_through_1e_minus_8",
-      "exact_representational_Hermitian_symmetry_via_checked_spectral_kernel",
-      "observed_trace_within_selected_tolerance_of_one",
-      "computed_eigenvalues_at_least_minus_selected_state_tolerance",
-      "recorded_negative_eigenvalue_magnitude_without_modifying_inputs",
-      "bounded_finite_pure_vector_admission_before_dense_outer_product_allocation",
-      "refusal_of_nonunit_norm_and_unrepresentable_nonzero_outer_products",
-      "original_pure_vector_norm_matrix_and_spectral_evidence",
-      "matching_selected_policy_and_dimensions_before_difference_allocation",
-      "half_absolute_contribution_of_every_difference_eigenvalue",
-      "compensated_sum_with_direct_overflow_and_rounding_witnesses",
-      "retained_left_right_and_difference_presentations",
-      "no_overlapping_vector_truncation_probability_clamp_or_authority_promotion"
-    ],
-    "does_not_own": [
-      "exact_positive_semidefinite_or_physical_state_certificate",
-      "spectral_rounding_or_interval_error_certificate",
-      "automatic_normalization_symmetrization_or_positivity_repair",
-      "primary_obstruction_score_or_candidate_selection",
-      "legacy_general_matrix_path_triangle_API_compatibility",
-      "Xi_lift_or_saturation_semantics",
-      "source_native_binary_request_carrier_or_actor_authentication",
-      "workload_completion_release_or_council_decisions",
-      "HTTP_provider_ingress_limits_or_arbitrary_code_execution"
-    ],
-    "may_call": [
-      "checked_hermitian_spectrum"
-    ],
-    "must_not": [
-      "use_is_close_with_unbounded_or_nonfinite_tolerance",
-      "substitute_a_positive_diagonal_for_eigenvalue_admission",
-      "discard_complex_phases_or_eigenvalue_contributions",
-      "silently_normalize_vectors_or_clamp_near_density_distance_to_one",
-      "replace_a_nonzero_underflowed_contribution_with_zero",
-      "accept_other_policy_admissions_or_truncate_mismatched_dimensions",
-      "expose_mutable_checked_data_or_unchecked_deserialization"
-    ],
-    "exactness": {
-      "mode": "bounded_floating_representation_diagnostic_with_explicit_admission_slack",
-      "exact_constructor_required": false,
-      "approximate_modes_allowed": true
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py",
+      "sha256": "8493c276b441ddbcc6ca05f9aaf9a666215fa9280f6816b08299df300e18578c"
     },
-    "forbidden_substrings": [],
-    "required_substrings": [
-      "pub struct DistinguishabilityFunctional",
-      "pub struct DensityAdmission",
-      "pub struct TraceDistanceDiagnostic",
-      "DistinguishabilityError::NegativeEigenvalue",
-      "DistinguishabilityError::PolicyBinding",
-      "DistinguishabilityError::ContributionUnderflow",
-      "let matrix = left.matrix() - right.matrix();",
-      "checked_trace_contributions(difference.eigenvalues())?",
-      "let corrected = contribution - compensation;"
-    ],
-    "required_tests": [
-      "distinguishability::tests::arithmetic_accumulator_refuses_finite_overflow_and_nonfinite_input",
-      "distinguishability::tests::compensated_half_sum_preserves_a_three_quarter_ulp_tail",
-      "distinguishability::tests::finite_spectrum_does_not_authorize_an_overflowed_trace",
-      "distinguishability::tests::admitted_inputs_do_not_authorize_exceeding_the_difference_solver_budget",
-      "distinguishability::tests::near_unit_vector_slack_is_recorded_without_renormalizing",
-      "distinguishability::tests::independent_rational_fixtures_cover_mixed_complex_and_degenerate_states",
-      "distinguishability::tests::selected_policy_rejects_nonfinite_or_vacuous_state_tolerances",
-      "distinguishability::tests::matrix_shape_empty_and_dimension_refusals_preserve_the_native_mechanism",
-      "distinguishability::tests::every_input_triangle_and_imaginary_component_remains_checked",
-      "distinguishability::tests::trace_mismatch_is_not_normalized_into_an_admitted_state",
-      "distinguishability::tests::positive_diagonal_does_not_hide_a_negative_eigenvalue",
-      "distinguishability::tests::approximate_admission_retains_negativity_and_does_not_clamp_distance",
-      "distinguishability::tests::vector_dimension_limits_precede_dense_allocation_and_nonfinite_admission",
-      "distinguishability::tests::all_pure_vector_components_are_checked_before_norm_arithmetic",
-      "distinguishability::tests::finite_overflowing_vector_norm_is_a_typed_arithmetic_refusal",
-      "distinguishability::tests::zero_and_unnormalized_vectors_are_not_silently_repaired",
-      "distinguishability::tests::nonzero_outer_products_cannot_disappear_under_floating_underflow",
-      "distinguishability::tests::original_pure_vectors_norms_and_complex_phases_are_retained",
-      "distinguishability::tests::both_admissions_must_match_the_selected_numerical_policy",
-      "distinguishability::tests::mismatched_dimensions_refuse_instead_of_truncating_or_panicking",
-      "distinguishability::tests::a_nonzero_half_eigenvalue_cannot_be_reported_as_zero_distance",
-      "distinguishability::tests::result_retains_all_contributions_and_owns_its_original_inputs",
-      "distinguishability::tests::exhausted_native_spectral_budget_cannot_become_state_admission"
-    ],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_file_contract:file:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:analysis:rust-omega-functional-state-trace-distance-file-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "047f258742acd632418101272f9e150b00e75d3c3ac968a60e433f68a691c369",
-  "current_scoring": null,
+  "current_contract": "6629d0f7a624bd0d9bc5bb7fa83dc5b7034525efdbb572860eb9d34dfefd9810",
+  "current_scoring": "ff1877cd5e3b45aa1161599266bca723821234a7e1d1b96be781fce41a36edf5",
   "contract_history": [
     {
-      "sha256": "047f258742acd632418101272f9e150b00e75d3c3ac968a60e433f68a691c369",
-      "bytes": 5216,
+      "sha256": "4fec3618fdde56a08211423cd68ef1ca3779d3acc56d3f77d11069ce874e5baf",
+      "bytes": 5745,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "kind": "rust_file_contract",
@@ -212,13 +137,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0\ntitle: Bounded numerical density admission and trace distance with retained inputs\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/distinguishability.rs\nlayer: functional\nrole: immutable_approximate_state_trace_distance_diagnostic\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- explicit_spectral_policy_and_state_tolerance_in_EPSILON_through_1e_minus_8\n- exact_representational_Hermitian_symmetry_via_checked_spectral_kernel\n- observed_trace_within_selected_tolerance_of_one\n- computed_eigenvalues_at_least_minus_selected_state_tolerance\n- recorded_negative_eigenvalue_magnitude_without_modifying_inputs\n- bounded_finite_pure_vector_admission_before_dense_outer_product_allocation\n- refusal_of_nonunit_norm_and_unrepresentable_nonzero_outer_products\n- original_pure_vector_norm_matrix_and_spectral_evidence\n- matching_selected_policy_and_dimensions_before_difference_allocation\n- half_absolute_contribution_of_every_difference_eigenvalue\n- compensated_sum_with_direct_overflow_and_rounding_witnesses\n- retained_left_right_and_difference_presentations\n- no_overlapping_vector_truncation_probability_clamp_or_authority_promotion\ndoes_not_own:\n- exact_positive_semidefinite_or_physical_state_certificate\n- spectral_rounding_or_interval_error_certificate\n- automatic_normalization_symmetrization_or_positivity_repair\n- primary_obstruction_score_or_candidate_selection\n- legacy_general_matrix_path_triangle_API_compatibility\n- Xi_lift_or_saturation_semantics\n- source_native_binary_request_carrier_or_actor_authentication\n- workload_completion_release_or_council_decisions\n- HTTP_provider_ingress_limits_or_arbitrary_code_execution\nmay_call:\n- checked_hermitian_spectrum\nmust_not:\n- use_is_close_with_unbounded_or_nonfinite_tolerance\n- substitute_a_positive_diagonal_for_eigenvalue_admission\n- discard_complex_phases_or_eigenvalue_contributions\n- silently_normalize_vectors_or_clamp_near_density_distance_to_one\n- replace_a_nonzero_underflowed_contribution_with_zero\n- accept_other_policy_admissions_or_truncate_mismatched_dimensions\n- expose_mutable_checked_data_or_unchecked_deserialization\nexactness:\n  mode: bounded_floating_representation_diagnostic_with_explicit_admission_slack\n  exact_constructor_required: false\n  approximate_modes_allowed: true\nforbidden_substrings: []\nrequired_substrings:\n- pub struct DistinguishabilityFunctional\n- pub struct DensityAdmission\n- pub struct TraceDistanceDiagnostic\n- DistinguishabilityError::NegativeEigenvalue\n- DistinguishabilityError::PolicyBinding\n- DistinguishabilityError::ContributionUnderflow\n- let matrix = left.matrix() - right.matrix();\n- checked_trace_contributions(difference.eigenvalues())?\n- let corrected = contribution - compensation;\nrequired_tests:\n- distinguishability::tests::arithmetic_accumulator_refuses_finite_overflow_and_nonfinite_input\n- distinguishability::tests::compensated_half_sum_preserves_a_three_quarter_ulp_tail\n- distinguishability::tests::finite_spectrum_does_not_authorize_an_overflowed_trace\n- distinguishability::tests::admitted_inputs_do_not_authorize_exceeding_the_difference_solver_budget\n- distinguishability::tests::near_unit_vector_slack_is_recorded_without_renormalizing\n- distinguishability::tests::independent_rational_fixtures_cover_mixed_complex_and_degenerate_states\n- distinguishability::tests::selected_policy_rejects_nonfinite_or_vacuous_state_tolerances\n- distinguishability::tests::matrix_shape_empty_and_dimension_refusals_preserve_the_native_mechanism\n- distinguishability::tests::every_input_triangle_and_imaginary_component_remains_checked\n- distinguishability::tests::trace_mismatch_is_not_normalized_into_an_admitted_state\n- distinguishability::tests::positive_diagonal_does_not_hide_a_negative_eigenvalue\n- distinguishability::tests::approximate_admission_retains_negativity_and_does_not_clamp_distance\n- distinguishability::tests::vector_dimension_limits_precede_dense_allocation_and_nonfinite_admission\n- distinguishability::tests::all_pure_vector_components_are_checked_before_norm_arithmetic\n- distinguishability::tests::finite_overflowing_vector_norm_is_a_typed_arithmetic_refusal\n- distinguishability::tests::zero_and_unnormalized_vectors_are_not_silently_repaired\n- distinguishability::tests::nonzero_outer_products_cannot_disappear_under_floating_underflow\n- distinguishability::tests::original_pure_vectors_norms_and_complex_phases_are_retained\n- distinguishability::tests::both_admissions_must_match_the_selected_numerical_policy\n- distinguishability::tests::mismatched_dimensions_refuse_instead_of_truncating_or_panicking\n- distinguishability::tests::a_nonzero_half_eigenvalue_cannot_be_reported_as_zero_distance\n- distinguishability::tests::result_retains_all_contributions_and_owns_its_original_inputs\n- distinguishability::tests::exhausted_native_spectral_budget_cannot_become_state_admission\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0\",\n  \"title\": \"Bounded numerical density admission and trace distance with retained inputs\",\n  \"status\": \"active_provisional\",\n  \"crate\": \"omega_functional\",\n  \"file\": \"crates_rs/omega_functional/src/distinguishability.rs\",\n  \"layer\": \"functional\",\n  \"role\": \"immutable_approximate_state_trace_distance_diagnostic\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": true,\n  \"owns\": [\n    \"explicit_spectral_policy_and_state_tolerance_in_EPSILON_through_1e_minus_8\",\n    \"exact_representational_Hermitian_symmetry_via_checked_spectral_kernel\",\n    \"observed_trace_within_selected_tolerance_of_one\",\n    \"computed_eigenvalues_at_least_minus_selected_state_tolerance\",\n    \"recorded_negative_eigenvalue_magnitude_without_modifying_inputs\",\n    \"bounded_finite_pure_vector_admission_before_dense_outer_product_allocation\",\n    \"refusal_of_nonunit_norm_and_unrepresentable_nonzero_outer_products\",\n    \"original_pure_vector_norm_matrix_and_spectral_evidence\",\n    \"matching_selected_policy_and_dimensions_before_difference_allocation\",\n    \"half_absolute_contribution_of_every_difference_eigenvalue\",\n    \"compensated_sum_with_direct_overflow_and_rounding_witnesses\",\n    \"retained_left_right_and_difference_presentations\",\n    \"no_overlapping_vector_truncation_probability_clamp_or_authority_promotion\"\n  ],\n  \"does_not_own\": [\n    \"exact_positive_semidefinite_or_physical_state_certificate\",\n    \"spectral_rounding_or_interval_error_certificate\",\n    \"automatic_normalization_symmetrization_or_positivity_repair\",\n    \"primary_obstruction_score_or_candidate_selection\",\n    \"legacy_general_matrix_path_triangle_API_compatibility\",\n    \"Xi_lift_or_saturation_semantics\",\n    \"source_native_binary_request_carrier_or_actor_authentication\",\n    \"workload_completion_release_or_council_decisions\",\n    \"HTTP_provider_ingress_limits_or_arbitrary_code_execution\"\n  ],\n  \"may_call\": [\n    \"checked_hermitian_spectrum\"\n  ],\n  \"must_not\": [\n    \"use_is_close_with_unbounded_or_nonfinite_tolerance\",\n    \"substitute_a_positive_diagonal_for_eigenvalue_admission\",\n    \"discard_complex_phases_or_eigenvalue_contributions\",\n    \"silently_normalize_vectors_or_clamp_near_density_distance_to_one\",\n    \"replace_a_nonzero_underflowed_contribution_with_zero\",\n    \"accept_other_policy_admissions_or_truncate_mismatched_dimensions\",\n    \"expose_mutable_checked_data_or_unchecked_deserialization\"\n  ],\n  \"exactness\": {\n    \"mode\": \"bounded_floating_representation_diagnostic_with_explicit_admission_slack\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": true\n  },\n  \"forbidden_substrings\": [],\n  \"required_substrings\": [\n    \"pub struct DistinguishabilityFunctional\",\n    \"pub struct DensityAdmission\",\n    \"pub struct TraceDistanceDiagnostic\",\n    \"DistinguishabilityError::NegativeEigenvalue\",\n    \"DistinguishabilityError::PolicyBinding\",\n    \"DistinguishabilityError::ContributionUnderflow\",\n    \"let matrix = left.matrix() - right.matrix();\",\n    \"checked_trace_contributions(difference.eigenvalues())?\",\n    \"let corrected = contribution - compensation;\"\n  ],\n  \"required_tests\": [\n    \"distinguishability::tests::arithmetic_accumulator_refuses_finite_overflow_and_nonfinite_input\",\n    \"distinguishability::tests::compensated_half_sum_preserves_a_three_quarter_ulp_tail\",\n    \"distinguishability::tests::finite_spectrum_does_not_authorize_an_overflowed_trace\",\n    \"distinguishability::tests::admitted_inputs_do_not_authorize_exceeding_the_difference_solver_budget\",\n    \"distinguishability::tests::near_unit_vector_slack_is_recorded_without_renormalizing\",\n    \"distinguishability::tests::independent_rational_fixtures_cover_mixed_complex_and_degenerate_states\",\n    \"distinguishability::tests::selected_policy_rejects_nonfinite_or_vacuous_state_tolerances\",\n    \"distinguishability::tests::matrix_shape_empty_and_dimension_refusals_preserve_the_native_mechanism\",\n    \"distinguishability::tests::every_input_triangle_and_imaginary_component_remains_checked\",\n    \"distinguishability::tests::trace_mismatch_is_not_normalized_into_an_admitted_state\",\n    \"distinguishability::tests::positive_diagonal_does_not_hide_a_negative_eigenvalue\",\n    \"distinguishability::tests::approximate_admission_retains_negativity_and_does_not_clamp_distance\",\n    \"distinguishability::tests::vector_dimension_limits_precede_dense_allocation_and_nonfinite_admission\",\n    \"distinguishability::tests::all_pure_vector_components_are_checked_before_norm_arithmetic\",\n    \"distinguishability::tests::finite_overflowing_vector_norm_is_a_typed_arithmetic_refusal\",\n    \"distinguishability::tests::zero_and_unnormalized_vectors_are_not_silently_repaired\",\n    \"distinguishability::tests::nonzero_outer_products_cannot_disappear_under_floating_underflow\",\n    \"distinguishability::tests::original_pure_vectors_norms_and_complex_phases_are_retained\",\n    \"distinguishability::tests::both_admissions_must_match_the_selected_numerical_policy\",\n    \"distinguishability::tests::mismatched_dimensions_refuse_instead_of_truncating_or_panicking\",\n    \"distinguishability::tests::a_nonzero_half_eigenvalue_cannot_be_reported_as_zero_distance\",\n    \"distinguishability::tests::result_retains_all_contributions_and_owns_its_original_inputs\",\n    \"distinguishability::tests::exhausted_native_spectral_budget_cannot_become_state_admission\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_file_contract:file:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "6629d0f7a624bd0d9bc5bb7fa83dc5b7034525efdbb572860eb9d34dfefd9810",
+      "bytes": 1915,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py",
+          "sha256": "8493c276b441ddbcc6ca05f9aaf9a666215fa9280f6816b08299df300e18578c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:analysis:rust-omega-functional-state-trace-distance-file-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py\",\n    \"sha256\": \"8493c276b441ddbcc6ca05f9aaf9a666215fa9280f6816b08299df300e18578c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:analysis:rust-omega-functional-state-trace-distance-file-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:state_trace_distance:file:v1.0.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "ff1877cd5e3b45aa1161599266bca723821234a7e1d1b96be781fce41a36edf5",
+      "bytes": 2283,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py",
+          "sha256": "8493c276b441ddbcc6ca05f9aaf9a666215fa9280f6816b08299df300e18578c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:analysis:rust-omega-functional-state-trace-distance-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.py\",\n    \"sha256\": \"8493c276b441ddbcc6ca05f9aaf9a666215fa9280f6816b08299df300e18578c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:rust-omega-functional-state-trace-distance-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/analysis/rust_omega_functional_state_trace_distance_file_v1_0_0.contract.yaml": "047f258742acd632418101272f9e150b00e75d3c3ac968a60e433f68a691c369"
   },

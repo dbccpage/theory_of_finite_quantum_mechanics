@@ -57,12 +57,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "7976c1db06b1a789991a0bcc1937bfb4a9503b746a5284fe78267169b7a40118",
-  "current_scoring": null,
+  "current_contract": "5a1384263255f1c8d64ef0a4f64b4c20c14bd0d55c417c3056ae6666daa284ce",
+  "current_scoring": "d21f8ffeccf99a949217775989c2e4ae275c07924f8f5145019ed4eed96b4910",
   "contract_history": [
     {
-      "sha256": "7976c1db06b1a789991a0bcc1937bfb4a9503b746a5284fe78267169b7a40118",
-      "bytes": 1229,
+      "sha256": "5a1384263255f1c8d64ef0a4f64b4c20c14bd0d55c417c3056ae6666daa284ce",
+      "bytes": 1521,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_mub:omega_native_mub6_multi_chart_cocycle:v1.0.0",
@@ -118,13 +118,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_mub:omega_native_mub6_multi_chart_cocycle:v1.0.0\ntitle: 'Multi-Chart Transition Cocycles and Discrete Cycle Circulation (Target A3).  AuthorityEffect:\n  None  This module evalu...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_mub\nfile: crates_rs/omega_mub/src/omega_native/mub6_multi_chart_cocycle.rs\nmodule: omega_native::mub6_multi_chart_cocycle\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_mub\n  module: omega_native::mub6_multi_chart_cocycle\n  file: crates_rs/omega_mub/src/omega_native/mub6_multi_chart_cocycle.rs\nsymbols:\n- AffineCorner4D\n- new\n- corner_matrix\n- corner_det\n- is_regular\n- ChartTransition4D\n- identity\n- phases\n- permutation\n- transition_matrix\n- MultiChartCycle4D\n- transition_product\n- is_cocycle_trivial\n- build_cycle_boundary_and_cochain\n- solve_network_simplex_obstruction\n- MultiChartCirculationReport\n- evaluate_multi_chart_circulation_extension\nowns:\n- affine_corner4_d\n- new\n- corner_matrix\n- corner_det\n- is_regular\n- chart_transition4_d\n- identity\n- phases\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_mub:omega_native_mub6_multi_chart_cocycle:v1.0.0\",\n  \"title\": \"Multi-Chart Transition Cocycles and Discrete Cycle Circulation (Target A3).  AuthorityEffect: None  This module evalu...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_mub\",\n  \"file\": \"crates_rs/omega_mub/src/omega_native/mub6_multi_chart_cocycle.rs\",\n  \"module\": \"omega_native::mub6_multi_chart_cocycle\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_mub\",\n    \"module\": \"omega_native::mub6_multi_chart_cocycle\",\n    \"file\": \"crates_rs/omega_mub/src/omega_native/mub6_multi_chart_cocycle.rs\"\n  },\n  \"symbols\": [\n    \"AffineCorner4D\",\n    \"new\",\n    \"corner_matrix\",\n    \"corner_det\",\n    \"is_regular\",\n    \"ChartTransition4D\",\n    \"identity\",\n    \"phases\",\n    \"permutation\",\n    \"transition_matrix\",\n    \"MultiChartCycle4D\",\n    \"transition_product\",\n    \"is_cocycle_trivial\",\n    \"build_cycle_boundary_and_cochain\",\n    \"solve_network_simplex_obstruction\",\n    \"MultiChartCirculationReport\",\n    \"evaluate_multi_chart_circulation_extension\"\n  ],\n  \"owns\": [\n    \"affine_corner4_d\",\n    \"new\",\n    \"corner_matrix\",\n    \"corner_det\",\n    \"is_regular\",\n    \"chart_transition4_d\",\n    \"identity\",\n    \"phases\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_mub_omega_native_mub6_multi_chart_cocycle.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "d21f8ffeccf99a949217775989c2e4ae275c07924f8f5145019ed4eed96b4910",
+      "bytes": 2267,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_mub_omega_native_mub6_multi_chart_cocycle_contract.py",
+          "sha256": "8d80395c2b77fbf309e8324d6c381575eee63b651322877129ec9e652c8fdfdc"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-mub-omega-native-mub6-multi-chart-cocycle-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_mub_omega_native_mub6_multi_chart_cocycle_contract.py\",\n    \"sha256\": \"8d80395c2b77fbf309e8324d6c381575eee63b651322877129ec9e652c8fdfdc\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-mub-omega-native-mub6-multi-chart-cocycle-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_mub_omega_native_mub6_multi_chart_cocycle_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_mub_omega_native_mub6_multi_chart_cocycle.contract.yaml": "7976c1db06b1a789991a0bcc1937bfb4a9503b746a5284fe78267169b7a40118"
   },

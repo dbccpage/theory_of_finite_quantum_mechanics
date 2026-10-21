@@ -38,7 +38,7 @@ def _all_hold(flags: tuple[bool, ...]) -> bool:
     return True
 
 
-_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "phase_fiber.py"
+_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "phase_fiber.py"
 _Q = Fraction
 _FIRST = (_Q(3, 5), _Q(4, 5))
 _SECOND = (_Q(5, 13), _Q(12, 13))
@@ -165,7 +165,7 @@ def _load_source(source: str, name: str) -> dict[str, object]:
     if spec is None:
         raise RuntimeError("could not allocate a mutant module spec")
     module = importlib.util.module_from_spec(spec)
-    module.__package__ = "src.qm.campaigns"
+    module.__package__ = "src.qm"
     sys.modules[name] = module
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="__package__ != __spec__.parent", category=DeprecationWarning)

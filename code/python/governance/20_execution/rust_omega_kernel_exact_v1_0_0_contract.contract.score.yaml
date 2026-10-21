@@ -3,82 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "kind": "rust_file_contract",
-    "contract_id": "urn:omega:rust:omega_kernel:exact:v1.0.0",
-    "title": "Exact",
-    "status": "active",
-    "crate": "omega_kernel",
-    "file": "crates_rs/omega_kernel/src/exact.rs",
-    "role": "substrate",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": false,
-    "owns": [
-      "the exact rational scalar type",
-      "the canonical string wire form of an exact value",
-      "the serde adapters that keep exact values off the JSON number rail"
-    ],
-    "does_not_own": [
-      "linear algebra over the exact scalar",
-      "certificates built from exact values",
-      "any decision, diagnostic, or terminal"
-    ],
-    "may_call": [],
-    "must_not": [
-      "decide equality by tolerance",
-      "admit a float on the wire",
-      "yield NAN in place of a failed conversion"
-    ],
-    "exactness": {
-      "mode": "exact_only_with_named_diagnostic_escape",
-      "exact_constructor_required": false,
-      "approximate_modes_allowed": true
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py",
+      "sha256": "c41f772c983ef698f8e9b8a323aed42ce9e71bc12f1e403300db4060efc206ae"
     },
-    "laws": [
-      "Canonical spelling law: one value has exactly one string form; a non-canonical spelling is refused rather than normalised, so string equality is value equality.",
-      "Wire law: an exact value crosses the wire as a string, never as a JSON number.",
-      "Refusal law: a lossy read that cannot be represented returns None, never NAN. NAN compares false against everything, so a lost value would read as a value that disagrees.",
-      "Total order law: ordering is exact and total, so a sort is a decision.",
-      "Authority law: this contract confers no authority."
-    ],
-    "forbidden_substrings": [
-      "unwrap_or(f64::NAN)",
-      " as f64",
-      "EPSILON"
-    ],
-    "required_substrings": [
-      "pub type Exact",
-      "pub fn to_canonical_string",
-      "pub fn parse_exact"
-    ],
-    "required_tests": [
-      "one_value_has_exactly_one_spelling",
-      "parsing_is_the_inverse_of_rendering",
-      "a_non_canonical_spelling_is_refused_rather_than_normalised",
-      "a_decimal_is_refused_because_it_is_not_exactly_representable",
-      "a_zero_denominator_is_refused_rather_than_panicking",
-      "exactness_holds_where_floating_point_would_not",
-      "a_value_too_large_for_f64_approximates_to_none_not_nan",
-      "ordering_is_total_and_exact",
-      "a_big_value_survives_the_round_trip_without_loss",
-      "the_wire_form_is_strings_and_never_json_numbers",
-      "a_json_number_is_refused_on_the_wire"
-    ],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:20_execution:rust-omega-kernel-exact-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_kernel:exact:v1.0.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "e38e685a9d6c37e8a5b4a70eaae7e518fb29edc7ee8b345fd6f1a830e9d18968",
-  "current_scoring": null,
+  "current_contract": "d4996b6c7ea137fbc87dc7dbd116ab32e5ccad5c0acac67dcca7698d8067d14d",
+  "current_scoring": "22c502c4bfb463689c9fb9fbbc200b548f5c08b95ba4d79a591c4b395bfe7347",
   "contract_history": [
     {
-      "sha256": "e38e685a9d6c37e8a5b4a70eaae7e518fb29edc7ee8b345fd6f1a830e9d18968",
-      "bytes": 2235,
+      "sha256": "852748478ea92b30dd6c202c256ad95d6dc2d2dfa434def20defd070b394cf78",
+      "bytes": 2591,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "kind": "rust_file_contract",
@@ -150,13 +106,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_kernel:exact:v1.0.0\ntitle: Exact\nstatus: active\ncrate: omega_kernel\nfile: crates_rs/omega_kernel/src/exact.rs\nrole: substrate\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: false\nowns:\n- the exact rational scalar type\n- the canonical string wire form of an exact value\n- the serde adapters that keep exact values off the JSON number rail\ndoes_not_own:\n- linear algebra over the exact scalar\n- certificates built from exact values\n- any decision, diagnostic, or terminal\nmay_call: []\nmust_not:\n- decide equality by tolerance\n- admit a float on the wire\n- yield NAN in place of a failed conversion\nexactness:\n  mode: exact_only_with_named_diagnostic_escape\n  exact_constructor_required: false\n  approximate_modes_allowed: true\nlaws:\n- 'Canonical spelling law: one value has exactly one string form; a non-canonical\n  spelling is refused rather than normalised, so string equality is value equality.'\n- 'Wire law: an exact value crosses the wire as a string, never as a JSON number.'\n- 'Refusal law: a lossy read that cannot be represented returns None, never NAN. NAN\n  compares false against everything, so a lost value would read as a value that disagrees.'\n- 'Total order law: ordering is exact and total, so a sort is a decision.'\n- 'Authority law: this contract confers no authority.'\nforbidden_substrings:\n- unwrap_or(f64::NAN)\n- ' as f64'\n- EPSILON\nrequired_substrings:\n- pub type Exact\n- pub fn to_canonical_string\n- pub fn parse_exact\nrequired_tests:\n- one_value_has_exactly_one_spelling\n- parsing_is_the_inverse_of_rendering\n- a_non_canonical_spelling_is_refused_rather_than_normalised\n- a_decimal_is_refused_because_it_is_not_exactly_representable\n- a_zero_denominator_is_refused_rather_than_panicking\n- exactness_holds_where_floating_point_would_not\n- a_value_too_large_for_f64_approximates_to_none_not_nan\n- ordering_is_total_and_exact\n- a_big_value_survives_the_round_trip_without_loss\n- the_wire_form_is_strings_and_never_json_numbers\n- a_json_number_is_refused_on_the_wire\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_kernel:exact:v1.0.0\",\n  \"title\": \"Exact\",\n  \"status\": \"active\",\n  \"crate\": \"omega_kernel\",\n  \"file\": \"crates_rs/omega_kernel/src/exact.rs\",\n  \"role\": \"substrate\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": false,\n  \"owns\": [\n    \"the exact rational scalar type\",\n    \"the canonical string wire form of an exact value\",\n    \"the serde adapters that keep exact values off the JSON number rail\"\n  ],\n  \"does_not_own\": [\n    \"linear algebra over the exact scalar\",\n    \"certificates built from exact values\",\n    \"any decision, diagnostic, or terminal\"\n  ],\n  \"may_call\": [],\n  \"must_not\": [\n    \"decide equality by tolerance\",\n    \"admit a float on the wire\",\n    \"yield NAN in place of a failed conversion\"\n  ],\n  \"exactness\": {\n    \"mode\": \"exact_only_with_named_diagnostic_escape\",\n    \"exact_constructor_required\": false,\n    \"approximate_modes_allowed\": true\n  },\n  \"laws\": [\n    \"Canonical spelling law: one value has exactly one string form; a non-canonical spelling is refused rather than normalised, so string equality is value equality.\",\n    \"Wire law: an exact value crosses the wire as a string, never as a JSON number.\",\n    \"Refusal law: a lossy read that cannot be represented returns None, never NAN. NAN compares false against everything, so a lost value would read as a value that disagrees.\",\n    \"Total order law: ordering is exact and total, so a sort is a decision.\",\n    \"Authority law: this contract confers no authority.\"\n  ],\n  \"forbidden_substrings\": [\n    \"unwrap_or(f64::NAN)\",\n    \" as f64\",\n    \"EPSILON\"\n  ],\n  \"required_substrings\": [\n    \"pub type Exact\",\n    \"pub fn to_canonical_string\",\n    \"pub fn parse_exact\"\n  ],\n  \"required_tests\": [\n    \"one_value_has_exactly_one_spelling\",\n    \"parsing_is_the_inverse_of_rendering\",\n    \"a_non_canonical_spelling_is_refused_rather_than_normalised\",\n    \"a_decimal_is_refused_because_it_is_not_exactly_representable\",\n    \"a_zero_denominator_is_refused_rather_than_panicking\",\n    \"exactness_holds_where_floating_point_would_not\",\n    \"a_value_too_large_for_f64_approximates_to_none_not_nan\",\n    \"ordering_is_total_and_exact\",\n    \"a_big_value_survives_the_round_trip_without_loss\",\n    \"the_wire_form_is_strings_and_never_json_numbers\",\n    \"a_json_number_is_refused_on_the_wire\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "d4996b6c7ea137fbc87dc7dbd116ab32e5ccad5c0acac67dcca7698d8067d14d",
+      "bytes": 1843,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py",
+          "sha256": "c41f772c983ef698f8e9b8a323aed42ce9e71bc12f1e403300db4060efc206ae"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:20_execution:rust-omega-kernel-exact-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_kernel:exact:v1.0.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py\",\n    \"sha256\": \"c41f772c983ef698f8e9b8a323aed42ce9e71bc12f1e403300db4060efc206ae\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:20_execution:rust-omega-kernel-exact-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_kernel:exact:v1.0.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "22c502c4bfb463689c9fb9fbbc200b548f5c08b95ba4d79a591c4b395bfe7347",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py",
+          "sha256": "c41f772c983ef698f8e9b8a323aed42ce9e71bc12f1e403300db4060efc206ae"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:rust-omega-kernel-exact-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.py\",\n    \"sha256\": \"c41f772c983ef698f8e9b8a323aed42ce9e71bc12f1e403300db4060efc206ae\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:rust-omega-kernel-exact-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/rust_omega_kernel_exact_v1_0_0.contract.yaml": "e38e685a9d6c37e8a5b4a70eaae7e518fb29edc7ee8b345fd6f1a830e9d18968"
   },

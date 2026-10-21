@@ -143,12 +143,12 @@
       ]
     }
   },
-  "current_contract": "bad10a6d86f607eb78686c5d74b43453213459e2d2a8f577a22d01ff2482294b",
-  "current_scoring": null,
+  "current_contract": "051fc5f8c01c52d82b9e017df1bc4bf6db3ad1761d0ea9966ab6923d32593b9f",
+  "current_scoring": "503555942d420e3e8907c4612fb21bde2db56d61cd169bf09102003d22a1f8ed",
   "contract_history": [
     {
-      "sha256": "bad10a6d86f607eb78686c5d74b43453213459e2d2a8f577a22d01ff2482294b",
-      "bytes": 2978,
+      "sha256": "051fc5f8c01c52d82b9e017df1bc4bf6db3ad1761d0ea9966ab6923d32593b9f",
+      "bytes": 4054,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:execution:kernel:v1.0.0",
@@ -290,13 +290,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:execution:kernel:v1.0.0\ntitle: SemanticKernelManifest\nkind: execution_contract\nstatus: active_doctrine\nlayer: 06_execution\nrole: SemanticKernelManifest\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: true\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - TypeContract\n    - BoundaryContract\n    - CertificateKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    required: []\ndoctrine:\n  summary: 'KernelManifest (KernelDescriptor) is a bounded authority declaration for\n    one semantic class. Kernel manifests never execute. LicensingBoundary grants transition\n    authority through ActionLicense; Engine alone commits licensed state transitions.\n\n    '\n  non_role: &id002\n  - god_object_behavior\n  - cross_kernel_orchestration\n  - hidden_state_mutation\n  - terminal_mapping\n  - policy_interpretation\n  - execution\n  structural_representation:\n    raw:\n      struct_name: KernelManifest\n      fields:\n      - name: kernel_id\n        type: KernelId\n      - name: semantic_class\n        type: SemanticClassId\n      - name: input_family_refs\n        type: Vec<ArtifactFamily>\n      - name: output_family_refs\n        type: Vec<ArtifactFamily>\n      - name: owned_authority_effect\n        type: AuthorityEffect\n        default: None\n      - name: manifest_hash\n        type: Hash256\n  flow: 'Contract declaration\n\n    -> KernelManifest\n\n    -> Validator\n\n    -> StructureArtifact / Record\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - kernel_manifest_declares_single_semantic_class\n  - kernel_manifest_authority_effect_defaults_to_none\n  - kernel_cannot_orchestrate_cross_kernel_flow\n  - kernel_cannot_execute\n  - kernel_cannot_hide_state_mutation\n  canonical_invariant: 'Kernel boundaries split authority. They do not create execution,\n    policy, terminal,\n\n    certificate, or operator authority by themselves.\n\n    '\n  legacy_metadata:\n    name: Kernel\n    source_file: non-math/06_execution/kernel_contract.md\n    active: true\n    machine_authority: true\n    role: Bounded authority unit owning exactly one semantic class\n    version: '2.0'\n    classification: reference\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: StructureArtifact\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\n    - Record\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_execution_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:kernel:v1.0.0\",\n  \"title\": \"SemanticKernelManifest\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"active_doctrine\",\n  \"layer\": \"06_execution\",\n  \"role\": \"SemanticKernelManifest\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": true,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"TypeContract\",\n        \"BoundaryContract\",\n        \"CertificateKernel\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"CertificateSigning\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"KernelManifest (KernelDescriptor) is a bounded authority declaration for one semantic class. Kernel manifests never execute. LicensingBoundary grants transition authority through ActionLicense; Engine alone commits licensed state transitions.\\n\",\n    \"non_role\": [\n      \"god_object_behavior\",\n      \"cross_kernel_orchestration\",\n      \"hidden_state_mutation\",\n      \"terminal_mapping\",\n      \"policy_interpretation\",\n      \"execution\"\n    ],\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"KernelManifest\",\n        \"fields\": [\n          {\n            \"name\": \"kernel_id\",\n            \"type\": \"KernelId\"\n          },\n          {\n            \"name\": \"semantic_class\",\n            \"type\": \"SemanticClassId\"\n          },\n          {\n            \"name\": \"input_family_refs\",\n            \"type\": \"Vec<ArtifactFamily>\"\n          },\n          {\n            \"name\": \"output_family_refs\",\n            \"type\": \"Vec<ArtifactFamily>\"\n          },\n          {\n            \"name\": \"owned_authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"None\"\n          },\n          {\n            \"name\": \"manifest_hash\",\n            \"type\": \"Hash256\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"Contract declaration\\n-> KernelManifest\\n-> Validator\\n-> StructureArtifact / Record\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"kernel_manifest_declares_single_semantic_class\",\n      \"kernel_manifest_authority_effect_defaults_to_none\",\n      \"kernel_cannot_orchestrate_cross_kernel_flow\",\n      \"kernel_cannot_execute\",\n      \"kernel_cannot_hide_state_mutation\"\n    ],\n    \"canonical_invariant\": \"Kernel boundaries split authority. They do not create execution, policy, terminal,\\ncertificate, or operator authority by themselves.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"Kernel\",\n      \"source_file\": \"non-math/06_execution/kernel_contract.md\",\n      \"active\": true,\n      \"machine_authority\": true,\n      \"role\": \"Bounded authority unit owning exactly one semantic class\",\n      \"version\": \"2.0\",\n      \"classification\": \"reference\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"TypeContract\",\n        \"BoundaryContract\",\n        \"CertificateKernel\"\n      ],\n      \"forbidden_authority\": [\n        \"god_object_behavior\",\n        \"cross_kernel_orchestration\",\n        \"hidden_state_mutation\",\n        \"terminal_mapping\",\n        \"policy_interpretation\",\n        \"execution\"\n      ],\n      \"primary_output_family\": \"StructureArtifact\",\n      \"referenced_output_families\": [\n        \"EvidenceEnvelope\",\n        \"FactEnvelope\",\n        \"Record\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_execution_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/execution_kernel_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "503555942d420e3e8907c4612fb21bde2db56d61cd169bf09102003d22a1f8ed",
+      "bytes": 2221,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/execution_kernel_v1_0_0_contract.py",
+          "sha256": "37284e0e412921d2a81939b7144bf237abfa4e3e759a7775453806e310b53dd6"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:execution-kernel-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_kernel_v1_0_0_contract.py\",\n    \"sha256\": \"37284e0e412921d2a81939b7144bf237abfa4e3e759a7775453806e310b53dd6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-kernel-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/execution_kernel_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/execution_kernel_v1_0_0.contract.yaml": "bad10a6d86f607eb78686c5d74b43453213459e2d2a8f577a22d01ff2482294b"
   },

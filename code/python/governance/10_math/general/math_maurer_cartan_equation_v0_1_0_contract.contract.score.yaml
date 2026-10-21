@@ -136,12 +136,12 @@
       ]
     }
   },
-  "current_contract": "fec6c283086a2970031266076b7dcc66b304ad99137de5cb6850db1471e055b8",
-  "current_scoring": null,
+  "current_contract": "39c6f725190c789adc2bba0c2390f4821f042b0522e74722ec1e56415aee70c0",
+  "current_scoring": "e56d42df691f4f88406806bbcf0f2b8c0c036578a27e8641ec5af032bb6a2880",
   "contract_history": [
     {
-      "sha256": "fec6c283086a2970031266076b7dcc66b304ad99137de5cb6850db1471e055b8",
-      "bytes": 4603,
+      "sha256": "39c6f725190c789adc2bba0c2390f4821f042b0522e74722ec1e56415aee70c0",
+      "bytes": 5332,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:maurer_cartan_equation:v0.1.0",
@@ -276,13 +276,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:maurer_cartan_equation:v0.1.0\ntitle: Maurer–Cartan Residual Contract (finite cochain deformation check)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_maurer_cartan_residual\n  symbol: MC(a) = d₁(a) + ½[a,a]₂ ∈ C²\n  ascii_symbol: maurer_cartan_equation\n  notation: finite-degree cochain MC residual (diagnostic)\n  domain:\n  - connection-like 1-cochain a ∈ C¹ (finite)\n  - 'coboundary d₁ : C¹ → C²'\n  - 'bracket [ , ]₂ : C¹ × C¹ → C² (declared bilinear/graded-symmetric as implemented)'\n  codomain:\n    description: Residual 2-cochain measuring failure of the Maurer–Cartan equation\n      on a finite cochain complex. Full DGLA/L∞ deformation theory is out of scope\n      for this contract instance.\nrequirements:\n  required_structures:\n  - 'Degree discipline: a in degree 1, MC(a) in degree 2'\n  - Declared d and bracket with composable finite dimensions\n  - Deterministic residual evaluation\n  - Residual is diagnostic (Γ₂-channel), not Φ₁ acceptance authority\nlaws:\n- 'Residual law: MC(a) := d(a) + ½[a,a] (coefficients per declared convention).'\n- 'Flatness witness: MC(a)=0 is the finite flatness check for this a — not a continuum\n  theorem.'\n- 'Degree law: inputs/outputs live in declared cochain degrees only.'\n- 'Non-decision law: residual feeds deformation/consistency channels; does not mint\n  authority.'\n- 'Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\n  - Deterministic residual\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_homology\n  module: maurer_cartan\n  symbols:\n  - Cochain1\n  - Cochain2\n  required_tests:\n  - dimension_mismatch_error\n  - mc_rejects_da_bracket_dimension_mismatch\nnegative_tests:\n- Degree-mixed a (not pure C¹) must be rejected when typed wrappers exist\n- Dimension mismatch between d(a) and [a,a] must be rejected\n- Treating nonzero residual as authority accept must be rejected\n- Claiming full L∞/DGLA theorem package from residual alone must be rejected\n- Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\ndoctrine:\n  summary: 'Finite Maurer–Cartan residual on cochains: MC(a)=d(a)+½[a,a]. Diagnostic\n    for deformation consistency (Γ₂), not continuum DGLA completeness. Nonclaim: does\n    not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.'\n  non_role:\n  - Full DGLA/L∞ deformation functor theorem package\n  - Continuum gauge theory flatness theorems\n  - Φ₁ acceptance authority\n  - PROVED / GlobalGreen / HoTT discharge\n  legacy_contract_id: urn:math:contract:MaurerCartanEquation:v1.0.0\n  migration_note: 'B3 meth: scoped to finite cochain MC residual matching maurer_cartan.rs.'\nwip:\n- Exact rational MC residual vs current f64 demo residual.\n- Bracket conventions (graded skew, factors of 1/2) must stay fixed per realization.\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect\n    None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B3_LEGACY_SHELL\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'B3: replaced generic DGLA shell with finite MC residual laws; residual\n      f64 vs exact arithmetic noted as code-follows-YAML follow-up.'\n    recommendation: Object-specific math settled for this pass; align code under ADR-007a\n      where YAML is ahead or code still over-scopes. Not PROVED; not GlobalGreen;\n      not LEAN4.\n    pass: b3_legacy_shells_meth\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: MATCH_WITH_NUMERIC_RESIDUAL\n    severity: medium\n    claim_class: '[CODE_DEMO_RUST]'\n    file: omega_engine/crates/omega_homology/src/maurer_cartan.rs\n    detail: RS implements degree-disciplined MC residual with Cochain1/2. Uses f64\n      in places — exactness residual OPEN. Not PROVED.\n    delta: CODE_NUMERIC_MORE_PERMISSIVE_THAN_EXACT_YAML\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:maurer_cartan_equation:v0.1.0\",\n  \"title\": \"Maurer–Cartan Residual Contract (finite cochain deformation check)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_maurer_cartan_residual\",\n    \"symbol\": \"MC(a) = d₁(a) + ½[a,a]₂ ∈ C²\",\n    \"ascii_symbol\": \"maurer_cartan_equation\",\n    \"notation\": \"finite-degree cochain MC residual (diagnostic)\",\n    \"domain\": [\n      \"connection-like 1-cochain a ∈ C¹ (finite)\",\n      \"coboundary d₁ : C¹ → C²\",\n      \"bracket [ , ]₂ : C¹ × C¹ → C² (declared bilinear/graded-symmetric as implemented)\"\n    ],\n    \"codomain\": {\n      \"description\": \"Residual 2-cochain measuring failure of the Maurer–Cartan equation on a finite cochain complex. Full DGLA/L∞ deformation theory is out of scope for this contract instance.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Degree discipline: a in degree 1, MC(a) in degree 2\",\n      \"Declared d and bracket with composable finite dimensions\",\n      \"Deterministic residual evaluation\",\n      \"Residual is diagnostic (Γ₂-channel), not Φ₁ acceptance authority\"\n    ]\n  },\n  \"laws\": [\n    \"Residual law: MC(a) := d(a) + ½[a,a] (coefficients per declared convention).\",\n    \"Flatness witness: MC(a)=0 is the finite flatness check for this a — not a continuum theorem.\",\n    \"Degree law: inputs/outputs live in declared cochain degrees only.\",\n    \"Non-decision law: residual feeds deformation/consistency channels; does not mint authority.\",\n    \"Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\",\n      \"Deterministic residual\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_homology\",\n    \"module\": \"maurer_cartan\",\n    \"symbols\": [\n      \"Cochain1\",\n      \"Cochain2\"\n    ],\n    \"required_tests\": [\n      \"dimension_mismatch_error\",\n      \"mc_rejects_da_bracket_dimension_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Degree-mixed a (not pure C¹) must be rejected when typed wrappers exist\",\n    \"Dimension mismatch between d(a) and [a,a] must be rejected\",\n    \"Treating nonzero residual as authority accept must be rejected\",\n    \"Claiming full L∞/DGLA theorem package from residual alone must be rejected\",\n    \"Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Finite Maurer–Cartan residual on cochains: MC(a)=d(a)+½[a,a]. Diagnostic for deformation consistency (Γ₂), not continuum DGLA completeness. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.\",\n    \"non_role\": [\n      \"Full DGLA/L∞ deformation functor theorem package\",\n      \"Continuum gauge theory flatness theorems\",\n      \"Φ₁ acceptance authority\",\n      \"PROVED / GlobalGreen / HoTT discharge\"\n    ],\n    \"legacy_contract_id\": \"urn:math:contract:MaurerCartanEquation:v1.0.0\",\n    \"migration_note\": \"B3 meth: scoped to finite cochain MC residual matching maurer_cartan.rs.\"\n  },\n  \"wip\": [\n    \"Exact rational MC residual vs current f64 demo residual.\",\n    \"Bracket conventions (graded skew, factors of 1/2) must stay fixed per realization.\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"METH_B3_LEGACY_SHELL\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"B3: replaced generic DGLA shell with finite MC residual laws; residual f64 vs exact arithmetic noted as code-follows-YAML follow-up.\",\n        \"recommendation\": \"Object-specific math settled for this pass; align code under ADR-007a where YAML is ahead or code still over-scopes. Not PROVED; not GlobalGreen; not LEAN4.\",\n        \"pass\": \"b3_legacy_shells_meth\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"MATCH_WITH_NUMERIC_RESIDUAL\",\n        \"severity\": \"medium\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"file\": \"omega_engine/crates/omega_homology/src/maurer_cartan.rs\",\n        \"detail\": \"RS implements degree-disciplined MC residual with Cochain1/2. Uses f64 in places — exactness residual OPEN. Not PROVED.\",\n        \"delta\": \"CODE_NUMERIC_MORE_PERMISSIVE_THAN_EXACT_YAML\"\n      }\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_maurer_cartan_equation_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "e56d42df691f4f88406806bbcf0f2b8c0c036578a27e8641ec5af032bb6a2880",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_maurer_cartan_equation_v0_1_0_contract.py",
+          "sha256": "c2321862cd20001edb815bac516c34266017dcd354e29ceb06f38d464cdd2d62"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-maurer-cartan-equation-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_maurer_cartan_equation_v0_1_0_contract.py\",\n    \"sha256\": \"c2321862cd20001edb815bac516c34266017dcd354e29ceb06f38d464cdd2d62\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-maurer-cartan-equation-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_maurer_cartan_equation_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_maurer_cartan_equation_v0_1_0.contract.yaml": "fec6c283086a2970031266076b7dcc66b304ad99137de5cb6850db1471e055b8"
   },
