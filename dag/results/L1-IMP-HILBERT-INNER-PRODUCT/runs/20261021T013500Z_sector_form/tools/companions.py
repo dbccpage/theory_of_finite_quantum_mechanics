@@ -8,7 +8,7 @@ RUN=B.relative_to(ROOT).as_posix()
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def symbols(p):
     text=p.read_text(encoding='utf-8')
-    pat={'.py':r'^def (\w+)','.rs':r'^pub (?:fn|struct|enum|const|type) (\w+)'}.get(p.suffix,r'^(?:noncomputable )?(?:theorem|def) ([\w.ₗ]+)')
+    pat={'.py':r'^def (\w+)','.rs':r'^pub (?:fn|struct|enum|const|type) (\w+)'}.get(p.suffix,r'^(?:noncomputable )?(?:theorem|def|inductive|structure|abbrev) ([\w.ₗ]+)')
     return sorted({m[1] for m in re.finditer(pat,text,re.M)})
 def records(rel,purpose,boundaries):
     p=ROOT/rel;digest=sha(p);head={'schema_id':'finite-qm.code-companion.v1','subject':rel,'source_sha256':digest,'authority_effect':'None'}

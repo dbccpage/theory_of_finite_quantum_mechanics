@@ -1630,7 +1630,7 @@
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
       "source_status": "Sector-form selection kernel-checked in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: a symmetric (Hermitian) Gram form whose readout is additive on disjoint sector supports and invariant under a set of sector permutations generating a transitive group equals G i0 i0 * 1 (SectorFormUniqueness.eq_smul_one, eq_smul_one_generated; SectorFormHermitian.eq_smul_one over Q(i)); the scale is positive for a positive-definite readout (scale_pos), two such forms are proportional (unique_up_to_scale), and the unit-normalised form is the standard form qf 1 / hf 1 of the Born carriers (eq_one_of_normalized). Countermodels diag(1,2) (the H005 form; sector additive, not swap invariant) and 1+(all ones) (swap invariant, not sector additive) show each law is used. Exact replays: code/python/src/qm/inner_product_uniqueness.py, code/rust/src/qm/inner_product_uniqueness.rs. Earlier: QM_122 H004 free linearization needs an imported coefficient pack; H005 inner-product admission, gram not unique",
-      "statement": "A Hilbert inner product on the linearized carrier is admitted, not derived. H005 exhibits more than one admissible Gram form on the same carrier. The form is selected up to a unit scale by two laws on the quadratic readout: sector additivity on disjoint supports and invariance under a transitive group of sector permutations (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form).",
+      "statement": "A Hilbert inner product on the linearized carrier is admitted up to two laws of its quadratic readout: sector additivity on disjoint supports and transitive sector symmetry. Under these laws the form is unique up to a unit scale and equals the standard form of the Born carriers (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form). H005 exhibits more than one admissible Gram form on the same carrier; its form diag(1,2) is a sector-additive form that violates the symmetry law, so the non-uniqueness is exactly the absence of that law.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md"
       ],
@@ -1660,11 +1660,11 @@
       ],
       "imported_structure": [
         "sector additivity of the quadratic readout on disjoint supports: assumption (transcribed from l1 additivity)",
-        "transitive sector symmetry of the readout: assumption",
+        "transitive sector symmetry of the readout: assumption (node L1-IMP-SECTOR-SYMMETRY-LAW)",
         "sector carrier, scalar field and quadratic readout shape: assumption",
         "free linearization coefficient pack: assumption"
       ],
-      "bottleneck": "Sector additivity of the quadratic readout (transcribed from edgewise l1 additivity) and transitive sector symmetry are supplied as laws of the readout, not derived from primitives; the sector carrier, the scalar field and the quadratic shape of the readout remain imports. The H005 non-uniqueness is exactly the failure of the symmetry law (diag12_not_invariant_swap); without transitivity the diagonal is constant only on orbits.",
+      "bottleneck": "Sector additivity of the quadratic readout (transcribed from edgewise l1 additivity) and transitive sector symmetry (node L1-IMP-SECTOR-SYMMETRY-LAW) are supplied as laws of the readout, not derived from primitives; the sector carrier, the scalar field and the quadratic shape of the readout remain imports. Without transitivity the diagonal is constant only on orbits.",
       "tags": [
         "conditional-on-readout-laws"
       ]
@@ -1673,8 +1673,8 @@
       "id": "L1-IMP-ORTHOGONAL-ADDITIVITY",
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
-      "source_status": "Orthogonality of the sector basis derived from sector additivity of the readout alone in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form (SectorFormUniqueness.offdiag_pair_sum_eq_zero, offdiag_eq_zero, eq_diagonal_of_sectorAdditive, qf_eq_sum_diag_sq_of_sectorAdditive; SectorFormHermitian.offdiag_eq_zero with the two directions 1 and i, and imagLeak12 showing the second direction is needed). Earlier: Thm 6 assumptions 4 and 7: orthogonal additivity; projection-measure / frame-function structure",
-      "statement": "Probability is additive over orthogonal sectors and defined on projections / frames. This couples the l1 additivity of sectors to Hilbert-space orthogonality. Under frame additivity the quartic rival dies (H013FrameAdditivity), and without it two effect rules share the unit total and disagree (H013SameContract). Sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form).",
+      "source_status": "Orthogonality of the sector basis derived from sector additivity of the readout alone in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form (SectorFormUniqueness.offdiag_pair_sum_eq_zero, offdiag_eq_zero, eq_diagonal_of_sectorAdditive, qf_eq_sum_diag_sq_of_sectorAdditive; SectorFormHermitian.offdiag_eq_zero with the two directions 1 and i, and imagLeak12 showing the second direction is needed). Frame additivity on arbitrary orthogonal frames is not derived. Earlier: Thm 6 assumptions 4 and 7: orthogonal additivity; projection-measure / frame-function structure",
+      "statement": "Derived part (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form): sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum; this couples the l1 additivity of sectors to the orthogonality of the selected form. Imported part: probability additive over arbitrary orthogonal frames and defined on projection measures / frames (Thm 6 assumptions 4 and 7), under which the quartic rival dies (H013FrameAdditivity) and without which two effect rules share the unit total and disagree (H013SameContract), remains supplied.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780"
       ],
@@ -1700,11 +1700,45 @@
       ],
       "imported_structure": [
         "sector additivity of the quadratic readout on disjoint supports: assumption (transcribed from l1 additivity)",
-        "projection measures / frames beyond the sector basis: assumption"
+        "frame additivity on arbitrary orthogonal frames of the selected form and projection measures / frames beyond the sector basis: assumption"
       ],
       "bottleneck": "Sector additivity of the quadratic readout is supplied as a law (transcribed from l1 additivity); frame additivity on arbitrary orthogonal frames of the selected form, as Gleason-type uniqueness needs, is not derived here (H013 headers say Candidate only).",
       "tags": [
         "conditional-on-readout-laws"
+      ]
+    },
+    {
+      "id": "L1-IMP-SECTOR-SYMMETRY-LAW",
+      "stage": "L1_TO_L2",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Supplied law of the quadratic readout in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: the readout is invariant under a set of sector permutations whose generated group acts transitively on sectors (SectorFormUniqueness.Invariant, TransitiveOn, Generated; invariance is closed under products and inverses, invariant_of_generated). The finite theory supplies the permutation isometry envelope (H006PermutationUnitary.permutation_isometry), not the statement that the readout must be invariant under it.",
+      "statement": "Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutation in a set whose generated group acts transitively does not change the readout. This is the second law under which the inner product is selected up to scale; it is supplied, not derived from primitive difference, and sectors with distinguished labels would break it (then the diagonal is constant only on orbits).",
+      "source": [
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
+        "lean4/H006PermutationUnitary.lean"
+      ],
+      "lean": [
+        "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.Invariant",
+        "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.TransitiveOn",
+        "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.Generated",
+        "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.invariant_of_generated",
+        "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.diag_const_of_transitive",
+        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Invariant",
+        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Generated",
+        "lean4/H006PermutationUnitary.lean::FableHilbertWalk20260819.H006.permutation_isometry"
+      ],
+      "rust": [
+        "code/rust/src/qm/inner_product_uniqueness.rs::invariance_certificate",
+        "code/rust/src/qm/inner_product_uniqueness.rs::generated_transitivity_certificate"
+      ],
+      "imported_structure": [
+        "transitive sector symmetry of the readout: assumption"
+      ],
+      "bottleneck": "No finite-theory primitive forces readout invariance under sector relabelling; H006 supplies the permutation envelope only. Deriving the law, or recording which sector labels are distinguished, is item 1 of the run next steps.",
+      "tags": [
+        "gap",
+        "readout-law"
       ]
     },
     {
@@ -8085,7 +8119,8 @@
       "id": "L1-R-INNER-PRODUCT-SECTOR-FORM",
       "inputs": [
         "L1-GS000-EDGEWISE-L1",
-        "L1-QM020-THM2A-L1-ADDITIVITY-DEFECT"
+        "L1-QM020-THM2A-L1-ADDITIVITY-DEFECT",
+        "L1-IMP-SECTOR-SYMMETRY-LAW"
       ],
       "output": "L1-IMP-HILBERT-INNER-PRODUCT",
       "status": "CONDITIONAL_ON_IMPORT",
@@ -8094,7 +8129,7 @@
         "lean4/SectorFormUniqueness.lean",
         "lean4/SectorFormHermitian.lean"
       ],
-      "note": "Holds once two laws of the quadratic readout are supplied: sector additivity on disjoint supports (the transcription of edgewise l1 additivity) and invariance under sector permutations generating a transitive group; yields G = c * 1 with c > 0, the standard form of the Born carriers (rational and Gaussian-rational cases)."
+      "note": "Holds once two laws of the quadratic readout are supplied: sector additivity on disjoint supports (the transcription of edgewise l1 additivity) and the transitive sector symmetry of L1-IMP-SECTOR-SYMMETRY-LAW; yields G = c * 1 with c > 0, the standard form of the Born carriers (rational and Gaussian-rational cases)."
     },
     {
       "id": "L1-R-ORTHOGONAL-ADDITIVITY-SECTOR-FORM",
@@ -8109,7 +8144,7 @@
         "lean4/SectorFormUniqueness.lean",
         "lean4/SectorFormHermitian.lean"
       ],
-      "note": "Holds once sector additivity of the quadratic readout is supplied; orthogonality of the sector basis follows without any symmetry assumption."
+      "note": "Holds once sector additivity of the quadratic readout is supplied; orthogonality of the sector basis follows without any symmetry assumption. Frame additivity beyond the sector basis is not covered."
     },
     {
       "id": "APP-R-DFM-GROUP-CONNECTION",

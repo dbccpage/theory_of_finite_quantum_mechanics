@@ -5,15 +5,16 @@
   "contract": {
     "schema_id": "finite-qm.code-companion.v1",
     "subject": "code/rust/src/qm/inner_product_uniqueness.rs",
-    "source_sha256": "b88326bd609801f04abe8dc7fc4df78e393da9ff88d57717b1339dc2e06686dd",
+    "source_sha256": "3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7",
     "authority_effect": "None",
-    "contract_urn": "urn:finite-qm:pfp:inner-product-uniqueness:b88326bd609801f04abe",
+    "contract_urn": "urn:finite-qm:pfp:inner-product-uniqueness:3288c2617990e81fef8a",
     "symbols": [
       "AUTHORITY_FENCE",
       "AdditivityVerdict",
       "HMatrix",
       "HVector",
       "HermitianAdditivityVerdict",
+      "HermitianInvarianceVerdict",
       "HermitianSelectionVerdict",
       "InnerProductUniquenessError",
       "InvarianceVerdict",
@@ -31,9 +32,11 @@
       "diagonal_readout",
       "disjoint_support",
       "dot",
+      "generated_transitivity_certificate",
       "gi",
       "hdisjoint_support",
       "hermitian_derive_scale",
+      "hermitian_invariance_certificate",
       "hermitian_invariance_defects",
       "hermitian_sector_additivity_certificate",
       "hermitian_sector_additivity_defect",
@@ -42,7 +45,6 @@
       "hinner",
       "hmat_vec",
       "hmatrix",
-      "hpermute",
       "hunit_vector",
       "hvector",
       "identity",
@@ -83,8 +85,8 @@
       "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md"
     ]
   },
-  "current_contract": "e7bcd1d0ca6bfb821af68d6f16a25704fe23c1fa73e454d0d6285bae817ce19c",
-  "current_scoring": "b57e2cb2746d4c7374dfabd2c4c3271682554f0ea4fb843725e66d6e262ff41a",
+  "current_contract": "8383fb6aa02079dd952ee1ba2b8967a9f3edb51e088b551c2da44fa52d963c7f",
+  "current_scoring": "111bd3e8b0666b846f6840a0cde5339ac5871e94e2eb396af05710beda986d31",
   "contract_history": [
     {
       "sha256": "e7bcd1d0ca6bfb821af68d6f16a25704fe23c1fa73e454d0d6285bae817ce19c",
@@ -174,6 +176,97 @@
       "original_paths": [
         "code/rust/src/qm/inner_product_uniqueness.rs.contract.yaml"
       ]
+    },
+    {
+      "sha256": "8383fb6aa02079dd952ee1ba2b8967a9f3edb51e088b551c2da44fa52d963c7f",
+      "bytes": 1863,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/inner_product_uniqueness.rs",
+        "source_sha256": "3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:inner-product-uniqueness:3288c2617990e81fef8a",
+        "symbols": [
+          "AUTHORITY_FENCE",
+          "AdditivityVerdict",
+          "HMatrix",
+          "HVector",
+          "HermitianAdditivityVerdict",
+          "HermitianInvarianceVerdict",
+          "HermitianSelectionVerdict",
+          "InnerProductUniquenessError",
+          "InvarianceVerdict",
+          "Matrix",
+          "PROVENANCE",
+          "Permutation",
+          "SelectionVerdict",
+          "TransitivityVerdict",
+          "UniquenessVerdict",
+          "Vector",
+          "all_permutations",
+          "closure",
+          "derive_scale",
+          "diag12",
+          "diagonal_readout",
+          "disjoint_support",
+          "dot",
+          "generated_transitivity_certificate",
+          "gi",
+          "hdisjoint_support",
+          "hermitian_derive_scale",
+          "hermitian_invariance_certificate",
+          "hermitian_invariance_defects",
+          "hermitian_sector_additivity_certificate",
+          "hermitian_sector_additivity_defect",
+          "hermitian_sector_additivity_defects",
+          "hidentity",
+          "hinner",
+          "hmat_vec",
+          "hmatrix",
+          "hunit_vector",
+          "hvector",
+          "identity",
+          "imag_leak12",
+          "invariance_certificate",
+          "invariance_defects",
+          "inverse_permutation",
+          "is_hermitian",
+          "is_symmetric",
+          "mat_vec",
+          "matrix",
+          "orbits",
+          "pairing",
+          "permutation",
+          "permute",
+          "quadratic_form",
+          "re_hermitian_form",
+          "s2",
+          "scale_is_positive",
+          "sector_additivity_certificate",
+          "sector_additivity_defect",
+          "sector_additivity_defects",
+          "swap",
+          "transitivity_certificate",
+          "unif12",
+          "uniqueness_certificate",
+          "unit_vector",
+          "vector"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay on supplied matrices; a passing test is not a general proof."
+        ],
+        "evidence": [
+          "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/inner_product_uniqueness.rs\nsource_sha256: 3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:inner-product-uniqueness:3288c2617990e81fef8a\nsymbols:\n- AUTHORITY_FENCE\n- AdditivityVerdict\n- HMatrix\n- HVector\n- HermitianAdditivityVerdict\n- HermitianInvarianceVerdict\n- HermitianSelectionVerdict\n- InnerProductUniquenessError\n- InvarianceVerdict\n- Matrix\n- PROVENANCE\n- Permutation\n- SelectionVerdict\n- TransitivityVerdict\n- UniquenessVerdict\n- Vector\n- all_permutations\n- closure\n- derive_scale\n- diag12\n- diagonal_readout\n- disjoint_support\n- dot\n- generated_transitivity_certificate\n- gi\n- hdisjoint_support\n- hermitian_derive_scale\n- hermitian_invariance_certificate\n- hermitian_invariance_defects\n- hermitian_sector_additivity_certificate\n- hermitian_sector_additivity_defect\n- hermitian_sector_additivity_defects\n- hidentity\n- hinner\n- hmat_vec\n- hmatrix\n- hunit_vector\n- hvector\n- identity\n- imag_leak12\n- invariance_certificate\n- invariance_defects\n- inverse_permutation\n- is_hermitian\n- is_symmetric\n- mat_vec\n- matrix\n- orbits\n- pairing\n- permutation\n- permute\n- quadratic_form\n- re_hermitian_form\n- s2\n- scale_is_positive\n- sector_additivity_certificate\n- sector_additivity_defect\n- sector_additivity_defects\n- swap\n- transitivity_certificate\n- unif12\n- uniqueness_certificate\n- unit_vector\n- vector\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay on supplied matrices; a passing test is not a general proof.\nevidence:\n- dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/inner_product_uniqueness.rs.contract.yaml"
+      ]
     }
   ],
   "scoring_history": [
@@ -221,11 +314,56 @@
       "original_paths": [
         "code/rust/src/qm/inner_product_uniqueness.rs.score.yaml"
       ]
+    },
+    {
+      "sha256": "111bd3e8b0666b846f6840a0cde5339ac5871e94e2eb396af05710beda986d31",
+      "bytes": 925,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/rust/src/qm/inner_product_uniqueness.rs",
+        "source_sha256": "3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/rust/src/qm/inner_product_uniqueness.rs\nsource_sha256: 3288c2617990e81fef8a9796a537a60c3f639a1eedc3c373d6860ae59a94fdd7\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md\n",
+      "original_paths": [
+        "code/rust/src/qm/inner_product_uniqueness.rs.score.yaml"
+      ]
     }
   ],
   "legacy_paths": {
-    "code/rust/src/qm/inner_product_uniqueness.rs.contract.yaml": "e7bcd1d0ca6bfb821af68d6f16a25704fe23c1fa73e454d0d6285bae817ce19c",
-    "code/rust/src/qm/inner_product_uniqueness.rs.score.yaml": "b57e2cb2746d4c7374dfabd2c4c3271682554f0ea4fb843725e66d6e262ff41a"
+    "code/rust/src/qm/inner_product_uniqueness.rs.contract.yaml": "8383fb6aa02079dd952ee1ba2b8967a9f3edb51e088b551c2da44fa52d963c7f",
+    "code/rust/src/qm/inner_product_uniqueness.rs.score.yaml": "111bd3e8b0666b846f6840a0cde5339ac5871e94e2eb396af05710beda986d31"
   },
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."

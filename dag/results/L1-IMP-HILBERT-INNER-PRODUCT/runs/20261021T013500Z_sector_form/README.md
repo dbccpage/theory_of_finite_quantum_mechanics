@@ -27,12 +27,14 @@ sector basis follows from the first law alone.
   nonvacuity, and the control `imagLeak12 = [[1, i], [−i, 1]]`: Hermitian, additive on `(e₀, e₁)` along
   the real direction, not sector additive (47 receipts).
 - Exact twins: [code/python/src/qm/inner_product_uniqueness.py](../../../../../code/python/src/qm/inner_product_uniqueness.py)
-  with [22 tests](../../../../../code/python/tests/test_inner_product_uniqueness.py) and
+  with [26 tests](../../../../../code/python/tests/test_inner_product_uniqueness.py) and
   [code/rust/src/qm/inner_product_uniqueness.rs](../../../../../code/rust/src/qm/inner_product_uniqueness.rs)
-  with 22 inline tests: additivity defects `G_ij + G_ji` (over ℚ(i): `re(H_ij + H_ji)` and
-  `im(H_ji − H_ij)`), the diagonal readout, invariance defects, the generated permutation group
-  (`closure`, the replay of `Generated`) and its orbits, the scale certificate with an exact witness
-  for whichever hypothesis fails first (`derive_scale`, `hermitian_derive_scale`), the uniqueness
+  with 26 inline tests: additivity defects `G_ij + G_ji` (over ℚ(i): `re(H_ij + H_ji)` and
+  `im(H_ji − H_ij)`), the diagonal readout, the symmetric-part invariance defects with unit-vector
+  witnesses (`e_i`, `e_i + e_j`, over ℚ(i) also `e_i + i·e_j`), the generated permutation group
+  (`closure`, the replay of `Generated`, kept for small carriers) and its orbits, which decide
+  transitivity without materialising the group, the scale certificate with an exact witness for
+  whichever hypothesis fails first (`derive_scale`, `hermitian_derive_scale`), the uniqueness
   certificate and the three countermodels. The two Lean modules are installed under `lean4/` and
   registered in the lakefile.
 - [Compile receipts](verification/), [kernel axioms](verification/kernel_axioms.json),
@@ -45,9 +47,12 @@ Two accepted compilations, **119 printed axiom receipts**, every one within
 `[propext, Classical.choice, Quot.sound]` (several need fewer); no `sorry`, `axiom`, `opaque` or
 `unsafe`; no compile warnings; no noncomputable definitions. The DAG nodes
 `L1-IMP-HILBERT-INNER-PRODUCT` and `L1-IMP-ORTHOGONAL-ADDITIVITY` move from `IMPORTED_ASSUMPTION` to
-`CONDITIONAL` (on the two readout laws), with the new routes `L1-R-INNER-PRODUCT-SECTOR-FORM` and
-`L1-R-ORTHOGONAL-ADDITIVITY-SECTOR-FORM` (`CONDITIONAL_ON_IMPORT`) beside the retained gap routes;
-`dag/validate_derivation_dag.py --repo-root . --no-files` reports `nodes=197 routes=194 failures=0`.
+`CONDITIONAL` (on the two readout laws; the orthogonal-additivity statement is split into the derived
+sector-basis part and the still-imported frame part), the symmetry law gets its own imported node
+`L1-IMP-SECTOR-SYMMETRY-LAW` so that routes name it, and the new routes
+`L1-R-INNER-PRODUCT-SECTOR-FORM` and `L1-R-ORTHOGONAL-ADDITIVITY-SECTOR-FORM` (`CONDITIONAL_ON_IMPORT`)
+sit beside the retained gap routes; `dag/validate_derivation_dag.py --repo-root . --no-files` reports
+`nodes=198 routes=194 failures=0`.
 
 **Result in one line.** On `Fin n → ℚ` (or `ℚ(i)`), a symmetric (Hermitian) form whose readout is
 additive on disjoint sector supports and invariant under sector permutations generating a transitive
