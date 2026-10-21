@@ -1,0 +1,65 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-F5D1A95B435B
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1: If 2t < d then E_t satisfies the recovery criterion: for e1,e2 in E_t, wt(e1+e2) <= 2t <
+    d so e1+e2 is not in ker Q minus B.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-DISTANCE-WEIGHT-CORRECTION
+- id: NEG-C9582CD6A35A
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L2: If d <= 2t then E_t fails the recovery criterion: take z in ker Q minus B of weight d, split
+    it as e1+e2 with weights <= t, so e1+e2 is a nontrivial logical.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-DISTANCE-WEIGHT-CORRECTION
+- id: NEG-D2B0BA42DC7A
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L3: E_t satisfies the recovery criterion iff 2t < d (combine L1 and the contrapositive of L2).'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-DISTANCE-WEIGHT-CORRECTION
+counterexamples: []
+open_obligations:
+- No existing declarations found; all references are proposed_new
+- Formal definitions of Q, B, ker Q, wt, and the recovery criterion in Lean not grounded
+- Knill-Laflamme correspondence (R1) is cited, not derived or formalized
+- Splitting lemma R3 needs a Lean proof on supports
+- Edge cases (d odd, t=0, d infinite when ker Q equals B) need handling
+- Lean skeletons are placeholders with True statements, not faithful formalizations
+- 'relation R1 unverified: no existing declaration cited'
+- 'relation R2 unverified: no existing declaration cited'
+- 'relation R3 unverified: no existing declaration cited'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: C1
+  expr: 2*1
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+- id: C2
+  expr: 3 - 2*1
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

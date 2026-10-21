@@ -1,0 +1,67 @@
+{
+  "task_id": "MAJ-TETRON-BETTI-COMPUTED",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a5651928eaa3ae48f8f070d6d2abb9a6053ba61f040930b225cd00d7304072a2",
+  "candidate_sha256": "19c313d5c458f57fdcad77fe11c26140d7b6c15b840c29ac23333a2ebe8d13f4",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:21Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-6E283BD47093",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L1: For the checked sizes, dim H1 over F2 equals 0 for disk, 1 for cylinder, 2 for torus, matching (2 if closed else 1) minus Euler characteristic as stated in the target",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-TETRON-BETTI-COMPUTED"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No source declarations were provided, so nothing is cited as existing",
+      "Vertex, edge and face counts V, E, F for each grid type (disk, cylinder, torus) are not specified in the target; needed before stating numeric claims",
+      "Row-reduction ranks for the nine sizes need host computation; none are asserted here",
+      "Closed-form proof for all rows and cols is absent (the stated bottleneck)",
+      "The target's formula with Euler characteristic needs clarification of the exact convention (H0 and H2 contributions)",
+      "relation R1 unverified: no existing declaration cited",
+      "relation R2 unverified: no existing declaration cited",
+      "near_miss N1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "MAJ-LP-INVARIANCE-BINARY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f3966c52bd349ef9d9d4e22164bed7255b2d842ed738cd2f992042a8508aebcd",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_weight\",\"inputs\":[\"F2Vec\"],\"output\":\"Nat\",\"arity\":1,\"carrier\":\"F2Vec n -> Nat\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"F2Vec.weight\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_weight_foldl\",\"statement\":\"weight v equals the foldl count of true entries over finRange n\",\"hypotheses\":\"v : F2Vec n\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"f2_weight_l1_l2_coincide\",\"status\":\"existing\"}},{\"id\":\"r_pow_01\",\"statement\":\"for x in {0,1} and p >= 1, x^p = x\",\"hypotheses\":\"x in {0,1}, p >= 1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_sum_pow_weight\",\"statement\":\"For v : F2Vec n and p >= 1, sum over i of (if v i then 1 else 0)^p equals F2Vec.weight v\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_pow_01\",\"r_weight_foldl\"],\"lean_skeleton\":\"theorem sum_pow_weight {n : Nat} (v : F2Vec n) (p : Nat) (hp : 1 ≤ p) : ((List.finRange n).map (fun i => (if v i then 1 else 0)^p)).sum = F2Vec.weight v := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_minimizer_eq\",\"statement\":\"Since l1 and l2^2 objectives coincide with weight on 0/1 vectors, coset minimizers and minimum values coincide\",\"relation_to_target\":\"implies\",\"depends_on\":[\"l_sum_pow_weight\"],\"lean_skeleton\":\"theorem coset_min_eq : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_l2_unsquared\",\"claim\":\"l2 norm (unsquared) equals weight\",\"rejecting_invariant\":\"sqrt(wt) differs from wt unless wt in {0,1}; only l2^2 matches\"},{\"id\":\"nm_norm_gap\",\"claim\":\"dim H1 >= 2 yields a gap between l1 and l2^2 minimizers\",\"rejecting_invariant\":\"objectives are identical functions on F2 vectors; distinct logical classes are not a norm gap\"}],\"numeric_claims\":[{\"id\":\"n_pow\",\"expr\":\"1^3 + 0^3 + 1^3\",\"value\":\"2\"}],\"open_obligations\":[\"Lean lemma x^p=x for 0/1 entries not in source\",\"Real-valued embedding of F2Vec entries into 0/1 not grounded in listed declarations\",\"Coset minimization definition not in source\",\"Distinct logical classes from dim H1 >= 2 not grounded\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_weight",
+        "inputs": [
+          "F2Vec"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "F2Vec n -> Nat",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.weight",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_weight_foldl",
+        "statement": "weight v equals the foldl count of true entries over finRange n",
+        "hypotheses": "v : F2Vec n",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "f2_weight_l1_l2_coincide",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_pow_01",
+        "statement": "for x in {0,1} and p >= 1, x^p = x",
+        "hypotheses": "x in {0,1}, p >= 1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_sum_pow_weight",
+        "statement": "For v : F2Vec n and p >= 1, sum over i of (if v i then 1 else 0)^p equals F2Vec.weight v",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_pow_01",
+          "r_weight_foldl"
+        ],
+        "lean_skeleton": "theorem sum_pow_weight {n : Nat} (v : F2Vec n) (p : Nat) (hp : 1 ≤ p) : ((List.finRange n).map (fun i => (if v i then 1 else 0)^p)).sum = F2Vec.weight v := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_minimizer_eq",
+        "statement": "Since l1 and l2^2 objectives coincide with weight on 0/1 vectors, coset minimizers and minimum values coincide",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "l_sum_pow_weight"
+        ],
+        "lean_skeleton": "theorem coset_min_eq : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_l2_unsquared",
+        "claim": "l2 norm (unsquared) equals weight",
+        "rejecting_invariant": "sqrt(wt) differs from wt unless wt in {0,1}; only l2^2 matches"
+      },
+      {
+        "id": "nm_norm_gap",
+        "claim": "dim H1 >= 2 yields a gap between l1 and l2^2 minimizers",
+        "rejecting_invariant": "objectives are identical functions on F2 vectors; distinct logical classes are not a norm gap"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_pow",
+        "expr": "1^3 + 0^3 + 1^3",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "Lean lemma x^p=x for 0/1 entries not in source",
+      "Real-valued embedding of F2Vec entries into 0/1 not grounded in listed declarations",
+      "Coset minimization definition not in source",
+      "Distinct logical classes from dim H1 >= 2 not grounded"
+    ]
+  }
+}

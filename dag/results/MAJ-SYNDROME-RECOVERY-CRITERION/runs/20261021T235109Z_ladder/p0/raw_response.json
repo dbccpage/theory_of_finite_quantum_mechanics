@@ -1,0 +1,146 @@
+{
+  "task_id": "MAJ-SYNDROME-RECOVERY-CRITERION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d217fe7dfcd622299ff1982ecf8a1e278c616478af85b565f2b68800a6bf70fd",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"syndrome_map\",\"inputs\":[\"C1\"],\"output\":\"C2\",\"arity\":1,\"carrier\":\"linear map Q = d1 : C1 -> C2\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"decoder\",\"inputs\":[\"C2\"],\"output\":\"C1\",\"arity\":1,\"carrier\":\"deterministic function from syndromes to C1 corrections\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"bitflip_syndrome\",\"inputs\":[\"BitFlipError\"],\"output\":\"Syndrome\",\"arity\":1,\"carrier\":\"three-qubit bit-flip error to syndrome\",\"ref\":{\"path\":\"lean4/H036ThreeQubitCodeSyndromeRecovery.lean\",\"decl\":\"FableHilbertWalk20260819.H036.syndromeOf\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"success_def\",\"statement\":\"decoder D succeeds on e iff e + D(Qe) lies in B (characteristic 2 or sign convention absorbed; residual = e - D(Qe))\",\"hypotheses\":\"recovery model: deterministic, syndrome-only, C1 correction\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"criterion\",\"statement\":\"exists D succeeding for all e in E iff (E+E) ∩ ker Q ⊆ B\",\"hypotheses\":\"B = im d0 subset ker Q (d1 d0 = 0); E subset C1 admitted; E+E means sumset (differences in char 2 or E symmetric)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"bitflip_decode_exact\",\"statement\":\"decodeSyndrome (syndromeOf e) = some e for each bit-flip error\",\"hypotheses\":\"e in the four-element single-bit-flip set\",\"ref\":{\"path\":\"lean4/H036ThreeQubitCodeSyndromeRecovery.lean\",\"decl\":\"FableHilbertWalk20260819.H036.syndrome_decoding_exact\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"decoder\",\"slot\":0,\"inner\":\"syndrome_map\",\"licensing_relation\":\"success_def\"}],\"lemmas\":[{\"id\":\"necessity\",\"statement\":\"If D succeeds on all of E and e,e' in E with Qe = Qe', then e - e' = (e - D(Qe)) - (e' - D(Qe')) lies in B; hence any element of (E+E) ∩ ker Q in B (with sign convention).\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"success_def\"],\"lean_skeleton\":\"theorem necessity {C1 C2 : Type*} [AddCommGroup C1] [AddCommGroup C2] (Q : C1 →+ C2) (B : AddSubgroup C1) (E : Set C1) (D : C2 → C1) (h : ∀ e ∈ E, e - D (Q e) ∈ B) : ∀ e ∈ E, ∀ e' ∈ E, Q (e - e') = 0 → e - e' ∈ B := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"sufficiency\",\"statement\":\"If differences of E in ker Q lie in B, choose by choice one representative per syndrome in E; the decoder returns it and the residual lies in B.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"success_def\",\"necessity\"],\"lean_skeleton\":\"theorem sufficiency {C1 C2 : Type*} [AddCommGroup C1] [AddCommGroup C2] (Q : C1 →+ C2) (B : AddSubgroup C1) (E : Set C1) (h : ∀ e ∈ E, ∀ e' ∈ E, Q (e - e') = 0 → e - e' ∈ B) : ∃ D : C2 → C1, ∀ e ∈ E, e - D (Q e) ∈ B := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_nondeterministic\",\"claim\":\"A decoder that sees more than Qe can succeed even when (E+E)∩kerQ is not in B\",\"rejecting_invariant\":\"recovery model is syndrome-only: D factors through Q\"},{\"id\":\"nm_ker_not_B\",\"claim\":\"Drop B ⊆ ker Q: criterion with ker Q replaced by the whole space\",\"rejecting_invariant\":\"needs d1 d0 = 0 so B ⊆ ker Q\"}],\"numeric_claims\":[],\"open_obligations\":[\"Sumset E+E versus difference set E-E: in characteristic 2 they coincide; otherwise E must be symmetric or the statement uses E-E; unresolved\",\"No existing Lean declaration for the general chain-complex criterion\",\"Sorry-free proofs of necessity and sufficiency still needed\",\"Link between H036 bit-flip example and general criterion not formalized\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "syndrome_map",
+        "inputs": [
+          "C1"
+        ],
+        "output": "C2",
+        "arity": 1,
+        "carrier": "linear map Q = d1 : C1 -> C2",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "decoder",
+        "inputs": [
+          "C2"
+        ],
+        "output": "C1",
+        "arity": 1,
+        "carrier": "deterministic function from syndromes to C1 corrections",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "bitflip_syndrome",
+        "inputs": [
+          "BitFlipError"
+        ],
+        "output": "Syndrome",
+        "arity": 1,
+        "carrier": "three-qubit bit-flip error to syndrome",
+        "ref": {
+          "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+          "decl": "FableHilbertWalk20260819.H036.syndromeOf",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "success_def",
+        "statement": "decoder D succeeds on e iff e + D(Qe) lies in B (characteristic 2 or sign convention absorbed; residual = e - D(Qe))",
+        "hypotheses": "recovery model: deterministic, syndrome-only, C1 correction",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "criterion",
+        "statement": "exists D succeeding for all e in E iff (E+E) ∩ ker Q ⊆ B",
+        "hypotheses": "B = im d0 subset ker Q (d1 d0 = 0); E subset C1 admitted; E+E means sumset (differences in char 2 or E symmetric)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "bitflip_decode_exact",
+        "statement": "decodeSyndrome (syndromeOf e) = some e for each bit-flip error",
+        "hypotheses": "e in the four-element single-bit-flip set",
+        "ref": {
+          "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+          "decl": "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "decoder",
+        "slot": 0,
+        "inner": "syndrome_map",
+        "licensing_relation": "success_def"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "necessity",
+        "statement": "If D succeeds on all of E and e,e' in E with Qe = Qe', then e - e' = (e - D(Qe)) - (e' - D(Qe')) lies in B; hence any element of (E+E) ∩ ker Q in B (with sign convention).",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "success_def"
+        ],
+        "lean_skeleton": "theorem necessity {C1 C2 : Type*} [AddCommGroup C1] [AddCommGroup C2] (Q : C1 →+ C2) (B : AddSubgroup C1) (E : Set C1) (D : C2 → C1) (h : ∀ e ∈ E, e - D (Q e) ∈ B) : ∀ e ∈ E, ∀ e' ∈ E, Q (e - e') = 0 → e - e' ∈ B := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "sufficiency",
+        "statement": "If differences of E in ker Q lie in B, choose by choice one representative per syndrome in E; the decoder returns it and the residual lies in B.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "success_def",
+          "necessity"
+        ],
+        "lean_skeleton": "theorem sufficiency {C1 C2 : Type*} [AddCommGroup C1] [AddCommGroup C2] (Q : C1 →+ C2) (B : AddSubgroup C1) (E : Set C1) (h : ∀ e ∈ E, ∀ e' ∈ E, Q (e - e') = 0 → e - e' ∈ B) : ∃ D : C2 → C1, ∀ e ∈ E, e - D (Q e) ∈ B := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_nondeterministic",
+        "claim": "A decoder that sees more than Qe can succeed even when (E+E)∩kerQ is not in B",
+        "rejecting_invariant": "recovery model is syndrome-only: D factors through Q"
+      },
+      {
+        "id": "nm_ker_not_B",
+        "claim": "Drop B ⊆ ker Q: criterion with ker Q replaced by the whole space",
+        "rejecting_invariant": "needs d1 d0 = 0 so B ⊆ ker Q"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Sumset E+E versus difference set E-E: in characteristic 2 they coincide; otherwise E must be symmetric or the statement uses E-E; unresolved",
+      "No existing Lean declaration for the general chain-complex criterion",
+      "Sorry-free proofs of necessity and sufficiency still needed",
+      "Link between H036 bit-flip example and general criterion not formalized"
+    ]
+  }
+}

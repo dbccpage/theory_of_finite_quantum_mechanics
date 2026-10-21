@@ -1,0 +1,244 @@
+{
+  "task_id": "MAJ-TORUS-3X4-COSET-WEIGHTS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "599867523df24fb8fce4de6dadbd8ae90ce64bc2c23e625bf643cba345529998",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "toric_distance",
+          "inputs": [
+            "Nat",
+            "Nat"
+          ],
+          "output": "Nat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_dist_3x4",
+          "equation_or_predicate": "toric_distance 3 4 = 3",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "toric_distance_3x4",
+              "line": 275
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "toric_distance_3x4",
+            "kind": "theorem",
+            "line": 275,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_additive_weight_3x4",
+          "equation_or_predicate": "3 + 4 = 7 (column Phi1 plus row Phi1 equals sum-class Phi1)",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "torus_3x4_additive_weight",
+              "line": 278
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "torus_3x4_additive_weight",
+            "kind": "theorem",
+            "line": 278,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Exhaustive Gray-code coset search and ClosedResidual status have no cited declaration",
+        "Site, channel and island counts (12,24,12) not grounded in cited declarations",
+        "Family-wide additivity and d=min(rows,cols) left to MAJ-CLAIM-DISTANCE-FAMILY",
+        "lemma L_dist_3x4 unverified: Lean elaboration disabled",
+        "lemma L_additive_3x4 unverified: Lean elaboration disabled",
+        "near_miss NM_family_distance unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "toric_distance",
+        "ordered_inputs": [
+          "Nat",
+          "Nat"
+        ],
+        "output": "Nat",
+        "arity": 2,
+        "carrier": "Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "toric_distance",
+            "line": 273
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "toric_distance",
+          "kind": "def",
+          "line": 273,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_dist_3x4",
+        "equation_or_predicate": "toric_distance 3 4 = 3",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "toric_distance_3x4",
+            "line": 275
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "toric_distance_3x4",
+          "kind": "theorem",
+          "line": 275,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_additive_weight_3x4",
+        "equation_or_predicate": "3 + 4 = 7 (column Phi1 plus row Phi1 equals sum-class Phi1)",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "torus_3x4_additive_weight",
+            "line": 278
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "torus_3x4_additive_weight",
+          "kind": "theorem",
+          "line": 278,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exhaustive Gray-code coset search and ClosedResidual status have no cited declaration",
+      "Site, channel and island counts (12,24,12) not grounded in cited declarations",
+      "Family-wide additivity and d=min(rows,cols) left to MAJ-CLAIM-DISTANCE-FAMILY",
+      "lemma L_dist_3x4 unverified: Lean elaboration disabled",
+      "lemma L_additive_3x4 unverified: Lean elaboration disabled",
+      "near_miss NM_family_distance unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_sum",
+        "expr": "3 + 4",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      },
+      {
+        "id": "N_min",
+        "expr": "3 - 0",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      },
+      {
+        "id": "N_channels",
+        "expr": "2*3*4",
+        "value": "24",
+        "host_evidence": {
+          "recomputed": "24"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,52 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-C2EA6E5B015C
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: symanzik_U_via_tree . slot 0 <- chord_coord_matrix via R_U_tree_independent
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-TREE-CHANGE-GLZ-SYMANZIK-U
+counterexamples: []
+open_obligations:
+- No existing declarations are available to cite, so all refs are proposed_new
+- Explicit matrices C_T for the 8 trees and their determinants are not enumerated here
+- The edge labelling is not given in the target and was inferred from the value 247
+- Kirchhoff matrix-tree theorem is assumed, not proved
+- Lean skeletons are arithmetic only and do not formalise the graph
+- 'generator chord_coord_matrix unverified: no existing declaration cited'
+- 'generator symanzik_U_via_tree unverified: no existing declaration cited'
+- 'relation R_det_unimodular unverified: no existing declaration cited'
+- 'relation R_U_tree_independent unverified: no existing declaration cited'
+- 'lemma L_diamond_trees unverified: Lean elaboration disabled'
+- 'lemma L_U_value unverified: Lean elaboration disabled'
+- 'near_miss NM_wrong_labeling unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_e2
+  expr: ((2+3+5+7+11)^2 - (4+9+25+49+121))/2
+  value: '288'
+  host_evidence:
+    recomputed: '288'
+- id: N_U
+  expr: 288 - 2*3 - 5*7
+  value: '247'
+  host_evidence:
+    recomputed: '247'
+- id: N_U_wrong
+  expr: 288 - 2*3 - 7*11
+  value: '205'
+  host_evidence:
+    recomputed: '205'
+- id: N_trees
+  expr: 10 - 2
+  value: '8'
+  host_evidence:
+    recomputed: '8'
+verified_lemma_statements: []

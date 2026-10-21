@@ -1,0 +1,67 @@
+{
+  "task_id": "MAJ-OPEN-EVIDENCE-ADEQUACY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e2283affa93c3f1c9ce9662364b027cadc9066b9f19276bfe6d2d0673931e0cc",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"bound_measurement_record\",\"inputs\":[],\"output\":\"BoundMeasurement\",\"arity\":0,\"carrier\":\"BoundEpkMeasurement record\",\"ref\":{\"path\":\"code/rust/src/local_green_global_red_lggr/bound_measurement.rs\",\"decl\":\"BoundEpkMeasurement\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"kernel_separation\",\"statement\":\"M(rho_topo - rho_ABS) != 0, i.e. rho_topo - rho_ABS not in ker M, for a declared measurement map M\",\"hypotheses\":\"A declared device model supplying rho_topo, rho_ABS and a declared measurement map M; none is supplied\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"separation_iff_distinct_outputs\",\"statement\":\"For linear M, rho_topo - rho_ABS lies outside ker M iff M rho_topo != M rho_ABS\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem sep_iff {V W : Type*} [AddCommGroup V] [AddCommGroup W] (M : V →+ W) (a b : V) : a - b ∉ M.ker ↔ M a ≠ M b := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_schema_not_separation\",\"claim\":\"Existence of a bound measurement record with schema omega.epk.bound-measurement.v1 shows that M separates topological modes from ABS\",\"rejecting_invariant\":\"A schema or record binds a measurement but does not supply a device model or the states rho_topo and rho_ABS, so kernel membership of their difference is undetermined\"}],\"numeric_claims\":[],\"open_obligations\":[\"Declared device model is absent\",\"Declared measurement map M is absent\",\"States rho_topo and rho_ABS are not specified\",\"No grounded existing declaration encodes the kernel-separation relation\",\"Role of BoundMeasurementError and the schema constant in this target is not established\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "bound_measurement_record",
+        "inputs": [],
+        "output": "BoundMeasurement",
+        "arity": 0,
+        "carrier": "BoundEpkMeasurement record",
+        "ref": {
+          "path": "code/rust/src/local_green_global_red_lggr/bound_measurement.rs",
+          "decl": "BoundEpkMeasurement",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "kernel_separation",
+        "statement": "M(rho_topo - rho_ABS) != 0, i.e. rho_topo - rho_ABS not in ker M, for a declared measurement map M",
+        "hypotheses": "A declared device model supplying rho_topo, rho_ABS and a declared measurement map M; none is supplied",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "separation_iff_distinct_outputs",
+        "statement": "For linear M, rho_topo - rho_ABS lies outside ker M iff M rho_topo != M rho_ABS",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem sep_iff {V W : Type*} [AddCommGroup V] [AddCommGroup W] (M : V →+ W) (a b : V) : a - b ∉ M.ker ↔ M a ≠ M b := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_schema_not_separation",
+        "claim": "Existence of a bound measurement record with schema omega.epk.bound-measurement.v1 shows that M separates topological modes from ABS",
+        "rejecting_invariant": "A schema or record binds a measurement but does not supply a device model or the states rho_topo and rho_ABS, so kernel membership of their difference is undetermined"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Declared device model is absent",
+      "Declared measurement map M is absent",
+      "States rho_topo and rho_ABS are not specified",
+      "No grounded existing declaration encodes the kernel-separation relation",
+      "Role of BoundMeasurementError and the schema constant in this target is not established"
+    ]
+  }
+}
