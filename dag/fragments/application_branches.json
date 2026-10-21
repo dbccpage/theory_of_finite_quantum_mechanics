@@ -220,7 +220,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "bottleneck": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion. Update 2026-10-21: N(6) <= 5 is available only as an imported external theorem (MUB6-OPENAI-FAMILY-LE-FIVE); the exclusion of a quartet and the value N(6) = 3 remain open here.",
       "tags": [
         "application-branch",
         "TFQ-0405"
@@ -4615,7 +4615,7 @@
       "imported_structure": [
         "Matolcsi, Matszangosz, Varga, Weiner, Triplets of mutually unbiased bases, Proposition 4.2, doi:10.1007/s10801-026-01506-x"
       ],
-      "bottleneck": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields.",
+      "bottleneck": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields. External: the alpha-vanishing part of Conjecture 2 for every order-6 complex Hadamard matrix not equivalent to the Tao matrix is a theorem of the OpenAI companion paper (Lean: OAI.MUB6.fourier_vanishing; external, not built here, see MUB6-OPENAI-FAMILY-LE-FIVE). Still open: the condition coupling the characters at 3a, Tao-class transitions inside triplets, Conjecture 3 and Proposition 4.2.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -4643,7 +4643,7 @@
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity.",
+      "bottleneck": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, build pending), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -4668,7 +4668,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization.",
+      "bottleneck": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -4695,7 +4695,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout.",
+      "bottleneck": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -4704,6 +4704,30 @@
       ],
       "see_also": [
         "TFQ-0177"
+      ]
+    },
+    {
+      "id": "MUB6-OPENAI-FAMILY-LE-FIVE",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-IMPORT-OPENAI-LE5 claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
+      "statement": "Every family of pairwise mutually unbiased orthonormal bases of C^6 has at most five members (N(6) <= 5): OpenAI's Lean theorem OAI.MUB6.family_size_le_five (github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a, Apache-2.0), via the exact mixed-moment Gram certificate no_seven_mutually_unbiased_bases and Weiner's completion six_extend_to_seven.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md",
+        "papers/core/mub6/documentation/openai_mub6_le5_external_import.md",
+        "papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "OpenAI, Lean OAI.MUB6.family_size_le_five and OAI.MUB6.fourier_and_family_bound, github.com/openai/math lean/OAI/Analysis/MutuallyUnbiased (commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a, Apache-2.0); companion paper Exact Fourier certificates for complex Hadamard matrices of order six (2026-09-24)"
+      ],
+      "bottleneck": "External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound and its build is pending. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1365",
+        "MUB6-IMPORT-OPENAI-LE5"
       ]
     },
     {
@@ -5163,7 +5187,7 @@
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure.",
+      "bottleneck": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure. The legacy 28-cell, 56-cell, 24-leaf cusp and collar receipts are relabelled NOT_A_CERTIFICATE (literal margins) as of 2026-10-21.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10344,7 +10368,7 @@
       ],
       "output": "MUB6-CONJECTURE2-PREMISE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields.",
+      "mechanism": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields. External: the alpha-vanishing part of Conjecture 2 for every order-6 complex Hadamard matrix not equivalent to the Tao matrix is a theorem of the OpenAI companion paper (Lean: OAI.MUB6.fourier_vanishing; external, not built here, see MUB6-OPENAI-FAMILY-LE-FIVE). Still open: the condition coupling the characters at 3a, Tao-class transitions inside triplets, Conjecture 3 and Proposition 4.2.",
       "source": [
         "dag/derivations/25_mub/tfq_1252_mub6_conjecture2_premise.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
@@ -10359,7 +10383,7 @@
       ],
       "output": "MUB6-TAO-LAURENT-NORM-NINE",
       "status": "DERIVED_LEAN",
-      "mechanism": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity.",
+      "mechanism": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, build pending), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.",
       "source": [
         "dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
@@ -10374,7 +10398,7 @@
       ],
       "output": "MUB6-NO-QUARTET-D6",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization.",
+      "mechanism": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "source": [
         "dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
@@ -10390,11 +10414,25 @@
       ],
       "output": "MUB6-MAX-MUB-SIX-EQUALS-THREE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout.",
+      "mechanism": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "source": [
         "dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
         "papers/core/mub6/theory_of_finite_mub6.md"
+      ]
+    },
+    {
+      "id": "APP-R-MUB6-OPENAI-FAMILY-LE-FIVE",
+      "inputs": [
+        "MUB6-GLOBAL-OBLIGATIONS"
+      ],
+      "output": "MUB6-OPENAI-FAMILY-LE-FIVE",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound and its build is pending. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md",
+        "papers/core/mub6/documentation/openai_mub6_le5_external_import.md",
+        "papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md"
       ]
     },
     {
@@ -10628,7 +10666,7 @@
       ],
       "output": "MUB6-COVER56-CURVATURE-PREMISE",
       "status": "DERIVED_LEAN",
-      "mechanism": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure.",
+      "mechanism": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure. The legacy 28-cell, 56-cell, 24-leaf cusp and collar receipts are relabelled NOT_A_CERTIFICATE (literal margins) as of 2026-10-21.",
       "source": [
         "dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md",
         "papers/core/mub6/mub6_claim_ledger.md",
@@ -12151,7 +12189,7 @@
       "parent_id": "TFQ-0402",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the package leaves G1 open.",
-      "obligation": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion.",
+      "obligation": "Discharge every coverage, chart and conditional bridge premise before making a global dimension-six conclusion. Update 2026-10-21: N(6) <= 5 is available only as an imported external theorem (MUB6-OPENAI-FAMILY-LE-FIVE); the exclusion of a quartet and the value N(6) = 3 remain open here.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-GLOBAL-OBLIGATIONS"
@@ -16777,7 +16815,7 @@
       "parent_id": "TFQ-1230",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Matolcsi et al. Conjecture 2 (balanced Laurent vanishing on actual MUB triples) together with Conjecture 3 (no quartet contains a Szollosi family member) implies at most three MUBs in C^6 (Proposition 4.2); both conjectures are open.",
-      "obligation": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields.",
+      "obligation": "Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields. External: the alpha-vanishing part of Conjecture 2 for every order-6 complex Hadamard matrix not equivalent to the Tao matrix is a theorem of the OpenAI companion paper (Lean: OAI.MUB6.fourier_vanishing; external, not built here, see MUB6-OPENAI-FAMILY-LE-FIVE). Still open: the condition coupling the characters at 3a, Tao-class transitions inside triplets, Conjecture 3 and Proposition 4.2.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-CONJECTURE2-PREMISE"
@@ -16805,7 +16843,7 @@
       "parent_id": "TFQ-1230",
       "record_status": "PROVED_LEAN",
       "summary": "For the Tao matrix S6 and each of the 20 balanced sign vectors g (three +1, three -1), |sum_j prod_r S_rj^{g_r}|^2 = 9, computed over the integer Eisenstein table and over C with w = -1/2 + i sqrt 3/2.",
-      "obligation": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity.",
+      "obligation": "This is a finite evaluation for one matrix; without Conjecture 2 for arbitrary MU triples it gives no nonextension statement, and the source wording as an l1 operator norm does not match the computed quantity. Relation to OpenAI: its Fourier-vanishing theorem exempts exactly the Tao class, and the repository phase table equals OpenAI taoExponent after the index involution (3 5) (exhaustive search; lean4/MubOpenAIBridge.lean tao_phase_bridge, build pending), so this evaluation concerns the exceptional matrix. It is not an obstruction to extension.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-TAO-LAURENT-NORM-NINE"
@@ -16836,7 +16874,7 @@
       "parent_id": "TFQ-0405",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Open problem: no four pairwise mutually unbiased bases exist in C^6.",
-      "obligation": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization.",
+      "obligation": "The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-NO-QUARTET-D6"
@@ -16864,7 +16902,7 @@
       "parent_id": "TFQ-0405",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Open problem: the maximum number of pairwise mutually unbiased bases in C^6 is three.",
-      "obligation": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout.",
+      "obligation": "The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does not exist in this checkout. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-MAX-MUB-SIX-EQUALS-THREE"
@@ -16877,6 +16915,31 @@
         "papers/core/mub6/theory_of_finite_mub6.md:1199-1210",
         "papers/core/mub6/README.md:5-10",
         "papers/core/mub6/mub6_change_log.md:56-57"
+      ],
+      "python": [],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-1365",
+      "uuid": "6fbfedd9-6a5f-56f7-969b-65a333901630",
+      "local_id": "MUB6-OPENAI-FAMILY-LE-FIVE",
+      "name": "At most five mutually unbiased bases in dimension six (OpenAI, imported)",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0405",
+      "record_status": "IMPORTED_ASSUMPTION",
+      "summary": "Every family of pairwise mutually unbiased orthonormal bases of C^6 has at most five members (N(6) <= 5): OpenAI's Lean theorem OAI.MUB6.family_size_le_five (github.com/openai/math, commit 1581d4cbdd69a0faf34b2089614fe2a814316a6a, Apache-2.0), via the exact mixed-moment Gram certificate no_seven_mutually_unbiased_bases and Weiner's completion six_extend_to_seven.",
+      "obligation": "External and not built here: the upstream proof (3381 Lean files, about 205 MB, Lean 4.34.1 and its own Mathlib commit) is neither vendored nor replayed. lean4/MubOpenAIBridge.lean states the repository-type consequence conditionally on OpenAIFamilyBound and its build is pending. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported. MUB6-NO-QUARTET-D6 and MUB6-MAX-MUB-SIX-EQUALS-THREE stay OPEN.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB6-OPENAI-FAMILY-LE-FIVE"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md",
+        "papers/core/mub6/documentation/openai_mub6_le5_external_import.md",
+        "papers/core/mub6/documentation/mub6_master_classification_and_openai_comparative_synthesis.md"
       ],
       "python": [],
       "rust": [],
@@ -17391,7 +17454,7 @@
       "parent_id": "TFQ-1228",
       "record_status": "PROVED_LEAN",
       "summary": "Certified membership of a point in the stored 56-interval moduli cover is equivalent to geometric membership together with a supplied curvature certificate for its triple.",
-      "obligation": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure.",
+      "obligation": "The 56 stored intervals carry a depth label 64 and positive margins but no contractor execution, per-cell boxes, interval Jacobians or cusp collars; the curvature certificate remains a premise of conjecture3_szollosi_deltoid_closure. The legacy 28-cell, 56-cell, 24-leaf cusp and collar receipts are relabelled NOT_A_CERTIFICATE (literal margins) as of 2026-10-21.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MUB6-COVER56-CURVATURE-PREMISE"

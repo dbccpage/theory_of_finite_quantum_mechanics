@@ -6,9 +6,13 @@ target:
   source_statement: 'Open problem: the maximum number of pairwise mutually unbiased bases in C^6 is three.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent
+  source_bottleneck: 'The lower bound three is checked (MUB6-DERIV-063); the upper bound is equivalent
     to MUB6-DERIV-085 and is open; the cited Lean name MUB.TerminalTheorem.max_mub_six_equals_three does
-    not exist in this checkout.
+    not exist in this checkout. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external
+    theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is
+    recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose
+    code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize
+    it; it is not imported.'
   source_refs:
   - dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md
   - papers/core/mub6/theory_of_finite_mub6.jsonl
@@ -23,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md
-    sha256: 730133676321b15e294a77fee30b353da3a483cdc323095f2f61a51c6b640176
+    sha256: 606b96716d1874008f9c6d43c4af58b1c277c3d58e3945b735e9fa44bcdc1226
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

@@ -827,7 +827,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | Artificial versus substantial hinge holonomy witness | `COMPUTATIONAL_CONTROL` | [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | `DFM-HINGE-HOLONOMY-WITNESS` |
 | [TFQ-1137](./24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | Regge geometry, spinor coupling and continuum gravity remain open | `OPEN_OBLIGATION` | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-REGGE-GRAVITY-FENCE` |
 
-### MUTUALLY_UNBIASED_BASES (66 derivations)
+### MUTUALLY_UNBIASED_BASES (67 derivations)
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
@@ -870,6 +870,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1253](./25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md) | Tao matrix balanced Laurent sums have squared modulus nine | `PROVED_LEAN` | [TFQ-1230](./25_mub/tfq_1230_mub6_tao_matrix_chm.md) | `MUB6-TAO-LAURENT-NORM-NINE` |
 | [TFQ-1254](./25_mub/tfq_1254_mub6_no_quartet_d6.md) | Non-existence of four MUBs in dimension six (open) | `OPEN_OBLIGATION` | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | `MUB6-NO-QUARTET-D6` |
 | [TFQ-1255](./25_mub/tfq_1255_mub6_max_mub_six_equals_three.md) | Maximal number of MUBs in dimension six equals three (open) | `OPEN_OBLIGATION` | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | `MUB6-MAX-MUB-SIX-EQUALS-THREE` |
+| [TFQ-1365](./25_mub/tfq_1365_mub6_openai_family_le_five.md) | At most five mutually unbiased bases in dimension six (OpenAI, imported) | `IMPORTED_ASSUMPTION` | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | `MUB6-OPENAI-FAMILY-LE-FIVE` |
 | [TFQ-1256](./25_mub/tfq_1256_mub6_route_c_label_arithmetic.md) | Route C label-count arithmetic | `PROVED_LEAN` | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | `MUB6-ROUTE-C-LABEL-ARITHMETIC` |
 | [TFQ-1257](./25_mub/tfq_1257_mub6_route_c_conditional.md) | Route C: no complete family under a Fourier-triple landing premise | `CONDITIONAL` | [TFQ-1258](./25_mub/tfq_1258_mub6_gluing_g3_opaque.md) | `MUB6-ROUTE-C-CONDITIONAL` |
 | [TFQ-1258](./25_mub/tfq_1258_mub6_gluing_g3_opaque.md) | Combinatorial gluing over opaque bases | `PROVED_LEAN` | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | `MUB6-GLUING-G3-OPAQUE` |

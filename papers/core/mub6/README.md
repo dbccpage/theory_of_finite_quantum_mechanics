@@ -125,7 +125,7 @@ attribution and licensing remain applicable to historical source materials.
 
 Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json`) folds the records of this corpus into one graph: a record with no trunk counterpart is a NEW application-branch node with its own TFQ record; a restatement of a trunk step is an ALIAS row that points to the trunk node. *Source claimed* is the status the source asserted; *Audited* is the status the audit assigned against what is actually in this checkout (Lean declarations resolved, replays rerun, statements compared). The original claims, labels and text of this document are kept unchanged. A status below the source claim means the claim is not established as stated; it does not mean the underlying mathematics is false (only REFUTED means that). For an ALIAS row the audited column is the status of the trunk node, which is the authority for the restated step. Regenerate with `python -I -X utf8 papers/core/tools/build_corpus_dag_backlinks.py`. The MUB6 register has no status field; the claimed status of its records is PROVED_LEAN because each cites a Lean name. Rows whose id is not a `MUB6-DERIV-*` id come from the claim ledger, the paper or the atlas.
 
-62 NEW records and 51 ALIAS rows; 34 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.
+63 NEW records and 51 ALIAS rows; 35 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.
 
 | Source id | Kind | TFQ record | DAG node | Source claimed | Audited | Reconciliation |
 |---|---|---|---|---|---|---|
@@ -236,6 +236,7 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 | `MUB6-DERIV-084` | NEW | [TFQ-1250](../../../dag/derivations/25_mub/tfq_1250_mub6_five_branch_routing_claim.md) | `MUB6-FIVE-BRANCH-ROUTING-CLAIM` | PROVED_LEAN | **OPEN** | lowered |
 | `MUB6-DERIV-085` | NEW | [TFQ-1254](../../../dag/derivations/25_mub/tfq_1254_mub6_no_quartet_d6.md) | `MUB6-NO-QUARTET-D6` | PROVED_LEAN | **OPEN** | lowered |
 | `MUB6-DERIV-086` | NEW | [TFQ-1255](../../../dag/derivations/25_mub/tfq_1255_mub6_max_mub_six_equals_three.md) | `MUB6-MAX-MUB-SIX-EQUALS-THREE` | PROVED_LEAN | **OPEN** | lowered |
+| `MUB6-IMPORT-OPENAI-LE5` | NEW | [TFQ-1365](../../../dag/derivations/25_mub/tfq_1365_mub6_openai_family_le_five.md) | `MUB6-OPENAI-FAMILY-LE-FIVE` | IMPORTED_ASSUMPTION | **IMPORTED_ASSUMPTION** | same |
 | `MUB6-LEDGER-COVER56` | NEW | [TFQ-1273](../../../dag/derivations/25_mub/tfq_1273_mub6_cover56_curvature_premise.md) | `MUB6-COVER56-CURVATURE-PREMISE` | PROVED_LEAN | **PROVED_LEAN** | same |
 | `MUB6-LEDGER-G3-GLUING` | NEW | [TFQ-1258](../../../dag/derivations/25_mub/tfq_1258_mub6_gluing_g3_opaque.md) | `MUB6-GLUING-G3-OPAQUE` | PROVED_LEAN | **PROVED_LEAN** | same |
 | `MUB6-PAPER-BALANCE-SYZYGY` | NEW | [TFQ-1265](../../../dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md) | `MUB6-TRANSITION-BALANCE-SYZYGY` | PROVED_LEAN | **PROVED_LEAN** | same |

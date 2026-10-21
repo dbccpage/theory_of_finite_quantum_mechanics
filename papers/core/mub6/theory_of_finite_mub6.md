@@ -1214,6 +1214,6 @@ Establishes the terminal classification theorem: the maximal number of mutually 
 
 ## Unified DAG audit
 
-Audit of 2026-10-21. The records of this register are left exactly as written. Their audited status, DAG node and TFQ record are in the sibling file [`theory_of_finite_mub6_audit.jsonl`](theory_of_finite_mub6_audit.jsonl), one row per record (62 NEW records and 51 ALIAS rows; 34 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.). The same mapping is tabulated in the README and the claim ledger under the heading "Unified DAG".
+Audit of 2026-10-21. The records of this register are left exactly as written. Their audited status, DAG node and TFQ record are in the sibling file [`theory_of_finite_mub6_audit.jsonl`](theory_of_finite_mub6_audit.jsonl), one row per record (63 NEW records and 51 ALIAS rows; 35 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: `MUB6-DERIV-062`.). The same mapping is tabulated in the README and the claim ledger under the heading "Unified DAG".
 
 <!-- END UNIFIED-DAG-BACKLINKS -->
