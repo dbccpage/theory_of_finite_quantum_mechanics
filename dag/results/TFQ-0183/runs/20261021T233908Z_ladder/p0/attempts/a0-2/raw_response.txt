@@ -1,0 +1,24 @@
+{
+  "generators": [
+    {"name": "build_tetron_channels", "inputs": ["C0"], "output": "C1", "arity": 1, "path": "code/rust/src/majorana/tetron.rs", "decl": "build_tetron_channels"},
+    {"name": "build_tetron_islands", "inputs": ["C1"], "output": "C2", "arity": 1, "path": "code/rust/src/majorana/tetron.rs", "decl": "build_tetron_islands"},
+    {"name": "build_tetron_array", "inputs": ["C0", "C1"], "output": "C2", "arity": 2, "path": "code/rust/src/majorana/tetron.rs", "decl": "build_tetron_array"}
+  ],
+  "relations": [
+    {"relation": "assert_no_fence_claims_authority", "domain": ["C2", "FENCE_PREFIX"], "codomain": "AUTHORITY_CRATE", "path": "code/rust/src/general_relativity/certified_authority_fence.rs", "decl": "assert_no_fence_claims_authority"}
+  ],
+  "compositions": [
+    {"inner": "build_tetron_channels", "outer": "build_tetron_array", "slot": 0, "licensing_relation": "assert_no_fence_claims_authority"},
+    {"inner": "build_tetron_islands", "outer": "build_tetron_array", "slot": 1, "licensing_relation": "assert_no_fence_claims_authority"}
+  ],
+  "lemmas": [
+    {"lemma": "relation_to_target_implication", "target": "build_tetron_array_in_GF2_fence", "relation_to_target": "implies", "lean_skeleton": "theorem tetron_array_gf2_fence_bound : ∀ {α : Type}, {f : C0 → C1 → C2}, f = build_tetron_array := by sorry", "claims_proved": false}
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "tetron.rs::hardware_reading must not be promoted past lib.rs diagnostic fence",
+    "noise_mc.rs and pauli_noise.rs sweeps are not authority terminals"
+  ],
+  "status": "proposed_new"
+}

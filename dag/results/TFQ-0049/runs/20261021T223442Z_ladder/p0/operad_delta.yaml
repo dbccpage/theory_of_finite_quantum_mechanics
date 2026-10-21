@@ -1,0 +1,133 @@
+add_or_refine_generators:
+- id: unit_gauge_pair
+  ordered_inputs:
+  - Obj
+  output: Gauge
+  arity: 1
+  carrier: fusion category data over K at simple object b
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/fusion_categories/fusion_category.rs
+    declaration: unit_gauge_pair
+    line: 828
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/fusion_categories/fusion_category.rs
+    decl: unit_gauge_pair
+    kind: fn
+    line: 828
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: mf_gate
+  equation_or_predicate: A fusion ring is multiplicity-free before its category data is used for unit
+    normalization
+  typing_conditions: ring passes require_multiplicity_free
+  source_pins:
+  - path: code/rust/src/fusion_categories/fusion_category.rs
+    declaration: require_multiplicity_free
+    line: 355
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/fusion_categories/fusion_category.rs
+    decl: require_multiplicity_free
+    kind: fn
+    line: 355
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-934E4A510425
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'toric_code_is_multiplicity_free: The 2x2 fusion ring of the toric code is multiplicity-free,
+    validating the fusion_category replay for this topological data.'
+  evidence: claims_proved is true but the Lean text contains sorry/admit
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0049
+- id: NEG-7AEB658D321A
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'toric_code_unit_laws_repair: The unit laws for the toric code fusion category are repaired by
+    the canonical gauge.'
+  evidence: claims_proved is true but the Lean text contains sorry/admit
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0049
+- id: NEG-49AC5231B830
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'frobenius_decoupled_from_color_hopf: The Frobenius algebra identities replayed on matrices over
+    Q(i) for dimension 1 to 16 do not require the specific Hopf algebra structure of QCD color composites.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0049
+- id: NEG-44E121650D5F
+  class: nonexistent_declaration
+  claim_kind: generator
+  claim: 'gen_toric_fusion: (ℂ, ℂ) -> ℂ [fusion_ring_Z2xZ2]'
+  evidence: code/rust/src/fusion_categories/fusion_ring.rs has no declaration fusion_ring_Z2xZ2 and none
+    exists in the indexed sources
+  decl_key: fusion_ring_Z2xZ2
+  confidence: exact
+  model: openai/gpt-oss-20b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0049
+- id: NEG-007A8244EE31
+  class: wrong_source_location
+  claim_kind: relation
+  claim: 'rel_toric_fusion_multiplicity_free: Fusion ring g:toric_code_fusion_ring is multiplicity-free
+    [g:toric_code_fusion_ring]'
+  evidence: code/rust/src/fusion_categories/fusion_ring.rs has no declaration g; it exists at code/rust/src/finite_probability/genesis_impl_exact.rs
+  decl_key: g
+  confidence: exact
+  model: openai/gpt-oss-20b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0049
+counterexamples:
+- id: NEG-E347BF787493
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'toric_code_fusion: (Z2xZ2, Z2xZ2) -> Z2xZ2 [toric_code]'
+  evidence: rust fn toric_code takes 0 parameters; the claim says 2
+  decl_key: toric_code
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0049
+open_obligations:
+- 'Frobenius replay on Q(i) matrices with dimension 1 to 16 is not cited: no existing declaration for
+  it was supplied in @SRC or @KNOWN+'
+- No categorification for N greater than 1 is provided by the cited fusion_category declarations
+- No Hopf gauge algebra for color is available; the Frobenius side must stay on the topological cut
+- Toric code fusion ring citation g:toric_code_fusion_ring was not verified as a declaration usable in
+  a lemma here
+- 'lemma unit_repair_scope unverified: no Lean skeleton; statement consistent with sources but not elaborated'
+- 'near_miss nm_frobenius_color unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_toric_mf unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,294 @@
+{
+  "task_id": "TFQ-0159",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "0691742a2b42093aebd99dd90c532212a239406de71054d20fa9f12c7ed09b04",
+  "candidate_sha256": "7f8e93caea4ce2daded1ef6b8e25deb7ec0f191c189a950b80cfae9d38249829",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:11:31Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r-orth-diag",
+        "equation_or_predicate": "scaled_overlap b j b j = 3 for every basis b and outcome j",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/H050MubTomographyInversion.lean",
+            "declaration": "FableHilbertWalk20260819.H050.mub_orthonormal_diag",
+            "line": 11
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H050MubTomographyInversion.lean",
+          "decl": "FableHilbertWalk20260819.H050.mub_orthonormal_diag",
+          "kind": "theorem",
+          "line": 11,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "r-cross",
+        "equation_or_predicate": "scaled_overlap b1 j1 b2 j2 = 1 for distinct bases b1 and b2",
+        "typing_conditions": "b1 ≠ b2",
+        "source_pins": [
+          {
+            "path": "lean4/H050MubTomographyInversion.lean",
+            "declaration": "FableHilbertWalk20260819.H050.mub_cross_overlap",
+            "line": 37
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H050MubTomographyInversion.lean",
+          "decl": "FableHilbertWalk20260819.H050.mub_cross_overlap",
+          "kind": "theorem",
+          "line": 37,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0C43DA16A442",
+        "class": "unparseable_reply",
+        "claim_kind": "reply",
+        "claim": "",
+        "evidence": "empty_reply (truncated at max_tokens)",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-EB18C9DEA457",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "numeric_claims is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-3B5DC5D46C38",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'id': 'tomov-20', 'statement': 'composition: plug generator MUB_projector_gen_b0 into slot 0 of'}",
+        "evidence": "lemmas[19]: missing relation_to_target; lemmas[19]: missing depends_on; lemmas[19]: missing lean_skeleton",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-770E6D8EAB02",
+        "class": "wrong_source_location",
+        "claim_kind": "lemma",
+        "claim": "tomov-05: composition_tensor_mub: tensor product of two qutrit MUB systems yields 9 mutually unbiased bases",
+        "evidence": "lean4/H062CompositionTensorMub.lean has no declaration tensorAxiomList.length; it exists at code/python/src/majorana/barcode.py",
+        "decl_key": "tensorAxiomList.length",
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-66AB8E5D5BBC",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'id': 'proposed_new', 'statement': 'MUB_qubit_inversion_gen: inputs [prob], output rho, arity 1', 'relation': 'exact_inversion_b0_j0 implies rho = sum p_i Pi -",
+        "evidence": "generators[0]: missing inputs; generators[0]: missing output; generators[0]: missing arity",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-5F92FE514C66",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'id': 'tomov-r1', 'statement': 'mub_orthonormal_diag licenses scaled_overlap b j b j = 3', 'relation': 'existing', 'source': {'path': 'lean4/H050MubTomographyI",
+        "evidence": "relations[0]: missing hypotheses; relations[0]: missing ref; relations[0]: unexpected relation",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-CD9E3064AB30",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'id': 'tomov-r2', 'statement': 'mub_orthogonal_01 licenses scaled_overlap b 0 b 1 = 0', 'relation': 'existing', 'source': {'path': 'lean4/H050MubTomographyInve",
+        "evidence": "relations[1]: missing hypotheses; relations[1]: missing ref; relations[1]: unexpected relation",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-C6BDB9C2523A",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'id': 'tomov-r3', 'statement': 'tensor_axiom_count_is_four licenses TensorAxiom count = 4', 'relation': 'existing', 'source': {'path': 'lean4/H062CompositionTe",
+        "evidence": "relations[2]: missing hypotheses; relations[2]: missing ref; relations[2]: unexpected relation",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-24BEB336FEB1",
+        "class": "schema_violation",
+        "claim_kind": "compositions",
+        "claim": "{'id': 'tomov-c1', 'statement': 'composition: plug MUB_qubit_inversion_gen into slot 0 of exact_inversion_b0_j1', 'inner': 'MUB_qubit_inversion_gen', 'inner_slo",
+        "evidence": "compositions[0]: missing slot; compositions[0]: missing licensing_relation; compositions[0]: unexpected id",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-1242748A8A13",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "{'id': 'num-c4', 'expr': 'tensorAxiomList.length', 'value': '4', 'decl': 'FableHilbertWalk20260819.H062.tensor_axiom_count_is_four'}",
+        "evidence": "numeric_claims[0]: unexpected decl",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-0CD25EE19C5F",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "{'id': 'num-c3', 'expr': 'scaled_overlap b j b j', 'value': '3', 'decl': 'FableHilbertWalk20260819.H050.mub_orthonormal_diag'}",
+        "evidence": "numeric_claims[1]: unexpected decl",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      },
+      {
+        "id": "NEG-EACEC02FD420",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'id': 'tomov-l1', 'statement': 'exact_inversion_b0_j0 restates target rho = sum p_i Pi - I/2', 'relation_to_target': 'restates', 'status': 'existing', 'path': ",
+        "evidence": "lemmas[0]: missing depends_on; lemmas[0]: missing lean_skeleton; lemmas[0]: missing claims_proved",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-367A725A674A",
+        "class": "statement_drift",
+        "claim_kind": "lemma",
+        "claim": "tomov-04: real rebit countermodel: rho_rebit = sum p_i * sigma_i - I/2 where sigma_i are Pauli, checks that inversion formula holds in real subtheory",
+        "evidence": "numerals 2 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": null,
+        "confidence": "heuristic",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0159"
+      }
+    ],
+    "open_obligations": [
+      "Qutrit inversion rho = sum p Pi - I is not grounded by a listed declaration; only the MUB overlap table and exact_inversion_b0_j0 are cited.",
+      "Tensor composition of densities and the real rebit countermodel (composition_tensor_mub.rs, composition_tomography.rs) have no listed Lean declaration.",
+      "Four-wall reconstruction (four_wall_reconstruction.rs) has no listed Lean declaration.",
+      "tensorAxiomList.length count = 4 is not cited because the earlier source location was refused; it lives in H062CompositionTensorMub.lean but was not used.",
+      "Python replay of the d=3 inversion identity is not provided.",
+      "lemma l-inv-b0-j0 unverified: Lean elaboration disabled",
+      "near_miss nm-rebit unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc-diag",
+        "expr": "3",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

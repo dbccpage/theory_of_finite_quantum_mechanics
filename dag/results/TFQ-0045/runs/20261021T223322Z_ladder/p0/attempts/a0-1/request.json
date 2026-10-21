@@ -1,0 +1,307 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0045",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "02823c7920fc2fd2fd369704bc687590fc01e8f6b93069516a8c01956afb6cea",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0045 stage=P0 attempt=a0-1 in=02823c79 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] r_matrix.rs stores an exact exchange on a tensor product or on a fusion space whose dimension need not be a square. try_new refuses a non-square or empty matrix and asks elimination::inverse_with_limits to succeed under DEFAULT_BRAID_LIMITS before the matrix is kept. The residual Yang-Baxter test lives in the next module; this file only admits the operator. AuthorityEffect is None. An invertible exchange on a fusion space is a topological control. It does not act on the weighted Gell-Mann generators, and it does not produce a plaquette holonomy for the 3 by 3 QCD graph.\n@BOTTLENECK Admit an exchange only after the exact inverse check, and do not attach it to color generators.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/quality/l4a_six/a_infinity_candidate.rs | try_new | fn | pub fn try_new(modulus: u16) -> Result<Self>\n code/rust/quality/l4a_six/exact_scalar_candidate.rs | try_new | fn | pub(super) fn try_new(matrix: &'a BasicMatrix<Q>) -> Result<Self, HomologicalError>\n code/rust/quality/l4a_six/ordered_port/ordered.rs | try_new | fn | pub fn try_new( positive: usize, negative: usize, zero: usize, ) -> Result<Self, InertiaCountError>\n code/rust/quality/l4a_six/scalar_port/linear_algebra/elimination.rs | inverse_with_limits | fn | pub fn inverse_with_limits<F: Field + ExactRing>( a: &BasicMatrix<F>, limits: OperationLimits, ) -> Result<BasicMatrix<F>, ExactFieldError>\n code/rust/src/category_theory/cat_functor.rs | try_new | fn | pub fn try_new( declared: DeclaredFiniteFunctor, source: ValidatedFiniteCategory, target: ValidatedFiniteCategory, ) -> Result<Self, FunctorAdmissionE\n code/rust/src/category_theory/cauchy.rs | try_new | fn | pub fn try_new( splitting: IdempotentSplitting, compositions: &BTreeMap<(String, String), String>, identity_map: &BTreeMap<String, String>, ) -> Resul\n code/rust/src/category_theory/dagger.rs | try_new | fn | pub fn try_new( category: DeclaredFiniteCategory, dagger: BTreeMap<String, String>, ) -> Result<Self, DaggerValidationError>\n code/rust/src/category_theory/finite_category.rs | try_new | fn | pub fn try_new( declared: DeclaredFiniteCategory, ) -> Result<Self, super::validation::ValidationReport>\n code/rust/src/category_theory/finite_groupoid.rs | try_new | fn\n code/rust/src/category_theory/functor_composition.rs | try_new | fn\n code/rust/src/category_theory/higher.rs | try_new | fn\n code/rust/src/category_theory/kleisli_category.rs | try_new | fn\n code/rust/src/category_theory/legacy_monad.rs | try_new | fn\n code/rust/src/category_theory/natural_trans.rs | try_new | fn\n code/rust/src/category_theory/operad.rs | try_new | fn\n code/rust/src/finite_probability/classical_instrument.rs | try_new | fn\n code/rust/src/finite_probability/finite_set.rs | try_new | fn\n code/rust/src/finite_probability/finite_valuation.rs | try_new | fn\n code/rust/src/finite_probability/majorization.rs | try_new | fn\n code/rust/src/finite_probability/markov_chain.rs | try_new | fn\n code/rust/src/finite_probability/signed_representation.rs | try_new | fn\n code/rust/src/finite_probability/simplex.rs | try_new | fn\n code/rust/src/functional/gamma2.rs | try_new | fn\n code/rust/src/functional/gamma_reconciliation.rs | try_new | fn\n code/rust/src/fusion_categories/braid_group.rs | DEFAULT_BRAID_LIMITS | const\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:su2_level_ctor (k)->ribbon_fusion_category src=code/rust/src/fusion_categories/su2_level.rs | su2_level\n g:quantum_dimensions_fn (level)->list_of_dimensions src=code/rust/src/fusion_categories/su2_level.rs | quantum_dimensions\n r:quantum_dimensions_correct For any level k, the function quantum_dimensions returns the list of quantum dimensions of the SU(2)_k anyon m src=code/rust/src/fusion_categories/su2_level.rs | quantum_dimensions\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] su2_level_ctor . slot 0 <- quantum_dimensions_fn via quantum_dimensions_correct -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "TFQ-0044",
+      "TFQ-0046"
+    ],
+    "feedback": true,
+    "index_position": 221,
+    "neg_entry_ids": [
+      "NEG-FFD8D284DA98"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

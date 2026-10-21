@@ -1,0 +1,54 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_su3_diag_klein_four
+  equation_or_predicate: The copy count for su3 diagonal Klein‑four copies equals 4^3 = 64.
+  typing_conditions: ''
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.su3_diagonal_klein_four_landau_gribov_copies
+    line: 773
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.su3_diagonal_klein_four_landau_gribov_copies
+    kind: theorem
+    line: 773
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+- id: rel_spanning_tree_elim
+  equation_or_predicate: The spanning tree DFM eliminates Gribov copies for rational link variables.
+  typing_conditions: ''
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.spanning_tree_dfm_eliminates_gribov_copies
+    line: 791
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.spanning_tree_dfm_eliminates_gribov_copies
+    kind: theorem
+    line: 791
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Provide a Python replay of the Rust function test_su3_spanning_tree_vs_landau_gribov_control
+- 'lemma lem_target_restates unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_copy_count
+  expr: 4^3
+  value: '64'
+  host_evidence:
+    recomputed: '64'
+verified_lemma_statements: []

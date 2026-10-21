@@ -1,0 +1,65 @@
+{
+  "generators": [
+    {
+      "name": "count_targets_with_status",
+      "kind": "generator",
+      "inputs": ["FrontierTarget", "TargetStatus"],
+      "output": "usize",
+      "arity": 2,
+      "path": "code/rust/src/mub/bin/mub6_gap_solver.rs",
+      "decl": "fn count_targets_with_status(targets: &[FrontierTarget], status: TargetStatus) -> usize",
+      "status": "existing"
+    }
+  ],
+  "relations": [
+    {
+      "name": "omega_mub_is_bookkeeping",
+      "kind": "relation",
+      "inputs": ["omega_mub"],
+      "output": "omega_mub",
+      "path": "r:omega_mub_is_bookkeeping_not_derivation",
+      "relation_to_target": "reconstruction bookkeeping does not establish existence",
+      "status": "existing"
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "name": "G1_open_status",
+      "relation_to_target": "restates",
+      "lean_skeleton": "theorem G1_open : ¬(seven_mubs_exist_in_dim_6) := by admit",
+      "path": "README:MUB(6)",
+      "decl": "gap G1 is OPEN",
+      "status": "existing",
+      "claims_proved": false
+    }
+  ],
+  "near_misses": [
+    {
+      "name": "no_solver_main",
+      "description": "R6 and R7 stay NOT_A_CERTIFICATE; main prints banner without running solver",
+      "path": "code/rust/src/mub/src/bin/mub6_gap_solver.rs",
+      "decl": "fn main",
+      "status": "existing"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "24",
+      "value": "24",
+      "source": "NARROWED_COORDINATES_COUNT = 24",
+      "path": "code/rust/src/mub/src/omega_native/mub6_rectangular_exclusion_solver.rs",
+      "decl": "pub const NARROWED_COORDINATES_COUNT: usize = 24;",
+      "status": "existing"
+    }
+  ],
+  "open_obligations": [
+    "Existence of seven MUBs in dimension 6 remains unresolved",
+    "Global count of MUB(6) configurations not established by checked reductions",
+    "R6/R7 do not provide a certificate for full existence proof"
+  ],
+  "status": {
+    "overall": "OPEN",
+    "target_unresolved": true
+  }
+}

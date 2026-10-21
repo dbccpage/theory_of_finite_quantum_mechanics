@@ -1,0 +1,232 @@
+{
+  "task_id": "TFQ-0132",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-4",
+  "input_sha256": "67405bd173177f2d1e8380c32f0737718b25a4fd728f3041acdfb851c2278069",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "gen_opNorm",
+          "inputs": [
+            "Eig2",
+            "Int"
+          ],
+          "output": "Int",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_zero_gap",
+          "equation_or_predicate": "pairing L (optimalVec2 L) = opNorm L (optimalShift L)",
+          "typing_conditions": "L : Eig2",
+          "source_pins": [
+            {
+              "path": "lean4/TraceZeroDuality.lean",
+              "declaration": "TraceZeroDuality.trace_zero_duality_gap_zero",
+              "line": 83
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/TraceZeroDuality.lean",
+            "decl": "TraceZeroDuality.trace_zero_duality_gap_zero",
+            "kind": "theorem",
+            "line": 83,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No cited declaration covers the Python replay or the Q(i) Hermitian matrix primal split H = P - N.",
+        "The irrational-spectrum refusal is not grounded in any listed declaration.",
+        "The Lean declaration matching the zero-gap trace-norm witness for trace_norm_certificate.rs is not available under @SRC.",
+        "Dual witness generator is not grounded; gen_dual_witness and gen_split_primal are not cited as existing.",
+        "AuthorityEffect: None.",
+        "lemma lem_split_gap_instance unverified: Lean elaboration disabled",
+        "near_miss nm_irrational_refusal unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_opNorm",
+        "ordered_inputs": [
+          "Eig2",
+          "Int"
+        ],
+        "output": "Int",
+        "arity": 2,
+        "carrier": "Int",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/TraceZeroDuality.lean",
+            "declaration": "TraceZeroDuality.opNorm",
+            "line": 67
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/TraceZeroDuality.lean",
+          "decl": "TraceZeroDuality.opNorm",
+          "kind": "def",
+          "line": 67,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_zero_gap",
+        "equation_or_predicate": "pairing L (optimalVec2 L) = opNorm L (optimalShift L)",
+        "typing_conditions": "L : Eig2",
+        "source_pins": [
+          {
+            "path": "lean4/TraceZeroDuality.lean",
+            "declaration": "TraceZeroDuality.trace_zero_duality_gap_zero",
+            "line": 83
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TraceZeroDuality.lean",
+          "decl": "TraceZeroDuality.trace_zero_duality_gap_zero",
+          "kind": "theorem",
+          "line": 83,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9C3A10946684",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "gen_dual_witness . slot 0 <- gen_split_primal via rel_dual_gap_zero",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0132"
+      },
+      {
+        "id": "NEG-84436F7E9132",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "lem_zero_gap_clamp: The duality gap between the primal split and the dual witness reduces to checking that the optimal dual witness achieves the spectral bound (spread). If the spectrum is irrational, the gap is non-zero and the certificate fails.",
+        "evidence": "claims_proved is true but the Lean text contains sorry/admit",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0132"
+      },
+      {
+        "id": "NEG-DDCF604D108F",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "lem_trace_norm_witness: Roughly the claim that the norm of the Hermitian Q(i) matrix, when restricted to the trace-zero subspace, is provided exactly by the pairing with the optimal dual witness for the calculated shift.",
+        "evidence": "claims_proved is true but the Lean text contains sorry/admit",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0132"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-120B64845231",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "gen_split_primal: (HermitianQ) -> PrimalSplit [TraceZeroDuality.opNorm]",
+        "evidence": "lean def opNorm has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "TraceZeroDuality.opNorm",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0132"
+      }
+    ],
+    "open_obligations": [
+      "No cited declaration covers the Python replay or the Q(i) Hermitian matrix primal split H = P - N.",
+      "The irrational-spectrum refusal is not grounded in any listed declaration.",
+      "The Lean declaration matching the zero-gap trace-norm witness for trace_norm_certificate.rs is not available under @SRC.",
+      "Dual witness generator is not grounded; gen_dual_witness and gen_split_primal are not cited as existing.",
+      "AuthorityEffect: None.",
+      "lemma lem_split_gap_instance unverified: Lean elaboration disabled",
+      "near_miss nm_irrational_refusal unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_spread_split",
+        "expr": "4 - 0",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

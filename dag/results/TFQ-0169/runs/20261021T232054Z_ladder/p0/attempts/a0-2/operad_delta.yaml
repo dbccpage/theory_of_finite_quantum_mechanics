@@ -1,0 +1,117 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-5BE66A98CED3
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''shannon_entropy_form'', ''inputs'': [''ProbabilitySimplex''], ''output'': ''LogForm'',
+    ''arity'': 1}'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-A58A30D8396E
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''relative_entropy_form'', ''inputs'': [''ProbabilitySimplex'', ''ProbabilitySimplex''],
+    ''output'': ''LogForm'', ''arity'': 2}'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-0B961DC000A7
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''renyi_entropy_form'', ''inputs'': [''ProbabilitySimplex''], ''output'': ''LogForm'',
+    ''arity'': 1}'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-986FCE6C44D6
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''source'': ''log_form.rs'', ''relation'': ''logarithmic_enclosure_preserves_exact_form'',
+    ''description'': ''Enclosure returns rational interval around LogForm but canno'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-FC6E996D17F0
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''0'', ''value'': ''0'', ''context'': ''deterministic_distribution_entropy_form_zero''}'
+  evidence: 'numeric_claims[0]: missing id; numeric_claims[0]: unexpected context'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-82E4230D804A
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''the_entropy_form_is_zero_exactly_for_deterministic_distributions'', ''relation_to_target'':
+    ''implies'', ''status'': ''existing'', ''path'': ''code/rust/src/finit'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-6C41B8392029
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''the_entropy_form_does_not_depend_on_the_order_of_the_masses'', ''relation_to_target'':
+    ''strengthens'', ''status'': ''existing'', ''path'': ''code/rust/src/finite'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-823BF1E79BAA
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''a_form_is_canonical_arithmetic_cancels_and_equal_values_have_equal_forms'', ''relation_to_target'':
+    ''restates'', ''status'': ''existing'', ''path'': ''code/rust/'
+  evidence: 'lemmas[2]: missing id; lemmas[2]: missing statement; lemmas[2]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0169
+counterexamples: []
+open_obligations:
+- omega_measurement_interval_distinction
+- prime_logarithm_coefficient_map_authority
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

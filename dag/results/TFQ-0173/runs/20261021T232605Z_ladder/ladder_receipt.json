@@ -1,0 +1,460 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "TFQ-0173",
+  "stage": "P0",
+  "run_id": "TFQ-0173/20261021T232605Z_ladder",
+  "finished_utc": "2026-10-21T23:28:23Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 4,
+  "free_calls": 3,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "qwen/qwen3.8-27b",
+        "openai/gpt-oss-20b",
+        "nvidia/nemotron-3.5-lightning:free",
+        "poolside/laguna-s-2.1:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.05,
+  "summary": {
+    "node_id": "TFQ-0173",
+    "run_id": "TFQ-0173/20261021T232605Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_2",
+    "accepted_attempt": "a2-5",
+    "best_attempt": "a2-5",
+    "attempts": [
+      {
+        "attempt_id": "a0-1",
+        "tier": 0,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 10,
+        "known_pos_injected": 3,
+        "input_sha256": "5b5f7f8abac6ec60be1d1e2413cd1a991720ff96092a0ae81ae70d7952bde977",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-6DC6CE33DAFB",
+          "NEG-71A23886A5C3",
+          "NEG-7624955E85F6",
+          "NEG-80FDE1EB737E",
+          "NEG-840AE65616C2",
+          "NEG-96A269687245",
+          "NEG-9ED8BDD8BFC7",
+          "NEG-B93C9377131B",
+          "NEG-FFC331823012"
+        ],
+        "status": "infra_error",
+        "code": "rate_limited",
+        "message": "provider rate limit; suggested wait 679.0s",
+        "backoff": [
+          {
+            "status": 429,
+            "wait_s": 679.0
+          }
+        ]
+      },
+      {
+        "attempt_id": "a0-2",
+        "tier": 0,
+        "provider": "openrouter",
+        "model": "poolside/laguna-s-2.1:free",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 10,
+        "known_pos_injected": 3,
+        "input_sha256": "b7706f43798c84df07a42619f97958f492949d27758dcf8875d9238216768f40",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-6DC6CE33DAFB",
+          "NEG-71A23886A5C3",
+          "NEG-7624955E85F6",
+          "NEG-80FDE1EB737E",
+          "NEG-840AE65616C2",
+          "NEG-96A269687245",
+          "NEG-9ED8BDD8BFC7",
+          "NEG-B93C9377131B",
+          "NEG-FFC331823012"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 1,
+        "failure_rate": 1.0,
+        "failures_by_class": {
+          "unparseable_reply": 1
+        },
+        "unverifiable": 0,
+        "input_tokens": 2016,
+        "output_tokens": 3500,
+        "cost_microusd": 0,
+        "request_id": "gen-1792625166-p4Or5Y9ramu6NZ7uBzaL",
+        "latency_s": 57.115,
+        "stop_reason": "length",
+        "served_model": "poolside/laguna-s-2.1:free",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-0C43DA16A442"
+        ]
+      },
+      {
+        "attempt_id": "a0-3",
+        "tier": 0,
+        "provider": "openrouter",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 10,
+        "known_pos_injected": 3,
+        "input_sha256": "ae35cc5e590c05a5249b8e20a07ad4049d8429067de32cb1c69ea635499d8b6c",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-6DC6CE33DAFB",
+          "NEG-71A23886A5C3",
+          "NEG-7624955E85F6",
+          "NEG-80FDE1EB737E",
+          "NEG-840AE65616C2",
+          "NEG-96A269687245",
+          "NEG-9ED8BDD8BFC7",
+          "NEG-B93C9377131B",
+          "NEG-FFC331823012"
+        ],
+        "status": "rejected",
+        "verified_total": 1,
+        "failures_total": 1,
+        "failure_rate": 0.5,
+        "failures_by_class": {
+          "wrong_signature": 1
+        },
+        "unverifiable": 1,
+        "input_tokens": 2146,
+        "output_tokens": 535,
+        "cost_microusd": 0,
+        "request_id": "gen-1792625224-muhkez8f31UT1prQiPQB",
+        "latency_s": 4.718,
+        "stop_reason": "stop",
+        "served_model": "nvidia/nemotron-3.5-lightning:free",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-428707EEDB70"
+        ]
+      },
+      {
+        "attempt_id": "a0-4",
+        "tier": 0,
+        "provider": "openrouter",
+        "model": "poolside/laguna-s-2.1:free",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 11,
+        "known_pos_injected": 3,
+        "input_sha256": "a5fc4b6d94df03cbe6b6dc7cb7aa7d3f49a3c8b3aaa492ec6fe82eefe9743966",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-6DC6CE33DAFB",
+          "NEG-71A23886A5C3",
+          "NEG-7624955E85F6",
+          "NEG-80FDE1EB737E",
+          "NEG-840AE65616C2",
+          "NEG-96A269687245",
+          "NEG-9ED8BDD8BFC7",
+          "NEG-B93C9377131B",
+          "NEG-FFC331823012",
+          "NEG-428707EEDB70"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 1,
+        "failure_rate": 1.0,
+        "failures_by_class": {
+          "unparseable_reply": 1
+        },
+        "unverifiable": 0,
+        "input_tokens": 2038,
+        "output_tokens": 3500,
+        "cost_microusd": 0,
+        "request_id": "gen-1792625229-RXkt8gHU7QCI2GRmK6Qv",
+        "latency_s": 67.434,
+        "stop_reason": "length",
+        "served_model": "poolside/laguna-s-2.1:free",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-0C43DA16A442"
+        ]
+      },
+      {
+        "attempt_id": "a2-5",
+        "tier": 2,
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "effort": "low",
+        "guided": true,
+        "known_neg_injected": 11,
+        "known_pos_injected": 3,
+        "input_sha256": "70666254dbd434863c5a02b99462b1e8a0904839f6457080621edac34828a478",
+        "injected_neg_ids": [
+          "NEG-0C43DA16A442",
+          "NEG-6DC6CE33DAFB",
+          "NEG-71A23886A5C3",
+          "NEG-7624955E85F6",
+          "NEG-80FDE1EB737E",
+          "NEG-840AE65616C2",
+          "NEG-96A269687245",
+          "NEG-9ED8BDD8BFC7",
+          "NEG-B93C9377131B",
+          "NEG-FFC331823012",
+          "NEG-428707EEDB70"
+        ],
+        "status": "accepted",
+        "verified_total": 2,
+        "failures_total": 1,
+        "failure_rate": 0.3333,
+        "failures_by_class": {
+          "wrong_signature": 1
+        },
+        "unverifiable": 2,
+        "input_tokens": 5425,
+        "output_tokens": 802,
+        "cost_microusd": 944,
+        "request_id": "req_011CgGFTJXx2Ko8jgRsPiW8w",
+        "latency_s": 3.914,
+        "stop_reason": "end_turn",
+        "served_model": "claude-haiku-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-F66958CBA930"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "0": {
+        "calls": 4,
+        "sent": 3,
+        "input_tokens": 6200,
+        "output_tokens": 7535,
+        "cost_microusd": 0,
+        "errors": 1,
+        "refused_before_dispatch": 0
+      },
+      "2": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 5425,
+        "output_tokens": 802,
+        "cost_microusd": 944,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 944,
+    "spend_usd": 0.000944,
+    "hallucinations_by_class": {
+      "unparseable_reply": 2,
+      "wrong_signature": 2
+    },
+    "hallucinations_by_model": {
+      "poolside/laguna-s-2.1:free": {
+        "unparseable_reply": 2
+      },
+      "nvidia/nemotron-3.5-lightning:free": {
+        "wrong_signature": 1
+      },
+      "claude-haiku-5-5": {
+        "wrong_signature": 1
+      }
+    },
+    "verified": {
+      "generators": 1,
+      "relations": 1,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a0-1:0dea05b1",
+      "run_id": "TFQ-0173/20261021T232605Z_ladder",
+      "attempt_id": "a0-1",
+      "tier": 0,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T23:26:06Z",
+      "status": "error",
+      "estimated_input_tokens": 3583,
+      "estimate_microusd": 0,
+      "error_code": "rate_limited",
+      "error": "provider rate limit; suggested wait 679.0s",
+      "http_status": 429,
+      "backoff_events": [
+        {
+          "status": 429,
+          "wait_s": 679.0
+        }
+      ],
+      "retry_after": 679.0
+    },
+    {
+      "call_id": "a0-2:6e9fa55c",
+      "run_id": "TFQ-0173/20261021T232605Z_ladder",
+      "attempt_id": "a0-2",
+      "tier": 0,
+      "provider": "openrouter",
+      "model": "poolside/laguna-s-2.1:free",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T23:26:06Z",
+      "status": "ok",
+      "estimated_input_tokens": 3583,
+      "estimate_microusd": 0,
+      "served_model": "poolside/laguna-s-2.1:free",
+      "input_tokens": 2016,
+      "output_tokens": 3500,
+      "cost_microusd": 0,
+      "cost_source": "provider_receipt",
+      "request_id": "gen-1792625166-p4Or5Y9ramu6NZ7uBzaL",
+      "stop_reason": "length",
+      "stop_category": null,
+      "truncated": true,
+      "latency_s": 57.115,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a0-3:319da6cc",
+      "run_id": "TFQ-0173/20261021T232605Z_ladder",
+      "attempt_id": "a0-3",
+      "tier": 0,
+      "provider": "openrouter",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T23:27:03Z",
+      "status": "ok",
+      "estimated_input_tokens": 3583,
+      "estimate_microusd": 0,
+      "served_model": "nvidia/nemotron-3.5-lightning:free",
+      "input_tokens": 2146,
+      "output_tokens": 535,
+      "cost_microusd": 0,
+      "cost_source": "provider_receipt",
+      "request_id": "gen-1792625224-muhkez8f31UT1prQiPQB",
+      "stop_reason": "stop",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 4.718,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a0-4:d2854e0f",
+      "run_id": "TFQ-0173/20261021T232605Z_ladder",
+      "attempt_id": "a0-4",
+      "tier": 0,
+      "provider": "openrouter",
+      "model": "poolside/laguna-s-2.1:free",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T23:27:08Z",
+      "status": "ok",
+      "estimated_input_tokens": 3618,
+      "estimate_microusd": 0,
+      "served_model": "poolside/laguna-s-2.1:free",
+      "input_tokens": 2038,
+      "output_tokens": 3500,
+      "cost_microusd": 0,
+      "cost_source": "provider_receipt",
+      "request_id": "gen-1792625229-RXkt8gHU7QCI2GRmK6Qv",
+      "stop_reason": "length",
+      "stop_category": null,
+      "truncated": true,
+      "latency_s": 67.434,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a2-5:f6b806a1",
+      "run_id": "TFQ-0173/20261021T232605Z_ladder",
+      "attempt_id": "a2-5",
+      "tier": 2,
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "family": "anthropic",
+      "effort": "low",
+      "max_tokens": 4000,
+      "started_utc": "2026-10-21T23:28:16Z",
+      "status": "ok",
+      "estimated_input_tokens": 4899,
+      "estimate_microusd": 2490,
+      "served_model": "claude-haiku-5-5",
+      "input_tokens": 5425,
+      "output_tokens": 802,
+      "cost_microusd": 944,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGFTJXx2Ko8jgRsPiW8w",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 3.914,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 0.632613,
+    "anthropic_cap_microusd": 25.605884,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

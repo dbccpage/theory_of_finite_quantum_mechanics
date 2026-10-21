@@ -1,0 +1,422 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R_d4_purity_deficit
+  equation_or_predicate: valuation_purity_d4 - max_physical_purity = 3
+  typing_conditions: none; host-verified Lean theorem in H051 file
+  source_pins:
+  - path: lean4/H051Mub4GaloisFieldContextuality.lean
+    declaration: FableHilbertWalk20260819.H051.clifton_kent_d4_purity_deficit
+    line: 88
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H051Mub4GaloisFieldContextuality.lean
+    decl: FableHilbertWalk20260819.H051.clifton_kent_d4_purity_deficit
+    kind: theorem
+    line: 88
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: R_d3_inversion_all_bases
+  equation_or_predicate: mixed-state reconstructed overlaps under exact rational inversion are recorded
+    for dimension 3 bases
+  typing_conditions: dimension 3 tomography data prob_mixed; scope limited to dimension 3
+  source_pins:
+  - path: lean4/H050MubTomographyInversion.lean
+    declaration: FableHilbertWalk20260819.H050.mixed_state_inversion_all_bases
+    line: 111
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H050MubTomographyInversion.lean
+    decl: FableHilbertWalk20260819.H050.mixed_state_inversion_all_bases
+    kind: theorem
+    line: 111
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: R_d6_product_count_is_input
+  equation_or_predicate: product_mub_count_d6 = 3 is a recorded input value, not an exhaustive d=6 MUB
+    census
+  typing_conditions: none; scope is product-MUB bookkeeping
+  source_pins:
+  - path: lean4/H062CompositionTensorMub.lean
+    declaration: FableHilbertWalk20260819.H062.product_mub_count_is_three
+    line: 79
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H062CompositionTensorMub.lean
+    decl: FableHilbertWalk20260819.H062.product_mub_count_is_three
+    kind: theorem
+    line: 79
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-E3700F623C2B
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_dimension_scope: The existing Lean MUB reconstructions in dimensions 3 and 4 do not establish
+    existence of a complete set of mutually unbiased bases in dimension 6; the d=6 question remains open.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0180
+- id: NEG-292AD682ACFF
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''prob_mixed'', ''basis_index'', ''state_index''], ''output'': ''reconstructed_overlap_scaled'',
+    ''arity'': 3, ''name'': ''mixed_state_inversion_all_bases'', ''path'''
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-F6286B1B6503
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [], ''output'': ''mub5_d4_partition'', ''arity'': 0, ''name'': ''five_mub_isotropic_lines_partition'',
+    ''path'': ''lean4/H051Mub4GaloisFieldContextuality.lean'', '''
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-70098FF91523
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''d1'', ''d2''], ''output'': ''Nat'', ''arity'': 2, ''name'': ''product_mub_count_d6'',
+    ''path'': ''lean4/H062CompositionTensorMub.lean'', ''decl'': ''FableHilbertWalk20'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-B7FB36DC7340
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''outer'': ''mixed_state_inversion_all_bases'', ''slot'': 0, ''inner'': ''product_mub_count_d6'',
+    ''relation'': ''product_mub_count_is_three'', ''status'': ''proposed_new''}'
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected relation; compositions[0]:
+    unexpected status'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-7B26F90489DA
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''valuation_purity_d4 - max_physical_purity'', ''value'': ''3''}'
+  evidence: 'numeric_claims[0]: missing id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-D8D83F1C00D8
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''product_mub_count_d6'', ''value'': ''3''}'
+  evidence: 'numeric_claims[1]: missing id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-3FABE517338C
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''relation_to_target'': ''restates'', ''lean_skeleton'': ''theorem reconstruct_d3_inversion
+    : reconstructed_overlap_scaled prob_mixed 0 0 = 1 ∧ reconstructed_overlap_'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-353363311781
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''relation_to_target'': ''auxiliary'', ''lean_skeleton'': ''theorem d4_purity_deficit_obstruction
+    : valuation_purity_d4 - max_physical_purity = 3'', ''claims_proved'': T'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-2D4A59339695
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''F030CliftonKentNonPSD'', ''inputs'': [''MUBVertex''], ''output'': ''Prop'', ''path'':
+    ''lean4/H030OctahedralMubCliftonKent.lean'', ''decl'': ''FableHilbertWalk2026081'
+  evidence: 'generators[0]: missing id; generators[0]: missing arity; generators[0]: missing carrier'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-A921B24AE640
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''F050MixedStateInversion'', ''inputs'': [''MixedState'', ''Nat'', ''Nat''], ''output'':
+    ''Q'', ''path'': ''lean4/H050MubTomographyInversion.lean'', ''decl'': ''FableHilber'
+  evidence: 'generators[1]: missing id; generators[1]: missing arity; generators[1]: missing carrier'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-83010396EAA9
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''F051D4PurityObstruction'', ''inputs'': [''PauliString''], ''output'': ''Prop'',
+    ''path'': ''lean4/H051Mub4GaloisFieldContextuality.lean'', ''decl'': ''FableHilbertWal'
+  evidence: 'generators[2]: missing id; generators[2]: missing arity; generators[2]: missing carrier'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-FC8388DD09CC
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''F051FiveMUBPartition'', ''inputs'': [''List PauliString''], ''output'': ''Prop'',
+    ''path'': ''lean4/H051Mub4GaloisFieldContextuality.lean'', ''decl'': ''FableHilbertW'
+  evidence: 'generators[3]: missing id; generators[3]: missing arity; generators[3]: missing carrier'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-59BFB500157E
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''F062ProductMUBCountD6'', ''inputs'': [], ''output'': ''Nat'', ''path'': ''lean4/H062CompositionTensorMub.lean'',
+    ''decl'': ''FableHilbertWalk20260819.H062.product_m'
+  evidence: 'generators[4]: missing id; generators[4]: missing arity; generators[4]: missing carrier'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-B69CF88BD5CF
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''F030NonPSDRestartsCliftonKent'', ''inputs'': [''MUBVertex''], ''output'': ''Prop'',
+    ''relation_to_generator'': ''F030CliftonKentNonPSD'', ''description'': ''Restates '
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-4EC2522312AB
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''F050InversionReconstruct'', ''inputs'': [''MixedState'', ''Nat'', ''Nat''], ''output'':
+    ''Q'', ''relation_to_generator'': ''F050MixedStateInversion'', ''description'': '''
+  evidence: 'relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-39C6FA0CF3A1
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''F051PartitionLines'', ''inputs'': [''List PauliString''], ''output'': ''Prop'',
+    ''relation_to_generator'': ''F051FiveMUBPartition'', ''description'': ''Verifies 15 Pa'
+  evidence: 'relations[2]: missing id; relations[2]: missing statement; relations[2]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-05703623543F
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''F062ProductCountRecorded'', ''inputs'': [], ''output'': ''Nat'', ''relation_to_generator'':
+    ''F062ProductMUBCountD6'', ''description'': ''Records product-MUB count '
+  evidence: 'relations[3]: missing id; relations[3]: missing statement; relations[3]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-16C5B82A3052
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''inner'': ''F051FiveMUBPartition'', ''outer'': ''F051D4PurityObstruction'', ''slot'': 0, ''relation'':
+    ''F051PartitionLines'', ''description'': ''Use 5-MUB partition structure'
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected relation; compositions[0]:
+    unexpected description'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-9837F0A5DF0B
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''inner'': ''TensorTomography.productMap'', ''outer'': ''F062ProductMUBCountD6'', ''slot'':
+    0, ''relation'': ''F062ProductCountRecorded'', ''description'': ''Compose TensorTomo'
+  evidence: 'compositions[1]: missing licensing_relation; compositions[1]: unexpected relation; compositions[1]:
+    unexpected description'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-1F5E1879F827
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''reconstructed_overlap_scaled prob_mixed 0 0 - reconstructed_overlap_scaled prob_mixed
+    1 0'', ''value'': ''0'', ''source'': ''H050.mixed_state_inversion_all_ba'
+  evidence: 'numeric_claims[0]: missing id; numeric_claims[0]: unexpected source'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-9C4786751389
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''tensorAxiomList.length'', ''value'': ''4'', ''source'': ''H062.tensor_axiom_count_is_four''}'
+  evidence: 'numeric_claims[1]: missing id; numeric_claims[1]: unexpected source'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-27D65F7F0C74
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''all15Paulis.length'', ''value'': ''15'', ''source'': ''H051.five_mub_isotropic_lines_partition''}'
+  evidence: 'numeric_claims[2]: missing id; numeric_claims[2]: unexpected source'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-26C070550AA6
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''valuation_purity_d4 - max_physical_purity'', ''value'': ''3'', ''source'': ''H051.clifton_kent_d4_purity_deficit''}'
+  evidence: 'numeric_claims[3]: missing id; numeric_claims[3]: unexpected source'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-35E10075A82C
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''product_mub_count_d6'', ''value'': ''3'', ''source'': ''H062.product_mub_count_is_three''}'
+  evidence: 'numeric_claims[4]: missing id; numeric_claims[4]: unexpected source'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-E0FC770C6E5A
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''F050ExactRationalInversionLemma'', ''relation_to_target'': ''restates'', ''lean_skeleton'':
+    ''theorem d3_mub4_exact_reconstruction (s : MixedState) : reconstr'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-7BCFDBE19FEE
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''F051PauliPartitionLemma'', ''relation_to_target'': ''implies'', ''lean_skeleton'':
+    ''theorem pauli_string_partition_d4 (lines : List (List PauliString)) : lin'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-D9E00FF54ECC
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''F062ProductCountOpen'', ''relation_to_target'': ''auxiliary'', ''lean_skeleton'':
+    ''theorem product_mub_count_d6_eq_three : product_mub_count_d6 = 3'', ''claims'
+  evidence: 'lemmas[2]: missing id; lemmas[2]: missing statement; lemmas[2]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0180
+counterexamples: []
+open_obligations:
+- Exhaustive classification or existence of a complete set of MUBs in dimension 6 remains open; keep it
+  on the open node.
+- No existing declaration establishes a d=6 MUB census; H062 product_mub_count_d6 is an input recording
+  only.
+- H030 clifton_kent_non_psd_obstruction concerns an integer octahedron frame and is not cited as a d=6
+  result.
+- Numeric claim N_d4_deficit is recorded from the host-verified H051 statement; host should recompute.
+- 'numeric N_d4_deficit unverified: expression not exactly evaluable'
+- 'near_miss NM_d3_d4_to_d6 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_product_count_as_census unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

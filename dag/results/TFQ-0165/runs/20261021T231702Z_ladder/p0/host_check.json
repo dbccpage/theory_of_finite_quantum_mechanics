@@ -1,0 +1,134 @@
+{
+  "task_id": "TFQ-0165",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "8b05f37b62aa6e2e87b7978dfeb7b6d02c1ef121700c5893271409dc6afbc477",
+  "candidate_sha256": "3b93fad1584d63c77ec2d38e5d45448aa9e4f3a2d268194ea6207f84631e4d95",
+  "status": "incomplete",
+  "model": "nvidia/nemotron-3.5-lightning:free",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:19:37Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-79DE13C7AD0D",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "generators is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-452E93396795",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "relations is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-CAFAE85E2E4F",
+        "class": "schema_violation",
+        "claim_kind": "compositions",
+        "claim": "compositions is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-EB18C9DEA457",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "numeric_claims is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-B4702F316C4F",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "lemmas is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      },
+      {
+        "id": "NEG-0C43DA16A442",
+        "class": "unparseable_reply",
+        "claim_kind": "reply",
+        "claim": "",
+        "evidence": "empty_reply (truncated at max_tokens)",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0165"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Match area-label surd of j(j+1) at spin j = n/2 with declared normalization of finite spin benchmark",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

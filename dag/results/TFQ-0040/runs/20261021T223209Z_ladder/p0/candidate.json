@@ -1,0 +1,161 @@
+{
+  "task_id": "TFQ-0040",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "6e3fb8c607b3817c1ec764dfbf989242953fde8c509a1fae1545ef27461ecbee",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "gen_lg_matrix_product",
+          "inputs": [
+            "q",
+            "q"
+          ],
+          "output": "q",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_lg_closure",
+          "equation_or_predicate": "Matrix product closes on the finite rational template.",
+          "typing_conditions": "a, b ∈ Matrix4",
+          "source_pins": [
+            {
+              "path": "lean4/H076LatticeGaugeManybodyBenchmark.lean",
+              "declaration": "FableHilbertWalk20260819.H076.hMatrix",
+              "line": 15
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H076LatticeGaugeManybodyBenchmark.lean",
+            "decl": "FableHilbertWalk20260819.H076.hMatrix",
+            "kind": "def",
+            "line": 15,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "tier": 0
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "F002.S001",
+        "Lean twin for QM-213",
+        "Python twin for Gribov diamond",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_lg_matrix_product",
+        "ordered_inputs": [
+          "q",
+          "q"
+        ],
+        "output": "q",
+        "arity": 2,
+        "carrier": "q",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/lattice_gauge.py",
+            "declaration": "_matrix_product",
+            "line": 39
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/lattice_gauge.py",
+          "decl": "_matrix_product",
+          "kind": "def",
+          "line": 39,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_lg_closure",
+        "equation_or_predicate": "Matrix product closes on the finite rational template.",
+        "typing_conditions": "a, b ∈ Matrix4",
+        "source_pins": [
+          {
+            "path": "lean4/H076LatticeGaugeManybodyBenchmark.lean",
+            "declaration": "FableHilbertWalk20260819.H076.hMatrix",
+            "line": 15
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H076LatticeGaugeManybodyBenchmark.lean",
+          "decl": "FableHilbertWalk20260819.H076.hMatrix",
+          "kind": "def",
+          "line": 15,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "F002.S001",
+      "Lean twin for QM-213",
+      "Python twin for Gribov diamond",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

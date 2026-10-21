@@ -1,0 +1,176 @@
+{
+  "generators": [
+    {
+      "name": "F030CliftonKentNonPSD",
+      "inputs": [
+        "MUBVertex"
+      ],
+      "output": "Prop",
+      "path": "lean4/H030OctahedralMubCliftonKent.lean",
+      "decl": "FableHilbertWalk20260819.H030.clifton_kent_non_psd_obstruction",
+      "status": "existing",
+      "description": "Octahedral frame obstruction in d=3 via non-PSD vertices."
+    },
+    {
+      "name": "F050MixedStateInversion",
+      "inputs": [
+        "MixedState",
+        "Nat",
+        "Nat"
+      ],
+      "output": "Q",
+      "path": "lean4/H050MubTomographyInversion.lean",
+      "decl": "FableHilbertWalk20260819.H050.mixed_state_inversion_all_bases",
+      "status": "existing",
+      "description": "Exact rational inversion of 4 MUBs in d=3; reconstructs state overlaps."
+    },
+    {
+      "name": "F051D4PurityObstruction",
+      "inputs": [
+        "PauliString"
+      ],
+      "output": "Prop",
+      "path": "lean4/H051Mub4GaloisFieldContextuality.lean",
+      "decl": "FableHilbertWalk20260819.H051.clifton_kent_d4_purity_obstruction",
+      "status": "existing",
+      "description": "Obstruction in d=4 from Pauli string valuation purity deficit."
+    },
+    {
+      "name": "F051FiveMUBPartition",
+      "inputs": [
+        "List PauliString"
+      ],
+      "output": "Prop",
+      "path": "lean4/H051Mub4GaloisFieldContextuality.lean",
+      "decl": "FableHilbertWalk20260819.H051.five_mub_isotropic_lines_partition",
+      "status": "existing",
+      "description": "Five MUBs in d=4 yield 15 Pauli strings partitioned into 5 isotropic lines."
+    },
+    {
+      "name": "F062ProductMUBCountD6",
+      "inputs": [],
+      "output": "Nat",
+      "path": "lean4/H062CompositionTensorMub.lean",
+      "decl": "FableHilbertWalk20260819.H062.product_mub_count_d6",
+      "status": "existing",
+      "description": "Recorded count of product-MUBs in d=6 (tensor product of d=2 and d=3)."
+    }
+  ],
+  "relations": [
+    {
+      "name": "F030NonPSDRestartsCliftonKent",
+      "inputs": [
+        "MUBVertex"
+      ],
+      "output": "Prop",
+      "relation_to_generator": "F030CliftonKentNonPSD",
+      "description": "Restates d=3 octahedral obstruction as non-PSD bloch radius squared."
+    },
+    {
+      "name": "F050InversionReconstruct",
+      "inputs": [
+        "MixedState",
+        "Nat",
+        "Nat"
+      ],
+      "output": "Q",
+      "relation_to_generator": "F050MixedStateInversion",
+      "description": "Exact rational reconstruction via four MUBs in d=3."
+    },
+    {
+      "name": "F051PartitionLines",
+      "inputs": [
+        "List PauliString"
+      ],
+      "output": "Prop",
+      "relation_to_generator": "F051FiveMUBPartition",
+      "description": "Verifies 15 Pauli strings partition into 5 lines of length 3 in d=4."
+    },
+    {
+      "name": "F062ProductCountRecorded",
+      "inputs": [],
+      "output": "Nat",
+      "relation_to_generator": "F062ProductMUBCountD6",
+      "description": "Records product-MUB count in d=6 as 3 without asserting exhaustive existence."
+    }
+  ],
+  "compositions": [
+    {
+      "inner": "F051FiveMUBPartition",
+      "outer": "F051D4PurityObstruction",
+      "slot": 0,
+      "relation": "F051PartitionLines",
+      "description": "Use 5-MUB partition structure to infer d=4 purity obstruction."
+    },
+    {
+      "inner": "TensorTomography.productMap",
+      "outer": "F062ProductMUBCountD6",
+      "slot": 0,
+      "relation": "F062ProductCountRecorded",
+      "description": "Compose TensorTomography.tensor_maps with recorded product-MUB count to model d=6 product structure."
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "F050ExactRationalInversionLemma",
+      "relation_to_target": "restates",
+      "lean_skeleton": "theorem d3_mub4_exact_reconstruction (s : MixedState) : reconstructed_overlap_scaled s 0 0 = 1 ∧ ...",
+      "claims_proved": true,
+      "description": "Restates H050 inversion theorem as exact rational reconstruction in d=3."
+    },
+    {
+      "name": "F051PauliPartitionLemma",
+      "relation_to_target": "implies",
+      "lean_skeleton": "theorem pauli_string_partition_d4 (lines : List (List PauliString)) : lines.length = 5 ∧ ∀ l ∈ lines, l.length = 3 ∧ all15Paulis.length = 15",
+      "claims_proved": true,
+      "description": "Implies H051 partition theorem as structural fact about d=4 MUBs."
+    },
+    {
+      "name": "F062ProductCountOpen",
+      "relation_to_target": "auxiliary",
+      "lean_skeleton": "theorem product_mub_count_d6_eq_three : product_mub_count_d6 = 3",
+      "claims_proved": true,
+      "description": "Auxiliary fact: recorded product-MUB count in d=6 is 3, distinct from exhaustive existence."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "reconstructed_overlap_scaled prob_mixed 0 0 - reconstructed_overlap_scaled prob_mixed 1 0",
+      "value": "0",
+      "source": "H050.mixed_state_inversion_all_bases"
+    },
+    {
+      "expr": "tensorAxiomList.length",
+      "value": "4",
+      "source": "H062.tensor_axiom_count_is_four"
+    },
+    {
+      "expr": "all15Paulis.length",
+      "value": "15",
+      "source": "H051.five_mub_isotropic_lines_partition"
+    },
+    {
+      "expr": "valuation_purity_d4 - max_physical_purity",
+      "value": "3",
+      "source": "H051.clifton_kent_d4_purity_deficit"
+    },
+    {
+      "expr": "product_mub_count_d6",
+      "value": "3",
+      "source": "H062.product_mub_count_is_three"
+    }
+  ],
+  "open_obligations": [
+    {
+      "name": "d6_mub_existence_open",
+      "description": "H062 states product-MUB counts are recorded inputs and an exhaustive d=6 MUB theorem is not established. The d=6 MUB existence question remains on the open node.",
+      "target_ref": "H062.product_mub_count_d6"
+    },
+    {
+      "name": "no_d3_d4_as_d6",
+      "description": "Citations to H050 (d=3) and H051 (d=4) are restricted to their respective dimensions and must not be interpreted as d=6 existence results.",
+      "target_ref": "H050, H051"
+    }
+  ],
+  "status": "existing"
+}

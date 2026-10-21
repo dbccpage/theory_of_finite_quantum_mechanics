@@ -1,0 +1,80 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_from_operation_inherits_associativity
+  equation_or_predicate: from_operation constructs a FiniteGroup from an associative operation without
+    a separate associativity table check, so associativity is inherited from the supplied operation.
+  typing_conditions: The supplied mul is associative on elements.
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_group.rs
+    declaration: check_associativity_for_pair
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_group.rs
+    decl: check_associativity_for_pair
+    kind: fn
+    line: 259
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-079BF38089AA
+  class: nonexistent_declaration
+  claim_kind: generator
+  claim: 'finite_group_from_operation: (elements, mul, key) -> FiniteGroup [pub fn from_operation<K, M,
+    F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>]'
+  evidence: code/rust/src/lie_theory/finite_group.rs has no declaration pub and none exists in the indexed
+    sources
+  decl_key: pub
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0013
+counterexamples:
+- id: NEG-6C1B4A3913F0
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'from_operation: (G_elem, G_elem) -> FiniteGroup [from_operation]'
+  evidence: rust fn from_operation takes 3 parameters; the claim says 2
+  decl_key: from_operation
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0013
+- id: NEG-E97BBDEB5706
+  class: statement_drift
+  claim_kind: relation
+  claim: 'rel_shadow_embeds_in_su2: The quaternion group Q8 embeds into SU(2) via the su2_matrix construction.
+    [su2_matrix]'
+  evidence: numerals 2 appear in the claim but in none of the checked sources (heuristic)
+  decl_key: su2_matrix
+  confidence: heuristic
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0013
+open_obligations:
+- No declared finite gauge group was supplied, so no composition or lemma linking a cyclotomic character
+  table to a named gauge group is grounded.
+- The associativity check for hand-written tables (check_associativity_for_pair) is not yet tied to a
+  relation with a verified statement.
+- Dixon reduction and orthogonality-in-Z[zeta_e] claims were not cited because no verified declaration
+  for them was supplied under @SRC or @KNOWN+.
+- Lean MUB.TripleGaugeReduction declarations are unrelated to the finite group target and were not used.
+- 'AuthorityEffect: None.'
+- 'near_miss nm_character_table_as_gauge_label unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_test_checker_as_generator unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_max_character_table_classes_bound
+  expr: '40'
+  value: '40'
+  host_evidence:
+    recomputed: '40'
+verified_lemma_statements: []

@@ -1,0 +1,66 @@
+add_or_refine_generators:
+- id: gen_convolution
+  ordered_inputs:
+  - G
+  output: Q(i)
+  arity: 1
+  carrier: Q(i)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_groupoid_algebra.rs
+    declaration: FiniteGroupoidAlgebra
+    line: 28
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_groupoid_algebra.rs
+    decl: FiniteGroupoidAlgebra
+    kind: struct
+    line: 28
+    lang: rust
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+add_or_refine_relations:
+- id: rel_assoc_from_operation
+  equation_or_predicate: from_operation inherits associativity for a finite groupoid operation
+  typing_conditions: operation is binary and closed on the groupoid
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_group.rs
+    declaration: check_associativity_for_pair
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_group.rs
+    decl: check_associativity_for_pair
+    kind: fn
+    line: 259
+    lang: rust
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions:
+- id: NEG-7889F5BA5CBE
+  class: nonexistent_declaration
+  claim_kind: lemma
+  claim: 'lem_convolution_associative: The convolution generator `gen_convolution` is associative on the
+    groupoid elements.'
+  evidence: statement cites gen_convolution, which exists nowhere in the indexed sources (heuristic)
+  decl_key: gen_convolution
+  confidence: heuristic
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0014
+counterexamples: []
+open_obligations:
+- Do not cite gauge_cochain_complex.rs or the finite_groupoid_algebra module as the color connection for
+  QCD control.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

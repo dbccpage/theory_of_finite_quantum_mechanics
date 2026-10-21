@@ -1,0 +1,304 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0143",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "52efede21e509fba689a944bf436905be8db2da5c48a1c37fe287e580cf39da9",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0143 stage=P0 attempt=a0-2 in=52efede2 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] Covers dirac_gamma_admission.rs, lattice_dirac_doubling.rs, atomic_dirac_lamb_hartree_fock.rs, and quantum_import_finite_maps/vacuum_polarization_lamb_shift.rs. dirac_gamma_admission.rs admits gamma matrices over Q(i) only when their anticommutators match a declared diagonal sign metric. lattice_dirac_doubling.rs compares naive and Wilson operators on a periodic lattice. The atomic and vacuum-polarization files are finite Lamb-shift maps, not the excluded continuum slices. A Python replay and a Lean 4 declaration would still have to match the anticommutator admission test.\n@BOTTLENECK Match Clifford anticommutator admission for a declared diagonal sign metric over Q(i).\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin | def [test] | def test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin() -> None: cert = build_qm224_dirac_lamb_certificate() assert cert\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy | def [test] | def test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy() -> None: cert = build_qm224_dirac_lamb_certificate() assert cert.passed is Tr\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity | def [test] | def test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity() -> None: paper_root = Path(__file__).resolve().parents[3] lean_file = paper_roo\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_part_b_spacelike_vacuum_polarization_and_running_alpha_enclosure | def [test] | def test_part_b_spacelike_vacuum_polarization_and_running_alpha_enclosure() -> None: \"\"\"Verify 12-decimal enclosure of Pi_R(-9m^2/4) and running alpha\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_part_c_uehling_potential_and_hydrogen_lamb_shift_enclosure | def [test] | def test_part_c_uehling_potential_and_hydrogen_lamb_shift_enclosure() -> None: \"\"\"Verify 5/6 + 1/8 - 1/5 = 91/120 contact sum and 12-decimal -27.12875\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds | def [test] | def test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds() -> None: cert = build_qm225_helium_rhf_certificate() assert cert.pass\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction | def [test] | def test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction() -> None: ortho_para = evaluate_helium_1s2s_ortho_para_splitting(2) a\n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_integration_origin_locks_the_source_module | def [test] | def test_integration_origin_locks_the_source_module() -> None: source = _MODULE_PATH.read_text(encoding=\"utf-8\") assert 'RationalIntervalQ' in source \n code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py | test_mutation_suite_kills_non_equivalent_mutants | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_negative_part_a_transverse_ward_projector_and_null_guard | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_unit_part_a_clifford_bubble_numerator_trace_matches_analytic | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_part_a_symanzik_bubble_simplex_and_bphz_on_shell_subtraction | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_part_b_feynman_parameter_moments_and_uehling_series | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_integration_origin_locks_the_source_module | def [test]\n code/python/tests/test_e2e_vacuum_polarization_lamb_shift_control.py | test_mutation_suite_kills_non_equivalent_mutants | def [test]\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:r:offdiag_im_sub_im For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j  src=lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.offdiag_im_sub_im\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 15,
+    "known_neg_injected": 0,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "TFQ-0137"
+    ],
+    "feedback": true,
+    "index_position": 269,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

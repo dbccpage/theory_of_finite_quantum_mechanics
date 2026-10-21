@@ -1,0 +1,60 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_assoc_from_operation
+  equation_or_predicate: Associativity holds for the finite groupoid operation used in the convolution
+    generator.
+  typing_conditions: ''
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_group.rs
+    declaration: check_associativity_for_pair
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_group.rs
+    decl: check_associativity_for_pair
+    kind: fn
+    line: 259
+    lang: rust
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions:
+- id: NEG-7889F5BA5CBE
+  class: nonexistent_declaration
+  claim_kind: generator
+  claim: 'gen_convolution_Q: (G) -> Q(i) [gen_convolution]'
+  evidence: code/rust/src/lie_theory/finite_groupoid_algebra.rs has no declaration gen_convolution and
+    none exists in the indexed sources
+  decl_key: gen_convolution
+  confidence: exact
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0015
+- id: NEG-5AA26F721084
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_convolution_Q . slot 0 <- gen_convolution_Q via rel_assoc_from_operation
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0015
+counterexamples: []
+open_obligations:
+- Provide concrete definition of the Borel matrix and its trace computation.
+- Connect the artificial vs substantial split to the generator definitions.
+- 'lemma lemma_qm213_trace unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: trace_Borel
+  expr: 5/2
+  value: 5/2
+  host_evidence:
+    recomputed: 5/2
+verified_lemma_statements: []

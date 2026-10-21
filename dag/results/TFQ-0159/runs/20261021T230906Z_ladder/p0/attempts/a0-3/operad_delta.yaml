@@ -1,0 +1,98 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-EB18C9DEA457
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: numeric_claims is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-3B5DC5D46C38
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''id'': ''tomov-20'', ''statement'': ''composition: plug generator MUB_projector_gen_b0 into
+    slot 0 of''}'
+  evidence: 'lemmas[19]: missing relation_to_target; lemmas[19]: missing depends_on; lemmas[19]: missing
+    lean_skeleton'
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-770E6D8EAB02
+  class: wrong_source_location
+  claim_kind: lemma
+  claim: 'tomov-05: composition_tensor_mub: tensor product of two qutrit MUB systems yields 9 mutually
+    unbiased bases'
+  evidence: lean4/H062CompositionTensorMub.lean has no declaration tensorAxiomList.length; it exists at
+    code/python/src/majorana/barcode.py
+  decl_key: tensorAxiomList.length
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-770E6D8EAB02
+  class: wrong_source_location
+  claim_kind: lemma
+  claim: 'tomov-12: composition of four MUB inversion circuits: each circuit applies exact_inversion_b0_j0
+    per wall, total sum = 4*23/3 - 4*I'
+  evidence: lean4/H062CompositionTensorMub.lean has no declaration tensorAxiomList.length; it exists at
+    code/python/src/majorana/barcode.py
+  decl_key: tensorAxiomList.length
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+counterexamples:
+- id: NEG-367A725A674A
+  class: statement_drift
+  claim_kind: lemma
+  claim: 'tomov-04: real rebit countermodel: rho_rebit = sum p_i * sigma_i - I/2 where sigma_i are Pauli,
+    checks that inversion formula holds in real subtheory'
+  evidence: numerals 2 appear in the claim but in none of the checked sources (heuristic)
+  decl_key: null
+  confidence: heuristic
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0159
+open_obligations:
+- 'lemma tomov-01 unverified: Lean elaboration disabled'
+- 'lemma tomov-02 unverified: Lean elaboration disabled'
+- 'lemma tomov-03 unverified: Lean elaboration disabled'
+- 'lemma tomov-06 unverified: Lean elaboration disabled'
+- 'lemma tomov-07 unverified: Lean elaboration disabled'
+- 'lemma tomov-08 unverified: Lean elaboration disabled'
+- 'lemma tomov-09 unverified: Lean elaboration disabled'
+- 'lemma tomov-10 unverified: Lean elaboration disabled'
+- 'lemma tomov-11 unverified: Lean elaboration disabled'
+- 'lemma tomov-13 unverified: Lean elaboration disabled'
+- 'lemma tomov-14 unverified: Lean elaboration disabled'
+- 'lemma tomov-15 unverified: Lean elaboration disabled'
+- 'lemma tomov-16 unverified: Lean elaboration disabled'
+- 'lemma tomov-17 unverified: Lean elaboration disabled'
+- 'lemma tomov-18 unverified: Lean elaboration disabled'
+- 'lemma tomov-19 unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

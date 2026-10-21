@@ -1,0 +1,159 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "TFQ-0014",
+  "stage": "P0",
+  "run_id": "TFQ-0014/20261021T222426Z_ladder",
+  "finished_utc": "2026-10-21T22:24:28Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 1,
+  "paid_calls": 0,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "qwen/qwen3.8-27b",
+        "openai/gpt-oss-20b",
+        "nvidia/nemotron-3.5-lightning:free",
+        "poolside/laguna-s-2.1:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.05,
+  "summary": {
+    "node_id": "TFQ-0014",
+    "run_id": "TFQ-0014/20261021T222426Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_0",
+    "accepted_attempt": "a0-1",
+    "best_attempt": "a0-1",
+    "attempts": [
+      {
+        "attempt_id": "a0-1",
+        "tier": 0,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "effort": null,
+        "guided": true,
+        "known_neg_injected": 3,
+        "known_pos_injected": 1,
+        "input_sha256": "116e1327253b9e8038867f8e46bbf21ac7238583456890210c0d5d47fb068174",
+        "injected_neg_ids": [
+          "NEG-E97BBDEB5706",
+          "NEG-079BF38089AA",
+          "NEG-6C1B4A3913F0"
+        ],
+        "status": "accepted",
+        "verified_total": 2,
+        "failures_total": 1,
+        "failure_rate": 0.3333,
+        "failures_by_class": {
+          "nonexistent_declaration": 1
+        },
+        "unverifiable": 0,
+        "input_tokens": 1591,
+        "output_tokens": 655,
+        "cost_microusd": 0,
+        "request_id": "chatcmpl-c262709d-a7c5-46a0-85b0-884cc776d3ed",
+        "latency_s": 1.783,
+        "stop_reason": "stop",
+        "served_model": "openai/gpt-oss-120b",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-7889F5BA5CBE"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "0": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 1591,
+        "output_tokens": 655,
+        "cost_microusd": 0,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 0,
+    "spend_usd": 0.0,
+    "hallucinations_by_class": {
+      "nonexistent_declaration": 1
+    },
+    "hallucinations_by_model": {
+      "openai/gpt-oss-120b": {
+        "nonexistent_declaration": 1
+      }
+    },
+    "verified": {
+      "generators": 1,
+      "relations": 1,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a0-1:37a11fef",
+      "run_id": "TFQ-0014/20261021T222426Z_ladder",
+      "attempt_id": "a0-1",
+      "tier": 0,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-21T22:24:27Z",
+      "status": "ok",
+      "estimated_input_tokens": 2175,
+      "estimate_microusd": 0,
+      "served_model": "openai/gpt-oss-120b",
+      "input_tokens": 1591,
+      "output_tokens": 655,
+      "cost_microusd": 0,
+      "cost_source": "free_tier",
+      "request_id": "chatcmpl-c262709d-a7c5-46a0-85b0-884cc776d3ed",
+      "stop_reason": "stop",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 1.783,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 0.606681,
+    "anthropic_cap_microusd": 25.605884,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

@@ -1,0 +1,308 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0127",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "219222681610661c96002c4917600715ccbd7234f9dafb42d80ea0e302bb9979",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0127 stage=P0 attempt=a0-2 in=21922268 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] Covers hilbert_space.rs, higher_dim.rs, dagger_category.rs, and operational_axiom_selection.rs. hilbert_space.rs takes HilbertSpace as a labeled carrier C^d, d at least 1, in the declared standard basis, and TensorCarrier as a lexicographic flat index. Overflow past operation limits is a typed refusal. The other files check a PPT Tiles complement, the dagger compact category of finite Gaussian-rational spaces, and local tomography versus dimension. A Python replay and a Lean 4 declaration would still have to match the flat-index bijection and those refusals.\n@BOTTLENECK Match the declared lexicographic flat-index bijection, dimension product, and typed refusal past operation limits.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/qm/campaigns/mod.rs | higher_dim | mod | pub mod higher_dim;\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.declared_local_tomography | def | def declared_local_tomography : FiniteRivalTheory → Bool | FiniteRivalTheory.Classical => true | FiniteRivalTheory.RealQuantum => false | FiniteRivalT\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.real_quantum_fails_local_tomography_d2 | theorem | theorem real_quantum_fails_local_tomography_d2 : real_dim 4 ≠ real_dim 2 * real_dim 2\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.quaternionic_fails_local_tomography_d2 | theorem | theorem quaternionic_fails_local_tomography_d2 : quaternionic_dim 4 ≠ quaternionic_dim 2 * quaternionic_dim 2\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.classical_dim | def | def classical_dim (d : Nat) : Nat\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.complex_dim | def | def complex_dim (d : Nat) : Nat\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.real_dim | def | def real_dim (d : Nat) : Nat\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.quaternionic_dim | def | def quaternionic_dim (d : Nat) : Nat\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.classical_dimension_product_identity | theorem\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.complex_dimension_product_identity | theorem\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.declared_purification | def\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.declared_table_selects_complex_row | theorem\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.selected_carrier | theorem\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.ComplexPairIndex | abbrev\n lean4/OperationalTomography.lean | OperationalTomography.Calibrated.dimension_defect | theorem\n lean4/OperationalTomography.lean | OperationalTomography.product_dimension | theorem\n lean4/OperationalTomography.lean | OperationalTomography.PairIndex | abbrev\n lean4/OperationalTomography.lean | OperationalTomography.DoubledIndex | abbrev\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.FiniteRivalTheory | inductive\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.DilationDerivationStatus | inductive\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.naimark_status | def\n lean4/H074OperationalAxiomSelection.lean | FableHilbertWalk20260819.H074.naimark_does_not_derive_born_unconditionally | theorem\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.selected_parameter | theorem\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.ComplexPairCoordinates | abbrev\n lean4/OperationalFieldSelection.lean | OperationalFieldSelection.two_hypotheses_satisfiable | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:gen_torsionPhase (ℕ,ℤ)->ℚ src=lean4/U1CyclotomicTorsionTower.lean | U1Fable.CyclotomicTorsionTower.torsionPhase\n r:rel_directed ∀ (m1 m2 : Nat) (h1 : m1 ≥ 1) (h2 : m2 ≥ 1), ∃ n : Nat, n ≥ 1 ∧ m1 ∣ n ∧ m2 ∣ n src=lean4/H052CyclotomicTowerDirected.lean | FableHilbertWalk20260819.H052.cyclotomic_tower_is_directed\n r:rel_embedding (0 < evalAtS 9 witnessW5_diag0 ∧ 0 < evalAtS 9 witnessW5_diag1) ∧ (evalAtS (-9) witnessW5_diag0 < 0) src=lean4/H060EmbeddingRelativity.lean | FableHilbertWalk20260819.H060.witnessW5_embedding_relative\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "TFQ-0126",
+      "TFQ-0128",
+      "TFQ-0129",
+      "TFQ-0164",
+      "TFQ-0165"
+    ],
+    "feedback": true,
+    "index_position": 253,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

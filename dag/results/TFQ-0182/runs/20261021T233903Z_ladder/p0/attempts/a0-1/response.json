@@ -1,0 +1,50 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen1",
+      "inputs": [],
+      "output": "Gf2ScheduleReceipt",
+      "arity": 0,
+      "carrier": "ScheduleClass",
+      "ref": {
+        "path": "code/rust/src/majorana/gf2_terminalizer.rs",
+        "decl": "Gf2ScheduleReceipt",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel1",
+      "statement": "receipt_serializes_the_typed_harmonic_class serializes a Gf2ScheduleReceipt as a diagnostic schedule class.",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/rust/src/majorana/classify.rs",
+        "decl": "receipt_serializes_the_typed_harmonic_class",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem1",
+      "statement": "The GF(2) receipt emitter is not a terminalizer in the authority sense; it should be treated as a diagnostic schedule class.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "rel1"
+      ],
+      "lean_skeleton": "lemma gf2_receipt_not_terminalizer : ¬ is_terminalizer (Gf2ScheduleReceipt) :=\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": []
+}

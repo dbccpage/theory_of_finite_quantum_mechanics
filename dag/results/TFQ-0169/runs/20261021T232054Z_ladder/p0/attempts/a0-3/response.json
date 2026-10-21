@@ -1,0 +1,57 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_shannon_form",
+      "inputs": [
+        "ProbabilitySimplex"
+      ],
+      "output": "LogForm",
+      "arity": 1,
+      "carrier": "existing",
+      "ref": {
+        "path": "code/rust/src/finite_probability/log_form.rs",
+        "decl": "pub fn shannon_entropy_form(p: &ProbabilitySimplex) -> Result<LogForm, LogFormError>",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_relative_entropy",
+      "inputs": [
+        "ProbabilitySimplex",
+        "ProbabilitySimplex"
+      ],
+      "output": "LogForm",
+      "arity": 2,
+      "carrier": "existing",
+      "ref": {
+        "path": "code/rust/src/finite_probability/log_form.rs",
+        "decl": "pub fn relative_entropy_form(p: &ProbabilitySimplex, q: &ProbabilitySimplex) -> Result<LogForm, LogFormError>",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_renyi_form",
+      "inputs": [
+        "ProbabilitySimplex",
+        "u32"
+      ],
+      "output": "LogForm",
+      "arity": 2,
+      "carrier": "existing",
+      "ref": {
+        "path": "code/rust/src/finite_probability/log_form.rs",
+        "decl": "pub fn renyi_entropy_form(p: &ProbabilitySimplex, alpha: u32) -> Result<LogForm, LogFormError>",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Arithmetic cancellation lemma: the_entropy_form_is_zero_exactly_for_deterministic_distributions needs a sorry-free proof connecting coefficient equality to deterministic form"
+  ]
+}

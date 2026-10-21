@@ -1,0 +1,67 @@
+{
+  "generators": [
+    {
+      "name": "frechet_bounds",
+      "arity": 1,
+      "inputs": ["joint"],
+      "output": "frechet"
+    },
+    {
+      "name": "conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel",
+      "arity": 2,
+      "inputs": ["prior", "kernel"],
+      "output": "kernel"
+    },
+    {
+      "name": "a_table_that_factors_has_its_marginals_as_factors_and_reassembles_from_them",
+      "arity": 1,
+      "inputs": ["factored_joint"],
+      "output": "marginals"
+    }
+  ],
+  "relations": [
+    {
+      "relation": "respects_frechet_bounds",
+      "from": ["joint"],
+      "to": ["frechet"],
+      "source": "every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained"
+    },
+    {
+      "relation": "factors_reassemble_from_marginals",
+      "from": ["factored_joint"],
+      "to": ["marginals"],
+      "source": "a_table_that_factors_has_its_marginals_as_factors_and_reassembles_from_them"
+    }
+  ],
+  "compositions": [
+    {
+      "inner": "frechet_bounds",
+      "outer": "every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained",
+      "slot": 0
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained",
+      "relation_to_target": "restates",
+      "proof": "sorry",
+      "claims_proved": false
+    },
+    {
+      "name": "a_table_that_factors_has_its_marginals_as_factors_and_reassembles_from_them",
+      "relation_to_target": "implies",
+      "proof": "sorry",
+      "claims_proved": false
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "1 - 0",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "Verify separation of pr_box_is_no_signalling_has_chsh_four_and_no_local_table (no-signalling) from LocalHiddenVariableTable (hidden variables).",
+    "Formalize conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel as a generator without mixing with classical_instrument no-signalling."
+  ]
+}

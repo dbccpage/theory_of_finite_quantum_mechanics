@@ -1,0 +1,68 @@
+{
+  "task_id": "TFQ-0129",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "2f8ce850a0a3c13c7f250c8ffc22a89c6de89a2a2121ca2e0e7b3ffd0fb6a24b",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_bell_state_py\",\n      \"inputs\": [],\n      \"output\": \"Q(i) ray\",\n      \"arity\": 0,\n      \"carrier\": \"QuantumState\",\n      \"ref\": {\n        \"path\": \"code/python/src/qm/primitives.py\",\n        \"decl\": \"bell_state\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_equal_born_weights\",\n      \"statement\": \"weightsOfRealPair 1 1 = weightsOfRealPair 1 (-1) ∧ ¬ ∃ c : Rat, c * 1 = 1 ∧ c * 1 = -1\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/PromptBornRay.lean\",\n        \"decl\": \"QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"rel_normalization_idempotent\",\n      \"statement\": \"normalize (normalize w) = normalize w\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/PromptBornRay.lean\",\n        \"decl\": \"QuantumMechanics.PromptBornRay.normalization_idempotent\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lem_born_rule_consistency\",\n      \"statement\": \"The squared-modulus Born rule applied to the Q(i) ray produced by `bell_state` yields weights that satisfy `rel_equal_born_weights` and are invariant under scalar multiplication.\",\n      \"relation_to_target\": \"implies\",\n      \"depends_on\": [\n        \"rel_equal_born_weights\",\n        \"rel_normalization_idempotent\"\n      ],\n      \"lean_skeleton\": \"theorem lem_born_rule_consistency :\\n  let ψ := bell_state ()\\n  have h1 : weightsOfRealPair (realPart ψ) (imagPart ψ) = _ := by\\n    -- proof uses equal_born_weights theorem\\n    sorry\\n  have h2 : normalize (weightsOfRealPair (realPart ψ) (imagPart ψ)) = _ := by\\n    simpa using QuantumMechanics.PromptBornRay.normalization_idempotent _\\n  exact And.intro h1 h2\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"none\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": []\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_bell_state_py",
+        "inputs": [],
+        "output": "Q(i) ray",
+        "arity": 0,
+        "carrier": "QuantumState",
+        "ref": {
+          "path": "code/python/src/qm/primitives.py",
+          "decl": "bell_state",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_equal_born_weights",
+        "statement": "weightsOfRealPair 1 1 = weightsOfRealPair 1 (-1) ∧ ¬ ∃ c : Rat, c * 1 = 1 ∧ c * 1 = -1",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/PromptBornRay.lean",
+          "decl": "QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rel_normalization_idempotent",
+        "statement": "normalize (normalize w) = normalize w",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/PromptBornRay.lean",
+          "decl": "QuantumMechanics.PromptBornRay.normalization_idempotent",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem_born_rule_consistency",
+        "statement": "The squared-modulus Born rule applied to the Q(i) ray produced by `bell_state` yields weights that satisfy `rel_equal_born_weights` and are invariant under scalar multiplication.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "rel_equal_born_weights",
+          "rel_normalization_idempotent"
+        ],
+        "lean_skeleton": "theorem lem_born_rule_consistency :\n  let ψ := bell_state ()\n  have h1 : weightsOfRealPair (realPart ψ) (imagPart ψ) = _ := by\n    -- proof uses equal_born_weights theorem\n    sorry\n  have h2 : normalize (weightsOfRealPair (realPart ψ) (imagPart ψ)) = _ := by\n    simpa using QuantumMechanics.PromptBornRay.normalization_idempotent _\n  exact And.intro h1 h2",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": []
+  }
+}

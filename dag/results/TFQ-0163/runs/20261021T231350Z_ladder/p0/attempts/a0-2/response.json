@@ -1,0 +1,93 @@
+{
+  "generators": [
+    {
+      "name": "gen_bell_state_py",
+      "inputs": [],
+      "output": "Q(i)",
+      "arity": 0,
+      "ref": {
+        "path": "code/python/src/majorana/test_finite_path_sum_as_graded_transport.py",
+        "decl": "test_cyclic_path_sums_wrap_and_compose_without_authority_effect",
+        "status": "existing"
+      },
+      "description": "Generates a Bell state with equal real pair weights (1, 1)"
+    }
+  ],
+  "relations": [
+    {
+      "name": "rel_interfered_cross_term",
+      "source": "gen_bell_state_py",
+      "target": "weightsOfRealPair (1 - 2 * (1/2)) 1",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      },
+      "description": "Matches interfered weight cross term for Bell state with cancellation"
+    },
+    {
+      "name": "rel_sign_or_i_twin",
+      "source": "coherent_interference.rs",
+      "target": "support has_two_or_more_nonzero_coordinates",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      },
+      "description": "Enforces sign-or-i twin creation for supports with two+ nonzero coordinates"
+    }
+  ],
+  "compositions": [
+    {
+      "inner": "gen_bell_state_py",
+      "outer": "rel_interfered_cross_term",
+      "slot": 0,
+      "relation": "rel_equal_born_weights",
+      "ref": {
+        "path": "lean4/PromptBornRay.lean",
+        "decl": "QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays",
+        "status": "existing"
+      },
+      "description": "Plugs Bell state generator into cross term relation using born weights"
+    }
+  ],
+  "lemmas": [
+    {
+      "name": "regular_triangle_sum",
+      "relation_to_target": "implies",
+      "ref": {
+        "path": "lean4/H065CancellationCertificates.lean",
+        "decl": "FableHilbertWalk20260819.H065.regular_triangle_sum",
+        "status": "existing"
+      },
+      "description": "Implies triangle cancellation structure relevant to coherent interference"
+    }
+  ],
+  "near_misses": [
+    {
+      "name": "test_negative_path_length_is_refused",
+      "reason": "Checker function, not a computational generator",
+      "ref": {
+        "path": "code/python/src/majorana/test_finite_path_sum_as_graded_transport.py",
+        "decl": "test_negative_path_length_is_refused",
+        "status": "existing"
+      }
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "1/2 * 2",
+      "value": "1"
+    },
+    {
+      "expr": "1 - 2 * (1/2)",
+      "value": "0"
+    }
+  ],
+  "open_obligations": [
+    "Match interfered-weight cross term identity in Lean 4",
+    "Prove sign-or-i twin test on two-nonzero-coordinate supports",
+    "Verify semiring path sums in graded_path_sum.rs"
+  ],
+  "status": "proposed_new"
+}

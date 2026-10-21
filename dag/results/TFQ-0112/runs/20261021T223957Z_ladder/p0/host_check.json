@@ -1,0 +1,86 @@
+{
+  "task_id": "TFQ-0112",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "3d0512662f3f42630c115252d24172acf43cca6b70850c4647a0550e7841e8e5",
+  "candidate_sha256": "e221d869c2926807d2f85eb30bbfae45b3518898308a2d58f0f84481a4be655a",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-20b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:40:04Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_CochainComplex",
+        "ordered_inputs": [],
+        "output": "CochainComplex",
+        "arity": 0,
+        "carrier": "Rust",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/homology/cochain_complex.rs",
+            "declaration": "CochainComplex",
+            "line": 66
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/homology/cochain_complex.rs",
+          "decl": "CochainComplex",
+          "kind": "struct",
+          "line": 66,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-20b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-682AB7138EEB",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "op_odm_observer_admission: (observer_candidate, promote_flag) -> admission_result [evaluate_plan_odm_observer_open]",
+        "evidence": "rust fn evaluate_plan_odm_observer_open takes 3 parameters; the claim says 2",
+        "decl_key": "evaluate_plan_odm_observer_open",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0112"
+      }
+    ],
+    "open_obligations": [
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,141 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-E8ACD12779D7
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''path_holonomy'', ''inputs'': [''Cochain1'', ''PairList''], ''output'': ''Int'',
+    ''arity'': 2, ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.path'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-20A1E2BBA02A
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''vertex_path_holonomy'', ''inputs'': [''Cochain1'', ''List Vertex''], ''output'':
+    ''Int'', ''arity'': 2, ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Res'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-C7E85C502613
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''coboundary'', ''inputs'': [''Cochain0''], ''output'': ''Cochain1'', ''arity'':
+    1, ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.coboundary''}'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-53365B845662
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''source'': ''coboundary_triangle_holonomy_zero'', ''target'': ''path_holonomy'', ''type'':
+    ''implies'', ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.c'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-37AD66A3AE2D
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''source'': ''coboundary_square_holonomy_zero'', ''target'': ''path_holonomy'', ''type'': ''implies'',
+    ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.cob'
+  evidence: 'relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-26502165EE37
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''name'': ''coboundary_vertex_path_telescoping_comp'', ''outer'': ''vertex_path_holonomy'',
+    ''inner'': ''coboundary'', ''slot'': 0, ''licence'': ''r:coboundary_triangle_zero pa'
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected name; compositions[0]:
+    unexpected licence'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-447771DC27C0
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''0'', ''value'': ''0'', ''cited_from'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.coboundary_triangle_holonomy_zero''}'
+  evidence: 'numeric_claims[0]: missing id; numeric_claims[0]: unexpected cited_from'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-3CD17DE4A071
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''0'', ''value'': ''0'', ''cited_from'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.coboundary_square_holonomy_zero''}'
+  evidence: 'numeric_claims[1]: missing id; numeric_claims[1]: unexpected cited_from'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-53365B845662
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''source'': ''coboundary_triangle_holonomy_zero'', ''target'': ''path_holonomy'', ''type'':
+    ''implies'', ''path'': ''lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.c'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing relation_to_target'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-50BA120AA80E
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''source'': ''d1_add_coboundary'', ''target'': ''d1'', ''type'': ''auxiliary'', ''path'': ''lean4/FiniteCochain.lean|FiniteCochain.d1_add_coboundary'',
+    ''claims_proved'': False,'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing relation_to_target'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0175
+counterexamples: []
+open_obligations:
+- Prevent citation of coboundary_triangle_holonomy_zero as ExactMatrix loop products. Integer cochain
+  bookkeeping must remain decoupled from matrix gauge traces.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

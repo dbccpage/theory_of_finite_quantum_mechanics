@@ -1,0 +1,20 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "nm-01",
+      "claim": "build_tetron_array generator accepts inputs [C0, C1] and outputs C2, but observed declarations list build_tetron_islands : C1 -> C2 and build_tetron_channels : C0 -> C1 as separate functions.",
+      "rejecting_invariant": "composition_type_mismatch: slot 0 and slot 1 colour mismatches with assert_no_fence_claims_authority"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Ground generator signatures for build_tetron_islands and build_tetron_channels to resolve colour mismatch with build_tetron_array slot expectations.",
+    "Verify that no declared operation reads physical Majorana hardware past the GF(2) diagnostic fence.",
+    "Confirm tetron array stays inside GF(2) schedule as required by @BOTTLENECK."
+  ]
+}

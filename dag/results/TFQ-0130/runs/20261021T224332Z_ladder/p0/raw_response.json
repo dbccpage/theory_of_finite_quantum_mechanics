@@ -1,0 +1,54 @@
+{
+  "task_id": "TFQ-0130",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "ef89c9c307908377af203e6b2648e25346af031ab0a029df04e5e44156ca3d8d",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_bell_state\",\n      \"inputs\": [\"bell_state\"],\n      \"output\": \"ray\",\n      \"arity\": 1\n   ,\n    \"carrier\": \"BoundedExactOperator\",\n      \"ref\": {\n        \"path\": \"lean4/HilbertLiftOperators.lean\",\n        \"decl\": \"HilbertLift.BoundedExactOperator\"\n     \n    ,\n    \"status\": \"existing\"\n    }\n  }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_equal_born_weights\",\n      \"statement\": \"QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/PromptBornRay.lean\",\n        \"decl\": \"QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays\"\n     \n    ,\n    \"status\": \"existing\"\n    }\n  }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [],\n  \"near_misses\": [],\n  \"numeric_claims\": [\n    {\n      \"id\": \"nc_teleport_coefficients\",\n      \"expr\": \"11 - 2/3*5\",\n      \"value\": \"23/3\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Ground the exact Schmidt-rank decision for a pure bipartite state over Q(i) using entanglement.rs.\",\n    \"Formalize the diagonal population entropy non-measure warning from entanglement.rs.\",\n    \"Capture the three-qubit teleportation layout from teleportation.rs in the target operad.\",\n    \"Resolve the host's check that every cited declaration has status 'existing' from @SRC or @KNOWN+. Currently, the declaration `QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays` is referenced in `relations` with status 'existing' but appears only in `@KNOWN-` in the prompt metadata, creating a citation conflict that must be resolved before host validation.\"\n  ]\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_bell_state",
+        "inputs": [
+          "bell_state"
+        ],
+        "output": "ray",
+        "arity": 1,
+        "carrier": "BoundedExactOperator",
+        "ref": {
+          "path": "lean4/HilbertLiftOperators.lean",
+          "decl": "HilbertLift.BoundedExactOperator",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_equal_born_weights",
+        "statement": "QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/PromptBornRay.lean",
+          "decl": "QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [],
+    "near_misses": [],
+    "numeric_claims": [
+      {
+        "id": "nc_teleport_coefficients",
+        "expr": "11 - 2/3*5",
+        "value": "23/3"
+      }
+    ],
+    "open_obligations": [
+      "Ground the exact Schmidt-rank decision for a pure bipartite state over Q(i) using entanglement.rs.",
+      "Formalize the diagonal population entropy non-measure warning from entanglement.rs.",
+      "Capture the three-qubit teleportation layout from teleportation.rs in the target operad.",
+      "Resolve the host's check that every cited declaration has status 'existing' from @SRC or @KNOWN+. Currently, the declaration `QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays` is referenced in `relations` with status 'existing' but appears only in `@KNOWN-` in the prompt metadata, creating a citation conflict that must be resolved before host validation."
+    ]
+  }
+}

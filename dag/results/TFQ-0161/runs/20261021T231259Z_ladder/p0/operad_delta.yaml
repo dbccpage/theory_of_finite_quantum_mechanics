@@ -1,0 +1,128 @@
+add_or_refine_generators:
+- id: gen_weyl_obstruction
+  ordered_inputs:
+  - x
+  - p
+  output: comm_relation
+  arity: 2
+  carrier: FiniteQM.weyl_heisenberg_finite_trace_obstruction
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.weyl_heisenberg_finite_trace_obstruction
+    line: 861
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.weyl_heisenberg_finite_trace_obstruction
+    kind: theorem
+    line: 861
+    lang: lean
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: gen_lorentz_boost
+  ordered_inputs:
+  - beta
+  - hb
+  - hd
+  output: lb_relation
+  arity: 3
+  carrier: FiniteQM.lorentz_boost_non_unitary_in_finite_dim
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.lorentz_boost_non_unitary_in_finite_dim
+    line: 875
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.lorentz_boost_non_unitary_in_finite_dim
+    kind: theorem
+    line: 875
+    lang: lean
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-269020A89AE5
+  class: nonexistent_declaration
+  claim_kind: generator
+  claim: 'gen_clock_kraus: (rho_s) -> kraus_dec_relation [FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence]'
+  evidence: lean4/FiniteQM.lean has no declaration FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence
+    and none exists in the indexed sources
+  decl_key: FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+- id: NEG-452E93396795
+  class: schema_violation
+  claim_kind: relations
+  claim: relations is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+- id: NEG-CAFAE85E2E4F
+  class: schema_violation
+  claim_kind: compositions
+  claim: compositions is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+- id: NEG-EB18C9DEA457
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: numeric_claims is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+- id: NEG-B4702F316C4F
+  class: schema_violation
+  claim_kind: lemmas
+  claim: lemmas is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0161
+counterexamples: []
+open_obligations:
+- Match three confirmed Rat identities from FiniteQM.lean Part VIII to expressibility control
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

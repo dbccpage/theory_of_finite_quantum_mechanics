@@ -1,0 +1,79 @@
+add_or_refine_generators:
+- id: gen_torsionPhase
+  ordered_inputs:
+  - ℕ
+  - ℤ
+  output: ℚ
+  arity: 2
+  carrier: U1Fable.CyclotomicTorsionTower
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/U1CyclotomicTorsionTower.lean
+    declaration: U1Fable.CyclotomicTorsionTower.torsionPhase
+    line: 36
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/U1CyclotomicTorsionTower.lean
+    decl: U1Fable.CyclotomicTorsionTower.torsionPhase
+    kind: def
+    line: 36
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+add_or_refine_relations:
+- id: rel_directed
+  equation_or_predicate: '∀ (m1 m2 : Nat) (h1 : m1 ≥ 1) (h2 : m2 ≥ 1), ∃ n : Nat, n ≥ 1 ∧ m1 ∣ n ∧ m2
+    ∣ n'
+  typing_conditions: ''
+  source_pins:
+  - path: lean4/H052CyclotomicTowerDirected.lean
+    declaration: FableHilbertWalk20260819.H052.cyclotomic_tower_is_directed
+    line: 14
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H052CyclotomicTowerDirected.lean
+    decl: FableHilbertWalk20260819.H052.cyclotomic_tower_is_directed
+    kind: theorem
+    line: 14
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+- id: rel_embedding
+  equation_or_predicate: (0 < evalAtS 9 witnessW5_diag0 ∧ 0 < evalAtS 9 witnessW5_diag1) ∧ (evalAtS (-9)
+    witnessW5_diag0 < 0)
+  typing_conditions: ''
+  source_pins:
+  - path: lean4/H060EmbeddingRelativity.lean
+    declaration: FableHilbertWalk20260819.H060.witnessW5_embedding_relative
+    line: 113
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H060EmbeddingRelativity.lean
+    decl: FableHilbertWalk20260819.H060.witnessW5_embedding_relative
+    kind: theorem
+    line: 113
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Match bounded QM_122 configurations
+- Realize Q(i) complex structure within the finite geometry carrier
+- Verify cyclotomic tower criterion Q(ζ₆)=Q(ζ₃)
+- Establish embedding-dependent positivity for the target
+- 'lemma lem_pos_embedding unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

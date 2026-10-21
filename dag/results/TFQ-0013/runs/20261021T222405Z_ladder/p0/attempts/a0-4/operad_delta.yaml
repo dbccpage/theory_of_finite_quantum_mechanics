@@ -1,0 +1,25 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-079BF38089AA
+  class: nonexistent_declaration
+  claim_kind: generator
+  claim: 'finite_group_from_operation: (elements, mul, key) -> FiniteGroup [pub fn from_operation<K, M,
+    F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>]'
+  evidence: code/rust/src/lie_theory/finite_group.rs has no declaration pub and none exists in the indexed
+    sources
+  decl_key: pub
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0013
+counterexamples: []
+open_obligations:
+- No existing declarations or operations provide the specific three colour charges or plaquette holonomy
+  required by the task target. The host must provide a declaration matching the target schema or confirm
+  the target definition.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

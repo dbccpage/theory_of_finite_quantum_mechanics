@@ -1,0 +1,85 @@
+{
+  "task_id": "TFQ-0018",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "65784c05c2ec32455d71506e0a04af99b4ad65c792866e773589f640af55640b",
+  "raw_text": "{\n  \"status\": \"incomplete\",\n  \"generators\": [\n    {\n      \"id\": \"g1\",\n      \"inputs\": [],\n      \"output\": \"Generator\",\n      \"arity\": 0,\n      \"carrier\": \"C^N\",\n      \"ref\": {\n        \"path\": \"code/rust/src/lie_theory/su_n.rs\",\n        \"decl\": \"GellMannGenerator\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"r1\",\n      \"statement\": \"∀ a b, trace (GellMannGenerator a • GellMannGenerator b) = 2 * (if a = b then 1 else 0)\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"r2\",\n      \"statement\": \"∀ a b c, [[GellMannGenerator a, GellMannGenerator b], GellMannGenerator c] + cyclic = 0\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lem1\",\n      \"statement\": \"The trace pairing of the Gell‑Mann generators yields the rational identity required by the target.\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"r1\"],\n      \"lean_skeleton\": \"lemma trace_pairing_rational : ∀ a b, trace (GellMannGenerator a • GellMannGenerator b) = (2 : ℚ) * (if a = b then 1 else 0) := sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"lem2\",\n      \"statement\": \"The Jacobi identity holds for the Gell‑Mann generators after removing the common √rₐ factor.\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [\"r2\"],\n      \"lean_skeleton\": \"lemma jacobi_identity_removed_sqrt : ∀ a b c, [[GellMannGenerator a, GellMannGenerator b], GellMannGenerator c] + [[GellMannGenerator b, GellMannGenerator c], GellMannGenerator a] + [[GellMannGenerator c, GellMannGenerator a], GellMannGenerator b] = 0 := sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": [\n    \"Provide concrete definitions of the Gell‑Mann matrices over Q(i) with the √rₐ scaling.\",\n    \"Verify that the label space C^N is declared independently of any graph structure.\"\n  ]\n}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g1",
+        "inputs": [],
+        "output": "Generator",
+        "arity": 0,
+        "carrier": "C^N",
+        "ref": {
+          "path": "code/rust/src/lie_theory/su_n.rs",
+          "decl": "GellMannGenerator",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r1",
+        "statement": "∀ a b, trace (GellMannGenerator a • GellMannGenerator b) = 2 * (if a = b then 1 else 0)",
+        "hypotheses": "",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r2",
+        "statement": "∀ a b c, [[GellMannGenerator a, GellMannGenerator b], GellMannGenerator c] + cyclic = 0",
+        "hypotheses": "",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem1",
+        "statement": "The trace pairing of the Gell‑Mann generators yields the rational identity required by the target.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r1"
+        ],
+        "lean_skeleton": "lemma trace_pairing_rational : ∀ a b, trace (GellMannGenerator a • GellMannGenerator b) = (2 : ℚ) * (if a = b then 1 else 0) := sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "lem2",
+        "statement": "The Jacobi identity holds for the Gell‑Mann generators after removing the common √rₐ factor.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r2"
+        ],
+        "lean_skeleton": "lemma jacobi_identity_removed_sqrt : ∀ a b c, [[GellMannGenerator a, GellMannGenerator b], GellMannGenerator c] + [[GellMannGenerator b, GellMannGenerator c], GellMannGenerator a] + [[GellMannGenerator c, GellMannGenerator a], GellMannGenerator b] = 0 := sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Provide concrete definitions of the Gell‑Mann matrices over Q(i) with the √rₐ scaling.",
+      "Verify that the label space C^N is declared independently of any graph structure."
+    ]
+  }
+}

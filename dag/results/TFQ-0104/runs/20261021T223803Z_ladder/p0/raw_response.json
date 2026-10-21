@@ -1,0 +1,44 @@
+{
+  "task_id": "TFQ-0104",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "14e01379221fcce0a0f6e9a01bc2a2a0daf61fc7502927d181352f95dc0c6399",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [],\n  \"relations\": [\n    {\n      \"id\": \"rel_discrete_unitarity_norm_preservation\",\n      \"statement\": \"For any admissible boundary state, the discrete unitarity sandwich preserves the norm.\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/H025SpinfoamBoundaryUnitarity.lean\",\n        \"decl\": \"FableHilbertWalk20260819.H025.DiscreteUnitarity.discrete_unitarity_norm_preservation\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lem_corrected_transition_is_unitary_when_scalar_unit\",\n      \"statement\": \"If the scalar factor of the eight‑boundary transition amplitude is a unit in the cyclotomic field, then the corrected transition (scalar·identity) is unitary.\",\n      \"relation_to_target\": \"implies\",\n      \"depends_on\": [\n        \"rel_discrete_unitarity_norm_preservation\"\n      ],\n      \"lean_skeleton\": \"theorem corrected_transition_is_unitary_when_scalar_unit {s : Cyclo12} (hunit : IsUnit s) : IsUnit (s • (1 : Matrix (Fin 8) (Fin 8) Cyclo12)) :=\\n  by\\n    -- norm preservation follows from discrete unitarity theorem\\n    have hnorm := FableHilbertWalk20260819.H025.DiscreteUnitarity.discrete_unitarity_norm_preservation\\n    -- scalar being a unit implies the sandwich is unitary\\n    sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": []\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [],
+    "relations": [
+      {
+        "id": "rel_discrete_unitarity_norm_preservation",
+        "statement": "For any admissible boundary state, the discrete unitarity sandwich preserves the norm.",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/H025SpinfoamBoundaryUnitarity.lean",
+          "decl": "FableHilbertWalk20260819.H025.DiscreteUnitarity.discrete_unitarity_norm_preservation",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem_corrected_transition_is_unitary_when_scalar_unit",
+        "statement": "If the scalar factor of the eight‑boundary transition amplitude is a unit in the cyclotomic field, then the corrected transition (scalar·identity) is unitary.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "rel_discrete_unitarity_norm_preservation"
+        ],
+        "lean_skeleton": "theorem corrected_transition_is_unitary_when_scalar_unit {s : Cyclo12} (hunit : IsUnit s) : IsUnit (s • (1 : Matrix (Fin 8) (Fin 8) Cyclo12)) :=\n  by\n    -- norm preservation follows from discrete unitarity theorem\n    have hnorm := FableHilbertWalk20260819.H025.DiscreteUnitarity.discrete_unitarity_norm_preservation\n    -- scalar being a unit implies the sandwich is unitary\n    sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": []
+  }
+}
