@@ -79,3 +79,7 @@ pub mod genesis_impl_exact;
 pub mod l1_import_exact;
 
 pub mod born_boundary_exact;
+pub mod complex_selection;
+
+#[cfg(test)]
+mod operational_tomography;

@@ -1,0 +1,289 @@
+import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+import Mathlib.LinearAlgebra.Dimension.Constructions
+import Mathlib.LinearAlgebra.Pi
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.NormNum
+
+/-!
+Field-neutral operational tomography. Vector spaces, calibrated preparations,
+observation descent, and irreducibility are supplied hypotheses. None is inferred
+from primitive difference. No quantum carrier is used in this module.
+-/
+namespace OperationalTomography
+
+variable {K V C G I : Type*} [Field K]
+  [AddCommGroup V] [Module K V] [AddCommGroup C] [Module K C]
+
+structure Calibrated (K V C : Type*) [Field K]
+    [AddCommGroup V] [Module K V] [AddCommGroup C] [Module K C] where
+  observe : V →ₗ[K] C
+  prepare : C →ₗ[K] V
+  calibration : ∀ c, observe (prepare c) = c
+
+namespace Calibrated
+variable (D : Calibrated K V C)
+
+def hidden : V →ₗ[K] V := LinearMap.id - D.prepare.comp D.observe
+
+theorem observe_surjective : Function.Surjective D.observe :=
+  fun c => ⟨D.prepare c, D.calibration c⟩
+
+theorem prepare_injective : Function.Injective D.prepare := by
+  intro a b h
+  simpa only [D.calibration] using congrArg D.observe h
+
+theorem observe_hidden (x : V) : D.observe (D.hidden x) = 0 := by
+  simp [hidden, D.calibration]
+
+theorem hidden_prepare (c : C) : D.hidden (D.prepare c) = 0 := by
+  simp [hidden, D.calibration]
+
+theorem hidden_idempotent (x : V) : D.hidden (D.hidden x) = D.hidden x := by
+  change D.hidden x - D.prepare (D.observe (D.hidden x)) = D.hidden x
+  rw [D.observe_hidden, map_zero, sub_zero]
+
+theorem reconstruction_plus_hidden (x : V) :
+    D.prepare (D.observe x) + D.hidden x = x := by
+  change D.prepare (D.observe x) + (x - D.prepare (D.observe x)) = x
+  abel
+
+theorem tomography_iff_reconstruction : Function.Injective D.observe ↔
+    ∀ x, D.prepare (D.observe x) = x := by
+  constructor
+  · intro h x
+    apply h
+    exact D.calibration (D.observe x)
+  · intro h x y he
+    rw [← h x, ← h y, he]
+
+theorem tomography_iff_hidden_zero : Function.Injective D.observe ↔ D.hidden = 0 := by
+  rw [D.tomography_iff_reconstruction]
+  constructor
+  · intro h
+    ext x
+    simp [hidden, h x]
+  · intro h x
+    have hx : x - D.prepare (D.observe x) = 0 := LinearMap.congr_fun h x
+    exact (sub_eq_zero.mp hx).symm
+
+theorem dimension_defect [FiniteDimensional K V] [FiniteDimensional K C] :
+    Module.finrank K V = Module.finrank K C + Module.finrank K (LinearMap.ker D.observe) := by
+  have h := D.observe.finrank_range_add_finrank_ker
+  rw [LinearMap.range_eq_top.mpr D.observe_surjective, finrank_top] at h
+  exact h.symm
+
+end Calibrated
+
+/-- Calibration can be constructed from actual independent dual preparations/tests.
+Taking I to be a product of two local frame index types gives product coordinates.
+This assumes the delta pairing; it does not assume that those tests separate V. -/
+def ofDualFrame [Fintype I] [DecidableEq I]
+    (p : I → V) (e : I → V →ₗ[K] K)
+    (cal : ∀ i j, e i (p j) = if i = j then 1 else 0) :
+    Calibrated K V (I → K) where
+  observe := LinearMap.pi e
+  prepare := ∑ j, (LinearMap.proj j).smulRight (p j)
+  calibration := by
+    intro c
+    ext i
+    simp [LinearMap.sum_apply, cal]
+
+/-- Local dual frames plus factorization give calibration, without separation. -/
+def ofProductFrame {J : Type*} [Fintype I] [Fintype J]
+    [DecidableEq I] [DecidableEq J]
+    (p : I → J → V) (e : I → J → V →ₗ[K] K)
+    (cal : ∀ i j k l, e i j (p k l) =
+      (if i = k then 1 else 0) * (if j = l then 1 else 0)) :
+    Calibrated K V (I × J → K) :=
+  ofDualFrame (fun ij => p ij.1 ij.2) (fun ij => e ij.1 ij.2) (by
+    rintro ⟨i,j⟩ ⟨k,l⟩
+    rw [cal]
+    by_cases hi : i = k <;> by_cases hj : j = l <;> simp [hi,hj])
+
+theorem product_dimension {J : Type*} [Fintype I] [Fintype J]
+    (D : Calibrated K V (I × J → K)) (tomography : Function.Injective D.observe) :
+    Module.finrank K V = Fintype.card I * Fintype.card J := by
+  have h := (LinearEquiv.ofBijective D.observe
+    ⟨tomography, D.observe_surjective⟩).finrank_eq
+  simpa using h
+
+/-- Descent is stable under sequential composition, with the same order on
+observed coordinates. Closure as physical filters is a separate hypothesis. -/
+theorem descent_comp (M : V →ₗ[K] C) (T S : V →ₗ[K] V) (L N : C →ₗ[K] C)
+    (hT : ∀ x, M (T x) = L (M x)) (hS : ∀ x, M (S x) = N (M x)) (x : V) :
+    M ((T.comp S) x) = (L.comp N) (M x) := by
+  simp only [LinearMap.comp_apply, hT, hS]
+
+/-- A finite expansion of pulled-back tests defines the observed action. Local
+product-test closure is an operational way to supply this premise; it is not
+separation of global states. -/
+def coordinateAction [Fintype I] (a : I → I → K) : (I → K) →ₗ[K] (I → K) :=
+  LinearMap.pi (fun i => ∑ j, a i j • LinearMap.proj j)
+
+theorem descent_of_test_pullback [Fintype I] (e : I → V →ₗ[K] K)
+    (T : V →ₗ[K] V) (a : I → I → K)
+    (pullback : ∀ i x, e i (T x) = ∑ j, a i j * e j x) (x : V) :
+    (LinearMap.pi e) (T x) = coordinateAction a ((LinearMap.pi e) x) := by
+  ext i
+  simp [coordinateAction, LinearMap.sum_apply, pullback]
+
+/-- Invariance is required only for the supplied family of admitted operations. -/
+def Invariant (ops : G → V →ₗ[K] V) (W : Submodule K V) : Prop :=
+  ∀ g x, x ∈ W → ops g x ∈ W
+
+def Irreducible (ops : G → V →ₗ[K] V) : Prop :=
+  ∀ W : Submodule K V, Invariant ops W → W = ⊥ ∨ W = ⊤
+
+theorem kernel_invariant (M : V →ₗ[K] C) (ops : G → V →ₗ[K] V)
+    (localOps : G → C →ₗ[K] C)
+    (descent : ∀ g x, M (ops g x) = localOps g (M x)) :
+    Invariant ops (LinearMap.ker M) := by
+  intro g x hx
+  change M (ops g x) = 0
+  rw [descent, show M x = 0 from hx, map_zero]
+
+/-- This is a sufficient additional operational principle, not a consequence of
+calibration, positivity, no signalling, or primitive difference. -/
+theorem tomography_of_irreducible (M : V →ₗ[K] C) (ops : G → V →ₗ[K] V)
+    (localOps : G → C →ₗ[K] C)
+    (descent : ∀ g x, M (ops g x) = localOps g (M x))
+    (irreducible : Irreducible ops) (nonzero : M ≠ 0) : Function.Injective M := by
+  apply LinearMap.ker_eq_bot.mp
+  rcases irreducible _ (kernel_invariant M ops localOps descent) with h | h
+  · exact h
+  · exfalso
+    apply nonzero
+    ext x
+    have hx : x ∈ LinearMap.ker M := by rw [h]; trivial
+    exact hx
+
+/-- A calibrated nontrivial observation supplies the nonzero premise. -/
+theorem calibrated_tomography (D : Calibrated K V C) [Nontrivial C]
+    (ops : G → V →ₗ[K] V) (localOps : G → C →ₗ[K] C)
+    (descent : ∀ g x, D.observe (ops g x) = localOps g (D.observe x))
+    (irreducible : Irreducible ops) : Function.Injective D.observe := by
+  apply tomography_of_irreducible D.observe ops localOps descent irreducible
+  intro hz
+  obtain ⟨c, hc⟩ := exists_ne (0 : C)
+  have h := D.calibration c
+  rw [hz, LinearMap.zero_apply] at h
+  exact hc h.symm
+
+/-- Normalization-preserving operations cannot satisfy this irreducibility
+criterion whenever the normalization kernel is nonzero and proper. Outcome
+filters, or another justified operation family, are therefore necessary. -/
+theorem normalization_obstructs_irreducibility (u : V →ₗ[K] K)
+    (ops : G → V →ₗ[K] V) (preserve : ∀ g x, u (ops g x) = u x)
+    (u_nonzero : u ≠ 0) (hidden : ∃ x : V, x ≠ 0 ∧ u x = 0) :
+    ¬ Irreducible ops := by
+  intro hirr
+  have inv : Invariant ops (LinearMap.ker u) := by
+    intro g x hx
+    change u (ops g x) = 0
+    rw [preserve]
+    exact hx
+  rcases hirr _ inv with h | h
+  · obtain ⟨x, hx, hu⟩ := hidden
+    have hm : x ∈ (⊥ : Submodule K V) := by rw [← h]; exact hu
+    exact hx hm
+  · apply u_nonzero
+    ext x
+    have hx : x ∈ LinearMap.ker u := by rw [h]; trivial
+    exact hx
+
+/-- All coordinate matrix units are irreducible over any field. This is an
+algebraic sufficient control; physical admissibility is a separate obligation. -/
+def matrixUnit [DecidableEq I] (i j : I) : (I → K) →ₗ[K] (I → K) where
+  toFun x k := if k = i then x j else 0
+  map_add' x y := by ext k; by_cases h : k = i <;> simp [h]
+  map_smul' a x := by ext k; by_cases h : k = i <;> simp [h]
+
+theorem matrix_units_irreducible [Fintype I] [DecidableEq I] :
+    Irreducible (fun ij : I × I => matrixUnit (K := K) ij.1 ij.2) := by
+  intro W hW
+  by_cases hz : W = ⊥
+  · exact Or.inl hz
+  right
+  obtain ⟨x, hxW, hx⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hz
+  have hex : ∃ j, x j ≠ 0 := by
+    by_contra h
+    apply hx
+    ext j
+    simpa using not_exists.mp h j
+  obtain ⟨j, hj⟩ := hex
+  apply top_unique
+  intro y _
+  have hs : ∀ i, (fun k => if k = i then y i else 0) ∈ W := by
+    intro i
+    have hm := W.smul_mem (y i / x j) (hW (i,j) x hxW)
+    convert hm using 1
+    ext k
+    by_cases hki : k = i <;> simp [matrixUnit, hki, div_mul_cancel₀ _ hj]
+  have hm := W.sum_mem (fun i (_ : i ∈ Finset.univ) => hs i)
+  convert hm using 1
+  ext k
+  simp
+
+/-- Each matrix unit is a positive outcome filter on a classical coordinate
+cone. Availability in an arbitrary operational theory is not asserted. -/
+theorem classical_filter_positive [DecidableEq I] (i j : I) (x : I → ℚ)
+    (hx : ∀ k, 0 ≤ x k) : ∀ k, 0 ≤ matrixUnit i j x k := by
+  intro k
+  by_cases h : k = i <;> simp [matrixUnit,h,hx]
+
+theorem classical_filter_subnormalized [Fintype I] [DecidableEq I]
+    (i j : I) (x : I → ℚ) (hx : ∀ k, 0 ≤ x k) :
+    ∑ k, matrixUnit i j x k ≤ ∑ k, x k := by
+  simp only [matrixUnit, LinearMap.coe_mk, AddHom.coe_mk]
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+  exact Finset.single_le_sum (fun k _ => hx k) (Finset.mem_univ j)
+
+/-- The doubled model has calibration but an explicit hidden direction. -/
+def doubled : Calibrated ℚ (ℚ × ℚ) ℚ where
+  observe := LinearMap.fst ℚ ℚ ℚ + LinearMap.snd ℚ ℚ ℚ
+  prepare := ((1/2 : ℚ) • LinearMap.id).prod ((1/2 : ℚ) • LinearMap.id)
+  calibration c := by simp; ring
+
+theorem doubled_calibrated_not_tomographic : ¬ Function.Injective doubled.observe := by
+  intro h
+  have he : doubled.observe (1,0) = doubled.observe (0,1) := by norm_num [doubled]
+  have hbad := congrArg Prod.fst (h he)
+  norm_num at hbad
+
+/-- Positive normalized states have equal product coordinates, but a protected
+first-block question separates them. Quotienting loses that question. -/
+theorem doubled_protected_question :
+    (0 : ℚ) ≤ (1 : ℚ) ∧ doubled.observe (1,0) = 1 ∧
+    doubled.observe (0,1) = 1 ∧ ((1,0) : ℚ × ℚ).1 ≠ ((0,1) : ℚ × ℚ).1 := by
+  norm_num [doubled]
+
+theorem protected_question_cannot_descend :
+    ¬ ∃ q : ℚ → ℚ, ∀ x : ℚ × ℚ, q (doubled.observe x) = x.1 := by
+  rintro ⟨q,hq⟩
+  have h1 := hq (1,0)
+  have h2 := hq (0,1)
+  norm_num [doubled] at h1 h2
+  exact one_ne_zero (h1.symm.trans h2)
+
+end OperationalTomography
+
+#print axioms OperationalTomography.Calibrated.dimension_defect
+#print axioms OperationalTomography.Calibrated.tomography_iff_hidden_zero
+#print axioms OperationalTomography.ofDualFrame
+#print axioms OperationalTomography.kernel_invariant
+#print axioms OperationalTomography.tomography_of_irreducible
+#print axioms OperationalTomography.calibrated_tomography
+#print axioms OperationalTomography.normalization_obstructs_irreducibility
+#print axioms OperationalTomography.matrix_units_irreducible
+#print axioms OperationalTomography.doubled_calibrated_not_tomographic
+#print axioms OperationalTomography.doubled_protected_question
+#print axioms OperationalTomography.protected_question_cannot_descend
+
+#print axioms OperationalTomography.ofProductFrame
+#print axioms OperationalTomography.product_dimension
+#print axioms OperationalTomography.descent_comp
+#print axioms OperationalTomography.classical_filter_positive
+#print axioms OperationalTomography.classical_filter_subnormalized
+
+#print axioms OperationalTomography.descent_of_test_pullback
