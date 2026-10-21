@@ -1,0 +1,335 @@
+[
+  {
+    "name": "lean",
+    "argv": [
+      "lake",
+      "build",
+      "ComplexFieldSelection"
+    ],
+    "cwd": "C:\\t\\cfs\\lean4",
+    "started_utc": "2026-10-21T17:17:43.289886+00:00",
+    "elapsed_seconds": 154.625,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "lake",
+          "build",
+          "ComplexFieldSelection"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "lake",
+          "env",
+          "lean",
+          "ComplexFieldSelection.lean"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "lean.log",
+    "output_sha256": "73514e93fe045ad46805c5fe8c7551c84c5600f22bc66bc48d72f2b379e3d0a7"
+  },
+  {
+    "name": "rust",
+    "argv": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "code/rust/Cargo.toml",
+      "--offline",
+      "-p",
+      "tfqm_finite_probability",
+      "--lib",
+      "complex_selection"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:43.289886+00:00",
+    "elapsed_seconds": 21.328,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "cargo",
+          "test",
+          "--manifest-path",
+          "code/rust/Cargo.toml",
+          "--offline",
+          "-p",
+          "tfqm_finite_probability",
+          "--lib",
+          "complex_selection"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "rust.log",
+    "output_sha256": "deee9c45dcbbb8834409dc5021b7256de4b88a305122893e30239fd7c611c2f6"
+  },
+  {
+    "name": "python",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "code/python/tests/test_complex_selection.py",
+      "-q"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:43.289886+00:00",
+    "elapsed_seconds": 41.172,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "code/python/tests/test_complex_selection.py",
+          "-q"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "python.log",
+    "output_sha256": "317306f08300c9a4d54aa4515e58e4ae82d50593919ef4d7d8eb3fe19b87145e"
+  },
+  {
+    "name": "independent_oracle",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\reviews\\20261021T171132Z_pr138\\independent_oracle.py",
+      "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\runs\\20261021T162659Z_complex_selection\\p1\\candidate.json"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:43.289886+00:00",
+    "elapsed_seconds": 0.219,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\reviews\\20261021T171132Z_pr138\\independent_oracle.py",
+          "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\runs\\20261021T162659Z_complex_selection\\p1\\candidate.json"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "independent_oracle.log",
+    "output_sha256": "a290339e53d37bc7bee57845d5bd0fd3eb389389d9b294a8dad7d81703cd6515"
+  },
+  {
+    "name": "candidate",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "code/python/src/qm/complex_selection.py",
+      "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\runs\\20261021T162659Z_complex_selection\\p1\\candidate.json"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:43.510446+00:00",
+    "elapsed_seconds": 0.859,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "code/python/src/qm/complex_selection.py",
+          "C:\\t\\cfs\\dag\\results\\L1-IMP-COMPLEX-FIELD\\runs\\20261021T162659Z_complex_selection\\p1\\candidate.json"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "candidate.log",
+    "output_sha256": "a3495753a8d7ee1d1250ee65065dcd370716d2e79ce97c5cb6b7b60a5ecb355f"
+  },
+  {
+    "name": "dag",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/validate_derivation_dag.py",
+      "--no-files"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:44.363226+00:00",
+    "elapsed_seconds": 1.282,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "dag.log",
+    "output_sha256": "8e68dad2e7e6fd046def7c9ac8ea9f6e50e525a1cf069641ec08638f7dec0d0a"
+  },
+  {
+    "name": "sync_unified",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/sync_unified_dag.py",
+      "--check"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:45.650015+00:00",
+    "elapsed_seconds": 6.078,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/sync_unified_dag.py",
+          "--check"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "sync_unified.log",
+    "output_sha256": "d3ddfa10be9902763c2db2dc1b091beae87d06c206699d39360bbcd0aaf9c34e"
+  },
+  {
+    "name": "sync_applications",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/sync_application_branches.py",
+      "--check"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:51.722034+00:00",
+    "elapsed_seconds": 1.031,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/sync_application_branches.py",
+          "--check"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "sync_applications.log",
+    "output_sha256": "0f840baf609a747163c4facc48033f6e62c24854730108af1bcf7a60e5e31965"
+  },
+  {
+    "name": "sync_pregenesis",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/sync_pregenesis_to_wdp.py",
+      "--check"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:17:52.754710+00:00",
+    "elapsed_seconds": 19.047,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/sync_pregenesis_to_wdp.py",
+          "--check"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "sync_pregenesis.log",
+    "output_sha256": "7a8a15e83c46437a8020beca599d06e1d29067341c940b850184ddf99e4771f5"
+  },
+  {
+    "name": "contracts",
+    "argv": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/contract_scores.py",
+      "check"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:18:04.611915+00:00",
+    "elapsed_seconds": 240.047,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "contracts.log",
+    "output_sha256": "0619705bc4dd78765eefb7bedb49fa27740a555d70abca05cc3c89ed1a224614"
+  },
+  {
+    "name": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "C:\\t\\cfs",
+    "started_utc": "2026-10-21T17:18:11.801612+00:00",
+    "elapsed_seconds": 0.625,
+    "exit_code": 0,
+    "steps": [
+      {
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "output": "whitespace.log",
+    "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

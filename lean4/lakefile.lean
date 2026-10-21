@@ -17,6 +17,7 @@ lean_lib «FiniteQuantum» where
     `FiniteGraphDressing,
     `TensorConeReconstruction,
     `TensorTomography,
+    `ComplexFieldSelection,
     `TensorCoordinates,
     `TensorSchmidt,
     `TensorReachability,

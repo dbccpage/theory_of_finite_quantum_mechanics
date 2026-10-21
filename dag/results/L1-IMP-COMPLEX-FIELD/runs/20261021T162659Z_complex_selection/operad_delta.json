@@ -1,0 +1,228 @@
+{
+  "task_id": "L1-IMP-COMPLEX-FIELD",
+  "authority_effect": "None",
+  "colours": [
+    "carrier",
+    "composite",
+    "product_map",
+    "span",
+    "trace_pairing",
+    "dimension_count"
+  ],
+  "add_or_refine_generators": [
+    {
+      "id": "dimension",
+      "ordered_inputs": [
+        "carrier"
+      ],
+      "output": "dimension_count",
+      "arity": 1,
+      "carrier": "finite R/C/H matrix families; Q stand-ins",
+      "coefficient_ring": "Q",
+      "hypotheses": [
+        "supplied carrier family"
+      ],
+      "source_pins": {
+        "dag/derivation_dag.json": "dc6d3485d5b3c8f38ef641defea4a52b88b1558138e6fd1b0e42a08b92b8182b",
+        "dag/pfp/README.md": "67fba212bf2bd28785438d4df83953b8fb5d85ab3cd363e25f16e6811d47f514",
+        "dag/pfp/workflow.yaml": "fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a",
+        "dag/pfp/stage_contracts.yaml": "9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb",
+        "dag/prompts/l1_to_l2_l1_imp_complex_field_imported_assumption.yaml": "e6ea9109049528f3c4177d56ccb37f8186b045d09a710e98d4158c383ce12066",
+        "dag/operads/l1_imp_complex_field.yaml": "bd9740f907d798646f8e7399352d27615a4758d3e9f4a5887ed0371c55185651",
+        "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/scope_review.json": "353f8de3401ae8537620a446d2f27a155012036106cdc7212f7c5f1ff6c59df5",
+        "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "lean4/BornGaussRat.lean": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
+        "lean4/BornHermitianCarrier.lean": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
+        "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+        "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1",
+        "code/python/src/qm/complex_selection.py": "7b0acd25a39826efa160aa8f54bed2c73ffc8ca19c69e114f92a352cf2e617b5",
+        "code/python/tests/test_complex_selection.py": "dd1b5a9d31c95bf6fc8e60398299f4df9a2a8008a524f80d17f4cb555f5b9096",
+        "code/rust/src/finite_probability/complex_selection.rs": "72868ffbfcd441c0ca8a4bd97f5747c423714f878b0fbd3bce0ef66e37b3ad75",
+        "code/rust/src/finite_probability/lib.rs": "36159ddbfca4dc4f7c037f015e3f753ccf5c9808a8e69b924e3155ebfc5919f6",
+        "lean4/lakefile.lean": "880d0ce4026aee25c6a47d598f3882871eedc9b4170dfe5ac3af65b587ec5e88"
+      },
+      "semantic_predicate": "K_d(n)=n+d*choose(n,2)",
+      "evidence_status": "see P2 executed predicates"
+    },
+    {
+      "id": "kron",
+      "ordered_inputs": [
+        "carrier",
+        "carrier"
+      ],
+      "output": "composite",
+      "arity": 2,
+      "carrier": "finite R/C/H matrix families; Q stand-ins",
+      "coefficient_ring": "Q",
+      "hypotheses": [
+        "supplied carrier family"
+      ],
+      "source_pins": {
+        "dag/derivation_dag.json": "dc6d3485d5b3c8f38ef641defea4a52b88b1558138e6fd1b0e42a08b92b8182b",
+        "dag/pfp/README.md": "67fba212bf2bd28785438d4df83953b8fb5d85ab3cd363e25f16e6811d47f514",
+        "dag/pfp/workflow.yaml": "fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a",
+        "dag/pfp/stage_contracts.yaml": "9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb",
+        "dag/prompts/l1_to_l2_l1_imp_complex_field_imported_assumption.yaml": "e6ea9109049528f3c4177d56ccb37f8186b045d09a710e98d4158c383ce12066",
+        "dag/operads/l1_imp_complex_field.yaml": "bd9740f907d798646f8e7399352d27615a4758d3e9f4a5887ed0371c55185651",
+        "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/scope_review.json": "353f8de3401ae8537620a446d2f27a155012036106cdc7212f7c5f1ff6c59df5",
+        "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "lean4/BornGaussRat.lean": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
+        "lean4/BornHermitianCarrier.lean": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
+        "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+        "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1",
+        "code/python/src/qm/complex_selection.py": "7b0acd25a39826efa160aa8f54bed2c73ffc8ca19c69e114f92a352cf2e617b5",
+        "code/python/tests/test_complex_selection.py": "dd1b5a9d31c95bf6fc8e60398299f4df9a2a8008a524f80d17f4cb555f5b9096",
+        "code/rust/src/finite_probability/complex_selection.rs": "72868ffbfcd441c0ca8a4bd97f5747c423714f878b0fbd3bce0ef66e37b3ad75",
+        "code/rust/src/finite_probability/lib.rs": "36159ddbfca4dc4f7c037f015e3f753ccf5c9808a8e69b924e3155ebfc5919f6",
+        "lean4/lakefile.lean": "880d0ce4026aee25c6a47d598f3882871eedc9b4170dfe5ac3af65b587ec5e88"
+      },
+      "semantic_predicate": "ordered entrywise tensor; Hermitian codomain only when checked",
+      "evidence_status": "see P2 executed predicates"
+    },
+    {
+      "id": "span",
+      "ordered_inputs": [
+        "product_map"
+      ],
+      "output": "span",
+      "arity": 1,
+      "carrier": "finite R/C/H matrix families; Q stand-ins",
+      "coefficient_ring": "Q",
+      "hypotheses": [
+        "supplied carrier family"
+      ],
+      "source_pins": {
+        "dag/derivation_dag.json": "dc6d3485d5b3c8f38ef641defea4a52b88b1558138e6fd1b0e42a08b92b8182b",
+        "dag/pfp/README.md": "67fba212bf2bd28785438d4df83953b8fb5d85ab3cd363e25f16e6811d47f514",
+        "dag/pfp/workflow.yaml": "fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a",
+        "dag/pfp/stage_contracts.yaml": "9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb",
+        "dag/prompts/l1_to_l2_l1_imp_complex_field_imported_assumption.yaml": "e6ea9109049528f3c4177d56ccb37f8186b045d09a710e98d4158c383ce12066",
+        "dag/operads/l1_imp_complex_field.yaml": "bd9740f907d798646f8e7399352d27615a4758d3e9f4a5887ed0371c55185651",
+        "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/scope_review.json": "353f8de3401ae8537620a446d2f27a155012036106cdc7212f7c5f1ff6c59df5",
+        "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "lean4/BornGaussRat.lean": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
+        "lean4/BornHermitianCarrier.lean": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
+        "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+        "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1",
+        "code/python/src/qm/complex_selection.py": "7b0acd25a39826efa160aa8f54bed2c73ffc8ca19c69e114f92a352cf2e617b5",
+        "code/python/tests/test_complex_selection.py": "dd1b5a9d31c95bf6fc8e60398299f4df9a2a8008a524f80d17f4cb555f5b9096",
+        "code/rust/src/finite_probability/complex_selection.rs": "72868ffbfcd441c0ca8a4bd97f5747c423714f878b0fbd3bce0ef66e37b3ad75",
+        "code/rust/src/finite_probability/lib.rs": "36159ddbfca4dc4f7c037f015e3f753ccf5c9808a8e69b924e3155ebfc5919f6",
+        "lean4/lakefile.lean": "880d0ce4026aee25c6a47d598f3882871eedc9b4170dfe5ac3af65b587ec5e88"
+      },
+      "semantic_predicate": "rational linear combinations of local products",
+      "evidence_status": "see P2 executed predicates"
+    },
+    {
+      "id": "trace",
+      "ordered_inputs": [
+        "composite",
+        "composite"
+      ],
+      "output": "trace_pairing",
+      "arity": 2,
+      "carrier": "finite R/C/H matrix families; Q stand-ins",
+      "coefficient_ring": "Q",
+      "hypotheses": [
+        "supplied carrier family"
+      ],
+      "source_pins": {
+        "dag/derivation_dag.json": "dc6d3485d5b3c8f38ef641defea4a52b88b1558138e6fd1b0e42a08b92b8182b",
+        "dag/pfp/README.md": "67fba212bf2bd28785438d4df83953b8fb5d85ab3cd363e25f16e6811d47f514",
+        "dag/pfp/workflow.yaml": "fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a",
+        "dag/pfp/stage_contracts.yaml": "9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb",
+        "dag/prompts/l1_to_l2_l1_imp_complex_field_imported_assumption.yaml": "e6ea9109049528f3c4177d56ccb37f8186b045d09a710e98d4158c383ce12066",
+        "dag/operads/l1_imp_complex_field.yaml": "bd9740f907d798646f8e7399352d27615a4758d3e9f4a5887ed0371c55185651",
+        "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/scope_review.json": "353f8de3401ae8537620a446d2f27a155012036106cdc7212f7c5f1ff6c59df5",
+        "lean4/TensorTomography.lean": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
+        "lean4/TensorCoordinates.lean": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
+        "lean4/TensorComposition.lean": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
+        "lean4/BornGaussRat.lean": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
+        "lean4/BornHermitianCarrier.lean": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
+        "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
+        "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1",
+        "code/python/src/qm/complex_selection.py": "7b0acd25a39826efa160aa8f54bed2c73ffc8ca19c69e114f92a352cf2e617b5",
+        "code/python/tests/test_complex_selection.py": "dd1b5a9d31c95bf6fc8e60398299f4df9a2a8008a524f80d17f4cb555f5b9096",
+        "code/rust/src/finite_probability/complex_selection.rs": "72868ffbfcd441c0ca8a4bd97f5747c423714f878b0fbd3bce0ef66e37b3ad75",
+        "code/rust/src/finite_probability/lib.rs": "36159ddbfca4dc4f7c037f015e3f753ccf5c9808a8e69b924e3155ebfc5919f6",
+        "lean4/lakefile.lean": "880d0ce4026aee25c6a47d598f3882871eedc9b4170dfe5ac3af65b587ec5e88"
+      },
+      "semantic_predicate": "real rational coordinate of trace(AB)",
+      "evidence_status": "see P2 executed predicates"
+    }
+  ],
+  "add_or_refine_relations": [
+    {
+      "id": "T1",
+      "equation_or_predicate": "Multiplicative(d) iff d=2, assuming d>0; unrestricted iff d=0 or d=2",
+      "typing_conditions": "n,m natural >=2",
+      "source_pins": {
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1"
+      },
+      "evidence_status": "kernel build receipt",
+      "scope": "all positive natural d and all n,m >=2"
+    },
+    {
+      "id": "product_span",
+      "equation_or_predicate": "Gaussian-rational Hermitian joint matrices lie in Q-span of Hermitian products",
+      "typing_conditions": "arbitrary finite local index types",
+      "source_pins": {
+        "lean4/ComplexFieldSelection.lean": "7b0553afe506cbde8d6ef6859cbcaf87792625aa5606960efe4afb24540a16c1"
+      },
+      "evidence_status": "kernel build receipt",
+      "scope": "algebraic Q(i)"
+    }
+  ],
+  "checked_compositions": [
+    {
+      "outer_operation": "trace",
+      "input_slot": 0,
+      "inner_operation": "kron",
+      "colour_match": true,
+      "hypothesis_match": "Q symmetric inputs",
+      "licensing_relations": [
+        "trace tensor factorization",
+        "skew_trace_zero"
+      ],
+      "evidence_status": "Lean real_product_orthogonality"
+    }
+  ],
+  "failed_compositions": [
+    {
+      "operation": "quaternion ordered Kronecker",
+      "failure": "not Hermitian-valued",
+      "witness": "i,j off-diagonal local Hermitian matrices"
+    },
+    {
+      "operation": "quaternion Hermitian projection",
+      "failure": "noninjective product map, domain dim36 to rank28"
+    },
+    {
+      "operation": "real symmetric product span",
+      "failure": "rank9 in dim10; Y tensor Y is trace-orthogonal"
+    }
+  ],
+  "counterexamples": [
+    "d=0 to unrestricted iff",
+    "n=1 to weakened quantifier",
+    "rhoPlus/rhoMinus to real local tomography"
+  ],
+  "open_obligations": [
+    "derive carrier restriction",
+    "derive field-neutral operational tomography and independent products",
+    "exclude extra spin factors",
+    "completeness",
+    "full operad identity/unit/grafting axioms not claimed"
+  ],
+  "presentation_status": "typed operation inventory with checked relations, not a completed abstract operad"
+}

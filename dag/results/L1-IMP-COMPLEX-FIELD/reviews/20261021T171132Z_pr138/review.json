@@ -1,0 +1,56 @@
+{
+  "schema": "tfqm.pr-review.v1",
+  "pr": 138,
+  "reviewed_head": "169abaaef04055384c37cfb85e830a0c7c234bcd",
+  "base": "lean-v4-35",
+  "base_sha": "5c6887bf881af025540653b95c5ba345df73b0a4",
+  "authority_effect": "None",
+  "review_method": "Fresh mathematical rederivation, line-by-line implementation audit, and a separate finite oracle importing no production code. Same assistant; no independent reviewer panel claimed.",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "P1",
+      "subject": "code/python/src/qm/complex_selection.py",
+      "issue": "make_candidate returned the mutable global PREMISES list. Removing local_tomography before the first verification poisoned the expected-value cache, and the verifier accepted the weakened candidate. With a warm cache, the next generated candidate was still corrupted.",
+      "fix": "Use an immutable tuple for the premise policy and give each candidate a fresh list. The cache comment now acknowledges shared arithmetic rather than claiming an independent oracle.",
+      "regression": "Two parametrized tests exercise cold and warm caches, rejection of a dropped premise, and isolation of later candidates."
+    },
+    {
+      "id": "R2",
+      "severity": "P2",
+      "subject": "code/rust/src/finite_probability/complex_selection.rs",
+      "issue": "psd checked principal minors of only the real coordinates. It accepted the indefinite Hermitian matrix [[1,2i],[-2i,1]], whose eigenvalues are 3 and -1.",
+      "fix": "Rename the helper real_psd and reject nonreal entries before the real principal-minor certificate. Existing real witness controls continue to pass.",
+      "regression": "Reject both the nonreal indefinite example and the real indefinite matrix [[1,2],[2,1]]."
+    }
+  ],
+  "mathematical_audit": {
+    "dimension_selection": "K_d(n)=n+d*n*(n-1)/2. At (2,2), equality yields d*(d-2)=0. Over natural d the solutions are 0 and 2. Positive d selects 2, whose K_2(n)=n^2 proves the universal converse. The Lean statements retain positivity and the unrestricted zero control.",
+    "operational_bridge": "Product spanning supplies only an upper bound. Independent preparations and factorized separating tests supply the lower bound. These operational assumptions are imported; the new Lean theorem consumes dimension multiplicativity. This boundary is correctly stated.",
+    "real_states": "Independently construct rho+ and rho- as sums of two rank-one Gram matrices divided by 4. Their trace is one, their difference is D/2, D^2=I, and trace(D(A tensor B))=0 on the symmetric basis. Lean establishes the universal rational quadratic-form and symmetric-product identities.",
+    "gaussian_span": "A=(A+A*)/2+i*(-i)(A-A*)/2. Taking the Hermitian part of A tensor B gives sym(A) tensor sym(B)-imag(A) tensor imag(B). Matrix units are simple tensors; linearity proves the span statement for all finite index types. The proof uses Q(i), without asserting completeness.",
+    "quaternions": "Dimension obstruction: 6*6=36 versus 28. The ordered entrywise map is Q-bilinear but can leave the Hermitian codomain. Its raw rank31, six non-Hermitian basis products, projected rank28 and kernel dimension8 were reproduced using 4x4 real regular operators and fraction-free integer row reduction. These ranks remain finite evidence, not universal Lean theorems.",
+    "J_and_spin_factors": "The symmetric J commutant has dimensions 1,4,9,16 at n=1..4; the general block argument gives n^2. Adding J and complex-balanced composition restores complex structure. Spin-factor and classification exclusions remain imports; counts alone do not settle them.",
+    "conclusion": "No mathematical error found in the stated conditional theorem or its finite witnesses. No unconditional physical uniqueness, classification, completeness, or primitive derivation follows."
+  },
+  "external_context": [
+    {
+      "url": "https://arxiv.org/abs/1202.4513",
+      "use": "Barnum and Wilce require Jordan structure, local tomography, a qubit and composite constraints; this does not remove the PRs declared imports."
+    },
+    {
+      "url": "https://arxiv.org/abs/1507.06278",
+      "use": "Other real/quaternionic composite categories are possible and are outside the PRs same-family premise."
+    }
+  ],
+  "evidence": {
+    "pre_fix": "before.json",
+    "final_commands": "verified/commands.json",
+    "axioms": "verified/axioms.json",
+    "independent_oracle": "verified/independent_oracle.log",
+    "mutations": "verified/challenges.json",
+    "custody": "verified/custody.json",
+    "source_pins": "source_pins.json"
+  },
+  "custody": "Original run and review records remain immutable. The original replay binds the original PR revision and will reject amended live source; use this successor replay for the repaired sources. The candidate and Lean proof are unchanged. The canonical DAG remains unchanged."
+}
