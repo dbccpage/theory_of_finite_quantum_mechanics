@@ -1,0 +1,132 @@
+OperationalIndependence.lean:68:44: error: unsolved goals
+A B : System
+p : Vec A
+q : Vec B
+⊢ ∑ x, p x.1 * q x.2 = ∑ x, ∑ i, p i * q x
+OperationalIndependence.lean:69:23: warning: This simp argument is unused:
+  Fintype.sum_prod_type
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mass, product, Finset.sum_mul, Finset.mul_sum]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:79:8: warning: `mul_le_one₀` has been deprecated: No replacement, use constituent lemmas from proof.
+OperationalIndependence.lean:82:83: error: unsolved goals
+A B : System
+e p : Vec A
+f q : Vec B
+⊢ ∑ x, e x.1 * p x.1 * (f x.2 * q x.2) = ∑ x, ∑ i, e i * p i * (f x * q x)
+OperationalIndependence.lean:83:35: warning: This simp argument is unused:
+  Fintype.sum_prod_type
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [probability, product]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:92:74: error: expected token
+OperationalIndependence.lean:121:2: error: 'change' tactic failed, pattern
+  ∑ x, T.matrix (B.flip y) x * p x = ?m.20
+is not definitionally equal to target
+  act T p (B.flip y) = act T p y
+OperationalIndependence.lean:128:11: error: Type mismatch
+  Finset.sum_nonneg fun x x_1 => mul_nonneg (T.nonneg y x) (hp x)
+has type
+  0 ≤ ∑ i ∈ ?m.11, T.matrix y i * p i
+but is expected to have type
+  0 ≤ act T p y
+OperationalIndependence.lean:136:8: error: typeclass instance problem is stuck
+  AddCommMonoid ?m.20
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `AddCommMonoid` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+OperationalIndependence.lean:135:19: warning: declaration uses `sorry`
+OperationalIndependence.lean:135:24: warning: This simp argument is unused:
+  Matrix.mulVec
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mass, act, dotProduct, column, Finset.sum_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:135:39: warning: This simp argument is unused:
+  dotProduct
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mass, act, Matrix.mulVec, column, Finset.sum_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:144:31: error: unsolved goals
+A B : System
+T : Process A B
+hT : Channel T
+p : Vec A
+⊢ ∑ x, act T p x = ∑ x, p x
+OperationalIndependence.lean:144:40: warning: This simp argument is unused:
+  mass_act
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hT, mass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:144:50: warning: This simp argument is unused:
+  hT
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mass_act, mass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:165:11: error: Type mismatch: After simplification, term
+  hT x
+ has type
+  ∑ y ∈ @Finset.univ B.Point (instFintypePoint B), T.matrix y x = 1
+but is expected to have type
+  ∑ y ∈ @Finset.univ C.Point (instFintypePoint C), (comp S T).matrix y x = 1
+OperationalIndependence.lean:168:76: error: unsolved goals
+A B C D : System
+T : Process A B
+S : Process C D
+x : (A ⊗ₛ C).Point
+⊢ ∑ y, Matrix.kroneckerMap (fun x1 x2 => x1 * x2) T.matrix S.matrix y x = ∑ x_1, ∑ i, T.matrix i x.1 * S.matrix x_1 x.2
+OperationalIndependence.lean:169:26: warning: This simp argument is unused:
+  Matrix.kronecker_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [column, parallel, Fintype.sum_prod_type, Finset.sum_mul, Finset.mul_sum]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:169:50: warning: This simp argument is unused:
+  Fintype.sum_prod_type
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [column, parallel, Matrix.kronecker_apply, Finset.sum_mul, Finset.mul_sum]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:174:8: warning: `mul_le_one₀` has been deprecated: No replacement, use constituent lemmas from proof.
+OperationalIndependence.lean:177:66: error: unsolved goals
+A B C D : System
+T : Process A B
+S : Process C D
+hT : Channel T
+hS : Channel S
+x : (A ⊗ₛ C).Point
+⊢ column T x.1 * column S x.2 = 1
+OperationalIndependence.lean:178:34: warning: This simp argument is unused:
+  hT
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [column_parallel, hS]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:178:38: warning: This simp argument is unused:
+  hS
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [column_parallel, hT]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+OperationalIndependence.lean:184:42: error: Type mismatch
+  Eq.symm (Matrix.mulVec_mulVec p S.matrix T.matrix)
+has type
+  (S.matrix * T.matrix).mulVec p = S.matrix.mulVec (T.matrix.mulVec p)
+but is expected to have type
+  act (comp S T) p = act S (act T p)

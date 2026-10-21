@@ -1,0 +1,73 @@
+⚠ [1648/1650] Replayed OperationalSymmetry
+warning: OperationalSymmetry.lean: imports `Mathlib.Basic.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.Kronecker` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✖ [1649/1650] Building OperationalCoherence (41s)
+trace: .> LEAN_PATH=C:\lq\l4\.lake\packages\Cli\.lake\build\lib\lean;C:\lq\l4\.lake\packages\batteries\.lake\build\lib\lean;C:\lq\l4\.lake\packages\Qq\.lake\build\lib\lean;C:\lq\l4\.lake\packages\aesop\.lake\build\lib\lean;C:\lq\l4\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\lq\l4\.lake\packages\importGraph\.lake\build\lib\lean;C:\lq\l4\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\lq\l4\.lake\packages\plausible\.lake\build\lib\lean;C:\lq\l4\.lake\packages\mathlib\.lake\build\lib\lean;C:\t\cfs\lean4\b\lib\lean c:\Users\a343o\source\repos\.elan\toolchains\leanprover--lean4---v4.35.0\bin\lean.exe C:\t\cfs\lean4\OperationalCoherence.lean -o C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.olean -i C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.ilean -c C:\t\cfs\lean4\b\ir\OperationalCoherence.c --setup C:\t\cfs\lean4\b\ir\OperationalCoherence.setup.json --json
+error: OperationalCoherence.lean:254:85: unsolved goals
+A : System
+y x : A.Point
+⊢ (if y = x then 1 else 0) = if y = x then 1 else 0
+error: OperationalCoherence.lean:259:76: unsolved goals
+case pos
+A B C D : System
+e : Wire A B
+f : Wire C D
+b : B.Point
+d : D.Point
+a : A.Point
+c : C.Point
+h1 : b = e.toEquiv a
+h2 : d = f.toEquiv c
+⊢ 1 =
+    kroneckerMap (fun x1 x2 => x1 * x2) (fun y x => if y = e.toEquiv x then 1 else 0)
+      (fun y x => if y = f.toEquiv x then 1 else 0) (e.toEquiv a, f.toEquiv c) (a, c)
+
+case neg
+A B C D : System
+e : Wire A B
+f : Wire C D
+b : B.Point
+d : D.Point
+a : A.Point
+c : C.Point
+h1 : b = e.toEquiv a
+h2 : ¬d = f.toEquiv c
+⊢ 0 =
+    kroneckerMap (fun x1 x2 => x1 * x2) (fun y x => if y = e.toEquiv x then 1 else 0)
+      (fun y x => if y = f.toEquiv x then 1 else 0) (e.toEquiv a, d) (a, c)
+
+case pos
+A B C D : System
+e : Wire A B
+f : Wire C D
+b : B.Point
+d : D.Point
+a : A.Point
+c : C.Point
+h1 : ¬b = e.toEquiv a
+h2 : d = f.toEquiv c
+⊢ 0 =
+    kroneckerMap (fun x1 x2 => x1 * x2) (fun y x => if y = e.toEquiv x then 1 else 0)
+      (fun y x => if y = f.toEquiv x then 1 else 0) (b, f.toEquiv c) (a, c)
+
+case neg
+A B C D : System
+e : Wire A B
+f : Wire C D
+b : B.Point
+d : D.Point
+a : A.Point
+c : C.Point
+h1 : ¬b = e.toEquiv a
+h2 : ¬d = f.toEquiv c
+⊢ 0 =
+    kroneckerMap (fun x1 x2 => x1 * x2) (fun y x => if y = e.toEquiv x then 1 else 0)
+      (fun y x => if y = f.toEquiv x then 1 else 0) (b, d) (a, c)
+Some required targets logged failures:
+- OperationalCoherence
+error: build failed

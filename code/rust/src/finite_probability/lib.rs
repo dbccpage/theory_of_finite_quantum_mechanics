@@ -86,3 +86,6 @@ mod operational_tomography;
 
 #[cfg(test)]
 mod operational_filters;
+
+#[cfg(test)]
+mod operational_independence;
