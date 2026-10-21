@@ -196,9 +196,10 @@ fn determinant(a: &[Vec<Q>]) -> Q {
         })
         .sum()
 }
-/// All principal minors are nonnegative: exact rational PSD certificate.
-fn psd(a: &Mat) -> bool {
-    a == &adjoint(a)
+/// Real rational PSD certificate; reject nonreal entries before taking minors.
+fn real_psd(a: &Mat) -> bool {
+    a.iter().flatten().all(|x| x[1..].iter().all(Zero::is_zero))
+        && a == &adjoint(a)
         && (1..(1usize << a.len())).all(|mask| {
             let ids: Vec<_> = (0..a.len()).filter(|i| mask >> i & 1 == 1).collect();
             let minor: Vec<_> = ids
@@ -211,6 +212,20 @@ fn psd(a: &Mat) -> bool {
 #[cfg(test)]
 mod complex_selection_tests {
     use super::*;
+    #[test]
+    fn positivity_rejects_nonreal_input() {
+        let mut a = zero(2);
+        a[0][0] = scalar(1);
+        a[1][1] = scalar(1);
+        a[0][1] = scale(&unit(1), &q(2));
+        a[1][0] = conj(&a[0][1]);
+        assert_eq!(a, adjoint(&a));
+        // Eigenvalues are 3 and -1, but the real-coordinate matrix is I.
+        assert!(!real_psd(&a));
+        a[0][1] = scalar(2);
+        a[1][0] = scalar(2);
+        assert!(!real_psd(&a));
+    }
     #[test]
     fn dimension_census() {
         for d in [1, 2, 4] {
@@ -261,7 +276,7 @@ mod complex_selection_tests {
         assert_ne!(p, m);
         assert_eq!(delta, adjoint(&delta));
         for state in [&p, &m] {
-            assert!(psd(state));
+            assert!(real_psd(state));
             assert_eq!((0..4).map(|i| &state[i][i][0]).sum::<Q>(), q(1));
         }
         for a in basis(2, 1) {

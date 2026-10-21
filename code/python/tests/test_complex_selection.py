@@ -155,3 +155,23 @@ def test_spin_factor_dimension_count_alone_does_not_exclude():
             joint_spin_index = (k+1)*(h+1)-1
             assert joint_spin_index+1 == (k+1)*(h+1)
     assert cs.make_candidate()['spin_factors']['derivation_status'] == 'OPEN'
+
+
+@pytest.mark.parametrize("warm_cache", [False, True])
+def test_candidate_cannot_mutate_verifier_premises(warm_cache):
+    original = tuple(cs.PREMISES)
+    cs._expected_json.cache_clear()
+    try:
+        if warm_cache:
+            cs.verify_candidate_bytes((RUN/'p1/candidate.json').read_bytes())
+        candidate = cs.make_candidate()
+        candidate['premises'].pop()
+        with pytest.raises(ValueError, match='premises'):
+            cs.verify_candidate_bytes(json.dumps(candidate).encode())
+        assert tuple(cs.PREMISES) == original
+        assert cs.make_candidate()['premises'] == list(original)
+    finally:
+        # Restore legacy module state even when this regression fails pre-fix.
+        if isinstance(cs.PREMISES, list):
+            cs.PREMISES[:] = original
+        cs._expected_json.cache_clear()

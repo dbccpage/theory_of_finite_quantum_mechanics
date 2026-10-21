@@ -250,14 +250,14 @@ def j_commutant_symmetric_dimension(n):
     return len(basis)-rank(constraints)
 
 
-PREMISES = ['matrix_carriers_R_C_H_only', 'same_family_nm_composite',
-            'independent_product_preparations_and_factorized_tests', 'local_tomography']
+PREMISES = ('matrix_carriers_R_C_H_only', 'same_family_nm_composite',
+            'independent_product_preparations_and_factorized_tests', 'local_tomography')
 
 
 def make_candidate():
     delta,plus,minus = witness()
     return {'schema':'tfqm.complex-selection.v1', 'authority_effect':'None',
-            'premises':PREMISES, 'status':'CONDITIONAL',
+            'premises':list(PREMISES), 'status':'CONDITIONAL',
             'universal_claim':{'domain':'positive_natural_d', 'n_min':2,'m_min':2,
                                'selected_d':2, 'evidence':'Lean:dimension_selection'},
             'unrestricted_solutions':[0,2], 'census':census(),
@@ -274,8 +274,8 @@ def make_candidate():
 
 @lru_cache(maxsize=1)
 def _expected_json():
-    # Immutable cache of independently recomputed coordinates, shared only within
-    # this checker process. Candidate dictionaries can never mutate this value.
+    # Cache recomputed coordinates as JSON, with no mutable candidate references.
+    # The constructor shares arithmetic with this checker; it is not an independent oracle.
     return json.dumps(make_candidate(), sort_keys=True)
 
 

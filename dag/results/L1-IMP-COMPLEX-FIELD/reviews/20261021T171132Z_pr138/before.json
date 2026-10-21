@@ -1,0 +1,37 @@
+{
+  "reviewed_head": "169abaaef04055384c37cfb85e830a0c7c234bcd",
+  "results": [
+    {
+      "name": "python",
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "code/python/tests/test_complex_selection.py",
+        "-q",
+        "-k",
+        "cannot_mutate"
+      ],
+      "exit_code": 1,
+      "log": "python_before.log"
+    },
+    {
+      "name": "rust",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "--offline",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "complex_selection_tests::positivity_rejects_nonreal_input"
+      ],
+      "exit_code": 101,
+      "log": "rust_before.log"
+    }
+  ],
+  "regression_patch": "regressions_before.patch",
+  "regression_patch_sha256": "4d9207d9666eb843132e2b0c1c3a915d3405b7f53ca48e4254b01baecdd40161"
+}

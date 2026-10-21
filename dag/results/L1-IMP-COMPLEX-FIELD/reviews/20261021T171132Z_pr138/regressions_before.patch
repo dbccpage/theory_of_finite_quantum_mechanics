@@ -1,0 +1,49 @@
+--- a/code/python/tests/test_complex_selection.py
++++ b/code/python/tests/test_complex_selection.py
+@@ -155,3 +155,23 @@
+             joint_spin_index = (k+1)*(h+1)-1
+             assert joint_spin_index+1 == (k+1)*(h+1)
+     assert cs.make_candidate()['spin_factors']['derivation_status'] == 'OPEN'
++
++
++@pytest.mark.parametrize("warm_cache", [False, True])
++def test_candidate_cannot_mutate_verifier_premises(warm_cache):
++    original = tuple(cs.PREMISES)
++    cs._expected_json.cache_clear()
++    try:
++        if warm_cache:
++            cs.verify_candidate_bytes((RUN/'p1/candidate.json').read_bytes())
++        candidate = cs.make_candidate()
++        candidate['premises'].pop()
++        with pytest.raises(ValueError, match='premises'):
++            cs.verify_candidate_bytes(json.dumps(candidate).encode())
++        assert tuple(cs.PREMISES) == original
++        assert cs.make_candidate()['premises'] == list(original)
++    finally:
++        # Restore legacy module state even when this regression fails pre-fix.
++        if isinstance(cs.PREMISES, list):
++            cs.PREMISES[:] = original
++        cs._expected_json.cache_clear()
+--- a/code/rust/src/finite_probability/complex_selection.rs
++++ b/code/rust/src/finite_probability/complex_selection.rs
+@@ -212,6 +212,20 @@
+ mod complex_selection_tests {
+     use super::*;
+     #[test]
++    fn positivity_rejects_nonreal_input() {
++        let mut a = zero(2);
++        a[0][0] = scalar(1);
++        a[1][1] = scalar(1);
++        a[0][1] = scale(&unit(1), &q(2));
++        a[1][0] = conj(&a[0][1]);
++        assert_eq!(a, adjoint(&a));
++        // Eigenvalues are 3 and -1, but the real-coordinate matrix is I.
++        assert!(!psd(&a));
++        a[0][1] = scalar(2);
++        a[1][0] = scalar(2);
++        assert!(!psd(&a));
++    }
++    #[test]
+     fn dimension_census() {
+         for d in [1, 2, 4] {
+             for n in 1..=6 {
