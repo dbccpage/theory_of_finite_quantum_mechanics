@@ -46,6 +46,7 @@ class MockFermionGinIndex:
         self.conn.row_factory = sqlite3.Row
         self.posting_index: Dict[int, Set[int]] = defaultdict(set)
         self.cfg_modes: Dict[int, Set[int]] = {}
+        self.cfg_metadata: Dict[int, Dict[str, Any]] = {}
         self._init_schema()
 
     def _init_schema(self) -> None:
@@ -76,6 +77,12 @@ class MockFermionGinIndex:
         )
 
         self.cfg_modes[cfg_id] = set(occupied_modes)
+        self.cfg_metadata[cfg_id] = {
+            "weight": weight,
+            "jw_sign": jw_sign,
+            "parity_sector": parity_sector,
+            "total_modes": total_modes,
+        }
         for m in range(1, total_modes + 1):
             is_occ = 1 if m in occupied_modes else 0
             c.execute(
@@ -119,7 +126,20 @@ class MockFermionGinIndex:
 
         candidates = self.query_by_modes(req, forb)
         candidates.discard(cfg_id)
-        return next(iter(candidates)) if candidates else None
+
+        src_meta = self.cfg_metadata.get(cfg_id)
+        valid_partners = []
+        for c in candidates:
+            c_meta = self.cfg_metadata.get(c)
+            if src_meta is not None and c_meta is not None:
+                if c_meta["jw_sign"] == -src_meta["jw_sign"] and abs(c_meta["weight"] - src_meta["weight"]) < 1e-12:
+                    valid_partners.append(c)
+            else:
+                valid_partners.append(c)
+
+        if len(valid_partners) == 1:
+            return valid_partners[0]
+        return None
 
     def build_bipartite_hopping_model(self) -> None:
         """Builds a bipartite 4-site fermion model with exact meron/Kramers sign cancellation."""

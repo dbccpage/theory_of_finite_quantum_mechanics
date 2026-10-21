@@ -120,19 +120,14 @@ fn included(smaller: u64, larger: u64) -> bool {
 }
 
 impl FiniteReportPresheaf {
-    pub fn new(
+    fn validate_contexts(
         carrier_size: usize,
-        report_counts: BTreeMap<u64, usize>,
-        restrictions: BTreeMap<(u64, u64), Vec<usize>>,
-    ) -> Result<Self, DescentError> {
+        report_counts: &BTreeMap<u64, usize>,
+        full: u64,
+    ) -> Result<(), DescentError> {
         if carrier_size > 64 {
             return Err(DescentError::CarrierTooLarge);
         }
-        let full = if carrier_size == 64 {
-            u64::MAX
-        } else {
-            (1u64 << carrier_size) - 1
-        };
         if !report_counts.contains_key(&0) || !report_counts.contains_key(&full) {
             return Err(DescentError::MissingEmptyOrFullContext);
         }
@@ -141,32 +136,49 @@ impl FiniteReportPresheaf {
                 return Err(DescentError::ContextOutsideCarrier { context });
             }
         }
+        Ok(())
+    }
+
+    fn validate_single_restriction(
+        a: u64,
+        b: u64,
+        report_counts: &BTreeMap<u64, usize>,
+        restrictions: &BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<(), DescentError> {
+        if !included(b, a) {
+            return Ok(());
+        }
+        let row = restrictions
+            .get(&(a, b))
+            .ok_or(DescentError::MissingRestriction {
+                source: a,
+                target: b,
+            })?;
+        if row.len() != report_counts[&a] {
+            return Err(DescentError::RestrictionShape {
+                source: a,
+                target: b,
+            });
+        }
+        if row.iter().any(|&r| r >= report_counts[&b]) {
+            return Err(DescentError::RestrictionTargetOutsideReports {
+                source: a,
+                target: b,
+            });
+        }
+        Ok(())
+    }
+
+    fn validate_pairwise_restrictions(
+        report_counts: &BTreeMap<u64, usize>,
+        restrictions: &BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<(), DescentError> {
         for &a in report_counts.keys() {
             for &b in report_counts.keys() {
                 if !report_counts.contains_key(&(a & b)) {
                     return Err(DescentError::MissingIntersection { left: a, right: b });
                 }
-                if included(b, a) {
-                    let row =
-                        restrictions
-                            .get(&(a, b))
-                            .ok_or(DescentError::MissingRestriction {
-                                source: a,
-                                target: b,
-                            })?;
-                    if row.len() != report_counts[&a] {
-                        return Err(DescentError::RestrictionShape {
-                            source: a,
-                            target: b,
-                        });
-                    }
-                    if row.iter().any(|&r| r >= report_counts[&b]) {
-                        return Err(DescentError::RestrictionTargetOutsideReports {
-                            source: a,
-                            target: b,
-                        });
-                    }
-                }
+                Self::validate_single_restriction(a, b, report_counts, restrictions)?;
             }
             if restrictions[&(a, a)]
                 .iter()
@@ -176,32 +188,73 @@ impl FiniteReportPresheaf {
                 return Err(DescentError::IdentityFailure { context: a });
             }
         }
+        Ok(())
+    }
+
+    fn validate_extraneous_restrictions(
+        report_counts: &BTreeMap<u64, usize>,
+        restrictions: &BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<(), DescentError> {
         for &(a, b) in restrictions.keys() {
-            if !report_counts.contains_key(&a) || !report_counts.contains_key(&b) || !included(b, a)
-            {
+            if !report_counts.contains_key(&a) || !report_counts.contains_key(&b) || !included(b, a) {
                 return Err(DescentError::ExtraneousRestriction {
                     source: a,
                     target: b,
                 });
             }
         }
+        Ok(())
+    }
+
+    fn check_composition_triple(
+        a: u64,
+        b: u64,
+        c: u64,
+        count_a: usize,
+        restrictions: &BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<(), DescentError> {
+        for s in 0..count_a {
+            if restrictions[&(a, c)][s] != restrictions[&(b, c)][restrictions[&(a, b)][s]] {
+                return Err(DescentError::CompositionFailure {
+                    source: a,
+                    middle: b,
+                    target: c,
+                });
+            }
+        }
+        Ok(())
+    }
+
+    fn validate_composition_law(
+        report_counts: &BTreeMap<u64, usize>,
+        restrictions: &BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<(), DescentError> {
         for &a in report_counts.keys() {
+            let count_a = report_counts[&a];
             for &b in report_counts.keys().filter(|&&b| included(b, a)) {
                 for &c in report_counts.keys().filter(|&&c| included(c, b)) {
-                    for s in 0..report_counts[&a] {
-                        if restrictions[&(a, c)][s]
-                            != restrictions[&(b, c)][restrictions[&(a, b)][s]]
-                        {
-                            return Err(DescentError::CompositionFailure {
-                                source: a,
-                                middle: b,
-                                target: c,
-                            });
-                        }
-                    }
+                    Self::check_composition_triple(a, b, c, count_a, restrictions)?;
                 }
             }
         }
+        Ok(())
+    }
+
+    pub fn new(
+        carrier_size: usize,
+        report_counts: BTreeMap<u64, usize>,
+        restrictions: BTreeMap<(u64, u64), Vec<usize>>,
+    ) -> Result<Self, DescentError> {
+        let full = if carrier_size == 64 {
+            u64::MAX
+        } else {
+            (1u64 << carrier_size) - 1
+        };
+        Self::validate_contexts(carrier_size, &report_counts, full)?;
+        Self::validate_pairwise_restrictions(&report_counts, &restrictions)?;
+        Self::validate_extraneous_restrictions(&report_counts, &restrictions)?;
+        Self::validate_composition_law(&report_counts, &restrictions)?;
+
         Ok(Self {
             carrier_size,
             report_counts,
@@ -476,17 +529,18 @@ mod tests {
                     .filter(|(i, _)| choice & (1 << i) != 0)
                     .map(|(_, c)| *c)
                     .collect();
-                if cover.iter().all(|&c| included(c, target))
-                    && cover.iter().fold(0, |u, c| u | c) == target
+                if !cover.iter().all(|&c| included(c, target))
+                    || cover.iter().fold(0, |u, c| u | c) != target
                 {
-                    valid_covers += 1;
-                    let classification = p.classify_cover(target, &cover, 8).unwrap();
-                    assert!(classification.is_separated);
-                    if !classification.has_existence {
-                        failed_covers += 1;
-                        assert_eq!(target, 3);
-                        assert!(cover.contains(&1) && cover.contains(&2) && !cover.contains(&3));
-                    }
+                    continue;
+                }
+                valid_covers += 1;
+                let classification = p.classify_cover(target, &cover, 8).unwrap();
+                assert!(classification.is_separated);
+                if !classification.has_existence {
+                    failed_covers += 1;
+                    assert_eq!(target, 3);
+                    assert!(cover.contains(&1) && cover.contains(&2) && !cover.contains(&3));
                 }
             }
         }

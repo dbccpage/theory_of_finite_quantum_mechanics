@@ -6,11 +6,24 @@ explicit finite inputs, not general Lean correctness proofs of this module.
 from fractions import Fraction as Q
 from itertools import combinations
 
+MAX_BITS: int = 1024
+MAX_PRINCIPAL_MINOR_DIM: int = 8
+
 
 def scalar(x):
-    if type(x) not in (int, Q):
-        raise TypeError('exact integer or Fraction required')
-    return Q(x)
+    if isinstance(x, float):
+        raise TypeError('float refused')
+    if type(x) is bool:
+        raise TypeError('boolean refused')
+    if type(x) is int:
+        if x.bit_length() > MAX_BITS:
+            raise ValueError(f'integer exceeds {MAX_BITS}-bit limit')
+        return Q(x)
+    if isinstance(x, Q):
+        if x.numerator.bit_length() > MAX_BITS or x.denominator.bit_length() > MAX_BITS:
+            raise ValueError(f'rational component exceeds {MAX_BITS}-bit limit')
+        return x
+    raise TypeError('exact integer or Fraction required')
 
 
 def matrix(rows):
@@ -107,6 +120,8 @@ def determinant(a):
 def principal_minors(a):
     a=matrix(a)
     if a!=transpose(a):raise ValueError('symmetric matrix required')
+    if len(a) > MAX_PRINCIPAL_MINOR_DIM:
+        raise ValueError(f'dimension {len(a)} exceeds principal minor evaluation envelope (max {MAX_PRINCIPAL_MINOR_DIM})')
     return tuple((indices,determinant([[a[i][j] for j in indices] for i in indices])) for n in range(1,len(a)+1) for indices in combinations(range(len(a)),n))
 
 

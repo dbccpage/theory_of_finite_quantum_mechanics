@@ -65,46 +65,39 @@ struct KleisliMorphism {
 ///
 /// Kleisli morphism names use the delimiter format `K[f=>B]` to avoid
 /// collisions when morphism or object names contain underscores.
-pub fn declare_kleisli_category(
-    name: &str,
+fn collect_kleisli_morphisms(
     category: &DeclaredFiniteCategory,
     monad: &DeclaredFiniteMonad,
-) -> Result<DeclaredFiniteCategory, String> {
-    let mut builder = DeclaredFiniteCategoryBuilder::new(name);
-
-    // 1. Objects: Ob(C_T) = Ob(C).
-    for obj in &category.objects {
-        builder = builder.object(obj);
-    }
-
+) -> Result<(Vec<KleisliMorphism>, BTreeMap<(String, String), String>), String> {
     let mut k_morphisms: Vec<KleisliMorphism> = Vec::new();
     let mut orig_to_k: BTreeMap<(String, String), String> = BTreeMap::new();
-
-    // 2. Morphisms: For every f : A → T(B) in C, create K[f=>B] : A → B in C_T.
     for f in category.morphisms.values() {
         for (b, tb) in &monad.object_map {
-            if tb == &f.target {
-                let k_name = format!("K[{}=>{}]", f.name, b);
-
-                // Detect name collisions (impossible with bracket delimiters
-                // but guarded for defense-in-depth).
-                if orig_to_k.values().any(|existing| existing == &k_name) {
-                    return Err(format!("Kleisli morphism name collision: {}", k_name));
-                }
-
-                builder = builder.morphism(&k_name, &f.source, b);
-                k_morphisms.push(KleisliMorphism {
-                    k_name: k_name.clone(),
-                    orig_name: f.name.clone(),
-                    source: f.source.clone(),
-                    target: b.clone(),
-                });
-                orig_to_k.insert((f.name.clone(), b.clone()), k_name);
+            if tb != &f.target {
+                continue;
             }
+            let k_name = format!("K[{}=>{}]", f.name, b);
+            if orig_to_k.values().any(|existing| existing == &k_name) {
+                return Err(format!("Kleisli morphism name collision: {}", k_name));
+            }
+            k_morphisms.push(KleisliMorphism {
+                k_name: k_name.clone(),
+                orig_name: f.name.clone(),
+                source: f.source.clone(),
+                target: b.clone(),
+            });
+            orig_to_k.insert((f.name.clone(), b.clone()), k_name);
         }
     }
+    Ok((k_morphisms, orig_to_k))
+}
 
-    // 3. Identities: The identity on A in Kleisli is η_A : A → T(A).
+fn add_kleisli_identities(
+    category: &DeclaredFiniteCategory,
+    monad: &DeclaredFiniteMonad,
+    orig_to_k: &BTreeMap<(String, String), String>,
+    mut builder: DeclaredFiniteCategoryBuilder,
+) -> Result<DeclaredFiniteCategoryBuilder, String> {
     for a in &category.objects {
         let eta_a = monad
             .unit_components
@@ -120,55 +113,84 @@ pub fn declare_kleisli_category(
 
         builder = builder.identity(a, k_name);
     }
+    Ok(builder)
+}
 
-    // 4. Composition: f_K : A → B, g_K : B → C
-    //    Their Kleisli composite is h_K : A → C where h = μ_C ∘ T(g) ∘ f.
-    for f_k in &k_morphisms {
-        for g_k in &k_morphisms {
+fn compute_kleisli_composite<'a>(
+    f_k: &KleisliMorphism,
+    g_k: &KleisliMorphism,
+    category: &'a DeclaredFiniteCategory,
+    monad: &DeclaredFiniteMonad,
+    orig_to_k: &'a BTreeMap<(String, String), String>,
+) -> Result<&'a str, String> {
+    let c = &g_k.target;
+    let tg = monad
+        .morphism_map
+        .get(&g_k.orig_name)
+        .ok_or_else(|| format!("Monad missing T({})", g_k.orig_name))?;
+
+    let step1 = category.compose(&f_k.orig_name, tg).ok_or_else(|| {
+        format!(
+            "Base category missing composition {} ∘ {}",
+            tg, f_k.orig_name
+        )
+    })?;
+
+    let mu_c = monad
+        .multiplication_components
+        .get(c)
+        .ok_or_else(|| format!("Monad missing μ_{}", c))?;
+
+    let h_orig = category
+        .compose(step1, mu_c)
+        .ok_or_else(|| format!("Base category missing composition {} ∘ {}", mu_c, step1))?;
+
+    orig_to_k
+        .get(&(h_orig.to_string(), c.clone()))
+        .map(|s| s.as_str())
+        .ok_or_else(|| {
+            format!(
+                "Resulting morphism {} → T({}) not found in Kleisli morphisms",
+                h_orig, c
+            )
+        })
+}
+
+fn add_kleisli_compositions(
+    k_morphisms: &[KleisliMorphism],
+    category: &DeclaredFiniteCategory,
+    monad: &DeclaredFiniteMonad,
+    orig_to_k: &BTreeMap<(String, String), String>,
+    mut builder: DeclaredFiniteCategoryBuilder,
+) -> Result<DeclaredFiniteCategoryBuilder, String> {
+    for f_k in k_morphisms {
+        for g_k in k_morphisms {
             if f_k.target != g_k.source {
                 continue;
             }
-            let c = &g_k.target;
-
-            // Step 1: T(g) — apply the monad's functor action to g.
-            let tg = monad
-                .morphism_map
-                .get(&g_k.orig_name)
-                .ok_or_else(|| format!("Monad missing T({})", g_k.orig_name))?;
-
-            // Step 2: T(g) ∘ f in the base category.
-            let step1 = category.compose(&f_k.orig_name, tg).ok_or_else(|| {
-                format!(
-                    "Base category missing composition {} ∘ {}",
-                    tg, f_k.orig_name
-                )
-            })?;
-
-            // Step 3: μ_C — the monad multiplication at C.
-            let mu_c = monad
-                .multiplication_components
-                .get(c)
-                .ok_or_else(|| format!("Monad missing μ_{}", c))?;
-
-            // Step 4: h = μ_C ∘ (T(g) ∘ f) in the base category.
-            let h_orig = category
-                .compose(step1, mu_c)
-                .ok_or_else(|| format!("Base category missing composition {} ∘ {}", mu_c, step1))?;
-
-            // Map the resulting base morphism back to the Kleisli name.
-            let h_k_name = orig_to_k
-                .get(&(h_orig.to_string(), c.clone()))
-                .ok_or_else(|| {
-                    format!(
-                        "Resulting morphism {} → T({}) not found in Kleisli morphisms",
-                        h_orig, c
-                    )
-                })?;
-
+            let h_k_name = compute_kleisli_composite(f_k, g_k, category, monad, orig_to_k)?;
             builder = builder.composition(&f_k.k_name, &g_k.k_name, h_k_name);
         }
     }
+    Ok(builder)
+}
 
+/// Constructs the unvalidated Kleisli category declaration for a monad.
+pub fn declare_kleisli_category(
+    name: &str,
+    category: &DeclaredFiniteCategory,
+    monad: &DeclaredFiniteMonad,
+) -> Result<DeclaredFiniteCategory, String> {
+    let mut builder = DeclaredFiniteCategoryBuilder::new(name);
+    for obj in &category.objects {
+        builder = builder.object(obj);
+    }
+    let (k_morphisms, orig_to_k) = collect_kleisli_morphisms(category, monad)?;
+    for km in &k_morphisms {
+        builder = builder.morphism(&km.k_name, &km.source, &km.target);
+    }
+    builder = add_kleisli_identities(category, monad, &orig_to_k, builder)?;
+    builder = add_kleisli_compositions(&k_morphisms, category, monad, &orig_to_k, builder)?;
     Ok(builder.build())
 }
 

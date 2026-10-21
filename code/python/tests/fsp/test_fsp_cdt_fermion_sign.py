@@ -201,3 +201,58 @@ def test_sqlite_relational_views():
     assert r_frustrated["classification"] == "OpenSignObstruction"
 
     evaluator.close()
+
+
+def test_antihermitian_hopping_with_arbitrary_flux():
+    """9. Test that D_kin is anti-Hermitian for arbitrary admitted flux phases at mu=0."""
+    sdo = SimplicialDiracOperator(
+        num_vertices=2,
+        edges=[(0, 1)],
+        mass=0.1,
+        chemical_potential=0.0,
+        flux_phases={(0, 1): 0.3},
+    )
+    assert sdo.is_antihermitian_hopping(tol=1e-12)
+
+
+def test_approximate_involution_refuses_exact_cancellation_certificate():
+    """10. Test that small weight differences are not promoted to ExactCancellation with phi_1=0."""
+    evaluator = CdtFermionSignEvaluator()
+    w_plus = 1.0
+    w_minus = 1.0 + 5e-10
+
+    c_plus = FermionicConfiguration(
+        config_id="c_plus",
+        s_geom=1.0,
+        s_matter=1.0,
+        det_d=complex(1.0, 0.0),
+        fermion_sign=1,
+        boltzmann_weight=w_plus,
+    )
+    c_minus = FermionicConfiguration(
+        config_id="c_minus",
+        s_geom=1.0,
+        s_matter=1.0,
+        det_d=complex(-1.0, 0.0),
+        fermion_sign=-1,
+        boltzmann_weight=w_minus,
+    )
+    configs = [c_plus, c_minus]
+
+    involution = evaluator.search_bqnf_involution_witness(configs, tol=1e-9)
+    # Weight preserved within 1e-9, but NOT exact (diff is 5e-10 > 1e-12)
+    assert involution.is_weight_preserving
+    assert not involution.has_exact_involution
+    assert not involution.is_involution_certified
+    assert abs(involution.max_weight_discrepancy - 5e-10) <= 1e-15
+
+    z_b, z_f, avg_sign, c1_norm, phi_1, bound_sat, classification = (
+        evaluator.compute_bqnf_quotient_bounds(configs, involution)
+    )
+    assert abs(z_f - (-5e-10)) <= 1e-15
+    assert abs(phi_1 - 5e-10) <= 1e-15
+    assert phi_1 > 0.0
+    assert classification != "ExactCancellation"
+    assert classification == "ApproximateCancellation"
+
+    evaluator.close()

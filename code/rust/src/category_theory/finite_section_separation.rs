@@ -172,37 +172,9 @@ where
         if points.len() > MAX_PSEUDOMETRIC_POINTS {
             return Err(SeparationRefusal::ResourceLimit);
         }
-        let mut set = BTreeSet::new();
-        for p in points {
-            if !set.insert(p.clone()) {
-                return Err(SeparationRefusal::DuplicateSectionIdentity { id: p.clone() });
-            }
-        }
-        let mut distance = BTreeMap::new();
-        for ((l, r), v) in rows {
-            if !set.contains(l) {
-                return Err(SeparationRefusal::UnknownPoint { point: l.clone() });
-            }
-            if !set.contains(r) {
-                return Err(SeparationRefusal::UnknownPoint { point: r.clone() });
-            }
-            if distance.insert((l.clone(), r.clone()), v.clone()).is_some() {
-                return Err(SeparationRefusal::DuplicatePair {
-                    left: l.clone(),
-                    right: r.clone(),
-                });
-            }
-        }
-        for l in &set {
-            for r in &set {
-                if !distance.contains_key(&(l.clone(), r.clone())) {
-                    return Err(SeparationRefusal::MissingPair {
-                        left: l.clone(),
-                        right: r.clone(),
-                    });
-                }
-            }
-        }
+        let set = Self::validate_points(points)?;
+        let distance = Self::build_distance_table(&set, rows)?;
+        Self::validate_complete_pairs(&set, &distance)?;
         let metric = Self {
             points: set,
             distance,
@@ -211,6 +183,55 @@ where
             .check_laws()
             .map_err(SeparationRefusal::InvalidPseudometric)?;
         Ok(metric)
+    }
+
+    fn validate_points<P>(points: &[I]) -> Result<BTreeSet<I>, SeparationRefusal<I, P>> {
+        let mut set = BTreeSet::new();
+        for p in points {
+            if !set.insert(p.clone()) {
+                return Err(SeparationRefusal::DuplicateSectionIdentity { id: p.clone() });
+            }
+        }
+        Ok(set)
+    }
+
+    fn build_distance_table<P>(
+        set: &BTreeSet<I>,
+        rows: &[((I, I), BigRational)],
+    ) -> Result<BTreeMap<(I, I), BigRational>, SeparationRefusal<I, P>> {
+        let mut distance = BTreeMap::new();
+        for ((l, r), v) in rows {
+            if !set.contains(l) || !set.contains(r) {
+                let unknown = if !set.contains(l) { l } else { r };
+                return Err(SeparationRefusal::UnknownPoint {
+                    point: unknown.clone(),
+                });
+            }
+            if distance.insert((l.clone(), r.clone()), v.clone()).is_some() {
+                return Err(SeparationRefusal::DuplicatePair {
+                    left: l.clone(),
+                    right: r.clone(),
+                });
+            }
+        }
+        Ok(distance)
+    }
+
+    fn validate_complete_pairs<P>(
+        set: &BTreeSet<I>,
+        distance: &BTreeMap<(I, I), BigRational>,
+    ) -> Result<(), SeparationRefusal<I, P>> {
+        for l in set {
+            for r in set {
+                if !distance.contains_key(&(l.clone(), r.clone())) {
+                    return Err(SeparationRefusal::MissingPair {
+                        left: l.clone(),
+                        right: r.clone(),
+                    });
+                }
+            }
+        }
+        Ok(())
     }
 
     fn get(&self, l: &I, r: &I) -> BigRational {
@@ -222,6 +243,11 @@ where
 
     /// Re-checks every pseudometric law on the stored table.
     pub fn check_laws(&self) -> Result<(), PseudometricLaw<I>> {
+        self.check_diagonal_and_symmetry()?;
+        self.check_triangle_inequality()
+    }
+
+    fn check_diagonal_and_symmetry(&self) -> Result<(), PseudometricLaw<I>> {
         for l in &self.points {
             if !self.get(l, l).is_zero() {
                 return Err(PseudometricLaw::NonzeroDiagonal { point: l.clone() });
@@ -242,18 +268,32 @@ where
                 }
             }
         }
+        Ok(())
+    }
+
+    fn check_triangle_inequality(&self) -> Result<(), PseudometricLaw<I>> {
         for l in &self.points {
             for m in &self.points {
                 let lm = self.get(l, m);
-                for r in &self.points {
-                    if self.get(l, r) > &lm + self.get(m, r) {
-                        return Err(PseudometricLaw::Triangle {
-                            left: l.clone(),
-                            middle: m.clone(),
-                            right: r.clone(),
-                        });
-                    }
-                }
+                self.check_triangle_for_lm(l, m, &lm)?;
+            }
+        }
+        Ok(())
+    }
+
+    fn check_triangle_for_lm(
+        &self,
+        l: &I,
+        m: &I,
+        lm: &BigRational,
+    ) -> Result<(), PseudometricLaw<I>> {
+        for r in &self.points {
+            if self.get(l, r) > lm + self.get(m, r) {
+                return Err(PseudometricLaw::Triangle {
+                    left: l.clone(),
+                    middle: m.clone(),
+                    right: r.clone(),
+                });
             }
         }
         Ok(())
@@ -291,14 +331,11 @@ where
 /// (else `IncomparableDomains`); weights must be total on it and
 /// nonnegative (zero weights admit a pseudometric that does not separate
 /// functions); at least two records are required (else `NoComparablePairs`).
-pub fn weighted_coordinate_pseudometric<I, P>(
-    records: &[SectionRecord<I, P>],
+fn validate_common_domain<I, P>(
     common_domain: &[P],
-    weights: &[(P, BigRational)],
-) -> Result<FinitePseudometric<I>, SeparationRefusal<I, P>>
+) -> Result<BTreeSet<P>, SeparationRefusal<I, P>>
 where
-    I: Ord + Clone + fmt::Debug,
-    P: Ord + Clone + fmt::Debug,
+    P: Ord + Clone,
 {
     let mut domain = BTreeSet::new();
     for p in common_domain {
@@ -309,6 +346,16 @@ where
             });
         }
     }
+    Ok(domain)
+}
+
+fn validate_weights<I, P>(
+    domain: &BTreeSet<P>,
+    weights: &[(P, BigRational)],
+) -> Result<BTreeMap<P, BigRational>, SeparationRefusal<I, P>>
+where
+    P: Ord + Clone,
+{
     let mut w = BTreeMap::new();
     for (p, v) in weights {
         if !domain.contains(p) || v.is_negative() || w.insert(p.clone(), v.clone()).is_some() {
@@ -322,13 +369,24 @@ where
             coordinate: p.clone(),
         });
     }
+    Ok(w)
+}
+
+fn validate_records<I, P>(
+    records: &[SectionRecord<I, P>],
+    domain: &BTreeSet<P>,
+) -> Result<Vec<I>, SeparationRefusal<I, P>>
+where
+    I: Ord + Clone + fmt::Debug,
+    P: Ord + Clone + fmt::Debug,
+{
     let mut ids = Vec::with_capacity(records.len());
     let mut seen = BTreeSet::new();
     for r in records {
         if !seen.insert(r.id.clone()) {
             return Err(SeparationRefusal::DuplicateSectionIdentity { id: r.id.clone() });
         }
-        if r.domain() != domain {
+        if r.domain() != *domain {
             return Err(SeparationRefusal::IncomparableDomains { id: r.id.clone() });
         }
         ids.push(r.id.clone());
@@ -336,16 +394,49 @@ where
     if records.len() < 2 {
         return Err(SeparationRefusal::NoComparablePairs);
     }
-    let mut rows = Vec::new();
+    Ok(ids)
+}
+
+fn compute_record_distance<I, P>(
+    s: &SectionRecord<I, P>,
+    t: &SectionRecord<I, P>,
+    w: &BTreeMap<P, BigRational>,
+) -> Result<BigRational, SeparationRefusal<I, P>>
+where
+    I: Clone,
+    P: Ord,
+{
+    let mut total = BigRational::zero();
+    for (p, wp) in w {
+        let (Some(a), Some(b)) = (s.values.get(p), t.values.get(p)) else {
+            return Err(SeparationRefusal::IncomparableDomains { id: s.id.clone() });
+        };
+        total += wp * (a - b).abs();
+    }
+    Ok(total)
+}
+
+/// The weighted coordinate pseudometric `d(s,t) = Σ_x w_x |v_s(x) − v_t(x)|`
+/// on a declared common domain. Every record must have exactly that domain
+/// (else `IncomparableDomains`); weights must be total on it and
+/// nonnegative (zero weights admit a pseudometric that does not separate
+/// functions); at least two records are required (else `NoComparablePairs`).
+pub fn weighted_coordinate_pseudometric<I, P>(
+    records: &[SectionRecord<I, P>],
+    common_domain: &[P],
+    weights: &[(P, BigRational)],
+) -> Result<FinitePseudometric<I>, SeparationRefusal<I, P>>
+where
+    I: Ord + Clone + fmt::Debug,
+    P: Ord + Clone + fmt::Debug,
+{
+    let domain = validate_common_domain(common_domain)?;
+    let w = validate_weights(&domain, weights)?;
+    let ids = validate_records(records, &domain)?;
+    let mut rows = Vec::with_capacity(records.len() * records.len());
     for s in records {
         for t in records {
-            let mut total = BigRational::zero();
-            for (p, wp) in &w {
-                let (Some(a), Some(b)) = (s.values.get(p), t.values.get(p)) else {
-                    return Err(SeparationRefusal::IncomparableDomains { id: s.id.clone() });
-                };
-                total += wp * (a - b).abs();
-            }
+            let total = compute_record_distance(s, t, &w)?;
             rows.push(((s.id.clone(), t.id.clone()), total));
         }
     }
@@ -520,21 +611,13 @@ pub enum SeparationOutcome<I> {
     },
 }
 
-/// Decides separation of `S/E` under `d` over the complete pair set.
-pub fn decide_separation<I, P>(
+fn check_identification_zero<I, P>(
     metric: &FinitePseudometric<I>,
     equivalence: &FiniteEquivalence<I>,
-) -> Result<SeparationOutcome<I>, SeparationRefusal<I, P>>
+) -> Result<(), SeparationRefusal<I, P>>
 where
     I: Ord + Clone + fmt::Debug,
 {
-    if metric.points != equivalence.points {
-        return Err(SeparationRefusal::CarrierMismatch);
-    }
-    if metric.points.len() < 2 {
-        return Err(SeparationRefusal::NoComparablePairs);
-    }
-    // E ⊆ Z, on every pair including the diagonal.
     for ((l, r), d) in &metric.distance {
         if equivalence.related(l, r) && !d.is_zero() {
             return Err(SeparationRefusal::IdentificationNotZero {
@@ -544,19 +627,31 @@ where
             });
         }
     }
-    // Z ⊆ E.
+    Ok(())
+}
+
+fn find_zero_collision<I>(
+    metric: &FinitePseudometric<I>,
+    equivalence: &FiniteEquivalence<I>,
+) -> Option<(I, I)>
+where
+    I: Ord + Clone + fmt::Debug,
+{
     for ((l, r), d) in &metric.distance {
         if l < r && d.is_zero() && !equivalence.related(l, r) {
-            return Ok(SeparationOutcome::ZeroCollision {
-                left: l.clone(),
-                right: r.clone(),
-            });
+            return Some((l.clone(), r.clone()));
         }
     }
-    let classes = equivalence.classes();
-    if classes.len() < 2 {
-        return Err(SeparationRefusal::NoDistinctClasses);
-    }
+    None
+}
+
+fn compute_separation_gap<I>(
+    metric: &FinitePseudometric<I>,
+    equivalence: &FiniteEquivalence<I>,
+) -> Option<(BTreeMap<(I, I), BigRational>, BigRational, (I, I))>
+where
+    I: Ord + Clone + fmt::Debug,
+{
     let mut pair_distances = BTreeMap::new();
     let mut best: Option<((I, I), BigRational)> = None;
     for ((l, r), d) in &metric.distance {
@@ -575,7 +670,32 @@ where
             best = Some(((l.clone(), r.clone()), d.clone()));
         }
     }
-    let Some((attaining_pair, gap)) = best else {
+    best.map(|(pair, gap)| (pair_distances, gap, pair))
+}
+
+/// Decides separation of `S/E` under `d` over the complete pair set.
+pub fn decide_separation<I, P>(
+    metric: &FinitePseudometric<I>,
+    equivalence: &FiniteEquivalence<I>,
+) -> Result<SeparationOutcome<I>, SeparationRefusal<I, P>>
+where
+    I: Ord + Clone + fmt::Debug,
+{
+    if metric.points != equivalence.points {
+        return Err(SeparationRefusal::CarrierMismatch);
+    }
+    if metric.points.len() < 2 {
+        return Err(SeparationRefusal::NoComparablePairs);
+    }
+    check_identification_zero(metric, equivalence)?;
+    if let Some((left, right)) = find_zero_collision(metric, equivalence) {
+        return Ok(SeparationOutcome::ZeroCollision { left, right });
+    }
+    let classes = equivalence.classes();
+    if classes.len() < 2 {
+        return Err(SeparationRefusal::NoDistinctClasses);
+    }
+    let Some((pair_distances, gap, attaining_pair)) = compute_separation_gap(metric, equivalence) else {
         return Err(SeparationRefusal::NoDistinctClasses);
     };
     Ok(SeparationOutcome::Separated {
@@ -601,6 +721,73 @@ pub enum SeparationReplayFailure {
     CollisionPointUnknown,
 }
 
+fn verify_zero_collision<I>(
+    metric: &FinitePseudometric<I>,
+    equivalence: &FiniteEquivalence<I>,
+    left: &I,
+    right: &I,
+) -> Result<(), SeparationReplayFailure>
+where
+    I: Ord + Clone + fmt::Debug,
+{
+    let Some(d) = metric.distance(left, right) else {
+        return Err(SeparationReplayFailure::CollisionPointUnknown);
+    };
+    if !d.is_zero() {
+        return Err(SeparationReplayFailure::CollisionNotZero);
+    }
+    if equivalence.related(left, right) {
+        return Err(SeparationReplayFailure::CollisionEquivalent);
+    }
+    Ok(())
+}
+
+fn verify_separated<I>(
+    metric: &FinitePseudometric<I>,
+    equivalence: &FiniteEquivalence<I>,
+    classes: &[BTreeSet<I>],
+    pair_distances: &BTreeMap<(I, I), BigRational>,
+    gap: &BigRational,
+    attaining_pair: &(I, I),
+) -> Result<(), SeparationReplayFailure>
+where
+    I: Ord + Clone + fmt::Debug,
+{
+    let recomputed: Result<SeparationOutcome<I>, SeparationRefusal<I, ()>> =
+        decide_separation(metric, equivalence);
+    if !matches!(recomputed, Ok(SeparationOutcome::Separated { .. })) {
+        return Err(SeparationReplayFailure::VerdictDiffers);
+    }
+    if classes != equivalence.classes() {
+        return Err(SeparationReplayFailure::ClassesMismatch);
+    }
+    let expected: BTreeMap<(I, I), BigRational> = metric
+        .distance
+        .iter()
+        .filter(|((l, r), _)| l < r)
+        .map(|(k, v)| (k.clone(), v.clone()))
+        .collect();
+    if pair_distances != &expected {
+        return Err(SeparationReplayFailure::PairTableMismatch);
+    }
+    if !gap.is_positive() {
+        return Err(SeparationReplayFailure::GapNotPositive);
+    }
+    let (a, b) = attaining_pair;
+    if equivalence.related(a, b) || metric.distance(a, b).is_none() {
+        return Err(SeparationReplayFailure::AttainingPairNotInterclass);
+    }
+    if metric.distance(a, b) != Some(gap) {
+        return Err(SeparationReplayFailure::AttainingPairDistanceMismatch);
+    }
+    for ((l, r), d) in &expected {
+        if !equivalence.related(l, r) && d < gap {
+            return Err(SeparationReplayFailure::GapNotLowerBound);
+        }
+    }
+    Ok(())
+}
+
 /// Replays a separation verdict against the admitted inputs without trusting
 /// the producer: each field is recomputed or checked against the table.
 pub fn verify_separation<I>(
@@ -613,57 +800,21 @@ where
 {
     match outcome {
         SeparationOutcome::ZeroCollision { left, right } => {
-            let Some(d) = metric.distance(left, right) else {
-                return Err(SeparationReplayFailure::CollisionPointUnknown);
-            };
-            if !d.is_zero() {
-                return Err(SeparationReplayFailure::CollisionNotZero);
-            }
-            if equivalence.related(left, right) {
-                return Err(SeparationReplayFailure::CollisionEquivalent);
-            }
-            Ok(())
+            verify_zero_collision(metric, equivalence, left, right)
         }
         SeparationOutcome::Separated {
             classes,
             pair_distances,
             gap,
             attaining_pair,
-        } => {
-            let recomputed: Result<SeparationOutcome<I>, SeparationRefusal<I, ()>> =
-                decide_separation(metric, equivalence);
-            if !matches!(recomputed, Ok(SeparationOutcome::Separated { .. })) {
-                return Err(SeparationReplayFailure::VerdictDiffers);
-            }
-            if *classes != equivalence.classes() {
-                return Err(SeparationReplayFailure::ClassesMismatch);
-            }
-            let expected: BTreeMap<(I, I), BigRational> = metric
-                .distance
-                .iter()
-                .filter(|((l, r), _)| l < r)
-                .map(|(k, v)| (k.clone(), v.clone()))
-                .collect();
-            if *pair_distances != expected {
-                return Err(SeparationReplayFailure::PairTableMismatch);
-            }
-            if !gap.is_positive() {
-                return Err(SeparationReplayFailure::GapNotPositive);
-            }
-            let (a, b) = attaining_pair;
-            if equivalence.related(a, b) || metric.distance(a, b).is_none() {
-                return Err(SeparationReplayFailure::AttainingPairNotInterclass);
-            }
-            if metric.distance(a, b) != Some(gap) {
-                return Err(SeparationReplayFailure::AttainingPairDistanceMismatch);
-            }
-            for ((l, r), d) in &expected {
-                if !equivalence.related(l, r) && d < gap {
-                    return Err(SeparationReplayFailure::GapNotLowerBound);
-                }
-            }
-            Ok(())
-        }
+        } => verify_separated(
+            metric,
+            equivalence,
+            classes,
+            pair_distances,
+            gap,
+            attaining_pair,
+        ),
     }
 }
 
@@ -677,6 +828,93 @@ pub struct ClassFactorization<X, A, I> {
     /// DP-1 certificate for the class-valued query `x ↦ [q(x)]`, classes
     /// named by their least element.
     pub certificate: FactorizationCertificate<X, A, I>,
+}
+
+/// The ε-decoder argument (S5–S6). `ambient` is an admitted pseudometric on
+/// output points with equivalence `equivalence`; `report_rows` and
+/// `query_rows` are total tables on `source`; `decoder_rows` is a total table
+/// on the realized report image into `ambient`. Checks `ε ≥ 0` and
+/// `d(q(x), D(p(x))) ≤ ε` for every `x`, computes the fiber diameter, decides
+/// separation on the family of outputs `q(X)`, requires `2ε < Δ`, and then
+/// decides the class-valued query with the DP-1 owner.
+fn verify_decoder_error<X, A, I>(
+    problem: &ReportQueryProblem<X, A, I>,
+    decoder: &BTreeMap<A, I>,
+    ambient: &FinitePseudometric<I>,
+    epsilon: &BigRational,
+) -> Result<(), SeparationRefusal<I, X>>
+where
+    X: Ord + Clone + fmt::Debug,
+    A: Ord + Clone + fmt::Debug,
+    I: Ord + Clone + fmt::Debug,
+{
+    for (x, a) in problem.report() {
+        let (Some(qx), Some(da)) = (problem.query().get(x), decoder.get(a)) else {
+            return Err(SeparationRefusal::ReportQuery("decoder not total".into()));
+        };
+        let d = ambient.get(qx, da);
+        if &d > epsilon {
+            return Err(SeparationRefusal::DecoderErrorExceeds {
+                output: qx.clone(),
+                distance: d,
+            });
+        }
+    }
+    Ok(())
+}
+
+fn compute_fiber_diameter<X, A, I>(
+    problem: &ReportQueryProblem<X, A, I>,
+    ambient: &FinitePseudometric<I>,
+) -> BigRational
+where
+    X: Ord + Clone + fmt::Debug,
+    A: Ord + Clone + fmt::Debug,
+    I: Ord + Clone + fmt::Debug,
+{
+    let mut fiber_diameter = BigRational::zero();
+    for (x, a) in problem.report() {
+        for (y, b) in problem.report() {
+            if a != b {
+                continue;
+            }
+            let Some(qx) = problem.query().get(x) else { continue; };
+            let Some(qy) = problem.query().get(y) else { continue; };
+            let d = ambient.get(qx, qy);
+            if d > fiber_diameter {
+                fiber_diameter = d;
+            }
+        }
+    }
+    fiber_diameter
+}
+
+fn solve_class_query<X, A, I>(
+    source: &[X],
+    report_codomain: &[A],
+    outputs: &[I],
+    report_rows: &[(X, A)],
+    class_rows: &[(X, I)],
+) -> Result<FactorizationCertificate<X, A, I>, SeparationRefusal<I, X>>
+where
+    X: Ord + Clone + fmt::Debug,
+    A: Ord + Clone + fmt::Debug,
+    I: Ord + Clone + fmt::Debug,
+{
+    let class_problem = ReportQueryProblem::new(
+        source,
+        report_codomain,
+        outputs,
+        report_rows,
+        class_rows,
+    )
+    .map_err(|e: ReportQueryRefusal<X>| SeparationRefusal::ReportQuery(format!("{e:?}")))?;
+    match class_problem.decide() {
+        ReportQueryDecision::Factorable(certificate) => Ok(certificate),
+        ReportQueryDecision::Collision(c) => Err(SeparationRefusal::ReportQuery(format!(
+            "class collision under 2ε < Δ: {c:?}"
+        ))),
+    }
 }
 
 /// The ε-decoder argument (S5–S6). `ambient` is an admitted pseudometric on
@@ -725,32 +963,8 @@ where
         crate::finite_report_query::MapRole::Refinement,
     )
     .map_err(|e: ReportQueryRefusal<A>| SeparationRefusal::ReportQuery(format!("{e:?}")))?;
-    for (x, a) in problem.report() {
-        let (Some(qx), Some(da)) = (problem.query().get(x), decoder.get(a)) else {
-            return Err(SeparationRefusal::ReportQuery("decoder not total".into()));
-        };
-        let d = ambient.get(qx, da);
-        if &d > epsilon {
-            return Err(SeparationRefusal::DecoderErrorExceeds {
-                output: qx.clone(),
-                distance: d,
-            });
-        }
-    }
-    let mut fiber_diameter = BigRational::zero();
-    for (x, a) in problem.report() {
-        for (y, b) in problem.report() {
-            if a != b {
-                continue;
-            }
-            if let (Some(qx), Some(qy)) = (problem.query().get(x), problem.query().get(y)) {
-                let d = ambient.get(qx, qy);
-                if d > fiber_diameter {
-                    fiber_diameter = d;
-                }
-            }
-        }
-    }
+    verify_decoder_error(&problem, &decoder, ambient, epsilon)?;
+    let fiber_diameter = compute_fiber_diameter(&problem, ambient);
     let twice_epsilon = epsilon + epsilon;
     let output_set: BTreeSet<I> = problem.query().values().cloned().collect();
     let sub_metric = ambient.restrict::<X>(&output_set)?;
@@ -769,23 +983,17 @@ where
         .iter()
         .filter_map(|(x, q)| equivalence.class_representative(q).map(|c| (x.clone(), c)))
         .collect();
-    let class_problem = ReportQueryProblem::new(
+    let certificate = solve_class_query(
         source,
         report_codomain,
         &outputs,
         report_rows,
         &class_rows,
-    )
-    .map_err(|e: ReportQueryRefusal<X>| SeparationRefusal::ReportQuery(format!("{e:?}")))?;
-    match class_problem.decide() {
-        ReportQueryDecision::Factorable(certificate) => Ok(ClassFactorization {
-            fiber_diameter,
-            twice_epsilon,
-            gap,
-            certificate,
-        }),
-        ReportQueryDecision::Collision(c) => Err(SeparationRefusal::ReportQuery(format!(
-            "class collision under 2ε < Δ: {c:?}"
-        ))),
-    }
+    )?;
+    Ok(ClassFactorization {
+        fiber_diameter,
+        twice_epsilon,
+        gap,
+        certificate,
+    })
 }

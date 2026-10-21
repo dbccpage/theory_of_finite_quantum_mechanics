@@ -42,8 +42,8 @@ class DirectedCutD2:
         return DirectedCutD2(source=self.target, target=self.source)
 
     def automorphism_group(self) -> List[Dict[str, str]]:
-        """Aut(D2) on {a, b} preserving relation."""
-        return [{"a": "a", "b": "b"}]
+        """Aut(D2) on {source, target} preserving relation."""
+        return [{self.source: self.source, self.target: self.target}]
 
 
 @dataclass(frozen=True)
@@ -57,10 +57,10 @@ class SymmetricLinkS2:
             raise ValueError("Endpoints must be distinct loci.")
 
     def automorphism_group(self) -> List[Dict[str, str]]:
-        """Aut(S2) on {a, b}: identity and swap."""
+        """Aut(S2) on {endpoint1, endpoint2}: identity and swap."""
         return [
-            {"a": "a", "b": "b"},
-            {"a": "b", "b": "a"},
+            {self.endpoint1: self.endpoint1, self.endpoint2: self.endpoint2},
+            {self.endpoint1: self.endpoint2, self.endpoint2: self.endpoint1},
         ]
 
 
@@ -108,6 +108,8 @@ class GermState:
 
     def step_02_unmarked_pair(self, a: str = "a", b: str = "b") -> "GermState":
         """Stage 2: Unmarked pair <ab> — observational collapse [a] = [b]."""
+        if a == b:
+            raise ValueError("Unmarked pair requires distinct loci.")
         self.stage = 2
         self.inscription = f"<{a}{b}>"
         self.carrier = {a, b}
@@ -118,6 +120,7 @@ class GermState:
 
     def step_03_directed_cut(self, a: str = "a", b: str = "b") -> DirectedCutD2:
         """Stage 3: Primitive pointed cut <arb> (D2) — First sign of a fermion."""
+        cut = DirectedCutD2(source=a, target=b)
         self.stage = 3
         self.inscription = f"<{a}r{b}>"
         self.carrier = {a, b}
@@ -125,7 +128,7 @@ class GermState:
         self.active_obstruction = None
         self.admitted_rules.append("rule_directed_irreflexive_cut")
         self._record("step_03_directed_cut", f"Pointed edge {a} -> {b}; asymmetric boundary b - a != 0.")
-        return DirectedCutD2(source=a, target=b)
+        return cut
 
     def step_04_refuse_self_loop(self, a: str = "a") -> Tuple[bool, str]:
         """Stage 4: Refuse loop <ara> under strict irreflexivity."""
@@ -135,13 +138,14 @@ class GermState:
 
     def step_05_symmetric_link(self, a: str = "a", b: str = "b") -> SymmetricLinkS2:
         """Stage 5: Symmetrized pair S2 / loop closure — First sign of a boson."""
+        link = SymmetricLinkS2(endpoint1=a, endpoint2=b)
         self.stage = 5
         self.inscription = f"<{a}r{b}_symm>"
         self.carrier = {a, b}
         self.relations = {(a, b), (b, a)}
         self.admitted_rules.append("rule_symmetrization")
         self._record("step_05_symmetric_link", f"Symmetric pair {a} <-> {b}; admits swap involution.")
-        return SymmetricLinkS2(endpoint1=a, endpoint2=b)
+        return link
 
     def _record(self, action: str, note: str):
         self.history.append({

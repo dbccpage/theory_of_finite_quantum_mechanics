@@ -63,10 +63,11 @@ def test_gauss_linking_integral_geometries():
     assert int(round(lk_whitehead)) == 0
 
 
-def test_z2_bf_theory_exact_repair():
+def test_z2_bf_theory_negative_holonomy_and_obstruction():
     """
-    Validates that in Z_2 BF theory (k=2 / 3D toric code), the topological factor is real (-1.0),
-    and symmetric loop orientation weights achieve exact repair via Z_2 involution pairing.
+    Validates that in Z_2 BF theory (k=2 / 3D toric code) with linked loops (Lk=1),
+    the topological factor is real and negative (-1.0). Orientation reversal cancels the imaginary
+    component but preserves the negative sign, so exact repair is NOT achieved (routes to OpenSignObstruction).
     """
     model = BFLinkedFluxBraidingModel(
         model_id="bf_z2_hopf",
@@ -87,11 +88,20 @@ def test_z2_bf_theory_exact_repair():
         assert pytest.approx(receipt.cochain_holonomy_imag, abs=1e-5) == 0.0
 
         assert receipt.weight_gap_delta_w <= 1e-6
-        assert receipt.is_exact_repair_achieved is True
-        assert receipt.uncancelled_defect_mass_phi_1 == 0.0
-        assert receipt.terminal_route == "ExactRepair"
+        assert receipt.is_exact_repair_achieved is False
+        assert receipt.uncancelled_defect_mass_phi_1 > 0.0
+        assert receipt.terminal_route == "OpenSignObstruction"
     finally:
         engine.close()
+
+
+def test_gauss_linking_double_hopf():
+    """Validates that the double Hopf link geometry has linking number magnitude 2."""
+    l1 = generate_polygonal_loop("double_hopf", loop_index=1, num_points=64)
+    l2 = generate_polygonal_loop("double_hopf", loop_index=2, num_points=64)
+    lk_val = discrete_gauss_linking_integral(l1, l2)
+    assert pytest.approx(abs(lk_val), abs=0.05) == 2.0
+    assert abs(int(round(lk_val))) == 2
 
 
 def test_zk_fractional_bf_theory_open_sign_obstruction():

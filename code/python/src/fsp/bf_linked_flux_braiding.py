@@ -160,7 +160,7 @@ def generate_polygonal_loop(
         else:
             for i in range(num_points):
                 t = direction * 2.0 * math.pi * i / num_points
-                points.append((0.2 * math.cos(2.0 * t), 1.0 + math.cos(t), math.sin(t)))
+                points.append((0.4 * math.sin(t), 1.0 + math.cos(2.0 * t), -math.sin(2.0 * t)))
 
     elif link_type == "whitehead":
         if loop_index == 1:
@@ -241,9 +241,13 @@ class BFLinkedFluxBraidingModel:
     def evaluate_orientation_pairing(
         self,
         beta: float = 2.0,
+        lk_int: int = 1,
     ) -> Tuple[float, float, float, bool]:
         """
         Evaluates whether orientation reversal tau: gamma_2 -> -gamma_2 achieves exact pairing.
+        Orientation reversal cancels the imaginary holonomy component (sin theta_BF -> 0),
+        but preserves the real component cos(theta_BF). Exact sign repair is only achieved
+        if the real holonomy is positive/contractible (lk_int == 0 or cos(theta_BF) == 1).
         Returns: (w_plus, w_minus, delta_w, is_exact_repair).
         """
         e_plus = 0.5
@@ -253,7 +257,9 @@ class BFLinkedFluxBraidingModel:
         w_minus = math.exp(-beta * e_minus)
         delta_w = abs(w_plus - w_minus)
 
-        is_exact_repair = (self.k == 2 and delta_w <= 1e-6)
+        phase, _ = self.compute_braiding_phase(lk_int)
+        cos_phase = math.cos(phase)
+        is_exact_repair = (delta_w <= 1e-6 and abs(cos_phase - 1.0) <= 1e-6)
         return w_plus, w_minus, delta_w, is_exact_repair
 
 
@@ -293,18 +299,18 @@ class BFLinkedFluxBraidingEngine:
         phase, _ = model.compute_braiding_phase(lk_int)
         hol_real, hol_imag, is_contractible, gamma_2 = model.compute_cochain_holonomy(lk_int)
 
-        w_plus, w_minus, delta_w, is_exact_repair = model.evaluate_orientation_pairing(beta=beta)
+        w_plus, w_minus, delta_w, is_exact_repair = model.evaluate_orientation_pairing(beta=beta, lk_int=lk_int)
 
         if lk_int == 0 or (model.q * model.p == 0):
             phi_1 = 0.0
             gamma_2 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
-        elif model.k == 2 and delta_w <= 1e-6:
-            phi_1 = 0.0
-            terminal_route = TerminalRoute.EXACT_REPAIR.value
         elif delta_w > 1e-4:
             phi_1 = round(delta_w + gamma_2, 6)
             terminal_route = "SplitBrainRefusal"
+        elif is_exact_repair:
+            phi_1 = 0.0
+            terminal_route = TerminalRoute.EXACT_REPAIR.value
         else:
             phi_1 = round(abs(1.0 - math.cos(phase)) + gamma_2, 6)
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value

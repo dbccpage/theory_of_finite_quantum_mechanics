@@ -79,7 +79,7 @@ def test_unlinked_loops_contractible_holonomy() -> None:
 
 
 def test_orientation_symmetric_parity_cancellation() -> None:
-    """Verifies that in an orientation-symmetric ensemble (mu_L=0), parity pairing cancels imaginary phase."""
+    """Verifies that in an orientation-symmetric ensemble (mu_L=0), parity pairing cancels imaginary phase but preserves real obstruction."""
     model = BFTopologicalModel(level_k=3, mu_l=0.0)
     engine = BFTopologicalBraidingEngine(in_memory=True)
     receipt = engine.audit_bf_braiding(model, is_chiral=False, is_z2_energy_split=False)
@@ -87,9 +87,11 @@ def test_orientation_symmetric_parity_cancellation() -> None:
 
     assert receipt.is_orientation_symmetric
     assert receipt.weight_asymmetry_delta_w == 0.0
-    assert receipt.is_exact_parity_paired
-    assert receipt.uncancelled_defect_mass_phi_1 == 0.0
-    assert receipt.terminal_route == "ExactRepair"
+    # Parity cancels imaginary phase (sin theta -> 0), but real holonomy is cos(2pi/3) = -0.5 != 1
+    assert not receipt.is_exact_parity_paired
+    assert abs(receipt.average_sign - (-0.5)) < 1e-12
+    assert receipt.uncancelled_defect_mass_phi_1 > 0.0
+    assert receipt.terminal_route == "OpenSignObstruction"
 
 
 def test_chiral_asymmetry_open_sign_obstruction() -> None:

@@ -493,8 +493,11 @@ def test_integration_routes_mass_and_cubic() -> None:
 
 
 def test_end_to_end_origin_resolves() -> None:
-    repo = Path(__file__).resolve().parents[4]
-    manuscript = (repo / "papers" / "derivations" / "ms_majorana" / "the_majorana_problem.md").read_text(encoding="utf-8")
+    repo = Path(__file__).resolve().parents[1]
+    candidate = repo / "papers" / "core" / "majorana" / "the_majorana_problem.md"
+    if not candidate.is_file():
+        candidate = repo / "papers" / "derivations" / "ms_majorana" / "the_majorana_problem.md"
+    manuscript = candidate.read_text(encoding="utf-8")
     provenance = (_DIR / "provenance.md").read_text(encoding="utf-8")
     core = _CORE.read_text(encoding="utf-8")
     gin = _GIN.read_text(encoding="utf-8")

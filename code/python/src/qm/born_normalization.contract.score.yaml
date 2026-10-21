@@ -6,7 +6,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/python/src/qm/born_normalization.py",
-      "sha256": "5dd66548497f43d9ded22cf50aa05f001e764fd17e1bc4ee455813c9147fa122"
+      "sha256": "35eb5f95da6085ca5328092921555d3bf58e2ab2076eadbbecb38ff0d7a76463"
     },
     "profile": "Exact",
     "claim": "urn:omega:fqm:qm:born-normalization:v1",
@@ -32,8 +32,8 @@
       }
     ]
   },
-  "current_contract": "b996e1f6733459fa8b057e49d7ae00a89dbd1e6b5b6b8b7278f853fe70d43ef3",
-  "current_scoring": "004427180ed4188fb547a6dff9640d07763ad84474f2bbc6645974751d54b849",
+  "current_contract": "240d46e8d4bc476ae51fd474ab0cb8f3c7a99f4ca7fd10fc8d8266eec3f045a5",
+  "current_scoring": "ce5700df614b20816a4b805a5f0bb7393160e390e3e53b17cfb6425a43c0150d",
   "contract_history": [
     {
       "sha256": "b254ffae5d5a186ca931403908c41bd43b781ba453be5a5878268cf90b7c1a05",
@@ -107,6 +107,44 @@
         ]
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_normalization.py\",\n    \"sha256\": \"5dd66548497f43d9ded22cf50aa05f001e764fd17e1bc4ee455813c9147fa122\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:born-normalization:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Conditional Hilbert lifts of ℓ¹ sector weights and Born normalization redundancy. Canonical Implementation: finite_qm.use_cases.born_normalization\",\n  \"operations\": {\n    \"BornNormalizationError\": \"The two purity readings of a rational distribution disagree.\",\n    \"exact_born_purity\": \"Return sum (w_i / mass)^2 and check it against (sum w_i^2) / mass^2.\",\n    \"l1_to_l2_amplitude_lift\": \"Lift discrete L1 probability distribution rho to L2 complex Hilbert amplitude psi.\",\n    \"verify_born_normalization\": \"Verify sum |psi_v|^2 = 1 (Born rule probability normalization).\",\n    \"PaperEvaluator\": \"Class PaperEvaluator domain record and methods.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/born_normalization.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "240d46e8d4bc476ae51fd474ab0cb8f3c7a99f4ca7fd10fc8d8266eec3f045a5",
+      "bytes": 2161,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/born_normalization.py",
+          "sha256": "35eb5f95da6085ca5328092921555d3bf58e2ab2076eadbbecb38ff0d7a76463"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:qm:born-normalization:v1",
+        "role": "library",
+        "purpose": "Conditional Hilbert lifts of ℓ¹ sector weights and Born normalization redundancy. Canonical Implementation: finite_qm.use_cases.born_normalization",
+        "operations": {
+          "BornNormalizationError": "The two purity readings of a rational distribution disagree.",
+          "exact_born_purity": "Return sum (w_i / mass)^2 and check it against (sum w_i^2) / mass^2.",
+          "l1_to_l2_amplitude_lift": "Lift discrete L1 probability distribution rho to L2 complex Hilbert amplitude psi.",
+          "verify_born_normalization": "Verify sum |psi_v|^2 = 1 (Born rule probability normalization).",
+          "PaperEvaluator": "Class PaperEvaluator domain record and methods."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_normalization.py\",\n    \"sha256\": \"35eb5f95da6085ca5328092921555d3bf58e2ab2076eadbbecb38ff0d7a76463\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:born-normalization:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Conditional Hilbert lifts of ℓ¹ sector weights and Born normalization redundancy. Canonical Implementation: finite_qm.use_cases.born_normalization\",\n  \"operations\": {\n    \"BornNormalizationError\": \"The two purity readings of a rational distribution disagree.\",\n    \"exact_born_purity\": \"Return sum (w_i / mass)^2 and check it against (sum w_i^2) / mass^2.\",\n    \"l1_to_l2_amplitude_lift\": \"Lift discrete L1 probability distribution rho to L2 complex Hilbert amplitude psi.\",\n    \"verify_born_normalization\": \"Verify sum |psi_v|^2 = 1 (Born rule probability normalization).\",\n    \"PaperEvaluator\": \"Class PaperEvaluator domain record and methods.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/src/qm/born_normalization.contract.score.yaml#contract"
       ]
@@ -231,6 +269,67 @@
         ]
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_normalization.py\",\n    \"sha256\": \"5dd66548497f43d9ded22cf50aa05f001e764fd17e1bc4ee455813c9147fa122\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:born-normalization:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/born_normalization.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "ce5700df614b20816a4b805a5f0bb7393160e390e3e53b17cfb6425a43c0150d",
+      "bytes": 2166,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/born_normalization.py",
+          "sha256": "35eb5f95da6085ca5328092921555d3bf58e2ab2076eadbbecb38ff0d7a76463"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:born-normalization:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 8,
+          "lizard_ccn": 8,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_normalization.py\",\n    \"sha256\": \"35eb5f95da6085ca5328092921555d3bf58e2ab2076eadbbecb38ff0d7a76463\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:born-normalization:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 8 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/src/qm/born_normalization.contract.score.yaml#scoring"
       ]

@@ -206,10 +206,8 @@ class MappingTorusCobordismModel:
                 has_mixed_gravitational=False,
             )
         else:
-            self.k3_sig_div16 = 0
-            self.cobordism = CobordismGroup5D(
-                has_postnikov_arf=False,
-                has_mixed_gravitational=False,
+            raise ValueError(
+                f"Unrecognized four_manifold_type: {self.four_manifold_type}. Admitted: ('K3', 'T4', 'RP4')"
             )
 
     def evaluate_5d_invariant(self) -> int:
@@ -255,6 +253,23 @@ class CobordismAnomalyEngine:
         """
         nu5 = model.evaluate_5d_invariant()
         bare_hol = model.evaluate_mapping_torus_holonomy()
+
+        if model.is_orientable and not model.is_spin:
+            return CobordismAuditReceipt(
+                model_id=f"Cobordism5D_{model.four_manifold_type}_non_spin_refusal",
+                four_manifold_type=model.four_manifold_type,
+                is_spin=False,
+                is_orientable=True,
+                nu_5_cobordism_invariant=0,
+                pin_minus_nu16=model.pin_minus_nu16,
+                holonomy_phase=bare_hol,
+                cochain_curvature_gamma2=float("inf"),
+                involution_pairing_phi1=1.0,
+                average_sign_gin=0.0,
+                is_higher_2double_projected=use_higher_2double,
+                terminal_route=TerminalRoute.REFUSED,
+                authority="None",
+            )
 
         if model.energy_gap_orient > 1e-4:
             phi_1 = float(1.0 - math.exp(-model.energy_gap_orient / model.temperature))

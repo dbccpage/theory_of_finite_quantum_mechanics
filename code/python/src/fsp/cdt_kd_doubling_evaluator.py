@@ -120,6 +120,19 @@ class KahlerDiracAlgebra:
         return (float(diff) <= tol and abs(tr - 4.0) <= tol), float(diff), tr
 
 
+def _permutation_parity(p1: Tuple[int, ...], p2: Tuple[int, ...]) -> float:
+    """Returns +1.0 if p1 and p2 have the same orientation, -1.0 if odd permutation."""
+    idx = {v: i for i, v in enumerate(p1)}
+    arr = [idx[v] for v in p2]
+    inversions = 0
+    n = len(arr)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if arr[i] > arr[j]:
+                inversions += 1
+    return -1.0 if (inversions % 2) else 1.0
+
+
 class CdtKahlerDiracEvaluator:
     """Evaluates Kähler-Dirac complexes, boundary nilpotence, and spin obstructions."""
 
@@ -184,6 +197,7 @@ class CdtKahlerDiracEvaluator:
         """Constructs discrete coboundary operators d_0, d_1, d_2, d_3.
 
         d_p: C^p -> C^{p+1}.
+        Accounts for full permutation parity under arbitrary cell orientation choices.
         """
         v_idx = {v: i for i, v in enumerate(comp.vertices)}
         e_idx = {e: i for i, e in enumerate(comp.edges)}
@@ -198,18 +212,11 @@ class CdtKahlerDiracEvaluator:
 
         d1 = np.zeros((comp.num_triangles, comp.num_edges), dtype=float)
         for i, (u, v, w) in enumerate(comp.triangles):
-            e_vw = (v, w) if (v, w) in e_idx else (w, v)
-            sgn_vw = 1.0 if (v, w) in e_idx else -1.0
-
-            e_uw = (u, w) if (u, w) in e_idx else (w, u)
-            sgn_uw = -1.0 if (u, w) in e_idx else 1.0
-
-            e_uv = (u, v) if (u, v) in e_idx else (v, u)
-            sgn_uv = 1.0 if (u, v) in e_idx else -1.0
-
-            d1[i, e_idx[e_vw]] += sgn_vw
-            d1[i, e_idx[e_uw]] += sgn_uw
-            d1[i, e_idx[e_uv]] += sgn_uv
+            for (x, y), sgn in [((v, w), 1.0), ((u, w), -1.0), ((u, v), 1.0)]:
+                if (x, y) in e_idx:
+                    d1[i, e_idx[(x, y)]] += sgn
+                elif (y, x) in e_idx:
+                    d1[i, e_idx[(y, x)]] -= sgn
 
         d2 = np.zeros((comp.num_tetrahedra, comp.num_triangles), dtype=float)
         for i, (a, b, c, d) in enumerate(comp.tetrahedra):
@@ -221,13 +228,12 @@ class CdtKahlerDiracEvaluator:
             ]
             for face, sgn in faces:
                 matched = None
-                face_sgn = 1.0
                 for perm in itertools.permutations(face):
                     if perm in t_idx:
                         matched = perm
                         break
                 if matched is not None:
-                    d2[i, t_idx[matched]] += sgn * face_sgn
+                    d2[i, t_idx[matched]] += sgn * _permutation_parity(matched, face)
 
         d3 = np.zeros((comp.num_4simplices, comp.num_tetrahedra), dtype=float)
         for i, (a, b, c, d, e) in enumerate(comp.four_simplices):
@@ -241,7 +247,7 @@ class CdtKahlerDiracEvaluator:
             for tet, sgn in tets:
                 for perm in itertools.permutations(tet):
                     if perm in tet_idx:
-                        d3[i, tet_idx[perm]] += sgn
+                        d3[i, tet_idx[perm]] += sgn * _permutation_parity(perm, tet)
                         break
 
         return d0, d1, d2, d3
@@ -276,31 +282,50 @@ class CdtKahlerDiracEvaluator:
         On curved CDT complexes, curvature holonomy induces a non-zero commutator defect:
         [D, P] != 0.
         """
+        copies = [
+            [0, 1, 5, 11],
+            [2, 6, 12, 15],
+            [3, 7, 13, 14],
+            [4, 8, 9, 10],
+        ]
         P = self.algebra.p_spinor
 
         if comp.geometry_type == "FLAT_SIMPLEX":
             D_flat = np.zeros((16, 16), dtype=float)
-            for i in range(16):
-                D_flat[i, (i + 1) % 16] = 1.0
-                D_flat[(i + 1) % 16, i] = -1.0
+            for copy in copies:
+                for k in range(4):
+                    u, v = copy[k], copy[(k + 1) % 4]
+                    D_flat[u, v] = 1.0
+                    D_flat[v, u] = -1.0
 
             commutator = D_flat @ P - P @ D_flat
-            commutator_residual = 0.0
-            classification = "MinimalSpinorRecovered"
+            commutator_residual = float(np.max(np.abs(commutator)))
+            classification = (
+                "MinimalSpinorRecovered"
+                if commutator_residual <= 1e-12
+                else "KahlerDiracIndexObstruction"
+            )
         else:
             curvature_strength = 0.45
             D_curved = np.zeros((16, 16), dtype=float)
-            for i in range(16):
-                D_curved[i, (i + 1) % 16] = 1.0
-                D_curved[(i + 1) % 16, i] = -1.0
-            D_curved[0, 5] += curvature_strength
-            D_curved[5, 0] -= curvature_strength
-            D_curved[1, 11] += curvature_strength
-            D_curved[11, 1] -= curvature_strength
+            for copy in copies:
+                for k in range(4):
+                    u, v = copy[k], copy[(k + 1) % 4]
+                    D_curved[u, v] = 1.0
+                    D_curved[v, u] = -1.0
+            # Curvature couples across spinor sectors (inter-species mixing)
+            D_curved[0, 2] += curvature_strength
+            D_curved[2, 0] -= curvature_strength
+            D_curved[1, 6] += curvature_strength
+            D_curved[6, 1] -= curvature_strength
 
             commutator = D_curved @ P - P @ D_curved
             commutator_residual = float(np.max(np.abs(commutator)))
-            classification = "KahlerDiracIndexObstruction"
+            classification = (
+                "MinimalSpinorRecovered"
+                if commutator_residual <= 1e-12
+                else "KahlerDiracIndexObstruction"
+            )
 
         return commutator_residual, classification
 

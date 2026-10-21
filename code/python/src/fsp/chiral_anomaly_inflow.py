@@ -4,6 +4,19 @@ chiral_anomaly_inflow.py — Chiral Chemical Potential mu_5 and Chiral Anomaly I
 AuthorityEffect: None.
 Reference: sealed-derivation-v1 (3100c4e)
 
+Claim Hygiene:
+1. What this supports:
+   - Algebraic model of bulk/surface spectral flow with prescribed algebraic cancellation Q_net = Q_bulk + Q_surf = 0.
+   - Periodic 1-cochain holonomy phase Hol(c^1) = exp(i * 2pi * mu_5 / omega_0), which wraps the circle and evaluates to 1 when mu_5 / omega_0 is an integer.
+   - Exponential weight asymmetry delta_w = |exp(beta mu_5) - exp(-beta mu_5)| diagnosing broken chiral symmetry for any mu_5 != 0.
+2. What this does not support:
+   - Ab initio Callan-Harvey anomaly inflow derived from dynamical lattice Hamiltonian diagonalization.
+   - Universal proof of fermion sign obstruction across general continuous field theories.
+3. Narrowest defensible claim:
+   - In this algebraic toy model, prescribed bulk and surface charges cancel identically, while nonzero mu_5 introduces a finite weight gap delta_w > 0 and periodic phase holonomy.
+4. Next test needed:
+   - Perform spectral flow calculations by diagonalizing finite BdG lattice slabs under threaded magnetic flux.
+
 Mechanizes:
 1. 3D Weyl Semimetal / Superconductor Slab Lattice:
    - Slab geometry with thickness L_z (open boundary at z=0, z=L_z-1) and periodic in x, y.
@@ -22,11 +35,9 @@ Mechanizes:
      Equal weights w_+ = w_-, exact sign cancellation in GIN quotient -> Phi_1 = 0.0.
      Cochain holonomy is contractible (Hol = 1.0, Gamma_2 = 0.0) -> TerminalRoute.ExactRepair.
    - Case mu_5 > 0 (Broken Chiral Symmetry):
-     Weight asymmetry w_+ / w_- = exp(2 beta mu_5) != 1.
-     Non-zero spectral flow induces non-contractible cochain holonomy:
-       Hol(c^1) = exp(i * 2pi * mu_5 / omega_0) != 1.
-     Irreducible defect mass Phi_1 = |w_+ - w_-| > 0 and cochain curvature Gamma_2 > 0.
-     Breaks exact fermion sign cancellation -> TerminalRoute.SplitBrainRefusal.
+     Weight asymmetry w_+ / w_- = exp(2 beta mu_5) != 1 with defect mass Phi_1 = |w_+ - w_-| > 0.
+     Cochain holonomy phase Hol(c^1) = exp(i * 2pi * mu_5 / omega_0) is periodic in mu_5 / omega_0.
+     Non-zero mu_5 routes to TerminalRoute.SplitBrainRefusal.
 5. GIN Mode Posting List Integration:
    - Indexes chiral node modes and surface arc modes into GinModePostingList.
 """

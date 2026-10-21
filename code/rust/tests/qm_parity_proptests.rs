@@ -212,7 +212,7 @@ proptest! {
         // Exact phase_blind measurement on Gaussian integer x + i*y
         let g = omega_number_theory::cyclotomic::GaussianRat::from_ints(x, y);
         let pb = phase_blind(&[g]).unwrap();
-        prop_assert_eq!(pb[0], num_rq(sqmod, 1));
+        prop_assert_eq!(&pb[0], &num_rq(sqmod, 1));
     }
 
     #[test]

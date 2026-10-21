@@ -1,0 +1,151 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py",
+      "sha256": "afc1010602cea40857256b1692e4141e497cfaa04c1778f7a48df877bab0f659",
+      "language": "Python"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:test-ct-aux-exact-diagonalization-4site:v1",
+    "role": "test checker",
+    "purpose": "Unit and Integration Tests: CT-AUX Monte Carlo vs Exact Diagonalization Cross-Validation on 4-Site Hubbard Clusters. Claim Hygiene:",
+    "operations": {
+      "test_bare_greens_function_matches_matrix_exponential": "Cross-validates sampler.g0 against exact matrix exponential exp(-tau H0) inv(I + exp(-beta H0)).",
+      "test_bare_greens_function_antiperiodicity_and_symmetry": "Verifies KMS anti-periodicity G0(tau + beta) = -G0(tau) and particle-hole symmetry at mu=0.",
+      "test_canonical_4site_exact_diagonalization": "Cross-validates 4-site cluster using DiscreteFermionicHamiltonian in (2, 2) sector.",
+      "test_frustrated_vs_bipartite_sign_problem_contrast": "Confirms that bipartite 4-site cluster retains high average sign while frustrated 3-site triangle decays.",
+      "test_ct_aux_trajectory_all_positive_signs_on_4site_bipartite": "Cross-validates that CT-AUX sampling on 4-site bipartite cluster at half filling has strictly sign +1.",
+      "test_fast_rank1_vs_full_determinant_trajectory_parity": "Asserts log-determinant drift < 1e-13 and inverse residual < 1e-13 over 1,000 MCMC trajectory steps.",
+      "test_ct_aux_mean_order_cross_validation_with_exact_diagonalization": "Cross-validates the CT-AUX mean expansion order <k> against the exact grand-canonical expectation.",
+      "test_streaming_gin_indexing_receipt_on_4site_simulation": "Runs a complete CT-AUX trajectory coupled to live streaming GIN and validates the receipt.",
+      "test_adversarial_negative_controls": "Verifies that non-physical parameters and invalid inputs are refused fail-closed."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "14bd006768c8ee77a8895e9a8099ac61df3860be23dd9b98077d9728139bd8ca",
+  "current_scoring": "862b428ae8b1c00e1d2a131e6b1f9ff7c3bee04517cfa66f262916dc1b3e51e5",
+  "contract_history": [
+    {
+      "sha256": "14bd006768c8ee77a8895e9a8099ac61df3860be23dd9b98077d9728139bd8ca",
+      "bytes": 3135,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py",
+          "sha256": "afc1010602cea40857256b1692e4141e497cfaa04c1778f7a48df877bab0f659",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-ct-aux-exact-diagonalization-4site:v1",
+        "role": "test checker",
+        "purpose": "Unit and Integration Tests: CT-AUX Monte Carlo vs Exact Diagonalization Cross-Validation on 4-Site Hubbard Clusters. Claim Hygiene:",
+        "operations": {
+          "test_bare_greens_function_matches_matrix_exponential": "Cross-validates sampler.g0 against exact matrix exponential exp(-tau H0) inv(I + exp(-beta H0)).",
+          "test_bare_greens_function_antiperiodicity_and_symmetry": "Verifies KMS anti-periodicity G0(tau + beta) = -G0(tau) and particle-hole symmetry at mu=0.",
+          "test_canonical_4site_exact_diagonalization": "Cross-validates 4-site cluster using DiscreteFermionicHamiltonian in (2, 2) sector.",
+          "test_frustrated_vs_bipartite_sign_problem_contrast": "Confirms that bipartite 4-site cluster retains high average sign while frustrated 3-site triangle decays.",
+          "test_ct_aux_trajectory_all_positive_signs_on_4site_bipartite": "Cross-validates that CT-AUX sampling on 4-site bipartite cluster at half filling has strictly sign +1.",
+          "test_fast_rank1_vs_full_determinant_trajectory_parity": "Asserts log-determinant drift < 1e-13 and inverse residual < 1e-13 over 1,000 MCMC trajectory steps.",
+          "test_ct_aux_mean_order_cross_validation_with_exact_diagonalization": "Cross-validates the CT-AUX mean expansion order <k> against the exact grand-canonical expectation.",
+          "test_streaming_gin_indexing_receipt_on_4site_simulation": "Runs a complete CT-AUX trajectory coupled to live streaming GIN and validates the receipt.",
+          "test_adversarial_negative_controls": "Verifies that non-physical parameters and invalid inputs are refused fail-closed."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py\",\n    \"sha256\": \"afc1010602cea40857256b1692e4141e497cfaa04c1778f7a48df877bab0f659\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-ct-aux-exact-diagonalization-4site:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit and Integration Tests: CT-AUX Monte Carlo vs Exact Diagonalization Cross-Validation on 4-Site Hubbard Clusters. Claim Hygiene:\",\n  \"operations\": {\n    \"test_bare_greens_function_matches_matrix_exponential\": \"Cross-validates sampler.g0 against exact matrix exponential exp(-tau H0) inv(I + exp(-beta H0)).\",\n    \"test_bare_greens_function_antiperiodicity_and_symmetry\": \"Verifies KMS anti-periodicity G0(tau + beta) = -G0(tau) and particle-hole symmetry at mu=0.\",\n    \"test_canonical_4site_exact_diagonalization\": \"Cross-validates 4-site cluster using DiscreteFermionicHamiltonian in (2, 2) sector.\",\n    \"test_frustrated_vs_bipartite_sign_problem_contrast\": \"Confirms that bipartite 4-site cluster retains high average sign while frustrated 3-site triangle decays.\",\n    \"test_ct_aux_trajectory_all_positive_signs_on_4site_bipartite\": \"Cross-validates that CT-AUX sampling on 4-site bipartite cluster at half filling has strictly sign +1.\",\n    \"test_fast_rank1_vs_full_determinant_trajectory_parity\": \"Asserts log-determinant drift < 1e-13 and inverse residual < 1e-13 over 1,000 MCMC trajectory steps.\",\n    \"test_ct_aux_mean_order_cross_validation_with_exact_diagonalization\": \"Cross-validates the CT-AUX mean expansion order <k> against the exact grand-canonical expectation.\",\n    \"test_streaming_gin_indexing_receipt_on_4site_simulation\": \"Runs a complete CT-AUX trajectory coupled to live streaming GIN and validates the receipt.\",\n    \"test_adversarial_negative_controls\": \"Verifies that non-physical parameters and invalid inputs are refused fail-closed.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, general physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "862b428ae8b1c00e1d2a131e6b1f9ff7c3bee04517cfa66f262916dc1b3e51e5",
+      "bytes": 2232,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py",
+          "sha256": "afc1010602cea40857256b1692e4141e497cfaa04c1778f7a48df877bab0f659",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-ct-aux-exact-diagonalization-4site:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.",
+          "G3": "Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: CCN 12 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 11,
+          "weighted_control_upper_bound": 29,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.py\",\n    \"sha256\": \"afc1010602cea40857256b1692e4141e497cfaa04c1778f7a48df877bab0f659\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-ct-aux-exact-diagonalization-4site:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Python semantics.\",\n    \"G3\": \"Assertion failure or panic on unadmitted invariants or forged witness; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 12 <= 15 (B), nesting depth 5 <= 5 (C); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 29,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_ct_aux_exact_diagonalization_4site.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

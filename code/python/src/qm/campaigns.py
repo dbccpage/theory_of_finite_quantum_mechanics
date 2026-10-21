@@ -9,6 +9,9 @@ Scope Fence: The (0, 1) entry of XZ is -1, and XZ + ZX is the zero matrix.
 Importing the campaign modules does not discharge their claims.
 """
 
+from pathlib import Path
+__path__ = [str(Path(__file__).parent)]
+
 from fractions import Fraction
 from typing import Mapping
 
