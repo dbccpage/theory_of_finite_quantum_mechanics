@@ -1,0 +1,458 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+task_id: TFQ-0084
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+input_sha256: 1f195a73e4d0b3c378130ab60da7226f14841c79b2caf9a4e796bb2d1dfce864
+authority_effect: None
+add_or_refine_generators:
+- id: squared_length_vector
+  ordered_inputs:
+  - AbstractSimplex_n
+  output: SqLenVec_n
+  arity: 1
+  carrier: x in Q^(C(n+1,2)) (one coordinate per unordered vertex pair), or the indeterminates of Z[x_e]; n in {3,4}
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - symmetric with zero diagonal (checked by the external kernel, cayley_menger.rs:38-47)
+  - n <= 4 for the external exact kernel (cayley_menger.rs:29)
+  semantic_predicate: Assign each unordered vertex pair its squared Euclidean edge length; no angle, no square root.
+  source_pins:
+  - &id001
+    path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+    repository: the_symbol_game
+    sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
+  - &id006
+    path: code/rust/src/general_relativity/exact_regge/manifold.rs
+    sha256: 2f8b0a1d7d42f6a7673fee870da0388ba966ba9a230d1ae671a6f1e0449aa8a2
+  - &id011
+    path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/research_target_sharpened.md
+    sha256: cc266230e7f6a671d241e5c7817b779ed4bfb39aa1d38f44c2b77d3f9e1ca015
+  evidence_status: Source-confirmed exact carrier (external BigRational kernel; manifold.rs edge_length_squared
+    :127). Symbolic (indeterminate) form has no source generator; it is the P1 Lean/Python carrier.
+- id: cm_bordered_matrix
+  ordered_inputs:
+  - SqLenVec_n
+  output: CMMatrix_n
+  arity: 1
+  carrier: '(n+2)x(n+2) matrix over Z[x_e]: border row/column (0,1,...,1), block entries x_ij, zero diagonal'
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - none beyond the carrier
+  semantic_predicate: Bordered Cayley-Menger matrix B_sigma of the simplex.
+  source_pins:
+  - *id001
+  - &id002
+    path: code/rust/src/general_relativity/cayley_menger.rs
+    sha256: 0fc9ce5a8d5e466c765edbf4d41e99d29152f55a6b5d59125723b4f37234655b
+  - &id003
+    path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py
+    sha256: e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9
+  evidence_status: Numeric exact routine source-confirmed (external cayley_menger.rs:25, BigRational). GR cayley_menger.rs:76
+    is the f64 twin (fenced). Symbolic version prototyped only in this run (relation_sign_check.py cm_matrix).
+- id: cm_determinant_and_vertex_cofactors
+  ordered_inputs:
+  - CMMatrix_n
+  - VertexPair(a,b) or none
+  output: CMMinor
+  arity: 2
+  carrier: det(B_sigma) and the cofactors C_ab = (-1)^(a+b) * minor deleting vertex row a and vertex column b (border
+    kept); elements of Z[x_e]
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - 'exact determinant: division-based Gaussian elimination is exact at rational points (external gaussian.rs:15);
+    a division-free Laplace expansion is needed over Q[eps]/(eps^2) or Z[x]'
+  semantic_predicate: Exact determinant / cofactor of the bordered CM matrix.
+  source_pins:
+  - path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+    repository: the_symbol_game
+    sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
+  - path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/mod.rs
+    repository: the_symbol_game
+    sha256: 9bdb5fbd9d17b84b67e09919157897c1985a49e10ffac30bf6e442a4ef8f45a6
+  - *id002
+  - &id005
+    path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py
+    sha256: 19f25c9a0db242f4920d45fa94f685ecc9daed04f51f853fae5a29dbbeb152b8
+  evidence_status: Exact numeric determinant source-confirmed (external). GR cayley_menger.rs:49 matrix_cofactor
+    is f64 (fenced). Division-free dual-number cofactors prototyped only in this run (schlafli_rational_form_check.py
+    cofactors_dual).
+- id: squared_volume_from_cm
+  ordered_inputs:
+  - CMMinor(det B_tau)
+  output: SqVolume_k
+  arity: 1
+  carrier: V_tau^2 = (-1)^(k+1) det(B_tau) / (2^k (k!)^2) for a k-face tau; element of Q(x_e)
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - k in 1..=4 in the external kernel (volume_squared_from_det)
+  semantic_predicate: Squared k-volume of a face from its CM determinant (relation R_CM).
+  source_pins:
+  - *id001
+  - &id007
+    path: code/rust/src/general_relativity/exact_regge/action.rs
+    sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  - &id004
+    path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.out
+    sha256: aa11990a75df9f9316b86515022b3dff6600608d8fdf56fdd311813d4297933a
+  evidence_status: Source-confirmed exact (external tests cayley_menger.rs:130-182; exact_regge/action.rs:18 uses
+    it for d=2 areas). Re-tested exactly in this run on 6 integer simplices (R_CM). GR cayley_menger.rs:121 takes
+    an f64 sqrt and is excluded.
+- id: facet_sqvolume_from_diagonal_cofactor
+  ordered_inputs:
+  - CMMinor(C_aa)
+  output: SqVolume_(n-1)
+  arity: 1
+  carrier: V_a^2 = C_aa / c_n with c_n = (-1)^n 2^(n-1) ((n-1)!)^2; element of Q(x_e)
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - none (identity of polynomials); nonvanishing of C_aa is a hypothesis of later steps
+  semantic_predicate: The diagonal vertex cofactor of B_sigma is the CM determinant of the facet opposite a (relation
+    R_COF).
+  source_pins:
+  - *id003
+  - *id004
+  evidence_status: 'ABSENT in all sources. Tested exactly on 6 integer simplices in this run (R_COF). Proof obligation:
+    minor-of-bordered-matrix identity (or import).'
+- id: dihedral_cos_numerator
+  ordered_inputs:
+  - CMMinor(C_ab)
+  - SqVolume_a
+  - SqVolume_b
+  output: DihedralCosNum
+  arity: 3
+  carrier: N_ab := V_a V_b cos(theta_ab) = -C_ab / c_n, an element of Q(x_e) (no root); cos(theta_ab) itself lies
+    in Q(x_e)(sqrt(C_aa C_bb))
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - 'Strict Euclidean realisability: the edge Gram matrix relative to any vertex is positive definite; equivalently
+    every face CM determinant has sign (-1)^(k+1); in particular V_sigma != 0 and every facet cofactor C_aa != 0.'
+  - theta_ab is the interior dihedral angle between the facets opposite vertices a and b, i.e. at the hinge spanned
+    by the remaining n-1 vertices
+  semantic_predicate: cos^2(theta_ab) = C_ab^2 / (C_aa C_bb) and sign(cos theta_ab) = -sign(C_ab) * sign(c_n) (relation
+    R_COS).
+  source_pins:
+  - &id008
+    path: code/rust/src/general_relativity/certified_dihedral.rs
+    sha256: b0090566107f2fdbffc1a2480573e3f8b9c7f98d54bf98ac5a4c2a4bce2710c7
+  - &id010
+    path: code/rust/src/general_relativity/dihedral_angles.rs
+    sha256: 22edee995996d1b495f215038c284d54d1c91685fb7c50d0a3638945d83525ae
+  - *id003
+  - *id004
+  evidence_status: Cofactor form tested exactly on 6 integer simplices (n=3,4) in this run; the naive sign convention
+    -C_ab/sqrt(C_aa C_bb) FAILED for n=3 and was corrected. certified_dihedral.rs:92 gives the equivalent exact
+    normal-Gram triple [aa,bb,ab] for n=4 only (cos^2 = ab^2/(aa bb), sign = sign(ab)); the bridge between the Schur-complement
+    form and the cofactor form is an obligation. dihedral_angles.rs:34/:84 are f64 twins (fenced).
+- id: dihedral_sin_squared_product
+  ordered_inputs:
+  - SqVolume_sigma
+  - SqVolume_h
+  - SqVolume_a
+  - SqVolume_b
+  output: DihedralSinSq
+  arity: 4
+  carrier: sin^2(theta_h) = (n/(n-1))^2 V_sigma^2 A_h^2 / (V_a^2 V_b^2) in Q(x_e); sin(theta_h) = (n/(n-1)) V_sigma
+    A_h / (V_a V_b) in the root extension
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - 'Strict Euclidean realisability: the edge Gram matrix relative to any vertex is positive definite; equivalently
+    every face CM determinant has sign (-1)^(k+1); in particular V_sigma != 0 and every facet cofactor C_aa != 0.'
+  - V_a, V_b > 0 so the positive root is the sine of an interior angle in (0, pi)
+  semantic_predicate: Dihedral-sine product formula (relation R_SIN); checked as sin^2 + cos^2 = 1.
+  source_pins:
+  - *id003
+  - *id004
+  evidence_status: 'ABSENT in every source (Rust, Lean, Python); the only sine in the GR crate is metric_hinge_transport.rs:67
+    sqrt_exact(1 - cos^2), which refuses non-square radicands. Tested exactly on 6 integer simplices in this run.
+    Proof obligation (classical: n V_sigma = V_a * height_a and height_a = ((n-1) V_b / A_h) sin theta_h, or import).'
+- id: formal_partial_derivative
+  ordered_inputs:
+  - Q(x_e) element
+  - Edge e
+  output: Q(x_e) element
+  arity: 2
+  carrier: the derivation d/dx_e on Z[x_e] / Q(x_e); numerically, dual numbers Q[eps]/(eps^2) at a rational point
+  coefficient_ring: Q at numeric points; Z[x_e] / Q(x_e) symbolically (x_e = squared edge lengths); Q(sqrt2, sqrt3)
+    only for T3 at Kuhn flat configurations
+  hypotheses:
+  - 'exact: no finite differences; division only by elements with nonzero real part'
+  semantic_predicate: Exact partial derivative with respect to one squared edge length.
+  source_pins:
+  - *id005
+  - *id002
+  - &id015
+    path: code/rust/src/general_relativity/schlafli.rs
+    sha256: 89f984e576351bbc6129667c7a1078e7e0ef390143c7177f637124de16b5f272
+  - &id009
+    path: code/rust/src/general_relativity/regge_4d.rs
+    sha256: cb5e82fd84435cbd489df61a6da0821e21b1c3fe173400f886115795a64f2c13
+  evidence_status: No exact source generator. GR cayley_menger.rs:225 has the analytic f64 formula dV/dx_e = (-1)^(n+1)
+    cof/(2^n (n!)^2 V) (fenced); schlafli.rs:30 and regge_4d.rs:408 are f64 central finite differences (excluded
+    as checkers). Dual-number derivative prototyped only in this run.
+- id: kuhn_freudenthal_charts
+  ordered_inputs:
+  - parent pentatope chart or none
+  output: List of pentatope charts (BigRational coordinates)
+  arity: 1
+  carrier: 'exact rational coordinates; freudenthal_refine_16 (16 children), closed_s4_cube_boundary (Kuhn triangulation
+    of the boundary of [0,1]^5: 240 pentatopes, 32 vertices), orthogonal_pentatope'
+  coefficient_ring: BigRational
+  hypotheses:
+  - children re-oriented to the parent sign by signed_volume_4 (refinement.rs:115-127)
+  - manifold.rs:141 nondegeneracy tests CM volume^2 != 0 for every face (not > 0)
+  semantic_predicate: Exact Kuhn/Freudenthal simplicial charts; needed as the rational-angle carrier for T2 and
+    the flat background for T3.
+  source_pins:
+  - &id012
+    path: code/rust/src/general_relativity/exact_regge/refinement.rs
+    sha256: aa382834bd66fb4478df6358f95cfb011e80c93d49ce71f0e4f1f77f22b72d6d
+  - &id013
+    path: code/rust/src/general_relativity/exact_regge/sphere.rs
+    sha256: 74448de4f2227d857ad7cb816a559008c2140f82c393b6010039254de336db60
+  - *id006
+  evidence_status: 'Source-confirmed exact (exercised by bin/regge_4d.rs:147-162). GAP for T3: no generator for
+    the Kuhn triangulation of a hypercube GRID with an interior vertex ([0,2]^4 or [0,2]^3); only a single-pentatope
+    refinement and the boundary of [0,1]^5 exist.'
+- id: rational_regge_proxy_T4_object
+  ordered_inputs:
+  - SimplicialManifold4D
+  - 'defects: list of (triangle, kappa in Q)'
+  output: RationalReggeProxy {action = sum_h A_h^2 kappa_h, holonomy_defect = sum kappa_h, hinge_count}
+  arity: 2
+  carrier: BigRational; A_h^2 from exact CM d=2; kappa_h caller-supplied (never computed)
+  coefficient_ring: BigRational
+  hypotheses:
+  - A_h^2 consistent across all pentatopes containing h (action.rs:127-151)
+  - duplicate conflicting kappa refused (action.rs:67-70)
+  semantic_predicate: The squared-area-weighted proxy named in the target (paste name exact_ge_proxy does not exist;
+    actual declaration rational_regge_proxy). It is the T4 near-miss weighting, not a generator of the T1 operad.
+  source_pins:
+  - *id007
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    sha256: 8e2cac98401621ae728a549fad1d375578fef9b1dceccdef9ae1e922d3ac24ef
+  evidence_status: Source-confirmed exact. TFQ-0100 already records that this proxy is not the Einstein-Hilbert
+    action and that deficit angles are not computed because they are not rational.
+- id: deficit_angle_colour_only
+  ordered_inputs:
+  - Hinge h
+  - dihedral angles theta_(h,sigma) for sigma containing h
+  output: 'Deficit eps_h = 2 pi - sum_sigma theta_(h,sigma) (interior) '
+  arity: 2
+  carrier: 'transcendental in general; exact only on RationalPiDeficit configurations (Kuhn charts: theta in {pi/2,
+    pi/3, pi/4})'
+  coefficient_ring: R in general; (pi/12) Z on Kuhn configurations
+  hypotheses:
+  - interior hinge; boundary hinges use pi (regge_4d.rs:120-127 chooses 2 pi vs pi by a numeric heuristic) and must
+    be declared, not detected
+  semantic_predicate: Deficit angle; only its derivative structure enters T2, where it cancels by T1.
+  source_pins:
+  - *id008
+  - *id009
+  - path: code/rust/src/general_relativity/regge_calculus.rs
+    sha256: 31129941a648fb0fc5ccdf8ee72f8ae8f43882996c77f166afad9f7c2d0cc1e5
+  - path: code/rust/src/general_relativity/regge_deficit_holonomy.rs
+    sha256: d07f66deed281ea826518422f3a58c5b2064b02a76936ccd7f0d9eaf097b796f
+  evidence_status: 'No exact generator: certified_dihedral.rs:252 gives a rational-interval enclosure (n=4, untested,
+    no caller); regge_calculus.rs:287 / regge_4d.rs:120 are f64 acos; regge_deficit_holonomy.rs:165 takes declared
+    turns. Kuhn angle set tested in this run through cos^2 in {0, 1/4, 1/2} on one n=3 and one n=4 Kuhn chart.'
+add_or_refine_relations:
+- id: R_CM
+  equation_or_predicate: det(B_sigma) = (-1)^(n+1) 2^n (n!)^2 V_sigma^2
+  typing_conditions: B_sigma = cm_bordered_matrix(x); holds as an identity for realisable x and defines V^2 otherwise
+  source_pins:
+  - *id001
+  - *id004
+  evidence_status: Imported classical identity; source-confirmed (external kernel tests); re-tested exactly on 6
+    simplices in this run (relation_sign_check.py).
+  scope: 'any n (external kernel: n <= 4)'
+- id: R_COF
+  equation_or_predicate: C_aa = c_n V_a^2,  c_n = (-1)^n 2^(n-1) ((n-1)!)^2
+  typing_conditions: C_aa diagonal vertex cofactor of B_sigma; V_a the (n-1)-volume of the facet opposite a
+  source_pins:
+  - *id003
+  - *id004
+  evidence_status: Tested exactly on 6 simplices; proof obligation (the diagonal cofactor is the bordered CM determinant
+    of the facet).
+  scope: n = 3, 4 tested
+- id: R_COS
+  equation_or_predicate: cos(theta_ab) = -C_ab / (c_n V_a V_b);  equivalently cos^2 = C_ab^2/(C_aa C_bb) and sign(cos)
+    = -sign(C_ab) sign(c_n)
+  typing_conditions: 'Strict Euclidean realisability: the edge Gram matrix relative to any vertex is positive definite;
+    equivalently every face CM determinant has sign (-1)^(k+1); in particular V_sigma != 0 and every facet cofactor
+    C_aa != 0.'
+  source_pins:
+  - *id003
+  - *id004
+  - *id008
+  - *id010
+  evidence_status: Tested exactly on 6 simplices (n=3,4) through squares and signs against outward facet normals;
+    the dimension-blind form -C_ab/sqrt(C_aa C_bb) fails for odd n. Bridge to certified_dihedral.rs normal-Gram
+    form (n=4) is an obligation.
+  scope: interior dihedral angle between facets opposite a and b
+- id: R_SIN
+  equation_or_predicate: sin(theta_h) = (n/(n-1)) V_sigma A_h / (V_a V_b)
+  typing_conditions: 'Strict Euclidean realisability: the edge Gram matrix relative to any vertex is positive definite;
+    equivalently every face CM determinant has sign (-1)^(k+1); in particular V_sigma != 0 and every facet cofactor
+    C_aa != 0. Checked through sin^2 + cos^2 = 1 in Q(x).'
+  source_pins:
+  - *id003
+  - *id004
+  evidence_status: ABSENT in sources; tested exactly on 6 simplices; proof obligation.
+  scope: n = 3, 4 tested
+- id: R_DTHETA
+  equation_or_predicate: d theta = -d(cos theta) / sin theta  wherever sin theta != 0
+  typing_conditions: calculus on the realisable locus; sin theta_h != 0 follows from V_sigma != 0 with nondegenerate
+    facets (R_SIN)
+  source_pins:
+  - *id011
+  evidence_status: Elementary; recorded so that the arccos-free target never evaluates theta.
+  scope: all n
+- id: R_T1_RATIONAL
+  equation_or_predicate: sum_h A_h d_e theta_h = (n / ((n-1) V_sigma c_n)) * R_e(x),   R_e(x) := sum_{a<b} [ d_e
+    C_ab - (C_ab/2)(d_e C_aa / C_aa + d_e C_bb / C_bb) ]
+  typing_conditions: V_sigma != 0 and C_aa != 0 for every a; derived by composing R_SIN, R_COS, R_COF, R_DTHETA
+    (see checked_compositions c01). Hence T1 <=> R_e(x) = 0 for every edge e.
+  source_pins:
+  - *id005
+  - &id014
+    path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.out
+    sha256: 846c05b2217bcc570381b601219e913c0690de070596761e0ee931f0de294ce1
+  evidence_status: 'Composition tested exactly at 8 rational simplices x all edges (5 tetrahedra, 3 pentatopes):
+    R_e = 0 every time. The identity R_e == 0 in Q(x) is NOT proved; it is the P1 target. No square roots are needed
+    anywhere.'
+  scope: n = 3 and n = 4 at rational points
+- id: R_T1_POLY
+  equation_or_predicate: P_e(x) := sum_{a<b} [ d_e C_ab * C_aa C_bb - (C_ab/2)(d_e C_aa * C_bb + C_aa * d_e C_bb)
+    ] * prod_{c not in {a,b}} C_cc  in Z[x_e] (up to the factor 1/2);  T1 <=> P_e == 0 given prod_c C_cc != 0
+  typing_conditions: 'polynomial identity target; n = 3: 6 variables, deg C_ab = 3, deg P_e <= 14; n = 4: 10 variables,
+    deg C_ab = 4, deg P_e <= 23'
+  source_pins:
+  - *id005
+  evidence_status: Stated, not proved. This replaces the paste's root-extension framing Q(x)(sqrt CM...) by a root-free
+    polynomial target.
+  scope: P1 target, n = 3 first
+- id: R_T2_CANCEL
+  equation_or_predicate: d S / d x_e = sum_h eps_h d_e A_h - Lambda sum_sigma d_e V_sigma,  because sum_h A_h d_e
+    eps_h = - sum_sigma sum_{h in sigma} A_h d_e theta_(h,sigma) = 0 by R_T1_RATIONAL applied in every simplex
+  typing_conditions: A_h consistent across all simplices sharing h (manifold.rs:127-151 enforces it); every hinge
+    whose eps_h uses the boundary value pi must be declared; Lambda a declared rational
+  source_pins:
+  - path: code/rust/src/general_relativity/field_equation.rs
+    sha256: 38f1bac71ede46df568aa8653f55f4a1ab52869b019dbe21c4c4396c07b4cb6f
+  - path: code/rust/src/general_relativity/regge_action.rs
+    sha256: fefe6c1537b8d1d1487aa1ceac4d1e717cdf8c4d6e68c4f79575b70e9ad3eeb6
+  - *id006
+  evidence_status: Not checked. field_equation.rs:66-88 silently assumes this cancellation (holds eps_h fixed) in
+    f64; regge_action.rs:13 writes S in f64. Obligation for P1 after T1.
+  scope: T2
+- id: R_KUHN_ANGLES
+  equation_or_predicate: 'dihedral angles of a Kuhn/Freudenthal simplex lie in {pi/2, pi/3, pi/4}: cos^2 in {0,
+    1/4, 1/2} with positive cosine'
+  typing_conditions: facet normals e_i - e_(i+1), e_1, e_n; consecutive facets meet at pi/3 or pi/4, non-consecutive
+    at pi/2
+  source_pins:
+  - *id004
+  - *id012
+  - *id013
+  evidence_status: cos^2 set {0, 1/4, 1/2} tested exactly on one Kuhn tetrahedron and one Kuhn pentatope; the general-n
+    statement and the angle identification (rational cos -> rational multiple of pi) are obligations. This is the
+    exactness carrier for T2 and T3 (1/sin theta in {1, 2/sqrt3, sqrt2}).
+  scope: T2, T3
+- id: R_A2_NEARMISS
+  equation_or_predicate: sum_h A_h^2 d_e theta_h = (n/((n-1) V_sigma c_n)) sum_{a<b} A_h [ d_e C_ab - (C_ab/2)(d_e
+    C_aa/C_aa + d_e C_bb/C_bb) ]  with A_h = sqrt(hinge CM) hinge-dependent
+  typing_conditions: 'same hypotheses as R_T1_RATIONAL; exactly evaluable only when every hinge volume A_h is rational
+    (n = 3: every edge length rational)'
+  source_pins:
+  - *id005
+  - *id014
+  - *id007
+  evidence_status: 'Evaluated exactly (sum_h A_h * bracket_h, the near miss up to its nonzero prefactor) on the
+    integer-edge tetrahedron W1 with edge lengths (01,02,03,12,13,23) = (2,4,5,4,6,3), det CM = 448, V^2 = 14/9,
+    strict CM positivity: NONZERO on all six edges (828/5, -4021/30, 326/3, 28684/195, -71696/585, 53558/585) while
+    the control R_e = 0 on all six edges of the same simplex with the same cofactors; the relabelled copy W2 = (3,4,4,5,6,2)
+    gives the same values permuted; the regular unit tetrahedron gives 0 on every edge (A_h constant => proportional
+    to R_e), so it is a false near miss. Independent re-derivation in the P1/P4 checkers is still pending.'
+  scope: 'T4 negative control: witness W1 selected'
+checked_compositions:
+- outer_operation: sum over hinges h of A_h * formal_partial_derivative(theta_h)
+  input_slot: theta_h (never evaluated)
+  inner_operation: R_DTHETA then dihedral_cos_numerator and dihedral_sin_squared_product
+  colour_match: DihedralCosNum (Q(x)) and DihedralSinSq (Q(x)) replace cos theta and sin theta; the hinge factor
+    A_h cancels against A_h in R_SIN
+  hypothesis_match: 'Strict Euclidean realisability: the edge Gram matrix relative to any vertex is positive definite;
+    equivalently every face CM determinant has sign (-1)^(k+1); in particular V_sigma != 0 and every facet cofactor
+    C_aa != 0.'
+  licensing_relations:
+  - R_DTHETA
+  - R_SIN
+  - R_COS
+  - R_COF
+  evidence_status: Typed and tested exactly at 8 rational simplices (R_e = 0 on every edge). Not host-checked; the
+    symbolic identity is the P1 target.
+  id: c01_T1_rational_reduction
+failed_compositions:
+- id: f01_dimension_blind_cos_sign
+  attempt: cos(theta_ab) = -C_ab / sqrt(C_aa C_bb) for all n
+  reason: 'FAILS for n = 3: C_aa = c_n V_a^2 with c_3 = -16 < 0, so the sign flips; replaced by R_COS with the explicit
+    c_n.'
+  evidence: *id004
+- id: f02_regge_wdw_core_schlafli_lead
+  attempt: reuse lean4/regge_wdw_core.lean:26-29 SchlafliVanishing / schlafli_zero_variation as a Schlafli source
+  reason: 'Vacuous: the theorem assumes every d eps_e = 0 and concludes sum l_e d eps_e = 0; Nat/Int labels, no
+    geometry. Excluded lead.'
+  evidence:
+    path: lean4/regge_wdw_core.lean
+    sha256: 82a1becb70e42d9f24eb8fc68b7b402d537c02bdd0731b905d56acf615e8e7dc
+- id: f03_schlafli_rs_lead
+  attempt: reuse code/rust/src/general_relativity/schlafli.rs:12 verify_schlafli_identity_2d
+  reason: It checks the f64 triangle angle sum |sum alpha - pi| < 1e-7, not the differential identity; regge_4d.rs:408
+    schlafli_differential_4d is an f64 central difference with no caller, no test and no vanishing assertion.
+  evidence: *id015
+- id: f04_mutant_missing_n_over_n_minus_1
+  attempt: P4 mutant "wrong sin theta formula (missing n/(n-1))" against T1
+  reason: 'Cannot break T1: the factor is a global constant in sum_h A_h d theta_h, so the mutated sum still vanishes.
+    Redirect this mutant to the sin^2 + cos^2 = 1 predicate (R_SIN) or to T3 Hessian values, where it is detectable.'
+  evidence: *id005
+- id: f05_regular_tetrahedron_as_T4_witness
+  attempt: use the regular tetrahedron as the A_h^2 near miss
+  reason: 'A_h is constant there, so the A_h^2-weighted sum is proportional to R_e and vanishes: a false near miss.'
+  evidence: *id014
+counterexamples: []
+open_obligations:
+- 'O1 (P1 target): prove R_T1_POLY for n = 3 as a polynomial identity in Z[x_1..x_6] (6 edges), then n = 4; choose
+  the Lean strategy (explicit normalisation of a degree <= 14 polynomial vs. a structural proof via facet-normal
+  closure) at host review.'
+- 'O2: prove or import R_COF (diagonal cofactor = facet CM determinant) and R_SIN (dihedral-sine product formula);
+  both are only finite-carrier tested here.'
+- 'O3: pin the exact nondegeneracy hypothesis for T1 as used (prod_c C_cc != 0 and V_sigma != 0 for the algebra;
+  Gram positive-definiteness for the geometric reading) and make the Rust/Python checkers refuse CM = 0 inputs.'
+- 'O4: bridge certified_dihedral.rs:92 normal-Gram triple [aa, bb, ab] (Schur complement, n = 4) to the cofactor
+  form of R_COS, or record that the P1 checkers do not reuse it.'
+- 'O5 (T2): state the hinge/boundary declaration (interior 2 pi vs boundary pi) explicitly and prove R_T2_CANCEL
+  from per-simplex T1 with shared A_h; Lambda stays a declared rational.'
+- 'O6 (T3): no generator exists for the Kuhn triangulation of [0,2]^4 (or [0,2]^3) with an interior vertex, and
+  no exact Hessian generator exists anywhere (quantum_regge.rs takes caller-supplied Hessian data). Both must be
+  written; the carrier is Q(sqrt2, sqrt3).'
+- 'O7 (T4): witness selected: the integer-edge tetrahedron W1 = (2,4,5,4,6,3) (strict CM positivity, det CM = 448)
+  has the A_h^2-weighted sum nonzero on all six edges and R_e = 0 on all six; the P1/P4 checkers must re-derive
+  both values independently and keep the regular tetrahedron excluded.'
+- 'O8 (M4): the supplied checker contract names leanprover/lean4:v4.35.0; this branch (pfp-prompts) pins lean4 at
+  v4.33.1 / Mathlib 0df444a3 and constraint_closure at v4.34.0-rc1; the v4.35.0 / Mathlib 56a00585 line lives on
+  PR #137 (pfp-batch-01). The host must bind one toolchain before P1; lean4/ReggeSchlafli.lean does not exist yet.'
+- 'O9 (M4): the two exact scripts in this run were written by the same author as this delta; they are mining evidence,
+  not the independent Python checker the contract requires.'
+- 'O10: the committed prompt dag/prompts/finite_qg_tfq_0084_open.yaml carries only the generic source statement;
+  the sharpened T1-T4 target is recorded in p0/research_target_sharpened.md with clipped fragments marked. Re-issuing
+  the prompt file requires re-hashing its prompt_audit_extension row.'
+- 'O11 (presentation): identity operations, unit laws, partial-composition associativity, symmetric action (S_(n+1)
+  relabelling of vertices acts on x and permutes cofactors) and stability of R_* under grafting are untouched obligations.'
+- 'O12: dag node TFQ-0102 lists GR002.lean / GR002/ReggeDeficit.lean as absent, but both exist locally (papers/core/constraint_closure/lean4/);
+  the annotation is stale (no mathematical effect on this target).'
