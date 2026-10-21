@@ -1,0 +1,122 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/pfp/llm_ladder/budget.py",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "dag/pfp/llm_ladder/budget.py",
+    "source_sha256": "ab4253e8620efdd028e59b28a8edea2ad8e350261b760321a2679da07db7cd7f",
+    "authority_effect": "None",
+    "contract_urn": "urn:finite-qm:pfp:llm-ladder:ca8d1aee5c94835190f7",
+    "symbols": [
+      "BudgetRefused",
+      "usd_to_micro",
+      "micro_to_usd",
+      "cost_microusd",
+      "_empty_week",
+      "Ledger"
+    ],
+    "owned_invariants": [
+      "No paid call is dispatched before its worst case is reserved in the budget ledger.",
+      "No key value is logged, written to a record, or placed in an error; records are redacted before writing."
+    ],
+    "boundaries": [
+      "Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and no theorem is accepted.",
+      "Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic; it does not review semantics."
+    ],
+    "evidence": [
+      "dag/pfp/llm_ladder/DESIGN.md"
+    ]
+  },
+  "current_contract": "830a34a1f7c05d1c77664d964fcbfad659846216c7ae5781fd9b4fe2be416f0e",
+  "current_scoring": "f6e6544911126f2a49fd0d6a9bc32c45013e9c5b491906816df931f1bb454be1",
+  "contract_history": [
+    {
+      "sha256": "830a34a1f7c05d1c77664d964fcbfad659846216c7ae5781fd9b4fe2be416f0e",
+      "bytes": 873,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "dag/pfp/llm_ladder/budget.py",
+        "source_sha256": "ab4253e8620efdd028e59b28a8edea2ad8e350261b760321a2679da07db7cd7f",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:llm-ladder:ca8d1aee5c94835190f7",
+        "symbols": [
+          "BudgetRefused",
+          "usd_to_micro",
+          "micro_to_usd",
+          "cost_microusd",
+          "_empty_week",
+          "Ledger"
+        ],
+        "owned_invariants": [
+          "No paid call is dispatched before its worst case is reserved in the budget ledger.",
+          "No key value is logged, written to a record, or placed in an error; records are redacted before writing."
+        ],
+        "boundaries": [
+          "Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and no theorem is accepted.",
+          "Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic; it does not review semantics."
+        ],
+        "evidence": [
+          "dag/pfp/llm_ladder/DESIGN.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/pfp/llm_ladder/budget.py\nsource_sha256: ab4253e8620efdd028e59b28a8edea2ad8e350261b760321a2679da07db7cd7f\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:llm-ladder:ca8d1aee5c94835190f7\nsymbols:\n- BudgetRefused\n- usd_to_micro\n- micro_to_usd\n- cost_microusd\n- _empty_week\n- Ledger\nowned_invariants:\n- No paid call is dispatched before its worst case is reserved in the budget ledger.\n- No key value is logged, written to a record, or placed in an error; records are redacted before writing.\nboundaries:\n- Provider calls are untrusted proposals; only host-verified entries are recorded as operad entries and\n  no theorem is accepted.\n- Verification checks declaration existence, readable arity, source-consistent numerals and exact arithmetic;\n  it does not review semantics.\nevidence:\n- dag/pfp/llm_ladder/DESIGN.md\n",
+      "original_paths": [
+        "dag/pfp/llm_ladder/budget.py.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "f6e6544911126f2a49fd0d6a9bc32c45013e9c5b491906816df931f1bb454be1",
+      "bytes": 846,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "dag/pfp/llm_ladder/budget.py",
+        "source_sha256": "ab4253e8620efdd028e59b28a8edea2ad8e350261b760321a2679da07db7cd7f",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": "L1",
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "incomplete_no_completed_score_token",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A complete five-gate engineering-grade assessment was not performed; unit tests with mocked providers exist (test_ladder.py).",
+        "evidence": [
+          "dag/pfp/llm_ladder/DESIGN.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/pfp/llm_ladder/budget.py\nsource_sha256: ab4253e8620efdd028e59b28a8edea2ad8e350261b760321a2679da07db7cd7f\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: L1\nengineering_grade: null\ncomposite_score: null\nassessment_status: incomplete_no_completed_score_token\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A complete five-gate engineering-grade assessment was not performed; unit tests with mocked\n  providers exist (test_ladder.py).\nevidence:\n- dag/pfp/llm_ladder/DESIGN.md\n",
+      "original_paths": [
+        "dag/pfp/llm_ladder/budget.py.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "dag/pfp/llm_ladder/budget.py.contract.yaml": "830a34a1f7c05d1c77664d964fcbfad659846216c7ae5781fd9b4fe2be416f0e",
+    "dag/pfp/llm_ladder/budget.py.score.yaml": "f6e6544911126f2a49fd0d6a9bc32c45013e9c5b491906816df931f1bb454be1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}
