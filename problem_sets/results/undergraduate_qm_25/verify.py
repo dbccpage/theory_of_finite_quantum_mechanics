@@ -7,6 +7,7 @@ directory with Python >=3.10 and PyYAML. Cargo defaults to offline operation.
 from __future__ import annotations
 
 import argparse
+import ast
 from datetime import datetime, timezone
 from fractions import Fraction
 import hashlib
@@ -77,12 +78,50 @@ def contained_source(relative):
     return path
 
 
+def declared_symbols(content, suffix):
+    """Resolve the declaration forms used by this collection, not incidental mentions.
+
+    Python uses its parser. Rust and Lean use declaration-line bindings; their
+    compilers independently check the referenced source modules during replay.
+    """
+    if suffix == ".py":
+        return {node.name for node in ast.parse(content).body
+                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))}
+    if suffix == ".rs":
+        pattern = r"^\s*(?:pub(?:\([^)]*\))?\s+)?(?:fn|struct|enum|trait|type)\s+(\w+)\b"
+    elif suffix == ".lean":
+        pattern = r"^\s*(?:noncomputable\s+)?(?:theorem|lemma|def|abbrev|structure|class)\s+(\w+)\b"
+    else:
+        raise ValueError(f"Unsupported reference source type: {suffix}")
+    # Eliminate comment-only declarations, including nested Rust/Lean blocks.
+    opener, closer, line = ("/*", "*/", "//") if suffix == ".rs" else ("/-", "-/", "--")
+    cleaned, depth = [], 0
+    for raw_line in content.splitlines():
+        i, current = 0, []
+        while i < len(raw_line):
+            if raw_line.startswith(opener, i):
+                depth += 1
+                i += 2
+            elif depth and raw_line.startswith(closer, i):
+                depth -= 1
+                i += 2
+            elif not depth and raw_line.startswith(line, i):
+                break
+            else:
+                if not depth:
+                    current.append(raw_line[i])
+                i += 1
+        cleaned.append("".join(current))
+    return set(re.findall(pattern, "\n".join(cleaned), re.MULTILINE))
+
+
 def check_reference(reference):
     path = contained_source(reference["path"])
     content = path.read_text(encoding="utf-8")
+    declarations = declared_symbols(content, path.suffix)
     symbols = reference.get("symbols", [reference.get("symbol")])
     for symbol in symbols:
-        if not symbol or not re.search(r"\b" + re.escape(symbol) + r"\b", content):
+        if not symbol or symbol not in declarations:
             raise ValueError(f"Unresolved symbol {symbol!r} in {path}")
     return path
 
