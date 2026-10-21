@@ -1,0 +1,61 @@
+# [TFQ-0460] incidence-construction-betti
+
+> **Stage**: `GENESIS` | **Status**: `SOURCE_RECORD`  
+> **UUID**: `b147c458-1a51-504d-9aa1-d6b262f69ead`  
+> **Parent Derivation**: [TFQ-0455](tfq_0455_d2_initial_pointed.md)
+
+---
+
+## 1. Abstract & Formal Statement
+
+Starting from the literal supply of <>, the WDP construction records Supply(<>) without admitting it, then supplies and admits <a>, <ab> and <c>, forms of arities 1, 2 and 3, three unary vertex instances and the edges 01, 12 and 02. Under an explicitly chosen incidence interpretation (a datum's admission index is a vertex, an arity-k form carries (k−1)-dimensional simplices, an instance lists its increasing vertex indices, and every vertex and face needs its own instance) the cycle has rational Betti numbers (1, 1), and admitting the single instance 012 gives (1, 0, 0). The education Lean module establishes these Betti numbers from explicit integer kernels and images of the boundary matrices (cycle_rational_betti, filled_rational_betti) and that its incidence reading returns the cycle and filled simplex lists (cycle_incidence_eq, filled_incidence_eq). For a general face-closed family K, that the construction's interpretation is exactly K rests on a written argument.
+
+### Governing Obligation
+Replay the literal-root walk, read admitted instances as simplices under the declared interpretation, and compute rational Betti numbers (1, 1) for the cycle and (1, 0, 0) after the filling.
+
+---
+
+## 2. Derivation Context & Mathematical Grounding
+
+In accordance with strict constructive principles:
+- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
+- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+
+### Admitted Structural Imports
+- **Admitted**: `Declared incidence interpretation of admitted forms and instances as simplices, incidence_construction.txt (assumption)`
+
+### Epistemic Bottlenecks & Falsification Fences
+> [!WARNING]
+> The interpretation is a construction choice, not extracted from the spelling of <>; the general construction result is a written argument, the Lean covers the worked three-vertex complex only, and no Lean refinement of the Rust implementation is claimed.
+
+---
+
+## 3. Multi-Tier Code & Proof Witnesses
+
+### Lean 4 Theorems
+- [`omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_incidence_eq`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean)
+- [`omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_rational_betti`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean)
+- [`omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_incidence_eq`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean)
+- [`omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_rational_betti`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean)
+
+### Sovereign Rust Certifiers (Exact Rational Arithmetic)
+- [`omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs)
+- [`omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs)
+
+### Python Oracles & Numerical Evaluators
+- `missing obligation: no Python implementation of the incidence reading or its homology`
+
+---
+
+## 4. Downstream Derivations (Outgoing DAG Links)
+
+*None (Leaf or Terminal derivation in current tree)*
+
+---
+
+## 5. Audit Trail & Primary Source Lineage
+
+- **Cited Source Lines**:
+  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:535-540`
+  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt:31-44`
+  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt:57-64`

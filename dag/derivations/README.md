@@ -50,7 +50,7 @@ Folder: [`01_pregenesis/`](./01_pregenesis/)
 | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) | admission-before-distinction | `SOURCE_RECORD` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
 | [`TFQ-0429`](./01_pregenesis/tfq_0429_bundled_extension_refused.md) | bundled-extension-refused | `SOURCE_RECORD` | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) |
 
-### GENESIS (17 derivations)
+### GENESIS (49 derivations)
 
 Folder: [`02_genesis/`](./02_genesis/)
 
@@ -73,6 +73,38 @@ Folder: [`02_genesis/`](./02_genesis/)
 | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) | rewriting-and-persistence-reconcile | `OPEN_OBLIGATION` | [`TFQ-0389`](./02_genesis/tfq_0389_fewest_changes_formula.md) |
 | [`TFQ-0391`](./02_genesis/tfq_0391_sameness_refinement_ledgers.md) | sameness-refinement-ledgers | `OPEN_OBLIGATION` | [`TFQ-0390`](./02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md) |
 | [`TFQ-0396`](./02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md) | sealed-tag-to-carrier-gap | `GAP` | [`TFQ-0395`](./01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) |
+| [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) | metatheory-object-language-split | `DEFINITION` | [`TFQ-0002`](./02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md) |
+| [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) | regime-isomorphism-unordered-pairs | `DEFINITION` | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) |
+| [`TFQ-0432`](./02_genesis/tfq_0432_challenge0_inertia_second_token.md) | challenge0-inertia-second-token | `PROVED_LEAN` | [`TFQ-0430`](./02_genesis/tfq_0430_metatheory_object_language_split.md) |
+| [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) | contexts-plugging-profiles | `DEFINITION` | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) |
+| [`TFQ-0434`](./02_genesis/tfq_0434_collapse_without_instances.md) | collapse-without-instances | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0435`](./02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md) | challenge2-admitted-but-collapsed | `PROVED_LEAN` | [`TFQ-0380`](./02_genesis/tfq_0380_readings_left_unselected.md) |
+| [`TFQ-0436`](./02_genesis/tfq_0436_context_count_formula.md) | context-count-formula | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0437`](./02_genesis/tfq_0437_collection_extensionality.md) | collection-extensionality | `PROVED_LEAN` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0438`](./02_genesis/tfq_0438_responses_costs_mu1_mu2.md) | responses-costs-mu1-mu2 | `DEFINITION` | [`TFQ-0433`](./02_genesis/tfq_0433_contexts_plugging_profiles.md) |
+| [`TFQ-0439`](./02_genesis/tfq_0439_challenge3_current_regime_fails.md) | challenge3-current-regime-fails | `PROVED_LEAN` | [`TFQ-0435`](./02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md) |
+| [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) | mu1-minimum-not-unique-l | `PROVED_LEAN` | [`TFQ-0439`](./02_genesis/tfq_0439_challenge3_current_regime_fails.md) |
+| [`TFQ-0441`](./02_genesis/tfq_0441_mu1_arity_indexed_tie_family.md) | mu1-arity-indexed-tie-family | `PROVED_LEAN` | [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) |
+| [`TFQ-0442`](./02_genesis/tfq_0442_bounded_tie_census.md) | bounded-tie-census | `SOURCE_RECORD` | [`TFQ-0440`](./02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) |
+| [`TFQ-0443`](./02_genesis/tfq_0443_challenge_source_policies.md) | challenge-source-policies | `DEFINITION` | [`TFQ-0382`](./02_genesis/tfq_0382_refined_minimum_class.md) |
+| [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) | orbit-branching-repairs-least-pair | `PROVED_LEAN` | [`TFQ-0443`](./02_genesis/tfq_0443_challenge_source_policies.md) |
+| [`TFQ-0445`](./02_genesis/tfq_0445_response_existence_mark_progress.md) | response-existence-mark-progress | `PROVED_LEAN` | [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) |
+| [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) | pruning-lemmas-cost-two | `PROVED_LEAN` | [`TFQ-0445`](./02_genesis/tfq_0445_response_existence_mark_progress.md) |
+| [`TFQ-0447`](./02_genesis/tfq_0447_count_invariance_transport.md) | count-invariance-transport | `PROVED_LEAN` | [`TFQ-0444`](./02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) |
+| [`TFQ-0448`](./02_genesis/tfq_0448_branch_trees_and_roles.md) | branch-trees-and-roles | `SOURCE_RECORD` | [`TFQ-0446`](./02_genesis/tfq_0446_pruning_lemmas_cost_two.md) |
+| [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) | closed-baseline-terminates | `SOURCE_RECORD` | [`TFQ-0383`](./02_genesis/tfq_0383_closure_round_inequality.md) |
+| [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) | policy-endpoint-all-separated | `PROVED_LEAN` | [`TFQ-0449`](./02_genesis/tfq_0449_closed_baseline_terminates.md) |
+| [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) | no-endogenous-demand-generator | `SOURCE_RECORD` | [`TFQ-0450`](./02_genesis/tfq_0450_policy_endpoint_all_separated.md) |
+| [`TFQ-0452`](./02_genesis/tfq_0452_identity_is_index_not_profile.md) | identity-is-index-not-profile | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0453`](./02_genesis/tfq_0453_minimal_or_initial_refused.md) | minimal-or-initial-refused | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) | sealed-terminal-statement | `SOURCE_RECORD` | [`TFQ-0451`](./02_genesis/tfq_0451_no_endogenous_demand_generator.md) |
+| [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) | d2-initial-pointed | `PROVED_LEAN` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
+| [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) | five-presentation-questions | `DEFINITION` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
+| [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) | quotient-retention | `PROVED_LEAN` | [`TFQ-0456`](./02_genesis/tfq_0456_five_presentation_questions.md) |
+| [`TFQ-0458`](./02_genesis/tfq_0458_faithful_descent_round_trip.md) | faithful-descent-round-trip | `PROVED_LEAN` | [`TFQ-0457`](./02_genesis/tfq_0457_quotient_retention.md) |
+| [`TFQ-0459`](./02_genesis/tfq_0459_canonical_key_classification.md) | canonical-key-classification | `PROVED_LEAN` | [`TFQ-0431`](./02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) |
+| [`TFQ-0460`](./02_genesis/tfq_0460_incidence_construction_betti.md) | incidence-construction-betti | `SOURCE_RECORD` | [`TFQ-0455`](./02_genesis/tfq_0455_d2_initial_pointed.md) |
+| [`TFQ-0461`](./02_genesis/tfq_0461_genesis_three_axis_verdict.md) | genesis-three-axis-verdict | `SOURCE_RECORD` | [`TFQ-0454`](./02_genesis/tfq_0454_sealed_terminal_statement.md) |
 
 ### FINITE_OBSTRUCTION (9 derivations)
 

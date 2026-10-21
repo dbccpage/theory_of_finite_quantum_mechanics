@@ -835,6 +835,2397 @@
       "coda_atlas_paths": [],
       "dag": null,
       "terminal": false
+    },
+    {
+      "id": "TFQ-0430",
+      "name": "metatheory-object-language-split",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0002",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0378"
+      ],
+      "summary": "The sealed manuscript declares two levels. The metatheory holds presentation tokens (strings), event sequences, indices, finite data structures and arithmetic; the object language holds only what a regime admits. Token glyphs, component counts, order, concatenation, multiplicity, substring structure, matching and string equality live in the metatheory unless an admitted judgment internalizes a distinction. Presentation identity (token equality) is metatheory only, internal identity is the datum index, and no semantic interpretation is ever assigned.",
+      "obligation": "Keep every glyph, count, order and string-equality test in the metatheory, and let object-language observables read only admitted data indices, forms, instances, rules and requirements.",
+      "imports": [
+        "Declared two-level metatheory/object-language split of genesis_source.txt section 2 (assumption)"
+      ],
+      "fence": "A declared split, not a theorem: the Lean model has no tokens by construction, so token-blindness is structural there and is checked in Python and Rust by renaming tests; admission order is visible to the token-aware metatheory and erased at the object level.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+            "symbol": "order_visible_to_metatheory"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+            "symbol": "order_erased_at_object_level"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs",
+            "symbol": "tokens_are_forgotten_by_the_key"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
+            "symbol": "serialize"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "79-85",
+          "quote": "Nothing in the object language can see token glyphs, component counts, order, concatenation"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "87-93",
+          "quote": "presentation identity (token equality; metatheory only), internal identity (datum index)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/001_oegen/genesis.md",
+          "lines": "7",
+          "quote": "Its visible glyphs do not declare a pair, ambient space or relation."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "genesis_source.txt section 2 [declared metatheory]; Bridge.lean admission-order theorems"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0431",
+      "name": "regime-isomorphism-unordered-pairs",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0430",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0378"
+      ],
+      "summary": "A regime isomorphism is a pair of bijections on datum and form indices that preserves form arities, ordered instance arguments, uniform-rule membership and the separation requirements read as unordered pairs; mapped requirement endpoints are sorted before comparison, and presentation tokens are erased first. Because requirements are unordered, exchanging the endpoints of a requirement can identify two responses; a relation preserving directed requirements would be a different convention. The Lean structure Iso states these fields over the admitted index ranges, and sortPair is shown to equal (min, max) and to be symmetric.",
+      "obligation": "Compare regimes by datum and form bijections that preserve arities, instances, rules and sorted requirement pairs, with tokens erased, and keep the unordered-requirement convention explicit.",
+      "imports": [
+        "Declared isomorphism convention with unordered requirement pairs, genesis_source.txt section 3.8 (assumption)"
+      ],
+      "fence": "The convention is declared: Iso is a membership relation, so it also identifies list representations such as [p] and [p, p], and an isomorphism preserving directed requirements would give different tie classes.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "Iso"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean",
+            "symbol": "sortPair_eq_minmax"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean",
+            "symbol": "sortPair_comm"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
+            "symbol": "find_iso"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
+            "symbol": "find_iso"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py",
+            "symbol": "test_unordered_requirement_identifies_unary_endpoint_responses"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "206-212",
+          "quote": "Mapped requirement endpoints are sorted before comparison."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "168-173",
+          "quote": "arities, instances, rules, and requirement pairs (as unordered pairs)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean",
+          "lines": "35-38",
+          "quote": "membership relation that also identifies e.g."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "paper.md section 6 and genesis_source.txt section 3.8 [definition]; Minimality.lean Iso"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0432",
+      "name": "challenge0-inertia-second-token",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0430",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0379"
+      ],
+      "summary": "At Challenge 0 the only object-language inscription is the opaque whole <>. In the token-erased Lean model nothing is derivable at genesis (genesis_underivable), and nothing is derivable in any regime with no instances and no rules (underivable_of_empty); the Challenge 0 computation records zero contexts and an empty derivable set in both readings. That no successor is internally forced is a property of the declared grammar, whose only state changes are external-event-indexed admissions, not a theorem about a forcing predicate. In the token-aware model a history whose datum admissions all carry one token leaves at most one admitted datum (single_token_carrier_bound), so a state with two data needs the admission of a second, different token (second_token_required).",
+      "obligation": "Show that genesis and every instance-free, rule-free regime derive nothing, and that two admitted data require a datum admission of a token different from the first.",
+      "imports": [],
+      "fence": "No forcing predicate is defined, so no forced successor is a model-scoped definition and not a theorem, and nothing here excludes a successor in an extension of the language; supply_no_op itself is recorded under TFQ-0379.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "genesis_underivable"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "underivable_of_empty"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+            "symbol": "single_token_carrier_bound"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+            "symbol": "second_token_required"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs",
+            "symbol": "challenge0_generates_nothing"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "challenge0_report"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "203-217",
+          "quote": "This is a property of the declared grammar, not a proved theorem about a forcing predicate"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "218-224",
+          "quote": "Context count 0, derivable set empty"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+          "lines": "146-148",
+          "quote": "a state with two admitted data comes only from a history admitting some token different from the first."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 4 [theorem] plus a [definition] for no forced successor; Inertia.lean, Bridge.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0433",
+      "name": "contexts-plugging-profiles",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0431",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "A context is an admitted form with a slot tuple of its arity in which every filled slot names an admitted datum and at least one slot is a hole; plugging a datum fills every hole with that same datum. Derivability is membership in the admitted instances or coverage by a uniform all-tuples rule, and no other inference exists. The profile of a datum is the set of well-formed contexts whose plugging is derivable. Two data are collapsed when their profiles are equal and separable when some well-formed context is derivable for one and not the other; that is the declared sense used for every separation requirement.",
+      "obligation": "Enumerate well-formed contexts with at least one hole, plug by filling every hole with one datum, decide derivability by instance membership or a uniform rule only, and compare profiles.",
+      "imports": [
+        "Declared derivability: admitted-instance membership or a uniform all-tuples rule, with no other inference (assumption)"
+      ],
+      "fence": "These are declared definitions: separability means a difference in positive derivability only, and an imposed requirement records a demand for separation without making it hold.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "wfCtx"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "plug"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "derivable"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "collapsed"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "separable"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
+            "symbol": "contexts"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
+            "symbol": "profile"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "contexts"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "profile"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "separable"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "140-146",
+          "quote": "a form with a slot tuple containing at least one hole"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "147-153",
+          "quote": "some well-formed context is derivable when plugged with one datum and not the other"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/001_oegen/genesis.md",
+          "lines": "15",
+          "quote": "Two data collapse when every well-formed context agrees about derivability."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "genesis_source.txt sections 3.3-3.5 and paper.md section 6 [definition]; Basic.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0434",
+      "name": "collapse-without-instances",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0433",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "With no admitted instances, the derivability of a plugged context depends only on its form, so every pair of data is observationally collapsed (collapsed_of_no_insts). Uniform rules do not change this: a ruled form makes every plugging derivable alike. Retaining another datum alone therefore need not increase expressive power.",
+      "obligation": "Show that a regime whose instance list is empty collapses every pair of data, whatever its forms and uniform rules.",
+      "imports": [],
+      "fence": "The statement covers instance-free regimes only; once an instance is admitted collapse is decided by the profiles, and a later uniform rule can again erase a separation (TFQ-0385).",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "collapsed_of_no_insts"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
+            "symbol": "coverage_is_constant_across_data_at_a_fixed_context"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "collapsed_pairs"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "243-248",
+          "quote": "With no admitted instances, every datum has the same profile, even if uniform rules are present"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "235-237",
+          "quote": "with no admitted instances every pair of data is observationally collapsed"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 5 and paper.md section 6 [theorem]; Inertia.lean collapsed_of_no_insts"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0435",
+      "name": "challenge2-admitted-but-collapsed",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0380",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0434"
+      ],
+      "summary": "At Challenge 2 both <a> and <ab> are supplied and retained, so reading L admits (<a>, <ab>) and reading F admits (<>, <a>, <ab>). In both readings every admitted pair is observationally collapsed (R2L_collapsed, R2F_collapsed): two externally distinct inscriptions remain internally indistinguishable. The countermodel admission_without_expressive_increase admits a fresh datum, a real state change, while the pair stays collapsed, a counterexample to the claim that a new external inscription necessarily increases internal expressive power. The recorded Challenge 0-3 histories replay exactly to the Challenge 3 regimes R2L and R2F (historyL_replays, historyF_replays).",
+      "obligation": "Replay the recorded reading L and reading F histories to R2L and R2F, show every admitted pair collapsed in both, and exhibit one datum admission that changes the regime and leaves the pair collapsed.",
+      "imports": [],
+      "fence": "Admission changed only the metatheoretic datum count and the replayable history; glyph identity, component count, order and substring structure stay internally unavailable, and the readings stay unselected (TFQ-0380).",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "R2L_collapsed"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "R2F_collapsed"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "admission_without_expressive_increase"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "historyL_replays"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
+            "symbol": "historyF_replays"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs",
+            "symbol": "challenge2_admission_need_not_increase_expressive_power"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "challenge2_report"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "246-248",
+          "quote": "two externally different admitted inscriptions remain internally indistinguishable"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "249-252",
+          "quote": "admitting a fresh datum is a real state change, yet the number of observational classes stays 1"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "256-259",
+          "quote": "What remains internally unavailable"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 6 [theorem] and [counterexample]; Inertia.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0436",
+      "name": "context-count-formula",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0433",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "For a regime with n admitted data, a form of arity a has (n+1)^a − n^a well-formed contexts: each slot is a hole or one of n data, less the n^a hole-free tuples, so |Ctx(R)| = Σ_f ((n+1)^{a_f} − n^{a_f}), with distinct form identifiers kept disjoint even when their arities coincide. The companion Lean module establishes the per-form count for the recursive word enumeration (contextWords_length), characterizes its members as exactly the well-formed words of that length containing a hole (contextWords_mem), and shows the enumeration has no repetitions (contextWords_nodup). The standalone replay checks the formula against the frozen Python enumeration in 35 cases (n from 0 to 4, arity 1 to 7), and Python and Rust enumerate the contexts independently.",
+      "obligation": "Count the contexts of each admitted form as (n+1)^a − n^a, sum over forms, and check the count against an explicit context enumeration.",
+      "imports": [],
+      "fence": "The Lean statement is a companion result for the slot words of one form; the sum over forms is the written corollary of ledger row WDP-P000-015, which attributes it to no compiled source theorem, and large arities make profile enumeration expensive.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
+            "symbol": "contextWords_length"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
+            "symbol": "contextWords_mem"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
+            "symbol": "contextWords_nodup"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
+            "symbol": "contexts"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
+            "symbol": "a_binary_form_over_two_data_has_five_contexts"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "contexts"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
+            "symbol": "python_replay"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "258-261",
+          "quote": "characterizes exactly the well-formed words containing a hole"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+          "lines": "26",
+          "quote": "not attributed to a compiled source theorem"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "603-604",
+          "quote": "checks the context formula in 35 cases"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 6 counting corollary (ledger WDP-P000-015); companion Paper.lean contextWords theorems"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0437",
+      "name": "collection-extensionality",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0433",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Python's admitted collections are sets while Lean's are deduplicated lists. Under RegimeExt (equal datum counts and form tables, and membership-equal instance, rule and requirement collections) every stated observable transports: derivability, context well-formedness, collapse, separability, item and delta application, and response validity (derivable_ext through validResponse_ext). Two list representations of the same admitted sets therefore agree on each of those observables.",
+      "obligation": "Show that membership-equal instance, rule and requirement lists with equal datum counts and form tables give the same derivability, collapse, separability, delta application and response validity.",
+      "imports": [],
+      "fence": "Lean-to-Lean only: equal datum counts and equal indexed form tables stay premises, that every exported claim factors through these observables is not asserted, and executable comparisons with Python and Rust have their own input populations.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean",
+            "symbol": "derivable_ext"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean",
+            "symbol": "collapsed_ext"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean",
+            "symbol": "separable_ext"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean",
+            "symbol": "validResponse_ext"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust statement of RegimeExt; the Rust regime stores instances, rules and requirements as BTreeSet collections, so list order does not arise there"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
+            "symbol": "Regime"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "114-123",
+          "quote": "every observable transports"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "123-126",
+          "quote": "That every exported claim factors through these observables is not proved and is not asserted"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "272-277",
+          "quote": "These are Lean-to-Lean theorems."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 3 membership extensionality [theorem]; Ext.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0438",
+      "name": "responses-costs-mu1-mu2",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0433",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "A response (delta) is an ordered finite list of NewDatum, NewForm(arity), NewInst(form, args) and NewRuleAll(form) items applied in order; an instance may name a form added earlier in the same list, and the reverse order is an ill-formed admission. The declared costs are mu1 = item count and mu2 = (item count, sum of new-form arities) compared lexicographically, where the sum counts every NewForm item, including distinct forms of equal arity. A valid response to Separate(i, j) applies, separates the target, and keeps every previously imposed requirement separated, because requirements are persistent constraints.",
+      "obligation": "Apply response items in order, cost them by mu1 and by lexicographic mu2, and accept a response only when it applies, separates the target and keeps every prior requirement separated.",
+      "imports": [
+        "Declared item grammar and cost measures mu1 and mu2, genesis_source.txt sections 3.6-3.7 (assumption)"
+      ],
+      "fence": "Both measures and the item grammar are declared, not derived; bundling a form and an instance into one primitive would change every cost, and the enumerator's canonical item order makes a delta a multiset only up to that convention.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "applyDelta"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+            "symbol": "validResponse"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "aritySum"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs",
+            "symbol": "arity_sum"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/response.rs",
+            "symbol": "response_valid_naive"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "mu1"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "mu2"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "response_valid_naive"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "154-163",
+          "quote": "both read the items, not the order"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "164-167",
+          "quote": "the result separates the target while every previously imposed requirement stays separated"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "339-341",
+          "quote": "Bundling a form and instance into one new primitive would change it."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "genesis_source.txt sections 3.6-3.7 and paper.md section 7 [definition]; Basic.lean, Minimality.lean aritySum"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0439",
+      "name": "challenge3-current-regime-fails",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0435",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0438"
+      ],
+      "summary": "Challenge 3 requires <a> and <ab> to be internally separable in the declared sense of positive derivability. Instantiating R2L_collapsed and R2F_collapsed, the current regime fails this: no witness context exists. The quotient barrier then applies: every function out of a quotient by a relation is constant on related elements (quotient_barrier, quot_barrier), and on the collapse classes of R2L any operation takes equal values on data 0 and 1 (barrier_R2L). An operation defined only on the current abstraction therefore cannot recover the required distinction, and a response has to change the regime.",
+      "obligation": "Show that the Challenge 3 regime collapses the required pair and that any function on its collapse quotient takes equal values on the two required data.",
+      "imports": [],
+      "fence": "The barrier concerns operations defined on the given quotient; it puts no bound on what an admitted augmentation of the regime can separate, which is the subject of the cost results (TFQ-0381).",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+            "symbol": "barrier_R2L"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+            "symbol": "quot_barrier"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+            "symbol": "quotient_barrier"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs",
+            "symbol": "challenge2_collapse_is_total_in_both_readings"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "separable"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "267-271",
+          "quote": "regime fails it; no witness context exists"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "587-591",
+          "quote": "every function out of the quotient is constant on identified elements"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+          "lines": "28-30",
+          "quote": "any operation defined on the collapse classes gives equal outputs on"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 7.1 and question 5 [theorem]; Quot.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0440",
+      "name": "mu1-minimum-not-unique-l",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0439",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0381"
+      ],
+      "summary": "Under mu1 in reading L the minimum corrective augmentation is not unique. The unary mark deltaU0 and the binary link deltaBL are both valid two-item responses to Challenge 3 on R2L, no response of at most one item is valid, and their results U0 and BL are non-isomorphic because form arity is an isomorphism invariant (mu1_minimum_not_unique, U0_not_iso_BL). The theorem is stated over R2L only.",
+      "obligation": "Show on R2L that two valid two-item responses have non-isomorphic results and that no response of at most one item is valid.",
+      "imports": [
+        "Declared item grammar, measure mu1 and the implemented isomorphism relation (assumption)"
+      ],
+      "fence": "Reading L only: reading-F non-uniqueness is the bounded engine enumeration of five classes (TFQ-0442), and under mu2 the minimum is unique up to isomorphism (TFQ-0382).",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "mu1_minimum_not_unique"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "U0_not_iso_BL"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs",
+            "symbol": "nothing_below_two_items_separates_the_target"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "min_responses"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "295-299",
+          "quote": "There exist two valid two-item responses (unary mark; binary link) whose results are non-isomorphic"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "299-303",
+          "quote": "reading-F non-uniqueness is the"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+          "lines": "281-283",
+          "quote": "two valid two-item responses whose results are non-isomorphic, while no response of at most one item is valid"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 7.3 [theorem, reading L]; Minimality.lean mu1_minimum_not_unique"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0441",
+      "name": "mu1-arity-indexed-tie-family",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0440",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "For every arity k ≥ 1 the k-ary mark, one k-ary form and one instance (1, ..., 1), is a valid two-item response to Challenge 3 on R2L (deltaK_valid, deltaK_length), since the all-hole context separates the two required data. Distinct arities give non-isomorphic results because an isomorphism preserves form arity (markK_pairwise_noniso), so the mu1 tie class in reading L is countably infinite. A concrete enumeration is therefore complete only relative to an arity bound, and the arity-at-most-two census is one slice of this family.",
+      "obligation": "Show that each k-ary mark with k ≥ 1 is a valid two-item response on R2L and that marks of different arities have non-isomorphic results.",
+      "imports": [
+        "Declared item grammar, measure mu1 and the implemented isomorphism relation (assumption)"
+      ],
+      "fence": "Stated over R2L only: no reading-F analogue of the k-ary family is formalized, and the family leaves the mu2 minimum (2, 1) unique up to isomorphism.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "deltaK_valid"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "deltaK_length"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+            "symbol": "markK_pairwise_noniso"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of the unbounded arity family; the Rust census enumerates form arity at most two"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of the unbounded arity family; the Python census enumerates form arity at most two"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "320-328",
+          "quote": "k-ary mark is a valid two-item (hence minimum) response, and distinct arities give non-isomorphic results"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "322-326",
+          "quote": "Reading L has infinitely many nonisomorphic minimum responses under"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+          "lines": "353-354",
+          "quote": "Distinct arities give non-isomorphic results"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 7.3 [theorem, reading L] (CL-3-INFINITE-TIES); Minimality.lean markK family"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0442",
+      "name": "bounded-tie-census",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0440",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Within the declared bounds of at most two items and form arity at most two, exhaustive enumeration under mu1, cross-checked against the unpruned space, finds at (2,2) six valid deltas in three isomorphism classes for reading L (unary mark, binary link, binary self-loop) and ten valid deltas in five classes for reading F. Reading F's two extra classes link to and from the never-required genesis datum, and they are non-isomorphic to each other because the bijection must preserve the requirement pair. Under mu2 each reading has two minimal deltas in one class. The standalone replay reproduces all four counts.",
+      "obligation": "Enumerate every valid delta of at most two items and arity at most two for R2L and R2F, quotient by the declared isomorphism, and report 6 deltas in 3 classes for L and 10 in 5 for F under mu1, and 2 in 1 class for each reading under mu2.",
+      "imports": [
+        "Declared resource bounds max_items 2 and max_arity 2 and the implemented isomorphism relation (assumption)"
+      ],
+      "fence": "A bounded census: it is the max_arity = 2 slice of the infinite mu1 tie family of reading L (TFQ-0441), and no reading-F Lean non-uniqueness statement exists.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean census of the bounded tie classes; reading-F non-uniqueness has no Lean statement"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs",
+            "symbol": "sealed_challenge3_reading_l"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs",
+            "symbol": "sealed_challenge3_reading_f"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
+            "symbol": "python_replay"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "min_responses"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "305-318",
+          "quote": "complete within these bounds, by exhaustive enumeration cross-checked against the unpruned"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "326-328",
+          "quote": "L has six valid deltas in three classes; F has ten in five classes"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/001_oegen/genesis.md",
+          "lines": "19",
+          "quote": "each reading has two minimal responses in one class"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "COMPUTATIONALLY_CHECKED",
+        "source_status": "genesis_source.txt section 7.3 [bounded theorem] engine enumeration at (2,2); reproduce.py minimum census"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0443",
+      "name": "challenge-source-policies",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0382",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "After Challenge 3 the challenge source is a pair of declared policies. The pair-separation closure policy reissues the admitted separation requirement pattern on collapsed pairs, one challenge branch per automorphism orbit of collapsed pairs, or nothing at the fixpoint where every pair is separated; it reads only profile equality and automorphism structure, supplies no data and imports no new goal kind. At that fixpoint the external continuation policy supplies and admits one fresh opaque token, and runs with this policy disabled are the closed-system baseline. Round 1 of every tree answers the externally imposed Challenge 3 requirement, and later separation rounds answer the closure policy.",
+      "obligation": "Issue later demands only from the declared closure policy, one per automorphism orbit of collapsed pairs, and supply a fresh opaque token only through the declared external continuation policy at the closure fixpoint.",
+      "imports": [
+        "Declared pair-separation closure policy and external continuation policy, genesis_source.txt sections 3.9-3.10 (assumption)"
+      ],
+      "fence": "A collapsed pair is not an active obstruction by itself; the declared policy makes it one, its orbit-representative selection is also declared, and choosing it among conceivable policies is a declared-metatheory judgment, not a derived transition.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the closure policy; Lean states the selection-free transition relation and its transport (TFQ-0444)"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
+            "symbol": "closure_challenge_orbits"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "closure_challenge_orbits"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "174-185",
+          "quote": "A collapsed pair is not an active obstruction by itself; this declared policy is what makes it one."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "186-190",
+          "quote": "This is an explicitly declared external policy, not a derived transition."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "357-362",
+          "quote": "Round 1 of every tree answers the externally imposed Challenge 3 requirement"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "genesis_source.txt sections 3.9-3.10 and 8.1 [declared metatheory]"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0444",
+      "name": "orbit-branching-repairs-least-pair",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0443",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Raw least-pair selection is not isomorphism-equivariant. On the regression regime (four data, one unary form, instances on data 2 and 3) both the regime and its renaming by the double transposition 0↔2, 1↔3 collapse the pair (0, 1), yet the renaming carries (0, 1) to (2, 3) (least_pair_selection_not_congruent); that the two same-index choices give non-isomorphic children is a computational test. The repair branches once per automorphism orbit of collapsed pairs. Under datum renamings with forms fixed, the selection-free transition relation over every collapsed pair and every valid response transports (transStep_rename_fwd, transStep_image_total), and valid-response counts over caller-supplied candidate lists transport (validCount_rename).",
+      "obligation": "Show that the index-least collapsed pair is not carried along a renaming of the regression regime, and that the selection-free transition relation and its valid-response counts transport under datum renamings.",
+      "imports": [],
+      "fence": "The congruence is relation-level with forms fixed; conversion to equal canonical-key class sets, form-bijection transport and minimum-family transport stay computational with CL-ISO-SOUND, and no exported run reached a state with more than one orbit.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean",
+            "symbol": "least_pair_selection_not_congruent"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean",
+            "symbol": "transStep_rename_fwd"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean",
+            "symbol": "transStep_image_total"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean",
+            "symbol": "validCount_rename"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs",
+            "symbol": "pair_orbits"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs",
+            "symbol": "orbits_are_equivariant_under_renaming"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
+            "symbol": "pair_orbits"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "371-379",
+          "quote": "Raw least-pair selection is not isomorphism-equivariant."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "385-391",
+          "quote": "the conversion to equal canonical-key class sets remains computational with CL-ISO-SOUND"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean",
+          "lines": "1058-1063",
+          "quote": "The relation is congruent; the selection is not."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 8.2 [counterexample] and relation-level [theorem] (R7); TransitionTransport.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0445",
+      "name": "response-existence-mark-progress",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0444",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0438"
+      ],
+      "summary": "On any well-formed regime whose imposed requirements are all separated, for any two distinct admitted data i and j, the two-item delta of one fresh unary form and one instance of it at datum j is a valid response to Separate(i, j) and keeps every imposed requirement separated (mark_progress). Derivability of instances of the old forms is unchanged by this extension, so old witnesses survive (derivable_extend). The standalone replay checks fresh-mark preservation for 3,996 targets across 1,436 regimes, and no terminal_no_response node occurs in any exported run.",
+      "obligation": "Show that a fresh unary form with one instance at the second target datum is a valid, requirement-preserving response to every supplied separation demand on a well-formed regime whose requirements hold.",
+      "imports": [],
+      "fence": "This is response existence for a supplied demand only; it does not establish autonomous demand generation or an unbounded tower, and the preserved conjunct ranges over the requirement store, not over all separable pairs.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean",
+            "symbol": "mark_progress"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean",
+            "symbol": "derivable_extend"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of fresh-mark progress; the standalone replay checks it against the frozen Python model"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
+            "symbol": "python_replay"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "404-412",
+          "quote": "is exactly response existence"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "361-365",
+          "quote": "Old-form derivability remains unchanged, so old witnesses survive"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "603-605",
+          "quote": "verifies fresh-mark preservation for 3,996 targets across 1,436 regimes"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 8.2 [theorem] (CL-PROGRESS); Progress.lean mark_progress"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0446",
+      "name": "pruning-lemmas-cost-two",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0445",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "A separation witness never inhabits a uniformly ruled form, so shrinking the final rule set preserves every separation (separable_of_subrules). With the item-level bridge applyDelta_dropRules, a delta containing a uniform-rule item is never minimal: dropping its rule items leaves a valid, strictly shorter delta with the same new-form arity sum (rule_item_never_minimal). The mention lemma shows that appending instances that mention neither datum of a pair leaves that pair's collapse unchanged (collapsed_append_unmentioning), and under the well-formedness conjuncts a fresh unreferenced datum or form leaves the collapse of every existing pair unchanged (collapsed_fresh_datum, collapsed_fresh_form).",
+      "obligation": "Show that rule items never occur in a minimum valid response and that unreferenced fresh data, unreferenced fresh forms and instances not mentioning a target datum cannot change the target pair's collapse.",
+      "imports": [],
+      "fence": "The three irrelevance inputs and the rule bridge are theorems, but the enclosing claim that the pruned cost-2 enumeration contains every minimum (CL-PRUNE-STRUCTURAL) stays a bounded theorem on computational evidence over the declared grammar slice.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean",
+            "symbol": "separable_of_subrules"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean",
+            "symbol": "rule_item_never_minimal"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+            "symbol": "collapsed_append_unmentioning"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+            "symbol": "collapsed_fresh_datum"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+            "symbol": "collapsed_fresh_form"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs",
+            "symbol": "iter_cost2_deltas"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs",
+            "symbol": "pruned_and_unpruned_agree_on_valid_deltas"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "iter_cost2_deltas"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "iter_full_deltas"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "414-422",
+          "quote": "a delta containing a uniform rule is never a minimum valid response"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+          "lines": "85-87",
+          "quote": "an instance-only delta can only change the target pair's profiles by mentioning a target datum."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "742-747",
+          "quote": "Three inputs became theorems; the enumeration did not."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt section 8.3 [theorem] (R1-R4) with CL-PRUNE-STRUCTURAL [bounded theorem]; Progress, RuleBridge, Mention .lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0447",
+      "name": "count-invariance-transport",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0444",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Observational collapse is invariant under a renaming of datum indices with forms fixed: the renamed regime collapses the renamed pair exactly when the original regime collapses the original pair (collapsed_rename). For any caller-supplied candidate pair list with deciders that track collapse, the collapsed-pair counts before and after renaming agree (collapsedCount_rename). Collapse also transports across a full two-bijection regime isomorphism (collapsed_transport) and under the combined datum-and-form action (collapsed_renameDataForm). Requirements never enter collapse, so the renaming action leaves them alone.",
+      "obligation": "Show that collapse and the collapsed-pair count over a supplied pair list are invariant under datum-index renaming, and that collapse transports across a regime isomorphism.",
+      "imports": [],
+      "fence": "The count transport acts on datum indices with forms fixed and takes the pair list and decider as parameters; token renaming is inexpressible in the token-erased Lean model, and the executable count and the identification of the mapped list with the engine's pair enumeration stay computational.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean",
+            "symbol": "collapsed_rename"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean",
+            "symbol": "collapsedCount_rename"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean",
+            "symbol": "collapsed_transport"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean",
+            "symbol": "collapsed_renameDataForm"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
+            "symbol": "the_key_is_invariant_under_every_renaming"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
+            "symbol": "a_single_collapsed_pair_transports_under_renaming"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "collapsed_pairs"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
+            "symbol": "rename"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "607-618",
+          "quote": "token renaming is inexpressible in the Lean model and form bijections are not transported"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "759-772",
+          "quote": "Collapse transport under the full two-bijection isomorphism is proved separately"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "genesis_source.txt question 8 and register row R6 [theorem]; CountTransport.lean, IsoCollapse.lean, FormTransport.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0448",
+      "name": "branch-trees-and-roles",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0446",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0447"
+      ],
+      "summary": "With the external continuation policy enabled, isomorphism-quotiented branch DAGs were exported for both readings and both measures within the declared bounds. Under mu2 there is no guard cutoff: the quotient tree to the requested 15 transition steps is finite and enumerated in full, 963 nodes for L and 1847 for F, conditional on the orbit policy losing no child classes, and its leaves are round-cut, carrying 10 or 11 separation responses in L and 10, 11 or 12 in F. Under mu1 the 1200-node pre-expansion guard cuts first at depth 6 (L) and 5 (F), leaving exact exported frontiers of 927 and 886 guard-cut nodes. Counted over accepted edges (L mu1, L mu2, F mu1, F mu2), the recurring roles are supply (195/111/233/413), discrimination by one new instance (1047/858/1001/1458), innovation by a fresh form plus instance (8/53/10/83) and double discrimination (6, F mu2 only); the auxiliary-witness shape never appears among accepted minima.",
+      "obligation": "Regenerate the four quotiented trees within the declared bounds and report their node counts, cut kinds, leaf response counts and role counts over accepted edges.",
+      "imports": [
+        "Declared resource bounds: at most 2 items, concrete arity at most 2, 15 transition steps, pre-expansion node guards 1200 (mu1) and 3000 (mu2) (assumption)"
+      ],
+      "fence": "Reaching the requested depth is not unboundedness and no unboundedness claim is made; mu2 completeness is conditional on CL-TREE-MU2-COMPLETE, the mu1 trees are guard-bounded, and behaviour past the exported depths is unresolved.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the exported trees; they are finite computations"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs",
+            "symbol": "depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs",
+            "symbol": "depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/role.rs",
+            "symbol": "role"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "build_tree"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "449-458",
+          "quote": "is finite and enumerated in full within the declared bounds (963 / 1847 nodes)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "466-473",
+          "quote": "hit the declared 1200-node pre-expansion guard first at depth 6 (L) / 5 (F)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "480-487",
+          "quote": "(two instances at once: 6, in F mu2 only)"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "COMPUTATIONALLY_CHECKED",
+        "source_status": "genesis_source.txt section 8.4 [finite computation] (CL-BRANCH-REPORTS, CL-TREE-MU2-COMPLETE)"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0449",
+      "name": "closed-baseline-terminates",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0383",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).",
+      "obligation": "Regenerate both closed-system baselines and report node counts, terminal branches and rounds used, with every maximal branch terminal within the n(n−1)/2 pair bound.",
+      "imports": [
+        "Declared resource bounds of genesis_source.txt section 1 with the external continuation policy disabled (assumption)"
+      ],
+      "fence": "A bounded theorem: termination of every maximal branch is computed within the declared bounds, and that each exported round has the declared shape (one fresh imposition, no fresh-datum item) stays computational.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean",
+            "symbol": "closedRun_round_bound_from_empty"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs",
+            "symbol": "closed_system_baseline_reading_l"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs",
+            "symbol": "closed_system_baseline_reading_f"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "build_tree"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "517-522",
+          "quote": "ends at the all-pairs-separated fixpoint, within the pair bound (L: 1 <= 1; F: 3 <= 3"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "494-497",
+          "quote": "| F | 20 | 16 | 0 | 0 | 0 | 3 | 3 |"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "506-515",
+          "quote": "remains computational is that each exported round has the declared shape"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "COMPUTATIONALLY_CHECKED",
+        "source_status": "genesis_source.txt section 8.5 [bounded theorem] (CL-CLOSURE-TERMINATION); Rounds.lean round bound"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0450",
+      "name": "policy-endpoint-all-separated",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0449",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Call a regime a policy terminal when no unseparated admitted pair i < j has a valid response. The companion theorem policy_terminal_separates shows that a well-formed policy terminal whose imposed requirements are all separated separates every admitted pair: an unresolved pair would have the fresh-mark response of mark_progress, contradicting terminality. Together with the round bound, an unguarded maximal run of the declared closure policy cannot continue indefinitely and cannot stop on an unresolved pair for lack of a response.",
+      "obligation": "Show that a well-formed regime with satisfied requirements and no valid response for any unseparated pair separates every admitted pair.",
+      "imports": [],
+      "fence": "The proof goes by contradiction and its axiom report lists Classical.choice; a bounded implementation can instead stop at a search or resource limit, which is not the all-pairs-separated result.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
+            "symbol": "policy_terminal_separates"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
+            "symbol": "the_fixpoint_is_empty_and_genesis_has_no_demand"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "closure_challenge_orbits"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "366-371",
+          "quote": "an unguarded maximal run of this policy ends with all pairs separated"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "370-371",
+          "quote": "A bounded implementation can instead stop at a search or resource limit"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/axiom_report.txt",
+          "lines": "1042",
+          "quote": "'GenesisPaper.policy_terminal_separates' depends on axioms: [propext, Classical.choice, Quot.sound]"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 8 written consequence (ledger WDP-P000-016); companion Paper.lean policy_terminal_separates"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0451",
+      "name": "no-endogenous-demand-generator",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0450",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0385"
+      ],
+      "summary": "The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).",
+      "obligation": "Record that closure under the declared policy stops at the all-pairs-separated fixpoint within n(n−1)/2 rounds and that any further requirement has to come from external supply or an external goal.",
+      "imports": [
+        "Declared pair-separation closure policy, genesis_source.txt section 3.9 (assumption)"
+      ],
+      "fence": "This reports that no generator was derived, not that none exists in an extended language; raw rule admission can still erase a separation (TFQ-0385), and no longer or infinite tower is forced.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean",
+            "symbol": "allPairs_length"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean",
+            "symbol": "closedRun_round_bound_from_empty"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
+            "symbol": "closure_round_bound"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
+            "symbol": "closure_challenge_orbits"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "524-537",
+          "quote": "no object-language endogenous demand generator was derived"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "563-569",
+          "quote": "generating any further requirement would need a fresh datum (external supply) or a new requirement kind (external goal)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "571-572",
+          "quote": "no longer or infinite tower is forced"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_PROSE",
+        "source_status": "genesis_source.txt section 9 written result with [theorem] and [bounded theorem] parts; Counting.lean allPairs_length"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0452",
+      "name": "identity-is-index-not-profile",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0451",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.",
+      "obligation": "Keep datum identity as the admission index, and check on the reading-F mu2 minimum that data 0 and 2 have equal empty profiles.",
+      "imports": [],
+      "fence": "Question 11 itself stays unanswered by instruction, because naming external structures is withheld; the two surviving discrimination styles, attribute-like unary marks and relation-like binary links, are internal descriptions only.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean",
+            "symbol": "U0F"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
+            "symbol": "profiles"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+            "symbol": "profiles"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "634-644",
+          "quote": "internal identity is the index, never the profile"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "641-643",
+          "quote": "leaves indices 0 and 2 distinct with identical empty profiles"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "645-648",
+          "quote": "that sentence is false in the model and was withdrawn"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_PROSE",
+        "source_status": "genesis_source.txt question 11 internal statement (CL-IDENTITY-NOT-PROFILE) and withdrawal of 2026-09-08"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0453",
+      "name": "minimal-or-initial-refused",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0451",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.",
+      "obligation": "Refuse any minimality or initiality claim for the whole process, and keep artifact determinism, bounded enumeration completeness and per-stage minimality under their own tags.",
+      "imports": [],
+      "fence": "The later Derivation/Initiality.lean establishes minimality only relative to a declared 64-member constitution class and probe battery; that supplementary result does not answer Question 10 for the sealed process.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check; artifact determinism is repeated-run byte agreement, not a program"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check; artifact determinism is repeated-run byte agreement, not a program"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "623-633",
+          "quote": "No universal property was proved."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "626-629",
+          "quote": "byte-identical artifacts are repeated-run agreement, not an engine theorem"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Initiality.lean",
+          "lines": "40-43",
+          "quote": "No claim is made that the kernel is minimal in any wider, undeclared class"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_PROSE",
+        "source_status": "genesis_source.txt question 10 claim refused [unresolved]; written refusal with scoped alternatives"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0454",
+      "name": "sealed-terminal-statement",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0451",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0452",
+        "TFQ-0453"
+      ],
+      "summary": "Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.",
+      "obligation": "Carry each terminal clause (a) to (h) with its own tag and scope, and promote none of them beyond that tag.",
+      "imports": [],
+      "fence": "The clauses keep separate tags: (f) is bounded, (g) is a finite computation whose continuation past the exported depths is unresolved, (h) is unresolved, and no unboundedness or reading selection is claimed.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "the terminal statement composes clauses whose Lean theorems are cited in TFQ-0432 to TFQ-0451"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of the composed statement; its clauses carry their own checks"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of the composed statement; its clauses carry their own checks"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "650-658",
+          "quote": "The initial inscription generates nothing: no derivable judgment, no internally forced successor"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "679-686",
+          "quote": "No object-language endogenous demand generator was derived"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+          "lines": "697-699",
+          "quote": "Two admission readings of the challenge text survive with no internal fact separating them"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_PROSE",
+        "source_status": "genesis_source.txt section 11 terminal statement, clauses (a)-(h) each tagged"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0455",
+      "name": "d2-initial-pointed",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0454",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0387"
+      ],
+      "summary": "Let D₂ have carrier {0, 1} and the single edge 0 → 1. For any relation R with a supplied witness R(a, b), the map f(0) = a, f(1) = b preserves the edge, and every map sending 0 to a and 1 to b equals it, so f is the unique endpoint-preserving map from D₂ (D2_initial_pointed). Under irreflexivity this map is injective, because the endpoints of an irreflexive witnessed edge differ (irrefl_witness_ne).",
+      "obligation": "Show that a supplied edge R(a, b) receives exactly one endpoint-preserving map from the oriented two-point witness D₂, and that this map preserves the edge.",
+      "imports": [],
+      "fence": "This represents the chosen witness only: the map need not describe every edge of R or preserve non-edges, needs no reverse edge or composition law, and does not force irreflexivity from opaque marks.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean",
+            "symbol": "D2_initial_pointed"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean",
+            "symbol": "irrefl_witness_ne"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of the pointed two-point witness map"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of the pointed two-point witness map"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "430-438",
+          "quote": "is the unique endpoint-preserving map from"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean",
+          "lines": "120-122",
+          "quote": "for every structure with an asserted pair there is exactly one point-preserving map from `D2`"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+          "lines": "21",
+          "quote": "it need not describe every target edge or preserve nonedges"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 9 (ledger WDP-P000-010); PrimDiff.lean D2_initial_pointed"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0456",
+      "name": "five-presentation-questions",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0455",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "For a presentation S(n), its active demand register and its maps between stages, the Genesis account hands on five declared questions: which data and operations are admitted at the current stage; which declared task cannot be answered with the current observations; which candidate extensions are permitted, and under which costs; which prior answers, inscriptions or algebraic laws must survive; and what evidence shows both preservation and resolution of the selected problem. Selecting a new operation remains a declared construction decision, with its preservation obligations stated.",
+      "obligation": "State for each presentation stage its admitted data and operations, the unanswered declared task, the permitted extensions and their costs, the answers that must survive, and the evidence of preservation and resolution.",
+      "imports": [
+        "Declared presentation S(n) with its active demand register and stage maps (assumption)"
+      ],
+      "fence": "The questions frame the later stages and select no operation; the quotient-retention and round-trip results that follow make the preservation questions concrete without answering the selection question.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement; the five questions are declared"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check; the five questions are declared"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check; the five questions are declared"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "442-449",
+          "quote": "Which declared task cannot be answered with the current observations?"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "523-525",
+          "quote": "Selecting a new operation remains a declared construction decision"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "paper.md section 10 declared questions"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0457",
+      "name": "quotient-retention",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0456",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Let fine and coarse be equivalence relations on one set with every fine identification also a coarse one. The map [x]_fine ↦ [x]_coarse is well defined and surjective (collapseMap_surjective), injective exactly when every coarse identification also holds finely (collapseMap_injective_iff_reverse_refinement), and successive such maps compose without choosing representatives (collapseMap_compose). If a former identification fails in the finer relation, two distinct fine classes remain over one coarse class (failed_identification_retains_two_classes).",
+      "obligation": "Show that the quotient map from a finer to a coarser equivalence is surjective, is injective exactly when no coarse identification is lost, and composes along successive refinements.",
+      "imports": [],
+      "fence": "A theorem about supplied equivalence relations: no class is manufactured and no new primitive is inferred, and which identifications a later stage must retain is a declared task.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
+            "symbol": "collapseMap_surjective"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
+            "symbol": "collapseMap_injective_iff_reverse_refinement"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
+            "symbol": "collapseMap_compose"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
+            "symbol": "failed_identification_retains_two_classes"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of quotient retention"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of quotient retention"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "456-467",
+          "quote": "It is injective exactly when the reverse implication also holds."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
+          "lines": "18-22",
+          "quote": "No class is manufactured by the theorem."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+          "lines": "31",
+          "quote": "Supplied equivalence relations; no inferred new primitive."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 10 (ledger WDP-P000-020); QuotientRetention.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0458",
+      "name": "faithful-descent-round-trip",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0457",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "For supplied translations f : P → Q and g : Q → P, injective maps i : P → C and j : Q → C with i = j ∘ f and j = i ∘ g exist if and only if g ∘ f = id_P and f ∘ g = id_Q (faithful_descent_iff_round_trip_coherent). One direction substitutes the identifying equations and cancels the injective maps (faithful_descent_to_coherent); the other takes C = P, i = id and j = g. A failed round trip for this declared pair therefore excludes a faithful common carrier that eliminates the presentation index.",
+      "obligation": "Show that compatible injective embeddings of two presentations into a common carrier exist exactly when both round trips of the supplied translations are identities.",
+      "imports": [],
+      "fence": "Failure concerns the declared translation pair only: another pair of translations may still close, and no common world prior to P and Q is assumed.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean",
+            "symbol": "faithful_descent_iff_round_trip_coherent"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean",
+            "symbol": "faithful_descent_to_coherent"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of presentation descent"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of presentation descent"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "469-482",
+          "quote": "Failure for this pair of maps requires retaining their presentation distinction; it does not rule out another translation."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean",
+          "lines": "23-27",
+          "quote": "Another translation pair may still be coherent"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+          "lines": "32",
+          "quote": "Failure concerns those translations, not every possible replacement."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 10 (ledger WDP-P000-021); PresentationDescent.lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0459",
+      "name": "canonical-key-classification",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0431",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "If a representative map C lies in each regime's isomorphism orbit and is constant on orbits, then C(R) = C(S) exactly when R ≅ S, and an injective serialization of the representatives gives the same criterion for keys (key_classification, conditional on both hypotheses). Companion results remove those hypotheses for the concrete search: equal sorted five-field tuples after relabeling by supplied bijections imply isomorphism (serializedRelabel_sound), and the length-prefixed unsigned 64-bit wire encoding is injective on words below 2^64 (portableBytes_injective). Exhaustive search over all datum and form permutations attains a least structural key (canonicalKey_attained), and for well-formed regimes with duplicate-free collections the keys, and under the word bounds their byte encodings, are equal exactly when the regimes are isomorphic (canonicalKey_classification, canonicalBytes_classification).",
+      "obligation": "Show that the exhaustive-search canonical key and its portable byte encoding are equal exactly when two well-formed, duplicate-free regimes are isomorphic, within the unsigned-word bounds.",
+      "imports": [],
+      "fence": "The abstract key_classification needs an in-orbit, orbit-invariant choice; the concrete search results assume no orbit oracle but cover the Lean search only, and refinement of the optimized Python and Rust programs remains a separate engineering obligation, checked by finite agreement on 1,436 labelled regimes.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean",
+            "symbol": "key_classification"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean",
+            "symbol": "serializedRelabel_sound"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean",
+            "symbol": "portableBytes_injective"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean",
+            "symbol": "canonicalKey_attained"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean",
+            "symbol": "canonicalBytes_classification"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
+            "symbol": "portable_key_v1"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py",
+            "symbol": "portable_key_v1"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "484-492",
+          "quote": "An injective serialization of these representatives gives the same criterion for keys."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "508-521",
+          "quote": "including their optimized searches, remains a separate engineering obligation"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+          "lines": "33",
+          "quote": "keys additionally require injective serialization"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 10 canonicalization (ledger WDP-P000-022); CanonicalMinimizer.lean and companion PaperCanonical, PaperWire, PaperSearch .lean"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0460",
+      "name": "incidence-construction-betti",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0455",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Starting from the literal supply of <>, the WDP construction records Supply(<>) without admitting it, then supplies and admits <a>, <ab> and <c>, forms of arities 1, 2 and 3, three unary vertex instances and the edges 01, 12 and 02. Under an explicitly chosen incidence interpretation (a datum's admission index is a vertex, an arity-k form carries (k−1)-dimensional simplices, an instance lists its increasing vertex indices, and every vertex and face needs its own instance) the cycle has rational Betti numbers (1, 1), and admitting the single instance 012 gives (1, 0, 0). The education Lean module establishes these Betti numbers from explicit integer kernels and images of the boundary matrices (cycle_rational_betti, filled_rational_betti) and that its incidence reading returns the cycle and filled simplex lists (cycle_incidence_eq, filled_incidence_eq). For a general face-closed family K, that the construction's interpretation is exactly K rests on a written argument.",
+      "obligation": "Replay the literal-root walk, read admitted instances as simplices under the declared interpretation, and compute rational Betti numbers (1, 1) for the cycle and (1, 0, 0) after the filling.",
+      "imports": [
+        "Declared incidence interpretation of admitted forms and instances as simplices, incidence_construction.txt (assumption)"
+      ],
+      "fence": "The interpretation is a construction choice, not extracted from the spelling of <>; the general construction result is a written argument, the Lean covers the worked three-vertex complex only, and no Lean refinement of the Rust implementation is claimed.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean",
+            "symbol": "cycle_rational_betti"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean",
+            "symbol": "filled_rational_betti"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean",
+            "symbol": "cycle_incidence_eq"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean",
+            "symbol": "filled_incidence_eq"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs",
+            "symbol": "cycle_construction"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs",
+            "symbol": "homology"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python implementation of the incidence reading or its homology"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "535-540",
+          "quote": "The triangle boundary has Betti numbers (1, 1); admitting its face gives (1, 0, 0)."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt",
+          "lines": "31-44",
+          "quote": "This is a construction choice recorded here."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt",
+          "lines": "57-64",
+          "quote": "This is a written construction argument; it is not yet a Lean verification of the Rust implementation."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "paper.md section 11 and incidence_construction.txt (construction choice, written argument); 006_oewdp GenesisIncidence.lean Betti theorems"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0461",
+      "name": "genesis-three-axis-verdict",
+      "stage": "GENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0454",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.",
+      "obligation": "Keep the three axes as separate verdicts, reproduce the w1 fresh-label collision, and report the axiom census and the finite cross-language agreement populations with their scopes.",
+      "imports": [],
+      "fence": "The axis values are recorded author-approved verdicts, not computed results: a closed stage does not imply readiness, companion work does not rewrite the frozen gate, and finite agreement is not a compiler-verified refinement proof for all source code.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the verdicts or of the fresh-label defect; the axiom census is the compiled lean4/axiom_report.txt"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/bin/genesis_replay.rs",
+            "symbol": "run"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
+            "symbol": "python_replay"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
+            "symbol": "compare_rust"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
+            "symbol": "delta_events"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt",
+          "lines": "582-592",
+          "quote": "These axes are independent."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "585-591",
+          "quote": "deduplication leaves the state unchanged"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "593-601",
+          "quote": "The compiled census reports 2,475 non-internal theorem constants"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "COMPUTATIONALLY_CHECKED",
+        "source_status": "closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024)"
+      },
+      "terminal": false
     }
   ]
 }

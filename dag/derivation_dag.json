@@ -5441,6 +5441,890 @@
       ]
     },
     {
+      "id": "PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "genesis_source.txt section 2 [declared metatheory]; Bridge.lean admission-order theorems",
+      "statement": "The sealed manuscript declares two levels. The metatheory holds presentation tokens (strings), event sequences, indices, finite data structures and arithmetic; the object language holds only what a regime admits. Token glyphs, component counts, order, concatenation, multiplicity, substring structure, matching and string equality live in the metatheory unless an admitted judgment internalizes a distinction. Presentation identity (token equality) is metatheory only, internal identity is the datum index, and no semantic interpretation is ever assigned.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:79-85",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:87-93",
+        "omega_engine_education/documentation/001_oegen/genesis.md:7"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_visible_to_metatheory",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_erased_at_object_level"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key"
+      ],
+      "imported_structure": [
+        "Declared two-level metatheory/object-language split of genesis_source.txt section 2 (assumption)"
+      ],
+      "bottleneck": "A declared split, not a theorem: the Lean model has no tokens by construction, so token-blindness is structural there and is checked in Python and Rust by renaming tests; admission order is visible to the token-aware metatheory and erased at the object level.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0430",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "paper.md section 6 and genesis_source.txt section 3.8 [definition]; Minimality.lean Iso",
+      "statement": "A regime isomorphism is a pair of bijections on datum and form indices that preserves form arities, ordered instance arguments, uniform-rule membership and the separation requirements read as unordered pairs; mapped requirement endpoints are sorted before comparison, and presentation tokens are erased first. Because requirements are unordered, exchanging the endpoints of a requirement can identify two responses; a relation preserving directed requirements would be a different convention. The Lean structure Iso states these fields over the admitted index ranges, and sortPair is shown to equal (min, max) and to be symmetric.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:206-212",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:168-173",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean:35-38"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::Iso",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean::sortPair_eq_minmax",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean::sortPair_comm"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso"
+      ],
+      "imported_structure": [
+        "Declared isomorphism convention with unordered requirement pairs, genesis_source.txt section 3.8 (assumption)"
+      ],
+      "bottleneck": "The convention is declared: Iso is a membership relation, so it also identifies list representations such as [p] and [p, p], and an isomorphism preserving directed requirements would give different tie classes.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0431",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CHALLENGE0-INERTIA-SECOND-TOKEN",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 4 [theorem] plus a [definition] for no forced successor; Inertia.lean, Bridge.lean",
+      "statement": "At Challenge 0 the only object-language inscription is the opaque whole <>. In the token-erased Lean model nothing is derivable at genesis (genesis_underivable), and nothing is derivable in any regime with no instances and no rules (underivable_of_empty); the Challenge 0 computation records zero contexts and an empty derivable set in both readings. That no successor is internally forced is a property of the declared grammar, whose only state changes are external-event-indexed admissions, not a theorem about a forcing predicate. In the token-aware model a history whose datum admissions all carry one token leaves at most one admitted datum (single_token_carrier_bound), so a state with two data needs the admission of a second, different token (second_token_required).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0432_challenge0_inertia_second_token.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:203-217",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:218-224",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean:146-148"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::genesis_underivable",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::underivable_of_empty",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::single_token_carrier_bound",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::second_token_required"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge0_generates_nothing"
+      ],
+      "imported_structure": [],
+      "bottleneck": "No forcing predicate is defined, so no forced successor is a model-scoped definition and not a theorem, and nothing here excludes a successor in an extension of the language; supply_no_op itself is recorded under TFQ-0379.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0432",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CONTEXTS-PLUGGING-PROFILES",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "genesis_source.txt sections 3.3-3.5 and paper.md section 6 [definition]; Basic.lean",
+      "statement": "A context is an admitted form with a slot tuple of its arity in which every filled slot names an admitted datum and at least one slot is a hole; plugging a datum fills every hole with that same datum. Derivability is membership in the admitted instances or coverage by a uniform all-tuples rule, and no other inference exists. The profile of a datum is the set of well-formed contexts whose plugging is derivable. Two data are collapsed when their profiles are equal and separable when some well-formed context is derivable for one and not the other; that is the declared sense used for every separation requirement.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:140-146",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:147-153",
+        "omega_engine_education/documentation/001_oegen/genesis.md:15"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::wfCtx",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::plug",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::derivable",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::collapsed",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::separable"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profile"
+      ],
+      "imported_structure": [
+        "Declared derivability: admitted-instance membership or a uniform all-tuples rule, with no other inference (assumption)"
+      ],
+      "bottleneck": "These are declared definitions: separability means a difference in positive derivability only, and an imposed requirement records a demand for separation without making it hold.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0433",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-COLLAPSE-WITHOUT-INSTANCES",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 5 and paper.md section 6 [theorem]; Inertia.lean collapsed_of_no_insts",
+      "statement": "With no admitted instances, the derivability of a plugged context depends only on its form, so every pair of data is observationally collapsed (collapsed_of_no_insts). Uniform rules do not change this: a ruled form makes every plugging derivable alike. Retaining another datum alone therefore need not increase expressive power.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0434_collapse_without_instances.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:243-248",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:235-237"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::coverage_is_constant_across_data_at_a_fixed_context"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The statement covers instance-free regimes only; once an instance is admitted collapse is decided by the profiles, and a later uniform rule can again erase a separation (TFQ-0385).",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0434",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 6 [theorem] and [counterexample]; Inertia.lean",
+      "statement": "At Challenge 2 both <a> and <ab> are supplied and retained, so reading L admits (<a>, <ab>) and reading F admits (<>, <a>, <ab>). In both readings every admitted pair is observationally collapsed (R2L_collapsed, R2F_collapsed): two externally distinct inscriptions remain internally indistinguishable. The countermodel admission_without_expressive_increase admits a fresh datum, a real state change, while the pair stays collapsed, a counterexample to the claim that a new external inscription necessarily increases internal expressive power. The recorded Challenge 0-3 histories replay exactly to the Challenge 3 regimes R2L and R2F (historyL_replays, historyF_replays).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:246-248",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:249-252",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:256-259"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2L_collapsed",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2F_collapsed",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::admission_without_expressive_increase",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::historyL_replays",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::historyF_replays"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Admission changed only the metatheoretic datum count and the replayable history; glyph identity, component count, order and substring structure stay internally unavailable, and the readings stay unselected (TFQ-0380).",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0435",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CONTEXT-COUNT-FORMULA",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 6 counting corollary (ledger WDP-P000-015); companion Paper.lean contextWords theorems",
+      "statement": "For a regime with n admitted data, a form of arity a has (n+1)^a − n^a well-formed contexts: each slot is a hole or one of n data, less the n^a hole-free tuples, so |Ctx(R)| = Σ_f ((n+1)^{a_f} − n^{a_f}), with distinct form identifiers kept disjoint even when their arities coincide. The companion Lean module establishes the per-form count for the recursive word enumeration (contextWords_length), characterizes its members as exactly the well-formed words of that length containing a hole (contextWords_mem), and shows the enumeration has no repetitions (contextWords_nodup). The standalone replay checks the formula against the frozen Python enumeration in 35 cases (n from 0 to 4, arity 1 to 7), and Python and Rust enumerate the contexts independently.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0436_context_count_formula.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:258-261",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:26",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:603-604"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_length",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_mem",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_nodup"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The Lean statement is a companion result for the slot words of one form; the sum over forms is the written corollary of ledger row WDP-P000-015, which attributes it to no compiled source theorem, and large arities make profile enumeration expensive.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0436",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-COLLECTION-EXTENSIONALITY",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 3 membership extensionality [theorem]; Ext.lean",
+      "statement": "Python's admitted collections are sets while Lean's are deduplicated lists. Under RegimeExt (equal datum counts and form tables, and membership-equal instance, rule and requirement collections) every stated observable transports: derivability, context well-formedness, collapse, separability, item and delta application, and response validity (derivable_ext through validResponse_ext). Two list representations of the same admitted sets therefore agree on each of those observables.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0437_collection_extensionality.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:114-123",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:123-126",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:272-277"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::derivable_ext",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::collapsed_ext",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::separable_ext",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::validResponse_ext"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Lean-to-Lean only: equal datum counts and equal indexed form tables stay premises, that every exported claim factors through these observables is not asserted, and executable comparisons with Python and Rust have their own input populations.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0437",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-RESPONSES-COSTS-MU1-MU2",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "genesis_source.txt sections 3.6-3.7 and paper.md section 7 [definition]; Basic.lean, Minimality.lean aritySum",
+      "statement": "A response (delta) is an ordered finite list of NewDatum, NewForm(arity), NewInst(form, args) and NewRuleAll(form) items applied in order; an instance may name a form added earlier in the same list, and the reverse order is an ill-formed admission. The declared costs are mu1 = item count and mu2 = (item count, sum of new-form arities) compared lexicographically, where the sum counts every NewForm item, including distinct forms of equal arity. A valid response to Separate(i, j) applies, separates the target, and keeps every previously imposed requirement separated, because requirements are persistent constraints.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0438_responses_costs_mu1_mu2.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:154-163",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:164-167",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:339-341"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::applyDelta",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::validResponse",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::aritySum"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs::arity_sum",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/response.rs::response_valid_naive"
+      ],
+      "imported_structure": [
+        "Declared item grammar and cost measures mu1 and mu2, genesis_source.txt sections 3.6-3.7 (assumption)"
+      ],
+      "bottleneck": "Both measures and the item grammar are declared, not derived; bundling a form and an instance into one primitive would change every cost, and the enumerator's canonical item order makes a delta a multiset only up to that convention.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0438",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CHALLENGE3-CURRENT-REGIME-FAILS",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 7.1 and question 5 [theorem]; Quot.lean",
+      "statement": "Challenge 3 requires <a> and <ab> to be internally separable in the declared sense of positive derivability. Instantiating R2L_collapsed and R2F_collapsed, the current regime fails this: no witness context exists. The quotient barrier then applies: every function out of a quotient by a relation is constant on related elements (quotient_barrier, quot_barrier), and on the collapse classes of R2L any operation takes equal values on data 0 and 1 (barrier_R2L). An operation defined only on the current abstraction therefore cannot recover the required distinction, and a response has to change the regime.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:267-271",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:587-591",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean:28-30"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::barrier_R2L",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quot_barrier",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quotient_barrier"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The barrier concerns operations defined on the given quotient; it puts no bound on what an admitted augmentation of the regime can separate, which is the subject of the cost results (TFQ-0381).",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0439",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-MU1-MINIMUM-NOT-UNIQUE-L",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 7.3 [theorem, reading L]; Minimality.lean mu1_minimum_not_unique",
+      "statement": "Under mu1 in reading L the minimum corrective augmentation is not unique. The unary mark deltaU0 and the binary link deltaBL are both valid two-item responses to Challenge 3 on R2L, no response of at most one item is valid, and their results U0 and BL are non-isomorphic because form arity is an isomorphism invariant (mu1_minimum_not_unique, U0_not_iso_BL). The theorem is stated over R2L only.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:295-299",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:299-303",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean:281-283"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::mu1_minimum_not_unique",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::U0_not_iso_BL"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target"
+      ],
+      "imported_structure": [
+        "Declared item grammar, measure mu1 and the implemented isomorphism relation (assumption)"
+      ],
+      "bottleneck": "Reading L only: reading-F non-uniqueness is the bounded engine enumeration of five classes (TFQ-0442), and under mu2 the minimum is unique up to isomorphism (TFQ-0382).",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0440",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-MU1-ARITY-INDEXED-TIE-FAMILY",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 7.3 [theorem, reading L] (CL-3-INFINITE-TIES); Minimality.lean markK family",
+      "statement": "For every arity k ≥ 1 the k-ary mark, one k-ary form and one instance (1, ..., 1), is a valid two-item response to Challenge 3 on R2L (deltaK_valid, deltaK_length), since the all-hole context separates the two required data. Distinct arities give non-isomorphic results because an isomorphism preserves form arity (markK_pairwise_noniso), so the mu1 tie class in reading L is countably infinite. A concrete enumeration is therefore complete only relative to an arity bound, and the arity-at-most-two census is one slice of this family.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0441_mu1_arity_indexed_tie_family.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:320-328",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:322-326",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean:353-354"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaK_valid",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaK_length",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::markK_pairwise_noniso"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Declared item grammar, measure mu1 and the implemented isomorphism relation (assumption)"
+      ],
+      "bottleneck": "Stated over R2L only: no reading-F analogue of the k-ary family is formalized, and the family leaves the mu2 minimum (2, 1) unique up to isomorphism.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0441",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-BOUNDED-TIE-CENSUS",
+      "stage": "GENESIS",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "genesis_source.txt section 7.3 [bounded theorem] engine enumeration at (2,2); reproduce.py minimum census",
+      "statement": "Within the declared bounds of at most two items and form arity at most two, exhaustive enumeration under mu1, cross-checked against the unpruned space, finds at (2,2) six valid deltas in three isomorphism classes for reading L (unary mark, binary link, binary self-loop) and ten valid deltas in five classes for reading F. Reading F's two extra classes link to and from the never-required genesis datum, and they are non-isomorphic to each other because the bijection must preserve the requirement pair. Under mu2 each reading has two minimal deltas in one class. The standalone replay reproduces all four counts.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:305-318",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:326-328",
+        "omega_engine_education/documentation/001_oegen/genesis.md:19"
+      ],
+      "lean": [],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f"
+      ],
+      "imported_structure": [
+        "Declared resource bounds max_items 2 and max_arity 2 and the implemented isomorphism relation (assumption)"
+      ],
+      "bottleneck": "A bounded census: it is the max_arity = 2 slice of the infinite mu1 tie family of reading L (TFQ-0441), and no reading-F Lean non-uniqueness statement exists.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0442",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CHALLENGE-SOURCE-POLICIES",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "genesis_source.txt sections 3.9-3.10 and 8.1 [declared metatheory]",
+      "statement": "After Challenge 3 the challenge source is a pair of declared policies. The pair-separation closure policy reissues the admitted separation requirement pattern on collapsed pairs, one challenge branch per automorphism orbit of collapsed pairs, or nothing at the fixpoint where every pair is separated; it reads only profile equality and automorphism structure, supplies no data and imports no new goal kind. At that fixpoint the external continuation policy supplies and admits one fresh opaque token, and runs with this policy disabled are the closed-system baseline. Round 1 of every tree answers the externally imposed Challenge 3 requirement, and later separation rounds answer the closure policy.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0443_challenge_source_policies.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:174-185",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:186-190",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:357-362"
+      ],
+      "lean": [],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_challenge_orbits"
+      ],
+      "imported_structure": [
+        "Declared pair-separation closure policy and external continuation policy, genesis_source.txt sections 3.9-3.10 (assumption)"
+      ],
+      "bottleneck": "A collapsed pair is not an active obstruction by itself; the declared policy makes it one, its orbit-representative selection is also declared, and choosing it among conceivable policies is a declared-metatheory judgment, not a derived transition.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0443",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 8.2 [counterexample] and relation-level [theorem] (R7); TransitionTransport.lean",
+      "statement": "Raw least-pair selection is not isomorphism-equivariant. On the regression regime (four data, one unary form, instances on data 2 and 3) both the regime and its renaming by the double transposition 0↔2, 1↔3 collapse the pair (0, 1), yet the renaming carries (0, 1) to (2, 3) (least_pair_selection_not_congruent); that the two same-index choices give non-isomorphic children is a computational test. The repair branches once per automorphism orbit of collapsed pairs. Under datum renamings with forms fixed, the selection-free transition relation over every collapsed pair and every valid response transports (transStep_rename_fwd, transStep_image_total), and valid-response counts over caller-supplied candidate lists transport (validCount_rename).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:371-379",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:385-391",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean:1058-1063"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_rename_fwd",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_image_total",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::validCount_rename"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The congruence is relation-level with forms fixed; conversion to equal canonical-key class sets, form-bijection transport and minimum-family transport stay computational with CL-ISO-SOUND, and no exported run reached a state with more than one orbit.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0444",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-RESPONSE-EXISTENCE-MARK-PROGRESS",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 8.2 [theorem] (CL-PROGRESS); Progress.lean mark_progress",
+      "statement": "On any well-formed regime whose imposed requirements are all separated, for any two distinct admitted data i and j, the two-item delta of one fresh unary form and one instance of it at datum j is a valid response to Separate(i, j) and keeps every imposed requirement separated (mark_progress). Derivability of instances of the old forms is unchanged by this extension, so old witnesses survive (derivable_extend). The standalone replay checks fresh-mark preservation for 3,996 targets across 1,436 regimes, and no terminal_no_response node occurs in any exported run.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:404-412",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:361-365",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:603-605"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::mark_progress",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::derivable_extend"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "This is response existence for a supplied demand only; it does not establish autonomous demand generation or an unbounded tower, and the preserved conjunct ranges over the requirement store, not over all separable pairs.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0445",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-PRUNING-LEMMAS-COST-TWO",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt section 8.3 [theorem] (R1-R4) with CL-PRUNE-STRUCTURAL [bounded theorem]; Progress, RuleBridge, Mention .lean",
+      "statement": "A separation witness never inhabits a uniformly ruled form, so shrinking the final rule set preserves every separation (separable_of_subrules). With the item-level bridge applyDelta_dropRules, a delta containing a uniform-rule item is never minimal: dropping its rule items leaves a valid, strictly shorter delta with the same new-form arity sum (rule_item_never_minimal). The mention lemma shows that appending instances that mention neither datum of a pair leaves that pair's collapse unchanged (collapsed_append_unmentioning), and under the well-formedness conjuncts a fresh unreferenced datum or form leaves the collapse of every existing pair unchanged (collapsed_fresh_datum, collapsed_fresh_form).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:414-422",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean:85-87",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:742-747"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::separable_of_subrules",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean::rule_item_never_minimal",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_append_unmentioning",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_datum",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_form"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The three irrelevance inputs and the rule bridge are theorems, but the enclosing claim that the pruned cost-2 enumeration contains every minimum (CL-PRUNE-STRUCTURAL) stays a bounded theorem on computational evidence over the declared grammar slice.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0446",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-COUNT-INVARIANCE-TRANSPORT",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "genesis_source.txt question 8 and register row R6 [theorem]; CountTransport.lean, IsoCollapse.lean, FormTransport.lean",
+      "statement": "Observational collapse is invariant under a renaming of datum indices with forms fixed: the renamed regime collapses the renamed pair exactly when the original regime collapses the original pair (collapsed_rename). For any caller-supplied candidate pair list with deciders that track collapse, the collapsed-pair counts before and after renaming agree (collapsedCount_rename). Collapse also transports across a full two-bijection regime isomorphism (collapsed_transport) and under the combined datum-and-form action (collapsed_renameDataForm). Requirements never enter collapse, so the renaming action leaves them alone.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0447_count_invariance_transport.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:607-618",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:759-772"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsed_rename",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsedCount_rename",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean::collapsed_transport",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean::collapsed_renameDataForm"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The count transport acts on datum indices with forms fixed and takes the pair list and decider as parameters; token renaming is inexpressible in the token-erased Lean model, and the executable count and the identification of the mapped list with the engine's pair enumeration stay computational.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0447",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-BRANCH-TREES-AND-ROLES",
+      "stage": "GENESIS",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "genesis_source.txt section 8.4 [finite computation] (CL-BRANCH-REPORTS, CL-TREE-MU2-COMPLETE)",
+      "statement": "With the external continuation policy enabled, isomorphism-quotiented branch DAGs were exported for both readings and both measures within the declared bounds. Under mu2 there is no guard cutoff: the quotient tree to the requested 15 transition steps is finite and enumerated in full, 963 nodes for L and 1847 for F, conditional on the orbit policy losing no child classes, and its leaves are round-cut, carrying 10 or 11 separation responses in L and 10, 11 or 12 in F. Under mu1 the 1200-node pre-expansion guard cuts first at depth 6 (L) and 5 (F), leaving exact exported frontiers of 927 and 886 guard-cut nodes. Counted over accepted edges (L mu1, L mu2, F mu1, F mu2), the recurring roles are supply (195/111/233/413), discrimination by one new instance (1047/858/1001/1458), innovation by a fresh form plus instance (8/53/10/83) and double discrimination (6, F mu2 only); the auxiliary-witness shape never appears among accepted minima.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:449-458",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:466-473",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:480-487"
+      ],
+      "lean": [],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/role.rs::role"
+      ],
+      "imported_structure": [
+        "Declared resource bounds: at most 2 items, concrete arity at most 2, 15 transition steps, pre-expansion node guards 1200 (mu1) and 3000 (mu2) (assumption)"
+      ],
+      "bottleneck": "Reaching the requested depth is not unboundedness and no unboundedness claim is made; mu2 completeness is conditional on CL-TREE-MU2-COMPLETE, the mu1 trees are guard-bounded, and behaviour past the exported depths is unresolved.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0448",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CLOSED-BASELINE-TERMINATES",
+      "stage": "GENESIS",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "genesis_source.txt section 8.5 [bounded theorem] (CL-CLOSURE-TERMINATION); Rounds.lean round bound",
+      "statement": "With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:517-522",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:494-497",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:506-515"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_l",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_f"
+      ],
+      "imported_structure": [
+        "Declared resource bounds of genesis_source.txt section 1 with the external continuation policy disabled (assumption)"
+      ],
+      "bottleneck": "A bounded theorem: termination of every maximal branch is computed within the declared bounds, and that each exported round has the declared shape (one fresh imposition, no fresh-datum item) stays computational.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0449",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-POLICY-ENDPOINT-ALL-SEPARATED",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 8 written consequence (ledger WDP-P000-016); companion Paper.lean policy_terminal_separates",
+      "statement": "Call a regime a policy terminal when no unseparated admitted pair i < j has a valid response. The companion theorem policy_terminal_separates shows that a well-formed policy terminal whose imposed requirements are all separated separates every admitted pair: an unresolved pair would have the fresh-mark response of mark_progress, contradicting terminality. Together with the round bound, an unguarded maximal run of the declared closure policy cannot continue indefinitely and cannot stop on an unresolved pair for lack of a response.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0450_policy_endpoint_all_separated.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:366-371",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:370-371",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/axiom_report.txt:1042"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::policy_terminal_separates"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::the_fixpoint_is_empty_and_genesis_has_no_demand"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The proof goes by contradiction and its axiom report lists Classical.choice; a bounded implementation can instead stop at a search or resource limit, which is not the all-pairs-separated result.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0450",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+      "stage": "GENESIS",
+      "status": "PROVED_PROSE",
+      "source_status": "genesis_source.txt section 9 written result with [theorem] and [bounded theorem] parts; Counting.lean allPairs_length",
+      "statement": "The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:524-537",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:563-569",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:571-572"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean::allPairs_length",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound"
+      ],
+      "imported_structure": [
+        "Declared pair-separation closure policy, genesis_source.txt section 3.9 (assumption)"
+      ],
+      "bottleneck": "This reports that no generator was derived, not that none exists in an extended language; raw rule admission can still erase a separation (TFQ-0385), and no longer or infinite tower is forced.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0451",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
+      "stage": "GENESIS",
+      "status": "PROVED_PROSE",
+      "source_status": "genesis_source.txt question 11 internal statement (CL-IDENTITY-NOT-PROFILE) and withdrawal of 2026-09-08",
+      "statement": "Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:634-644",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:641-643",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:645-648"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean::U0F"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profiles"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Question 11 itself stays unanswered by instruction, because naming external structures is withheld; the two surviving discrimination styles, attribute-like unary marks and relation-like binary links, are internal descriptions only.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0452",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-MINIMAL-OR-INITIAL-REFUSED",
+      "stage": "GENESIS",
+      "status": "PROVED_PROSE",
+      "source_status": "genesis_source.txt question 10 claim refused [unresolved]; written refusal with scoped alternatives",
+      "statement": "Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:623-633",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:626-629",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Initiality.lean:40-43"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The later Derivation/Initiality.lean establishes minimality only relative to a declared 64-member constitution class and probe battery; that supplementary result does not answer Question 10 for the sealed process.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0453",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-SEALED-TERMINAL-STATEMENT",
+      "stage": "GENESIS",
+      "status": "PROVED_PROSE",
+      "source_status": "genesis_source.txt section 11 terminal statement, clauses (a)-(h) each tagged",
+      "statement": "Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:650-658",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:679-686",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:697-699"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The clauses keep separate tags: (f) is bounded, (g) is a finite computation whose continuation past the exported depths is unresolved, (h) is unresolved, and no unboundedness or reading selection is claimed.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0454",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-D2-INITIAL-POINTED",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 9 (ledger WDP-P000-010); PrimDiff.lean D2_initial_pointed",
+      "statement": "Let D₂ have carrier {0, 1} and the single edge 0 → 1. For any relation R with a supplied witness R(a, b), the map f(0) = a, f(1) = b preserves the edge, and every map sending 0 to a and 1 to b equals it, so f is the unique endpoint-preserving map from D₂ (D2_initial_pointed). Under irreflexivity this map is injective, because the endpoints of an irreflexive witnessed edge differ (irrefl_witness_ne).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:430-438",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean:120-122",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:21"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::D2_initial_pointed",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::irrefl_witness_ne"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "This represents the chosen witness only: the map need not describe every edge of R or preserve non-edges, needs no reverse edge or composition law, and does not force irreflexivity from opaque marks.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0455",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-FIVE-PRESENTATION-QUESTIONS",
+      "stage": "GENESIS",
+      "status": "DEFINITION",
+      "source_status": "paper.md section 10 declared questions",
+      "statement": "For a presentation S(n), its active demand register and its maps between stages, the Genesis account hands on five declared questions: which data and operations are admitted at the current stage; which declared task cannot be answered with the current observations; which candidate extensions are permitted, and under which costs; which prior answers, inscriptions or algebraic laws must survive; and what evidence shows both preservation and resolution of the selected problem. Selecting a new operation remains a declared construction decision, with its preservation obligations stated.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0456_five_presentation_questions.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:442-449",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:523-525"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Declared presentation S(n) with its active demand register and stage maps (assumption)"
+      ],
+      "bottleneck": "The questions frame the later stages and select no operation; the quotient-retention and round-trip results that follow make the preservation questions concrete without answering the selection question.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0456",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-QUOTIENT-RETENTION",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 10 (ledger WDP-P000-020); QuotientRetention.lean",
+      "statement": "Let fine and coarse be equivalence relations on one set with every fine identification also a coarse one. The map [x]_fine ↦ [x]_coarse is well defined and surjective (collapseMap_surjective), injective exactly when every coarse identification also holds finely (collapseMap_injective_iff_reverse_refinement), and successive such maps compose without choosing representatives (collapseMap_compose). If a former identification fails in the finer relation, two distinct fine classes remain over one coarse class (failed_identification_retains_two_classes).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0457_quotient_retention.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:456-467",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean:18-22",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:31"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_surjective",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_compose",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A theorem about supplied equivalence relations: no class is manufactured and no new primitive is inferred, and which identifications a later stage must retain is a declared task.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0457",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-FAITHFUL-DESCENT-ROUND-TRIP",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 10 (ledger WDP-P000-021); PresentationDescent.lean",
+      "statement": "For supplied translations f : P → Q and g : Q → P, injective maps i : P → C and j : Q → C with i = j ∘ f and j = i ∘ g exist if and only if g ∘ f = id_P and f ∘ g = id_Q (faithful_descent_iff_round_trip_coherent). One direction substitutes the identifying equations and cancels the injective maps (faithful_descent_to_coherent); the other takes C = P, i = id and j = g. A failed round trip for this declared pair therefore excludes a faithful common carrier that eliminates the presentation index.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:469-482",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean:23-27",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:32"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_to_coherent"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Failure concerns the declared translation pair only: another pair of translations may still close, and no common world prior to P and Q is assumed.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0458",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-CANONICAL-KEY-CLASSIFICATION",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 10 canonicalization (ledger WDP-P000-022); CanonicalMinimizer.lean and companion PaperCanonical, PaperWire, PaperSearch .lean",
+      "statement": "If a representative map C lies in each regime's isomorphism orbit and is constant on orbits, then C(R) = C(S) exactly when R ≅ S, and an injective serialization of the representatives gives the same criterion for keys (key_classification, conditional on both hypotheses). Companion results remove those hypotheses for the concrete search: equal sorted five-field tuples after relabeling by supplied bijections imply isomorphism (serializedRelabel_sound), and the length-prefixed unsigned 64-bit wire encoding is injective on words below 2^64 (portableBytes_injective). Exhaustive search over all datum and form permutations attains a least structural key (canonicalKey_attained), and for well-formed regimes with duplicate-free collections the keys, and under the word bounds their byte encodings, are equal exactly when the regimes are isomorphic (canonicalKey_classification, canonicalBytes_classification).",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:484-492",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:508-521",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:33"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean::key_classification",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean::serializedRelabel_sound",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean::portableBytes_injective",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalKey_attained",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalBytes_classification"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The abstract key_classification needs an in-orbit, orbit-invariant choice; the concrete search results assume no orbit oracle but cover the Lean search only, and refinement of the optimized Python and Rust programs remains a separate engineering obligation, checked by finite agreement on 1,436 labelled regimes.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0459",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-INCIDENCE-CONSTRUCTION-BETTI",
+      "stage": "GENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "paper.md section 11 and incidence_construction.txt (construction choice, written argument); 006_oewdp GenesisIncidence.lean Betti theorems",
+      "statement": "Starting from the literal supply of <>, the WDP construction records Supply(<>) without admitting it, then supplies and admits <a>, <ab> and <c>, forms of arities 1, 2 and 3, three unary vertex instances and the edges 01, 12 and 02. Under an explicitly chosen incidence interpretation (a datum's admission index is a vertex, an arity-k form carries (k−1)-dimensional simplices, an instance lists its increasing vertex indices, and every vertex and face needs its own instance) the cycle has rational Betti numbers (1, 1), and admitting the single instance 012 gives (1, 0, 0). The education Lean module establishes these Betti numbers from explicit integer kernels and images of the boundary matrices (cycle_rational_betti, filled_rational_betti) and that its incidence reading returns the cycle and filled simplex lists (cycle_incidence_eq, filled_incidence_eq). For a general face-closed family K, that the construction's interpretation is exactly K rests on a written argument.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:535-540",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt:31-44",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt:57-64"
+      ],
+      "lean": [
+        "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_rational_betti",
+        "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_rational_betti",
+        "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_incidence_eq",
+        "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_incidence_eq"
+      ],
+      "rust": [
+        "omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction",
+        "omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology"
+      ],
+      "imported_structure": [
+        "Declared incidence interpretation of admitted forms and instances as simplices, incidence_construction.txt (assumption)"
+      ],
+      "bottleneck": "The interpretation is a construction choice, not extracted from the spelling of <>; the general construction result is a written argument, the Lean covers the worked three-vertex complex only, and no Lean refinement of the Rust implementation is claimed.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0460",
+        "genesis"
+      ]
+    },
+    {
+      "id": "PGW-GENESIS-THREE-AXIS-VERDICT",
+      "stage": "GENESIS",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "closeout.txt section 10 recorded verdicts; paper.md section 12 defect and agreement counts (ledger WDP-P000-023, -024)",
+      "statement": "The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:582-592",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:585-591",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:593-601"
+      ],
+      "lean": [],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/bin/genesis_replay.rs::run"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The axis values are recorded author-approved verdicts, not computed results: a closed stage does not imply readiness, companion work does not rewrite the frozen gate, and finite agreement is not a compiler-verified refinement proof for all source code.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0461",
+        "genesis"
+      ]
+    },
+    {
       "id": "DFM-GROUP-CONNECTION",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
@@ -8526,6 +9410,433 @@
         "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
         "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:605-609",
         "omega_engine_education/documentation/000_oepregen/02_trial_record.md:132-149"
+      ]
+    },
+    {
+      "id": "PGW-R-METATHEORY-OBJECT-LANGUAGE-SPLIT",
+      "inputs": [
+        "PG-GEN-REGIME-EVENTS"
+      ],
+      "output": "PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:79-85",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:87-93"
+      ]
+    },
+    {
+      "id": "PGW-R-REGIME-ISOMORPHISM-UNORDERED-PAIRS",
+      "inputs": [
+        "PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT",
+        "PG-GEN-REGIME-EVENTS"
+      ],
+      "output": "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:206-212",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:168-173"
+      ]
+    },
+    {
+      "id": "PGW-R-CHALLENGE0-INERTIA-SECOND-TOKEN",
+      "inputs": [
+        "PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT",
+        "PG-GEN-SUPPLY-NO-OP"
+      ],
+      "output": "PGW-CHALLENGE0-INERTIA-SECOND-TOKEN",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0432_challenge0_inertia_second_token.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:203-217",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:218-224"
+      ]
+    },
+    {
+      "id": "PGW-R-CONTEXTS-PLUGGING-PROFILES",
+      "inputs": [
+        "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS"
+      ],
+      "output": "PGW-CONTEXTS-PLUGGING-PROFILES",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:140-146",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:147-153"
+      ]
+    },
+    {
+      "id": "PGW-R-COLLAPSE-WITHOUT-INSTANCES",
+      "inputs": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "PGW-COLLAPSE-WITHOUT-INSTANCES",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0434_collapse_without_instances.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:243-248",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:235-237"
+      ]
+    },
+    {
+      "id": "PGW-R-CHALLENGE2-ADMITTED-BUT-COLLAPSED",
+      "inputs": [
+        "PG-GEN-SUPPLY-NO-OP",
+        "PGW-COLLAPSE-WITHOUT-INSTANCES"
+      ],
+      "output": "PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:246-248",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:249-252"
+      ]
+    },
+    {
+      "id": "PGW-R-CONTEXT-COUNT-FORMULA",
+      "inputs": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "PGW-CONTEXT-COUNT-FORMULA",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0436_context_count_formula.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:258-261",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:26"
+      ]
+    },
+    {
+      "id": "PGW-R-COLLECTION-EXTENSIONALITY",
+      "inputs": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "PGW-COLLECTION-EXTENSIONALITY",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0437_collection_extensionality.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:114-123",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:123-126"
+      ]
+    },
+    {
+      "id": "PGW-R-RESPONSES-COSTS-MU1-MU2",
+      "inputs": [
+        "PGW-CONTEXTS-PLUGGING-PROFILES"
+      ],
+      "output": "PGW-RESPONSES-COSTS-MU1-MU2",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0438_responses_costs_mu1_mu2.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:154-163",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:164-167"
+      ]
+    },
+    {
+      "id": "PGW-R-CHALLENGE3-CURRENT-REGIME-FAILS",
+      "inputs": [
+        "PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED",
+        "PGW-RESPONSES-COSTS-MU1-MU2"
+      ],
+      "output": "PGW-CHALLENGE3-CURRENT-REGIME-FAILS",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:267-271",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:587-591"
+      ]
+    },
+    {
+      "id": "PGW-R-MU1-MINIMUM-NOT-UNIQUE-L",
+      "inputs": [
+        "PGW-CHALLENGE3-CURRENT-REGIME-FAILS",
+        "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION"
+      ],
+      "output": "PGW-MU1-MINIMUM-NOT-UNIQUE-L",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:295-299",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:299-303"
+      ]
+    },
+    {
+      "id": "PGW-R-MU1-ARITY-INDEXED-TIE-FAMILY",
+      "inputs": [
+        "PGW-MU1-MINIMUM-NOT-UNIQUE-L"
+      ],
+      "output": "PGW-MU1-ARITY-INDEXED-TIE-FAMILY",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0441_mu1_arity_indexed_tie_family.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:320-328",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:322-326"
+      ]
+    },
+    {
+      "id": "PGW-R-BOUNDED-TIE-CENSUS",
+      "inputs": [
+        "PGW-MU1-MINIMUM-NOT-UNIQUE-L"
+      ],
+      "output": "PGW-BOUNDED-TIE-CENSUS",
+      "status": "COMPUTED",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:305-318",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:326-328"
+      ]
+    },
+    {
+      "id": "PGW-R-CHALLENGE-SOURCE-POLICIES",
+      "inputs": [
+        "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION"
+      ],
+      "output": "PGW-CHALLENGE-SOURCE-POLICIES",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0443_challenge_source_policies.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:174-185",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:186-190"
+      ]
+    },
+    {
+      "id": "PGW-R-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR",
+      "inputs": [
+        "PGW-CHALLENGE-SOURCE-POLICIES"
+      ],
+      "output": "PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:371-379",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:385-391"
+      ]
+    },
+    {
+      "id": "PGW-R-RESPONSE-EXISTENCE-MARK-PROGRESS",
+      "inputs": [
+        "PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR",
+        "PGW-RESPONSES-COSTS-MU1-MU2"
+      ],
+      "output": "PGW-RESPONSE-EXISTENCE-MARK-PROGRESS",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:404-412",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:361-365"
+      ]
+    },
+    {
+      "id": "PGW-R-PRUNING-LEMMAS-COST-TWO",
+      "inputs": [
+        "PGW-RESPONSE-EXISTENCE-MARK-PROGRESS"
+      ],
+      "output": "PGW-PRUNING-LEMMAS-COST-TWO",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:414-422",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean:85-87"
+      ]
+    },
+    {
+      "id": "PGW-R-COUNT-INVARIANCE-TRANSPORT",
+      "inputs": [
+        "PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR"
+      ],
+      "output": "PGW-COUNT-INVARIANCE-TRANSPORT",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0447_count_invariance_transport.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:607-618",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:759-772"
+      ]
+    },
+    {
+      "id": "PGW-R-BRANCH-TREES-AND-ROLES",
+      "inputs": [
+        "PGW-PRUNING-LEMMAS-COST-TWO",
+        "PGW-COUNT-INVARIANCE-TRANSPORT"
+      ],
+      "output": "PGW-BRANCH-TREES-AND-ROLES",
+      "status": "COMPUTED",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:449-458",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:466-473"
+      ]
+    },
+    {
+      "id": "PGW-R-CLOSED-BASELINE-TERMINATES",
+      "inputs": [
+        "PG-GEN-COLLAPSE-AND-FIRST-SEPARATION"
+      ],
+      "output": "PGW-CLOSED-BASELINE-TERMINATES",
+      "status": "COMPUTED",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:517-522",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:494-497"
+      ]
+    },
+    {
+      "id": "PGW-R-POLICY-ENDPOINT-ALL-SEPARATED",
+      "inputs": [
+        "PGW-CLOSED-BASELINE-TERMINATES"
+      ],
+      "output": "PGW-POLICY-ENDPOINT-ALL-SEPARATED",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0450_policy_endpoint_all_separated.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:366-371",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:370-371"
+      ]
+    },
+    {
+      "id": "PGW-R-NO-ENDOGENOUS-DEMAND-GENERATOR",
+      "inputs": [
+        "PGW-POLICY-ENDPOINT-ALL-SEPARATED",
+        "PG-GEN-NO-RETURN"
+      ],
+      "output": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:524-537",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:563-569"
+      ]
+    },
+    {
+      "id": "PGW-R-IDENTITY-IS-INDEX-NOT-PROFILE",
+      "inputs": [
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR"
+      ],
+      "output": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:634-644",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:641-643"
+      ]
+    },
+    {
+      "id": "PGW-R-MINIMAL-OR-INITIAL-REFUSED",
+      "inputs": [
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR"
+      ],
+      "output": "PGW-MINIMAL-OR-INITIAL-REFUSED",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:623-633",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:626-629"
+      ]
+    },
+    {
+      "id": "PGW-R-SEALED-TERMINAL-STATEMENT",
+      "inputs": [
+        "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+        "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
+        "PGW-MINIMAL-OR-INITIAL-REFUSED"
+      ],
+      "output": "PGW-SEALED-TERMINAL-STATEMENT",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:650-658",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:679-686"
+      ]
+    },
+    {
+      "id": "PGW-R-D2-INITIAL-POINTED",
+      "inputs": [
+        "PGW-SEALED-TERMINAL-STATEMENT",
+        "PG-GEN-IRREFLEXIVE-DISTINCT"
+      ],
+      "output": "PGW-D2-INITIAL-POINTED",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:430-438",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean:120-122"
+      ]
+    },
+    {
+      "id": "PGW-R-FIVE-PRESENTATION-QUESTIONS",
+      "inputs": [
+        "PGW-D2-INITIAL-POINTED"
+      ],
+      "output": "PGW-FIVE-PRESENTATION-QUESTIONS",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0456_five_presentation_questions.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:442-449",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:523-525"
+      ]
+    },
+    {
+      "id": "PGW-R-QUOTIENT-RETENTION",
+      "inputs": [
+        "PGW-FIVE-PRESENTATION-QUESTIONS"
+      ],
+      "output": "PGW-QUOTIENT-RETENTION",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0457_quotient_retention.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:456-467",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean:18-22"
+      ]
+    },
+    {
+      "id": "PGW-R-FAITHFUL-DESCENT-ROUND-TRIP",
+      "inputs": [
+        "PGW-QUOTIENT-RETENTION"
+      ],
+      "output": "PGW-FAITHFUL-DESCENT-ROUND-TRIP",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:469-482",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean:23-27"
+      ]
+    },
+    {
+      "id": "PGW-R-CANONICAL-KEY-CLASSIFICATION",
+      "inputs": [
+        "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS"
+      ],
+      "output": "PGW-CANONICAL-KEY-CLASSIFICATION",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:484-492",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:508-521"
+      ]
+    },
+    {
+      "id": "PGW-R-INCIDENCE-CONSTRUCTION-BETTI",
+      "inputs": [
+        "PGW-D2-INITIAL-POINTED"
+      ],
+      "output": "PGW-INCIDENCE-CONSTRUCTION-BETTI",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:535-540",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/incidence_construction.txt:31-44"
+      ]
+    },
+    {
+      "id": "PGW-R-GENESIS-THREE-AXIS-VERDICT",
+      "inputs": [
+        "PGW-SEALED-TERMINAL-STATEMENT"
+      ],
+      "output": "PGW-GENESIS-THREE-AXIS-VERDICT",
+      "status": "COMPUTED",
+      "source": [
+        "dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:582-592",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:585-591"
       ]
     },
     {

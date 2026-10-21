@@ -37,6 +37,7 @@ In accordance with strict constructive principles:
 
 - [TFQ-0003](../03_finite_obstruction/tfq_0003_finite_obstruction_calculus_on_a_declared_carrier.md)
 - [TFQ-0319](../03_finite_obstruction/tfq_0319_supply_a_certified_term_map_from_sealed_derivation_v1_into_the_primitivedifference_carrier_or.md)
+- [TFQ-0430](tfq_0430_metatheory_object_language_split.md)
 
 ---
 

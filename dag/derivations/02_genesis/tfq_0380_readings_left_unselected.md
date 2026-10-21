@@ -45,6 +45,7 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0381](tfq_0381_cost_two_first_separation.md)
+- [TFQ-0435](tfq_0435_challenge2_admitted_but_collapsed.md)
 
 ---
 

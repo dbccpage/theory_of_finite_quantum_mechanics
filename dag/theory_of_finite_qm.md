@@ -4,14 +4,14 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 430. Dropped atlas paths that were not on disk: 0.
+Nodes: 462. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
 | Stage | Steps |
 | --- | ---: |
 | `PREGENESIS` | 35 |
-| `GENESIS` | 17 |
+| `GENESIS` | 49 |
 | `FINITE_OBSTRUCTION` | 9 |
 | `AUTHORIZATION` | 6 |
 | `MSSN_SN` | 8 |
@@ -700,6 +700,326 @@ Obligation: Inventory row ids in the twenty-second through twenty-fifth claim le
 Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.
 
 Obligation: Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.
+
+### TFQ-0430 metatheory-object-language-split
+
+- UUID: `df7e8c78-cc86-58d8-9512-1834d5c19967`
+- Parent: `TFQ-0002`
+- Status: `DEFINITION`
+
+The sealed manuscript declares two levels. The metatheory holds presentation tokens (strings), event sequences, indices, finite data structures and arithmetic; the object language holds only what a regime admits. Token glyphs, component counts, order, concatenation, multiplicity, substring structure, matching and string equality live in the metatheory unless an admitted judgment internalizes a distinction. Presentation identity (token equality) is metatheory only, internal identity is the datum index, and no semantic interpretation is ever assigned.
+
+Obligation: Keep every glyph, count, order and string-equality test in the metatheory, and let object-language observables read only admitted data indices, forms, instances, rules and requirements.
+
+### TFQ-0431 regime-isomorphism-unordered-pairs
+
+- UUID: `6b0d092c-55a9-5107-ba64-62e104298f75`
+- Parent: `TFQ-0430`
+- Status: `DEFINITION`
+
+A regime isomorphism is a pair of bijections on datum and form indices that preserves form arities, ordered instance arguments, uniform-rule membership and the separation requirements read as unordered pairs; mapped requirement endpoints are sorted before comparison, and presentation tokens are erased first. Because requirements are unordered, exchanging the endpoints of a requirement can identify two responses; a relation preserving directed requirements would be a different convention. The Lean structure Iso states these fields over the admitted index ranges, and sortPair is shown to equal (min, max) and to be symmetric.
+
+Obligation: Compare regimes by datum and form bijections that preserve arities, instances, rules and sorted requirement pairs, with tokens erased, and keep the unordered-requirement convention explicit.
+
+### TFQ-0432 challenge0-inertia-second-token
+
+- UUID: `fc192bea-7a4c-54f8-84bd-feeb622012dc`
+- Parent: `TFQ-0430`
+- Status: `PROVED_LEAN`
+
+At Challenge 0 the only object-language inscription is the opaque whole <>. In the token-erased Lean model nothing is derivable at genesis (genesis_underivable), and nothing is derivable in any regime with no instances and no rules (underivable_of_empty); the Challenge 0 computation records zero contexts and an empty derivable set in both readings. That no successor is internally forced is a property of the declared grammar, whose only state changes are external-event-indexed admissions, not a theorem about a forcing predicate. In the token-aware model a history whose datum admissions all carry one token leaves at most one admitted datum (single_token_carrier_bound), so a state with two data needs the admission of a second, different token (second_token_required).
+
+Obligation: Show that genesis and every instance-free, rule-free regime derive nothing, and that two admitted data require a datum admission of a token different from the first.
+
+### TFQ-0433 contexts-plugging-profiles
+
+- UUID: `272a76f7-26b3-5f69-889c-5b2fc5a27377`
+- Parent: `TFQ-0431`
+- Status: `DEFINITION`
+
+A context is an admitted form with a slot tuple of its arity in which every filled slot names an admitted datum and at least one slot is a hole; plugging a datum fills every hole with that same datum. Derivability is membership in the admitted instances or coverage by a uniform all-tuples rule, and no other inference exists. The profile of a datum is the set of well-formed contexts whose plugging is derivable. Two data are collapsed when their profiles are equal and separable when some well-formed context is derivable for one and not the other; that is the declared sense used for every separation requirement.
+
+Obligation: Enumerate well-formed contexts with at least one hole, plug by filling every hole with one datum, decide derivability by instance membership or a uniform rule only, and compare profiles.
+
+### TFQ-0434 collapse-without-instances
+
+- UUID: `8ac0258b-1cb7-5e88-9498-93dfb3573eed`
+- Parent: `TFQ-0433`
+- Status: `PROVED_LEAN`
+
+With no admitted instances, the derivability of a plugged context depends only on its form, so every pair of data is observationally collapsed (collapsed_of_no_insts). Uniform rules do not change this: a ruled form makes every plugging derivable alike. Retaining another datum alone therefore need not increase expressive power.
+
+Obligation: Show that a regime whose instance list is empty collapses every pair of data, whatever its forms and uniform rules.
+
+### TFQ-0435 challenge2-admitted-but-collapsed
+
+- UUID: `fbf53bee-06f5-59eb-9386-d486c542f7eb`
+- Parent: `TFQ-0380`
+- Status: `PROVED_LEAN`
+
+At Challenge 2 both <a> and <ab> are supplied and retained, so reading L admits (<a>, <ab>) and reading F admits (<>, <a>, <ab>). In both readings every admitted pair is observationally collapsed (R2L_collapsed, R2F_collapsed): two externally distinct inscriptions remain internally indistinguishable. The countermodel admission_without_expressive_increase admits a fresh datum, a real state change, while the pair stays collapsed, a counterexample to the claim that a new external inscription necessarily increases internal expressive power. The recorded Challenge 0-3 histories replay exactly to the Challenge 3 regimes R2L and R2F (historyL_replays, historyF_replays).
+
+Obligation: Replay the recorded reading L and reading F histories to R2L and R2F, show every admitted pair collapsed in both, and exhibit one datum admission that changes the regime and leaves the pair collapsed.
+
+### TFQ-0436 context-count-formula
+
+- UUID: `2fa455df-5c68-5adb-9ca9-bdf32979728c`
+- Parent: `TFQ-0433`
+- Status: `PROVED_LEAN`
+
+For a regime with n admitted data, a form of arity a has (n+1)^a − n^a well-formed contexts: each slot is a hole or one of n data, less the n^a hole-free tuples, so |Ctx(R)| = Σ_f ((n+1)^{a_f} − n^{a_f}), with distinct form identifiers kept disjoint even when their arities coincide. The companion Lean module establishes the per-form count for the recursive word enumeration (contextWords_length), characterizes its members as exactly the well-formed words of that length containing a hole (contextWords_mem), and shows the enumeration has no repetitions (contextWords_nodup). The standalone replay checks the formula against the frozen Python enumeration in 35 cases (n from 0 to 4, arity 1 to 7), and Python and Rust enumerate the contexts independently.
+
+Obligation: Count the contexts of each admitted form as (n+1)^a − n^a, sum over forms, and check the count against an explicit context enumeration.
+
+### TFQ-0437 collection-extensionality
+
+- UUID: `0256c85d-13a2-5dd5-8048-27711b278bdf`
+- Parent: `TFQ-0433`
+- Status: `PROVED_LEAN`
+
+Python's admitted collections are sets while Lean's are deduplicated lists. Under RegimeExt (equal datum counts and form tables, and membership-equal instance, rule and requirement collections) every stated observable transports: derivability, context well-formedness, collapse, separability, item and delta application, and response validity (derivable_ext through validResponse_ext). Two list representations of the same admitted sets therefore agree on each of those observables.
+
+Obligation: Show that membership-equal instance, rule and requirement lists with equal datum counts and form tables give the same derivability, collapse, separability, delta application and response validity.
+
+### TFQ-0438 responses-costs-mu1-mu2
+
+- UUID: `0f6c5fdd-5427-5699-9d39-086b367df925`
+- Parent: `TFQ-0433`
+- Status: `DEFINITION`
+
+A response (delta) is an ordered finite list of NewDatum, NewForm(arity), NewInst(form, args) and NewRuleAll(form) items applied in order; an instance may name a form added earlier in the same list, and the reverse order is an ill-formed admission. The declared costs are mu1 = item count and mu2 = (item count, sum of new-form arities) compared lexicographically, where the sum counts every NewForm item, including distinct forms of equal arity. A valid response to Separate(i, j) applies, separates the target, and keeps every previously imposed requirement separated, because requirements are persistent constraints.
+
+Obligation: Apply response items in order, cost them by mu1 and by lexicographic mu2, and accept a response only when it applies, separates the target and keeps every prior requirement separated.
+
+### TFQ-0439 challenge3-current-regime-fails
+
+- UUID: `ea780c83-0e17-531d-8c5d-4b3955d1fdb6`
+- Parent: `TFQ-0435`
+- Status: `PROVED_LEAN`
+
+Challenge 3 requires <a> and <ab> to be internally separable in the declared sense of positive derivability. Instantiating R2L_collapsed and R2F_collapsed, the current regime fails this: no witness context exists. The quotient barrier then applies: every function out of a quotient by a relation is constant on related elements (quotient_barrier, quot_barrier), and on the collapse classes of R2L any operation takes equal values on data 0 and 1 (barrier_R2L). An operation defined only on the current abstraction therefore cannot recover the required distinction, and a response has to change the regime.
+
+Obligation: Show that the Challenge 3 regime collapses the required pair and that any function on its collapse quotient takes equal values on the two required data.
+
+### TFQ-0440 mu1-minimum-not-unique-l
+
+- UUID: `fde46a48-8064-5120-a019-dbdd920dd52b`
+- Parent: `TFQ-0439`
+- Status: `PROVED_LEAN`
+
+Under mu1 in reading L the minimum corrective augmentation is not unique. The unary mark deltaU0 and the binary link deltaBL are both valid two-item responses to Challenge 3 on R2L, no response of at most one item is valid, and their results U0 and BL are non-isomorphic because form arity is an isomorphism invariant (mu1_minimum_not_unique, U0_not_iso_BL). The theorem is stated over R2L only.
+
+Obligation: Show on R2L that two valid two-item responses have non-isomorphic results and that no response of at most one item is valid.
+
+### TFQ-0441 mu1-arity-indexed-tie-family
+
+- UUID: `c05b09d1-786f-5529-930e-962bb745d7af`
+- Parent: `TFQ-0440`
+- Status: `PROVED_LEAN`
+
+For every arity k ≥ 1 the k-ary mark, one k-ary form and one instance (1, ..., 1), is a valid two-item response to Challenge 3 on R2L (deltaK_valid, deltaK_length), since the all-hole context separates the two required data. Distinct arities give non-isomorphic results because an isomorphism preserves form arity (markK_pairwise_noniso), so the mu1 tie class in reading L is countably infinite. A concrete enumeration is therefore complete only relative to an arity bound, and the arity-at-most-two census is one slice of this family.
+
+Obligation: Show that each k-ary mark with k ≥ 1 is a valid two-item response on R2L and that marks of different arities have non-isomorphic results.
+
+### TFQ-0442 bounded-tie-census
+
+- UUID: `cef5cf1c-9549-5229-b73e-86afe9b26892`
+- Parent: `TFQ-0440`
+- Status: `SOURCE_RECORD`
+
+Within the declared bounds of at most two items and form arity at most two, exhaustive enumeration under mu1, cross-checked against the unpruned space, finds at (2,2) six valid deltas in three isomorphism classes for reading L (unary mark, binary link, binary self-loop) and ten valid deltas in five classes for reading F. Reading F's two extra classes link to and from the never-required genesis datum, and they are non-isomorphic to each other because the bijection must preserve the requirement pair. Under mu2 each reading has two minimal deltas in one class. The standalone replay reproduces all four counts.
+
+Obligation: Enumerate every valid delta of at most two items and arity at most two for R2L and R2F, quotient by the declared isomorphism, and report 6 deltas in 3 classes for L and 10 in 5 for F under mu1, and 2 in 1 class for each reading under mu2.
+
+### TFQ-0443 challenge-source-policies
+
+- UUID: `7d159f5d-e3cb-5d6b-bc9f-d0797685681b`
+- Parent: `TFQ-0382`
+- Status: `DEFINITION`
+
+After Challenge 3 the challenge source is a pair of declared policies. The pair-separation closure policy reissues the admitted separation requirement pattern on collapsed pairs, one challenge branch per automorphism orbit of collapsed pairs, or nothing at the fixpoint where every pair is separated; it reads only profile equality and automorphism structure, supplies no data and imports no new goal kind. At that fixpoint the external continuation policy supplies and admits one fresh opaque token, and runs with this policy disabled are the closed-system baseline. Round 1 of every tree answers the externally imposed Challenge 3 requirement, and later separation rounds answer the closure policy.
+
+Obligation: Issue later demands only from the declared closure policy, one per automorphism orbit of collapsed pairs, and supply a fresh opaque token only through the declared external continuation policy at the closure fixpoint.
+
+### TFQ-0444 orbit-branching-repairs-least-pair
+
+- UUID: `1f665f34-13ba-5306-b39c-a893303eace5`
+- Parent: `TFQ-0443`
+- Status: `PROVED_LEAN`
+
+Raw least-pair selection is not isomorphism-equivariant. On the regression regime (four data, one unary form, instances on data 2 and 3) both the regime and its renaming by the double transposition 0↔2, 1↔3 collapse the pair (0, 1), yet the renaming carries (0, 1) to (2, 3) (least_pair_selection_not_congruent); that the two same-index choices give non-isomorphic children is a computational test. The repair branches once per automorphism orbit of collapsed pairs. Under datum renamings with forms fixed, the selection-free transition relation over every collapsed pair and every valid response transports (transStep_rename_fwd, transStep_image_total), and valid-response counts over caller-supplied candidate lists transport (validCount_rename).
+
+Obligation: Show that the index-least collapsed pair is not carried along a renaming of the regression regime, and that the selection-free transition relation and its valid-response counts transport under datum renamings.
+
+### TFQ-0445 response-existence-mark-progress
+
+- UUID: `65e30a43-e6b2-593d-8a79-0986067e7b2d`
+- Parent: `TFQ-0444`
+- Status: `PROVED_LEAN`
+
+On any well-formed regime whose imposed requirements are all separated, for any two distinct admitted data i and j, the two-item delta of one fresh unary form and one instance of it at datum j is a valid response to Separate(i, j) and keeps every imposed requirement separated (mark_progress). Derivability of instances of the old forms is unchanged by this extension, so old witnesses survive (derivable_extend). The standalone replay checks fresh-mark preservation for 3,996 targets across 1,436 regimes, and no terminal_no_response node occurs in any exported run.
+
+Obligation: Show that a fresh unary form with one instance at the second target datum is a valid, requirement-preserving response to every supplied separation demand on a well-formed regime whose requirements hold.
+
+### TFQ-0446 pruning-lemmas-cost-two
+
+- UUID: `33886a64-5276-54ea-a2db-ffc704a6ba51`
+- Parent: `TFQ-0445`
+- Status: `PROVED_LEAN`
+
+A separation witness never inhabits a uniformly ruled form, so shrinking the final rule set preserves every separation (separable_of_subrules). With the item-level bridge applyDelta_dropRules, a delta containing a uniform-rule item is never minimal: dropping its rule items leaves a valid, strictly shorter delta with the same new-form arity sum (rule_item_never_minimal). The mention lemma shows that appending instances that mention neither datum of a pair leaves that pair's collapse unchanged (collapsed_append_unmentioning), and under the well-formedness conjuncts a fresh unreferenced datum or form leaves the collapse of every existing pair unchanged (collapsed_fresh_datum, collapsed_fresh_form).
+
+Obligation: Show that rule items never occur in a minimum valid response and that unreferenced fresh data, unreferenced fresh forms and instances not mentioning a target datum cannot change the target pair's collapse.
+
+### TFQ-0447 count-invariance-transport
+
+- UUID: `ef7a76c9-dcc4-5bd8-95f5-5c64b6dd4f36`
+- Parent: `TFQ-0444`
+- Status: `PROVED_LEAN`
+
+Observational collapse is invariant under a renaming of datum indices with forms fixed: the renamed regime collapses the renamed pair exactly when the original regime collapses the original pair (collapsed_rename). For any caller-supplied candidate pair list with deciders that track collapse, the collapsed-pair counts before and after renaming agree (collapsedCount_rename). Collapse also transports across a full two-bijection regime isomorphism (collapsed_transport) and under the combined datum-and-form action (collapsed_renameDataForm). Requirements never enter collapse, so the renaming action leaves them alone.
+
+Obligation: Show that collapse and the collapsed-pair count over a supplied pair list are invariant under datum-index renaming, and that collapse transports across a regime isomorphism.
+
+### TFQ-0448 branch-trees-and-roles
+
+- UUID: `f84c2e4e-1bba-5847-9d33-7f821e484ca0`
+- Parent: `TFQ-0446`
+- Status: `SOURCE_RECORD`
+
+With the external continuation policy enabled, isomorphism-quotiented branch DAGs were exported for both readings and both measures within the declared bounds. Under mu2 there is no guard cutoff: the quotient tree to the requested 15 transition steps is finite and enumerated in full, 963 nodes for L and 1847 for F, conditional on the orbit policy losing no child classes, and its leaves are round-cut, carrying 10 or 11 separation responses in L and 10, 11 or 12 in F. Under mu1 the 1200-node pre-expansion guard cuts first at depth 6 (L) and 5 (F), leaving exact exported frontiers of 927 and 886 guard-cut nodes. Counted over accepted edges (L mu1, L mu2, F mu1, F mu2), the recurring roles are supply (195/111/233/413), discrimination by one new instance (1047/858/1001/1458), innovation by a fresh form plus instance (8/53/10/83) and double discrimination (6, F mu2 only); the auxiliary-witness shape never appears among accepted minima.
+
+Obligation: Regenerate the four quotiented trees within the declared bounds and report their node counts, cut kinds, leaf response counts and role counts over accepted edges.
+
+### TFQ-0449 closed-baseline-terminates
+
+- UUID: `7e838afc-09e9-550d-92f3-040a0cea91c5`
+- Parent: `TFQ-0383`
+- Status: `SOURCE_RECORD`
+
+With the external continuation policy disabled, the closed-system baselines are small: reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination flag is computed over all maximal branches rather than from one terminal node. Under the declared round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).
+
+Obligation: Regenerate both closed-system baselines and report node counts, terminal branches and rounds used, with every maximal branch terminal within the n(n−1)/2 pair bound.
+
+### TFQ-0450 policy-endpoint-all-separated
+
+- UUID: `77bc0055-07ba-56a8-a148-041337e9eb62`
+- Parent: `TFQ-0449`
+- Status: `PROVED_LEAN`
+
+Call a regime a policy terminal when no unseparated admitted pair i < j has a valid response. The companion theorem policy_terminal_separates shows that a well-formed policy terminal whose imposed requirements are all separated separates every admitted pair: an unresolved pair would have the fresh-mark response of mark_progress, contradicting terminality. Together with the round bound, an unguarded maximal run of the declared closure policy cannot continue indefinitely and cannot stop on an unresolved pair for lack of a response.
+
+Obligation: Show that a well-formed regime with satisfied requirements and no valid response for any unseparated pair separates every admitted pair.
+
+### TFQ-0451 no-endogenous-demand-generator
+
+- UUID: `d2dfaec3-d3a3-59e1-ba78-27c8c6ba1ff4`
+- Parent: `TFQ-0450`
+- Status: `SOURCE_RECORD`
+
+The continuation question asks whether the admitted structure can generate its next unresolved requirement without inspecting token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation. The sealed answer is that no object-language endogenous demand generator was derived: a collapsed pair is not an active obstruction by itself, and the declared closure policy only reissues the admitted requirement pattern. Under that policy the fixed finite datum set reaches the all-pairs-separated fixpoint within n(n−1)/2 rounds, the size of the requirement language (allPairs_length). At the fixpoint no unresolved requirement exists in that language, so any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal).
+
+Obligation: Record that closure under the declared policy stops at the all-pairs-separated fixpoint within n(n−1)/2 rounds and that any further requirement has to come from external supply or an external goal.
+
+### TFQ-0452 identity-is-index-not-profile
+
+- UUID: `3faf6bec-8e88-51ff-a142-ac2a9644aba1`
+- Parent: `TFQ-0451`
+- Status: `SOURCE_RECORD`
+
+Internal identity in the model is the datum index, never the profile (CL-IDENTITY-NOT-PROFILE). In reading F the first-round mu2 minimum admits one unary form with an instance marking datum 1; its only context is that form with one hole, so data 0 and 2 keep distinct indices with identical empty profiles while datum 1 is separated from both. A valid response separates the challenged pair by profiles, and other distinct data may stay observationally equivalent. The earlier sentence that from Challenge 3 round 1 onward each datum's internal identity is exactly its profile is false in the model and was withdrawn on 2026-09-08.
+
+Obligation: Keep datum identity as the admission index, and check on the reading-F mu2 minimum that data 0 and 2 have equal empty profiles.
+
+### TFQ-0453 minimal-or-initial-refused
+
+- UUID: `677ff5ab-6652-5c00-bbf4-9c8d2c9479d7`
+- Parent: `TFQ-0451`
+- Status: `SOURCE_RECORD`
+
+Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.
+
+Obligation: Refuse any minimality or initiality claim for the whole process, and keep artifact determinism, bounded enumeration completeness and per-stage minimality under their own tags.
+
+### TFQ-0454 sealed-terminal-statement
+
+- UUID: `1339dd05-26d5-5bf4-92d6-00047e85a2b6`
+- Parent: `TFQ-0451`
+- Status: `SOURCE_RECORD`
+
+Section 11 of the sealed manuscript states the terminal result within the declared metatheory and candidate grammar, with one tag per clause. Clauses (a) to (c) are theorems: the initial inscription generates nothing and supply without admission never changes state; admission without judgment structure yields total collapse, so admission need not increase expressive power; and the first separation costs exactly two items in both readings. Clause (d) is a theorem for reading L (three tied mu1 classes and an infinite arity family), a bounded theorem for the five reading-F classes, and a theorem for mu2 uniqueness up to isomorphism in both readings, and clause (e) is the response-existence theorem. Clause (f) is a bounded theorem: no endogenous demand generator was derived and closure terminates within n(n−1)/2 rounds, 1 and 3 rounds in the baselines. Clause (g) is a finite computation, the external policy reaching depth 15 with mu2 quotient trees of 963 and 1847 nodes, and clause (h) is unresolved: both admission readings survive.
+
+Obligation: Carry each terminal clause (a) to (h) with its own tag and scope, and promote none of them beyond that tag.
+
+### TFQ-0455 d2-initial-pointed
+
+- UUID: `13caa413-e57d-5f15-a1b5-84d4e5603b63`
+- Parent: `TFQ-0454`
+- Status: `PROVED_LEAN`
+
+Let D₂ have carrier {0, 1} and the single edge 0 → 1. For any relation R with a supplied witness R(a, b), the map f(0) = a, f(1) = b preserves the edge, and every map sending 0 to a and 1 to b equals it, so f is the unique endpoint-preserving map from D₂ (D2_initial_pointed). Under irreflexivity this map is injective, because the endpoints of an irreflexive witnessed edge differ (irrefl_witness_ne).
+
+Obligation: Show that a supplied edge R(a, b) receives exactly one endpoint-preserving map from the oriented two-point witness D₂, and that this map preserves the edge.
+
+### TFQ-0456 five-presentation-questions
+
+- UUID: `fab2ce5c-0b69-5021-81c4-d82461c94336`
+- Parent: `TFQ-0455`
+- Status: `DEFINITION`
+
+For a presentation S(n), its active demand register and its maps between stages, the Genesis account hands on five declared questions: which data and operations are admitted at the current stage; which declared task cannot be answered with the current observations; which candidate extensions are permitted, and under which costs; which prior answers, inscriptions or algebraic laws must survive; and what evidence shows both preservation and resolution of the selected problem. Selecting a new operation remains a declared construction decision, with its preservation obligations stated.
+
+Obligation: State for each presentation stage its admitted data and operations, the unanswered declared task, the permitted extensions and their costs, the answers that must survive, and the evidence of preservation and resolution.
+
+### TFQ-0457 quotient-retention
+
+- UUID: `1c965938-7bcd-55a8-aca6-922bd643d280`
+- Parent: `TFQ-0456`
+- Status: `PROVED_LEAN`
+
+Let fine and coarse be equivalence relations on one set with every fine identification also a coarse one. The map [x]_fine ↦ [x]_coarse is well defined and surjective (collapseMap_surjective), injective exactly when every coarse identification also holds finely (collapseMap_injective_iff_reverse_refinement), and successive such maps compose without choosing representatives (collapseMap_compose). If a former identification fails in the finer relation, two distinct fine classes remain over one coarse class (failed_identification_retains_two_classes).
+
+Obligation: Show that the quotient map from a finer to a coarser equivalence is surjective, is injective exactly when no coarse identification is lost, and composes along successive refinements.
+
+### TFQ-0458 faithful-descent-round-trip
+
+- UUID: `19ef0827-652c-53c0-a73a-1d3f6ee3dadb`
+- Parent: `TFQ-0457`
+- Status: `PROVED_LEAN`
+
+For supplied translations f : P → Q and g : Q → P, injective maps i : P → C and j : Q → C with i = j ∘ f and j = i ∘ g exist if and only if g ∘ f = id_P and f ∘ g = id_Q (faithful_descent_iff_round_trip_coherent). One direction substitutes the identifying equations and cancels the injective maps (faithful_descent_to_coherent); the other takes C = P, i = id and j = g. A failed round trip for this declared pair therefore excludes a faithful common carrier that eliminates the presentation index.
+
+Obligation: Show that compatible injective embeddings of two presentations into a common carrier exist exactly when both round trips of the supplied translations are identities.
+
+### TFQ-0459 canonical-key-classification
+
+- UUID: `15191fb5-1981-54cb-87f2-68a5a5173f37`
+- Parent: `TFQ-0431`
+- Status: `PROVED_LEAN`
+
+If a representative map C lies in each regime's isomorphism orbit and is constant on orbits, then C(R) = C(S) exactly when R ≅ S, and an injective serialization of the representatives gives the same criterion for keys (key_classification, conditional on both hypotheses). Companion results remove those hypotheses for the concrete search: equal sorted five-field tuples after relabeling by supplied bijections imply isomorphism (serializedRelabel_sound), and the length-prefixed unsigned 64-bit wire encoding is injective on words below 2^64 (portableBytes_injective). Exhaustive search over all datum and form permutations attains a least structural key (canonicalKey_attained), and for well-formed regimes with duplicate-free collections the keys, and under the word bounds their byte encodings, are equal exactly when the regimes are isomorphic (canonicalKey_classification, canonicalBytes_classification).
+
+Obligation: Show that the exhaustive-search canonical key and its portable byte encoding are equal exactly when two well-formed, duplicate-free regimes are isomorphic, within the unsigned-word bounds.
+
+### TFQ-0460 incidence-construction-betti
+
+- UUID: `b147c458-1a51-504d-9aa1-d6b262f69ead`
+- Parent: `TFQ-0455`
+- Status: `SOURCE_RECORD`
+
+Starting from the literal supply of <>, the WDP construction records Supply(<>) without admitting it, then supplies and admits <a>, <ab> and <c>, forms of arities 1, 2 and 3, three unary vertex instances and the edges 01, 12 and 02. Under an explicitly chosen incidence interpretation (a datum's admission index is a vertex, an arity-k form carries (k−1)-dimensional simplices, an instance lists its increasing vertex indices, and every vertex and face needs its own instance) the cycle has rational Betti numbers (1, 1), and admitting the single instance 012 gives (1, 0, 0). The education Lean module establishes these Betti numbers from explicit integer kernels and images of the boundary matrices (cycle_rational_betti, filled_rational_betti) and that its incidence reading returns the cycle and filled simplex lists (cycle_incidence_eq, filled_incidence_eq). For a general face-closed family K, that the construction's interpretation is exactly K rests on a written argument.
+
+Obligation: Replay the literal-root walk, read admitted instances as simplices under the declared interpretation, and compute rational Betti numbers (1, 1) for the cycle and (1, 0, 0) after the filling.
+
+### TFQ-0461 genesis-three-axis-verdict
+
+- UUID: `66b985c0-d8cd-5002-aee5-b6f9580270ab`
+- Parent: `TFQ-0454`
+- Status: `SOURCE_RECORD`
+
+The final source closeout records three independent axes after the author's 2026-09-28 freeze of snapshot 90ab34a0: research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED, the last with its live-injection and comparison clauses unmet and the input-count floor NOT_ESTABLISHED. A source defect stays on the record: delta_events names a fresh datum w<n> from the current datum count, so when the sole admitted token is w1 a NewDatum item emits AdmitDatum(w1) and deduplication leaves the state unchanged; the standalone replay reproduces this. Pinned Lean modules use only propext and Quot.sound, companion results such as the carrier-general image factorization also use Classical.choice, and the compiled census reports 2,475 non-internal theorem constants. Native Rust and frozen Python agree on every context observation and portable key over 1,436 regimes, and the compiled Lean wire encoder agrees with Python on 1,439 tuples.
+
+Obligation: Keep the three axes as separate verdicts, reproduce the w1 fresh-label collision, and report the axiom census and the finite cross-language agreement populations with their scopes.
 
 ## FINITE_OBSTRUCTION
 
