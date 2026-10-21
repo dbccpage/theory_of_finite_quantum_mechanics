@@ -1,0 +1,285 @@
+{
+  "task_id": "TFQ-0196",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "102608380c994771109d37d5448d9cdbc51564c4bd7814ccc17a2a8a0bf62b24",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_su2_level_ring",
+          "inputs": [
+            "Level"
+          ],
+          "output": "FusionRing",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_su2_level_category",
+          "inputs": [
+            "Level"
+          ],
+          "output": "RibbonFusionCategory",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_racah_replay",
+          "equation_or_predicate": "For levels up to the maximum supported, the Racah formula data replay pentagon, hexagon and Verlinde checks exactly in the chosen field. This is a finite algebraic check, not a continuum SU(2) or Hilbert-space derivation.",
+          "typing_conditions": "Level bounded by the supported maximum; field contains the required root of unity; exact arithmetic with no tolerance.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/fusion_categories/su2_level.rs",
+              "declaration": "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+              "line": 334
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "decl": "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+            "kind": "fn",
+            "line": 334,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_typed_refusal",
+          "equation_or_predicate": "An unsupported field or an unbounded level returns a typed FusionError rather than a result.",
+          "typing_conditions": "Missing root of unity or level above the maximum.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/fusion_categories/su2_level.rs",
+              "declaration": "unsupported_field_and_unbounded_level_are_typed_refusals",
+              "line": 377
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "decl": "unsupported_field_and_unbounded_level_are_typed_refusals",
+            "kind": "fn",
+            "line": 377,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Ground the catalog.rs constructors for Ising, Fibonacci and semion; no declarations are listed in the source.",
+        "The Ising ring-law test is a checker with no path listed; cite it only inside a relation or lemma.",
+        "Prove a Lean lemma separating the exact-category claim from a Hilbert derivation.",
+        "No compositions are grounded because no licensing relation is listed between generators.",
+        "near_miss nm_pentagon_is_continuum unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_float_tolerance unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_su2_level_ring",
+        "ordered_inputs": [
+          "Level"
+        ],
+        "output": "FusionRing",
+        "arity": 1,
+        "carrier": "exact nonnegative-integer fusion ring for SU(2)_k",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/fusion_ring.rs",
+            "declaration": "su2_level",
+            "line": 813
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/fusion_ring.rs",
+          "decl": "su2_level",
+          "kind": "fn",
+          "line": 813,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_su2_level_category",
+        "ordered_inputs": [
+          "Level"
+        ],
+        "output": "RibbonFusionCategory",
+        "arity": 1,
+        "carrier": "exact number field K with algebraic Racah F-symbols, non-orthonormal gauge",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "declaration": "su2_level",
+            "line": 283
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/su2_level.rs",
+          "decl": "su2_level",
+          "kind": "fn",
+          "line": 283,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_racah_replay",
+        "equation_or_predicate": "For levels up to the maximum supported, the Racah formula data replay pentagon, hexagon and Verlinde checks exactly in the chosen field. This is a finite algebraic check, not a continuum SU(2) or Hilbert-space derivation.",
+        "typing_conditions": "Level bounded by the supported maximum; field contains the required root of unity; exact arithmetic with no tolerance.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "declaration": "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+            "line": 334
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/su2_level.rs",
+          "decl": "racah_formula_replays_pentagon_hexagons_and_verlinde_through_maximum_level",
+          "kind": "fn",
+          "line": 334,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_typed_refusal",
+        "equation_or_predicate": "An unsupported field or an unbounded level returns a typed FusionError rather than a result.",
+        "typing_conditions": "Missing root of unity or level above the maximum.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "declaration": "unsupported_field_and_unbounded_level_are_typed_refusals",
+            "line": 377
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/su2_level.rs",
+          "decl": "unsupported_field_and_unbounded_level_are_typed_refusals",
+          "kind": "fn",
+          "line": 377,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A313148354F2",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_no_continuum_citation: Passing the exact pentagon/hexagon/Verlinde replay for SU(2)_k data licenses only the claim that finite exact ring/category identities hold in the field. It does not license a continuum SU(2) or Hilbert anyon derivation. The crate is marked Not PROVED.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0196"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-CD91D2FE8574",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "r_level3_fib: Level 3 has an actual Fibonacci subcategory, and the gauge is not orthonormal. [level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge]",
+        "evidence": "numerals 3 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0196"
+      }
+    ],
+    "open_obligations": [
+      "Ground the catalog.rs constructors for Ising, Fibonacci and semion; no declarations are listed in the source.",
+      "The Ising ring-law test is a checker with no path listed; cite it only inside a relation or lemma.",
+      "Prove a Lean lemma separating the exact-category claim from a Hilbert derivation.",
+      "No compositions are grounded because no licensing relation is listed between generators.",
+      "near_miss nm_pentagon_is_continuum unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_float_tolerance unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

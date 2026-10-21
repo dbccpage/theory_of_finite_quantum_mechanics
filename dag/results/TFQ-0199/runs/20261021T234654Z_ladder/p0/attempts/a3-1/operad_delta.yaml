@@ -1,0 +1,70 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_action_sum_deficits
+  equation_or_predicate: 2D Regge action equals the sum of vertex deficits
+  typing_conditions: finite 2D Regge complex only; not continuum GR, not 3+1 dihedral Regge
+  source_pins:
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    declaration: action_matches_sum_of_deficits
+    line: 46
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: action_matches_sum_of_deficits
+    kind: fn
+    line: 46
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-0D9909A86D8B
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_withhold_2d_from_exact: No value produced by regge_action_2d or Holonomy (degree plus string
+    label) is an input to the exact_regge proxy; the proxy''s identities stay over Rat with no pi or square
+    roots'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0199
+counterexamples:
+- id: NEG-325610505ED6
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_regge_action_2d: (ReggeCalculus) -> Rat2DDeficitSum [regge_action_2d]'
+  evidence: rust fn regge_action_2d takes 0 parameters; the claim says 1
+  decl_key: regge_action_2d
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0199
+- id: NEG-92526DA877B0
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_vertex_deficits: (ReggeCalculus) -> VertexDeficitList [vertex_deficits]'
+  evidence: rust fn vertex_deficits takes 0 parameters; the claim says 1
+  decl_key: vertex_deficits
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0199
+open_obligations:
+- Exact_regge declarations are not listed beyond the module name, so no generators from it can be cited
+- Holonomy struct not in SRC, so it is not cited
+- Lean statement of the separation is unwritten
+- No composition is licensed because no relation links the generators' colours
+- 'relation r_exact_regge_separation unverified: no existing declaration cited'
+- 'near_miss nm_2d_as_4d unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_holonomy_scaffold unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,103 @@
+add_or_refine_generators:
+- id: g_continuum_debt_field
+  ordered_inputs: []
+  output: FieldName
+  arity: 0
+  carrier: string constant
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: FIELD_CONTINUUM_DEBT
+    line: 23
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: FIELD_CONTINUUM_DEBT
+    kind: const
+    line: 23
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_carrier_field
+  ordered_inputs: []
+  output: FieldName
+  arity: 0
+  carrier: string constant
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: FIELD_CARRIER
+    line: 13
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: FIELD_CARRIER
+    kind: const
+    line: 13
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_continuum_needs_witness
+  equation_or_predicate: A continuum claim without a witness is oracle-needed; with a witness it is finite
+    replay only. Neither is a bridge theorem.
+  typing_conditions: Checker behavior only; the witness field may hold the gap id, which is not a carrier.
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: continuum_without_witness_is_oracle_needed
+    line: 613
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: continuum_without_witness_is_oracle_needed
+    kind: fn
+    line: 613
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_field_names_match
+  equation_or_predicate: Finite QM field name constants match the contract, including carrier, carrier_id
+    and continuum_debt.
+  typing_conditions: Constants as declared in finite_shadow_exact.rs.
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: finite_qm_field_name_constants_match_contract
+    line: 725
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: finite_qm_field_name_constants_match_contract
+    kind: fn
+    line: 725
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No existing declaration is grounded for the empty bridge shelf, named_adjoining.yaml, or the gap id;
+  the host must supply them.
+- CircleHaarError in circle_haar.rs is an enum with no visible variants, so it is not cited as an operation.
+- The DualWitness Lean declarations concern trace distance, not the circle bridge, so they are not used.
+- The Lean skeleton is a trivial placeholder, not a bridge proof.
+- 'lemma l_shelf_keeps_circle_need unverified: Lean elaboration disabled'
+- 'near_miss nm_named_adjoining_as_bridge unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_gap_id_as_carrier unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

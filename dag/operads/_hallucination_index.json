@@ -154,6 +154,36 @@
         "tier": 0
       }
     },
+    "NEG-02583702D27B": {
+      "id": "NEG-02583702D27B",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_can_continue_n: () -> Bool [can_continue_n]",
+      "evidence": "rust fn can_continue_n takes 4 parameters; the claim says 0",
+      "decl_key": "can_continue_n",
+      "claim_pattern": "wrong_signature:g_can_continue_n bool can_continue_n",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for can_continue_n.",
+      "first_seen_utc": "2026-10-21T23:47:33Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0220"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:33Z",
+      "last": {
+        "node_id": "TFQ-0220",
+        "run_id": "TFQ-0220/20261021T234723Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-0267353681CD": {
       "id": "NEG-0267353681CD",
       "entry_type": "failed_composition",
@@ -242,6 +272,36 @@
         "provider": "groq",
         "model": "openai/gpt-oss-120b",
         "tier": 0
+      }
+    },
+    "NEG-038E7AA6686F": {
+      "id": "NEG-038E7AA6686F",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "G_seal_run_folder . slot 2 <- G_authority_none via R_receipt_authority_none",
+      "evidence": "the outer generator is not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:g_seal_run_folder slot # g_authority_none via r_receipt_authority_none",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0216"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0216",
+        "run_id": "TFQ-0216/20261021T234720Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-0474AEDB6197": {
@@ -392,6 +452,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-0689548DABB6": {
+      "id": "NEG-0689548DABB6",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "G_tetrahedral_amplitude: (TetSpins) -> Cyclo12 [tetrahedral_amplitude]",
+      "evidence": "rust fn tetrahedral_amplitude takes 0 parameters; the claim says 1",
+      "decl_key": "tetrahedral_amplitude",
+      "claim_pattern": "wrong_signature:g_tetrahedral_amplitude tetspins cyclo# tetrahedral_amplitude",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for tetrahedral_amplitude.",
+      "first_seen_utc": "2026-10-21T23:47:07Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0198"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:07Z",
+      "last": {
+        "node_id": "TFQ-0198",
+        "run_id": "TFQ-0198/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-068A4A67A501": {
@@ -637,6 +727,36 @@
         "tier": 4
       }
     },
+    "NEG-0983C97B5685": {
+      "id": "NEG-0983C97B5685",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_classOf: (Alpha) -> ResidualQuotient [OmegaCore.PrimitiveDifference.classOf]",
+      "evidence": "lean def classOf has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "OmegaCore.PrimitiveDifference.classOf",
+      "claim_pattern": "wrong_signature:g_classof alpha residualquotient omegacore primitivedifference classof",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for OmegaCore.PrimitiveDifference.classOf.",
+      "first_seen_utc": "2026-10-21T23:47:08Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0204"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:08Z",
+      "last": {
+        "node_id": "TFQ-0204",
+        "run_id": "TFQ-0204/20261021T234658Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-0B961DC000A7": {
       "id": "NEG-0B961DC000A7",
       "entry_type": "failed_composition",
@@ -807,6 +927,66 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-0D9909A86D8B": {
+      "id": "NEG-0D9909A86D8B",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_withhold_2d_from_exact: No value produced by regge_action_2d or Holonomy (degree plus string label) is an input to the exact_regge proxy; the proxy's identities stay over Rat with no pi or square roots",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_withhold_#d_from_exact no value produced by regge_action_#d or holonomy degree plus string label is an input to the exact_regge proxy the proxy s identities s",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:05Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0199"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:05Z",
+      "last": {
+        "node_id": "TFQ-0199",
+        "run_id": "TFQ-0199/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-0DB072BD8419": {
+      "id": "NEG-0DB072BD8419",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "adapter_sound_bit: (PrimeSeam) -> Bool [adapter_sound]",
+      "evidence": "rust fn adapter_sound takes 0 parameters; the claim says 1",
+      "decl_key": "adapter_sound",
+      "claim_pattern": "wrong_signature:adapter_sound_bit primeseam bool adapter_sound",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for adapter_sound.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0222"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0222",
+        "run_id": "TFQ-0222/20261021T234732Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-0E78E8D4F8F4": {
@@ -1379,6 +1559,66 @@
         "tier": 0
       }
     },
+    "NEG-1AF791B50E99": {
+      "id": "NEG-1AF791B50E99",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "stochastic_update . slot 0 <- normalize_ledger via diagonal_closure",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:stochastic_update slot # normalize_ledger via diagonal_closure",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:48:04Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0282"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:48:04Z",
+      "last": {
+        "node_id": "TFQ-0282",
+        "run_id": "TFQ-0282/20261021T234753Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-1CDBC381FB18": {
+      "id": "NEG-1CDBC381FB18",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_seal_custody: A sealed folder built by G_seal_run_folder from accepted bytes b records replay_hash b and authority effect None.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_seal_custody a sealed folder built by g_seal_run_folder from accepted bytes b records replay_hash b and authority effect none",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0216"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0216",
+        "run_id": "TFQ-0216/20261021T234720Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-1CFB4041DD4B": {
       "id": "NEG-1CFB4041DD4B",
       "entry_type": "failed_composition",
@@ -1524,6 +1764,36 @@
         "node_id": "TFQ-0031",
         "run_id": "TFQ-0031/20261021T181434Z_ladder",
         "attempt_id": "a3-8",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-1F3C6F0D1B7D": {
+      "id": "NEG-1F3C6F0D1B7D",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "G_with_convergence_witness: (ShadowRequest, String) -> ShadowRequest [with_convergence_witness]",
+      "evidence": "rust fn with_convergence_witness takes 1 parameters; the claim says 2",
+      "decl_key": "with_convergence_witness",
+      "claim_pattern": "wrong_signature:g_with_convergence_witness shadowrequest string shadowrequest with_convergence_witness",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for with_convergence_witness.",
+      "first_seen_utc": "2026-10-21T23:47:47Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0228"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:47Z",
+      "last": {
+        "node_id": "TFQ-0228",
+        "run_id": "TFQ-0228/20261021T234735Z_ladder",
+        "attempt_id": "a3-1",
         "provider": "anthropic",
         "model": "claude-sonnet-5-5",
         "tier": 3
@@ -1829,6 +2099,36 @@
         "tier": 0
       }
     },
+    "NEG-25B376AE11FA": {
+      "id": "NEG-25B376AE11FA",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_group_order: (FiniteGroup) -> Usize [group_order]",
+      "evidence": "rust fn group_order takes 0 parameters; the claim says 1",
+      "decl_key": "group_order",
+      "claim_pattern": "wrong_signature:g_group_order finitegroup usize group_order",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for group_order.",
+      "first_seen_utc": "2026-10-21T23:46:53Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0193"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:53Z",
+      "last": {
+        "node_id": "TFQ-0193",
+        "run_id": "TFQ-0193/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-26409245F4D3": {
       "id": "NEG-26409245F4D3",
       "entry_type": "failed_composition",
@@ -2009,6 +2309,36 @@
         "tier": 0
       }
     },
+    "NEG-274BC17E8D00": {
+      "id": "NEG-274BC17E8D00",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_nonneg_mass_rejected: A valuation with a negative rational mass is rejected by validation",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_nonneg_mass_rejected a valuation with a negative rational mass is rejected by validation",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0226"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0226",
+        "run_id": "TFQ-0226/20261021T234734Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-27D4BAF8F111": {
       "id": "NEG-27D4BAF8F111",
       "entry_type": "counterexample",
@@ -2067,6 +2397,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-28B587FA74E4": {
+      "id": "NEG-28B587FA74E4",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_weyl_not_ccr: The finite Weyl relation does not imply a CCR on a completed real line; the two are distinct claims",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_weyl_not_ccr the finite weyl relation does not imply a ccr on a completed real line the two are distinct claims",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:53Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0194"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:53Z",
+      "last": {
+        "node_id": "TFQ-0194",
+        "run_id": "TFQ-0194/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-292AD682ACFF": {
@@ -2189,6 +2549,36 @@
         "tier": 0
       }
     },
+    "NEG-2AB602CBAB24": {
+      "id": "NEG-2AB602CBAB24",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_f64_decimal_not_bound: A bound constructed from f64 cannot be used as authorizing evidence",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_f#_decimal_not_bound a bound constructed from f# cannot be used as authorizing evidence",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:52Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0191"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:52Z",
+      "last": {
+        "node_id": "TFQ-0191",
+        "run_id": "TFQ-0191/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-2B37DBE14BC8": {
       "id": "NEG-2B37DBE14BC8",
       "entry_type": "failed_composition",
@@ -2309,6 +2699,36 @@
         "tier": 0
       }
     },
+    "NEG-2FA13AA3C448": {
+      "id": "NEG-2FA13AA3C448",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_side_log_only: Tolerance traces and born_probability floats are recorded only in a side log; the rational statement is never built from them, so no promotion map from FloatProbability to the rational carrier exists in custody",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_side_log_only tolerance traces and born_probability floats are recorded only in a side log the rational statement is never built from them so no promotion map",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:18Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0207"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:18Z",
+      "last": {
+        "node_id": "TFQ-0207",
+        "run_id": "TFQ-0207/20261021T234706Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-318E3CE70F77": {
       "id": "NEG-318E3CE70F77",
       "entry_type": "failed_composition",
@@ -2337,6 +2757,96 @@
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
         "tier": 0
+      }
+    },
+    "NEG-325610505ED6": {
+      "id": "NEG-325610505ED6",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_regge_action_2d: (ReggeCalculus) -> Rat2DDeficitSum [regge_action_2d]",
+      "evidence": "rust fn regge_action_2d takes 0 parameters; the claim says 1",
+      "decl_key": "regge_action_2d",
+      "claim_pattern": "wrong_signature:g_regge_action_#d reggecalculus rat#ddeficitsum regge_action_#d",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for regge_action_2d.",
+      "first_seen_utc": "2026-10-21T23:47:05Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0199"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:05Z",
+      "last": {
+        "node_id": "TFQ-0199",
+        "run_id": "TFQ-0199/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-32C35ACFB2E9": {
+      "id": "NEG-32C35ACFB2E9",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_same_sentence_printed: A Rust constant in finite_shadow_exact.rs prints the same finite statement text and carrier text as the Python record, and the file lives in an existing crate directory",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_same_sentence_printed a rust constant in finite_shadow_exact rs prints the same finite statement text and carrier text as the python record and the file lives",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0209"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0209",
+        "run_id": "TFQ-0209/20261021T234707Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-341901A9A348": {
+      "id": "NEG-341901A9A348",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_exact_control: Exact rational Cayley and finite-order computations serve as finite controls only; no continuous Haar measure or Hilbert representation is derived.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_exact_control exact rational cayley and finite order computations serve as finite controls only no continuous haar measure or hilbert representation is derive",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:53Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0193"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:53Z",
+      "last": {
+        "node_id": "TFQ-0193",
+        "run_id": "TFQ-0193/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-34AEB7AD226D": {
@@ -2607,6 +3117,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-38ABB5903F08": {
+      "id": "NEG-38ABB5903F08",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "authority_effect: (PrimeAlgorithm0Receipt) -> AuthorityEffect [authority_effect]",
+      "evidence": "rust fn authority_effect takes 0 parameters; the claim says 1",
+      "decl_key": "authority_effect",
+      "claim_pattern": "wrong_signature:authority_effect primealgorithm#receipt authorityeffect authority_effect",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for authority_effect.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0209"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0209",
+        "run_id": "TFQ-0209/20261021T234707Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-39B683E7CCFE": {
@@ -2937,6 +3477,36 @@
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
         "tier": 0
+      }
+    },
+    "NEG-413FAE8571E3": {
+      "id": "NEG-413FAE8571E3",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "frac_of_exact . slot 0 <- parse_exact via R_canonical",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:frac_of_exact slot # parse_exact via r_canonical",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:21Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0205"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:21Z",
+      "last": {
+        "node_id": "TFQ-0205",
+        "run_id": "TFQ-0205/20261021T234705Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-428707EEDB70": {
@@ -3363,6 +3933,36 @@
         "tier": 0
       }
     },
+    "NEG-4B6F8F6E94C5": {
+      "id": "NEG-4B6F8F6E94C5",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "run_prime_algorithm_0: () -> PrimeAlgorithm0Receipt [run_prime_algorithm_0]",
+      "evidence": "rust fn run_prime_algorithm_0 takes 1 parameters; the claim says 0",
+      "decl_key": "run_prime_algorithm_0",
+      "claim_pattern": "wrong_signature:run_prime_algorithm_# primealgorithm#receipt run_prime_algorithm_#",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for run_prime_algorithm_0.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0209"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0209",
+        "run_id": "TFQ-0209/20261021T234707Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-4B85395A33D7": {
       "id": "NEG-4B85395A33D7",
       "entry_type": "counterexample",
@@ -3421,6 +4021,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-4E31BD2E81F1": {
+      "id": "NEG-4E31BD2E81F1",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_continuation_evidence: (BoundEpkMeasurement, VerifiedDescentReceipt) -> ContinuationEvidence [continuation_evidence]",
+      "evidence": "rust fn continuation_evidence takes 1 parameters; the claim says 2",
+      "decl_key": "continuation_evidence",
+      "claim_pattern": "wrong_signature:g_continuation_evidence boundepkmeasurement verifieddescentreceipt continuationevidence continuation_evidence",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for continuation_evidence.",
+      "first_seen_utc": "2026-10-21T23:46:52Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0191"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:52Z",
+      "last": {
+        "node_id": "TFQ-0191",
+        "run_id": "TFQ-0191/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-4E507774FA77": {
@@ -3811,6 +4441,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-57A24A707032": {
+      "id": "NEG-57A24A707032",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_float_bar: No authorizing statement depends on a float or tolerance-valued function: authorization factors through the exact carrier only.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_float_bar no authorizing statement depends on a float or tolerance valued function authorization factors through the exact carrier only",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:16Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0206"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:16Z",
+      "last": {
+        "node_id": "TFQ-0206",
+        "run_id": "TFQ-0206/20261021T234706Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-581F3346805A": {
@@ -4533,6 +5193,36 @@
         "tier": 0
       }
     },
+    "NEG-5FA6C301BF65": {
+      "id": "NEG-5FA6C301BF65",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "receipt_not_second_statement: Attaching a receipt leaves the statement carrier unchanged and adds only a pointer with authority effect None.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:receipt_not_second_statement attaching a receipt leaves the statement carrier unchanged and adds only a pointer with authority effect none",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0222"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0222",
+        "run_id": "TFQ-0222/20261021T234732Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-605F7CF746FE": {
       "id": "NEG-605F7CF746FE",
       "entry_type": "failed_composition",
@@ -4771,6 +5461,36 @@
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
         "tier": 0
+      }
+    },
+    "NEG-67462B6AB8D9": {
+      "id": "NEG-67462B6AB8D9",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_no_continuum: The finite cyclotomic amplitudes (Z[zeta_12], labels 0,1,2) carry no continuum SU(2)/SL(2,C), no Haar measure, and no triangulation-invariance claim; they must not be cited as continuum spin foam.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_no_continuum the finite cyclotomic amplitudes z zeta_# labels # # # carry no continuum su # /sl # c no haar measure and no triangulation invariance claim they",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:07Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0198"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:07Z",
+      "last": {
+        "node_id": "TFQ-0198",
+        "run_id": "TFQ-0198/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-67C5F896844D": {
@@ -5586,6 +6306,36 @@
         "tier": 0
       }
     },
+    "NEG-7ACF00EBE1ED": {
+      "id": "NEG-7ACF00EBE1ED",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_schedule_no_authority: Scheduling a finite derivation through the host leaves the finite statement unchanged and emits only AuthorityEffect None",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_schedule_no_authority scheduling a finite derivation through the host leaves the finite statement unchanged and emits only authorityeffect none",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0227"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0227",
+        "run_id": "TFQ-0227/20261021T234734Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-7AEB658D321A": {
       "id": "NEG-7AEB658D321A",
       "entry_type": "failed_composition",
@@ -5734,6 +6484,36 @@
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
         "tier": 0
+      }
+    },
+    "NEG-7DC67D587179": {
+      "id": "NEG-7DC67D587179",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_row_index_not_proof: For a ledger row r with witness field w = id(r), validity of the finite statement S does not follow from the presence of r; a separate proof of S is required.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_row_index_not_proof for a ledger row r with witness field w id r validity of the finite statement s does not follow from the presence of r a separate proof of",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:25Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0213"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:25Z",
+      "last": {
+        "node_id": "TFQ-0213",
+        "run_id": "TFQ-0213/20261021T234716Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-7EDCC6E147CD": {
@@ -6187,6 +6967,96 @@
         "tier": 0
       }
     },
+    "NEG-88667E959665": {
+      "id": "NEG-88667E959665",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_repair_functional: (C1) -> Real [QuantumMechanics.BanachQuotient.repairFunctional]",
+      "evidence": "lean def repairFunctional has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "QuantumMechanics.BanachQuotient.repairFunctional",
+      "claim_pattern": "wrong_signature:g_repair_functional c# real quantummechanics banachquotient repairfunctional",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for QuantumMechanics.BanachQuotient.repairFunctional.",
+      "first_seen_utc": "2026-10-21T23:47:59Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0280"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:59Z",
+      "last": {
+        "node_id": "TFQ-0280",
+        "run_id": "TFQ-0280/20261021T234749Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-886873678F00": {
+      "id": "NEG-886873678F00",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "parse_exact . slot 0 <- print_exact via R_roundtrip",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:parse_exact slot # print_exact via r_roundtrip",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:21Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0205"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:21Z",
+      "last": {
+        "node_id": "TFQ-0205",
+        "run_id": "TFQ-0205/20261021T234705Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-89D7B0BE6167": {
+      "id": "NEG-89D7B0BE6167",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "authority_effect . slot 0 <- run_prime_algorithm_0 via R_authority_none",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:authority_effect slot # run_prime_algorithm_# via r_authority_none",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0209"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0209",
+        "run_id": "TFQ-0209/20261021T234707Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-8A5C899B6E5A": {
       "id": "NEG-8A5C899B6E5A",
       "entry_type": "failed_composition",
@@ -6307,6 +7177,36 @@
         "tier": 0
       }
     },
+    "NEG-8D07E5746A9E": {
+      "id": "NEG-8D07E5746A9E",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_gap_not_removed: Diagnostic use of finite shadow code leaves GAP-F000-F002-001 open and authorizes no smooth limit.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_gap_not_removed diagnostic use of finite shadow code leaves gap f# f# # open and authorizes no smooth limit",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:47Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0228"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:47Z",
+      "last": {
+        "node_id": "TFQ-0228",
+        "run_id": "TFQ-0228/20261021T234735Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-8E416CE4E670": {
       "id": "NEG-8E416CE4E670",
       "entry_type": "counterexample",
@@ -6367,6 +7267,36 @@
         "tier": 0
       }
     },
+    "NEG-8E8E85199C9C": {
+      "id": "NEG-8E8E85199C9C",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_float_trace_preserved: If a payload contains a float trace, the hash preserves the trace bytes and does not convert it to an exact rational.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_float_trace_preserved if a payload contains a float trace the hash preserves the trace bytes and does not convert it to an exact rational",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0217"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0217",
+        "run_id": "TFQ-0217/20261021T234722Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-8FC08AA12DC4": {
       "id": "NEG-8FC08AA12DC4",
       "entry_type": "failed_composition",
@@ -6395,6 +7325,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-8FCE5752C280": {
+      "id": "NEG-8FCE5752C280",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "finite_quotient_vs_continuum_gap: The finite-quotient selection leaves a continuum gap unfinished",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:finite_quotient_vs_continuum_gap the finite quotient selection leaves a continuum gap unfinished",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:46Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0229"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:46Z",
+      "last": {
+        "node_id": "TFQ-0229",
+        "run_id": "TFQ-0229/20261021T234737Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-9005924BF21D": {
@@ -6457,6 +7417,36 @@
         "tier": 0
       }
     },
+    "NEG-92526DA877B0": {
+      "id": "NEG-92526DA877B0",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_vertex_deficits: (ReggeCalculus) -> VertexDeficitList [vertex_deficits]",
+      "evidence": "rust fn vertex_deficits takes 0 parameters; the claim says 1",
+      "decl_key": "vertex_deficits",
+      "claim_pattern": "wrong_signature:g_vertex_deficits reggecalculus vertexdeficitlist vertex_deficits",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for vertex_deficits.",
+      "first_seen_utc": "2026-10-21T23:47:05Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0199"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:05Z",
+      "last": {
+        "node_id": "TFQ-0199",
+        "run_id": "TFQ-0199/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-9265F8088ACD": {
       "id": "NEG-9265F8088ACD",
       "entry_type": "failed_composition",
@@ -6487,6 +7477,36 @@
         "tier": 0
       }
     },
+    "NEG-926B0906BA31": {
+      "id": "NEG-926B0906BA31",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_density_matrix_wdp: (InstrumentAdapter) -> BasicMatrix_GaussianRat [density_matrix]",
+      "evidence": "rust fn density_matrix takes 0 parameters; the claim says 1",
+      "decl_key": "density_matrix",
+      "claim_pattern": "wrong_signature:g_density_matrix_wdp instrumentadapter basicmatrix_gaussianrat density_matrix",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for density_matrix.",
+      "first_seen_utc": "2026-10-21T23:47:16Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0206"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:16Z",
+      "last": {
+        "node_id": "TFQ-0206",
+        "run_id": "TFQ-0206/20261021T234706Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-9288004015FF": {
       "id": "NEG-9288004015FF",
       "entry_type": "failed_composition",
@@ -6515,6 +7535,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-92D0F6457988": {
+      "id": "NEG-92D0F6457988",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_exact_born_bound: The exact Born numerator is at most the denominator, stated on the rational carrier independent of any float",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_exact_born_bound the exact born numerator is at most the denominator stated on the rational carrier independent of any float",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:18Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0207"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:18Z",
+      "last": {
+        "node_id": "TFQ-0207",
+        "run_id": "TFQ-0207/20261021T234706Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-934E4A510425": {
@@ -7378,6 +8428,36 @@
         "tier": 0
       }
     },
+    "NEG-A313148354F2": {
+      "id": "NEG-A313148354F2",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_no_continuum_citation: Passing the exact pentagon/hexagon/Verlinde replay for SU(2)_k data licenses only the claim that finite exact ring/category identities hold in the field. It does not license a continuum SU(2) or Hilbert anyon derivation. The crate is marked Not PROVED.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_no_continuum_citation passing the exact pentagon/hexagon/verlinde replay for su # _k data licenses only the claim that finite exact ring/category identities h",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:54Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0196"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:54Z",
+      "last": {
+        "node_id": "TFQ-0196",
+        "run_id": "TFQ-0196/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-A35C1CDCDF62": {
       "id": "NEG-A35C1CDCDF62",
       "entry_type": "counterexample",
@@ -7798,6 +8878,36 @@
         "tier": 0
       }
     },
+    "NEG-AA7EB8A0C5B8": {
+      "id": "NEG-AA7EB8A0C5B8",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_aux_off_prime_path: Importing or exposing an S002 package (symbol-game ObstructionScore, workflows interfaces) does not complete a finite quantum derivation; S002 packages stay auxiliary and are not on the prime completion path, which remains the prime packet and language triple, under AuthorityEffect None.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_aux_off_prime_path importing or exposing an s# package symbol game obstructionscore workflows interfaces does not complete a finite quantum derivation s# pack",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:51Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0231"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:51Z",
+      "last": {
+        "node_id": "TFQ-0231",
+        "run_id": "TFQ-0231/20261021T234744Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-AA99778F8A47": {
       "id": "NEG-AA99778F8A47",
       "entry_type": "counterexample",
@@ -7946,6 +9056,66 @@
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
         "tier": 0
+      }
+    },
+    "NEG-AF0A0EC599D9": {
+      "id": "NEG-AF0A0EC599D9",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_open_when_distinct: If the three sentences are not all equal, the ledger status is open.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_open_when_distinct if the three sentences are not all equal the ledger status is open",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0212"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0212",
+        "run_id": "TFQ-0212/20261021T234711Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-AF50FDBCC0A4": {
+      "id": "NEG-AF50FDBCC0A4",
+      "entry_type": "counterexample",
+      "class": "statement_drift",
+      "claim_kind": "lemma",
+      "claim": "l_declaration_order_length: The declaration-order list has length 7.",
+      "evidence": "numerals 7 appear in the claim but in none of the checked sources (heuristic)",
+      "decl_key": null,
+      "claim_pattern": "statement_drift:l_declaration_order_length the declaration order list has length #",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not restate the source with numerals it does not contain.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0218"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0218",
+        "run_id": "TFQ-0218/20261021T234723Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-AF9A95246D21": {
@@ -8098,6 +9268,36 @@
         "tier": 0
       }
     },
+    "NEG-B1478C9C8425": {
+      "id": "NEG-B1478C9C8425",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_empty_event_zero: A nonzero mass on the empty event is rejected; an empty carrier is representable in the unnormalized layer but not as a probability carrier",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_empty_event_zero a nonzero mass on the empty event is rejected an empty carrier is representable in the unnormalized layer but not as a probability carrier",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0226"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0226",
+        "run_id": "TFQ-0226/20261021T234734Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-B18761D4C55C": {
       "id": "NEG-B18761D4C55C",
       "entry_type": "failed_composition",
@@ -8128,6 +9328,36 @@
         "tier": 0
       }
     },
+    "NEG-B22F84D37211": {
+      "id": "NEG-B22F84D37211",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_evidence_ceiling: (BoundEpkMeasurement, Index) -> EvidenceCeiling [evidence_ceiling]",
+      "evidence": "rust fn evidence_ceiling takes 1 parameters; the claim says 2",
+      "decl_key": "evidence_ceiling",
+      "claim_pattern": "wrong_signature:g_evidence_ceiling boundepkmeasurement index evidenceceiling evidence_ceiling",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for evidence_ceiling.",
+      "first_seen_utc": "2026-10-21T23:46:52Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0191"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:52Z",
+      "last": {
+        "node_id": "TFQ-0191",
+        "run_id": "TFQ-0191/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-B30C4C9AD0D4": {
       "id": "NEG-B30C4C9AD0D4",
       "entry_type": "failed_composition",
@@ -8156,6 +9386,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-B35D47DE07B1": {
+      "id": "NEG-B35D47DE07B1",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_real0_elim: (Real0) -> Target [RootDiffStructure.Real0.elim]",
+      "evidence": "lean def elim has 2 explicit binders (3 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "RootDiffStructure.Real0.elim",
+      "claim_pattern": "wrong_signature:g_real#_elim real# target rootdiffstructure real# elim",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for RootDiffStructure.Real0.elim.",
+      "first_seen_utc": "2026-10-21T23:47:05Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0203"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:05Z",
+      "last": {
+        "node_id": "TFQ-0203",
+        "run_id": "TFQ-0203/20261021T234657Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-B4295727F4BC": {
@@ -8314,6 +9574,36 @@
         "tier": 0
       }
     },
+    "NEG-B67415ED8CC7": {
+      "id": "NEG-B67415ED8CC7",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "G_as_python_dual_str: (ShadowTerminalLabel) -> StaticStr [as_python_dual_str]",
+      "evidence": "rust fn as_python_dual_str takes 0 parameters; the claim says 1",
+      "decl_key": "as_python_dual_str",
+      "claim_pattern": "wrong_signature:g_as_python_dual_str shadowterminallabel staticstr as_python_dual_str",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for as_python_dual_str.",
+      "first_seen_utc": "2026-10-21T23:47:47Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0228"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:47Z",
+      "last": {
+        "node_id": "TFQ-0228",
+        "run_id": "TFQ-0228/20261021T234735Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-B69CF88BD5CF": {
       "id": "NEG-B69CF88BD5CF",
       "entry_type": "failed_composition",
@@ -8434,6 +9724,36 @@
         "tier": 0
       }
     },
+    "NEG-B8958A64A072": {
+      "id": "NEG-B8958A64A072",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "G_seal_run_folder . slot 1 <- G_replay_hash via R_hash_matches_bytes",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:g_seal_run_folder slot # g_replay_hash via r_hash_matches_bytes",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0216"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0216",
+        "run_id": "TFQ-0216/20261021T234720Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-B904FFABB5CC": {
       "id": "NEG-B904FFABB5CC",
       "entry_type": "counterexample",
@@ -8492,6 +9812,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-B94DF446E487": {
+      "id": "NEG-B94DF446E487",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "lem_licence_not_hilbert: A licensed lift candidate (descent-paired obstruction metadata) carries no inner-product space, Born rule, or completed Hilbert lift structure; the licence record is not proof of a lift.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:lem_licence_not_hilbert a licensed lift candidate descent paired obstruction metadata carries no inner product space born rule or completed hilbert lift structu",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:55Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0187"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:55Z",
+      "last": {
+        "node_id": "TFQ-0187",
+        "run_id": "TFQ-0187/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-BAAF18BB73F4": {
@@ -8674,6 +10024,36 @@
         "tier": 0
       }
     },
+    "NEG-BDF853F0E1AA": {
+      "id": "NEG-BDF853F0E1AA",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L1: For a quantum derivation, custody binding is the triple of shelf paths F001.S000 and F000.S000 plus the F003 prime packet carrier, and a chapter title in F001 does not fill the F003 carrier field.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l# for a quantum derivation custody binding is the triple of shelf paths f# s# and f# s# plus the f# prime packet carrier and a chapter title in f# does not fil",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:30Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0215"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:30Z",
+      "last": {
+        "node_id": "TFQ-0215",
+        "run_id": "TFQ-0215/20261021T234720Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-BECD529CB02D": {
       "id": "NEG-BECD529CB02D",
       "entry_type": "counterexample",
@@ -8854,6 +10234,36 @@
         "tier": 0
       }
     },
+    "NEG-C3512BCB701D": {
+      "id": "NEG-C3512BCB701D",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_no_silent_upgrade: For every continuum request, the terminal label is never a continuum-theorem label; without a witness it is oracle-needed and with a witness it is finite-replay-only.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_no_silent_upgrade for every continuum request the terminal label is never a continuum theorem label without a witness it is oracle needed and with a witness i",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:47Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0228"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:47Z",
+      "last": {
+        "node_id": "TFQ-0228",
+        "run_id": "TFQ-0228/20261021T234735Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-C43C4D2543F9": {
       "id": "NEG-C43C4D2543F9",
       "entry_type": "failed_composition",
@@ -8912,6 +10322,36 @@
         "provider": "anthropic",
         "model": "claude-haiku-5-5",
         "tier": 2
+      }
+    },
+    "NEG-C5E8AE348B92": {
+      "id": "NEG-C5E8AE348B92",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "attach_receipt . slot 1 <- digest_checks via receipt_is_pointer",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:attach_receipt slot # digest_checks via receipt_is_pointer",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T23:47:43Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0222"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:43Z",
+      "last": {
+        "node_id": "TFQ-0222",
+        "run_id": "TFQ-0222/20261021T234732Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-C6BDB9C2523A": {
@@ -9220,6 +10660,36 @@
         "tier": 0
       }
     },
+    "NEG-CD91D2FE8574": {
+      "id": "NEG-CD91D2FE8574",
+      "entry_type": "counterexample",
+      "class": "statement_drift",
+      "claim_kind": "relation",
+      "claim": "r_level3_fib: Level 3 has an actual Fibonacci subcategory, and the gauge is not orthonormal. [level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge]",
+      "evidence": "numerals 3 appear in the claim but in none of the checked sources (heuristic)",
+      "decl_key": "level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge",
+      "claim_pattern": "statement_drift:r_level#_fib level # has an actual fibonacci subcategory and the gauge is not orthonormal level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not restate the source with numerals it does not contain.",
+      "first_seen_utc": "2026-10-21T23:46:54Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0196"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:54Z",
+      "last": {
+        "node_id": "TFQ-0196",
+        "run_id": "TFQ-0196/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-CD9E3064AB30": {
       "id": "NEG-CD9E3064AB30",
       "entry_type": "failed_composition",
@@ -9520,6 +10990,66 @@
         "tier": 0
       }
     },
+    "NEG-D3FEDA1152CF": {
+      "id": "NEG-D3FEDA1152CF",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "one_entry_ledger_unsound: For any adapter contract whose loss ledger has exactly one entry, AdapterContract.isSound evaluates to false",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:one_entry_ledger_unsound for any adapter contract whose loss ledger has exactly one entry adaptercontract issound evaluates to false",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:32Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0219"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:32Z",
+      "last": {
+        "node_id": "TFQ-0219",
+        "run_id": "TFQ-0219/20261021T234723Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-D771D7B29270": {
+      "id": "NEG-D771D7B29270",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_separation: Zero repair distance implies the residual lies in range d0",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_separation zero repair distance implies the residual lies in range d#",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:59Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0280"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:59Z",
+      "last": {
+        "node_id": "TFQ-0280",
+        "run_id": "TFQ-0280/20261021T234749Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-D7E9042B3B1B": {
       "id": "NEG-D7E9042B3B1B",
       "entry_type": "failed_composition",
@@ -9548,6 +11078,36 @@
         "provider": "groq",
         "model": "openai/gpt-oss-120b",
         "tier": 0
+      }
+    },
+    "NEG-D86155834819": {
+      "id": "NEG-D86155834819",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_cayley_mat2: (StarAlgebraElement) -> Matrix2x2Rat [FableHilbertWalk20260819.H019.cayleyMat2]",
+      "evidence": "lean def cayleyMat2 has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "FableHilbertWalk20260819.H019.cayleyMat2",
+      "claim_pattern": "wrong_signature:g_cayley_mat# staralgebraelement matrix#x#rat fablehilbertwalk# h# cayleymat#",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FableHilbertWalk20260819.H019.cayleyMat2.",
+      "first_seen_utc": "2026-10-21T23:46:53Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0193"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:53Z",
+      "last": {
+        "node_id": "TFQ-0193",
+        "run_id": "TFQ-0193/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-D8D83F1C00D8": {
@@ -9610,6 +11170,66 @@
         "tier": 0
       }
     },
+    "NEG-DA597D265515": {
+      "id": "NEG-DA597D265515",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_interval_requires_policy: Deciding on an Interval value without policy returns an error rather than a scalar",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_interval_requires_policy deciding on an interval value without policy returns an error rather than a scalar",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:46:52Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0191"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:46:52Z",
+      "last": {
+        "node_id": "TFQ-0191",
+        "run_id": "TFQ-0191/20261021T234638Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-DAC4A462AE7E": {
+      "id": "NEG-DAC4A462AE7E",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_triple_agreement: For one finite statement S, the Python packet, the Rust face and the Lean declaration all carry the same carrier text, relation and AuthorityEffect None.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_triple_agreement for one finite statement s the python packet the rust face and the lean declaration all carry the same carrier text relation and authorityeff",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:20Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0211"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:20Z",
+      "last": {
+        "node_id": "TFQ-0211",
+        "run_id": "TFQ-0211/20261021T234709Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-DBD110930931": {
       "id": "NEG-DBD110930931",
       "entry_type": "failed_composition",
@@ -9638,6 +11258,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-DBDC7C728ECF": {
+      "id": "NEG-DBDC7C728ECF",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L_digest_no_widen: A digest of a payload leaves the carrier, the loss ledger and the hypotheses of the covered finite statement unchanged.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_digest_no_widen a digest of a payload leaves the carrier the loss ledger and the hypotheses of the covered finite statement unchanged",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:31Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0217"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:31Z",
+      "last": {
+        "node_id": "TFQ-0217",
+        "run_id": "TFQ-0217/20261021T234722Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-DBEFE62D5FF4": {
@@ -9848,6 +11498,36 @@
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
         "tier": 0
+      }
+    },
+    "NEG-E0F96EDE1613": {
+      "id": "NEG-E0F96EDE1613",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_distance_identity: On a finite-dimensional repair image, infDist x (range d0) = quotient norm of the class of x",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_distance_identity on a finite dimensional repair image infdist x range d# quotient norm of the class of x",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:59Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0280"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:59Z",
+      "last": {
+        "node_id": "TFQ-0280",
+        "run_id": "TFQ-0280/20261021T234749Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-E0FC770C6E5A": {
@@ -10699,6 +12379,36 @@
         "tier": 0
       }
     },
+    "NEG-EF1C72F7B011": {
+      "id": "NEG-EF1C72F7B011",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "L1_proxy_only: The finite gravity face admits only the rational Regge proxy (area-squared times kappa) via the flat decision flat_einstein_hilbert; the arccosine deficit angle is not admitted and no float cutoff is used.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l#_proxy_only the finite gravity face admits only the rational regge proxy area squared times kappa via the flat decision flat_einstein_hilbert the arccosine de",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:03Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0197"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:03Z",
+      "last": {
+        "node_id": "TFQ-0197",
+        "run_id": "TFQ-0197/20261021T234654Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-EF3C61902BC1": {
       "id": "NEG-EF3C61902BC1",
       "entry_type": "failed_composition",
@@ -10969,6 +12679,66 @@
         "tier": 0
       }
     },
+    "NEG-F477B6661864": {
+      "id": "NEG-F477B6661864",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "G_convergence_witness: (ShadowRequest) -> OptionWitness [convergence_witness]",
+      "evidence": "rust fn convergence_witness takes 0 parameters; the claim says 1",
+      "decl_key": "convergence_witness",
+      "claim_pattern": "wrong_signature:g_convergence_witness shadowrequest optionwitness convergence_witness",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for convergence_witness.",
+      "first_seen_utc": "2026-10-21T23:47:47Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0228"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:47Z",
+      "last": {
+        "node_id": "TFQ-0228",
+        "run_id": "TFQ-0228/20261021T234735Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
+    "NEG-F4C886DDD9E7": {
+      "id": "NEG-F4C886DDD9E7",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "custody_no_derived_status: A clean structure check on the derivation graph assigns no derived status to the custody chain; only OPEN_OBLIGATION, SOURCE_RECORD, or GAP are used",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:custody_no_derived_status a clean structure check on the derivation graph assigns no derived status to the custody chain only open_obligation source_record or g",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:46Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0229"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:46Z",
+      "last": {
+        "node_id": "TFQ-0229",
+        "run_id": "TFQ-0229/20261021T234737Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-F5DE514D3358": {
       "id": "NEG-F5DE514D3358",
       "entry_type": "failed_composition",
@@ -11117,6 +12887,36 @@
         "provider": "openrouter",
         "model": "poolside/laguna-s-2.1:free",
         "tier": 0
+      }
+    },
+    "NEG-F946AADF417F": {
+      "id": "NEG-F946AADF417F",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "l_gap: No derivation from the inert inscription <> to Real0 (Difference joined with Structure) is available. Real0 is defined separately, and its properties do not make <> an admitted root.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:l_gap no derivation from the inert inscription to real# difference joined with structure is available real# is defined separately and its properties do not make",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T23:47:05Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0203"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:05Z",
+      "last": {
+        "node_id": "TFQ-0203",
+        "run_id": "TFQ-0203/20261021T234657Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
       }
     },
     "NEG-FA8E8FBF681B": {
@@ -11359,6 +13159,36 @@
         "tier": 0
       }
     },
+    "NEG-FEAB23659C89": {
+      "id": "NEG-FEAB23659C89",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "g_authority_is_none: (PrimeAlgorithm0) -> Bool [authority_is_none]",
+      "evidence": "rust fn authority_is_none takes 0 parameters; the claim says 1",
+      "decl_key": "authority_is_none",
+      "claim_pattern": "wrong_signature:g_authority_is_none primealgorithm# bool authority_is_none",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for authority_is_none.",
+      "first_seen_utc": "2026-10-21T23:47:53Z",
+      "occurrences": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "nodes": [
+        "TFQ-0232"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T23:47:53Z",
+      "last": {
+        "node_id": "TFQ-0232",
+        "run_id": "TFQ-0232/20261021T234745Z_ladder",
+        "attempt_id": "a3-1",
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "tier": 3
+      }
+    },
     "NEG-FEC7141A3A27": {
       "id": "NEG-FEC7141A3A27",
       "entry_type": "failed_composition",
@@ -11487,6 +13317,9 @@
     "FableHilbertWalk20260819.H006.permU": [
       "NEG-03533814A7EF"
     ],
+    "FableHilbertWalk20260819.H019.cayleyMat2": [
+      "NEG-D86155834819"
+    ],
     "FableHilbertWalk20260819.H042.Syndrome8": [
       "NEG-18F1FCA08685"
     ],
@@ -11545,6 +13378,15 @@
     "NonAbelianGaugeSigns.holonomy_consistency": [
       "NEG-E0D3D4B93537"
     ],
+    "OmegaCore.PrimitiveDifference.classOf": [
+      "NEG-0983C97B5685"
+    ],
+    "QuantumMechanics.BanachQuotient.repairFunctional": [
+      "NEG-88667E959665"
+    ],
+    "RootDiffStructure.Real0.elim": [
+      "NEG-B35D47DE07B1"
+    ],
     "TraceZeroDuality.opNorm": [
       "NEG-120B64845231"
     ],
@@ -11554,8 +13396,20 @@
     "actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums": [
       "NEG-E29C2B40C92F"
     ],
+    "adapter_sound": [
+      "NEG-0DB072BD8419"
+    ],
     "anyon_loop_string_intersection": [
       "NEG-E50905B9A7D0"
+    ],
+    "as_python_dual_str": [
+      "NEG-B67415ED8CC7"
+    ],
+    "authority_effect": [
+      "NEG-38ABB5903F08"
+    ],
+    "authority_is_none": [
+      "NEG-FEAB23659C89"
     ],
     "beta0_definition": [
       "NEG-A94471430058"
@@ -11566,6 +13420,9 @@
     "build_tetron_islands": [
       "NEG-014CFA98D3C6"
     ],
+    "can_continue_n": [
+      "NEG-02583702D27B"
+    ],
     "certificate_from_exact_only": [
       "NEG-A069DF27F53A"
     ],
@@ -11575,12 +13432,21 @@
     "compute_regge_field_equations_4d": [
       "NEG-65749F0E430A"
     ],
+    "continuation_evidence": [
+      "NEG-4E31BD2E81F1"
+    ],
+    "convergence_witness": [
+      "NEG-F477B6661864"
+    ],
     "curvature_commutator": [
       "NEG-428707EEDB70",
       "NEG-F66958CBA930"
     ],
     "decoherence_functional": [
       "NEG-4AD68511DDE2"
+    ],
+    "density_matrix": [
+      "NEG-926B0906BA31"
     ],
     "dobrushin_coefficient": [
       "NEG-A67A76675D98"
@@ -11590,6 +13456,9 @@
     ],
     "evaluate_plan_odm_observer_open": [
       "NEG-682AB7138EEB"
+    ],
+    "evidence_ceiling": [
+      "NEG-B22F84D37211"
     ],
     "fierz_2d_quadruple_check": [
       "NEG-62F4013E50DF"
@@ -11608,6 +13477,12 @@
     ],
     "ground_state_degeneracy": [
       "NEG-A850B2E4740C"
+    ],
+    "group_order": [
+      "NEG-25B376AE11FA"
+    ],
+    "level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge": [
+      "NEG-CD91D2FE8574"
     ],
     "local_box_has_a_verified_hidden_variable_table": [
       "NEG-3CCCA823A4FD"
@@ -11628,6 +13503,9 @@
     "r": [
       "NEG-F2B0674F8EFD"
     ],
+    "regge_action_2d": [
+      "NEG-325610505ED6"
+    ],
     "rel_equal_born_weights": [
       "NEG-49117171F494"
     ],
@@ -11636,6 +13514,9 @@
     ],
     "renyi_entropy_form": [
       "NEG-5BB89284F45A"
+    ],
+    "run_prime_algorithm_0": [
+      "NEG-4B6F8F6E94C5"
     ],
     "sample_winding_angle": [
       "NEG-D2F616BA8217"
@@ -11665,6 +13546,9 @@
       "NEG-12DD8DE01E26",
       "NEG-F88213E3FA06"
     ],
+    "tetrahedral_amplitude": [
+      "NEG-0689548DABB6"
+    ],
     "the_identity_is_row_stochastic_with_ones_on_the_diagonal": [
       "NEG-998EF54F419C"
     ],
@@ -11674,11 +13558,23 @@
     "toric_code_generator": [
       "NEG-C9E7A5C85F9C"
     ],
+    "vertex_deficits": [
+      "NEG-92526DA877B0"
+    ],
+    "with_convergence_witness": [
+      "NEG-1F3C6F0D1B7D"
+    ],
     "yang_baxter": [
       "NEG-9D9A2BAAA2A4"
     ]
   },
   "by_claim_pattern": {
+    "composition_type_mismatch:attach_receipt slot # digest_checks via receipt_is_pointer": [
+      "NEG-C5E8AE348B92"
+    ],
+    "composition_type_mismatch:authority_effect slot # run_prime_algorithm_# via r_authority_none": [
+      "NEG-89D7B0BE6167"
+    ],
     "composition_type_mismatch:baryon_three_contraction slot # antitriplet_diquark_casimir via antitriplet_sign_relation": [
       "NEG-7A632BF8A568"
     ],
@@ -11697,6 +13593,9 @@
     "composition_type_mismatch:code/rust/src/fusion_categories/fusion_ring rs su#_level slot # code/rust/src/fusion_categories/su#_level rs su#_level via r mf_gate": [
       "NEG-E7CB56EFE6FA"
     ],
+    "composition_type_mismatch:frac_of_exact slot # parse_exact via r_canonical": [
+      "NEG-413FAE8571E3"
+    ],
     "composition_type_mismatch:g_#q_recovery_gen slot # g_#q_syndrome_gen via r_#q_syndrome_wellformed": [
       "NEG-ABDD6A41416F"
     ],
@@ -11708,6 +13607,12 @@
     ],
     "composition_type_mismatch:g_creutz_ratio slot # g_wilson_loop via r_creutz_def": [
       "NEG-E9754F5006EF"
+    ],
+    "composition_type_mismatch:g_seal_run_folder slot # g_authority_none via r_receipt_authority_none": [
+      "NEG-038E7AA6686F"
+    ],
+    "composition_type_mismatch:g_seal_run_folder slot # g_replay_hash via r_hash_matches_bytes": [
+      "NEG-B8958A64A072"
     ],
     "composition_type_mismatch:gen_chirp_basis slot # gen_comp_basis via rel_chirp_def": [
       "NEG-0750A6AC81FF"
@@ -11757,8 +13662,14 @@
     "composition_type_mismatch:holonomy_loop slot # vertex_path_holonomy via refuses_a_short_connection_and_a_broken_boundary": [
       "NEG-FFC331823012"
     ],
+    "composition_type_mismatch:parse_exact slot # print_exact via r_roundtrip": [
+      "NEG-886873678F00"
+    ],
     "composition_type_mismatch:qcdbeta#_#_#_implies_asymptotic_window slot # qcdbeta#_#_# via r asymptotic_freedom_window": [
       "NEG-01704F3C5358"
+    ],
+    "composition_type_mismatch:stochastic_update slot # normalize_ledger via diagonal_closure": [
+      "NEG-1AF791B50E99"
     ],
     "composition_type_mismatch:su#_fierz_#d_matrix slot # fierz_#d_quadruple_check via fierz_#d_quadruple_check": [
       "NEG-59C42522D4C0"
@@ -12576,6 +14487,9 @@
     "schema_violation:source the_entropy_form_is_zero_exactly_for_deterministic_distributions relation zero_form_iff_deterministic target shannon_entropy_form": [
       "NEG-CE23AA031102"
     ],
+    "statement_drift:l_declaration_order_length the declaration order list has length #": [
+      "NEG-AF50FDBCC0A4"
+    ],
     "statement_drift:lem_pauli_mul_respects_symplectic the generator gen_pauli_mul produces an output pauli operator whose symplectic commutation with any third pauli operator equal": [
       "NEG-AA99778F8A47"
     ],
@@ -12597,6 +14511,9 @@
     "statement_drift:r_beta#_sign for nc # beta# # #/# nf is positive iff nf #/# test_part_b_gross_wilczek_politzer_beta#_and_banks_zaks_ratio": [
       "NEG-58BD0CB3DD3F"
     ],
+    "statement_drift:r_level#_fib level # has an actual fibonacci subcategory and the gauge is not orthonormal level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge": [
+      "NEG-CD91D2FE8574"
+    ],
     "statement_drift:r_zero_residual if spectral_braid_form_defect family x y z # then the # colored braid matrix satisfies the relation spectral_braid_form_defect": [
       "NEG-86EFCD3B4303"
     ],
@@ -12612,20 +14529,110 @@
     "unparseable_reply:": [
       "NEG-0C43DA16A442"
     ],
+    "vacuous_proof:custody_no_derived_status a clean structure check on the derivation graph assigns no derived status to the custody chain only open_obligation source_record or g": [
+      "NEG-F4C886DDD9E7"
+    ],
+    "vacuous_proof:finite_quotient_vs_continuum_gap the finite quotient selection leaves a continuum gap unfinished": [
+      "NEG-8FCE5752C280"
+    ],
     "vacuous_proof:frobenius_decoupled_from_color_hopf the frobenius algebra identities replayed on matrices over q i for dimension # to # do not require the specific hopf algebra": [
       "NEG-49AC5231B830"
     ],
     "vacuous_proof:l # the existing lean theorem su#_fierz_diagonal_and_offdiagonal_identities proves scalar identities # #/# #/# #/# but is strictly limited to the diagonal carta": [
       "NEG-17021ADBB65A"
     ],
+    "vacuous_proof:l# for a quantum derivation custody binding is the triple of shelf paths f# s# and f# s# plus the f# prime packet carrier and a chapter title in f# does not fil": [
+      "NEG-BDF853F0E1AA"
+    ],
+    "vacuous_proof:l#_proxy_only the finite gravity face admits only the rational regge proxy area squared times kappa via the flat decision flat_einstein_hilbert the arccosine de": [
+      "NEG-EF1C72F7B011"
+    ],
+    "vacuous_proof:l_aux_off_prime_path importing or exposing an s# package symbol game obstructionscore workflows interfaces does not complete a finite quantum derivation s# pack": [
+      "NEG-AA7EB8A0C5B8"
+    ],
+    "vacuous_proof:l_digest_no_widen a digest of a payload leaves the carrier the loss ledger and the hypotheses of the covered finite statement unchanged": [
+      "NEG-DBDC7C728ECF"
+    ],
     "vacuous_proof:l_dimension_scope the existing lean mub reconstructions in dimensions # and # do not establish existence of a complete set of mutually unbiased bases in dimensi": [
       "NEG-E3700F623C2B"
+    ],
+    "vacuous_proof:l_distance_identity on a finite dimensional repair image infdist x range d# quotient norm of the class of x": [
+      "NEG-E0F96EDE1613"
+    ],
+    "vacuous_proof:l_empty_event_zero a nonzero mass on the empty event is rejected an empty carrier is representable in the unnormalized layer but not as a probability carrier": [
+      "NEG-B1478C9C8425"
+    ],
+    "vacuous_proof:l_exact_born_bound the exact born numerator is at most the denominator stated on the rational carrier independent of any float": [
+      "NEG-92D0F6457988"
+    ],
+    "vacuous_proof:l_exact_control exact rational cayley and finite order computations serve as finite controls only no continuous haar measure or hilbert representation is derive": [
+      "NEG-341901A9A348"
+    ],
+    "vacuous_proof:l_f#_decimal_not_bound a bound constructed from f# cannot be used as authorizing evidence": [
+      "NEG-2AB602CBAB24"
     ],
     "vacuous_proof:l_finite_control_validity the finite control test for part c validates the plaquette reduction and wilson/creutz confinement rows but withholds a continuum mass": [
       "NEG-E83C6D07ACF0"
     ],
+    "vacuous_proof:l_float_bar no authorizing statement depends on a float or tolerance valued function authorization factors through the exact carrier only": [
+      "NEG-57A24A707032"
+    ],
+    "vacuous_proof:l_float_trace_preserved if a payload contains a float trace the hash preserves the trace bytes and does not convert it to an exact rational": [
+      "NEG-8E8E85199C9C"
+    ],
+    "vacuous_proof:l_gap no derivation from the inert inscription to real# difference joined with structure is available real# is defined separately and its properties do not make": [
+      "NEG-F946AADF417F"
+    ],
     "vacuous_proof:l_gap_bridge confinement beyond the strong coupling formulae continuum mass gap weak coupling non perturbative behavior as spacing goes to zero is not derived b": [
       "NEG-1E6745CFFC31"
+    ],
+    "vacuous_proof:l_gap_not_removed diagnostic use of finite shadow code leaves gap f# f# # open and authorizes no smooth limit": [
+      "NEG-8D07E5746A9E"
+    ],
+    "vacuous_proof:l_interval_requires_policy deciding on an interval value without policy returns an error rather than a scalar": [
+      "NEG-DA597D265515"
+    ],
+    "vacuous_proof:l_no_continuum the finite cyclotomic amplitudes z zeta_# labels # # # carry no continuum su # /sl # c no haar measure and no triangulation invariance claim they": [
+      "NEG-67462B6AB8D9"
+    ],
+    "vacuous_proof:l_no_continuum_citation passing the exact pentagon/hexagon/verlinde replay for su # _k data licenses only the claim that finite exact ring/category identities h": [
+      "NEG-A313148354F2"
+    ],
+    "vacuous_proof:l_no_silent_upgrade for every continuum request the terminal label is never a continuum theorem label without a witness it is oracle needed and with a witness i": [
+      "NEG-C3512BCB701D"
+    ],
+    "vacuous_proof:l_nonneg_mass_rejected a valuation with a negative rational mass is rejected by validation": [
+      "NEG-274BC17E8D00"
+    ],
+    "vacuous_proof:l_open_when_distinct if the three sentences are not all equal the ledger status is open": [
+      "NEG-AF0A0EC599D9"
+    ],
+    "vacuous_proof:l_row_index_not_proof for a ledger row r with witness field w id r validity of the finite statement s does not follow from the presence of r a separate proof of": [
+      "NEG-7DC67D587179"
+    ],
+    "vacuous_proof:l_same_sentence_printed a rust constant in finite_shadow_exact rs prints the same finite statement text and carrier text as the python record and the file lives": [
+      "NEG-32C35ACFB2E9"
+    ],
+    "vacuous_proof:l_schedule_no_authority scheduling a finite derivation through the host leaves the finite statement unchanged and emits only authorityeffect none": [
+      "NEG-7ACF00EBE1ED"
+    ],
+    "vacuous_proof:l_seal_custody a sealed folder built by g_seal_run_folder from accepted bytes b records replay_hash b and authority effect none": [
+      "NEG-1CDBC381FB18"
+    ],
+    "vacuous_proof:l_separation zero repair distance implies the residual lies in range d#": [
+      "NEG-D771D7B29270"
+    ],
+    "vacuous_proof:l_side_log_only tolerance traces and born_probability floats are recorded only in a side log the rational statement is never built from them so no promotion map": [
+      "NEG-2FA13AA3C448"
+    ],
+    "vacuous_proof:l_triple_agreement for one finite statement s the python packet the rust face and the lean declaration all carry the same carrier text relation and authorityeff": [
+      "NEG-DAC4A462AE7E"
+    ],
+    "vacuous_proof:l_weyl_not_ccr the finite weyl relation does not imply a ccr on a completed real line the two are distinct claims": [
+      "NEG-28B587FA74E4"
+    ],
+    "vacuous_proof:l_withhold_#d_from_exact no value produced by regge_action_#d or holonomy degree plus string label is an input to the exact_regge proxy the proxy s identities s": [
+      "NEG-0D9909A86D8B"
     ],
     "vacuous_proof:le#_#a#ee# a database normal form is not the einstein equation": [
       "NEG-1D1FFD1A3722"
@@ -12635,6 +14642,9 @@
     ],
     "vacuous_proof:le#_#f#f#ca# heath decomposition is an exact join identity on a finite relvar": [
       "NEG-0767985DBE41"
+    ],
+    "vacuous_proof:lem_licence_not_hilbert a licensed lift candidate descent paired obstruction metadata carries no inner product space born rule or completed hilbert lift structu": [
+      "NEG-B94DF446E487"
     ],
     "vacuous_proof:lem_stinespring_ext stinespring dilation for depolarizing channels requires an environment extension": [
       "NEG-EF3C61902BC1"
@@ -12647,6 +14657,12 @@
     ],
     "vacuous_proof:matrix_carrier_witness_chain_sound the exact arithmetic derivation dag witness binds soundly to the finite quantum mechanical matrix carrier definition conservi": [
       "NEG-F36721B096CC"
+    ],
+    "vacuous_proof:one_entry_ledger_unsound for any adapter contract whose loss ledger has exactly one entry adaptercontract issound evaluates to false": [
+      "NEG-D3FEDA1152CF"
+    ],
+    "vacuous_proof:receipt_not_second_statement attaching a receipt leaves the statement carrier unchanged and adds only a pointer with authority effect none": [
+      "NEG-5FA6C301BF65"
     ],
     "vacuous_proof:tfq # replay_scope the rust and python controls perform a weighted fierz identity replay for all # index quadruples and this exhaustive loop is distinct from th": [
       "NEG-B18761D4C55C"
@@ -12663,8 +14679,14 @@
     "wrong_signature:# charge_a charge_b charge_c actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums": [
       "NEG-E29C2B40C92F"
     ],
+    "wrong_signature:adapter_sound_bit primeseam bool adapter_sound": [
+      "NEG-0DB072BD8419"
+    ],
     "wrong_signature:antitripletcoeff rat finiteqm sunantitripletchannelcoeff": [
       "NEG-1360716A26D2"
+    ],
+    "wrong_signature:authority_effect primealgorithm#receipt authorityeffect authority_effect": [
+      "NEG-38ABB5903F08"
     ],
     "wrong_signature:born_probabilities system probabilities probabilities": [
       "NEG-F37671F65005"
@@ -12705,20 +14727,68 @@
     "wrong_signature:g_a_single_state_without_a_self_loop_has_no_period_and_is_not_a_chain_class_with_a_cycle self next period_class a_single_state_without_a_self_loop_has_no_period": [
       "NEG-A2391AAD9547"
     ],
+    "wrong_signature:g_as_python_dual_str shadowterminallabel staticstr as_python_dual_str": [
+      "NEG-B67415ED8CC7"
+    ],
+    "wrong_signature:g_authority_is_none primealgorithm# bool authority_is_none": [
+      "NEG-FEAB23659C89"
+    ],
     "wrong_signature:g_beta# nc nf beta#coefficient test_part_b_gross_wilczek_politzer_beta#_and_banks_zaks_ratio": [
       "NEG-98A8D15D74CA"
+    ],
+    "wrong_signature:g_can_continue_n bool can_continue_n": [
+      "NEG-02583702D27B"
+    ],
+    "wrong_signature:g_cayley_mat# staralgebraelement matrix#x#rat fablehilbertwalk# h# cayleymat#": [
+      "NEG-D86155834819"
+    ],
+    "wrong_signature:g_classof alpha residualquotient omegacore primitivedifference classof": [
+      "NEG-0983C97B5685"
+    ],
+    "wrong_signature:g_continuation_evidence boundepkmeasurement verifieddescentreceipt continuationevidence continuation_evidence": [
+      "NEG-4E31BD2E81F1"
+    ],
+    "wrong_signature:g_convergence_witness shadowrequest optionwitness convergence_witness": [
+      "NEG-F477B6661864"
     ],
     "wrong_signature:g_creutz wilsonlooptable creutzratio test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-27D4BAF8F111"
     ],
+    "wrong_signature:g_density_matrix_wdp instrumentadapter basicmatrix_gaussianrat density_matrix": [
+      "NEG-926B0906BA31"
+    ],
     "wrong_signature:g_dobrushin_coefficient p coefficient dobrushin_coefficient": [
       "NEG-A67A76675D98"
+    ],
+    "wrong_signature:g_evidence_ceiling boundepkmeasurement index evidenceceiling evidence_ceiling": [
+      "NEG-B22F84D37211"
+    ],
+    "wrong_signature:g_group_order finitegroup usize group_order": [
+      "NEG-25B376AE11FA"
+    ],
+    "wrong_signature:g_real#_elim real# target rootdiffstructure real# elim": [
+      "NEG-B35D47DE07B1"
+    ],
+    "wrong_signature:g_regge_action_#d reggecalculus rat#ddeficitsum regge_action_#d": [
+      "NEG-325610505ED6"
+    ],
+    "wrong_signature:g_repair_functional c# real quantummechanics banachquotient repairfunctional": [
+      "NEG-88667E959665"
     ],
     "wrong_signature:g_shor_syndrome_h# pauli# syndrome# fablehilbertwalk# h# evalsyndrome": [
       "NEG-BAAF18BB73F4"
     ],
+    "wrong_signature:g_tetrahedral_amplitude tetspins cyclo# tetrahedral_amplitude": [
+      "NEG-0689548DABB6"
+    ],
     "wrong_signature:g_the_identity_is_row_stochastic_with_ones_on_the_diagonal n stochasticmap the_identity_is_row_stochastic_with_ones_on_the_diagonal": [
       "NEG-998EF54F419C"
+    ],
+    "wrong_signature:g_vertex_deficits reggecalculus vertexdeficitlist vertex_deficits": [
+      "NEG-92526DA877B0"
+    ],
+    "wrong_signature:g_with_convergence_witness shadowrequest string shadowrequest with_convergence_witness": [
+      "NEG-1F3C6F0D1B7D"
     ],
     "wrong_signature:gen_car_nilpotency c_ann nilp finiteqm car_clifford_nilpotency_and_occupation_projector": [
       "NEG-E1EBFA255DCA"
@@ -12785,6 +14855,9 @@
     ],
     "wrong_signature:renyi_entropy_form probabilitysimplex logform renyi_entropy_form": [
       "NEG-5BB89284F45A"
+    ],
+    "wrong_signature:run_prime_algorithm_# primealgorithm#receipt run_prime_algorithm_#": [
+      "NEG-4B6F8F6E94C5"
     ],
     "wrong_signature:sextetcoeff rat finiteqm sunsextetchannelcoeff": [
       "NEG-AF9A95246D21"

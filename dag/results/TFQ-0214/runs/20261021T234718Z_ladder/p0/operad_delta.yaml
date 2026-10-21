@@ -1,0 +1,47 @@
+add_or_refine_generators:
+- id: G_authority_effect
+  ordered_inputs: []
+  output: AuthorityEffect
+  arity: 0
+  carrier: constant string None
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/python/src/mub/__init__.py
+    declaration: authority_effect
+    line: 69
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/python/src/mub/__init__.py
+    decl: authority_effect
+    kind: def
+    line: 69
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No ledger-row, catalog, or runtime-binding declaration was listed under @SRC, so all of those entries
+  are proposed_new.
+- The only existing citation is authority_effect in code/python/src/mub/__init__.py, which returns the
+  constant None; it does not model the ledger itself.
+- Lean types Id and Row are not defined, so the skeletons are untested.
+- Source locus and hash fields for QM-000, QM-020-UNIQ, and the source_claim rows are not grounded.
+- 'generator G_cite_row unverified: no existing declaration cited'
+- 'relation R_binding_preserves_ceiling unverified: no existing declaration cited'
+- 'relation R_formal_label_requires_locus unverified: no existing declaration cited'
+- 'relation R_authority_none unverified: no existing declaration cited'
+- 'lemma L_copy_triple_with_id unverified: Lean elaboration disabled'
+- 'lemma L_title_only_fails unverified: Lean elaboration disabled'
+- 'near_miss NM_title_only unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_formal_label_suffices unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_status_string_grants_authority unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,106 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_row1_prod",
+      "inputs": [
+        "MagicSquareAssignment"
+      ],
+      "output": "SignVal",
+      "arity": 1,
+      "carrier": "SignVal",
+      "ref": {
+        "path": "lean4/DualWitness.lean",
+        "decl": "DualWitness.row1_prod",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_row2_prod",
+      "inputs": [
+        "MagicSquareAssignment"
+      ],
+      "output": "SignVal",
+      "arity": 1,
+      "carrier": "SignVal",
+      "ref": {
+        "path": "lean4/DualWitness.lean",
+        "decl": "DualWitness.row2_prod",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_total_row_prod",
+      "inputs": [
+        "MagicSquareAssignment"
+      ],
+      "output": "SignVal",
+      "arity": 1,
+      "carrier": "SignVal",
+      "ref": {
+        "path": "lean4/DualWitness.lean",
+        "decl": "DualWitness.total_row_prod",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_total_row_eq_col",
+      "statement": "total_row_prod s = total_col_prod s for every MagicSquareAssignment s",
+      "hypotheses": "s : MagicSquareAssignment",
+      "ref": {
+        "path": "lean4/DualWitness.lean",
+        "decl": "DualWitness.total_row_eq_total_col",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_ledger_row_is_index",
+      "statement": "A ledger row id stored in a witness field is an index only; it does not entail the finite statement named by the triple",
+      "hypotheses": "row id r; finite statement S must be named separately with a receipted Lean proof",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_row_index_not_proof",
+      "statement": "For a ledger row r with witness field w = id(r), validity of the finite statement S does not follow from the presence of r; a separate proof of S is required.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_ledger_row_is_index"
+      ],
+      "lean_skeleton": "theorem row_index_not_proof (Row Stmt : Type) (id : Row -> String) (holds : Stmt -> Prop) (r : Row) (S : Stmt) : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_row_as_proof",
+      "claim": "A ledger row in the claim map proves the finite quantum statement it indexes",
+      "rejecting_invariant": "The claim map defines ceilings only; MathematicalClaim is a static catalog that does not recompute a proof or admit a claim."
+    },
+    {
+      "id": "nm_test_as_proof",
+      "claim": "A passing mapped test establishes the Lean statement for all instances",
+      "rejecting_invariant": "A mapped test supports only a finite fixture; unreceipted Lean remains source."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Name the finite statement the F003 triple must bind alongside the row id",
+    "No existing ledger or MathematicalClaim declaration is in SRC, so the index-vs-proof relation is proposed_new",
+    "The Lean skeleton is a placeholder and must be replaced with a faithful formalization",
+    "Compositions not grounded: the generators share the same input colour and no output feeds an input"
+  ]
+}

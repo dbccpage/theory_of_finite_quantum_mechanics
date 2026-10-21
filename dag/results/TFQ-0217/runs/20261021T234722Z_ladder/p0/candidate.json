@@ -1,0 +1,156 @@
+{
+  "task_id": "TFQ-0217",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "dbd21255f3e8550e9451cf0cf986962cde4a6b830d9d26e6c0da58ae128ea087",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_digest_mutation_check",
+          "equation_or_predicate": "Hash mutation faults are checked by a test harness. This is a checker, not an operation, and it is cited only as a relation.",
+          "typing_conditions": "Mutations are applied to the source text and the hash comparison is expected to detect them.",
+          "source_pins": [
+            {
+              "path": "code/rust/quality/category_homology/run_hash_context_replay.py",
+              "declaration": "hash_mutations",
+              "line": 27
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/quality/category_homology/run_hash_context_replay.py",
+            "decl": "hash_mutations",
+            "kind": "def",
+            "line": 27,
+            "lang": "python"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No @KNOWN+ declarations were provided, so generator G_digest has no existing citation.",
+        "The Lean skeletons are placeholders and have no formal model of the payload, digest or ledger.",
+        "The hash_mutations body is truncated, so it is cited only as a checker relation and its behaviour is not verified.",
+        "The three-language name is not grounded.",
+        "No composition is listed because no licensing relation was grounded.",
+        "generator G_digest unverified: no existing declaration cited",
+        "relation R_digest_byte_agreement unverified: no existing declaration cited",
+        "near_miss NM_hash_as_proof unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_hash_exactifies_float unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_digest_mutation_check",
+        "equation_or_predicate": "Hash mutation faults are checked by a test harness. This is a checker, not an operation, and it is cited only as a relation.",
+        "typing_conditions": "Mutations are applied to the source text and the hash comparison is expected to detect them.",
+        "source_pins": [
+          {
+            "path": "code/rust/quality/category_homology/run_hash_context_replay.py",
+            "declaration": "hash_mutations",
+            "line": 27
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/quality/category_homology/run_hash_context_replay.py",
+          "decl": "hash_mutations",
+          "kind": "def",
+          "line": 27,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-DBDC7C728ECF",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_digest_no_widen: A digest of a payload leaves the carrier, the loss ledger and the hypotheses of the covered finite statement unchanged.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0217"
+      },
+      {
+        "id": "NEG-8E8E85199C9C",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_float_trace_preserved: If a payload contains a float trace, the hash preserves the trace bytes and does not convert it to an exact rational.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0217"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No @KNOWN+ declarations were provided, so generator G_digest has no existing citation.",
+      "The Lean skeletons are placeholders and have no formal model of the payload, digest or ledger.",
+      "The hash_mutations body is truncated, so it is cited only as a checker relation and its behaviour is not verified.",
+      "The three-language name is not grounded.",
+      "No composition is listed because no licensing relation was grounded.",
+      "generator G_digest unverified: no existing declaration cited",
+      "relation R_digest_byte_agreement unverified: no existing declaration cited",
+      "near_miss NM_hash_as_proof unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_hash_exactifies_float unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

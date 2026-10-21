@@ -1,0 +1,138 @@
+{
+  "task_id": "TFQ-0200",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "465809991a85593121059bb688c254566fe9577aee395ee1a5cdcf9f32bf241e",
+  "candidate_sha256": "0097908b92bc4baf61d3a562bfc90316a91689bb083cbd230f7c470ac2162492",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:47:03Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "seal_vbox_certificate",
+        "ordered_inputs": [
+          "EnclosedTriple",
+          "VectorBox",
+          "ArtifactJson",
+          "Float",
+          "Bool"
+        ],
+        "output": "Certificate",
+        "arity": 5,
+        "carrier": "exact enclosure triple with float and planted flag as non-authorizing diagnostics",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+            "declaration": "seal_vbox_certificate",
+            "line": 53
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+          "decl": "seal_vbox_certificate",
+          "kind": "fn",
+          "line": 53,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "float_cannot_authorize",
+        "equation_or_predicate": "A float estimate or planted-solution flag never changes whether a certificate is produced; only the exact enclosure determines it.",
+        "typing_conditions": "exact certificate absent implies refusal regardless of float value",
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+            "declaration": "a_huge_float_cannot_invent_an_exact_certificate",
+            "line": 89
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+          "decl": "a_huge_float_cannot_invent_an_exact_certificate",
+          "kind": "fn",
+          "line": 89,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "planted_flag_cannot_mint",
+        "equation_or_predicate": "A planted flag, artifact and float together cannot mint a global claim.",
+        "typing_conditions": "no exact certificate",
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+            "declaration": "planted_flag_artifact_and_float_cannot_mint_a_global_claim",
+            "line": 95
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/omega_native/mub6_claim_gate.rs",
+          "decl": "planted_flag_artifact_and_float_cannot_mint_a_global_claim",
+          "kind": "fn",
+          "line": 95,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Python implementation reference not grounded (build_ledger has no listed signature)",
+      "Lean 4 counterpart of the gate not found in SRC",
+      "Rust types EnclosedTriple, VectorBox and return type not fully visible",
+      "Cross-language refusal equivalence not formalized",
+      "certificate_from_exact_only is host-refused as a signature, so it is not cited as a generator",
+      "lemma three_language_same_statement unverified: Lean elaboration disabled",
+      "near_miss float_authorizes unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}
