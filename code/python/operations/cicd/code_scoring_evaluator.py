@@ -189,7 +189,7 @@ SCHEMA_V2: Dict[str, Any] = {
         },
         "score_token": {
             "type": ["string", "null"],
-            "pattern": r"^(L[1-5](E|D|C|B|A\+?)|null)$"
+            "pattern": r"^L[1-5](E|D|C|B|A\+?)$"
         },
         "is_complete": {"type": "boolean"},
         "grade_ceiling": {

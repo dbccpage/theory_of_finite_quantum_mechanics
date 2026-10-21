@@ -6,7 +6,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/python/src/bin/entropy_cli.py",
-      "sha256": "c5d8116fc18174d1ad177d0d2b40dce5dd65a8568f2d4fc4baaceffb573f6f42"
+      "sha256": "ffe07f35c62b07662aaab8a0fbeb39f9de375885be84ba4e58dfb3dbd73de195"
     },
     "claim": "urn:omega:fqm:entropy:cli-collision-gap:v1",
     "profile": "Exact",
@@ -15,11 +15,11 @@
     "operations": {
       "collision_probability": "Require a nonempty built-in tuple of built-in Fraction/int, nonnegative weights summing exactly to one; return sum of squares, or an explicit work-budget refusal.",
       "parity_gap": "Collision(1,0)-collision(1/2,1/2)=1/2; refuse witness drift.",
-      "main": "Print 1/2 and return 0 for the fixed witness; output unavailable returns 2."
+      "main": "Print 1/2 and return 0 for the fixed witness, 1 for a mismatch or ParityError, and 2 for unavailable output. No stream is owned or closed by this function."
     },
     "engineering_policy": "At most 4096 outcomes, input rational components at most 1024 bits, accumulating exact sum components at most 8192 bits after each step. Temporary exact additions can exceed the work cap before refusal; there is no rounding.",
     "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
-    "failure_boundary": "ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Broken/closed stdout returns 2.",
+    "failure_boundary": "ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Catching ParityError returns status 1; broken/closed stdout returns 2.",
     "cost_model": "O(n) bounded rational operations and O(n) copied entries; rational bit cost remains explicit. No OS peak-memory or real-time guarantee.",
     "scope_ceiling": "Collision probability only; no logarithmic entropy, Baker/Galois theorem, six-import census or Born uniqueness.",
     "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
@@ -43,7 +43,7 @@
       }
     ]
   },
-  "current_contract": "22ea098b4a3e5db6d2f2617659082ecfca29a5785a05804e613e9fcf6f987266",
+  "current_contract": "926706c689b664c9ebd27ccca88f03bb3c0978ddb2410f8984bdd1aded715d5f",
   "current_scoring": "eda7f18b264412ead4d65970b3b752e3e1eb14655376b6ed4225a6538ad9db42",
   "contract_history": [
     {
@@ -569,6 +569,55 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/bin/entropy_cli.py\",\n    \"sha256\": \"c5d8116fc18174d1ad177d0d2b40dce5dd65a8568f2d4fc4baaceffb573f6f42\"\n  },\n  \"claim\": \"urn:omega:fqm:entropy:cli-collision-gap:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"library and entrypoint\",\n  \"purpose\": \"Bounded exact collision probability and pure/fair separator.\",\n  \"operations\": {\n    \"collision_probability\": \"Require a nonempty built-in tuple of built-in Fraction/int, nonnegative weights summing exactly to one; return sum of squares, or an explicit work-budget refusal.\",\n    \"parity_gap\": \"Collision(1,0)-collision(1/2,1/2)=1/2; refuse witness drift.\",\n    \"main\": \"Print 1/2 and return 0 for the fixed witness; output unavailable returns 2.\"\n  },\n  \"engineering_policy\": \"At most 4096 outcomes, input rational components at most 1024 bits, accumulating exact sum components at most 8192 bits after each step. Temporary exact additions can exceed the work cap before refusal; there is no rounding.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Broken/closed stdout returns 2.\",\n  \"cost_model\": \"O(n) bounded rational operations and O(n) copied entries; rational bit cost remains explicit. No OS peak-memory or real-time guarantee.\",\n  \"scope_ceiling\": \"Collision probability only; no logarithmic entropy, Baker/Galois theorem, six-import census or Born uniqueness.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json\",\n      \"sha256\": \"b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/src/bin/entropy_cli.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ]
+    },
+    {
+      "sha256": "926706c689b664c9ebd27ccca88f03bb3c0978ddb2410f8984bdd1aded715d5f",
+      "bytes": 2878,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/bin/entropy_cli.py",
+          "sha256": "ffe07f35c62b07662aaab8a0fbeb39f9de375885be84ba4e58dfb3dbd73de195"
+        },
+        "claim": "urn:omega:fqm:entropy:cli-collision-gap:v1",
+        "profile": "Exact",
+        "role": "library and entrypoint",
+        "purpose": "Bounded exact collision probability and pure/fair separator.",
+        "operations": {
+          "collision_probability": "Require a nonempty built-in tuple of built-in Fraction/int, nonnegative weights summing exactly to one; return sum of squares, or an explicit work-budget refusal.",
+          "parity_gap": "Collision(1,0)-collision(1/2,1/2)=1/2; refuse witness drift.",
+          "main": "Print 1/2 and return 0 for the fixed witness, 1 for a mismatch or ParityError, and 2 for unavailable output. No stream is owned or closed by this function."
+        },
+        "engineering_policy": "At most 4096 outcomes, input rational components at most 1024 bits, accumulating exact sum components at most 8192 bits after each step. Temporary exact additions can exceed the work cap before refusal; there is no rounding.",
+        "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
+        "failure_boundary": "ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Catching ParityError returns status 1; broken/closed stdout returns 2.",
+        "cost_model": "O(n) bounded rational operations and O(n) copied entries; rational bit cost remains explicit. No OS peak-memory or real-time guarantee.",
+        "scope_ceiling": "Collision probability only; no logarithmic entropy, Baker/Galois theorem, six-import census or Born uniqueness.",
+        "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Tests may deliberately supply binary floats only as rejection probes under SCORING.md.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json",
+            "sha256": "b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json",
+            "sha256": "395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/bin/entropy_cli.py\",\n    \"sha256\": \"ffe07f35c62b07662aaab8a0fbeb39f9de375885be84ba4e58dfb3dbd73de195\"\n  },\n  \"claim\": \"urn:omega:fqm:entropy:cli-collision-gap:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"library and entrypoint\",\n  \"purpose\": \"Bounded exact collision probability and pure/fair separator.\",\n  \"operations\": {\n    \"collision_probability\": \"Require a nonempty built-in tuple of built-in Fraction/int, nonnegative weights summing exactly to one; return sum of squares, or an explicit work-budget refusal.\",\n    \"parity_gap\": \"Collision(1,0)-collision(1/2,1/2)=1/2; refuse witness drift.\",\n    \"main\": \"Print 1/2 and return 0 for the fixed witness, 1 for a mismatch or ParityError, and 2 for unavailable output. No stream is owned or closed by this function.\"\n  },\n  \"engineering_policy\": \"At most 4096 outcomes, input rational components at most 1024 bits, accumulating exact sum components at most 8192 bits after each step. Temporary exact additions can exceed the work cap before refusal; there is no rounding.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"ParityError for malformed, empty, signed, non-normalized or oversized data; explicit role distinguishes mass-sum and collision-sum refusal. Catching ParityError returns status 1; broken/closed stdout returns 2.\",\n  \"cost_model\": \"O(n) bounded rational operations and O(n) copied entries; rational bit cost remains explicit. No OS peak-memory or real-time guarantee.\",\n  \"scope_ceiling\": \"Collision probability only; no logarithmic entropy, Baker/Galois theorem, six-import census or Born uniqueness.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json\",\n      \"sha256\": \"b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/bin/entropy_cli.contract.score.yaml#repaired-cli-status/contract"
       ]
     }
   ],
