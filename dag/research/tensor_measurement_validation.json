@@ -14,9 +14,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL. No primitive derivation of local QM, tomography, calibration or either saturation assumption is asserted."
   },
   "counts": {
-    "dag_nodes": 737,
-    "dag_routes": 734,
-    "master_records": 789
+    "dag_nodes": 819,
+    "dag_routes": 816,
+    "master_records": 871
   },
   "preservation": {
     "upstream_master_records_unchanged_as_data": true,
@@ -295,6 +295,21 @@
       },
       "reason": "Lean toolchain upgraded from 4.33.1 to 4.35.0 (Mathlib tag v4.35.0); the replay was re-run from dag/research/replay_tensor_measurements.py on 2026-10-21 and the whole lean_replay block is the new run output. Module sources are unchanged (sha256 identical to the previous replay).",
       "run": "branch lean-v4-35"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 737,
+        "dag_routes": 734,
+        "master_records": 789
+      },
+      "current": {
+        "dag_nodes": 819,
+        "dag_routes": 816,
+        "master_records": 871
+      },
+      "reason": "the COMPUTATION stage was folded into the unified DAG: 82 domain nodes with 82 routes and 82 master records from the Genesis computation chain, the quantum-computation self-obstruction derivation and the recovered Authorization-as-Incompleteness prose and formal packages; no tensor node, route or master record changed",
+      "run": "branch comp-integration"
     }
   ]
 }
