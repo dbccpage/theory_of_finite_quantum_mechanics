@@ -236,11 +236,19 @@ class EndToEnd(Dummy):
                                                                    'cwd': '.', 'needs': None, 'optimizable': True, 'count': stages.PYTHON_TESTS}]))
         integration = integrate.integrate(batch, modes=('normal', 'optimized'))
         self.assertEqual(integration['test_counts'], {'dummy_tests': 1, 'dummy_tests_optimized': 1})
+        # another run committed since selection extends an unselected operad collection: preserved as updated, not as a failure
+        other = next(r for r in ctx.index()['nodes'] if r['node_id'] == 'DUMMY-MUL')['operad_collection']
+        with open(self.root / other, 'ab') as handle:
+            handle.write(b'# extended by a later committed run\n')
+        git(self.root, 'add', other)
+        git(self.root, 'commit', '-q', '-m', 'later run')
         # the toolkit may be fixed while a batch runs: that must not break the preservation proof
         write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 2\n')
         sealed = finalize.finalize(batch, 'audit')
         write(self.root / 'dag/pfp/batch_tools/toolkit_marker.py', 'VERSION = 1\n')
         self.assertEqual(sealed['counts']['semantic_mutants'], 1)
+        preserved = common.load_json(batch.dir / 'review/preservation.json')['files']
+        self.assertEqual([e['path'] for e in preserved if e.get('updated_since_base_by_committed_work')], [other])
         self.assertGreater(sealed['sealed_files'], 30)
         git_status = subprocess.run(['git', 'status', '--porcelain'], cwd=self.root, capture_output=True, text=True).stdout
         self.assertIn('dag/results/', git_status)

@@ -19,6 +19,7 @@ from stages import Batch  # noqa: E402
 PRESERVED_ROOTS = ('dag/results', 'dag/prompts', 'dag/operads', 'dag/pfp')
 # The toolkit itself may be fixed while a batch runs (its digests are recorded as tooling_pins); every other prior PFP file is preserved.
 TOOLKIT_PREFIX = 'dag/pfp/batch_tools/'
+LATER_RUN_AREAS = ('dag/operads/', 'dag/results/')
 README_TEMPLATE = """# PFP prompts {first} through {last}
 
 {count} ordered, previously un-run prompts have their own source-sealed P0/P1/P2/P4/P5 stages and retained operad deltas.
@@ -121,8 +122,17 @@ def finalize(batch: Batch, review_label, *, integration_label='final_integration
                                     capture_output=True).stdout.decode().splitlines()
             require(len(actual) == len(prior), 'Preservation coverage')
             for (name, blob), live in zip(prior, actual):
-                require(blob == live, 'Prior artifact changed ' + name)
-                preserved.append({'path': name, 'git_blob': blob, 'sha256': sha(ctx.root / name)})
+                updated = False
+                if blob != live:
+                    # A single-node run or another batch committed since this batch was selected may extend an operad collection or a
+                    # result folder; the file must then be exactly the committed HEAD blob (no uncommitted drift).
+                    head = subprocess.run(['git', 'rev-parse', 'HEAD:' + name], cwd=ctx.root, capture_output=True, text=True)
+                    require(name.startswith(LATER_RUN_AREAS) and head.returncode == 0 and head.stdout.strip() == live, 'Prior artifact changed ' + name)
+                    updated = True
+                entry = {'path': name, 'git_blob': blob, 'sha256': sha(ctx.root / name)}
+                if updated:
+                    entry['updated_since_base_by_committed_work'] = True
+                preserved.append(entry)
     replace_bytes(batch.dir / 'review/preservation.json', json_bytes({
         'base_commit': base, 'files': preserved, 'count': len(preserved),
         'scope': ('Every prior tracked result, prompt and PFP file and unselected operad collection under %s, apart from the selected collections '
