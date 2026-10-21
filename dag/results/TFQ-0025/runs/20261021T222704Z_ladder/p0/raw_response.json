@@ -1,0 +1,124 @@
+{
+  "task_id": "TFQ-0025",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "e7151a7a4290c287440f9f4afa52d404d608a0408586aecb6fe7b86dd633cc8b",
+  "raw_text": "{\n  \"status\": \"incomplete\",\n  \"generators\": [\n    {\n      \"id\": \"gen_wilson_area_law\",\n      \"inputs\": [\"beta_tilde\", \"r\", \"t\"],\n      \"output\": \"beta_tilde_pow\",\n      \"arity\": 3,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"code/python/src/qm/qcd_confinement.py\",\n        \"decl\": \"wilson_area_law\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"gen_wilson_perimeter_law\",\n      \"inputs\": [\"beta_tilde\", \"r\", \"t\"],\n      \"output\": \"beta_tilde_pow_perim\",\n      \"arity\": 3,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"code/python/src/qm/qcd_confinement.py\",\n        \"decl\": \"wilson_perimeter_law\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"gen_creutz_ratio\",\n      \"inputs\": [\"w_rt\", \"w_r1t1\", \"w_rt1\", \"w_r1t\"],\n      \"output\": \"creutz\",\n      \"arity\": 4,\n      \"carrier\": \"Rat\",\n      \"ref\": {\n        \"path\": \"code/python/src/qm/qcd_confinement.py\",\n        \"decl\": \"creutz_ratio\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_creutz_area\",\n      \"statement\": \"For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from area law Wilson loops equals beta_tilde ^ (R * T).\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQM.lean\",\n        \"decl\": \"FiniteQM.wilson_creutz_ratio_area_vs_perimeter\",\n        \"status\": \"existing\"\n      }\n    },\n    {\n      \"id\": \"rel_creutz_perimeter\",\n      \"statement\": \"For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from perimeter law Wilson loops equals beta_tilde ^ (2 * (R + T)).\",\n      \"hypotheses\": \"\",\n      \"ref\": {\n        \"path\": \"lean4/FiniteQM.lean\",\n        \"decl\": \"FiniteQM.wilson_creutz_ratio_area_vs_perimeter\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lemma_qcd_beta0_rational\",\n      \"statement\": \"For integer nc and nf, qcd_beta0(nc,nf) returns the rational (11/3)*nc - (2/3)*nf.\",\n      \"relation_to_target\": \"auxiliary\",\n      \"depends_on\": [\"gen_wilson_area_law\"],\n      \"lean_skeleton\": \"theorem qcd_beta0_rational (nc nf : ℤ) : qcdBeta0 (nc : ℚ) (nf : ℚ) = (11/3:ℚ) * nc - (2/3:ℚ) * nf := by sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"path\": \"code/python/src/qm/qcd_confinement.py\",\n        \"decl\": \"qcd_beta0\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"near_misses\": [\n    {\n      \"id\": \"nm_composition_type_mismatch_area\",\n      \"claim\": \"gen_creutz_ratio . slot 0 <- gen_wilson_area_law via rel_creutz_area\",\n      \"rejecting_invariant\": \"composition_type_mismatch\"\n    },\n    {\n      \"id\": \"nm_composition_type_mismatch_perimeter\",\n      \"claim\": \"gen_creutz_ratio . slot 0 <- gen_wilson_perimeter_law via rel_creutz_perimeter\",\n      \"rejecting_invariant\": \"composition_type_mismatch\"\n    }\n  ],\n  \"numeric_claims\": [\n    {\n      \"id\": \"nc3_nf0_beta0\",\n      \"expr\": \"(11/3)*3 - (2/3)*0\",\n      \"value\": \"11\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Resolve composition mismatches for Creutz ratio with area/perimeter laws\",\n    \"Provide a proof for lemma_qcd_beta0_rational\"\n  ]\n}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "gen_wilson_area_law",
+        "inputs": [
+          "beta_tilde",
+          "r",
+          "t"
+        ],
+        "output": "beta_tilde_pow",
+        "arity": 3,
+        "carrier": "Rat",
+        "ref": {
+          "path": "code/python/src/qm/qcd_confinement.py",
+          "decl": "wilson_area_law",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "gen_wilson_perimeter_law",
+        "inputs": [
+          "beta_tilde",
+          "r",
+          "t"
+        ],
+        "output": "beta_tilde_pow_perim",
+        "arity": 3,
+        "carrier": "Rat",
+        "ref": {
+          "path": "code/python/src/qm/qcd_confinement.py",
+          "decl": "wilson_perimeter_law",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "gen_creutz_ratio",
+        "inputs": [
+          "w_rt",
+          "w_r1t1",
+          "w_rt1",
+          "w_r1t"
+        ],
+        "output": "creutz",
+        "arity": 4,
+        "carrier": "Rat",
+        "ref": {
+          "path": "code/python/src/qm/qcd_confinement.py",
+          "decl": "creutz_ratio",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_creutz_area",
+        "statement": "For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from area law Wilson loops equals beta_tilde ^ (R * T).",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rel_creutz_perimeter",
+        "statement": "For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from perimeter law Wilson loops equals beta_tilde ^ (2 * (R + T)).",
+        "hypotheses": "",
+        "ref": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lemma_qcd_beta0_rational",
+        "statement": "For integer nc and nf, qcd_beta0(nc,nf) returns the rational (11/3)*nc - (2/3)*nf.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "gen_wilson_area_law"
+        ],
+        "lean_skeleton": "theorem qcd_beta0_rational (nc nf : ℤ) : qcdBeta0 (nc : ℚ) (nf : ℚ) = (11/3:ℚ) * nc - (2/3:ℚ) * nf := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "code/python/src/qm/qcd_confinement.py",
+          "decl": "qcd_beta0",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_composition_type_mismatch_area",
+        "claim": "gen_creutz_ratio . slot 0 <- gen_wilson_area_law via rel_creutz_area",
+        "rejecting_invariant": "composition_type_mismatch"
+      },
+      {
+        "id": "nm_composition_type_mismatch_perimeter",
+        "claim": "gen_creutz_ratio . slot 0 <- gen_wilson_perimeter_law via rel_creutz_perimeter",
+        "rejecting_invariant": "composition_type_mismatch"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "nc3_nf0_beta0",
+        "expr": "(11/3)*3 - (2/3)*0",
+        "value": "11"
+      }
+    ],
+    "open_obligations": [
+      "Resolve composition mismatches for Creutz ratio with area/perimeter laws",
+      "Provide a proof for lemma_qcd_beta0_rational"
+    ]
+  }
+}

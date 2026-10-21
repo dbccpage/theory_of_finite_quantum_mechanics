@@ -1,0 +1,122 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_wilson_area_law",
+      "inputs": [
+        "beta_tilde",
+        "r",
+        "t"
+      ],
+      "output": "beta_tilde ^ (r * t)",
+      "arity": 3,
+      "carrier": "Rat",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "wilson_area_law",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_wilson_perimeter_law",
+      "inputs": [
+        "beta_tilde",
+        "r",
+        "t"
+      ],
+      "output": "beta_tilde ^ (2 * (r + t))",
+      "arity": 3,
+      "carrier": "Rat",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "wilson_perimeter_law",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_creutz_ratio",
+      "inputs": [
+        "w_rt",
+        "w_r1t1",
+        "w_rt1",
+        "w_r1t"
+      ],
+      "output": "(w_rt * w_r1t1) / (w_rt1 * w_r1t)",
+      "arity": 4,
+      "carrier": "Rat",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "creutz_ratio",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_creutz_area",
+      "statement": "For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from area law Wilson loops equals beta_tilde.",
+      "hypotheses": "beta_tilde ≠ 0 ∧ R ≥ 1 ∧ T ≥ 1",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_creutz_perimeter",
+      "statement": "For any beta_tilde ≠ 0 and integers R,T ≥ 1, the Creutz ratio computed from perimeter law Wilson loops equals 1.",
+      "hypotheses": "beta_tilde ≠ 0 ∧ R ≥ 1 ∧ T ≥ 1",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_creutz_ratio",
+      "slot": 0,
+      "inner": "gen_wilson_area_law",
+      "licensing_relation": "rel_creutz_area"
+    },
+    {
+      "outer": "gen_creutz_ratio",
+      "slot": 0,
+      "inner": "gen_wilson_perimeter_law",
+      "licensing_relation": "rel_creutz_perimeter"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lem_creutz_ratio_comparison",
+      "statement": "When beta_tilde = 1/9, the Creutz ratio from the area law equals 1/9 while the Creutz ratio from the perimeter law equals 1.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "rel_creutz_area",
+        "rel_creutz_perimeter"
+      ],
+      "lean_skeleton": "theorem creutz_ratio_comparison (beta : Rat) (hb : beta ≠ 0) (hbeta : beta = (1/9 : Rat)) (R T : Nat) (hR : 0 < R) (hT : 0 < T) :\n  let wA := FiniteQM.wilson_area_law beta R T;\n  let wP := FiniteQM.wilson_perimeter_law beta R T;\n  let crA := FiniteQM.creutz_ratio wA (FiniteQM.wilson_area_law beta (R+1) (T+1)) (FiniteQM.wilson_area_law beta R (T+1)) (FiniteQM.wilson_area_law beta (R+1) T);\n  let crP := FiniteQM.creutz_ratio wP (FiniteQM.wilson_perimeter_law beta (R+1) (T+1)) (FiniteQM.wilson_perimeter_law beta R (T+1)) (FiniteQM.wilson_perimeter_law beta (R+1) T);\n  have hcrA : crA = beta := by sorry;\n  have hcrP : crP = 1 := by sorry;\n  by\n    simpa [hbeta] using And.intro hcrA hcrP",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "nc_beta_1_9_area",
+      "expr": "beta_tilde",
+      "value": "1/9"
+    },
+    {
+      "id": "nc_beta_1_9_perimeter",
+      "expr": "1",
+      "value": "1"
+    }
+  ],
+  "open_obligations": []
+}

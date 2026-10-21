@@ -1,0 +1,86 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_qcdBeta0_lean",
+      "inputs": ["Rat", "Rat"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcdBeta0",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_qcdBeta1_lean",
+      "inputs": ["Rat", "Rat"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcdBeta1",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_beta0_value_at_nf16",
+      "statement": "qcdBeta0 3 16 = 1/3",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_beta1_value_at_nf16",
+      "statement": "qcdBeta1 3 16 = -302/3",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.qcd_beta1_and_banks_zaks_fixed_point",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem_ratio_qcd_beta0_beta1_nf16",
+      "statement": "(- qcdBeta0 3 16) / qcdBeta1 3 16 = 1/302",
+      "relation_to_target": "implies",
+      "depends_on": ["rel_beta0_value_at_nf16", "rel_beta1_value_at_nf16"],
+      "lean_skeleton": "by\n  have h0 : qcdBeta0 3 16 = (1/3) := by\n    simpa using rel_beta0_value_at_nf16\n  have h1 : qcdBeta1 3 16 = (-302/3) := by\n    simpa using rel_beta1_value_at_nf16\n  simp [h0, h1] ",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "beta0_n16",
+      "expr": "11 - (2/3)*16",
+      "value": "1/3"
+    },
+    {
+      "id": "beta1_n16",
+      "expr": "102 - (38/3)*16",
+      "value": "-302/3"
+    },
+    {
+      "id": "ratio_1_302",
+      "expr": "- (1/3) / (-302/3)",
+      "value": "1/302"
+    }
+  ],
+  "open_obligations": []
+}

@@ -1,0 +1,55 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_from_operation_inherits_associativity
+  equation_or_predicate: from_operation constructs a FiniteGroup from an associative operation without
+    a separate associativity table check, so associativity is inherited from the supplied operation.
+  typing_conditions: The supplied mul is associative on elements.
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_group.rs
+    declaration: check_associativity_for_pair
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_group.rs
+    decl: check_associativity_for_pair
+    kind: fn
+    line: 259
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-6C1B4A3913F0
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'from_operation: (G_elem, G_elem) -> FiniteGroup [from_operation]'
+  evidence: rust fn from_operation takes 3 parameters; the claim says 2
+  decl_key: from_operation
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0013
+open_obligations:
+- No declared finite gauge group was supplied, so no composition or lemma linking a cyclotomic character
+  table to a named gauge group is grounded.
+- The associativity check for hand-written tables (check_associativity_for_pair) is not yet tied to a
+  relation with a verified statement.
+- Dixon reduction and orthogonality-in-Z[zeta_e] claims were not cited because no verified declaration
+  for them was supplied under @SRC or @KNOWN+.
+- Lean MUB.TripleGaugeReduction declarations are unrelated to the finite group target and were not used.
+- 'AuthorityEffect: None.'
+- 'near_miss nm_character_table_as_gauge_label unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_test_checker_as_generator unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_max_character_table_classes_bound
+  expr: '40'
+  value: '40'
+  host_evidence:
+    recomputed: '40'
+verified_lemma_statements: []

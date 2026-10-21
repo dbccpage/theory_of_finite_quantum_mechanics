@@ -1,0 +1,34 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_wilson_lattice_3x3_betti
+  equation_or_predicate: e - e_tree = b1
+  typing_conditions: e = 12 ∧ e_tree = 8 ∧ b1 = 4
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.wilson_lattice_3x3_dfm_betti_identity
+    line: 642
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.wilson_lattice_3x3_dfm_betti_identity
+    kind: theorem
+    line: 642
+    lang: lean
+  proposed_by:
+    model: openai/gpt-oss-120b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'lemma lem_betti_identity_target unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_betti_eq
+  expr: 12 - 8
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements: []

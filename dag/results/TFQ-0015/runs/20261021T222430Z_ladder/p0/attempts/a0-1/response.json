@@ -1,0 +1,66 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "gen_convolution_Q",
+      "inputs": [
+        "G"
+      ],
+      "output": "Q(i)",
+      "arity": 1,
+      "carrier": "FiniteGroupoidAlgebra",
+      "ref": {
+        "path": "code/rust/src/lie_theory/finite_groupoid_algebra.rs",
+        "decl": "gen_convolution",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_assoc_from_operation",
+      "statement": "Associativity holds for the finite groupoid operation used in the convolution generator.",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/rust/src/lie_theory/finite_group.rs",
+        "decl": "check_associativity_for_pair",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_convolution_Q",
+      "slot": 0,
+      "inner": "gen_convolution_Q",
+      "licensing_relation": "rel_assoc_from_operation"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lemma_qm213_trace",
+      "statement": "The Borel matrix carried by the punctured cycle in the substantial data has trace 5/2.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "lemma lemma_qm213_trace : trace BorelMatrix = (5/2 : ℚ) :=\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "trace_Borel",
+      "expr": "5/2",
+      "value": "5/2"
+    }
+  ],
+  "open_obligations": [
+    "Provide concrete definition of the Borel matrix and its trace computation.",
+    "Connect the artificial vs substantial split to the generator definitions."
+  ]
+}

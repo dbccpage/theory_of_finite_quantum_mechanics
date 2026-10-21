@@ -1,0 +1,304 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0042",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "4bd6bc86b262a4d6cb5a4aa2c3efb24188ff35196048db36cd326e30c045944e",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0042 stage=P0 attempt=a0-1 in=4bd6bc86 guided=yes\n@TARGET [OPEN] ravera_dfm_finite_to_continuum.rs evaluates evaluate_su3_spanning_tree_vs_landau_gribov_control on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian commutator, and dresses every spanning tree, and it counts diagonal Klein-four copies. Lean su3_diagonal_klein_four_landau_gribov_copies and spanning_tree_dfm_eliminates_gribov_copies treat the copy count 4^3=64 and a tree identity for rational, not matrix, link variables. No Python twin of this function was found under 006_finite_qm/python. The module title uses continuum language; that title is not a bridge theorem.\n@BOTTLENECK Supply a Python replay or keep the Gribov diamond as Rust plus a Lean rational shadow.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/FiniteQM.lean | FiniteQM.su3_diagonal_klein_four_landau_gribov_copies | theorem | theorem su3_diagonal_klein_four_landau_gribov_copies : let det3 (d1 d2 d3 : Rat) : Rat\n lean4/FiniteQM.lean | FiniteQM.spanning_tree_dfm_eliminates_gribov_copies | theorem | theorem spanning_tree_dfm_eliminates_gribov_copies (u01 u12 u02 g1 g2 : Rat) (hu01 : u01 ≠ 0) (hu12 : u12 ≠ 0) (hg1 : g1 ≠ 0) (hg2 : g2 ≠ 0) : let u01\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.su3_diagonal_klein_four_landau_gribov_copies | theorem | theorem su3_diagonal_klein_four_landau_gribov_copies : let det3 (d1 d2 d3 : Rat) : Rat\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.spanning_tree_dfm_eliminates_gribov_copies | theorem | theorem spanning_tree_dfm_eliminates_gribov_copies (u01 u12 u02 g1 g2 : Rat) (hu01 : u01 ≠ 0) (hu12 : u12 ≠ 0) (hg1 : g1 ≠ 0) (hg2 : g2 ≠ 0) : let u01\n lean4/FiniteQM.lean | FiniteQM.countermodel_matrix_diagonal_all_false | theorem | theorem countermodel_matrix_diagonal_all_false (i : SingleSystemImport) : ¬ AdmitsImport (countermodelFor i) i\n lean4/FiniteQM.lean | FiniteQM.countermodel_matrix_off_diagonal_all_true | theorem | theorem countermodel_matrix_off_diagonal_all_true (r c : SingleSystemImport) (h : r ≠ c) : AdmitsImport (countermodelFor r) c\n lean4/FiniteQM.lean | FiniteQM.ckm_bipartite_dfm_parameter_count | theorem | theorem ckm_bipartite_dfm_parameter_count (ng : Rat) : let e_total\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.spanning_tree_nonabelian_mat2_factorization | theorem | theorem spanning_tree_nonabelian_mat2_factorization (U01 U01_inv U12 U12_inv U02 G1 G1_inv G2 G2_inv : Mat2Rat) (hU01 : Mat2Rat.mul U01 U01_inv = Mat2\n code/rust/src/qm/campaigns/ravera_dfm.rs | test_su3_spanning_tree_vs_landau_gribov_control | fn [test]\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1 | theorem\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ckm_bipartite_dfm_parameter_count | theorem\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat | structure\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.zero | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.id | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.add | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.sub | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.mul | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.transpose | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.tr | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.Mat2Rat.det | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ewDressingMat | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ewDressedDoublet | abbrev\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ew_dfm_goldstone_elimination_on_sphere | theorem\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ew_gaussian_4d_goldstone_elimination | theorem\n lean4/RaveraDfmFiniteToContinuum.lean | RaveraDfmFiniteToContinuum.ewNeutralMassSqMat | abbrev\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:rel_wilson_lattice_3x3_betti e - e_tree = b1 src=lean4/FiniteQM.lean | FiniteQM.wilson_lattice_3x3_dfm_betti_identity\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "TFQ-0023"
+    ],
+    "feedback": true,
+    "index_position": 218,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

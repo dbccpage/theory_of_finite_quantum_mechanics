@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0101",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "0770f3cde44c4fb5b9db59b23e5d581cabcd8e593f68e59851a13733a5cd21f2",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0101 stage=P0 attempt=a0-2 in=0770f3cd guided=yes\n@TARGET [SOURCE_RECORD] einstein_hilbert_action.rs is an f64 face. Its fence says it is not the exact proxy, the sum of squared area times kappa. The stand-in follows a two-dimensional vertex sum of deficit with hinge volume one, and a legacy constructor may store a degree as a float. The continuum integral of scalar curvature against volume density is not this file. What is finite, at best, is a floating scalar on a named Regge value. What is not discharged is the Einstein-Hilbert action, the Einstein equation, and a continuum limit. Equating this float with the rational proxy is refused. A small complex is not quantum gravity.\n@BOTTLENECK The f64 face does not discharge the Einstein-Hilbert action, the Einstein equation, or the continuum limit.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/general_relativity/lib.rs | einstein_hilbert_action | mod | pub mod einstein_hilbert_action;\n code/rust/src/general_relativity/mod.rs | einstein_hilbert_action | mod | pub mod einstein_hilbert_action;\n code/rust/src/general_relativity/einstein_hilbert_action.rs | EinsteinHilbertAction | struct | pub struct EinsteinHilbertAction\n code/rust/src/general_relativity/einstein_hilbert_action.rs | action_matches_sum_of_deficits | fn | fn action_matches_sum_of_deficits()\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.norm_sq_eq_sum_complex | theorem | theorem norm_sq_eq_sum_complex (g : PreH ℂ) {s : Finset ℕ} (hs : g.support ⊆ s) : ‖g‖ ^ 2 = ∑ i ∈ s, ‖g i‖ ^ 2\n code/rust/src/qm/campaigns/regge_gravity.rs | sum_vertex_deficits | fn | fn sum_vertex_deficits(degrees: &[i64; 4]) -> Result<i64, &'static str>\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.norm_sq_apply_complex | theorem | theorem norm_sq_apply_complex (z : ℂ) : ‖z‖ ^ 2 = z.re ^ 2 + z.im ^ 2\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.controlled_completion_complex | theorem | theorem controlled_completion_complex : (∀ a b c d : Carrier, inner ℂ (liftPair (a, b)) (liftPair (c, d)) = ((qinner a c + qinner b d : ℚ) : ℂ) + Comp\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair | def\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_apply | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_re | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_im | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.support_castPair_subset | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_sub | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_zero_right | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.inner_castPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.norm_castPair_sq | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.denseRange_castPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.liftPair | def\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.liftPair_real | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.inner_liftPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.liftPair_sub | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.norm_liftPair_sq | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.denseRange_liftPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.exists_not_mem_range_liftPair | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "TFQ-0100",
+      "TFQ-0102"
+    ],
+    "feedback": true,
+    "index_position": 235,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

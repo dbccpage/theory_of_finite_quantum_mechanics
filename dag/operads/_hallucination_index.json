@@ -15,18 +15,19 @@
       "confidence": "exact",
       "forbidden_move": "Do not cite g at that path; see the evidence for where it lives.",
       "first_seen_utc": "2026-10-21T18:28:46Z",
-      "occurrences": 1,
+      "occurrences": 2,
       "models": [
         "openai/gpt-oss-20b"
       ],
       "nodes": [
-        "TFQ-0028"
+        "TFQ-0028",
+        "TFQ-0049"
       ],
       "authority_effect": "None",
-      "last_seen_utc": "2026-10-21T18:28:46Z",
+      "last_seen_utc": "2026-10-21T22:35:02Z",
       "last": {
-        "node_id": "TFQ-0028",
-        "run_id": "TFQ-0028/20261021T181833Z_ladder",
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
         "attempt_id": "a0-3",
         "provider": "groq",
         "model": "openai/gpt-oss-20b",
@@ -123,6 +124,96 @@
         "tier": 0
       }
     },
+    "NEG-04E96F64DDC6": {
+      "id": "NEG-04E96F64DDC6",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "singletCoeff: () -> Rat [FiniteQM.suNSingletChannelCoeff]",
+      "evidence": "lean abbrev suNSingletChannelCoeff has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+      "decl_key": "FiniteQM.suNSingletChannelCoeff",
+      "claim_pattern": "wrong_signature:singletcoeff rat finiteqm sunsingletchannelcoeff",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.suNSingletChannelCoeff.",
+      "first_seen_utc": "2026-10-21T22:26:19Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0021"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:26:19Z",
+      "last": {
+        "node_id": "TFQ-0021",
+        "run_id": "TFQ-0021/20261021T222559Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-0767985DBE41": {
+      "id": "NEG-0767985DBE41",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "le39_6f2f5ca3: Heath decomposition is an exact join identity on a finite relvar.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:le#_#f#f#ca# heath decomposition is an exact join identity on a finite relvar",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:36:21Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0088"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:36:21Z",
+      "last": {
+        "node_id": "TFQ-0088",
+        "run_id": "TFQ-0088/20261021T223617Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-079BF38089AA": {
+      "id": "NEG-079BF38089AA",
+      "entry_type": "failed_composition",
+      "class": "nonexistent_declaration",
+      "claim_kind": "generator",
+      "claim": "finite_group_from_operation: (elements, mul, key) -> FiniteGroup [pub fn from_operation<K, M, F>(elements: Vec<E>, mul: M, key: F) -> Result<Self, GroupError>]",
+      "evidence": "code/rust/src/lie_theory/finite_group.rs has no declaration pub and none exists in the indexed sources",
+      "decl_key": "pub",
+      "claim_pattern": "nonexistent_declaration:pub",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite pub as an existing declaration.",
+      "first_seen_utc": "2026-10-21T22:24:15Z",
+      "occurrences": 1,
+      "models": [
+        "nvidia/nemotron-3.5-lightning:free"
+      ],
+      "nodes": [
+        "TFQ-0013"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:24:15Z",
+      "last": {
+        "node_id": "TFQ-0013",
+        "run_id": "TFQ-0013/20261021T222405Z_ladder",
+        "attempt_id": "a0-4",
+        "provider": "openrouter",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
     "NEG-09161C263C0C": {
       "id": "NEG-09161C263C0C",
       "entry_type": "failed_composition",
@@ -165,24 +256,26 @@
       "confidence": "exact",
       "forbidden_move": "Return one JSON object and nothing else.",
       "first_seen_utc": "2026-10-21T18:28:45Z",
-      "occurrences": 14,
+      "occurrences": 15,
       "models": [
         "minimax/minimax-m3.1-flash:free",
-        "nvidia/nemotron-3.5-lightning:free"
+        "nvidia/nemotron-3.5-lightning:free",
+        "poolside/laguna-s-2.1:free"
       ],
       "nodes": [
         "TFQ-0022",
+        "TFQ-0027",
         "TFQ-0028",
         "TFQ-0031"
       ],
       "authority_effect": "None",
-      "last_seen_utc": "2026-10-21T18:28:46Z",
+      "last_seen_utc": "2026-10-21T22:29:21Z",
       "last": {
-        "node_id": "TFQ-0031",
-        "run_id": "TFQ-0031/20261021T181434Z_ladder",
+        "node_id": "TFQ-0027",
+        "run_id": "TFQ-0027/20261021T222752Z_ladder",
         "attempt_id": "a0-2",
         "provider": "openrouter",
-        "model": "minimax/minimax-m3.1-flash:free",
+        "model": "poolside/laguna-s-2.1:free",
         "tier": 0
       }
     },
@@ -216,6 +309,36 @@
         "tier": 0
       }
     },
+    "NEG-1360716A26D2": {
+      "id": "NEG-1360716A26D2",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "antitripletCoeff: () -> Rat [FiniteQM.suNAntitripletChannelCoeff]",
+      "evidence": "lean abbrev suNAntitripletChannelCoeff has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+      "decl_key": "FiniteQM.suNAntitripletChannelCoeff",
+      "claim_pattern": "wrong_signature:antitripletcoeff rat finiteqm sunantitripletchannelcoeff",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.suNAntitripletChannelCoeff.",
+      "first_seen_utc": "2026-10-21T22:26:19Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0021"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:26:19Z",
+      "last": {
+        "node_id": "TFQ-0021",
+        "run_id": "TFQ-0021/20261021T222559Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-17021ADBB65A": {
       "id": "NEG-17021ADBB65A",
       "entry_type": "failed_composition",
@@ -241,6 +364,36 @@
         "node_id": "TFQ-0022",
         "run_id": "TFQ-0022/20261021T181116Z_ladder",
         "attempt_id": "a0-3",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-1D1FFD1A3722": {
+      "id": "NEG-1D1FFD1A3722",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "le72_8a142ee1: A database normal form is not the Einstein equation.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:le#_#a#ee# a database normal form is not the einstein equation",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:36:21Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0088"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:36:21Z",
+      "last": {
+        "node_id": "TFQ-0088",
+        "run_id": "TFQ-0088/20261021T223617Z_ladder",
+        "attempt_id": "a0-2",
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
         "tier": 0
@@ -396,6 +549,36 @@
         "tier": 4
       }
     },
+    "NEG-318E3CE70F77": {
+      "id": "NEG-318E3CE70F77",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "le20_3a5fef1e: The live reading is a superkey, so minimality is not the live claim.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:le#_#a#fef#e the live reading is a superkey so minimality is not the live claim",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:36:21Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0088"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:36:21Z",
+      "last": {
+        "node_id": "TFQ-0088",
+        "run_id": "TFQ-0088/20261021T223617Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
     "NEG-408F893D6930": {
       "id": "NEG-408F893D6930",
       "entry_type": "failed_composition",
@@ -426,6 +609,36 @@
         "tier": 0
       }
     },
+    "NEG-44E121650D5F": {
+      "id": "NEG-44E121650D5F",
+      "entry_type": "failed_composition",
+      "class": "nonexistent_declaration",
+      "claim_kind": "generator",
+      "claim": "gen_toric_fusion: (ℂ, ℂ) -> ℂ [fusion_ring_Z2xZ2]",
+      "evidence": "code/rust/src/fusion_categories/fusion_ring.rs has no declaration fusion_ring_Z2xZ2 and none exists in the indexed sources",
+      "decl_key": "fusion_ring_Z2xZ2",
+      "claim_pattern": "nonexistent_declaration:fusion_ring_Z2xZ2",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite fusion_ring_Z2xZ2 as an existing declaration.",
+      "first_seen_utc": "2026-10-21T22:35:02Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-20b"
+      ],
+      "nodes": [
+        "TFQ-0049"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:35:02Z",
+      "last": {
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
+        "attempt_id": "a0-3",
+        "provider": "groq",
+        "model": "openai/gpt-oss-20b",
+        "tier": 0
+      }
+    },
     "NEG-452E93396795": {
       "id": "NEG-452E93396795",
       "entry_type": "failed_composition",
@@ -453,6 +666,36 @@
         "attempt_id": "a0-4",
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
+    "NEG-49AC5231B830": {
+      "id": "NEG-49AC5231B830",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "frobenius_decoupled_from_color_hopf: The Frobenius algebra identities replayed on matrices over Q(i) for dimension 1 to 16 do not require the specific Hopf algebra structure of QCD color composites.",
+      "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:frobenius_decoupled_from_color_hopf the frobenius algebra identities replayed on matrices over q i for dimension # to # do not require the specific hopf algebra",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:34:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0049"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:59Z",
+      "last": {
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
         "tier": 0
       }
     },
@@ -516,6 +759,66 @@
         "tier": 0
       }
     },
+    "NEG-5AA26F721084": {
+      "id": "NEG-5AA26F721084",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_convolution_Q . slot 0 <- gen_convolution_Q via rel_assoc_from_operation",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_convolution_q slot # gen_convolution_q via rel_assoc_from_operation",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:24:33Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0015"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:24:33Z",
+      "last": {
+        "node_id": "TFQ-0015",
+        "run_id": "TFQ-0015/20261021T222430Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-5D77E7C6EA4B": {
+      "id": "NEG-5D77E7C6EA4B",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "octetCoeff: () -> Rat [FiniteQM.suNOctetChannelCoeff]",
+      "evidence": "lean abbrev suNOctetChannelCoeff has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+      "decl_key": "FiniteQM.suNOctetChannelCoeff",
+      "claim_pattern": "wrong_signature:octetcoeff rat finiteqm sunoctetchannelcoeff",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.suNOctetChannelCoeff.",
+      "first_seen_utc": "2026-10-21T22:26:19Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0021"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:26:19Z",
+      "last": {
+        "node_id": "TFQ-0021",
+        "run_id": "TFQ-0021/20261021T222559Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-5F75AA85F5F9": {
       "id": "NEG-5F75AA85F5F9",
       "entry_type": "counterexample",
@@ -576,6 +879,66 @@
         "tier": 0
       }
     },
+    "NEG-6C1B4A3913F0": {
+      "id": "NEG-6C1B4A3913F0",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "from_operation: (G_elem, G_elem) -> FiniteGroup [from_operation]",
+      "evidence": "rust fn from_operation takes 3 parameters; the claim says 2",
+      "decl_key": "from_operation",
+      "claim_pattern": "wrong_signature:from_operation g_elem g_elem finitegroup from_operation",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for from_operation.",
+      "first_seen_utc": "2026-10-21T22:24:24Z",
+      "occurrences": 1,
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "nodes": [
+        "TFQ-0013"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:24:24Z",
+      "last": {
+        "node_id": "TFQ-0013",
+        "run_id": "TFQ-0013/20261021T222405Z_ladder",
+        "attempt_id": "a2-5",
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "tier": 2
+      }
+    },
+    "NEG-6F4D03C9F8FC": {
+      "id": "NEG-6F4D03C9F8FC",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "baryon_three_contraction . slot 2 <- sextet_diquark_casimir via sextet_sign_relation",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:baryon_three_contraction slot # sextet_diquark_casimir via sextet_sign_relation",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:30:05Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0033"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:30:05Z",
+      "last": {
+        "node_id": "TFQ-0033",
+        "run_id": "TFQ-0033/20261021T222957Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-72B1E892029D": {
       "id": "NEG-72B1E892029D",
       "entry_type": "counterexample",
@@ -606,6 +969,127 @@
         "tier": 0
       }
     },
+    "NEG-7889F5BA5CBE": {
+      "id": "NEG-7889F5BA5CBE",
+      "entry_type": "failed_composition",
+      "class": "nonexistent_declaration",
+      "claim_kind": "lemma",
+      "claim": "lem_convolution_associative: The convolution generator `gen_convolution` is associative on the groupoid elements.",
+      "evidence": "statement cites gen_convolution, which exists nowhere in the indexed sources (heuristic)",
+      "decl_key": "gen_convolution",
+      "claim_pattern": "nonexistent_declaration:gen_convolution",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not cite gen_convolution as an existing declaration.",
+      "first_seen_utc": "2026-10-21T22:24:28Z",
+      "occurrences": 2,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0014",
+        "TFQ-0015"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:24:33Z",
+      "last": {
+        "node_id": "TFQ-0015",
+        "run_id": "TFQ-0015/20261021T222430Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-7A4A7C600F5D": {
+      "id": "NEG-7A4A7C600F5D",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "op_label_to_polynomial: (z2_physical_x_basis_labels) -> tfim_matrix_polynomial_identity [FableHilbertWalk20260819.H076.z2_physical_x_basis_labels]",
+      "evidence": "rust fn z2_physical_x_basis_labels takes 0 parameters; the claim says 1",
+      "decl_key": "FableHilbertWalk20260819.H076.z2_physical_x_basis_labels",
+      "claim_pattern": "wrong_signature:op_label_to_polynomial z#_physical_x_basis_labels tfim_matrix_polynomial_identity fablehilbertwalk# h# z#_physical_x_basis_labels",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FableHilbertWalk20260819.H076.z2_physical_x_basis_labels.",
+      "first_seen_utc": "2026-10-21T22:32:38Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0041"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:32:38Z",
+      "last": {
+        "node_id": "TFQ-0041",
+        "run_id": "TFQ-0041/20261021T223225Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-7A632BF8A568": {
+      "id": "NEG-7A632BF8A568",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "baryon_three_contraction . slot 0 <- antitriplet_diquark_casimir via antitriplet_sign_relation",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:baryon_three_contraction slot # antitriplet_diquark_casimir via antitriplet_sign_relation",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:30:05Z",
+      "occurrences": 2,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0033"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:30:05Z",
+      "last": {
+        "node_id": "TFQ-0033",
+        "run_id": "TFQ-0033/20261021T222957Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-7AEB658D321A": {
+      "id": "NEG-7AEB658D321A",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "toric_code_unit_laws_repair: The unit laws for the toric code fusion category are repaired by the canonical gauge.",
+      "evidence": "claims_proved is true but the Lean text contains sorry/admit",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:toric_code_unit_laws_repair the unit laws for the toric code fusion category are repaired by the canonical gauge",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:34:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0049"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:59Z",
+      "last": {
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
     "NEG-86D334235D12": {
       "id": "NEG-86D334235D12",
       "entry_type": "failed_composition",
@@ -630,6 +1114,36 @@
       "last": {
         "node_id": "TFQ-0022",
         "run_id": "TFQ-0022/20261021T181906Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-86EFCD3B4303": {
+      "id": "NEG-86EFCD3B4303",
+      "entry_type": "counterexample",
+      "class": "statement_drift",
+      "claim_kind": "relation",
+      "claim": "R_zero_residual: If spectral_braid_form_defect(family, x, y, z) = 0, then the 3-colored braid matrix satisfies the relation. [spectral_braid_form_defect]",
+      "evidence": "numerals 3 appear in the claim but in none of the checked sources (heuristic)",
+      "decl_key": "spectral_braid_form_defect",
+      "claim_pattern": "statement_drift:r_zero_residual if spectral_braid_form_defect family x y z # then the # colored braid matrix satisfies the relation spectral_braid_form_defect",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not restate the source with numerals it does not contain.",
+      "first_seen_utc": "2026-10-21T22:33:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0046"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:33:59Z",
+      "last": {
+        "node_id": "TFQ-0046",
+        "run_id": "TFQ-0046/20261021T223335Z_ladder",
         "attempt_id": "a0-2",
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
@@ -690,6 +1204,36 @@
       "last": {
         "node_id": "TFQ-0022",
         "run_id": "TFQ-0022/20261021T182627Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-934E4A510425": {
+      "id": "NEG-934E4A510425",
+      "entry_type": "failed_composition",
+      "class": "vacuous_proof",
+      "claim_kind": "lemma",
+      "claim": "toric_code_is_multiplicity_free: The 2x2 fusion ring of the toric code is multiplicity-free, validating the fusion_category replay for this topological data.",
+      "evidence": "claims_proved is true but the Lean text contains sorry/admit",
+      "decl_key": null,
+      "claim_pattern": "vacuous_proof:toric_code_is_multiplicity_free the #x# fusion ring of the toric code is multiplicity free validating the fusion_category replay for this topological data",
+      "confidence": "exact",
+      "forbidden_move": "Do not present a sorry/axiom/tautology as a proof.",
+      "first_seen_utc": "2026-10-21T22:34:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0049"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:59Z",
+      "last": {
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
         "attempt_id": "a0-2",
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
@@ -786,6 +1330,66 @@
         "tier": 0
       }
     },
+    "NEG-9D9A2BAAA2A4": {
+      "id": "NEG-9D9A2BAAA2A4",
+      "entry_type": "failed_composition",
+      "class": "wrong_source_location",
+      "claim_kind": "lemma",
+      "claim": "lem_zero_residual_is_identity: Zero residual implies the identity holds.",
+      "evidence": "code/rust/src/fusion_categories/yang_baxter.rs has no declaration yang_baxter; it exists at code/rust/src/fusion_categories/lib.rs",
+      "decl_key": "yang_baxter",
+      "claim_pattern": "wrong_source_location:yang_baxter",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite yang_baxter at that path; see the evidence for where it lives.",
+      "first_seen_utc": "2026-10-21T22:33:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0046"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:33:59Z",
+      "last": {
+        "node_id": "TFQ-0046",
+        "run_id": "TFQ-0046/20261021T223335Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-A0735378CBC9": {
+      "id": "NEG-A0735378CBC9",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_spectral_braid_defect: (family, x, y) -> residual_matrix [spectral_braid_form_defect]",
+      "evidence": "rust fn spectral_braid_form_defect takes 1 parameters; the claim says 3",
+      "decl_key": "spectral_braid_form_defect",
+      "claim_pattern": "wrong_signature:gen_spectral_braid_defect family x y residual_matrix spectral_braid_form_defect",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for spectral_braid_form_defect.",
+      "first_seen_utc": "2026-10-21T22:33:59Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0046"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:33:59Z",
+      "last": {
+        "node_id": "TFQ-0046",
+        "run_id": "TFQ-0046/20261021T223335Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
     "NEG-A35C1CDCDF62": {
       "id": "NEG-A35C1CDCDF62",
       "entry_type": "counterexample",
@@ -813,6 +1417,36 @@
         "attempt_id": "a0-2",
         "provider": "groq",
         "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-A850B2E4740C": {
+      "id": "NEG-A850B2E4740C",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "ground_state_degeneracy: (ModularData, genus) -> BigInt [ground_state_degeneracy]",
+      "evidence": "rust fn ground_state_degeneracy takes 1 parameters; the claim says 2",
+      "decl_key": "ground_state_degeneracy",
+      "claim_pattern": "wrong_signature:ground_state_degeneracy modulardata genus bigint ground_state_degeneracy",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for ground_state_degeneracy.",
+      "first_seen_utc": "2026-10-21T22:34:07Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0047"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:07Z",
+      "last": {
+        "node_id": "TFQ-0047",
+        "run_id": "TFQ-0047/20261021T223404Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
         "tier": 0
       }
     },
@@ -876,6 +1510,36 @@
         "tier": 0
       }
     },
+    "NEG-AF9A95246D21": {
+      "id": "NEG-AF9A95246D21",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "sextetCoeff: () -> Rat [FiniteQM.suNSextetChannelCoeff]",
+      "evidence": "lean abbrev suNSextetChannelCoeff has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+      "decl_key": "FiniteQM.suNSextetChannelCoeff",
+      "claim_pattern": "wrong_signature:sextetcoeff rat finiteqm sunsextetchannelcoeff",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.suNSextetChannelCoeff.",
+      "first_seen_utc": "2026-10-21T22:26:19Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0021"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:26:19Z",
+      "last": {
+        "node_id": "TFQ-0021",
+        "run_id": "TFQ-0021/20261021T222559Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-B18761D4C55C": {
       "id": "NEG-B18761D4C55C",
       "entry_type": "failed_composition",
@@ -933,6 +1597,96 @@
         "attempt_id": "a0-4",
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
+    "NEG-BB69272AFE68": {
+      "id": "NEG-BB69272AFE68",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "sum_vertex_deficits: (i64, i64, i64, i64) -> i64 [sum_vertex_deficits]",
+      "evidence": "rust fn sum_vertex_deficits takes 1 parameters; the claim says 4",
+      "decl_key": "sum_vertex_deficits",
+      "claim_pattern": "wrong_signature:sum_vertex_deficits i# i# i# i# i# sum_vertex_deficits",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for sum_vertex_deficits.",
+      "first_seen_utc": "2026-10-21T22:37:31Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0101"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:37:31Z",
+      "last": {
+        "node_id": "TFQ-0101",
+        "run_id": "TFQ-0101/20261021T223726Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-BC5325432DE6": {
+      "id": "NEG-BC5325432DE6",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_creutz_ratio . slot 0 <- gen_wilson_area_law via rel_creutz_area",
+      "evidence": "output colour 'beta_tilde ^ (r * t)' of gen_wilson_area_law does not match input colour 'w_rt' (slot 0) of gen_creutz_ratio",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_creutz_ratio slot # gen_wilson_area_law via rel_creutz_area",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:27:02Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0024"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:27:02Z",
+      "last": {
+        "node_id": "TFQ-0024",
+        "run_id": "TFQ-0024/20261021T222648Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-BECD529CB02D": {
+      "id": "NEG-BECD529CB02D",
+      "entry_type": "counterexample",
+      "class": "false_numeric_claim",
+      "claim_kind": "numeric",
+      "claim": "N1: (4 * (3 - 1)) / (3 * 3) = 4/3",
+      "evidence": "exact recomputation gives 8/9, not 4/3",
+      "decl_key": null,
+      "claim_pattern": "false_numeric_claim:n# # # # / # # #/#",
+      "confidence": "exact",
+      "forbidden_move": "Do not assert that value; the exact recomputation differs.",
+      "first_seen_utc": "2026-10-21T22:25:57Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0020"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:25:57Z",
+      "last": {
+        "node_id": "TFQ-0020",
+        "run_id": "TFQ-0020/20261021T222538Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
         "tier": 0
       }
     },
@@ -996,6 +1750,36 @@
         "tier": 0
       }
     },
+    "NEG-C9E7A5C85F9C": {
+      "id": "NEG-C9E7A5C85F9C",
+      "entry_type": "failed_composition",
+      "class": "nonexistent_declaration",
+      "claim_kind": "generator",
+      "claim": "g1: () -> ribbon_fusion_category [toric_code_generator]",
+      "evidence": "code/rust/src/fusion_categories/catalog.rs has no declaration toric_code_generator and none exists in the indexed sources",
+      "decl_key": "toric_code_generator",
+      "claim_pattern": "nonexistent_declaration:toric_code_generator",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite toric_code_generator as an existing declaration.",
+      "first_seen_utc": "2026-10-21T22:34:21Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0048"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:21Z",
+      "last": {
+        "node_id": "TFQ-0048",
+        "run_id": "TFQ-0048/20261021T223413Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-CAFAE85E2E4F": {
       "id": "NEG-CAFAE85E2E4F",
       "entry_type": "failed_composition",
@@ -1023,6 +1807,66 @@
         "attempt_id": "a0-4",
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
+    "NEG-D2F616BA8217": {
+      "id": "NEG-D2F616BA8217",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_sample_winding_angle: (pair_f64_list, pair_f64_list, f64) -> f64 [sample_winding_angle]",
+      "evidence": "rust fn sample_winding_angle takes 2 parameters; the claim says 3",
+      "decl_key": "sample_winding_angle",
+      "claim_pattern": "wrong_signature:gen_sample_winding_angle pair_f#_list pair_f#_list f# f# sample_winding_angle",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for sample_winding_angle.",
+      "first_seen_utc": "2026-10-21T22:38:01Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0103"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:38:01Z",
+      "last": {
+        "node_id": "TFQ-0103",
+        "run_id": "TFQ-0103/20261021T223756Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-D7E9042B3B1B": {
+      "id": "NEG-D7E9042B3B1B",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_creutz_ratio . slot 0 <- gen_wilson_perimeter_law via rel_creutz_perimeter",
+      "evidence": "output colour 'beta_tilde ^ (2 * (r + t))' of gen_wilson_perimeter_law does not match input colour 'w_rt' (slot 0) of gen_creutz_ratio",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_creutz_ratio slot # gen_wilson_perimeter_law via rel_creutz_perimeter",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:27:02Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0024"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:27:02Z",
+      "last": {
+        "node_id": "TFQ-0024",
+        "run_id": "TFQ-0024/20261021T222648Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
         "tier": 0
       }
     },
@@ -1086,6 +1930,156 @@
         "tier": 0
       }
     },
+    "NEG-E1EBFA255DCA": {
+      "id": "NEG-E1EBFA255DCA",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_car_nilpotency: (c_ann) -> nilp [FiniteQM.car_clifford_nilpotency_and_occupation_projector]",
+      "evidence": "lean theorem car_clifford_nilpotency_and_occupation_projector has 0 explicit binders (0 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "FiniteQM.car_clifford_nilpotency_and_occupation_projector",
+      "claim_pattern": "wrong_signature:gen_car_nilpotency c_ann nilp finiteqm car_clifford_nilpotency_and_occupation_projector",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.car_clifford_nilpotency_and_occupation_projector.",
+      "first_seen_utc": "2026-10-21T22:31:31Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0037"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:31:31Z",
+      "last": {
+        "node_id": "TFQ-0037",
+        "run_id": "TFQ-0037/20261021T223113Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-E347BF787493": {
+      "id": "NEG-E347BF787493",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "toric_code_fusion: (Z2xZ2, Z2xZ2) -> Z2xZ2 [toric_code]",
+      "evidence": "rust fn toric_code takes 0 parameters; the claim says 2",
+      "decl_key": "toric_code",
+      "claim_pattern": "wrong_signature:toric_code_fusion z#xz# z#xz# z#xz# toric_code",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for toric_code.",
+      "first_seen_utc": "2026-10-21T22:35:10Z",
+      "occurrences": 1,
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "nodes": [
+        "TFQ-0049"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:35:10Z",
+      "last": {
+        "node_id": "TFQ-0049",
+        "run_id": "TFQ-0049/20261021T223442Z_ladder",
+        "attempt_id": "a2-4",
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "tier": 2
+      }
+    },
+    "NEG-E4065B0A310F": {
+      "id": "NEG-E4065B0A310F",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_shell_capacity: (n) -> capacity [FiniteQM.pauli_shell_capacities_and_madelung_noble_gas_closures]",
+      "evidence": "lean theorem pauli_shell_capacities_and_madelung_noble_gas_closures has 0 explicit binders (0 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "FiniteQM.pauli_shell_capacities_and_madelung_noble_gas_closures",
+      "claim_pattern": "wrong_signature:gen_shell_capacity n capacity finiteqm pauli_shell_capacities_and_madelung_noble_gas_closures",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FiniteQM.pauli_shell_capacities_and_madelung_noble_gas_closures.",
+      "first_seen_utc": "2026-10-21T22:31:31Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0037"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:31:31Z",
+      "last": {
+        "node_id": "TFQ-0037",
+        "run_id": "TFQ-0037/20261021T223113Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-E50905B9A7D0": {
+      "id": "NEG-E50905B9A7D0",
+      "entry_type": "counterexample",
+      "class": "statement_drift",
+      "claim_kind": "lemma",
+      "claim": "lmi_3: Plugging vertex 00 (star) into the spin-chain topology generator encapsulates a point defect in the m-channel, governed by topological link pairing.",
+      "evidence": "numerals 00 appear in the claim but in none of the checked sources (heuristic)",
+      "decl_key": "anyon_loop_string_intersection",
+      "claim_pattern": "statement_drift:lmi_# plugging vertex # star into the spin chain topology generator encapsulates a point defect in the m channel governed by topological link pairing",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not restate the source with numerals it does not contain.",
+      "first_seen_utc": "2026-10-21T22:34:30Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0048"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:34:30Z",
+      "last": {
+        "node_id": "TFQ-0048",
+        "run_id": "TFQ-0048/20261021T223413Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
+    "NEG-E7CB56EFE6FA": {
+      "id": "NEG-E7CB56EFE6FA",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "code/rust/src/fusion_categories/fusion_ring.rs | su2_level . slot 0 <- code/rust/src/fusion_categories/su2_level.rs | su2_level via r:mf_gate",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:code/rust/src/fusion_categories/fusion_ring rs su#_level slot # code/rust/src/fusion_categories/su#_level rs su#_level via r mf_gate",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:35:24Z",
+      "occurrences": 1,
+      "models": [
+        "qwen/qwen3.8-27b"
+      ],
+      "nodes": [
+        "TFQ-0050"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:35:24Z",
+      "last": {
+        "node_id": "TFQ-0050",
+        "run_id": "TFQ-0050/20261021T223517Z_ladder",
+        "attempt_id": "a0-2",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "tier": 0
+      }
+    },
     "NEG-E83C6D07ACF0": {
       "id": "NEG-E83C6D07ACF0",
       "entry_type": "failed_composition",
@@ -1144,6 +2138,36 @@
         "provider": "anthropic",
         "model": "claude-fable-5-1",
         "tier": 5
+      }
+    },
+    "NEG-E97BBDEB5706": {
+      "id": "NEG-E97BBDEB5706",
+      "entry_type": "counterexample",
+      "class": "statement_drift",
+      "claim_kind": "relation",
+      "claim": "rel_shadow_embeds_in_su2: The quaternion group Q8 embeds into SU(2) via the su2_matrix construction. [su2_matrix]",
+      "evidence": "numerals 2 appear in the claim but in none of the checked sources (heuristic)",
+      "decl_key": "su2_matrix",
+      "claim_pattern": "statement_drift:rel_shadow_embeds_in_su# the quaternion group q# embeds into su # via the su#_matrix construction su#_matrix",
+      "confidence": "heuristic",
+      "forbidden_move": "Do not restate the source with numerals it does not contain.",
+      "first_seen_utc": "2026-10-21T22:24:08Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0013"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:24:08Z",
+      "last": {
+        "node_id": "TFQ-0013",
+        "run_id": "TFQ-0013/20261021T222405Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
       }
     },
     "NEG-EA9259EFE032": {
@@ -1235,6 +2259,36 @@
         "model": "openai/gpt-oss-20b",
         "tier": 0
       }
+    },
+    "NEG-FFD8D284DA98": {
+      "id": "NEG-FFD8D284DA98",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "su2_level_ctor . slot 0 <- quantum_dimensions_fn via quantum_dimensions_correct",
+      "evidence": "output colour 'list_of_dimensions' of quantum_dimensions_fn does not match input colour 'k' (slot 0) of su2_level_ctor",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:su#_level_ctor slot # quantum_dimensions_fn via quantum_dimensions_correct",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T22:33:21Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0044"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T22:33:21Z",
+      "last": {
+        "node_id": "TFQ-0044",
+        "run_id": "TFQ-0044/20261021T223318Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
     }
   },
   "by_declaration": {
@@ -1243,6 +2297,27 @@
     ],
     "FableHilbertWalk20260819.H006.permU": [
       "NEG-03533814A7EF"
+    ],
+    "FableHilbertWalk20260819.H076.z2_physical_x_basis_labels": [
+      "NEG-7A4A7C600F5D"
+    ],
+    "FiniteQM.car_clifford_nilpotency_and_occupation_projector": [
+      "NEG-E1EBFA255DCA"
+    ],
+    "FiniteQM.pauli_shell_capacities_and_madelung_noble_gas_closures": [
+      "NEG-E4065B0A310F"
+    ],
+    "FiniteQM.suNAntitripletChannelCoeff": [
+      "NEG-1360716A26D2"
+    ],
+    "FiniteQM.suNOctetChannelCoeff": [
+      "NEG-5D77E7C6EA4B"
+    ],
+    "FiniteQM.suNSextetChannelCoeff": [
+      "NEG-AF9A95246D21"
+    ],
+    "FiniteQM.suNSingletChannelCoeff": [
+      "NEG-04E96F64DDC6"
     ],
     "NonAbelianGaugeSigns.connection": [
       "NEG-DBEFE62D5FF4"
@@ -1253,14 +2328,32 @@
     "NonAbelianGaugeSigns.holonomy_consistency": [
       "NEG-E0D3D4B93537"
     ],
+    "anyon_loop_string_intersection": [
+      "NEG-E50905B9A7D0"
+    ],
     "beta0_definition": [
       "NEG-A94471430058"
     ],
     "fierz_2d_quadruple_check": [
       "NEG-62F4013E50DF"
     ],
+    "from_operation": [
+      "NEG-6C1B4A3913F0"
+    ],
+    "fusion_ring_Z2xZ2": [
+      "NEG-44E121650D5F"
+    ],
     "g": [
       "NEG-007A8244EE31"
+    ],
+    "gen_convolution": [
+      "NEG-7889F5BA5CBE"
+    ],
+    "ground_state_degeneracy": [
+      "NEG-A850B2E4740C"
+    ],
+    "pub": [
+      "NEG-079BF38089AA"
     ],
     "qcd_beta0": [
       "NEG-C96B5F313B8D"
@@ -1271,6 +2364,19 @@
     "r": [
       "NEG-F2B0674F8EFD"
     ],
+    "sample_winding_angle": [
+      "NEG-D2F616BA8217"
+    ],
+    "spectral_braid_form_defect": [
+      "NEG-86EFCD3B4303",
+      "NEG-A0735378CBC9"
+    ],
+    "su2_matrix": [
+      "NEG-E97BBDEB5706"
+    ],
+    "sum_vertex_deficits": [
+      "NEG-BB69272AFE68"
+    ],
     "test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio": [
       "NEG-58BD0CB3DD3F",
       "NEG-98A8D15D74CA"
@@ -1278,9 +2384,27 @@
     "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-27D4BAF8F111",
       "NEG-8E416CE4E670"
+    ],
+    "toric_code": [
+      "NEG-E347BF787493"
+    ],
+    "toric_code_generator": [
+      "NEG-C9E7A5C85F9C"
+    ],
+    "yang_baxter": [
+      "NEG-9D9A2BAAA2A4"
     ]
   },
   "by_claim_pattern": {
+    "composition_type_mismatch:baryon_three_contraction slot # antitriplet_diquark_casimir via antitriplet_sign_relation": [
+      "NEG-7A632BF8A568"
+    ],
+    "composition_type_mismatch:baryon_three_contraction slot # sextet_diquark_casimir via sextet_sign_relation": [
+      "NEG-6F4D03C9F8FC"
+    ],
+    "composition_type_mismatch:code/rust/src/fusion_categories/fusion_ring rs su#_level slot # code/rust/src/fusion_categories/su#_level rs su#_level via r mf_gate": [
+      "NEG-E7CB56EFE6FA"
+    ],
     "composition_type_mismatch:g_creutz slot # g_strong_area_law via r_area_law_creutz": [
       "NEG-246DC5FBE1EB"
     ],
@@ -1292,6 +2416,15 @@
     ],
     "composition_type_mismatch:gen_connection slot # gen_connection via rel_holonomy_consistency": [
       "NEG-408F893D6930"
+    ],
+    "composition_type_mismatch:gen_convolution_q slot # gen_convolution_q via rel_assoc_from_operation": [
+      "NEG-5AA26F721084"
+    ],
+    "composition_type_mismatch:gen_creutz_ratio slot # gen_wilson_area_law via rel_creutz_area": [
+      "NEG-BC5325432DE6"
+    ],
+    "composition_type_mismatch:gen_creutz_ratio slot # gen_wilson_perimeter_law via rel_creutz_perimeter": [
+      "NEG-D7E9042B3B1B"
     ],
     "composition_type_mismatch:gen_curvature slot # gen_connection via rel_curvature_def": [
       "NEG-C2B8FF394629"
@@ -1307,6 +2440,12 @@
     ],
     "composition_type_mismatch:su#_fierz_#d_matrix slot # fierz_#d_quadruple_check via fierz_#d_quadruple_check": [
       "NEG-59C42522D4C0"
+    ],
+    "composition_type_mismatch:su#_level_ctor slot # quantum_dimensions_fn via quantum_dimensions_correct": [
+      "NEG-FFD8D284DA98"
+    ],
+    "false_numeric_claim:n# # # # / # # #/#": [
+      "NEG-BECD529CB02D"
     ],
     "false_numeric_claim:nc_qcd_beta#_# # #/# # #": [
       "NEG-1297B17E98A7"
@@ -1332,6 +2471,18 @@
     "nonexistent_declaration:fierz_2d_quadruple_check": [
       "NEG-62F4013E50DF"
     ],
+    "nonexistent_declaration:fusion_ring_Z2xZ2": [
+      "NEG-44E121650D5F"
+    ],
+    "nonexistent_declaration:gen_convolution": [
+      "NEG-7889F5BA5CBE"
+    ],
+    "nonexistent_declaration:pub": [
+      "NEG-079BF38089AA"
+    ],
+    "nonexistent_declaration:toric_code_generator": [
+      "NEG-C9E7A5C85F9C"
+    ],
     "schema_violation:compositions is not an array": [
       "NEG-CAFAE85E2E4F"
     ],
@@ -1350,11 +2501,23 @@
     "schema_violation:relations is not an array": [
       "NEG-452E93396795"
     ],
+    "statement_drift:lmi_# plugging vertex # star into the spin chain topology generator encapsulates a point defect in the m channel governed by topological link pairing": [
+      "NEG-E50905B9A7D0"
+    ],
     "statement_drift:r_beta#_sign for nc # beta# # #/# nf is positive iff nf #/# test_part_b_gross_wilczek_politzer_beta#_and_banks_zaks_ratio": [
       "NEG-58BD0CB3DD3F"
     ],
+    "statement_drift:r_zero_residual if spectral_braid_form_defect family x y z # then the # colored braid matrix satisfies the relation spectral_braid_form_defect": [
+      "NEG-86EFCD3B4303"
+    ],
+    "statement_drift:rel_shadow_embeds_in_su# the quaternion group q# embeds into su # via the su#_matrix construction su#_matrix": [
+      "NEG-E97BBDEB5706"
+    ],
     "unparseable_reply:": [
       "NEG-0C43DA16A442"
+    ],
+    "vacuous_proof:frobenius_decoupled_from_color_hopf the frobenius algebra identities replayed on matrices over q i for dimension # to # do not require the specific hopf algebra": [
+      "NEG-49AC5231B830"
     ],
     "vacuous_proof:l # the existing lean theorem su#_fierz_diagonal_and_offdiagonal_identities proves scalar identities # #/# #/# #/# but is strictly limited to the diagonal carta": [
       "NEG-17021ADBB65A"
@@ -1365,14 +2528,35 @@
     "vacuous_proof:l_gap_bridge confinement beyond the strong coupling formulae continuum mass gap weak coupling non perturbative behavior as spacing goes to zero is not derived b": [
       "NEG-1E6745CFFC31"
     ],
+    "vacuous_proof:le#_#a#ee# a database normal form is not the einstein equation": [
+      "NEG-1D1FFD1A3722"
+    ],
+    "vacuous_proof:le#_#a#fef#e the live reading is a superkey so minimality is not the live claim": [
+      "NEG-318E3CE70F77"
+    ],
+    "vacuous_proof:le#_#f#f#ca# heath decomposition is an exact join identity on a finite relvar": [
+      "NEG-0767985DBE41"
+    ],
     "vacuous_proof:tfq # replay_scope the rust and python controls perform a weighted fierz identity replay for all # index quadruples and this exhaustive loop is distinct from th": [
       "NEG-B18761D4C55C"
     ],
     "vacuous_proof:tfq#_exhaustive_matches_scalar the weighted fierz identity #/# delta_il delta_kj #/# delta_ij delta_kl holds for all relevant indices in both the exhaustive rep": [
       "NEG-86D334235D12"
     ],
+    "vacuous_proof:toric_code_is_multiplicity_free the #x# fusion ring of the toric code is multiplicity free validating the fusion_category replay for this topological data": [
+      "NEG-934E4A510425"
+    ],
+    "vacuous_proof:toric_code_unit_laws_repair the unit laws for the toric code fusion category are repaired by the canonical gauge": [
+      "NEG-7AEB658D321A"
+    ],
+    "wrong_signature:antitripletcoeff rat finiteqm sunantitripletchannelcoeff": [
+      "NEG-1360716A26D2"
+    ],
     "wrong_signature:carrier_def carrier bornfable matrixcarrier space": [
       "NEG-9A3116584C9A"
+    ],
+    "wrong_signature:from_operation g_elem g_elem finitegroup from_operation": [
+      "NEG-6C1B4A3913F0"
     ],
     "wrong_signature:g_beta# nc nf beta#coefficient test_part_b_gross_wilczek_politzer_beta#_and_banks_zaks_ratio": [
       "NEG-98A8D15D74CA"
@@ -1380,17 +2564,50 @@
     "wrong_signature:g_creutz wilsonlooptable creutzratio test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-27D4BAF8F111"
     ],
+    "wrong_signature:gen_car_nilpotency c_ann nilp finiteqm car_clifford_nilpotency_and_occupation_projector": [
+      "NEG-E1EBFA255DCA"
+    ],
     "wrong_signature:gen_flux_tube_curvature colorrepresentation nat nonabeliangaugesigns fluxtubecurvature": [
       "NEG-5F75AA85F5F9"
     ],
     "wrong_signature:gen_permu k q r v vec k q fablehilbertwalk# h# permu": [
       "NEG-03533814A7EF"
     ],
+    "wrong_signature:gen_sample_winding_angle pair_f#_list pair_f#_list f# f# sample_winding_angle": [
+      "NEG-D2F616BA8217"
+    ],
+    "wrong_signature:gen_shell_capacity n capacity finiteqm pauli_shell_capacities_and_madelung_noble_gas_closures": [
+      "NEG-E4065B0A310F"
+    ],
+    "wrong_signature:gen_spectral_braid_defect family x y residual_matrix spectral_braid_form_defect": [
+      "NEG-A0735378CBC9"
+    ],
     "wrong_signature:generator_tfq_#_# lattice_#x# gluon_entropy test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-8E416CE4E670"
     ],
+    "wrong_signature:ground_state_degeneracy modulardata genus bigint ground_state_degeneracy": [
+      "NEG-A850B2E4740C"
+    ],
+    "wrong_signature:octetcoeff rat finiteqm sunoctetchannelcoeff": [
+      "NEG-5D77E7C6EA4B"
+    ],
+    "wrong_signature:op_label_to_polynomial z#_physical_x_basis_labels tfim_matrix_polynomial_identity fablehilbertwalk# h# z#_physical_x_basis_labels": [
+      "NEG-7A4A7C600F5D"
+    ],
     "wrong_signature:operadgen tfq# window_window nat window qcd_beta#_asymptotic_freedom_window": [
       "NEG-A35C1CDCDF62"
+    ],
+    "wrong_signature:sextetcoeff rat finiteqm sunsextetchannelcoeff": [
+      "NEG-AF9A95246D21"
+    ],
+    "wrong_signature:singletcoeff rat finiteqm sunsingletchannelcoeff": [
+      "NEG-04E96F64DDC6"
+    ],
+    "wrong_signature:sum_vertex_deficits i# i# i# i# i# sum_vertex_deficits": [
+      "NEG-BB69272AFE68"
+    ],
+    "wrong_signature:toric_code_fusion z#xz# z#xz# z#xz# toric_code": [
+      "NEG-E347BF787493"
     ],
     "wrong_source_location:NonAbelianGaugeSigns.connection": [
       "NEG-DBEFE62D5FF4"
@@ -1403,6 +2620,9 @@
     ],
     "wrong_source_location:r": [
       "NEG-F2B0674F8EFD"
+    ],
+    "wrong_source_location:yang_baxter": [
+      "NEG-9D9A2BAAA2A4"
     ]
   }
 }

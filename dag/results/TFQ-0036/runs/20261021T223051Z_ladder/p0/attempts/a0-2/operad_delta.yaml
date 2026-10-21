@@ -1,0 +1,49 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: k5_complex_properties
+  equation_or_predicate: The 2-dimensional complex of K5 (4-cliques as vertices, etc.) has 15 squares
+    and is computed by analyze_conf2_graph.
+  typing_conditions: K5 is a simple graph with 10 vertices and 30 edges embedded such that its clique
+    complex has 15 squares.
+  source_pins:
+  - path: code/python/src/qm/pauli_spin_stat.py
+    declaration: analyze_conf2_graph
+    line: 185
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/src/qm/pauli_spin_stat.py
+    decl: analyze_conf2_graph
+    kind: def
+    line: 185
+    lang: python
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- The target mentions torsion rank and Betti numbers verified in Rust, but the Lean declaration signature
+  suggests the proof might require elaborating Z2 vs Q homology which is not fully grounded in the source
+  snippet provided.
+- 'lemma k5_torsion_ranks unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- expr: 10 - 30 + 15
+  id: euler_char_k5
+  value: '-5'
+  host_evidence:
+    recomputed: '-5'
+- expr: 1 - 21 + 6
+  id: betti_collapse_q_k5
+  value: '-14'
+  host_evidence:
+    recomputed: '-14'
+- expr: 1 - 21 + 7
+  id: betti_collapse_f2_k5
+  value: '-13'
+  host_evidence:
+    recomputed: '-13'
+verified_lemma_statements: []

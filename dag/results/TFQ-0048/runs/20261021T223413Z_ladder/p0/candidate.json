@@ -1,0 +1,189 @@
+{
+  "task_id": "TFQ-0048",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-4",
+  "input_sha256": "963ec3d39ce2eb0e24ca64694d0926120e1ac560543bd8fedd5015ebd49c0d70",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "toric_code_fusion_ring",
+          "inputs": [],
+          "output": "fusion_ring_Z2xZ2",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_stabilizers_commute",
+          "equation_or_predicate": "stabilizer generators of the CSS toric code commute pairwise",
+          "typing_conditions": "CSS construction on periodic square complex",
+          "source_pins": [
+            {
+              "path": "lean4/H037FourQubitCssSurfaceCode.lean",
+              "declaration": "FableHilbertWalk20260819.H037.stabilizers_commute",
+              "line": 34
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H037FourQubitCssSurfaceCode.lean",
+            "decl": "FableHilbertWalk20260819.H037.stabilizers_commute",
+            "kind": "theorem",
+            "line": 34,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Target code toric_code.rs on periodic_square_complex with 256-plaquette budget is not among the cited declarations; no existing citation for it was provided in @SRC or @KNOWN+",
+        "Ground-state degeneracy, distance, endpoint defect and e-loop sign computations from the target are not grounded by any listed declaration",
+        "Kitaev-Preskill one-bit entropy is not grounded by any listed declaration",
+        "No Lean skeleton proved; toric_code_generator must not be cited as existing",
+        "AuthorityEffect: None",
+        "near_miss NM_gap_is_not_QCD_gap unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "toric_code_fusion_ring",
+        "ordered_inputs": [],
+        "output": "fusion_ring_Z2xZ2",
+        "arity": 0,
+        "carrier": "colours 1,e,m,epsilon with Z2xZ2 fusion",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/fusion_ring.rs",
+            "declaration": "toric_code",
+            "line": 799
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/fusion_ring.rs",
+          "decl": "toric_code",
+          "kind": "fn",
+          "line": 799,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_stabilizers_commute",
+        "equation_or_predicate": "stabilizer generators of the CSS toric code commute pairwise",
+        "typing_conditions": "CSS construction on periodic square complex",
+        "source_pins": [
+          {
+            "path": "lean4/H037FourQubitCssSurfaceCode.lean",
+            "declaration": "FableHilbertWalk20260819.H037.stabilizers_commute",
+            "line": 34
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H037FourQubitCssSurfaceCode.lean",
+          "decl": "FableHilbertWalk20260819.H037.stabilizers_commute",
+          "kind": "theorem",
+          "line": 34,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C9E7A5C85F9C",
+        "class": "nonexistent_declaration",
+        "claim_kind": "generator",
+        "claim": "g1: () -> ribbon_fusion_category [toric_code_generator]",
+        "evidence": "code/rust/src/fusion_categories/catalog.rs has no declaration toric_code_generator and none exists in the indexed sources",
+        "decl_key": "toric_code_generator",
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0048"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-E50905B9A7D0",
+        "class": "statement_drift",
+        "claim_kind": "lemma",
+        "claim": "lmi_3: Plugging vertex 00 (star) into the spin-chain topology generator encapsulates a point defect in the m-channel, governed by topological link pairing.",
+        "evidence": "numerals 00 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "anyon_loop_string_intersection",
+        "confidence": "heuristic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0048"
+      }
+    ],
+    "open_obligations": [
+      "Target code toric_code.rs on periodic_square_complex with 256-plaquette budget is not among the cited declarations; no existing citation for it was provided in @SRC or @KNOWN+",
+      "Ground-state degeneracy, distance, endpoint defect and e-loop sign computations from the target are not grounded by any listed declaration",
+      "Kitaev-Preskill one-bit entropy is not grounded by any listed declaration",
+      "No Lean skeleton proved; toric_code_generator must not be cited as existing",
+      "AuthorityEffect: None",
+      "near_miss NM_gap_is_not_QCD_gap unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

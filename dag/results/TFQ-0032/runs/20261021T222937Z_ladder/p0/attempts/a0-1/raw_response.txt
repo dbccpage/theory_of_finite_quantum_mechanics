@@ -1,0 +1,62 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_mesonCarrier",
+      "inputs": ["singlet", "octet"],
+      "output": "meson",
+      "arity": 2,
+      "carrier": "Meson",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_meson_channel_coeffs",
+      "statement": "FiniteQM.suNSingletChannelCoeff 3 = -4/3 ∧ FiniteQM.suNOctetChannelCoeff 3 = 1/6",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.su3_casimir_and_channel_identities",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_target_restatement",
+      "statement": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and 1/6 on a quark‑antiquark colour decomposition.",
+      "relation_to_target": "restates",
+      "depends_on": ["R_meson_channel_coeffs"],
+      "lean_skeleton": "by\n  have h := R_meson_channel_coeffs\n  exact h",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "NC_singlet_coeff",
+      "expr": "-4/3",
+      "value": "-4/3"
+    },
+    {
+      "id": "NC_octet_coeff",
+      "expr": "1/6",
+      "value": "1/6"
+    }
+  ],
+  "open_obligations": [
+    "Define a finite Meson carrier with a concrete colour contraction yielding the singlet and octet coefficients.",
+    "Provide a concrete construction of the meson composite operation linking channel coefficients to the Meson carrier."
+  ]
+}

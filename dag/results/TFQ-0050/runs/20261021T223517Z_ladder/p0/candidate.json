@@ -1,0 +1,171 @@
+{
+  "task_id": "TFQ-0050",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "fd7185995f11586079898f769e0ac243874a17db33655783402f983417c86471",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g:su2_level_generated",
+          "inputs": [
+            "level"
+          ],
+          "output": "RibbonFusionCategory",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r:su3_open_obligation",
+          "equation_or_predicate": "The absence of su3_level.rs constitutes an open obligation, not a negative theorem about the existence of SU(3) fusion categories. For K=0, C is free of the field-too-small obstruction, and the SU(2) level-3 example is multiplicity-free.",
+          "typing_conditions": "Let C be a fusion category with fusion rules N^c_{ab}. The system of structure equations is non-vacuous if N is not the trivial monoid and N is multiplicity-free.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/fusion_categories/su2_level.rs",
+              "declaration": "su2_level",
+              "line": 283
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "decl": "su2_level",
+            "kind": "fn",
+            "line": 283,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "tier": 0
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "exact ribbon data for SU(3)_k fusion category is not present in the source tree (su3_level.rs is absent)",
+        "near_miss nm:su3_absent unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g:su2_level_generated",
+        "ordered_inputs": [
+          "level"
+        ],
+        "output": "RibbonFusionCategory",
+        "arity": 1,
+        "carrier": "R",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "declaration": "su2_level",
+            "line": 283
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/su2_level.rs",
+          "decl": "su2_level",
+          "kind": "fn",
+          "line": 283,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r:su3_open_obligation",
+        "equation_or_predicate": "The absence of su3_level.rs constitutes an open obligation, not a negative theorem about the existence of SU(3) fusion categories. For K=0, C is free of the field-too-small obstruction, and the SU(2) level-3 example is multiplicity-free.",
+        "typing_conditions": "Let C be a fusion category with fusion rules N^c_{ab}. The system of structure equations is non-vacuous if N is not the trivial monoid and N is multiplicity-free.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/fusion_categories/su2_level.rs",
+            "declaration": "su2_level",
+            "line": 283
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/fusion_categories/su2_level.rs",
+          "decl": "su2_level",
+          "kind": "fn",
+          "line": 283,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-E7CB56EFE6FA",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "code/rust/src/fusion_categories/fusion_ring.rs | su2_level . slot 0 <- code/rust/src/fusion_categories/su2_level.rs | su2_level via r:mf_gate",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0050"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "exact ribbon data for SU(3)_k fusion category is not present in the source tree (su3_level.rs is absent)",
+      "near_miss nm:su3_absent unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

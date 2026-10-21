@@ -1,0 +1,136 @@
+{
+  "task_id": "TFQ-0033",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "c348a71cf61cd420693cb1e0d0368e85d2b4d04ff91eb7f78a484fca5b3c4868",
+  "candidate_sha256": "2d5d1d98872263e8b25a745b3e0b76273acb1d2c8be5ae548d277a7a6adef57a",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 3,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "composition_type_mismatch": 3
+    },
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:30:05Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "su3_casimir_identities",
+        "equation_or_predicate": "suNCasimirFundamental 3 = 4/3 ∧ suNCasimirAdjoint 3 = 3 ∧ suNSingletChannelCoeff 3 = -4/3 ∧ suNOctetChannelCoeff 3 = 1/6",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.su3_casimir_and_channel_identities",
+            "line": 578
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.su3_casimir_and_channel_identities",
+          "kind": "theorem",
+          "line": 578,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7A632BF8A568",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "baryon_three_contraction . slot 0 <- antitriplet_diquark_casimir via antitriplet_sign_relation",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0033"
+      },
+      {
+        "id": "NEG-7A632BF8A568",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "baryon_three_contraction . slot 1 <- antitriplet_diquark_casimir via antitriplet_sign_relation",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0033"
+      },
+      {
+        "id": "NEG-6F4D03C9F8FC",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "baryon_three_contraction . slot 2 <- sextet_diquark_casimir via sextet_sign_relation",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0033"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Define an explicit epsilon tensor contraction for three color indices to realize the baryon singlet.",
+      "generator antitriplet_diquark_casimir unverified: no existing declaration cited",
+      "generator sextet_diquark_casimir unverified: no existing declaration cited",
+      "generator baryon_three_contraction unverified: no existing declaration cited",
+      "relation antitriplet_sign_relation unverified: no existing declaration cited",
+      "relation sextet_sign_relation unverified: no existing declaration cited",
+      "lemma baryon_singlet_needs_three_factor unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "antitriplet_coeff_value",
+        "expr": "-2/3",
+        "value": "-2/3",
+        "host_evidence": {
+          "recomputed": "-2/3"
+        }
+      },
+      {
+        "id": "sextet_coeff_value",
+        "expr": "1/3",
+        "value": "1/3",
+        "host_evidence": {
+          "recomputed": "1/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}
