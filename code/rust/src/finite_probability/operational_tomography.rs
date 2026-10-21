@@ -251,3 +251,41 @@ fn malformed_matrix_shapes_are_rejected() {
     assert!(std::panic::catch_unwind(|| sub(&eye(2), &eye(1))).is_err());
     assert!(std::panic::catch_unwind(|| parse(&serde_json::json!([]))).is_err());
 }
+
+#[test]
+fn semantic_alternative_calibrations_are_valid() {
+    let m = vec![vec![q(1), q(1)]];
+    for alpha in [q(0), q(1) / q(3), q(1)] {
+        let r = vec![vec![alpha.clone()], vec![q(1) - &alpha]];
+        assert_eq!(mul(&m, &r), eye(1));
+        let t = mul(&r, &m);
+        assert_eq!(mul(&m, &t), m);
+        let hidden = vec![vec![q(1)], vec![q(-1)]];
+        assert_eq!(mul(&t, &hidden), vec![vec![q(0)], vec![q(0)]]);
+        assert_eq!(rank(&m), 1);
+        for x in 0..2 {
+            assert_eq!(t.iter().map(|row| row[x].clone()).sum::<Q>(), q(1));
+        }
+    }
+}
+
+#[test]
+fn semantic_descent_and_tomography_do_not_make_a_fixed_family_irreducible() {
+    let m = eye(2);
+    let line = vec![vec![q(1)], vec![q(0)]];
+    for i in 0..2 {
+        let mut t = vec![vec![q(0); 2]; 2];
+        t[i][i] = q(1);
+        assert_eq!(mul(&m, &t), mul(&t, &m));
+        let out = mul(&t, &line);
+        assert_eq!(
+            rank(&vec![
+                vec![line[0][0].clone(), out[0][0].clone()],
+                vec![line[1][0].clone(), out[1][0].clone()]
+            ]),
+            1
+        );
+    }
+    assert_eq!(rank(&line), 1);
+    assert_eq!(rank(&m), 2); // the invariant line is proper, and M is injective
+}

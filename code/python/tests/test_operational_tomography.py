@@ -1,4 +1,4 @@
-"""Semantic controls and mutation challenges for conditional tomography."""
+"""Schur-boundary semantic controls and separate fixture-integrity checks."""
 import copy
 from fractions import Fraction as F
 import importlib.util
@@ -126,11 +126,11 @@ def challenge_report():
             outcomes.append({'id':name,'rejected':True,'failure':str(exc)})
         else:
             raise AssertionError('accepted mutant: '+name)
-    return {'valid_control':ot.verify_candidate_bytes(RAW)['candidate_sha256'],
+    return {'kind':'fixture_integrity', 'valid_control':ot.verify_candidate_bytes(RAW)['candidate_sha256'],
             'count':len(outcomes),'all_rejected':True,'outcomes':outcomes}
 
 
-def test_mutation_challenges(tmp_path):
+def test_fixture_integrity_challenges(tmp_path):
     report=challenge_report()
     (tmp_path/'mutations.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
     assert report['count']>=250
@@ -179,3 +179,47 @@ def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
                lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
         with pytest.raises(ValueError, match='SCALAR_TYPE'):
             op(a)
+
+
+@pytest.mark.parametrize('alpha', [F(0), F(1,3), F(1)])
+def test_semantic_alternative_valid_calibration(alpha):
+    # Valid right inverses differ from the sealed half/half fixture. The generic
+    # analyzer must accept their mathematics, not demand fixture byte equality.
+    m=[row+row for row in ot.identity(4)]
+    r=[[alpha*x for x in row] for row in ot.identity(4)] + [
+      [(1-alpha)*x for x in row] for row in ot.identity(4)]
+    loc=ot.units(4)
+    ops=[ot.multiply(ot.multiply(r,l),m) for l in loc]
+    result=ot.analyze(m,r,ops,loc)
+    assert result['calibrated'] and result['descent']
+    assert result['positive_subnormalized_filters'] and result['hidden_dimension']==4
+    h=[[F(int(i==0)-int(i==4))] for i in range(8)]
+    assert h!=ot.matrix(8,1) and ot.multiply(m,h)==ot.matrix(4,1)
+    assert all(ot.multiply(t,h)==ot.matrix(8,1) for t in ops)
+    assert all(sum(row[j] for row in r)==1 for j in range(4))
+
+
+def test_semantic_nonidentity_tomographic_calibration():
+    # A signed dual-frame coordinate change is allowed by the algebraic theorem.
+    m=[[F(1),F(1)],[F(0),F(1)]]
+    r=[[F(1),F(-1)],[F(0),F(1)]]
+    loc=ot.units(2)
+    ops=[ot.multiply(ot.multiply(r,l),m) for l in loc]
+    result=ot.analyze(m,r,ops,loc)
+    assert result['calibrated'] and result['descent'] and result['tomographic']
+    assert result['full_operator_span']
+    assert not result['positive_subnormalized_filters']  # positivity is a separate premise
+
+
+def test_semantic_descending_reducible_family_on_a_tomographic_carrier():
+    identity=ot.identity(2)
+    diagonal=[ot.matrix_unit(2,i,i) for i in range(2)]
+    result=ot.analyze(identity,identity,diagonal,diagonal)
+    assert result['calibrated'] and result['descent'] and result['tomographic']
+    assert result['positive_subnormalized_filters']
+    v=[[F(1)],[F(0)]]
+    outside=[[F(0)],[F(1)]]
+    # Exhibit a nonzero proper invariant line; do not infer reducibility solely
+    # from failure of the sufficient full-operator-span certificate.
+    assert ot.rank(v)==1 and ot.rank([v[i]+outside[i] for i in range(2)])==2
+    assert all(ot.rank([v[i]+ot.multiply(t,v)[i] for i in range(2)])==1 for t in diagonal)

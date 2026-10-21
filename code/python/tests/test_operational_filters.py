@@ -114,7 +114,7 @@ def mutants():
         bad=copy.deepcopy(obj);bad[key]=value;yield 'scope/'+key,bad
 
 
-def test_mutation_controls(tmp_path):
+def test_fixture_integrity_controls(tmp_path):
     f.verify(RAW)
     outcomes=[]
     for name,bad in mutants():
@@ -122,7 +122,7 @@ def test_mutation_controls(tmp_path):
             f.verify(json.dumps(bad).encode())
         outcomes.append({'id':name,'rejected':True,'reason':str(exc.value)})
     assert len(outcomes)==len({x['id'] for x in outcomes}) and len(outcomes)>500
-    (tmp_path/'filter_mutations.json').write_bytes((json.dumps({'all_rejected':True,
+    (tmp_path/'filter_mutations.json').write_bytes((json.dumps({'kind':'fixture_integrity','all_rejected':True,
         'count':len(outcomes),'outcomes':outcomes},indent=2)+'\n').encode())
 
 
@@ -136,3 +136,38 @@ def test_duplicate_keys_and_optimized_scope(tmp_path):
         result=subprocess.run([sys.executable,'-I','-O',str(script),str(path)],capture_output=True)
         assert (result.returncode==0)==(code==0)
         if code: assert b'PREMISES' in result.stderr
+
+
+def test_semantic_nonseparating_effects_preserve_a_proper_kernel():
+    # All basis preparations are available, but the sole normalization effect
+    # cannot distinguish e0 from e1. Reset maps are valid channels, not malformed.
+    preps=a.identity(2);effects=[[Q(1),Q(1)]]
+    ts=[[[preps[k][i]*effects[0][j] for j in range(2)] for k in range(2)] for i in range(2)]
+    report=a.analyze(a.identity(2),a.identity(2),ts,ts)
+    assert report['calibrated'] and report['descent'] and report['tomographic']
+    assert report['positive_subnormalized_filters'] and report['normalization_preserved']
+    assert a.rank(preps)==2 and a.rank(effects)==1
+    hidden=[[Q(1)],[Q(-1)]]
+    assert a.multiply(effects,hidden)==[[Q(0)]]
+    assert all(a.multiply(t,hidden)==a.matrix(2,1) for t in ts)
+    assert a.multiply(effects,[[Q(1)],[Q(0)]])==[[Q(1)]]  # kernel is proper
+
+def test_semantic_adding_separating_effects_restores_irreducibility():
+    # Change only the effect family from the preceding near-miss.
+    preps=a.identity(2);effects=a.identity(2)
+    ts=[[[preps[k][i]*effects[j][l] for l in range(2)] for k in range(2)]
+        for i in range(2) for j in range(2)]
+    assert a.rank(preps)==a.rank(effects)==2
+    report=a.analyze(a.identity(2),a.identity(2),ts,ts)
+    assert report['positive_subnormalized_filters'] and report['full_operator_span']
+    assert report['descent'] and report['tomographic']
+
+def test_semantic_global_resets_break_descent_without_breaking_positivity():
+    m=[[Q(1),Q(1)]];r=[[Q(1,3)],[Q(2,3)]]
+    ts=a.units(2);loc=[a.multiply(a.multiply(m,t),r) for t in ts]
+    report=a.analyze(m,r,ts,loc)
+    assert report['calibrated'] and report['positive_subnormalized_filters']
+    assert report['full_operator_span'] and not report['descent'] and not report['tomographic']
+    h=[[Q(1)],[Q(-1)]]
+    assert a.multiply(m,h)==[[Q(0)]]
+    assert a.multiply(m,a.multiply(ts[0],h))==[[Q(1)]]

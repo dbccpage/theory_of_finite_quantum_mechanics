@@ -21,6 +21,7 @@ lean_lib «FiniteQuantum» where
     `OperationalTomography,
     `OperationalFieldSelection,
     `OperationalFilterFamily,
+    `OperationalBoundaryWitnesses,
     `OperationalSymmetry,
     `OperationalCoherence,
     `OperationalIndependence,

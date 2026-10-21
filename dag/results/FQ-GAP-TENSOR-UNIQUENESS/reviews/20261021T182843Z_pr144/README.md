@@ -43,3 +43,11 @@ logs, and the staged/committed Git-blob pin audit. The gates cover the two new L
 modules, existing hidden countermodel, finite-probability Rust library, two
 Python modules, DAG validation/synchronization, and contract records; they do not
 claim a whole-repository test run.
+
+
+Terminology correction: the historical mutation counts measure fixture integrity,
+not rejection of arbitrary alternative mathematical models. The current Schur-type
+reformulation, explicit orthant witnesses and separate semantic near-misses are
+validated in `../20261021T210045Z_claim_boundary_fixes/`. This review's receipt and
+pins remain historical, with unchanged bytes; current-source edits are not resealed
+under those earlier results.
