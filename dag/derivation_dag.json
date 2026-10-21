@@ -134,7 +134,7 @@
       "stage": "PREGENESIS",
       "status": "ADMITTED_PRIMITIVE",
       "source_status": "DEFINITION (anomalon ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'",
-      "statement": "Admitted root of the programme: Real_0 = PrimitiveDifference ⊔ Structure, a typed coproduct of two independently posited channels; the coproduct asserts no reduction of either channel to the other and no origin of either. Carrier-Structure precedes a primitive difference; residual-Structure (Q^1 = C^1/im d0) is what the difference produces; the ladder is a definability order and mints no authority.",
+      "statement": "Admitted root of the programme: Real_0 = PrimitiveDifference ⊔ Structure, a typed coproduct of two independently posited channels. As a type construction (arbitrary payload types, same two-constructor shape as OntologyBasic.Real0) the coproduct is a categorical coproduct that singles out no map between the channels and supplies no element of either; the existence of a map out of it that is the identity on one channel holds exactly when that channel is nonempty or the other is empty, so for inhabited channels (as the real record types are) bare function-existence is not a no-reduction theorem. [The clauses 'carrier-Structure precedes a primitive difference', 'residual-Structure (Q^1 = C^1/im d0) is what the difference produces' and 'the ladder is a definability order and mints no authority' are not addressed.]",
       "source": [
         "omega_engine_library/coda_library/encyclopedia/entries/foundations/enc-1138-stratified-root-boundary.md:1-45",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/the_anomalon_boundary_claim_ledger.md:16",
@@ -156,10 +156,27 @@
         "Structure carrier (assumption: declared, not derived)",
         "Primitive difference delta_0 (assumption: admitted primitive)"
       ],
-      "bottleneck": "Admitted, not derived. Two sources mark the lineage withdrawn/unassigned (ENC-1138 layer_withdrawn 2026-08-18). The coproduct is not connected by any derivation to the literal inscription <> (see PG-INERT-DIAMOND).",
+      "bottleneck": "Admitted, not derived. Only coproduct neutrality for abstract payload types is kernel-checked; 'no reduction of either channel to the other' has no non-trivial formalisation here and the precedence/definability clauses are untouched. Two sources mark the lineage withdrawn (ENC-1138); no derivation from the literal inscription (PG-INERT-DIAMOND).",
       "tags": [
         "alias:FSP-DERIV-002"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "b7889a2a318206f5d4d2172d390d2900ab2b1790842b85f86cfbda9b94019fdf",
+        "review_refs": [
+          "dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "The typed coproduct of two payload types (same two-constructor shape as OntologyBasic.Real0) is a categorical coproduct that supplies no map between the channels and no element of either channel: a map out of it that is the identity on one channel exists exactly when that channel is nonempty or the other is empty (so bare existence of such a map is not a reduction theorem for inhabited channels), and the two nonemptiness conditions are independent of the construction and of each other.",
+        "does_not_support": "Anything about the actual OntologyBasic.Real0 beyond its constructor shape (the file is not imported; its payloads are universe-polymorphic record types). The real Real0 has the record TYPES PrimitiveDifference and Structure as channels; both are inhabited, so by retracts_to_pd_iff and retracts_to_s_iff retractions in both directions exist for it: the emptiness cases of this file are not instances of the real node, and nothing here says either channel is irreducible to the other. That either channel exists, is real or has an origin (admitted posits, ENC-1138 lineage withdrawn); the passage from the literal inscription (PG-INERT-DIAMOND, route marked GAP_NO_DERIVATION); the clauses \"carrier-Structure precedes a primitive difference\", \"residual-Structure Q^1 = C^1/im d0 is what the difference produces\" and \"the ladder is a definability order\"; any physical or interpretive reading.",
+        "next_test": "Formalise the clause \"carrier-Structure precedes a primitive difference\": define precedence as the statement that a PrimitiveDifference record can be built with no Structure value in scope (Source := PUnit) and a Structure record with no PrimitiveDifference, then decide whether Source must equal Structure.Carrier for the node text to be meant, by a finite model or a counterexample.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Only coproduct neutrality for abstract payload types is kernel-checked; for inhabited channels, as the real record types are, bare function existence is not a no-reduction theorem, and the precedence and definability clauses are untouched. The posit stays admitted, not derived.",
+        "prior_status": "ADMITTED_PRIMITIVE",
+        "prior_statement": "Admitted root of the programme: Real_0 = PrimitiveDifference ⊔ Structure, a typed coproduct of two independently posited channels; the coproduct asserts no reduction of either channel to the other and no origin of either. Carrier-Structure precedes a primitive difference; residual-Structure (Q^1 = C^1/im d0) is what the difference produces; the ladder is a definability order and mints no authority.",
+        "prior_bottleneck": "Admitted, not derived. Two sources mark the lineage withdrawn/unassigned (ENC-1138 layer_withdrawn 2026-08-18). The coproduct is not connected by any derivation to the literal inscription <> (see PG-INERT-DIAMOND).",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-INERT-DIAMOND",
@@ -224,8 +241,25 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Definitional separation; no theorem is attached to the list itself. The one Lean-checked consequence is supply_no_op (PG-GEN-SUPPLY-NO-OP).",
-      "tags": []
+      "bottleneck": "Definitional separation; the model-level frame and separation theorems are kernel-checked for an author-built machine and are not bridged to the Genesis event model (stepE has a token-less counter admitDatum and a whole-regime supply_no_op).",
+      "tags": [],
+      "pfp_review": {
+        "review": "dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "04789349eb64c428a6bc3d65cf1c2d3d881f375a74e57fe717f20a4227e0813b",
+        "review_refs": [
+          "dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "By construction of its six state components, only Admit writes the admitted component of the six-operation state machine, and it changes it iff the item is new; the Reading L / Reading F pair has different admitted states in this machine and the same admitted state in the machine in which Supply also admits (a two-machine comparison for every token).",
+        "does_not_support": "That these six operations or state fields match any host, the Genesis Python model or the Genesis event semantics (forms, instances, requirements); that the six operations are distinct beyond writing distinct fields of this machine (Retain and Operate are gated on admission by definition); that conflating operations is the source of the Reading L / Reading F split of Genesis (a causal reading; only the model-level two-machine comparison is checked); more than two items or traces longer than 4 natively (the Lean statements are general, the Lean instances are Nat items); the inert-inscription model of PG-INERT-DIAMOND (cross-referenced, not imported); any physical or interpretive reading.",
+        "next_test": "Bridge this machine to the Genesis event model: define a simulation from the six operations to Derivation/Basic.lean stepE (supply a no-op, admitDatum an admission) and prove it preserves the admitted regime on the histories of the theorems historyL_replays and historyF_replays of Inertia.lean (external Genesis files, read but not bound and without a pinned sha256).",
+        "scope_effect": "caveat_added",
+        "reason": "Distinctness and only-Admit-writes-admitted hold by construction in an author-built Finset machine that is not bridged to the Genesis event model (token-less counter admission); the Reading L/F interpretation is not derived.",
+        "prior_status": "DEFINITION",
+        "prior_statement": "Mention, Supply, Designate, Admit, Retain, Operate are kept as six distinct operations; only Admit changes admitted state. Conflating them (supply with admission, designation with retention) is the source of the Reading L / Reading F split in Genesis.",
+        "prior_bottleneck": "Definitional separation; no theorem is attached to the list itself. The one Lean-checked consequence is supply_no_op (PG-GEN-SUPPLY-NO-OP).",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-PRIMDIFF-AXIOMS",
@@ -251,10 +285,27 @@
       "imported_structure": [
         "Finite carrier items (assumption)"
       ],
-      "bottleneck": "Bridge obligation GEN-WDP-O01 (justify or explicitly admit the primitive-to-witness carrier, signature, law and challenge-generation floor) is open; the explicit admission is done, the stronger derivation is not.",
+      "bottleneck": "Bridge obligation GEN-WDP-O01 (justify or explicitly admit the primitive-to-witness carrier, signature, law and challenge-generation floor) is open; the explicit admission is done, the stronger derivation is not; definitions of A2, A4 and A6-A9 are not in the pinned source.",
       "tags": [
         "gen-wdp-o01"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "fee78b9c7e6328baa9b321dce8602ace66caa859d4331303cb69106d89cc22b9",
+        "review_refs": [
+          "dag/results/PG-PRIMDIFF-AXIOMS/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "In a small product model (carriers of at most three points, at most one triangular face, A10 a free flag), the transcribed axioms A1, A4, A5 and A10 are jointly satisfiable and A1, A4, A10 are each violable alone from one point and A5 (together with A7) from three points; A3 holds because a reflexive-transitive closure is a preorder; A7 is A5 under the reading of A7 as d1 vanishing on im d0; the kernel enforces only A1 and carrier membership (the token is stored, never checked); and the transcribed R_cl rule refuses exactly on the exact-but-not-closed cell that d1 o d0 = 0 empties, a branch the source cannot reach because it rejects d1 o d0 != 0 at construction. This is evidence about a transcription of the list, not a derivation of it.",
+        "does_not_support": "A derivation of the axiom list (obligation GEN-WDP-O01 and paper pin tfq_0394 stay open: this is a transcription and a small-model study, not a justification); that the predicates for A2, A4 and A6-A9 are the intended ones (the pinned file has names only; the one-line glosses come from an external copy of the file whose bytes differ from the pin); independence of A1 and A10 as a finding about the axioms (it holds by construction of the product model); A9: the relabelling check is an isomorphism (permuting vertex labels while keeping the cochain index-wise) and cannot fail, so it says nothing about observer-selected metrics; carriers of more than 3 points; real-valued Phi1, Gamma2 and R_cl values (here Phi1 is the unit-weight L1 distance to im d0 in integers and Gamma the L1 norm of d1 h); that the exact/closed classification equals classify_exact; any reachability of the source r_cl None branch; the Born, Hilbert or physical reading of any axiom.",
+        "next_test": "Obtain the definitions of A2, A4 and A6-A9 from the FOC-006 / FOC-000 sources (not bound here), replace the gloss-based predicates by them, and decide whether A9 is independent at all: test it with a weighted L1 norm whose weights are not permuted with the vertices (an observer-selected metric), since the present relabelling check is an isomorphism and cannot fail.",
+        "scope_effect": "caveat_added",
+        "reason": "The pinned enum carries ten axiom names without predicates, the kernel enforces only a != b and carrier membership and stores the token unchecked, and the R_cl refusal branch is unreachable through compute_triad_signature; small-model independence of transcribed predicates is not a derivation.",
+        "prior_status": "DEFINITION",
+        "prior_statement": "Rust-side axiom list for primitive difference (A1-A10) and a GenesisAdmissionKernel whose admit_difference admits an ordered pair under a token; also the Phi1/Gamma2/R_cl triad signature type. This is an implementation of the admitted floor, not a derivation of it.",
+        "prior_bottleneck": "Bridge obligation GEN-WDP-O01 (justify or explicitly admit the primitive-to-witness carrier, signature, law and challenge-generation floor) is open; the explicit admission is done, the stronger derivation is not.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-ADMISSION-FLOOR",
@@ -412,10 +463,27 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Applies to explicitly listed finite histories; unlisted or infinite populations remain outside this constructive criterion.",
+      "bottleneck": "Applies to explicitly listed histories with decidable report equality; unlisted or infinite populations and report types without decidable equality (choice-free substitute, or unavoidability of choice) remain outside.",
       "tags": [
         "fable-in-progress"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "4b9648f4dcfa10e1ee42e3580465bd443bf5f8f38947eeeed8d2466224c69990",
+        "review_refs": [
+          "dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.",
+        "does_not_support": "Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.",
+        "next_test": "Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument).",
+        "scope_effect": "caveat_added",
+        "reason": "The choice-free statement is kernel-checked for the in-repo re-derivation PregenConstructive with a supplied decidable equality on reports; the cited ListedHistorySummary.lean is external and not gated here.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "Constructive (no Classical.choice) Pre-Genesis summary/history theorem for explicitly listed histories: choice-free first-match reconstruction recon satisfies recon_of_fiberConstant and fiberConstant_of_recon in ListedHistorySummary.lean.",
+        "prior_bottleneck": "Applies to explicitly listed finite histories; unlisted or infinite populations remain outside this constructive criterion.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-DEMAND-ACCOUNTING",
@@ -463,7 +531,7 @@
       "stage": "PREGENESIS",
       "status": "PROVED_LEAN",
       "source_status": "Section 9 - binary support and observation refinement; WDP-P001-004 proved",
-      "statement": "A supplied binary tag separates one collapsed pair while retaining the old report. Finding tags and satisfying many conflicts at once are separate, unaddressed questions.",
+      "statement": "A supplied tag t separates a collapsed pair exactly when it differs there, and the refined report (q, t) keeps q as its first projection and never merges what q separated. For a conflict relation inside the collapse of q, some b-bit tag resolves every conflict iff the relation has a proper 2^b-colouring (an odd closed walk forbids one bit; a finite type with all pairs in conflict needs ceil(log2 m) bits). Finding such a tag, its cost, and the one-bit converse (Konig) in the kernel are not addressed.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:300-319",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:10"
@@ -481,15 +549,32 @@
       "imported_structure": [
         "Supplied tag (assumption)"
       ],
-      "bottleneck": "Tag supply is an input; no derivation of which tag to supply.",
-      "tags": []
+      "bottleneck": "Tag supply is an input; the node establishes existence criteria only, with no algorithm or complexity statement for finding a tag.",
+      "tags": [],
+      "pfp_review": {
+        "review": "dag/results/PG-REFINE-SEPARATES/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "a4d2fc529a516476c3d4e7c3b2b38f06f0d88293eb64867085db3293e6dc27bf",
+        "review_refs": [
+          "dag/results/PG-REFINE-SEPARATES/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "For a report q and a conflict relation C inside its collapse, SOME b-bit tag resolves all conflicts iff C has a proper 2^b-colouring (refine_separates_many); a GIVEN tag resolves C iff it is proper (resolves_iff_proper). The source refine_separates is the forward direction for one pair; refine_separates_iff is the one-pair equivalence on collapsed pairs.",
+        "does_not_support": "Any algorithm, complexity or guarantee for FINDING a tag (the tables and the iff are existence statements, not search procedures); which tag a host should supply; the converse of the odd-closed-walk theorem in the kernel (Konig; native only); conflict graphs on more than 5 vertices beyond the 14 named ones; infinite carriers; any measurement, physical or interpretive reading of tags.",
+        "next_test": "First prove in Lean the converse of no_one_bit_of_odd_cycle (a finite symmetric conflict relation with no odd closed walk has a proper Bool tag), then that breadth-first 2-colouring is sound and complete for deciding it, as the first algorithmic statement about finding a tag; the present node establishes existence criteria only.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Existence of a satisfying b-bit tag for conflicts inside a collapse is exactly proper 2^b-colourability (kernel-checked); finding a tag and the one-bit Koenig converse in the kernel remain unaddressed.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "A supplied binary tag separates one collapsed pair while retaining the old report. Finding tags and satisfying many conflicts at once are separate, unaddressed questions.",
+        "prior_bottleneck": "Tag supply is an input; no derivation of which tag to supply.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-OLD-IMAGE-INJECTIVE",
       "stage": "PREGENESIS",
       "status": "PROVED_LEAN",
       "source_status": "Proposition 4 / WDP-P001-005: typed old-image recovery implies injectivity of the lift",
-      "statement": "If a lift u has a typed recovery of old terms on the old image, then u is injective. Off-image rejection, observation preservation and obstruction repair do not follow (WDP-P001-006: off_image_not_implied, observation_not_implied, repair_not_implied).",
+      "statement": "If a lift u : A -> B has a typed recovery r : B -> A + E with r(u a) = inl a for all a, then u is injective (all types); conversely, for E = Unit, every injective u has such a recovery, and for finite types there are (|A|+1)^(|B|-|A|) of them. Off-image rejection and observation preservation do not follow from the law (general statements). For obstruction repair only persistence of a Boolean predicate through the identity lift is shown; no repair notion is defined.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:320-371",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:11-12"
@@ -506,8 +591,25 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Domain-restriction (off-image refusal) half is separate; see PG-SN-OFF-IMAGE-REFUSAL.",
-      "tags": []
+      "bottleneck": "Off-image refusal is PG-SN-OFF-IMAGE-REFUSAL; a definition of obstruction repair for a lift is still missing, so the repair clause of the source statement is open.",
+      "tags": [],
+      "pfp_review": {
+        "review": "dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "048833e29c7ca0edbc5aaf51b69af5c00addf808e685996b0596b51a8be03e4a",
+        "review_refs": [
+          "dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "A recovery r : B -> A + Unit obeying r(u a) = inl a exists exactly when u is injective. For an injective lift it is determined only on the image: there are (|A|+1)^(|B|-|A|) of them, exactly one of which refuses every off-image point; when |A| >= 1 and |B| > |A| the others accept some off-image point as an old term, and for |B| = |A| or |A| = 0 the recovery is unique. The law fixes neither observations nor obstruction predicates (persistence through the identity lift only).",
+        "does_not_support": "Off-image rejection as a property of the S(n) retraction (that is PG-SN-OFF-IMAGE-REFUSAL, which needs an added soundness hypothesis on r); the pinned SnCarrier lift and retraction; any definition of obstruction repair beyond persistence of a Boolean predicate through a lift (the source repair_not_implied instance uses the constant-true predicate and defines no repair); sets with more than four elements in the native census (the Lean count law_card is general for finite types); infinite types for the count; any physical or categorical reading.",
+        "next_test": "Define repair of an obstruction for a lift (a witness-count or chain criterion on the lifted pair) and decide for the identity embedding and for a non-identity injective lift whether the old obstruction count strictly drops, replacing the constant-predicate instance of repair_not_implied by a statement with a stated repair criterion.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Injectivity from a typed recovery is kernel-checked for all types; off-image rejection and observation preservation are shown not to follow from the law in general; the repair clause is open because no notion of repair for a lift is defined (only persistence of a Boolean predicate through the identity lift is shown).",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "If a lift u has a typed recovery of old terms on the old image, then u is injective. Off-image rejection, observation preservation and obstruction repair do not follow (WDP-P001-006: off_image_not_implied, observation_not_implied, repair_not_implied).",
+        "prior_bottleneck": "Domain-restriction (off-image refusal) half is separate; see PG-SN-OFF-IMAGE-REFUSAL.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-SN-OFF-IMAGE-REFUSAL",
@@ -531,11 +633,28 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Closes the domain-restriction half of WDP-P001-019; off-image points are refused by section-retraction roundtrip.",
+      "bottleneck": "Off-image points are refused because the retraction is sound (accepted only from section images); the old-image law alone does not refuse. Nested terms as base members and the WDP-P001-019 ledger closure remain open.",
       "tags": [
         "fable-in-progress",
         "wdp-p001-019"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "41a0c410e1015210addfcb44268135defea204b7e19c9197998da78978c14281",
+        "review_refs": [
+          "dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction (five base shapes at a given stage), the retraction refuses exactly the presentations that are not section images at that stage, and the restated pair is a section/retraction pair (law and soundness) in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the soundness of the specific retraction (accepted_only_from_section), because the old-image law alone is satisfied by a retraction that refuses nothing.",
+        "does_not_support": "The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file fable_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.",
+        "next_test": "With the bridge sn_is_section_retraction proved, extend the refusal characterisation to a grammar that admits nested lift, retraction and refusal terms as base members: add them to Base, restate sectionLift and retr on the enlarged type, and decide whether accepted_only_from_section and sectionLift injectivity still hold or whether a new off-image class appears.",
+        "scope_effect": "caveat_added",
+        "reason": "Refusal exactly off the section image is kernel-checked for a restatement of the pinned S(n) section and retraction and rests on the soundness of the retraction, not on the old-image law alone; the ledger reading of closing the WDP-P001-019 half was not examined.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image points fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.",
+        "prior_bottleneck": "Closes the domain-restriction half of WDP-P001-019; off-image points are refused by section-retraction roundtrip.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-FREE-MONOID-NONISO",
@@ -1180,7 +1299,7 @@
       "stage": "WDP",
       "status": "PROVED_LEAN",
       "source_status": "WDP-CH03-P01 FINITE_PROVED; WDP-CH03-D01 definition; WDP-CH03-N01 nonclaim",
-      "statement": "On an unstructured finite set with at least two elements, no Sym(X)-equivariant distinguished-point selection exists (no_fully_invariant_point). The asymmetry-price frontier is the family of inclusion-minimal declared input sets restoring the symmetry. The result says selection is not free; it does not say retention or observers cannot exist.",
+      "statement": "On an unstructured set with at least two elements no point is fixed by every permutation (the bare-set form of: no Sym(X)-equivariant distinguished-point selection exists). In the pointwise-stabiliser model, in which a declared input set is fixed pointwise, the inclusion-minimal declarations that make some point invariant are exactly the singletons (price one declared point; price zero on a one-point carrier; no selection on the empty carrier). The ledger definition D01 of the asymmetry-price frontier relative to an implementation class and dependency preorder is not formalised. The result says selection is not free on a bare set; it does not say retention or observers cannot exist.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH03-P01",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH03-D01",
@@ -1195,15 +1314,32 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "WDP-CH03-P03 (no response of at most one item separates a from b in the declare-then-assert grammar) is stated with no Lean port in the ledger.",
-      "tags": []
+      "bottleneck": "WDP-CH03-P03 (no response of at most one item separates a from b in the declare-then-assert grammar) has no Lean port; the asymmetry-price frontier is proved only in the pointwise-stabiliser modelling choice, not for D01 with an implementation class and dependency preorder.",
+      "tags": [],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "ae4b15d86001e3894575f37011a7cd6de8fafcc44a5bddeae593301b5df01c6a",
+        "review_refs": [
+          "dag/results/PG-WDP-PROTECTED-QUESTIONS/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "On a bare set of at least two points no point is invariant under all permutations, and in the pointwise-stabiliser model the minimal selecting declarations are exactly the single declared points (price one declared point; price zero on a one-point carrier; no selection on the empty carrier); symmetry-price bookkeeping only.",
+        "does_not_support": "Retention, dynamics or observers being not possible or available (WDP-CH03-N01 is a nonclaim, not formalised); that Selecting / MinimalSelecting formalises WDP-CH03-D01 (D01 minimises declared input sets whose removal restores a symmetry that moves the output, relative to an implementation class and dependency preorder; here the minimal declarations making some point invariant under the pointwise stabiliser are computed, and the two agree on singletons only because the output is the declared point); a Lean notion of equivariant selection function (no_fully_invariant_point is its bare-set specialisation); the price of selection on structured carriers (rigid, cyclic, graph) or under the setwise stabiliser; WDP-CH03-P03; infinite-carrier cardinality; any physical or interpretive claim.",
+        "next_test": "On structured carriers compute the same selecting and minimal tables with Sym(X) replaced by an explicit automorphism group G (n-cycle with rotations, K4 graph with its automorphisms, a rigid carrier with trivial G) and test whether the frontier is still the singletons: a rigid carrier must give price 0 and the n-cycle with rotations price 1; any other value falsifies the claim that the singleton frontier is generic.",
+        "scope_effect": "statement_narrowed",
+        "reason": "No fully invariant point on a bare set of at least two elements is kernel-checked; the frontier is proved only in the pointwise-stabiliser modelling choice, where it is near-tautological, not for ledger definition D01 with an implementation class and dependency preorder.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "On an unstructured finite set with at least two elements, no Sym(X)-equivariant distinguished-point selection exists (no_fully_invariant_point). The asymmetry-price frontier is the family of inclusion-minimal declared input sets restoring the symmetry. The result says selection is not free; it does not say retention or observers cannot exist.",
+        "prior_bottleneck": "WDP-CH03-P03 (no response of at most one item separates a from b in the declare-then-assert grammar) is stated with no Lean port in the ledger.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-WDP-DEGREE1-WINDOW",
       "stage": "WDP",
       "status": "DEFINITION",
       "source_status": "WDP-CH04-D01/D02: degree-1 window (C0,C1,C2,d0,d1), Q1, kappa1, Phi1, Gamma2, R_cl, diagnostic classes",
-      "statement": "A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm of d1 h, R_cl = Gamma2/Phi1 when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.",
+      "statement": "A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im d0; kappa1([h]) = d1 h is defined exactly when d1 d0 = 0 (the window hypothesis; otherwise no kappa1 exists on Q1), H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm of d1 h, R_cl = Gamma2/Phi1 only when Phi1 > 0; the diagnostic classes ExactClass (Phi1 = 0), ClosedResidual (Phi1 > 0, Gamma2 = 0), ActiveClosureFailure (Phi1 > 0, Gamma2 > 0) partition the (Phi1, Gamma2) pairs. [Kernel-checked over a field for the algebra and for the abstract defect; for weighted-L1 cost on graph windows with positive weights the cost is proved to be the IsPhi defect of a definite J, so Phi1 = 0 iff the class is zero; Phi1 values on 17 integer windows are certified by verified primal/dual pairs; norms other than weighted L1 and attainment for general windows are not covered.]",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D01",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D02"
@@ -1222,18 +1358,35 @@
         "Finite-dimensional real/complex vector space and norm J (assumption: declared)",
         "Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)"
       ],
-      "bottleneck": "The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW). Geometry derivation belongs to the L1 emergence fragment.",
+      "bottleneck": "The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW). Existence of the attained minimum for every weighted-L1 window (strong duality) is not a Lean theorem; per-window attainment rests on verified primal/dual witnesses.",
       "tags": [],
       "see_also": [
         "L1-WDP-WINDOW-PHI1-GAMMA2"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "45bdeb31c24499e7c964c924020a0b2e1589a26dad2b547b47165921e5343701",
+        "review_refs": [
+          "dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "For modules over a field (the graph windows tensored with Q), kappa1 exists on Q1 = C1/im d0 exactly when d1 d0 = 0 (kernel); for graph windows with positive weights the weighted-L1 cost is the IsPhi defect of a nonnegative definite J, so Phi1 = 0 iff the class is zero (kernel); on the 17 tabulated integer windows Phi1 is the weighted-L1 minimum over rational potentials with a verified primal potential and dual vector; each (Phi1, Gamma2) pair has exactly one class: ExactClass iff Phi1 = 0, ClosedResidual iff Phi1 > 0 and Gamma2 = 0, ActiveClosureFailure iff both are positive (the Lean diag theorems state phi != 0, equivalent for Phi1 >= 0).",
+        "does_not_support": "Any derivation of the window from Genesis admission or Real_0 (it stays a declared datum); norms other than weighted L1; non-graph d0 beyond the module-level lemmas; existence of the attained minimum for the weighted-L1 cost as a Lean theorem (attainment is part of IsPhi and is witnessed natively by x and y, but LP strong duality / minimiser existence is not formalised); complex coefficients; any meaning of Gamma2 for a non-window (representative dependent); that R_cl = Gamma2/Phi1 mixes the weighted Phi1 with the unweighted Gamma2 and so depends on the weight scale; any physical reading of the three classes.",
+        "next_test": "Prove in Lean that the weighted-L1 quotient defect of every graph window is attained (existence of a minimising potential, or strong duality for the pair of linear programs), so that the attainment clause of IsPhi becomes a theorem for the windows instead of resting on the verified primal and dual witnesses tabulated here.",
+        "scope_effect": "statement_narrowed",
+        "reason": "kappa1 on Q1 exists exactly when d1 d0 = 0; for weighted-L1 graph windows with positive weights the cost is the defect of a definite norm and Phi1 values are certified by verified primal/dual pairs; attainment for general windows and other norms are not covered.",
+        "prior_status": "DEFINITION",
+        "prior_statement": "A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm of d1 h, R_cl = Gamma2/Phi1 when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.",
+        "prior_bottleneck": "The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW). Geometry derivation belongs to the L1 emergence fragment.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-WDP-QUOTIENT-EXACT-SEQUENCE",
       "stage": "WDP",
       "status": "PROVED_LEAN",
       "source_status": "WDP-CH04-P03 FINITE_PROVED (P); P04/P05 FINITE_PROVED (P; C)",
-      "statement": "If d1 d0 = 0 then kappa1 is well defined on Q1 and 0 -> H1 -> Q1 -> im(d1) -> 0 is exact with no canonical splitting; every class has exactly one diagnostic class; Phi1 = 0 exactly for ExactClass; Phi1, Gamma2 >= 0 and Gamma2 <= ||d1|| Phi1 under the norm hypothesis.",
+      "statement": "For a window over a field with d1 d0 = 0, kappa1 is well defined on Q1 and 0 -> H1 -> Q1 -> im d1 -> 0 is exact with dim Q1 = dim H1 + dim im d1; when dim H1 > 0 and dim im d1 > 0 no section is invariant under the automorphisms 1 + incl f pi of the extension (which act freely on the sections and are not automorphisms of the window), and when either vanishes the section is unique and invariant; every pair (Phi1, Gamma2) lies in exactly one diagnostic class; for a definite J, Phi1 = 0 iff the class of h is zero (false for a seminorm); and for weighted L1 over Q with an attained minimum, ||d1 h||_1 <= c Phi1 whenever c is at least the largest column-sum-to-weight ratio (equivalent to the operator bound). Naturality of the splitting for automorphisms of the window, other norms, complex coefficients and Phi1 >= 0 are not covered.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-P03",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-P04",
@@ -1255,17 +1408,34 @@
       "imported_structure": [
         "Norm hypothesis over R, C, or Q restricted from the real extension (assumption)"
       ],
-      "bottleneck": "Ledger rows carry prose (P03) and prose plus computed (P04, P05) bindings, no L: binding. Lean symbols with matching names exist in Obstruction.lean (not checked against statements); they cover the exact sequence and ratio bounds at the symbols named, not necessarily every clause (claim_map.md not re-checked row by row).",
+      "bottleneck": "'No canonical splitting' is proved only for the unipotent automorphisms of the extension (a torsor statement) and is false for dim H1 = 0 or d1 = 0; Gamma2 is the representative norm (equal to the source value at the minimal residual when d1 d0 = 0); the norm hypothesis and an attained minimiser are assumed; naturality for window automorphisms is the node's next test.",
       "tags": [
         "packet:QM_004"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "d94bbcac8582a63fe9204f1c23cb54f6459fa33f15dea84b0b5d2d2d362a69cd",
+        "review_refs": [
+          "dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "For a window over a field with d1 d0 = 0 the sequence 0 -> H1 -> Q1 -> im d1 -> 0 is exact; no section is invariant under 1 + incl f pi when dim H1 > 0 and dim im d1 > 0 (kernel), and when dim H1 * dim im d1 = 0 there is exactly one section and it is invariant (kernel); every class has exactly one diagnostic class; Phi1 = 0 iff the class is zero for a definite J; and ||d1 h||_1 <= c Phi1 for an attained minimum and c at least the J-to-L1 column bound.",
+        "does_not_support": "Any derivation of the window; norms other than weighted L1 for the inequality; complex coefficients; a statement that the sequence has or lacks a section natural for automorphisms of the window (graph automorphisms preserving d0, d1 and the weights); the converse \"if there is an invariant section then dim H1 * dim im d1 = 0\" is native by dimension (section_dim) with the trivial-factor halves in the kernel; existence of minimisers for general norms; Phi1 >= 0 as a theorem for the weighted-L1 window (gamma2_nonneg is anchored, Phi1 >= 0 needs the cost bridge of the degree-1 window node); any physical reading of the classes.",
+        "next_test": "Decide the splitting claim for the finite group G of automorphisms of the K4 two-face window (graph automorphisms preserving the two faces, d0, d1 and the weights) by solving the linear fixed-point equations of G on the affine section space over Hom(im d1, H1) = Q^2: either a G-fixed section exists or the fixed locus is empty.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Exactness and unique diagnostic class are kernel-checked over a field; no canonical splitting holds only for dim H1 > 0 and dim im d1 > 0 against the unipotent automorphisms of the extension; Phi1 = 0 iff zero class needs a definite norm; the Gamma2 bound needs the operator-norm hypothesis.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "If d1 d0 = 0 then kappa1 is well defined on Q1 and 0 -> H1 -> Q1 -> im(d1) -> 0 is exact with no canonical splitting; every class has exactly one diagnostic class; Phi1 = 0 exactly for ExactClass; Phi1, Gamma2 >= 0 and Gamma2 <= ||d1|| Phi1 under the norm hypothesis.",
+        "prior_bottleneck": "Ledger rows carry prose (P03) and prose plus computed (P04, P05) bindings, no L: binding. Lean symbols with matching names exist in Obstruction.lean (not checked against statements); they cover the exact sequence and ratio bounds at the symbols named, not necessarily every clause (claim_map.md not re-checked row by row).",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-WDP-GROWTH-NO-REPAIR",
       "stage": "WDP",
       "status": "PROVED_LEAN",
       "source_status": "WDP-CH04-P09 MECHANIZED in DerivationDagQMClosure.lean (subcomplex monotonicity and 2-simplex attachment invariance)",
-      "statement": "Restricting to a subcomplex never raises Phi1; attaching 2-simplices leaves Phi1 unchanged while possibly raising Gamma2; growth of the complex does not repair a quotient residual (a decrease needs deleting cells, changing weights or a different admitted structure).",
+      "statement": "For weighted-L1 windows with attained minima: if the sub-window's d0 is the restriction of the big d0, its cochain is the restriction and its weights are at most the restrictions, then Phi1(sub) <= Phi1(big), so growth with an extending cochain and weights not lowered never lowers Phi1 (a decrease needs deleting cells, lowered weights, a changed d0 or changed cochain values); attaching a 2-cell whose row satisfies d1 d0 = 0 leaves (D0, w, h) and hence Phi1 unchanged (definitional) and adds |row . h| to Gamma2 = ||d1 h||_1, so Gamma2 cannot decrease. Monotonicity fails when weights are raised, when d0 is not the restriction, or for a norm not monotone under coordinate deletion (norm arithmetic only). Equal-weight subdivision, filtration limit pages, complex coefficients and the existence of minimisers are not covered.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-P09",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-N02"
@@ -1279,8 +1449,25 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Mechanized for 1-skeleton residual sums and 2-simplex attachments.",
-      "tags": []
+      "bottleneck": "The source Lean theorems (wdp_growth_subcomplex_monotone, wdp_two_simplex_attachment_preserves_phi1) are a List Nat sum bound and an rfl; the real statement is proved here only under hcompat, restricted cochain, weights not raised and attained minima; equal-weight subdivision and existence of minimisers are unported.",
+      "tags": [],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-GROWTH-NO-REPAIR/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "da774f64db10fdf1807d68cfb343c88adab76cc993e6ed9d6a001e676005c0f9",
+        "review_refs": [
+          "dag/results/PG-WDP-GROWTH-NO-REPAIR/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "For weighted-L1 graph windows with attained minima, restricting to a sub-window whose d0, cochain and weights are the restrictions (weights at most the restrictions of the big weights) never raises Phi1, and attaching 2-cells with d1 d0 = 0 leaves Phi1 unchanged and cannot lower Gamma2; in the native table, deleting cells, lowering weights and changing the cochain strictly lowered Phi1 (kernel instances exist only for raised weights and a changed d0).",
+        "does_not_support": "Monotonicity for arbitrary norms J or renormalised weights (the instances show it fails), or when the sub d0 is not the restriction of d0; existence of minimisers for weighted L1 as a Lean theorem; that each of the three failing hypotheses is by itself sufficient to lower Phi1 in general (kernel instances exist for raised weights and a changed d0; the native rows cover deletion, a changed cochain and lowered weights); equal-weight subdivision and filtration limit pages (clauses of WDP-CH04-P09 absent from the source Lean); the source Gamma2 at a minimal residual of a non-closed window (non-unique, withheld); complex coefficients; any physical reading.",
+        "next_test": "Prove the equal-weight subdivision clause of WDP-CH04-P09 (subdividing an edge through a new degree-two vertex with equal weights leaves Phi1 unchanged) as a Lean theorem over IsPhi and check it by exact enumeration; separately discharge the existence of minimisers (IsPhi attainment) for weighted L1 so that phi_restrict_le has no attained-minimum hypothesis.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Restriction monotonicity of Phi1 is kernel-checked for weighted-L1 windows with restricted d0, cochain and non-raised weights and attained minima; the source Lean theorems are a List Nat sum bound and an rfl; equal-weight subdivision and minimiser existence are unported.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "Restricting to a subcomplex never raises Phi1; attaching 2-simplices leaves Phi1 unchanged while possibly raising Gamma2; growth of the complex does not repair a quotient residual (a decrease needs deleting cells, changing weights or a different admitted structure).",
+        "prior_bottleneck": "Mechanized for 1-skeleton residual sums and 2-simplex attachments.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-WDP-DIAGNOSTIC-NOT-ROUTING",
@@ -1304,19 +1491,36 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Separation is a definitional discipline; WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.",
+      "bottleneck": "Separation is a definitional discipline that the source code does not follow at the tag level (run.rs 626-633; the Rust exact class is named ExactRepair; omega_mub maps the class to a CodaTerminal); WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.",
       "tags": [
         "alias:FSP-DERIV-012",
         "alias:MUB6-DERIV-012",
         "alias:MUB6-DERIV-015"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "f1589fe44b9f4fafdc8d2f07c0bd7d90e5003c2453d2922e76ad5062d58a9854",
+        "review_refs": [
+          "dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.",
+        "does_not_support": "That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause \"ExactClass is not ExactRepair\" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.",
+        "next_test": "Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare.",
+        "scope_effect": "caveat_added",
+        "reason": "Over transcribed tables the diagnostic class, routing terminal, residual class and authority tag are distinct finite types with no forced map; the only declared class-to-terminal composite is partial and the class is at most a necessary eligibility gate for authority.",
+        "prior_status": "DEFINITION",
+        "prior_statement": "Diagnostic class (ExactClass, ClosedResidual, ActiveClosureFailure) is a different axis from routing terminal (CheckPassed, RequiresLift, Repair, Refusal, NoRule, BudgetUnknown, Refused) and from authority; ExactClass is not ExactRepair, and a diagnostic value or certificate is not authority.",
+        "prior_bottleneck": "Separation is a definitional discipline; WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.",
+        "superseded_by": []
+      }
     },
     {
       "id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
       "stage": "WDP",
-      "status": "PROVED_LEAN",
+      "status": "OPEN",
       "source_status": "GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 observer completion dimension decomposition, GEN-WDP-42/45 two-event causal diamond price-curl flatness vs assertion-fee curl, and GEN-WDP-68 rational scalar norm obstruction mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped CONTROL items are done; the end-to-end claims are not.",
+      "statement": "Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped control items are done; the end-to-end claims are not. Lean establishes only ledger bookkeeping (end-to-end defined as all five discharged) and three side facts (five-flag Boolean AND, symmetrised adjacency forgets orientation, no p^2 = 2 q^2); no obligation is discharged, dischargeable or refuted.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md:87-91",
         "omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl"
@@ -1338,11 +1542,31 @@
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "None (finite-window Genesis-to-WDP bridge obligations O01..O05, observer completion dimension decomposition, causal diamond price curl, and rational scalar norm obstruction mechanized in pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl, pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation, and genesis_to_wdp_bridge_preserves_and_reflects).",
+      "bottleneck": "O01..O05 remain open in the register; the Lean module is definitional bookkeeping and the PROVED_LEAN label does not extend to any obligation.",
       "tags": [
         "gen-wdp-o01",
         "gen-wdp-o02"
-      ]
+      ],
+      "pfp_review": {
+        "review": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json",
+        "review_sha256": "e21e2ec6851daa4ca4fe36df85e6bef8dd45a9c4c724247166463e469701e564",
+        "review_refs": [
+          "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json"
+        ],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "In a three-status ledger model in which end-to-end is defined as all five discharged, scoped controls passing for all five obligations do not make the end-to-end claim hold, which holds exactly when all five are discharged; the node reading (all five control-only) is therefore not end-to-end; ledger bookkeeping only, no obligation is discharged.",
+        "does_not_support": "That any of O01..O05 is discharged, dischargeable or refutable; the truth of any end-to-end bridge claim; any independent semantics of \"end-to-end\" beyond the definitional conjunction; that the register status of O01..O05 is control-only: the register labels each OPEN, and Open/ControlOnly/Discharged and the all-ControlOnly vector 11111 are this node's reading of the node statement (scoped controls done, end-to-end not); that no_sq_eq_two_sq bears on O04; the programme order as a logical dependency; Hilbert, Born, scalar or governance choices; any physical or institutional interpretation.",
+        "next_test": "For O02, the only concrete candidate map in hand is the symmetrised adjacency of a finite window: choose an orientation-sensitive source transition system on FiniteGenesisWindow and prove or refute that wdpPairDefect is a preservation-and-reflection morphism for it (pairDefect_forgets_orientation already refutes it for orientation-sensitive transitions); record the outcome as the first falsifier on the O02 row.",
+        "scope_effect": "status_lowered",
+        "reason": "The cited Lean witnesses are fixed-number arithmetic and unconnected Boolean flags; the new kernel content is definitional ledger bookkeeping and three side facts, and no obligation O01-O05 is discharged, dischargeable or refuted.",
+        "prior_status": "PROVED_LEAN",
+        "prior_statement": "Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped CONTROL items are done; the end-to-end claims are not.",
+        "prior_bottleneck": "None (finite-window Genesis-to-WDP bridge obligations O01..O05, observer completion dimension decomposition, causal diamond price curl, and rational scalar norm obstruction mechanized in pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl, pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation, and genesis_to_wdp_bridge_preserves_and_reflects).",
+        "superseded_by": [],
+        "prior_route_status": {
+          "PG-R-GENESIS-TO-WDP": "DERIVED_LEAN"
+        }
+      }
     },
     {
       "id": "L1-WDP-WINDOW-PHI1-GAMMA2",
@@ -22201,7 +22425,7 @@
         "PG-OBLIGATION-MONOID"
       ],
       "output": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
-      "status": "DERIVED_LEAN",
+      "status": "GAP_NO_DERIVATION",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md:88",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",

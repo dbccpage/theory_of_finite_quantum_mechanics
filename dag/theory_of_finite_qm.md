@@ -68,10 +68,10 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | Record | Stage | Record status | DAG node (status) | Review |
 |---|---|---|---|---|
 | `TFQ-0000` | `PREGENESIS` | `SOURCE_RECORD` | `PG-INERT-DIAMOND` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0001` | `PREGENESIS` | `GAP` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | - |
+| `TFQ-0001` | `PREGENESIS` | `GAP` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0002` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-REGIME-EVENTS` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0003` | `FINITE_OBSTRUCTION` | `OPEN_OBLIGATION` | `TFQ-0003` (OPEN) | - |
-| `TFQ-0004` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | - |
+| `TFQ-0004` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0005` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0006` | `L1_TO_L2` | `GAP` | `TFQ-0006` (OPEN) | - |
 | `TFQ-0007` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-0007` (OPEN) | - |
@@ -153,8 +153,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / consistent; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0084` | `FINITE_QG` | `OPEN_OBLIGATION` | `TFQ-0084` (OPEN) | - |
 | `TFQ-0085` | `CONTINUUM_INTERFACE` | `GAP` | `TFQ-0085` (OPEN) | - |
-| `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0087` | `FINITE_QG` | `FINITE_CARRIER` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | - |
+| `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0087` | `FINITE_QG` | `FINITE_CARRIER` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0088` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0088` (SOURCE_RECORD) | - |
 | `TFQ-0089` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0089` (SOURCE_RECORD) | - |
 | `TFQ-0090` | `FINITE_QG` | `GAP` | `TFQ-0090` (OPEN) | - |
@@ -401,22 +401,22 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0331` | `AUTHORIZATION` | `SOURCE_RECORD` | `TFQ-0331` (SOURCE_RECORD) | - |
 | `TFQ-0332` | `AUTHORIZATION` | `OPEN_OBLIGATION` | `TFQ-0332` (OPEN) | - |
 | `TFQ-0333` | `MSSN_SN` | `SOURCE_RECORD` | `PG-DEMAND-ACCOUNTING` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0334` | `MSSN_SN` | `SOURCE_RECORD` | `PG-REFINE-SEPARATES` (PROVED_LEAN) | - |
-| `TFQ-0335` | `MSSN_SN` | `SOURCE_RECORD` | `PG-OLD-IMAGE-INJECTIVE` (PROVED_LEAN), `PG-SN-OFF-IMAGE-REFUSAL` (PROVED_LEAN) | - |
+| `TFQ-0334` | `MSSN_SN` | `SOURCE_RECORD` | `PG-REFINE-SEPARATES` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0335` | `MSSN_SN` | `SOURCE_RECORD` | `PG-OLD-IMAGE-INJECTIVE` (PROVED_LEAN), `PG-SN-OFF-IMAGE-REFUSAL` (PROVED_LEAN) | `PG-OLD-IMAGE-INJECTIVE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `PG-SN-OFF-IMAGE-REFUSAL`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0336` | `MSSN_SN` | `SOURCE_RECORD` | `PG-FREE-MONOID-NONISO` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0337` | `MSSN_SN` | `SOURCE_RECORD` | `PG-CHAIN-RETRACTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0338` | `MSSN_SN` | `SOURCE_RECORD` | `PG-HISTORY-REPORT-CRITERION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0339` | `WDP` | `SOURCE_RECORD` | `PG-WDP-PROTECTED-QUESTIONS` (PROVED_LEAN) | - |
-| `TFQ-0340` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-PROTECTED-QUESTIONS` (PROVED_LEAN) | - |
+| `TFQ-0339` | `WDP` | `SOURCE_RECORD` | `PG-WDP-PROTECTED-QUESTIONS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0340` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-PROTECTED-QUESTIONS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0341` | `MSSN_SN` | `OPEN_OBLIGATION` | `PG-SN-CARRIER` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0342` | `MSSN_SN` | `GAP` | `PG-OBLIGATION-MONOID` (PROVED_LEAN), `PG-GEN-REGIME-EVENTS` (DEFINITION), `PG-SN-CARRIER` (PROVED_LEAN) | `PG-OBLIGATION-MONOID`: scoped_result_or_obstruction_reviewed / statement_narrowed; `PG-GEN-REGIME-EVENTS`: reviewed_with_targeted_native_integration / consistent; `PG-SN-CARRIER`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0343` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (PROVED_LEAN) | - |
-| `TFQ-0344` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION), `PG-PRIMDIFF-AXIOMS` (DEFINITION) | - |
-| `TFQ-0345` | `WDP` | `SOURCE_RECORD` | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` (PROVED_LEAN) | - |
-| `TFQ-0346` | `WDP` | `SOURCE_RECORD` | `PG-WDP-GROWTH-NO-REPAIR` (PROVED_LEAN), `PG-CHAIN-RETRACTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0347` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-DIAGNOSTIC-NOT-ROUTING` (DEFINITION) | - |
-| `TFQ-0348` | `WDP` | `SOURCE_RECORD` | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` (PROVED_LEAN) | - |
-| `TFQ-0349` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0343` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0344` | `WDP` | `GAP` | `PG-WDP-DEGREE1-WINDOW` (DEFINITION), `PG-PRIMDIFF-AXIOMS` (DEFINITION) | `PG-WDP-DEGREE1-WINDOW`: scoped_result_or_obstruction_reviewed / statement_narrowed; `PG-PRIMDIFF-AXIOMS`: scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0345` | `WDP` | `SOURCE_RECORD` | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0346` | `WDP` | `SOURCE_RECORD` | `PG-WDP-GROWTH-NO-REPAIR` (PROVED_LEAN), `PG-CHAIN-RETRACTION` (PROVED_LEAN) | `PG-WDP-GROWTH-NO-REPAIR`: scoped_result_or_obstruction_reviewed / statement_narrowed; `PG-CHAIN-RETRACTION`: scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0347` | `WDP` | `OPEN_OBLIGATION` | `PG-WDP-DIAGNOSTIC-NOT-ROUTING` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0348` | `WDP` | `SOURCE_RECORD` | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0349` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `PG-WDP-DEGREE1-WINDOW`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0350` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
@@ -430,16 +430,16 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0360` | `WDP` | `SOURCE_RECORD` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0361` | `PREGENESIS` | `SOURCE_RECORD` | `PG-INERT-DIAMOND` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0362` | `PREGENESIS` | `SOURCE_RECORD` | `PG-INERT-DIAMOND` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0363` | `PREGENESIS` | `SOURCE_RECORD` | `PG-SIX-OPERATIONS` (DEFINITION) | - |
+| `TFQ-0363` | `PREGENESIS` | `SOURCE_RECORD` | `PG-SIX-OPERATIONS` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0364` | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0364` (SOURCE_RECORD) | - |
 | `TFQ-0365` | `PREGENESIS` | `SOURCE_RECORD` | `PG-COLLAPSE-BARRIER` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0366` | `PREGENESIS` | `SOURCE_RECORD` | `PG-HISTORY-REPORT-CRITERION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0367` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PREGEN-CONSTRUCTIVE-SUMMARY` (PROVED_LEAN) | - |
+| `TFQ-0367` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PREGEN-CONSTRUCTIVE-SUMMARY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0368` | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0368` (SOURCE_RECORD) | - |
 | `TFQ-0369` | `PREGENESIS` | `SOURCE_RECORD` | `PG-DEMAND-ACCOUNTING` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0370` | `PREGENESIS` | `SOURCE_RECORD` | `PG-REFINE-SEPARATES` (PROVED_LEAN) | - |
-| `TFQ-0371` | `PREGENESIS` | `SOURCE_RECORD` | `PG-OLD-IMAGE-INJECTIVE` (PROVED_LEAN) | - |
-| `TFQ-0372` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-SN-OFF-IMAGE-REFUSAL` (PROVED_LEAN) | - |
+| `TFQ-0370` | `PREGENESIS` | `SOURCE_RECORD` | `PG-REFINE-SEPARATES` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0371` | `PREGENESIS` | `SOURCE_RECORD` | `PG-OLD-IMAGE-INJECTIVE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0372` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-SN-OFF-IMAGE-REFUSAL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0373` | `PREGENESIS` | `SOURCE_RECORD` | `PG-FREE-MONOID-NONISO` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0374` | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0374` (OPEN) | - |
 | `TFQ-0375` | `PREGENESIS` | `SOURCE_RECORD` | `PG-CHAIN-RETRACTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
@@ -459,9 +459,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0389` | `GENESIS` | `SOURCE_RECORD` | `PG-GEN-ONGOING-FEWEST-CHANGES` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0390` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-REWRITING-COMMUTATION` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
 | `TFQ-0391` | `GENESIS` | `OPEN_OBLIGATION` | `PG-GEN-SAMENESS-REFINEMENTS` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
-| `TFQ-0392` | `PREGENESIS` | `GAP` | `PG-INERT-DIAMOND` (DEFINITION), `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0393` | `PREGENESIS` | `SOURCE_RECORD` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | - |
-| `TFQ-0394` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PRIMDIFF-AXIOMS` (DEFINITION) | - |
+| `TFQ-0392` | `PREGENESIS` | `GAP` | `PG-INERT-DIAMOND` (DEFINITION), `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | `PG-INERT-DIAMOND`: scoped_result_or_obstruction_reviewed / caveat_added; `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0393` | `PREGENESIS` | `SOURCE_RECORD` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0394` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PRIMDIFF-AXIOMS` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0395` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0396` | `GENESIS` | `GAP` | `TFQ-0396` (OPEN) | - |
 | `TFQ-1000` | `L1_TO_L2` | `PROVED_LEAN` | `L1-OPERATOR-LIFT-TRACE-EMBED-013` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
