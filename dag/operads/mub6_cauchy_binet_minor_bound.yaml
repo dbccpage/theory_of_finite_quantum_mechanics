@@ -1,0 +1,179 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-CAUCHY-BINET-MINOR-BOUND
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Every 6x6 matrix H with unit-modulus entries and H H* = 6I has a 3x3 minor of its
+    first three rows with |det|^2 >= 54/5, which is invertible and whose inverse has squared entry moduli
+    at most 10/27.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The bound gives a chart, not nonextension; the selected minor need not be the external
+    finite-corner minor.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md
+    sha256: 2d2cf72a5120153187c879f28cb09899911e2af0281ad1b23e62fc1d3accaf4f
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_cauchy_binet_minor_bound_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: minor
+  line: 29
+  signature_excerpt: |-
+    def minor (A : Matrix (Fin 3) (Fin 6) ℂ) (s : Fin 20) :
+        Matrix (Fin 3) (Fin 3) ℂ
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: columns
+  line: 23
+  signature_excerpt: 'def columns : Fin 20 → Fin 3 → Fin 6'
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: firstRows
+  line: 67
+  signature_excerpt: 'def firstRows (H : Matrix (Fin 6) (Fin 6) ℂ) : Matrix (Fin 3) (Fin 6) ℂ'
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_minor_norm_ge
+  line: 57
+  signature_excerpt: |-
+    theorem exists_minor_norm_ge (A : Matrix (Fin 3) (Fin 6) ℂ)
+        (hA : A * A.conjTranspose = (6 : ℂ) • (1 : Matrix (Fin 3) (Fin 3) ℂ)) :
+        ∃ s : Fin 20, (54 / 5 : ℝ) ≤ Complex.normSq (minor A s).det
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: inverse_entry_normSq_le
+  line: 108
+  signature_excerpt: |-
+    theorem inverse_entry_normSq_le (B : Matrix (Fin 3) (Fin 3) ℂ)
+        (hB : ∀ i j, Complex.normSq (B i j) = 1)
+        (hdet : (54 / 5 : ℝ) ≤ Complex.normSq B.det) (i j : Fin 3) :
+        Complex.normSq (B⁻¹ i j) ≤ 10 / 27
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: exists_bounded_inverse_minor
+  line: 119
+  signature_excerpt: |-
+    theorem exists_bounded_inverse_minor (H : Matrix (Fin 6) (Fin 6) ℂ)
+        (hunit : ∀ i j, Complex.normSq (H i j) = 1)
+        (hH : H * H.conjTranspose = (6 : ℂ) • (1 : Matrix (Fin 6) (Fin 6) ℂ)) :
+        ∃ s : Fin 20, (54 / 5 : ℝ) ≤ Complex.normSq (minor (firstRows H) s).det ∧
+          IsUnit (minor (firstRows H) s).det ∧
+          ∀ i j, Complex.normSq ((minor (firstRows H) s)⁻¹ i j) ≤ 10 / 27
+  source: lean4/MubMinorChart.lean
+  repository: this_repository
+  source_sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/MubMinorChart.lean::exists_minor_norm_ge
+  availability: local
+  symbol: exists_minor_norm_ge
+  path: lean4/MubMinorChart.lean
+  repository: this_repository
+  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/MubMinorChart.lean::inverse_entry_normSq_le
+  availability: local
+  symbol: inverse_entry_normSq_le
+  path: lean4/MubMinorChart.lean
+  repository: this_repository
+  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/MubMinorChart.lean::exists_bounded_inverse_minor
+  availability: local
+  symbol: exists_bounded_inverse_minor
+  path: lean4/MubMinorChart.lean
+  repository: this_repository
+  sha256: 941cf735639efb486c3e9848ad706ecfdab764905eecbeb21ead6f365409a765
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

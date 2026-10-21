@@ -1,0 +1,912 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TENSOR-ASSUMPTION-COUNTERMODELS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Full SEP/BP duality, local preservation and binary-product tomography do not select
+    PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted
+    and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility
+    despite matching classical tables. A doubled positive carrier has distinct normalized states with
+    identical product statistics.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - finite complex Hermitian matrix carriers with the real trace pairing
+  - full local positive and binary matrix tests; operational availability is not inferred
+  - dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses
+  - supplied unitary transformations; supplied continuous paths for the continuity theorem
+  - positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one
+  source_bottleneck: Countermodels delimit weakened hypotheses, not logical minimality of the sufficient
+    package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof
+    of SEP closedness is claimed. The identical-qubit family classification remains external.
+  source_refs:
+  - dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md
+  - code/python/src/qm/tensor_composition.py
+  - code/python/tests/test_tensor_composition.py
+  - dag/research/tensor_countermodel_validation.json
+  paper_refs:
+  - dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md
+    sha256: 3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/tensor_composition_tensor_assumption_countermodels_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: gamma
+  line: 17
+  signature_excerpt: 'def gamma : Herm (n × m) ≃ₗ[ℝ] Herm (n × m)'
+  source: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  source_sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: conjMap
+  line: 59
+  signature_excerpt: |-
+    def conjMap {a b : Type*} [Fintype a] [Fintype b]
+        (U : Matrix b a ℂ) : Herm a →ₗ[ℝ] Herm b
+  source: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  source_sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: BlockPositive
+  line: 16
+  signature_excerpt: 'def BlockPositive (H : Herm (n × m)) : Prop'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sep
+  line: 13
+  signature_excerpt: 'def sep : PointedCone ℝ (Herm (n × m))'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: twisted
+  line: 30
+  signature_excerpt: 'def twisted : PointedCone ℝ (Herm (n × m))'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: twist
+  line: 151
+  signature_excerpt: 'def twist (U : Matrix (n × m) (n × m) ℂ) : Herm (n × m) →ₗ[ℝ] Herm (n × m)'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: J
+  line: 16
+  signature_excerpt: abbrev J
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Q
+  line: 15
+  signature_excerpt: abbrev Q
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: seed
+  line: 24
+  signature_excerpt: 'def seed : Herm J'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: plus
+  line: 21
+  signature_excerpt: 'def plus : Herm Q'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroState
+  line: 23
+  signature_excerpt: 'def zeroState : Herm Q'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: classical
+  line: 146
+  signature_excerpt: 'def classical (k : J) : Herm J'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: imaginaryEffect
+  line: 26
+  signature_excerpt: 'def imaginaryEffect : Herm Q'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dephase
+  line: 195
+  signature_excerpt: 'def dephase {d : Type*} [Fintype d] [DecidableEq d] : Herm d →ₗ[ℝ] Herm d'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: test
+  line: 37
+  signature_excerpt: 'def test : Herm n →ₗ[ℝ] Herm m →ₗ[ℝ] Doubled (n × m) →ₗ[ℝ] ℝ'
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: prepare
+  line: 26
+  signature_excerpt: 'def prepare : Herm n →ₗ[ℝ] Herm m →ₗ[ℝ] Doubled (n × m)'
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pairing_gamma_gamma
+  line: 56
+  signature_excerpt: |-
+    theorem pairing_gamma_gamma (A B : Herm (n × m)) :
+        pairing (gamma A) (gamma B) = pairing A B
+  source: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  source_sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gamma_conjMap_product
+  line: 90
+  signature_excerpt: |-
+    theorem gamma_conjMap_product {a b : Type*} [Fintype a] [Fintype b]
+        (U : Matrix a n ℂ) (W : Matrix b m ℂ) (A : Herm (n × m)) :
+        gamma (conjMap (U ⊗ₖ W) A) = conjMap (U.map star ⊗ₖ W) (gamma A)
+  source: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  source_sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conjMap_inverse
+  line: 101
+  signature_excerpt: |-
+    theorem conjMap_inverse [DecidableEq n] (U : Matrix.unitaryGroup n ℂ) (A : Herm n) :
+        conjMap U.valᴴ (conjMap U.val A) = A
+  source: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  source_sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: blockPositive_iff_dual_sep
+  line: 58
+  signature_excerpt: |-
+    theorem blockPositive_iff_dual_sep (H : Herm (n × m)) :
+        BlockPositive H ↔ ∀ E ∈ sep, 0 ≤ pairing E H
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sep_ppt
+  line: 85
+  signature_excerpt: 'theorem sep_ppt {H : Herm (n × m)} (hH : H ∈ sep) : Positive (gamma H)'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twisted_self_dual
+  line: 104
+  signature_excerpt: |-
+    theorem twisted_self_dual (H : Herm (n × m)) :
+        H ∈ twisted ↔ ∀ A ∈ twisted, 0 ≤ pairing H A
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sep_local
+  line: 116
+  signature_excerpt: |-
+    theorem sep_local (U : Matrix n n ℂ) (W : Matrix m m ℂ)
+        {H : Herm (n × m)} (hH : H ∈ sep) : conjMap (U ⊗ₖ W) H ∈ sep
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bp_local
+  line: 139
+  signature_excerpt: |-
+    theorem bp_local (U : Matrix n n ℂ) (W : Matrix m m ℂ)
+        {H : Herm (n × m)} (hH : BlockPositive H) : BlockPositive (conjMap (U ⊗ₖ W) H)
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twisted_local
+  line: 145
+  signature_excerpt: |-
+    theorem twisted_local (U : Matrix n n ℂ) (W : Matrix m m ℂ)
+        {H : Herm (n × m)} (hH : H ∈ twisted) : conjMap (U ⊗ₖ W) H ∈ twisted
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twist_reversible
+  line: 160
+  signature_excerpt: |-
+    theorem twist_reversible (U : Matrix.unitaryGroup (n × m) ℂ) (H : Herm (n × m)) :
+        twist U.valᴴ (twist U.val H) = H
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twist_trace
+  line: 171
+  signature_excerpt: |-
+    theorem twist_trace (U : Matrix.unitaryGroup (n × m) ℂ) (H : Herm (n × m)) :
+        (twist U.val H).val.trace = H.val.trace
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twist_path_continuous
+  line: 178
+  signature_excerpt: |-
+    theorem twist_path_continuous {T : Type*} [TopologicalSpace T]
+        (R : T → Matrix (n × m) (n × m) ℂ) (hR : Continuous R) (H : Herm (n × m)) :
+        Continuous (fun t => twist (R t) H)
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: binary_product_statistics_separate
+  line: 225
+  signature_excerpt: |-
+    theorem binary_product_statistics_separate (X Y : Herm (n × m))
+        (h : ∀ E F, Binary E → Binary F → pairing (product E F) X = pairing (product E F) Y) :
+        X = Y
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bp_salient
+  line: 234
+  signature_excerpt: 'theorem bp_salient {H : Herm (n × m)} (hp : BlockPositive H) (hn : BlockPositive
+    (-H)) : H = 0'
+  source: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  source_sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sep_fails_controlled_shift
+  line: 101
+  signature_excerpt: |-
+    theorem sep_fails_controlled_shift : ¬ (∀ H ∈ (sep : PointedCone ℝ (Herm J)),
+        conjMap gate.val H ∈ sep)
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bp_fails_inverse_controlled_shift
+  line: 122
+  signature_excerpt: |-
+    theorem bp_fails_inverse_controlled_shift : ¬ (∀ H : Herm J, BlockPositive H →
+        BlockPositive (conjMap gate.valᴴ H))
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twisted_fails_ordinary_calibration
+  line: 140
+  signature_excerpt: |-
+    theorem twisted_fails_ordinary_calibration :
+        seed ∈ twisted ∧ twist gate.val seed ∈ twisted ∧ conjMap gate.val seed ∉ twisted
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twisted_same_classical_table
+  line: 170
+  signature_excerpt: |-
+    theorem twisted_same_classical_table (k : J) :
+        twist gate.val (classical k) = conjMap gate.val (classical k)
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: imaginary_effect_binary
+  line: 175
+  signature_excerpt: 'theorem imaginary_effect_binary : Binary imaginaryEffect'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: coherent_calibration_separates
+  line: 189
+  signature_excerpt: |-
+    theorem coherent_calibration_separates :
+        pairing (product imaginaryEffect imaginaryEffect) (conjMap gate.val seed) = 0 ∧
+        pairing (product imaginaryEffect imaginaryEffect) (twist gate.val seed) = 1 / 2
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dephased_same_classical_table
+  line: 223
+  signature_excerpt: |-
+    theorem dephased_same_classical_table (k : J) :
+        dephase (conjMap gate.val (classical k)) = conjMap gate.val (classical k)
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dephased_controlled_shift_not_injective
+  line: 263
+  signature_excerpt: |-
+    theorem dephased_controlled_shift_not_injective :
+        ¬ Function.Injective (fun H : Herm J => dephase (conjMap gate.val H))
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dephased_coherent_calibration_separates
+  line: 254
+  signature_excerpt: |-
+    theorem dephased_coherent_calibration_separates :
+        pairing (product plus plus) (conjMap gate.val seed) = 1 / 2 ∧
+        pairing (product plus plus) (dephase (conjMap gate.val seed)) = 1 / 4
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: plus_binary
+  line: 276
+  signature_excerpt: 'theorem plus_binary : Binary plus'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: seed_normalized
+  line: 288
+  signature_excerpt: 'theorem seed_normalized : Positive seed ∧ seed.val.trace.re = 1'
+  source: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  source_sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cone_separations_all_dimensions
+  line: 75
+  signature_excerpt: |-
+    theorem cone_separations_all_dimensions {n m : ℕ} (hn : 2 ≤ n) (hm : 2 ≤ m) :
+        ∃ B W : Herm (Fin n × Fin m), Positive B ∧ B ∉ sep ∧
+          BlockPositive W ∧ ¬ Positive W ∧ W ∈ twisted
+  source: lean4/TensorCountermodelEmbeddings.lean
+  repository: this_repository
+  source_sha256: c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: independent_probabilities
+  line: 64
+  signature_excerpt: |-
+    theorem independent_probabilities (E A : Herm n) (F B : Herm m) :
+        test E F (prepare A B) = pairing E A * pairing F B
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: doubledConj_inverse
+  line: 96
+  signature_excerpt: |-
+    theorem doubledConj_inverse {d : Type*} [Fintype d] [DecidableEq d]
+        (U : Matrix.unitaryGroup d ℂ) (x : Doubled d) :
+        doubledConj U.valᴴ (doubledConj U.val x) = x
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hidden_normalized_states
+  line: 110
+  signature_excerpt: |-
+    theorem hidden_normalized_states (ρ : Herm (n × m)) (hρ : Positive ρ)
+        (ht : ρ.val.trace.re = 1) :
+        PositiveD (ρ, 0) ∧ PositiveD (0, ρ) ∧
+        test (1 : Herm n) (1 : Herm m) (ρ, 0) = 1 ∧
+        test (1 : Herm n) (1 : Herm m) (0, ρ) = 1 ∧
+        (ρ, (0 : Herm (n × m))) ≠ (0, ρ) ∧
+        (∀ E F, test E F (ρ, 0) = test E F (0, ρ)) ∧
+        (ρ, (0 : Herm (n × m))).1.val.trace.re ≠ ((0 : Herm (n × m)), ρ).1.val.trace.re
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_local_tomography
+  line: 126
+  signature_excerpt: |-
+    theorem no_local_tomography (ρ : Herm (n × m)) (hρ : ρ ≠ 0) :
+        ¬ (∀ x y : Doubled (n × m), (∀ E F, test E F x = test E F y) → x = y)
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dimension_doubled
+  line: 132
+  signature_excerpt: |-
+    theorem dimension_doubled {d : Type*} [Fintype d] :
+        Module.finrank ℝ (Doubled d) = 2 * Module.finrank ℝ (Herm d)
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: basis_state_normalized
+  line: 137
+  signature_excerpt: |-
+    theorem basis_state_normalized (k : n × m) :
+        Positive (hermRankOne (Pi.single k 1)) ∧
+        (hermRankOne (Pi.single k 1)).val.trace.re = 1
+  source: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  source_sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TensorPartialTranspose.lean::gamma
+  availability: local
+  symbol: gamma
+  path: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/TensorPartialTranspose.lean::pairing_gamma_gamma
+  availability: local
+  symbol: pairing_gamma_gamma
+  path: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  declaration_status: declaration_found_not_proof_checked
+  line: 56
+  role: source_lead_only
+- original_ref: lean4/TensorPartialTranspose.lean::gamma_conjMap_product
+  availability: local
+  symbol: gamma_conjMap_product
+  path: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: lean4/TensorPartialTranspose.lean::conjMap_inverse
+  availability: local
+  symbol: conjMap_inverse
+  path: lean4/TensorPartialTranspose.lean
+  repository: this_repository
+  sha256: b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::blockPositive_iff_dual_sep
+  availability: local
+  symbol: blockPositive_iff_dual_sep
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::sep_ppt
+  availability: local
+  symbol: sep_ppt
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::twisted_self_dual
+  availability: local
+  symbol: twisted_self_dual
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::sep_local
+  availability: local
+  symbol: sep_local
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::bp_local
+  availability: local
+  symbol: bp_local
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 139
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::twisted_local
+  availability: local
+  symbol: twisted_local
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 145
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::twist_reversible
+  availability: local
+  symbol: twist_reversible
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::twist_trace
+  availability: local
+  symbol: twist_trace
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 171
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::twist_path_continuous
+  availability: local
+  symbol: twist_path_continuous
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 178
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::binary_product_statistics_separate
+  availability: local
+  symbol: binary_product_statistics_separate
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 225
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelCones.lean::bp_salient
+  availability: local
+  symbol: bp_salient
+  path: lean4/TensorCountermodelCones.lean
+  repository: this_repository
+  sha256: 00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 234
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::sep_fails_controlled_shift
+  availability: local
+  symbol: sep_fails_controlled_shift
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::bp_fails_inverse_controlled_shift
+  availability: local
+  symbol: bp_fails_inverse_controlled_shift
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 122
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::twisted_fails_ordinary_calibration
+  availability: local
+  symbol: twisted_fails_ordinary_calibration
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 140
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::twisted_same_classical_table
+  availability: local
+  symbol: twisted_same_classical_table
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 170
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::imaginary_effect_binary
+  availability: local
+  symbol: imaginary_effect_binary
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 175
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::coherent_calibration_separates
+  availability: local
+  symbol: coherent_calibration_separates
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 189
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::dephased_same_classical_table
+  availability: local
+  symbol: dephased_same_classical_table
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 223
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::dephased_controlled_shift_not_injective
+  availability: local
+  symbol: dephased_controlled_shift_not_injective
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 263
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::dephased_coherent_calibration_separates
+  availability: local
+  symbol: dephased_coherent_calibration_separates
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 254
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::plus_binary
+  availability: local
+  symbol: plus_binary
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 276
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelWitnesses.lean::seed_normalized
+  availability: local
+  symbol: seed_normalized
+  path: lean4/TensorCountermodelWitnesses.lean
+  repository: this_repository
+  sha256: 252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c
+  declaration_status: declaration_found_not_proof_checked
+  line: 288
+  role: source_lead_only
+- original_ref: lean4/TensorCountermodelEmbeddings.lean::cone_separations_all_dimensions
+  availability: local
+  symbol: cone_separations_all_dimensions
+  path: lean4/TensorCountermodelEmbeddings.lean
+  repository: this_repository
+  sha256: c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7
+  declaration_status: declaration_found_not_proof_checked
+  line: 75
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::independent_probabilities
+  availability: local
+  symbol: independent_probabilities
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::doubledConj_inverse
+  availability: local
+  symbol: doubledConj_inverse
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 96
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::hidden_normalized_states
+  availability: local
+  symbol: hidden_normalized_states
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::no_local_tomography
+  availability: local
+  symbol: no_local_tomography
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::dimension_doubled
+  availability: local
+  symbol: dimension_doubled
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 132
+  role: source_lead_only
+- original_ref: lean4/TensorHiddenCoordinates.lean::basis_state_normalized
+  availability: local
+  symbol: basis_state_normalized
+  path: lean4/TensorHiddenCoordinates.lean
+  repository: this_repository
+  sha256: 9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27
+  declaration_status: declaration_found_not_proof_checked
+  line: 137
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - finite complex Hermitian matrix carriers with the real trace pairing
+    - full local positive and binary matrix tests; operational availability is not inferred
+    - dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses
+    - supplied unitary transformations; supplied continuous paths for the continuity theorem
+    - positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - finite complex Hermitian matrix carriers with the real trace pairing
+    - full local positive and binary matrix tests; operational availability is not inferred
+    - dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses
+    - supplied unitary transformations; supplied continuous paths for the continuity theorem
+    - positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

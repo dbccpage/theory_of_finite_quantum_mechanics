@@ -1,0 +1,165 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-INTERFACE-COUNTERMODEL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The legacy projector-realization interface has a zero-action model on a Boolean carrier
+    for every size label, so the interface-level exclusion predicate is false for every number of bases
+    and dimension.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The interface lacks completeness, rank-one, dimension, linearity and cross-basis
+    MU constraints; exclusions stated over it do not express the physical theorem.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1279_mub6_interface_countermodel.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1279_mub6_interface_countermodel.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1279_mub6_interface_countermodel.md
+    sha256: 4909aa1fa31306fa76d1344f2a5a190516a5b232d440936560623cc6bdfcc549
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_interface_countermodel_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: zeroActionInterfaceModel
+  line: 437
+  signature_excerpt: |-
+    def zeroActionInterfaceModel (numBases dim : Nat) :
+        PhysicalProjectorRealization numBases dim Bool
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: UniversalPhysicalProjectorExclusion
+  line: 424
+  signature_excerpt: 'def UniversalPhysicalProjectorExclusion (numBases dim : Nat) : Prop'
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: PhysicalProjectorRealization
+  line: 345
+  signature_excerpt: 'structure PhysicalProjectorRealization (numBases dim : Nat) (H : Type)'
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 43
+  signature_excerpt: 'def zero : ExactRat'
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: one
+  line: 46
+  signature_excerpt: 'def one : ExactRat'
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ExactRat
+  line: 35
+  signature_excerpt: structure ExactRat
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ProjectorGen
+  line: 150
+  signature_excerpt: 'structure ProjectorGen (numBases dim : Nat)'
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: not_universal_interface_exclusion
+  line: 461
+  signature_excerpt: |-
+    theorem not_universal_interface_exclusion (numBases dim : Nat) :
+        ¬ UniversalPhysicalProjectorExclusion numBases dim
+  source: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  source_sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/MomentPositivityObligation.lean::not_universal_interface_exclusion
+  availability: local
+  symbol: not_universal_interface_exclusion
+  path: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  declaration_status: declaration_found_not_proof_checked
+  line: 461
+  role: source_lead_only
+- original_ref: lean4/MomentPositivityObligation.lean::zeroActionInterfaceModel
+  availability: local
+  symbol: zeroActionInterfaceModel
+  path: lean4/MomentPositivityObligation.lean
+  repository: this_repository
+  sha256: 8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947
+  declaration_status: declaration_found_not_proof_checked
+  line: 437
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

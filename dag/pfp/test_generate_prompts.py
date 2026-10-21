@@ -24,7 +24,8 @@ import generate_prompts as gen  # noqa: E402
 import validate_prompts  # noqa: E402
 
 COPY_DIRS = ['dag/pfp', 'dag/prompts', 'dag/operads', 'dag/derivations', 'dag/results/custody']
-COPY_FILES = ['dag/derivation_dag.json', 'dag/theory_of_finite_qm.jsonl', 'scripts/contract_scores.py',
+COPY_FILES = ['dag/derivation_dag.json', 'dag/theory_of_finite_qm.jsonl', 'dag/fragments/pregenesis_to_wdp.json',
+              'scripts/contract_scores.py',
               'evidence/contract_score_migration/index.json']
 IGNORE = shutil.ignore_patterns('__pycache__', '*.pyc')
 
@@ -43,10 +44,31 @@ def rewrite(path: Path, data: bytes):
     path.write_bytes(data)
 
 
+def strip_generated(destination: Path):
+    """Return the copy to the sealed corpus: drop every generated prompt, operad, audit row and index row.
+
+    Once the repository holds the generated prompts, no node is missing; these tests need a tree in which
+    some are, so they run on the sealed 177 whatever the repository now carries."""
+    extension = destination / gen.EXTENSION_PATH
+    if not extension.is_file():
+        return
+    generated = json.loads(extension.read_bytes())['nodes']
+    for row in generated:
+        (destination / row['prompt']).unlink()
+        (destination / row['operad_collection']).unlink()
+    extension.unlink()
+    sealed = {row['node_id'] for row in json.loads((destination / 'dag/pfp/prompt_audit.json').read_bytes())['nodes']}
+    index_path = destination / 'dag/operads/index.json'
+    index = json.loads(index_path.read_bytes())
+    index['nodes'] = [row for row in index['nodes'] if row['node_id'] in sealed]
+    rewrite(index_path, gen.dump_json(index))
+
+
 def build_overlay(destination: Path):
     """Copy what the validator and generator read; pinned source files come from the operad records."""
     for name in COPY_DIRS:
         shutil.copytree(REPO / name, destination / name, ignore=IGNORE, copy_function=link_or_copy)
+    strip_generated(destination)
     for name in COPY_FILES:
         if (REPO / name).is_file():
             (destination / name).parent.mkdir(parents=True, exist_ok=True)
@@ -106,6 +128,21 @@ class Overlay(unittest.TestCase):
         out = io.StringIO()
         code = gen.run(root, True, False, ids, all_missing, out=out)
         return code, json.loads(out.getvalue())
+
+
+class SyncOwnedPapers(Overlay):
+    def test_papers_the_pregenesis_sync_writes_are_never_pinned(self):
+        corpus = gen.Corpus(self.base)
+        self.assertTrue(corpus.sync_owned)
+        owned = [path for tfq in corpus.sync_owned for path in corpus.papers.get(tfq, [])]
+        self.assertTrue(owned)
+        owned_rel = {corpus.rel(path) for path in owned}
+        touched = 0
+        for node in corpus.nodes:
+            if any(rec in corpus.sync_owned for rec in corpus.records.get(node['id'], [])):
+                touched += 1
+            self.assertFalse(owned_rel & {pin['path'] for pin in gen.paper_pins(corpus, node['id'])}, node['id'])
+        self.assertGreater(touched, 0)
 
 
 class SampleGeneration(Overlay):

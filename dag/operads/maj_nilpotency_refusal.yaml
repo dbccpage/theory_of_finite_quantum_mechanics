@@ -1,0 +1,164 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-NILPOTENCY-REFUSAL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If the declared matrices have d1 d0 nonzero mod 2 (or a residual of the wrong length
+    is supplied), the evaluator emits RepresentationInvalid and assigns no residual class.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The refusal is a rule of the procedure; the Lean lemma only records that a violating
+    vector falsifies the nilpotency predicate.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md
+    sha256: 74948acdf00b67d21a448ef127bae638599707f1e49d0bc6263f0b71ee1499cf
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_nilpotency_refusal_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: evaluate_complex_nilpotency
+  line: 73
+  signature_excerpt: 'def evaluate_complex_nilpotency {n0 n1 n2 : Nat} (d0 : F2Map n0 n1) (d1 : F2Map
+    n1 n2) : Prop'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: F2Map
+  line: 36
+  signature_excerpt: 'structure F2Map (n m : Nat)'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec
+  line: 17
+  signature_excerpt: 'def F2Vec (n : Nat)'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec.zero
+  line: 19
+  signature_excerpt: 'def F2Vec.zero (n : Nat) : F2Vec n'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec.add
+  line: 21
+  signature_excerpt: 'def F2Vec.add {n : Nat} (v1 v2 : F2Vec n) : F2Vec n'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: f2_add
+  line: 14
+  signature_excerpt: 'def f2_add (a b : Bool) : Bool'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: nilpotency_refusal_sound
+  line: 76
+  signature_excerpt: |-
+    theorem nilpotency_refusal_sound {n0 n1 n2 : Nat} (d0 : F2Map n0 n1) (d1 : F2Map n1 n2) :
+        (∃ v : F2Vec n0, d1.apply (d0.apply v) ≠ F2Vec.zero n2) → ¬(evaluate_complex_nilpotency d0 d1)
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::evaluate_complex_nilpotency
+  availability: local
+  symbol: evaluate_complex_nilpotency
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::nilpotency_refusal_sound
+  availability: local
+  symbol: nilpotency_refusal_sound
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 76
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/classify.rs::representation_invalid_is_refused_not_classified
+  availability: local
+  symbol: representation_invalid_is_refused_not_classified
+  path: code/rust/src/majorana/classify.rs
+  repository: this_repository
+  sha256: 93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b
+  declaration_status: declaration_found_not_executed
+  line: 600
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

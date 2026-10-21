@@ -1,0 +1,197 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-QUARTET-RAW-HADAMARD-TRANSPORT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'A quartet of pairwise unbiased orthonormal bases of C^6 exists iff some 6x6 matrix
+    H has a raw quartet: H, U, V with unit-modulus entries, M* M = 6I, and |(A* B)_ij|^2 = 6 for each
+    pair; raw-quartet existence is invariant under row and column permutation-phase equivalence.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Global exclusion still needs complete representative coverage and nonextension for
+    every representative, which no_quartet_of_concrete_representatives takes as hypotheses.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1225_mub6_quartet_raw_hadamard_transport.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1225_mub6_quartet_raw_hadamard_transport.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1225_mub6_quartet_raw_hadamard_transport.md
+    sha256: 8ea4466aeaef7ba6a33f51565491e8bb63d89f2715cd8b2e37dacdb030fb974c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_quartet_raw_hadamard_transport_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Mat
+  line: 22
+  signature_excerpt: 'abbrev Mat (ι : Type*)'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: MonomialEquivalent
+  line: 39
+  signature_excerpt: 'def MonomialEquivalent (H K : Mat ι) : Prop'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: HasRawQuartet
+  line: 32
+  signature_excerpt: 'def HasRawQuartet (H : Mat ι) : Prop'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: action
+  line: 36
+  signature_excerpt: 'def action (H : Mat ι) (σ τ : Equiv.Perm ι) (r c : ι → ℂ) : Mat ι'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: RawHadamard
+  line: 24
+  signature_excerpt: 'def RawHadamard (H : Mat ι) : Prop'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: RawMU
+  line: 28
+  signature_excerpt: 'def RawMU (H U : Mat ι) : Prop'
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_quartet_iff_exists_rawQuartet
+  line: 120
+  signature_excerpt: |-
+    theorem exists_quartet_iff_exists_rawQuartet :
+        (∃ B : Fin 4 → Mat (Fin 6), Quartet B) ↔
+          ∃ H : Mat (Fin 6), HasRawQuartet H
+  source: lean4/MubQuartetTransportBridge.lean
+  repository: this_repository
+  source_sha256: 9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: no_quartet_of_concrete_representatives
+  line: 131
+  signature_excerpt: |-
+    theorem no_quartet_of_concrete_representatives (S : Set (Mat (Fin 6)))
+        (hcover : ∀ H, ConcreteSemantics.IsCH6 H →
+          ∃ K ∈ S, ConcreteSemantics.HadamardEquivalent H K)
+        (hexclude : ∀ K ∈ S, ¬ HasRawQuartet K) :
+        ∀ B : Fin 4 → Mat (Fin 6), ¬ Quartet B
+  source: lean4/MubQuartetTransportBridge.lean
+  repository: this_repository
+  source_sha256: 9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: hasRawQuartet_iff_of_monomialEquivalent
+  line: 139
+  signature_excerpt: |-
+    theorem hasRawQuartet_iff_of_monomialEquivalent {H K : Mat ι}
+        (hHK : MonomialEquivalent H K) : HasRawQuartet H ↔ HasRawQuartet K
+  source: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  source_sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/MubQuartetTransportBridge.lean::exists_quartet_iff_exists_rawQuartet
+  availability: local
+  symbol: exists_quartet_iff_exists_rawQuartet
+  path: lean4/MubQuartetTransportBridge.lean
+  repository: this_repository
+  sha256: 9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/MubQuartetTransportBridge.lean::no_quartet_of_concrete_representatives
+  availability: local
+  symbol: no_quartet_of_concrete_representatives
+  path: lean4/MubQuartetTransportBridge.lean
+  repository: this_repository
+  sha256: 9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5
+  declaration_status: declaration_found_not_proof_checked
+  line: 131
+  role: source_lead_only
+- original_ref: lean4/MubMonomialTransport.lean::hasRawQuartet_iff_of_monomialEquivalent
+  availability: local
+  symbol: hasRawQuartet_iff_of_monomialEquivalent
+  path: lean4/MubMonomialTransport.lean
+  repository: this_repository
+  sha256: 1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63
+  declaration_status: declaration_found_not_proof_checked
+  line: 139
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,106 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-EMPTY-VARIETY-MOMENT-NONPSD
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If the fixed-triple variety is empty, every normalized real moment functional with
+    equal degree-two and degree-one ranks and finite relation compatibility has a degree-two moment matrix
+    that is not positive semidefinite.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Emptiness is a hypothesis and is not established for any MU triple.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md
+    sha256: da8cdf4bbb43adb5d982d00cc9e41799cf127ec918147656a3134f650439f4ba
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_empty_variety_moment_nonpsd_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: FiniteRelationCompatibility
+  line: 86
+  signature_excerpt: 'def FiniteRelationCompatibility (T : Triple) (Λ : Poly →ₗ[ℝ] ℝ) : Prop'
+  source: lean4/ConcreteMubFlatExtension.lean
+  repository: this_repository
+  source_sha256: d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: moment_nonpositive_of_empty_variety
+  line: 110
+  signature_excerpt: |-
+    theorem moment_nonpositive_of_empty_variety (T : Triple) (Λ : Poly →ₗ[ℝ] ℝ)
+        (h_empty : polynomialVariety T = ∅) (hnorm : Λ 1 = 1)
+        (hflat : (momentTwo Λ).rank = (momentOne Λ).rank)
+        (hrel : FiniteRelationCompatibility T Λ) : ¬ (momentTwo Λ).PosSemidef
+  source: lean4/ConcreteMubFlatExtension.lean
+  repository: this_repository
+  source_sha256: d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/ConcreteMubFlatExtension.lean::moment_nonpositive_of_empty_variety
+  availability: local
+  symbol: moment_nonpositive_of_empty_variety
+  path: lean4/ConcreteMubFlatExtension.lean
+  repository: this_repository
+  sha256: d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

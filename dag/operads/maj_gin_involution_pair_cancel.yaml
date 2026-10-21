@@ -1,0 +1,113 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-GIN-INVOLUTION-PAIR-CANCEL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a natural weight w and integer signs with s1 + s2 = 0, w s1 + w s2 = 0 in Int.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Single pair only; no global involution on a configuration space is constructed.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/lean4/axiom_report.txt
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md
+    sha256: 5a3baca2fd3a6560709d18f1d8bd26cc6518e846097611dfee2571c7e21e9a44
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_gin_involution_pair_cancel_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: is_exact_involution_partner
+  line: 24
+  signature_excerpt: 'def is_exact_involution_partner (c1 c2 : SignedWeight) : Bool'
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: involution_pair_cancels_sign
+  line: 28
+  signature_excerpt: |-
+    theorem involution_pair_cancels_sign (w : Nat) (s1 s2 : Int)
+        (h_sign : s1 + s2 = 0) :
+        (w : Int) * s1 + (w : Int) * s2 = 0
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::involution_pair_cancels_sign
+  availability: local
+  symbol: involution_pair_cancels_sign
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::is_exact_involution_partner
+  availability: local
+  symbol: is_exact_involution_partner
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

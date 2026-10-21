@@ -20,7 +20,9 @@ changed after generation; --write regenerates stale prompts that have not run ye
 has run (its index row has latest_run) is never rewritten: it is reported as needing a manual
 delta. Declaration scanning reads only files inside this repository; sources that are not
 checked in here are bound as external with a null digest and are pinned when a batch is
-prepared. Nothing here accepts a theorem: AuthorityEffect None.
+prepared. Papers that dag/sync_pregenesis_to_wdp.py renders or rewrites (the fragment records TFQ-0417
+upward and their parents) are not pinned, because that sync must stay free to write them. Nothing here
+accepts a theorem: AuthorityEffect None.
 
     python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing
     python -I -X utf8 dag/pfp/generate_prompts.py --write --nodes ID [ID ...]
@@ -172,6 +174,14 @@ class Corpus:
             match = re.match(r'tfq_(\d+)_', path.name)
             if match:
                 self.papers.setdefault('TFQ-' + match.group(1), []).append(path)
+        # Papers that dag/sync_pregenesis_to_wdp.py renders (fragment records) or rewrites (section 4 of
+        # an unpinned parent). Pinning one would make the sync's pinned_parent flags and the pin digests
+        # stale, and pinned papers must never be rewritten, so these are never pinned here.
+        self.sync_owned = set()
+        fragment = self.root / 'dag/fragments/pregenesis_to_wdp.json'
+        if fragment.is_file():
+            for row in json.loads(fragment.read_bytes()).get('records', []):
+                self.sync_owned.update((row['id'], row['parent_id']))
         self.index_path = self.root / 'dag/operads/index.json'
         self.index = json.loads(self.index_path.read_bytes())
         self.base_audit = json.loads((self.root / 'dag/pfp/prompt_audit.json').read_bytes())
@@ -369,7 +379,8 @@ def mine_node(corpus: Corpus, node):
 def paper_pins(corpus: Corpus, node_id):
     refs = []
     for record_id in corpus.records.get(node_id, []):
-        refs.extend(corpus.papers.get(record_id, []))
+        if record_id not in corpus.sync_owned:
+            refs.extend(corpus.papers.get(record_id, []))
     refs = sorted(set(refs), key=lambda p: (p.name, p.as_posix()))
     return [{'path': corpus.rel(p), 'sha256': sha(p.read_bytes())} for p in refs]
 

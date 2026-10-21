@@ -1,0 +1,111 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-TAO-MATRIX-CHM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The Tao matrix S6 with entries in {1, w, w^2}, w = exp(2 pi i/3), has unit-modulus
+    entries and S6 S6* = 6I.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The source claims that S6 is isolated and that the CHM(6) moduli space is disconnected
+    are cited literature facts, not formalized here.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md
+  - papers/core/mub6/theory_of_finite_mub6.jsonl
+  - papers/core/mub6/theory_of_finite_mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md
+    sha256: 2dc8079fd2bc30078876c7545194c9e3f31681df64c8701dcd26ca25379d3f44
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_tao_matrix_chm_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: taoMatrix
+  line: 133
+  signature_excerpt: 'noncomputable def taoMatrix : Matrix (Fin 6) (Fin 6) ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tao_omega
+  line: 130
+  signature_excerpt: 'noncomputable def tao_omega : ℂ'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: taoMatrix_isCH6
+  line: 465
+  signature_excerpt: 'theorem taoMatrix_isCH6 : IsCH6 taoMatrix'
+  source: lean4/MasterClassification.lean
+  repository: this_repository
+  source_sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/MasterClassification.lean::taoMatrix_isCH6
+  availability: local
+  symbol: taoMatrix_isCH6
+  path: lean4/MasterClassification.lean
+  repository: this_repository
+  sha256: cbfd11e4e0038f1a3deb5c51c8079d1c28f7e5fad3d189b3296239b50507ccc3
+  declaration_status: declaration_found_not_proof_checked
+  line: 465
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

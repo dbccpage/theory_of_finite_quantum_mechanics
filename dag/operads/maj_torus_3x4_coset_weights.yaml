@@ -1,0 +1,140 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-TORUS-3X4-COSET-WEIGHTS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the 3x4 tetron torus (12 sites, 24 channels, 12 islands) exhaustive Gray-code coset
+    search gives Phi1 = 3 for the column class, 4 for the row class and 7 for their sum, all ClosedResidual,
+    so the distance of that instance is 3.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Fixed instance only; additivity and d = min(rows, cols) for other sizes are MAJ-CLAIM-DISTANCE-FAMILY.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md
+    sha256: 16d564db784c3fd3faf53f0de313f82e37037d0c405cb336309b9cc927125e1c
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_torus_3x4_coset_weights_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: toric_distance
+  line: 273
+  signature_excerpt: 'def toric_distance (rows cols : Nat) : Nat'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: toric_distance_3x4
+  line: 275
+  signature_excerpt: 'theorem toric_distance_3x4 : toric_distance 3 4 = 3'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: torus_3x4_additive_weight
+  line: 278
+  signature_excerpt: 'theorem torus_3x4_additive_weight : (3 : Nat) + 4 = 7'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::toric_distance_3x4
+  availability: local
+  symbol: toric_distance_3x4
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 275
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::torus_3x4_additive_weight
+  availability: local
+  symbol: torus_3x4_additive_weight
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 278
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/tetron.rs::logical_generators_have_the_expected_weight
+  availability: local
+  symbol: logical_generators_have_the_expected_weight
+  path: code/rust/src/majorana/tetron.rs
+  repository: this_repository
+  sha256: 0004b6882118db4494c13ccb7683f858f611d702067e4bd3c62dee0a05b84bc0
+  declaration_status: declaration_found_not_executed
+  line: 424
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/tetron.rs::logical_generators_are_closed
+  availability: local
+  symbol: logical_generators_are_closed
+  path: code/rust/src/majorana/tetron.rs
+  repository: this_repository
+  sha256: 0004b6882118db4494c13ccb7683f858f611d702067e4bd3c62dee0a05b84bc0
+  declaration_status: declaration_found_not_executed
+  line: 433
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

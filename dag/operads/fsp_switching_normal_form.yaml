@@ -1,0 +1,350 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-SWITCHING-NORMAL-FORM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a fixed labelled finite graph and supplied spanning forest, vertex sign switching
+    has a canonical tree-zero representative determined by chord signs. NF-002 records a duplicate-free
+    enumeration of length 2^numChord and numChord=|E|-|V|+c.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Retain fixed labels and vertex-switching equivalence; this canonicalizer is not a
+    normal form under arbitrary many-body basis transformations.
+  source_refs:
+  - dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md
+  - dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  - lean4/SwitchingNormalForm.lean
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md
+    sha256: 0abc7f61a6a66f537f1c7472a42b480f2869ae6f2cd4d7cb5d5d10d9f68ce145
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_switching_normal_form_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Forest
+  line: 87
+  signature_excerpt: 'structure Forest (G : Graph)'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Cochain
+  line: 38
+  signature_excerpt: 'abbrev Cochain (G : Graph)'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SameClass
+  line: 50
+  signature_excerpt: 'def SameClass (G : Graph) (s t : Cochain G) : Prop'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normal
+  line: 284
+  signature_excerpt: 'def normal (T : Forest G) (s : Cochain G) : Cochain G'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Graph
+  line: 33
+  signature_excerpt: structure Graph
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Potential
+  line: 39
+  signature_excerpt: 'abbrev Potential (G : Graph)'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: switch
+  line: 46
+  signature_excerpt: 'def switch (G : Graph) (s : Cochain G) (a : Potential G) : Cochain G'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: potential
+  line: 144
+  signature_excerpt: 'def potential (T : Forest G) (s : Cochain G) (v : Fin G.n) : Bool'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: delta
+  line: 42
+  signature_excerpt: 'def delta (G : Graph) (a : Potential G) (e : Fin G.m) : Bool'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: potAux
+  line: 136
+  signature_excerpt: |-
+    def potAux (T : Forest G) (s : Cochain G) : Nat → Fin G.n → Bool
+      | 0, _ => false
+      | k + 1, v =>
+        match T.parent v with
+        | none => false
+        | some e => s e ^^ potAux T s k (G.other v e)
+
+    /-- The forest potential: parity of the forest path from the root to `v`. -/
+    def potential (T : Forest G) (s : Cochain G) (v : Fin G.n) : Bool
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parity
+  line: 431
+  signature_excerpt: |-
+    def parity (s : Cochain G) : List (Fin G.m) → Bool
+      | [] => false
+      | e :: es => s e ^^ parity s es
+
+    theorem delta_ends (b : Potential G) {e : Fin G.m} {u w : Fin G.n} (h : G.Ends e u w) :
+        delta G b e = (b u ^^ b w)
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: root
+  line: 205
+  signature_excerpt: 'def root (T : Forest G) (v : Fin G.n) : Fin G.n'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rootAux
+  line: 198
+  signature_excerpt: |-
+    def rootAux (T : Forest G) : Nat → Fin G.n → Fin G.n
+      | 0, v => v
+      | k + 1, v =>
+        match T.parent v with
+        | none => v
+        | some e => rootAux T k (G.other v e)
+
+    def root (T : Forest G) (v : Fin G.n) : Fin G.n
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: numChord
+  line: 767
+  signature_excerpt: 'def numChord (T : Forest G) : Nat'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: numRoot
+  line: 770
+  signature_excerpt: 'def numRoot (T : Forest G) : Nat'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsForestEdge
+  line: 612
+  signature_excerpt: 'def IsForestEdge (T : Forest G) (e : Fin G.m) : Prop'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: normal_sound
+  line: 315
+  signature_excerpt: 'theorem normal_sound (T : Forest G) (s : Cochain G) : SameClass G s (normal T s)'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same_class_iff
+  line: 349
+  signature_excerpt: |-
+    theorem same_class_iff (T : Forest G) (s t : Cochain G) :
+        SameClass G s t ↔ normal T s = normal T t
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: numChord_identity
+  line: 903
+  signature_excerpt: 'theorem numChord_identity (T : Forest G) : numChord T + G.n = G.m + numRoot T'
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalForms_length
+  line: 1047
+  signature_excerpt: |-
+    theorem normalForms_length (T : Forest G) :
+        (normalForms T).length = 2 ^ numChord T
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalForms_nodup
+  line: 1053
+  signature_excerpt: |-
+    theorem normalForms_nodup (T : Forest G) :
+        (normalForms T).Nodup
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mem_normalForms_iff
+  line: 1059
+  signature_excerpt: |-
+    theorem mem_normalForms_iff (T : Forest G) (c : Cochain G) :
+        c ∈ normalForms T ↔ ∃ s : Cochain G, normal T s = c
+  source: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  source_sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/SwitchingNormalForm.lean::normal_sound
+  availability: local
+  symbol: normal_sound
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 315
+  role: source_lead_only
+- original_ref: lean4/SwitchingNormalForm.lean::same_class_iff
+  availability: local
+  symbol: same_class_iff
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 349
+  role: source_lead_only
+- original_ref: lean4/SwitchingNormalForm.lean::numChord_identity
+  availability: local
+  symbol: numChord_identity
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 903
+  role: source_lead_only
+- original_ref: lean4/SwitchingNormalForm.lean::normalForms_length
+  availability: local
+  symbol: normalForms_length
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 1047
+  role: source_lead_only
+- original_ref: lean4/SwitchingNormalForm.lean::normalForms_nodup
+  availability: local
+  symbol: normalForms_nodup
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 1053
+  role: source_lead_only
+- original_ref: lean4/SwitchingNormalForm.lean::mem_normalForms_iff
+  availability: local
+  symbol: mem_normalForms_iff
+  path: lean4/SwitchingNormalForm.lean
+  repository: this_repository
+  sha256: e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05
+  declaration_status: declaration_found_not_proof_checked
+  line: 1059
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

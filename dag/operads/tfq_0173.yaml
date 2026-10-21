@@ -1,0 +1,96 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TFQ-0173
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Curvature in omega_holonomy is a finite commutator and a plaquette defect, not a continuum
+    Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity,
+    and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named
+    in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact
+    defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does
+    not supply the Einstein equation or a Regge deficit angle.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Keep discrete curvature as an exact plaquette defect and matrix commutator, without
+    a float tolerance.
+  source_refs:
+  - dag/derivations/22_implementation_sibling/tfq_0173_keep_discrete_curvature_as_an_exact_plaquette_defect_and_matrix_commutator_without.md
+  paper_refs:
+  - dag/derivations/22_implementation_sibling/tfq_0173_keep_discrete_curvature_as_an_exact_plaquette_defect_and_matrix_commutator_without.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/22_implementation_sibling/tfq_0173_keep_discrete_curvature_as_an_exact_plaquette_defect_and_matrix_commutator_without.md
+    sha256: 55b544666033d6bb465840bca945f14bb3e697e1a7a3a14509a9d521a60e1619
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/implementation_sibling_tfq_0173_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: code/rust/src/holonomy/curvature.rs
+  availability: local
+  symbol: null
+  path: code/rust/src/holonomy/curvature.rs
+  repository: this_repository
+  sha256: 41ca6b0c55f6d98fbace6f25ba46530cb57f40903755cc55de98bf75f1fac5cb
+  declaration_status: file_only_no_symbol
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/lib.rs
+  availability: local
+  symbol: null
+  path: code/rust/src/wdp/lib.rs
+  repository: this_repository
+  sha256: 62b61ea5b93e226bbb8877225c5f586194feb8b394230751dda1beab93f13a1a
+  declaration_status: file_only_no_symbol
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

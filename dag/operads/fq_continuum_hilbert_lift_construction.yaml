@@ -1,0 +1,468 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'With the scalar field k in {R, C} and the l2 uniformity supplied as named hypotheses:
+    the exact finite carriers Fin n -> Q form a tower under zero padding whose directed union N ->0 Q
+    is exhausted by the finite stages; the Hausdorff completion of N ->0 k is a complete inner product
+    space into which the exact carrier embeds inner-product-preservingly, injectively and padding-compatibly
+    (lift, liftFin); a sequence of exact vectors is Cauchy in the lift exactly when it is rational-l2-Cauchy,
+    and every such sequence converges; over R the exact carrier is dense, continuous maps out of the lift
+    are determined on exact vectors, and the lift is strictly larger than the carrier; over C the Gaussian-rational
+    pairs a + ib are dense with the exact inner-product identity; the completion of the exact carrier
+    under its intrinsic rational uniformity (the infimum of the rational sqdist-ball filters) is uniformly
+    isomorphic to the real lift; the lift is linearly isometric to l2(N, k) with exact vectors as their
+    coordinate sequences; every Q-linear map of the exact carrier with a rational quadratic bound C lifts
+    uniquely to a continuous linear operator of norm at most sqrt(C) (the shift lifts to an isometry),
+    and the Q-linear coordinate-sum functional admits no continuous extension.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - scalar field R or C, i.e. the completion of Q or of Q(i) (assumption)
+  - l2 uniformity on the exact carrier (assumption; harmonic_separates_uniformities shows that l1 is a
+    different choice)
+  source_bottleneck: Both hypotheses are supplied; their selection from finite-theory primitives is the
+    content of FQ-GAP-CONTINUUM-HILBERT-LIFT. Dynamics and generators are not lifted (FQ-GAP-STONE-CONTINUOUS-TIME);
+    the bound C on an exact operator is a hypothesis.
+  source_refs:
+  - dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md
+  - dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md
+  - dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md
+  - dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md
+  paper_refs:
+  - dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md
+    sha256: 370d7c0c07a84d3874524b04a9b22f5683408769511828b0e9922747ac7b6708
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/finite_qm_core_fq_continuum_hilbert_lift_construction_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Carrier
+  line: 102
+  signature_excerpt: 'abbrev Carrier : Type'
+  source: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  source_sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: FinCarrier
+  line: 36
+  signature_excerpt: 'abbrev FinCarrier (n : ℕ) : Type'
+  source: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  source_sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ofFin
+  line: 183
+  signature_excerpt: 'noncomputable def ofFin {n : ℕ} (x : FinCarrier n) : Carrier'
+  source: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  source_sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ext
+  line: 42
+  signature_excerpt: 'def ext {n : ℕ} (x : FinCarrier n) : ℕ → ℚ'
+  source: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  source_sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsCauchyL2
+  line: 86
+  signature_excerpt: 'def IsCauchyL2 (x : ℕ → Carrier) : Prop'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: harmonic
+  line: 151
+  signature_excerpt: 'noncomputable def harmonic (N : ℕ) : Carrier'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsCauchyL1
+  line: 90
+  signature_excerpt: 'def IsCauchyL1 (x : ℕ → Carrier) : Prop'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TendsToL2
+  line: 98
+  signature_excerpt: 'def TendsToL2 (x : ℕ → Carrier) (f : Carrier) : Prop'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sqdist
+  line: 31
+  signature_excerpt: 'noncomputable def sqdist (f g : Carrier) : ℚ'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: harmonicTerm
+  line: 144
+  signature_excerpt: 'def harmonicTerm (i : ℕ) : ℚ'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: l1dist
+  line: 34
+  signature_excerpt: 'noncomputable def l1dist (f g : Carrier) : ℚ'
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lift
+  line: 170
+  signature_excerpt: 'noncomputable def lift (f : Carrier) : HilbertLiftSpace 𝕜'
+  source: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: HilbertLiftSpace
+  line: 116
+  signature_excerpt: 'abbrev HilbertLiftSpace : Type _'
+  source: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: castSeq
+  line: 128
+  signature_excerpt: 'noncomputable def castSeq (f : Carrier) : PreH 𝕜'
+  source: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: PreH
+  line: 39
+  signature_excerpt: 'abbrev PreH : Type _'
+  source: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: liftPair
+  line: 141
+  signature_excerpt: 'noncomputable def liftPair (p : Carrier × Carrier) : HilbertLiftSpace ℂ'
+  source: lean4/HilbertLiftComplexCarrier.lean
+  repository: this_repository
+  source_sha256: 4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exhaustion
+  line: 259
+  signature_excerpt: 'theorem exhaustion (f : Carrier) : ∃ n : ℕ, ∃ x : FinCarrier n, ofFin x = f'
+  source: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  source_sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: harmonic_separates_uniformities
+  line: 295
+  signature_excerpt: |-
+    theorem harmonic_separates_uniformities :
+        IsCauchyL2 harmonic ∧ ¬ IsCauchyL1 harmonic ∧ ∀ f : Carrier, ¬ TendsToL2 harmonic f
+  source: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  source_sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: controlled_completion
+  line: 385
+  signature_excerpt: |-
+    theorem controlled_completion :
+        (∀ f g : Carrier, inner ℝ (lift ℝ f) (lift ℝ g) = (qinner f g : ℝ)) ∧
+        Function.Injective (lift ℝ) ∧
+        DenseRange (lift ℝ) ∧
+        (∀ x : ℕ → Carrier, CauchySeq (fun n => lift ℝ (x n)) ↔ IsCauchyL2 x) ∧
+        (∀ x : ℕ → Carrier, IsCauchyL2 x → ∃ h : HilbertLiftSpace ℝ,
+          Tendsto (fun n => lift ℝ (x n)) atTop (𝓝 h)) ∧
+        ¬ Function.Surjective (lift ℝ)
+  source: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  source_sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: controlled_completion_complex
+  line: 209
+  signature_excerpt: |-
+    theorem controlled_completion_complex :
+        (∀ a b c d : Carrier, inner ℂ (liftPair (a, b)) (liftPair (c, d)) =
+          ((qinner a c + qinner b d : ℚ) : ℂ) + Complex.I * ((qinner a d - qinner b c : ℚ) : ℂ)) ∧
+        DenseRange liftPair ∧
+        (∀ x : ℕ → Carrier, CauchySeq (fun n => lift ℂ (x n)) ↔ IsCauchyL2 x) ∧
+        ¬ Function.Surjective liftPair
+  source: lean4/HilbertLiftComplexCarrier.lean
+  repository: this_repository
+  source_sha256: 4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uniformity_eq_iInf_sqdist
+  line: 67
+  signature_excerpt: |-
+    theorem uniformity_eq_iInf_sqdist :
+        𝓤 Carrier = ⨅ ε : ℚ, ⨅ (_ : 0 < ε), 𝓟 {p : Carrier × Carrier | sqdist p.1 p.2 < ε}
+  source: lean4/HilbertLiftIntrinsicUniformity.lean
+  repository: this_repository
+  source_sha256: 25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: intrinsic_completion
+  line: 144
+  signature_excerpt: |-
+    theorem intrinsic_completion :
+        (𝓤 Carrier = ⨅ ε : ℚ, ⨅ (_ : 0 < ε), 𝓟 {p : Carrier × Carrier | sqdist p.1 p.2 < ε}) ∧
+        (∀ x : ℕ → Carrier, CauchySeq x ↔ IsCauchyL2 x) ∧
+        (∀ f : Carrier, completionEquivLift (f : Completion Carrier) = lift ℝ f)
+  source: lean4/HilbertLiftIntrinsicUniformity.lean
+  repository: this_repository
+  source_sha256: 25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: l2_model_summary
+  line: 156
+  signature_excerpt: |-
+    theorem l2_model_summary :
+        (∀ x : HilbertLiftSpace 𝕜, ‖liftEquivL2 𝕜 x‖ = ‖x‖) ∧
+        Function.Surjective (liftEquivL2 𝕜) ∧
+        (∀ (f : Carrier) (i : ℕ), (liftEquivL2 𝕜 (lift 𝕜 f) : ℕ → 𝕜) i = (f i : 𝕜))
+  source: lean4/HilbertLiftL2Model.lean
+  repository: this_repository
+  source_sha256: 3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: operator_lift_summary
+  line: 278
+  signature_excerpt: |-
+    theorem operator_lift_summary :
+        (∀ T : BoundedExactOperator, ∀ f : Carrier, T.toCLM (lift ℝ f) = lift ℝ (T.A f)) ∧
+        (∀ T : BoundedExactOperator, ‖T.toCLM‖ ≤ Real.sqrt T.bound) ∧
+        (∀ x : HilbertLiftSpace ℝ, ‖shift.liftOp x‖ = ‖x‖) ∧
+        ¬ ∃ Λ : HilbertLiftSpace ℝ → ℝ, Continuous Λ ∧
+          ∀ f : Carrier, Λ (lift ℝ f) = (coordSum f : ℝ)
+  source: lean4/HilbertLiftOperators.lean
+  repository: this_repository
+  source_sha256: 7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_continuous_extension_coordSum
+  line: 257
+  signature_excerpt: |-
+    theorem no_continuous_extension_coordSum :
+        ¬ ∃ Λ : HilbertLiftSpace ℝ → ℝ, Continuous Λ ∧
+          ∀ f : Carrier, Λ (lift ℝ f) = (coordSum f : ℝ)
+  source: lean4/HilbertLiftOperators.lean
+  repository: this_repository
+  source_sha256: 7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/HilbertLiftFiniteTower.lean::HilbertLift.exhaustion
+  availability: local
+  symbol: HilbertLift.exhaustion
+  path: lean4/HilbertLiftFiniteTower.lean
+  repository: this_repository
+  sha256: 3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341
+  declaration_status: declaration_found_not_proof_checked
+  line: 259
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftRationalUniformity.lean::HilbertLift.harmonic_separates_uniformities
+  availability: local
+  symbol: HilbertLift.harmonic_separates_uniformities
+  path: lean4/HilbertLiftRationalUniformity.lean
+  repository: this_repository
+  sha256: 554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d
+  declaration_status: declaration_found_not_proof_checked
+  line: 295
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftCompletion.lean::HilbertLift.controlled_completion
+  availability: local
+  symbol: HilbertLift.controlled_completion
+  path: lean4/HilbertLiftCompletion.lean
+  repository: this_repository
+  sha256: 2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106
+  declaration_status: declaration_found_not_proof_checked
+  line: 385
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftComplexCarrier.lean::HilbertLift.controlled_completion_complex
+  availability: local
+  symbol: HilbertLift.controlled_completion_complex
+  path: lean4/HilbertLiftComplexCarrier.lean
+  repository: this_repository
+  sha256: 4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309
+  declaration_status: declaration_found_not_proof_checked
+  line: 209
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftIntrinsicUniformity.lean::HilbertLift.uniformity_eq_iInf_sqdist
+  availability: local
+  symbol: HilbertLift.uniformity_eq_iInf_sqdist
+  path: lean4/HilbertLiftIntrinsicUniformity.lean
+  repository: this_repository
+  sha256: 25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftIntrinsicUniformity.lean::HilbertLift.intrinsic_completion
+  availability: local
+  symbol: HilbertLift.intrinsic_completion
+  path: lean4/HilbertLiftIntrinsicUniformity.lean
+  repository: this_repository
+  sha256: 25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed
+  declaration_status: declaration_found_not_proof_checked
+  line: 144
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftL2Model.lean::HilbertLift.l2_model_summary
+  availability: local
+  symbol: HilbertLift.l2_model_summary
+  path: lean4/HilbertLiftL2Model.lean
+  repository: this_repository
+  sha256: 3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad
+  declaration_status: declaration_found_not_proof_checked
+  line: 156
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftOperators.lean::HilbertLift.operator_lift_summary
+  availability: local
+  symbol: HilbertLift.operator_lift_summary
+  path: lean4/HilbertLiftOperators.lean
+  repository: this_repository
+  sha256: 7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076
+  declaration_status: declaration_found_not_proof_checked
+  line: 278
+  role: source_lead_only
+- original_ref: lean4/HilbertLiftOperators.lean::HilbertLift.no_continuous_extension_coordSum
+  availability: local
+  symbol: HilbertLift.no_continuous_extension_coordSum
+  path: lean4/HilbertLiftOperators.lean
+  repository: this_repository
+  sha256: 7f55a80e8aac694ba284e4f34d0fc38b541eecd0bc7b3a2738881eb4f4b89076
+  declaration_status: declaration_found_not_proof_checked
+  line: 257
+  role: source_lead_only
+- original_ref: code/rust/src/qm/hilbert_lift_completion.rs::modulus_holds
+  availability: local
+  symbol: modulus_holds
+  path: code/rust/src/qm/hilbert_lift_completion.rs
+  repository: this_repository
+  sha256: dd5e7d6aa4a5447328499f964867e2da125b9ed1fd74b6133dc8fcd8a10135e3
+  declaration_status: declaration_found_not_executed
+  line: 296
+  role: source_lead_only
+- original_ref: code/rust/src/qm/hilbert_lift_completion.rs::shift_is_isometric
+  availability: local
+  symbol: shift_is_isometric
+  path: code/rust/src/qm/hilbert_lift_completion.rs
+  repository: this_repository
+  sha256: dd5e7d6aa4a5447328499f964867e2da125b9ed1fd74b6133dc8fcd8a10135e3
+  declaration_status: declaration_found_not_executed
+  line: 464
+  role: source_lead_only
+- original_ref: code/rust/src/qm/hilbert_lift_completion.rs::coord_sum_gap
+  availability: local
+  symbol: coord_sum_gap
+  path: code/rust/src/qm/hilbert_lift_completion.rs
+  repository: this_repository
+  sha256: dd5e7d6aa4a5447328499f964867e2da125b9ed1fd74b6133dc8fcd8a10135e3
+  declaration_status: declaration_found_not_executed
+  line: 480
+  role: source_lead_only
+- original_ref: code/rust/src/qm/hilbert_lift_completion.rs::certify
+  availability: local
+  symbol: certify
+  path: code/rust/src/qm/hilbert_lift_completion.rs
+  repository: this_repository
+  sha256: dd5e7d6aa4a5447328499f964867e2da125b9ed1fd74b6133dc8fcd8a10135e3
+  declaration_status: declaration_found_not_executed
+  line: 504
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - scalar field R or C, i.e. the completion of Q or of Q(i) (assumption)
+    - l2 uniformity on the exact carrier (assumption; harmonic_separates_uniformities shows that l1 is
+      a different choice)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - scalar field R or C, i.e. the completion of Q or of Q(i) (assumption)
+    - l2 uniformity on the exact carrier (assumption; harmonic_separates_uniformities shows that l1 is
+      a different choice)
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
