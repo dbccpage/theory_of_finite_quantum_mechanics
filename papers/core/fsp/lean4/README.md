@@ -1,6 +1,6 @@
 # Lean evidence for PO-023
 
-Toolchain: `leanprover/lean4:v4.34.0`. AuthorityEffect: None.
+Toolchain: `leanprover/lean4:v4.35.0`. AuthorityEffect: None.
 
 Run `lake build` here. The roots are listed in `lakefile.lean`. Building the roots is distinct from auditing physical interpretations.
 

@@ -64,7 +64,7 @@ Rebuild the TeX and PDF from `paper.md` with `py -3.12 tools/compile_paper.py`.
 ## Toolchain
 
 Python 3.12.10, pytest 8.3.5, ruff 0.14.13 (settings pinned in
-`pyproject.toml`), Lean 4.34.0 with Lake 5.0.0 (pinned in
+`pyproject.toml`), Lean 4.35.0 with Lake 5.0.0 (pinned in
 `lean4/lean-toolchain`), Pandoc 3.7.0.2, and XeLaTeX from MiKTeX 25.12.
 
 ## Verification receipt
