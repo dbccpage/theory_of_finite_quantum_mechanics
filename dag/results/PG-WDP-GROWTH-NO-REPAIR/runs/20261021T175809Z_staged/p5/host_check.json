@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-WDP-GROWTH-NO-REPAIR",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "6a09dc6fbd5f231d312a5a6bffccfbb758957d17d2dd6aa7fd2dc675927a2d83",
+  "candidate_sha256": "295d58ede492b10d0286803e20c3530f8a5538c1b057e0e10945918cb9c8871b",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 9,
+      "rust": 4
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 1.349,
+      "cleared": false,
+      "free_gb_after": 5.418,
+      "min_free_gb": 1.2,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Kernel-checked over finite index types, for rational windows whose attained minima Phi1 exist (existence of minimisers is a hypothesis, IsPhi, not proved): if the sub-window d0 is the restriction of the big d0 (hcompat), its cochain is the restriction and its weights are at most the restrictions of the big weights, then Phi1(sub) <= Phi1(big) (phi_restrict_le); hence growth with an extending cochain and weights not lowered never lowers Phi1 (phi_growth_not_lower, which is the contrapositive of the source necessity wording: a decrease needs deleted cells, lowered weights, an incompatible d0 or changed cochain values); Phi1 <= the unrepaired residual sum; attaching a 2-cell leaves (D0, w, h) and hence Phi1 untouched (definitional) and adds |row . h| to the representative norm ||d1 h||_1; this is the source Gamma2 (the norm at the minimal residual) only when d1 d0 = 0, which gamma2_repair proves and which every valid row preserves (closed_attach, triangle_row_closed). Boundaries as kernel instances: incompatible d0, weights raised 2 -> 3 (Phi1 4 -> 6), and norm arithmetic only for J(a,b) = |a+b| + |a-b|/4 with J(1,-1) = 1/2 < J(1,0) = 5/4 (for d0 = 0 the defect of h is J(h), so deleting a coordinate raises it; this consequence is not stated as a theorem about Phi1). Native table of 82 pairs (9 named restrictions plus all 63 edge subsets of K4 for one cochain, 6 attachments incl. an invalid row, 4 edits) with a verified primal potential and dual vector for both windows of every pair and Phi1 recomputed by the dual LP in the checker; the strict decreases from deleting cells (3 -> 0), lowering weights (6 -> 2) and changing the cochain (1 -> 0) are native rows, not kernel instances.",
+      "does_not_support": "Monotonicity for arbitrary norms J or renormalised weights (the instances show it fails), or when the sub d0 is not the restriction of d0; existence of minimisers for weighted L1 as a Lean theorem; that each of the three failing hypotheses is by itself sufficient to lower Phi1 in general (kernel instances exist for raised weights and a changed d0; the native rows cover deletion, a changed cochain and lowered weights); equal-weight subdivision and filtration limit pages (clauses of WDP-CH04-P09 absent from the source Lean); the source Gamma2 at a minimal residual of a non-closed window (non-unique, withheld); complex coefficients; any physical reading.",
+      "narrowest_claim": "For weighted-L1 graph windows with attained minima, restricting to a sub-window whose d0, cochain and weights are the restrictions (weights at most the restrictions of the big weights) never raises Phi1, and attaching 2-cells with d1 d0 = 0 leaves Phi1 unchanged and cannot lower Gamma2; in the native table, deleting cells, lowering weights and changing the cochain strictly lowered Phi1 (kernel instances exist only for raised weights and a changed d0).",
+      "next_test": "Prove the equal-weight subdivision clause of WDP-CH04-P09 (subdividing an edge through a new degree-two vertex with equal weights leaves Phi1 unchanged) as a Lean theorem over IsPhi and check it by exact enumeration; separately discharge the existence of minimisers (IsPhi attainment) for weighted L1 so that phi_restrict_le has no attained-minimum hypothesis."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Kernel-checked over finite index types, for rational windows whose attained minima Phi1 exist (existence of minimisers is a hypothesis, IsPhi, not proved): if the sub-window d0 is the restriction of the big d0 (hcompat), its cochain is the restriction and its weights are at most the restrictions of the big weights, then Phi1(sub) <= Phi1(big) (phi_restrict_le); hence growth with an extending cochain and weights not lowered never lowers Phi1 (phi_growth_not_lower, which is the contrapositive of the source necessity wording: a decrease needs deleted cells, lowered weights, an incompatible d0 or changed cochain values); Phi1 <= the unrepaired residual sum; attaching a 2-cell leaves (D0, w, h) and hence Phi1 untouched (definitional) and adds |row . h| to the representative norm ||d1 h||_1; this is the source Gamma2 (the norm at the minimal residual) only when d1 d0 = 0, which gamma2_repair proves and which every valid row preserves (closed_attach, triangle_row_closed). Boundaries as kernel instances: incompatible d0, weights raised 2 -> 3 (Phi1 4 -> 6), and norm arithmetic only for J(a,b) = |a+b| + |a-b|/4 with J(1,-1) = 1/2 < J(1,0) = 5/4 (for d0 = 0 the defect of h is J(h), so deleting a coordinate raises it; this consequence is not stated as a theorem about Phi1). Native table of 82 pairs (9 named restrictions plus all 63 edge subsets of K4 for one cochain, 6 attachments incl. an invalid row, 4 edits) with a verified primal potential and dual vector for both windows of every pair and Phi1 recomputed by the dual LP in the checker; the strict decreases from deleting cells (3 -> 0), lowering weights (6 -> 2) and changing the cochain (1 -> 0) are native rows, not kernel instances.",
+    "does_not_support": "Monotonicity for arbitrary norms J or renormalised weights (the instances show it fails), or when the sub d0 is not the restriction of d0; existence of minimisers for weighted L1 as a Lean theorem; that each of the three failing hypotheses is by itself sufficient to lower Phi1 in general (kernel instances exist for raised weights and a changed d0; the native rows cover deletion, a changed cochain and lowered weights); equal-weight subdivision and filtration limit pages (clauses of WDP-CH04-P09 absent from the source Lean); the source Gamma2 at a minimal residual of a non-closed window (non-unique, withheld); complex coefficients; any physical reading.",
+    "narrowest_claim": "For weighted-L1 graph windows with attained minima, restricting to a sub-window whose d0, cochain and weights are the restrictions (weights at most the restrictions of the big weights) never raises Phi1, and attaching 2-cells with d1 d0 = 0 leaves Phi1 unchanged and cannot lower Gamma2; in the native table, deleting cells, lowering weights and changing the cochain strictly lowered Phi1 (kernel instances exist only for raised weights and a changed d0).",
+    "next_test": "Prove the equal-weight subdivision clause of WDP-CH04-P09 (subdividing an edge through a new degree-two vertex with equal weights leaves Phi1 unchanged) as a Lean theorem over IsPhi and check it by exact enumeration; separately discharge the existence of minimisers (IsPhi attainment) for weighted L1 so that phi_restrict_le has no attained-minimum hypothesis."
+  }
+}

@@ -1,0 +1,275 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-HALT-NOT-POLICY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'In the DTM0 model, the tape-control model and the replay model, a halted or verified
+    outcome receives different terminal values from two supplied policies: acceptHalted versus leaveAllOpen,
+    acceptHalt versus rejectAll, and authorizeOnVerified versus leaveVerifiedOpen.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Existence of two policies only; no policy is selected or justified.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md
+  - lean4/AuthIncompleteness/DirectTM.lean
+  - lean4/AuthIncompleteness/TapeControl.lean
+  - lean4/AuthIncompleteness/Replay.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md
+    sha256: a2c244b8bec4a2594abfefcb73ac0cf399aa0c698d8ee8b4e0e7b0626140cc18
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_halt_not_policy_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: terminalize
+  line: 128
+  signature_excerpt: 'def terminalize (policy : TerminalPolicy) (verification : Verification) : Terminal'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TerminalPolicy
+  line: 48
+  signature_excerpt: inductive TerminalPolicy
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Verification
+  line: 77
+  signature_excerpt: inductive Verification
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Terminal
+  line: 85
+  signature_excerpt: inductive Terminal
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: replay
+  line: 162
+  signature_excerpt: 'def replay (receipt : ReplayReceipt) (observed : Submission) : ReplayStatus'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ReplayReceipt
+  line: 140
+  signature_excerpt: structure ReplayReceipt
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Submission
+  line: 66
+  signature_excerpt: structure Submission
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ReplayStatus
+  line: 154
+  signature_excerpt: inductive ReplayStatus
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: verify
+  line: 113
+  signature_excerpt: 'def verify (root : TrustRoot) (submission : Submission) : Verification'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TrustRoot
+  line: 55
+  signature_excerpt: structure TrustRoot
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Version
+  line: 30
+  signature_excerpt: inductive Version
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: CheckerTag
+  line: 36
+  signature_excerpt: inductive CheckerTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ContractTag
+  line: 42
+  signature_excerpt: inductive ContractTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bindingsMatch
+  line: 105
+  signature_excerpt: 'def bindingsMatch (root : TrustRoot) (submission : Submission) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkerResult
+  line: 92
+  signature_excerpt: 'def checkerResult (tag : CheckerTag) (payload : Bool) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: contractValid
+  line: 98
+  signature_excerpt: 'def contractValid (tag : ContractTag) (payload : Bool) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: syntactic_halt_does_not_select_direct_machine_policy
+  line: 261
+  signature_excerpt: |-
+    theorem syntactic_halt_does_not_select_direct_machine_policy :
+        acceptHalted.decide StepResult.halted = true ∧
+          leaveAllOpen.decide StepResult.halted = false
+  source: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  source_sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: syntactic_halt_does_not_select_terminal_policy
+  line: 159
+  signature_excerpt: |-
+    theorem syntactic_halt_does_not_select_terminal_policy :
+        acceptHalt.decide ControlOutcome.halt = true /\
+          rejectAll.decide ControlOutcome.halt = false
+  source: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  source_sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: terminal_policy_is_not_selected_by_verification
+  line: 281
+  signature_excerpt: |-
+    theorem terminal_policy_is_not_selected_by_verification :
+        terminalize authorizeTrueRoot.policy .verified = .authorized ∧
+          terminalize openTrueRoot.policy .verified = .open
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy
+  path: lean4/AuthIncompleteness/DirectTM.lean
+  repository: this_repository
+  sha256: 7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a
+  declaration_status: declaration_found_not_proof_checked
+  line: 261
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy
+  availability: local
+  symbol: AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy
+  path: lean4/AuthIncompleteness/TapeControl.lean
+  repository: this_repository
+  sha256: 88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 281
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

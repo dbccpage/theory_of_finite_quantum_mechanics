@@ -1,0 +1,96 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_qcdBeta0",
+      "inputs": ["nc", "nf"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "decl": "qcdBeta0",
+        "path": "lean4/FiniteQM.lean::FiniteQM.qcdBeta0",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_qcdBeta1",
+      "inputs": ["nc", "nf"],
+      "output": "Rat",
+      "arity": 2,
+      "carrier": "Rat",
+      "ref": {
+        "decl": "qcdBeta1",
+        "path": "lean4/FiniteQM.lean::FiniteQM.qcdBeta1",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_beta0_definition",
+      "statement": "qcdBeta0 nc nf = (11/3) * nc - (2/3) * nf",
+      "hypotheses": "none",
+      "ref": {
+        "decl": "beta0_definition",
+        "path": "code/python/src/qm/qcd_confinement.py::qcd_beta0",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem_beta0_window",
+      "statement": "qcdBeta0 3 nf = 11 - (2/3) * nf",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "by sorry",
+      "claims_proved": false,
+      "ref": {
+        "decl": "",
+        "path": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "nc_0",
+      "expr": "11 - (2/3)*0",
+      "value": "11"
+    },
+    {
+      "id": "nc_3",
+      "expr": "11 - (2/3)*3",
+      "value": "9"
+    },
+    {
+      "id": "nc_5",
+      "expr": "11 - (2/3)*5",
+      "value": "23/3"
+    },
+    {
+      "id": "nc_6",
+      "expr": "11 - (2/3)*6",
+      "value": "7"
+    },
+    {
+      "id": "nc_16",
+      "expr": "11 - (2/3)*16",
+      "value": "1/3"
+    },
+    {
+      "id": "nc_17",
+      "expr": "11 - (2/3)*17",
+      "value": "-1/3"
+    }
+  ],
+  "open_obligations": [
+    "continuum mass-gap claim not supported",
+    "weak-coupling limit not supported",
+    "Monte Carlo spectroscopy not supported",
+    "higher-loop MSbar matching not supported"
+  ]
+}

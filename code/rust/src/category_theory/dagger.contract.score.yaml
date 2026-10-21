@@ -1,151 +1,78 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/dagger.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/dagger.rs",
-      "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
-      "language": "Rust"
+      "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.",
-      "domain": "Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.",
-      "behavior": [
-        "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
-        "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
-        "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
-        "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
-        "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
-        "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
-        "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
-        "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
-        "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
-        "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
-      ],
-      "provider_refinement": "ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys."
-    },
-    "operations": {
-      "fmt": {
-        "line": 24,
-        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
-        "obligation": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result."
-      },
-      "admit_dagger_budget": {
-        "line": 36,
-        "signature": "fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>",
-        "obligation": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time."
-      },
-      "check_dagger_domain": {
-        "line": 46,
-        "signature": "fn check_dagger_domain(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-        "obligation": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check."
-      },
-      "check_dagger_arrows": {
-        "line": 58,
-        "signature": "fn check_dagger_arrows(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-        "obligation": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption."
-      },
-      "check_dagger_identities": {
-        "line": 80,
-        "signature": "fn check_dagger_identities(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-        "obligation": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table."
-      },
-      "check_dagger_compositions": {
-        "line": 92,
-        "signature": "fn check_dagger_compositions(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-        "obligation": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop."
-      },
-      "try_new": {
-        "line": 111,
-        "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        dagger: BTreeMap<String, String>,\n    ) -> Result<Self, DaggerValidationError>",
-        "obligation": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed."
-      },
-      "category": {
-        "line": 125,
-        "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
-        "obligation": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value."
-      },
-      "dagger": {
-        "line": 128,
-        "signature": "pub fn dagger(&self, morphism: &str) -> Option<&str>",
-        "obligation": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow."
-      },
-      "is_unitary": {
-        "line": 133,
-        "signature": "pub fn is_unitary(&self, morphism: &str) -> Option<bool>",
-        "obligation": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
-      }
-    },
-    "invariants": [
-      "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
-      "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
-      "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
-      "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
-      "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
-      "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
-      "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
-      "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
-      "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
-      "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
-      "Exact finite map key domain plus known typed image for each arrow yields a total map Hom(X,Y)->Hom(Y,X). Source validates every arrow and every composite against immutable complete category; no sampling. Involution, identity and reversed composition checks correspond directly to typed FiniteDagger.Data/Laws on actual Mathlib Category. Constructor returns original owned data only after all complete checks, matching Certified with law evidence; this is the delivered L5 capability, not an upgrade for the word dagger alone.",
-      "Domain cardinality+subset makes own dagger.get(f) defensive MissingImage branch unreachable in healthy source. Image lookup MissingImage is reachable. After arrow loop, every fd is a declared arrow and total-domain key, so dagger[second]/[first] for admitted composition keys is safe. No user callback, public mutable interior or raw forged certificate can invalidate between phases.",
-      "For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.",
-      "Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "fmt": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
-      "admit_dagger_budget": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
-      "check_dagger_domain": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
-      "check_dagger_arrows": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
-      "check_dagger_identities": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
-      "check_dagger_compositions": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
-      "try_new": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
-      "category": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
-      "dagger": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
-      "is_unitary": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
-      "runtime": "Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission."
-    },
-    "trust_boundary": {
-      "runtime": "Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result.",
-      "formal": "Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit."
-    },
-    "assurance_limits": [
-      "L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.",
-      "Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.",
-      "Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.",
-      "Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.",
-      "Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/dagger.score.yaml",
-        "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
+        "path": "code/rust/src/category_theory/dagger.rs",
+        "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
+    "subject": "code/rust/src/category_theory/dagger.rs"
   },
-  "current_contract": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d",
-  "current_scoring": "66015c29b0d227c2d6b976209b0b844e8ec6b5321b955e640c0a62f8a3d1b953",
   "contract_history": [
     {
-      "sha256": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d",
       "bytes": 22542,
+      "original_paths": [
+        "code/rust/src/category_theory/dagger.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.\",\n    \"domain\": \"Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.\",\n    \"behavior\": [\n      \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n      \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n      \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n      \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n      \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n      \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n      \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n      \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n      \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n      \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\"\n    ],\n    \"provider_refinement\": \"ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys.\"\n  },\n  \"operations\": {\n    \"fmt\": {\n      \"line\": 24,\n      \"signature\": \"fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result\",\n      \"obligation\": \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\"\n    },\n    \"admit_dagger_budget\": {\n      \"line\": 36,\n      \"signature\": \"fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\"\n    },\n    \"check_dagger_domain\": {\n      \"line\": 46,\n      \"signature\": \"fn check_dagger_domain(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\"\n    },\n    \"check_dagger_arrows\": {\n      \"line\": 58,\n      \"signature\": \"fn check_dagger_arrows(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\"\n    },\n    \"check_dagger_identities\": {\n      \"line\": 80,\n      \"signature\": \"fn check_dagger_identities(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\"\n    },\n    \"check_dagger_compositions\": {\n      \"line\": 92,\n      \"signature\": \"fn check_dagger_compositions(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\"\n    },\n    \"try_new\": {\n      \"line\": 111,\n      \"signature\": \"pub fn try_new(\\n        category: DeclaredFiniteCategory,\\n        dagger: BTreeMap<String, String>,\\n    ) -> Result<Self, DaggerValidationError>\",\n      \"obligation\": \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\"\n    },\n    \"category\": {\n      \"line\": 125,\n      \"signature\": \"pub fn category(&self) -> &ValidatedFiniteCategory\",\n      \"obligation\": \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\"\n    },\n    \"dagger\": {\n      \"line\": 128,\n      \"signature\": \"pub fn dagger(&self, morphism: &str) -> Option<&str>\",\n      \"obligation\": \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\"\n    },\n    \"is_unitary\": {\n      \"line\": 133,\n      \"signature\": \"pub fn is_unitary(&self, morphism: &str) -> Option<bool>\",\n      \"obligation\": \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\"\n    }\n  },\n  \"invariants\": [\n    \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n    \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n    \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n    \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n    \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n    \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n    \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n    \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n    \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n    \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\",\n    \"Exact finite map key domain plus known typed image for each arrow yields a total map Hom(X,Y)->Hom(Y,X). Source validates every arrow and every composite against immutable complete category; no sampling. Involution, identity and reversed composition checks correspond directly to typed FiniteDagger.Data/Laws on actual Mathlib Category. Constructor returns original owned data only after all complete checks, matching Certified with law evidence; this is the delivered L5 capability, not an upgrade for the word dagger alone.\",\n    \"Domain cardinality+subset makes own dagger.get(f) defensive MissingImage branch unreachable in healthy source. Image lookup MissingImage is reachable. After arrow loop, every fd is a declared arrow and total-domain key, so dagger[second]/[first] for admitted composition keys is safe. No user callback, public mutable interior or raw forged certificate can invalidate between phases.\",\n    \"For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.\",\n    \"Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied.\"\n  ],\n  \"failure_paths\": {\n    \"fmt\": \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n    \"admit_dagger_budget\": \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n    \"check_dagger_domain\": \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n    \"check_dagger_arrows\": \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n    \"check_dagger_identities\": \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n    \"check_dagger_compositions\": \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n    \"try_new\": \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n    \"category\": \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n    \"dagger\": \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n    \"is_unitary\": \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\",\n    \"runtime\": \"Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result.\",\n    \"formal\": \"Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit.\"\n  },\n  \"assurance_limits\": [\n    \"L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.\",\n    \"Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.\",\n    \"Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.\",\n    \"Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.\",\n    \"Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/dagger.score.yaml\",\n      \"sha256\": \"44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/dagger.rs",
-          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
-          "language": "Rust"
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.",
+          "Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.",
+          "Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.",
+          "Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.",
+          "Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original."
+        ],
+        "failure_paths": {
+          "admit_dagger_budget": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
+          "category": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
+          "check_dagger_arrows": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
+          "check_dagger_compositions": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
+          "check_dagger_domain": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
+          "check_dagger_identities": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
+          "dagger": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
+          "fmt": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
+          "is_unitary": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
+          "runtime": "Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission.",
+          "try_new": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed."
+        },
         "formal_specification": {
-          "profile": "Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.",
-          "domain": "Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.",
           "behavior": [
             "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
             "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
@@ -158,59 +85,9 @@
             "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
             "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
           ],
+          "domain": "Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.",
+          "profile": "Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.",
           "provider_refinement": "ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys."
-        },
-        "operations": {
-          "fmt": {
-            "line": 24,
-            "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
-            "obligation": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result."
-          },
-          "admit_dagger_budget": {
-            "line": 36,
-            "signature": "fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>",
-            "obligation": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time."
-          },
-          "check_dagger_domain": {
-            "line": 46,
-            "signature": "fn check_dagger_domain(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-            "obligation": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check."
-          },
-          "check_dagger_arrows": {
-            "line": 58,
-            "signature": "fn check_dagger_arrows(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-            "obligation": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption."
-          },
-          "check_dagger_identities": {
-            "line": 80,
-            "signature": "fn check_dagger_identities(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-            "obligation": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table."
-          },
-          "check_dagger_compositions": {
-            "line": 92,
-            "signature": "fn check_dagger_compositions(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
-            "obligation": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop."
-          },
-          "try_new": {
-            "line": 111,
-            "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        dagger: BTreeMap<String, String>,\n    ) -> Result<Self, DaggerValidationError>",
-            "obligation": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed."
-          },
-          "category": {
-            "line": 125,
-            "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
-            "obligation": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value."
-          },
-          "dagger": {
-            "line": 128,
-            "signature": "pub fn dagger(&self, morphism: &str) -> Option<&str>",
-            "obligation": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow."
-          },
-          "is_unitary": {
-            "line": 133,
-            "signature": "pub fn is_unitary(&self, morphism: &str) -> Option<bool>",
-            "obligation": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
-          }
         },
         "invariants": [
           "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
@@ -228,22 +105,143 @@
           "For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.",
           "Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied."
         ],
-        "failure_paths": {
-          "fmt": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
-          "admit_dagger_budget": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
-          "check_dagger_domain": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
-          "check_dagger_arrows": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
-          "check_dagger_identities": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
-          "check_dagger_compositions": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
-          "try_new": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
-          "category": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
-          "dagger": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
-          "is_unitary": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
-          "runtime": "Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission."
+        "open_obligations": [],
+        "operations": {
+          "admit_dagger_budget": {
+            "line": 36,
+            "obligation": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
+            "signature": "fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>"
+          },
+          "category": {
+            "line": 125,
+            "obligation": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
+            "signature": "pub fn category(&self) -> &ValidatedFiniteCategory"
+          },
+          "check_dagger_arrows": {
+            "line": 58,
+            "obligation": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
+            "signature": "fn check_dagger_arrows(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>"
+          },
+          "check_dagger_compositions": {
+            "line": 92,
+            "obligation": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
+            "signature": "fn check_dagger_compositions(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>"
+          },
+          "check_dagger_domain": {
+            "line": 46,
+            "obligation": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
+            "signature": "fn check_dagger_domain(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>"
+          },
+          "check_dagger_identities": {
+            "line": 80,
+            "obligation": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
+            "signature": "fn check_dagger_identities(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>"
+          },
+          "dagger": {
+            "line": 128,
+            "obligation": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
+            "signature": "pub fn dagger(&self, morphism: &str) -> Option<&str>"
+          },
+          "fmt": {
+            "line": 24,
+            "obligation": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
+            "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result"
+          },
+          "is_unitary": {
+            "line": 133,
+            "obligation": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
+            "signature": "pub fn is_unitary(&self, morphism: &str) -> Option<bool>"
+          },
+          "try_new": {
+            "line": 111,
+            "obligation": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
+            "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        dagger: BTreeMap<String, String>,\n    ) -> Result<Self, DaggerValidationError>"
+          }
         },
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/dagger.score.yaml",
+            "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
         "trust_boundary": {
-          "runtime": "Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result.",
-          "formal": "Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit."
+          "formal": "Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit.",
+          "runtime": "Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result."
+        }
+      },
+      "sha256": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d"
+    },
+    {
+      "bytes": 1596,
+      "original_paths": [
+        "code/rust/src/category_theory/dagger.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/dagger.rs\",\n      \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n  \"subject\": \"code/rust/src/category_theory/dagger.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/dagger.rs",
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/dagger.rs",
+            "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
+        "subject": "code/rust/src/category_theory/dagger.rs"
+      },
+      "sha256": "afef27853513c7422365bc242e6a834a0fb38168437a31d997cdf355767714c4"
+    }
+  ],
+  "current_contract": "afef27853513c7422365bc242e6a834a0fb38168437a31d997cdf355767714c4",
+  "current_scoring": "5caae9b57de8cc35fca61513b84139508acc70a28d080682c82233cf1f64b006",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/dagger.rs.contract.yaml": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d",
+    "code/rust/src/category_theory/dagger.rs.scoring.yaml": "cb07f1b50b06aa82d9edd25e2a6b846372a8857bb0aa04e560dacab79d9dc738",
+    "code/rust/src/category_theory/dagger.score.yaml": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8",
+    "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.score.yaml": "6146811bcc93df25fcbec218d9016399fb5d449b401e5635c0b905d71cbeaec5"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5719,
+      "original_paths": [
+        "code/rust/src/category_theory/dagger.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/dagger.rs\"\n  language: \"Rust\"\n  sha256: \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T19:56:10.651663+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:dagger\"\n  description: \"Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None. The owned immutable result admits every dagger law; its raw map and category are never exposed mutably. Size refusal precedes category and dagger errors.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/baseline.json\", \"sha256\": \"eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/summary.json\", \"sha256\": \"9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/mutations.json\", \"sha256\": \"4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json\", \"sha256\": \"5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json\", \"sha256\": \"f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json\", \"sha256\": \"28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 28\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 251\n  parsed_production_functions: 10\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.\"\n  - \"Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.\"\n  - \"Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.\"\n  - \"Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.\"\n  - \"Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/dagger.rs",
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
         },
         "assurance_limits": [
           "L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.",
@@ -252,36 +250,51 @@
           "Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.",
           "Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None. The owned immutable result admits every dagger law; its raw map and category are never exposed mutably. Size refusal precedes category and dagger errors.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:dagger"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T19:56:10.651663+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/dagger.score.yaml",
-            "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
+            "path": "evidence/quality/category_homology/20261019T193617Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T193617Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T193617Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.\",\n    \"domain\": \"Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.\",\n    \"behavior\": [\n      \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n      \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n      \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n      \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n      \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n      \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n      \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n      \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n      \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n      \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\"\n    ],\n    \"provider_refinement\": \"ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys.\"\n  },\n  \"operations\": {\n    \"fmt\": {\n      \"line\": 24,\n      \"signature\": \"fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result\",\n      \"obligation\": \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\"\n    },\n    \"admit_dagger_budget\": {\n      \"line\": 36,\n      \"signature\": \"fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\"\n    },\n    \"check_dagger_domain\": {\n      \"line\": 46,\n      \"signature\": \"fn check_dagger_domain(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\"\n    },\n    \"check_dagger_arrows\": {\n      \"line\": 58,\n      \"signature\": \"fn check_dagger_arrows(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\"\n    },\n    \"check_dagger_identities\": {\n      \"line\": 80,\n      \"signature\": \"fn check_dagger_identities(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\"\n    },\n    \"check_dagger_compositions\": {\n      \"line\": 92,\n      \"signature\": \"fn check_dagger_compositions(\\n    category: &DeclaredFiniteCategory,\\n    dagger: &BTreeMap<String, String>,\\n) -> Result<(), DaggerValidationError>\",\n      \"obligation\": \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\"\n    },\n    \"try_new\": {\n      \"line\": 111,\n      \"signature\": \"pub fn try_new(\\n        category: DeclaredFiniteCategory,\\n        dagger: BTreeMap<String, String>,\\n    ) -> Result<Self, DaggerValidationError>\",\n      \"obligation\": \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\"\n    },\n    \"category\": {\n      \"line\": 125,\n      \"signature\": \"pub fn category(&self) -> &ValidatedFiniteCategory\",\n      \"obligation\": \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\"\n    },\n    \"dagger\": {\n      \"line\": 128,\n      \"signature\": \"pub fn dagger(&self, morphism: &str) -> Option<&str>\",\n      \"obligation\": \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\"\n    },\n    \"is_unitary\": {\n      \"line\": 133,\n      \"signature\": \"pub fn is_unitary(&self, morphism: &str) -> Option<bool>\",\n      \"obligation\": \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\"\n    }\n  },\n  \"invariants\": [\n    \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n    \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n    \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n    \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n    \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n    \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n    \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n    \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n    \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n    \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\",\n    \"Exact finite map key domain plus known typed image for each arrow yields a total map Hom(X,Y)->Hom(Y,X). Source validates every arrow and every composite against immutable complete category; no sampling. Involution, identity and reversed composition checks correspond directly to typed FiniteDagger.Data/Laws on actual Mathlib Category. Constructor returns original owned data only after all complete checks, matching Certified with law evidence; this is the delivered L5 capability, not an upgrade for the word dagger alone.\",\n    \"Domain cardinality+subset makes own dagger.get(f) defensive MissingImage branch unreachable in healthy source. Image lookup MissingImage is reachable. After arrow loop, every fd is a declared arrow and total-domain key, so dagger[second]/[first] for admitted composition keys is safe. No user callback, public mutable interior or raw forged certificate can invalidate between phases.\",\n    \"For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.\",\n    \"Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied.\"\n  ],\n  \"failure_paths\": {\n    \"fmt\": \"Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.\",\n    \"admit_dagger_budget\": \"Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.\",\n    \"check_dagger_domain\": \"After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.\",\n    \"check_dagger_arrows\": \"Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.\",\n    \"check_dagger_identities\": \"After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.\",\n    \"check_dagger_compositions\": \"After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.\",\n    \"try_new\": \"Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.\",\n    \"category\": \"Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.\",\n    \"dagger\": \"Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.\",\n    \"is_unitary\": \"Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.\",\n    \"runtime\": \"Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result.\",\n    \"formal\": \"Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit.\"\n  },\n  \"assurance_limits\": [\n    \"L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.\",\n    \"Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.\",\n    \"Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.\",\n    \"Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.\",\n    \"Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/dagger.score.yaml\",\n      \"sha256\": \"44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/dagger.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8",
-      "bytes": 5719,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/dagger.rs",
-          "language": "Rust",
-          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
-        },
-        "profile": "Exact",
-        "level": "L5",
-        "level_basis": "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -289,58 +302,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L5A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T19:56:10.651663+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:dagger",
-          "description": "Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None. The owned immutable result admits every dagger law; its raw map and category are never exposed mutably. Size refusal precedes category and dagger errors.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L5",
+        "level_basis": "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 28,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L5A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 6,
+          "control_nesting": 2,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 251,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T193617Z/baseline.json",
-            "sha256": "eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T193617Z/summary.json",
-            "sha256": "9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T193617Z/mutations.json",
-            "sha256": "4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json",
-            "sha256": "5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json",
-            "sha256": "f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json",
-            "sha256": "28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -371,62 +366,37 @@
             "RR-27-26",
             "RR-28-27"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 28,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 251,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 7,
-          "cognitive_complexity_upper_bound": 6,
-          "control_nesting": 2,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.",
-          "Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.",
-          "Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.",
-          "Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.",
-          "Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/dagger.rs\"\n  language: \"Rust\"\n  sha256: \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T19:56:10.651663+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:dagger\"\n  description: \"Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None. The owned immutable result admits every dagger law; its raw map and category are never exposed mutably. Size refusal precedes category and dagger errors.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/baseline.json\", \"sha256\": \"eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/summary.json\", \"sha256\": \"9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/mutations.json\", \"sha256\": \"4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json\", \"sha256\": \"5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json\", \"sha256\": \"f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json\", \"sha256\": \"28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 28\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 251\n  parsed_production_functions: 10\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.\"\n  - \"Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.\"\n  - \"Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.\"\n  - \"Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.\"\n  - \"Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/dagger.score.yaml"
-      ]
+      "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
     },
     {
-      "sha256": "cb07f1b50b06aa82d9edd25e2a6b846372a8857bb0aa04e560dacab79d9dc738",
       "bytes": 2299,
+      "original_paths": [
+        "code/rust/src/category_theory/dagger.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L5\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L5A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/dagger.score.yaml\",\n    \"sha256\": \"44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs.contract.yaml\",\n    \"sha256\": \"2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/dagger.rs",
-          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/dagger.rs",
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/dagger.score.yaml",
+          "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/dagger.rs.contract.yaml",
+          "sha256": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d"
+        },
         "engineering_target": "A",
-        "level": "L5",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -434,30 +404,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L5A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/dagger.score.yaml",
-          "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/dagger.rs.contract.yaml",
-          "sha256": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L5",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L5A",
         "structural_measurement": {
-          "source_sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
-          "function_count": 10,
-          "maxima": {
-            "ccn": 7,
-            "cognitive_upper_bound": 6,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -472,29 +428,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 10,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L5\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L5A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/dagger.score.yaml\",\n    \"sha256\": \"44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs.contract.yaml\",\n    \"sha256\": \"2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/dagger.rs.scoring.yaml"
-      ]
+      "sha256": "cb07f1b50b06aa82d9edd25e2a6b846372a8857bb0aa04e560dacab79d9dc738"
     },
     {
-      "sha256": "6146811bcc93df25fcbec218d9016399fb5d449b401e5635c0b905d71cbeaec5",
       "bytes": 3699,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/dagger.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"0e041c1d235c8f2af39e934b8fb358c69d00dd4f00cc459d74868944c6989eeb\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:dagger\"\r\n  description: \"Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 221\r\n  parsed_production_functions: 5\r\n  max_production_ccn: 17\r\n  cognitive_complexity_upper_bound: 18\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 17, \"cognitive_upper_bound\": 18, \"control_nesting\": 2, \"line\": 35, \"name\": \"try_new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/dagger.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/dagger.rs",
           "sha256": "0e041c1d235c8f2af39e934b8fb358c69d00dd4f00cc459d74868944c6989eeb"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:dagger"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -502,69 +498,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "C",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:dagger",
-          "description": "Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 221,
-          "parsed_production_functions": 5,
-          "max_production_ccn": 17,
           "cognitive_complexity_upper_bound": 18,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 17,
@@ -575,44 +534,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 17,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 5,
+          "physical_lines": 221,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/dagger.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"0e041c1d235c8f2af39e934b8fb358c69d00dd4f00cc459d74868944c6989eeb\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:dagger\"\r\n  description: \"Dagger structures on explicit finite categories: identity on objects, contravariant on arrows, involutive and composition-reversing. Validation checks every declared arrow and composite, after the canonical finite category checker. AuthorityEffect: None.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 221\r\n  parsed_production_functions: 5\r\n  max_production_ccn: 17\r\n  cognitive_complexity_upper_bound: 18\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 17, \"cognitive_upper_bound\": 18, \"control_nesting\": 2, \"line\": 35, \"name\": \"try_new\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.score.yaml"
-      ]
+      "sha256": "6146811bcc93df25fcbec218d9016399fb5d449b401e5635c0b905d71cbeaec5"
     },
     {
-      "sha256": "66015c29b0d227c2d6b976209b0b844e8ec6b5321b955e640c0a62f8a3d1b953",
       "bytes": 5636,
+      "original_paths": [
+        "code/rust/src/category_theory/dagger.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:dagger:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 13 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 13,\n    \"lizard_ccn\": 13,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"B\",\n  \"score_token\": \"L4B\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/baseline.json\",\n      \"sha256\": \"eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/summary.json\",\n      \"sha256\": \"9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/mutations.json\",\n      \"sha256\": \"4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json\",\n      \"sha256\": \"5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json\",\n      \"sha256\": \"f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json\",\n      \"sha256\": \"28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 251,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 6,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/dagger.rs",
-          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "B"
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:dagger:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -621,24 +571,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 13 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 13,
-          "lizard_ccn": 13,
-          "weighted_control_upper_bound": 6,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "B",
-        "score_token": "L4B",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -646,81 +579,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T193617Z/baseline.json",
-            "sha256": "eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973"
           },
           {
             "path": "evidence/quality/category_homology/20261019T193617Z/summary.json",
-            "sha256": "9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016"
           },
           {
             "path": "evidence/quality/category_homology/20261019T193617Z/mutations.json",
-            "sha256": "4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0"
           },
           {
             "path": "evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json",
-            "sha256": "5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44"
           },
           {
             "path": "evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json",
-            "sha256": "f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json",
-            "sha256": "28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 13,
+          "radon_ccn": 13,
+          "weighted_control_upper_bound": 6
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4B",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 251,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 7,
           "cognitive_complexity_upper_bound": 6,
           "control_nesting": 2,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 7,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 251,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:dagger:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 13 <= 15 (B), nesting depth 2 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 13,\n    \"lizard_ccn\": 13,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"B\",\n  \"score_token\": \"L4B\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/baseline.json\",\n      \"sha256\": \"eb6fd9ac12a2b6a323e45d36715e46bf78f98f0987add3d0f161fbd746ef8973\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/summary.json\",\n      \"sha256\": \"9f85bd740eb25d95a7bcc4952fdd03877c9874c0d04a03fa53e5e67242085016\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/mutations.json\",\n      \"sha256\": \"4e80f39eda1a5a0ed0b75fa5a52ff90d3516e36706dd15dd934825a93a4b66a0\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z-metrics/receipt.json\",\n      \"sha256\": \"5d7de888801beb784f7f4ddf28c241c86b78a563ad8c0ac59c97b2b25f083e44\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T193617Z/dependency_receipt.json\",\n      \"sha256\": \"f45409e4ea6b0141fb568b9bf898129c84bb82310246b2c9716a407a4bc3aecb\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/groupoid_consumer_refresh/dagger.json\",\n      \"sha256\": \"28dcfc210e8282262ddf79f44a9f513780488a15b3ef0d0ce0dbd3d93dfe88ef\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 251,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 7,\n    \"cognitive_complexity_upper_bound\": 6,\n    \"control_nesting\": 2,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "66015c29b0d227c2d6b976209b0b844e8ec6b5321b955e640c0a62f8a3d1b953"
+    },
+    {
+      "bytes": 1592,
       "original_paths": [
-        "code/rust/src/category_theory/dagger.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/dagger.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/dagger.rs\",\n    \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/dagger.rs\",\n      \"sha256\": \"9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/dagger.rs",
+          "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/dagger.rs",
+            "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "5caae9b57de8cc35fca61513b84139508acc70a28d080682c82233cf1f64b006"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/dagger.rs.contract.yaml": "2a4e4ea6fe4cbfe4383eb7a766647034b7168eab203eab2997f5bfacacf6946d",
-    "code/rust/src/category_theory/dagger.score.yaml": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8",
-    "code/rust/src/category_theory/dagger.rs.scoring.yaml": "cb07f1b50b06aa82d9edd25e2a6b846372a8857bb0aa04e560dacab79d9dc738",
-    "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.score.yaml": "6146811bcc93df25fcbec218d9016399fb5d449b401e5635c0b905d71cbeaec5"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

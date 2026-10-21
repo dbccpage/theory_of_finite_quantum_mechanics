@@ -1,0 +1,110 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DFM-SU3-TREE-DRESSING-DIAMOND
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: On the diamond graph with five fixed non-commuting Pythagorean SU(3, Q(i)) links and
+    one anchored SU(3, Q(i)) vertex gauge, for each of the 8 spanning trees the dressing sets tree links
+    to I_3 and the dressed configuration is gauge-unchanged.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The statement for every group and graph is the specialization of TFQ-0398 and TFQ-0399
+    (root-fixing gauges leave residuals unchanged); continuum uniqueness is not claimed.
+  source_refs:
+  - dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md
+  - papers/ravera_dfm_dossier.md
+  - code/python/src/qm/ravera_dfm.py
+  - lean4/RaveraDfmFiniteToContinuum.lean
+  paper_refs:
+  - dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md
+    sha256: 624123a255c2d085136535b56e04de2e43abe6f8ae565d0273e328acd8ebfdb2
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/dressing_field_dfm_su3_tree_dressing_diamond_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: spanning_tree_dfm_eliminates_gribov_copies
+  line: 267
+  signature_excerpt: |-
+    theorem spanning_tree_dfm_eliminates_gribov_copies
+        (u01 u12 u02 g1 g2 : Rat)
+        (hu01 : u01 ≠ 0) (hu12 : u12 ≠ 0) (hg1 : g1 ≠ 0) (hg2 : g2 ≠ 0) :
+        let u01_g
+  source: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  source_sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/RaveraDfmFiniteToContinuum.lean::spanning_tree_dfm_eliminates_gribov_copies
+  availability: local
+  symbol: spanning_tree_dfm_eliminates_gribov_copies
+  path: lean4/RaveraDfmFiniteToContinuum.lean
+  repository: this_repository
+  sha256: 70687535990869370ddb6ec8b17a080e48992047692f26fbb478703b631c1cdf
+  declaration_status: declaration_found_not_proof_checked
+  line: 267
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/ravera_dfm.rs::test_su3_spanning_tree_vs_landau_gribov_control
+  availability: local
+  symbol: test_su3_spanning_tree_vs_landau_gribov_control
+  path: code/rust/src/qm/campaigns/ravera_dfm.rs
+  repository: this_repository
+  sha256: 000828b04ba50dedc39a4bd6cbf36734e50e36bc80cf05bfe5cb8f5b229ac477
+  declaration_status: declaration_found_not_executed
+  line: 32
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

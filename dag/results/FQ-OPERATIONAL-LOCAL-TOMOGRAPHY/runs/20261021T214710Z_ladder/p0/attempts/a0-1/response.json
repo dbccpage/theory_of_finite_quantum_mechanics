@@ -1,0 +1,85 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_reset",
+      "inputs": [
+        "V",
+        "V→ₗ[K]K"
+      ],
+      "output": "V→ₗ[K]V",
+      "arity": 2,
+      "carrier": "V",
+      "ref": {
+        "path": "lean4/OperationalFilterFamily.lean",
+        "decl": "OperationalFilterFamily.reset",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_preparation",
+      "inputs": [
+        "V"
+      ],
+      "output": "K→ₗ[K]V",
+      "arity": 1,
+      "carrier": "V",
+      "ref": {
+        "path": "lean4/OperationalFilterFamily.lean",
+        "decl": "OperationalFilterFamily.preparation",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_tomography_of_irreducible",
+      "statement": "For a calibrated observation D, irreducibility of the admitted operation family implies injectivity of the observation (Schur‑type), i.e. tomography_of_irreducible.",
+      "hypotheses": "D : Calibrated K V C",
+      "ref": {
+        "path": "lean4/OperationalTomography.lean",
+        "decl": "OperationalTomography.tomography_of_irreducible",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_normalized_reset_family",
+      "statement": "Under the explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), the constructed family `normalized_reset_family` is positive, subnormalized and irreducible.",
+      "hypotheses": "O : OrderedModel W, A : SequentialAdmission ℚ W, generating : Submodule ...",
+      "ref": {
+        "path": "lean4/OperationalFilterFamily.lean",
+        "decl": "OperationalFilterFamily.normalized_reset_family",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_reset",
+      "slot": 0,
+      "inner": "gen_preparation",
+      "licensing_relation": "rel_normalized_reset_family"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lem_local_tomography_equiv_irreducible",
+      "statement": "Local tomography is equivalent to the existence of an irreducible operation family that descends through a calibrated observation.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "rel_tomography_of_irreducible",
+        "rel_normalized_reset_family"
+      ],
+      "lean_skeleton": "lemma local_tomography_equiv_irreducible (D : Calibrated K V C) : (∃ F, Irreducible F ∧ Descends F D) ↔ LocalTomography := by\n  -- uses tomography_of_irreducible and normalized_reset_family\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": []
+}

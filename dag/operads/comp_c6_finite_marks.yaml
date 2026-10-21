@@ -1,0 +1,304 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C6-FINITE-MARKS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Every word reachable from a start word of the fixed rewriting regime has its marks
+    in the finite set markSet: two end markers, the 1250 tape marks of Bool x (K -> Option G), and the
+    state marks of the finite set S0 given by the Mathlib tr_supports chain.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0
+  source_bottleneck: The size of S0 is not computed and the machine is not claimed small.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompUniv.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md
+    sha256: 7dab3c108ab0db31a69bb05e4fbe2a370273138d716cb61e212367977f6b4c75
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c6_finite_marks_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: markSet
+  line: 353
+  signature_excerpt: 'noncomputable def markSet : Finset (Sym G1 (TM1to0.Λ'' M1))'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: G1
+  line: 92
+  signature_excerpt: 'abbrev G1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M1
+  line: 101
+  signature_excerpt: 'abbrev M1 : L1 → TM1.Stmt G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M0
+  line: 104
+  signature_excerpt: 'abbrev M0 : TM0.Machine G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: startWord
+  line: 197
+  signature_excerpt: 'noncomputable def startWord (x : ℕ) : List (Sym G1 (TM1to0.Λ'' M1))'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: L1
+  line: 95
+  signature_excerpt: 'abbrev L1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M2
+  line: 98
+  signature_excerpt: 'abbrev M2 : Λ'' → TM2.Stmt (fun _ : K'' => Γ'') Λ'' (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initCfg0
+  line: 140
+  signature_excerpt: 'noncomputable def initCfg0 (x : ℕ) : TM0.Cfg G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: init1
+  line: 134
+  signature_excerpt: 'noncomputable def init1 (x : ℕ) : TM1.Cfg G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: univCode
+  line: 86
+  signature_excerpt: 'noncomputable def univCode : ToPartrec.Code'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initL
+  line: 107
+  signature_excerpt: 'def initL (l : List Γ'') : ListBlank (∀ _ : K'', Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: S0
+  line: 240
+  signature_excerpt: 'noncomputable def S0 : Finset (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: S1
+  line: 237
+  signature_excerpt: 'noncomputable def S1 : Finset L1'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: S2
+  line: 234
+  signature_excerpt: 'noncomputable def S2 : Finset Λ'''
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: used_marks_finite
+  line: 360
+  signature_excerpt: |-
+    theorem used_marks_finite (x : ℕ) {w : List (Sym G1 (TM1to0.Λ' M1))}
+        (hw : Reach (Rules M0) (startWord x) w) {y : Sym G1 (TM1to0.Λ' M1)} (hy : y ∈ w) :
+        y ∈ markSet
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: used_state_marks_finite
+  line: 283
+  signature_excerpt: |-
+    theorem used_state_marks_finite (x : ℕ) {w : List (Sym G1 (TM1to0.Λ' M1))}
+        (hw : Reach (Rules M0) (startWord x) w) {q : TM1to0.Λ' M1} (hq : Sym.st q ∈ w) :
+        q ∈ S0
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: card_G1
+  line: 344
+  signature_excerpt: 'theorem card_G1 : Fintype.card G1 = 1250'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_closed
+  line: 250
+  signature_excerpt: |-
+    theorem step_closed {c c' : TM0.Cfg G1 (TM1to0.Λ' M1)}
+        (h : TM0.step M0 c = some c') (hc : c.q ∈ (S0 : Set (TM1to0.Λ' M1))) :
+        c'.q ∈ (S0 : Set (TM1to0.Λ' M1))
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: init_mem
+  line: 260
+  signature_excerpt: 'theorem init_mem (x : ℕ) : (initCfg0 x).q ∈ (S0 : Set (TM1to0.Λ'' M1))'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompUniv.lean::used_marks_finite
+  availability: local
+  symbol: used_marks_finite
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 360
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::used_state_marks_finite
+  availability: local
+  symbol: used_state_marks_finite
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 283
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::card_G1
+  availability: local
+  symbol: card_G1
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 344
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::step_closed
+  availability: local
+  symbol: step_closed
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 250
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::init_mem
+  availability: local
+  symbol: init_mem
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 260
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::markSet
+  availability: local
+  symbol: markSet
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 353
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib tr_supports for PartrecToTM2, TM2to1 and TM1to0
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

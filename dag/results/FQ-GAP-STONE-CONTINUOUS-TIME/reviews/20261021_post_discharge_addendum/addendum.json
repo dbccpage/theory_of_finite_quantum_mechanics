@@ -1,0 +1,51 @@
+{
+  "schema_id": "finite-qm.pfp.post-discharge-addendum.v1",
+  "authority_effect": "None",
+  "task_id": "FQ-GAP-STONE-CONTINUOUS-TIME",
+  "added": "2026-10-21",
+  "rule": "Sealed run, review and operad files are not edited. This addendum points from the sealed record to the later artifact that changes how it is read.",
+  "items": [
+    {
+      "kind": "later_run_supersedes_operad_record",
+      "operad": "dag/operads/fq_gap_stone_continuous_time.yaml",
+      "operad_merged_in_this_change": false,
+      "operad_sealed_by_batch_manifest": [
+        "dag/results/batches/20261019T164251Z_prompts_32_51/manifest.json"
+      ],
+      "index_latest_run_before": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261019T164251Z_staged",
+      "index_json_sealed_by_batch_manifest": [
+        "dag/results/batches/20261020T000351Z_prompts_132_151/manifest.json"
+      ],
+      "newer_runs": [
+        {
+          "run": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec",
+          "operad_delta": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/operad_delta.json",
+          "operad_delta_sha256": "bd4a41c47f8c16f2d50405b6e789c588d0827f1e7e721551e9e5bdb24990050c",
+          "operad_namespace": "DT-DISCRETE-TIME",
+          "operad_records": 5,
+          "claim_status": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/claim_status.json",
+          "claim_status_sha256": "63c5e91c970ffefb53b3b01ee9398781f89a0ea4f7a15839157af4cacd2980ba",
+          "next_steps": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/next_steps.md",
+          "readme": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/README.md"
+        }
+      ],
+      "note": "The later Lean run(s) were never merged into the operad collection. The collection is sealed by a batch manifest and is not edited; this addendum is the pointer to the newer run(s). dag/operads/index.json is sealed by the manifest of batch 20261020T000351Z_prompts_132_151 and is not edited, so its latest_run field still names the run before the newer one."
+    },
+    {
+      "kind": "global_baseline_status_superseded",
+      "operad": "dag/operads/fq_gap_stone_continuous_time.yaml",
+      "operad_latest_review_status": "reviewed_with_targeted_native_integration_global_baseline_failures_retained",
+      "operad_sealed_by_batch_manifest": [
+        "dag/results/batches/20261019T164251Z_prompts_32_51/manifest.json"
+      ],
+      "custody_repair": "dag/results/custody/20261019T174819Z_filename_repair/summary.json",
+      "custody_repair_sha256": "61ad97bc9833e78df3356128faac91d026ce3013ec4681d61d6677d042059cb8",
+      "custody_measured": {
+        "before_custody_errors": 398,
+        "after_custody_errors": 0,
+        "validated_prompts": 177
+      },
+      "note": "The retained global baseline failures of the batch 20261019T164251Z_prompts_32_51 review were 398 custody errors (177 stale prompt hashes, 220 stale paper bindings, 1 stale source pin). The custody repair of 20261019T174819Z records 0 errors on the 177-prompt validator. The historical failure receipts and the operad status text are retained as written; read the status as superseded for the baseline only. No mathematical claim of the review changes."
+    }
+  ]
+}

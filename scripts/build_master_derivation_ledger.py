@@ -41,7 +41,9 @@ def build_ledger() -> str:
     # 2b. DAG node of each record: derivation_dag.json and the JSONL are one graph (dag/sync_unified_dag.py)
     dag = json.loads((REPO_ROOT / "dag" / "derivation_dag.json").read_text(encoding="utf-8"))
     node_status = {n["id"]: n["status"] for n in dag["nodes"]}
-    unified = json.loads((REPO_ROOT / "dag" / "fragments" / "unified_dag.json").read_text(encoding="utf-8"))
+    # PFP review of a node (dag/sync_pfp_results.py): verdict and what the review did to the node.
+    node_review = {n["id"]: n["pfp_review"] for n in dag["nodes"] if "pfp_review" in n}
+    unified =json.loads((REPO_ROOT / "dag" / "fragments" / "unified_dag.json").read_text(encoding="utf-8"))
 
     # 3. Load 65 atlas questions
     atlas_questions = build_qm_question_atlas()
@@ -76,6 +78,7 @@ def build_ledger() -> str:
         "FERMION_SIGN",
         "TENSOR_COMPOSITION",
         "MAJORANA",
+        "COMPUTATION",
     ]
 
     records_by_stage: dict[str, list[dict]] = {s: [] for s in stages_order}
@@ -152,6 +155,7 @@ def build_ledger() -> str:
             "MUTUALLY_UNBIASED_BASES": "Exact projector MUBs, prime-power constructions, MUB(6) non-existence fences",
             "FERMION_SIGN": "Signed-graph switching normal form, meron character cancellation on flip orbits",
             "TENSOR_COMPOSITION": "Tomographic composite coordinates, operational effect cones, finite POVMs",
+            "COMPUTATION": "Separated marks to word rewriting, TM0 simulation, halting undecidability, authorization incompleteness and quantum-computation self-obstruction",
             "MAJORANA": "F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers",
         }
         lines.append(f"| §{idx:02d} | `{stage}` | {len(recs)} | {desc_map.get(stage, 'Specialized domain')} | [`{first_id}`..`{last_id}`] |")
@@ -164,8 +168,10 @@ def build_ledger() -> str:
         "",
         "Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.",
         "",
-        "| ID | Canonical Derivation Name | Stage | Status | Parent | DAG Node (status) | Standalone Paper | Multi-Tier Witnesses |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+        "The Review column gives the PFP review verdict and scope effect of each reviewed DAG node (`dag/fragments/pfp_review_decisions.json`); the DAG node status is the status after that review.",
+        "",
+        "| ID | Canonical Derivation Name | Stage | Status | Parent | DAG Node (status) | Review | Standalone Paper | Multi-Tier Witnesses |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
     ])
 
     for r in records:
@@ -188,7 +194,12 @@ def build_ledger() -> str:
 
         dag_ids = [x for x in r.get("existing_derivation_dag_ids", []) if x in node_status]
         dag_cell = ", ".join(f"`{x}` ({node_status[x]})" for x in dag_ids) or "none"
-        lines.append(f"| **`{rid}`** | {name} | `{st}` | `{status}` | `{pid}` | {dag_cell} | {doc_link} | {wit_str} |")
+        reviewed = [x for x in dag_ids if x in node_review]
+        review_cell = "; ".join(
+            (f"`{x}`: " if len(reviewed) > 1 else "") + f"{node_review[x]['verdict']} / {node_review[x]['scope_effect']}"
+            for x in reviewed
+        ) or "-"
+        lines.append(f"| **`{rid}`** | {name} | `{st}` | `{status}` | `{pid}` | {dag_cell} | {review_cell} | {doc_link} | {wit_str} |")
 
     lines.extend([
         "",

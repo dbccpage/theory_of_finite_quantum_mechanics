@@ -1,150 +1,110 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:shor_topos:v1.0.0",
-    "title": "Shor Topos Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+      "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
     },
-    "math": {
-      "object_kind": "topos",
-      "symbol": "\\mathcal{E}_{Shor}",
-      "ascii_symbol": "shor_topos",
-      "notation": "\\mathcal{E}_{Shor}",
-      "domain": [
-        "category: a category with finite limits",
-        "exponentials: exponential objects",
-        "subobject_classifier: a subobject classifier"
-      ],
-      "codomain": {
-        "description": "A topos in which the logic of Shor-style quantum algorithms can be stated constructively."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "The category has finite limits",
-        "The category has exponentials",
-        "The category has a subobject classifier"
-      ]
-    },
-    "laws": [
-      "Topos axioms: finite limits, exponentials and a subobject classifier"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Deterministic digest (SHA-256) over the canonical serialization"
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "A category missing a subobject classifier is refused",
-      "A category missing finite limits or exponentials is refused",
-      "An artifact claiming authority or admissibility is refused"
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+        "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+      }
     ],
-    "doctrine": {
-      "summary": "A specialized topos model intended to encapsulate Shor-algorithm logic and quantum circuit topologies in a categorical setting. It is the logical universe in which quantum algorithms could be reasoned about constructively: a category with finite limits, power objects and a quantum-specific subobject classifier.",
-      "non_role": [
-        "Shor's factoring algorithm itself; omega_quantum_physics::shor is the [[9,1,3]] error-correcting code, a different object",
-        "Authority of any kind; the contract is purely mathematical",
-        "Customer-facing claims"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Legacy id urn:math:contract:ShorTopos:v1.0.0 with status `staged`, mapped to `mathematical_wip`.",
-      "Legacy owner named crate omega_topos, module shor_topos.rs, symbols ShorTopos and ShorToposLogic. No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.",
-      "The legacy contract declared no validators and no tests; this is a statement of intent only. No module of the estate implements Shor factoring: omega_quantum_physics::shor is the [[9,1,3]] error-correcting code.",
-      "Last audited (legacy record): 2026-06-15."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe",
+    "subject": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py"
   },
-  "current_contract": "b3d43f632150c3f7a7ab20adef81bb9effc0768b0252f5c8252124ebcbf0d61b",
-  "current_scoring": "c91a8e650bf63e51af5230aa7309120ee01f0a0af152f84d0a09bb04c7256218",
   "contract_history": [
     {
-      "sha256": "b3d43f632150c3f7a7ab20adef81bb9effc0768b0252f5c8252124ebcbf0d61b",
       "bytes": 3103,
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:shor_topos:v1.0.0\",\n  \"title\": \"Shor Topos Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"topos\",\n    \"symbol\": \"\\\\mathcal{E}_{Shor}\",\n    \"ascii_symbol\": \"shor_topos\",\n    \"notation\": \"\\\\mathcal{E}_{Shor}\",\n    \"domain\": [\n      \"category: a category with finite limits\",\n      \"exponentials: exponential objects\",\n      \"subobject_classifier: a subobject classifier\"\n    ],\n    \"codomain\": {\n      \"description\": \"A topos in which the logic of Shor-style quantum algorithms can be stated constructively.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The category has finite limits\",\n      \"The category has exponentials\",\n      \"The category has a subobject classifier\"\n    ]\n  },\n  \"laws\": [\n    \"Topos axioms: finite limits, exponentials and a subobject classifier\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Deterministic digest (SHA-256) over the canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A category missing a subobject classifier is refused\",\n    \"A category missing finite limits or exponentials is refused\",\n    \"An artifact claiming authority or admissibility is refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A specialized topos model intended to encapsulate Shor-algorithm logic and quantum circuit topologies in a categorical setting. It is the logical universe in which quantum algorithms could be reasoned about constructively: a category with finite limits, power objects and a quantum-specific subobject classifier.\",\n    \"non_role\": [\n      \"Shor's factoring algorithm itself; omega_quantum_physics::shor is the [[9,1,3]] error-correcting code, a different object\",\n      \"Authority of any kind; the contract is purely mathematical\",\n      \"Customer-facing claims\"\n    ]\n  },\n  \"wip\": [\n    \"Legacy id urn:math:contract:ShorTopos:v1.0.0 with status `staged`, mapped to `mathematical_wip`.\",\n    \"Legacy owner named crate omega_topos, module shor_topos.rs, symbols ShorTopos and ShorToposLogic. No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.\",\n    \"The legacy contract declared no validators and no tests; this is a statement of intent only. No module of the estate implements Shor factoring: omega_quantum_physics::shor is the [[9,1,3]] error-correcting code.\",\n    \"Last audited (legacy record): 2026-06-15.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:shor_topos:v1.0.0",
-        "title": "Shor Topos Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Shor's factoring algorithm itself; omega_quantum_physics::shor is the [[9,1,3]] error-correcting code, a different object",
+            "Authority of any kind; the contract is purely mathematical",
+            "Customer-facing claims"
+          ],
+          "summary": "A specialized topos model intended to encapsulate Shor-algorithm logic and quantum circuit topologies in a categorical setting. It is the logical universe in which quantum algorithms could be reasoned about constructively: a category with finite limits, power objects and a quantum-specific subobject classifier."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Topos axioms: finite limits, exponentials and a subobject classifier"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "topos",
-          "symbol": "\\mathcal{E}_{Shor}",
           "ascii_symbol": "shor_topos",
-          "notation": "\\mathcal{E}_{Shor}",
+          "codomain": {
+            "description": "A topos in which the logic of Shor-style quantum algorithms can be stated constructively."
+          },
           "domain": [
             "category: a category with finite limits",
             "exponentials: exponential objects",
             "subobject_classifier: a subobject classifier"
           ],
-          "codomain": {
-            "description": "A topos in which the logic of Shor-style quantum algorithms can be stated constructively."
-          }
+          "notation": "\\mathcal{E}_{Shor}",
+          "object_kind": "topos",
+          "symbol": "\\mathcal{E}_{Shor}"
         },
-        "requirements": {
-          "required_structures": [
-            "The category has finite limits",
-            "The category has exponentials",
-            "The category has a subobject classifier"
+        "negative_tests": [
+          "A category missing a subobject classifier is refused",
+          "A category missing finite limits or exponentials is refused",
+          "An artifact claiming authority or admissibility is refused"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
         },
-        "laws": [
-          "Topos axioms: finite limits, exponentials and a subobject classifier"
-        ],
         "replay": {
           "requirements": [
             "No external state",
@@ -153,24 +113,16 @@
             "Deterministic digest (SHA-256) over the canonical serialization"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "The category has finite limits",
+            "The category has exponentials",
+            "The category has a subobject classifier"
           ]
         },
-        "negative_tests": [
-          "A category missing a subobject classifier is refused",
-          "A category missing finite limits or exponentials is refused",
-          "An artifact claiming authority or admissibility is refused"
-        ],
-        "doctrine": {
-          "summary": "A specialized topos model intended to encapsulate Shor-algorithm logic and quantum circuit topologies in a categorical setting. It is the logical universe in which quantum algorithms could be reasoned about constructively: a category with finite limits, power objects and a quantum-specific subobject classifier.",
-          "non_role": [
-            "Shor's factoring algorithm itself; omega_quantum_physics::shor is the [[9,1,3]] error-correcting code, a different object",
-            "Authority of any kind; the contract is purely mathematical",
-            "Customer-facing claims"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Shor Topos Contract",
         "wip": [
           "Legacy id urn:math:contract:ShorTopos:v1.0.0 with status `staged`, mapped to `mathematical_wip`.",
           "Legacy owner named crate omega_topos, module shor_topos.rs, symbols ShorTopos and ShorToposLogic. No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.",
@@ -178,36 +130,72 @@
           "Last audited (legacy record): 2026-06-15."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:shor_topos:v1.0.0\",\n  \"title\": \"Shor Topos Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"topos\",\n    \"symbol\": \"\\\\mathcal{E}_{Shor}\",\n    \"ascii_symbol\": \"shor_topos\",\n    \"notation\": \"\\\\mathcal{E}_{Shor}\",\n    \"domain\": [\n      \"category: a category with finite limits\",\n      \"exponentials: exponential objects\",\n      \"subobject_classifier: a subobject classifier\"\n    ],\n    \"codomain\": {\n      \"description\": \"A topos in which the logic of Shor-style quantum algorithms can be stated constructively.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The category has finite limits\",\n      \"The category has exponentials\",\n      \"The category has a subobject classifier\"\n    ]\n  },\n  \"laws\": [\n    \"Topos axioms: finite limits, exponentials and a subobject classifier\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Deterministic digest (SHA-256) over the canonical serialization\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A category missing a subobject classifier is refused\",\n    \"A category missing finite limits or exponentials is refused\",\n    \"An artifact claiming authority or admissibility is refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A specialized topos model intended to encapsulate Shor-algorithm logic and quantum circuit topologies in a categorical setting. It is the logical universe in which quantum algorithms could be reasoned about constructively: a category with finite limits, power objects and a quantum-specific subobject classifier.\",\n    \"non_role\": [\n      \"Shor's factoring algorithm itself; omega_quantum_physics::shor is the [[9,1,3]] error-correcting code, a different object\",\n      \"Authority of any kind; the contract is purely mathematical\",\n      \"Customer-facing claims\"\n    ]\n  },\n  \"wip\": [\n    \"Legacy id urn:math:contract:ShorTopos:v1.0.0 with status `staged`, mapped to `mathematical_wip`.\",\n    \"Legacy owner named crate omega_topos, module shor_topos.rs, symbols ShorTopos and ShorToposLogic. No such crate exists under omega_engine/crates_rs, so no rust_binding is declared.\",\n    \"The legacy contract declared no validators and no tests; this is a statement of intent only. No module of the estate implements Shor factoring: omega_quantum_physics::shor is the [[9,1,3]] error-correcting code.\",\n    \"Last audited (legacy record): 2026-06-15.\"\n  ]\n}\n",
+      "sha256": "b3d43f632150c3f7a7ab20adef81bb9effc0768b0252f5c8252124ebcbf0d61b"
+    },
+    {
+      "bytes": 1700,
       "original_paths": [
-        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n    \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n      \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\",\n  \"subject\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+          "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+            "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe",
+        "subject": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py"
+      },
+      "sha256": "6e7f381ca1aa4a18bdb087b4a06e926911dfa16933a160025c8dd4dbb30746ad"
     }
   ],
+  "current_contract": "6e7f381ca1aa4a18bdb087b4a06e926911dfa16933a160025c8dd4dbb30746ad",
+  "current_scoring": "feaf18c7b0d25503f822c9130657548189080803a5a89afa3a48f1935faabc18",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0.contract.yaml": "b062871934e941d1f2c16580837e02934adc0c962744014d09107fa2502b2fe9"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c91a8e650bf63e51af5230aa7309120ee01f0a0af152f84d0a09bb04c7256218",
       "bytes": 2217,
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n    \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-shor-topos-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
           "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:quantum:math-shor-topos-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -216,40 +204,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "c91a8e650bf63e51af5230aa7309120ee01f0a0af152f84d0a09bb04c7256218"
+    },
+    {
+      "bytes": 1662,
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n    \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n      \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+          "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py",
+            "sha256": "c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.py\",\n    \"sha256\": \"c48940cb0de6e53f0fbc6109eb3c2eef483dd375fed08ecc7ccd8af490184cfe\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-shor-topos-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "feaf18c7b0d25503f822c9130657548189080803a5a89afa3a48f1935faabc18"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/quantum/math_shor_topos_v1_0_0.contract.yaml": "b062871934e941d1f2c16580837e02934adc0c962744014d09107fa2502b2fe9"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

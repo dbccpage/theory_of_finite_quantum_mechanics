@@ -1,0 +1,157 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C5-SMALL-MACHINES-CHECKED
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Rust: a binary incrementer on inputs 0 to 40 with 0 to 2 padding cells (steps 2c+1,
+    value n+1), the two-state busy beaver in the TM0 form (12 steps, 4 ones), step simulation on all 3150
+    small configurations of that machine; Python: all 6561 two-state two-symbol TM0 machines for 20 steps
+    from the blank tape with a different tape representation; Lean: one write-and-halt machine.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Finite instances; they are not a proof for other machines.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md
+  - dag/research/genesis_to_universal_computation.md
+  - code/rust/src/wdp/genesis_tm.rs
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md
+    sha256: 130a3316f341a83bf8a45d1f51b6b0c77848a221d22cce61bb3ca4e12334d812
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c5_small_machines_checked_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Halts
+  line: 410
+  signature_excerpt: 'def Halts (M : TM0.Machine Γ Λ) (c : TM0.Cfg Γ Λ) : Prop'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: writeOne
+  line: 547
+  signature_excerpt: 'def writeOne : TM0.Machine Bool Bool'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: writeOne_halts
+  line: 550
+  signature_excerpt: 'theorem writeOne_halts : Halts writeOne (TM0.init [])'
+  source: lean4/GenesisCompTM.lean
+  repository: this_repository
+  source_sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompTM.lean::writeOne_halts
+  availability: local
+  symbol: writeOne_halts
+  path: lean4/GenesisCompTM.lean
+  repository: this_repository
+  sha256: 5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c
+  declaration_status: declaration_found_not_proof_checked
+  line: 550
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::incrementer
+  availability: local
+  symbol: incrementer
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 430
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::busy_beaver_2
+  availability: local
+  symbol: busy_beaver_2
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 448
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::incrementer_matches_machine_for_all_small_inputs
+  availability: local
+  symbol: incrementer_matches_machine_for_all_small_inputs
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 777
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::busy_beaver_2_matches_machine
+  availability: local
+  symbol: busy_beaver_2_matches_machine
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 799
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/genesis_tm.rs::step_simulation_holds_on_every_small_configuration
+  availability: local
+  symbol: step_simulation_holds_on_every_small_configuration
+  path: code/rust/src/wdp/genesis_tm.rs
+  repository: this_repository
+  sha256: 5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4
+  declaration_status: declaration_found_not_executed
+  line: 837
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

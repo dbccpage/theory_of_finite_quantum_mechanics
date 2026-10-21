@@ -716,6 +716,45 @@ stage_history:
   run: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged
   operad_delta: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged/p5/operad_delta.yaml
   host_check: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged/p5/host_check.json
+- stage: POST_REVIEW_LEAN_RUN
+  attempt: 20261020T230000Z_completion
+  run: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion
+  operad_delta: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/operad_delta.json
+  operad_delta_sha256: 29fdc9514df3d900abc5db93a5f1af109c9a97b2e505dc73f4473b5c0ed969a9
+  operad_namespace: HL-HILBERT-LIFT
+  claim_status: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/claim_status.json
+  operad_records:
+  - {"id": "HL-01", "name": "Finite carrier tower under zero padding", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.pad_refl", "HilbertLift.pad_trans", "HilbertLift.pad_add", "HilbertLift.pad_smul", "HilbertLift.pad_injective", "HilbertLift.finInner_pad"]}
+  - {"id": "HL-02", "name": "Exact inner product on the colimit carrier ℕ →₀ ℚ", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.qinner_comm", "HilbertLift.qinner_add_left", "HilbertLift.qinner_sub_left", "HilbertLift.qinner_smul_left", "HilbertLift.qinner_add_right", "HilbertLift.qinner_sub_right", "HilbertLift.qinner_smul_right", "HilbertLift.qinner_self_nonneg", "HilbertLift.mul_self_apply_le_qinner_self", "HilbertLift.qinner_self_eq_zero_iff"]}
+  - {"id": "HL-03", "name": "Cauchy–Schwarz and the arithmetic–quadratic bound over ℚ", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.qinner_sq_le", "HilbertLift.two_mul_qinner_le", "HilbertLift.finInner_sq_le", "HilbertLift.finInner_self_nonneg"]}
+  - {"id": "HL-04", "name": "Canonical injections, cocone identity, restriction, exhaustion and truncation", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.ofFin_pad", "HilbertLift.ofFin_injective", "HilbertLift.ofFin_add", "HilbertLift.ofFin_smul", "HilbertLift.qinner_ofFin", "HilbertLift.trunc_ofFin", "HilbertLift.ofFin_trunc", "HilbertLift.exhaustion", "HilbertLift.finInner_trunc_le"]}
+  - {"id": "HL-05", "name": "Squared ℓ² and ℓ¹ distances on the exact carrier", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.sqdist_comm", "HilbertLift.sqdist_self", "HilbertLift.sqdist_nonneg", "HilbertLift.sqdist_eq_sum", "HilbertLift.sq_sub_apply_le_sqdist", "HilbertLift.sqdist_le_two_mul", "HilbertLift.l1dist_eq_sum", "HilbertLift.l1dist_nonneg", "HilbertLift.sqdist_le_l1dist_sq"]}
+  - {"id": "HL-06", "name": "Cauchy conditions with rational tolerances and explicit moduli", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.isCauchyL2_of_hasModulus", "HilbertLift.exists_hasModulus_of_isCauchyL2", "HilbertLift.isCauchyL2_of_isCauchyL1", "HilbertLift.isCauchySup_of_isCauchyL2"]}
+  - {"id": "HL-07", "name": "Harmonic witness with the explicit ℓ² modulus k ↦ k + 1", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.harmonicTerm_pos", "HilbertLift.harmonic_sub_apply", "HilbertLift.support_harmonic_sub_subset", "HilbertLift.sqdist_harmonic", "HilbertLift.l1dist_harmonic", "HilbertLift.harmonicTerm_sq_le", "HilbertLift.sum_harmonicTerm_sq_le", "HilbertLift.sqdist_harmonic_lt", "HilbertLift.harmonic_hasModulus", "HilbertLift.harmonic_isCauchyL2"]}
+  - {"id": "HL-08", "name": "The harmonic witness separates ℓ¹ from ℓ² and has no exact limit", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.harmonicTerm_ge", "HilbertLift.sum_harmonicTerm_Ico_ge", "HilbertLift.harmonic_not_isCauchyL1", "HilbertLift.harmonic_not_tendsTo", "HilbertLift.harmonic_separates_uniformities"]}
+  - {"id": "HL-09", "name": "Inner-product core of the pre-Hilbert carrier ℕ →₀ 𝕜", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.preInner_conj_symm", "HilbertLift.preInner_add_left", "HilbertLift.preInner_smul_left", "HilbertLift.re_preInner_self", "HilbertLift.re_preInner_self_nonneg", "HilbertLift.preInner_self_eq_zero"]}
+  - {"id": "HL-10", "name": "The Hilbert lift is a complete inner product space", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.hilbertLiftSpace_complete", "HilbertLift.hilbertLiftSpace_innerProductSpace"]}
+  - {"id": "HL-11", "name": "Scalar lift and the explicit embedding of the exact carrier", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.castSeq_sub", "HilbertLift.castSeq_add", "HilbertLift.castSeq_smul", "HilbertLift.castSeq_injective", "HilbertLift.inner_castSeq", "HilbertLift.norm_castSeq_sq", "HilbertLift.liftFin_pad", "HilbertLift.inner_lift", "HilbertLift.inner_liftFin", "HilbertLift.norm_lift_sq", "HilbertLift.lift_sub", "HilbertLift.lift_add", "HilbertLift.lift_smul", "HilbertLift.dist_lift_sq", "HilbertLift.lift_injective", "HilbertLift.liftFin_injective"]}
+  - {"id": "HL-12", "name": "Topology and convergence control", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.cauchySeq_lift_iff", "HilbertLift.tendsto_lift_iff", "HilbertLift.exists_limit_of_isCauchyL2", "HilbertLift.limit_unique", "HilbertLift.isCauchyL2_of_tendsto", "HilbertLift.tendsto_lift_of_tendsToL2"]}
+  - {"id": "HL-13", "name": "Density, exact approximants and extension control over ℝ", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.norm_sq_eq_sum_real", "HilbertLift.denseRange_castSeq_real", "HilbertLift.denseRange_lift_real", "HilbertLift.exists_exact_tendsto", "HilbertLift.ext_of_lift"]}
+  - {"id": "HL-14", "name": "Strictness and the packaged controlled completion", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.exists_not_mem_range_lift", "HilbertLift.lift_not_surjective", "HilbertLift.controlled_completion"]}
+  - {"id": "HL-15", "name": "Gaussian-rational pairs in the complex pre-Hilbert carrier", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.castPair_re", "HilbertLift.castPair_im", "HilbertLift.support_castPair_subset", "HilbertLift.castPair_sub", "HilbertLift.castPair_zero_right", "HilbertLift.inner_castPair", "HilbertLift.norm_castPair_sq", "HilbertLift.norm_sq_eq_sum_complex"]}
+  - {"id": "HL-16", "name": "Density and strictness of the Gaussian-rational carrier in the complex lift", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.denseRange_castPair", "HilbertLift.liftPair_real", "HilbertLift.inner_liftPair", "HilbertLift.liftPair_sub", "HilbertLift.norm_liftPair_sq", "HilbertLift.denseRange_liftPair", "HilbertLift.exists_not_mem_range_liftPair", "HilbertLift.liftPair_not_surjective", "HilbertLift.controlled_completion_complex"]}
+- stage: POST_REVIEW_LEAN_RUN
+  attempt: 20261021T003000Z_lift_steps
+  run: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps
+  operad_delta: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/operad_delta.json
+  operad_delta_sha256: fb2b229f773b956ca21d215ba1ea009eb442f6476befaf21259fbb8137de05ae
+  operad_namespace: HL-HILBERT-LIFT
+  claim_status: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/claim_status.json
+  operad_records:
+  - {"id": "HL-17", "name": "Intrinsic uniformity of the exact carrier", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.isUniformInducing_castSeq_real", "HilbertLift.dist_castSeq_sq", "HilbertLift.uniformity_hasBasis_sqdist", "HilbertLift.uniformity_eq_iInf_sqdist", "HilbertLift.cauchySeq_iff_isCauchyL2", "HilbertLift.uniformContinuous_lift_real", "HilbertLift.isUniformInducing_lift_real", "HilbertLift.exists_limit_in_completion"]}
+  - {"id": "HL-18", "name": "Completion of the exact carrier is the real Hilbert lift", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.completionToLift_coe", "HilbertLift.isUniformInducing_completionToLift", "HilbertLift.completionToLift_injective", "HilbertLift.range_completionToLift", "HilbertLift.completionToLift_surjective", "HilbertLift.completionEquivLift_coe", "HilbertLift.completionEquivLift_symm_lift", "HilbertLift.intrinsic_completion"]}
+  - {"id": "HL-19", "name": "Sequence model on the pre-Hilbert carrier", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.memℓp_coe", "HilbertLift.toL2_add", "HilbertLift.toL2_smul", "HilbertLift.inner_toL2", "HilbertLift.norm_toL2", "HilbertLift.denseRange_toL2"]}
+  - {"id": "HL-20", "name": "The Hilbert lift is ℓ²(ℕ, 𝕜)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.liftToL2_coe", "HilbertLift.liftToL2_lift_apply", "HilbertLift.norm_liftToL2", "HilbertLift.liftToL2_add", "HilbertLift.liftToL2_smul", "HilbertLift.range_liftToL2", "HilbertLift.liftToL2_surjective", "HilbertLift.liftEquivL2_lift_apply", "HilbertLift.l2_model_summary"]}
+  - {"id": "HL-21", "name": "Bounded exact operators lift to continuous linear operators", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.BoundedExactOperator.sqdist_map_le", "HilbertLift.BoundedExactOperator.isCauchyL2_map", "HilbertLift.BoundedExactOperator.uniformContinuous_A", "HilbertLift.BoundedExactOperator.liftOp_lift", "HilbertLift.BoundedExactOperator.continuous_liftOp", "HilbertLift.BoundedExactOperator.liftOp_unique", "HilbertLift.BoundedExactOperator.norm_liftOp_sq_le", "HilbertLift.BoundedExactOperator.liftOp_add", "HilbertLift.BoundedExactOperator.liftOp_qsmul", "HilbertLift.BoundedExactOperator.liftOp_smul", "HilbertLift.BoundedExactOperator.toCLM_lift", "HilbertLift.BoundedExactOperator.norm_toCLM_le", "HilbertLift.BoundedExactOperator.opNorm_toCLM_le"]}
+  - {"id": "HL-22", "name": "Stage projections and the unilateral shift", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.trunc_add", "HilbertLift.trunc_smul", "HilbertLift.proj_lift", "HilbertLift.qinner_shift", "HilbertLift.norm_shift_liftOp"]}
+  - {"id": "HL-23", "name": "The coordinate-sum functional has no continuous extension", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["HilbertLift.coordSum_add", "HilbertLift.coordSum_smul", "HilbertLift.coordSum_harmonic", "HilbertLift.coordSum_harmonic_gap", "HilbertLift.qinner_harmonic_le_two", "HilbertLift.no_continuous_extension_coordSum", "HilbertLift.operator_lift_summary"]}
 open_obligations: *id005
 excluded_relation_leads: []
 operad_slots_scope:
@@ -724,9 +763,9 @@ operad_slots_scope:
     retained.
   review_refinement: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/scope_review.json
 latest_run:
-  path: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261019T145000Z_staged
-  stage: P5_RECORD
-  status: scoped_result_or_obstruction_reviewed
+  path: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps
+  stage: POST_REVIEW_LEAN_RUN
+  status: kernel_checked_run_sealed_stopped_for_review
 scope_notes:
 - The source discriminant obstruction and non-field statement are distinct from a completion. The old
   closure packages finite assertions and Boolean routes; neither constructs an infinite Hilbert carrier.

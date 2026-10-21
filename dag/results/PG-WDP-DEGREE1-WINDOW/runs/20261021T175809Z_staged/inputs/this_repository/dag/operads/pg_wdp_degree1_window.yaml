@@ -1,0 +1,174 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-WDP-DEGREE1-WINDOW
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im
+    d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm of d1 h, R_cl = Gamma2/Phi1
+    when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - 'Finite-dimensional real/complex vector space and norm J (assumption: declared)'
+  - 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'
+  source_bottleneck: The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW). Geometry
+    derivation belongs to the L1 emergence fragment.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D01
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D02
+  paper_refs:
+  - dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+  paper_relocations:
+  - from: papers/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+    to: dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+    sha256: 808f053619558517909adf2f5e1db018cd94948bd88a65312b8868a98d8fc5e8
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: kappa
+  line: 61
+  signature_excerpt: "def kappa\n    (d0 : C0 → C1) (d1 : C1 → C2)\n    (d1_add : ∀ x y : C1, d1 (x + y) = d1\
+    \ x + d1 y)\n    (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)\n    (add_zero_right : ∀ z : C2, z + 0 = z) :\n    Q1 d0\
+    \ → C2"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Q1
+  line: 42
+  signature_excerpt: 'abbrev Q1 (d0 : C0 → C1) : Type'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Repair
+  line: 37
+  signature_excerpt: 'def Repair (d0 : C0 → C1) : C1 → C1 → Prop'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  line: 1311
+  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp : Bool)\
+    \ :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n    (∀ r : Fin 16,\n\
+    \      let f (j : Fin 16) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa
+  availability: external
+  symbol: kappa
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Repair
+  availability: external
+  symbol: Repair
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+  repository: the_symbol_game
+  sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1311
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature
+  availability: local
+  symbol: TriadSignature
+  path: code/rust/src/wdp/primitive_axiomatics.rs
+  repository: this_repository
+  sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+  declaration_status: declaration_found_not_executed
+  line: 135
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/obstruction.rs::Cochain1
+  availability: local
+  symbol: Cochain1
+  path: code/rust/src/wdp/obstruction.rs
+  repository: this_repository
+  sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+  declaration_status: declaration_found_not_executed
+  line: 28
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

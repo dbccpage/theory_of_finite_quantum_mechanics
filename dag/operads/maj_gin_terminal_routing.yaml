@@ -1,0 +1,158 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-GIN-TERMINAL-ROUTING
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: evaluate_gin_fermion_recovery routes an invalid index to ClosureFailure, a valid index
+    with zero uncancelled sign mass to Repair, and positive mass to SplitBrainRefusal.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The three lemmas unfold this rule; the Repair label is a routing tag, not a sign-problem
+    solution.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1176_maj_gin_terminal_routing.md
+  - papers/core/majorana/the_majorana_problem.md
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1176_maj_gin_terminal_routing.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1176_maj_gin_terminal_routing.md
+    sha256: 7b111c82efdc54f8cf127ba3e28b83b2e84753dc6d4289872c502ea85367caa0
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_gin_terminal_routing_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: evaluate_gin_fermion_recovery
+  line: 79
+  signature_excerpt: |-
+    def evaluate_gin_fermion_recovery
+        (is_valid_index : Bool)
+        (uncancelled_sign_mass : Nat) : TerminalRoute
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exact_gin_cancellation_routes_to_repair
+  line: 90
+  signature_excerpt: |-
+    theorem exact_gin_cancellation_routes_to_repair :
+        evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: residual_sign_routes_to_refusal
+  line: 95
+  signature_excerpt: |-
+    theorem residual_sign_routes_to_refusal (mass : Nat) (h : mass > 0) :
+        evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: invalid_gin_routes_to_closure_failure
+  line: 103
+  signature_excerpt: |-
+    theorem invalid_gin_routes_to_closure_failure (mass : Nat) :
+        evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure
+  source: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  source_sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::evaluate_gin_fermion_recovery
+  availability: local
+  symbol: evaluate_gin_fermion_recovery
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 79
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::exact_gin_cancellation_routes_to_repair
+  availability: local
+  symbol: exact_gin_cancellation_routes_to_repair
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::residual_sign_routes_to_refusal
+  availability: local
+  symbol: residual_sign_routes_to_refusal
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaGinCore.lean::invalid_gin_routes_to_closure_failure
+  availability: local
+  symbol: invalid_gin_routes_to_closure_failure
+  path: papers/core/majorana/lean4/MajoranaGinCore.lean
+  repository: this_repository
+  sha256: 33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102
+  declaration_status: declaration_found_not_proof_checked
+  line: 103
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,154 +1,101 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:higher_natural_transformation:v0.1.0",
-    "title": "Higher Natural Transformation Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+      "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+        "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "higher_natural_transformation",
-      "symbol": "sigma: F => G",
-      "ascii_symbol": "higher_natural_transformation",
-      "notation": "sigma = (comp1, comp2, naturality2, comp_coherence)",
-      "domain": [
-        "source_functor: Pseudofunctor F between bicategories B1 and B2",
-        "target_functor: Pseudofunctor G between bicategories B1 and B2",
-        "component_1_cells: (comp1 : (A : Obj1) -> B2.Hom (F.obj A) (G.obj A)) component 1-morphisms",
-        "naturality_2_cells: (comp2 : (f : B1.Hom A B) -> Iso2 (B2.hcomp1 (F.map1 f) (comp1 B)) (B2.hcomp1 (comp1 A) (G.map1 f)))",
-        "two_cell_naturality: naturality condition for 2-cells alpha: f => g",
-        "composition_coherence: compatibility with compositor 2-isomorphisms",
-        "modification: 3-cells mu: sigma => tau with components mu_A: sigma_A => tau_A"
-      ],
-      "codomain": {
-        "description": "A higher natural transformation (pseudonatural transformation / 2-natural transformation) sigma: F => G between parallel higher functors consists of 1-cell components sigma_A, invertible 2-cells sigma_f comparing F(f) o sigma_B and sigma_A o G(f), satisfying 2-cell naturality and composition coherence."
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Source F and target G must be parallel higher functors sharing source bicategory B1 and target bicategory B2.",
-        "Component 1-cells comp1 A must be valid 1-morphisms F(A) -> G(A) in B2.",
-        "Naturality 2-cells comp2 f must be invertible 2-isomorphisms in B2.",
-        "Naturality square must commute strictly for strict 2-natural transformations.",
-        "2-cell naturality must hold relating whiskerRight and whiskerLeft operations.",
-        "Composition coherence must hold relating comp2 (f o g), comp2 f, comp2 g, and functor compositors.",
-        "Modifications between pseudonatural transformations must satisfy the modification cylinder axiom.",
-        "Artifact hash is deterministically computed from component morphisms and naturality data."
-      ]
-    },
-    "laws": [
-      "Strict 2-naturality: for strict transformations, B2.hcomp1 (F.map1 f) (comp1 B) = B2.hcomp1 (comp1 A) (G.map1 f)",
-      "Pseudonaturality 2-cell: for each 1-cell f: A -> B, invertible 2-cell comp2 f: B2.hcomp1 (F.map1 f) (comp1 B) ≅ B2.hcomp1 (comp1 A) (G.map1 f)",
-      "2-cell naturality: B2.vcomp (B2.whiskerRight (F.map2 alpha) (comp1 B)) (comp2 g).hom = B2.vcomp (comp2 f).hom (B2.whiskerLeft (comp1 A) (G.map2 alpha))",
-      "Composition coherence: compatibility between comp2 (hcomp1 f g), comp2 f, comp2 g, and compositor 2-cells",
-      "Modification axiom: B2.vcomp (B2.whiskerLeft (F.map1 f) (mod2 B)) (tau.comp2 f).hom = B2.vcomp (sigma.comp2 f).hom (B2.whiskerRight (mod2 A) (G.map1 f))",
-      "Modification vertical composition: (vcomp mu nu).mod2 A = B2.vcomp (mu.mod2 A) (nu.mod2 A)"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Components serialized in canonical order",
-        "Content-addressed deterministic evaluation"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Functors F and G do not share identical source or target bicategories",
-      "Component 1-cell comp1 A is not a valid morphism F(A) -> G(A)",
-      "Naturality 2-cell comp2 f is not an invertible 2-isomorphism",
-      "Naturality square fails to commute in strict 2-natural transformation",
-      "2-cell naturality condition fails for 2-morphism alpha: f => g",
-      "Composition coherence axiom fails to commute",
-      "Modification axiom fails for candidate modification 2-cells"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A HigherNaturalTransformation is a morphism between higher functors, generalizing natural transformations to 2-categories, bicategories, and higher categories. Components are 1-morphisms, equipped with coherent 2-isomorphisms for pseudonatural transformations. Modifications form 3-cells between higher natural transformations.",
-      "non_role": [
-        "Enriched natural transformations over arbitrary monoidal categories",
-        "Automatic modification resolution beyond explicitly provided levels",
-        "Oplax transformations without specified directionality"
-      ]
-    },
-    "wip": [
-      "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
-      "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
-      "No native implementation of this complete structure is bound by this contract."
-    ],
-    "lean_binding": {
-      "path": "lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean",
-      "symbol": "HigherCategoryTheory.PseudoNatTrans",
-      "scope": "algebraic_structure_with_law_fields"
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee",
+    "subject": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py"
   },
-  "current_contract": "9ee599a7268b3aa9bc5cf7a219d560f2b1e33ad1767c0799fa5343b40d7a46eb",
-  "current_scoring": "00d96d1c1b80548645325b673632650870d52aaa43d71470b727880a1d1a0c34",
   "contract_history": [
     {
-      "sha256": "9ee599a7268b3aa9bc5cf7a219d560f2b1e33ad1767c0799fa5343b40d7a46eb",
       "bytes": 5531,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:higher_natural_transformation:v0.1.0\",\n  \"title\": \"Higher Natural Transformation Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"higher_natural_transformation\",\n    \"symbol\": \"sigma: F => G\",\n    \"ascii_symbol\": \"higher_natural_transformation\",\n    \"notation\": \"sigma = (comp1, comp2, naturality2, comp_coherence)\",\n    \"domain\": [\n      \"source_functor: Pseudofunctor F between bicategories B1 and B2\",\n      \"target_functor: Pseudofunctor G between bicategories B1 and B2\",\n      \"component_1_cells: (comp1 : (A : Obj1) -> B2.Hom (F.obj A) (G.obj A)) component 1-morphisms\",\n      \"naturality_2_cells: (comp2 : (f : B1.Hom A B) -> Iso2 (B2.hcomp1 (F.map1 f) (comp1 B)) (B2.hcomp1 (comp1 A) (G.map1 f)))\",\n      \"two_cell_naturality: naturality condition for 2-cells alpha: f => g\",\n      \"composition_coherence: compatibility with compositor 2-isomorphisms\",\n      \"modification: 3-cells mu: sigma => tau with components mu_A: sigma_A => tau_A\"\n    ],\n    \"codomain\": {\n      \"description\": \"A higher natural transformation (pseudonatural transformation / 2-natural transformation) sigma: F => G between parallel higher functors consists of 1-cell components sigma_A, invertible 2-cells sigma_f comparing F(f) o sigma_B and sigma_A o G(f), satisfying 2-cell naturality and composition coherence.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Source F and target G must be parallel higher functors sharing source bicategory B1 and target bicategory B2.\",\n      \"Component 1-cells comp1 A must be valid 1-morphisms F(A) -> G(A) in B2.\",\n      \"Naturality 2-cells comp2 f must be invertible 2-isomorphisms in B2.\",\n      \"Naturality square must commute strictly for strict 2-natural transformations.\",\n      \"2-cell naturality must hold relating whiskerRight and whiskerLeft operations.\",\n      \"Composition coherence must hold relating comp2 (f o g), comp2 f, comp2 g, and functor compositors.\",\n      \"Modifications between pseudonatural transformations must satisfy the modification cylinder axiom.\",\n      \"Artifact hash is deterministically computed from component morphisms and naturality data.\"\n    ]\n  },\n  \"laws\": [\n    \"Strict 2-naturality: for strict transformations, B2.hcomp1 (F.map1 f) (comp1 B) = B2.hcomp1 (comp1 A) (G.map1 f)\",\n    \"Pseudonaturality 2-cell: for each 1-cell f: A -> B, invertible 2-cell comp2 f: B2.hcomp1 (F.map1 f) (comp1 B) ≅ B2.hcomp1 (comp1 A) (G.map1 f)\",\n    \"2-cell naturality: B2.vcomp (B2.whiskerRight (F.map2 alpha) (comp1 B)) (comp2 g).hom = B2.vcomp (comp2 f).hom (B2.whiskerLeft (comp1 A) (G.map2 alpha))\",\n    \"Composition coherence: compatibility between comp2 (hcomp1 f g), comp2 f, comp2 g, and compositor 2-cells\",\n    \"Modification axiom: B2.vcomp (B2.whiskerLeft (F.map1 f) (mod2 B)) (tau.comp2 f).hom = B2.vcomp (sigma.comp2 f).hom (B2.whiskerRight (mod2 A) (G.map1 f))\",\n    \"Modification vertical composition: (vcomp mu nu).mod2 A = B2.vcomp (mu.mod2 A) (nu.mod2 A)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Components serialized in canonical order\",\n      \"Content-addressed deterministic evaluation\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Functors F and G do not share identical source or target bicategories\",\n    \"Component 1-cell comp1 A is not a valid morphism F(A) -> G(A)\",\n    \"Naturality 2-cell comp2 f is not an invertible 2-isomorphism\",\n    \"Naturality square fails to commute in strict 2-natural transformation\",\n    \"2-cell naturality condition fails for 2-morphism alpha: f => g\",\n    \"Composition coherence axiom fails to commute\",\n    \"Modification axiom fails for candidate modification 2-cells\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A HigherNaturalTransformation is a morphism between higher functors, generalizing natural transformations to 2-categories, bicategories, and higher categories. Components are 1-morphisms, equipped with coherent 2-isomorphisms for pseudonatural transformations. Modifications form 3-cells between higher natural transformations.\",\n    \"non_role\": [\n      \"Enriched natural transformations over arbitrary monoidal categories\",\n      \"Automatic modification resolution beyond explicitly provided levels\",\n      \"Oplax transformations without specified directionality\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"No native implementation of this complete structure is bound by this contract.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean\",\n    \"symbol\": \"HigherCategoryTheory.PseudoNatTrans\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:higher_natural_transformation:v0.1.0",
-        "title": "Higher Natural Transformation Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Enriched natural transformations over arbitrary monoidal categories",
+            "Automatic modification resolution beyond explicitly provided levels",
+            "Oplax transformations without specified directionality"
+          ],
+          "summary": "A HigherNaturalTransformation is a morphism between higher functors, generalizing natural transformations to 2-categories, bicategories, and higher categories. Components are 1-morphisms, equipped with coherent 2-isomorphisms for pseudonatural transformations. Modifications form 3-cells between higher natural transformations."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "Strict 2-naturality: for strict transformations, B2.hcomp1 (F.map1 f) (comp1 B) = B2.hcomp1 (comp1 A) (G.map1 f)",
+          "Pseudonaturality 2-cell: for each 1-cell f: A -> B, invertible 2-cell comp2 f: B2.hcomp1 (F.map1 f) (comp1 B) ≅ B2.hcomp1 (comp1 A) (G.map1 f)",
+          "2-cell naturality: B2.vcomp (B2.whiskerRight (F.map2 alpha) (comp1 B)) (comp2 g).hom = B2.vcomp (comp2 f).hom (B2.whiskerLeft (comp1 A) (G.map2 alpha))",
+          "Composition coherence: compatibility between comp2 (hcomp1 f g), comp2 f, comp2 g, and compositor 2-cells",
+          "Modification axiom: B2.vcomp (B2.whiskerLeft (F.map1 f) (mod2 B)) (tau.comp2 f).hom = B2.vcomp (sigma.comp2 f).hom (B2.whiskerRight (mod2 A) (G.map1 f))",
+          "Modification vertical composition: (vcomp mu nu).mod2 A = B2.vcomp (mu.mod2 A) (nu.mod2 A)"
+        ],
+        "layer": "math",
+        "lean_binding": {
+          "path": "lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean",
+          "scope": "algebraic_structure_with_law_fields",
+          "symbol": "HigherCategoryTheory.PseudoNatTrans"
+        },
         "math": {
-          "object_kind": "higher_natural_transformation",
-          "symbol": "sigma: F => G",
           "ascii_symbol": "higher_natural_transformation",
-          "notation": "sigma = (comp1, comp2, naturality2, comp_coherence)",
+          "codomain": {
+            "description": "A higher natural transformation (pseudonatural transformation / 2-natural transformation) sigma: F => G between parallel higher functors consists of 1-cell components sigma_A, invertible 2-cells sigma_f comparing F(f) o sigma_B and sigma_A o G(f), satisfying 2-cell naturality and composition coherence."
+          },
           "domain": [
             "source_functor: Pseudofunctor F between bicategories B1 and B2",
             "target_functor: Pseudofunctor G between bicategories B1 and B2",
@@ -158,9 +105,32 @@
             "composition_coherence: compatibility with compositor 2-isomorphisms",
             "modification: 3-cells mu: sigma => tau with components mu_A: sigma_A => tau_A"
           ],
-          "codomain": {
-            "description": "A higher natural transformation (pseudonatural transformation / 2-natural transformation) sigma: F => G between parallel higher functors consists of 1-cell components sigma_A, invertible 2-cells sigma_f comparing F(f) o sigma_B and sigma_A o G(f), satisfying 2-cell naturality and composition coherence."
-          }
+          "notation": "sigma = (comp1, comp2, naturality2, comp_coherence)",
+          "object_kind": "higher_natural_transformation",
+          "symbol": "sigma: F => G"
+        },
+        "negative_tests": [
+          "Functors F and G do not share identical source or target bicategories",
+          "Component 1-cell comp1 A is not a valid morphism F(A) -> G(A)",
+          "Naturality 2-cell comp2 f is not an invertible 2-isomorphism",
+          "Naturality square fails to commute in strict 2-natural transformation",
+          "2-cell naturality condition fails for 2-morphism alpha: f => g",
+          "Composition coherence axiom fails to commute",
+          "Modification axiom fails for candidate modification 2-cells"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Components serialized in canonical order",
+            "Content-addressed deterministic evaluation"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -174,86 +144,81 @@
             "Artifact hash is deterministically computed from component morphisms and naturality data."
           ]
         },
-        "laws": [
-          "Strict 2-naturality: for strict transformations, B2.hcomp1 (F.map1 f) (comp1 B) = B2.hcomp1 (comp1 A) (G.map1 f)",
-          "Pseudonaturality 2-cell: for each 1-cell f: A -> B, invertible 2-cell comp2 f: B2.hcomp1 (F.map1 f) (comp1 B) ≅ B2.hcomp1 (comp1 A) (G.map1 f)",
-          "2-cell naturality: B2.vcomp (B2.whiskerRight (F.map2 alpha) (comp1 B)) (comp2 g).hom = B2.vcomp (comp2 f).hom (B2.whiskerLeft (comp1 A) (G.map2 alpha))",
-          "Composition coherence: compatibility between comp2 (hcomp1 f g), comp2 f, comp2 g, and compositor 2-cells",
-          "Modification axiom: B2.vcomp (B2.whiskerLeft (F.map1 f) (mod2 B)) (tau.comp2 f).hom = B2.vcomp (sigma.comp2 f).hom (B2.whiskerRight (mod2 A) (G.map1 f))",
-          "Modification vertical composition: (vcomp mu nu).mod2 A = B2.vcomp (mu.mod2 A) (nu.mod2 A)"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Components serialized in canonical order",
-            "Content-addressed deterministic evaluation"
-          ]
-        },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "negative_tests": [
-          "Functors F and G do not share identical source or target bicategories",
-          "Component 1-cell comp1 A is not a valid morphism F(A) -> G(A)",
-          "Naturality 2-cell comp2 f is not an invertible 2-isomorphism",
-          "Naturality square fails to commute in strict 2-natural transformation",
-          "2-cell naturality condition fails for 2-morphism alpha: f => g",
-          "Composition coherence axiom fails to commute",
-          "Modification axiom fails for candidate modification 2-cells"
-        ],
-        "doctrine": {
-          "summary": "A HigherNaturalTransformation is a morphism between higher functors, generalizing natural transformations to 2-categories, bicategories, and higher categories. Components are 1-morphisms, equipped with coherent 2-isomorphisms for pseudonatural transformations. Modifications form 3-cells between higher natural transformations.",
-          "non_role": [
-            "Enriched natural transformations over arbitrary monoidal categories",
-            "Automatic modification resolution beyond explicitly provided levels",
-            "Oplax transformations without specified directionality"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Higher Natural Transformation Contract",
         "wip": [
           "General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.",
           "The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.",
           "No native implementation of this complete structure is bound by this contract."
-        ],
-        "lean_binding": {
-          "path": "lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean",
-          "symbol": "HigherCategoryTheory.PseudoNatTrans",
-          "scope": "algebraic_structure_with_law_fields"
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:higher_natural_transformation:v0.1.0\",\n  \"title\": \"Higher Natural Transformation Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"higher_natural_transformation\",\n    \"symbol\": \"sigma: F => G\",\n    \"ascii_symbol\": \"higher_natural_transformation\",\n    \"notation\": \"sigma = (comp1, comp2, naturality2, comp_coherence)\",\n    \"domain\": [\n      \"source_functor: Pseudofunctor F between bicategories B1 and B2\",\n      \"target_functor: Pseudofunctor G between bicategories B1 and B2\",\n      \"component_1_cells: (comp1 : (A : Obj1) -> B2.Hom (F.obj A) (G.obj A)) component 1-morphisms\",\n      \"naturality_2_cells: (comp2 : (f : B1.Hom A B) -> Iso2 (B2.hcomp1 (F.map1 f) (comp1 B)) (B2.hcomp1 (comp1 A) (G.map1 f)))\",\n      \"two_cell_naturality: naturality condition for 2-cells alpha: f => g\",\n      \"composition_coherence: compatibility with compositor 2-isomorphisms\",\n      \"modification: 3-cells mu: sigma => tau with components mu_A: sigma_A => tau_A\"\n    ],\n    \"codomain\": {\n      \"description\": \"A higher natural transformation (pseudonatural transformation / 2-natural transformation) sigma: F => G between parallel higher functors consists of 1-cell components sigma_A, invertible 2-cells sigma_f comparing F(f) o sigma_B and sigma_A o G(f), satisfying 2-cell naturality and composition coherence.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Source F and target G must be parallel higher functors sharing source bicategory B1 and target bicategory B2.\",\n      \"Component 1-cells comp1 A must be valid 1-morphisms F(A) -> G(A) in B2.\",\n      \"Naturality 2-cells comp2 f must be invertible 2-isomorphisms in B2.\",\n      \"Naturality square must commute strictly for strict 2-natural transformations.\",\n      \"2-cell naturality must hold relating whiskerRight and whiskerLeft operations.\",\n      \"Composition coherence must hold relating comp2 (f o g), comp2 f, comp2 g, and functor compositors.\",\n      \"Modifications between pseudonatural transformations must satisfy the modification cylinder axiom.\",\n      \"Artifact hash is deterministically computed from component morphisms and naturality data.\"\n    ]\n  },\n  \"laws\": [\n    \"Strict 2-naturality: for strict transformations, B2.hcomp1 (F.map1 f) (comp1 B) = B2.hcomp1 (comp1 A) (G.map1 f)\",\n    \"Pseudonaturality 2-cell: for each 1-cell f: A -> B, invertible 2-cell comp2 f: B2.hcomp1 (F.map1 f) (comp1 B) ≅ B2.hcomp1 (comp1 A) (G.map1 f)\",\n    \"2-cell naturality: B2.vcomp (B2.whiskerRight (F.map2 alpha) (comp1 B)) (comp2 g).hom = B2.vcomp (comp2 f).hom (B2.whiskerLeft (comp1 A) (G.map2 alpha))\",\n    \"Composition coherence: compatibility between comp2 (hcomp1 f g), comp2 f, comp2 g, and compositor 2-cells\",\n    \"Modification axiom: B2.vcomp (B2.whiskerLeft (F.map1 f) (mod2 B)) (tau.comp2 f).hom = B2.vcomp (sigma.comp2 f).hom (B2.whiskerRight (mod2 A) (G.map1 f))\",\n    \"Modification vertical composition: (vcomp mu nu).mod2 A = B2.vcomp (mu.mod2 A) (nu.mod2 A)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Components serialized in canonical order\",\n      \"Content-addressed deterministic evaluation\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Functors F and G do not share identical source or target bicategories\",\n    \"Component 1-cell comp1 A is not a valid morphism F(A) -> G(A)\",\n    \"Naturality 2-cell comp2 f is not an invertible 2-isomorphism\",\n    \"Naturality square fails to commute in strict 2-natural transformation\",\n    \"2-cell naturality condition fails for 2-morphism alpha: f => g\",\n    \"Composition coherence axiom fails to commute\",\n    \"Modification axiom fails for candidate modification 2-cells\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A HigherNaturalTransformation is a morphism between higher functors, generalizing natural transformations to 2-categories, bicategories, and higher categories. Components are 1-morphisms, equipped with coherent 2-isomorphisms for pseudonatural transformations. Modifications form 3-cells between higher natural transformations.\",\n    \"non_role\": [\n      \"Enriched natural transformations over arbitrary monoidal categories\",\n      \"Automatic modification resolution beyond explicitly provided levels\",\n      \"Oplax transformations without specified directionality\"\n    ]\n  },\n  \"wip\": [\n    \"General coherence, strictification, and Lean-to-Rust semantic correspondence are not proved.\",\n    \"The Lean structure records laws as hypotheses; compilation does not validate arbitrary input data.\",\n    \"No native implementation of this complete structure is bound by this contract.\"\n  ],\n  \"lean_binding\": {\n    \"path\": \"lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean\",\n    \"symbol\": \"HigherCategoryTheory.PseudoNatTrans\",\n    \"scope\": \"algebraic_structure_with_law_fields\"\n  }\n}\n",
+      "sha256": "9ee599a7268b3aa9bc5cf7a219d560f2b1e33ad1767c0799fa5343b40d7a46eb"
+    },
+    {
+      "bytes": 1757,
       "original_paths": [
-        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n    \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n      \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\",\n  \"subject\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+          "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+            "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee",
+        "subject": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py"
+      },
+      "sha256": "e25d3ab031eb4266e16afca67da8a3b9d60248897bbd1dccc5167f22503ee363"
     }
   ],
+  "current_contract": "e25d3ab031eb4266e16afca67da8a3b9d60248897bbd1dccc5167f22503ee363",
+  "current_scoring": "dbf961ed7838eb26aa78a4fca04d43f6dc953439eaf67780d928b86120e59efc",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0.contract.yaml": "9dc615c2b889259c50323b90d2e48e9464b95fd4dbc3dd291e63006447b16546"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "00d96d1c1b80548645325b673632650870d52aaa43d71470b727880a1d1a0c34",
       "bytes": 2255,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n    \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-higher-natural-transformation-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
           "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-higher-natural-transformation-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -262,40 +227,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "00d96d1c1b80548645325b673632650870d52aaa43d71470b727880a1d1a0c34"
+    },
+    {
+      "bytes": 1700,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n    \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n      \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+          "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py",
+            "sha256": "ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.py\",\n    \"sha256\": \"ba5cad2e9ab1681ffb12d7ce9b03e72f8cdb406535c8a6ef16e36ef479e216ee\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-higher-natural-transformation-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "dbf961ed7838eb26aa78a4fca04d43f6dc953439eaf67780d928b86120e59efc"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_higher_natural_transformation_v0_1_0.contract.yaml": "9dc615c2b889259c50323b90d2e48e9464b95fd4dbc3dd291e63006447b16546"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

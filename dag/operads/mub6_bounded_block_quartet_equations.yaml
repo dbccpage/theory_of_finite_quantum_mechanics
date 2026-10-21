@@ -1,0 +1,275 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-BOUNDED-BLOCK-QUARTET-EQUATIONS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Quartet existence in C^6 is equivalent to admissible bounded block data (E, B, C)
+    whose completion with D = -C E* (B^-1)* has a raw quartet, and to a solution of the division-free
+    equations obtained by clearing the nonzero determinant of B.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Infeasibility of these equations is open; the positive determinant bound is needed
+    for reconstruction and for the MU-factor cancellation.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md
+    sha256: 2736d8047d00a3f1471b19cb65ce33c1e9055ec31c688086e3f5def1e4444a11
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_bounded_block_quartet_equations_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Mat3
+  line: 24
+  signature_excerpt: abbrev Mat3
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Admissible
+  line: 209
+  signature_excerpt: 'structure Admissible (E B C : Mat3) : Prop'
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: completion
+  line: 204
+  signature_excerpt: 'def completion (E B C : Mat3) : Mat6'
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: I3
+  line: 22
+  signature_excerpt: abbrev I3
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: UnitEntries
+  line: 206
+  signature_excerpt: 'def UnitEntries (A : Mat3) : Prop'
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: forcedD
+  line: 182
+  signature_excerpt: 'def forcedD (E B C : Mat3) : Mat3'
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Mat6
+  line: 25
+  signature_excerpt: abbrev Mat6
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: I6
+  line: 23
+  signature_excerpt: abbrev I6
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: QuartetEquations
+  line: 163
+  signature_excerpt: 'structure QuartetEquations (E B C : Mat3) (U V : Mat6) : Prop extends BlockEquations
+    E B C'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BlockEquations
+  line: 54
+  signature_excerpt: 'structure BlockEquations (E B C : Mat3) : Prop'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FirstRow
+  line: 125
+  signature_excerpt: 'def FirstRow (U : Mat6) : Prop'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: scaledCompletion
+  line: 92
+  signature_excerpt: 'def scaledCompletion (E B C : Mat3) : Mat6'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: detNorm
+  line: 16
+  signature_excerpt: 'def detNorm (B : Mat3) : ℝ'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: numerator
+  line: 18
+  signature_excerpt: 'def numerator (E B C : Mat3) : Mat3'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: denominator
+  line: 17
+  signature_excerpt: 'def denominator (B : Mat3) : ℂ'
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ReducedSolution
+  line: 127
+  signature_excerpt: 'noncomputable def ReducedSolution (r : Coord → ℝ) : Prop'
+  source: lean4/MubBoundedMUFactor.lean
+  repository: this_repository
+  source_sha256: 732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_quartet_iff_bounded_completion
+  line: 305
+  signature_excerpt: |-
+    theorem exists_quartet_iff_bounded_completion :
+        (∃ Q : Fin 4 → Mat (Fin 6), SzollosiQuartetSystem.Quartet Q) ↔
+          ∃ E B C : Mat3, Admissible E B C ∧ HasRawQuartet (completion E B C)
+  source: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  source_sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: exists_quartet_iff_equations
+  line: 192
+  signature_excerpt: |-
+    theorem exists_quartet_iff_equations :
+        (∃ Q : Fin 4 → Mat (Fin 6), SzollosiQuartetSystem.Quartet Q) ↔
+          ∃ (E B C : Mat3) (U V : Mat6), QuartetEquations E B C U V
+  source: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  source_sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: exists_quartet_iff_reduced
+  line: 137
+  signature_excerpt: |-
+    theorem exists_quartet_iff_reduced :
+        (∃ Q, SzollosiQuartetSystem.Quartet Q) ↔ ∃ r, ReducedSolution r ∧ InBox r
+  source: lean4/MubBoundedMUFactor.lean
+  repository: this_repository
+  source_sha256: 732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/MubBoundedBlockChart.lean::exists_quartet_iff_bounded_completion
+  availability: local
+  symbol: exists_quartet_iff_bounded_completion
+  path: lean4/MubBoundedBlockChart.lean
+  repository: this_repository
+  sha256: 2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917
+  declaration_status: declaration_found_not_proof_checked
+  line: 305
+  role: source_lead_only
+- original_ref: lean4/MubBoundedQuartetEquations.lean::exists_quartet_iff_equations
+  availability: local
+  symbol: exists_quartet_iff_equations
+  path: lean4/MubBoundedQuartetEquations.lean
+  repository: this_repository
+  sha256: 7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/MubBoundedMUFactor.lean::exists_quartet_iff_reduced
+  availability: local
+  symbol: exists_quartet_iff_reduced
+  path: lean4/MubBoundedMUFactor.lean
+  repository: this_repository
+  sha256: 732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6
+  declaration_status: declaration_found_not_proof_checked
+  line: 137
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

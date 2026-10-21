@@ -1,107 +1,146 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/majorana/residual_gate.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/majorana/residual_gate.py",
       "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:majorana:residual-gate:v1",
-    "role": "library",
-    "purpose": "Bounded domain operations and invariant verification for residual_gate.",
-    "operations": {
-      "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
-      "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
-      "LexicographicScore": "Structural mirror of Rust ``LexicographicScore``.",
-      "TerminalBranchResult": "Structural mirror of Rust ``TerminalBranchResult``.",
-      "BoundaryClosureTerminalGate": "Structural mirror of Rust ``BoundaryClosureTerminalGate``.",
-      "evaluate": "Structural mirror of Rust callable ``evaluate``.",
-      "valid_density_gate": "Structural mirror of Rust callable ``valid_density_gate``."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/majorana/residual_gate.py",
+        "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb",
+    "subject": "code/python/src/majorana/residual_gate.py"
   },
-  "current_contract": "dff540d5676b59d8819a775c6eef63fb8a062e4bbbdb4b41f662a4fcbc8287d4",
-  "current_scoring": "890d06f8b0850cd84beda9162e2a508bbfc8e883c397d9bd383c6c306f067f9b",
   "contract_history": [
     {
-      "sha256": "dff540d5676b59d8819a775c6eef63fb8a062e4bbbdb4b41f662a4fcbc8287d4",
       "bytes": 2177,
+      "original_paths": [
+        "code/python/src/majorana/residual_gate.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:residual-gate:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for residual_gate.\",\n  \"operations\": {\n    \"_RustSurfaceMeta\": \"Class _RustSurfaceMeta domain record and methods.\",\n    \"_RustSurfaceObject\": \"Class _RustSurfaceObject domain record and methods.\",\n    \"LexicographicScore\": \"Structural mirror of Rust ``LexicographicScore``.\",\n    \"TerminalBranchResult\": \"Structural mirror of Rust ``TerminalBranchResult``.\",\n    \"BoundaryClosureTerminalGate\": \"Structural mirror of Rust ``BoundaryClosureTerminalGate``.\",\n    \"evaluate\": \"Structural mirror of Rust callable ``evaluate``.\",\n    \"valid_density_gate\": \"Structural mirror of Rust callable ``valid_density_gate``.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/residual_gate.py",
           "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:majorana:residual-gate:v1",
-        "role": "library",
-        "purpose": "Bounded domain operations and invariant verification for residual_gate.",
-        "operations": {
-          "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
-          "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
-          "LexicographicScore": "Structural mirror of Rust ``LexicographicScore``.",
-          "TerminalBranchResult": "Structural mirror of Rust ``TerminalBranchResult``.",
-          "BoundaryClosureTerminalGate": "Structural mirror of Rust ``BoundaryClosureTerminalGate``.",
-          "evaluate": "Structural mirror of Rust callable ``evaluate``.",
-          "valid_density_gate": "Structural mirror of Rust callable ``valid_density_gate``."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "BoundaryClosureTerminalGate": "Structural mirror of Rust ``BoundaryClosureTerminalGate``.",
+          "LexicographicScore": "Structural mirror of Rust ``LexicographicScore``.",
+          "TerminalBranchResult": "Structural mirror of Rust ``TerminalBranchResult``.",
+          "_RustSurfaceMeta": "Class _RustSurfaceMeta domain record and methods.",
+          "_RustSurfaceObject": "Class _RustSurfaceObject domain record and methods.",
+          "evaluate": "Structural mirror of Rust callable ``evaluate``.",
+          "valid_density_gate": "Structural mirror of Rust callable ``valid_density_gate``."
+        },
+        "profile": "Exact",
+        "purpose": "Bounded domain operations and invariant verification for residual_gate.",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:residual-gate:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for residual_gate.\",\n  \"operations\": {\n    \"_RustSurfaceMeta\": \"Class _RustSurfaceMeta domain record and methods.\",\n    \"_RustSurfaceObject\": \"Class _RustSurfaceObject domain record and methods.\",\n    \"LexicographicScore\": \"Structural mirror of Rust ``LexicographicScore``.\",\n    \"TerminalBranchResult\": \"Structural mirror of Rust ``TerminalBranchResult``.\",\n    \"BoundaryClosureTerminalGate\": \"Structural mirror of Rust ``BoundaryClosureTerminalGate``.\",\n    \"evaluate\": \"Structural mirror of Rust callable ``evaluate``.\",\n    \"valid_density_gate\": \"Structural mirror of Rust callable ``valid_density_gate``.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "dff540d5676b59d8819a775c6eef63fb8a062e4bbbdb4b41f662a4fcbc8287d4"
+    },
+    {
+      "bytes": 1604,
       "original_paths": [
-        "code/python/src/majorana/residual_gate.contract.score.yaml#contract"
-      ]
+        "code/python/src/majorana/residual_gate.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/residual_gate.py\",\n      \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\",\n  \"subject\": \"code/python/src/majorana/residual_gate.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/residual_gate.py",
+          "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/majorana/residual_gate.py",
+            "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb",
+        "subject": "code/python/src/majorana/residual_gate.py"
+      },
+      "sha256": "ffceabfce850d94be34c6bc822abdc11e760e1e07be82b48b7511e2726110c7e"
     }
   ],
+  "current_contract": "ffceabfce850d94be34c6bc822abdc11e760e1e07be82b48b7511e2726110c7e",
+  "current_scoring": "e54e8afdb6d5ad2d2f9689b278ae14f6d05d01b6f992d2960fabf71115331e31",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "890d06f8b0850cd84beda9162e2a508bbfc8e883c397d9bd383c6c306f067f9b",
       "bytes": 2194,
+      "original_paths": [
+        "code/python/src/majorana/residual_gate.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:residual-gate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/majorana/residual_gate.py",
           "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:majorana:residual-gate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -110,35 +149,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 5,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 4,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 5,
+          "radon_ccn": 5,
+          "weighted_control_upper_bound": 4
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "890d06f8b0850cd84beda9162e2a508bbfc8e883c397d9bd383c6c306f067f9b"
+    },
+    {
+      "bytes": 1598,
+      "original_paths": [
+        "code/python/src/majorana/residual_gate.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/majorana/residual_gate.py\",\n      \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/majorana/residual_gate.py",
+          "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/majorana/residual_gate.py",
+            "sha256": "48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/residual_gate.py\",\n    \"sha256\": \"48345778e997b7424f7945bc50ecf54fb2b948872fcc667332de9170850f4dfb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:residual-gate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 5), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/majorana/residual_gate.contract.score.yaml#scoring"
-      ]
+      "sha256": "e54e8afdb6d5ad2d2f9689b278ae14f6d05d01b6f992d2960fabf71115331e31"
     }
   ]
 }

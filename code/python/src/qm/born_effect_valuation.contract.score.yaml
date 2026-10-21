@@ -1,80 +1,67 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/src/qm/born_effect_valuation.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/src/qm/born_effect_valuation.py",
       "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:qm:born-effect-valuation:v1",
-    "role": "library",
-    "purpose": "Exact effect-additive valuations on rational matrices; the Born trace form from effect additivity, not from Gleason. Replays in exact rational arithmetic the Lean modules of",
-    "operations": {
-      "matrix": "Function matrix operation.",
-      "vector": "Function vector operation.",
-      "identity": "Function identity operation.",
-      "single": "Function single operation.",
-      "add": "Function add operation.",
-      "sub": "Function sub operation.",
-      "scale": "Function scale operation.",
-      "transpose": "Function transpose operation.",
-      "mat_vec": "Function mat_vec operation.",
-      "dot": "Function dot operation.",
-      "outer": "Function outer operation.",
-      "trace": "Function trace operation.",
-      "trace_mul": "Function trace_mul operation.",
-      "quadratic_form": "Function quadratic_form operation.",
-      "is_symmetric": "Function is_symmetric operation.",
-      "symmetric_part": "Function symmetric_part operation.",
-      "gram_decomposition": "('psd',[(d_k,w_k),...]) with E == sum d_k w_k w_k^T and d_k >= 0, or ('not_psd',x) with x^T E x < 0; symmetric E required.",
-      "verify_gram": "Function verify_gram operation.",
-      "psd_certificate": "Function psd_certificate operation.",
-      "is_psd": "Function is_psd operation.",
-      "extension_layer": "Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction).",
-      "rank_one_effect": "Function rank_one_effect operation.",
-      "order_unit_bound": "Function order_unit_bound operation.",
-      "bounded_by": "Function bounded_by operation.",
-      "representing_matrix": "Function representing_matrix operation.",
-      "born_valuation": "Function born_valuation operation.",
-      "born_certificate": "Function born_certificate operation.",
-      "square_valuation": "Function square_valuation operation.",
-      "bad_linear_valuation": "Function bad_linear_valuation operation.",
-      "is_ray": "Function is_ray operation.",
-      "parity": "Function parity operation.",
-      "rays_in_box": "Function rays_in_box operation.",
-      "orthogonal_triples": "Function orthogonal_triples operation.",
-      "parity_frame_check": "Function parity_frame_check operation.",
-      "solve_linear_system": "Function solve_linear_system operation.",
-      "parity_quadratic_system": "Function parity_quadratic_system operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/src/qm/born_effect_valuation.py",
+        "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567",
+    "subject": "code/python/src/qm/born_effect_valuation.py"
   },
-  "current_contract": "59acc82030e7eb21b4b7fa9f69936a99a42af7b8fae904d6e622e6a088baf6f6",
-  "current_scoring": "1eaed6f23507d2058203435beb67eb680c4dfe9e69951fa1cf31e46e6af40a86",
   "contract_history": [
     {
-      "sha256": "a07c09828c4ac380a195f7147b55479be2f3ebbb48f0c869d6d24487abe2088e",
       "bytes": 1433,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:cf9259f756df86a454c4\nsymbols:\n- _lift_witness\n- _q\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- effect_certificate\n- extend\n- extension_consistency\n- gram_decomposition\n- identity\n- is_effect\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- midpoint\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- valuation_axioms\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
-        "source_sha256": "cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714",
         "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
+          "Rational symmetric carrier; complex entries are not handled."
+        ],
         "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:cf9259f756df86a454c4",
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714",
+        "subject": "code/python/src/qm/born_effect_valuation.py",
         "symbols": [
           "_lift_witness",
           "_q",
@@ -120,33 +107,33 @@
           "valuation_axioms",
           "vector",
           "verify_gram"
+        ]
+      },
+      "sha256": "a07c09828c4ac380a195f7147b55479be2f3ebbb48f0c869d6d24487abe2088e"
+    },
+    {
+      "bytes": 1486,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:ed0842bb4923f2394592\nsymbols:\n- _effects_of_dimension\n- _lift_witness\n- _q\n- _same_length\n- _same_shape\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- effect_certificate\n- extend\n- extension_consistency\n- gram_decomposition\n- identity\n- is_effect\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- midpoint\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- valuation_axioms\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
+      "record": {
+        "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
+          "Rational symmetric carrier; complex entries are not handled."
+        ],
+        "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:ed0842bb4923f2394592",
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
         ],
         "owned_invariants": [
           "Only the literal definitions and the declared exact replay contract of this source are claimed.",
           "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
         ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
-          "Rational symmetric carrier; complex entries are not handled."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:cf9259f756df86a454c4\nsymbols:\n- _lift_witness\n- _q\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- effect_certificate\n- extend\n- extension_consistency\n- gram_decomposition\n- identity\n- is_effect\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- midpoint\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- valuation_axioms\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
-      ]
-    },
-    {
-      "sha256": "e660ac90b589b09defb503afb163baf260565cd4c3e4ee086be6d7ffcf8a41f7",
-      "bytes": 1486,
-      "record": {
         "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
         "source_sha256": "ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3",
-        "authority_effect": "None",
-        "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:ed0842bb4923f2394592",
+        "subject": "code/python/src/qm/born_effect_valuation.py",
         "symbols": [
           "_effects_of_dimension",
           "_lift_witness",
@@ -195,33 +182,33 @@
           "valuation_axioms",
           "vector",
           "verify_gram"
+        ]
+      },
+      "sha256": "e660ac90b589b09defb503afb163baf260565cd4c3e4ee086be6d7ffcf8a41f7"
+    },
+    {
+      "bytes": 1384,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: 473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:473a7f866b9055bbf632\nsymbols:\n- _lift_witness\n- _q\n- _same_length\n- _same_shape\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- extension_layer\n- gram_decomposition\n- identity\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
+      "record": {
+        "authority_effect": "None",
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
+          "Rational symmetric carrier; complex entries are not handled."
+        ],
+        "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:473a7f866b9055bbf632",
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
         ],
         "owned_invariants": [
           "Only the literal definitions and the declared exact replay contract of this source are claimed.",
           "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
         ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
-          "Rational symmetric carrier; complex entries are not handled."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:ed0842bb4923f2394592\nsymbols:\n- _effects_of_dimension\n- _lift_witness\n- _q\n- _same_length\n- _same_shape\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- effect_certificate\n- extend\n- extension_consistency\n- gram_decomposition\n- identity\n- is_effect\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- midpoint\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- valuation_axioms\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
-      ]
-    },
-    {
-      "sha256": "c3c0305c089c4f088084ec3534d0c183007a1f65eff9bd2ee3e46087820ca0a4",
-      "bytes": 1384,
-      "record": {
         "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
         "source_sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567",
-        "authority_effect": "None",
-        "contract_urn": "urn:finite-qm:pfp:born-effect-valuation:473a7f866b9055bbf632",
+        "subject": "code/python/src/qm/born_effect_valuation.py",
         "symbols": [
           "_lift_witness",
           "_q",
@@ -264,153 +251,148 @@
           "transpose",
           "vector",
           "verify_gram"
-        ],
-        "owned_invariants": [
-          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
-          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
-        ],
-        "boundaries": [
-          "Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a general proof.",
-          "Rational symmetric carrier; complex entries are not handled."
-        ],
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
         ]
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: 473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:born-effect-valuation:473a7f866b9055bbf632\nsymbols:\n- _lift_witness\n- _q\n- _same_length\n- _same_shape\n- _unit\n- add\n- bad_linear_valuation\n- born_certificate\n- born_valuation\n- bounded_by\n- dot\n- extension_layer\n- gram_decomposition\n- identity\n- is_psd\n- is_ray\n- is_symmetric\n- mat_vec\n- matrix\n- order_unit_bound\n- orthogonal_triples\n- outer\n- parity\n- parity_frame_check\n- parity_quadratic_system\n- psd_certificate\n- quadratic_form\n- rank_one_effect\n- rays_in_box\n- representing_matrix\n- scale\n- single\n- solve_linear_system\n- square_valuation\n- sub\n- symmetric_part\n- trace\n- trace_mul\n- transpose\n- vector\n- verify_gram\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied matrices; a passing check is not a\n  general proof.\n- Rational symmetric carrier; complex entries are not handled.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.contract.yaml"
-      ]
+      "sha256": "c3c0305c089c4f088084ec3534d0c183007a1f65eff9bd2ee3e46087820ca0a4"
     },
     {
-      "sha256": "59acc82030e7eb21b4b7fa9f69936a99a42af7b8fae904d6e622e6a088baf6f6",
       "bytes": 3865,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:born-effect-valuation:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact effect-additive valuations on rational matrices; the Born trace form from effect additivity, not from Gleason. Replays in exact rational arithmetic the Lean modules of\",\n  \"operations\": {\n    \"matrix\": \"Function matrix operation.\",\n    \"vector\": \"Function vector operation.\",\n    \"identity\": \"Function identity operation.\",\n    \"single\": \"Function single operation.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"scale\": \"Function scale operation.\",\n    \"transpose\": \"Function transpose operation.\",\n    \"mat_vec\": \"Function mat_vec operation.\",\n    \"dot\": \"Function dot operation.\",\n    \"outer\": \"Function outer operation.\",\n    \"trace\": \"Function trace operation.\",\n    \"trace_mul\": \"Function trace_mul operation.\",\n    \"quadratic_form\": \"Function quadratic_form operation.\",\n    \"is_symmetric\": \"Function is_symmetric operation.\",\n    \"symmetric_part\": \"Function symmetric_part operation.\",\n    \"gram_decomposition\": \"('psd',[(d_k,w_k),...]) with E == sum d_k w_k w_k^T and d_k >= 0, or ('not_psd',x) with x^T E x < 0; symmetric E required.\",\n    \"verify_gram\": \"Function verify_gram operation.\",\n    \"psd_certificate\": \"Function psd_certificate operation.\",\n    \"is_psd\": \"Function is_psd operation.\",\n    \"extension_layer\": \"Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction).\",\n    \"rank_one_effect\": \"Function rank_one_effect operation.\",\n    \"order_unit_bound\": \"Function order_unit_bound operation.\",\n    \"bounded_by\": \"Function bounded_by operation.\",\n    \"representing_matrix\": \"Function representing_matrix operation.\",\n    \"born_valuation\": \"Function born_valuation operation.\",\n    \"born_certificate\": \"Function born_certificate operation.\",\n    \"square_valuation\": \"Function square_valuation operation.\",\n    \"bad_linear_valuation\": \"Function bad_linear_valuation operation.\",\n    \"is_ray\": \"Function is_ray operation.\",\n    \"parity\": \"Function parity operation.\",\n    \"rays_in_box\": \"Function rays_in_box operation.\",\n    \"orthogonal_triples\": \"Function orthogonal_triples operation.\",\n    \"parity_frame_check\": \"Function parity_frame_check operation.\",\n    \"solve_linear_system\": \"Function solve_linear_system operation.\",\n    \"parity_quadratic_system\": \"Function parity_quadratic_system operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/born_effect_valuation.py",
           "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:qm:born-effect-valuation:v1",
-        "role": "library",
-        "purpose": "Exact effect-additive valuations on rational matrices; the Born trace form from effect additivity, not from Gleason. Replays in exact rational arithmetic the Lean modules of",
-        "operations": {
-          "matrix": "Function matrix operation.",
-          "vector": "Function vector operation.",
-          "identity": "Function identity operation.",
-          "single": "Function single operation.",
-          "add": "Function add operation.",
-          "sub": "Function sub operation.",
-          "scale": "Function scale operation.",
-          "transpose": "Function transpose operation.",
-          "mat_vec": "Function mat_vec operation.",
-          "dot": "Function dot operation.",
-          "outer": "Function outer operation.",
-          "trace": "Function trace operation.",
-          "trace_mul": "Function trace_mul operation.",
-          "quadratic_form": "Function quadratic_form operation.",
-          "is_symmetric": "Function is_symmetric operation.",
-          "symmetric_part": "Function symmetric_part operation.",
-          "gram_decomposition": "('psd',[(d_k,w_k),...]) with E == sum d_k w_k w_k^T and d_k >= 0, or ('not_psd',x) with x^T E x < 0; symmetric E required.",
-          "verify_gram": "Function verify_gram operation.",
-          "psd_certificate": "Function psd_certificate operation.",
-          "is_psd": "Function is_psd operation.",
-          "extension_layer": "Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction).",
-          "rank_one_effect": "Function rank_one_effect operation.",
-          "order_unit_bound": "Function order_unit_bound operation.",
-          "bounded_by": "Function bounded_by operation.",
-          "representing_matrix": "Function representing_matrix operation.",
-          "born_valuation": "Function born_valuation operation.",
-          "born_certificate": "Function born_certificate operation.",
-          "square_valuation": "Function square_valuation operation.",
-          "bad_linear_valuation": "Function bad_linear_valuation operation.",
-          "is_ray": "Function is_ray operation.",
-          "parity": "Function parity operation.",
-          "rays_in_box": "Function rays_in_box operation.",
-          "orthogonal_triples": "Function orthogonal_triples operation.",
-          "parity_frame_check": "Function parity_frame_check operation.",
-          "solve_linear_system": "Function solve_linear_system operation.",
-          "parity_quadratic_system": "Function parity_quadratic_system operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "add": "Function add operation.",
+          "bad_linear_valuation": "Function bad_linear_valuation operation.",
+          "born_certificate": "Function born_certificate operation.",
+          "born_valuation": "Function born_valuation operation.",
+          "bounded_by": "Function bounded_by operation.",
+          "dot": "Function dot operation.",
+          "extension_layer": "Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction).",
+          "gram_decomposition": "('psd',[(d_k,w_k),...]) with E == sum d_k w_k w_k^T and d_k >= 0, or ('not_psd',x) with x^T E x < 0; symmetric E required.",
+          "identity": "Function identity operation.",
+          "is_psd": "Function is_psd operation.",
+          "is_ray": "Function is_ray operation.",
+          "is_symmetric": "Function is_symmetric operation.",
+          "mat_vec": "Function mat_vec operation.",
+          "matrix": "Function matrix operation.",
+          "order_unit_bound": "Function order_unit_bound operation.",
+          "orthogonal_triples": "Function orthogonal_triples operation.",
+          "outer": "Function outer operation.",
+          "parity": "Function parity operation.",
+          "parity_frame_check": "Function parity_frame_check operation.",
+          "parity_quadratic_system": "Function parity_quadratic_system operation.",
+          "psd_certificate": "Function psd_certificate operation.",
+          "quadratic_form": "Function quadratic_form operation.",
+          "rank_one_effect": "Function rank_one_effect operation.",
+          "rays_in_box": "Function rays_in_box operation.",
+          "representing_matrix": "Function representing_matrix operation.",
+          "scale": "Function scale operation.",
+          "single": "Function single operation.",
+          "solve_linear_system": "Function solve_linear_system operation.",
+          "square_valuation": "Function square_valuation operation.",
+          "sub": "Function sub operation.",
+          "symmetric_part": "Function symmetric_part operation.",
+          "trace": "Function trace operation.",
+          "trace_mul": "Function trace_mul operation.",
+          "transpose": "Function transpose operation.",
+          "vector": "Function vector operation.",
+          "verify_gram": "Function verify_gram operation."
+        },
+        "profile": "Exact",
+        "purpose": "Exact effect-additive valuations on rational matrices; the Born trace form from effect additivity, not from Gleason. Replays in exact rational arithmetic the Lean modules of",
+        "role": "library",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:qm:born-effect-valuation:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Exact effect-additive valuations on rational matrices; the Born trace form from effect additivity, not from Gleason. Replays in exact rational arithmetic the Lean modules of\",\n  \"operations\": {\n    \"matrix\": \"Function matrix operation.\",\n    \"vector\": \"Function vector operation.\",\n    \"identity\": \"Function identity operation.\",\n    \"single\": \"Function single operation.\",\n    \"add\": \"Function add operation.\",\n    \"sub\": \"Function sub operation.\",\n    \"scale\": \"Function scale operation.\",\n    \"transpose\": \"Function transpose operation.\",\n    \"mat_vec\": \"Function mat_vec operation.\",\n    \"dot\": \"Function dot operation.\",\n    \"outer\": \"Function outer operation.\",\n    \"trace\": \"Function trace operation.\",\n    \"trace_mul\": \"Function trace_mul operation.\",\n    \"quadratic_form\": \"Function quadratic_form operation.\",\n    \"is_symmetric\": \"Function is_symmetric operation.\",\n    \"symmetric_part\": \"Function symmetric_part operation.\",\n    \"gram_decomposition\": \"('psd',[(d_k,w_k),...]) with E == sum d_k w_k w_k^T and d_k >= 0, or ('not_psd',x) with x^T E x < 0; symmetric E required.\",\n    \"verify_gram\": \"Function verify_gram operation.\",\n    \"psd_certificate\": \"Function psd_certificate operation.\",\n    \"is_psd\": \"Function is_psd operation.\",\n    \"extension_layer\": \"Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction).\",\n    \"rank_one_effect\": \"Function rank_one_effect operation.\",\n    \"order_unit_bound\": \"Function order_unit_bound operation.\",\n    \"bounded_by\": \"Function bounded_by operation.\",\n    \"representing_matrix\": \"Function representing_matrix operation.\",\n    \"born_valuation\": \"Function born_valuation operation.\",\n    \"born_certificate\": \"Function born_certificate operation.\",\n    \"square_valuation\": \"Function square_valuation operation.\",\n    \"bad_linear_valuation\": \"Function bad_linear_valuation operation.\",\n    \"is_ray\": \"Function is_ray operation.\",\n    \"parity\": \"Function parity operation.\",\n    \"rays_in_box\": \"Function rays_in_box operation.\",\n    \"orthogonal_triples\": \"Function orthogonal_triples operation.\",\n    \"parity_frame_check\": \"Function parity_frame_check operation.\",\n    \"solve_linear_system\": \"Function solve_linear_system operation.\",\n    \"parity_quadratic_system\": \"Function parity_quadratic_system operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "59acc82030e7eb21b4b7fa9f69936a99a42af7b8fae904d6e622e6a088baf6f6"
+    },
+    {
+      "bytes": 1610,
       "original_paths": [
-        "code/python/src/qm/born_effect_valuation.contract.score.yaml#contract"
-      ]
+        "code/python/src/qm/born_effect_valuation.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n      \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\",\n  \"subject\": \"code/python/src/qm/born_effect_valuation.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/born_effect_valuation.py",
+          "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/src/qm/born_effect_valuation.py",
+            "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567",
+        "subject": "code/python/src/qm/born_effect_valuation.py"
+      },
+      "sha256": "4f3953ec3ed5aae0f8a81827d43012f22befdd6d8462a52ae0822f1a14b0bec5"
     }
   ],
+  "current_contract": "4f3953ec3ed5aae0f8a81827d43012f22befdd6d8462a52ae0822f1a14b0bec5",
+  "current_scoring": "48131790c8ecde45811749b941eafa77556286234d0b29fd595f860296617c26",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/src/qm/born_effect_valuation.py.contract.yaml": "c3c0305c089c4f088084ec3534d0c183007a1f65eff9bd2ee3e46087820ca0a4",
+    "code/python/src/qm/born_effect_valuation.py.score.yaml": "0837dfbbc8abe01b985fd4f325e685e3075bf470d4d82583d90221be6e9af844"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "655cd1b19b19e666a5ce06b5ec03285111034bc5b37c45d994faa9543a0748e3",
       "bytes": 936,
-      "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
-        "source_sha256": "cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
-        "gates": {
-          "G1": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G2": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G3": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G4": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G5": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          }
-        },
-        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
-        ]
-      },
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.score.yaml"
+      ],
       "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.score.yaml"
-      ]
-    },
-    {
-      "sha256": "60adfeb86909fd10e2c4a636add56ff9b7ad4ac1cf558e4163707577677903f6",
-      "bytes": 936,
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
-        "source_sha256": "ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
         "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
+        ],
         "gates": {
           "G1": {
             "grade": null,
@@ -434,28 +416,28 @@
           }
         },
         "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
-        ]
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "cf9259f756df86a454c4c1cb666f613bd68e9538632adef6ff8ffb8209cd6714",
+        "subject": "code/python/src/qm/born_effect_valuation.py"
       },
+      "sha256": "655cd1b19b19e666a5ce06b5ec03285111034bc5b37c45d994faa9543a0748e3"
+    },
+    {
+      "bytes": 936,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.score.yaml"
+      ],
       "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.score.yaml"
-      ]
-    },
-    {
-      "sha256": "0837dfbbc8abe01b985fd4f325e685e3075bf470d4d82583d90221be6e9af844",
-      "bytes": 936,
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "code/python/src/qm/born_effect_valuation.py",
-        "source_sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
         "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
+        ],
         "gates": {
           "G1": {
             "grade": null,
@@ -479,38 +461,69 @@
           }
         },
         "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
-        "evidence": [
-          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
-        ]
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "ed0842bb4923f2394592a9af7a01013d90580c8285dcbe05fb4a69f87aab62c3",
+        "subject": "code/python/src/qm/born_effect_valuation.py"
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: 473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.py.score.yaml"
-      ]
+      "sha256": "60adfeb86909fd10e2c4a636add56ff9b7ad4ac1cf558e4163707577677903f6"
     },
     {
-      "sha256": "1eaed6f23507d2058203435beb67eb680c4dfe9e69951fa1cf31e46e6af40a86",
+      "bytes": 936,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/born_effect_valuation.py\nsource_sha256: 473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/README.md"
+        ],
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567",
+        "subject": "code/python/src/qm/born_effect_valuation.py"
+      },
+      "sha256": "0837dfbbc8abe01b985fd4f325e685e3075bf470d4d82583d90221be6e9af844"
+    },
+    {
       "bytes": 2203,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:born-effect-valuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 21), Lizard CCN (max 21), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 21,\n    \"lizard_ccn\": 21,\n    \"weighted_control_upper_bound\": 29,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/src/qm/born_effect_valuation.py",
           "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:qm:born-effect-valuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -519,41 +532,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 21), Lizard CCN (max 21), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 21,
-          "lizard_ccn": 21,
-          "weighted_control_upper_bound": 29,
-          "control_nesting": 6
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 6,
+          "lizard_ccn": 21,
+          "radon_ccn": 21,
+          "weighted_control_upper_bound": 29
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "1eaed6f23507d2058203435beb67eb680c4dfe9e69951fa1cf31e46e6af40a86"
+    },
+    {
+      "bytes": 1596,
+      "original_paths": [
+        "code/python/src/qm/born_effect_valuation.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n      \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/qm/born_effect_valuation.py",
+          "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/src/qm/born_effect_valuation.py",
+            "sha256": "473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/born_effect_valuation.py\",\n    \"sha256\": \"473a7f866b9055bbf632c9932645e4b7fe3929fb1b945e0687c91b8b5ecad567\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:born-effect-valuation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 21), Lizard CCN (max 21), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 21,\n    \"lizard_ccn\": 21,\n    \"weighted_control_upper_bound\": 29,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/src/qm/born_effect_valuation.contract.score.yaml#scoring"
-      ]
+      "sha256": "48131790c8ecde45811749b941eafa77556286234d0b29fd595f860296617c26"
     }
-  ],
-  "legacy_paths": {
-    "code/python/src/qm/born_effect_valuation.py.contract.yaml": "c3c0305c089c4f088084ec3534d0c183007a1f65eff9bd2ee3e46087820ca0a4",
-    "code/python/src/qm/born_effect_valuation.py.score.yaml": "0837dfbbc8abe01b985fd4f325e685e3075bf470d4d82583d90221be6e9af844"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1,0 +1,278 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C7-NF-REACH-UNDECIDABLE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the fixed rewriting regime Rules M0 and its explicit family of start words, the
+    predicate that the start word of the input reaches an irreducible word is not computable, as a predicate
+    of the code or of the natural number input.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib ComputablePred.halting_problem
+  source_bottleneck: The statement is about the family startWord; that the input-to-start-word map is
+    computable is not proved (COMP-C7c).
+  source_refs:
+  - dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompUniv.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md
+    sha256: 23d47205164dea84203754bfa3013b7d27ed65624881541d98bedb7c8dcb340f
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c7_nf_reach_undecidable_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: M0
+  line: 104
+  signature_excerpt: 'abbrev M0 : TM0.Machine G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: startWord
+  line: 197
+  signature_excerpt: 'noncomputable def startWord (x : ℕ) : List (Sym G1 (TM1to0.Λ'' M1))'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: G1
+  line: 92
+  signature_excerpt: 'abbrev G1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M1
+  line: 101
+  signature_excerpt: 'abbrev M1 : L1 → TM1.Stmt G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initCfg0
+  line: 140
+  signature_excerpt: 'noncomputable def initCfg0 (x : ℕ) : TM0.Cfg G1 (TM1to0.Λ'' M1)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: L1
+  line: 95
+  signature_excerpt: 'abbrev L1 : Type'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: M2
+  line: 98
+  signature_excerpt: 'abbrev M2 : Λ'' → TM2.Stmt (fun _ : K'' => Γ'') Λ'' (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: init1
+  line: 134
+  signature_excerpt: 'noncomputable def init1 (x : ℕ) : TM1.Cfg G1 L1 (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: univCode
+  line: 86
+  signature_excerpt: 'noncomputable def univCode : ToPartrec.Code'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: initL
+  line: 107
+  signature_excerpt: 'def initL (l : List Γ'') : ListBlank (∀ _ : K'', Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NFReach
+  line: 306
+  signature_excerpt: 'def NFReach (x : ℕ) : Prop'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: univFun
+  line: 49
+  signature_excerpt: 'noncomputable def univFun : ℕ →. ℕ'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: reach_irreducible_iff
+  line: 207
+  signature_excerpt: |-
+    theorem reach_irreducible_iff (c : Code) (n : ℕ) :
+        (∃ w', Reach (Rules M0) (startWord (Nat.pair (Encodable.encode c) n)) w' ∧
+            Irreducible (Rules M0) w') ↔ (Nat.Partrec.Code.eval c n).Dom
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reach_irreducible_not_computable
+  line: 219
+  signature_excerpt: |-
+    theorem reach_irreducible_not_computable (n : ℕ) :
+        ¬ ComputablePred (fun c : Code =>
+          ∃ w', Reach (Rules M0) (startWord (Nat.pair (Encodable.encode c) n)) w' ∧
+            Irreducible (Rules M0) w')
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nfReach_iff
+  line: 309
+  signature_excerpt: 'theorem nfReach_iff (x : ℕ) : NFReach x ↔ (univFun x).Dom'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nfReach_not_computable
+  line: 315
+  signature_excerpt: 'theorem nfReach_not_computable : ¬ ComputablePred NFReach'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: startWord_rep
+  line: 201
+  signature_excerpt: 'theorem startWord_rep (x : ℕ) : Rep (initCfg0 x) (startWord x)'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompUniv.lean::reach_irreducible_iff
+  availability: local
+  symbol: reach_irreducible_iff
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 207
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::reach_irreducible_not_computable
+  availability: local
+  symbol: reach_irreducible_not_computable
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 219
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::nfReach_iff
+  availability: local
+  symbol: nfReach_iff
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 309
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::nfReach_not_computable
+  availability: local
+  symbol: nfReach_not_computable
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 315
+  role: source_lead_only
+- original_ref: lean4/GenesisCompUniv.lean::startWord_rep
+  availability: local
+  symbol: startWord_rep
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 201
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib ComputablePred.halting_problem
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib ComputablePred.halting_problem
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

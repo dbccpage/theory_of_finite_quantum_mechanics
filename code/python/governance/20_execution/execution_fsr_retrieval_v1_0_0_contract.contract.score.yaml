@@ -1,213 +1,117 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:execution:fsr_retrieval:v1.0.0",
-    "title": "FsrRetrieval",
-    "kind": "execution_contract",
-    "status": "active",
-    "layer": "06_execution",
-    "role": "Search",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "SearchKernel",
-          "Trace"
-        ],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+      "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+        "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      },
-      "capabilities": {
-        "forbidden": [
-          "Terminalization",
-          "CertificateSigning",
-          "Evaluation"
-        ],
-        "required": []
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "doctrine": {
-      "summary": "FsrRetrieval traverses a shard index over a declared estate by opaque membership and returns the reached frontier as evidence. It does not rank or score candidates, evaluate admissibility, certify, terminalize, authorize, license, execute, or mutate. Relevance is decided by the caller, never by this contract's implementation.\n",
-      "non_role": [
-        "candidate_scoring",
-        "candidate_ranking",
-        "evaluation",
-        "certification",
-        "terminal_mapping",
-        "execution",
-        "mutation",
-        "policy_interpretation",
-        "transition_authorization",
-        "action_licensing"
-      ],
-      "structural_representation": {
-        "raw": {
-          "struct_name": "FsrFrontierStep",
-          "fields": [
-            {
-              "name": "estate_root",
-              "type": "EstateRootRef"
-            },
-            {
-              "name": "index_snapshot",
-              "type": "Hash256"
-            },
-            {
-              "name": "descent_path",
-              "type": "Vec<NodeRef>"
-            },
-            {
-              "name": "page_costs",
-              "type": "Vec<u64>"
-            },
-            {
-              "name": "reached_leaves",
-              "type": "Vec<LeafRef>"
-            },
-            {
-              "name": "frontier_loci",
-              "type": "u64"
-            },
-            {
-              "name": "delivered_loci",
-              "type": "u64"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly"
-            }
-          ]
-        }
-      },
-      "flow": "EstateSnapshot\n-> shard index (bounded pages, opaque membership filter)\n-> FsrFrontierStep\n-> caller-side relevance decision outside this contract\n",
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "execute(",
-          "terminalize(",
-          "mutate_state",
-          "authorize_transition",
-          "license_transition",
-          "self_certify",
-          "compute_phi",
-          "rank_candidates",
-          "score_candidate"
-        ]
-      },
-      "required_tests": [
-        "fsr_does_not_rank_candidates",
-        "fsr_does_not_score_candidate",
-        "fsr_locus_outside_declared_estate_root_is_refused",
-        "fsr_absent_content_digest_is_refused_not_bypassed",
-        "fsr_descent_budget_is_global_not_per_node",
-        "fsr_read_budget_is_a_hard_bound",
-        "fsr_emits_only_licensed_stop_codes"
-      ],
-      "canonical_invariant": "Frontier evidence only. The implementation selects which index pages to open by opaque membership and reports what it reached; it never orders loci by relevance and never claims to have identified an answer.\n",
-      "non_claims": [
-        "Discovery cost is NOT claimed to be logarithmic in estate size; the persisted index is parsed per query and the receipt reports MEASURED pages opened, never a derived bound.",
-        "Def 007C.1 is NOT evaluated; that requires J = (P_index, c, m) and a two-sided page-cost bound the implementation does not carry. Only structural invariants are reported.",
-        "The full 18-code stop alphabet is NOT implemented; a named subset is emitted and no code outside the licensed union is ever produced.",
-        "No RouteReceipt and no evidence-indexed OutputStatus are emitted.",
-        "No cross-language parity is claimed; there is no Rust implementation of this contract."
-      ]
-    },
-    "definition": {
-      "emitted_stop_codes": {
-        "note": "Product alphabet, held here rather than in descriptor.terminals/refusals because the v1 terminal and refusal vocabularies are closed. These are a SUBSET of the licensed union (OE-005 section 13 plus OE-006 Def 007C.10); the implementation asserts membership before returning.\n",
-        "codes": [
-          "DISCOVERY_OK",
-          "UNREACHABLE_LOCUS",
-          "CONTEXT_BUDGET_EXCEEDED",
-          "STALE_INDEX",
-          "ROUTE_INVALID",
-          "RECEIPT_INVALID",
-          "MANIFEST_PARSE_ERROR",
-          "SCHEMA_INVALID",
-          "INDEX_MISSING"
-        ]
-      },
-      "implementation": {
-        "language": "python",
-        "package": "omega_engine_py/omega_retrieval",
-        "entry_point": "python -m omega_retrieval",
-        "tests": "omega_engine_py/omega_retrieval/tests/test_retrieval.py",
-        "rust_twin": "none"
-      },
-      "estate_binding": {
-        "rule": "Every locus is resolved against the DECLARED ESTATE ROOT recorded in the index, not merely against the repository root. A locus resolving outside that root is refused. An absent or empty content digest is refused, never treated as fresh.\n"
-      },
-      "legacy_metadata": {
-        "name": "FsrRetrieval",
-        "active": true,
-        "machine_authority": false,
-        "role": "Opaque estate frontier traversal",
-        "version": "1.0",
-        "classification": "proposal_traversal",
-        "effect_class": "none",
-        "depends_on": [
-          "SearchKernel",
-          "Trace"
-        ],
-        "forbidden_authority": [
-          "candidate_scoring",
-          "candidate_ranking",
-          "evaluation",
-          "certification",
-          "terminal_mapping",
-          "execution",
-          "mutation",
-          "policy_interpretation",
-          "transition_authorization",
-          "action_licensing"
-        ],
-        "primary_output_family": "EvidenceEnvelope",
-        "referenced_output_families": [
-          "Record"
-        ]
-      }
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e",
+    "subject": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py"
   },
-  "current_contract": "7d5b721485f01a94f078d1e9fac38cb94b9101fccf596143f344058e6c0ed777",
-  "current_scoring": "c0d52169f10f2c7a3e81df2e69d83112a6fcb4679a49346ef7f327cb7b2d94a5",
   "contract_history": [
     {
-      "sha256": "7d5b721485f01a94f078d1e9fac38cb94b9101fccf596143f344058e6c0ed777",
       "bytes": 6321,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:fsr_retrieval:v1.0.0\",\n  \"title\": \"FsrRetrieval\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"active\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Search\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"SearchKernel\",\n        \"Trace\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"Terminalization\",\n        \"CertificateSigning\",\n        \"Evaluation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"FsrRetrieval traverses a shard index over a declared estate by opaque membership and returns the reached frontier as evidence. It does not rank or score candidates, evaluate admissibility, certify, terminalize, authorize, license, execute, or mutate. Relevance is decided by the caller, never by this contract's implementation.\\n\",\n    \"non_role\": [\n      \"candidate_scoring\",\n      \"candidate_ranking\",\n      \"evaluation\",\n      \"certification\",\n      \"terminal_mapping\",\n      \"execution\",\n      \"mutation\",\n      \"policy_interpretation\",\n      \"transition_authorization\",\n      \"action_licensing\"\n    ],\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"FsrFrontierStep\",\n        \"fields\": [\n          {\n            \"name\": \"estate_root\",\n            \"type\": \"EstateRootRef\"\n          },\n          {\n            \"name\": \"index_snapshot\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"descent_path\",\n            \"type\": \"Vec<NodeRef>\"\n          },\n          {\n            \"name\": \"page_costs\",\n            \"type\": \"Vec<u64>\"\n          },\n          {\n            \"name\": \"reached_leaves\",\n            \"type\": \"Vec<LeafRef>\"\n          },\n          {\n            \"name\": \"frontier_loci\",\n            \"type\": \"u64\"\n          },\n          {\n            \"name\": \"delivered_loci\",\n            \"type\": \"u64\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"EstateSnapshot\\n-> shard index (bounded pages, opaque membership filter)\\n-> FsrFrontierStep\\n-> caller-side relevance decision outside this contract\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"fsr_does_not_rank_candidates\",\n      \"fsr_does_not_score_candidate\",\n      \"fsr_locus_outside_declared_estate_root_is_refused\",\n      \"fsr_absent_content_digest_is_refused_not_bypassed\",\n      \"fsr_descent_budget_is_global_not_per_node\",\n      \"fsr_read_budget_is_a_hard_bound\",\n      \"fsr_emits_only_licensed_stop_codes\"\n    ],\n    \"canonical_invariant\": \"Frontier evidence only. The implementation selects which index pages to open by opaque membership and reports what it reached; it never orders loci by relevance and never claims to have identified an answer.\\n\",\n    \"non_claims\": [\n      \"Discovery cost is NOT claimed to be logarithmic in estate size; the persisted index is parsed per query and the receipt reports MEASURED pages opened, never a derived bound.\",\n      \"Def 007C.1 is NOT evaluated; that requires J = (P_index, c, m) and a two-sided page-cost bound the implementation does not carry. Only structural invariants are reported.\",\n      \"The full 18-code stop alphabet is NOT implemented; a named subset is emitted and no code outside the licensed union is ever produced.\",\n      \"No RouteReceipt and no evidence-indexed OutputStatus are emitted.\",\n      \"No cross-language parity is claimed; there is no Rust implementation of this contract.\"\n    ]\n  },\n  \"definition\": {\n    \"emitted_stop_codes\": {\n      \"note\": \"Product alphabet, held here rather than in descriptor.terminals/refusals because the v1 terminal and refusal vocabularies are closed. These are a SUBSET of the licensed union (OE-005 section 13 plus OE-006 Def 007C.10); the implementation asserts membership before returning.\\n\",\n      \"codes\": [\n        \"DISCOVERY_OK\",\n        \"UNREACHABLE_LOCUS\",\n        \"CONTEXT_BUDGET_EXCEEDED\",\n        \"STALE_INDEX\",\n        \"ROUTE_INVALID\",\n        \"RECEIPT_INVALID\",\n        \"MANIFEST_PARSE_ERROR\",\n        \"SCHEMA_INVALID\",\n        \"INDEX_MISSING\"\n      ]\n    },\n    \"implementation\": {\n      \"language\": \"python\",\n      \"package\": \"omega_engine_py/omega_retrieval\",\n      \"entry_point\": \"python -m omega_retrieval\",\n      \"tests\": \"omega_engine_py/omega_retrieval/tests/test_retrieval.py\",\n      \"rust_twin\": \"none\"\n    },\n    \"estate_binding\": {\n      \"rule\": \"Every locus is resolved against the DECLARED ESTATE ROOT recorded in the index, not merely against the repository root. A locus resolving outside that root is refused. An absent or empty content digest is refused, never treated as fresh.\\n\"\n    },\n    \"legacy_metadata\": {\n      \"name\": \"FsrRetrieval\",\n      \"active\": true,\n      \"machine_authority\": false,\n      \"role\": \"Opaque estate frontier traversal\",\n      \"version\": \"1.0\",\n      \"classification\": \"proposal_traversal\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"SearchKernel\",\n        \"Trace\"\n      ],\n      \"forbidden_authority\": [\n        \"candidate_scoring\",\n        \"candidate_ranking\",\n        \"evaluation\",\n        \"certification\",\n        \"terminal_mapping\",\n        \"execution\",\n        \"mutation\",\n        \"policy_interpretation\",\n        \"transition_authorization\",\n        \"action_licensing\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"Record\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:execution:fsr_retrieval:v1.0.0",
-        "title": "FsrRetrieval",
-        "kind": "execution_contract",
-        "status": "active",
-        "layer": "06_execution",
-        "role": "Search",
+        "definition": {
+          "emitted_stop_codes": {
+            "codes": [
+              "DISCOVERY_OK",
+              "UNREACHABLE_LOCUS",
+              "CONTEXT_BUDGET_EXCEEDED",
+              "STALE_INDEX",
+              "ROUTE_INVALID",
+              "RECEIPT_INVALID",
+              "MANIFEST_PARSE_ERROR",
+              "SCHEMA_INVALID",
+              "INDEX_MISSING"
+            ],
+            "note": "Product alphabet, held here rather than in descriptor.terminals/refusals because the v1 terminal and refusal vocabularies are closed. These are a SUBSET of the licensed union (OE-005 section 13 plus OE-006 Def 007C.10); the implementation asserts membership before returning.\n"
+          },
+          "estate_binding": {
+            "rule": "Every locus is resolved against the DECLARED ESTATE ROOT recorded in the index, not merely against the repository root. A locus resolving outside that root is refused. An absent or empty content digest is refused, never treated as fresh.\n"
+          },
+          "implementation": {
+            "entry_point": "python -m omega_retrieval",
+            "language": "python",
+            "package": "omega_engine_py/omega_retrieval",
+            "rust_twin": "none",
+            "tests": "omega_engine_py/omega_retrieval/tests/test_retrieval.py"
+          },
+          "legacy_metadata": {
+            "active": true,
+            "classification": "proposal_traversal",
+            "depends_on": [
+              "SearchKernel",
+              "Trace"
+            ],
+            "effect_class": "none",
+            "forbidden_authority": [
+              "candidate_scoring",
+              "candidate_ranking",
+              "evaluation",
+              "certification",
+              "terminal_mapping",
+              "execution",
+              "mutation",
+              "policy_interpretation",
+              "transition_authorization",
+              "action_licensing"
+            ],
+            "machine_authority": false,
+            "name": "FsrRetrieval",
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_output_families": [
+              "Record"
+            ],
+            "role": "Opaque estate frontier traversal",
+            "version": "1.0"
+          }
+        },
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
+          "capabilities": {
+            "forbidden": [
+              "Terminalization",
+              "CertificateSigning",
+              "Evaluation"
+            ],
+            "required": []
+          },
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -216,28 +120,44 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
+          "evidence_ceiling": "ShapeOnly",
           "operator_classes": {
             "may_support": [],
             "must_not_self_assign": true
           },
-          "capabilities": {
-            "forbidden": [
-              "Terminalization",
-              "CertificateSigning",
-              "Evaluation"
-            ],
-            "required": []
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "FsrRetrieval traverses a shard index over a declared estate by opaque membership and returns the reached frontier as evidence. It does not rank or score candidates, evaluate admissibility, certify, terminalize, authorize, license, execute, or mutate. Relevance is decided by the caller, never by this contract's implementation.\n",
+          "canonical_invariant": "Frontier evidence only. The implementation selects which index pages to open by opaque membership and reports what it reached; it never orders loci by relevance and never claims to have identified an answer.\n",
+          "flow": "EstateSnapshot\n-> shard index (bounded pages, opaque membership filter)\n-> FsrFrontierStep\n-> caller-side relevance decision outside this contract\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "non_claims": [
+            "Discovery cost is NOT claimed to be logarithmic in estate size; the persisted index is parsed per query and the receipt reports MEASURED pages opened, never a derived bound.",
+            "Def 007C.1 is NOT evaluated; that requires J = (P_index, c, m) and a two-sided page-cost bound the implementation does not carry. Only structural invariants are reported.",
+            "The full 18-code stop alphabet is NOT implemented; a named subset is emitted and no code outside the licensed union is ever produced.",
+            "No RouteReceipt and no evidence-indexed OutputStatus are emitted.",
+            "No cross-language parity is claimed; there is no Rust implementation of this contract."
+          ],
           "non_role": [
             "candidate_scoring",
             "candidate_ranking",
@@ -250,9 +170,17 @@
             "transition_authorization",
             "action_licensing"
           ],
+          "required_tests": [
+            "fsr_does_not_rank_candidates",
+            "fsr_does_not_score_candidate",
+            "fsr_locus_outside_declared_estate_root_is_refused",
+            "fsr_absent_content_digest_is_refused_not_bypassed",
+            "fsr_descent_budget_is_global_not_per_node",
+            "fsr_read_budget_is_a_hard_bound",
+            "fsr_emits_only_licensed_stop_codes"
+          ],
           "structural_representation": {
             "raw": {
-              "struct_name": "FsrFrontierStep",
               "fields": [
                 {
                   "name": "estate_root",
@@ -283,137 +211,94 @@
                   "type": "u64"
                 },
                 {
+                  "default": "EvidenceOnly",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "EvidenceOnly"
+                  "type": "AuthorityEffect"
                 }
-              ]
+              ],
+              "struct_name": "FsrFrontierStep"
             }
           },
-          "flow": "EstateSnapshot\n-> shard index (bounded pages, opaque membership filter)\n-> FsrFrontierStep\n-> caller-side relevance decision outside this contract\n",
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "execute(",
-              "terminalize(",
-              "mutate_state",
-              "authorize_transition",
-              "license_transition",
-              "self_certify",
-              "compute_phi",
-              "rank_candidates",
-              "score_candidate"
-            ]
-          },
-          "required_tests": [
-            "fsr_does_not_rank_candidates",
-            "fsr_does_not_score_candidate",
-            "fsr_locus_outside_declared_estate_root_is_refused",
-            "fsr_absent_content_digest_is_refused_not_bypassed",
-            "fsr_descent_budget_is_global_not_per_node",
-            "fsr_read_budget_is_a_hard_bound",
-            "fsr_emits_only_licensed_stop_codes"
-          ],
-          "canonical_invariant": "Frontier evidence only. The implementation selects which index pages to open by opaque membership and reports what it reached; it never orders loci by relevance and never claims to have identified an answer.\n",
-          "non_claims": [
-            "Discovery cost is NOT claimed to be logarithmic in estate size; the persisted index is parsed per query and the receipt reports MEASURED pages opened, never a derived bound.",
-            "Def 007C.1 is NOT evaluated; that requires J = (P_index, c, m) and a two-sided page-cost bound the implementation does not carry. Only structural invariants are reported.",
-            "The full 18-code stop alphabet is NOT implemented; a named subset is emitted and no code outside the licensed union is ever produced.",
-            "No RouteReceipt and no evidence-indexed OutputStatus are emitted.",
-            "No cross-language parity is claimed; there is no Rust implementation of this contract."
-          ]
+          "summary": "FsrRetrieval traverses a shard index over a declared estate by opaque membership and returns the reached frontier as evidence. It does not rank or score candidates, evaluate admissibility, certify, terminalize, authorize, license, execute, or mutate. Relevance is decided by the caller, never by this contract's implementation.\n"
         },
-        "definition": {
-          "emitted_stop_codes": {
-            "note": "Product alphabet, held here rather than in descriptor.terminals/refusals because the v1 terminal and refusal vocabularies are closed. These are a SUBSET of the licensed union (OE-005 section 13 plus OE-006 Def 007C.10); the implementation asserts membership before returning.\n",
-            "codes": [
-              "DISCOVERY_OK",
-              "UNREACHABLE_LOCUS",
-              "CONTEXT_BUDGET_EXCEEDED",
-              "STALE_INDEX",
-              "ROUTE_INVALID",
-              "RECEIPT_INVALID",
-              "MANIFEST_PARSE_ERROR",
-              "SCHEMA_INVALID",
-              "INDEX_MISSING"
-            ]
-          },
-          "implementation": {
-            "language": "python",
-            "package": "omega_engine_py/omega_retrieval",
-            "entry_point": "python -m omega_retrieval",
-            "tests": "omega_engine_py/omega_retrieval/tests/test_retrieval.py",
-            "rust_twin": "none"
-          },
-          "estate_binding": {
-            "rule": "Every locus is resolved against the DECLARED ESTATE ROOT recorded in the index, not merely against the repository root. A locus resolving outside that root is refused. An absent or empty content digest is refused, never treated as fresh.\n"
-          },
-          "legacy_metadata": {
-            "name": "FsrRetrieval",
-            "active": true,
-            "machine_authority": false,
-            "role": "Opaque estate frontier traversal",
-            "version": "1.0",
-            "classification": "proposal_traversal",
-            "effect_class": "none",
-            "depends_on": [
-              "SearchKernel",
-              "Trace"
-            ],
-            "forbidden_authority": [
-              "candidate_scoring",
-              "candidate_ranking",
-              "evaluation",
-              "certification",
-              "terminal_mapping",
-              "execution",
-              "mutation",
-              "policy_interpretation",
-              "transition_authorization",
-              "action_licensing"
-            ],
-            "primary_output_family": "EvidenceEnvelope",
-            "referenced_output_families": [
-              "Record"
-            ]
-          }
-        },
+        "kind": "execution_contract",
+        "layer": "06_execution",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "Search",
+        "schema_version": "omega.contract.v1",
+        "status": "active",
+        "title": "FsrRetrieval"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:execution:fsr_retrieval:v1.0.0\",\n  \"title\": \"FsrRetrieval\",\n  \"kind\": \"execution_contract\",\n  \"status\": \"active\",\n  \"layer\": \"06_execution\",\n  \"role\": \"Search\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"SearchKernel\",\n        \"Trace\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    },\n    \"capabilities\": {\n      \"forbidden\": [\n        \"Terminalization\",\n        \"CertificateSigning\",\n        \"Evaluation\"\n      ],\n      \"required\": []\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"FsrRetrieval traverses a shard index over a declared estate by opaque membership and returns the reached frontier as evidence. It does not rank or score candidates, evaluate admissibility, certify, terminalize, authorize, license, execute, or mutate. Relevance is decided by the caller, never by this contract's implementation.\\n\",\n    \"non_role\": [\n      \"candidate_scoring\",\n      \"candidate_ranking\",\n      \"evaluation\",\n      \"certification\",\n      \"terminal_mapping\",\n      \"execution\",\n      \"mutation\",\n      \"policy_interpretation\",\n      \"transition_authorization\",\n      \"action_licensing\"\n    ],\n    \"structural_representation\": {\n      \"raw\": {\n        \"struct_name\": \"FsrFrontierStep\",\n        \"fields\": [\n          {\n            \"name\": \"estate_root\",\n            \"type\": \"EstateRootRef\"\n          },\n          {\n            \"name\": \"index_snapshot\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"descent_path\",\n            \"type\": \"Vec<NodeRef>\"\n          },\n          {\n            \"name\": \"page_costs\",\n            \"type\": \"Vec<u64>\"\n          },\n          {\n            \"name\": \"reached_leaves\",\n            \"type\": \"Vec<LeafRef>\"\n          },\n          {\n            \"name\": \"frontier_loci\",\n            \"type\": \"u64\"\n          },\n          {\n            \"name\": \"delivered_loci\",\n            \"type\": \"u64\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      }\n    },\n    \"flow\": \"EstateSnapshot\\n-> shard index (bounded pages, opaque membership filter)\\n-> FsrFrontierStep\\n-> caller-side relevance decision outside this contract\\n\",\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute(\",\n        \"terminalize(\",\n        \"mutate_state\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"self_certify\",\n        \"compute_phi\",\n        \"rank_candidates\",\n        \"score_candidate\"\n      ]\n    },\n    \"required_tests\": [\n      \"fsr_does_not_rank_candidates\",\n      \"fsr_does_not_score_candidate\",\n      \"fsr_locus_outside_declared_estate_root_is_refused\",\n      \"fsr_absent_content_digest_is_refused_not_bypassed\",\n      \"fsr_descent_budget_is_global_not_per_node\",\n      \"fsr_read_budget_is_a_hard_bound\",\n      \"fsr_emits_only_licensed_stop_codes\"\n    ],\n    \"canonical_invariant\": \"Frontier evidence only. The implementation selects which index pages to open by opaque membership and reports what it reached; it never orders loci by relevance and never claims to have identified an answer.\\n\",\n    \"non_claims\": [\n      \"Discovery cost is NOT claimed to be logarithmic in estate size; the persisted index is parsed per query and the receipt reports MEASURED pages opened, never a derived bound.\",\n      \"Def 007C.1 is NOT evaluated; that requires J = (P_index, c, m) and a two-sided page-cost bound the implementation does not carry. Only structural invariants are reported.\",\n      \"The full 18-code stop alphabet is NOT implemented; a named subset is emitted and no code outside the licensed union is ever produced.\",\n      \"No RouteReceipt and no evidence-indexed OutputStatus are emitted.\",\n      \"No cross-language parity is claimed; there is no Rust implementation of this contract.\"\n    ]\n  },\n  \"definition\": {\n    \"emitted_stop_codes\": {\n      \"note\": \"Product alphabet, held here rather than in descriptor.terminals/refusals because the v1 terminal and refusal vocabularies are closed. These are a SUBSET of the licensed union (OE-005 section 13 plus OE-006 Def 007C.10); the implementation asserts membership before returning.\\n\",\n      \"codes\": [\n        \"DISCOVERY_OK\",\n        \"UNREACHABLE_LOCUS\",\n        \"CONTEXT_BUDGET_EXCEEDED\",\n        \"STALE_INDEX\",\n        \"ROUTE_INVALID\",\n        \"RECEIPT_INVALID\",\n        \"MANIFEST_PARSE_ERROR\",\n        \"SCHEMA_INVALID\",\n        \"INDEX_MISSING\"\n      ]\n    },\n    \"implementation\": {\n      \"language\": \"python\",\n      \"package\": \"omega_engine_py/omega_retrieval\",\n      \"entry_point\": \"python -m omega_retrieval\",\n      \"tests\": \"omega_engine_py/omega_retrieval/tests/test_retrieval.py\",\n      \"rust_twin\": \"none\"\n    },\n    \"estate_binding\": {\n      \"rule\": \"Every locus is resolved against the DECLARED ESTATE ROOT recorded in the index, not merely against the repository root. A locus resolving outside that root is refused. An absent or empty content digest is refused, never treated as fresh.\\n\"\n    },\n    \"legacy_metadata\": {\n      \"name\": \"FsrRetrieval\",\n      \"active\": true,\n      \"machine_authority\": false,\n      \"role\": \"Opaque estate frontier traversal\",\n      \"version\": \"1.0\",\n      \"classification\": \"proposal_traversal\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"SearchKernel\",\n        \"Trace\"\n      ],\n      \"forbidden_authority\": [\n        \"candidate_scoring\",\n        \"candidate_ranking\",\n        \"evaluation\",\n        \"certification\",\n        \"terminal_mapping\",\n        \"execution\",\n        \"mutation\",\n        \"policy_interpretation\",\n        \"transition_authorization\",\n        \"action_licensing\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"Record\"\n      ]\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "7d5b721485f01a94f078d1e9fac38cb94b9101fccf596143f344058e6c0ed777"
+    },
+    {
+      "bytes": 1715,
       "original_paths": [
-        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n    \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n      \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\",\n  \"subject\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+          "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+            "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e",
+        "subject": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py"
+      },
+      "sha256": "4d38822f6eeacea863eccca8ac4c391310331d84ae20a4c8c849bb5e20834882"
     }
   ],
+  "current_contract": "4d38822f6eeacea863eccca8ac4c391310331d84ae20a4c8c849bb5e20834882",
+  "current_scoring": "6c4803d8c7b79da383e5798e0780cec9a680fd9224116605781b73612d7e1f23",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0.contract.yaml": "d9a6104e411b0be106c2d79abb24381a88185ee438000ef9ea9e5a7a0300d0fb"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "c0d52169f10f2c7a3e81df2e69d83112a6fcb4679a49346ef7f327cb7b2d94a5",
       "bytes": 2235,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n    \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-fsr-retrieval-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
           "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:execution-fsr-retrieval-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -422,40 +307,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "c0d52169f10f2c7a3e81df2e69d83112a6fcb4679a49346ef7f327cb7b2d94a5"
+    },
+    {
+      "bytes": 1672,
+      "original_paths": [
+        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n    \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n      \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+          "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py",
+            "sha256": "cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.py\",\n    \"sha256\": \"cf280ee5e9f698e351bb7365e88b45dabf7640a5ccef136bc9b6a6a59f504c6e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:execution-fsr-retrieval-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "6c4803d8c7b79da383e5798e0780cec9a680fd9224116605781b73612d7e1f23"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/execution_fsr_retrieval_v1_0_0.contract.yaml": "d9a6104e411b0be106c2d79abb24381a88185ee438000ef9ea9e5a7a0300d0fb"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

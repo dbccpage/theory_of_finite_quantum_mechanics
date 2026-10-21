@@ -1,249 +1,90 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/fusion_categories/braid_group.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/fusion_categories/braid_group.rs",
-      "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-      "language": "Rust"
+      "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact",
-      "claim_urn": "urn:tfqm:fusion:braid_group:bounded-exact-actions:v1",
-      "domain": "Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.",
-      "behavior": [
-        "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
-        "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
-        "Delegate the entire ordered defect enumeration to the declared default limits.",
-        "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
-        "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
-        "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
-        "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
-        "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
-        "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
-        "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
-        "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
-        "Read the immutable number of distinct retained elements/classes.",
-        "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
-        "Read whether stored representatives are canonical projective classes.",
-        "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
-        "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
-        "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
-        "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
-        "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
-        "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
-        "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
-        "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
-        "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
-        "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
-      ]
-    },
-    "operations": {
-      "module::charge": {
-        "line": 15,
-        "signature": "fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>",
-        "obligation": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation."
-      },
-      "module::product": {
-        "line": 26,
-        "signature": "fn product(factors: &[u128]) -> Result<u128, FusionError>",
-        "obligation": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap."
-      },
-      "module::braid_relation_defects": {
-        "line": 41,
-        "signature": "pub fn braid_relation_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
-        "obligation": "Delegate the entire ordered defect enumeration to the declared default limits."
-      },
-      "module::braid_relation_defects_with_limits": {
-        "line": 47,
-        "signature": "pub fn braid_relation_defects_with_limits<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    limits: OperationLimits,\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
-        "obligation": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular."
-      },
-      "module::check_generator_shapes": {
-        "line": 66,
-        "signature": "fn check_generator_shapes<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    operation: &'static str,\n) -> Result<(), FusionError>",
-        "obligation": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0."
-      },
-      "module::relation_admission": {
-        "line": 81,
-        "signature": "fn relation_admission(\n    generators: usize,\n    n: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError>",
-        "obligation": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe."
-      },
-      "module::singular_defects": {
-        "line": 108,
-        "signature": "fn singular_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
-        "obligation": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering."
-      },
-      "module::pair_defects": {
-        "line": 122,
-        "signature": "fn pair_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    i: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
-        "obligation": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses."
-      },
-      "module::braid_triple": {
-        "line": 147,
-        "signature": "fn braid_triple<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
-        "obligation": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits."
-      },
-      "module::projective_normal_form": {
-        "line": 156,
-        "signature": "pub fn projective_normal_form<K: FusionScalar>(\n    m: &BasicMatrix<K>,\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>",
-        "obligation": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix."
-      },
-      "module::equal_up_to_scalar": {
-        "line": 170,
-        "signature": "pub fn equal_up_to_scalar<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n) -> Result<Option<K>, FusionError>",
-        "obligation": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed."
-      },
-      "FiniteMatrixGroup::order": {
-        "line": 200,
-        "signature": "pub fn order(&self) -> usize",
-        "obligation": "Read the immutable number of distinct retained elements/classes."
-      },
-      "FiniteMatrixGroup::elements": {
-        "line": 204,
-        "signature": "pub fn elements(&self) -> &[BasicMatrix<K>]",
-        "obligation": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants."
-      },
-      "FiniteMatrixGroup::is_projective": {
-        "line": 208,
-        "signature": "pub fn is_projective(&self) -> bool",
-        "obligation": "Read whether stored representatives are canonical projective classes."
-      },
-      "FiniteMatrixGroup::contains": {
-        "line": 212,
-        "signature": "pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>",
-        "obligation": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate."
-      },
-      "ClosureOutcome::order": {
-        "line": 236,
-        "signature": "pub fn order(&self) -> Option<usize>",
-        "obligation": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude."
-      },
-      "module::group_closure": {
-        "line": 244,
-        "signature": "pub fn group_closure<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n) -> Result<ClosureOutcome<K>, FusionError>",
-        "obligation": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound."
-      },
-      "module::group_closure_with_limits": {
-        "line": 252,
-        "signature": "pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<ClosureOutcome<K>, FusionError>",
-        "obligation": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate."
-      },
-      "module::closure_dimension": {
-        "line": 275,
-        "signature": "fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>",
-        "obligation": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension."
-      },
-      "module::closure_admission": {
-        "line": 295,
-        "signature": "fn closure_admission<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n) -> Result<u128, FusionError>",
-        "obligation": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here."
-      },
-      "module::normalized": {
-        "line": 319,
-        "signature": "fn normalized<K: FusionScalar>(\n    mut m: BasicMatrix<K>,\n    projective: bool,\n) -> Result<BasicMatrix<K>, FusionError>",
-        "obligation": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix."
-      },
-      "module::initial_group": {
-        "line": 343,
-        "signature": "fn initial_group<K: FusionScalar + Hash + Eq>(\n    n: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<FiniteMatrixGroup<K>, FusionError>",
-        "obligation": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again."
-      },
-      "module::record_element": {
-        "line": 366,
-        "signature": "fn record_element<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    h: BasicMatrix<K>,\n    bound: usize,\n) -> bool",
-        "obligation": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots."
-      },
-      "module::expand_closure": {
-        "line": 382,
-        "signature": "fn expand_closure<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    current: usize,\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    limits: OperationLimits,\n    work: &mut u128,\n) -> Result<bool, FusionError>",
-        "obligation": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
-      },
-      "FiniteMatrixGroup::Clone": {
-        "obligation": "Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.",
-        "origin": "derive(Clone,Debug)"
-      },
-      "BraidRelationDefect data": {
-        "obligation": "Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.",
-        "origin": "derive(Debug,Clone,Copy,PartialEq,Eq)"
-      },
-      "ClosureOutcome::Clone": {
-        "obligation": "Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.",
-        "origin": "derive(Debug,Clone)"
-      }
-    },
-    "invariants": [
-      "Shape and numeric invariant: public relation checks validate the first mismatching square shape before cost arithmetic; closure separately rejects empty input and zero/non-square first carrier before sibling mismatch. For n>0, admitted g*n^2<=usize::MAX and g>=1 bound n^2<=usize::MAX and g*n*(n+1)<=2*usize::MAX. For n=0, all dimension products vanish. Checked aggregate products/additions and these bounds protect the remaining widened factors on the content-bound 64-bit target.",
-      "Finite carrier invariant: elements starts with identity and index with its exact row-major key; both are private. Every new key is absent before insertion, then exactly one owned element and one owned key are added together. Their order is deterministic BFS discovery order. A cursor explores every generator right-product for every retained element, including elements appended by earlier exploration; completion therefore yields the smallest right-generator-closed set containing identity.",
-      "Group interpretation: native admitted generators are invertible by the pinned exact rank solver. Every state is a word in them and every generator right-product lies in the completed finite set. The Lean word/minimality and finite-submonoid inverse theorems establish why complete finite forward closure is a group even when the ambient group is infinite. GL(n,K) construction and Rust-to-model refinement remain explicit source reasoning; no inversion table is required.",
-      "Projective invariant: the first nonzero coefficient chooses a unique representative with that coefficient one. Exact division proves reconstruction and invariance under any nonzero scalar factor. Compatible commutative field multiplication respects these classes, so closure models the subgroup of projective GL generated by the inputs. The quotient-group representation is a source argument; Lean proves coordinate normalization, not a complete PGL construction. All-zero products cannot occur for lawful invertible inputs; the defensive path is a typed Inconsistent error.",
-      "Ownership/cost invariant: no bound-sized preallocation occurs. The owned element vector doubles as the FIFO frontier, so no second matrix queue or popped matrix clone exists. Ordinary membership uses a borrowed slice. Projective products are scaled in place with one fixed inverse, and identity is already canonical. Only a new state needs its owned hash-key copy. The declared 2*(states+1)*n^2 envelope conservatively covers two retained arrays per state plus transient candidate/new-key headroom; the earlier two-scratch allowance is an upper bound, not a claim that in-place normalization still allocates a second matrix. Scalar work charges exact named conservative formulas, not wall-clock or bit complexity.",
-      "Refusal invariant: rank/storage/work errors expose no partial Finite group. A newly distinct state at full bound yields ExceedsBound; a zero bound is exceeded by the mathematical identity after generator admission. ExceedsBound says only that this finite bound is exceeded; it does not certify an infinite group. Shape/error priority and conservative storage refusals are intentional public behavior changes."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "module::charge": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
-      "module::product": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
-      "module::braid_relation_defects": "Delegate the entire ordered defect enumeration to the declared default limits.",
-      "module::braid_relation_defects_with_limits": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
-      "module::check_generator_shapes": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
-      "module::relation_admission": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
-      "module::singular_defects": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
-      "module::pair_defects": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
-      "module::braid_triple": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
-      "module::projective_normal_form": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
-      "module::equal_up_to_scalar": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
-      "FiniteMatrixGroup::order": "Read the immutable number of distinct retained elements/classes.",
-      "FiniteMatrixGroup::elements": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
-      "FiniteMatrixGroup::is_projective": "Read whether stored representatives are canonical projective classes.",
-      "FiniteMatrixGroup::contains": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
-      "ClosureOutcome::order": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
-      "module::group_closure": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
-      "module::group_closure_with_limits": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
-      "module::closure_dimension": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
-      "module::closure_admission": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
-      "module::normalized": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
-      "module::initial_group": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
-      "module::record_element": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
-      "module::expand_closure": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
-    },
-    "trust_boundary": "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
-    "assurance_limits": [
-      "AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.",
-      "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
-      "Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.",
-      "An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/quality/six_module/assessments/fusion_braid_group.json",
-        "sha256": "5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9"
+        "path": "code/rust/src/fusion_categories/braid_group.rs",
+        "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
+    "subject": "code/rust/src/fusion_categories/braid_group.rs"
   },
-  "current_contract": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100",
-  "current_scoring": "dd77b824a75cfc28d936f3bbe25f7b7a31339b3827cf2c7e47124fd0be6300fe",
   "contract_history": [
     {
-      "sha256": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100",
       "bytes": 28779,
+      "original_paths": [
+        "code/rust/src/fusion_categories/braid_group.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"claim_urn\": \"urn:tfqm:fusion:braid_group:bounded-exact-actions:v1\",\n    \"domain\": \"Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.\",\n    \"behavior\": [\n      \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\",\n      \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\",\n      \"Delegate the entire ordered defect enumeration to the declared default limits.\",\n      \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\",\n      \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\",\n      \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\",\n      \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\",\n      \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\",\n      \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\",\n      \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\",\n      \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\",\n      \"Read the immutable number of distinct retained elements/classes.\",\n      \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\",\n      \"Read whether stored representatives are canonical projective classes.\",\n      \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\",\n      \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\",\n      \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\",\n      \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\",\n      \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\",\n      \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\",\n      \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\",\n      \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\",\n      \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\",\n      \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n    ]\n  },\n  \"operations\": {\n    \"module::charge\": {\n      \"line\": 15,\n      \"signature\": \"fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>\",\n      \"obligation\": \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\"\n    },\n    \"module::product\": {\n      \"line\": 26,\n      \"signature\": \"fn product(factors: &[u128]) -> Result<u128, FusionError>\",\n      \"obligation\": \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\"\n    },\n    \"module::braid_relation_defects\": {\n      \"line\": 41,\n      \"signature\": \"pub fn braid_relation_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n) -> Result<Vec<BraidRelationDefect>, FusionError>\",\n      \"obligation\": \"Delegate the entire ordered defect enumeration to the declared default limits.\"\n    },\n    \"module::braid_relation_defects_with_limits\": {\n      \"line\": 47,\n      \"signature\": \"pub fn braid_relation_defects_with_limits<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    limits: OperationLimits,\\n) -> Result<Vec<BraidRelationDefect>, FusionError>\",\n      \"obligation\": \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\"\n    },\n    \"module::check_generator_shapes\": {\n      \"line\": 66,\n      \"signature\": \"fn check_generator_shapes<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    operation: &'static str,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\"\n    },\n    \"module::relation_admission\": {\n      \"line\": 81,\n      \"signature\": \"fn relation_admission(\\n    generators: usize,\\n    n: usize,\\n    limits: OperationLimits,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\"\n    },\n    \"module::singular_defects\": {\n      \"line\": 108,\n      \"signature\": \"fn singular_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    limits: OperationLimits,\\n    defects: &mut Vec<BraidRelationDefect>,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\"\n    },\n    \"module::pair_defects\": {\n      \"line\": 122,\n      \"signature\": \"fn pair_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    i: usize,\\n    limits: OperationLimits,\\n    defects: &mut Vec<BraidRelationDefect>,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\"\n    },\n    \"module::braid_triple\": {\n      \"line\": 147,\n      \"signature\": \"fn braid_triple<K: FusionScalar>(\\n    a: &BasicMatrix<K>,\\n    b: &BasicMatrix<K>,\\n    limits: OperationLimits,\\n) -> Result<BasicMatrix<K>, FusionError>\",\n      \"obligation\": \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\"\n    },\n    \"module::projective_normal_form\": {\n      \"line\": 156,\n      \"signature\": \"pub fn projective_normal_form<K: FusionScalar>(\\n    m: &BasicMatrix<K>,\\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>\",\n      \"obligation\": \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\"\n    },\n    \"module::equal_up_to_scalar\": {\n      \"line\": 170,\n      \"signature\": \"pub fn equal_up_to_scalar<K: FusionScalar>(\\n    a: &BasicMatrix<K>,\\n    b: &BasicMatrix<K>,\\n) -> Result<Option<K>, FusionError>\",\n      \"obligation\": \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\"\n    },\n    \"FiniteMatrixGroup::order\": {\n      \"line\": 200,\n      \"signature\": \"pub fn order(&self) -> usize\",\n      \"obligation\": \"Read the immutable number of distinct retained elements/classes.\"\n    },\n    \"FiniteMatrixGroup::elements\": {\n      \"line\": 204,\n      \"signature\": \"pub fn elements(&self) -> &[BasicMatrix<K>]\",\n      \"obligation\": \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\"\n    },\n    \"FiniteMatrixGroup::is_projective\": {\n      \"line\": 208,\n      \"signature\": \"pub fn is_projective(&self) -> bool\",\n      \"obligation\": \"Read whether stored representatives are canonical projective classes.\"\n    },\n    \"FiniteMatrixGroup::contains\": {\n      \"line\": 212,\n      \"signature\": \"pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>\",\n      \"obligation\": \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\"\n    },\n    \"ClosureOutcome::order\": {\n      \"line\": 236,\n      \"signature\": \"pub fn order(&self) -> Option<usize>\",\n      \"obligation\": \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\"\n    },\n    \"module::group_closure\": {\n      \"line\": 244,\n      \"signature\": \"pub fn group_closure<K: FusionScalar + Hash + Eq>(\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    projective: bool,\\n) -> Result<ClosureOutcome<K>, FusionError>\",\n      \"obligation\": \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\"\n    },\n    \"module::group_closure_with_limits\": {\n      \"line\": 252,\n      \"signature\": \"pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    projective: bool,\\n    limits: OperationLimits,\\n) -> Result<ClosureOutcome<K>, FusionError>\",\n      \"obligation\": \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\"\n    },\n    \"module::closure_dimension\": {\n      \"line\": 275,\n      \"signature\": \"fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>\",\n      \"obligation\": \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\"\n    },\n    \"module::closure_admission\": {\n      \"line\": 295,\n      \"signature\": \"fn closure_admission<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    limits: OperationLimits,\\n) -> Result<u128, FusionError>\",\n      \"obligation\": \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\"\n    },\n    \"module::normalized\": {\n      \"line\": 319,\n      \"signature\": \"fn normalized<K: FusionScalar>(\\n    mut m: BasicMatrix<K>,\\n    projective: bool,\\n) -> Result<BasicMatrix<K>, FusionError>\",\n      \"obligation\": \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\"\n    },\n    \"module::initial_group\": {\n      \"line\": 343,\n      \"signature\": \"fn initial_group<K: FusionScalar + Hash + Eq>(\\n    n: usize,\\n    projective: bool,\\n    limits: OperationLimits,\\n) -> Result<FiniteMatrixGroup<K>, FusionError>\",\n      \"obligation\": \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\"\n    },\n    \"module::record_element\": {\n      \"line\": 366,\n      \"signature\": \"fn record_element<K: FusionScalar + Hash + Eq>(\\n    group: &mut FiniteMatrixGroup<K>,\\n    h: BasicMatrix<K>,\\n    bound: usize,\\n) -> bool\",\n      \"obligation\": \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\"\n    },\n    \"module::expand_closure\": {\n      \"line\": 382,\n      \"signature\": \"fn expand_closure<K: FusionScalar + Hash + Eq>(\\n    group: &mut FiniteMatrixGroup<K>,\\n    current: usize,\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    limits: OperationLimits,\\n    work: &mut u128,\\n) -> Result<bool, FusionError>\",\n      \"obligation\": \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n    },\n    \"FiniteMatrixGroup::Clone\": {\n      \"obligation\": \"Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.\",\n      \"origin\": \"derive(Clone,Debug)\"\n    },\n    \"BraidRelationDefect data\": {\n      \"obligation\": \"Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.\",\n      \"origin\": \"derive(Debug,Clone,Copy,PartialEq,Eq)\"\n    },\n    \"ClosureOutcome::Clone\": {\n      \"obligation\": \"Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.\",\n      \"origin\": \"derive(Debug,Clone)\"\n    }\n  },\n  \"invariants\": [\n    \"Shape and numeric invariant: public relation checks validate the first mismatching square shape before cost arithmetic; closure separately rejects empty input and zero/non-square first carrier before sibling mismatch. For n>0, admitted g*n^2<=usize::MAX and g>=1 bound n^2<=usize::MAX and g*n*(n+1)<=2*usize::MAX. For n=0, all dimension products vanish. Checked aggregate products/additions and these bounds protect the remaining widened factors on the content-bound 64-bit target.\",\n    \"Finite carrier invariant: elements starts with identity and index with its exact row-major key; both are private. Every new key is absent before insertion, then exactly one owned element and one owned key are added together. Their order is deterministic BFS discovery order. A cursor explores every generator right-product for every retained element, including elements appended by earlier exploration; completion therefore yields the smallest right-generator-closed set containing identity.\",\n    \"Group interpretation: native admitted generators are invertible by the pinned exact rank solver. Every state is a word in them and every generator right-product lies in the completed finite set. The Lean word/minimality and finite-submonoid inverse theorems establish why complete finite forward closure is a group even when the ambient group is infinite. GL(n,K) construction and Rust-to-model refinement remain explicit source reasoning; no inversion table is required.\",\n    \"Projective invariant: the first nonzero coefficient chooses a unique representative with that coefficient one. Exact division proves reconstruction and invariance under any nonzero scalar factor. Compatible commutative field multiplication respects these classes, so closure models the subgroup of projective GL generated by the inputs. The quotient-group representation is a source argument; Lean proves coordinate normalization, not a complete PGL construction. All-zero products cannot occur for lawful invertible inputs; the defensive path is a typed Inconsistent error.\",\n    \"Ownership/cost invariant: no bound-sized preallocation occurs. The owned element vector doubles as the FIFO frontier, so no second matrix queue or popped matrix clone exists. Ordinary membership uses a borrowed slice. Projective products are scaled in place with one fixed inverse, and identity is already canonical. Only a new state needs its owned hash-key copy. The declared 2*(states+1)*n^2 envelope conservatively covers two retained arrays per state plus transient candidate/new-key headroom; the earlier two-scratch allowance is an upper bound, not a claim that in-place normalization still allocates a second matrix. Scalar work charges exact named conservative formulas, not wall-clock or bit complexity.\",\n    \"Refusal invariant: rank/storage/work errors expose no partial Finite group. A newly distinct state at full bound yields ExceedsBound; a zero bound is exceeded by the mathematical identity after generator admission. ExceedsBound says only that this finite bound is exceeded; it does not certify an infinite group. Shape/error priority and conservative storage refusals are intentional public behavior changes.\"\n  ],\n  \"failure_paths\": {\n    \"module::charge\": \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\",\n    \"module::product\": \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\",\n    \"module::braid_relation_defects\": \"Delegate the entire ordered defect enumeration to the declared default limits.\",\n    \"module::braid_relation_defects_with_limits\": \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\",\n    \"module::check_generator_shapes\": \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\",\n    \"module::relation_admission\": \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\",\n    \"module::singular_defects\": \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\",\n    \"module::pair_defects\": \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\",\n    \"module::braid_triple\": \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\",\n    \"module::projective_normal_form\": \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\",\n    \"module::equal_up_to_scalar\": \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\",\n    \"FiniteMatrixGroup::order\": \"Read the immutable number of distinct retained elements/classes.\",\n    \"FiniteMatrixGroup::elements\": \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\",\n    \"FiniteMatrixGroup::is_projective\": \"Read whether stored representatives are canonical projective classes.\",\n    \"FiniteMatrixGroup::contains\": \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\",\n    \"ClosureOutcome::order\": \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\",\n    \"module::group_closure\": \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\",\n    \"module::group_closure_with_limits\": \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\",\n    \"module::closure_dimension\": \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\",\n    \"module::closure_admission\": \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\",\n    \"module::normalized\": \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\",\n    \"module::initial_group\": \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\",\n    \"module::record_element\": \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\",\n    \"module::expand_closure\": \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n  },\n  \"trust_boundary\": \"Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.\",\n  \"assurance_limits\": [\n    \"AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.\",\n    \"Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.\",\n    \"Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.\",\n    \"An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/assessments/fusion_braid_group.json\",\n      \"sha256\": \"5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/fusion_categories/braid_group.rs",
-          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-          "language": "Rust"
+          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.",
+          "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
+          "Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.",
+          "An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence."
+        ],
+        "failure_paths": {
+          "ClosureOutcome::order": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
+          "FiniteMatrixGroup::contains": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
+          "FiniteMatrixGroup::elements": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
+          "FiniteMatrixGroup::is_projective": "Read whether stored representatives are canonical projective classes.",
+          "FiniteMatrixGroup::order": "Read the immutable number of distinct retained elements/classes.",
+          "module::braid_relation_defects": "Delegate the entire ordered defect enumeration to the declared default limits.",
+          "module::braid_relation_defects_with_limits": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
+          "module::braid_triple": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
+          "module::charge": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
+          "module::check_generator_shapes": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
+          "module::closure_admission": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
+          "module::closure_dimension": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
+          "module::equal_up_to_scalar": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
+          "module::expand_closure": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.",
+          "module::group_closure": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
+          "module::group_closure_with_limits": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
+          "module::initial_group": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
+          "module::normalized": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
+          "module::pair_defects": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
+          "module::product": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
+          "module::projective_normal_form": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
+          "module::record_element": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
+          "module::relation_admission": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
+          "module::singular_defects": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering."
+        },
         "formal_specification": {
-          "profile": "Exact",
-          "claim_urn": "urn:tfqm:fusion:braid_group:bounded-exact-actions:v1",
-          "domain": "Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.",
           "behavior": [
             "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
             "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
@@ -269,141 +110,10 @@
             "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
             "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
             "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
-          ]
-        },
-        "operations": {
-          "module::charge": {
-            "line": 15,
-            "signature": "fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>",
-            "obligation": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation."
-          },
-          "module::product": {
-            "line": 26,
-            "signature": "fn product(factors: &[u128]) -> Result<u128, FusionError>",
-            "obligation": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap."
-          },
-          "module::braid_relation_defects": {
-            "line": 41,
-            "signature": "pub fn braid_relation_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
-            "obligation": "Delegate the entire ordered defect enumeration to the declared default limits."
-          },
-          "module::braid_relation_defects_with_limits": {
-            "line": 47,
-            "signature": "pub fn braid_relation_defects_with_limits<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    limits: OperationLimits,\n) -> Result<Vec<BraidRelationDefect>, FusionError>",
-            "obligation": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular."
-          },
-          "module::check_generator_shapes": {
-            "line": 66,
-            "signature": "fn check_generator_shapes<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    operation: &'static str,\n) -> Result<(), FusionError>",
-            "obligation": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0."
-          },
-          "module::relation_admission": {
-            "line": 81,
-            "signature": "fn relation_admission(\n    generators: usize,\n    n: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError>",
-            "obligation": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe."
-          },
-          "module::singular_defects": {
-            "line": 108,
-            "signature": "fn singular_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
-            "obligation": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering."
-          },
-          "module::pair_defects": {
-            "line": 122,
-            "signature": "fn pair_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    i: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>",
-            "obligation": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses."
-          },
-          "module::braid_triple": {
-            "line": 147,
-            "signature": "fn braid_triple<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
-            "obligation": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits."
-          },
-          "module::projective_normal_form": {
-            "line": 156,
-            "signature": "pub fn projective_normal_form<K: FusionScalar>(\n    m: &BasicMatrix<K>,\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>",
-            "obligation": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix."
-          },
-          "module::equal_up_to_scalar": {
-            "line": 170,
-            "signature": "pub fn equal_up_to_scalar<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n) -> Result<Option<K>, FusionError>",
-            "obligation": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed."
-          },
-          "FiniteMatrixGroup::order": {
-            "line": 200,
-            "signature": "pub fn order(&self) -> usize",
-            "obligation": "Read the immutable number of distinct retained elements/classes."
-          },
-          "FiniteMatrixGroup::elements": {
-            "line": 204,
-            "signature": "pub fn elements(&self) -> &[BasicMatrix<K>]",
-            "obligation": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants."
-          },
-          "FiniteMatrixGroup::is_projective": {
-            "line": 208,
-            "signature": "pub fn is_projective(&self) -> bool",
-            "obligation": "Read whether stored representatives are canonical projective classes."
-          },
-          "FiniteMatrixGroup::contains": {
-            "line": 212,
-            "signature": "pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>",
-            "obligation": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate."
-          },
-          "ClosureOutcome::order": {
-            "line": 236,
-            "signature": "pub fn order(&self) -> Option<usize>",
-            "obligation": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude."
-          },
-          "module::group_closure": {
-            "line": 244,
-            "signature": "pub fn group_closure<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n) -> Result<ClosureOutcome<K>, FusionError>",
-            "obligation": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound."
-          },
-          "module::group_closure_with_limits": {
-            "line": 252,
-            "signature": "pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<ClosureOutcome<K>, FusionError>",
-            "obligation": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate."
-          },
-          "module::closure_dimension": {
-            "line": 275,
-            "signature": "fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>",
-            "obligation": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension."
-          },
-          "module::closure_admission": {
-            "line": 295,
-            "signature": "fn closure_admission<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n) -> Result<u128, FusionError>",
-            "obligation": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here."
-          },
-          "module::normalized": {
-            "line": 319,
-            "signature": "fn normalized<K: FusionScalar>(\n    mut m: BasicMatrix<K>,\n    projective: bool,\n) -> Result<BasicMatrix<K>, FusionError>",
-            "obligation": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix."
-          },
-          "module::initial_group": {
-            "line": 343,
-            "signature": "fn initial_group<K: FusionScalar + Hash + Eq>(\n    n: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<FiniteMatrixGroup<K>, FusionError>",
-            "obligation": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again."
-          },
-          "module::record_element": {
-            "line": 366,
-            "signature": "fn record_element<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    h: BasicMatrix<K>,\n    bound: usize,\n) -> bool",
-            "obligation": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots."
-          },
-          "module::expand_closure": {
-            "line": 382,
-            "signature": "fn expand_closure<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    current: usize,\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    limits: OperationLimits,\n    work: &mut u128,\n) -> Result<bool, FusionError>",
-            "obligation": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
-          },
-          "FiniteMatrixGroup::Clone": {
-            "obligation": "Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.",
-            "origin": "derive(Clone,Debug)"
-          },
-          "BraidRelationDefect data": {
-            "obligation": "Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.",
-            "origin": "derive(Debug,Clone,Copy,PartialEq,Eq)"
-          },
-          "ClosureOutcome::Clone": {
-            "obligation": "Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.",
-            "origin": "derive(Debug,Clone)"
-          }
+          ],
+          "claim_urn": "urn:tfqm:fusion:braid_group:bounded-exact-actions:v1",
+          "domain": "Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.",
+          "profile": "Exact"
         },
         "invariants": [
           "Shape and numeric invariant: public relation checks validate the first mismatching square shape before cost arithmetic; closure separately rejects empty input and zero/non-square first carrier before sibling mismatch. For n>0, admitted g*n^2<=usize::MAX and g>=1 bound n^2<=usize::MAX and g*n*(n+1)<=2*usize::MAX. For n=0, all dimension products vanish. Checked aggregate products/additions and these bounds protect the remaining widened factors on the content-bound 64-bit target.",
@@ -413,104 +123,267 @@
           "Ownership/cost invariant: no bound-sized preallocation occurs. The owned element vector doubles as the FIFO frontier, so no second matrix queue or popped matrix clone exists. Ordinary membership uses a borrowed slice. Projective products are scaled in place with one fixed inverse, and identity is already canonical. Only a new state needs its owned hash-key copy. The declared 2*(states+1)*n^2 envelope conservatively covers two retained arrays per state plus transient candidate/new-key headroom; the earlier two-scratch allowance is an upper bound, not a claim that in-place normalization still allocates a second matrix. Scalar work charges exact named conservative formulas, not wall-clock or bit complexity.",
           "Refusal invariant: rank/storage/work errors expose no partial Finite group. A newly distinct state at full bound yields ExceedsBound; a zero bound is exceeded by the mathematical identity after generator admission. ExceedsBound says only that this finite bound is exceeded; it does not certify an infinite group. Shape/error priority and conservative storage refusals are intentional public behavior changes."
         ],
-        "failure_paths": {
-          "module::charge": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
-          "module::product": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
-          "module::braid_relation_defects": "Delegate the entire ordered defect enumeration to the declared default limits.",
-          "module::braid_relation_defects_with_limits": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
-          "module::check_generator_shapes": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
-          "module::relation_admission": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
-          "module::singular_defects": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
-          "module::pair_defects": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
-          "module::braid_triple": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
-          "module::projective_normal_form": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
-          "module::equal_up_to_scalar": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
-          "FiniteMatrixGroup::order": "Read the immutable number of distinct retained elements/classes.",
-          "FiniteMatrixGroup::elements": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
-          "FiniteMatrixGroup::is_projective": "Read whether stored representatives are canonical projective classes.",
-          "FiniteMatrixGroup::contains": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
-          "ClosureOutcome::order": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
-          "module::group_closure": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
-          "module::group_closure_with_limits": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
-          "module::closure_dimension": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
-          "module::closure_admission": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
-          "module::normalized": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
-          "module::initial_group": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
-          "module::record_element": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
-          "module::expand_closure": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure."
+        "open_obligations": [],
+        "operations": {
+          "BraidRelationDefect data": {
+            "obligation": "Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.",
+            "origin": "derive(Debug,Clone,Copy,PartialEq,Eq)"
+          },
+          "ClosureOutcome::Clone": {
+            "obligation": "Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.",
+            "origin": "derive(Debug,Clone)"
+          },
+          "ClosureOutcome::order": {
+            "line": 236,
+            "obligation": "Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.",
+            "signature": "pub fn order(&self) -> Option<usize>"
+          },
+          "FiniteMatrixGroup::Clone": {
+            "obligation": "Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.",
+            "origin": "derive(Clone,Debug)"
+          },
+          "FiniteMatrixGroup::contains": {
+            "line": 212,
+            "obligation": "Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.",
+            "signature": "pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>"
+          },
+          "FiniteMatrixGroup::elements": {
+            "line": 204,
+            "obligation": "Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.",
+            "signature": "pub fn elements(&self) -> &[BasicMatrix<K>]"
+          },
+          "FiniteMatrixGroup::is_projective": {
+            "line": 208,
+            "obligation": "Read whether stored representatives are canonical projective classes.",
+            "signature": "pub fn is_projective(&self) -> bool"
+          },
+          "FiniteMatrixGroup::order": {
+            "line": 200,
+            "obligation": "Read the immutable number of distinct retained elements/classes.",
+            "signature": "pub fn order(&self) -> usize"
+          },
+          "module::braid_relation_defects": {
+            "line": 41,
+            "obligation": "Delegate the entire ordered defect enumeration to the declared default limits.",
+            "signature": "pub fn braid_relation_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n) -> Result<Vec<BraidRelationDefect>, FusionError>"
+          },
+          "module::braid_relation_defects_with_limits": {
+            "line": 47,
+            "obligation": "Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.",
+            "signature": "pub fn braid_relation_defects_with_limits<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    limits: OperationLimits,\n) -> Result<Vec<BraidRelationDefect>, FusionError>"
+          },
+          "module::braid_triple": {
+            "line": 147,
+            "obligation": "Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.",
+            "signature": "fn braid_triple<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>"
+          },
+          "module::charge": {
+            "line": 15,
+            "obligation": "Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.",
+            "signature": "fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>"
+          },
+          "module::check_generator_shapes": {
+            "line": 66,
+            "obligation": "Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.",
+            "signature": "fn check_generator_shapes<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    operation: &'static str,\n) -> Result<(), FusionError>"
+          },
+          "module::closure_admission": {
+            "line": 295,
+            "obligation": "Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.",
+            "signature": "fn closure_admission<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n) -> Result<u128, FusionError>"
+          },
+          "module::closure_dimension": {
+            "line": 275,
+            "obligation": "Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.",
+            "signature": "fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>"
+          },
+          "module::equal_up_to_scalar": {
+            "line": 170,
+            "obligation": "Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.",
+            "signature": "pub fn equal_up_to_scalar<K: FusionScalar>(\n    a: &BasicMatrix<K>,\n    b: &BasicMatrix<K>,\n) -> Result<Option<K>, FusionError>"
+          },
+          "module::expand_closure": {
+            "line": 382,
+            "obligation": "Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.",
+            "signature": "fn expand_closure<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    current: usize,\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    limits: OperationLimits,\n    work: &mut u128,\n) -> Result<bool, FusionError>"
+          },
+          "module::group_closure": {
+            "line": 244,
+            "obligation": "Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.",
+            "signature": "pub fn group_closure<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n) -> Result<ClosureOutcome<K>, FusionError>"
+          },
+          "module::group_closure_with_limits": {
+            "line": 252,
+            "obligation": "Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.",
+            "signature": "pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\n    generators: &[BasicMatrix<K>],\n    bound: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<ClosureOutcome<K>, FusionError>"
+          },
+          "module::initial_group": {
+            "line": 343,
+            "obligation": "Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.",
+            "signature": "fn initial_group<K: FusionScalar + Hash + Eq>(\n    n: usize,\n    projective: bool,\n    limits: OperationLimits,\n) -> Result<FiniteMatrixGroup<K>, FusionError>"
+          },
+          "module::normalized": {
+            "line": 319,
+            "obligation": "Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.",
+            "signature": "fn normalized<K: FusionScalar>(\n    mut m: BasicMatrix<K>,\n    projective: bool,\n) -> Result<BasicMatrix<K>, FusionError>"
+          },
+          "module::pair_defects": {
+            "line": 122,
+            "obligation": "Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.",
+            "signature": "fn pair_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    i: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>"
+          },
+          "module::product": {
+            "line": 26,
+            "obligation": "Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.",
+            "signature": "fn product(factors: &[u128]) -> Result<u128, FusionError>"
+          },
+          "module::projective_normal_form": {
+            "line": 156,
+            "obligation": "Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.",
+            "signature": "pub fn projective_normal_form<K: FusionScalar>(\n    m: &BasicMatrix<K>,\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>"
+          },
+          "module::record_element": {
+            "line": 366,
+            "obligation": "Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.",
+            "signature": "fn record_element<K: FusionScalar + Hash + Eq>(\n    group: &mut FiniteMatrixGroup<K>,\n    h: BasicMatrix<K>,\n    bound: usize,\n) -> bool"
+          },
+          "module::relation_admission": {
+            "line": 81,
+            "obligation": "Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.",
+            "signature": "fn relation_admission(\n    generators: usize,\n    n: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError>"
+          },
+          "module::singular_defects": {
+            "line": 108,
+            "obligation": "Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.",
+            "signature": "fn singular_defects<K: FusionScalar>(\n    generators: &[BasicMatrix<K>],\n    n: usize,\n    limits: OperationLimits,\n    defects: &mut Vec<BraidRelationDefect>,\n) -> Result<(), FusionError>"
+          }
         },
-        "trust_boundary": "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
-        "assurance_limits": [
-          "AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.",
-          "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
-          "Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.",
-          "An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence."
-        ],
         "review_evidence": [
           {
             "path": "code/rust/quality/six_module/assessments/fusion_braid_group.json",
             "sha256": "5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9"
           }
         ],
-        "open_obligations": []
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred."
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"claim_urn\": \"urn:tfqm:fusion:braid_group:bounded-exact-actions:v1\",\n    \"domain\": \"Finite lists of exact square matrices over a lawful field, positive common closure dimension and compatible immutable Hash/Eq. Ordinary closure is in GL(n,K); projective closure is modulo nonzero scalar factors. Explicit bound and OperationLimits may conservatively refuse. Empty relation input is vacuously valid, but closure requires generators.\",\n    \"behavior\": [\n      \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\",\n      \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\",\n      \"Delegate the entire ordered defect enumeration to the declared default limits.\",\n      \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\",\n      \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\",\n      \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\",\n      \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\",\n      \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\",\n      \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\",\n      \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\",\n      \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\",\n      \"Read the immutable number of distinct retained elements/classes.\",\n      \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\",\n      \"Read whether stored representatives are canonical projective classes.\",\n      \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\",\n      \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\",\n      \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\",\n      \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\",\n      \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\",\n      \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\",\n      \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\",\n      \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\",\n      \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\",\n      \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n    ]\n  },\n  \"operations\": {\n    \"module::charge\": {\n      \"line\": 15,\n      \"signature\": \"fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>\",\n      \"obligation\": \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\"\n    },\n    \"module::product\": {\n      \"line\": 26,\n      \"signature\": \"fn product(factors: &[u128]) -> Result<u128, FusionError>\",\n      \"obligation\": \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\"\n    },\n    \"module::braid_relation_defects\": {\n      \"line\": 41,\n      \"signature\": \"pub fn braid_relation_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n) -> Result<Vec<BraidRelationDefect>, FusionError>\",\n      \"obligation\": \"Delegate the entire ordered defect enumeration to the declared default limits.\"\n    },\n    \"module::braid_relation_defects_with_limits\": {\n      \"line\": 47,\n      \"signature\": \"pub fn braid_relation_defects_with_limits<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    limits: OperationLimits,\\n) -> Result<Vec<BraidRelationDefect>, FusionError>\",\n      \"obligation\": \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\"\n    },\n    \"module::check_generator_shapes\": {\n      \"line\": 66,\n      \"signature\": \"fn check_generator_shapes<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    operation: &'static str,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\"\n    },\n    \"module::relation_admission\": {\n      \"line\": 81,\n      \"signature\": \"fn relation_admission(\\n    generators: usize,\\n    n: usize,\\n    limits: OperationLimits,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\"\n    },\n    \"module::singular_defects\": {\n      \"line\": 108,\n      \"signature\": \"fn singular_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    limits: OperationLimits,\\n    defects: &mut Vec<BraidRelationDefect>,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\"\n    },\n    \"module::pair_defects\": {\n      \"line\": 122,\n      \"signature\": \"fn pair_defects<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    i: usize,\\n    limits: OperationLimits,\\n    defects: &mut Vec<BraidRelationDefect>,\\n) -> Result<(), FusionError>\",\n      \"obligation\": \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\"\n    },\n    \"module::braid_triple\": {\n      \"line\": 147,\n      \"signature\": \"fn braid_triple<K: FusionScalar>(\\n    a: &BasicMatrix<K>,\\n    b: &BasicMatrix<K>,\\n    limits: OperationLimits,\\n) -> Result<BasicMatrix<K>, FusionError>\",\n      \"obligation\": \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\"\n    },\n    \"module::projective_normal_form\": {\n      \"line\": 156,\n      \"signature\": \"pub fn projective_normal_form<K: FusionScalar>(\\n    m: &BasicMatrix<K>,\\n) -> Result<Option<(BasicMatrix<K>, K)>, FusionError>\",\n      \"obligation\": \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\"\n    },\n    \"module::equal_up_to_scalar\": {\n      \"line\": 170,\n      \"signature\": \"pub fn equal_up_to_scalar<K: FusionScalar>(\\n    a: &BasicMatrix<K>,\\n    b: &BasicMatrix<K>,\\n) -> Result<Option<K>, FusionError>\",\n      \"obligation\": \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\"\n    },\n    \"FiniteMatrixGroup::order\": {\n      \"line\": 200,\n      \"signature\": \"pub fn order(&self) -> usize\",\n      \"obligation\": \"Read the immutable number of distinct retained elements/classes.\"\n    },\n    \"FiniteMatrixGroup::elements\": {\n      \"line\": 204,\n      \"signature\": \"pub fn elements(&self) -> &[BasicMatrix<K>]\",\n      \"obligation\": \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\"\n    },\n    \"FiniteMatrixGroup::is_projective\": {\n      \"line\": 208,\n      \"signature\": \"pub fn is_projective(&self) -> bool\",\n      \"obligation\": \"Read whether stored representatives are canonical projective classes.\"\n    },\n    \"FiniteMatrixGroup::contains\": {\n      \"line\": 212,\n      \"signature\": \"pub fn contains(&self, m: &BasicMatrix<K>) -> Result<bool, FusionError>\",\n      \"obligation\": \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\"\n    },\n    \"ClosureOutcome::order\": {\n      \"line\": 236,\n      \"signature\": \"pub fn order(&self) -> Option<usize>\",\n      \"obligation\": \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\"\n    },\n    \"module::group_closure\": {\n      \"line\": 244,\n      \"signature\": \"pub fn group_closure<K: FusionScalar + Hash + Eq>(\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    projective: bool,\\n) -> Result<ClosureOutcome<K>, FusionError>\",\n      \"obligation\": \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\"\n    },\n    \"module::group_closure_with_limits\": {\n      \"line\": 252,\n      \"signature\": \"pub fn group_closure_with_limits<K: FusionScalar + Hash + Eq>(\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    projective: bool,\\n    limits: OperationLimits,\\n) -> Result<ClosureOutcome<K>, FusionError>\",\n      \"obligation\": \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\"\n    },\n    \"module::closure_dimension\": {\n      \"line\": 275,\n      \"signature\": \"fn closure_dimension<K: FusionScalar>(generators: &[BasicMatrix<K>]) -> Result<usize, FusionError>\",\n      \"obligation\": \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\"\n    },\n    \"module::closure_admission\": {\n      \"line\": 295,\n      \"signature\": \"fn closure_admission<K: FusionScalar>(\\n    generators: &[BasicMatrix<K>],\\n    n: usize,\\n    limits: OperationLimits,\\n) -> Result<u128, FusionError>\",\n      \"obligation\": \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\"\n    },\n    \"module::normalized\": {\n      \"line\": 319,\n      \"signature\": \"fn normalized<K: FusionScalar>(\\n    mut m: BasicMatrix<K>,\\n    projective: bool,\\n) -> Result<BasicMatrix<K>, FusionError>\",\n      \"obligation\": \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\"\n    },\n    \"module::initial_group\": {\n      \"line\": 343,\n      \"signature\": \"fn initial_group<K: FusionScalar + Hash + Eq>(\\n    n: usize,\\n    projective: bool,\\n    limits: OperationLimits,\\n) -> Result<FiniteMatrixGroup<K>, FusionError>\",\n      \"obligation\": \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\"\n    },\n    \"module::record_element\": {\n      \"line\": 366,\n      \"signature\": \"fn record_element<K: FusionScalar + Hash + Eq>(\\n    group: &mut FiniteMatrixGroup<K>,\\n    h: BasicMatrix<K>,\\n    bound: usize,\\n) -> bool\",\n      \"obligation\": \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\"\n    },\n    \"module::expand_closure\": {\n      \"line\": 382,\n      \"signature\": \"fn expand_closure<K: FusionScalar + Hash + Eq>(\\n    group: &mut FiniteMatrixGroup<K>,\\n    current: usize,\\n    generators: &[BasicMatrix<K>],\\n    bound: usize,\\n    limits: OperationLimits,\\n    work: &mut u128,\\n) -> Result<bool, FusionError>\",\n      \"obligation\": \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n    },\n    \"FiniteMatrixGroup::Clone\": {\n      \"obligation\": \"Clone both private ordered elements and hash keys without changing their matching invariant. Cost depends on retained states and scalar payloads.\",\n      \"origin\": \"derive(Clone,Debug)\"\n    },\n    \"BraidRelationDefect data\": {\n      \"obligation\": \"Copy/clone/equality preserve each literal defect witness. Public defect data does not prove that the defect actually holds.\",\n      \"origin\": \"derive(Debug,Clone,Copy,PartialEq,Eq)\"\n    },\n    \"ClosureOutcome::Clone\": {\n      \"obligation\": \"Clone the same result variant and owned finite group or bound; an ExceedsBound record alone is not an infinitude certificate.\",\n      \"origin\": \"derive(Debug,Clone)\"\n    }\n  },\n  \"invariants\": [\n    \"Shape and numeric invariant: public relation checks validate the first mismatching square shape before cost arithmetic; closure separately rejects empty input and zero/non-square first carrier before sibling mismatch. For n>0, admitted g*n^2<=usize::MAX and g>=1 bound n^2<=usize::MAX and g*n*(n+1)<=2*usize::MAX. For n=0, all dimension products vanish. Checked aggregate products/additions and these bounds protect the remaining widened factors on the content-bound 64-bit target.\",\n    \"Finite carrier invariant: elements starts with identity and index with its exact row-major key; both are private. Every new key is absent before insertion, then exactly one owned element and one owned key are added together. Their order is deterministic BFS discovery order. A cursor explores every generator right-product for every retained element, including elements appended by earlier exploration; completion therefore yields the smallest right-generator-closed set containing identity.\",\n    \"Group interpretation: native admitted generators are invertible by the pinned exact rank solver. Every state is a word in them and every generator right-product lies in the completed finite set. The Lean word/minimality and finite-submonoid inverse theorems establish why complete finite forward closure is a group even when the ambient group is infinite. GL(n,K) construction and Rust-to-model refinement remain explicit source reasoning; no inversion table is required.\",\n    \"Projective invariant: the first nonzero coefficient chooses a unique representative with that coefficient one. Exact division proves reconstruction and invariance under any nonzero scalar factor. Compatible commutative field multiplication respects these classes, so closure models the subgroup of projective GL generated by the inputs. The quotient-group representation is a source argument; Lean proves coordinate normalization, not a complete PGL construction. All-zero products cannot occur for lawful invertible inputs; the defensive path is a typed Inconsistent error.\",\n    \"Ownership/cost invariant: no bound-sized preallocation occurs. The owned element vector doubles as the FIFO frontier, so no second matrix queue or popped matrix clone exists. Ordinary membership uses a borrowed slice. Projective products are scaled in place with one fixed inverse, and identity is already canonical. Only a new state needs its owned hash-key copy. The declared 2*(states+1)*n^2 envelope conservatively covers two retained arrays per state plus transient candidate/new-key headroom; the earlier two-scratch allowance is an upper bound, not a claim that in-place normalization still allocates a second matrix. Scalar work charges exact named conservative formulas, not wall-clock or bit complexity.\",\n    \"Refusal invariant: rank/storage/work errors expose no partial Finite group. A newly distinct state at full bound yields ExceedsBound; a zero bound is exceeded by the mathematical identity after generator admission. ExceedsBound says only that this finite bound is exceeded; it does not certify an infinite group. Shape/error priority and conservative storage refusals are intentional public behavior changes.\"\n  ],\n  \"failure_paths\": {\n    \"module::charge\": \"Admit requested<=limit, including equality and zero; otherwise return Budget preserving what, requested and limit without saturation or truncation.\",\n    \"module::product\": \"Checked u128 product with empty product one; report Overflow at the first overflowing multiplication, never wrap.\",\n    \"module::braid_relation_defects\": \"Delegate the entire ordered defect enumeration to the declared default limits.\",\n    \"module::braid_relation_defects_with_limits\": \"Determine n from the first generator (zero for empty input), validate all shapes before cost admission, admit aggregate storage/work, then list all singular defects followed by adjacent/far defects in original i-major order. Empty input returns no defects; 0x0 generators are singular.\",\n    \"module::check_generator_shapes\": \"Find the first generator not shaped (n,n) and return Shape with expected shape and the actual bad shape. Empty input passes; this private helper does not assert n>0.\",\n    \"module::relation_admission\": \"Checked aggregate generator storage g*n^2 before work estimation. Charge 2*(g*(g-1)+4*max(g-1,0))*n^3+3*g*n^3+g*n*(n+1), with the g-1 factors explicitly zero-clamped as combinatorial empty-pair counts. This conservative scalar-operation model may refuse before rank/multiplication. Shaped native inputs and the first admitted storage bound prove the remaining small u128 factors safe.\",\n    \"module::singular_defects\": \"Append Singular{i} in input order when n=0 or the exact pinned elimination rank is below n; propagate provider failures and preserve prior defect vector ordering.\",\n    \"module::pair_defects\": \"Private i<generators.len() and common admitted square shape: append the adjacent braid failure at i, then far failures (i,j) in ascending j>=i+2. Never reorder multiplication or swap defect witnesses.\",\n    \"module::braid_triple\": \"Under admitted compatible shapes, compute (a*b)*a with checked exact provider multiplication and the same per-operation limits.\",\n    \"module::projective_normal_form\": \"Borrow any shaped matrix. Return None exactly for the all-zero matrix; otherwise take the first row-major nonzero entry lambda and return (lambda^-1*m,lambda). Delegate inverse/scale failures. Reconstruction is m=lambda*normal; this function allocates its necessary owned returned matrix.\",\n    \"module::equal_up_to_scalar\": \"Return None for shape mismatch, either zero matrix, or unequal canonical normal forms. Otherwise return lb/la, the oriented factor satisfying b=(lb/la)*a; inversion/division failures remain typed.\",\n    \"FiniteMatrixGroup::order\": \"Read the immutable number of distinct retained elements/classes.\",\n    \"FiniteMatrixGroup::elements\": \"Borrow the immutable discovery-order elements. No public mutable field or view can invalidate shape/index/closure invariants.\",\n    \"FiniteMatrixGroup::is_projective\": \"Read whether stored representatives are canonical projective classes.\",\n    \"FiniteMatrixGroup::contains\": \"Refuse mismatching shape as false before scalar work. In ordinary mode query the borrowed row-major slice directly, with no matrix clone/allocation. In projective mode canonicalize nonzero input and query its class; zero returns false and provider errors propagate.\",\n    \"ClosureOutcome::order\": \"Return Some(number of elements) only for Finite; ExceedsBound returns None and never asserts infinitude.\",\n    \"module::group_closure\": \"Delegate bounded ordinary/projective forward closure to default operation limits, without preallocating by the requested bound.\",\n    \"module::group_closure_with_limits\": \"Admit nonempty common positive square shape, generator storage/work and invertibility before the zero-bound outcome. For bound>0 seed canonical identity and explore right-products in BFS discovery order. A new candidate at full bound yields ExceedsBound; a completed frontier yields Finite. Budget/provider failure discards partial state rather than exposing a finite certificate.\",\n    \"module::closure_dimension\": \"Reject missing generators with ListLength; reject zero/non-square first shape with NotSquare; reject first incompatible sibling with Shape carrying its actual shape; return common positive dimension.\",\n    \"module::closure_admission\": \"Admit g*n^2 generator slots and g*n*(2*n^2+n+1) conservative rank work before exact rank tests. Reject the first singular generator before any bound=0 result; no group storage is allocated here.\",\n    \"module::normalized\": \"Own a product matrix. Ordinary mode moves it unchanged. Projective mode refuses an unexpected all-zero product, computes one inverse of its first nonzero entry, and scales each original coordinate in place using safe matrix set. A nonzero coordinate implies cols>0; row-major loop indices stay in shape. No second dense buffer or matrix clone is allocated; errors drop the owned partial matrix.\",\n    \"module::initial_group\": \"Private admitted n>0: charge four*n^2 logical scalar slots (two retained arrays and a conservative two-buffer scratch allowance), allocate identity once, clone only the required hash key, and move identity into elements. Identity is already projectively canonical and is not normalized again.\",\n    \"module::record_element\": \"Private admitted compatible canonical h: return true if key already exists; if new and elements.len()>=bound return false before inserting. Otherwise clone exactly one key into the hash set and move h into the ordered vector. The caller has already charged retained/scratch slots.\",\n    \"module::expand_closure\": \"Private current<elements.len(), matching admitted generators, immutable scalar hashes: for each generator charge 2*(states+1)*n^2 retained-plus-scratch slots, then checked-add 2*n^3 plus projective (n^2+1) scalar work. Multiply the borrowed current element on the right, normalize its owned result in place and record a new element/class; stop on first excess-bound candidate or typed failure.\"\n  },\n  \"trust_boundary\": \"Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.\",\n  \"assurance_limits\": [\n    \"AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.\",\n    \"Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.\",\n    \"Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.\",\n    \"An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/assessments/fusion_braid_group.json\",\n      \"sha256\": \"5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/fusion_categories/braid_group.rs.contract.yaml"
-      ]
+      "sha256": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100"
     },
     {
-      "sha256": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c",
       "bytes": 903,
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"review_incomplete\",\n  \"formal_specification\": null,\n  \"operations\": {},\n  \"invariants\": [],\n  \"failure_paths\": {},\n  \"trust_boundary\": null,\n  \"assurance_limits\": [\n    \"This source has not received a complete symbol-level contract and five-gate review.\",\n    \"No production safety, semantic theorem or completed score is inferred from this file's existence.\"\n  ],\n  \"review_evidence\": [],\n  \"open_obligations\": [\n    \"Specify actual domains, results, error priority, invariants and operational bounds for every entry point.\",\n    \"Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/fusion_categories/braid_group.rs",
-          "sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979",
-          "language": "Rust"
+          "sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979"
         },
-        "status": "review_incomplete",
-        "formal_specification": null,
-        "operations": {},
-        "invariants": [],
-        "failure_paths": {},
-        "trust_boundary": null,
         "assurance_limits": [
           "This source has not received a complete symbol-level contract and five-gate review.",
           "No production safety, semantic theorem or completed score is inferred from this file's existence."
         ],
-        "review_evidence": [],
+        "failure_paths": {},
+        "formal_specification": null,
+        "invariants": [],
         "open_obligations": [
           "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
           "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
-        ]
+        ],
+        "operations": {},
+        "review_evidence": [],
+        "schema_version": "1.0.0",
+        "status": "review_incomplete",
+        "trust_boundary": null
       },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"review_incomplete\",\n  \"formal_specification\": null,\n  \"operations\": {},\n  \"invariants\": [],\n  \"failure_paths\": {},\n  \"trust_boundary\": null,\n  \"assurance_limits\": [\n    \"This source has not received a complete symbol-level contract and five-gate review.\",\n    \"No production safety, semantic theorem or completed score is inferred from this file's existence.\"\n  ],\n  \"review_evidence\": [],\n  \"open_obligations\": [\n    \"Specify actual domains, results, error priority, invariants and operational bounds for every entry point.\",\n    \"Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence.\"\n  ]\n}\n",
+      "sha256": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c"
+    },
+    {
+      "bytes": 1617,
       "original_paths": [
-        "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.contract.yaml"
-      ]
+        "code/rust/src/fusion_categories/braid_group.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n      \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n  \"subject\": \"code/rust/src/fusion_categories/braid_group.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/fusion_categories/braid_group.rs",
+          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/fusion_categories/braid_group.rs",
+            "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
+        "subject": "code/rust/src/fusion_categories/braid_group.rs"
+      },
+      "sha256": "21d215092086fdd9c4eebef03b5e6ba341381df4ff79f5b4b6b6042415477ec4"
     }
   ],
+  "current_contract": "21d215092086fdd9c4eebef03b5e6ba341381df4ff79f5b4b6b6042415477ec4",
+  "current_scoring": "a8406d38a134a7ce64c8d4fac8a17fbfda7352dfa677c1e2ebfa23d3c35d6922",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/fusion_categories/braid_group.rs.contract.yaml": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100",
+    "code/rust/src/fusion_categories/braid_group.rs.scoring.yaml": "ea6975e9df803a1d31ed2d3d1110c39fae2a54306740119e3d353cc704e4eeb2",
+    "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.contract.yaml": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c",
+    "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.scoring.yaml": "6d26693a94a6bde0022f708ad29e3cd551aaf776782f10fefa4763bcce1408ff"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "ea6975e9df803a1d31ed2d3d1110c39fae2a54306740119e3d353cc704e4eeb2",
       "bytes": 2387,
+      "original_paths": [
+        "code/rust/src/fusion_categories/braid_group.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"explicit_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/quality/six_module/assessments/fusion_braid_group.json\",\n    \"sha256\": \"5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs.contract.yaml\",\n    \"sha256\": \"80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"function_count\": 24,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json\",\n        \"sha256\": \"ad2858313543f981bf21f5b453d19b0ee31131f005cf98c9ad0c3df385def2fc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/metrics.json\",\n        \"sha256\": \"523277cd3cf4277270a49722342a84cfa0c51dee2048f208f43fa76891e570eb\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/fusion_categories/braid_group.rs",
-          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/fusion_categories/braid_group.rs",
+          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/quality/six_module/assessments/fusion_braid_group.json",
+          "sha256": "5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9"
+        },
+        "assessment_status": "explicit_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/fusion_categories/braid_group.rs.contract.yaml",
+          "sha256": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100"
+        },
         "engineering_target": "A",
-        "level": "L4",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -518,30 +391,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L4A",
         "is_complete": true,
-        "assessment_status": "explicit_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/quality/six_module/assessments/fusion_braid_group.json",
-          "sha256": "5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9"
-        },
-        "contract": {
-          "path": "code/rust/src/fusion_categories/braid_group.rs.contract.yaml",
-          "sha256": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L4",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4A",
         "structural_measurement": {
-          "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-          "function_count": 24,
-          "maxima": {
-            "ccn": 9,
-            "cognitive_upper_bound": 6,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json",
@@ -556,32 +415,43 @@
               "sha256": "f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702"
             }
           ],
-          "scope": "Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling."
+          "function_count": 24,
+          "maxima": {
+            "ccn": 9,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.",
+          "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"explicit_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/quality/six_module/assessments/fusion_braid_group.json\",\n    \"sha256\": \"5f0915644f911a9ddb78861f0310bb0b1d5e7cebf048b20a862544b563332ce9\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs.contract.yaml\",\n    \"sha256\": \"80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"function_count\": 24,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json\",\n        \"sha256\": \"ad2858313543f981bf21f5b453d19b0ee31131f005cf98c9ad0c3df385def2fc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/metrics.json\",\n        \"sha256\": \"523277cd3cf4277270a49722342a84cfa0c51dee2048f208f43fa76891e570eb\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/fusion_categories/braid_group.rs.scoring.yaml"
-      ]
+      "sha256": "ea6975e9df803a1d31ed2d3d1110c39fae2a54306740119e3d353cc704e4eeb2"
     },
     {
-      "sha256": "6d26693a94a6bde0022f708ad29e3cd551aaf776782f10fefa4763bcce1408ff",
       "bytes": 2317,
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs.contract.yaml\",\n    \"sha256\": \"fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"function_count\": 13,\n    \"maxima\": {\n      \"ccn\": 27,\n      \"cognitive_upper_bound\": 24,\n      \"control_nesting\": 4\n    },\n    \"structural_ceiling\": \"D\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json\",\n        \"sha256\": \"b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/metrics.json\",\n        \"sha256\": \"f601a9e274660c4964e6867e210d87cbb6ccf0e5f43e8a878685795cffb29834\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/fusion_categories/braid_group.rs",
-          "sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/fusion_categories/braid_group.rs",
+          "sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": null,
+        "assessment_status": "incomplete",
+        "composite_grade": null,
+        "contract": {
+          "path": "code/rust/src/fusion_categories/braid_group.rs.contract.yaml",
+          "sha256": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c"
+        },
         "engineering_target": "A",
-        "level": null,
         "gates": {
           "G1": null,
           "G2": null,
@@ -589,29 +459,18 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
         "is_complete": false,
-        "assessment_status": "incomplete",
-        "assessment_source": null,
-        "contract": {
-          "path": "code/rust/src/fusion_categories/braid_group.rs.contract.yaml",
-          "sha256": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": null,
         "open_obligations": [
           "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
         ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structural_measurement": {
-          "source_sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979",
-          "function_count": 13,
-          "maxima": {
-            "ccn": 27,
-            "cognitive_upper_bound": 24,
-            "control_nesting": 4
-          },
-          "structural_ceiling": "D",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
@@ -626,38 +485,32 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete."
+          "function_count": 13,
+          "maxima": {
+            "ccn": 27,
+            "cognitive_upper_bound": 24,
+            "control_nesting": 4
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete.",
+          "source_sha256": "7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979",
+          "structural_ceiling": "D"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs.contract.yaml\",\n    \"sha256\": \"fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"7c8f23f3a244ab59e54217aa20062c4b031a39ebb3d45d9522eb4de629e8d979\",\n    \"function_count\": 13,\n    \"maxima\": {\n      \"ccn\": 27,\n      \"cognitive_upper_bound\": 24,\n      \"control_nesting\": 4\n    },\n    \"structural_ceiling\": \"D\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json\",\n        \"sha256\": \"b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/metrics.json\",\n        \"sha256\": \"f601a9e274660c4964e6867e210d87cbb6ccf0e5f43e8a878685795cffb29834\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T013858Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete.\"\n  }\n}\n",
-      "original_paths": [
-        "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.scoring.yaml"
-      ]
+      "sha256": "6d26693a94a6bde0022f708ad29e3cd551aaf776782f10fefa4763bcce1408ff"
     },
     {
-      "sha256": "dd77b824a75cfc28d936f3bbe25f7b7a31339b3827cf2c7e47124fd0be6300fe",
       "bytes": 3354,
+      "original_paths": [
+        "code/rust/src/fusion_categories/braid_group.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fusion_categories:braid-group:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ],\n  \"structure\": {\n    \"source_sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"function_count\": 24,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json\",\n        \"sha256\": \"ad2858313543f981bf21f5b453d19b0ee31131f005cf98c9ad0c3df385def2fc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/metrics.json\",\n        \"sha256\": \"523277cd3cf4277270a49722342a84cfa0c51dee2048f208f43fa76891e570eb\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/fusion_categories/braid_group.rs",
-          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:fusion_categories:braid-group:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -666,40 +519,44 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 9,
-          "lizard_ccn": 9,
-          "weighted_control_upper_bound": 6,
-          "control_nesting": 2
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 2,
+          "lizard_ccn": 9,
+          "radon_ccn": 9,
+          "weighted_control_upper_bound": 6
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
-          "function_count": 24,
-          "maxima": {
-            "ccn": 9,
-            "cognitive_upper_bound": 6,
-            "control_nesting": 2
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json",
@@ -714,21 +571,74 @@
               "sha256": "f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702"
             }
           ],
-          "scope": "Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling."
-        }
+          "function_count": 24,
+          "maxima": {
+            "ccn": 9,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 2
+          },
+          "opaque_macros": [],
+          "scope": "Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.",
+          "source_sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6",
+          "structural_ceiling": "A"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fusion_categories:braid-group:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 2 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 6,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ],\n  \"structure\": {\n    \"source_sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\",\n    \"function_count\": 24,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/receipt.json\",\n        \"sha256\": \"ad2858313543f981bf21f5b453d19b0ee31131f005cf98c9ad0c3df385def2fc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/metrics.json\",\n        \"sha256\": \"523277cd3cf4277270a49722342a84cfa0c51dee2048f208f43fa76891e570eb\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T033433Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Final calibrated authored-body metrics. Source-level semantic, exact arithmetic, failure, provider/caller and operational cost review are separate explicitly bound evidence; no grade is inferred from a ceiling.\"\n  }\n}\n",
+      "sha256": "dd77b824a75cfc28d936f3bbe25f7b7a31339b3827cf2c7e47124fd0be6300fe"
+    },
+    {
+      "bytes": 1600,
       "original_paths": [
-        "code/rust/src/fusion_categories/braid_group.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/fusion_categories/braid_group.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n    \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/fusion_categories/braid_group.rs\",\n      \"sha256\": \"a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/fusion_categories/braid_group.rs",
+          "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/fusion_categories/braid_group.rs",
+            "sha256": "a712d750b7701b6358632d1617310c75ccc60f18a6c5a5af38109297ba50efc6"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "a8406d38a134a7ce64c8d4fac8a17fbfda7352dfa677c1e2ebfa23d3c35d6922"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/fusion_categories/braid_group.rs.contract.yaml": "80c43bd5990c31d9166101a3e922a197684cd2ee2c10608ca97701384a7f0100",
-    "code/rust/src/fusion_categories/braid_group.rs.scoring.yaml": "ea6975e9df803a1d31ed2d3d1110c39fae2a54306740119e3d353cc704e4eeb2",
-    "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.contract.yaml": "fd6cbf8378801362d4a45044888d7bf93bddd107455b945bd41d58f08919d67c",
-    "evidence/quality/six_module/checkpoint-011/previous/code/rust/src/fusion_categories/braid_group.rs.scoring.yaml": "6d26693a94a6bde0022f708ad29e3cd551aaf776782f10fefa4763bcce1408ff"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

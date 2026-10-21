@@ -1,0 +1,197 @@
+{
+  "task_id": "TFQ-0031",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a5-1",
+  "input_sha256": "a5c3af79a0175f128762e01b929e940422f1466cf34c00eae463ef70fca4bbb3",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_part_c_check",
+          "equation_or_predicate": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite map.",
+          "typing_conditions": "finite lattice; strong-coupling rows only; no continuum claim",
+          "source_pins": [
+            {
+              "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+              "declaration": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+              "line": 67
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+            "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+            "kind": "def",
+            "line": 67,
+            "lang": "python"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Continuum (a -> 0) mass-gap claim: no finite certificate or admitted source supplies it; remains open.",
+        "Non-perturbative behaviour at weak coupling as the spacing goes to zero: not derivable from strong-coupling formulae; remains open.",
+        "F002.S001 bridge theorem: shelf is empty (README.md admits no book, GAP-F002-S001-001 open); cited only as an open bridge.",
+        "No existing declarations found for G_wilson_loop, G_creutz_ratio, G_strong_coupling_area_law, G_beta0; all are proposed_new.",
+        "Signatures of the two @SRC test functions are not asserted here; they are cited only via the host-verified relation R_part_c_check.",
+        "generator G_wilson_loop unverified: no existing declaration cited",
+        "generator G_creutz_ratio unverified: no existing declaration cited",
+        "generator G_strong_coupling_area_law unverified: no existing declaration cited",
+        "generator G_beta0 unverified: no existing declaration cited",
+        "relation R_creutz_def unverified: no existing declaration cited",
+        "relation R_strong_coupling_scope unverified: no existing declaration cited",
+        "relation R_bridge_open unverified: no existing declaration cited",
+        "lemma L_creutz_log_split unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+        "near_miss NM_strong_to_continuum unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_beta0_implies_confinement unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_shelf_as_bridge unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_test_as_proof unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_part_c_check",
+        "equation_or_predicate": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the finite map.",
+        "typing_conditions": "finite lattice; strong-coupling rows only; no continuum claim",
+        "source_pins": [
+          {
+            "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+            "declaration": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+            "line": 67
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py",
+          "decl": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+          "kind": "def",
+          "line": 67,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-E9754F5006EF",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "G_creutz_ratio . slot 0 <- G_wilson_loop via R_creutz_def",
+        "evidence": "the outer and inner generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-fable-5-1",
+        "provider": "anthropic",
+        "tier": 5,
+        "node_id": "TFQ-0031"
+      },
+      {
+        "id": "NEG-E9754F5006EF",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "G_creutz_ratio . slot 1 <- G_wilson_loop via R_creutz_def",
+        "evidence": "the outer and inner generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-fable-5-1",
+        "provider": "anthropic",
+        "tier": 5,
+        "node_id": "TFQ-0031"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Continuum (a -> 0) mass-gap claim: no finite certificate or admitted source supplies it; remains open.",
+      "Non-perturbative behaviour at weak coupling as the spacing goes to zero: not derivable from strong-coupling formulae; remains open.",
+      "F002.S001 bridge theorem: shelf is empty (README.md admits no book, GAP-F002-S001-001 open); cited only as an open bridge.",
+      "No existing declarations found for G_wilson_loop, G_creutz_ratio, G_strong_coupling_area_law, G_beta0; all are proposed_new.",
+      "Signatures of the two @SRC test functions are not asserted here; they are cited only via the host-verified relation R_part_c_check.",
+      "generator G_wilson_loop unverified: no existing declaration cited",
+      "generator G_creutz_ratio unverified: no existing declaration cited",
+      "generator G_strong_coupling_area_law unverified: no existing declaration cited",
+      "generator G_beta0 unverified: no existing declaration cited",
+      "relation R_creutz_def unverified: no existing declaration cited",
+      "relation R_strong_coupling_scope unverified: no existing declaration cited",
+      "relation R_bridge_open unverified: no existing declaration cited",
+      "lemma L_creutz_log_split unverified: Lean elaboration skipped: installed lean 4.35.0 does not match lean4/lean-toolchain 4.33.1 (toolchain check)",
+      "near_miss NM_strong_to_continuum unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_beta0_implies_confinement unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_shelf_as_bridge unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_test_as_proof unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_beta0_su3_nf6",
+        "expr": "11 - 2/3*6",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      },
+      {
+        "id": "N_beta0_su3_nf3",
+        "expr": "11 - 2/3*3",
+        "value": "9",
+        "host_evidence": {
+          "recomputed": "9"
+        }
+      },
+      {
+        "id": "N_beta0_zero_nf",
+        "expr": "11*3/2",
+        "value": "33/2",
+        "host_evidence": {
+          "recomputed": "33/2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,192 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-TRANSITION-BALANCE-SYZYGY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For 6x6 matrices A, B over a commutative star ring with W = A* B, sum_k W_jk - 6 equals
+    an explicit combination of the row-Gram residuals of B and the first-row gauge residuals of A and
+    B, with a conjugate column identity; on solutions all row and column sums of W are six.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: An ideal-membership redundancy only; it gives no Jacobian rank or nonextension result.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1265_mub6_transition_balance_syzygy.md
+    sha256: d8e7470cfc639794ff33f8df888b2b577a6921d9692a13ac56f4670f591e518d
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_transition_balance_syzygy_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Mat6
+  line: 20
+  signature_excerpt: 'abbrev Mat6 (R : Type*)'
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: balanceResidual
+  line: 27
+  signature_excerpt: 'def balanceResidual (A B : Mat6 R) (j : Fin 6) : R'
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rowGramResidual
+  line: 24
+  signature_excerpt: 'def rowGramResidual (B : Mat6 R) (m : Fin 6) : R'
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaugeResidual
+  line: 22
+  signature_excerpt: 'def gaugeResidual (A : Mat6 R) (j : Fin 6) : R'
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: columnBalanceResidual
+  line: 30
+  signature_excerpt: 'def columnBalanceResidual (A B : Mat6 R) (k : Fin 6) : R'
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: row_balance_syzygy
+  line: 33
+  signature_excerpt: |-
+    theorem row_balance_syzygy (A B : Mat6 R) (j : Fin 6) :
+        balanceResidual A B j =
+          (∑ m, star (A m j) * rowGramResidual B m) -
+          (∑ m, ∑ k, star (A m j) * B m k * star (gaugeResidual B k)) +
+          6 * star (gaugeResidual A j)
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: column_balance_syzygy
+  line: 82
+  signature_excerpt: |-
+    theorem column_balance_syzygy (A B : Mat6 R) (k : Fin 6) :
+        columnBalanceResidual A B k =
+          (∑ m, star (rowGramResidual A m) * B m k) -
+          (∑ m, ∑ j, gaugeResidual A j * (star (A m j) * B m k)) +
+          gaugeResidual B k * 6
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: balanceResidual_zero
+  line: 70
+  signature_excerpt: |-
+    theorem balanceResidual_zero (A B : Mat6 R) (j : Fin 6)
+        (hrow : ∀ m, rowGramResidual B m = 0)
+        (hB : ∀ k, gaugeResidual B k = 0)
+        (hA : gaugeResidual A j = 0) : balanceResidual A B j = 0
+  source: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  source_sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/MubGaugeSyzygy.lean::row_balance_syzygy
+  availability: local
+  symbol: row_balance_syzygy
+  path: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/MubGaugeSyzygy.lean::column_balance_syzygy
+  availability: local
+  symbol: column_balance_syzygy
+  path: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/MubGaugeSyzygy.lean::balanceResidual_zero
+  availability: local
+  symbol: balanceResidual_zero
+  path: lean4/MubGaugeSyzygy.lean
+  repository: this_repository
+  sha256: f2596552a3a94f1ab0410172a31ae89a9ce480f5e9fb716104f04d8382bc9b7b
+  declaration_status: declaration_found_not_proof_checked
+  line: 70
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

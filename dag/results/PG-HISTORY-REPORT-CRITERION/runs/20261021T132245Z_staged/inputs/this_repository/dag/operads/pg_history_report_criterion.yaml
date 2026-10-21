@@ -1,0 +1,332 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-HISTORY-REPORT-CRITERION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A question over histories factors through the report image iff it is constant on report fibers,
+    and the factorization is unique on the image. The mpr direction (arbitrary report images) uses Classical.choice;
+    a constructive listed-history version is not established.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - 'Classical.choice (assumption: in Paper.lean, per its header comment)'
+  source_bottleneck: Constructive version for explicitly listed histories is the Fable 04 target (PG-PREGEN-CONSTRUCTIVE-SUMMARY).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:163-201
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:24
+  paper_refs:
+  - dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  paper_relocations:
+  - from: papers/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+    to: dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+    sha256: ef319e71eac79008649a624aca8e56b81cb4b0d466f4fe53259791b4334d156f
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/pregenesis_pg_history_report_criterion_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: ReportImage
+  line: 7
+  signature_excerpt: 'def ReportImage {H V : Type} (report : H → V)'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FiberConstant
+  line: 25
+  signature_excerpt: "def FiberConstant\n    {State Presentation Output : Type _}\n    (present : State → Presentation)\
+    \ (target : State → Output) : Prop"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean
+  repository: the_symbol_game
+  source_sha256: 06f7cc18fdbed3daf177f71300f15e5930fd87494b4d7d4275741c6da5c02a37
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: is
+  line: 20
+  signature_excerpt: 'structure is used.
+
+    -/
+
+
+    namespace WitnessedDifference.Descent'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean
+  repository: the_symbol_game
+  source_sha256: 06f7cc18fdbed3daf177f71300f15e5930fd87494b4d7d4275741c6da5c02a37
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FactorsThrough
+  line: 31
+  signature_excerpt: "def FactorsThrough\n    {State Presentation Output : Type _}\n    (present : State → Presentation)\
+    \ (target : State → Output) : Prop"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean
+  repository: the_symbol_game
+  source_sha256: 06f7cc18fdbed3daf177f71300f15e5930fd87494b4d7d4275741c6da5c02a37
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FiberConstant
+  line: 19
+  signature_excerpt: "def FiberConstant {X : Type u} {R : Type v} {D : Type w}\n    (report : X → R) (decision\
+    \ : X → D) : Prop"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  source_sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: imageReport
+  line: 16
+  signature_excerpt: "def imageReport {X : Type u} {R : Type v} (report : X → R) (x : X) :\n    ReportImage report"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  source_sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ReportImage
+  line: 13
+  signature_excerpt: 'def ReportImage {X : Type u} {R : Type v} (report : X → R)'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  source_sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FactorsOnImage
+  line: 23
+  signature_excerpt: "def FactorsOnImage {X : Type u} {R : Type v} {D : Type w}\n    (report : X → R) (decision\
+    \ : X → D) : Prop"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  source_sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: history_report_criterion
+  line: 10
+  signature_excerpt: "theorem history_report_criterion {H V S : Type}\n    (report : H → V) (answer : H → S) :\n\
+    \    (∃ factor : ReportImage report → S,\n      ∀ h, factor ⟨report h, ⟨h, rfl⟩⟩ = answer h) ↔\n    (∀ h h',\
+    \ report h = report h' → answer h = answer h')"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: history_factor_unique
+  line: 26
+  signature_excerpt: "theorem history_factor_unique {H V S : Type}\n    (report : H → V) (answer : H → S)\n  \
+    \  (a b : ReportImage report → S)\n    (ha : ∀ h, a ⟨report h, ⟨h, rfl⟩⟩ = answer h)\n    (hb : ∀ h, b ⟨report\
+    \ h, ⟨h, rfl⟩⟩ = answer h) : a = b"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: exists_descent_of_constant
+  line: 531
+  signature_excerpt: "theorem exists_descent_of_constant {X Y Z : Type} (q : X → Y) (f : X → Z)\n    (h : ∀ x\
+    \ x', q x = q x' → f x = f x') :\n    ∃ g : { y : Y // ∃ x, q x = y } → Z, ∀ x, g ⟨q x, ⟨x, rfl⟩⟩ = f x"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  source_sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: descent_unique
+  line: 545
+  signature_excerpt: "theorem descent_unique {X Y Z : Type} (q : X → Y) (f : X → Z)\n    (g₁ g₂ : { y : Y // ∃\
+    \ x, q x = y } → Z)\n    (h₁ : ∀ x, g₁ ⟨q x, ⟨x, rfl⟩⟩ = f x)\n    (h₂ : ∀ x, g₂ ⟨q x, ⟨x, rfl⟩⟩ = f x)\n\
+    \    (y : { y : Y // ∃ x, q x = y }) : g₁ y = g₂ y"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  source_sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: function_descends_iff_fiber_constant
+  line: 37
+  signature_excerpt: "theorem function_descends_iff_fiber_constant\n    {State Presentation Output : Type _}\n\
+    \    (present : State → Presentation) (target : State → Output)\n    (hsurjective : Function.Surjective present)\
+    \ :\n    FactorsThrough present target ↔ FiberConstant present target"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean
+  repository: the_symbol_game
+  source_sha256: 06f7cc18fdbed3daf177f71300f15e5930fd87494b4d7d4275741c6da5c02a37
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: factorization_iff_fiber_constancy
+  line: 27
+  signature_excerpt: "theorem factorization_iff_fiber_constancy {X : Type u} {R : Type v} {D : Type w}\n    (report\
+    \ : X → R) (decision : X → D) :\n    FactorsOnImage report decision ↔ FiberConstant report decision"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  source_sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: pg_to_sn_and_wdp_route_chain_composition
+  line: 1257
+  signature_excerpt: "theorem pg_to_sn_and_wdp_route_chain_composition\n    (c0 c1 c2 d : Nat) :\n    ((1 + 1\
+    \ = 2 ∧ 2 > 1) ∧ (0 + 2 = 2)) ∧\n    ((c0 < c1 ∧ c1 < c2 → c0 ≠ c2) ∧ (∀ x y : Fin 3, x.val = y.val → x =\
+    \ y)) ∧\n    (([0, 1] ≠ [1, 0]) ∧ ((1 + 0, 0 + 1) = (0 + 1, 1 + 0))) ∧\n    ((d == 0) = true ↔ d = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::history_report_criterion
+  availability: external
+  symbol: history_report_criterion
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  declaration_status: declaration_found_not_proof_checked
+  line: 10
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::history_factor_unique
+  availability: external
+  symbol: history_factor_unique
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+  repository: the_symbol_game
+  sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::exists_descent_of_constant
+  availability: external
+  symbol: exists_descent_of_constant
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  declaration_status: declaration_found_not_proof_checked
+  line: 531
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::descent_unique
+  availability: external
+  symbol: descent_unique
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+  repository: the_symbol_game
+  sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  declaration_status: declaration_found_not_proof_checked
+  line: 545
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean::function_descends_iff_fiber_constant
+  availability: external
+  symbol: function_descends_iff_fiber_constant
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean
+  repository: the_symbol_game
+  sha256: 06f7cc18fdbed3daf177f71300f15e5930fd87494b4d7d4275741c6da5c02a37
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy
+  availability: external
+  symbol: factorization_iff_fiber_constancy
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean
+  repository: the_symbol_game
+  sha256: 6c20ad0f18828ce44925bc2a672f1bab7bdc432e98cfee511fb9b0d43fc4a9c8
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1257
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs::FactorizationCertificate
+  availability: local
+  symbol: FactorizationCertificate
+  path: code/rust/src/category_theory/finite_report_query.rs
+  repository: this_repository
+  sha256: 87c1797da82fc8d396056a02f4e5b4143f67c8ebebcac78317a7e45d09e8691e
+  declaration_status: changed_source_declaration_requires_semantic_review
+  role: source_lead_requires_re_review
+  prior_source_binding:
+    original_ref: omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs::FactorizationCertificate
+    availability: local
+    symbol: FactorizationCertificate
+    path: code/rust/src/category_theory/finite_report_query.rs
+    repository: this_repository
+    sha256: ce1f1c60531c616bc5aac9af3c15ac4c7373691d150917def1533fbe5785120e
+    declaration_status: declaration_found_not_executed
+    line: 114
+    role: source_lead_only
+    source_revision: c3df2b4cb1f232355ca4fdeb6336b2939324a780
+  line: 151
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Upstream restored code/rust/src/category_theory/finite_report_query.rs after this collection was mined. Re-review
+  its actual semantics; the prior source pin remains in prior_source_binding.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

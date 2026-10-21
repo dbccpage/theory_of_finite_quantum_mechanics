@@ -13,7 +13,7 @@
 LggrFiniteResults.lean under lean4/quantum_mechanics: finite LGGR results only, from the QDDC, LGGR and no-go implementation-status thread. Gaps named by that thread: the l1 defect and LP dual live only in Rust, the Lean gate model is not linked to the Rust gate, and Proposition II-open stays OPEN.
 
 ### Governing Obligation
-Finite pushforward functoriality, n-cycle holonomy obstruction, 3-cycle LP dual 2/3 bound, and Rust LGGR gate equivalence are mechanized in LggrFiniteResults.lean.
+Not covered by the PFP review: Prove the external Rust gate/representation and arbitrary LP/cycle refinements. Proposition II-open and physical-selection claims remain open; a census/route partition is not this proof.
 
 ### Source Status
 MECHANIZED in LggrFiniteResults.lean (B1, B2', B11, B11', and Part 6 LP dual 2/3 bound + gate alignment) with Rust witness

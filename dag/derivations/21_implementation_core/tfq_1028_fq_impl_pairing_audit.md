@@ -1,6 +1,6 @@
 # [TFQ-1028] FQ-IMPL-PAIRING-AUDIT
 
-> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-IMPL-PAIRING-AUDIT` (`PROVED_LEAN`)  
+> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-IMPL-PAIRING-AUDIT` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `bd3a7d07-3e3d-5e26-92a9-77d20704f5eb`  
 > **Parent Derivation**: [TFQ-1009](../10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-pairing_audit.rs grades candidate state-effect pairings by identical finite checks on a declared packet and reports that no check selects the Born pairing. It is a Rust-only negative result consistent with GAP-FQM-021; no Lean theorem and no distinct paper section named it by stem beyond catalog mentions.
+Reviewed scope: Actual state/projector arrays and pairing differences plus a negative nonlinear extension are exact; off-diagonal and polynomial-negative identities are kernel checked.
 
 ### Governing Obligation
-Packet-relative; a different packet could separate pairings.
+Unmet after the PFP review: Run the full source registry and its complete positivity/normalization/composite contracts, then justify a uniqueness theorem if available. This small packet neither selects Born nor makes every nonlinear alternative physically admissible. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 module docs: "every candidate probability pairing is graded by the same finite checks on a declared packet, and no check selects the Born pairing"

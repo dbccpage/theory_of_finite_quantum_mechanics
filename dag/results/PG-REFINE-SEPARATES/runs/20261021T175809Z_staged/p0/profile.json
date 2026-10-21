@@ -1,0 +1,189 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "Mined the source declarations refineReport, refine_preserves, refine_separates (Paper.lean lines 59-66), supplied_tag_separates (Paper001.lean line 96, Fin 2 tag, one pair) and triangle_not_two_colored (Paper.lean line 69). The single-pair theorem is general and non-vacuous; the triangle theorem is a fixed three-Bool instance; the many-conflict statement (conflict graph, proper colouring, a 3-clique needs three colours) exists only as prose in paper.md section 9. This node proves the colouring characterisation, the odd-closed-walk obstruction and the fibre bit count in Lean for arbitrary relations/finite types, and tabulates all labelled graphs on up to 5 vertices natively. The sha256 of the three bound source files matches their operad pins (Paper.lean b0f6365d, Paper001.lean b9034069, DerivationDagQMClosure.lean c9ad9c23); the DerivationDagQMClosure theorem pg_to_sn_and_wdp_route_chain_composition is a conjunction of fixed arithmetic facts and does not mention refinement, so it supplies nothing here.",
+  "independent_predicates": [
+    "Union-find components and breadth-first two-colouring replace the producer's depth-first components and exhaustive tag enumeration; proper one-bit tags counted as 2^components when bipartite.",
+    "Chromatic number by dynamic programming over vertex subsets (cover by independent sets), minimal bits as bit_length(chi-1); the producer uses backtracking colourings with 2^b colours.",
+    "Odd girth as the least odd k with nonzero trace of A^k; the producer uses breadth-first levels.",
+    "Enumeration identity: sum over bipartite G of 2^c(G) equals sum_k C(n,k) 2^(k(n-k)); labelled bipartite count equals graphs with at most one bit.",
+    "Injective tag counts as falling factorials (2^b)_m; refinement records recomputed by evaluating the refinement on every (q, t, a, b) in the checker and compared with the closed forms n(n-1) o^(n-1) t^(n-1) (t-1) and n(n-1) o^(n-1) (o-1) t^n; exact Python/Rust wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Kernel-checked and general over all types A, O, T: the refined report (q, t) keeps q as its first projection; a differing tag separates a pair (the source theorem refine_separates is this forward direction only); on a pair the old report collapses, the tag decides separation exactly (refine_separates_iff, new); refinement never merges what q separated. For a conflict relation C contained in the collapse of q: a GIVEN tag resolves every conflict iff it is proper for C (resolves_iff_proper); SOME b-bit tag (Fin b -> Bool) resolves every conflict iff C has a proper 2^b-colouring (refine_separates_many, an existence statement over tags). A Bool tag proper for C forbids any odd closed walk in C (so no triangle, no 5-cycle); this is the forward direction only, the converse (no odd closed walk implies a one-bit tag, Konig) is not in the kernel and is used natively (bipartite iff odd girth 0; one-bit tags 2^components when bipartite). For a finite type A in which every pair of distinct elements conflicts (a collapsed fibre taken as its own type, or q constant) a b-bit tag separating all pairs exists iff |A| <= 2^b (fibre_bits_iff; one bit iff |A| <= 2, fibre_one_bit_iff); for the fibre {a // q a = x} of an arbitrary report q some b-bit tag on the whole type resolves all conflicts between distinct fibre elements iff the fibre has at most 2^b elements (fibre_report_bits_iff). Native columns are counts over all (q, t) and ordered pairs (a, b), a = b allowed: quadruples = o^n t^n n^2; separated_by_tag = pairs with q a = q b and t a != t b; refined_equal = pairs with equal refined reports; old_separation_kept = pairs with q a != q b (all stay separated); iff_failures = pairs where equality of refined reports differs from equality of both components (0; the checker evaluates the refinement itself). Exact native tables: 14 named conflict graphs (components, proper one-bit tag counts 2^c or 0, chromatic number, minimal bits, odd girth), all labelled graphs on 1..5 vertices (labelled bipartite counts 1,2,7,41,376; minimal-bit distributions), fibre tag counts for m=1..5 and bits for m=6,8,9,17, and refinement counts for five small (n,o,t).",
+    "does_not_support": "Any algorithm, complexity or guarantee for FINDING a tag (the tables and the iff are existence statements, not search procedures); which tag a host should supply; the converse of the odd-closed-walk theorem in the kernel (Konig; native only); conflict graphs on more than 5 vertices beyond the 14 named ones; infinite carriers; any measurement, physical or interpretive reading of tags.",
+    "narrowest_claim": "For a report q and a conflict relation C inside its collapse, SOME b-bit tag resolves all conflicts iff C has a proper 2^b-colouring (refine_separates_many); a GIVEN tag resolves C iff it is proper (resolves_iff_proper). The source refine_separates is the forward direction for one pair; refine_separates_iff is the one-pair equivalence on collapsed pairs.",
+    "next_test": "First prove in Lean the converse of no_one_bit_of_odd_cycle (a finite symmetric conflict relation with no odd closed walk has a proper Bool tag), then that breadth-first 2-colouring is sound and complete for deciding it, as the first algorithmic statement about finding a tag; the present node proves existence criteria only."
+  },
+  "carrier": "BitCount, ConflictRelation, RefinedReport, Report, Tag, Verdict",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/RefineSeparates.lean",
+    "code/python/src/qm/pfp_refine_separates.py",
+    "code/python/tests/test_pfp_refine_separates.py",
+    "code/rust/src/finite_probability/pfp_refine_separates.rs",
+    "code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus nine semantic near misses: triangle/odd cycle/fibre of three claimed one-bit, tag taken as unique, components ignored, refinement merging old reports, bits confused with colours, unlabelled counts for labelled graphs, degree bound read as colouring.",
+  "composition_tree": [
+    "project_old_report(refine_report(q, t))",
+    "proper_tag_test(C, tag_pair(t1, t2)) with C = C1 or C2"
+  ],
+  "anchors": [
+    "RefineSeparates.refine_retains",
+    "RefineSeparates.refine_separates",
+    "RefineSeparates.refine_separates_iff",
+    "RefineSeparates.refine_keeps_old_separation",
+    "RefineSeparates.resolves_iff_proper",
+    "RefineSeparates.proper_union",
+    "RefineSeparates.bits_iff_colours",
+    "RefineSeparates.no_one_bit_of_odd_cycle",
+    "RefineSeparates.triangle_no_one_bit",
+    "RefineSeparates.fibre_bits_iff",
+    "RefineSeparates.fibre_one_bit_iff",
+    "RefineSeparates.fibre_report_bits_iff",
+    "RefineSeparates.refine_separates_many"
+  ],
+  "checker_id": "independent-refine-separates-v1",
+  "result_or_obstruction": "For a report q and a conflict relation C inside its collapse, SOME b-bit tag resolves all conflicts iff C has a proper 2^b-colouring (refine_separates_many); a GIVEN tag resolves C iff it is proper (resolves_iff_proper). The source refine_separates is the forward direction for one pair; refine_separates_iff is the one-pair equivalence on collapsed pairs.",
+  "next_mathematical_step": "First prove in Lean the converse of no_one_bit_of_odd_cycle (a finite symmetric conflict relation with no odd closed walk has a proper Bool tag), then that breadth-first 2-colouring is sound and complete for deciding it, as the first algorithmic statement about finding a tag; the present node proves existence criteria only.",
+  "report": "# PG-REFINE-SEPARATES\n\nMined the source declarations refineReport, refine_preserves, refine_separates (Paper.lean lines 59-66), supplied_tag_separates (Paper001.lean line 96, Fin 2 tag, one pair) and triangle_not_two_colored (Paper.lean line 69). The single-pair theorem is general and non-vacuous; the triangle theorem is a fixed three-Bool instance; the many-conflict statement (conflict graph, proper colouring, a 3-clique needs three colours) exists only as prose in paper.md section 9. This node proves the colouring characterisation, the odd-closed-walk obstruction and the fibre bit count in Lean for arbitrary relations/finite types, and tabulates all labelled graphs on up to 5 vertices natively. The sha256 of the three bound source files matches their operad pins (Paper.lean b0f6365d, Paper001.lean b9034069, DerivationDagQMClosure.lean c9ad9c23); the DerivationDagQMClosure theorem pg_to_sn_and_wdp_route_chain_composition is a conjunction of fixed arithmetic facts and does not mention refinement, so it supplies nothing here.\n\nSupported: Kernel-checked and general over all types A, O, T: the refined report (q, t) keeps q as its first projection; a differing tag separates a pair (the source theorem refine_separates is this forward direction only); on a pair the old report collapses, the tag decides separation exactly (refine_separates_iff, new); refinement never merges what q separated. For a conflict relation C contained in the collapse of q: a GIVEN tag resolves every conflict iff it is proper for C (resolves_iff_proper); SOME b-bit tag (Fin b -> Bool) resolves every conflict iff C has a proper 2^b-colouring (refine_separates_many, an existence statement over tags). A Bool tag proper for C forbids any odd closed walk in C (so no triangle, no 5-cycle); this is the forward direction only, the converse (no odd closed walk implies a one-bit tag, Konig) is not in the kernel and is used natively (bipartite iff odd girth 0; one-bit tags 2^components when bipartite). For a finite type A in which every pair of distinct elements conflicts (a collapsed fibre taken as its own type, or q constant) a b-bit tag separating all pairs exists iff |A| <= 2^b (fibre_bits_iff; one bit iff |A| <= 2, fibre_one_bit_iff); for the fibre {a // q a = x} of an arbitrary report q some b-bit tag on the whole type resolves all conflicts between distinct fibre elements iff the fibre has at most 2^b elements (fibre_report_bits_iff). Native columns are counts over all (q, t) and ordered pairs (a, b), a = b allowed: quadruples = o^n t^n n^2; separated_by_tag = pairs with q a = q b and t a != t b; refined_equal = pairs with equal refined reports; old_separation_kept = pairs with q a != q b (all stay separated); iff_failures = pairs where equality of refined reports differs from equality of both components (0; the checker evaluates the refinement itself). Exact native tables: 14 named conflict graphs (components, proper one-bit tag counts 2^c or 0, chromatic number, minimal bits, odd girth), all labelled graphs on 1..5 vertices (labelled bipartite counts 1,2,7,41,376; minimal-bit distributions), fibre tag counts for m=1..5 and bits for m=6,8,9,17, and refinement counts for five small (n,o,t).\n\nRemaining: Any algorithm, complexity or guarantee for FINDING a tag (the tables and the iff are existence statements, not search procedures); which tag a host should supply; the converse of the odd-closed-walk theorem in the kernel (Konig; native only); conflict graphs on more than 5 vertices beyond the 14 named ones; infinite carriers; any measurement, physical or interpretive reading of tags.",
+  "construction": "Exact integer tables for named conflict graphs, all labelled graphs on up to 5 vertices, fibres, and small refinement counts; Lean proves the general statements.",
+  "colour_meanings": {
+    "Report": "Function q from the carrier to observations",
+    "Tag": "Supplied function t from the carrier to tag values (Bool, Fin b -> Bool, Fin k)",
+    "RefinedReport": "Pair report a |-> (q a, t a)",
+    "ConflictRelation": "Relation C on the carrier whose pairs must be separated",
+    "Verdict": "Boolean: tag is proper for C",
+    "BitCount": "Least number of tag bits resolving C"
+  },
+  "lean_anchors": [
+    "RefineSeparates.refine_retains",
+    "RefineSeparates.refine_separates",
+    "RefineSeparates.refine_separates_iff",
+    "RefineSeparates.refine_keeps_old_separation",
+    "RefineSeparates.resolves_iff_proper",
+    "RefineSeparates.proper_union",
+    "RefineSeparates.bits_iff_colours",
+    "RefineSeparates.no_one_bit_of_odd_cycle",
+    "RefineSeparates.triangle_no_one_bit",
+    "RefineSeparates.fibre_bits_iff",
+    "RefineSeparates.fibre_one_bit_iff",
+    "RefineSeparates.fibre_report_bits_iff",
+    "RefineSeparates.refine_separates_many"
+  ],
+  "relation_evidence": {
+    "many_conflicts_iff_proper_colouring": "Kernel theorem for arbitrary relations; native bipartite counts 1,2,7,41,376 agree with the colouring-pair identity.",
+    "odd_closed_walk_refuses_one_bit": "Kernel theorem; every native graph with positive odd girth has zero one-bit tags."
+  },
+  "dag_status_depends_on_result": true,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_refine_separates.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_refine_separates",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_refine_separates_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/RefineSeparates.olean",
+        "RefineSeparates.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "RefineSeparates.refine_retains",
+        "RefineSeparates.refine_separates",
+        "RefineSeparates.refine_separates_iff",
+        "RefineSeparates.refine_keeps_old_separation",
+        "RefineSeparates.resolves_iff_proper",
+        "RefineSeparates.proper_union",
+        "RefineSeparates.bits_iff_colours",
+        "RefineSeparates.no_one_bit_of_odd_cycle",
+        "RefineSeparates.triangle_no_one_bit",
+        "RefineSeparates.fibre_bits_iff",
+        "RefineSeparates.fibre_one_bit_iff",
+        "RefineSeparates.fibre_report_bits_iff",
+        "RefineSeparates.refine_separates_many"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  },
+  "review": {
+    "reviewed_target_qualification": "The DAG phrase \"satisfying many conflicts at once ... unaddressed\" is narrowed: existence of a satisfying b-bit tag for conflicts inside a collapse is exactly proper 2^b-colourability (kernel-checked); finding such a tag remains unaddressed."
+  }
+}

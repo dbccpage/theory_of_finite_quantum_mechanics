@@ -1,0 +1,4427 @@
+{
+  "schema_id": "finite-qm.domain-certificate.v1",
+  "task_id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+  "stage_id": "P1_DERIVE",
+  "attempt_id": "p1",
+  "input_sha256": "65cc95f08e3dd389f8b63fdfedd6e37a143cfdb71f1a9b829601d1364c53042f",
+  "source_pins": [
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/lean4/WdpBridgeObligations.lean",
+      "sha256": "7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/python/src/qm/pfp_wdp_bridge_obligations.py",
+      "sha256": "24effd7e077d0e8b5057b8ac70778ac756e4924396e75c50b8cb171c4e25ddc6"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/python/tests/test_pfp_wdp_bridge_obligations.py",
+      "sha256": "14d1590efa5114dd722fc0410887146a0028117499b6836b31ebc1fb5b268b6f"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/pfp_wdp_bridge_obligations.rs",
+      "sha256": "8bcba323d298d7053feeea14d9d50ed76bd9dd8f14147fab86c48ca365c2d358"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/examples/pfp_wdp_bridge_obligations_replay.rs",
+      "sha256": "8842209d8965711072b8748fe311d5167b12686c00d76717ce7b73bfd53923f4"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/rust/Cargo.toml",
+      "sha256": "6813ac6394be98080a3b154b013812793e6d49ce416f7ab388ab065330046c9b"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/Cargo.toml",
+      "sha256": "bd93eba120dc7276f33958a32f27dd2a2e77425c53ae494839951e440d6ed409"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/code/rust/Cargo.lock",
+      "sha256": "a40b6a5c9affd297602a10514826670767afb9d05e2adb694c0a76ce11a5159b"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/lean4/lake-manifest.json",
+      "sha256": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1"
+    },
+    {
+      "path": "dag/results/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS/runs/20261021T175809Z_staged/p1/construction/lean4/lean-toolchain",
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    }
+  ],
+  "data": {
+    "records": [
+      {
+        "v": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n_open": 5,
+        "n_control": 0,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 10,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n_open": 4,
+        "n_control": 1,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 9,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "n_open": 4,
+        "n_control": 0,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 1,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 9,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 0,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          2,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 1,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 9,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          1,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 0,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          0,
+          2,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 1,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 9,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          0,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 4,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          1,
+          2,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 0,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          0,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          0,
+          2,
+          2,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 0,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 1,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 9,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          0,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 4,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          1,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          0,
+          2,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 2,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 4,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          0,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 3,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 4,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 4,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 5,
+        "n_discharged": 0,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": true
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 4,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 4,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 4,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          0,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 4,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          1,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          1,
+          2,
+          2,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 1,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 1,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "n_open": 4,
+        "n_control": 0,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 8,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          0,
+          2
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          1,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          1,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          1,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          2,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          2,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          0,
+          2,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          1,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          0,
+          2,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 0,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 1,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 7,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          0,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 2,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 3,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 4,
+        "n_discharged": 1,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          1,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          1,
+          2,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 1,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 1,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "n_open": 3,
+        "n_control": 0,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 6,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          0,
+          1
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          0,
+          2
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          1,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          1,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          1,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          2,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          2,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          0,
+          2,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 0,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 1,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 5,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 2,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 3,
+        "n_discharged": 2,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          1,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 1,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 1,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          0,
+          0
+        ],
+        "n_open": 2,
+        "n_control": 0,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 4,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          0,
+          1
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          0,
+          2
+        ],
+        "n_open": 1,
+        "n_control": 0,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": false,
+        "upgrades": 2,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          1,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 1,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 3,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 2,
+        "n_discharged": 3,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 2,
+        "completing_upgrades": 0,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 1,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": false,
+        "upgrades": 1,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          2,
+          0
+        ],
+        "n_open": 1,
+        "n_control": 0,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": false,
+        "prefix_order": true,
+        "upgrades": 2,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "n_open": 0,
+        "n_control": 1,
+        "n_discharged": 4,
+        "end_to_end": false,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 1,
+        "completing_upgrades": 1,
+        "node_reading": false
+      },
+      {
+        "v": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "n_open": 0,
+        "n_control": 0,
+        "n_discharged": 5,
+        "end_to_end": true,
+        "controls_run": true,
+        "prefix_order": true,
+        "upgrades": 0,
+        "completing_upgrades": 0,
+        "node_reading": false
+      }
+    ]
+  }
+}

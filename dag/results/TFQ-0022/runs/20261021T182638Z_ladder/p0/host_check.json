@@ -1,0 +1,121 @@
+{
+  "task_id": "TFQ-0022",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "427613878e42751e43a03878b5d1e551e2f0e77a4b8975389abfaef2a0a5c28f",
+  "candidate_sha256": "de108b9d6ed1b26a6cd25ad8b028dde303cc6b86d30ba118253c1745d5c108b7",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T18:27:19Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-01A50674E31A",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'id': 'FierzQuadruple', 'inputs': ['i', 'j', 'k', 'l'], 'output': 'color', 'arity': 4, 'carrier': 'existing', 'ref': {'path': 'lean4/FiniteQM.lean', 'decl': 'F",
+        "evidence": "generators[0].ref: missing status",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-452E93396795",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "relations is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-CAFAE85E2E4F",
+        "class": "schema_violation",
+        "claim_kind": "compositions",
+        "claim": "compositions is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-EB18C9DEA457",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "numeric_claims is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-B4702F316C4F",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "lemmas is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0022"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Maintain exhaustive 81‑entry Fierz replay in Rust and Python controls without conflating it with the Lean scalar identity slice.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

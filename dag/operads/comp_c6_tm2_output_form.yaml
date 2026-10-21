@@ -1,0 +1,116 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C6-TM2-OUTPUT-FORM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The fixed TM2 machine PartrecToTM2.tr, started on init of the fixed code and the paired
+    input, evaluates to halt applied to the value of Code.eval c n exactly when that value is defined.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Mathlib PartrecToTM2.tr_eval
+  source_bottleneck: TM2 level only; the corresponding output form at the TM0 level is open (COMP-C6e).
+  source_refs:
+  - dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md
+  - dag/research/genesis_to_universal_computation.md
+  - lean4/GenesisCompUniv.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md
+    sha256: 01f316d4c693f10ca308cd9d75a6c9033c0aab0a84cfe7ec1315434326bbe721
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c6_tm2_output_form_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: init2
+  line: 130
+  signature_excerpt: 'noncomputable def init2 (x : ℕ) : TM2.Cfg (fun _ : K'' => Γ'') Λ'' (Option Γ'')'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: univCode
+  line: 86
+  signature_excerpt: 'noncomputable def univCode : ToPartrec.Code'
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tm2_computes_eval
+  line: 149
+  signature_excerpt: |-
+    theorem tm2_computes_eval (c : Code) (n : ℕ) :
+        StateTransition.eval (TM2.step PartrecToTM2.tr) (init2 (Nat.pair (Encodable.encode c) n)) =
+          PartrecToTM2.halt <$> (pure <$> Nat.Partrec.Code.eval c n)
+  source: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisCompUniv.lean::tm2_computes_eval
+  availability: local
+  symbol: tm2_computes_eval
+  path: lean4/GenesisCompUniv.lean
+  repository: this_repository
+  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 149
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Mathlib PartrecToTM2.tr_eval
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Mathlib PartrecToTM2.tr_eval
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

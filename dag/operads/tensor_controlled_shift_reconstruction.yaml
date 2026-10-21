@@ -1,0 +1,324 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For arbitrary finite n<=m with m nonzero (the smaller subsystem is the control), supplied
+    local complex QM, independent bilinear preparation/testing, local tomography, positive product tests,
+    finite-sum state closure, and calibrated local-unitary and reversible controlled-shift preservation
+    force the represented state cone to be PSD(nm). Tomographic coordinates, Schmidt reachability, cone
+    equality and trace normalization are verified in Lean.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - local complex QM and spectral theory
+  - independent preparation, testing and convex composition
+  - local tomography
+  - all local unitary operations
+  - coherently calibrated reversible controlled shift
+  - effect and finite-test saturation for full measurement availability
+  source_bottleneck: Lean constructs complete rectangular Schmidt bases, local unitaries and one modular
+    controlled shift, then checks the operational state cone. TFQ-0414--TFQ-0416 check the generated effect
+    cone, binary interval and finite POVMs with explicit effect and finite-test saturation premises. Calibration
+    and operational preservation remain supplied; primitive difference has not supplied these hypotheses.
+  source_refs:
+  - dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md
+  - code/python/src/qm/tensor_composition.py
+  - code/python/tests/test_tensor_composition.py
+  - dag/research/tensor_formalization_validation.json
+  paper_refs:
+  - dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md
+    sha256: 3dd28ec9850c6667c6b8ca677516507f3a56667b03d264c225f3b5056b7b2a34
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/tensor_composition_tensor_controlled_shift_reconstruction_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Space
+  line: 10
+  signature_excerpt: 'abbrev Space (n : ℕ)'
+  source: lean4/TensorSchmidt.lean
+  repository: this_repository
+  source_sha256: ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: controlledShift
+  line: 51
+  signature_excerpt: |-
+    def controlledShift {n m : ℕ} [NeZero m] (hnm : n ≤ m) :
+        Matrix.unitaryGroup (Fin n × Fin m) ℂ
+  source: lean4/TensorReachability.lean
+  repository: this_repository
+  source_sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: productVector
+  line: 41
+  signature_excerpt: |-
+    def productVector {n m : ℕ} (a : Fin n → ℂ) (b : Fin m → ℂ) :
+        Fin n × Fin m → ℂ
+  source: lean4/TensorReachability.lean
+  repository: this_repository
+  source_sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: shift
+  line: 45
+  signature_excerpt: 'def shift {n m : ℕ} [NeZero m] (hnm : n ≤ m) : Equiv.Perm (Fin n × Fin m)'
+  source: lean4/TensorReachability.lean
+  repository: this_repository
+  source_sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: conjugate
+  line: 10
+  signature_excerpt: 'def conjugate {d : Type*} [Fintype d] (U A : Matrix d d ℂ) : Matrix d d ℂ'
+  source: lean4/TensorOperationalCone.lean
+  repository: this_repository
+  source_sha256: 087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hermRankOne
+  line: 26
+  signature_excerpt: 'def hermRankOne {d : Type*} (v : d → ℂ) : Herm d'
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Preserves
+  line: 51
+  signature_excerpt: |-
+    def Preserves (D : TomographicData (Fin n) (Fin m) V) (K : Set V)
+        (U : Matrix (Fin n × Fin m) (Fin n × Fin m) ℂ) : Prop
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: representation
+  line: 13
+  signature_excerpt: |-
+    def representation (D : TomographicData (Fin n) (Fin m) V) :
+        V ≃ₗ[ℝ] Herm (Fin n × Fin m)
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_schmidt_bases
+  line: 13
+  signature_excerpt: |-
+    theorem exists_schmidt_bases {n m : ℕ} (hnm : n ≤ m)
+        (T : Space n →ₗ[ℂ] Space m) :
+        ∃ (u : OrthonormalBasis (Fin n) ℂ (Space n))
+          (v : OrthonormalBasis (Fin m) ℂ (Space m)) (s : Fin n → ℝ),
+          (∀ i, 0 ≤ s i) ∧ ∀ i, T (u i) = (s i : ℂ) • v (Fin.castLE hnm i)
+  source: lean4/TensorSchmidt.lean
+  repository: this_repository
+  source_sha256: ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exists_schmidt_coefficients
+  line: 23
+  signature_excerpt: |-
+    theorem exists_schmidt_coefficients {n m : ℕ} (hnm : n ≤ m)
+        (M : Matrix (Fin n) (Fin m) ℂ) :
+        ∃ (U : Matrix.unitaryGroup (Fin n) ℂ) (V : Matrix.unitaryGroup (Fin m) ℂ)
+          (s : Fin n → ℝ), (∀ i, 0 ≤ s i) ∧
+          ∀ a b, M a b = ∑ i, U.val a i * (s i : ℂ) * V.val b (Fin.castLE hnm i)
+  source: lean4/TensorReachability.lean
+  repository: this_repository
+  source_sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schmidt_reachability
+  line: 80
+  signature_excerpt: |-
+    theorem schmidt_reachability {n m : ℕ} [NeZero m] (hnm : n ≤ m)
+        (ψ : Fin n × Fin m → ℂ) :
+        ∃ (U : Matrix.unitaryGroup (Fin n) ℂ) (V : Matrix.unitaryGroup (Fin m) ℂ)
+          (s : Fin n → ℂ),
+          ((U.val ⊗ₖ V.val) * (controlledShift hnm).val) *ᵥ
+            productVector s (Pi.single 0 1) = ψ
+  source: lean4/TensorReachability.lean
+  repository: this_repository
+  source_sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: controlled_shift_selects_positive
+  line: 27
+  signature_excerpt: |-
+    theorem controlled_shift_selects_positive {n m : ℕ} [NeZero m] (hnm : n ≤ m)
+        (K : Set (Matrix (Fin n × Fin m) (Fin n × Fin m) ℂ))
+        (hz : 0 ∈ K) (ha : ∀ A ∈ K, ∀ B ∈ K, A + B ∈ K)
+        (hh : ∀ A ∈ K, A.IsHermitian)
+        (hseed : ∀ a b, rankOne (productVector a b) ∈ K)
+        (htest : ∀ A ∈ K, ∀ a b, 0 ≤ quadratic A (productVector a b))
+        (hlocal : ∀ (U : Matrix.unitaryGroup (Fin n) ℂ) (V : Matrix.unitaryGroup (Fin m) ℂ),
+          ∀ A ∈ K, conjugate (U.val ⊗ₖ V.val) A ∈ K)
+        (hshift : ∀ A ∈ K, conjugate (controlledShift hnm).val A ∈ K)
+        (hunshift : ∀ A ∈ K, conjugate (controlledShift hnm).
+  source: lean4/TensorOperationalCone.lean
+  repository: this_repository
+  source_sha256: 087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quantum_state_cone
+  line: 58
+  signature_excerpt: |-
+    theorem quantum_state_cone [NeZero m] (hnm : n ≤ m)
+        (D : TomographicData (Fin n) (Fin m) V) (K : Set V)
+        (hz : 0 ∈ K) (ha : ∀ x ∈ K, ∀ y ∈ K, x + y ∈ K)
+        (hprep : ∀ a b, D.prepare (hermRankOne a) (hermRankOne b) ∈ K)
+        (hprob : ∀ x ∈ K, ∀ a b, 0 ≤ D.test (hermRankOne a) (hermRankOne b) x)
+        (hlocal : ∀ (U : Matrix.unitaryGroup (Fin n) ℂ) (W : Matrix.unitaryGroup (Fin m) ℂ),
+          Preserves D K (U.val ⊗ₖ W.val))
+        (hshift : Preserves D K (controlledShift hnm).val)
+        (hunshift : Preserves D K (controlledShift hnm).valᴴ) :
+        (fun x => (representation D x).val) '' K = {A | A.Po
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unit_test_is_trace
+  line: 95
+  signature_excerpt: |-
+    theorem unit_test_is_trace (D : TomographicData (Fin n) (Fin m) V) (x : V) :
+        D.test (1 : Herm (Fin n)) (1 : Herm (Fin m)) x = (representation D x).val.trace.re
+  source: lean4/TensorComposition.lean
+  repository: this_repository
+  source_sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/TensorSchmidt.lean::exists_schmidt_bases
+  availability: local
+  symbol: exists_schmidt_bases
+  path: lean4/TensorSchmidt.lean
+  repository: this_repository
+  sha256: ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528
+  declaration_status: declaration_found_not_proof_checked
+  line: 13
+  role: source_lead_only
+- original_ref: lean4/TensorReachability.lean::exists_schmidt_coefficients
+  availability: local
+  symbol: exists_schmidt_coefficients
+  path: lean4/TensorReachability.lean
+  repository: this_repository
+  sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: lean4/TensorReachability.lean::schmidt_reachability
+  availability: local
+  symbol: schmidt_reachability
+  path: lean4/TensorReachability.lean
+  repository: this_repository
+  sha256: 7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+- original_ref: lean4/TensorOperationalCone.lean::controlled_shift_selects_positive
+  availability: local
+  symbol: controlled_shift_selects_positive
+  path: lean4/TensorOperationalCone.lean
+  repository: this_repository
+  sha256: 087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/TensorComposition.lean::quantum_state_cone
+  availability: local
+  symbol: quantum_state_cone
+  path: lean4/TensorComposition.lean
+  repository: this_repository
+  sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/TensorComposition.lean::unit_test_is_trace
+  availability: local
+  symbol: unit_test_is_trace
+  path: lean4/TensorComposition.lean
+  repository: this_repository
+  sha256: f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - local complex QM and spectral theory
+    - independent preparation, testing and convex composition
+    - local tomography
+    - all local unitary operations
+    - coherently calibrated reversible controlled shift
+    - effect and finite-test saturation for full measurement availability
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - local complex QM and spectral theory
+    - independent preparation, testing and convex composition
+    - local tomography
+    - all local unitary operations
+    - coherently calibrated reversible controlled shift
+    - effect and finite-test saturation for full measurement availability
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

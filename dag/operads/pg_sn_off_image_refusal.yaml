@@ -3,12 +3,12 @@ node_id: PG-SN-OFF-IMAGE-REFUSAL
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image points
-    fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.'
+  source_statement: 'S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image
+    points fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001 []
-  source_bottleneck: Closes the domain-restriction half of WDP-P001-019; off-image points are refused by section-retraction
-    roundtrip.
+  declared_assumptions: []
+  source_bottleneck: Closes the domain-restriction half of WDP-P001-019; off-image points are refused
+    by section-retraction roundtrip.
   source_refs:
   - external:prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:25
@@ -18,8 +18,8 @@ target:
   - dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
   - dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
   - papers/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
@@ -50,17 +50,20 @@ relation_candidates:
   repository: the_symbol_game
   source_sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: accepted_only_from_section
   line: 75
   signature_excerpt: "theorem accepted_only_from_section (n : Nat) (p : SnPresentation) (q : SnPresentation)\n\
-    \    (h : retractionDownMap n p = .accepted q) :\n    ∃ b : BasePresentation, p = sectionLift n b ∧ q = b.toPresentation"
+    \    (h : retractionDownMap n p = .accepted q) :\n    ∃ b : BasePresentation, p = sectionLift n b\
+    \ ∧ q = b.toPresentation"
   source: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
   repository: the_symbol_game
   source_sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image
   availability: external
@@ -107,46 +110,1195 @@ source_bindings:
   line: 1280
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction
+    (five base shapes at a given stage), the retraction refuses exactly the presentations that are not
+    section images at that stage, and the restated pair is a section/retraction pair (law and soundness)
+    in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the
+    soundness of the specific retraction (accepted_only_from_section), because the old-image law alone
+    is satisfied by a retraction that refuses nothing.
+  colours:
+  - id: AcceptedOrRefused
+    meaning: Element of S + {refusal}
+  - id: BasePresentation
+    meaning: One of the five base shapes
+  - id: Bool
+    meaning: Image test result
+  - id: Point
+    meaning: Point of the target set of a section
+  - id: Presentation
+    meaning: Element of the full presentation grammar
+  - id: RetractOutcome
+    meaning: accepted presentation or NON_DESCENT
+  - id: Stage
+    meaning: Natural-number stage index
+  generators:
+  - id: section_lift
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::sectionLift
+      (line 70), a definition (restricted to BasePresentation); omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      uses it throughout
+    ordered_inputs:
+    - Stage
+    - BasePresentation
+    output: Presentation
+    semantic_predicate: u_N on the five base shapes.
+    hypotheses:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
+    arity: 2
+    carrier: Stage
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: retraction_down_map
+    source_declarations:
+    - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::retractionDownMap
+      (line 90), RetractOutcome (line 84)
+    ordered_inputs:
+    - Stage
+    - Presentation
+    output: RetractOutcome
+    semantic_predicate: 'r_N: accept a stage-N lift of one of the five shapes, otherwise NON_DESCENT.'
+    hypotheses:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
+    arity: 2
+    carrier: Stage
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: image_test
+    source_declarations:
+    - 'omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::inImage (line 186) and inImage_iff
+      (line 191): a Bool test read off the outcome, proved equivalent to membership in the section image'
+    ordered_inputs:
+    - Stage
+    - Presentation
+    output: Bool
+    semantic_predicate: true iff the retraction accepts.
+    hypotheses:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
+    arity: 2
+    carrier: Stage
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: roundtrip_refusal
+    source_declarations:
+    - 'omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_sn_off_image_refusal_witness
+      (line 64): a toy section 2x with r(y) = y / 2 on {0..5}, where off-image is DEFINED as failure of
+      s(r(y)) = y'
+    ordered_inputs:
+    - Point
+    output: AcceptedOrRefused
+    semantic_predicate: inl(r0 y) when s(r0 y) = y, else refusal; sound by construction.
+    hypotheses:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
+    arity: 1
+    carrier: Point
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+  relations:
+  - id: accepted_only_from_section
+    source_declarations:
+    - 'omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::accepted_only_from_section
+      (line 75): general over p, q and every stage for the pinned 36-glyph model'
+    equation_or_predicate: retr_n(p) = accepted q implies p = sectionLift_n(b) and q = b for some base
+      b
+    typing_conditions: Stage x Presentation
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Every alphabet and stage
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems accepted_only_from_section, accepted_iff for every
+      alphabet; native accepted = image with correct payload
+    named_Lean_scope: &id001
+    - SnOffImageRefusal.SectionRetraction.injective
+    - SnOffImageRefusal.sn_is_section_retraction
+    - SnOffImageRefusal.sn_refused_iff_off_image
+    - SnOffImageRefusal.sectionLift_injective
+    - SnOffImageRefusal.refused_iff_off_image
+    - SnOffImageRefusal.roundtrip_iff_in_image
+    - SnOffImageRefusal.roundtrip_fails_off_image
+    - SnOffImageRefusal.refuseOffImage_isSectionRetraction
+    - SnOffImageRefusal.toy_refused_iff_odd
+    - SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image
+    - SnOffImageRefusal.old_image_base
+    - SnOffImageRefusal.accepted_only_from_section
+    - SnOffImageRefusal.accepted_iff
+    - SnOffImageRefusal.nonDescent_iff_off_image
+    - SnOffImageRefusal.retraction_stage_strict
+    - SnOffImageRefusal.inImage_iff
+    - SnOffImageRefusal.lax_breaks_refusal_characterisation
+    - SnOffImageRefusal.instance_refusals
+  - id: nonDescent_iff_off_image
+    source_declarations:
+    - 'omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::nonDescent_iff_off_image (line
+      127): general for the pinned model'
+    equation_or_predicate: retr_n(p) = NON_DESCENT iff p is no section image at stage n
+    typing_conditions: Stage x Presentation
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Every alphabet and stage
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorem; native zero violations on eight universes.
+    named_Lean_scope: *id001
+  - id: stage_strictness
+    source_declarations:
+    - omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::retraction_stage_strict (line
+      174)
+    equation_or_predicate: a section image at stage m is refused by r_n for m different from n
+    typing_conditions: Stage x Stage x BasePresentation
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Every alphabet
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorem retraction_stage_strict; native stage_mismatch_refused
+      = (S-1)|Base|
+    named_Lean_scope: *id001
+  - id: sn_section_retraction_bridge
+    source_declarations:
+    - no source declaration; connects the abstract part to the restated SnOffImage.nonDescent_iff_off_image
+      (line 127)
+    equation_or_predicate: (sectionLift n, retrB n) is a SectionRetraction (law and soundness); hence
+      retrB n p = refusal iff no base presentation lifts to p
+    typing_conditions: Stage x Presentation over an arbitrary alphabet
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Every alphabet and stage
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems sn_is_section_retraction, sn_refused_iff_off_image,
+      sectionLift_injective; native lift_collisions = 0
+    named_Lean_scope: *id001
+  - id: abstract_refusal
+    source_declarations:
+    - no source declaration; the abstract form of the roundtrip refusal named in the DAG statement (the
+      source witness in omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs is a
+      fixed toy)
+    equation_or_predicate: law and soundness imply r y = refusal iff y is off the image and s(r y) = y
+      fails exactly there
+    typing_conditions: Section and retraction on arbitrary types
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All types
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems refused_iff_off_image, roundtrip_fails_off_image,
+      roundtrip_iff_in_image, SectionRetraction.injective; native toy counts
+    named_Lean_scope: *id001
+  - id: soundness_necessity
+    source_declarations:
+    - no source declaration; the old-image law (Paper001 old_image_injective) is silent off the image
+    equation_or_predicate: a lax retraction accepting every refused point as the ground presentation obeys
+      the old-image law and refuses nothing
+    typing_conditions: S(n) model and Fin 1 -> Fin 2 instance
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: S(n) over Bool glyphs (instance) and the lax construction for every alphabet
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel lax theorems; native lax_iff_violations equals the refused
+      count.
+    named_Lean_scope: *id001
+  - id: roundtrip_construction
+    source_declarations:
+    - 'omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_sn_off_image_refusal_witness
+      (line 64): a fixed toy instance'
+    equation_or_predicate: any total left inverse r0 gives a sound refusing retraction y -> (inl r0 y
+      if s(r0 y) = y else refusal)
+    typing_conditions: DecidableEq target
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All types with decidable equality
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    latest_host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel refuseOffImage_isSectionRetraction; native toy counts k and
+      (c-1)k.
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: image_test
+    input_slot: 1
+    inner_operation: section_lift
+    colour_match: Presentation
+    hypothesis_match: 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl
+      x (old-image law) and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its
+      five base shapes over an abstract glyph alphabet. Same stage in both. Fixed contexts must agree
+      across both operations. Formal universal refined-carrier closure is unpaid.'
+    licensing_relations:
+    - nonDescent_iff_off_image
+    evidence_status: Kernel and native
+  - outer_operation: retraction_down_map
+    input_slot: 1
+    inner_operation: section_lift
+    colour_match: Presentation
+    hypothesis_match: 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl
+      x (old-image law) and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its
+      five base shapes over an abstract glyph alphabet. Fixed contexts must agree across both operations.
+      Formal universal refined-carrier closure is unpaid.'
+    licensing_relations:
+    - accepted_only_from_section
+    evidence_status: Kernel and native
+  identities:
+  - colour: AcceptedOrRefused
+    proposed_operation: id_AcceptedOrRefused
+    signature: AcceptedOrRefused -> AcceptedOrRefused
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: BasePresentation
+    proposed_operation: id_BasePresentation
+    signature: BasePresentation -> BasePresentation
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Bool
+    proposed_operation: id_Bool
+    signature: Bool -> Bool
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Point
+    proposed_operation: id_Point
+    signature: Point -> Point
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Presentation
+    proposed_operation: id_Presentation
+    signature: Presentation -> Presentation
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RetractOutcome
+    proposed_operation: id_RetractOutcome
+    signature: RetractOutcome -> RetractOutcome
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Stage
+    proposed_operation: id_Stage
+    signature: Stage -> Stage
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id003
+  - Nested lift, retraction and refusal terms as base members.
+  - A corrected cardinality theorem for the carriers (PG-SN-CARRIER).
+  - Wire parser correspondence for the source grammar.
+  - A general decidability statement for the image condition beyond this syntactic model.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - composition: retraction_down_map(m, section_lift(n, b)) with m different from n
+    reason: 'Refused: the stage test is exact (retraction_stage_strict); the composite is the refusal,
+      not a recovery.'
+  - composition: section_lift composed with the retraction as a map on all presentations
+    reason: 'Not a map: the refusal summand has no image under the section; it is defined only where r
+      accepts, and then it is the identity (roundtrip_iff_in_image).'
+  - composition: refusal read off the old-image law alone
+    reason: The lax retraction obeys the law and refuses nothing (lax_never_refuses); soundness of the
+      specific retraction is what refuses.
+  counterexamples:
+  - id: lax_retraction
+    statement: r(y) = inl 0 for all y on Fin 1 -> Fin 2 obeys the law but accepts the off-image point
+      1; the S(n) version accepts every refused point as the ground presentation.
+    scope: Instance and construction; kernel lax_retraction_obeys_law_but_accepts_off_image, lax_breaks_refusal_characterisation.
+  - id: three_glyph_body
+    statement: lift at stage 2 with the three-glyph body (true, false, true) is refused by r_2 although
+      it has the right stage and the lift head.
+    scope: Instance over Bool glyphs; kernel instance_refusals.
+  - id: circular_toy
+    statement: in the source toy witness off-image is defined as failure of s(r y) = y, so refusal by
+      the round trip is true by definition there.
+    scope: Reading of the fixed witness in derivation_dag_witnesses.rs; the non-circular statement is
+      nonDescent_iff_off_image.
+  - id: semantic_old_image_law_implies_refusal
+    kind: semantic_near_miss
+    rationale: Claim that a retraction obeying the old-image law already refuses every off-image point
+      (lax violations 0); the lax retraction obeys the law and refuses none of the 185 off-image points.
+    rejected_by: check_candidate
+  - id: semantic_refusal_misses_a_off_image_point
+    kind: semantic_near_miss
+    rationale: Report one disagreement between refusal and off-image-ness for the pinned retraction; the
+      characterisation has no exception on the universe.
+    rejected_by: check_candidate
+  - id: semantic_wrong_stage_lift_accepted
+    kind: semantic_near_miss
+    rationale: Claim one section image at another stage is accepted by r_n; the stage test is exact (15
+      of 15 per other stage are refused at g = 2).
+    rejected_by: check_candidate
+  - id: semantic_long_body_accepted
+    kind: semantic_near_miss
+    rationale: Claim a three-or-more-glyph body at the right stage is accepted; only bodies of the five
+      shapes are accepted.
+    rejected_by: check_candidate
+  - id: semantic_roundtrip_holds_everywhere
+    kind: semantic_near_miss
+    rationale: Claim s(r(p)) = p for every presentation of the one-glyph universe; it fails on every refused
+      point (37 of 42).
+    rejected_by: check_candidate
+  - id: semantic_single_stage_universe_hides_stage_test
+    kind: semantic_near_miss
+    rationale: Report stage-mismatch refusals in a universe that has a single stage; there is no other
+      stage to mismatch.
+    rejected_by: check_candidate
+  - id: semantic_lax_retraction_breaks_the_law
+    kind: semantic_near_miss
+    rationale: Claim the lax retraction that accepts everything fails the old-image law; it obeys the
+      law exactly, which is why the law cannot be the refusal.
+    rejected_by: check_candidate
+  - id: semantic_payload_confuses_shapes
+    kind: semantic_near_miss
+    rationale: Report one wrong payload (for example a retained pair read back as a simplex cut); accepted_only_from_section
+      fixes the payload as the base presentation, and the universe has none wrong.
+    rejected_by: check_candidate
+  - id: semantic_accepted_beyond_the_image
+    kind: semantic_near_miss
+    rationale: Claim a retraction term r_n<..> or the refusal token is accepted by r_n, so more outcomes
+      are accepted than there are section images (16 instead of 15 at g = 2).
+    rejected_by: check_candidate
+  - id: semantic_section_lift_not_injective
+    kind: semantic_near_miss
+    rationale: Claim two base presentations lift to the same term (image smaller than Base, 14 of 15);
+      the lift is injective.
+    rejected_by: check_candidate
+  - id: semantic_toy_with_zero_multiplier
+    kind: semantic_near_miss
+    rationale: A toy section with multiplier 0 has no total left inverse y // 0 and is not one of the
+      public cases.
+    rejected_by: check_candidate
+  - id: semantic_total_retraction_accepts_everything
+    kind: semantic_near_miss
+    rationale: Claim the toy witness (section 2x, retraction y // 2) leaves nothing to refuse; the round
+      trip s(r(y)) = y refuses the 3 odd points of 6.
+    rejected_by: check_candidate
+  - id: semantic_identity_section_has_off_image_points
+    kind: semantic_near_miss
+    rationale: Claim the identity section (multiplier 1) has an off-image point to refuse; a surjective
+      section has none.
+    rejected_by: check_candidate
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: AcceptedOrRefused, BasePresentation, Bool, Point, Presentation, RetractOutcome, Stage
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+      sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+      sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+      sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+      sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+      sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+      sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+      sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+      sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+      sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    public_input:
+      cases:
+      - - offimage
+        - 0
+        - 2
+        - 2
+        - 0
+      - - offimage
+        - 1
+        - 3
+        - 3
+        - 1
+      - - offimage
+        - 2
+        - 4
+        - 3
+        - 0
+      - - offimage
+        - 2
+        - 4
+        - 3
+        - 3
+      - - offimage
+        - 3
+        - 3
+        - 4
+        - 2
+      - - offimage
+        - 2
+        - 1
+        - 2
+        - 0
+      - - offimage
+        - 3
+        - 4
+        - 3
+        - 1
+      - - offimage
+        - 2
+        - 2
+        - 2
+        - 1
+      - - toy
+        - 3
+        - 2
+      - - toy
+        - 0
+        - 2
+      - - toy
+        - 4
+        - 1
+      - - toy
+        - 2
+        - 3
+      - - toy
+        - 5
+        - 3
+    original_target: 'S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image
+      points fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.'
+    source_scope_review: 'No operation candidate was recovered, so the declarations were mined by hand
+      from SnOffImage.lean (sha256 746372dc..., matches the pin) and SnCarrier.lean: accepted_only_from_section
+      (line 75), nonDescent_iff_off_image (line 127), sectionLift_injective (line 151), retraction_stage_strict
+      (line 174), inImage_iff (line 191). They are general theorems for the pinned 36-glyph model, not
+      vacuous; the compiled file reports propext and Quot.sound for several of them although its docstring
+      says "stays within propext" (a minor docstring overclaim; this node re-proves them for every alphabet
+      with propext only). The external prompt file named in the collection (prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md)
+      is not present in the checked-out source repository and was not read. The Rust witness verify_sn_off_image_refusal_witness
+      is a fixed toy (section 2x, retraction y / 2 on {0..5}) that defines off-image as failure of the
+      round trip; it does not exercise the S(n) syntax, so it gives refusal by definition. This node proves
+      the non-circular statement (refusal iff no section image, using the soundness of the specific retraction),
+      shows that the old-image law alone does not give refusal, and executes the pinned functions on explicit
+      universes.'
+    admitted_assumptions:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - 'A section s : S -> Y and a retraction r : Y -> S + {refusal} with r(s x) = inl x (old-image law)
+      and soundness (r y = inl x implies s x = y); or the pinned S(n) model with its five base shapes
+      over an abstract glyph alphabet.'
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: section_lift
+      inputs:
+      - Stage
+      - BasePresentation
+      output: Presentation
+      semantic_predicate: u_N on the five base shapes.
+    - catalog_id: retraction_down_map
+      inputs:
+      - Stage
+      - Presentation
+      output: RetractOutcome
+      semantic_predicate: 'r_N: accept a stage-N lift of one of the five shapes, otherwise NON_DESCENT.'
+    - catalog_id: image_test
+      inputs:
+      - Stage
+      - Presentation
+      output: Bool
+      semantic_predicate: true iff the retraction accepts.
+    - catalog_id: roundtrip_refusal
+      inputs:
+      - Point
+      output: AcceptedOrRefused
+      semantic_predicate: inl(r0 y) when s(r0 y) = y, else refusal; sound by construction.
+    composition_plan: *id002
+    tree:
+    - image_test(n, section_lift(n, b))
+    - retraction_down_map(n, section_lift(n, b))
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: accepted_only_from_section
+      source_declarations:
+      - 'omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::accepted_only_from_section
+        (line 75): general over p, q and every stage for the pinned 36-glyph model'
+      equation_or_predicate: retr_n(p) = accepted q implies p = sectionLift_n(b) and q = b for some base
+        b
+      typing_conditions: Stage x Presentation
+      evidence_status: Kernel theorems accepted_only_from_section, accepted_iff for every alphabet; native
+        accepted = image with correct payload
+      scope: Every alphabet and stage
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: nonDescent_iff_off_image
+      source_declarations:
+      - 'omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::nonDescent_iff_off_image
+        (line 127): general for the pinned model'
+      equation_or_predicate: retr_n(p) = NON_DESCENT iff p is no section image at stage n
+      typing_conditions: Stage x Presentation
+      evidence_status: Kernel theorem nonDescent_iff_off_image for every alphabet; native iff_violations
+        = 0 on eight universes
+      scope: Every alphabet and stage
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: stage_strictness
+      source_declarations:
+      - omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::retraction_stage_strict (line
+        174)
+      equation_or_predicate: a section image at stage m is refused by r_n for m different from n
+      typing_conditions: Stage x Stage x BasePresentation
+      evidence_status: Kernel theorem retraction_stage_strict; native stage_mismatch_refused = (S-1)|Base|
+      scope: Every alphabet
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: sn_section_retraction_bridge
+      source_declarations:
+      - no source declaration; connects the abstract part to the restated SnOffImage.nonDescent_iff_off_image
+        (line 127)
+      equation_or_predicate: (sectionLift n, retrB n) is a SectionRetraction (law and soundness); hence
+        retrB n p = refusal iff no base presentation lifts to p
+      typing_conditions: Stage x Presentation over an arbitrary alphabet
+      evidence_status: Kernel theorems sn_is_section_retraction, sn_refused_iff_off_image, sectionLift_injective;
+        native lift_collisions = 0
+      scope: Every alphabet and stage
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: abstract_refusal
+      source_declarations:
+      - no source declaration; the abstract form of the roundtrip refusal named in the DAG statement (the
+        source witness in omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs is
+        a fixed toy)
+      equation_or_predicate: law and soundness imply r y = refusal iff y is off the image and s(r y) =
+        y fails exactly there
+      typing_conditions: Section and retraction on arbitrary types
+      evidence_status: Kernel theorems refused_iff_off_image, roundtrip_fails_off_image, roundtrip_iff_in_image,
+        SectionRetraction.injective; native toy counts
+      scope: All types
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: soundness_necessity
+      source_declarations:
+      - no source declaration; the old-image law (Paper001 old_image_injective) is silent off the image
+      equation_or_predicate: a lax retraction accepting every refused point as the ground presentation
+        obeys the old-image law and refuses nothing
+      typing_conditions: S(n) model and Fin 1 -> Fin 2 instance
+      evidence_status: Kernel theorems lax_obeys_law, lax_never_refuses, lax_breaks_refusal_characterisation,
+        lax_retraction_obeys_law_but_accepts_off_image; native lax_iff_violations = refused
+      scope: S(n) over Bool glyphs (instance) and the lax construction for every alphabet
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    - id: roundtrip_construction
+      source_declarations:
+      - 'omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_sn_off_image_refusal_witness
+        (line 64): a fixed toy instance'
+      equation_or_predicate: any total left inverse r0 gives a sound refusing retraction y -> (inl r0
+        y if s(r0 y) = y else refusal)
+      typing_conditions: DecidableEq target
+      evidence_status: Kernel theorems refuseOffImage_isSectionRetraction, toy_refused_iff_odd; native
+        toy records. Circular by construction (refusal is the round-trip test), so not evidence for the
+        S(n) statement
+      scope: All types with decidable equality
+      source_pins:
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+        sha256: b6861dd6d721b00edbd2339af19f3812580b76c437f88918f44a5d1a063be681
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_sn_off_image_refusal.yaml
+        sha256: 6983c0c601936c4e06558b0c3a5eff90b0ed03b5d0aeee663d8d045e72d65aa6
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+        sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+        sha256: 9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+        sha256: 1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_off_image.py
+        sha256: 2f1c8faa9dde3a0e1995571dbcbf7595da6cfa4dc3f1f76f2db656378fc17a59
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_off_image.py
+        sha256: 034109aec86da6954e6d86813ed2acb95ad00789357a2bf65d687848c2fd0f1f
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_off_image.rs
+        sha256: 653b1e3b1e0db3497684fc7209c005f9ea82ec7df2d0e60077e54bcb5c43f96a
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_off_image_replay.rs
+        sha256: 5fead0387027d118d8d4c5ed90166f11d1c80ba52f1336358a67fa361972031d
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: f6bc352fd09417e5e87c710b7333d3e4241b7188dd7a96a939cd640af4374968
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: 902122edde9d6f6351d8d7b338d87424d5872dd2794878ee919d8498d3c650c7
+    rejection_predicates:
+    - Presentations as wire strings and the retraction as a regular-expression parser; the round trip
+      tested literally by re-lifting the parsed result and comparing strings.
+    - Image set built independently from the base wires; refusal/off-image disagreement counted over the
+      whole universe of lifts and retractions with glyph-word, arrow and pair bodies (not all presentations);
+      payload compared with the base wire; lift collisions recounted.
+    - Toy sections by direct divisibility (refused iff c does not divide y) with law and soundness failures
+      recomputed through divmod, not through the producer round trip. The lax columns (lax_law_holds,
+      lax_refused) are by-construction consequences recomputed by running the lax parser.
+    - 'Theorem-level consistency: no violations, accepted = image = round trips, round trips fail exactly
+      on refused points, lax recovers every base presentation and refuses nothing, no lift collisions.'
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: 'Coordinate mutants of every certificate leaf plus thirteen semantic near misses:
+      law implies refusal, an exception to the characterisation, wrong-stage lift accepted, long body
+      accepted, round trip everywhere, single-stage universe, lax retraction breaking the law, wrong payload,
+      accepted beyond the image, non-injective section lift, zero-multiplier toy, toy retraction accepting
+      everything, identity section with off-image points.'
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Presentations as wire strings and the retraction as a regular-expression parser; the round trip
+      tested literally by re-lifting the parsed result and comparing strings.
+    - Image set built independently from the base wires; refusal/off-image disagreement counted over the
+      whole universe of lifts and retractions with glyph-word, arrow and pair bodies (not all presentations);
+      payload compared with the base wire; lift collisions recounted.
+    - Toy sections by direct divisibility (refused iff c does not divide y) with law and soundness failures
+      recomputed through divmod, not through the producer round trip. The lax columns (lax_law_holds,
+      lax_refused) are by-construction consequences recomputed by running the lax parser.
+    - 'Theorem-level consistency: no violations, accepted = image = round trips, round trips fail exactly
+      on refused points, lax recovers every base presentation and refuses nothing, no lift collisions.'
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - SnOffImageRefusal.SectionRetraction.injective
+    - SnOffImageRefusal.sn_is_section_retraction
+    - SnOffImageRefusal.sn_refused_iff_off_image
+    - SnOffImageRefusal.sectionLift_injective
+    - SnOffImageRefusal.refused_iff_off_image
+    - SnOffImageRefusal.roundtrip_iff_in_image
+    - SnOffImageRefusal.roundtrip_fails_off_image
+    - SnOffImageRefusal.refuseOffImage_isSectionRetraction
+    - SnOffImageRefusal.toy_refused_iff_odd
+    - SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image
+    - SnOffImageRefusal.old_image_base
+    - SnOffImageRefusal.accepted_only_from_section
+    - SnOffImageRefusal.accepted_iff
+    - SnOffImageRefusal.nonDescent_iff_off_image
+    - SnOffImageRefusal.retraction_stage_strict
+    - SnOffImageRefusal.inImage_iff
+    - SnOffImageRefusal.lax_breaks_refusal_characterisation
+    - SnOffImageRefusal.instance_refusals
+    unpaid_imports:
+    - Nested lift, retraction and refusal terms as base members.
+    - A corrected cardinality theorem for the carriers (PG-SN-CARRIER).
+    - Wire parser correspondence for the source grammar.
+    - A general decidability statement for the image condition beyond this syntactic model.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p5/host_check.json
+open_obligations: *id003
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/scope_review.json
+latest_run:
+  path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/runs/20261021T175809Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'No operation candidate was recovered, so the declarations were mined by hand from SnOffImage.lean (sha256
+  746372dc..., matches the pin) and SnCarrier.lean: accepted_only_from_section (line 75), nonDescent_iff_off_image
+  (line 127), sectionLift_injective (line 151), retraction_stage_strict (line 174), inImage_iff (line
+  191). They are general theorems for the pinned 36-glyph model, not vacuous; the compiled file reports
+  propext and Quot.sound for several of them although its docstring says "stays within propext" (a minor
+  docstring overclaim; this node re-proves them for every alphabet with propext only). The external prompt
+  file named in the collection (prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md) is not present
+  in the checked-out source repository and was not read. The Rust witness verify_sn_off_image_refusal_witness
+  is a fixed toy (section 2x, retraction y / 2 on {0..5}) that defines off-image as failure of the round
+  trip; it does not exercise the S(n) syntax, so it gives refusal by definition. This node proves the
+  non-circular statement (refusal iff no section image, using the soundness of the specific retraction),
+  shows that the old-image law alone does not give refusal, and executes the pinned functions on explicit
+  universes.'
+- Off-image refusal holds for the pinned retraction because of its soundness (accepted only from section
+  images), not because of the old-image law; the source Rust witness defines off-image by the round trip
+  and so does not support the statement by itself.
+reviewed_target_qualification:
+  text: Off-image refusal holds for the pinned retraction because of its soundness (accepted only from
+    section images), not because of the old-image law; the source Rust witness defines off-image by the
+    round trip and so does not support the statement by itself.
+  status: corrected_or_qualified_scope
+  review: dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/scope_review.json
+latest_review:
+  path: dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/operad_delta.yaml
+  delivery_result: dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json

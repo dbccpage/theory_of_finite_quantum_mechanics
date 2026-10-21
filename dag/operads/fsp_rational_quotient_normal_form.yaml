@@ -1,0 +1,177 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FSP-RATIONAL-QUOTIENT-NORMAL-FORM
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For d0 in Q^{m x n} and W = im d0, N_W(x) = x - sum_i x_{p_i} r_i (nonzero RREF rows
+    r_i of d0^T with pivots p_i) is sound, idempotent and complete for x ~ y iff x - y in W, and is independent
+    of the generating matrix; Lean checks the three laws for the fixed integral image span(1, 2) in Z^2.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - fixed rational coboundary matrix d0 and coordinate order
+  source_bottleneck: N_W is not an l1 minimizer (span(1,2), x = (1,0) gives norm 2 versus 1); the quotient
+    norm is a separate exact linear program with a refusal budget (NF-003). A valid YAML contract or routing
+    label is not a normalizer.
+  source_refs:
+  - dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - papers/core/fsp/theory_of_finite_fsp.md
+  paper_refs:
+  - dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md
+  source_claim_label: PROVED_PROSE
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md
+    sha256: 568b2a1a7e5cd8e25364c89c5a888870c5f903d434db651ff1b41e3c9de5854d
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/fermion_sign_fsp_rational_quotient_normal_form_proved_prose.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: IntegralCochain
+  line: 12
+  signature_excerpt: structure IntegralCochain
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: integralEquivalent
+  line: 23
+  signature_excerpt: 'def integralEquivalent (c d : IntegralCochain) : Prop'
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: integralNormal
+  line: 20
+  signature_excerpt: 'def integralNormal (c : IntegralCochain) : IntegralCochain'
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: integralGauge
+  line: 17
+  signature_excerpt: 'def integralGauge (a : Int) (c : IntegralCochain) : IntegralCochain'
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: integral_sound
+  line: 26
+  signature_excerpt: |-
+    theorem integral_sound (c : IntegralCochain) :
+        integralEquivalent c (integralNormal c)
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: integral_idempotent
+  line: 34
+  signature_excerpt: |-
+    theorem integral_idempotent (c : IntegralCochain) :
+        integralNormal (integralNormal c) = integralNormal c
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: integral_complete
+  line: 38
+  signature_excerpt: |-
+    theorem integral_complete (c d : IntegralCochain) :
+        integralNormal c = integralNormal d ↔ integralEquivalent c d
+  source: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  source_sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_sound
+  availability: local
+  symbol: integral_sound
+  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_idempotent
+  availability: local
+  symbol: integral_idempotent
+  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: papers/core/fsp/lean4/NormalFormLaws.lean::integral_complete
+  availability: local
+  symbol: integral_complete
+  path: papers/core/fsp/lean4/NormalFormLaws.lean
+  repository: this_repository
+  sha256: dc82b0698c3db4b4e7d61b75c69f150910e89a71cbfe6a14dcfec046b8e76021
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - fixed rational coboundary matrix d0 and coordinate order
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - fixed rational coboundary matrix d0 and coordinate order
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,173 +1,114 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:morphism:v0.1.0",
-    "title": "Morphism Contract",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+      "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+        "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "morphism",
-      "symbol": "f: A → B",
-      "ascii_symbol": "morphism",
-      "notation": "f: A → B",
-      "domain": [
-        "morphism_id: unique identifier",
-        "domain: domain object reference",
-        "codomain: codomain object reference",
-        "category: category membership reference"
-      ],
-      "codomain": {
-        "description": "Structure-preserving map between objects in a category"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "The category must exist and be resolvable",
-        "Domain must be a valid object in the category",
-        "Codomain must be a valid object in the category",
-        "Morphism must be in the category's morphism list with correct domain and codomain"
-      ]
-    },
-    "laws": [
-      "A morphism must belong to exactly one category",
-      "Domain must be an object in the category",
-      "Codomain must be an object in the category"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Given same morphism_id, domain, codomain, and category, must produce identical artifact hash",
-        "Validators and computation functions are content-addressed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "category_id does not resolve",
-      "domain_id is not in the category",
-      "codomain_id is not in the category",
-      "morphism_id not in morphism list",
-      "morphism's domain in category differs from domain_id"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.",
-      "non_role": [
-        "Composition and axioms are validated at the Category level",
-        "Higher morphisms (2-morphisms, etc.) are in higher category contracts"
-      ]
-    },
-    "wip": [
-      "The contract defines a single morphism; composition and axioms are validated at the Category level",
-      "The relationship with IdentityMorphism: identity morphisms are special morphisms",
-      "Higher morphisms (2-morphisms, etc.) are in higher category contracts",
-      "Contract is fully deterministic with SHA-256 hash algorithm",
-      "All validators and computation functions are content-addressed",
-      "StructureArtifact only created if all validators succeed"
-    ],
-    "rust_binding": {
-      "crate": "omega_category_theory",
-      "module": "finite_category",
-      "symbols": [
-        "DeclaredMorphism",
-        "ValidatedFiniteCategory"
-      ],
-      "required_tests": [
-        "validated_category_implements_category_trait"
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13",
+    "subject": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py"
   },
-  "current_contract": "86d581ddb6ca02702eb697ef78884cc34821cdce835ebca93f7c7b311e1b0e81",
-  "current_scoring": "d3c7879fe63e0dbb7e5503df99fd7814faf391151aeff4121760e2c2a344e2da",
   "contract_history": [
     {
-      "sha256": "86d581ddb6ca02702eb697ef78884cc34821cdce835ebca93f7c7b311e1b0e81",
       "bytes": 3440,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:morphism:v0.1.0\",\n  \"title\": \"Morphism Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"morphism\",\n    \"symbol\": \"f: A → B\",\n    \"ascii_symbol\": \"morphism\",\n    \"notation\": \"f: A → B\",\n    \"domain\": [\n      \"morphism_id: unique identifier\",\n      \"domain: domain object reference\",\n      \"codomain: codomain object reference\",\n      \"category: category membership reference\"\n    ],\n    \"codomain\": {\n      \"description\": \"Structure-preserving map between objects in a category\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The category must exist and be resolvable\",\n      \"Domain must be a valid object in the category\",\n      \"Codomain must be a valid object in the category\",\n      \"Morphism must be in the category's morphism list with correct domain and codomain\"\n    ]\n  },\n  \"laws\": [\n    \"A morphism must belong to exactly one category\",\n    \"Domain must be an object in the category\",\n    \"Codomain must be an object in the category\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Given same morphism_id, domain, codomain, and category, must produce identical artifact hash\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"category_id does not resolve\",\n    \"domain_id is not in the category\",\n    \"codomain_id is not in the category\",\n    \"morphism_id not in morphism list\",\n    \"morphism's domain in category differs from domain_id\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.\",\n    \"non_role\": [\n      \"Composition and axioms are validated at the Category level\",\n      \"Higher morphisms (2-morphisms, etc.) are in higher category contracts\"\n    ]\n  },\n  \"wip\": [\n    \"The contract defines a single morphism; composition and axioms are validated at the Category level\",\n    \"The relationship with IdentityMorphism: identity morphisms are special morphisms\",\n    \"Higher morphisms (2-morphisms, etc.) are in higher category contracts\",\n    \"Contract is fully deterministic with SHA-256 hash algorithm\",\n    \"All validators and computation functions are content-addressed\",\n    \"StructureArtifact only created if all validators succeed\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"finite_category\",\n    \"symbols\": [\n      \"DeclaredMorphism\",\n      \"ValidatedFiniteCategory\"\n    ],\n    \"required_tests\": [\n      \"validated_category_implements_category_trait\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:morphism:v0.1.0",
-        "title": "Morphism Contract",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Composition and axioms are validated at the Category level",
+            "Higher morphisms (2-morphisms, etc.) are in higher category contracts"
+          ],
+          "summary": "A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "A morphism must belong to exactly one category",
+          "Domain must be an object in the category",
+          "Codomain must be an object in the category"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "morphism",
-          "symbol": "f: A → B",
           "ascii_symbol": "morphism",
-          "notation": "f: A → B",
+          "codomain": {
+            "description": "Structure-preserving map between objects in a category"
+          },
           "domain": [
             "morphism_id: unique identifier",
             "domain: domain object reference",
             "codomain: codomain object reference",
             "category: category membership reference"
           ],
-          "codomain": {
-            "description": "Structure-preserving map between objects in a category"
-          }
+          "notation": "f: A → B",
+          "object_kind": "morphism",
+          "symbol": "f: A → B"
         },
-        "requirements": {
-          "required_structures": [
-            "The category must exist and be resolvable",
-            "Domain must be a valid object in the category",
-            "Codomain must be a valid object in the category",
-            "Morphism must be in the category's morphism list with correct domain and codomain"
+        "negative_tests": [
+          "category_id does not resolve",
+          "domain_id is not in the category",
+          "codomain_id is not in the category",
+          "morphism_id not in morphism list",
+          "morphism's domain in category differs from domain_id"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
           ]
         },
-        "laws": [
-          "A morphism must belong to exactly one category",
-          "Domain must be an object in the category",
-          "Codomain must be an object in the category"
-        ],
         "replay": {
           "requirements": [
             "No external state",
@@ -177,25 +118,28 @@
             "Validators and computation functions are content-addressed"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "The category must exist and be resolvable",
+            "Domain must be a valid object in the category",
+            "Codomain must be a valid object in the category",
+            "Morphism must be in the category's morphism list with correct domain and codomain"
           ]
         },
-        "negative_tests": [
-          "category_id does not resolve",
-          "domain_id is not in the category",
-          "codomain_id is not in the category",
-          "morphism_id not in morphism list",
-          "morphism's domain in category differs from domain_id"
-        ],
-        "doctrine": {
-          "summary": "A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.",
-          "non_role": [
-            "Composition and axioms are validated at the Category level",
-            "Higher morphisms (2-morphisms, etc.) are in higher category contracts"
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "finite_category",
+          "required_tests": [
+            "validated_category_implements_category_trait"
+          ],
+          "symbols": [
+            "DeclaredMorphism",
+            "ValidatedFiniteCategory"
           ]
         },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "Morphism Contract",
         "wip": [
           "The contract defines a single morphism; composition and axioms are validated at the Category level",
           "The relationship with IdentityMorphism: identity morphisms are special morphisms",
@@ -203,49 +147,74 @@
           "Contract is fully deterministic with SHA-256 hash algorithm",
           "All validators and computation functions are content-addressed",
           "StructureArtifact only created if all validators succeed"
-        ],
-        "rust_binding": {
-          "crate": "omega_category_theory",
-          "module": "finite_category",
-          "symbols": [
-            "DeclaredMorphism",
-            "ValidatedFiniteCategory"
-          ],
-          "required_tests": [
-            "validated_category_implements_category_trait"
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:morphism:v0.1.0\",\n  \"title\": \"Morphism Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"morphism\",\n    \"symbol\": \"f: A → B\",\n    \"ascii_symbol\": \"morphism\",\n    \"notation\": \"f: A → B\",\n    \"domain\": [\n      \"morphism_id: unique identifier\",\n      \"domain: domain object reference\",\n      \"codomain: codomain object reference\",\n      \"category: category membership reference\"\n    ],\n    \"codomain\": {\n      \"description\": \"Structure-preserving map between objects in a category\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The category must exist and be resolvable\",\n      \"Domain must be a valid object in the category\",\n      \"Codomain must be a valid object in the category\",\n      \"Morphism must be in the category's morphism list with correct domain and codomain\"\n    ]\n  },\n  \"laws\": [\n    \"A morphism must belong to exactly one category\",\n    \"Domain must be an object in the category\",\n    \"Codomain must be an object in the category\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Given same morphism_id, domain, codomain, and category, must produce identical artifact hash\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"category_id does not resolve\",\n    \"domain_id is not in the category\",\n    \"codomain_id is not in the category\",\n    \"morphism_id not in morphism list\",\n    \"morphism's domain in category differs from domain_id\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.\",\n    \"non_role\": [\n      \"Composition and axioms are validated at the Category level\",\n      \"Higher morphisms (2-morphisms, etc.) are in higher category contracts\"\n    ]\n  },\n  \"wip\": [\n    \"The contract defines a single morphism; composition and axioms are validated at the Category level\",\n    \"The relationship with IdentityMorphism: identity morphisms are special morphisms\",\n    \"Higher morphisms (2-morphisms, etc.) are in higher category contracts\",\n    \"Contract is fully deterministic with SHA-256 hash algorithm\",\n    \"All validators and computation functions are content-addressed\",\n    \"StructureArtifact only created if all validators succeed\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"finite_category\",\n    \"symbols\": [\n      \"DeclaredMorphism\",\n      \"ValidatedFiniteCategory\"\n    ],\n    \"required_tests\": [\n      \"validated_category_implements_category_trait\"\n    ]\n  }\n}\n",
+      "sha256": "86d581ddb6ca02702eb697ef78884cc34821cdce835ebca93f7c7b311e1b0e81"
+    },
+    {
+      "bytes": 1694,
       "original_paths": [
-        "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n    \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n      \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\",\n  \"subject\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+          "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+            "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13",
+        "subject": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py"
+      },
+      "sha256": "358a1f796809cb1541c8b93475804d304ba344009b536d6c7841d980396c15c6"
     }
   ],
+  "current_contract": "358a1f796809cb1541c8b93475804d304ba344009b536d6c7841d980396c15c6",
+  "current_scoring": "2e8683e65f69ab292c934da1976fb5969ca850230804f8802b186d32dffca3f7",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml": "80bc1ade61b495994a543a980b8f91f6d321213ebc7c182896976d13840dbd21"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "d3c7879fe63e0dbb7e5503df99fd7814faf391151aeff4121760e2c2a344e2da",
       "bytes": 2213,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n    \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-morphism-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
           "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-morphism-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -254,40 +223,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "d3c7879fe63e0dbb7e5503df99fd7814faf391151aeff4121760e2c2a344e2da"
+    },
+    {
+      "bytes": 1652,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n    \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n      \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+          "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+            "sha256": "8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py\",\n    \"sha256\": \"8ac0ad347a6d48b0f41d410e0cdf2e1c96c74ce31bedc97d3aef784a6c613f13\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-morphism-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "2e8683e65f69ab292c934da1976fb5969ca850230804f8802b186d32dffca3f7"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml": "80bc1ade61b495994a543a980b8f91f6d321213ebc7c182896976d13840dbd21"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

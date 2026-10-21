@@ -1,0 +1,260 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-NET-RATE-BACKLOG-DICHOTOMY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In the QCV-Q1 model with q0 >= 0, the backlog is bounded iff lam <= (1-g)*mu; for
+    g >= 1 and lam > 0 no mu >= 0 bounds it; for g < 1 and mu = kappa*r, with kappa > 0, it is bounded
+    iff r >= lam/((1-g)*kappa); with r = 0 and lam > 0 it equals q0 + t*lam.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: A statement inside the declared model; it does not say any code has g < 1 or that
+    any supply r is available.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md
+    sha256: b1bea1575d51ca9c7bddb5bee7ab5eae63399cdca2198bafd7a64a20da91e52b
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_net_rate_backlog_dichotomy_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: BacklogBounded
+  line: 64
+  signature_excerpt: 'def BacklogBounded (lam g mu q0 : ℚ) : Prop'
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: backlog
+  line: 27
+  signature_excerpt: |-
+    def backlog (lam g mu q0 : ℚ) : ℕ → ℚ
+      | 0 => q0
+      | t + 1 => max 0 (backlog lam g mu q0 t + (lam + g * mu - mu))
+
+    /-- Net drift per round. -/
+    def drift (lam g mu : ℚ) : ℚ
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: drift
+  line: 32
+  signature_excerpt: 'def drift (lam g mu : ℚ) : ℚ'
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: backlog_bounded_iff
+  line: 68
+  signature_excerpt: |-
+    theorem backlog_bounded_iff {lam g mu q0 : ℚ} (hq : 0 ≤ q0) :
+        BacklogBounded lam g mu q0 ↔ lam ≤ (1 - g) * mu
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_bounded_backlog_if_unit_gain
+  line: 87
+  signature_excerpt: |-
+    theorem no_bounded_backlog_if_unit_gain {lam g q0 : ℚ} (hq : 0 ≤ q0) (hlam : 0 < lam) (hg : 1 ≤ g)
+        (mu : ℚ) (hmu : 0 ≤ mu) : ¬ BacklogBounded lam g mu q0
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fresh_supply_threshold
+  line: 100
+  signature_excerpt: |-
+    theorem fresh_supply_threshold {lam g kappa r q0 : ℚ} (hq : 0 ≤ q0) (hg : g < 1) (hk : 0 < kappa) :
+        BacklogBounded lam g (kappa * r) q0 ↔ lam / ((1 - g) * kappa) ≤ r
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_supply_linear_growth
+  line: 106
+  signature_excerpt: |-
+    theorem no_supply_linear_growth {lam g kappa q0 : ℚ} (hq : 0 ≤ q0) (hlam : 0 < lam) (t : ℕ) :
+        backlog lam g (kappa * 0) q0 t = q0 + t * lam
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: backlog_linear
+  line: 51
+  signature_excerpt: |-
+    theorem backlog_linear {lam g mu q0 : ℚ} (hq : 0 ≤ q0) (hd : 0 < drift lam g mu) (t : ℕ) :
+        backlog lam g mu q0 t = q0 + t * drift lam g mu
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: backlog_le_initial
+  line: 40
+  signature_excerpt: |-
+    theorem backlog_le_initial {lam g mu q0 : ℚ} (hq : 0 ≤ q0) (hd : drift lam g mu ≤ 0) (t : ℕ) :
+        backlog lam g mu q0 t ≤ q0
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/QcRepairQueue.lean::backlog_bounded_iff
+  availability: local
+  symbol: backlog_bounded_iff
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::no_bounded_backlog_if_unit_gain
+  availability: local
+  symbol: no_bounded_backlog_if_unit_gain
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::fresh_supply_threshold
+  availability: local
+  symbol: fresh_supply_threshold
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 100
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::no_supply_linear_growth
+  availability: local
+  symbol: no_supply_linear_growth
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 106
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::backlog_linear
+  availability: local
+  symbol: backlog_linear
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::backlog_le_initial
+  availability: local
+  symbol: backlog_le_initial
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog
+  availability: local
+  symbol: backlog
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 352
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog_bounded_decision
+  availability: local
+  symbol: backlog_bounded_decision
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 366
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::supply_threshold
+  availability: local
+  symbol: supply_threshold
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 371
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

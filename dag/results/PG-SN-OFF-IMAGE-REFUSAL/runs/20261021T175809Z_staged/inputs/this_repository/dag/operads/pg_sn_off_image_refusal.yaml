@@ -1,0 +1,152 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-SN-OFF-IMAGE-REFUSAL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'S(n) off-image refusal closing the domain-restriction half of WDP-P001-019: off-image points
+    fail s(r(y)) = y and are refused by SnOffImage.nonDescent_iff_off_image.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: Closes the domain-restriction half of WDP-P001-019; off-image points are refused by section-retraction
+    roundtrip.
+  source_refs:
+  - external:prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md:25
+  - omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  paper_refs:
+  - dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+  - dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+  - papers/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+  paper_relocations:
+  - from: papers/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+    to: dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+  - from: papers/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+    to: dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md
+    sha256: 7b92446fcb8f3e006c27b4fccbf5763ea2db1bd7c8a54e84c6f6c9e560407a73
+  - path: dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md
+    sha256: df486bf78b3c6fb5bc1a5ba5f17e93a6ef23a81b6e9fca7365a82b032450d0d6
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/pregenesis_pg_sn_off_image_refusal_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: nonDescent_iff_off_image
+  line: 127
+  signature_excerpt: "theorem nonDescent_iff_off_image (n : Nat) (p : SnPresentation) :\n    retractionDownMap\
+    \ n p = .nonDescent ↔ ∀ b : BasePresentation, p ≠ sectionLift n b"
+  source: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  repository: the_symbol_game
+  source_sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: accepted_only_from_section
+  line: 75
+  signature_excerpt: "theorem accepted_only_from_section (n : Nat) (p : SnPresentation) (q : SnPresentation)\n\
+    \    (h : retractionDownMap n p = .accepted q) :\n    ∃ b : BasePresentation, p = sectionLift n b ∧ q = b.toPresentation"
+  source: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  repository: the_symbol_game
+  source_sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image
+  availability: external
+  symbol: SnOffImage.nonDescent_iff_off_image
+  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  repository: the_symbol_game
+  sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+  declaration_status: declaration_found_not_proof_checked
+  line: 127
+  role: source_lead_only
+- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.accepted_only_from_section
+  availability: external
+  symbol: SnOffImage.accepted_only_from_section
+  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  repository: the_symbol_game
+  sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+  declaration_status: declaration_found_not_proof_checked
+  line: 75
+  role: source_lead_only
+- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.old_image_base'
+  availability: external
+  symbol: SnOffImage.old_image_base'
+  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
+  repository: the_symbol_game
+  sha256: 746372dc3177e92ee59417289ae9b938d1f8b351a5f56f434245fc7a154bdc15
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_sn_off_image_refusal_witness
+  availability: external
+  symbol: verify_sn_off_image_refusal_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 64
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

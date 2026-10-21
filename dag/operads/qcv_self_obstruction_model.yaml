@@ -1,0 +1,166 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: QCV-SELF-OBSTRUCTION-MODEL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Backlog q(t+1) = max(0, q(t) + lam + g*mu - mu) in units of the Phi_1 repair cost,
+    where lam is the residual generated per round by the computation, mu = kappa*r the repair rate from
+    r fresh ancillas per round at kappa units each, and g the residual generated per unit of repair; with
+    g = 0 this is the DS-QM101 queue; a distance-three level with a fault locations has constant c = a(a-1)/2.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - declared generation rate lam
+  - declared self-generated fraction g of repair
+  - declared capacity kappa per fresh ancilla
+  - declared fresh supply r per round
+  source_bottleneck: lam, g, kappa and r are declared inputs; no value is derived or measured for any
+    code, and Phi_1 of a residual is not computed here.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md
+  - dag/research/quantum_computation_self_obstruction.md
+  - dag/derivation_dag.json
+  - dag/research/quantum_computation_self_obstruction_axioms.txt
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md
+    sha256: 041e6e718533e0a7a8b64c12abc77e0c6582379dbec1c1b29c56a6129e88b845
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_qcv_self_obstruction_model_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: backlog
+  line: 27
+  signature_excerpt: |-
+    def backlog (lam g mu q0 : ℚ) : ℕ → ℚ
+      | 0 => q0
+      | t + 1 => max 0 (backlog lam g mu q0 t + (lam + g * mu - mu))
+
+    /-- Net drift per round. -/
+    def drift (lam g mu : ℚ) : ℚ
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: drift
+  line: 32
+  signature_excerpt: 'def drift (lam g mu : ℚ) : ℚ'
+  source: lean4/QcRepairQueue.lean
+  repository: this_repository
+  source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pairCount
+  line: 198
+  signature_excerpt: 'def pairCount (a : ℕ) : ℚ'
+  source: lean4/QcConcatenation.lean
+  repository: this_repository
+  source_sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  status: source_candidate_requires_semantic_review
+relation_candidates: []
+source_bindings:
+- original_ref: lean4/QcRepairQueue.lean::backlog
+  availability: local
+  symbol: backlog
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/QcRepairQueue.lean::drift
+  availability: local
+  symbol: drift
+  path: lean4/QcRepairQueue.lean
+  repository: this_repository
+  sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/QcConcatenation.lean::pairCount
+  availability: local
+  symbol: pairCount
+  path: lean4/QcConcatenation.lean
+  repository: this_repository
+  sha256: 5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63
+  declaration_status: declaration_found_not_proof_checked
+  line: 198
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::backlog
+  availability: local
+  symbol: backlog
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 352
+  role: source_lead_only
+- original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::pair_count
+  availability: local
+  symbol: pair_count
+  path: code/rust/src/qm/campaigns/qc_self_obstruction.rs
+  repository: this_repository
+  sha256: 7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3
+  declaration_status: declaration_found_not_executed
+  line: 184
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - declared generation rate lam
+    - declared self-generated fraction g of repair
+    - declared capacity kappa per fresh ancilla
+    - declared fresh supply r per round
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - declared generation rate lam
+    - declared self-generated fraction g of repair
+    - declared capacity kappa per fresh ancilla
+    - declared fresh supply r per round
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

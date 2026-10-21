@@ -1,279 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:products:llm_symbol_game_interface:v1.0.2",
-    "title": "LLMSymbolGameInterface",
-    "kind": "product_contract",
-    "status": "mathematical_wip",
-    "layer": "07_products",
-    "role": "RepresentationBoundary",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "LLMAdapterContract",
-          "SymbolGameContract",
-          "PacketContract"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+      "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
     },
-    "doctrine": {
-      "summary": "This contract defines the interface boundary where LLM candidate output enters the Symbol Game.\n\nThe LLMSymbolGameInterface receives parsed candidate output from the LLM Adapter and submits it to\nthe Symbol Game as untrusted candidate material. The interface strips any authority claims present\nin LLM output, records LLM provenance for auditability, and checks intake preconditions for the strict derivation_result envelope (schema version mss_derivation_result_v001), disposition validity (the 5 allowed states), authority_effect: NONE, grammar declaration, token budget, and parseability before forwarding to the Symbol Game.\n\nThese intake checks do not validate symbol correctness or grant grammar authority. Symbol Game owns\ngrammar parsing and local symbol-rule validation. This interface only ensures the candidate is fit\nfor Symbol Game intake.\n",
-      "non_role": [
-        "certification",
-        "validation",
-        "evaluation",
-        "terminalization",
-        "execution",
-        "transition authorization",
-        "action licensing",
-        "authority upgrade",
-        "operator classification",
-        "evidence authority creation",
-        "grammar authority creation",
-        "symbol authority creation",
-        "policy interpretation",
-        "tool/oracle authority claim"
-      ],
-      "llm_boundary_law": {
-        "doctrine": 5,
-        "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, classify operators, define grammar authority, define\nsymbol authority, claim tool/oracle authority, or upgrade evidence authority.\n\nLLM output entering the Symbol Game must pass through the LLMAdapter and this interface as\nuntrusted candidate material.\n\nNo LLM output may bypass this interface to enter the Symbol Game as certified, validated, checked,\nterminal, licensed, or authoritative material.\n"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+        "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
       },
-      "classification": {
-        "subsystem": "Product Layer",
-        "role": "Interface boundary between LLM Adapter output and Symbol Game input.",
-        "classification": "Product layer -- LLMSymbolGameInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is an intake interface that bridges two product boundaries: LLM Adapter output and Symbol Game input. It strips, tags, and forwards candidate material."
-      },
-      "structural_representation": {
-        "llm_symbol_game_intake": {
-          "struct_name": "LlmSymbolGameIntake",
-          "fields": [
-            {
-              "name": "intake_id",
-              "type": "IntakeId"
-            },
-            {
-              "name": "packet_id",
-              "type": "PacketId"
-            },
-            {
-              "name": "candidate_id",
-              "type": "CandidateId"
-            },
-            {
-              "name": "candidate_type",
-              "type": "CandidateType"
-            },
-            {
-              "name": "envelope_schema_version",
-              "type": "SchemaVersion",
-              "default": "mss_derivation_result_v001"
-            },
-            {
-              "name": "disposition_value",
-              "type": "GeneratorDisposition"
-            },
-            {
-              "name": "grammar_ref",
-              "type": "GrammarId"
-            },
-            {
-              "name": "alphabet_ref",
-              "type": "AlphabetId"
-            },
-            {
-              "name": "request_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "raw_response_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "adapter_output_ref",
-              "type": "LlmAdapterOutputRef"
-            },
-            {
-              "name": "provenance_ref",
-              "type": "WitnessId"
-            },
-            {
-              "name": "intake_witness_ref",
-              "type": "WitnessId"
-            },
-            {
-              "name": "token_count",
-              "type": "usize"
-            },
-            {
-              "name": "token_budget",
-              "type": "usize"
-            },
-            {
-              "name": "intake_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly"
-            }
-          ]
-        }
-      },
-      "authority_bound": "No authority is created at this interface. LLM output enters as untrusted candidate material with\nEvidenceOnly intake provenance.\n\nAny downstream certificate, validation result, or Symbol Game fact derives authority exclusively\nfrom the declared downstream boundary, not from the LLM source or this interface.\n",
-      "no_bypass_law": "LLM-originated material MUST NOT enter Symbol Game directly.\n\nIt must pass through:\n  LLMAdapter -> LLMSymbolGameInterface -> Packet / SymbolGame intake\n\nAny direct LLM-to-SymbolGame submission is refused.\n",
-      "admissibility_checklist": [
-        "LLM output is wrapped in derivation_result envelope (mss_derivation_result_v001)",
-        "Disposition is strictly one of five allowed states (CONTINUE_CANDIDATE, EVALUATOR_REQUIRED, TYPED_REFUSAL, LIFT_REQUESTED, TERMINAL_CANDIDATE)",
-        "Declared authority_effect is exactly NONE",
-        "LLM output is parseable into a known candidate type",
-        "Grammar is declared in the candidate envelope",
-        "Symbols are drawn from the declared alphabet",
-        "Token budget is not exceeded",
-        "LLM provenance metadata is attached (model_id, request_hash, adapter_version)",
-        "Authority claims are absent or have been stripped",
-        "Candidate type matches a Symbol Game input kind"
-      ],
-      "refusal_conditions": [
-        "unparseable LLM output",
-        "missing derivation_result envelope",
-        "disposition value is not an allowed candidate state (e.g. VERIFIED, DENY)",
-        "generator attempts to claim authority_effect other than NONE",
-        "undeclared grammar",
-        "undeclared symbols outside allowed alphabet",
-        "token budget exceeded",
-        "missing LLM provenance metadata",
-        "authority claims present in LLM output after stripping",
-        "unknown candidate type for Symbol Game",
-        "prompt/response hash mismatch",
-        "malformed candidate envelope"
-      ],
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "certify(",
-          "validate_as_authority",
-          "evaluate_admissibility",
-          "terminalize(",
-          "authority_upgrade",
-          "sign_certificate",
-          "create_certificate",
-          "execute_transition",
-          "authorize_transition",
-          "license_transition",
-          "classify_operator",
-          "create_grammar_authority",
-          "create_symbol_authority",
-          "claim_oracle_authority",
-          "self_certify"
-        ]
-      },
-      "required_tests": [
-        "interface_strips_authority_claims_from_llm_output",
-        "interface_enforces_derivation_result_envelope",
-        "interface_enforces_valid_disposition",
-        "interface_enforces_authority_effect_none",
-        "interface_records_llm_provenance",
-        "interface_rejects_unparseable_output",
-        "interface_rejects_undeclared_grammar",
-        "interface_rejects_undeclared_symbols",
-        "interface_rejects_token_budget_exceeded",
-        "interface_output_is_candidate_only",
-        "interface_rejects_authority_claims_in_llm_output",
-        "interface_output_defaults_to_evidence_only",
-        "interface_requires_llm_adapter_output_ref",
-        "interface_refuses_direct_llm_to_symbol_game_bypass",
-        "interface_does_not_validate_symbol_correctness",
-        "interface_does_not_create_grammar_authority",
-        "interface_does_not_create_symbol_authority",
-        "interface_does_not_authorize_transition",
-        "interface_does_not_emit_action_license",
-        "interface_intake_witness_is_complete",
-        "interface_records_request_and_response_hashes"
-      ],
-      "canonical_invariant": "LLMSymbolGameInterface is an EvidenceOnly intake boundary. It receives LLMAdapter candidate output,\nstrips authority claims, enforces derivation_result envelope constraints, records provenance, checks Symbol Game intake preconditions, and forwards\nonly untrusted candidate material. It does not validate symbol correctness, define grammar authority,\ncreate symbol authority, certify, evaluate, license, authorize, terminalize, mutate, or execute.\n",
-      "legacy_metadata": {
-        "name": "LLMSymbolGameInterface",
-        "role": "Interface boundary between LLM candidate output and Symbol Game intake",
-        "classification": "product",
-        "effect_class": "none",
-        "depends_on": [
-          "LLMAdapterContract",
-          "SymbolGameContract",
-          "PacketContract"
-        ],
-        "forbidden_authority": [
-          "certification",
-          "validation",
-          "evaluation",
-          "terminalization",
-          "execution",
-          "transition authorization",
-          "action licensing",
-          "authority upgrade",
-          "operator classification",
-          "evidence authority creation",
-          "grammar authority creation",
-          "symbol authority creation",
-          "policy interpretation",
-          "tool/oracle authority claim"
-        ],
-        "primary_output_family": "EvidenceEnvelope",
-        "referenced_output_families": [
-          "StructureArtifact",
-          "EvidenceEnvelope",
-          "Record"
-        ],
-        "referenced_domain_kinds": [
-          "WitnessEnvelope"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_product_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4",
+    "subject": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py"
   },
-  "current_contract": "78f12cf5e217567ad32575915dd1c9bd3c4a3653c6652a05d401fdf1990336fe",
-  "current_scoring": "4ad938151bf675147d6fec2e8f5137332b62c6477abc2cc1a894dfa1babcda47",
   "contract_history": [
     {
-      "sha256": "78f12cf5e217567ad32575915dd1c9bd3c4a3653c6652a05d401fdf1990336fe",
       "bytes": 10475,
+      "original_paths": [
+        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:products:llm_symbol_game_interface:v1.0.2\",\n  \"title\": \"LLMSymbolGameInterface\",\n  \"kind\": \"product_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"07_products\",\n  \"role\": \"RepresentationBoundary\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"LLMAdapterContract\",\n        \"SymbolGameContract\",\n        \"PacketContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the interface boundary where LLM candidate output enters the Symbol Game.\\n\\nThe LLMSymbolGameInterface receives parsed candidate output from the LLM Adapter and submits it to\\nthe Symbol Game as untrusted candidate material. The interface strips any authority claims present\\nin LLM output, records LLM provenance for auditability, and checks intake preconditions for the strict derivation_result envelope (schema version mss_derivation_result_v001), disposition validity (the 5 allowed states), authority_effect: NONE, grammar declaration, token budget, and parseability before forwarding to the Symbol Game.\\n\\nThese intake checks do not validate symbol correctness or grant grammar authority. Symbol Game owns\\ngrammar parsing and local symbol-rule validation. This interface only ensures the candidate is fit\\nfor Symbol Game intake.\\n\",\n    \"non_role\": [\n      \"certification\",\n      \"validation\",\n      \"evaluation\",\n      \"terminalization\",\n      \"execution\",\n      \"transition authorization\",\n      \"action licensing\",\n      \"authority upgrade\",\n      \"operator classification\",\n      \"evidence authority creation\",\n      \"grammar authority creation\",\n      \"symbol authority creation\",\n      \"policy interpretation\",\n      \"tool/oracle authority claim\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\\nauthorize transitions, execute transitions, classify operators, define grammar authority, define\\nsymbol authority, claim tool/oracle authority, or upgrade evidence authority.\\n\\nLLM output entering the Symbol Game must pass through the LLMAdapter and this interface as\\nuntrusted candidate material.\\n\\nNo LLM output may bypass this interface to enter the Symbol Game as certified, validated, checked,\\nterminal, licensed, or authoritative material.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Product Layer\",\n      \"role\": \"Interface boundary between LLM Adapter output and Symbol Game input.\",\n      \"classification\": \"Product layer -- LLMSymbolGameInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is an intake interface that bridges two product boundaries: LLM Adapter output and Symbol Game input. It strips, tags, and forwards candidate material.\"\n    },\n    \"structural_representation\": {\n      \"llm_symbol_game_intake\": {\n        \"struct_name\": \"LlmSymbolGameIntake\",\n        \"fields\": [\n          {\n            \"name\": \"intake_id\",\n            \"type\": \"IntakeId\"\n          },\n          {\n            \"name\": \"packet_id\",\n            \"type\": \"PacketId\"\n          },\n          {\n            \"name\": \"candidate_id\",\n            \"type\": \"CandidateId\"\n          },\n          {\n            \"name\": \"candidate_type\",\n            \"type\": \"CandidateType\"\n          },\n          {\n            \"name\": \"envelope_schema_version\",\n            \"type\": \"SchemaVersion\",\n            \"default\": \"mss_derivation_result_v001\"\n          },\n          {\n            \"name\": \"disposition_value\",\n            \"type\": \"GeneratorDisposition\"\n          },\n          {\n            \"name\": \"grammar_ref\",\n            \"type\": \"GrammarId\"\n          },\n          {\n            \"name\": \"alphabet_ref\",\n            \"type\": \"AlphabetId\"\n          },\n          {\n            \"name\": \"request_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"raw_response_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"adapter_output_ref\",\n            \"type\": \"LlmAdapterOutputRef\"\n          },\n          {\n            \"name\": \"provenance_ref\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"intake_witness_ref\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"token_count\",\n            \"type\": \"usize\"\n          },\n          {\n            \"name\": \"token_budget\",\n            \"type\": \"usize\"\n          },\n          {\n            \"name\": \"intake_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      }\n    },\n    \"authority_bound\": \"No authority is created at this interface. LLM output enters as untrusted candidate material with\\nEvidenceOnly intake provenance.\\n\\nAny downstream certificate, validation result, or Symbol Game fact derives authority exclusively\\nfrom the declared downstream boundary, not from the LLM source or this interface.\\n\",\n    \"no_bypass_law\": \"LLM-originated material MUST NOT enter Symbol Game directly.\\n\\nIt must pass through:\\n  LLMAdapter -> LLMSymbolGameInterface -> Packet / SymbolGame intake\\n\\nAny direct LLM-to-SymbolGame submission is refused.\\n\",\n    \"admissibility_checklist\": [\n      \"LLM output is wrapped in derivation_result envelope (mss_derivation_result_v001)\",\n      \"Disposition is strictly one of five allowed states (CONTINUE_CANDIDATE, EVALUATOR_REQUIRED, TYPED_REFUSAL, LIFT_REQUESTED, TERMINAL_CANDIDATE)\",\n      \"Declared authority_effect is exactly NONE\",\n      \"LLM output is parseable into a known candidate type\",\n      \"Grammar is declared in the candidate envelope\",\n      \"Symbols are drawn from the declared alphabet\",\n      \"Token budget is not exceeded\",\n      \"LLM provenance metadata is attached (model_id, request_hash, adapter_version)\",\n      \"Authority claims are absent or have been stripped\",\n      \"Candidate type matches a Symbol Game input kind\"\n    ],\n    \"refusal_conditions\": [\n      \"unparseable LLM output\",\n      \"missing derivation_result envelope\",\n      \"disposition value is not an allowed candidate state (e.g. VERIFIED, DENY)\",\n      \"generator attempts to claim authority_effect other than NONE\",\n      \"undeclared grammar\",\n      \"undeclared symbols outside allowed alphabet\",\n      \"token budget exceeded\",\n      \"missing LLM provenance metadata\",\n      \"authority claims present in LLM output after stripping\",\n      \"unknown candidate type for Symbol Game\",\n      \"prompt/response hash mismatch\",\n      \"malformed candidate envelope\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"certify(\",\n        \"validate_as_authority\",\n        \"evaluate_admissibility\",\n        \"terminalize(\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_certificate\",\n        \"execute_transition\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"classify_operator\",\n        \"create_grammar_authority\",\n        \"create_symbol_authority\",\n        \"claim_oracle_authority\",\n        \"self_certify\"\n      ]\n    },\n    \"required_tests\": [\n      \"interface_strips_authority_claims_from_llm_output\",\n      \"interface_enforces_derivation_result_envelope\",\n      \"interface_enforces_valid_disposition\",\n      \"interface_enforces_authority_effect_none\",\n      \"interface_records_llm_provenance\",\n      \"interface_rejects_unparseable_output\",\n      \"interface_rejects_undeclared_grammar\",\n      \"interface_rejects_undeclared_symbols\",\n      \"interface_rejects_token_budget_exceeded\",\n      \"interface_output_is_candidate_only\",\n      \"interface_rejects_authority_claims_in_llm_output\",\n      \"interface_output_defaults_to_evidence_only\",\n      \"interface_requires_llm_adapter_output_ref\",\n      \"interface_refuses_direct_llm_to_symbol_game_bypass\",\n      \"interface_does_not_validate_symbol_correctness\",\n      \"interface_does_not_create_grammar_authority\",\n      \"interface_does_not_create_symbol_authority\",\n      \"interface_does_not_authorize_transition\",\n      \"interface_does_not_emit_action_license\",\n      \"interface_intake_witness_is_complete\",\n      \"interface_records_request_and_response_hashes\"\n    ],\n    \"canonical_invariant\": \"LLMSymbolGameInterface is an EvidenceOnly intake boundary. It receives LLMAdapter candidate output,\\nstrips authority claims, enforces derivation_result envelope constraints, records provenance, checks Symbol Game intake preconditions, and forwards\\nonly untrusted candidate material. It does not validate symbol correctness, define grammar authority,\\ncreate symbol authority, certify, evaluate, license, authorize, terminalize, mutate, or execute.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"LLMSymbolGameInterface\",\n      \"role\": \"Interface boundary between LLM candidate output and Symbol Game intake\",\n      \"classification\": \"product\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"LLMAdapterContract\",\n        \"SymbolGameContract\",\n        \"PacketContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certification\",\n        \"validation\",\n        \"evaluation\",\n        \"terminalization\",\n        \"execution\",\n        \"transition authorization\",\n        \"action licensing\",\n        \"authority upgrade\",\n        \"operator classification\",\n        \"evidence authority creation\",\n        \"grammar authority creation\",\n        \"symbol authority creation\",\n        \"policy interpretation\",\n        \"tool/oracle authority claim\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"StructureArtifact\",\n        \"EvidenceEnvelope\",\n        \"Record\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_product_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:products:llm_symbol_game_interface:v1.0.2",
-        "title": "LLMSymbolGameInterface",
-        "kind": "product_contract",
-        "status": "mathematical_wip",
-        "layer": "07_products",
-        "role": "RepresentationBoundary",
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -283,20 +58,102 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "This contract defines the interface boundary where LLM candidate output enters the Symbol Game.\n\nThe LLMSymbolGameInterface receives parsed candidate output from the LLM Adapter and submits it to\nthe Symbol Game as untrusted candidate material. The interface strips any authority claims present\nin LLM output, records LLM provenance for auditability, and checks intake preconditions for the strict derivation_result envelope (schema version mss_derivation_result_v001), disposition validity (the 5 allowed states), authority_effect: NONE, grammar declaration, token budget, and parseability before forwarding to the Symbol Game.\n\nThese intake checks do not validate symbol correctness or grant grammar authority. Symbol Game owns\ngrammar parsing and local symbol-rule validation. This interface only ensures the candidate is fit\nfor Symbol Game intake.\n",
+          "admissibility_checklist": [
+            "LLM output is wrapped in derivation_result envelope (mss_derivation_result_v001)",
+            "Disposition is strictly one of five allowed states (CONTINUE_CANDIDATE, EVALUATOR_REQUIRED, TYPED_REFUSAL, LIFT_REQUESTED, TERMINAL_CANDIDATE)",
+            "Declared authority_effect is exactly NONE",
+            "LLM output is parseable into a known candidate type",
+            "Grammar is declared in the candidate envelope",
+            "Symbols are drawn from the declared alphabet",
+            "Token budget is not exceeded",
+            "LLM provenance metadata is attached (model_id, request_hash, adapter_version)",
+            "Authority claims are absent or have been stripped",
+            "Candidate type matches a Symbol Game input kind"
+          ],
+          "authority_bound": "No authority is created at this interface. LLM output enters as untrusted candidate material with\nEvidenceOnly intake provenance.\n\nAny downstream certificate, validation result, or Symbol Game fact derives authority exclusively\nfrom the declared downstream boundary, not from the LLM source or this interface.\n",
+          "canonical_invariant": "LLMSymbolGameInterface is an EvidenceOnly intake boundary. It receives LLMAdapter candidate output,\nstrips authority claims, enforces derivation_result envelope constraints, records provenance, checks Symbol Game intake preconditions, and forwards\nonly untrusted candidate material. It does not validate symbol correctness, define grammar authority,\ncreate symbol authority, certify, evaluate, license, authorize, terminalize, mutate, or execute.\n",
+          "classification": {
+            "classification": "Product layer -- LLMSymbolGameInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is an intake interface that bridges two product boundaries: LLM Adapter output and Symbol Game input. It strips, tags, and forwards candidate material.",
+            "role": "Interface boundary between LLM Adapter output and Symbol Game input.",
+            "subsystem": "Product Layer"
+          },
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "certify(",
+              "validate_as_authority",
+              "evaluate_admissibility",
+              "terminalize(",
+              "authority_upgrade",
+              "sign_certificate",
+              "create_certificate",
+              "execute_transition",
+              "authorize_transition",
+              "license_transition",
+              "classify_operator",
+              "create_grammar_authority",
+              "create_symbol_authority",
+              "claim_oracle_authority",
+              "self_certify"
+            ]
+          },
+          "legacy_metadata": {
+            "classification": "product",
+            "depends_on": [
+              "LLMAdapterContract",
+              "SymbolGameContract",
+              "PacketContract"
+            ],
+            "effect_class": "none",
+            "forbidden_authority": [
+              "certification",
+              "validation",
+              "evaluation",
+              "terminalization",
+              "execution",
+              "transition authorization",
+              "action licensing",
+              "authority upgrade",
+              "operator classification",
+              "evidence authority creation",
+              "grammar authority creation",
+              "symbol authority creation",
+              "policy interpretation",
+              "tool/oracle authority claim"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "LLMSymbolGameInterface",
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_domain_kinds": [
+              "WitnessEnvelope"
+            ],
+            "referenced_output_families": [
+              "StructureArtifact",
+              "EvidenceEnvelope",
+              "Record"
+            ],
+            "role": "Interface boundary between LLM candidate output and Symbol Game intake"
+          },
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, classify operators, define grammar authority, define\nsymbol authority, claim tool/oracle authority, or upgrade evidence authority.\n\nLLM output entering the Symbol Game must pass through the LLMAdapter and this interface as\nuntrusted candidate material.\n\nNo LLM output may bypass this interface to enter the Symbol Game as certified, validated, checked,\nterminal, licensed, or authoritative material.\n"
+          },
+          "no_bypass_law": "LLM-originated material MUST NOT enter Symbol Game directly.\n\nIt must pass through:\n  LLMAdapter -> LLMSymbolGameInterface -> Packet / SymbolGame intake\n\nAny direct LLM-to-SymbolGame submission is refused.\n",
           "non_role": [
             "certification",
             "validation",
@@ -313,18 +170,45 @@
             "policy interpretation",
             "tool/oracle authority claim"
           ],
-          "llm_boundary_law": {
-            "doctrine": 5,
-            "text": "The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\nauthorize transitions, execute transitions, classify operators, define grammar authority, define\nsymbol authority, claim tool/oracle authority, or upgrade evidence authority.\n\nLLM output entering the Symbol Game must pass through the LLMAdapter and this interface as\nuntrusted candidate material.\n\nNo LLM output may bypass this interface to enter the Symbol Game as certified, validated, checked,\nterminal, licensed, or authoritative material.\n"
-          },
-          "classification": {
-            "subsystem": "Product Layer",
-            "role": "Interface boundary between LLM Adapter output and Symbol Game input.",
-            "classification": "Product layer -- LLMSymbolGameInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is an intake interface that bridges two product boundaries: LLM Adapter output and Symbol Game input. It strips, tags, and forwards candidate material."
-          },
+          "refusal_conditions": [
+            "unparseable LLM output",
+            "missing derivation_result envelope",
+            "disposition value is not an allowed candidate state (e.g. VERIFIED, DENY)",
+            "generator attempts to claim authority_effect other than NONE",
+            "undeclared grammar",
+            "undeclared symbols outside allowed alphabet",
+            "token budget exceeded",
+            "missing LLM provenance metadata",
+            "authority claims present in LLM output after stripping",
+            "unknown candidate type for Symbol Game",
+            "prompt/response hash mismatch",
+            "malformed candidate envelope"
+          ],
+          "required_tests": [
+            "interface_strips_authority_claims_from_llm_output",
+            "interface_enforces_derivation_result_envelope",
+            "interface_enforces_valid_disposition",
+            "interface_enforces_authority_effect_none",
+            "interface_records_llm_provenance",
+            "interface_rejects_unparseable_output",
+            "interface_rejects_undeclared_grammar",
+            "interface_rejects_undeclared_symbols",
+            "interface_rejects_token_budget_exceeded",
+            "interface_output_is_candidate_only",
+            "interface_rejects_authority_claims_in_llm_output",
+            "interface_output_defaults_to_evidence_only",
+            "interface_requires_llm_adapter_output_ref",
+            "interface_refuses_direct_llm_to_symbol_game_bypass",
+            "interface_does_not_validate_symbol_correctness",
+            "interface_does_not_create_grammar_authority",
+            "interface_does_not_create_symbol_authority",
+            "interface_does_not_authorize_transition",
+            "interface_does_not_emit_action_license",
+            "interface_intake_witness_is_complete",
+            "interface_records_request_and_response_hashes"
+          ],
           "structural_representation": {
             "llm_symbol_game_intake": {
-              "struct_name": "LlmSymbolGameIntake",
               "fields": [
                 {
                   "name": "intake_id",
@@ -343,9 +227,9 @@
                   "type": "CandidateType"
                 },
                 {
+                  "default": "mss_derivation_result_v001",
                   "name": "envelope_schema_version",
-                  "type": "SchemaVersion",
-                  "default": "mss_derivation_result_v001"
+                  "type": "SchemaVersion"
                 },
                 {
                   "name": "disposition_value",
@@ -392,160 +276,95 @@
                   "type": "Hash256"
                 },
                 {
+                  "default": "EvidenceOnly",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "EvidenceOnly"
+                  "type": "AuthorityEffect"
                 }
-              ]
+              ],
+              "struct_name": "LlmSymbolGameIntake"
             }
           },
-          "authority_bound": "No authority is created at this interface. LLM output enters as untrusted candidate material with\nEvidenceOnly intake provenance.\n\nAny downstream certificate, validation result, or Symbol Game fact derives authority exclusively\nfrom the declared downstream boundary, not from the LLM source or this interface.\n",
-          "no_bypass_law": "LLM-originated material MUST NOT enter Symbol Game directly.\n\nIt must pass through:\n  LLMAdapter -> LLMSymbolGameInterface -> Packet / SymbolGame intake\n\nAny direct LLM-to-SymbolGame submission is refused.\n",
-          "admissibility_checklist": [
-            "LLM output is wrapped in derivation_result envelope (mss_derivation_result_v001)",
-            "Disposition is strictly one of five allowed states (CONTINUE_CANDIDATE, EVALUATOR_REQUIRED, TYPED_REFUSAL, LIFT_REQUESTED, TERMINAL_CANDIDATE)",
-            "Declared authority_effect is exactly NONE",
-            "LLM output is parseable into a known candidate type",
-            "Grammar is declared in the candidate envelope",
-            "Symbols are drawn from the declared alphabet",
-            "Token budget is not exceeded",
-            "LLM provenance metadata is attached (model_id, request_hash, adapter_version)",
-            "Authority claims are absent or have been stripped",
-            "Candidate type matches a Symbol Game input kind"
-          ],
-          "refusal_conditions": [
-            "unparseable LLM output",
-            "missing derivation_result envelope",
-            "disposition value is not an allowed candidate state (e.g. VERIFIED, DENY)",
-            "generator attempts to claim authority_effect other than NONE",
-            "undeclared grammar",
-            "undeclared symbols outside allowed alphabet",
-            "token budget exceeded",
-            "missing LLM provenance metadata",
-            "authority claims present in LLM output after stripping",
-            "unknown candidate type for Symbol Game",
-            "prompt/response hash mismatch",
-            "malformed candidate envelope"
-          ],
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "certify(",
-              "validate_as_authority",
-              "evaluate_admissibility",
-              "terminalize(",
-              "authority_upgrade",
-              "sign_certificate",
-              "create_certificate",
-              "execute_transition",
-              "authorize_transition",
-              "license_transition",
-              "classify_operator",
-              "create_grammar_authority",
-              "create_symbol_authority",
-              "claim_oracle_authority",
-              "self_certify"
-            ]
-          },
-          "required_tests": [
-            "interface_strips_authority_claims_from_llm_output",
-            "interface_enforces_derivation_result_envelope",
-            "interface_enforces_valid_disposition",
-            "interface_enforces_authority_effect_none",
-            "interface_records_llm_provenance",
-            "interface_rejects_unparseable_output",
-            "interface_rejects_undeclared_grammar",
-            "interface_rejects_undeclared_symbols",
-            "interface_rejects_token_budget_exceeded",
-            "interface_output_is_candidate_only",
-            "interface_rejects_authority_claims_in_llm_output",
-            "interface_output_defaults_to_evidence_only",
-            "interface_requires_llm_adapter_output_ref",
-            "interface_refuses_direct_llm_to_symbol_game_bypass",
-            "interface_does_not_validate_symbol_correctness",
-            "interface_does_not_create_grammar_authority",
-            "interface_does_not_create_symbol_authority",
-            "interface_does_not_authorize_transition",
-            "interface_does_not_emit_action_license",
-            "interface_intake_witness_is_complete",
-            "interface_records_request_and_response_hashes"
-          ],
-          "canonical_invariant": "LLMSymbolGameInterface is an EvidenceOnly intake boundary. It receives LLMAdapter candidate output,\nstrips authority claims, enforces derivation_result envelope constraints, records provenance, checks Symbol Game intake preconditions, and forwards\nonly untrusted candidate material. It does not validate symbol correctness, define grammar authority,\ncreate symbol authority, certify, evaluate, license, authorize, terminalize, mutate, or execute.\n",
-          "legacy_metadata": {
-            "name": "LLMSymbolGameInterface",
-            "role": "Interface boundary between LLM candidate output and Symbol Game intake",
-            "classification": "product",
-            "effect_class": "none",
-            "depends_on": [
-              "LLMAdapterContract",
-              "SymbolGameContract",
-              "PacketContract"
-            ],
-            "forbidden_authority": [
-              "certification",
-              "validation",
-              "evaluation",
-              "terminalization",
-              "execution",
-              "transition authorization",
-              "action licensing",
-              "authority upgrade",
-              "operator classification",
-              "evidence authority creation",
-              "grammar authority creation",
-              "symbol authority creation",
-              "policy interpretation",
-              "tool/oracle authority claim"
-            ],
-            "primary_output_family": "EvidenceEnvelope",
-            "referenced_output_families": [
-              "StructureArtifact",
-              "EvidenceEnvelope",
-              "Record"
-            ],
-            "referenced_domain_kinds": [
-              "WitnessEnvelope"
-            ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
-          }
+          "summary": "This contract defines the interface boundary where LLM candidate output enters the Symbol Game.\n\nThe LLMSymbolGameInterface receives parsed candidate output from the LLM Adapter and submits it to\nthe Symbol Game as untrusted candidate material. The interface strips any authority claims present\nin LLM output, records LLM provenance for auditability, and checks intake preconditions for the strict derivation_result envelope (schema version mss_derivation_result_v001), disposition validity (the 5 allowed states), authority_effect: NONE, grammar declaration, token budget, and parseability before forwarding to the Symbol Game.\n\nThese intake checks do not validate symbol correctness or grant grammar authority. Symbol Game owns\ngrammar parsing and local symbol-rule validation. This interface only ensures the candidate is fit\nfor Symbol Game intake.\n"
         },
+        "kind": "product_contract",
+        "layer": "07_products",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_product_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "RepresentationBoundary",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "LLMSymbolGameInterface"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:products:llm_symbol_game_interface:v1.0.2\",\n  \"title\": \"LLMSymbolGameInterface\",\n  \"kind\": \"product_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"07_products\",\n  \"role\": \"RepresentationBoundary\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"LLMAdapterContract\",\n        \"SymbolGameContract\",\n        \"PacketContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"This contract defines the interface boundary where LLM candidate output enters the Symbol Game.\\n\\nThe LLMSymbolGameInterface receives parsed candidate output from the LLM Adapter and submits it to\\nthe Symbol Game as untrusted candidate material. The interface strips any authority claims present\\nin LLM output, records LLM provenance for auditability, and checks intake preconditions for the strict derivation_result envelope (schema version mss_derivation_result_v001), disposition validity (the 5 allowed states), authority_effect: NONE, grammar declaration, token budget, and parseability before forwarding to the Symbol Game.\\n\\nThese intake checks do not validate symbol correctness or grant grammar authority. Symbol Game owns\\ngrammar parsing and local symbol-rule validation. This interface only ensures the candidate is fit\\nfor Symbol Game intake.\\n\",\n    \"non_role\": [\n      \"certification\",\n      \"validation\",\n      \"evaluation\",\n      \"terminalization\",\n      \"execution\",\n      \"transition authorization\",\n      \"action licensing\",\n      \"authority upgrade\",\n      \"operator classification\",\n      \"evidence authority creation\",\n      \"grammar authority creation\",\n      \"symbol authority creation\",\n      \"policy interpretation\",\n      \"tool/oracle authority claim\"\n    ],\n    \"llm_boundary_law\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is a candidate generator only. It MUST NOT certify, validate, evaluate, terminalize,\\nauthorize transitions, execute transitions, classify operators, define grammar authority, define\\nsymbol authority, claim tool/oracle authority, or upgrade evidence authority.\\n\\nLLM output entering the Symbol Game must pass through the LLMAdapter and this interface as\\nuntrusted candidate material.\\n\\nNo LLM output may bypass this interface to enter the Symbol Game as certified, validated, checked,\\nterminal, licensed, or authoritative material.\\n\"\n    },\n    \"classification\": {\n      \"subsystem\": \"Product Layer\",\n      \"role\": \"Interface boundary between LLM Adapter output and Symbol Game input.\",\n      \"classification\": \"Product layer -- LLMSymbolGameInterface is NOT an operator in the five-effect-class algebra (E, I, C, R, M). It is an intake interface that bridges two product boundaries: LLM Adapter output and Symbol Game input. It strips, tags, and forwards candidate material.\"\n    },\n    \"structural_representation\": {\n      \"llm_symbol_game_intake\": {\n        \"struct_name\": \"LlmSymbolGameIntake\",\n        \"fields\": [\n          {\n            \"name\": \"intake_id\",\n            \"type\": \"IntakeId\"\n          },\n          {\n            \"name\": \"packet_id\",\n            \"type\": \"PacketId\"\n          },\n          {\n            \"name\": \"candidate_id\",\n            \"type\": \"CandidateId\"\n          },\n          {\n            \"name\": \"candidate_type\",\n            \"type\": \"CandidateType\"\n          },\n          {\n            \"name\": \"envelope_schema_version\",\n            \"type\": \"SchemaVersion\",\n            \"default\": \"mss_derivation_result_v001\"\n          },\n          {\n            \"name\": \"disposition_value\",\n            \"type\": \"GeneratorDisposition\"\n          },\n          {\n            \"name\": \"grammar_ref\",\n            \"type\": \"GrammarId\"\n          },\n          {\n            \"name\": \"alphabet_ref\",\n            \"type\": \"AlphabetId\"\n          },\n          {\n            \"name\": \"request_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"raw_response_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"adapter_output_ref\",\n            \"type\": \"LlmAdapterOutputRef\"\n          },\n          {\n            \"name\": \"provenance_ref\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"intake_witness_ref\",\n            \"type\": \"WitnessId\"\n          },\n          {\n            \"name\": \"token_count\",\n            \"type\": \"usize\"\n          },\n          {\n            \"name\": \"token_budget\",\n            \"type\": \"usize\"\n          },\n          {\n            \"name\": \"intake_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      }\n    },\n    \"authority_bound\": \"No authority is created at this interface. LLM output enters as untrusted candidate material with\\nEvidenceOnly intake provenance.\\n\\nAny downstream certificate, validation result, or Symbol Game fact derives authority exclusively\\nfrom the declared downstream boundary, not from the LLM source or this interface.\\n\",\n    \"no_bypass_law\": \"LLM-originated material MUST NOT enter Symbol Game directly.\\n\\nIt must pass through:\\n  LLMAdapter -> LLMSymbolGameInterface -> Packet / SymbolGame intake\\n\\nAny direct LLM-to-SymbolGame submission is refused.\\n\",\n    \"admissibility_checklist\": [\n      \"LLM output is wrapped in derivation_result envelope (mss_derivation_result_v001)\",\n      \"Disposition is strictly one of five allowed states (CONTINUE_CANDIDATE, EVALUATOR_REQUIRED, TYPED_REFUSAL, LIFT_REQUESTED, TERMINAL_CANDIDATE)\",\n      \"Declared authority_effect is exactly NONE\",\n      \"LLM output is parseable into a known candidate type\",\n      \"Grammar is declared in the candidate envelope\",\n      \"Symbols are drawn from the declared alphabet\",\n      \"Token budget is not exceeded\",\n      \"LLM provenance metadata is attached (model_id, request_hash, adapter_version)\",\n      \"Authority claims are absent or have been stripped\",\n      \"Candidate type matches a Symbol Game input kind\"\n    ],\n    \"refusal_conditions\": [\n      \"unparseable LLM output\",\n      \"missing derivation_result envelope\",\n      \"disposition value is not an allowed candidate state (e.g. VERIFIED, DENY)\",\n      \"generator attempts to claim authority_effect other than NONE\",\n      \"undeclared grammar\",\n      \"undeclared symbols outside allowed alphabet\",\n      \"token budget exceeded\",\n      \"missing LLM provenance metadata\",\n      \"authority claims present in LLM output after stripping\",\n      \"unknown candidate type for Symbol Game\",\n      \"prompt/response hash mismatch\",\n      \"malformed candidate envelope\"\n    ],\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"certify(\",\n        \"validate_as_authority\",\n        \"evaluate_admissibility\",\n        \"terminalize(\",\n        \"authority_upgrade\",\n        \"sign_certificate\",\n        \"create_certificate\",\n        \"execute_transition\",\n        \"authorize_transition\",\n        \"license_transition\",\n        \"classify_operator\",\n        \"create_grammar_authority\",\n        \"create_symbol_authority\",\n        \"claim_oracle_authority\",\n        \"self_certify\"\n      ]\n    },\n    \"required_tests\": [\n      \"interface_strips_authority_claims_from_llm_output\",\n      \"interface_enforces_derivation_result_envelope\",\n      \"interface_enforces_valid_disposition\",\n      \"interface_enforces_authority_effect_none\",\n      \"interface_records_llm_provenance\",\n      \"interface_rejects_unparseable_output\",\n      \"interface_rejects_undeclared_grammar\",\n      \"interface_rejects_undeclared_symbols\",\n      \"interface_rejects_token_budget_exceeded\",\n      \"interface_output_is_candidate_only\",\n      \"interface_rejects_authority_claims_in_llm_output\",\n      \"interface_output_defaults_to_evidence_only\",\n      \"interface_requires_llm_adapter_output_ref\",\n      \"interface_refuses_direct_llm_to_symbol_game_bypass\",\n      \"interface_does_not_validate_symbol_correctness\",\n      \"interface_does_not_create_grammar_authority\",\n      \"interface_does_not_create_symbol_authority\",\n      \"interface_does_not_authorize_transition\",\n      \"interface_does_not_emit_action_license\",\n      \"interface_intake_witness_is_complete\",\n      \"interface_records_request_and_response_hashes\"\n    ],\n    \"canonical_invariant\": \"LLMSymbolGameInterface is an EvidenceOnly intake boundary. It receives LLMAdapter candidate output,\\nstrips authority claims, enforces derivation_result envelope constraints, records provenance, checks Symbol Game intake preconditions, and forwards\\nonly untrusted candidate material. It does not validate symbol correctness, define grammar authority,\\ncreate symbol authority, certify, evaluate, license, authorize, terminalize, mutate, or execute.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"LLMSymbolGameInterface\",\n      \"role\": \"Interface boundary between LLM candidate output and Symbol Game intake\",\n      \"classification\": \"product\",\n      \"effect_class\": \"none\",\n      \"depends_on\": [\n        \"LLMAdapterContract\",\n        \"SymbolGameContract\",\n        \"PacketContract\"\n      ],\n      \"forbidden_authority\": [\n        \"certification\",\n        \"validation\",\n        \"evaluation\",\n        \"terminalization\",\n        \"execution\",\n        \"transition authorization\",\n        \"action licensing\",\n        \"authority upgrade\",\n        \"operator classification\",\n        \"evidence authority creation\",\n        \"grammar authority creation\",\n        \"symbol authority creation\",\n        \"policy interpretation\",\n        \"tool/oracle authority claim\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"StructureArtifact\",\n        \"EvidenceEnvelope\",\n        \"Record\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_product_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "78f12cf5e217567ad32575915dd1c9bd3c4a3653c6652a05d401fdf1990336fe"
+    },
+    {
+      "bytes": 1748,
       "original_paths": [
-        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2.contract.yaml"
-      ]
+        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n    \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n      \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\",\n  \"subject\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+          "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+            "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4",
+        "subject": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py"
+      },
+      "sha256": "303730c90b7ac23769939262b4fd56c3064d309873d21dbd7f5094110bd018a7"
     }
   ],
+  "current_contract": "303730c90b7ac23769939262b4fd56c3064d309873d21dbd7f5094110bd018a7",
+  "current_scoring": "0a233bfb63a658aae29e40bc93754a4a2d7e3ebfedad9a70bc25df154e8e2160",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2.contract.yaml": "11495fe4dba91febaf2fca49535c5965d546e386f3af6832c307ad41b2cd48e2"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "4ad938151bf675147d6fec2e8f5137332b62c6477abc2cc1a894dfa1babcda47",
       "bytes": 2257,
+      "original_paths": [
+        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n    \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:products-llm-symbol-game-interface-v1-0-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
           "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:products-llm-symbol-game-interface-v1-0-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -554,40 +373,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "4ad938151bf675147d6fec2e8f5137332b62c6477abc2cc1a894dfa1babcda47"
+    },
+    {
+      "bytes": 1694,
+      "original_paths": [
+        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n    \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n      \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+          "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py",
+            "sha256": "cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.py\",\n    \"sha256\": \"cd2eca8be42542cb422ea92081aded4ee48669f07d2fa7454371405883e25dc4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:products-llm-symbol-game-interface-v1-0-2-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "0a233bfb63a658aae29e40bc93754a4a2d7e3ebfedad9a70bc25df154e8e2160"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/products_llm_symbol_game_interface_v1_0_2.contract.yaml": "11495fe4dba91febaf2fca49535c5965d546e386f3af6832c307ad41b2cd48e2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

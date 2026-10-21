@@ -1,0 +1,546 @@
+add_or_refine_generators:
+- id: base_presentation
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::BasePresentation
+    (line 58), an inductive definition: ground | supplied | relation'
+  ordered_inputs:
+  - Glyph
+  output: BasePresentation
+  semantic_predicate: One of the five base shapes over a glyph alphabet; nested lift, retraction and refusal
+    terms are not members.
+  hypotheses:
+  - 'The pinned restricted model: base presentations (ground, supplied mark, retained pair, directed cut,
+    simplex cut) over an abstract glyph alphabet, lifted by sectionLift and read back by retractionDownMap
+    at the same stage.'
+  arity: 1
+  carrier: Glyph
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+- id: section_lift
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::sectionLift
+    (line 70), a definition by cases on the five shapes (stage-indexed)
+  ordered_inputs:
+  - Stage
+  - BasePresentation
+  output: Presentation
+  semantic_predicate: 'u_N: base presentation to the lift term of stage N.'
+  hypotheses:
+  - 'The pinned restricted model: base presentations (ground, supplied mark, retained pair, directed cut,
+    simplex cut) over an abstract glyph alphabet, lifted by sectionLift and read back by retractionDownMap
+    at the same stage.'
+  arity: 2
+  carrier: Stage
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+- id: retraction_down_map
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::retractionDownMap
+    (line 90) and RetractOutcome (line 84), definitions
+  ordered_inputs:
+  - Stage
+  - Presentation
+  output: RetractOutcome
+  semantic_predicate: 'r_N: accept a stage-N lift whose body has one of the five shapes, otherwise NON_DESCENT.'
+  hypotheses:
+  - 'The pinned restricted model: base presentations (ground, supplied mark, retained pair, directed cut,
+    simplex cut) over an abstract glyph alphabet, lifted by sectionLift and read back by retractionDownMap
+    at the same stage.'
+  arity: 2
+  carrier: Stage
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+- id: carrier_card
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::carrierCard
+    (line 19) and Carrier (line 30): a declared table, not derived'
+  ordered_inputs:
+  - Stage
+  output: Count
+  semantic_predicate: The declared cardinalities 0,1,2,2,4,5,6 and n beyond.
+  hypotheses:
+  - The values are declarations in the source ("not source-derived stage counts").
+  arity: 1
+  carrier: Stage
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: old_image_law
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean::old_image_base
+    (line 91): a general theorem over every stage and base presentation, whose axiom report includes Classical.choice'
+  equation_or_predicate: retraction_down_map(n, section_lift(n, b)) = accepted(b) for all n and all base
+    b
+  typing_conditions: Stage x BasePresentation
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: Every alphabet and stage
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+  historical_evidence_annotation: Kernel old_image_base; native 0 failures.
+  named_Lean_scope: &id001
+  - SnCarrierPfp.old_image_base
+  - SnCarrierPfp.sectionLift_injective
+  - SnCarrierPfp.unrestricted_lift_not_injective
+  - SnCarrierPfp.no_recovery_for_unrestricted_lift
+  - SnCarrierPfp.refusal_token_round_trip_changes_input
+  - SnCarrierPfp.ground_carrier_empty
+  - SnCarrierPfp.card_base
+  - SnCarrierPfp.card_image_sectionLift
+  - SnCarrierPfp.table_ne_base_stage_zero
+  - SnCarrierPfp.table_ne_base_stage_two
+  - SnCarrierPfp.table_ne_base_stage_three
+  - SnCarrierPfp.table_eq_base_stage_one_iff
+  - SnCarrierPfp.no_alphabet_matches_stages_one_two
+  - SnCarrierPfp.baseCard_36
+- id: lift_injective
+  source_declarations:
+  - no source declaration in SnTheorems; the injectivity is derived here from old_image_law
+  equation_or_predicate: section_lift(n, .) is injective and its image has 1+g+3g^2 points
+  typing_conditions: Stage x BasePresentation
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: Every alphabet and stage
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+  historical_evidence_annotation: Kernel sectionLift_injective and card_image_sectionLift; native image
+    sizes 1+g+3g^2.
+  named_Lean_scope: *id001
+- id: ground_carrier_empty
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean::ground_carrier_empty
+    (line 88): the declared Fin (carrierCard 0) = Fin 0 is empty; true by the table definition'
+  equation_or_predicate: Carrier 0 has no element
+  typing_conditions: Carrier 0
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: The declared table only
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+  historical_evidence_annotation: Kernel theorem ground_carrier_empty; a definitional fact about the declared
+    table
+  named_Lean_scope: *id001
+- id: unrestricted_lift_defect
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/SnCarrierDischarge.lean::unconstrainedSectionLift
+    (line 13), refusal_token_round_trip_changes_input (line 28): a definition local to the discharge file
+    and a fixed-instance theorem'
+  equation_or_predicate: the lift defined on all presentations is not injective, has no recovery, and
+    sends the refusal token to ground
+  typing_conditions: Presentation
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: Every alphabet
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+  historical_evidence_annotation: Kernel theorems unrestricted_lift_not_injective, no_recovery_for_unrestricted_lift,
+    refusal_token_round_trip_changes_input; native fibre over the ground lift
+  named_Lean_scope: *id001
+- id: table_not_derived
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean::carrierCard
+    (line 19) is a table; omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/SnCarrierDischarge.lean::carrier_card_table_disagrees_with_higher
+    (line 46) concerns the separate locally defined UnrepairedCarrier, not Carrier
+  equation_or_predicate: carrierCard n differs from the base cardinality 1+g+3g^2 at stages 0, 2, 3 for
+    every g, and from the per-shape counts at stages 1 and 2 jointly
+  typing_conditions: Stage x Nat (alphabet size)
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: Every alphabet size
+  source_pins:
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_sn_carrier_proved_lean.yaml
+    sha256: afcb6c0acb856f61896650a069002aa5db1f25be21c81801623f9128fca8d172
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_sn_carrier.yaml
+    sha256: 0549df57933a7aaecfe4c97bad084602d30cfef28beaa04b3283510e55e41bd4
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
+    sha256: 357376de145de3b1ce6b0fe48d35903d0886ceaab2eb5f8542ff08c8bdc61f99
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+    sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/category_theory/mssn_functor_bridge.rs
+    sha256: b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md
+    sha256: 6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_sn_carrier.py
+    sha256: e4d6e05d29dac5a79c4a9bcd3711d4e83ca715d47ad2b6e7f3eb6f9969e49ea9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_sn_carrier.py
+    sha256: f593124a509e5aa05cb852861af0f946688b6471ef9b9da93f040f8fbb8dfdfc
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_sn_carrier.rs
+    sha256: 2bcf0fbf08e3f46570f2c7983cb34c52de2ef0e9d7deb561f11d37a678b801a0
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_sn_carrier_replay.rs
+    sha256: 830a0ee22cbd57fefbc90b5f4e2535604b37f8d45d01aa59ca4d33bbd892b8c9
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: c9c360da2987c7254e6fccc69e037dac171e7e820d99aa2df79a71253d9818a4
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: dc0f96cb48f8cbd6ccdad7ccd0d17258833435e706434f3b6cf40eeb8c239ab8
+  latest_host_check: dag/results/PG-SN-CARRIER/runs/20261021T132245Z_staged/p2/host_check.json
+  historical_evidence_annotation: Kernel table_ne_base_stage_*; native table_matches flags.
+  named_Lean_scope: *id001
+checked_compositions:
+- outer_operation: retraction_down_map
+  input_slot: 1
+  inner_operation: section_lift
+  colour_match: Presentation
+  hypothesis_match: 'The pinned restricted model: base presentations (ground, supplied mark, retained
+    pair, directed cut, simplex cut) over an abstract glyph alphabet, lifted by sectionLift and read back
+    by retractionDownMap at the same stage. Same stage in both. Fixed contexts must agree across both
+    operations. Formal universal refined-carrier closure is unpaid.'
+  licensing_relations:
+  - old_image_law
+  evidence_status: Kernel and native
+failed_compositions:
+- composition: retraction_down_map(m, section_lift(n, b)) with m different from n
+  reason: 'Refused (NON_DESCENT): the stage test is exact; this is the off-image refusal half of PG-SN-OFF-IMAGE-REFUSAL.'
+- composition: retraction_down_map composed with the unrestricted lift read as a recovery of the input
+  reason: The unrestricted lift is not injective, so no retraction can recover every input; the refusal
+    token returns as ground.
+- composition: carrier_card read as the cardinality of the lift image or of the stage-n shape set
+  reason: 'Kernel table_ne_base_stage_*: the table equals neither for any alphabet size at stages 0, 2,
+    3.'
+counterexamples:
+- id: refusal_token_round_trip
+  statement: unrestricted lift of the refusal token at stage 0 retracts to the ground presentation, not
+    to the token.
+  scope: Every alphabet; kernel refusal_token_round_trip_changes_input.
+- id: table_vs_two_glyphs
+  statement: over two glyphs the stage shape counts are 1,2,4,8 and the declared table is 0,1,2,2; no
+    stage agrees.
+  scope: Instance g = 2; native record.
+- id: table_coincidence_one_glyph
+  statement: over one glyph the table agrees with the shape counts at stages 1 and 3 (1 and 2) but not
+    at stages 0 and 2 (1 vs 0 and 1 vs 2); the base total 5 equals the table entry at stage 5 by coincidence.
+  scope: Instance g = 1; native record.
+- id: semantic_table_read_as_shape_counts
+  kind: semantic_near_miss
+  rationale: Claim the declared table 0,1,2,2 equals the per-stage presentation counts over a two-glyph
+    alphabet (1,2,4,8); no alphabet size makes stages 1 and 2 agree.
+  rejected_by: check_candidate
+- id: semantic_table_matches_pair_count_at_one_glyph
+  kind: semantic_near_miss
+  rationale: With one glyph the supplied and cut/simplex counts happen to equal the table (1 and 2) but
+    the pair count is 1, not the declared 2.
+  rejected_by: check_candidate
+- id: semantic_ground_presentation_counted_as_carrier
+  kind: semantic_near_miss
+  rationale: Read the length-one ground token as a one-point carrier; the source declares the index-zero
+    carrier empty while the ground presentation is one point of Base.
+  rejected_by: check_candidate
+- id: semantic_unrestricted_lift_has_recovery
+  kind: semantic_near_miss
+  rationale: Claim the unrestricted (pre-repair) lift is injective; the refusal token and every lift/retraction
+    term collide with the ground presentation.
+  rejected_by: check_candidate
+- id: semantic_refusal_token_recovered
+  kind: semantic_near_miss
+  rationale: Claim the refusal token survives the unrestricted round trip; it returns as the ground presentation.
+  rejected_by: check_candidate
+- id: semantic_lift_image_shrinks_with_stage
+  kind: semantic_near_miss
+  rationale: Claim the image of the section lift at the last stage has the declared-table size 2; the
+    lift is injective so every stage has the full Base cardinality.
+  rejected_by: check_candidate
+- id: semantic_mismatched_stage_lift_accepted
+  kind: semantic_near_miss
+  rationale: Claim one section image at another stage is accepted by r_n; the stage guard is exact (180
+    of 180 mismatched pairs are refused at g = 2 over four stages).
+  rejected_by: check_candidate
+- id: semantic_long_glyph_body_accepted
+  kind: semantic_near_miss
+  rationale: Claim a lift whose glyph body has three or more glyphs is accepted at its own stage; only
+    the five base shapes are (108 such refusals at g = 3).
+  rejected_by: check_candidate
+- id: semantic_table_read_as_cumulative_counts
+  kind: semantic_near_miss
+  rationale: Compare the declared table 0,1,2,2 with the cumulative counts 1,3,7,15 over two glyphs and
+    claim agreement at stages 1 and 2; no stage agrees.
+  rejected_by: check_candidate
+- id: semantic_empty_alphabet_coincidence_read_as_general
+  kind: semantic_near_miss
+  rationale: The table equals the base total at stage 1 only for the empty alphabet (total 1); claiming
+    it for a two-glyph alphabet reads the degenerate case as general.
+  rejected_by: check_candidate
+- id: semantic_ledger_defect_read_as_restricted_failure
+  kind: semantic_near_miss
+  rationale: Read WDP-P001-019 as saying the pinned restricted lift fails the old-image law; the law holds
+    on every base presentation, the defect belongs to the unrestricted interface.
+  rejected_by: check_candidate
+open_obligations:
+- A corrected cardinality theorem for Carrier n over the 36-glyph alphabet.
+- Off-image refusal completeness for the pinned retraction (PG-SN-OFF-IMAGE-REFUSAL).
+- Nested lift, retraction and refusal terms as base members.
+- Wire parser correspondence for the source grammar.
+- A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+  for the original target. No historical provider receipt is newly authenticated.
+review_scope_clarifications:
+  reviewed_target_qualification: 'The pinned SnCarrier is the restricted model: its old-image law holds
+    for every base presentation, the ledger defects concern an unrestricted interface and a separate type,
+    and the advertised carrier cardinalities are a declared table that equals no stage-wise presentation
+    count.'
+  historical_target_status: Original target retained verbatim as source history; the corrected narrow
+    scope governs this run.
+scope_refinements:
+  historical_source_assumptions_are_not_the_full_work_unit_contract: true
+  work_unit_admitted_hypotheses:
+  - 'The pinned restricted model: base presentations (ground, supplied mark, retained pair, directed cut,
+    simplex cut) over an abstract glyph alphabet, lifted by sectionLift and read back by retractionDownMap
+    at the same stage.'
+  - The values are declarations in the source ("not source-derived stage counts").
+  boundary: Finite carriers, declared operations/readouts and actual native bounds are supplied assumptions,
+    even when the historical source assumption list is empty.

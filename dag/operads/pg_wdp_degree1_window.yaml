@@ -3,23 +3,23 @@ node_id: PG-WDP-DEGREE1-WINDOW
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J; Q1 = C1/im
-    d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm of d1 h, R_cl = Gamma2/Phi1
-    when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.
+  source_statement: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J;
+    Q1 = C1/im d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm
+    of d1 h, R_cl = Gamma2/Phi1 when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001
+  declared_assumptions:
   - 'Finite-dimensional real/complex vector space and norm J (assumption: declared)'
   - 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'
-  source_bottleneck: The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW). Geometry
-    derivation belongs to the L1 emergence fragment.
+  source_bottleneck: The window is declared, not derived from <> or Real_0 (PG-GAP-GENESIS-TO-WINDOW).
+    Geometry derivation belongs to the L1 emergence fragment.
   source_refs:
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D01
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH04-D02
   paper_refs:
   - dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
   source_claim_label: DEFINITION
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
   paper_relocations:
@@ -38,9 +38,9 @@ operation_candidates:
 - kind: def
   name: kappa
   line: 61
-  signature_excerpt: "def kappa\n    (d0 : C0 → C1) (d1 : C1 → C2)\n    (d1_add : ∀ x y : C1, d1 (x + y) = d1\
-    \ x + d1 y)\n    (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)\n    (add_zero_right : ∀ z : C2, z + 0 = z) :\n    Q1 d0\
-    \ → C2"
+  signature_excerpt: "def kappa\n    (d0 : C0 → C1) (d1 : C1 → C2)\n    (d1_add : ∀ x y : C1, d1 (x +\
+    \ y) = d1 x + d1 y)\n    (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)\n    (add_zero_right : ∀ z : C2, z + 0\
+    \ = z) :\n    Q1 d0 → C2"
   source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
   repository: the_symbol_game
   source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
@@ -65,16 +65,17 @@ relation_candidates:
 - kind: theorem
   name: conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
   line: 1311
-  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp : Bool)\
-    \ :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n    (∀ r : Fin 16,\n\
-    \      let f (j : Fin 16) : Bool"
+  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp\
+    \ : Bool) :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n \
+    \   (∀ r : Fin 16,\n      let f (j : Fin 16) : Bool"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
-  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
-    automatically.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa
   availability: external
@@ -131,44 +132,1533 @@ source_bindings:
   line: 1489
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: 'For modules over a field (the graph windows tensored with Q), kappa1 exists on Q1 = C1/im d0
+    exactly when d1 d0 = 0 (kernel); for graph windows with positive weights the weighted-L1 cost is the
+    IsPhi defect of a nonnegative definite J, so Phi1 = 0 iff the class is zero (kernel); on the 17 tabulated
+    integer windows Phi1 is the weighted-L1 minimum over rational potentials with a verified primal potential
+    and dual vector; each (Phi1, Gamma2) pair has exactly one class: ExactClass iff Phi1 = 0, ClosedResidual
+    iff Phi1 > 0 and Gamma2 = 0, ActiveClosureFailure iff both are positive (the Lean diag theorems state
+    phi != 0, equivalent for Phi1 >= 0).'
+  colours:
+  - id: ClosureCharge
+    meaning: d1 h in C2
+  - id: DiagnosticClass
+    meaning: ExactClass | ClosedResidual | ActiveClosureFailure (NotAWindow marks a refusal)
+  - id: Gamma2
+    meaning: Exact rational L1 norm of d1 h
+  - id: Phi1
+    meaning: Exact rational quotient defect
+  - id: RepairQuotient
+    meaning: Q1 = C1 / im d0
+  - id: Window
+    meaning: Graph window (nv, edges, weights, d1 rows, cochain h)
+  generators:
+  - id: repair_quotient_q1
+    source_declarations:
+    - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Q1
+      (line 42), Repair (line 37): definition on a bare Add type, no module structure'
+    ordered_inputs:
+    - Window
+    output: RepairQuotient
+    semantic_predicate: Q1 = C1 / im d0 as a module quotient; the class of h is h + im d0.
+    hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    arity: 1
+    carrier: Window
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: kappa1
+    source_declarations:
+    - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa
+      (line 61), kappa_well_defined (line 51): general theorem on Add types given d1 additive and d1 d0
+      = 0'
+    ordered_inputs:
+    - RepairQuotient
+    output: ClosureCharge
+    semantic_predicate: kappa1([h]) = d1 h, defined iff d1 d0 = 0 (iff statement proved for modules over
+      a field).
+    hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    arity: 1
+    carrier: RepairQuotient
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: quotient_defect_phi1
+    source_declarations:
+    - 'code/rust/src/wdp/obstruction.rs::solve_exact_potential_weighted (line 142), DualWitnessCertificate
+      (line 42): Rust algorithm, not executed here'
+    - external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
+      (weak duality, general theorem on lists)
+    ordered_inputs:
+    - RepairQuotient
+    output: Phi1
+    semantic_predicate: Attained minimum over potentials x of sum_e w_e |h_e - (d0 x)_e|.
+    hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    arity: 1
+    carrier: RepairQuotient
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: closure_gamma2
+    source_declarations:
+    - 'code/rust/src/wdp/primitive_axiomatics.rs::compute_triad_signature (line 207): Gamma2 computed
+      from the primal residual; equals d1 h when d1 d0 = 0'
+    ordered_inputs:
+    - ClosureCharge
+    output: Gamma2
+    semantic_predicate: Unweighted L1 norm of d1 h.
+    hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    arity: 1
+    carrier: ClosureCharge
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+  - id: diagnostic_class
+    source_declarations:
+    - 'external omega_policy/src/trichotomy.rs::ObstructionDiagnosticClass (line 17), classify_exact (line
+      65): the first variant is named ExactRepair there'
+    - 'code/rust/src/wdp/primitive_axiomatics.rs::TriadSignature::r_cl (line 159): returns Some(0) at
+      Phi1 = 0 and Gamma2 = 0, an extension of the node statement'
+    ordered_inputs:
+    - Phi1
+    - Gamma2
+    output: DiagnosticClass
+    semantic_predicate: ExactClass iff Phi1 = 0; ClosedResidual iff Phi1 > 0 and Gamma2 = 0; ActiveClosureFailure
+      iff Phi1 > 0 and Gamma2 > 0; NotAWindow (a refusal marker, not a class) when d1 d0 != 0.
+    hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    arity: 2
+    carrier: Phi1
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+  relations:
+  - id: kappa_descends_iff_complex
+    source_declarations:
+    - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined
+      (line 51): one direction (d1 d0 = 0 gives invariance) as a general theorem; the converse is new'
+    equation_or_predicate: exists kappa on Q1 with kappa o mk = d1  <->  d1 o d0 = 0
+    typing_conditions: Window
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Modules over a field
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel iff theorem plus two refused native windows.
+    named_Lean_scope: &id001
+    - WdpDegree1Window.kappa_descends_iff
+    - WdpDegree1Window.ker_kappa_eq_map
+    - WdpDegree1Window.kappa_eq_zero_iff
+    - WdpDegree1Window.kappa_not_defined_instance
+    - WdpDegree1Window.isPhi_shift
+    - WdpDegree1Window.isPhi_zero_iff
+    - WdpDegree1Window.isPhi_nonneg
+    - WdpDegree1Window.diag_unique
+    - WdpDegree1Window.ne_zero_iff_pos
+    - WdpDegree1Window.ratio_class
+    - WdpDegree1Window.weak_duality
+    - WdpDegree1Window.isPhi_of_certificate
+    - WdpDegree1Window.cost_eq
+    - WdpDegree1Window.isPhi_graph_iff
+    - WdpDegree1Window.wl1_definite
+    - WdpDegree1Window.graph_phi_zero_iff
+    - WdpDegree1Window.tri_phi
+    - WdpDegree1Window.tri_gamma2
+  - id: h1_is_image_of_cycles
+    source_declarations:
+    - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_exact_sequence
+      (line 93): clause (iii), general theorem'
+    equation_or_predicate: ker kappa1 = mk(ker d1); kappa1 q = 0 iff every representative has d1 = 0
+    typing_conditions: Window with d1 d0 = 0
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Modules over a field
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems ker_kappa_eq_map, kappa_eq_zero_iff; native dim H1
+      = m - rank d1 - rank d0
+    named_Lean_scope: *id001
+  - id: phi1_class_function
+    source_declarations:
+    - no source declaration (the source Lean takes the infimum characterisation as a hypothesis); new
+      general theorem
+    equation_or_predicate: Phi_J(h + d0 y) = Phi_J(h); Phi_J(h) = 0 iff [h] = 0 for definite J
+    typing_conditions: Window with J nonnegative and definite
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Attained minimum; any norm J on C1
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems isPhi_shift, isPhi_unique, isPhi_zero_iff
+    named_Lean_scope: *id001
+  - id: diagnostic_trichotomy
+    source_declarations:
+    - 'external omega_policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
+      not a theorem'
+    equation_or_predicate: exactly one of Phi1 = 0, (Phi1 > 0 and Gamma2 = 0), (Phi1 > 0 and Gamma2 >
+      0)
+    typing_conditions: Phi1, Gamma2 rational
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All rational pairs
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel partition theorem; native table has all three classes and a
+      refusal.
+    named_Lean_scope: *id001
+  - id: graph_cost_is_isphi
+    source_declarations:
+    - no source declaration; bridge between the Rust L1Seminorm residual and the module-form quotient
+      defect
+    equation_or_predicate: cost D w h x = wl1 w (h + negD D x); IsPhi (wl1 w) (negD D) h p iff p is the
+      attained minimum of cost; Phi1 = 0 iff [h] = 0 for positive weights
+    typing_conditions: Finite edge and vertex types over Q
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Any matrix D, positive weights for the zero-class statement
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems cost_eq, isPhi_graph_iff, wl1_definite, graph_phi_zero_iff
+    named_Lean_scope: *id001
+  - id: weak_duality_lower_bound
+    source_declarations:
+    - external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
+      (list version, general over lists of edges)
+    equation_or_predicate: d0^T y = 0, |y_e| <= w_e  implies  y . h <= sum_e w_e |h_e - (d0 x)_e| for
+      every x
+    typing_conditions: Fin-indexed edges and vertices
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Weighted L1 over Q
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems weak_duality, isPhi_of_certificate, instance tri_phi
+      (Phi1 = 2); every table record carries x and y verified by the checker
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: diagnostic_class
+    input_slot: 0
+    inner_operation: quotient_defect_phi1
+    colour_match: Phi1
+    hypothesis_match: 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1
+      an integer matrix over the edges, positive integer weights (J = weighted L1), integer 1-cochain
+      h; the window itself is a declared datum. Fixed contexts must agree across both operations. Formal
+      universal refined-carrier closure is unpaid.'
+    licensing_relations:
+    - diagnostic_trichotomy
+    - phi1_class_function
+    evidence_status: Kernel and native
+  - outer_operation: closure_gamma2
+    input_slot: 0
+    inner_operation: kappa1
+    colour_match: ClosureCharge
+    hypothesis_match: Requires kappa1 defined, i.e. d1 d0 = 0; otherwise the composite is a refusal (NotAWindow).
+      Fixed contexts must agree across both operations. Formal universal refined-carrier closure is unpaid.
+    licensing_relations:
+    - kappa_descends_iff_complex
+    evidence_status: Kernel and native
+  identities:
+  - colour: ClosureCharge
+    proposed_operation: id_ClosureCharge
+    signature: ClosureCharge -> ClosureCharge
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DiagnosticClass
+    proposed_operation: id_DiagnosticClass
+    signature: DiagnosticClass -> DiagnosticClass
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Gamma2
+    proposed_operation: id_Gamma2
+    signature: Gamma2 -> Gamma2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Phi1
+    proposed_operation: id_Phi1
+    signature: Phi1 -> Phi1
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RepairQuotient
+    proposed_operation: id_RepairQuotient
+    signature: RepairQuotient -> RepairQuotient
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Window
+    proposed_operation: id_Window
+    signature: Window -> Window
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id003
+  - Derivation of the window from Genesis admission (PG-GAP-GENESIS-TO-WINDOW).
+  - Lean existence of the attained minimum (strong duality) for the weighted-L1 cost.
+  - Norms other than weighted L1 and complex coefficients.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - composition: closure_gamma2 o kappa1 on a window with d1 d0 != 0
+    reason: kappa1 does not exist on Q1 (kappa_descends_iff); the table records NotAWindow with the witness
+      d1 d0 e_v != 0 and withholds Gamma2.
+  - composition: diagnostic_class with R_cl at Phi1 = 0
+    reason: R_cl = Gamma2/Phi1 is undefined at Phi1 = 0; the Rust r_cl convention Some(0) is an extension,
+      not the node statement.
+  counterexamples:
+  - id: violates_d1d0_edge
+    statement: 'One edge 0->1 with d1 = (1): d1 d0 e_0 = -1, so the representatives 0 and d0 e_0 of the
+      zero class have d1 values 0 and -1.'
+    scope: Instance; general statement is kappa_descends_iff.
+  - id: unrepaired_sum_is_not_phi1
+    statement: On K4 with h = (1,0,2,1,0,1) the unrepaired residual sum is 5 but Phi1 = 3.
+    scope: Instance; general bound is phi_le_unrepaired in the growth node.
+  - id: semantic_violating_window_declared_exact
+    kind: semantic_near_miss
+    rationale: Treat kappa1 as defined on Q1 for a window with d1 d0 != 0 (the representatives 0 and d0
+      e_0 of the zero class have different d1 values).
+    rejected_by: check_candidate
+  - id: semantic_active_read_as_closed
+    kind: semantic_near_miss
+    rationale: 'Ignore the closure charge: the filled triangle with Gamma2 = 2 is called a closed residual.'
+    rejected_by: check_candidate
+  - id: semantic_closed_residual_read_as_exact
+    kind: semantic_near_miss
+    rationale: Call the unfilled triangle class exact because Gamma2 = 0; its Phi1 is 1, so the class
+      is a nonzero element of H1.
+    rejected_by: check_candidate
+  - id: semantic_unrepaired_sum_as_phi1
+    kind: semantic_near_miss
+    rationale: Read the sum of edge residuals (the source Lean list sum) as Phi1; the quotient defect
+      is the minimum over potentials and is smaller (3 vs 5 on K4).
+    rejected_by: check_candidate
+  - id: semantic_weights_ignored
+    kind: semantic_near_miss
+    rationale: Compute Phi1 with unit weights for a window whose norm J has weight 3 on every edge.
+    rejected_by: check_candidate
+  - id: semantic_h1_dimension_without_quotient
+    kind: semantic_near_miss
+    rationale: Take dim H1 = dim ker d1 (cycles) without quotienting by im d0.
+    rejected_by: check_candidate
+  - id: semantic_ratio_defined_when_phi_zero
+    kind: semantic_near_miss
+    rationale: Report R_cl = 0 for an exact class, as the Rust TriadSignature::r_cl convention does; the
+      node statement defines R_cl = Gamma2/Phi1 only when Phi1 > 0.
+    rejected_by: check_candidate
+  - id: semantic_loop_edge_repaired
+    kind: semantic_near_miss
+    rationale: Claim a potential repairs a loop edge; d0 of a loop is zero so Phi1 = 3 there.
+    rejected_by: check_candidate
+  - id: semantic_gauge_shift_changes_phi1
+    kind: semantic_near_miss
+    rationale: Report the unrepaired residual sum 4 for h + d0 (0,1,1); Phi1 and R_cl are class functions
+      and stay 2 and 1.
+    rejected_by: check_candidate
+  - id: semantic_gamma2_with_weights
+    kind: semantic_near_miss
+    rationale: Weight Gamma2 by J (6 for the weight-3 triangle); Gamma2 is the unweighted L1 norm of d1
+      h, so R_cl = 1/3 is scale dependent by definition.
+    rejected_by: check_candidate
+  - id: semantic_dim_q1_uses_rank_d1
+    kind: semantic_near_miss
+    rationale: 'Swap the quotient: dim Q1 = m - rank d1 (dimension of cycles) instead of m - rank d0.'
+    rejected_by: check_candidate
+  - id: semantic_sign_ignored_rank_accepts_row
+    kind: semantic_near_miss
+    rationale: Accept the row (1,1,1) as a 2-cell because its coboundary vanishes mod 2; over Q it gives
+      d1 d0 e_0 = -2.
+    rejected_by: check_candidate
+  - id: semantic_nonwindow_keeps_representative_gamma2
+    kind: semantic_near_miss
+    rationale: Report Gamma2 = 2 for the window with d1 d0 != 0; there Gamma2 depends on the representative
+      (0 at h = 0, 2 at h = 2), so no class value exists.
+    rejected_by: check_candidate
+  - id: semantic_primal_potential_not_optimal
+    kind: semantic_near_miss
+    rationale: Carry the zero potential as the primal witness of the exact class h = (1,2,3); its cost
+      is 6, not Phi1 = 0.
+    rejected_by: check_candidate
+  - id: semantic_dual_vector_exceeds_weights
+    kind: semantic_near_miss
+    rationale: 'Carry the dual vector (2,2,-2) for the unit-weight triangle: it annihilates coboundaries
+      and pairs to 4 but violates |y_e| <= w_e, so it is no lower bound.'
+    rejected_by: check_candidate
+  - id: semantic_refusal_hidden_by_ratio
+    kind: semantic_near_miss
+    rationale: Hide the NoRule refusal of a window with d1 d0 != 0 behind an ActiveClosureFailure line
+      with a finite ratio.
+    rejected_by: check_candidate
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: ClosureCharge, DiagnosticClass, Gamma2, Phi1, RepairQuotient, Window
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+      sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+      sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+      sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+      sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+      sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+      sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+      sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+      sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+      sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+      sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+      sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+      sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    public_input:
+      cases:
+      - id: tri_filled_active
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 1
+        - 1
+        - 0
+      - id: tri_filled_active_shifted
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 2
+        - 1
+        - 1
+      - id: tri_filled_exact
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 1
+        - 2
+        - 3
+      - id: tri_unfilled_closed
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1: []
+        h:
+        - 1
+        - 0
+        - 0
+      - id: tri_filled_zero_class
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 0
+        - 0
+        - 0
+      - id: tri_heavy_weights
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 3
+        - 3
+        - 3
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 1
+        - 1
+        - 0
+      - id: tri_mixed_weights
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 5
+        - 5
+        d1:
+        - - 1
+          - 1
+          - -1
+        h:
+        - 2
+        - 0
+        - 0
+      - id: tri_d1_zero_row
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 0
+          - 0
+          - 0
+        h:
+        - 1
+        - 0
+        - 0
+      - id: square_two_triangles
+        nv: 4
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        - - 2
+          - 3
+        - - 0
+          - 3
+        w:
+        - 1
+        - 1
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - -1
+          - 0
+          - 0
+        - - 0
+          - 0
+          - 1
+          - 1
+          - -1
+        h:
+        - 2
+        - 1
+        - 0
+        - 3
+        - 0
+      - id: square_unfilled_closed
+        nv: 4
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 2
+          - 3
+        - - 0
+          - 3
+        w:
+        - 1
+        - 1
+        - 1
+        - 1
+        d1: []
+        h:
+        - 1
+        - 0
+        - 0
+        - 0
+      - id: k4_three_faces
+        nv: 4
+        edges:
+        - - 0
+          - 1
+        - - 0
+          - 2
+        - - 0
+          - 3
+        - - 1
+          - 2
+        - - 1
+          - 3
+        - - 2
+          - 3
+        w:
+        - 1
+        - 1
+        - 1
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - -1
+          - 0
+          - 1
+          - 0
+          - 0
+        - - 1
+          - 0
+          - -1
+          - 0
+          - 1
+          - 0
+        - - 0
+          - 1
+          - -1
+          - 0
+          - 0
+          - 1
+        h:
+        - 1
+        - 0
+        - 2
+        - 1
+        - 0
+        - 1
+      - id: loop_active
+        nv: 1
+        edges:
+        - - 0
+          - 0
+        w:
+        - 1
+        d1:
+        - - 1
+        h:
+        - 3
+      - id: disconnected_exact
+        nv: 4
+        edges:
+        - - 0
+          - 1
+        - - 2
+          - 3
+        w:
+        - 1
+        - 1
+        d1: []
+        h:
+        - 5
+        - -7
+      - id: disconnected_cycle_closed
+        nv: 5
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        - - 3
+          - 4
+        w:
+        - 1
+        - 1
+        - 1
+        - 1
+        d1: []
+        h:
+        - 1
+        - 0
+        - 0
+        - 9
+      - id: parallel_bigon_active
+        nv: 2
+        edges:
+        - - 0
+          - 1
+        - - 0
+          - 1
+        - - 0
+          - 1
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - -1
+          - 0
+        h:
+        - 1
+        - -1
+        - 0
+      - id: violates_d1d0_edge
+        nv: 2
+        edges:
+        - - 0
+          - 1
+        w:
+        - 1
+        d1:
+        - - 1
+        h:
+        - 2
+      - id: violates_d1d0_signs
+        nv: 3
+        edges:
+        - - 0
+          - 1
+        - - 1
+          - 2
+        - - 0
+          - 2
+        w:
+        - 1
+        - 1
+        - 1
+        d1:
+        - - 1
+          - 1
+          - 1
+        h:
+        - 1
+        - 1
+        - 0
+    original_target: A degree-1 window is (C0,C1,C2,d0,d1) of finite-dimensional spaces with a norm J;
+      Q1 = C1/im d0, kappa1([h]) = d1 h, H1 = ker kappa1, Phi1 = quotient defect Phi_J, Gamma2 = L1 norm
+      of d1 h, R_cl = Gamma2/Phi1 when Phi1 > 0; diagnostic classes ExactClass, ClosedResidual, ActiveClosureFailure.
+    source_scope_review: 'The node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1,
+      kappa, kappa_well_defined, H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs
+      (Cochain1, the exact LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature)
+      plus the external omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff
+      Phi1 = 0, closed residual iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2
+      > 0 (first variant named ExactRepair in Rust, ExactClass in the node). The node statement defines
+      R_cl only for Phi1 > 0; Rust returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare
+      Add type; here kappa is proved to exist iff d1 d0 = 0 over modules over a field. The ledger pin
+      in dag/derivations/06_wdp/tfq_0344 is a CRLF-era hash: the LF bytes in the tree hash differently
+      (custody record in dag/pfp/filename_custody.json).'
+    admitted_assumptions:
+    - 'Finite-dimensional real/complex vector space and norm J (assumption: declared)'
+    - 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
+    historical_source_assumptions:
+    - 'Finite-dimensional real/complex vector space and norm J (assumption: declared)'
+    - 'Complex/chain structure d1 d0 = 0 (assumption: window hypothesis)'
+    work_unit_admitted_hypotheses:
+    - 'Graph windows: d0 = coboundary of a directed multigraph (loop rows are zero), d1 an integer matrix
+      over the edges, positive integer weights (J = weighted L1), integer 1-cochain h; the window itself
+      is a declared datum.'
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: repair_quotient_q1
+      inputs:
+      - Window
+      output: RepairQuotient
+      semantic_predicate: Q1 = C1 / im d0 as a module quotient; the class of h is h + im d0.
+    - catalog_id: kappa1
+      inputs:
+      - RepairQuotient
+      output: ClosureCharge
+      semantic_predicate: kappa1([h]) = d1 h, defined iff d1 d0 = 0 (iff statement proved for modules
+        over a field).
+    - catalog_id: quotient_defect_phi1
+      inputs:
+      - RepairQuotient
+      output: Phi1
+      semantic_predicate: Attained minimum over potentials x of sum_e w_e |h_e - (d0 x)_e|.
+    - catalog_id: closure_gamma2
+      inputs:
+      - ClosureCharge
+      output: Gamma2
+      semantic_predicate: Unweighted L1 norm of d1 h.
+    - catalog_id: diagnostic_class
+      inputs:
+      - Phi1
+      - Gamma2
+      output: DiagnosticClass
+      semantic_predicate: ExactClass iff Phi1 = 0; ClosedResidual iff Phi1 > 0 and Gamma2 = 0; ActiveClosureFailure
+        iff Phi1 > 0 and Gamma2 > 0; NotAWindow (a refusal marker, not a class) when d1 d0 != 0.
+    composition_plan: *id002
+    tree:
+    - diagnostic_class(quotient_defect_phi1(q), closure_gamma2(kappa1(q)))
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: kappa_descends_iff_complex
+      source_declarations:
+      - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined
+        (line 51): one direction (d1 d0 = 0 gives invariance) as a general theorem; the converse is new'
+      equation_or_predicate: exists kappa on Q1 with kappa o mk = d1  <->  d1 o d0 = 0
+      typing_conditions: Window
+      evidence_status: Kernel theorem kappa_descends_iff and instance kappa_not_defined_instance; native
+        table of two refused windows
+      scope: Modules over a field
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    - id: h1_is_image_of_cycles
+      source_declarations:
+      - 'external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_exact_sequence
+        (line 93): clause (iii), general theorem'
+      equation_or_predicate: ker kappa1 = mk(ker d1); kappa1 q = 0 iff every representative has d1 = 0
+      typing_conditions: Window with d1 d0 = 0
+      evidence_status: Kernel theorems ker_kappa_eq_map, kappa_eq_zero_iff; native dim H1 = m - rank d1
+        - rank d0
+      scope: Modules over a field
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    - id: phi1_class_function
+      source_declarations:
+      - no source declaration (the source Lean takes the infimum characterisation as a hypothesis); new
+        general theorem
+      equation_or_predicate: Phi_J(h + d0 y) = Phi_J(h); Phi_J(h) = 0 iff [h] = 0 for definite J
+      typing_conditions: Window with J nonnegative and definite
+      evidence_status: Kernel theorems isPhi_shift, isPhi_unique, isPhi_zero_iff
+      scope: Attained minimum; any norm J on C1
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    - id: diagnostic_trichotomy
+      source_declarations:
+      - 'external omega_policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
+        not a theorem'
+      equation_or_predicate: exactly one of Phi1 = 0, (Phi1 > 0 and Gamma2 = 0), (Phi1 > 0 and Gamma2
+        > 0)
+      typing_conditions: Phi1, Gamma2 rational
+      evidence_status: Kernel theorem diag_unique, ratio_class; native table
+      scope: All rational pairs
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    - id: graph_cost_is_isphi
+      source_declarations:
+      - no source declaration; bridge between the Rust L1Seminorm residual and the module-form quotient
+        defect
+      equation_or_predicate: cost D w h x = wl1 w (h + negD D x); IsPhi (wl1 w) (negD D) h p iff p is
+        the attained minimum of cost; Phi1 = 0 iff [h] = 0 for positive weights
+      typing_conditions: Finite edge and vertex types over Q
+      evidence_status: Kernel theorems cost_eq, isPhi_graph_iff, wl1_definite, graph_phi_zero_iff
+      scope: Any matrix D, positive weights for the zero-class statement
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    - id: weak_duality_lower_bound
+      source_declarations:
+      - external omega_engine_atlas/.../000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
+        (list version, general over lists of edges)
+      equation_or_predicate: d0^T y = 0, |y_e| <= w_e  implies  y . h <= sum_e w_e |h_e - (d0 x)_e| for
+        every x
+      typing_conditions: Fin-indexed edges and vertices
+      evidence_status: Kernel theorems weak_duality, isPhi_of_certificate, instance tri_phi (Phi1 = 2);
+        every table record carries x and y verified by the checker
+      scope: Weighted L1 over Q
+      source_pins:
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml
+        sha256: 13002101debe1a12753e4b3da1969e59ec3a32e61fbbe0dcbcee99311e7c9be1
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_degree1_window.yaml
+        sha256: f5df34cbe45e290e6877efcf68602a39a71e3e3c324945125ec511bba18353f8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
+        sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/primitive_axiomatics.rs
+        sha256: c1ae6edba4d807a8247b3a2726dd7d07f30d83dbb27611e036c09e5e6ef26efc
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/code/rust/src/wdp/obstruction.rs
+        sha256: d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md
+        sha256: c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_degree1_window.py
+        sha256: 72886192c8f6af0631e89acc91a564ac47f617307e89516ca88632a3e74b9264
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_degree1_window.py
+        sha256: e5bb7a80495d9c322db9e90bc4e8f4034b29b793fbdbb7fe706d096ab5f4fb6b
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_degree1_window.rs
+        sha256: 775f76e7da37ccbcf9a7a88c2a51777ab7e6fe0ff7c5e50be1003807db27d917
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs
+        sha256: 997a4a0fc5925bf743ac012791b5e6c02f282dadcc3982c45f46595c01cb3fc7
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/check_candidate.py
+        sha256: 9cfc62a95fabfc4875625a515bc036b897431d445d64640fdcb1642d993f1081
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/format_certificate.py
+        sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
+    rejection_predicates:
+    - Phi1 from the dual LP (vertices of d0^T y = 0, |y_e| <= w_e), independent of the producer primal
+      vertex enumeration over r = rank d0 zeroed residuals; plus exact verification of the carried primal
+      potential x and dual vector y (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e).
+    - 'Repair invariance in the certificate: windows with the same structure whose cochains differ by
+      a coboundary carry equal Phi1, Gamma2, R_cl and class.'
+    - Ranks by fraction-free (Bareiss) elimination; d1 d0 expanded entrywise; dim H1 = m - rank d1 - rank
+      d0 only when d1 d0 = 0.
+    - Class by the source if-chain on (Phi1, Gamma2), NotAWindow exactly when d1 d0 != 0 (then Gamma2
+      is withheld); R_cl only when Phi1 > 0.
+    - 'Theorem-level consistency: 0 <= Phi1 <= unrepaired residual sum; Phi1 = 0 implies Gamma2 = 0 on
+      a complex; dim Q1 = dim H1 + rank d1.'
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: Coordinate mutants of every certificate leaf plus sixteen semantic near misses
+      (kappa on a non-complex, closure ignored, closed read as exact, unrepaired sum as Phi1 and under
+      a gauge shift, weights ignored or applied to Gamma2, H1 without quotient, dim Q1 swap, sign-ignored
+      rank, ratio at Phi1 = 0, loop repaired, refusal hidden, representative Gamma2 for a non-window,
+      non-optimal primal witness, dual vector beyond the weights) and one control.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Phi1 from the dual LP (vertices of d0^T y = 0, |y_e| <= w_e), independent of the producer primal
+      vertex enumeration over r = rank d0 zeroed residuals; plus exact verification of the carried primal
+      potential x and dual vector y (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e).
+    - 'Repair invariance in the certificate: windows with the same structure whose cochains differ by
+      a coboundary carry equal Phi1, Gamma2, R_cl and class.'
+    - Ranks by fraction-free (Bareiss) elimination; d1 d0 expanded entrywise; dim H1 = m - rank d1 - rank
+      d0 only when d1 d0 = 0.
+    - Class by the source if-chain on (Phi1, Gamma2), NotAWindow exactly when d1 d0 != 0 (then Gamma2
+      is withheld); R_cl only when Phi1 > 0.
+    - 'Theorem-level consistency: 0 <= Phi1 <= unrepaired residual sum; Phi1 = 0 implies Gamma2 = 0 on
+      a complex; dim Q1 = dim H1 + rank d1.'
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - WdpDegree1Window.kappa_descends_iff
+    - WdpDegree1Window.ker_kappa_eq_map
+    - WdpDegree1Window.kappa_eq_zero_iff
+    - WdpDegree1Window.kappa_not_defined_instance
+    - WdpDegree1Window.isPhi_shift
+    - WdpDegree1Window.isPhi_zero_iff
+    - WdpDegree1Window.isPhi_nonneg
+    - WdpDegree1Window.diag_unique
+    - WdpDegree1Window.ne_zero_iff_pos
+    - WdpDegree1Window.ratio_class
+    - WdpDegree1Window.weak_duality
+    - WdpDegree1Window.isPhi_of_certificate
+    - WdpDegree1Window.cost_eq
+    - WdpDegree1Window.isPhi_graph_iff
+    - WdpDegree1Window.wl1_definite
+    - WdpDegree1Window.graph_phi_zero_iff
+    - WdpDegree1Window.tri_phi
+    - WdpDegree1Window.tri_gamma2
+    unpaid_imports:
+    - Derivation of the window from Genesis admission (PG-GAP-GENESIS-TO-WINDOW).
+    - Lean existence of the attained minimum (strong duality) for the weighted-L1 cost.
+    - Norms other than weighted L1 and complex coefficients.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p5/host_check.json
+open_obligations: *id003
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/scope_review.json
+latest_run:
+  path: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1, kappa, kappa_well_defined,
+  H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs (Cochain1, the exact
+  LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature) plus the external
+  omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff Phi1 = 0, closed residual
+  iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2 > 0 (first variant named
+  ExactRepair in Rust, ExactClass in the node). The node statement defines R_cl only for Phi1 > 0; Rust
+  returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare Add type; here kappa is proved
+  to exist iff d1 d0 = 0 over modules over a field. The ledger pin in dag/derivations/06_wdp/tfq_0344
+  is a CRLF-era hash: the LF bytes in the tree hash differently (custody record in dag/pfp/filename_custody.json).'
+latest_review:
+  path: dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/operad_delta.yaml
+  delivery_result: dag/results/PG-WDP-DEGREE1-WINDOW/reviews/20261021_batch01b_audit/delivery_review_result.json

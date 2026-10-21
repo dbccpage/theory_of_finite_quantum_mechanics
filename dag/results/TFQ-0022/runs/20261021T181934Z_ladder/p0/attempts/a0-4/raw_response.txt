@@ -1,0 +1,50 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "su3_fierz_2d_matrix",
+      "inputs": ["V3", "V3"],
+      "output": "V3",
+      "arity": 2,
+      "carrier": "6x6_matrix",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "su3_fierz_2d_matrix",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "fierz_2d_quadruple_check",
+      "statement": "For all indices i,j,k,l in {0,1,2}: (1/2)*delta[i][l]*delta[k][j] - (1/6)*delta[i][j]*delta[k][l] = T[i][k][j][l]",
+      "hypotheses": "V3 x V3 -> V3 x V3 matrix entries defined over Rat",
+      "ref": {
+        "path": "RUST_PY_CONTROLS/e5f9f30f/fierz.py",
+        "decl": "fierz_2d_quadruple_check",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "su3_fierz_2d_matrix",
+      "slot": 1,
+      "inner": "fierz_2d_quadruple_check",
+      "licensing_relation": "fierz_2d_quadruple_check"
+    }
+  ],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "diag_contract_check",
+      "expr": "3*(1/2)-(1/6)",
+      "value": "4/3"
+    }
+  ],
+  "open_obligations": [
+    "Walk the complete 81-index quadruple replay in Rust and Python controls without reducing to the Lean scalar slice in FiniteQM.lean::su3_fierz_diagonal_and_offdiagonal_identities",
+    "Preserve the exhaustive verification in the host modules while confirming the numeric contraction 3*(1/2)-(1/6) = 4/3 matches the target identity's diagonal contribution."
+  ]
+}

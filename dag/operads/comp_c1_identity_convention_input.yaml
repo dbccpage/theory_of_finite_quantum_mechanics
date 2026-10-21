@@ -1,0 +1,167 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: COMP-C1-IDENTITY-CONVENTION-INPUT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Whether an admitted mark is a new state or one internal class with another depends
+    on the identity convention, which is not derived; on a pairwise separated alphabet the opaque and
+    exact-inscription conventions give the same marks, so blank, state and end marks must be admitted
+    as separated marks or the convention declared.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Identity convention (opaque or exact-inscription), declared
+  source_bottleneck: Declare the identity convention before reading any mark of a machine alphabet as
+    a new state; nothing in this chain derives it.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md
+  - dag/research/genesis_to_universal_computation.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md
+  source_claim_label: IMPORTED_ASSUMPTION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md
+    sha256: e98b82c1aed736d42e0c667a2d27908b0efa94283323022e381e224ad12af603
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_comp_c1_identity_convention_input_imported_assumption.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: IdentityConvention
+  line: 243
+  signature_excerpt: |-
+    inductive IdentityConvention | opaqueConv | exactInscription
+      deriving DecidableEq, Repr
+
+    /-- Under the opaque convention, a pairwise separated alphabet has no identifications, so
+    both conventions give the same set of marks on a separated alphabet.  Blank and state
+    marks must therefore be admitted as separated marks as well, or the convention must be
+    declared. -/
+    theorem separated_marks_not_collapsed {r : Regime} (h : PairwiseSeparated r) {i j : Nat}
+        (hi : i < r.data) (hj : j < r.data) (hij : i ≠ j) : ¬ Collapsed r i j
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Regime
+  line: 71
+  signature_excerpt: structure Regime
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PairwiseSeparated
+  line: 144
+  signature_excerpt: 'def PairwiseSeparated (r : Regime) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Collapsed
+  line: 137
+  signature_excerpt: 'def Collapsed (r : Regime) (i j : Nat) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Inst
+  line: 66
+  signature_excerpt: abbrev Inst
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: UnarySep
+  line: 123
+  signature_excerpt: 'def UnarySep (r : Regime) (i j : Nat) : Prop'
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: separated_marks_not_collapsed
+  line: 250
+  signature_excerpt: |-
+    theorem separated_marks_not_collapsed {r : Regime} (h : PairwiseSeparated r) {i j : Nat}
+        (hi : i < r.data) (hj : j < r.data) (hij : i ≠ j) : ¬ Collapsed r i j
+  source: lean4/GenesisComputation.lean
+  repository: this_repository
+  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GenesisComputation.lean::separated_marks_not_collapsed
+  availability: local
+  symbol: separated_marks_not_collapsed
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 250
+  role: source_lead_only
+- original_ref: lean4/GenesisComputation.lean::IdentityConvention
+  availability: local
+  symbol: IdentityConvention
+  path: lean4/GenesisComputation.lean
+  repository: this_repository
+  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  declaration_status: declaration_found_not_proof_checked
+  line: 243
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Identity convention (opaque or exact-inscription), declared
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Identity convention (opaque or exact-inscription), declared
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

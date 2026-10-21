@@ -1,0 +1,111 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PGW-CLOSED-BASELINE-TERMINATES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'With the external continuation policy disabled, the closed-system baselines are small:
+    reading L has 4 nodes and 3 terminal branches, reading F has 20 nodes and 16 terminal branches, and
+    both have zero guard-cut, round-cut and open branches. Every maximal branch ends at the all-pairs-separated
+    fixpoint within the pair bound, using 1 round in L (bound 1) and 3 in F (bound 3), and the termination
+    flag is computed over all maximal branches rather than from one terminal node. Under the declared
+    round shape a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - Declared resource bounds of genesis_source.txt section 1 with the external continuation policy disabled
+    (assumption)
+  source_bottleneck: 'A bounded theorem: termination of every maximal branch is computed within the declared
+    bounds, and that each exported round has the declared shape (one fresh imposition, no fresh-datum
+    item) stays computational.'
+  source_refs:
+  - dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:517-522
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:494-497
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:506-515
+  paper_refs: []
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins: []
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/genesis_pgw_closed_baseline_terminates_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty
+  availability: external
+  symbol: closedRun_round_bound_from_empty
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_l
+  availability: external
+  symbol: closed_system_baseline_reading_l
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_f
+  availability: external
+  symbol: closed_system_baseline_reading_f
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - Declared resource bounds of genesis_source.txt section 1 with the external continuation policy disabled
+      (assumption)
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - Declared resource bounds of genesis_source.txt section 1 with the external continuation policy disabled
+      (assumption)
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

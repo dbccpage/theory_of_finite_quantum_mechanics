@@ -1,0 +1,184 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTH-G5A-CLASS-RELATIVE-TRANSPORT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If a map from a source predicate into proposal validity preserves the predicate exactly,
+    and the allowed proposal deciders are closed under precomposition with that map, then a source predicate
+    with no allowed total decider gives a proposal predicate with no allowed total decider.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions
+  source_bottleneck: Instantiate the allowed classes with ComputablePred on a code type, take the halting
+    problem as the source predicate and prove closure under the reduction; the declaration supplies none
+    of the three.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md
+  - papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md
+  - papers/foundations/authorization_incompleteness/proof_program.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md
+    sha256: a18d753563e9a069689eb8991818203deb0eb5e8224897268b251b8601671043
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_auth_g5a_class_relative_transport_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: ValidityReduction
+  line: 40
+  signature_excerpt: |-
+    structure ValidityReduction {HardInput Proposal : Type}
+        (hard : HardInput -> Prop) (valid : Proposal -> Prop)
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ClosedUnderReduction
+  line: 47
+  signature_excerpt: |-
+    def ClosedUnderReduction {HardInput Proposal : Type}
+        (allowedHard : (HardInput -> Bool) -> Prop)
+        (allowedProposal : (Proposal -> Bool) -> Prop)
+        {hard : HardInput -> Prop} {valid : Proposal -> Prop}
+        (reduction : ValidityReduction hard valid) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NoTotalDecider
+  line: 34
+  signature_excerpt: |-
+    def NoTotalDecider {Input : Type} (allowed : (Input -> Bool) -> Prop)
+        (predicate : Input -> Prop) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Decides
+  line: 28
+  signature_excerpt: |-
+    def Decides {Input : Type} (predicate : Input -> Prop)
+        (decider : Input -> Bool) : Prop
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: no_source_decider_blocks_total_authorizer
+  line: 79
+  signature_excerpt: |-
+    theorem no_source_decider_blocks_total_authorizer
+        {HardInput Proposal : Type}
+        {hard : HardInput -> Prop} {valid : Proposal -> Prop}
+        {allowedHard : (HardInput -> Bool) -> Prop}
+        {allowedProposal : (Proposal -> Bool) -> Prop}
+        (reduction : ValidityReduction hard valid)
+        (closure : ClosedUnderReduction allowedHard allowedProposal reduction)
+        (noSourceDecider : NoTotalDecider allowedHard hard) :
+        NoTotalDecider allowedProposal valid
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: total_authorizer_yields_source_decider
+  line: 57
+  signature_excerpt: |-
+    theorem total_authorizer_yields_source_decider
+        {HardInput Proposal : Type}
+        {hard : HardInput -> Prop} {valid : Proposal -> Prop}
+        {allowedHard : (HardInput -> Bool) -> Prop}
+        {allowedProposal : (Proposal -> Bool) -> Prop}
+        (reduction : ValidityReduction hard valid)
+        (closure : ClosedUnderReduction allowedHard allowedProposal reduction)
+        (hasAuthorizer : ∃ authorize,
+          allowedProposal authorize ∧ Decides valid authorize) :
+        ∃ decide, allowedHard decide ∧ Decides hard decide
+  source: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  source_sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+  availability: local
+  symbol: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  declaration_status: declaration_found_not_proof_checked
+  line: 79
+  role: source_lead_only
+- original_ref: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean::AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider
+  availability: local
+  symbol: AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider
+  path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+  repository: this_repository
+  sha256: c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

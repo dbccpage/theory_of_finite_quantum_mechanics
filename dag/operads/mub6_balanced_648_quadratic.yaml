@@ -1,0 +1,261 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MUB6-BALANCED-648-QUADRATIC
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Quartet existence in C^6 is equivalent to a solution in the stated box of 648 rational
+    polynomial equations of total degree at most two in 320 coordinates, obtained by affine completion
+    of the balanced transition matrices.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Infeasibility is open; the literal table MubBalancedTable has no completed build
+    and is not cited; the box [-1,1]^170 x [-10035/4096, 10035/4096]^150 holds on solutions only.
+  source_refs:
+  - dag/derivations/25_mub/tfq_1264_mub6_balanced_648_quadratic.md
+  - papers/core/mub6/mub6_claim_ledger.md
+  - papers/core/mub6/mub6.md
+  paper_refs:
+  - dag/derivations/25_mub/tfq_1264_mub6_balanced_648_quadratic.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/25_mub/tfq_1264_mub6_balanced_648_quadratic.md
+    sha256: 6db73c6e6ac42450836d49919f7e6d06a56d1a26ebf22cf0cc864804aca7d8e9
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/mutually_unbiased_bases_mub6_balanced_648_quadratic_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Solution
+  line: 77
+  signature_excerpt: 'def Solution (r : Coord → ℝ) : Prop'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: realEval
+  line: 19
+  signature_excerpt: 'def realEval (r : Coord → ℝ) : Poly →+* ℝ'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: equationPolynomial
+  line: 75
+  signature_excerpt: 'def equationPolynomial (e : QuadraticLiftPolynomials.Equation) : Poly'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Poly
+  line: 16
+  signature_excerpt: abbrev Poly
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: substitute
+  line: 66
+  signature_excerpt: 'def substitute : QuadraticLiftPolynomials.Poly →ₐ[ℚ] Poly'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: replacement
+  line: 49
+  signature_excerpt: |-
+    def replacement : QuadraticLift.Coord → Poly
+      | (.inl s,b) => MvPolynomial.X (.inl s,b)
+      | (.inr (.inl (i,j)),b) => MvPolynomial.X (.inr (.inl (i,j)),b)
+      | (.inr (.inr (a,i,j)),b) =>
+          component (BalancedCompletion.complete (pCore a) (blockIndex i) (blockIndex j)) b
+
+    theorem replacement_eval (r : Coord → ℝ) (c : QuadraticLift.Coord) :
+        realEval r (replacement c) = expand r c
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: component
+  line: 47
+  signature_excerpt: 'def component (p : CPoly) (b : Bool) : Poly'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pCore
+  line: 29
+  signature_excerpt: 'def pCore (a : Fin 3) : Matrix (Fin 5) (Fin 5) CPoly'
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: CPoly
+  line: 17
+  signature_excerpt: abbrev CPoly
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: complete
+  line: 18
+  signature_excerpt: 'def complete (A : Matrix (Fin 5) (Fin 5) R) : Matrix (Fin 6) (Fin 6) R'
+  source: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  source_sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: restrict
+  line: 15
+  signature_excerpt: 'def restrict (A : Matrix (Fin 6) (Fin 6) R) : Matrix (Fin 5) (Fin 5) R'
+  source: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  source_sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: exists_quartet_iff_balanced_polynomials
+  line: 84
+  signature_excerpt: |-
+    theorem exists_quartet_iff_balanced_polynomials :
+        (∃ Q, SzollosiQuartetSystem.Quartet Q) ↔ ∃ r, Solution r ∧ InBox r
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: equation_degree
+  line: 160
+  signature_excerpt: |-
+    theorem equation_degree (e : QuadraticLiftPolynomials.Equation) :
+        (equationPolynomial e).totalDegree ≤ 2
+  source: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  source_sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: complete_restrict
+  line: 66
+  signature_excerpt: |-
+    theorem complete_restrict (A : Matrix (Fin 6) (Fin 6) R)
+        (hr : ∀ i, ∑ j, A i j = 6) (hc : ∀ j, ∑ i, A i j = 6) :
+        complete (restrict A) = A
+  source: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  source_sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: restrict_complete
+  line: 39
+  signature_excerpt: 'theorem restrict_complete (A : Matrix (Fin 5) (Fin 5) R) : restrict (complete A)
+    = A'
+  source: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  source_sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/MubBalancedQuadraticPolynomials.lean::exists_quartet_iff_balanced_polynomials
+  availability: local
+  symbol: exists_quartet_iff_balanced_polynomials
+  path: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/MubBalancedQuadraticPolynomials.lean::equation_degree
+  availability: local
+  symbol: equation_degree
+  path: lean4/MubBalancedQuadraticPolynomials.lean
+  repository: this_repository
+  sha256: e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
+- original_ref: lean4/MubBalancedCompletion.lean::complete_restrict
+  availability: local
+  symbol: complete_restrict
+  path: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+- original_ref: lean4/MubBalancedCompletion.lean::restrict_complete
+  availability: local
+  symbol: restrict_complete
+  path: lean4/MubBalancedCompletion.lean
+  repository: this_repository
+  sha256: 75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

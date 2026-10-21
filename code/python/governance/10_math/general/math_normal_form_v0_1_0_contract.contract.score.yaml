@@ -1,214 +1,84 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:normal_form:v0.1.0",
-    "title": "Normal Form Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+      "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+        "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "canonical_representative",
-      "symbol": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
-      "ascii_symbol": "normal_form",
-      "notation": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
-      "domain": [
-        "expression_set: Set S of expressions in the algebraic structure",
-        "rewriting_relation: One-step reduction relation -> on S",
-        "normal_form_set: Subset NF(S) of irreducible elements",
-        "normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form",
-        "reduction_trace: Sequence of reduction steps from input to normal form"
-      ],
-      "codomain": {
-        "description": "A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "nf(x) is irreducible -- no further reductions apply",
-        "nf(x) is reachable from x via the reduction relation: x ->* nf(x)",
-        "nf(nf(x)) = nf(x)",
-        "Artifact hash correctly computed from expression and normal form data"
-      ]
-    },
-    "laws": [
-      "The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\n",
-      "The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\n",
-      "An element y in S is in normal form (irreducible) if there is no z in S with y -> z.  The normal form function returns only irreducible elements.\n",
-      "For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\n",
-      "nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\n"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Reduction strategy must be deterministic (e.g., leftmost-outermost)",
-        "Expression encoding normalized to canonical bytes",
-        "Validators and computation functions are content-addressed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "Rewriting system is not confluent",
-      "Rewriting system has infinite reduction sequences",
-      "Expression hash does not resolve to valid artifact",
-      "Expression is not in the domain of the rewriting system"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.",
-      "non_role": [
-        "Does not define specific rewriting systems (lambda calculus, Groebner, etc.)",
-        "Does not handle non-terminating or non-confluent systems",
-        "Does not implement the reduction strategy (leftmost, rightmost, etc.)",
-        "Does not classify admissibility of expressions",
-        "Does not cover weak normal forms or head normal forms"
-      ]
-    },
-    "wip": [
-      "Should this contract support weak normal forms and head normal forms?",
-      "How to handle rewriting systems where termination is undecidable?",
-      "Integration with specific normal form contracts (Smith, Jordan, Groebner)",
-      "Whether reduction traces should be stored or only their hashes",
-      "Strategy selection (leftmost-outermost vs innermost) as contract parameter",
-      "This contract is generic over the rewriting system -- specific instances are separate contracts",
-      "Confluence and termination are assumed as preconditions, not proved by this contract",
-      "The reduction trace provides a constructive witness of reachability",
-      "Consider adding complexity bounds (max reduction steps) as a contract parameter",
-      "OPEN_OBLIGATION non_confluent_system: Rewriting system is not confluent; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect confluence; AuthorityEffect: None.",
-      "OPEN_OBLIGATION non_terminating_system: Rewriting system has infinite reduction sequences; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect termination; AuthorityEffect: None.",
-      "OPEN_OBLIGATION missing_artifact_hash: Expression hash does not resolve to valid artifact; owner: Council Nomos; disposition: GTLANF carries no artifact-hash admission; AuthorityEffect: None.",
-      "OPEN_OBLIGATION out_of_domain_expression: Expression is not in the domain of the rewriting system; owner: Council Nomos; disposition: GTLANF does not type-check a rewriting domain; AuthorityEffect: None."
-    ],
-    "rust_binding": {
-      "crate": "omega_pipelines",
-      "module": "coda_gtlanf",
-      "symbols": [
-        "Normalize",
-        "FinClaim",
-        "CodaGtlaNf",
-        "normalize_l",
-        "include_i",
-        "t",
-        "is_fixed"
-      ]
-    },
-    "nomos_debate_NOT_CANONICAL": {
-      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
-      "not_part_of_contract_law": true,
-      "authority_effect": "none",
-      "potential_defects": [
-        {
-          "reviewer": "panepistimion-math-prof",
-          "role": "MATH_CANONICAL_REVIEW",
-          "code": "STAGE1_MECHANICAL_PASS",
-          "severity": "info",
-          "claim_class": "[STANDARD]",
-          "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
-          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
-        }
-      ],
-      "realization_delta_vs_implemented_math_file": [
-        {
-          "reviewer": "panepistimion-cs-prof-ml-ai-info",
-          "role": "CS_IMPL_DELTA_REVIEW",
-          "code": "STAGE2_SCOPE_NARROWER_THAN_YAML",
-          "severity": "medium",
-          "claim_class": "[SCOPE FENCE]",
-          "detail": "rust_binding → omega_pipelines::gtlanf. Symbols Normalize, FinClaim, GtlaNf, normalize_l, include_i, t, is_fixed present. Code is a finite GTLANF normalize/forget interface with caller-supplied Normalize laws; module explicitly disclaims adjunction/reflector/monad proofs. YAML describes generic rewriting-system normal forms (confluence, traces). Realization is a scoped finite carrier, not the full normal-form object.\n",
-          "file": "omega_engine/crates_rs/omega_pipelines/src/coda_gtlanf.rs",
-          "yaml_law": "generic rewrite normal form with confluence/termination preconditions",
-          "code_behavior": "FinClaim/GtlaNf L/I/T with terminal class carried unchanged; laws caller-supplied",
-          "delta": "YAML_OVERCLAIMS"
-        }
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c",
+    "subject": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py"
   },
-  "current_contract": "57e6f92b789819754d74fcf0914b4381a275c7f429a43703f051108269af7b53",
-  "current_scoring": "eab5aed56a55dc95b91cce54c723df029e3586ed7e59ed507156a367c263af6a",
   "contract_history": [
     {
-      "sha256": "57e6f92b789819754d74fcf0914b4381a275c7f429a43703f051108269af7b53",
       "bytes": 7879,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_normal_form_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:normal_form:v0.1.0\",\n  \"title\": \"Normal Form Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"canonical_representative\",\n    \"symbol\": \"nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible\",\n    \"ascii_symbol\": \"normal_form\",\n    \"notation\": \"nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible\",\n    \"domain\": [\n      \"expression_set: Set S of expressions in the algebraic structure\",\n      \"rewriting_relation: One-step reduction relation -> on S\",\n      \"normal_form_set: Subset NF(S) of irreducible elements\",\n      \"normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form\",\n      \"reduction_trace: Sequence of reduction steps from input to normal form\"\n    ],\n    \"codomain\": {\n      \"description\": \"A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"nf(x) is irreducible -- no further reductions apply\",\n      \"nf(x) is reachable from x via the reduction relation: x ->* nf(x)\",\n      \"nf(nf(x)) = nf(x)\",\n      \"Artifact hash correctly computed from expression and normal form data\"\n    ]\n  },\n  \"laws\": [\n    \"The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\\n\",\n    \"The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\\n\",\n    \"An element y in S is in normal form (irreducible) if there is no z in S with y -> z.  The normal form function returns only irreducible elements.\\n\",\n    \"For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\\n\",\n    \"nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Reduction strategy must be deterministic (e.g., leftmost-outermost)\",\n      \"Expression encoding normalized to canonical bytes\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Rewriting system is not confluent\",\n    \"Rewriting system has infinite reduction sequences\",\n    \"Expression hash does not resolve to valid artifact\",\n    \"Expression is not in the domain of the rewriting system\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.\",\n    \"non_role\": [\n      \"Does not define specific rewriting systems (lambda calculus, Groebner, etc.)\",\n      \"Does not handle non-terminating or non-confluent systems\",\n      \"Does not implement the reduction strategy (leftmost, rightmost, etc.)\",\n      \"Does not classify admissibility of expressions\",\n      \"Does not cover weak normal forms or head normal forms\"\n    ]\n  },\n  \"wip\": [\n    \"Should this contract support weak normal forms and head normal forms?\",\n    \"How to handle rewriting systems where termination is undecidable?\",\n    \"Integration with specific normal form contracts (Smith, Jordan, Groebner)\",\n    \"Whether reduction traces should be stored or only their hashes\",\n    \"Strategy selection (leftmost-outermost vs innermost) as contract parameter\",\n    \"This contract is generic over the rewriting system -- specific instances are separate contracts\",\n    \"Confluence and termination are assumed as preconditions, not proved by this contract\",\n    \"The reduction trace provides a constructive witness of reachability\",\n    \"Consider adding complexity bounds (max reduction steps) as a contract parameter\",\n    \"OPEN_OBLIGATION non_confluent_system: Rewriting system is not confluent; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect confluence; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION non_terminating_system: Rewriting system has infinite reduction sequences; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect termination; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION missing_artifact_hash: Expression hash does not resolve to valid artifact; owner: Council Nomos; disposition: GTLANF carries no artifact-hash admission; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION out_of_domain_expression: Expression is not in the domain of the rewriting system; owner: Council Nomos; disposition: GTLANF does not type-check a rewriting domain; AuthorityEffect: None.\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_pipelines\",\n    \"module\": \"coda_gtlanf\",\n    \"symbols\": [\n      \"Normalize\",\n      \"FinClaim\",\n      \"CodaGtlaNf\",\n      \"normalize_l\",\n      \"include_i\",\n      \"t\",\n      \"is_fixed\"\n    ]\n  },\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"STAGE1_MECHANICAL_PASS\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\",\n        \"recommendation\": \"Repair under meth-level math re-review (ADR-007); not GlobalGreen.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"STAGE2_SCOPE_NARROWER_THAN_YAML\",\n        \"severity\": \"medium\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"rust_binding → omega_pipelines::gtlanf. Symbols Normalize, FinClaim, GtlaNf, normalize_l, include_i, t, is_fixed present. Code is a finite GTLANF normalize/forget interface with caller-supplied Normalize laws; module explicitly disclaims adjunction/reflector/monad proofs. YAML describes generic rewriting-system normal forms (confluence, traces). Realization is a scoped finite carrier, not the full normal-form object.\\n\",\n        \"file\": \"omega_engine/crates_rs/omega_pipelines/src/coda_gtlanf.rs\",\n        \"yaml_law\": \"generic rewrite normal form with confluence/termination preconditions\",\n        \"code_behavior\": \"FinClaim/GtlaNf L/I/T with terminal class carried unchanged; laws caller-supplied\",\n        \"delta\": \"YAML_OVERCLAIMS\"\n      }\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:normal_form:v0.1.0",
-        "title": "Normal Form Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
-        "math": {
-          "object_kind": "canonical_representative",
-          "symbol": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
-          "ascii_symbol": "normal_form",
-          "notation": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
-          "domain": [
-            "expression_set: Set S of expressions in the algebraic structure",
-            "rewriting_relation: One-step reduction relation -> on S",
-            "normal_form_set: Subset NF(S) of irreducible elements",
-            "normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form",
-            "reduction_trace: Sequence of reduction steps from input to normal form"
+        "doctrine": {
+          "non_role": [
+            "Does not define specific rewriting systems (lambda calculus, Groebner, etc.)",
+            "Does not handle non-terminating or non-confluent systems",
+            "Does not implement the reduction strategy (leftmost, rightmost, etc.)",
+            "Does not classify admissibility of expressions",
+            "Does not cover weak normal forms or head normal forms"
           ],
-          "codomain": {
-            "description": "A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n"
-          }
+          "summary": "A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy."
         },
-        "requirements": {
-          "required_structures": [
-            "nf(x) is irreducible -- no further reductions apply",
-            "nf(x) is reachable from x via the reduction relation: x ->* nf(x)",
-            "nf(nf(x)) = nf(x)",
-            "Artifact hash correctly computed from expression and normal form data"
-          ]
-        },
+        "kind": "math_contract",
         "laws": [
           "The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\n",
           "The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\n",
@@ -216,6 +86,64 @@
           "For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\n",
           "nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\n"
         ],
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "normal_form",
+          "codomain": {
+            "description": "A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n"
+          },
+          "domain": [
+            "expression_set: Set S of expressions in the algebraic structure",
+            "rewriting_relation: One-step reduction relation -> on S",
+            "normal_form_set: Subset NF(S) of irreducible elements",
+            "normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form",
+            "reduction_trace: Sequence of reduction steps from input to normal form"
+          ],
+          "notation": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
+          "object_kind": "canonical_representative",
+          "symbol": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible"
+        },
+        "negative_tests": [
+          "Rewriting system is not confluent",
+          "Rewriting system has infinite reduction sequences",
+          "Expression hash does not resolve to valid artifact",
+          "Expression is not in the domain of the rewriting system"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "authority_effect": "none",
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "potential_defects": [
+            {
+              "claim_class": "[STANDARD]",
+              "code": "STAGE1_MECHANICAL_PASS",
+              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen.",
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "severity": "info"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "claim_class": "[SCOPE FENCE]",
+              "code": "STAGE2_SCOPE_NARROWER_THAN_YAML",
+              "code_behavior": "FinClaim/GtlaNf L/I/T with terminal class carried unchanged; laws caller-supplied",
+              "delta": "YAML_OVERCLAIMS",
+              "detail": "rust_binding → omega_pipelines::gtlanf. Symbols Normalize, FinClaim, GtlaNf, normalize_l, include_i, t, is_fixed present. Code is a finite GTLANF normalize/forget interface with caller-supplied Normalize laws; module explicitly disclaims adjunction/reflector/monad proofs. YAML describes generic rewriting-system normal forms (confluence, traces). Realization is a scoped finite carrier, not the full normal-form object.\n",
+              "file": "omega_engine/crates_rs/omega_pipelines/src/coda_gtlanf.rs",
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "severity": "medium",
+              "yaml_law": "generic rewrite normal form with confluence/termination preconditions"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
         "replay": {
           "requirements": [
             "No external state",
@@ -226,27 +154,30 @@
             "Validators and computation functions are content-addressed"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
+        "requirements": {
+          "required_structures": [
+            "nf(x) is irreducible -- no further reductions apply",
+            "nf(x) is reachable from x via the reduction relation: x ->* nf(x)",
+            "nf(nf(x)) = nf(x)",
+            "Artifact hash correctly computed from expression and normal form data"
           ]
         },
-        "negative_tests": [
-          "Rewriting system is not confluent",
-          "Rewriting system has infinite reduction sequences",
-          "Expression hash does not resolve to valid artifact",
-          "Expression is not in the domain of the rewriting system"
-        ],
-        "doctrine": {
-          "summary": "A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.",
-          "non_role": [
-            "Does not define specific rewriting systems (lambda calculus, Groebner, etc.)",
-            "Does not handle non-terminating or non-confluent systems",
-            "Does not implement the reduction strategy (leftmost, rightmost, etc.)",
-            "Does not classify admissibility of expressions",
-            "Does not cover weak normal forms or head normal forms"
+        "rust_binding": {
+          "crate": "omega_pipelines",
+          "module": "coda_gtlanf",
+          "symbols": [
+            "Normalize",
+            "FinClaim",
+            "CodaGtlaNf",
+            "normalize_l",
+            "include_i",
+            "t",
+            "is_fixed"
           ]
         },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "Normal Form Contract",
         "wip": [
           "Should this contract support weak normal forms and head normal forms?",
           "How to handle rewriting systems where termination is undecidable?",
@@ -261,81 +192,74 @@
           "OPEN_OBLIGATION non_terminating_system: Rewriting system has infinite reduction sequences; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect termination; AuthorityEffect: None.",
           "OPEN_OBLIGATION missing_artifact_hash: Expression hash does not resolve to valid artifact; owner: Council Nomos; disposition: GTLANF carries no artifact-hash admission; AuthorityEffect: None.",
           "OPEN_OBLIGATION out_of_domain_expression: Expression is not in the domain of the rewriting system; owner: Council Nomos; disposition: GTLANF does not type-check a rewriting domain; AuthorityEffect: None."
-        ],
-        "rust_binding": {
-          "crate": "omega_pipelines",
-          "module": "coda_gtlanf",
-          "symbols": [
-            "Normalize",
-            "FinClaim",
-            "CodaGtlaNf",
-            "normalize_l",
-            "include_i",
-            "t",
-            "is_fixed"
-          ]
-        },
-        "nomos_debate_NOT_CANONICAL": {
-          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
-          "not_part_of_contract_law": true,
-          "authority_effect": "none",
-          "potential_defects": [
-            {
-              "reviewer": "panepistimion-math-prof",
-              "role": "MATH_CANONICAL_REVIEW",
-              "code": "STAGE1_MECHANICAL_PASS",
-              "severity": "info",
-              "claim_class": "[STANDARD]",
-              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
-              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
-            }
-          ],
-          "realization_delta_vs_implemented_math_file": [
-            {
-              "reviewer": "panepistimion-cs-prof-ml-ai-info",
-              "role": "CS_IMPL_DELTA_REVIEW",
-              "code": "STAGE2_SCOPE_NARROWER_THAN_YAML",
-              "severity": "medium",
-              "claim_class": "[SCOPE FENCE]",
-              "detail": "rust_binding → omega_pipelines::gtlanf. Symbols Normalize, FinClaim, GtlaNf, normalize_l, include_i, t, is_fixed present. Code is a finite GTLANF normalize/forget interface with caller-supplied Normalize laws; module explicitly disclaims adjunction/reflector/monad proofs. YAML describes generic rewriting-system normal forms (confluence, traces). Realization is a scoped finite carrier, not the full normal-form object.\n",
-              "file": "omega_engine/crates_rs/omega_pipelines/src/coda_gtlanf.rs",
-              "yaml_law": "generic rewrite normal form with confluence/termination preconditions",
-              "code_behavior": "FinClaim/GtlaNf L/I/T with terminal class carried unchanged; laws caller-supplied",
-              "delta": "YAML_OVERCLAIMS"
-            }
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:normal_form:v0.1.0\",\n  \"title\": \"Normal Form Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"canonical_representative\",\n    \"symbol\": \"nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible\",\n    \"ascii_symbol\": \"normal_form\",\n    \"notation\": \"nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible\",\n    \"domain\": [\n      \"expression_set: Set S of expressions in the algebraic structure\",\n      \"rewriting_relation: One-step reduction relation -> on S\",\n      \"normal_form_set: Subset NF(S) of irreducible elements\",\n      \"normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form\",\n      \"reduction_trace: Sequence of reduction steps from input to normal form\"\n    ],\n    \"codomain\": {\n      \"description\": \"A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"nf(x) is irreducible -- no further reductions apply\",\n      \"nf(x) is reachable from x via the reduction relation: x ->* nf(x)\",\n      \"nf(nf(x)) = nf(x)\",\n      \"Artifact hash correctly computed from expression and normal form data\"\n    ]\n  },\n  \"laws\": [\n    \"The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\\n\",\n    \"The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\\n\",\n    \"An element y in S is in normal form (irreducible) if there is no z in S with y -> z.  The normal form function returns only irreducible elements.\\n\",\n    \"For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\\n\",\n    \"nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Reduction strategy must be deterministic (e.g., leftmost-outermost)\",\n      \"Expression encoding normalized to canonical bytes\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Rewriting system is not confluent\",\n    \"Rewriting system has infinite reduction sequences\",\n    \"Expression hash does not resolve to valid artifact\",\n    \"Expression is not in the domain of the rewriting system\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.\",\n    \"non_role\": [\n      \"Does not define specific rewriting systems (lambda calculus, Groebner, etc.)\",\n      \"Does not handle non-terminating or non-confluent systems\",\n      \"Does not implement the reduction strategy (leftmost, rightmost, etc.)\",\n      \"Does not classify admissibility of expressions\",\n      \"Does not cover weak normal forms or head normal forms\"\n    ]\n  },\n  \"wip\": [\n    \"Should this contract support weak normal forms and head normal forms?\",\n    \"How to handle rewriting systems where termination is undecidable?\",\n    \"Integration with specific normal form contracts (Smith, Jordan, Groebner)\",\n    \"Whether reduction traces should be stored or only their hashes\",\n    \"Strategy selection (leftmost-outermost vs innermost) as contract parameter\",\n    \"This contract is generic over the rewriting system -- specific instances are separate contracts\",\n    \"Confluence and termination are assumed as preconditions, not proved by this contract\",\n    \"The reduction trace provides a constructive witness of reachability\",\n    \"Consider adding complexity bounds (max reduction steps) as a contract parameter\",\n    \"OPEN_OBLIGATION non_confluent_system: Rewriting system is not confluent; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect confluence; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION non_terminating_system: Rewriting system has infinite reduction sequences; owner: Council Nomos; disposition: Normalize is caller-supplied and does not inspect termination; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION missing_artifact_hash: Expression hash does not resolve to valid artifact; owner: Council Nomos; disposition: GTLANF carries no artifact-hash admission; AuthorityEffect: None.\",\n    \"OPEN_OBLIGATION out_of_domain_expression: Expression is not in the domain of the rewriting system; owner: Council Nomos; disposition: GTLANF does not type-check a rewriting domain; AuthorityEffect: None.\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_pipelines\",\n    \"module\": \"coda_gtlanf\",\n    \"symbols\": [\n      \"Normalize\",\n      \"FinClaim\",\n      \"CodaGtlaNf\",\n      \"normalize_l\",\n      \"include_i\",\n      \"t\",\n      \"is_fixed\"\n    ]\n  },\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"STAGE1_MECHANICAL_PASS\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\",\n        \"recommendation\": \"Repair under meth-level math re-review (ADR-007); not GlobalGreen.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"STAGE2_SCOPE_NARROWER_THAN_YAML\",\n        \"severity\": \"medium\",\n        \"claim_class\": \"[SCOPE FENCE]\",\n        \"detail\": \"rust_binding → omega_pipelines::gtlanf. Symbols Normalize, FinClaim, GtlaNf, normalize_l, include_i, t, is_fixed present. Code is a finite GTLANF normalize/forget interface with caller-supplied Normalize laws; module explicitly disclaims adjunction/reflector/monad proofs. YAML describes generic rewriting-system normal forms (confluence, traces). Realization is a scoped finite carrier, not the full normal-form object.\\n\",\n        \"file\": \"omega_engine/crates_rs/omega_pipelines/src/coda_gtlanf.rs\",\n        \"yaml_law\": \"generic rewrite normal form with confluence/termination preconditions\",\n        \"code_behavior\": \"FinClaim/GtlaNf L/I/T with terminal class carried unchanged; laws caller-supplied\",\n        \"delta\": \"YAML_OVERCLAIMS\"\n      }\n    ]\n  }\n}\n",
+      "sha256": "57e6f92b789819754d74fcf0914b4381a275c7f429a43703f051108269af7b53"
+    },
+    {
+      "bytes": 1703,
       "original_paths": [
-        "code/python/governance/10_math/general/math_normal_form_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n    \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n      \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\",\n  \"subject\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+          "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+            "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c",
+        "subject": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py"
+      },
+      "sha256": "e7cb79802b05f261e52de95863cdc05bfb8791938e692bb64fa41a395eb7cca9"
     }
   ],
+  "current_contract": "e7cb79802b05f261e52de95863cdc05bfb8791938e692bb64fa41a395eb7cca9",
+  "current_scoring": "11ca35ec0492dba3c737dd740482c686c4105c44c4ec12cd5ecf4b9d259929dc",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_normal_form_v0_1_0.contract.yaml": "3a4ecd876f6fe13aa17c3b4acce23cd8250bbaad996e9cec60a3ace8f452ac2a"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "eab5aed56a55dc95b91cce54c723df029e3586ed7e59ed507156a367c263af6a",
       "bytes": 2219,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n    \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-normal-form-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
           "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-normal-form-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -344,40 +268,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "eab5aed56a55dc95b91cce54c723df029e3586ed7e59ed507156a367c263af6a"
+    },
+    {
+      "bytes": 1664,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n    \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n      \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+          "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py",
+            "sha256": "f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.py\",\n    \"sha256\": \"f47f5994a117e52e0abb4542fabbf9f9ab08196d863c968273748e3c9c5ddb9c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-normal-form-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_normal_form_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "11ca35ec0492dba3c737dd740482c686c4105c44c4ec12cd5ecf4b9d259929dc"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_normal_form_v0_1_0.contract.yaml": "3a4ecd876f6fe13aa17c3b4acce23cd8250bbaad996e9cec60a3ace8f452ac2a"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

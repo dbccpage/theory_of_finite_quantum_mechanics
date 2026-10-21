@@ -1,0 +1,286 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For every declared F2 cochain complex (with d1 d0 = 0 as a structure field) every
+    Exact residual is a cocycle, and no residual satisfies two of Exact, ClosedResidual and OpenObstruction.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Exhaustiveness (each residual has at least one label) is not stated in Lean; it is
+    the prose record MAJ-THM-TRICHOTOMY-EXHAUSTIVE.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - papers/core/majorana/claim_ledger.yaml
+  - papers/core/majorana/lean4/axiom_report.txt
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md
+    sha256: 98954ef0e2e9a5eeef8e6ce5897d360cd44b975caffae197ef43b329eb4b3d2b
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_trichotomy_pairwise_exclusion_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: F2CochainComplex
+  line: 41
+  signature_excerpt: 'structure F2CochainComplex (n0 n1 n2 : Nat)'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec
+  line: 17
+  signature_excerpt: 'def F2Vec (n : Nat)'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_exact
+  line: 52
+  signature_excerpt: 'def is_exact {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) : Prop'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_cocycle
+  line: 55
+  signature_excerpt: 'def is_cocycle {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+    Prop'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: F2Map
+  line: 36
+  signature_excerpt: 'structure F2Map (n m : Nat)'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec.zero
+  line: 19
+  signature_excerpt: 'def F2Vec.zero (n : Nat) : F2Vec n'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F2Vec.add
+  line: 21
+  signature_excerpt: 'def F2Vec.add {n : Nat} (v1 v2 : F2Vec n) : F2Vec n'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: f2_add
+  line: 14
+  signature_excerpt: 'def f2_add (a b : Bool) : Bool'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_open_obstruction
+  line: 61
+  signature_excerpt: 'def is_open_obstruction {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec
+    n1) : Prop'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_closed_residual
+  line: 58
+  signature_excerpt: 'def is_closed_residual {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec
+    n1) : Prop'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: coboundary_is_cocycle
+  line: 65
+  signature_excerpt: |-
+    theorem coboundary_is_cocycle {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+        is_exact C w → is_cocycle C w
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exact_not_open
+  line: 86
+  signature_excerpt: |-
+    theorem exact_not_open {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+        is_exact C w → ¬(is_open_obstruction C w)
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exact_not_closed_residual
+  line: 93
+  signature_excerpt: |-
+    theorem exact_not_closed_residual {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+        is_exact C w → ¬(is_closed_residual C w)
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closed_residual_not_open
+  line: 98
+  signature_excerpt: |-
+    theorem closed_residual_not_open {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+        is_closed_residual C w → ¬(is_open_obstruction C w)
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: trichotomy_pairwise_disjoint
+  line: 104
+  signature_excerpt: |-
+    theorem trichotomy_pairwise_disjoint {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) :
+        ¬(is_exact C w ∧ is_closed_residual C w) ∧
+        ¬(is_exact C w ∧ is_open_obstruction C w) ∧
+        ¬(is_closed_residual C w ∧ is_open_obstruction C w)
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::coboundary_is_cocycle
+  availability: local
+  symbol: coboundary_is_cocycle
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::exact_not_open
+  availability: local
+  symbol: exact_not_open
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 86
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::exact_not_closed_residual
+  availability: local
+  symbol: exact_not_closed_residual
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::closed_residual_not_open
+  availability: local
+  symbol: closed_residual_not_open
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::trichotomy_pairwise_disjoint
+  availability: local
+  symbol: trichotomy_pairwise_disjoint
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/classify.rs::classify
+  availability: local
+  symbol: classify
+  path: code/rust/src/majorana/classify.rs
+  repository: this_repository
+  sha256: 93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b
+  declaration_status: declaration_found_not_executed
+  line: 98
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/classify.rs::torus_reaches_every_terminal
+  availability: local
+  symbol: torus_reaches_every_terminal
+  path: code/rust/src/majorana/classify.rs
+  repository: this_repository
+  sha256: 93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b
+  declaration_status: declaration_found_not_executed
+  line: 503
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

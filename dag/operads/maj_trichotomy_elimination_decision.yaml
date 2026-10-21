@@ -1,0 +1,125 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: MAJ-TRICHOTOMY-ELIMINATION-DECISION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Given d0, d1 and w over F2, compute s = d1 w (OpenObstruction if s is nonzero), otherwise
+    solve d0 a = w by Gaussian elimination (Exact if solvable, ClosedResidual if not); this uses polynomially
+    many bit operations, O(E (V + F)^2) by the body's count.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: No Lean statement of the algorithm or its operation count exists; gaussian_elimination_cubic_bound
+    is a reflexivity and must not be cited for this theorem.
+  source_refs:
+  - dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md
+  - papers/core/majorana/the_majorana_problem.md
+  - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - papers/core/majorana/claim_ledger.yaml
+  paper_refs:
+  - dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md
+  source_claim_label: PROVED_PROSE
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md
+    sha256: fcc89a86bec2f522f418c3daa7a0654e10c89e4b83865990a436b280cc5fc1df
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/majorana_maj_trichotomy_elimination_decision_proved_prose.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: gaussian_elimination_ops
+  line: 119
+  signature_excerpt: 'def gaussian_elimination_ops (n : Nat) : Nat'
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: gaussian_elimination_cubic_bound
+  line: 121
+  signature_excerpt: |-
+    theorem gaussian_elimination_cubic_bound (n : Nat) :
+        gaussian_elimination_ops n ≤ n * n * n
+  source: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::gaussian_elimination_cubic_bound
+  availability: local
+  symbol: gaussian_elimination_cubic_bound
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 121
+  role: source_lead_only
+- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::gaussian_elimination_ops
+  availability: local
+  symbol: gaussian_elimination_ops
+  path: papers/core/majorana/lean4/MajoranaCore.lean
+  repository: this_repository
+  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: code/rust/src/majorana/classify.rs::classify_default
+  availability: local
+  symbol: classify_default
+  path: code/rust/src/majorana/classify.rs
+  repository: this_repository
+  sha256: 93bf9e0d978e50493ba85a1031c488f6537ee5f1e833db44606995b97e398b6b
+  declaration_status: declaration_found_not_executed
+  line: 272
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

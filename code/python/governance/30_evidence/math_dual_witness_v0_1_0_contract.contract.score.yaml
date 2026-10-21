@@ -1,171 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:dual_witness:v0.1.0",
-    "title": "DualWitness Contract",
-    "kind": "math_contract",
-    "status": "mathematical_wip",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:phi1:v1.0.0"
-        ],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+      "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+        "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "dual-certificate",
-      "symbol": "||x|| >= |y(x)| when ||y||* <= 1",
-      "ascii_symbol": "dual_witness",
-      "notation": "||x|| >= |y(x)| when ||y||* <= 1",
-      "domain": [
-        "dual_element: Covector y in V*",
-        "primal_element: Element x in V (the element being witnessed)",
-        "dual_norm_value: ||y||* (must be <= 1 for valid witness)",
-        "evaluation_value: |y(x)| (the certified lower bound)",
-        "primal_space: Normed vector space V",
-        "dual_space: Dual space V*"
-      ],
-      "codomain": {
-        "description": "A covector y in V* witnessing a lower bound on a primal element"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "dual_element_hash must resolve to a valid covector in V*",
-        "primal_element_hash must resolve to a valid element of V",
-        "||y||* <= 1",
-        "The evaluation y(x) must be correctly computed",
-        "Witness hash must be deterministic from all components"
-      ]
-    },
-    "laws": [
-      "||y||* <= 1 (the witness has unit dual norm or less)",
-      "||x|| >= |y(x)| follows from ||y||* <= 1",
-      "y(x) is correctly computed from the evaluation pairing"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Evaluation pairing is deterministic from covector and vector data",
-        "Dual norm computation is deterministic"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "dual_element_hash does not resolve to valid covector",
-      "primal_element_hash does not resolve to valid vector",
-      "||y||* > 1 (dual norm exceeds unit bound)",
-      "Evaluation y(x) is incorrectly computed",
-      "Artifact claiming authority or admissibility must be rejected"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "DualWitness is a covector y in the dual space V* that certifies properties of primal elements via the evaluation pairing. Given a primal element x and a dual witness y with ||y||* <= 1, the value |y(x)| provides a certified lower bound on ||x||. When ||y||* = 1 and y(x) = ||x||, the witness is optimal (Hahn-Banach witness). The contract validates the dual norm bound, the evaluation computation, and the resulting lower bound certificate.",
-      "non_role": [
-        "Does not classify admissibility",
-        "Does not emit policy decisions",
-        "Does not emit certificates",
-        "Does not terminalize",
-        "Does not produce customer-facing claims",
-        "Does not solve optimization problems",
-        "Does not construct Hahn-Banach extensions"
-      ]
-    },
-    "wip": [
-      "Should dual witnesses support approximate optimality (|y(x)| >= (1-epsilon)||x||)?",
-      "Relationship to primal-dual certificates for LP/SDP feasibility",
-      "How to construct optimal witnesses algorithmically in finite dimensions",
-      "Connection to annihilator constraints and complementary slackness",
-      "Currently targets finite-dimensional normed vector spaces",
-      "Hahn-Banach extension for infinite dimensions is deferred",
-      "Primal-dual pairing with PrimalResidual for complete certificates",
-      "May need approximate witness for numerical computation"
-    ],
-    "rust_binding": {
-      "crate": "omega_types",
-      "module": "dual_witness",
-      "symbols": [
-        "DualWitness"
-      ],
-      "required_tests": [
-        "dual_norm_exceeds_unit_bound",
-        "evaluation_pairing_mismatch_must_be_rejected"
-      ]
-    },
-    "nomos_debate_NOT_CANONICAL": {
-      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none",
-      "not_part_of_contract_law": true,
-      "authority_effect": "none",
-      "potential_defects": [
-        {
-          "reviewer": "panepistimion-math-prof",
-          "role": "MATH_CANONICAL_REVIEW",
-          "code": "STAGE1_MECHANICAL_PASS",
-          "severity": "info",
-          "claim_class": "[STANDARD]",
-          "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
-          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
-        }
-      ],
-      "realization_delta_vs_implemented_math_file": [
-        {
-          "reviewer": "panepistimion-cs-prof-ml-ai-info",
-          "role": "CS_IMPL_DELTA_REVIEW",
-          "code": "REALIZATION_PRESENT_SCOPE_NARROWER",
-          "severity": "high",
-          "claim_class": "[CODE_DEMO_RUST]",
-          "file": "omega_engine/crates_rs/omega_types/src/dual_witness.rs",
-          "yaml_law": "Hahn-Banach-style dual certificate ||x|| >= |y(x)| when ||y||* <= 1 over general normed V",
-          "code_behavior": "DualWitness is a display-only f64 view of VerifiedExactPhi1 (phi vector, dual_value, is_circulation/is_bounded inherited, not recomputed). No general dual-norm certificate construction or evaluation pairing API.\n",
-          "delta": "YAML_OVERCLAIMS",
-          "detail": "rust_binding resolves; symbols exist. Code is a diagnostic projection of Phi1 dual evidence, not a general dual-witness object matching the YAML math object.\n",
-          "recommendation": "Either narrow YAML to Phi1 display dual-witness scope, or split a second contract for general dual certificates. Code must not mint authority. No PROVED/GlobalGreen.\n"
-        }
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb",
+    "subject": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py"
   },
-  "current_contract": "7d184a53319e126deae572c7de3f413739673c73a9722f3c70d58a04b66eea89",
-  "current_scoring": "eb865a5eaa4d5e185adbc21e77ca941cb15c59a2ea3378361cd1c78cfd926aa4",
   "contract_history": [
     {
-      "sha256": "7d184a53319e126deae572c7de3f413739673c73a9722f3c70d58a04b66eea89",
       "bytes": 5986,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_dual_witness_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:dual_witness:v0.1.0\",\n  \"title\": \"DualWitness Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"dual-certificate\",\n    \"symbol\": \"||x|| >= |y(x)| when ||y||* <= 1\",\n    \"ascii_symbol\": \"dual_witness\",\n    \"notation\": \"||x|| >= |y(x)| when ||y||* <= 1\",\n    \"domain\": [\n      \"dual_element: Covector y in V*\",\n      \"primal_element: Element x in V (the element being witnessed)\",\n      \"dual_norm_value: ||y||* (must be <= 1 for valid witness)\",\n      \"evaluation_value: |y(x)| (the certified lower bound)\",\n      \"primal_space: Normed vector space V\",\n      \"dual_space: Dual space V*\"\n    ],\n    \"codomain\": {\n      \"description\": \"A covector y in V* witnessing a lower bound on a primal element\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"dual_element_hash must resolve to a valid covector in V*\",\n      \"primal_element_hash must resolve to a valid element of V\",\n      \"||y||* <= 1\",\n      \"The evaluation y(x) must be correctly computed\",\n      \"Witness hash must be deterministic from all components\"\n    ]\n  },\n  \"laws\": [\n    \"||y||* <= 1 (the witness has unit dual norm or less)\",\n    \"||x|| >= |y(x)| follows from ||y||* <= 1\",\n    \"y(x) is correctly computed from the evaluation pairing\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Evaluation pairing is deterministic from covector and vector data\",\n      \"Dual norm computation is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"dual_element_hash does not resolve to valid covector\",\n    \"primal_element_hash does not resolve to valid vector\",\n    \"||y||* > 1 (dual norm exceeds unit bound)\",\n    \"Evaluation y(x) is incorrectly computed\",\n    \"Artifact claiming authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"DualWitness is a covector y in the dual space V* that certifies properties of primal elements via the evaluation pairing. Given a primal element x and a dual witness y with ||y||* <= 1, the value |y(x)| provides a certified lower bound on ||x||. When ||y||* = 1 and y(x) = ||x||, the witness is optimal (Hahn-Banach witness). The contract validates the dual norm bound, the evaluation computation, and the resulting lower bound certificate.\",\n    \"non_role\": [\n      \"Does not classify admissibility\",\n      \"Does not emit policy decisions\",\n      \"Does not emit certificates\",\n      \"Does not terminalize\",\n      \"Does not produce customer-facing claims\",\n      \"Does not solve optimization problems\",\n      \"Does not construct Hahn-Banach extensions\"\n    ]\n  },\n  \"wip\": [\n    \"Should dual witnesses support approximate optimality (|y(x)| >= (1-epsilon)||x||)?\",\n    \"Relationship to primal-dual certificates for LP/SDP feasibility\",\n    \"How to construct optimal witnesses algorithmically in finite dimensions\",\n    \"Connection to annihilator constraints and complementary slackness\",\n    \"Currently targets finite-dimensional normed vector spaces\",\n    \"Hahn-Banach extension for infinite dimensions is deferred\",\n    \"Primal-dual pairing with PrimalResidual for complete certificates\",\n    \"May need approximate witness for numerical computation\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_types\",\n    \"module\": \"dual_witness\",\n    \"symbols\": [\n      \"DualWitness\"\n    ],\n    \"required_tests\": [\n      \"dual_norm_exceeds_unit_bound\",\n      \"evaluation_pairing_mismatch_must_be_rejected\"\n    ]\n  },\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"STAGE1_MECHANICAL_PASS\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\",\n        \"recommendation\": \"Repair under meth-level math re-review (ADR-007); not GlobalGreen.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"REALIZATION_PRESENT_SCOPE_NARROWER\",\n        \"severity\": \"high\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"file\": \"omega_engine/crates_rs/omega_types/src/dual_witness.rs\",\n        \"yaml_law\": \"Hahn-Banach-style dual certificate ||x|| >= |y(x)| when ||y||* <= 1 over general normed V\",\n        \"code_behavior\": \"DualWitness is a display-only f64 view of VerifiedExactPhi1 (phi vector, dual_value, is_circulation/is_bounded inherited, not recomputed). No general dual-norm certificate construction or evaluation pairing API.\\n\",\n        \"delta\": \"YAML_OVERCLAIMS\",\n        \"detail\": \"rust_binding resolves; symbols exist. Code is a diagnostic projection of Phi1 dual evidence, not a general dual-witness object matching the YAML math object.\\n\",\n        \"recommendation\": \"Either narrow YAML to Phi1 display dual-witness scope, or split a second contract for general dual certificates. Code must not mint authority. No PROVED/GlobalGreen.\\n\"\n      }\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:dual_witness:v0.1.0",
-        "title": "DualWitness Contract",
-        "kind": "math_contract",
-        "status": "mathematical_wip",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -173,23 +56,44 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Does not classify admissibility",
+            "Does not emit policy decisions",
+            "Does not emit certificates",
+            "Does not terminalize",
+            "Does not produce customer-facing claims",
+            "Does not solve optimization problems",
+            "Does not construct Hahn-Banach extensions"
+          ],
+          "summary": "DualWitness is a covector y in the dual space V* that certifies properties of primal elements via the evaluation pairing. Given a primal element x and a dual witness y with ||y||* <= 1, the value |y(x)| provides a certified lower bound on ||x||. When ||y||* = 1 and y(x) = ||x||, the witness is optimal (Hahn-Banach witness). The contract validates the dual norm bound, the evaluation computation, and the resulting lower bound certificate."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "||y||* <= 1 (the witness has unit dual norm or less)",
+          "||x|| >= |y(x)| follows from ||y||* <= 1",
+          "y(x) is correctly computed from the evaluation pairing"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "dual-certificate",
-          "symbol": "||x|| >= |y(x)| when ||y||* <= 1",
           "ascii_symbol": "dual_witness",
-          "notation": "||x|| >= |y(x)| when ||y||* <= 1",
+          "codomain": {
+            "description": "A covector y in V* witnessing a lower bound on a primal element"
+          },
           "domain": [
             "dual_element: Covector y in V*",
             "primal_element: Element x in V (the element being witnessed)",
@@ -198,9 +102,61 @@
             "primal_space: Normed vector space V",
             "dual_space: Dual space V*"
           ],
-          "codomain": {
-            "description": "A covector y in V* witnessing a lower bound on a primal element"
-          }
+          "notation": "||x|| >= |y(x)| when ||y||* <= 1",
+          "object_kind": "dual-certificate",
+          "symbol": "||x|| >= |y(x)| when ||y||* <= 1"
+        },
+        "negative_tests": [
+          "dual_element_hash does not resolve to valid covector",
+          "primal_element_hash does not resolve to valid vector",
+          "||y||* > 1 (dual norm exceeds unit bound)",
+          "Evaluation y(x) is incorrectly computed",
+          "Artifact claiming authority or admissibility must be rejected"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "authority_effect": "none",
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none",
+          "not_part_of_contract_law": true,
+          "potential_defects": [
+            {
+              "claim_class": "[STANDARD]",
+              "code": "STAGE1_MECHANICAL_PASS",
+              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen.",
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "severity": "info"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "claim_class": "[CODE_DEMO_RUST]",
+              "code": "REALIZATION_PRESENT_SCOPE_NARROWER",
+              "code_behavior": "DualWitness is a display-only f64 view of VerifiedExactPhi1 (phi vector, dual_value, is_circulation/is_bounded inherited, not recomputed). No general dual-norm certificate construction or evaluation pairing API.\n",
+              "delta": "YAML_OVERCLAIMS",
+              "detail": "rust_binding resolves; symbols exist. Code is a diagnostic projection of Phi1 dual evidence, not a general dual-witness object matching the YAML math object.\n",
+              "file": "omega_engine/crates_rs/omega_types/src/dual_witness.rs",
+              "recommendation": "Either narrow YAML to Phi1 display dual-witness scope, or split a second contract for general dual certificates. Code must not mint authority. No PROVED/GlobalGreen.\n",
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "severity": "high",
+              "yaml_law": "Hahn-Banach-style dual certificate ||x|| >= |y(x)| when ||y||* <= 1 over general normed V"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Evaluation pairing is deterministic from covector and vector data",
+            "Dual norm computation is deterministic"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -211,44 +167,20 @@
             "Witness hash must be deterministic from all components"
           ]
         },
-        "laws": [
-          "||y||* <= 1 (the witness has unit dual norm or less)",
-          "||x|| >= |y(x)| follows from ||y||* <= 1",
-          "y(x) is correctly computed from the evaluation pairing"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Evaluation pairing is deterministic from covector and vector data",
-            "Dual norm computation is deterministic"
+        "rust_binding": {
+          "crate": "omega_types",
+          "module": "dual_witness",
+          "required_tests": [
+            "dual_norm_exceeds_unit_bound",
+            "evaluation_pairing_mismatch_must_be_rejected"
+          ],
+          "symbols": [
+            "DualWitness"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "negative_tests": [
-          "dual_element_hash does not resolve to valid covector",
-          "primal_element_hash does not resolve to valid vector",
-          "||y||* > 1 (dual norm exceeds unit bound)",
-          "Evaluation y(x) is incorrectly computed",
-          "Artifact claiming authority or admissibility must be rejected"
-        ],
-        "doctrine": {
-          "summary": "DualWitness is a covector y in the dual space V* that certifies properties of primal elements via the evaluation pairing. Given a primal element x and a dual witness y with ||y||* <= 1, the value |y(x)| provides a certified lower bound on ||x||. When ||y||* = 1 and y(x) = ||x||, the witness is optimal (Hahn-Banach witness). The contract validates the dual norm bound, the evaluation computation, and the resulting lower bound certificate.",
-          "non_role": [
-            "Does not classify admissibility",
-            "Does not emit policy decisions",
-            "Does not emit certificates",
-            "Does not terminalize",
-            "Does not produce customer-facing claims",
-            "Does not solve optimization problems",
-            "Does not construct Hahn-Banach extensions"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "DualWitness Contract",
         "wip": [
           "Should dual witnesses support approximate optimality (|y(x)| >= (1-epsilon)||x||)?",
           "Relationship to primal-dual certificates for LP/SDP feasibility",
@@ -258,80 +190,74 @@
           "Hahn-Banach extension for infinite dimensions is deferred",
           "Primal-dual pairing with PrimalResidual for complete certificates",
           "May need approximate witness for numerical computation"
-        ],
-        "rust_binding": {
-          "crate": "omega_types",
-          "module": "dual_witness",
-          "symbols": [
-            "DualWitness"
-          ],
-          "required_tests": [
-            "dual_norm_exceeds_unit_bound",
-            "evaluation_pairing_mismatch_must_be_rejected"
-          ]
-        },
-        "nomos_debate_NOT_CANONICAL": {
-          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none",
-          "not_part_of_contract_law": true,
-          "authority_effect": "none",
-          "potential_defects": [
-            {
-              "reviewer": "panepistimion-math-prof",
-              "role": "MATH_CANONICAL_REVIEW",
-              "code": "STAGE1_MECHANICAL_PASS",
-              "severity": "info",
-              "claim_class": "[STANDARD]",
-              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
-              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
-            }
-          ],
-          "realization_delta_vs_implemented_math_file": [
-            {
-              "reviewer": "panepistimion-cs-prof-ml-ai-info",
-              "role": "CS_IMPL_DELTA_REVIEW",
-              "code": "REALIZATION_PRESENT_SCOPE_NARROWER",
-              "severity": "high",
-              "claim_class": "[CODE_DEMO_RUST]",
-              "file": "omega_engine/crates_rs/omega_types/src/dual_witness.rs",
-              "yaml_law": "Hahn-Banach-style dual certificate ||x|| >= |y(x)| when ||y||* <= 1 over general normed V",
-              "code_behavior": "DualWitness is a display-only f64 view of VerifiedExactPhi1 (phi vector, dual_value, is_circulation/is_bounded inherited, not recomputed). No general dual-norm certificate construction or evaluation pairing API.\n",
-              "delta": "YAML_OVERCLAIMS",
-              "detail": "rust_binding resolves; symbols exist. Code is a diagnostic projection of Phi1 dual evidence, not a general dual-witness object matching the YAML math object.\n",
-              "recommendation": "Either narrow YAML to Phi1 display dual-witness scope, or split a second contract for general dual certificates. Code must not mint authority. No PROVED/GlobalGreen.\n"
-            }
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:dual_witness:v0.1.0\",\n  \"title\": \"DualWitness Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"dual-certificate\",\n    \"symbol\": \"||x|| >= |y(x)| when ||y||* <= 1\",\n    \"ascii_symbol\": \"dual_witness\",\n    \"notation\": \"||x|| >= |y(x)| when ||y||* <= 1\",\n    \"domain\": [\n      \"dual_element: Covector y in V*\",\n      \"primal_element: Element x in V (the element being witnessed)\",\n      \"dual_norm_value: ||y||* (must be <= 1 for valid witness)\",\n      \"evaluation_value: |y(x)| (the certified lower bound)\",\n      \"primal_space: Normed vector space V\",\n      \"dual_space: Dual space V*\"\n    ],\n    \"codomain\": {\n      \"description\": \"A covector y in V* witnessing a lower bound on a primal element\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"dual_element_hash must resolve to a valid covector in V*\",\n      \"primal_element_hash must resolve to a valid element of V\",\n      \"||y||* <= 1\",\n      \"The evaluation y(x) must be correctly computed\",\n      \"Witness hash must be deterministic from all components\"\n    ]\n  },\n  \"laws\": [\n    \"||y||* <= 1 (the witness has unit dual norm or less)\",\n    \"||x|| >= |y(x)| follows from ||y||* <= 1\",\n    \"y(x) is correctly computed from the evaluation pairing\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Evaluation pairing is deterministic from covector and vector data\",\n      \"Dual norm computation is deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"dual_element_hash does not resolve to valid covector\",\n    \"primal_element_hash does not resolve to valid vector\",\n    \"||y||* > 1 (dual norm exceeds unit bound)\",\n    \"Evaluation y(x) is incorrectly computed\",\n    \"Artifact claiming authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"DualWitness is a covector y in the dual space V* that certifies properties of primal elements via the evaluation pairing. Given a primal element x and a dual witness y with ||y||* <= 1, the value |y(x)| provides a certified lower bound on ||x||. When ||y||* = 1 and y(x) = ||x||, the witness is optimal (Hahn-Banach witness). The contract validates the dual norm bound, the evaluation computation, and the resulting lower bound certificate.\",\n    \"non_role\": [\n      \"Does not classify admissibility\",\n      \"Does not emit policy decisions\",\n      \"Does not emit certificates\",\n      \"Does not terminalize\",\n      \"Does not produce customer-facing claims\",\n      \"Does not solve optimization problems\",\n      \"Does not construct Hahn-Banach extensions\"\n    ]\n  },\n  \"wip\": [\n    \"Should dual witnesses support approximate optimality (|y(x)| >= (1-epsilon)||x||)?\",\n    \"Relationship to primal-dual certificates for LP/SDP feasibility\",\n    \"How to construct optimal witnesses algorithmically in finite dimensions\",\n    \"Connection to annihilator constraints and complementary slackness\",\n    \"Currently targets finite-dimensional normed vector spaces\",\n    \"Hahn-Banach extension for infinite dimensions is deferred\",\n    \"Primal-dual pairing with PrimalResidual for complete certificates\",\n    \"May need approximate witness for numerical computation\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_types\",\n    \"module\": \"dual_witness\",\n    \"symbols\": [\n      \"DualWitness\"\n    ],\n    \"required_tests\": [\n      \"dual_norm_exceeds_unit_bound\",\n      \"evaluation_pairing_mismatch_must_be_rejected\"\n    ]\n  },\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-math-prof\",\n        \"role\": \"MATH_CANONICAL_REVIEW\",\n        \"code\": \"STAGE1_MECHANICAL_PASS\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[STANDARD]\",\n        \"detail\": \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\",\n        \"recommendation\": \"Repair under meth-level math re-review (ADR-007); not GlobalGreen.\"\n      }\n    ],\n    \"realization_delta_vs_implemented_math_file\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"REALIZATION_PRESENT_SCOPE_NARROWER\",\n        \"severity\": \"high\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"file\": \"omega_engine/crates_rs/omega_types/src/dual_witness.rs\",\n        \"yaml_law\": \"Hahn-Banach-style dual certificate ||x|| >= |y(x)| when ||y||* <= 1 over general normed V\",\n        \"code_behavior\": \"DualWitness is a display-only f64 view of VerifiedExactPhi1 (phi vector, dual_value, is_circulation/is_bounded inherited, not recomputed). No general dual-norm certificate construction or evaluation pairing API.\\n\",\n        \"delta\": \"YAML_OVERCLAIMS\",\n        \"detail\": \"rust_binding resolves; symbols exist. Code is a diagnostic projection of Phi1 dual evidence, not a general dual-witness object matching the YAML math object.\\n\",\n        \"recommendation\": \"Either narrow YAML to Phi1 display dual-witness scope, or split a second contract for general dual certificates. Code must not mint authority. No PROVED/GlobalGreen.\\n\"\n      }\n    ]\n  }\n}\n",
+      "sha256": "7d184a53319e126deae572c7de3f413739673c73a9722f3c70d58a04b66eea89"
+    },
+    {
+      "bytes": 1694,
       "original_paths": [
-        "code/python/governance/30_evidence/math_dual_witness_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n    \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n      \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\",\n  \"subject\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+          "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+            "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb",
+        "subject": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py"
+      },
+      "sha256": "de45908c4628f096bb28fb91f49731c5b9117fc517841383cd6043b55687cf59"
     }
   ],
+  "current_contract": "de45908c4628f096bb28fb91f49731c5b9117fc517841383cd6043b55687cf59",
+  "current_scoring": "de78dbe22ef6995147af013367fbfb3b25cede31356f2e136179b198536ac90e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/math_dual_witness_v0_1_0.contract.yaml": "23670465523c048d2744902507068d76b111cc88e7d1bf1f8bef756c44bd10da"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "eb865a5eaa4d5e185adbc21e77ca941cb15c59a2ea3378361cd1c78cfd926aa4",
       "bytes": 2221,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n    \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-dual-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
           "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:math-dual-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -340,40 +266,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "eb865a5eaa4d5e185adbc21e77ca941cb15c59a2ea3378361cd1c78cfd926aa4"
+    },
+    {
+      "bytes": 1656,
+      "original_paths": [
+        "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n    \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n      \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+          "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py",
+            "sha256": "241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.py\",\n    \"sha256\": \"241e23e572dd7b8f0c4aee065a99aa30e1a84f99aec509ebb9174d809307e2eb\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:math-dual-witness-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/math_dual_witness_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "de78dbe22ef6995147af013367fbfb3b25cede31356f2e136179b198536ac90e"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/math_dual_witness_v0_1_0.contract.yaml": "23670465523c048d2744902507068d76b111cc88e7d1bf1f8bef756c44bd10da"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

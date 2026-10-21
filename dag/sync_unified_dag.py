@@ -1,7 +1,10 @@
-"""Join derivation_dag.json and theory_of_finite_qm.jsonl into one derivation graph.
+"""Join the DAG nodes and the TFQ records of derivation_dag.json into one derivation graph.
 
-The DAG (nodes and routes) and the TFQ tree (records joined by parent_id) were kept
-apart: some records named no DAG node and some nodes had no record. The fragment
+derivation_dag.json (schema derivation_dag.v2) is the single source: it holds the DAG (nodes and
+routes) and the TFQ tree (records joined by parent_id). theory_of_finite_qm.jsonl and
+theory_of_finite_qm.md are read-only views that dag/render_dag_views.py renders from it; this script
+writes derivation_dag.json and then the views. The DAG and the tree were once kept apart: some
+records named no DAG node and some nodes had no record. The fragment
 dag/fragments/unified_dag.json owns the join:
 
 - every record that names no node of the other two fragments' or the base DAG gets a node
@@ -12,10 +15,18 @@ dag/fragments/unified_dag.json owns the join:
 - the master-ledger packet crosswalk is carried as packet: tags on the nodes;
 - the audited source-corpus records (FSP, MUB6, Majorana, Dressing Field Method) are written
   into the application-branch fragment, with their papers, and their trunk restatements are
-  carried as alias: tags on the trunk nodes.
+  carried as alias: tags on the trunk nodes; the restatement table of the Markdown crosswalk is kept
+  in index_document.source_corpus_restatements.
 
-Run order: this script, then sync_application_branches.py, then sync_pregenesis_to_wdp.py;
---check on all three is then clean. --check detects stale generated data without writing.
+Record splice positions: records of this slice (source_slice unified_dag) go before the first record
+of the pre-genesis or application slices. Unified nodes and routes go before the pre-genesis block.
+
+Run order: sync_pfp_results.py, then this script, then sync_application_branches.py, then
+sync_pregenesis_to_wdp.py; --check on all four is then clean. --check detects stale generated data
+(derivation_dag.json, both views, the derivations README, the papers and the two fragments this
+script writes) without writing. The pfp_review object that sync_pfp_results.py writes onto a base
+node is carried through here: a record generated from such a node copies pfp_review_refs, and the
+crosswalk table of the Markdown view has a Review column.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim, and no
 status is promoted: a record's status is mapped to the nearest DAG status, never upward.
 """
@@ -25,11 +36,15 @@ import argparse
 import json
 import posixpath
 import re
+import sys
 import uuid
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import render_dag_views as views  # noqa: E402
 SLICE = 'unified_dag'
 TAG = 'unified-dag'
 DOMAIN_TAG = 'source-corpus'
@@ -39,8 +54,6 @@ OWNED_TAG_PREFIXES = ('alias:', 'packet:')
 UUID_NAMESPACE = uuid.uuid5(
     uuid.NAMESPACE_URL,
     'https://github.com/dbccpage/theory_of_finite_quantum_mechanics/dag/theory_of_finite_qm.jsonl')
-XWALK_BEGIN = '<!-- unified-dag:crosswalk:begin -->'
-XWALK_END = '<!-- unified-dag:crosswalk:end -->'
 APP_MARKER = '<!-- application-branches: generated from fragments/application_branches.json -->'
 STAGE_FOLDERS = {
     'PREGENESIS': '01_pregenesis', 'GENESIS': '02_genesis', 'FINITE_OBSTRUCTION': '03_finite_obstruction',
@@ -54,6 +67,7 @@ STAGE_FOLDERS = {
     'IMPLEMENTATION_SIBLING': '22_implementation_sibling', 'ENGINE_CUSTODY': '23_engine_custody',
     'DRESSING_FIELD': '24_dressing_field', 'MUTUALLY_UNBIASED_BASES': '25_mub', 'FERMION_SIGN': '26_fsp',
     'TENSOR_COMPOSITION': '27_tensor_composition', 'MAJORANA': '28_majorana',
+    'COMPUTATION': '29_computation',
 }
 # DAG stage of a record of each TFQ stage, and TFQ stage of a node of each DAG stage.
 DAG_STAGE = {stage: stage for stage in STAGE_FOLDERS}
@@ -80,7 +94,8 @@ ROUTE_STATUS = {
 }
 NEW_STAGES = ('FINITE_OBSTRUCTION', 'AUTHORIZATION', 'FINITE_HILBERT', 'FINITE_QM_INFORMATION', 'FINITE_GAUGE',
               'FINITE_QED', 'FINITE_ELECTROWEAK', 'FINITE_QCD', 'FINITE_TOPOLOGICAL', 'FINITE_QG',
-              'CONTINUUM_INTERFACE', 'IMPLEMENTATION_CORE', 'IMPLEMENTATION_SIBLING', 'ENGINE_CUSTODY', 'MAJORANA')
+              'CONTINUUM_INTERFACE', 'IMPLEMENTATION_CORE', 'IMPLEMENTATION_SIBLING', 'ENGINE_CUSTODY', 'MAJORANA',
+              'COMPUTATION')
 FORBIDDEN = ('proves', 'guarantees', 'mathematically verifies', 'fundamentally', 'true intelligence',
              'impossible', 'universal', 'flawless', 'perfectly', 'clearly', 'obviously', 'simply',
              'merely', 'weaponized')
@@ -90,12 +105,7 @@ EDGE_RECORD_PARENT = ('RECORD_PARENT marks the TFQ tree link from a record to it
                       'reading order, not a derivation.')
 
 
-def json_text(value):
-    return json.dumps(value, ensure_ascii=False, indent=2) + '\n'
-
-
-def record_line(record, newline):
-    return json.dumps(record, ensure_ascii=False, sort_keys=True) + newline
+json_text = views.json_text
 
 
 def record_uuid(record_id: str) -> str:
@@ -205,13 +215,17 @@ def record_for_node(n, rid, parent_id, root):
     stage = RECORD_STAGE[n['stage']]
     local = [x for x in n['source'] if not x.startswith(('external:', 'pr:')) and resolves(root, x)]
     paper = f'dag/derivations/{STAGE_FOLDERS[stage]}/tfq_{rid[4:]}_{slug(n["id"])}.md'
-    return {
+    record = {
         'coda_atlas_ids': [], 'coda_atlas_paths': [], 'existing_derivation_dag_ids': [n['id']],
         'f004_refs': [paper] + [x for x in local if x != paper], 'id': rid, 'lean4': list(n['lean']),
         'local_id': n['id'], 'name': n['id'].lower(), 'obligation': n['bottleneck'], 'parent_id': parent_id,
         'python': [], 'record_status': RECORD_STATUS[n['status']], 'rust': list(n['rust']),
         'source_slice': SLICE, 'stage': stage, 'summary': n['statement'], 'uuid': record_uuid(rid),
-    }, paper
+    }
+    refs = n.get('pfp_review', {}).get('review_refs')
+    if refs:  # written onto the node by sync_pfp_results.py, which runs first
+        record['pfp_review_refs'] = list(refs)
+    return record, paper
 
 
 def render_paper(r, n, paper, parent_paper, kids):
@@ -286,12 +300,8 @@ def generated_files(root: Path = ROOT):
     app = json.loads(app_path.read_text(encoding='utf-8'))
     pgw_path = folder / 'fragments/pregenesis_to_wdp.json'
     pgw = json.loads(pgw_path.read_text(encoding='utf-8'))
-    dag = json.loads((folder / 'derivation_dag.json').read_text(encoding='utf-8'))
-    lines = (folder / 'theory_of_finite_qm.jsonl').read_bytes().decode('utf-8').splitlines(keepends=True)
-    newline = '\r\n' if lines and lines[0].endswith('\r\n') else '\n'
-    old_records = [json.loads(line) for line in lines]
-    old_line = {r['id']: line for r, line in zip(old_records, lines)}
-    records = strip_owned(dag, old_records, fragment, app)
+    dag = views.load_dag(root)
+    records = strip_owned(dag, dag['records'], fragment, app)
     paths = {k: v for k, v in paper_paths(root).items()}
     errors = []
 
@@ -518,78 +528,21 @@ def generated_files(root: Path = ROOT):
     if EDGE_RECORD_PARENT not in dag['edge_semantics']:
         dag['edge_semantics'].append(EDGE_RECORD_PARENT)
     dag['segment_notes'][SLICE] = [fragment['segment_note']]
-    # Application nodes the application sync will append, so the counts below see the final graph.
-    final_app_ids = {n['id'] for n in app['nodes']}
 
-    # 7. JSONL: rewrite only changed base lines; unified records go before the pre-genesis block.
-    out_lines = []
-    for r in records:
-        r2 = by_id[r['id']]
-        line = old_line.get(r['id'])
-        if line is None or json.loads(line) != r2:
-            line = record_line(r2, newline)
-        out_lines.append((r2, line))
-    at = next((i for i, (r, _) in enumerate(out_lines) if r['source_slice'] in fragment_slices), len(out_lines))
-    block = [(rec, record_line(rec, newline)) for rec, _, _ in node_rows]
-    out_lines = out_lines[:at] + block + out_lines[at:]
-    all_records = [r for r, _ in out_lines if r['source_slice'] != 'application_branches'] + app['records']
+    # 7. Records: unified records go before the first pre-genesis or application record.
+    out_records = [by_id[r['id']] for r in records]
+    at = next((i for i, r in enumerate(out_records) if r['source_slice'] in fragment_slices), len(out_records))
+    out_records = out_records[:at] + [rec for rec, _, _ in node_rows] + out_records[at:]
+    dag['records'] = [views.canonical_record(r) for r in out_records]
 
-    # 8. Markdown master: per-stage sections for unified records, stage counts, node count, crosswalk.
-    master = (folder / 'theory_of_finite_qm.md').read_text(encoding='utf-8')
-    head, marker, tail = master.partition(APP_MARKER)
-    head = re.sub(r'\n<!-- unified-dag:rows:[A-Z0-9_]+:begin -->.*?<!-- unified-dag:rows:[A-Z0-9_]+:end -->\n', '\n',
-                  head, flags=re.S)
+    # 8. Markdown view: the renderer lists unified records in a delimited block of their stage section and
+    #    writes the crosswalk from the records and nodes; the restatement table is kept here.
+    dag['index_document']['source_corpus_restatements'] = [
+        {k: a[k] for k in ('source_id', 'corpus', 'alias_of', 'alias_note') if k in a}
+        for a in fragment.get('domain_aliases', [])]
     by_stage: dict[str, list] = {}
     for rec, n, _ in node_rows:
         by_stage.setdefault(rec['stage'], []).append((rec, n))
-    for stage, items in by_stage.items():
-        start = head.index(f'\n## {stage}\n')
-        nxt = head.find('\n## ', start + 1)
-        nxt = len(head) if nxt < 0 else nxt
-        body = ''.join(f'\n### {rec["id"]} {rec["name"]}\n\n- UUID: `{rec["uuid"]}`\n- Parent: `{rec["parent_id"]}`\n'
-                       f'- Status: `{rec["record_status"]}`\n- DAG node: `{n["id"]}` (`{n["status"]}`)\n\n'
-                       f'{rec["summary"]}\n\nObligation: {rec["obligation"]}\n' for rec, n in items)
-        block_md = f'\n<!-- unified-dag:rows:{stage}:begin -->{body}<!-- unified-dag:rows:{stage}:end -->\n'
-        head = head[:nxt].rstrip('\n') + '\n' + block_md + head[nxt:]
-    app_stages = set(app['stages'])
-    for stage in {r['stage'] for r in all_records} - app_stages:
-        count = sum(1 for r in all_records if r['stage'] == stage)
-        head = re.sub(r'^\| `' + stage + r'` \| \d+ \|$', f'| `{stage}` | {count} |', head, count=1, flags=re.M)
-    head = re.sub(r'Nodes: \d+\.', f'Nodes: {len(all_records)}.', head, count=1)
-    head = re.sub(re.escape(XWALK_BEGIN) + r'.*?' + re.escape(XWALK_END) + r'\n\n', '', head, flags=re.S)
-    dag_status = {n['id']: n['status'] for n in dag['nodes'] + new_nodes + app['nodes']}
-    for rec in pgw['records']:
-        if rec.get('dag') and 'reuse' not in rec['dag']:
-            dag_status['PGW-' + rec['name'].upper()] = rec['dag']['status']
-    xrows = []
-    for r in all_records:
-        ids = [x for x in r['existing_derivation_dag_ids'] if x in dag_status]
-        if r['source_slice'] == 'pregenesis_to_wdp' and not ids:
-            spec = next(p for p in pgw['records'] if p['id'] == r['id'])
-            ids = [spec['dag']['reuse']] if 'reuse' in spec.get('dag', {}) else ['PGW-' + r['name'].upper()]
-        cells = ', '.join(f'`{x}` ({dag_status.get(x, "?")})' for x in ids)
-        xrows.append(f'| `{r["id"]}` | `{r["stage"]}` | `{r["record_status"]}` | {cells} |')
-    aliases = fragment.get('domain_aliases', [])
-    xwalk = [XWALK_BEGIN, '## Unified derivation graph', '',
-             'Generated by `dag/sync_unified_dag.py`. `derivation_dag.json`, this file and '
-             '`theory_of_finite_qm.jsonl` describe one graph: every record names at least one DAG node and every '
-             'DAG node is named by at least one record. A record that named no node has a node with its own id '
-             '(tag `unified-dag`); a node that no record named has a record from `TFQ-1000` upward. '
-             f'Records: {len(all_records)}. DAG nodes: {len(dag_status)}. '
-             f'Source-corpus records folded in: {len(domain)} new, {len(aliases)} trunk restatements.', '',
-             '### Record to node crosswalk', '', '| Record | Stage | Record status | DAG node (status) |',
-             '|---|---|---|---|', *xrows, '']
-    if aliases:
-        xwalk += ['### Source-corpus trunk restatements', '',
-                  'These source records restate a trunk step; the trunk node carries an `alias:` tag.', '',
-                  '| Source record | Corpus | Trunk node or record | Note |', '|---|---|---|---|',
-                  *[f'| `{a["source_id"]}` | `{a["corpus"]}` | `{a["alias_of"]}` | '
-                    f'{a.get("alias_note", "").replace("|", chr(92) + "|")} |'
-                    for a in aliases], '']
-    xwalk.append(XWALK_END)
-    i = head.index('\n## PREGENESIS\n') + 1
-    head = head[:i] + '\n'.join(xwalk) + '\n\n' + head[i:]
-    master = head + marker + tail
 
     # 9. Derivation README: unified records in their stage tables.
     readme_path = folder / 'derivations/README.md'
@@ -613,9 +566,7 @@ def generated_files(root: Path = ROOT):
         rhead = rhead[:m.start()] + f'### {stage} ({count} derivations)\n' + section + '\n' + rhead[nxt:]
     readme = rhead + rmarker + rtail
 
-    outputs[folder / 'derivation_dag.json'] = json_text(dag).encode('utf-8')
-    outputs[folder / 'theory_of_finite_qm.jsonl'] = ''.join(line for _, line in out_lines).encode('utf-8')
-    outputs[folder / 'theory_of_finite_qm.md'] = master.encode('utf-8')
+    outputs.update(views.outputs(dag, root))  # derivation_dag.json and the two views rendered from it
     outputs[readme_path] = readme.encode('utf-8')
     outputs[app_path] = json_text(app).encode('utf-8')
     outputs[pgw_path] = json_text(pgw).encode('utf-8')
@@ -623,9 +574,9 @@ def generated_files(root: Path = ROOT):
 
 
 def invariant_errors(root: Path = ROOT) -> list[str]:
-    """After all three syncs: one graph, records and nodes naming each other."""
-    dag = json.loads((root / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
-    records = [json.loads(line) for line in (root / 'dag/theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
+    """After all four syncs: one graph, records and nodes naming each other, views current."""
+    dag = views.load_dag(root)
+    records = dag['records']
     node_ids = {n['id'] for n in dag['nodes']}
     named = {x for r in records for x in r['existing_derivation_dag_ids']}
     errs = [f'record {r["id"]} names no DAG node' for r in records
@@ -633,6 +584,8 @@ def invariant_errors(root: Path = ROOT) -> list[str]:
     errs += [f'node {n} is named by no record' for n in sorted(node_ids - named)]
     papers = paper_paths(root)
     errs += [f'record {r["id"]} has no paper' for r in records if r['id'] not in papers]
+    errs += [f'view {path} differs from derivation_dag.json; run dag/render_dag_views.py --write'
+             for path in views.stale_views(root)]
     return errs
 
 
