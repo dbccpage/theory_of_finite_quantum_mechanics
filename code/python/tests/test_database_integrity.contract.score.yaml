@@ -27,7 +27,7 @@
     ]
   },
   "current_contract": "11bdf97c32fb593de321ee22f152e346449bebd4162f181dd0b97f53a61d7be2",
-  "current_scoring": "1ee397fb0a659edb843ec8bdb76608021527f5de791ef2c84a2e9f9672a43a67",
+  "current_scoring": "c25555237acefe8169b4fbf82c6ccbeec58a7f90a2d1a5ea995953fe60dc9bbe",
   "contract_history": [
     {
       "sha256": "eb8944e7d9a24d1d2f738c864a6a57e253caeedf956a6ad92088359648b52a0c",
@@ -195,6 +195,67 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_database_integrity.py\",\n    \"sha256\": \"0ecc7d12a269f5e9f94b972d49d1a6a387be19b9c49edb9d9ba8b70c9e53013a\"\n  },\n  \"phase\": \"pr-118-reviewed-repair\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": null,\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"finding\": \"PR repair reviewed against the source-pinned tests. Broader quality campaign stopped; no new L4 rating is inferred. Final fault receipt is linked from pr-review-receipt.json.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/PR_REVIEW.md\",\n      \"sha256\": \"4bc387d812af33d354c5051751350b614ebe6f45eefeb87d774975dbf1dcbf3a\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/pr-scoped-tests.log\",\n      \"sha256\": \"ae463758585ff93d7c45bf64071509bbc1b7bc9db0779af9f9c5d9a5b1b6fb53\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/pr-legacy-tests.log\",\n      \"sha256\": \"28c894c897a509ea0a0c633f7232f262886c73c5bab0531251b14d0c081a440a\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/tests/test_database_integrity.contract.score.yaml#pr-118-reviewed-repair/scoring"
+      ]
+    },
+    {
+      "sha256": "c25555237acefe8169b4fbf82c6ccbeec58a7f90a2d1a5ea995953fe60dc9bbe",
+      "bytes": 2201,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_database_integrity.py",
+          "sha256": "0ecc7d12a269f5e9f94b972d49d1a6a387be19b9c49edb9d9ba8b70c9e53013a"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quality:bounded-database-integrity:v1., exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 25), Lizard CCN (max 20), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 25,
+          "lizard_ccn": 20,
+          "weighted_control_upper_bound": 29,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_database_integrity.py\",\n    \"sha256\": \"0ecc7d12a269f5e9f94b972d49d1a6a387be19b9c49edb9d9ba8b70c9e53013a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quality:bounded-database-integrity:v1., exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 25), Lizard CCN (max 20), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 25,\n    \"lizard_ccn\": 20,\n    \"weighted_control_upper_bound\": 29,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_database_integrity.contract.score.yaml#scoring"
       ]
     }
   ],

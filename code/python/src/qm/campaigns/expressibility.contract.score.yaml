@@ -1,0 +1,178 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/expressibility.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/expressibility.py",
+      "sha256": "43a70e3038845d28647ecc21e7df2a2c66b909b5922988f4f55aec22b3a30a23"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:expressibility:v1",
+    "role": "library",
+    "purpose": "Finite QM Expressibility Classification, Strict Finite No-Go Theorems, Kraus Measurement Decoherence, Multi-Observer Wigner's-Friend Obstruction,",
+    "operations": {
+      "q_zeros": "Function q_zeros operation.",
+      "q_eye": "Function q_eye operation.",
+      "q_add": "Function q_add operation.",
+      "q_sub": "Function q_sub operation.",
+      "q_scale": "Function q_scale operation.",
+      "q_mul": "Function q_mul operation.",
+      "q_transpose": "Function q_transpose operation.",
+      "q_trace": "Function q_trace operation.",
+      "q_kron": "Function q_kron operation.",
+      "q_outer": "Function q_outer operation.",
+      "q_partial_trace_env_2x2": "Function q_partial_trace_env_2x2 operation.",
+      "Cyclo3": "Element a + b*omega in Q(zeta_3) = Q[omega]/(omega^2 + omega + 1).",
+      "z3_zeros3": "Function z3_zeros3 operation.",
+      "z3_eye3": "Function z3_eye3 operation.",
+      "z3_mul3": "Function z3_mul3 operation.",
+      "z3_dagger3": "Function z3_dagger3 operation.",
+      "z3_scale3": "Function z3_scale3 operation.",
+      "z3_inner3": "Function z3_inner3 operation.",
+      "z3_norm_sq3": "Function z3_norm_sq3 operation.",
+      "wigner_phase_point_z3": "Function wigner_phase_point_z3 operation.",
+      "compute_wigner_table_z3": "Function compute_wigner_table_z3 operation.",
+      "FiniteQmExpressibilityAndMeasurementReport": "Class FiniteQmExpressibilityAndMeasurementReport domain record and methods.",
+      "evaluate_finite_qm_expressibility_and_measurement_control": "Function evaluate_finite_qm_expressibility_and_measurement_control operation.",
+      "summarize_finite_qm_expressibility_and_measurement_control": "Function summarize_finite_qm_expressibility_and_measurement_control operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "3f89575045c961213fe8d5b25ba97766eeef9dbcf0edcff268608c604849ba68",
+  "current_scoring": "8ea020f4fb78dd6c2c62539c6d4562da447554ccfd02ce90c0ada29128b25db9",
+  "contract_history": [
+    {
+      "sha256": "3f89575045c961213fe8d5b25ba97766eeef9dbcf0edcff268608c604849ba68",
+      "bytes": 3220,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/expressibility.py",
+          "sha256": "43a70e3038845d28647ecc21e7df2a2c66b909b5922988f4f55aec22b3a30a23"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:expressibility:v1",
+        "role": "library",
+        "purpose": "Finite QM Expressibility Classification, Strict Finite No-Go Theorems, Kraus Measurement Decoherence, Multi-Observer Wigner's-Friend Obstruction,",
+        "operations": {
+          "q_zeros": "Function q_zeros operation.",
+          "q_eye": "Function q_eye operation.",
+          "q_add": "Function q_add operation.",
+          "q_sub": "Function q_sub operation.",
+          "q_scale": "Function q_scale operation.",
+          "q_mul": "Function q_mul operation.",
+          "q_transpose": "Function q_transpose operation.",
+          "q_trace": "Function q_trace operation.",
+          "q_kron": "Function q_kron operation.",
+          "q_outer": "Function q_outer operation.",
+          "q_partial_trace_env_2x2": "Function q_partial_trace_env_2x2 operation.",
+          "Cyclo3": "Element a + b*omega in Q(zeta_3) = Q[omega]/(omega^2 + omega + 1).",
+          "z3_zeros3": "Function z3_zeros3 operation.",
+          "z3_eye3": "Function z3_eye3 operation.",
+          "z3_mul3": "Function z3_mul3 operation.",
+          "z3_dagger3": "Function z3_dagger3 operation.",
+          "z3_scale3": "Function z3_scale3 operation.",
+          "z3_inner3": "Function z3_inner3 operation.",
+          "z3_norm_sq3": "Function z3_norm_sq3 operation.",
+          "wigner_phase_point_z3": "Function wigner_phase_point_z3 operation.",
+          "compute_wigner_table_z3": "Function compute_wigner_table_z3 operation.",
+          "FiniteQmExpressibilityAndMeasurementReport": "Class FiniteQmExpressibilityAndMeasurementReport domain record and methods.",
+          "evaluate_finite_qm_expressibility_and_measurement_control": "Function evaluate_finite_qm_expressibility_and_measurement_control operation.",
+          "summarize_finite_qm_expressibility_and_measurement_control": "Function summarize_finite_qm_expressibility_and_measurement_control operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/expressibility.py\",\n    \"sha256\": \"43a70e3038845d28647ecc21e7df2a2c66b909b5922988f4f55aec22b3a30a23\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:expressibility:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Finite QM Expressibility Classification, Strict Finite No-Go Theorems, Kraus Measurement Decoherence, Multi-Observer Wigner's-Friend Obstruction,\",\n  \"operations\": {\n    \"q_zeros\": \"Function q_zeros operation.\",\n    \"q_eye\": \"Function q_eye operation.\",\n    \"q_add\": \"Function q_add operation.\",\n    \"q_sub\": \"Function q_sub operation.\",\n    \"q_scale\": \"Function q_scale operation.\",\n    \"q_mul\": \"Function q_mul operation.\",\n    \"q_transpose\": \"Function q_transpose operation.\",\n    \"q_trace\": \"Function q_trace operation.\",\n    \"q_kron\": \"Function q_kron operation.\",\n    \"q_outer\": \"Function q_outer operation.\",\n    \"q_partial_trace_env_2x2\": \"Function q_partial_trace_env_2x2 operation.\",\n    \"Cyclo3\": \"Element a + b*omega in Q(zeta_3) = Q[omega]/(omega^2 + omega + 1).\",\n    \"z3_zeros3\": \"Function z3_zeros3 operation.\",\n    \"z3_eye3\": \"Function z3_eye3 operation.\",\n    \"z3_mul3\": \"Function z3_mul3 operation.\",\n    \"z3_dagger3\": \"Function z3_dagger3 operation.\",\n    \"z3_scale3\": \"Function z3_scale3 operation.\",\n    \"z3_inner3\": \"Function z3_inner3 operation.\",\n    \"z3_norm_sq3\": \"Function z3_norm_sq3 operation.\",\n    \"wigner_phase_point_z3\": \"Function wigner_phase_point_z3 operation.\",\n    \"compute_wigner_table_z3\": \"Function compute_wigner_table_z3 operation.\",\n    \"FiniteQmExpressibilityAndMeasurementReport\": \"Class FiniteQmExpressibilityAndMeasurementReport domain record and methods.\",\n    \"evaluate_finite_qm_expressibility_and_measurement_control\": \"Function evaluate_finite_qm_expressibility_and_measurement_control operation.\",\n    \"summarize_finite_qm_expressibility_and_measurement_control\": \"Function summarize_finite_qm_expressibility_and_measurement_control operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/expressibility.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8ea020f4fb78dd6c2c62539c6d4562da447554ccfd02ce90c0ada29128b25db9",
+      "bytes": 2206,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/expressibility.py",
+          "sha256": "43a70e3038845d28647ecc21e7df2a2c66b909b5922988f4f55aec22b3a30a23"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:expressibility:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 19), Lizard CCN (max 19), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 19,
+          "lizard_ccn": 19,
+          "weighted_control_upper_bound": 31,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/expressibility.py\",\n    \"sha256\": \"43a70e3038845d28647ecc21e7df2a2c66b909b5922988f4f55aec22b3a30a23\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:expressibility:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 19), Lizard CCN (max 19), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 19,\n    \"lizard_ccn\": 19,\n    \"weighted_control_upper_bound\": 31,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/expressibility.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

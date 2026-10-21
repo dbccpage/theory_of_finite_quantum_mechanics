@@ -1,0 +1,178 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_omega_homology.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_omega_homology.py",
+      "sha256": "63ea0aaf45bb6c9e170a63ec2d7051a6b648290e010832a2a3f0f9c1bbadd168"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-omega-homology:v1",
+    "role": "test checker",
+    "purpose": "Golden tests for omega_homology -- direct port of the Rust integration tests in crates/omega_homology/src/tests/mod.rs (the faithfulness oracle).",
+    "operations": {
+      "prov": "Function prov operation.",
+      "unit_weights": "Function unit_weights operation.",
+      "make_graph": "Function make_graph operation.",
+      "test_zero_complex_works": "Function test_zero_complex_works operation.",
+      "test_single_edge_tree_homology": "Function test_single_edge_tree_homology operation.",
+      "test_triangle_with_filling_h1_zero": "Function test_triangle_with_filling_h1_zero operation.",
+      "test_triangle_without_filling_h1_one": "Function test_triangle_without_filling_h1_one operation.",
+      "test_bad_coboundary_relation_rejected": "Function test_bad_coboundary_relation_rejected operation.",
+      "test_dimension_mismatch_rejected": "Function test_dimension_mismatch_rejected operation.",
+      "test_non_positive_weights_rejected": "Function test_non_positive_weights_rejected operation.",
+      "test_triangle_missing_edge_rejected": "Function test_triangle_missing_edge_rejected operation.",
+      "test_carrier_manifest_deterministic": "Function test_carrier_manifest_deterministic operation.",
+      "test_different_carriers_different_hashes": "Function test_different_carriers_different_hashes operation.",
+      "test_cycle_checker_accepts_zero_chain": "Function test_cycle_checker_accepts_zero_chain operation.",
+      "test_cycle_checker_rejects_non_cycle": "Function test_cycle_checker_rejects_non_cycle operation.",
+      "test_simplicial_triangle_face_closure": "Function test_simplicial_triangle_face_closure operation.",
+      "test_manifest_records_weights_hash": "The manifest is v2 (BLAKE3, framed binary), so it records the v2 weights",
+      "test_manifest_records_provenance_hash": "Function test_manifest_records_provenance_hash operation.",
+      "test_triangle_subdivision_preserves_homology": "Function test_triangle_subdivision_preserves_homology operation.",
+      "test_pod1_filled_triangle": "Function test_pod1_filled_triangle operation.",
+      "test_pod1_square_graph": "Function test_pod1_square_graph operation.",
+      "test_pod1_k4_graph": "Function test_pod1_k4_graph operation.",
+      "test_pod1_linear_path_3_nodes": "Function test_pod1_linear_path_3_nodes operation.",
+      "test_pod1_direct_matrix_construction": "Function test_pod1_direct_matrix_construction operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "c4f36f2ea02f0df40d03b8d1379cd0dd56d12ad459edc6b1dddbb9292367c2bb",
+  "current_scoring": "41be8e43376b5bc233fec25e68b15dfa90d627ddf10dca6527c54877b9e2825a",
+  "contract_history": [
+    {
+      "sha256": "c4f36f2ea02f0df40d03b8d1379cd0dd56d12ad459edc6b1dddbb9292367c2bb",
+      "bytes": 3908,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_omega_homology.py",
+          "sha256": "63ea0aaf45bb6c9e170a63ec2d7051a6b648290e010832a2a3f0f9c1bbadd168"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-omega-homology:v1",
+        "role": "test checker",
+        "purpose": "Golden tests for omega_homology -- direct port of the Rust integration tests in crates/omega_homology/src/tests/mod.rs (the faithfulness oracle).",
+        "operations": {
+          "prov": "Function prov operation.",
+          "unit_weights": "Function unit_weights operation.",
+          "make_graph": "Function make_graph operation.",
+          "test_zero_complex_works": "Function test_zero_complex_works operation.",
+          "test_single_edge_tree_homology": "Function test_single_edge_tree_homology operation.",
+          "test_triangle_with_filling_h1_zero": "Function test_triangle_with_filling_h1_zero operation.",
+          "test_triangle_without_filling_h1_one": "Function test_triangle_without_filling_h1_one operation.",
+          "test_bad_coboundary_relation_rejected": "Function test_bad_coboundary_relation_rejected operation.",
+          "test_dimension_mismatch_rejected": "Function test_dimension_mismatch_rejected operation.",
+          "test_non_positive_weights_rejected": "Function test_non_positive_weights_rejected operation.",
+          "test_triangle_missing_edge_rejected": "Function test_triangle_missing_edge_rejected operation.",
+          "test_carrier_manifest_deterministic": "Function test_carrier_manifest_deterministic operation.",
+          "test_different_carriers_different_hashes": "Function test_different_carriers_different_hashes operation.",
+          "test_cycle_checker_accepts_zero_chain": "Function test_cycle_checker_accepts_zero_chain operation.",
+          "test_cycle_checker_rejects_non_cycle": "Function test_cycle_checker_rejects_non_cycle operation.",
+          "test_simplicial_triangle_face_closure": "Function test_simplicial_triangle_face_closure operation.",
+          "test_manifest_records_weights_hash": "The manifest is v2 (BLAKE3, framed binary), so it records the v2 weights",
+          "test_manifest_records_provenance_hash": "Function test_manifest_records_provenance_hash operation.",
+          "test_triangle_subdivision_preserves_homology": "Function test_triangle_subdivision_preserves_homology operation.",
+          "test_pod1_filled_triangle": "Function test_pod1_filled_triangle operation.",
+          "test_pod1_square_graph": "Function test_pod1_square_graph operation.",
+          "test_pod1_k4_graph": "Function test_pod1_k4_graph operation.",
+          "test_pod1_linear_path_3_nodes": "Function test_pod1_linear_path_3_nodes operation.",
+          "test_pod1_direct_matrix_construction": "Function test_pod1_direct_matrix_construction operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_omega_homology.py\",\n    \"sha256\": \"63ea0aaf45bb6c9e170a63ec2d7051a6b648290e010832a2a3f0f9c1bbadd168\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-omega-homology:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Golden tests for omega_homology -- direct port of the Rust integration tests in crates/omega_homology/src/tests/mod.rs (the faithfulness oracle).\",\n  \"operations\": {\n    \"prov\": \"Function prov operation.\",\n    \"unit_weights\": \"Function unit_weights operation.\",\n    \"make_graph\": \"Function make_graph operation.\",\n    \"test_zero_complex_works\": \"Function test_zero_complex_works operation.\",\n    \"test_single_edge_tree_homology\": \"Function test_single_edge_tree_homology operation.\",\n    \"test_triangle_with_filling_h1_zero\": \"Function test_triangle_with_filling_h1_zero operation.\",\n    \"test_triangle_without_filling_h1_one\": \"Function test_triangle_without_filling_h1_one operation.\",\n    \"test_bad_coboundary_relation_rejected\": \"Function test_bad_coboundary_relation_rejected operation.\",\n    \"test_dimension_mismatch_rejected\": \"Function test_dimension_mismatch_rejected operation.\",\n    \"test_non_positive_weights_rejected\": \"Function test_non_positive_weights_rejected operation.\",\n    \"test_triangle_missing_edge_rejected\": \"Function test_triangle_missing_edge_rejected operation.\",\n    \"test_carrier_manifest_deterministic\": \"Function test_carrier_manifest_deterministic operation.\",\n    \"test_different_carriers_different_hashes\": \"Function test_different_carriers_different_hashes operation.\",\n    \"test_cycle_checker_accepts_zero_chain\": \"Function test_cycle_checker_accepts_zero_chain operation.\",\n    \"test_cycle_checker_rejects_non_cycle\": \"Function test_cycle_checker_rejects_non_cycle operation.\",\n    \"test_simplicial_triangle_face_closure\": \"Function test_simplicial_triangle_face_closure operation.\",\n    \"test_manifest_records_weights_hash\": \"The manifest is v2 (BLAKE3, framed binary), so it records the v2 weights\",\n    \"test_manifest_records_provenance_hash\": \"Function test_manifest_records_provenance_hash operation.\",\n    \"test_triangle_subdivision_preserves_homology\": \"Function test_triangle_subdivision_preserves_homology operation.\",\n    \"test_pod1_filled_triangle\": \"Function test_pod1_filled_triangle operation.\",\n    \"test_pod1_square_graph\": \"Function test_pod1_square_graph operation.\",\n    \"test_pod1_k4_graph\": \"Function test_pod1_k4_graph operation.\",\n    \"test_pod1_linear_path_3_nodes\": \"Function test_pod1_linear_path_3_nodes operation.\",\n    \"test_pod1_direct_matrix_construction\": \"Function test_pod1_direct_matrix_construction operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_omega_homology.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "41be8e43376b5bc233fec25e68b15dfa90d627ddf10dca6527c54877b9e2825a",
+      "bytes": 2199,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_omega_homology.py",
+          "sha256": "63ea0aaf45bb6c9e170a63ec2d7051a6b648290e010832a2a3f0f9c1bbadd168"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-omega-homology:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 2), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 5,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_omega_homology.py\",\n    \"sha256\": \"63ea0aaf45bb6c9e170a63ec2d7051a6b648290e010832a2a3f0f9c1bbadd168\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-omega-homology:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 5), Lizard CCN (max 2), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 5,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_omega_homology.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

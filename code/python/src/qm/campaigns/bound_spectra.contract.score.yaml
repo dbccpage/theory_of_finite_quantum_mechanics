@@ -1,0 +1,172 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/campaigns/bound_spectra.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/campaigns/bound_spectra.py",
+      "sha256": "473c95076867b5b06fa4ca0ceb62d3bdfa4497d3695f107c5b200b5475d76ef1"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:bound-spectra:v1",
+    "role": "library",
+    "purpose": "QM-217 Finite-Map Control: Algebraic Bound-State Spectra (su(2) Kravchuk & so(4) Hydrogen). Establishes over Q and certified RationalInterval enclosures that:",
+    "operations": {
+      "q_zeros": "Return a rows x cols zero matrix over Q.",
+      "q_eye": "Return the dim x dim identity matrix over Q.",
+      "q_add": "Matrix addition over Q.",
+      "q_sub": "Matrix subtraction over Q.",
+      "q_scale": "Scalar multiplication over Q.",
+      "q_mul": "Matrix multiplication over Q.",
+      "q_comm": "Commutator [A, B] = A B - B A over Q.",
+      "q_anticomm": "Anticommutator {A, B} = A B + B A over Q.",
+      "q_transpose": "Matrix transpose over Q.",
+      "q_trace": "Matrix trace over Q.",
+      "q_kron": "Kronecker tensor product A (x) B over Q.",
+      "q_is_zero": "Check whether a rational matrix is identically zero.",
+      "sl2_oscillator_generators": "Construct rational sl(2, Q) generators (J_z, J_+, J_-) and metric G on V_j (N = 2j).",
+      "sl2_casimir_matrix": "Compute C_2 = J_z^2 + (J_+ J_- + J_- J_+) / 2 over Q.",
+      "kravchuk_polynomial": "Evaluate the discrete Kravchuk polynomial K_k(x; N) = sum_r (-1)^r C(x,r) C(N-x, k-r).",
+      "check_kravchuk_orthogonality_and_difference_eq": "Verify binomial orthogonality and 3-term difference eigenvalue identity for K_k(x; N).",
+      "sl2_shell_generators": "Construct rational sl(2, Q) generators for a single chiral factor V_j (twice_j >= 0).",
+      "so4_hydrogen_shell_operators": "Construct Pauli so(4) ~= su(2)_A (+) su(2)_B operators on H_n = V_j (x) V_j (n = 2j + 1).",
+      "dirac_fine_structure_coeff": "Leading O((Z alpha)^4 m_e c^2) Dirac fine-structure coefficient:",
+      "AlgebraicBoundStateSpectraReport": "Typed verification receipt for QM-217 algebraic bound-state spectra control.",
+      "evaluate_algebraic_bound_state_spectra_control": "Execute the complete QM-217 algebraic bound-state spectra control."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "057b0d8942e77d4406f35bc79ce04cc8d42ee977b37fc76158d27bf4bba702b8",
+  "current_scoring": "157d572dc42e85f3943f392998463e488b442270baab588bf888382001be8f62",
+  "contract_history": [
+    {
+      "sha256": "057b0d8942e77d4406f35bc79ce04cc8d42ee977b37fc76158d27bf4bba702b8",
+      "bytes": 3385,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/bound_spectra.py",
+          "sha256": "473c95076867b5b06fa4ca0ceb62d3bdfa4497d3695f107c5b200b5475d76ef1"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:bound-spectra:v1",
+        "role": "library",
+        "purpose": "QM-217 Finite-Map Control: Algebraic Bound-State Spectra (su(2) Kravchuk & so(4) Hydrogen). Establishes over Q and certified RationalInterval enclosures that:",
+        "operations": {
+          "q_zeros": "Return a rows x cols zero matrix over Q.",
+          "q_eye": "Return the dim x dim identity matrix over Q.",
+          "q_add": "Matrix addition over Q.",
+          "q_sub": "Matrix subtraction over Q.",
+          "q_scale": "Scalar multiplication over Q.",
+          "q_mul": "Matrix multiplication over Q.",
+          "q_comm": "Commutator [A, B] = A B - B A over Q.",
+          "q_anticomm": "Anticommutator {A, B} = A B + B A over Q.",
+          "q_transpose": "Matrix transpose over Q.",
+          "q_trace": "Matrix trace over Q.",
+          "q_kron": "Kronecker tensor product A (x) B over Q.",
+          "q_is_zero": "Check whether a rational matrix is identically zero.",
+          "sl2_oscillator_generators": "Construct rational sl(2, Q) generators (J_z, J_+, J_-) and metric G on V_j (N = 2j).",
+          "sl2_casimir_matrix": "Compute C_2 = J_z^2 + (J_+ J_- + J_- J_+) / 2 over Q.",
+          "kravchuk_polynomial": "Evaluate the discrete Kravchuk polynomial K_k(x; N) = sum_r (-1)^r C(x,r) C(N-x, k-r).",
+          "check_kravchuk_orthogonality_and_difference_eq": "Verify binomial orthogonality and 3-term difference eigenvalue identity for K_k(x; N).",
+          "sl2_shell_generators": "Construct rational sl(2, Q) generators for a single chiral factor V_j (twice_j >= 0).",
+          "so4_hydrogen_shell_operators": "Construct Pauli so(4) ~= su(2)_A (+) su(2)_B operators on H_n = V_j (x) V_j (n = 2j + 1).",
+          "dirac_fine_structure_coeff": "Leading O((Z alpha)^4 m_e c^2) Dirac fine-structure coefficient:",
+          "AlgebraicBoundStateSpectraReport": "Typed verification receipt for QM-217 algebraic bound-state spectra control.",
+          "evaluate_algebraic_bound_state_spectra_control": "Execute the complete QM-217 algebraic bound-state spectra control."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/bound_spectra.py\",\n    \"sha256\": \"473c95076867b5b06fa4ca0ceb62d3bdfa4497d3695f107c5b200b5475d76ef1\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:bound-spectra:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-217 Finite-Map Control: Algebraic Bound-State Spectra (su(2) Kravchuk & so(4) Hydrogen). Establishes over Q and certified RationalInterval enclosures that:\",\n  \"operations\": {\n    \"q_zeros\": \"Return a rows x cols zero matrix over Q.\",\n    \"q_eye\": \"Return the dim x dim identity matrix over Q.\",\n    \"q_add\": \"Matrix addition over Q.\",\n    \"q_sub\": \"Matrix subtraction over Q.\",\n    \"q_scale\": \"Scalar multiplication over Q.\",\n    \"q_mul\": \"Matrix multiplication over Q.\",\n    \"q_comm\": \"Commutator [A, B] = A B - B A over Q.\",\n    \"q_anticomm\": \"Anticommutator {A, B} = A B + B A over Q.\",\n    \"q_transpose\": \"Matrix transpose over Q.\",\n    \"q_trace\": \"Matrix trace over Q.\",\n    \"q_kron\": \"Kronecker tensor product A (x) B over Q.\",\n    \"q_is_zero\": \"Check whether a rational matrix is identically zero.\",\n    \"sl2_oscillator_generators\": \"Construct rational sl(2, Q) generators (J_z, J_+, J_-) and metric G on V_j (N = 2j).\",\n    \"sl2_casimir_matrix\": \"Compute C_2 = J_z^2 + (J_+ J_- + J_- J_+) / 2 over Q.\",\n    \"kravchuk_polynomial\": \"Evaluate the discrete Kravchuk polynomial K_k(x; N) = sum_r (-1)^r C(x,r) C(N-x, k-r).\",\n    \"check_kravchuk_orthogonality_and_difference_eq\": \"Verify binomial orthogonality and 3-term difference eigenvalue identity for K_k(x; N).\",\n    \"sl2_shell_generators\": \"Construct rational sl(2, Q) generators for a single chiral factor V_j (twice_j >= 0).\",\n    \"so4_hydrogen_shell_operators\": \"Construct Pauli so(4) ~= su(2)_A (+) su(2)_B operators on H_n = V_j (x) V_j (n = 2j + 1).\",\n    \"dirac_fine_structure_coeff\": \"Leading O((Z alpha)^4 m_e c^2) Dirac fine-structure coefficient:\",\n    \"AlgebraicBoundStateSpectraReport\": \"Typed verification receipt for QM-217 algebraic bound-state spectra control.\",\n    \"evaluate_algebraic_bound_state_spectra_control\": \"Execute the complete QM-217 algebraic bound-state spectra control.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/bound_spectra.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "157d572dc42e85f3943f392998463e488b442270baab588bf888382001be8f62",
+      "bytes": 2204,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/campaigns/bound_spectra.py",
+          "sha256": "473c95076867b5b06fa4ca0ceb62d3bdfa4497d3695f107c5b200b5475d76ef1"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:bound-spectra:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 17,
+          "lizard_ccn": 17,
+          "weighted_control_upper_bound": 25,
+          "control_nesting": 5
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/campaigns/bound_spectra.py\",\n    \"sha256\": \"473c95076867b5b06fa4ca0ceb62d3bdfa4497d3695f107c5b200b5475d76ef1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:bound-spectra:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 5 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 17,\n    \"lizard_ccn\": 17,\n    \"weighted_control_upper_bound\": 25,\n    \"control_nesting\": 5\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/campaigns/bound_spectra.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

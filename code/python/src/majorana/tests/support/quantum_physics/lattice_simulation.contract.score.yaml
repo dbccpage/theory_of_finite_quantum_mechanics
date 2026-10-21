@@ -1,0 +1,182 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py",
+      "sha256": "4342d330f0b282b08f1595a6807a2ed2f68ab7bdefb9b3fe2c40ff3404eb138c"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:quantum_physics:lattice-simulation:v1",
+    "role": "library",
+    "purpose": "Empirical 1D and 2D quantum lattice simulations for PO-000 §§5-6. This module simulates exact matrix-exponentiation trajectories for 1D/2D",
+    "operations": {
+      "kron_n": "Kronecker product over a sequence of single-site matrices.",
+      "partial_trace": "Compute the partial trace of a multi-qubit density matrix keeping specified site indices.",
+      "trace_norm": "Schatten 1-norm (sum of singular values).",
+      "build_1d_tfim_hamiltonian": "Build 1D TFIM Hamiltonian: H = -J \\sum_{i} Z_i Z_{i+1} - h \\sum_i X_i.",
+      "build_2d_tfim_hamiltonian": "Build 2D TFIM Hamiltonian on a 2D grid.",
+      "build_1d_heisenberg_hamiltonian": "Build 1D Heisenberg XXZ Hamiltonian: H = -J \\sum (X_i X_{i+1} + Y_i Y_{i+1} + \\Delta Z_i Z_{i+1}) - h \\sum Z_i.",
+      "compute_double_commutator_prefactor": "Compute exact short-time double-commutator prefactor c_2 = (1/2) ||[[H_int, rho0], H_int]||_1.",
+      "compute_edgewise_l1_defect": "Compute total edgewise product-retraction l1 defect I(rho) = \\sum_{(u,v)} ||rho_{uv} - rho_u \\otimes rho_v||_1.",
+      "LatticeTrajectoryResult": "Class LatticeTrajectoryResult domain record and methods.",
+      "LatticeSimulationReplay": "Class LatticeSimulationReplay domain record and methods.",
+      "run_lattice_simulation_replay": "Run an exact quantum lattice matrix exponentiation simulation replay.",
+      "build_2d_heisenberg_hamiltonian": "Build 2D Heisenberg XXZ Hamiltonian on a 2D grid.",
+      "compute_higher_order_commutator_coefficients": "Compute exact Taylor derivative coefficients for the defect sum up to 4th order.",
+      "compute_lieb_robinson_bound": "Compute Lieb-Robinson correlation bound envelope C * exp(v_lr * t - mu * distance).",
+      "LongerTimeTrajectoryResult": "Class LongerTimeTrajectoryResult domain record and methods.",
+      "LongerTimeSimulationReplay": "Class LongerTimeSimulationReplay domain record and methods.",
+      "run_longer_time_defect_evolution_replay": "Run longer-time defect evolution simulation beyond the short-time quadratic bound horizon.",
+      "ThermodynamicScalingResult": "Class ThermodynamicScalingResult domain record and methods.",
+      "ThermodynamicScalingReplay": "Class ThermodynamicScalingReplay domain record and methods.",
+      "extrapolate_infinite_system_defect_density": "Perform 1/N linear extrapolation of site-normalized defect density d_site(N) = S_inf + alpha / N.",
+      "compute_thermodynamic_defect_scaling": "Compute defect density scaling C(t_peak)/N across growing lattice sizes.",
+      "build_global_gibbs_state": "Build global Gibbs thermal state rho_beta = exp(-beta * H) / Tr(exp(-beta * H)).",
+      "build_local_thermal_product_state": "Build local thermal product state rho_beta = exp(-beta * h_v) / Tr(exp(-beta * h_v)).",
+      "ThermalStateResult": "Class ThermalStateResult domain record and methods.",
+      "ThermalSimulationReplay": "Class ThermalSimulationReplay domain record and methods.",
+      "run_thermal_defect_simulation_replay": "Run temperature-dependent thermal mixed state defect evolution simulation sweep."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "c1fc0e3d1fb14128e616fda7df570356678fc01801f9ac1918a9bd43c2a7ecd8",
+  "current_scoring": "6a7a9b81ea3b546716abd5be0e53eb41480fe3ee8bf9e3b61f335f513204f819",
+  "contract_history": [
+    {
+      "sha256": "c1fc0e3d1fb14128e616fda7df570356678fc01801f9ac1918a9bd43c2a7ecd8",
+      "bytes": 4595,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py",
+          "sha256": "4342d330f0b282b08f1595a6807a2ed2f68ab7bdefb9b3fe2c40ff3404eb138c"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:quantum_physics:lattice-simulation:v1",
+        "role": "library",
+        "purpose": "Empirical 1D and 2D quantum lattice simulations for PO-000 §§5-6. This module simulates exact matrix-exponentiation trajectories for 1D/2D",
+        "operations": {
+          "kron_n": "Kronecker product over a sequence of single-site matrices.",
+          "partial_trace": "Compute the partial trace of a multi-qubit density matrix keeping specified site indices.",
+          "trace_norm": "Schatten 1-norm (sum of singular values).",
+          "build_1d_tfim_hamiltonian": "Build 1D TFIM Hamiltonian: H = -J \\sum_{i} Z_i Z_{i+1} - h \\sum_i X_i.",
+          "build_2d_tfim_hamiltonian": "Build 2D TFIM Hamiltonian on a 2D grid.",
+          "build_1d_heisenberg_hamiltonian": "Build 1D Heisenberg XXZ Hamiltonian: H = -J \\sum (X_i X_{i+1} + Y_i Y_{i+1} + \\Delta Z_i Z_{i+1}) - h \\sum Z_i.",
+          "compute_double_commutator_prefactor": "Compute exact short-time double-commutator prefactor c_2 = (1/2) ||[[H_int, rho0], H_int]||_1.",
+          "compute_edgewise_l1_defect": "Compute total edgewise product-retraction l1 defect I(rho) = \\sum_{(u,v)} ||rho_{uv} - rho_u \\otimes rho_v||_1.",
+          "LatticeTrajectoryResult": "Class LatticeTrajectoryResult domain record and methods.",
+          "LatticeSimulationReplay": "Class LatticeSimulationReplay domain record and methods.",
+          "run_lattice_simulation_replay": "Run an exact quantum lattice matrix exponentiation simulation replay.",
+          "build_2d_heisenberg_hamiltonian": "Build 2D Heisenberg XXZ Hamiltonian on a 2D grid.",
+          "compute_higher_order_commutator_coefficients": "Compute exact Taylor derivative coefficients for the defect sum up to 4th order.",
+          "compute_lieb_robinson_bound": "Compute Lieb-Robinson correlation bound envelope C * exp(v_lr * t - mu * distance).",
+          "LongerTimeTrajectoryResult": "Class LongerTimeTrajectoryResult domain record and methods.",
+          "LongerTimeSimulationReplay": "Class LongerTimeSimulationReplay domain record and methods.",
+          "run_longer_time_defect_evolution_replay": "Run longer-time defect evolution simulation beyond the short-time quadratic bound horizon.",
+          "ThermodynamicScalingResult": "Class ThermodynamicScalingResult domain record and methods.",
+          "ThermodynamicScalingReplay": "Class ThermodynamicScalingReplay domain record and methods.",
+          "extrapolate_infinite_system_defect_density": "Perform 1/N linear extrapolation of site-normalized defect density d_site(N) = S_inf + alpha / N.",
+          "compute_thermodynamic_defect_scaling": "Compute defect density scaling C(t_peak)/N across growing lattice sizes.",
+          "build_global_gibbs_state": "Build global Gibbs thermal state rho_beta = exp(-beta * H) / Tr(exp(-beta * H)).",
+          "build_local_thermal_product_state": "Build local thermal product state rho_beta = exp(-beta * h_v) / Tr(exp(-beta * h_v)).",
+          "ThermalStateResult": "Class ThermalStateResult domain record and methods.",
+          "ThermalSimulationReplay": "Class ThermalSimulationReplay domain record and methods.",
+          "run_thermal_defect_simulation_replay": "Run temperature-dependent thermal mixed state defect evolution simulation sweep."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py\",\n    \"sha256\": \"4342d330f0b282b08f1595a6807a2ed2f68ab7bdefb9b3fe2c40ff3404eb138c\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:quantum_physics:lattice-simulation:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Empirical 1D and 2D quantum lattice simulations for PO-000 §§5-6. This module simulates exact matrix-exponentiation trajectories for 1D/2D\",\n  \"operations\": {\n    \"kron_n\": \"Kronecker product over a sequence of single-site matrices.\",\n    \"partial_trace\": \"Compute the partial trace of a multi-qubit density matrix keeping specified site indices.\",\n    \"trace_norm\": \"Schatten 1-norm (sum of singular values).\",\n    \"build_1d_tfim_hamiltonian\": \"Build 1D TFIM Hamiltonian: H = -J \\\\sum_{i} Z_i Z_{i+1} - h \\\\sum_i X_i.\",\n    \"build_2d_tfim_hamiltonian\": \"Build 2D TFIM Hamiltonian on a 2D grid.\",\n    \"build_1d_heisenberg_hamiltonian\": \"Build 1D Heisenberg XXZ Hamiltonian: H = -J \\\\sum (X_i X_{i+1} + Y_i Y_{i+1} + \\\\Delta Z_i Z_{i+1}) - h \\\\sum Z_i.\",\n    \"compute_double_commutator_prefactor\": \"Compute exact short-time double-commutator prefactor c_2 = (1/2) ||[[H_int, rho0], H_int]||_1.\",\n    \"compute_edgewise_l1_defect\": \"Compute total edgewise product-retraction l1 defect I(rho) = \\\\sum_{(u,v)} ||rho_{uv} - rho_u \\\\otimes rho_v||_1.\",\n    \"LatticeTrajectoryResult\": \"Class LatticeTrajectoryResult domain record and methods.\",\n    \"LatticeSimulationReplay\": \"Class LatticeSimulationReplay domain record and methods.\",\n    \"run_lattice_simulation_replay\": \"Run an exact quantum lattice matrix exponentiation simulation replay.\",\n    \"build_2d_heisenberg_hamiltonian\": \"Build 2D Heisenberg XXZ Hamiltonian on a 2D grid.\",\n    \"compute_higher_order_commutator_coefficients\": \"Compute exact Taylor derivative coefficients for the defect sum up to 4th order.\",\n    \"compute_lieb_robinson_bound\": \"Compute Lieb-Robinson correlation bound envelope C * exp(v_lr * t - mu * distance).\",\n    \"LongerTimeTrajectoryResult\": \"Class LongerTimeTrajectoryResult domain record and methods.\",\n    \"LongerTimeSimulationReplay\": \"Class LongerTimeSimulationReplay domain record and methods.\",\n    \"run_longer_time_defect_evolution_replay\": \"Run longer-time defect evolution simulation beyond the short-time quadratic bound horizon.\",\n    \"ThermodynamicScalingResult\": \"Class ThermodynamicScalingResult domain record and methods.\",\n    \"ThermodynamicScalingReplay\": \"Class ThermodynamicScalingReplay domain record and methods.\",\n    \"extrapolate_infinite_system_defect_density\": \"Perform 1/N linear extrapolation of site-normalized defect density d_site(N) = S_inf + alpha / N.\",\n    \"compute_thermodynamic_defect_scaling\": \"Compute defect density scaling C(t_peak)/N across growing lattice sizes.\",\n    \"build_global_gibbs_state\": \"Build global Gibbs thermal state rho_beta = exp(-beta * H) / Tr(exp(-beta * H)).\",\n    \"build_local_thermal_product_state\": \"Build local thermal product state rho_beta = exp(-beta * h_v) / Tr(exp(-beta * h_v)).\",\n    \"ThermalStateResult\": \"Class ThermalStateResult domain record and methods.\",\n    \"ThermalSimulationReplay\": \"Class ThermalSimulationReplay domain record and methods.\",\n    \"run_thermal_defect_simulation_replay\": \"Run temperature-dependent thermal mixed state defect evolution simulation sweep.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "6a7a9b81ea3b546716abd5be0e53eb41480fe3ee8bf9e3b61f335f513204f819",
+      "bytes": 2246,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py",
+          "sha256": "4342d330f0b282b08f1595a6807a2ed2f68ab7bdefb9b3fe2c40ff3404eb138c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum_physics:lattice-simulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 12), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 12,
+          "lizard_ccn": 12,
+          "weighted_control_upper_bound": 22,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.py\",\n    \"sha256\": \"4342d330f0b282b08f1595a6807a2ed2f68ab7bdefb9b3fe2c40ff3404eb138c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum_physics:lattice-simulation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 12), Lizard CCN (max 12), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 12,\n    \"lizard_ccn\": 12,\n    \"weighted_control_upper_bound\": 22,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/quantum_physics/lattice_simulation.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

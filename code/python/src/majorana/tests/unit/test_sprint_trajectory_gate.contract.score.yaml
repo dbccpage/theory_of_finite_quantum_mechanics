@@ -1,0 +1,154 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py",
+      "sha256": "26408c7622094a50cefd7368e8204d7d7e9fcb8d88ef1964ad3d562435661295"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:unit:test-sprint-trajectory-gate:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_sprint_trajectory_gate.",
+    "operations": {
+      "test_integrity_v1_golden_passes": "Function test_integrity_v1_golden_passes operation.",
+      "test_strip_phi1_kills_gate": "Mutation kill: remove phi1 → red; restore → green.",
+      "test_strip_step_index_kills_gate": "Function test_strip_step_index_kills_gate operation.",
+      "test_strip_state_fingerprint_kills_gate": "Function test_strip_state_fingerprint_kills_gate operation.",
+      "test_authority_effect_not_none_is_refused": "Function test_authority_effect_not_none_is_refused operation.",
+      "test_residual_energy_alias_accepted": "Function test_residual_energy_alias_accepted operation.",
+      "test_input_output_hash_state_alias_accepted": "Function test_input_output_hash_state_alias_accepted operation.",
+      "test_ort_process_tape_is_legacy_and_fails_integrity": "Function test_ort_process_tape_is_legacy_and_fails_integrity operation.",
+      "test_legacy_mode_classifies_without_hard_fail": "Function test_legacy_mode_classifies_without_hard_fail operation.",
+      "test_live_ort_tape_path_is_legacy": "If the ORT corpus path exists, classify it; else use a fixture twin.",
+      "test_chain_break_is_detected": "Function test_chain_break_is_detected operation.",
+      "test_empty_tape_is_ok_empty": "Function test_empty_tape_is_ok_empty operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "6480e07955eebcf60fbb4ac986b3dd078a948d83abd47cf08a768f4ff2f25238",
+  "current_scoring": "aae31fe9482d56bde555f35a6f555ca4ce5f421f09abb30e436cf8383b8a5dd9",
+  "contract_history": [
+    {
+      "sha256": "6480e07955eebcf60fbb4ac986b3dd078a948d83abd47cf08a768f4ff2f25238",
+      "bytes": 2913,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py",
+          "sha256": "26408c7622094a50cefd7368e8204d7d7e9fcb8d88ef1964ad3d562435661295"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:unit:test-sprint-trajectory-gate:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_sprint_trajectory_gate.",
+        "operations": {
+          "test_integrity_v1_golden_passes": "Function test_integrity_v1_golden_passes operation.",
+          "test_strip_phi1_kills_gate": "Mutation kill: remove phi1 → red; restore → green.",
+          "test_strip_step_index_kills_gate": "Function test_strip_step_index_kills_gate operation.",
+          "test_strip_state_fingerprint_kills_gate": "Function test_strip_state_fingerprint_kills_gate operation.",
+          "test_authority_effect_not_none_is_refused": "Function test_authority_effect_not_none_is_refused operation.",
+          "test_residual_energy_alias_accepted": "Function test_residual_energy_alias_accepted operation.",
+          "test_input_output_hash_state_alias_accepted": "Function test_input_output_hash_state_alias_accepted operation.",
+          "test_ort_process_tape_is_legacy_and_fails_integrity": "Function test_ort_process_tape_is_legacy_and_fails_integrity operation.",
+          "test_legacy_mode_classifies_without_hard_fail": "Function test_legacy_mode_classifies_without_hard_fail operation.",
+          "test_live_ort_tape_path_is_legacy": "If the ORT corpus path exists, classify it; else use a fixture twin.",
+          "test_chain_break_is_detected": "Function test_chain_break_is_detected operation.",
+          "test_empty_tape_is_ok_empty": "Function test_empty_tape_is_ok_empty operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py\",\n    \"sha256\": \"26408c7622094a50cefd7368e8204d7d7e9fcb8d88ef1964ad3d562435661295\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:unit:test-sprint-trajectory-gate:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_sprint_trajectory_gate.\",\n  \"operations\": {\n    \"test_integrity_v1_golden_passes\": \"Function test_integrity_v1_golden_passes operation.\",\n    \"test_strip_phi1_kills_gate\": \"Mutation kill: remove phi1 → red; restore → green.\",\n    \"test_strip_step_index_kills_gate\": \"Function test_strip_step_index_kills_gate operation.\",\n    \"test_strip_state_fingerprint_kills_gate\": \"Function test_strip_state_fingerprint_kills_gate operation.\",\n    \"test_authority_effect_not_none_is_refused\": \"Function test_authority_effect_not_none_is_refused operation.\",\n    \"test_residual_energy_alias_accepted\": \"Function test_residual_energy_alias_accepted operation.\",\n    \"test_input_output_hash_state_alias_accepted\": \"Function test_input_output_hash_state_alias_accepted operation.\",\n    \"test_ort_process_tape_is_legacy_and_fails_integrity\": \"Function test_ort_process_tape_is_legacy_and_fails_integrity operation.\",\n    \"test_legacy_mode_classifies_without_hard_fail\": \"Function test_legacy_mode_classifies_without_hard_fail operation.\",\n    \"test_live_ort_tape_path_is_legacy\": \"If the ORT corpus path exists, classify it; else use a fixture twin.\",\n    \"test_chain_break_is_detected\": \"Function test_chain_break_is_detected operation.\",\n    \"test_empty_tape_is_ok_empty\": \"Function test_empty_tape_is_ok_empty operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "aae31fe9482d56bde555f35a6f555ca4ce5f421f09abb30e436cf8383b8a5dd9",
+      "bytes": 2215,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py",
+          "sha256": "26408c7622094a50cefd7368e8204d7d7e9fcb8d88ef1964ad3d562435661295"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:unit:test-sprint-trajectory-gate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 6), Lizard CCN (max 4), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 6,
+          "lizard_ccn": 4,
+          "weighted_control_upper_bound": 3,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.py\",\n    \"sha256\": \"26408c7622094a50cefd7368e8204d7d7e9fcb8d88ef1964ad3d562435661295\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:unit:test-sprint-trajectory-gate:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 6), Lizard CCN (max 4), and shallow nesting depth (max 1 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 6,\n    \"lizard_ccn\": 4,\n    \"weighted_control_upper_bound\": 3,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/unit/test_sprint_trajectory_gate.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

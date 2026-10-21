@@ -1,0 +1,160 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/cochain_presentation.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/cochain_presentation.py",
+      "sha256": "9e220cf6bca7d85b2c615e419a7014a4302084662c6ffbb5c24de7e8711d5c92"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:cochain-presentation:v1",
+    "role": "library",
+    "purpose": "Bounded domain operations and invariant verification for cochain_presentation.",
+    "operations": {
+      "MissingObservationMapError": "A residual has no declared observation map.",
+      "HigherDifferentialUnavailable": "The native covering-edge carrier does not supply ``C2`` or ``d1``.",
+      "ObservationMap": "One exact linear map ``q_e : R_e -> V_e``.",
+      "InducedCochain": "Ordered exact edge blocks produced by a total observation presentation.",
+      "ExactnessCertificate": "Exact membership or non-membership witness for ``omega in im(d0)``.",
+      "QuotientDistanceCertificate": "Exact rational ``l1`` distance from ``omega`` to ``im(d0)``.",
+      "AdmittedComplexV1": "Capability witness for a verified cochain complex (C0 -> d0 -> C1 -> d1 -> C2).",
+      "AdmittedCochain": "Authenticated cochain produced by an ObservationPresentation with complex capability.",
+      "ObservationPresentation": "A total, ordered family of exact observation maps.",
+      "LinearRepairProblem": "Exact finite linear repair problem ``d0 : V0 -> V1`` (linear algebra level).",
+      "CoboundaryProblem": "Exact finite coboundary/image-membership problem using only ``d0``.",
+      "AdmittedComplexCoboundaryProblem": "Coboundary problem with an explicit ``AdmittedComplexV1`` higher-cell witness.",
+      "verify_cochain_complex": "Check ``d1*d0=0`` exactly, or refuse absent higher-cell data.",
+      "observation_map": "Convenience constructor that rejects floating-point coefficients.",
+      "exact_cochain": "Convenience constructor for tests and replay fixtures."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "05e85033609cf7d653637455356c594af9eb7bf5c01b090105cd434898c3a1fd",
+  "current_scoring": "15d241256c6fae63927419df779028ed4e2501fa4ba842a90b789b7420733602",
+  "contract_history": [
+    {
+      "sha256": "05e85033609cf7d653637455356c594af9eb7bf5c01b090105cd434898c3a1fd",
+      "bytes": 3072,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/cochain_presentation.py",
+          "sha256": "9e220cf6bca7d85b2c615e419a7014a4302084662c6ffbb5c24de7e8711d5c92"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:cochain-presentation:v1",
+        "role": "library",
+        "purpose": "Bounded domain operations and invariant verification for cochain_presentation.",
+        "operations": {
+          "MissingObservationMapError": "A residual has no declared observation map.",
+          "HigherDifferentialUnavailable": "The native covering-edge carrier does not supply ``C2`` or ``d1``.",
+          "ObservationMap": "One exact linear map ``q_e : R_e -> V_e``.",
+          "InducedCochain": "Ordered exact edge blocks produced by a total observation presentation.",
+          "ExactnessCertificate": "Exact membership or non-membership witness for ``omega in im(d0)``.",
+          "QuotientDistanceCertificate": "Exact rational ``l1`` distance from ``omega`` to ``im(d0)``.",
+          "AdmittedComplexV1": "Capability witness for a verified cochain complex (C0 -> d0 -> C1 -> d1 -> C2).",
+          "AdmittedCochain": "Authenticated cochain produced by an ObservationPresentation with complex capability.",
+          "ObservationPresentation": "A total, ordered family of exact observation maps.",
+          "LinearRepairProblem": "Exact finite linear repair problem ``d0 : V0 -> V1`` (linear algebra level).",
+          "CoboundaryProblem": "Exact finite coboundary/image-membership problem using only ``d0``.",
+          "AdmittedComplexCoboundaryProblem": "Coboundary problem with an explicit ``AdmittedComplexV1`` higher-cell witness.",
+          "verify_cochain_complex": "Check ``d1*d0=0`` exactly, or refuse absent higher-cell data.",
+          "observation_map": "Convenience constructor that rejects floating-point coefficients.",
+          "exact_cochain": "Convenience constructor for tests and replay fixtures."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/cochain_presentation.py\",\n    \"sha256\": \"9e220cf6bca7d85b2c615e419a7014a4302084662c6ffbb5c24de7e8711d5c92\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:cochain-presentation:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Bounded domain operations and invariant verification for cochain_presentation.\",\n  \"operations\": {\n    \"MissingObservationMapError\": \"A residual has no declared observation map.\",\n    \"HigherDifferentialUnavailable\": \"The native covering-edge carrier does not supply ``C2`` or ``d1``.\",\n    \"ObservationMap\": \"One exact linear map ``q_e : R_e -> V_e``.\",\n    \"InducedCochain\": \"Ordered exact edge blocks produced by a total observation presentation.\",\n    \"ExactnessCertificate\": \"Exact membership or non-membership witness for ``omega in im(d0)``.\",\n    \"QuotientDistanceCertificate\": \"Exact rational ``l1`` distance from ``omega`` to ``im(d0)``.\",\n    \"AdmittedComplexV1\": \"Capability witness for a verified cochain complex (C0 -> d0 -> C1 -> d1 -> C2).\",\n    \"AdmittedCochain\": \"Authenticated cochain produced by an ObservationPresentation with complex capability.\",\n    \"ObservationPresentation\": \"A total, ordered family of exact observation maps.\",\n    \"LinearRepairProblem\": \"Exact finite linear repair problem ``d0 : V0 -> V1`` (linear algebra level).\",\n    \"CoboundaryProblem\": \"Exact finite coboundary/image-membership problem using only ``d0``.\",\n    \"AdmittedComplexCoboundaryProblem\": \"Coboundary problem with an explicit ``AdmittedComplexV1`` higher-cell witness.\",\n    \"verify_cochain_complex\": \"Check ``d1*d0=0`` exactly, or refuse absent higher-cell data.\",\n    \"observation_map\": \"Convenience constructor that rejects floating-point coefficients.\",\n    \"exact_cochain\": \"Convenience constructor for tests and replay fixtures.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/cochain_presentation.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "15d241256c6fae63927419df779028ed4e2501fa4ba842a90b789b7420733602",
+      "bytes": 2213,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/cochain_presentation.py",
+          "sha256": "9e220cf6bca7d85b2c615e419a7014a4302084662c6ffbb5c24de7e8711d5c92"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:cochain-presentation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 20), Lizard CCN (max 20), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 20,
+          "lizard_ccn": 20,
+          "weighted_control_upper_bound": 42,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/cochain_presentation.py\",\n    \"sha256\": \"9e220cf6bca7d85b2c615e419a7014a4302084662c6ffbb5c24de7e8711d5c92\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:cochain-presentation:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 20), Lizard CCN (max 20), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 20,\n    \"lizard_ccn\": 20,\n    \"weighted_control_upper_bound\": 42,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/cochain_presentation.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@
     ]
   },
   "current_contract": "0bc039f3815d64d512f4adbdf164185b16c1914fe5cfd9879055b47fbea1ecad",
-  "current_scoring": "adca744608b7c1217d0c8fc1a72dda9e52427f3041523e29ac15ce8279ec1ca4",
+  "current_scoring": "dc1a52dcfb6b011e8e1b31da28622b7a906228984b03e90437320af6c3a2ffd3",
   "contract_history": [
     {
       "sha256": "16c798456441763ec12124a6bf54981ab70c69313bc6a064a76f3f891e2d6bad",
@@ -173,6 +173,67 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_simplex_lifecycle.py\",\n    \"sha256\": \"5d50afece1c5ef5b9692c5c23d86bb1cfcd7133af704a5f1c9527ad5209159e9\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Substantive finite exact/adversarial test logic; complete production test-file capability and gates not reviewed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"open_findings\": [\n    \"Full test-file G1-G5 review remains open.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/tests/test_simplex_lifecycle.contract.score.yaml#batch2-ancillary-review/scoring"
+      ]
+    },
+    {
+      "sha256": "dc1a52dcfb6b011e8e1b31da28622b7a906228984b03e90437320af6c3a2ffd3",
+      "bytes": 2191,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_simplex_lifecycle.py",
+          "sha256": "5d50afece1c5ef5b9692c5c23d86bb1cfcd7133af704a5f1c9527ad5209159e9"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:tests:test-simplex-lifecycle:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 5), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 10,
+          "lizard_ccn": 5,
+          "weighted_control_upper_bound": 10,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_simplex_lifecycle.py\",\n    \"sha256\": \"5d50afece1c5ef5b9692c5c23d86bb1cfcd7133af704a5f1c9527ad5209159e9\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:tests:test-simplex-lifecycle:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 5), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 10,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_simplex_lifecycle.contract.score.yaml#scoring"
       ]
     }
   ],

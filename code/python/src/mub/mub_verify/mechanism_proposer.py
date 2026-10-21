@@ -128,7 +128,8 @@ class CarrierProjection(LogitsProcessor if TRANSFORMERS_AVAILABLE else object):
             if orig_ndim == 1:
                 scores = scores.unsqueeze(0)
 
-            assert self.off_carrier is not None
+            if self.off_carrier is None:
+                raise ValueError("off_carrier must not be None")
             off_carrier = self.off_carrier.to(scores.device)
             allowed = scores[:, ~off_carrier]
 

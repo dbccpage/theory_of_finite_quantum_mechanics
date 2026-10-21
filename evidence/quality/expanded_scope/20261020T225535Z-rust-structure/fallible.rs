@@ -1,1 +1,0 @@
-fn sample()->Result<(),()>{x()?;Ok(())}

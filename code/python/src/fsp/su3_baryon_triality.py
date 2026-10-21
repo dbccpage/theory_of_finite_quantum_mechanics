@@ -115,7 +115,8 @@ class SU3SimplicialYJunction:
             d0=self.d0,
             d1=self.d1,
         )
-        assert self.complex.check_nilpotence(), "Nilpotence d1 . d0 == 0 failed on Y-junction complex."
+        if not self.complex.check_nilpotence():
+            raise ValueError("Nilpotence d1 . d0 == 0 failed on Y-junction complex.")
 
         sq3 = math.sqrt(3.0)
         self.weights = {

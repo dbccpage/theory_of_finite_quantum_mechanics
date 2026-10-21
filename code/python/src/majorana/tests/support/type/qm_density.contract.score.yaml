@@ -1,0 +1,164 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/tests/support/type/qm_density.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/tests/support/type/qm_density.py",
+      "sha256": "609f3ca8f05c815525e079eee59188044b256cfc8253506a2ff02c4735c8a315"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:type:qm-density:v1",
+    "role": "library",
+    "purpose": "Density, channel, residual, and diagnostic value types for QM components.",
+    "operations": {
+      "StateSpace": "Class StateSpace domain record and methods.",
+      "H1Sector": "Class H1Sector domain record and methods.",
+      "SectorMassCertificate": "Class SectorMassCertificate domain record and methods.",
+      "H1SectorDecomposition": "Class H1SectorDecomposition domain record and methods.",
+      "PhaseWitnessKind": "Class PhaseWitnessKind domain record and methods.",
+      "PhaseWitness": "Class PhaseWitness domain record and methods.",
+      "H1Density": "Class H1Density domain record and methods.",
+      "ResidualDensityConstruction": "Class ResidualDensityConstruction domain record and methods.",
+      "ResidualDensityDiagnostics": "Class ResidualDensityDiagnostics domain record and methods.",
+      "ResidualDensityReport": "Class ResidualDensityReport domain record and methods.",
+      "BranchResidualCandidate": "Class BranchResidualCandidate domain record and methods.",
+      "BranchResidualCandidateDiagnostic": "Class BranchResidualCandidateDiagnostic domain record and methods.",
+      "BranchResidualSearchReport": "Class BranchResidualSearchReport domain record and methods.",
+      "GomcDiagnosticConfig": "Class GomcDiagnosticConfig domain record and methods.",
+      "GomcDiagnosticReport": "Class GomcDiagnosticReport domain record and methods.",
+      "LocalGreenGlobalRedDiagnostic": "Class LocalGreenGlobalRedDiagnostic domain record and methods.",
+      "DensityDiagnostics": "Class DensityDiagnostics domain record and methods."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "ac22d52121dd2df01e049f49cb681c7ee38be37c3d3e7a14b601a3382658b3c5",
+  "current_scoring": "5426759bd090cf1d998ade858329929b7e925a094068e44a8f22fd283d62fd85",
+  "contract_history": [
+    {
+      "sha256": "ac22d52121dd2df01e049f49cb681c7ee38be37c3d3e7a14b601a3382658b3c5",
+      "bytes": 3060,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/type/qm_density.py",
+          "sha256": "609f3ca8f05c815525e079eee59188044b256cfc8253506a2ff02c4735c8a315"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:type:qm-density:v1",
+        "role": "library",
+        "purpose": "Density, channel, residual, and diagnostic value types for QM components.",
+        "operations": {
+          "StateSpace": "Class StateSpace domain record and methods.",
+          "H1Sector": "Class H1Sector domain record and methods.",
+          "SectorMassCertificate": "Class SectorMassCertificate domain record and methods.",
+          "H1SectorDecomposition": "Class H1SectorDecomposition domain record and methods.",
+          "PhaseWitnessKind": "Class PhaseWitnessKind domain record and methods.",
+          "PhaseWitness": "Class PhaseWitness domain record and methods.",
+          "H1Density": "Class H1Density domain record and methods.",
+          "ResidualDensityConstruction": "Class ResidualDensityConstruction domain record and methods.",
+          "ResidualDensityDiagnostics": "Class ResidualDensityDiagnostics domain record and methods.",
+          "ResidualDensityReport": "Class ResidualDensityReport domain record and methods.",
+          "BranchResidualCandidate": "Class BranchResidualCandidate domain record and methods.",
+          "BranchResidualCandidateDiagnostic": "Class BranchResidualCandidateDiagnostic domain record and methods.",
+          "BranchResidualSearchReport": "Class BranchResidualSearchReport domain record and methods.",
+          "GomcDiagnosticConfig": "Class GomcDiagnosticConfig domain record and methods.",
+          "GomcDiagnosticReport": "Class GomcDiagnosticReport domain record and methods.",
+          "LocalGreenGlobalRedDiagnostic": "Class LocalGreenGlobalRedDiagnostic domain record and methods.",
+          "DensityDiagnostics": "Class DensityDiagnostics domain record and methods."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/type/qm_density.py\",\n    \"sha256\": \"609f3ca8f05c815525e079eee59188044b256cfc8253506a2ff02c4735c8a315\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:type:qm-density:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Density, channel, residual, and diagnostic value types for QM components.\",\n  \"operations\": {\n    \"StateSpace\": \"Class StateSpace domain record and methods.\",\n    \"H1Sector\": \"Class H1Sector domain record and methods.\",\n    \"SectorMassCertificate\": \"Class SectorMassCertificate domain record and methods.\",\n    \"H1SectorDecomposition\": \"Class H1SectorDecomposition domain record and methods.\",\n    \"PhaseWitnessKind\": \"Class PhaseWitnessKind domain record and methods.\",\n    \"PhaseWitness\": \"Class PhaseWitness domain record and methods.\",\n    \"H1Density\": \"Class H1Density domain record and methods.\",\n    \"ResidualDensityConstruction\": \"Class ResidualDensityConstruction domain record and methods.\",\n    \"ResidualDensityDiagnostics\": \"Class ResidualDensityDiagnostics domain record and methods.\",\n    \"ResidualDensityReport\": \"Class ResidualDensityReport domain record and methods.\",\n    \"BranchResidualCandidate\": \"Class BranchResidualCandidate domain record and methods.\",\n    \"BranchResidualCandidateDiagnostic\": \"Class BranchResidualCandidateDiagnostic domain record and methods.\",\n    \"BranchResidualSearchReport\": \"Class BranchResidualSearchReport domain record and methods.\",\n    \"GomcDiagnosticConfig\": \"Class GomcDiagnosticConfig domain record and methods.\",\n    \"GomcDiagnosticReport\": \"Class GomcDiagnosticReport domain record and methods.\",\n    \"LocalGreenGlobalRedDiagnostic\": \"Class LocalGreenGlobalRedDiagnostic domain record and methods.\",\n    \"DensityDiagnostics\": \"Class DensityDiagnostics domain record and methods.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/type/qm_density.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "5426759bd090cf1d998ade858329929b7e925a094068e44a8f22fd283d62fd85",
+      "bytes": 2203,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/tests/support/type/qm_density.py",
+          "sha256": "609f3ca8f05c815525e079eee59188044b256cfc8253506a2ff02c4735c8a315"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:type:qm-density:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 1,
+          "lizard_ccn": 1,
+          "weighted_control_upper_bound": 0,
+          "control_nesting": 0
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/tests/support/type/qm_density.py\",\n    \"sha256\": \"609f3ca8f05c815525e079eee59188044b256cfc8253506a2ff02c4735c8a315\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:type:qm-density:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 1), Lizard CCN (max 1), and shallow nesting depth (max 0 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 1,\n    \"lizard_ccn\": 1,\n    \"weighted_control_upper_bound\": 0,\n    \"control_nesting\": 0\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/tests/support/type/qm_density.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py",
+      "sha256": "379d393d3d93f7cc4bad018b339be902003688e18d5a56b6b161c9f8276e2a3a"
+    },
+    "profile": "Exact",
+    "claim": "RationalIntervalQ certificate locked by exact checks in this file",
+    "role": "test checker",
+    "purpose": "E2E tests for QM-224 (Hydrogen Dirac-Coulomb fine structure & 1-loop QED Lamb shift) and QM-225 (Helium variational / Hylleraas ground state, 1s2s ortho/para exchange",
+    "operations": {
+      "test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy": "Function test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy operation.",
+      "test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin": "Function test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin operation.",
+      "test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds": "Function test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds operation.",
+      "test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction": "Function test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction operation.",
+      "test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity": "Function test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity operation.",
+      "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "aca15972e8078b0a46b7ed69d804428b8dc6e582e7dc873aff5a2003117703eb",
+  "current_scoring": "13aab675071931f800be675de4723bbf069b2a00e6cf505634c5802414509572",
+  "contract_history": [
+    {
+      "sha256": "aca15972e8078b0a46b7ed69d804428b8dc6e582e7dc873aff5a2003117703eb",
+      "bytes": 2873,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py",
+          "sha256": "379d393d3d93f7cc4bad018b339be902003688e18d5a56b6b161c9f8276e2a3a"
+        },
+        "profile": "Exact",
+        "claim": "RationalIntervalQ certificate locked by exact checks in this file",
+        "role": "test checker",
+        "purpose": "E2E tests for QM-224 (Hydrogen Dirac-Coulomb fine structure & 1-loop QED Lamb shift) and QM-225 (Helium variational / Hylleraas ground state, 1s2s ortho/para exchange",
+        "operations": {
+          "test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy": "Function test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy operation.",
+          "test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin": "Function test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin operation.",
+          "test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds": "Function test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds operation.",
+          "test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction": "Function test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction operation.",
+          "test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity": "Function test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity operation.",
+          "test_integration_origin_locks_the_source_module": "Function test_integration_origin_locks_the_source_module operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py\",\n    \"sha256\": \"379d393d3d93f7cc4bad018b339be902003688e18d5a56b6b161c9f8276e2a3a\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"RationalIntervalQ certificate locked by exact checks in this file\",\n  \"role\": \"test checker\",\n  \"purpose\": \"E2E tests for QM-224 (Hydrogen Dirac-Coulomb fine structure & 1-loop QED Lamb shift) and QM-225 (Helium variational / Hylleraas ground state, 1s2s ortho/para exchange\",\n  \"operations\": {\n    \"test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy\": \"Function test_unit_qm224_dirac_coulomb_fine_structure_and_j_half_degeneracy operation.\",\n    \"test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin\": \"Function test_qm224_one_loop_qed_lamb_shift_lifts_degeneracy_and_encloses_lundeen_pipkin operation.\",\n    \"test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds\": \"Function test_qm225_helium_variational_kellner_minimum_and_hylleraas_secular_bounds operation.\",\n    \"test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction\": \"Function test_qm225_helium_1s2s_ortho_para_exchange_and_closed_shell_rhf_contraction operation.\",\n    \"test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity\": \"Function test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity operation.\",\n    \"test_integration_origin_locks_the_source_module\": \"Function test_integration_origin_locks_the_source_module operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "13aab675071931f800be675de4723bbf069b2a00e6cf505634c5802414509572",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py",
+          "sha256": "379d393d3d93f7cc4bad018b339be902003688e18d5a56b6b161c9f8276e2a3a"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN RationalIntervalQ certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 22), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 22,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.py\",\n    \"sha256\": \"379d393d3d93f7cc4bad018b339be902003688e18d5a56b6b161c9f8276e2a3a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN RationalIntervalQ certificate locked by exact checks in this file, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 22), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 22,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_e2e_atomic_dirac_lamb_hartree_fock_control.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

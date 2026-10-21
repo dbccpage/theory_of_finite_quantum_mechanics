@@ -1,1 +1,0 @@
-fn sample(){if true{} if false{}}

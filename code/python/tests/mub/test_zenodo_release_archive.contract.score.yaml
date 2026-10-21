@@ -1,0 +1,140 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/mub/test_zenodo_release_archive.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/mub/test_zenodo_release_archive.py",
+      "sha256": "5b74f16e179776cc77cd26cb942648a18ddc0637cd4961560f125be858478087"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub:test-zenodo-release-archive:v1",
+    "role": "test checker",
+    "purpose": "Independent Test Suite for Zenodo Release Archive & Checksum Manifest. Audits:",
+    "operations": {
+      "compute_sha256": "Match the builder's raw-byte custody; no line-ending normalization.",
+      "test_tarball_exists_and_matches_digest": "Verify that the release tarball exists and matches the recorded digest in manifest and checklist.",
+      "test_release_manifest_sha256_integrity": "Check historical members against archived bytes and live envelope files on disk.",
+      "test_dry_run_unpack_and_exclusion_audit": "Verify that the tarball unpacks cleanly in dry-run with zero forbidden files and exact digest matching.",
+      "test_release_checklist_status": "Archive custody must not silently promote unresolved research to approval."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "06f88d952f2298a1d03b15203a9c9830ecb868570af386e6bce2e25fe80936f0",
+  "current_scoring": "27c5ce143a4bb6b9ec1197713ac16958846a929ad5a94b16c38b5913003a486e",
+  "contract_history": [
+    {
+      "sha256": "06f88d952f2298a1d03b15203a9c9830ecb868570af386e6bce2e25fe80936f0",
+      "bytes": 2261,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/mub/test_zenodo_release_archive.py",
+          "sha256": "5b74f16e179776cc77cd26cb942648a18ddc0637cd4961560f125be858478087"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub:test-zenodo-release-archive:v1",
+        "role": "test checker",
+        "purpose": "Independent Test Suite for Zenodo Release Archive & Checksum Manifest. Audits:",
+        "operations": {
+          "compute_sha256": "Match the builder's raw-byte custody; no line-ending normalization.",
+          "test_tarball_exists_and_matches_digest": "Verify that the release tarball exists and matches the recorded digest in manifest and checklist.",
+          "test_release_manifest_sha256_integrity": "Check historical members against archived bytes and live envelope files on disk.",
+          "test_dry_run_unpack_and_exclusion_audit": "Verify that the tarball unpacks cleanly in dry-run with zero forbidden files and exact digest matching.",
+          "test_release_checklist_status": "Archive custody must not silently promote unresolved research to approval."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/mub/test_zenodo_release_archive.py\",\n    \"sha256\": \"5b74f16e179776cc77cd26cb942648a18ddc0637cd4961560f125be858478087\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub:test-zenodo-release-archive:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Independent Test Suite for Zenodo Release Archive & Checksum Manifest. Audits:\",\n  \"operations\": {\n    \"compute_sha256\": \"Match the builder's raw-byte custody; no line-ending normalization.\",\n    \"test_tarball_exists_and_matches_digest\": \"Verify that the release tarball exists and matches the recorded digest in manifest and checklist.\",\n    \"test_release_manifest_sha256_integrity\": \"Check historical members against archived bytes and live envelope files on disk.\",\n    \"test_dry_run_unpack_and_exclusion_audit\": \"Verify that the tarball unpacks cleanly in dry-run with zero forbidden files and exact digest matching.\",\n    \"test_release_checklist_status\": \"Archive custody must not silently promote unresolved research to approval.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/mub/test_zenodo_release_archive.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "27c5ce143a4bb6b9ec1197713ac16958846a929ad5a94b16c38b5913003a486e",
+      "bytes": 2203,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/mub/test_zenodo_release_archive.py",
+          "sha256": "5b74f16e179776cc77cd26cb942648a18ddc0637cd4961560f125be858478087"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub:test-zenodo-release-archive:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 8), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 16,
+          "lizard_ccn": 8,
+          "weighted_control_upper_bound": 15,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/mub/test_zenodo_release_archive.py\",\n    \"sha256\": \"5b74f16e179776cc77cd26cb942648a18ddc0637cd4961560f125be858478087\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub:test-zenodo-release-archive:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 8), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 16,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 15,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/mub/test_zenodo_release_archive.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

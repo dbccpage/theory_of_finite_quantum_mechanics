@@ -1,0 +1,154 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/test_normal_form_laws.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/test_normal_form_laws.py",
+      "sha256": "a8cd7a31a7c283efd112f89d8c2a12f4a258e8dbbe360247a50e72cb02da9aaa"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:test-normal-form-laws:v1",
+    "role": "test checker",
+    "purpose": "Exact laws, independent quotient invariants, and adversarial old failures.",
+    "operations": {
+      "evaluator": "Function evaluator operation.",
+      "test_rational_section_soundness_idempotence_and_gauge_invariance": "Function test_rational_section_soundness_idempotence_and_gauge_invariance operation.",
+      "test_rational_completeness_against_independent_annihilator": "Function test_rational_completeness_against_independent_annihilator operation.",
+      "test_rational_normal_form_independent_of_gauge_generator_basis": "Function test_rational_normal_form_independent_of_gauge_generator_basis operation.",
+      "test_l1_section_is_not_l1_minimizer_and_exact_distance_is": "Function test_l1_section_is_not_l1_minimizer_and_exact_distance_is operation.",
+      "test_exact_distance_and_membership_survive_exponential_budget_refusal": "Function test_exact_distance_and_membership_survive_exponential_budget_refusal operation.",
+      "test_sign_section_exhaustive_soundness_idempotence_completeness": "Function test_sign_section_exhaustive_soundness_idempotence_completeness operation.",
+      "test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing": "Function test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing operation.",
+      "test_no_tolerance_certifies_nonzero_residual_or_nilpotence": "Function test_no_tolerance_certifies_nonzero_residual_or_nilpotence operation.",
+      "test_invalid_exact_coefficients_are_refused": "Function test_invalid_exact_coefficients_are_refused operation.",
+      "test_exact_pairing_checks_all_active_rows_and_input_signs": "Function test_exact_pairing_checks_all_active_rows_and_input_signs operation.",
+      "test_empty_and_zero_dimensional_complexes": "Function test_empty_and_zero_dimensional_complexes operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "97a50256cd83f887435456808713f64d2f3642df9fddc9da409a6ee95a701640",
+  "current_scoring": "a71ae426c64dbfe7680304ac5c5bff57fbca695edee9b312d341e98cebc2e301",
+  "contract_history": [
+    {
+      "sha256": "97a50256cd83f887435456808713f64d2f3642df9fddc9da409a6ee95a701640",
+      "bytes": 3282,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_normal_form_laws.py",
+          "sha256": "a8cd7a31a7c283efd112f89d8c2a12f4a258e8dbbe360247a50e72cb02da9aaa"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-normal-form-laws:v1",
+        "role": "test checker",
+        "purpose": "Exact laws, independent quotient invariants, and adversarial old failures.",
+        "operations": {
+          "evaluator": "Function evaluator operation.",
+          "test_rational_section_soundness_idempotence_and_gauge_invariance": "Function test_rational_section_soundness_idempotence_and_gauge_invariance operation.",
+          "test_rational_completeness_against_independent_annihilator": "Function test_rational_completeness_against_independent_annihilator operation.",
+          "test_rational_normal_form_independent_of_gauge_generator_basis": "Function test_rational_normal_form_independent_of_gauge_generator_basis operation.",
+          "test_l1_section_is_not_l1_minimizer_and_exact_distance_is": "Function test_l1_section_is_not_l1_minimizer_and_exact_distance_is operation.",
+          "test_exact_distance_and_membership_survive_exponential_budget_refusal": "Function test_exact_distance_and_membership_survive_exponential_budget_refusal operation.",
+          "test_sign_section_exhaustive_soundness_idempotence_completeness": "Function test_sign_section_exhaustive_soundness_idempotence_completeness operation.",
+          "test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing": "Function test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing operation.",
+          "test_no_tolerance_certifies_nonzero_residual_or_nilpotence": "Function test_no_tolerance_certifies_nonzero_residual_or_nilpotence operation.",
+          "test_invalid_exact_coefficients_are_refused": "Function test_invalid_exact_coefficients_are_refused operation.",
+          "test_exact_pairing_checks_all_active_rows_and_input_signs": "Function test_exact_pairing_checks_all_active_rows_and_input_signs operation.",
+          "test_empty_and_zero_dimensional_complexes": "Function test_empty_and_zero_dimensional_complexes operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_normal_form_laws.py\",\n    \"sha256\": \"a8cd7a31a7c283efd112f89d8c2a12f4a258e8dbbe360247a50e72cb02da9aaa\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-normal-form-laws:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Exact laws, independent quotient invariants, and adversarial old failures.\",\n  \"operations\": {\n    \"evaluator\": \"Function evaluator operation.\",\n    \"test_rational_section_soundness_idempotence_and_gauge_invariance\": \"Function test_rational_section_soundness_idempotence_and_gauge_invariance operation.\",\n    \"test_rational_completeness_against_independent_annihilator\": \"Function test_rational_completeness_against_independent_annihilator operation.\",\n    \"test_rational_normal_form_independent_of_gauge_generator_basis\": \"Function test_rational_normal_form_independent_of_gauge_generator_basis operation.\",\n    \"test_l1_section_is_not_l1_minimizer_and_exact_distance_is\": \"Function test_l1_section_is_not_l1_minimizer_and_exact_distance_is operation.\",\n    \"test_exact_distance_and_membership_survive_exponential_budget_refusal\": \"Function test_exact_distance_and_membership_survive_exponential_budget_refusal operation.\",\n    \"test_sign_section_exhaustive_soundness_idempotence_completeness\": \"Function test_sign_section_exhaustive_soundness_idempotence_completeness operation.\",\n    \"test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing\": \"Function test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing operation.\",\n    \"test_no_tolerance_certifies_nonzero_residual_or_nilpotence\": \"Function test_no_tolerance_certifies_nonzero_residual_or_nilpotence operation.\",\n    \"test_invalid_exact_coefficients_are_refused\": \"Function test_invalid_exact_coefficients_are_refused operation.\",\n    \"test_exact_pairing_checks_all_active_rows_and_input_signs\": \"Function test_exact_pairing_checks_all_active_rows_and_input_signs operation.\",\n    \"test_empty_and_zero_dimensional_complexes\": \"Function test_empty_and_zero_dimensional_complexes operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_normal_form_laws.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a71ae426c64dbfe7680304ac5c5bff57fbca695edee9b312d341e98cebc2e301",
+      "bytes": 2193,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_normal_form_laws.py",
+          "sha256": "a8cd7a31a7c283efd112f89d8c2a12f4a258e8dbbe360247a50e72cb02da9aaa"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-normal-form-laws:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 13), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 16,
+          "lizard_ccn": 13,
+          "weighted_control_upper_bound": 25,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_normal_form_laws.py\",\n    \"sha256\": \"a8cd7a31a7c283efd112f89d8c2a12f4a258e8dbbe360247a50e72cb02da9aaa\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-normal-form-laws:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 16), Lizard CCN (max 13), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 16,\n    \"lizard_ccn\": 13,\n    \"weighted_control_upper_bound\": 25,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_normal_form_laws.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

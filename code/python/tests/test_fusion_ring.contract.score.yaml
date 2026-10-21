@@ -23,7 +23,7 @@
     ]
   },
   "current_contract": "ff5e1f47b123af81eba5aeb4f9478942b9e6440d5a0ccdd8220089e906e45ddc",
-  "current_scoring": "b1df0a972287f0b43236ceb1d21c990a369682991bf1755ab12a8632fb7be0b7",
+  "current_scoring": "0584ae8a10f0659008a3af29d1215f3d279d35971a3e24f43090d0055d584605",
   "contract_history": [
     {
       "sha256": "ff5e1f47b123af81eba5aeb4f9478942b9e6440d5a0ccdd8220089e906e45ddc",
@@ -98,6 +98,67 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_fusion_ring.py\",\n    \"sha256\": \"6a044b9ca6e0d564b8c4c1a445cee1ae0d4d31c9ed0acd02e55774eada067b05\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": null,\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"open_findings\": [\n    \"Own-source infrastructure, mutation accounting and structure review not completed\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-final-baseline.log\",\n      \"sha256\": \"5c64803942a2158993e114c1022f443f06680611ec619bc5141218e2e391efdd\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch4-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/tests/test_fusion_ring.contract.score.yaml#partial-ancillary-review/scoring"
+      ]
+    },
+    {
+      "sha256": "0584ae8a10f0659008a3af29d1215f3d279d35971a3e24f43090d0055d584605",
+      "bytes": 2181,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_fusion_ring.py",
+          "sha256": "6a044b9ca6e0d564b8c4c1a445cee1ae0d4d31c9ed0acd02e55774eada067b05"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fusion:exact-ring-control:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 15), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 15,
+          "lizard_ccn": 7,
+          "weighted_control_upper_bound": 8,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_fusion_ring.py\",\n    \"sha256\": \"6a044b9ca6e0d564b8c4c1a445cee1ae0d4d31c9ed0acd02e55774eada067b05\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fusion:exact-ring-control:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 15), Lizard CCN (max 7), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 15,\n    \"lizard_ccn\": 7,\n    \"weighted_control_upper_bound\": 8,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_fusion_ring.contract.score.yaml#scoring"
       ]
     }
   ],

@@ -1,0 +1,142 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/fsp/test_gin_cluster_scaling.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/tests/fsp/test_gin_cluster_scaling.py",
+      "sha256": "1bbe1748c548b566f50a7a0b887d8074cabbaea52a1292557dca6b3dc2fcf677"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:fsp:test-gin-cluster-scaling:v1",
+    "role": "test checker",
+    "purpose": "Unit and Integration Tests: GIN Large-Lattice Scaling Benchmark & Cluster Involution Cancellation. Tests:",
+    "operations": {
+      "test_large_lattice_hubbard_cluster_geometry": "Validates 2D square lattice geometry, sublattice parity, and mode indexing.",
+      "test_gin_inverted_index_fast_partner_retrieval": "Validates that GIN inverted posting index correctly retrieves cluster involution partners.",
+      "test_gin_exact_destructive_sign_cancellation": "Validates that retrieved involution pairs exhibit exact destructive sign cancellation.",
+      "test_gin_versus_linear_scan_equivalence": "Validates exact candidate equivalence between GIN inverted lookup and naive linear scan.",
+      "test_adversarial_corrupted_spectator_detection": "Falsification test: corrupting spectator modes prevents false-positive pairing.",
+      "test_scaling_speedup_ratio_on_16x16": "Asserts that GIN index yields a statistically significant speedup (> 3.0x) over linear scan at M=5000."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "5d9d8d78e445cc078fd2059c3c7f7e3b92e84662c2c9036e90d43efdd5c2584c",
+  "current_scoring": "f636c7d2f50653ebd2f33d444d0b26dbe5b2f1d0e47ab901a9dc2802814043ce",
+  "contract_history": [
+    {
+      "sha256": "5d9d8d78e445cc078fd2059c3c7f7e3b92e84662c2c9036e90d43efdd5c2584c",
+      "bytes": 2488,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_gin_cluster_scaling.py",
+          "sha256": "1bbe1748c548b566f50a7a0b887d8074cabbaea52a1292557dca6b3dc2fcf677"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:fsp:test-gin-cluster-scaling:v1",
+        "role": "test checker",
+        "purpose": "Unit and Integration Tests: GIN Large-Lattice Scaling Benchmark & Cluster Involution Cancellation. Tests:",
+        "operations": {
+          "test_large_lattice_hubbard_cluster_geometry": "Validates 2D square lattice geometry, sublattice parity, and mode indexing.",
+          "test_gin_inverted_index_fast_partner_retrieval": "Validates that GIN inverted posting index correctly retrieves cluster involution partners.",
+          "test_gin_exact_destructive_sign_cancellation": "Validates that retrieved involution pairs exhibit exact destructive sign cancellation.",
+          "test_gin_versus_linear_scan_equivalence": "Validates exact candidate equivalence between GIN inverted lookup and naive linear scan.",
+          "test_adversarial_corrupted_spectator_detection": "Falsification test: corrupting spectator modes prevents false-positive pairing.",
+          "test_scaling_speedup_ratio_on_16x16": "Asserts that GIN index yields a statistically significant speedup (> 3.0x) over linear scan at M=5000."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_gin_cluster_scaling.py\",\n    \"sha256\": \"1bbe1748c548b566f50a7a0b887d8074cabbaea52a1292557dca6b3dc2fcf677\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:fsp:test-gin-cluster-scaling:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit and Integration Tests: GIN Large-Lattice Scaling Benchmark & Cluster Involution Cancellation. Tests:\",\n  \"operations\": {\n    \"test_large_lattice_hubbard_cluster_geometry\": \"Validates 2D square lattice geometry, sublattice parity, and mode indexing.\",\n    \"test_gin_inverted_index_fast_partner_retrieval\": \"Validates that GIN inverted posting index correctly retrieves cluster involution partners.\",\n    \"test_gin_exact_destructive_sign_cancellation\": \"Validates that retrieved involution pairs exhibit exact destructive sign cancellation.\",\n    \"test_gin_versus_linear_scan_equivalence\": \"Validates exact candidate equivalence between GIN inverted lookup and naive linear scan.\",\n    \"test_adversarial_corrupted_spectator_detection\": \"Falsification test: corrupting spectator modes prevents false-positive pairing.\",\n    \"test_scaling_speedup_ratio_on_16x16\": \"Asserts that GIN index yields a statistically significant speedup (> 3.0x) over linear scan at M=5000.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_gin_cluster_scaling.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "f636c7d2f50653ebd2f33d444d0b26dbe5b2f1d0e47ab901a9dc2802814043ce",
+      "bytes": 2196,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/fsp/test_gin_cluster_scaling.py",
+          "sha256": "1bbe1748c548b566f50a7a0b887d8074cabbaea52a1292557dca6b3dc2fcf677"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:fsp:test-gin-cluster-scaling:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 6,
+          "weighted_control_upper_bound": 4,
+          "control_nesting": 2
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/fsp/test_gin_cluster_scaling.py\",\n    \"sha256\": \"1bbe1748c548b566f50a7a0b887d8074cabbaea52a1292557dca6b3dc2fcf677\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:fsp:test-gin-cluster-scaling:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 6), and shallow nesting depth (max 2 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 6,\n    \"weighted_control_upper_bound\": 4,\n    \"control_nesting\": 2\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/fsp/test_gin_cluster_scaling.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

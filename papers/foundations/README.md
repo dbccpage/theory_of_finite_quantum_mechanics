@@ -21,12 +21,17 @@ All active quantum foundation manuscripts sit **flat** under this programme dire
   * `_support/`: Historical brought records, work orders, and source archives.
   * `dag_pregenesis_to_finite_qm/`: Derivation DAG artifacts, operad bindings, and JSONL records.
 
+## Composed Foundations Monograph
+
+* **Master Synthesis Monograph:** [`theory_of_finite_quantum_foundations.md`](theory_of_finite_quantum_foundations.md) — Comprehensive, non-redundant synthesis of all 43 active foundation packets across the 8-rung ladder.
+
 ---
 
 ## Active Manuscript Inventory
 
 | ID | File | Role & Primary Focus |
-|---|---|---|
+| --- | --- | --- |
+| **QM_000** | [`theory_of_finite_quantum_foundations.md`](theory_of_finite_quantum_foundations.md) | Composed Foundations Monograph: Discrete Obstructions, Quotient Fibers, and Non-Locality on Finite Carriers. |
 | **QM_002** | [`qm_002_cofiber_to_banach_quotient_bridge.md`](qm_002_cofiber_to_banach_quotient_bridge.md) | Finite Banach repair cokernel & quotient norm (absorbed redirect to monograph ch. 4 / source notes §11.3). |
 | **QM_003** | [`qm_003_residual_density_calculus_l1_l2_boundary.md`](qm_003_residual_density_calculus_l1_l2_boundary.md) | Residual mass normalization, diagonal density embedding, and orientation blindness (absorbed redirect). |
 | **QM_004** | [`qm_004_general_obstruction_management_calculus.md`](qm_004_general_obstruction_management_calculus.md) | Observer factorization criterion, exact repair translation commutativity, and quotient defect invariance. |
@@ -74,6 +79,7 @@ All active quantum foundation manuscripts sit **flat** under this programme dire
 ## Non-Claims & Claim Discipline
 
 In strict accordance with the Claim Hygiene Rule:
+
 * This README and associated manuscripts organize finite models, cochain complexes, and discrete obstruction certificates.
 * They do not claim to derive the continuum, the Born rule, infinite-dimensional Hilbert space uniqueness, or continuous unitary Lie generators without declared imports.
 * Markdown files carry `AuthorityEffect: None`. Operational verification is determined solely by sovereign Rust test suites and Lean 4 proof mechanizations.
