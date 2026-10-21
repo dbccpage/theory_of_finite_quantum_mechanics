@@ -507,3 +507,6 @@ lean_lib PromptL1Imports where
 
 lean_lib PromptBornBoundaries where
   roots := #[`PromptBornBoundaries]
+
+lean_lib QcSelfObstruction where
+  roots := #[`QcConcatenation, `QcRepairQueue, `QcEntropySink, `QcSelfObstruction]

@@ -1,0 +1,15 @@
+schema_id: finite-qm.code-companion.v1
+subject: lean4/QcRepairQueue.lean
+source_sha256: 8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267
+authority_effect: None
+purpose: 'The repair backlog q(t+1) = max(0, q(t) + lam + g mu - mu): bounded iff the net repair rate
+  covers the generation rate, unit-gain repair never bounds it, the fresh-supply threshold, and the fresh-mark
+  budget arithmetic.'
+design:
+  profile: Exact rational arithmetic or kernel-checked Lean on the declared carrier; no floating point.
+  frozen_sources: Run snapshots under verification/ are immutable custody assets.
+boundaries:
+- The rates lam, g, kappa and r are declared inputs of a finite model; nothing measures a device or derives
+  g for a code.
+evidence:
+- dag/research/quantum_computation_self_obstruction.md
