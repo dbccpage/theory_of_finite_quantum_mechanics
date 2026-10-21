@@ -3,11 +3,13 @@ Claim: derivation_dag.json is a finite acyclic record whose node and route field
 AuthorityEffect: None
 Scope Fence: this file does not claim that any recorded statement is true
 Level: L5
-MutationKillCount: 3
+MutationKillCount: 4
 
 Checks structure only: schema, reference resolution, acyclicity, vocabulary,
 that cited repository paths exist, and that cited Lean/Rust symbols occur in the
-cited file. It does not check that any statement is true.
+cited file. It does not check that any statement is true. A pfp_review object on a
+node is checked for shape, for a status that is not above its prior_status, and (when
+files are checked) for an existing review file whose sha256 matches.
 
 References beginning with "pr:" or "external:" name pull requests or files outside
 this checkout and are not resolved.
@@ -19,6 +21,7 @@ Exit status 0 when every check passes, 1 otherwise.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -97,6 +100,37 @@ NODE_KEYS = {
     "bottleneck",
     "tags",
     "see_also",
+    "pfp_review",
+}
+# The pfp_review object that sync_pfp_results.py writes onto a node whose PFP result folder was reviewed.
+PFP_REVIEW_KEYS = (
+    "review",
+    "review_sha256",
+    "review_refs",
+    "verdict",
+    "narrowest_claim",
+    "does_not_support",
+    "next_test",
+    "scope_effect",
+    "reason",
+    "prior_status",
+    "prior_statement",
+    "prior_bottleneck",
+    "superseded_by",
+)
+PFP_REVIEW_OPTIONAL_KEYS = ("prior_route_status",)
+PFP_SCOPE_EFFECTS = ("consistent", "caveat_added", "statement_narrowed", "status_lowered")
+# Weakest to strongest; a reviewed node may keep or lower its prior status, never raise it.
+PFP_STATUS_RANK = {
+    "OPEN": 0,
+    "SOURCE_RECORD": 0,
+    "IMPORTED_ASSUMPTION": 1,
+    "ADMITTED_PRIMITIVE": 1,
+    "CONDITIONAL": 2,
+    "DEFINITION": 2,
+    "COMPUTATIONALLY_CHECKED": 3,
+    "PROVED_PROSE": 4,
+    "PROVED_LEAN": 5,
 }
 FORBIDDEN = (
     "proves",
@@ -333,6 +367,74 @@ def _bad_lists(node: dict[str, object]) -> list[str]:
     return errs
 
 
+def _pfp_text_errors(node_id: object, review: dict[str, object]) -> list[str]:
+    errs: list[str] = []
+    for key in PFP_REVIEW_KEYS:
+        if key in ("review_refs", "superseded_by"):
+            continue
+        value = review.get(key)
+        if not isinstance(value, str) or not value:
+            errs.append(f"node {node_id}: pfp_review.{key} must be a non-empty string")
+    sha = review.get("review_sha256")
+    if isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha) is None:
+        errs.append(f"node {node_id}: pfp_review.review_sha256 is not a sha256 hex digest")
+    return errs
+
+
+def _pfp_list_errors(node_id: object, review: dict[str, object]) -> list[str]:
+    errs: list[str] = []
+    refs = _string_list(review.get("review_refs"))
+    if not refs:
+        errs.append(f"node {node_id}: pfp_review.review_refs must be a non-empty list of strings")
+    elif refs[-1] != review.get("review"):
+        errs.append(f"node {node_id}: pfp_review.review_refs must end with the review path")
+    if _string_list(review.get("superseded_by")) is None:
+        errs.append(f"node {node_id}: pfp_review.superseded_by must be a list of strings")
+    return errs
+
+
+def _pfp_status_errors(node: dict[str, object], review: dict[str, object]) -> list[str]:
+    errs: list[str] = []
+    node_id = node.get("id")
+    status = _text(node, "status")
+    prior = review.get("prior_status")
+    if review.get("scope_effect") not in PFP_SCOPE_EFFECTS:
+        errs.append(f"node {node_id}: pfp_review.scope_effect {review.get('scope_effect')!r} is not in the vocabulary")
+    if prior not in PFP_STATUS_RANK or status not in PFP_STATUS_RANK:
+        if status != prior:
+            errs.append(f"node {node_id}: pfp_review.prior_status {prior!r} cannot be compared with {status!r}")
+        return errs
+    if PFP_STATUS_RANK[status] > PFP_STATUS_RANK[prior]:
+        errs.append(f"node {node_id}: status {status} is above pfp_review.prior_status {prior}")
+    if (status != prior) != (review.get("scope_effect") == "status_lowered"):
+        errs.append(f"node {node_id}: pfp_review.scope_effect must be status_lowered exactly when the status changed")
+    if review.get("scope_effect") == "statement_narrowed" and _text(node, "statement") == review.get("prior_statement"):
+        errs.append(f"node {node_id}: pfp_review says statement_narrowed but the statement is the prior statement")
+    return errs
+
+
+def _pfp_review_errors(node: dict[str, object]) -> list[str]:
+    if "pfp_review" not in node:
+        return []
+    node_id = node.get("id")
+    review = _mapping(node.get("pfp_review"))
+    if review is None:
+        return [f"node {node_id}: pfp_review must be an object"]
+    errs: list[str] = []
+    missing = [key for key in PFP_REVIEW_KEYS if key not in review]
+    extra = sorted(set(review) - set(PFP_REVIEW_KEYS) - set(PFP_REVIEW_OPTIONAL_KEYS))
+    if missing:
+        errs.append(f"node {node_id}: pfp_review is missing {missing}")
+    if extra:
+        errs.append(f"node {node_id}: pfp_review has unknown keys {extra}")
+    if missing:
+        return errs
+    errs.extend(_pfp_text_errors(node_id, review))
+    errs.extend(_pfp_list_errors(node_id, review))
+    errs.extend(_pfp_status_errors(node, review))
+    return errs
+
+
 def _validate_node_schema(node: dict[str, object]) -> list[str]:
     errs: list[str] = []
     extra = set(node) - NODE_KEYS
@@ -340,6 +442,7 @@ def _validate_node_schema(node: dict[str, object]) -> list[str]:
         errs.append(f"node {node.get('id')}: unknown keys {sorted(extra)}")
     errs.extend(_missing_strings(node))
     errs.extend(_bad_lists(node))
+    errs.extend(_pfp_review_errors(node))
     return errs
 
 
@@ -524,8 +627,29 @@ def _symbol_errors(root: Path, node_id: object, field: str, ref: str) -> list[st
     return []
 
 
-def _node_ref_errors(node: dict[str, object], root: Path) -> list[str]:
+def pfp_review_sha256(data: bytes) -> str:
+    """Newline-normalized, so a CRLF checkout of a review file hashes like the committed bytes."""
+    return hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
+
+
+def _pfp_file_errors(node: dict[str, object], root: Path) -> list[str]:
+    review = _mapping(node.get("pfp_review"))
+    if review is None:
+        return []
+    node_id = node.get("id")
     errs: list[str] = []
+    for ref in _string_list(review.get("review_refs")) or []:
+        if not _path_exists(root, ref):
+            errs.append(f"node {node_id}: pfp_review file missing: {ref}")
+    path = review.get("review")
+    if isinstance(path, str) and _path_exists(root, path):
+        if pfp_review_sha256((root / path).read_bytes()) != review.get("review_sha256"):
+            errs.append(f"node {node_id}: pfp_review.review_sha256 does not match {path}")
+    return errs
+
+
+def _node_ref_errors(node: dict[str, object], root: Path) -> list[str]:
+    errs: list[str] = _pfp_file_errors(node, root)
     node_id = node.get("id")
     for ref in _string_list(node.get("source")) or []:
         if not is_external(ref) and not _path_exists(root, line_ref_path(ref)):

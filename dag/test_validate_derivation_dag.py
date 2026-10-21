@@ -99,6 +99,79 @@ def test_file_reference_integration(tmp_path: Path) -> None:
     assert any("unknown input" in err for err in errs)
 
 
+def _review(**changes: object) -> dict[str, object]:
+    review: dict[str, object] = {
+        "review": "dag/results/N/reviews/r/review_result.json",
+        "review_sha256": "0" * 64,
+        "review_refs": ["dag/results/N/reviews/r/review_result.json"],
+        "verdict": "scoped_result_or_obstruction_reviewed",
+        "narrowest_claim": "a finite witness",
+        "does_not_support": "the general statement",
+        "next_test": "prove the general statement",
+        "scope_effect": "consistent",
+        "reason": "stated within the witness",
+        "prior_status": "DEFINITION",
+        "prior_statement": "a finite record",
+        "prior_bottleneck": "none",
+        "superseded_by": [],
+    }
+    review.update(changes)
+    return review
+
+
+def _reviewed(**changes: object) -> dict[str, object]:
+    node = _node("a", "PREGENESIS", "DEFINITION")
+    node["pfp_review"] = _review(**changes)
+    return node
+
+
+def test_pfp_review_shape_is_checked() -> None:
+    assert dag.check(_graph([_reviewed()], []), None) == []
+    missing = _reviewed()
+    del missing["pfp_review"]["next_test"]  # type: ignore[arg-type]
+    assert any("is missing ['next_test']" in err for err in dag.check(_graph([missing], []), None))
+    extra = _reviewed(unexpected="x")
+    assert any("unknown keys ['unexpected']" in err for err in dag.check(_graph([extra], []), None))
+    assert any("not a sha256" in err for err in dag.check(_graph([_reviewed(review_sha256="abc")], []), None))
+    bad_refs = _reviewed(review_refs=["elsewhere.json"])
+    assert any("must end with the review path" in err for err in dag.check(_graph([bad_refs], []), None))
+    bad_effect = _reviewed(scope_effect="promoted")
+    assert any("not in the vocabulary" in err for err in dag.check(_graph([bad_effect], []), None))
+    not_object = _node("a")
+    not_object["pfp_review"] = "text"
+    assert any("must be an object" in err for err in dag.check(_graph([not_object], []), None))
+
+
+def test_pfp_review_never_raises_a_status() -> None:
+    raised = _node("a", status="DEFINITION")
+    raised["pfp_review"] = _review(prior_status="OPEN", scope_effect="status_lowered")
+    errs = dag.check(_graph([raised], []), None)
+    assert any("is above pfp_review.prior_status OPEN" in err for err in errs)
+    unmarked = _reviewed(prior_status="PROVED_LEAN", scope_effect="consistent")
+    assert any("exactly when the status changed" in err for err in dag.check(_graph([unmarked], []), None))
+    lowered = _reviewed(prior_status="PROVED_LEAN", scope_effect="status_lowered")
+    assert not any("pfp_review" in err for err in dag.check(_graph([lowered], []), None))
+    same = _reviewed(scope_effect="statement_narrowed")
+    assert any("statement is the prior statement" in err for err in dag.check(_graph([same], []), None))
+
+
+def test_pfp_review_file_and_sha256_are_checked(tmp_path: Path) -> None:
+    review_file = tmp_path / "dag" / "results" / "N" / "reviews" / "r" / "review_result.json"
+    review_file.parent.mkdir(parents=True)
+    review_file.write_bytes(b'{"status": "ok"}\r\n')
+    digest = dag.pfp_review_sha256(b'{"status": "ok"}\n')
+    assert dag.pfp_review_sha256(review_file.read_bytes()) == digest
+    node = _reviewed(review_sha256=digest)
+    node["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    assert dag.check(_graph([node], []), tmp_path) == []
+    wrong = _reviewed()
+    wrong["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    assert any("does not match" in err for err in dag.check(_graph([wrong], []), tmp_path))
+    gone = _reviewed(review="dag/results/N/reviews/r/gone.json", review_refs=["dag/results/N/reviews/r/gone.json"])
+    gone["source"] = ["dag/results/N/reviews/r/review_result.json"]
+    assert any("file missing" in err for err in dag.check(_graph([gone], []), tmp_path))
+
+
 def test_packaged_graph_end_to_end() -> None:
     root = HERE.parent
     result = subprocess.run(
@@ -138,6 +211,10 @@ def test_mutation_kills_are_recorded() -> None:
             'if re.search(r"\\b" + re.escape(word) + r"\\b", blob):',
             'if False and re.search(r"\\b" + re.escape(word) + r"\\b", blob):',
         ),
+        "pfp": (
+            "if PFP_STATUS_RANK[status] > PFP_STATUS_RANK[prior]:",
+            "if False and PFP_STATUS_RANK[status] > PFP_STATUS_RANK[prior]:",
+        ),
     }
     killed = 0
     for name, (old, new) in mutants.items():
@@ -147,8 +224,8 @@ def test_mutation_kills_are_recorded() -> None:
         if not _killed(module, name):
             raise AssertionError(name)
         killed += 1
-    assert killed == 3
-    assert "MutationKillCount: 3" in source
+    assert killed == 4
+    assert "MutationKillCount: 4" in source
 
 
 def _killed(module: object, name: str) -> bool:
@@ -161,6 +238,11 @@ def _killed(module: object, name: str) -> bool:
     if name == "stage":
         errs = check({"nodes": [_node("a", stage="NOPE")], "routes": []}, None)
         return not any("bad stage" in err for err in errs)
+    if name == "pfp":
+        raised = _node("a", status="DEFINITION")
+        raised["pfp_review"] = _review(prior_status="OPEN", scope_effect="status_lowered")
+        errs = check({"nodes": [raised], "routes": []}, None)
+        return not any("is above pfp_review.prior_status" in err for err in errs)
     errs = check({"nodes": [_node("a", status="OPEN", stage="OPEN")], "routes": []}, None)
     text_errs = check(
         {"nodes": [{**_node("a", status="ADMITTED_PRIMITIVE"), "statement": "impossible", "source": []}], "routes": []},
