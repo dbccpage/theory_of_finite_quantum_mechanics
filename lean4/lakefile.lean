@@ -512,3 +512,6 @@ lean_lib PromptBornBoundaries where
 -- Not a default target: build with `lake build AuthIncompleteness`.
 lean_lib AuthIncompleteness where
   roots := #[`AuthIncompleteness]
+
+lean_lib QcSelfObstruction where
+  roots := #[`QcConcatenation, `QcRepairQueue, `QcEntropySink, `QcSelfObstruction]
