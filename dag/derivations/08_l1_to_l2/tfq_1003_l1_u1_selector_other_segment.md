@@ -1,6 +1,6 @@
 # [TFQ-1003] L1-U1-SELECTOR-OTHER-SEGMENT
 
-> **Stage**: `L1_TO_L2` | **Status**: `PROVED_LEAN` | **DAG node**: `L1-U1-SELECTOR-OTHER-SEGMENT` (`PROVED_LEAN`)  
+> **Stage**: `L1_TO_L2` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `L1-U1-SELECTOR-OTHER-SEGMENT` (`OPEN`)  
 > **UUID**: `c4828dd4-6aac-54c5-ae75-507da476dcce`  
 > **Parent Derivation**: [TFQ-0312](../09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Selection of C and U(1) from finite carriers. Referenced only; the derivation or its failure is documented in QM_028 / QM_062, owned by another segment.
+Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
 
 ### Governing Obligation
-None (derived from parent L1-IMP-U1-PHASES via ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity and ds_qm062_u1_selector_layers_and_ring_iso).
+Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
 
 ### Source Status
 Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm

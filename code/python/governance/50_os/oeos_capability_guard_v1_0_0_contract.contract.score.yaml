@@ -1,144 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:oeos:capability_guard:v1.0.0",
-    "title": "Host Capability Guard",
-    "kind": "host_contract",
-    "status": "proposed",
-    "layer": "09_host",
-    "role": "CapabilityGuard",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "RequirementsOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": [
-          {
-            "id": "CAP-INV-001",
-            "statement": "Host capabilities are integrity-bound under an explicitly declared key-custody profile.",
-            "verification_status": "open"
-          },
-          {
-            "id": "CAP-INV-002",
-            "statement": "Delegation can only attenuate permissions, resource scope, quota, and lifetime.",
-            "verification_status": "open"
-          },
-          {
-            "id": "CAP-INV-003",
-            "statement": "A host capability has no parser, coercion, or constructor path into a kernel ActionLicense.",
-            "verification_status": "open"
-          }
-        ]
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+      "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+        "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "CAPABILITY_EXPIRED",
-          "CAPABILITY_INTEGRITY_REFUSED",
-          "CAPABILITY_SCOPE_REFUSED",
-          "CAPABILITY_WIDENING_REFUSED"
-        ]
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "abstract": false,
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_host_contract:v1.0.0"
-      ]
-    },
-    "requirements": {
-      "inputs": [
-        {
-          "name": "capability_request",
-          "type": "urn:omega:oeos:type:host_capability_request:v1.0.0",
-          "required": true
-        }
-      ],
-      "outputs": [
-        {
-          "name": "host_capability",
-          "type": "urn:omega:oeos:type:host_capability:v1.0.0",
-          "required": true
-        }
-      ],
-      "typed_refusals": [
-        "CAPABILITY_EXPIRED",
-        "CAPABILITY_INTEGRITY_REFUSED",
-        "CAPABILITY_SCOPE_REFUSED",
-        "CAPABILITY_WIDENING_REFUSED"
-      ],
-      "platform_requirements": [
-        {
-          "profile": "process_local_hmac_reference",
-          "requirements": [
-            "declared_key_custody_lifetime",
-            "constant_time_integrity_comparison",
-            "nonce_replay_tracking"
-          ],
-          "verification_status": "requirements_only"
-        }
-      ],
-      "evidence_ceiling": "RequirementsOnly"
-    },
-    "doctrine": {
-      "summary": "Declares attenuation-only host permissions for enumerated machine effects under a named integrity profile.",
-      "non_role": [
-        "action_license_issuance",
-        "evaluator_decision",
-        "semantic_authorization"
-      ],
-      "nonclaims": [
-        "does_not_create_mathematical_facts_or_witnesses",
-        "does_not_issue_action_licenses",
-        "does_not_authorize_engine_state_transitions",
-        "integrity_binding_is_not_claimed_unforgeable"
-      ],
-      "invariants": [
-        "child_permissions_are_a_subset_of_parent_permissions",
-        "capability_and_action_license_are_disjoint_types"
-      ],
-      "allowed_operations": [
-        "issue_process_local_root_capability",
-        "attenuate_host_capability",
-        "verify_host_capability_integrity"
-      ],
-      "forbidden_operations": [
-        "widen_permissions",
-        "convert_to_action_license"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026",
+    "subject": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py"
   },
-  "current_contract": "a461144ebce72c7b643544f9b9947f3b7e88bb5b0ad07927e67571112764ef6f",
-  "current_scoring": "58d65e5806e84f5b8d1699e22645b81fbf379992fc3936e7c148782e5fb700b6",
   "contract_history": [
     {
-      "sha256": "a461144ebce72c7b643544f9b9947f3b7e88bb5b0ad07927e67571112764ef6f",
       "bytes": 3432,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_capability_guard_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:capability_guard:v1.0.0\",\n  \"title\": \"Host Capability Guard\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"CapabilityGuard\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": [\n        {\n          \"id\": \"CAP-INV-001\",\n          \"statement\": \"Host capabilities are integrity-bound under an explicitly declared key-custody profile.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAP-INV-002\",\n          \"statement\": \"Delegation can only attenuate permissions, resource scope, quota, and lifetime.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAP-INV-003\",\n          \"statement\": \"A host capability has no parser, coercion, or constructor path into a kernel ActionLicense.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"CAPABILITY_EXPIRED\",\n        \"CAPABILITY_INTEGRITY_REFUSED\",\n        \"CAPABILITY_SCOPE_REFUSED\",\n        \"CAPABILITY_WIDENING_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"capability_request\",\n        \"type\": \"urn:omega:oeos:type:host_capability_request:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"host_capability\",\n        \"type\": \"urn:omega:oeos:type:host_capability:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"CAPABILITY_EXPIRED\",\n      \"CAPABILITY_INTEGRITY_REFUSED\",\n      \"CAPABILITY_SCOPE_REFUSED\",\n      \"CAPABILITY_WIDENING_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"process_local_hmac_reference\",\n        \"requirements\": [\n          \"declared_key_custody_lifetime\",\n          \"constant_time_integrity_comparison\",\n          \"nonce_replay_tracking\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares attenuation-only host permissions for enumerated machine effects under a named integrity profile.\",\n    \"non_role\": [\n      \"action_license_issuance\",\n      \"evaluator_decision\",\n      \"semantic_authorization\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"integrity_binding_is_not_claimed_unforgeable\"\n    ],\n    \"invariants\": [\n      \"child_permissions_are_a_subset_of_parent_permissions\",\n      \"capability_and_action_license_are_disjoint_types\"\n    ],\n    \"allowed_operations\": [\n      \"issue_process_local_root_capability\",\n      \"attenuate_host_capability\",\n      \"verify_host_capability_integrity\"\n    ],\n    \"forbidden_operations\": [\n      \"widen_permissions\",\n      \"convert_to_action_license\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:capability_guard:v1.0.0",
-        "title": "Host Capability Guard",
-        "kind": "host_contract",
-        "status": "proposed",
-        "layer": "09_host",
-        "role": "CapabilityGuard",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "RequirementsOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
@@ -160,9 +70,10 @@
               }
             ]
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "RequirementsOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": [
@@ -172,11 +83,41 @@
               "CAPABILITY_WIDENING_REFUSED"
             ]
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "allowed_operations": [
+            "issue_process_local_root_capability",
+            "attenuate_host_capability",
+            "verify_host_capability_integrity"
+          ],
+          "forbidden_operations": [
+            "widen_permissions",
+            "convert_to_action_license"
+          ],
+          "invariants": [
+            "child_permissions_are_a_subset_of_parent_permissions",
+            "capability_and_action_license_are_disjoint_types"
+          ],
+          "non_role": [
+            "action_license_issuance",
+            "evaluator_decision",
+            "semantic_authorization"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "integrity_binding_is_not_claimed_unforgeable"
+          ],
+          "summary": "Declares attenuation-only host permissions for enumerated machine effects under a named integrity profile."
+        },
+        "kind": "host_contract",
+        "layer": "09_host",
         "relationships": {
           "abstract": false,
           "extends": [
@@ -185,25 +126,20 @@
           ]
         },
         "requirements": {
+          "evidence_ceiling": "RequirementsOnly",
           "inputs": [
             {
               "name": "capability_request",
-              "type": "urn:omega:oeos:type:host_capability_request:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:host_capability_request:v1.0.0"
             }
           ],
           "outputs": [
             {
               "name": "host_capability",
-              "type": "urn:omega:oeos:type:host_capability:v1.0.0",
-              "required": true
+              "required": true,
+              "type": "urn:omega:oeos:type:host_capability:v1.0.0"
             }
-          ],
-          "typed_refusals": [
-            "CAPABILITY_EXPIRED",
-            "CAPABILITY_INTEGRITY_REFUSED",
-            "CAPABILITY_SCOPE_REFUSED",
-            "CAPABILITY_WIDENING_REFUSED"
           ],
           "platform_requirements": [
             {
@@ -216,66 +152,84 @@
               "verification_status": "requirements_only"
             }
           ],
-          "evidence_ceiling": "RequirementsOnly"
-        },
-        "doctrine": {
-          "summary": "Declares attenuation-only host permissions for enumerated machine effects under a named integrity profile.",
-          "non_role": [
-            "action_license_issuance",
-            "evaluator_decision",
-            "semantic_authorization"
-          ],
-          "nonclaims": [
-            "does_not_create_mathematical_facts_or_witnesses",
-            "does_not_issue_action_licenses",
-            "does_not_authorize_engine_state_transitions",
-            "integrity_binding_is_not_claimed_unforgeable"
-          ],
-          "invariants": [
-            "child_permissions_are_a_subset_of_parent_permissions",
-            "capability_and_action_license_are_disjoint_types"
-          ],
-          "allowed_operations": [
-            "issue_process_local_root_capability",
-            "attenuate_host_capability",
-            "verify_host_capability_integrity"
-          ],
-          "forbidden_operations": [
-            "widen_permissions",
-            "convert_to_action_license"
+          "typed_refusals": [
+            "CAPABILITY_EXPIRED",
+            "CAPABILITY_INTEGRITY_REFUSED",
+            "CAPABILITY_SCOPE_REFUSED",
+            "CAPABILITY_WIDENING_REFUSED"
           ]
-        }
+        },
+        "role": "CapabilityGuard",
+        "schema_version": "omega.contract.v1",
+        "status": "proposed",
+        "title": "Host Capability Guard"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:capability_guard:v1.0.0\",\n  \"title\": \"Host Capability Guard\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"CapabilityGuard\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": [\n        {\n          \"id\": \"CAP-INV-001\",\n          \"statement\": \"Host capabilities are integrity-bound under an explicitly declared key-custody profile.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAP-INV-002\",\n          \"statement\": \"Delegation can only attenuate permissions, resource scope, quota, and lifetime.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CAP-INV-003\",\n          \"statement\": \"A host capability has no parser, coercion, or constructor path into a kernel ActionLicense.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"CAPABILITY_EXPIRED\",\n        \"CAPABILITY_INTEGRITY_REFUSED\",\n        \"CAPABILITY_SCOPE_REFUSED\",\n        \"CAPABILITY_WIDENING_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"capability_request\",\n        \"type\": \"urn:omega:oeos:type:host_capability_request:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"host_capability\",\n        \"type\": \"urn:omega:oeos:type:host_capability:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"CAPABILITY_EXPIRED\",\n      \"CAPABILITY_INTEGRITY_REFUSED\",\n      \"CAPABILITY_SCOPE_REFUSED\",\n      \"CAPABILITY_WIDENING_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"process_local_hmac_reference\",\n        \"requirements\": [\n          \"declared_key_custody_lifetime\",\n          \"constant_time_integrity_comparison\",\n          \"nonce_replay_tracking\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares attenuation-only host permissions for enumerated machine effects under a named integrity profile.\",\n    \"non_role\": [\n      \"action_license_issuance\",\n      \"evaluator_decision\",\n      \"semantic_authorization\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"integrity_binding_is_not_claimed_unforgeable\"\n    ],\n    \"invariants\": [\n      \"child_permissions_are_a_subset_of_parent_permissions\",\n      \"capability_and_action_license_are_disjoint_types\"\n    ],\n    \"allowed_operations\": [\n      \"issue_process_local_root_capability\",\n      \"attenuate_host_capability\",\n      \"verify_host_capability_integrity\"\n    ],\n    \"forbidden_operations\": [\n      \"widen_permissions\",\n      \"convert_to_action_license\"\n    ]\n  }\n}\n",
+      "sha256": "a461144ebce72c7b643544f9b9947f3b7e88bb5b0ad07927e67571112764ef6f"
+    },
+    {
+      "bytes": 1688,
       "original_paths": [
-        "code/python/governance/50_os/oeos_capability_guard_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n    \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n      \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\",\n  \"subject\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+          "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+            "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026",
+        "subject": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py"
+      },
+      "sha256": "858754ad802146f819305f43c2bc45c3b1a3cb1954c86233ebe0508ddc59943a"
     }
   ],
+  "current_contract": "858754ad802146f819305f43c2bc45c3b1a3cb1954c86233ebe0508ddc59943a",
+  "current_scoring": "133227b21b90500bcaef3b04c5d8fe1f7029fba346e450e8e00ebb24417c0beb",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_capability_guard_v1_0_0.contract.yaml": "70ca52d4015efde23fc430e2b0ac607755f27a927a45e1b077baa12e7a999929"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "58d65e5806e84f5b8d1699e22645b81fbf379992fc3936e7c148782e5fb700b6",
       "bytes": 2217,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n    \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-capability-guard-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
           "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:50_os:oeos-capability-guard-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -284,40 +238,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "58d65e5806e84f5b8d1699e22645b81fbf379992fc3936e7c148782e5fb700b6"
+    },
+    {
+      "bytes": 1654,
+      "original_paths": [
+        "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n    \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n      \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+          "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py",
+            "sha256": "3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.py\",\n    \"sha256\": \"3ac893b74e414543a84ec929a63b5166ce5cad6b83de94d7b4bc8bef4a5c4026\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-capability-guard-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/50_os/oeos_capability_guard_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "133227b21b90500bcaef3b04c5d8fe1f7029fba346e450e8e00ebb24417c0beb"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/50_os/oeos_capability_guard_v1_0_0.contract.yaml": "70ca52d4015efde23fc430e2b0ac607755f27a927a45e1b077baa12e7a999929"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

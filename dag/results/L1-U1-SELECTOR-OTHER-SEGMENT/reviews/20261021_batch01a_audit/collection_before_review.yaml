@@ -1,0 +1,1529 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-U1-SELECTOR-OTHER-SEGMENT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Selection of C and U(1) from finite carriers. Referenced only; the derivation or its
+    failure is documented in QM_028 / QM_062, owned by another segment.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: None (derived from parent L1-IMP-U1-PHASES via ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+    and ds_qm062_u1_selector_layers_and_ring_iso).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - papers/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+  paper_relocations:
+  - from: papers/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+    to: dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - from: papers/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+    to: dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+    sha256: 3a89471ee883168c0f0a8d020fda528ff3884fbd692932ab2c5fa4dbd387477a
+  - path: dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+    sha256: c76964206433a423e556b83391ebdf06374585bd0bc1e2e4120ad156efce87b0
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: SelectorDischarged
+  line: 22
+  signature_excerpt: 'def SelectorDischarged (S : SelectorPack) : Bool'
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: SelectorPack
+  line: 16
+  signature_excerpt: structure SelectorPack
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qm062Route
+  line: 26
+  signature_excerpt: 'def qm062Route : SelectorPack'
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.add
+  line: 384
+  signature_excerpt: 'def Mat2Int.add (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: selector_not_free
+  line: 32
+  signature_excerpt: 'theorem selector_not_free : SelectorDischarged qm062Route = false'
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm062_u1_selector_layers_and_ring_iso
+  line: 685
+  signature_excerpt: "theorem ds_qm062_u1_selector_layers_and_ring_iso :\n    let I2 : Mat2Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  line: 959
+  signature_excerpt: "theorem fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle\n    (t :\
+    \ Int) :\n    ((1 * 1 - 1 * 1 = (0 : Int)) ∧ (1 * 1 + 1 * 1 = (2 : Int)) ∧ (2 : Int) ≠ 0) ∧\n    (((1\
+    \ - t * t) * (1 - t * t) + (2 * t) * (2 * t)) = (1 + t * t) * (1 + t * t)) ∧\n    ((1 - t * t) + (1\
+    \ + t * t) = 2 ∧ (2 : Int) ≠ 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  line: 1311
+  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp\
+    \ : Bool) :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n \
+    \   (∀ r : Fin 16,\n      let f (j : Fin 16) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  line: 1503
+  signature_excerpt: "theorem ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity\n\
+    \    (a1 b1 a2 b2 : Int) :\n    (Mat2Int.mul ⟨1, 0, 0, -1⟩ ⟨1, 0, 0, -1⟩ = ⟨1, 0, 0, 1⟩ ∧\n     (⟨1,\
+    \ 0, 0, -1⟩ : Mat2Int) ≠ ⟨1, 0, 0, 1⟩ ∧\n     ((-1 : Int) * (-1) = 1 ∧ (1 : Int) * 1 = 1)) ∧\n   \
+    \ (Mat2Int.mul ⟨0, 1, 1, 0⟩ ⟨0, 1, 1, 0⟩ = ⟨1, 0, 0, 1⟩ ∧\n     Mat2Int.mul ⟨1, 1, 1, 1⟩ ⟨1, -1, -1,\
+    \ 1⟩ = ⟨0, 0, 0, 0⟩ ∧\n     Mat2Int.mul ⟨0, 1, 1, 0⟩ ⟨1, 0, 0, -1⟩ ≠ Mat2Int.mul ⟨1, 0, 0, -1⟩ ⟨0,\
+    \ 1, 1, 0⟩) ∧\n    (Mat2Int.add ⟨a1, -b1, b1, a1⟩ ⟨a2, -b2, b2, a2⟩ =\n       ⟨a1 + a2, -(b1 + b2),\
+    \ b1 + b2, a1 + a2⟩ ∧\n     ((⟨a1, -b1, b1, a1⟩ : Mat2Int) = ⟨a2, -b2, b2, a2⟩ ↔ (a1 = a2 ∧ b1 = b2)))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H011U1SelectorBoundary.lean::selector_not_free
+  availability: local
+  symbol: selector_not_free
+  path: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 685
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 959
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1311
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1503
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1503
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+  availability: external
+  symbol: null
+  path: omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+  repository: the_symbol_game
+  sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+  declaration_status: file_only_no_symbol
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  availability: external
+  symbol: verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 696
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  availability: external
+  symbol: verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1060
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  availability: external
+  symbol: verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1751
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  availability: external
+  symbol: verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1751
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  availability: external
+  symbol: verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1751
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: 'Inside the unit Gaussian rationals the only phases of finite order are the four elements of
+    mu_4; the rational circle points outside mu_4 are exactly those with 2x not an integer and they have
+    infinite order (kernel instance: (3/5, 4/5)), so a finite phase group inside the Gaussian rationals
+    has order dividing 4, whereas the unit circle over a finite field F_p is a different finite carrier
+    with p -+ 1 elements (native table, not a kernel statement).'
+  colours:
+  - id: Bool
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: CayleyParameter
+    meaning: Pair (m, n) of rationals, not both zero
+  - id: CirclePoint
+    meaning: Pair (x, y) of rationals with x^2 + y^2 = 1
+  - id: Exponent
+    meaning: Natural number k
+  - id: OrderOrInfinite
+    meaning: Smallest n > 0 with z^n = 1, or infinite
+  - id: Prime
+    meaning: Smallest prime dividing den(2x), 0 if 2x is an integer
+  - id: SelectorPack
+    meaning: Four hand-set Boolean flags
+  generators:
+  - id: cayley_point
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+      (line 959): GENERAL in t : Int for the Pythagorean identity (1-t^2)^2 + (2t)^2 = (1+t^2)^2, plus
+      fixed conjuncts (1*1-1*1 = 0, 1+1 = 2); this node extends to Rat parameters and surjectivity'
+    ordered_inputs:
+    - CayleyParameter
+    output: CirclePoint
+    semantic_predicate: ((n^2-m^2)/(n^2+m^2), 2mn/(n^2+m^2)) has norm 1; every point except (-1,0) arises.
+    hypotheses:
+    - Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian rationals)
+      under complex multiplication; a phase group is a subgroup; finite means every element has finite
+      order.
+    arity: 1
+    carrier: CayleyParameter
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: circle_power
+    source_declarations:
+    - lean4/U1PowerMapInjectivity.lean::gaussPow34 (powers of 3+4i; a different module, not a source binding
+      of this node, shown for lineage)
+    ordered_inputs:
+    - CirclePoint
+    - Exponent
+    output: CirclePoint
+    semantic_predicate: z^k by complex multiplication; Re z^(k+2) = 2x Re z^(k+1) - Re z^k.
+    hypotheses:
+    - Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian rationals)
+      under complex multiplication; a phase group is a subgroup; finite means every element has finite
+      order.
+    arity: 2
+    carrier: CirclePoint
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: torsion_order
+    source_declarations:
+    - 'lean4/H011U1SelectorBoundary.lean::quarter_turn_outside_sign_subgroup (line 66): FIXED INSTANCE
+      on Fin 4 by decide (quarter + quarter = half)'
+    - lean4/U1TorsionExclusion.lean::J_order_4 (fixed 2 x 2 integer matrix of order 4, not a source binding)
+    ordered_inputs:
+    - CirclePoint
+    output: OrderOrInfinite
+    semantic_predicate: Smallest n > 0 with z^n = 1, or infinite.
+    hypotheses:
+    - Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian rationals)
+      under complex multiplication; a phase group is a subgroup; finite means every element has finite
+      order.
+    arity: 1
+    carrier: CirclePoint
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: padic_witness
+    source_declarations:
+    - no source declaration; new integer-sequence witness (Wseq) with a prime p dividing den(2x)
+    ordered_inputs:
+    - CirclePoint
+    output: Prime
+    semantic_predicate: Smallest prime p | den(2x), with v_p(2 Re z^k) = -k v_p(den 2x).
+    hypotheses:
+    - Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian rationals)
+      under complex multiplication; a phase group is a subgroup; finite means every element has finite
+      order.
+    arity: 1
+    carrier: CirclePoint
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: selector_pack_discharge
+    source_declarations:
+    - 'lean4/H011U1SelectorBoundary.lean::SelectorPack (line 16), SelectorDischarged (line 22), qm062Route
+      (line 26), selector_not_free (line 32): a 4-Boolean record, its AND, one record with rival_excluded
+      := false, and rfl; DEFINITION-LEVEL, vacuous as a derivation'
+    ordered_inputs:
+    - SelectorPack
+    output: Bool
+    semantic_predicate: AND of phase_composition_law, transport_functoriality, carrier_connectedness,
+      rival_excluded.
+    hypotheses:
+    - Bookkeeping only; the flags are hand-set.
+    arity: 1
+    carrier: SelectorPack
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  relations:
+  - id: real_part_recurrence
+    source_declarations:
+    - no source declaration; new general theorem re_rec
+    equation_or_predicate: Re z^(k+2) = 2x Re z^(k+1) - Re z^k when x^2 + y^2 = 1
+    typing_conditions: CirclePoint, Exponent
+    evidence_status: Kernel theorem re_rec; native valuation columns use it
+    scope: all rational circle points
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: torsion_is_mu4
+    source_declarations:
+    - 'lean4/H011U1SelectorBoundary.lean::sign_units_closed (line 62), quarter_turn_outside_sign_subgroup
+      (line 66): fixed Int/Fin 4 instances only'
+    equation_or_predicate: z^n = 1 for some n > 0 iff z in {(1,0), (-1,0), (0,1), (0,-1)}
+    typing_conditions: CirclePoint over Q
+    evidence_status: 'Kernel iff for every rational circle point; native orders: the 4 mu_4 points have
+      orders 1, 2, 4, 4 and all 11 other Cayley points have order 0 within bound 12; census rows B = 3,
+      6.'
+    scope: all rational circle points
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: infinite_order_when_twice_x_nonintegral
+    source_declarations:
+    - no source declaration; U1PowerMapInjectivity proves it for the single point 3+4i (not a binding)
+    equation_or_predicate: den(2x) != 1 implies z^n != 1 for all n > 0
+    typing_conditions: CirclePoint
+    evidence_status: Kernel theorem; native valuation law on 11 points with den(2x) > 1.
+    scope: all rational circle points
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: no_half_integer_x_points
+    source_declarations:
+    - no source declaration
+    equation_or_predicate: x = +-1/2 forces y^2 = 3/4, which has no rational root; hence no order-3 or
+      order-6 phase
+    typing_conditions: Rat
+    evidence_status: Kernel theorems no_point_with_x_half, cube_root_trivial; native half records
+    scope: all rational y
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: cayley_covers_the_circle
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+      (line 959): Int parameter, identity only'
+    equation_or_predicate: cayley(m,n) is on the circle; every point with x != -1 is cayley(y, 1+x); (-1,0)
+      = cayley(m, 0)
+    typing_conditions: Rat parameters
+    evidence_status: Kernel theorems cayley_on_circle, every_point_is_cayley
+    scope: all rational circle points
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: selector_pack_is_bookkeeping
+    source_declarations:
+    - 'lean4/H011U1SelectorBoundary.lean::selector_not_free (line 32): rfl on qm062Route with rival_excluded
+      := false; lean4/H011U1SelectorBoundary.lean::selector_requires_rival_exclusion (line 54): general
+      over the record but only unfolds the Boolean AND'
+    equation_or_predicate: SelectorDischarged S = false whenever one flag is false
+    typing_conditions: SelectorPack
+    evidence_status: Source theorems read, not re-proved; they carry no mathematical content about circles
+    scope: Boolean record
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    latest_host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: torsion_order
+    input_slot: 0
+    inner_operation: cayley_point
+    colour_match: CirclePoint
+    hypothesis_match: Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian
+      rationals) under complex multiplication; a phase group is a subgroup; finite means every element
+      has finite order.
+    licensing_relations:
+    - torsion_is_mu4
+    - cayley_covers_the_circle
+    evidence_status: Kernel and native
+  - outer_operation: padic_witness
+    input_slot: 0
+    inner_operation: cayley_point
+    colour_match: CirclePoint
+    hypothesis_match: Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian
+      rationals) under complex multiplication; a phase group is a subgroup; finite means every element
+      has finite order.
+    licensing_relations:
+    - infinite_order_when_twice_x_nonintegral
+    - real_part_recurrence
+    evidence_status: Kernel and native
+  identities:
+  - colour: Bool
+    proposed_operation: id_Bool
+    signature: Bool -> Bool
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: CayleyParameter
+    proposed_operation: id_CayleyParameter
+    signature: CayleyParameter -> CayleyParameter
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: CirclePoint
+    proposed_operation: id_CirclePoint
+    signature: CirclePoint -> CirclePoint
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Exponent
+    proposed_operation: id_Exponent
+    signature: Exponent -> Exponent
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: OrderOrInfinite
+    proposed_operation: id_OrderOrInfinite
+    signature: OrderOrInfinite -> OrderOrInfinite
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Prime
+    proposed_operation: id_Prime
+    signature: Prime -> Prime
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SelectorPack
+    proposed_operation: id_SelectorPack
+    signature: SelectorPack -> SelectorPack
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Derivation or failure of the selection of C and U(1) (owned by the QM_028 / QM_062 segment).
+  - 'Kernel proof of the unit circle over F_p and Z/n (finite carriers proper): cyclic of order p - (-1/p);
+    torsion over Q(i, sqrt 2) and Q(zeta_3) (larger finite phase groups).'
+  - The split-complex rival hyperbola x^2 - y^2 = 1 (torsion {+-1}) and the H011 rival_excluded flag.
+  - Completion, continuity and compactness of the phase group.
+  failed_compositions:
+  - composition: torsion_order o cayley_point onto a phase of order 3, 5, 6 or 8
+    reason: 'No rational circle point has such an order: torsion is mu_4 (kernel circle_torsion); x =
+      +-1/2 would be needed for order 3 or 6 and y^2 = 3/4 has no rational root.'
+  - composition: selector_pack_discharge from finite Gaussian-rational carriers
+    reason: No operation of this node produces the flag rival_excluded or the circle; the pack is a hand-set
+      Boolean record, and the finite carriers inside the Gaussian rationals stop at mu_4.
+  counterexamples:
+  - id: pythagorean_point_infinite_order
+    statement: (3/5, 4/5) is a rational phase of infinite order (den(2x) = 5; W_n = a^n mod 5 is never
+      0).
+    scope: Instance of not_torsion_of_den; kernel u345_infinite_order; native record (1,2).
+  - id: no_order_six_phase
+    statement: A primitive sixth root of unity would have x = 1/2 and y = sqrt(3)/2; y^2 = 3/4 is not
+      a rational square.
+    scope: Kernel no_point_with_x_half; native half record k = 1.
+  - id: semantic_sixth_root_of_unity_in_gaussian_rationals
+    kind: semantic_near_miss
+    rationale: Take x = 1/2 with y = sqrt(3)/2 as a Gaussian-rational phase of order 6; y^2 = 3/4 has
+      no rational root, so the point does not exist.
+    rejected_by: check_candidate
+  - id: semantic_pythagorean_point_is_a_quarter_turn
+    kind: semantic_near_miss
+    rationale: Read (3/5, 4/5) as a quarter turn because excluding the sign group is supposed to leave
+      i; it has infinite order.
+    rejected_by: check_candidate
+  - id: semantic_valuation_at_the_wrong_prime
+    kind: semantic_near_miss
+    rationale: Test the obstruction at the prime 3, which does not divide the denominator 5 of 2x; all
+      valuations vanish and the infinite order is hidden.
+    rejected_by: check_candidate
+  - id: semantic_valuation_exponent_off_by_one
+    kind: semantic_near_miss
+    rationale: For (7/25, 24/25) the denominator of 2x is 25 = 5^2, so the valuation of 2 Re z^k is -2k,
+      not -k.
+    rejected_by: check_candidate
+  - id: semantic_unit_i_has_infinite_order
+    kind: semantic_near_miss
+    rationale: Report the point (0,1) = i as non-torsion; it is a fourth root of unity.
+    rejected_by: check_candidate
+  - id: semantic_identity_read_as_minus_one
+    kind: semantic_near_miss
+    rationale: The point with x = 1 is the identity (order 1); order 2 belongs to x = -1.
+    rejected_by: check_candidate
+  - id: semantic_search_bound_read_as_order
+    kind: semantic_near_miss
+    rationale: The order search stops at 12; a point with no power equal to 1 up to the bound has order
+      recorded as 0, not 12.
+    rejected_by: check_candidate
+  - id: semantic_non_unit_point_flagged_as_mu4
+    kind: semantic_near_miss
+    rationale: Flag the point (5/13, 12/13) as one of the four unit points; its order is infinite.
+    rejected_by: check_candidate
+  - id: semantic_integral_twice_x_for_a_cayley_point
+    kind: semantic_near_miss
+    rationale: 2x = 10/13 is not an integer; claiming integrality would put the point in the finite list
+      and erase the p-adic witness.
+    rejected_by: check_candidate
+  - id: semantic_all_cayley_points_have_infinite_order
+    kind: semantic_near_miss
+    rationale: Generalise "(3/5,4/5) has infinite order" to every Cayley point; (0,1), (1,0), (1,1), (-1,1)
+      give (1,0), (-1,0), i and -i, so four Cayley points lie in mu_4.
+    rejected_by: check_candidate
+  - id: semantic_cayley_map_misses_minus_one
+    kind: semantic_near_miss
+    rationale: Claim the Cayley map misses (-1, 0); n = 0, m != 0 gives (-1, 0), so the map is onto the
+      circle.
+    rejected_by: check_candidate
+  - id: semantic_finite_field_circle_has_only_mu4
+    kind: semantic_near_miss
+    rationale: Read the torsion-is-mu_4 result as a statement about every finite carrier; the unit circle
+      over F_7 has 8 points and is cyclic of order 8, so orders beyond 4 occur there.
+    rejected_by: check_candidate
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Bool, CayleyParameter, CirclePoint, Exponent, OrderOrInfinite, Prime, SelectorPack
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+      sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+      sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+      sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+      sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+      sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+      sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+      sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+      sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+      sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    public_input:
+      cases:
+      - - half
+        - -2
+      - - half
+        - -1
+      - - half
+        - 0
+      - - half
+        - 1
+      - - half
+        - 2
+      - - point
+        - 0
+        - 1
+      - - point
+        - 1
+        - 0
+      - - point
+        - 1
+        - 1
+      - - point
+        - -1
+        - 1
+      - - point
+        - 1
+        - 2
+      - - point
+        - 2
+        - 1
+      - - point
+        - 1
+        - 3
+      - - point
+        - 2
+        - 3
+      - - point
+        - 3
+        - 2
+      - - point
+        - 1
+        - 4
+      - - point
+        - 3
+        - 4
+      - - point
+        - 1
+        - 8
+      - - point
+        - 4
+        - 7
+      - - point
+        - 5
+        - 12
+      - - point
+        - 2
+        - 5
+      - - census
+        - 3
+      - - census
+        - 6
+      - - ffcircle
+        - 2
+      - - ffcircle
+        - 3
+      - - ffcircle
+        - 5
+      - - ffcircle
+        - 7
+      - - ffcircle
+        - 11
+      - - ffcircle
+        - 13
+      - - ffcircle
+        - 17
+      - - ffcircle
+        - 19
+      - - ffcircle
+        - 23
+      - - ffcircle
+        - 29
+      - - ffcircle
+        - 31
+      - - ffcircle
+        - 41
+      - - ffcircle
+        - 43
+    original_target: Selection of C and U(1) from finite carriers. Referenced only; the derivation or
+      its failure is documented in QM_028 / QM_062, owned by another segment.
+    source_scope_review: 'The node is a pointer ("Referenced only ... owned by another segment"), so it
+      cannot be discharged here. The local sources are H011U1SelectorBoundary (a four-Boolean SelectorPack,
+      its AND, a record with rival_excluded := false and rfl: bookkeeping), quarter_turn_outside_sign_subgroup
+      (Fin 4 by decide), ds_qm062_u1_selector_layers_and_ring_iso (fixed 2 x 2 integers), the Int Cayley
+      identity in fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle (general in t but only
+      an identity) and ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity (fixed
+      plus 1 x 1 additivity/injectivity). The external complex_structure_selector.rs only checks the pairing
+      factor sigma(u)u. What a finite carrier can and cannot select is made exact in one place: the torsion
+      of the unit Gaussian rationals is mu_4, proved for every rational circle point with an integer-sequence
+      argument, with the Cayley map covering the whole circle. This is a no-go for finite carriers inside
+      Q(i), not a statement that C or U(1) cannot be selected by other means.'
+    admitted_assumptions: []
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: cayley_point
+      inputs:
+      - CayleyParameter
+      output: CirclePoint
+      semantic_predicate: ((n^2-m^2)/(n^2+m^2), 2mn/(n^2+m^2)) has norm 1; every point except (-1,0) arises.
+    - catalog_id: circle_power
+      inputs:
+      - CirclePoint
+      - Exponent
+      output: CirclePoint
+      semantic_predicate: z^k by complex multiplication; Re z^(k+2) = 2x Re z^(k+1) - Re z^k.
+    - catalog_id: torsion_order
+      inputs:
+      - CirclePoint
+      output: OrderOrInfinite
+      semantic_predicate: Smallest n > 0 with z^n = 1, or infinite.
+    - catalog_id: padic_witness
+      inputs:
+      - CirclePoint
+      output: Prime
+      semantic_predicate: Smallest prime p | den(2x), with v_p(2 Re z^k) = -k v_p(den 2x).
+    - catalog_id: selector_pack_discharge
+      inputs:
+      - SelectorPack
+      output: Bool
+      semantic_predicate: AND of phase_composition_law, transport_functoriality, carrier_connectedness,
+        rival_excluded.
+    composition_plan:
+    - outer_operation: torsion_order
+      input_slot: 0
+      inner_operation: cayley_point
+      colour_match: CirclePoint
+      hypothesis_match: Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian
+        rationals) under complex multiplication; a phase group is a subgroup; finite means every element
+        has finite order.
+      licensing_relations:
+      - torsion_is_mu4
+      - cayley_covers_the_circle
+      evidence_status: Kernel and native
+    - outer_operation: padic_witness
+      input_slot: 0
+      inner_operation: cayley_point
+      colour_match: CirclePoint
+      hypothesis_match: Points of the unit circle x^2 + y^2 = 1 with rational coordinates (the unit Gaussian
+        rationals) under complex multiplication; a phase group is a subgroup; finite means every element
+        has finite order.
+      licensing_relations:
+      - infinite_order_when_twice_x_nonintegral
+      - real_part_recurrence
+      evidence_status: Kernel and native
+    tree:
+    - torsion_order(cayley_point(m,n))
+    - padic_witness(cayley_point(m,n))
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: real_part_recurrence
+      source_declarations:
+      - no source declaration; new general theorem re_rec
+      equation_or_predicate: Re z^(k+2) = 2x Re z^(k+1) - Re z^k when x^2 + y^2 = 1
+      typing_conditions: CirclePoint, Exponent
+      evidence_status: Kernel theorem re_rec; native valuation columns use it
+      scope: all rational circle points
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    - id: torsion_is_mu4
+      source_declarations:
+      - 'lean4/H011U1SelectorBoundary.lean::sign_units_closed (line 62), quarter_turn_outside_sign_subgroup
+        (line 66): fixed Int/Fin 4 instances only'
+      equation_or_predicate: z^n = 1 for some n > 0 iff z in {(1,0), (-1,0), (0,1), (0,-1)}
+      typing_conditions: CirclePoint over Q
+      evidence_status: Kernel theorems circle_torsion, circle_torsion_iff, torsion_exponent_divides_four;
+        native orders
+      scope: all rational circle points
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    - id: infinite_order_when_twice_x_nonintegral
+      source_declarations:
+      - no source declaration; U1PowerMapInjectivity proves it for the single point 3+4i (not a binding)
+      equation_or_predicate: den(2x) != 1 implies z^n != 1 for all n > 0
+      typing_conditions: CirclePoint
+      evidence_status: Kernel theorem not_torsion_of_den, u345_infinite_order (instance); native valuation
+        law
+      scope: all rational circle points
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    - id: no_half_integer_x_points
+      source_declarations:
+      - no source declaration
+      equation_or_predicate: x = +-1/2 forces y^2 = 3/4, which has no rational root; hence no order-3
+        or order-6 phase
+      typing_conditions: Rat
+      evidence_status: Kernel theorems no_point_with_x_half, cube_root_trivial; native half records
+      scope: all rational y
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    - id: cayley_covers_the_circle
+      source_declarations:
+      - 'lean4/DerivationDagQMClosure.lean::fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+        (line 959): Int parameter, identity only'
+      equation_or_predicate: cayley(m,n) is on the circle; every point with x != -1 is cayley(y, 1+x);
+        (-1,0) = cayley(m, 0)
+      typing_conditions: Rat parameters
+      evidence_status: Kernel theorems cayley_on_circle, every_point_is_cayley
+      scope: all rational circle points
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    - id: selector_pack_is_bookkeeping
+      source_declarations:
+      - 'lean4/H011U1SelectorBoundary.lean::selector_not_free (line 32): rfl on qm062Route with rival_excluded
+        := false; lean4/H011U1SelectorBoundary.lean::selector_requires_rival_exclusion (line 54): general
+        over the record but only unfolds the Boolean AND'
+      equation_or_predicate: SelectorDischarged S = false whenever one flag is false
+      typing_conditions: SelectorPack
+      evidence_status: Source theorems read, not re-proved; they carry no mathematical content about circles
+      scope: Boolean record
+      source_pins:
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_u1_selector_other_segment_proved_lean.yaml
+        sha256: f331fe1b78cff44e975552ca37f1748f154c467a38aa1d08cca9dbade2e69244
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_u1_selector_other_segment.yaml
+        sha256: dea3cb78db4586ba9066f74456a98b39375ec854cce7e412c5f776035a8442e9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+        sha256: f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+        sha256: 9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md
+        sha256: 3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_u1_selector_segment.py
+        sha256: c1e17aa110f53c8dd272f18f1a5918e1161df9df524e342f58e331a1f021173f
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_u1_selector_segment.py
+        sha256: a271cb8fcdbbdc31599625517cd2ba72e58bd5af52aa9b3a7ac0096ea3f85fde
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_u1_selector_segment.rs
+        sha256: 90b58ac8a637458ca139720a2e411936de53378426556f31f8c6a71525e1d2d9
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_u1_selector_segment_replay.rs
+        sha256: 12f40618df22cd2444afa09ee2ba1813e20f6f705d7da9520c9d62e23c586e72
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 4dfc9129df6f72edbfb4a72efa63cdae8d5b7f169f49cdc62ae910e3534539cc
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: d82225e4e3872915ed5be37e0d23746316c86635106828b9576050e3d4836d64
+    rejection_predicates:
+    - Independent Gaussian-integer powers A^k/d^k with d the lcm of the denominators of x and y; orders
+      read off A^n == d^n.
+    - p-adic valuations of 2 Re z^k computed as v_p(2 Re A^k) - k v_p(d) and compared with the predicted
+      -k v_p(den 2x); points with den(2x) > 1 must have order 0 (infinite in the search bound), points
+      with integral 2x must be in mu_4.
+    - Rational y for the half-integer x values decided by the integer square test on P*Q (producer tests
+      numerator and denominator separately); x = +-1/2 must be refused.
+    - 'Census of all Cayley points in a box recomputed with exact Fractions: exactly the four mu_4 points
+      have a power equal to 1 within the bound, every other point has 2x not an integer, and (-1,0) is
+      reached.'
+    - Unit circle over F_p counted by plain enumeration of F_p^2 (producer uses the Euler criterion),
+      element orders by repeated complex multiplication, cyclicity from an element of every divisor order.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: 'Coordinate mutants of every certificate leaf plus twelve semantic near misses:
+      a sixth root of unity, the 3-4-5 point as a quarter turn, valuation at a wrong prime or with a wrong
+      exponent, i of infinite order, identity read as -1, search bound read as an order, a non-unit point
+      flagged mu_4, integral 2x for a Cayley point, all Cayley points of infinite order, the Cayley map
+      missing (-1,0), the finite-field circle read as having only mu_4.'
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent Gaussian-integer powers A^k/d^k with d the lcm of the denominators of x and y; orders
+      read off A^n == d^n.
+    - p-adic valuations of 2 Re z^k computed as v_p(2 Re A^k) - k v_p(d) and compared with the predicted
+      -k v_p(den 2x); points with den(2x) > 1 must have order 0 (infinite in the search bound), points
+      with integral 2x must be in mu_4.
+    - Rational y for the half-integer x values decided by the integer square test on P*Q (producer tests
+      numerator and denominator separately); x = +-1/2 must be refused.
+    - 'Census of all Cayley points in a box recomputed with exact Fractions: exactly the four mu_4 points
+      have a power equal to 1 within the bound, every other point has 2x not an integer, and (-1,0) is
+      reached.'
+    - Unit circle over F_p counted by plain enumeration of F_p^2 (producer uses the Euler criterion),
+      element orders by repeated complex multiplication, cyclicity from an element of every divisor order.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - U1SelectorSegment.re_rec
+    - U1SelectorSegment.Wseq_cast
+    - U1SelectorSegment.Wseq_mod
+    - U1SelectorSegment.not_torsion_of_den
+    - U1SelectorSegment.no_point_with_x_half
+    - U1SelectorSegment.circle_integral_case
+    - U1SelectorSegment.circle_torsion
+    - U1SelectorSegment.circle_torsion_iff
+    - U1SelectorSegment.torsion_exponent_divides_four
+    - U1SelectorSegment.cube_root_trivial
+    - U1SelectorSegment.u345_infinite_order
+    - U1SelectorSegment.cayley_on_circle
+    - U1SelectorSegment.every_point_is_cayley
+    - U1SelectorSegment.cayley_reaches_south_pole
+    unpaid_imports:
+    - Derivation or failure of the selection of C and U(1) (owned by the QM_028 / QM_062 segment).
+    - 'Kernel proof of the unit circle over F_p and Z/n (finite carriers proper): cyclic of order p -
+      (-1/p); torsion over Q(i, sqrt 2) and Q(zeta_3) (larger finite phase groups).'
+    - The split-complex rival hyperbola x^2 - y^2 = 1 (torsion {+-1}) and the H011 rival_excluded flag.
+    - Completion, continuity and compactness of the phase group.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/runs/20261021T132245Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- 'The node is a pointer ("Referenced only ... owned by another segment"), so it cannot be discharged
+  here. The local sources are H011U1SelectorBoundary (a four-Boolean SelectorPack, its AND, a record with
+  rival_excluded := false and rfl: bookkeeping), quarter_turn_outside_sign_subgroup (Fin 4 by decide),
+  ds_qm062_u1_selector_layers_and_ring_iso (fixed 2 x 2 integers), the Int Cayley identity in fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  (general in t but only an identity) and ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+  (fixed plus 1 x 1 additivity/injectivity). The external complex_structure_selector.rs only checks the
+  pairing factor sigma(u)u. What a finite carrier can and cannot select is made exact in one place: the
+  torsion of the unit Gaussian rationals is mu_4, proved for every rational circle point with an integer-sequence
+  argument, with the Cayley map covering the whole circle. This is a no-go for finite carriers inside
+  Q(i), not a statement that C or U(1) cannot be selected by other means.'

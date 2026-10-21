@@ -1,7 +1,8 @@
 import OperationalTomography
 
 /-!
-Selective test followed by preparation gives a rank-one outcome filter.
+Selective test followed by preparation constructs a rank-one outcome filter
+under the stated closure rules.
 Positivity, sequential admission, global separation, and spanning are explicit
 operational hypotheses. Product-test resets descend, but their irreducibility
 is equivalent to tomography. Global reset descent contains the missing
@@ -338,6 +339,22 @@ theorem doubled_protected_reset_no_descent :
   refine ⟨f, fun x => ?_⟩
   exact (LinearMap.congr_fun hf x).symm
 
+/-- Once the operation family may be freely chosen, existence of a descending
+irreducible family is exactly tomography. This is a reformulation, not an
+independent operational derivation or an admission theorem. -/
+theorem exists_descending_irreducible_iff [Fintype I] [DecidableEq I] [Nonempty I]
+    (D : Calibrated K V (I → K)) :
+    (∃ (ops : I × I → V →ₗ[K] V) (loc : I × I → (I → K) →ₗ[K] (I → K)),
+      (∀ g x, D.observe (ops g x) = loc g (D.observe x)) ∧
+      OperationalTomography.Irreducible ops) ↔ Function.Injective D.observe := by
+  constructor
+  · rintro ⟨ops, loc, descent, irr⟩
+    exact calibrated_tomography D ops loc descent irr
+  · intro hinj
+    exact ⟨fun ij => lift D (matrixUnit ij.1 ij.2),
+      fun ij => matrixUnit ij.1 ij.2, fun ij => lift_descent D _,
+      (product_resets_irreducible_iff D).mpr hinj⟩
+
 end OperationalFilterFamily
 
 #print axioms OperationalFilterFamily.reset_is_sequential
@@ -365,3 +382,5 @@ end OperationalFilterFamily
 #print axioms OperationalFilterFamily.normalized_reset_family
 
 #print axioms OperationalFilterFamily.normalization_faithful
+
+#print axioms OperationalFilterFamily.exists_descending_irreducible_iff

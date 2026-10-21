@@ -1,140 +1,77 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/category_theory/finite_partial_structure.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/category_theory/finite_partial_structure.rs",
-      "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
-      "language": "Rust"
+      "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
     },
-    "status": "source_reviewed",
-    "formal_specification": {
-      "profile": "Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion.",
-      "domain": "Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.",
-      "behavior": [
-        "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
-        "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
-        "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
-        "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
-        "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
-        "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
-        "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
-        "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
-        "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
-        "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
-      ],
-      "capability": "L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates."
-    },
-    "operations": {
-      "cardinality": {
-        "line": 48,
-        "signature": "fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>",
-        "obligation": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index."
-      },
-      "Structure::validate": {
-        "line": 56,
-        "signature": "pub fn validate(&self) -> Result<(), DescentError>",
-        "obligation": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token."
-      },
-      "SortQuotient::validate": {
-        "line": 81,
-        "signature": "fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>",
-        "obligation": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged."
-      },
-      "SortQuotient::tuple_image": {
-        "line": 95,
-        "signature": "fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize",
-        "obligation": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call."
-      },
-      "insert_fiber": {
-        "line": 108,
-        "signature": "fn insert_fiber<T: Copy + Eq>(\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\n    conflict: impl FnOnce(usize, T) -> DescentError,\n) -> Result<(), DescentError>",
-        "obligation": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative."
-      },
-      "finish_fibers": {
-        "line": 119,
-        "signature": "fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>",
-        "obligation": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation."
-      },
-      "descend_operation": {
-        "line": 123,
-        "signature": "fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>",
-        "obligation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values."
-      },
-      "descend_predicate": {
-        "line": 136,
-        "signature": "fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>",
-        "obligation": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled."
-      },
-      "descend": {
-        "line": 151,
-        "signature": "pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>",
-        "obligation": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input."
-      },
-      "verify": {
-        "line": 159,
-        "signature": "pub fn verify(\n    source: &FinitePartialStructure,\n    quotient: &SortQuotient,\n    target: &FinitePartialStructure,\n) -> Result<(), DescentError>",
-        "obligation": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
-      }
-    },
-    "invariants": [
-      "Public source/quotient records are raw but immutable for duration of borrow. Source validation establishes all sort references,output bounds,complete Cartesian row counts (including nullary1/empty0) before quotient validation establishes same sort-count,map lengths,range and surjectivity. Thus operation output-map indexing and tuple map indexing use admitted source values/coordinates. Validation errors retain original output-before-input/source-before-map/operation-before-predicate precedence.",
-      "Cardinality is explicit checked prefix admission,not mathematical product reassociation. Later zero does not erase earlier overflow;zero prefix does not hide later unknown sort. Current source function body unchanged and tested nearusizeMAX without allocating conceptual huge carriers. Source table length equals admitted cardinality;when input has size0,source row vector empty,so no modulo/divide byzero call. Nullary source/target Cartesian singleton has empty tuple,image0 and one target marker. Empty output sort still permits a nullary undefined operation valueNone;Option mapping stays lazy and never indexes empty output map.",
-      "Mixed radix induction:source row<source checked product yields each reversed decoded coordinate<size. Range-admitted quotient maps give each target digit<target base. If row exists all source bases>0;surjective map from positive source requires positive target base. Checked target product fitsusize;every positive reverse-prefix product≤full product,so stride multiplication fits. With suffix<stride,digit<base, digit*stride+suffix<base*stride;all intermediate terms/sums and final index<count bounded. Lean coordinate/mixed-digit/fit lemmas correspond to source arithmetic;no extracted machine proof.",
-      "Product of surjective coordinate maps is onto,including nullary singleton and empty tuples. Complete source row enumeration therefore reaches every target row. At each target marker,first source row retained;all later projected operation Option values or predicate bools must equal it. Stored Some((row,None)) is a seen undefined value,not unseen row. A conflicting source row proves no descended total target table on that quotient can agree with every source row;error identifies first input table/first conflicting row and first saved representative.",
-      "When all fibers constant,the target function at each tuple is uniquely determined by surjectivity. Operation projection Option.map(outputMap) reflects undefinedness (None iff sourceNone),while defined outputs may collapse legitimately;predicates preserve/reflection of false as well as true. Lean exists_descent_iff/factor_spec/unique/conflict_refuses prove exact fiber criterion;Option/reflection/composition lemmas cover partial operations and Bool inequality covers predicates. Source many-sorted row/signature/order refinement remains explicit,not generic category-law authority.",
-      "Private generic fiber helper instantiated only with Copy/Eq Optionusize/bool and concrete stack closures constructing existing typed error enums;no arbitrary caller callback/side effect. It matches exact old outerOption row logic,retains first representative on equal revisits and invokes conflict only on inequality. Per-operation/predicate helper called in old order,with same target count/tuple/output observations;finish moves exact target-index values. Therefore old and refactored results/first error fields identical for all admitted inputs,not just small native domains.",
-      "Success output has quotient target sorts with same sort-count;all operation/predicate sort IDs copied from admitted source,values mapped within targetoutput sort,lengths exact target cardinalities,so it is a valid raw structure. Replay computes this output and compares every claim field;invalid or different raw claim never used as an index. No owned enduring certificate or guarantee about later mutations of source/map/target. All own arithmetic/indexing relies on the admitted conditions above;allocator/capacity remain TCB."
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "failure_paths": {
-      "cardinality": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
-      "Structure::validate": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
-      "SortQuotient::validate": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
-      "SortQuotient::tuple_image": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
-      "insert_fiber": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
-      "finish_fibers": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
-      "descend_operation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
-      "descend_predicate": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
-      "descend": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
-      "verify": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
-    },
-    "trust_boundary": "Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance.",
-    "assurance_limits": [
-      "Contracts pending;AuthorityEffect None.",
-      "Raw structure/map/target remain mutable;replay against supplied current context only.",
-      "Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.",
-      "Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.",
-      "Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality."
-    ],
-    "review_evidence": [
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
       {
-        "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
-        "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
+        "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+        "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
     ],
-    "open_obligations": []
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
+    "subject": "code/rust/src/category_theory/finite_partial_structure.rs"
   },
-  "current_contract": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c",
-  "current_scoring": "b56ee3bfdea4ae19abbb03c025667a97321fc7e868dacef5438a3533d2e40a4e",
   "contract_history": [
     {
-      "sha256": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c",
       "bytes": 19899,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion.\",\n    \"domain\": \"Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.\",\n    \"behavior\": [\n      \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\",\n      \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\",\n      \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\",\n      \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\",\n      \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\",\n      \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\",\n      \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\",\n      \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\",\n      \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\",\n      \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n    ],\n    \"capability\": \"L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates.\"\n  },\n  \"operations\": {\n    \"cardinality\": {\n      \"line\": 48,\n      \"signature\": \"fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>\",\n      \"obligation\": \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\"\n    },\n    \"Structure::validate\": {\n      \"line\": 56,\n      \"signature\": \"pub fn validate(&self) -> Result<(), DescentError>\",\n      \"obligation\": \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\"\n    },\n    \"SortQuotient::validate\": {\n      \"line\": 81,\n      \"signature\": \"fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>\",\n      \"obligation\": \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\"\n    },\n    \"SortQuotient::tuple_image\": {\n      \"line\": 95,\n      \"signature\": \"fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize\",\n      \"obligation\": \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\"\n    },\n    \"insert_fiber\": {\n      \"line\": 108,\n      \"signature\": \"fn insert_fiber<T: Copy + Eq>(\\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\\n    conflict: impl FnOnce(usize, T) -> DescentError,\\n) -> Result<(), DescentError>\",\n      \"obligation\": \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\"\n    },\n    \"finish_fibers\": {\n      \"line\": 119,\n      \"signature\": \"fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>\",\n      \"obligation\": \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\"\n    },\n    \"descend_operation\": {\n      \"line\": 123,\n      \"signature\": \"fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>\",\n      \"obligation\": \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\"\n    },\n    \"descend_predicate\": {\n      \"line\": 136,\n      \"signature\": \"fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>\",\n      \"obligation\": \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\"\n    },\n    \"descend\": {\n      \"line\": 151,\n      \"signature\": \"pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>\",\n      \"obligation\": \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\"\n    },\n    \"verify\": {\n      \"line\": 159,\n      \"signature\": \"pub fn verify(\\n    source: &FinitePartialStructure,\\n    quotient: &SortQuotient,\\n    target: &FinitePartialStructure,\\n) -> Result<(), DescentError>\",\n      \"obligation\": \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n    }\n  },\n  \"invariants\": [\n    \"Public source/quotient records are raw but immutable for duration of borrow. Source validation establishes all sort references,output bounds,complete Cartesian row counts (including nullary1/empty0) before quotient validation establishes same sort-count,map lengths,range and surjectivity. Thus operation output-map indexing and tuple map indexing use admitted source values/coordinates. Validation errors retain original output-before-input/source-before-map/operation-before-predicate precedence.\",\n    \"Cardinality is explicit checked prefix admission,not mathematical product reassociation. Later zero does not erase earlier overflow;zero prefix does not hide later unknown sort. Current source function body unchanged and tested nearusizeMAX without allocating conceptual huge carriers. Source table length equals admitted cardinality;when input has size0,source row vector empty,so no modulo/divide byzero call. Nullary source/target Cartesian singleton has empty tuple,image0 and one target marker. Empty output sort still permits a nullary undefined operation valueNone;Option mapping stays lazy and never indexes empty output map.\",\n    \"Mixed radix induction:source row<source checked product yields each reversed decoded coordinate<size. Range-admitted quotient maps give each target digit<target base. If row exists all source bases>0;surjective map from positive source requires positive target base. Checked target product fitsusize;every positive reverse-prefix product≤full product,so stride multiplication fits. With suffix<stride,digit<base, digit*stride+suffix<base*stride;all intermediate terms/sums and final index<count bounded. Lean coordinate/mixed-digit/fit lemmas correspond to source arithmetic;no extracted machine proof.\",\n    \"Product of surjective coordinate maps is onto,including nullary singleton and empty tuples. Complete source row enumeration therefore reaches every target row. At each target marker,first source row retained;all later projected operation Option values or predicate bools must equal it. Stored Some((row,None)) is a seen undefined value,not unseen row. A conflicting source row proves no descended total target table on that quotient can agree with every source row;error identifies first input table/first conflicting row and first saved representative.\",\n    \"When all fibers constant,the target function at each tuple is uniquely determined by surjectivity. Operation projection Option.map(outputMap) reflects undefinedness (None iff sourceNone),while defined outputs may collapse legitimately;predicates preserve/reflection of false as well as true. Lean exists_descent_iff/factor_spec/unique/conflict_refuses prove exact fiber criterion;Option/reflection/composition lemmas cover partial operations and Bool inequality covers predicates. Source many-sorted row/signature/order refinement remains explicit,not generic category-law authority.\",\n    \"Private generic fiber helper instantiated only with Copy/Eq Optionusize/bool and concrete stack closures constructing existing typed error enums;no arbitrary caller callback/side effect. It matches exact old outerOption row logic,retains first representative on equal revisits and invokes conflict only on inequality. Per-operation/predicate helper called in old order,with same target count/tuple/output observations;finish moves exact target-index values. Therefore old and refactored results/first error fields identical for all admitted inputs,not just small native domains.\",\n    \"Success output has quotient target sorts with same sort-count;all operation/predicate sort IDs copied from admitted source,values mapped within targetoutput sort,lengths exact target cardinalities,so it is a valid raw structure. Replay computes this output and compares every claim field;invalid or different raw claim never used as an index. No owned enduring certificate or guarantee about later mutations of source/map/target. All own arithmetic/indexing relies on the admitted conditions above;allocator/capacity remain TCB.\"\n  ],\n  \"failure_paths\": {\n    \"cardinality\": \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\",\n    \"Structure::validate\": \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\",\n    \"SortQuotient::validate\": \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\",\n    \"SortQuotient::tuple_image\": \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\",\n    \"insert_fiber\": \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\",\n    \"finish_fibers\": \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\",\n    \"descend_operation\": \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\",\n    \"descend_predicate\": \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\",\n    \"descend\": \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\",\n    \"verify\": \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Raw structure/map/target remain mutable;replay against supplied current context only.\",\n    \"Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.\",\n    \"Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.\",\n    \"Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_partial_structure.score.yaml\",\n      \"sha256\": \"b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_partial_structure.rs",
-          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
-          "language": "Rust"
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
         },
-        "status": "source_reviewed",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffect None.",
+          "Raw structure/map/target remain mutable;replay against supplied current context only.",
+          "Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.",
+          "Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.",
+          "Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality."
+        ],
+        "failure_paths": {
+          "SortQuotient::tuple_image": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
+          "SortQuotient::validate": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
+          "Structure::validate": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
+          "cardinality": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
+          "descend": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
+          "descend_operation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
+          "descend_predicate": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
+          "finish_fibers": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
+          "insert_fiber": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
+          "verify": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
+        },
         "formal_specification": {
-          "profile": "Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion.",
-          "domain": "Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.",
           "behavior": [
             "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
             "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
@@ -147,59 +84,9 @@
             "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
             "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
           ],
-          "capability": "L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates."
-        },
-        "operations": {
-          "cardinality": {
-            "line": 48,
-            "signature": "fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>",
-            "obligation": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index."
-          },
-          "Structure::validate": {
-            "line": 56,
-            "signature": "pub fn validate(&self) -> Result<(), DescentError>",
-            "obligation": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token."
-          },
-          "SortQuotient::validate": {
-            "line": 81,
-            "signature": "fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>",
-            "obligation": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged."
-          },
-          "SortQuotient::tuple_image": {
-            "line": 95,
-            "signature": "fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize",
-            "obligation": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call."
-          },
-          "insert_fiber": {
-            "line": 108,
-            "signature": "fn insert_fiber<T: Copy + Eq>(\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\n    conflict: impl FnOnce(usize, T) -> DescentError,\n) -> Result<(), DescentError>",
-            "obligation": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative."
-          },
-          "finish_fibers": {
-            "line": 119,
-            "signature": "fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>",
-            "obligation": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation."
-          },
-          "descend_operation": {
-            "line": 123,
-            "signature": "fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>",
-            "obligation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values."
-          },
-          "descend_predicate": {
-            "line": 136,
-            "signature": "fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>",
-            "obligation": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled."
-          },
-          "descend": {
-            "line": 151,
-            "signature": "pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>",
-            "obligation": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input."
-          },
-          "verify": {
-            "line": 159,
-            "signature": "pub fn verify(\n    source: &FinitePartialStructure,\n    quotient: &SortQuotient,\n    target: &FinitePartialStructure,\n) -> Result<(), DescentError>",
-            "obligation": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
-          }
+          "capability": "L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates.",
+          "domain": "Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.",
+          "profile": "Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion."
         },
         "invariants": [
           "Public source/quotient records are raw but immutable for duration of borrow. Source validation establishes all sort references,output bounds,complete Cartesian row counts (including nullary1/empty0) before quotient validation establishes same sort-count,map lengths,range and surjectivity. Thus operation output-map indexing and tuple map indexing use admitted source values/coordinates. Validation errors retain original output-before-input/source-before-map/operation-before-predicate precedence.",
@@ -210,19 +97,141 @@
           "Private generic fiber helper instantiated only with Copy/Eq Optionusize/bool and concrete stack closures constructing existing typed error enums;no arbitrary caller callback/side effect. It matches exact old outerOption row logic,retains first representative on equal revisits and invokes conflict only on inequality. Per-operation/predicate helper called in old order,with same target count/tuple/output observations;finish moves exact target-index values. Therefore old and refactored results/first error fields identical for all admitted inputs,not just small native domains.",
           "Success output has quotient target sorts with same sort-count;all operation/predicate sort IDs copied from admitted source,values mapped within targetoutput sort,lengths exact target cardinalities,so it is a valid raw structure. Replay computes this output and compares every claim field;invalid or different raw claim never used as an index. No owned enduring certificate or guarantee about later mutations of source/map/target. All own arithmetic/indexing relies on the admitted conditions above;allocator/capacity remain TCB."
         ],
-        "failure_paths": {
-          "cardinality": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
-          "Structure::validate": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
-          "SortQuotient::validate": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
-          "SortQuotient::tuple_image": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
-          "insert_fiber": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
-          "finish_fibers": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
-          "descend_operation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
-          "descend_predicate": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
-          "descend": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
-          "verify": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
+        "open_obligations": [],
+        "operations": {
+          "SortQuotient::tuple_image": {
+            "line": 95,
+            "obligation": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
+            "signature": "fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize"
+          },
+          "SortQuotient::validate": {
+            "line": 81,
+            "obligation": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
+            "signature": "fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>"
+          },
+          "Structure::validate": {
+            "line": 56,
+            "obligation": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
+            "signature": "pub fn validate(&self) -> Result<(), DescentError>"
+          },
+          "cardinality": {
+            "line": 48,
+            "obligation": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
+            "signature": "fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>"
+          },
+          "descend": {
+            "line": 151,
+            "obligation": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
+            "signature": "pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>"
+          },
+          "descend_operation": {
+            "line": 123,
+            "obligation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
+            "signature": "fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>"
+          },
+          "descend_predicate": {
+            "line": 136,
+            "obligation": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
+            "signature": "fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>"
+          },
+          "finish_fibers": {
+            "line": 119,
+            "obligation": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
+            "signature": "fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>"
+          },
+          "insert_fiber": {
+            "line": 108,
+            "obligation": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
+            "signature": "fn insert_fiber<T: Copy + Eq>(\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\n    conflict: impl FnOnce(usize, T) -> DescentError,\n) -> Result<(), DescentError>"
+          },
+          "verify": {
+            "line": 159,
+            "obligation": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.",
+            "signature": "pub fn verify(\n    source: &FinitePartialStructure,\n    quotient: &SortQuotient,\n    target: &FinitePartialStructure,\n) -> Result<(), DescentError>"
+          }
         },
-        "trust_boundary": "Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance.",
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
+            "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
+          }
+        ],
+        "schema_version": "1.0.0",
+        "status": "source_reviewed",
+        "trust_boundary": "Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance."
+      },
+      "sha256": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c"
+    },
+    {
+      "bytes": 1650,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_partial_structure.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n      \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n  \"subject\": \"code/rust/src/category_theory/finite_partial_structure.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+            "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
+        "subject": "code/rust/src/category_theory/finite_partial_structure.rs"
+      },
+      "sha256": "4679891c90fb7ff93ca058fb6193a4fa312045289079df1a06a52f587c97315c"
+    }
+  ],
+  "current_contract": "4679891c90fb7ff93ca058fb6193a4fa312045289079df1a06a52f587c97315c",
+  "current_scoring": "f2caf4a37a84a4fe7573256e61052fcfc7263ec30d7cac0cd6cdc81e461a3f29",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c",
+    "code/rust/src/category_theory/finite_partial_structure.rs.scoring.yaml": "a20b69d68cdd6fa43cd4e7dd51b7d82ff94a831976c7be4ce1f36f1e5a321700",
+    "code/rust/src/category_theory/finite_partial_structure.score.yaml": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106",
+    "evidence/quality/category_homology/resume-20261019/partial-structure-previous/finite_partial_structure.score.yaml": "3a71d17cd0c70f713bb670993d17867ce142fa93e1fb1cb10ac1f3b1e5630c26"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4674,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_partial_structure.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_partial_structure.rs\"\n  language: \"Rust\"\n  sha256: \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:45:13.943516+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_partial_structure\"\n  description: \"Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/baseline.json\", \"sha256\": \"766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/summary.json\", \"sha256\": \"c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/mutations.json\", \"sha256\": \"4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json\", \"sha256\": \"48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json\", \"sha256\": \"a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_partial_structure.json\", \"sha256\": \"3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 29\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 317\n  parsed_production_functions: 10\n  max_production_ccn: 9\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Raw structure/map/target remain mutable;replay against supplied current context only.\"\n  - \"Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.\"\n  - \"Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.\"\n  - \"Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality.\"\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+        },
         "assurance_limits": [
           "Contracts pending;AuthorityEffect None.",
           "Raw structure/map/target remain mutable;replay against supplied current context only.",
@@ -230,36 +239,51 @@
           "Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.",
           "Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality."
         ],
-        "review_evidence": [
+        "claim": {
+          "description": "Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_partial_structure"
+        },
+        "composite_grade": "A",
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-19T21:45:13.943516+00:00",
+        "evidence": [
           {
-            "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
-            "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
+            "path": "evidence/quality/category_homology/20261019T214257Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T214257Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T214257Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c"
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_partial_structure.json",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2"
           }
         ],
-        "open_obligations": []
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion.\",\n    \"domain\": \"Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.\",\n    \"behavior\": [\n      \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\",\n      \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\",\n      \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\",\n      \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\",\n      \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\",\n      \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\",\n      \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\",\n      \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\",\n      \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\",\n      \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n    ],\n    \"capability\": \"L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates.\"\n  },\n  \"operations\": {\n    \"cardinality\": {\n      \"line\": 48,\n      \"signature\": \"fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>\",\n      \"obligation\": \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\"\n    },\n    \"Structure::validate\": {\n      \"line\": 56,\n      \"signature\": \"pub fn validate(&self) -> Result<(), DescentError>\",\n      \"obligation\": \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\"\n    },\n    \"SortQuotient::validate\": {\n      \"line\": 81,\n      \"signature\": \"fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>\",\n      \"obligation\": \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\"\n    },\n    \"SortQuotient::tuple_image\": {\n      \"line\": 95,\n      \"signature\": \"fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize\",\n      \"obligation\": \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\"\n    },\n    \"insert_fiber\": {\n      \"line\": 108,\n      \"signature\": \"fn insert_fiber<T: Copy + Eq>(\\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\\n    conflict: impl FnOnce(usize, T) -> DescentError,\\n) -> Result<(), DescentError>\",\n      \"obligation\": \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\"\n    },\n    \"finish_fibers\": {\n      \"line\": 119,\n      \"signature\": \"fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>\",\n      \"obligation\": \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\"\n    },\n    \"descend_operation\": {\n      \"line\": 123,\n      \"signature\": \"fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>\",\n      \"obligation\": \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\"\n    },\n    \"descend_predicate\": {\n      \"line\": 136,\n      \"signature\": \"fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>\",\n      \"obligation\": \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\"\n    },\n    \"descend\": {\n      \"line\": 151,\n      \"signature\": \"pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>\",\n      \"obligation\": \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\"\n    },\n    \"verify\": {\n      \"line\": 159,\n      \"signature\": \"pub fn verify(\\n    source: &FinitePartialStructure,\\n    quotient: &SortQuotient,\\n    target: &FinitePartialStructure,\\n) -> Result<(), DescentError>\",\n      \"obligation\": \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n    }\n  },\n  \"invariants\": [\n    \"Public source/quotient records are raw but immutable for duration of borrow. Source validation establishes all sort references,output bounds,complete Cartesian row counts (including nullary1/empty0) before quotient validation establishes same sort-count,map lengths,range and surjectivity. Thus operation output-map indexing and tuple map indexing use admitted source values/coordinates. Validation errors retain original output-before-input/source-before-map/operation-before-predicate precedence.\",\n    \"Cardinality is explicit checked prefix admission,not mathematical product reassociation. Later zero does not erase earlier overflow;zero prefix does not hide later unknown sort. Current source function body unchanged and tested nearusizeMAX without allocating conceptual huge carriers. Source table length equals admitted cardinality;when input has size0,source row vector empty,so no modulo/divide byzero call. Nullary source/target Cartesian singleton has empty tuple,image0 and one target marker. Empty output sort still permits a nullary undefined operation valueNone;Option mapping stays lazy and never indexes empty output map.\",\n    \"Mixed radix induction:source row<source checked product yields each reversed decoded coordinate<size. Range-admitted quotient maps give each target digit<target base. If row exists all source bases>0;surjective map from positive source requires positive target base. Checked target product fitsusize;every positive reverse-prefix product≤full product,so stride multiplication fits. With suffix<stride,digit<base, digit*stride+suffix<base*stride;all intermediate terms/sums and final index<count bounded. Lean coordinate/mixed-digit/fit lemmas correspond to source arithmetic;no extracted machine proof.\",\n    \"Product of surjective coordinate maps is onto,including nullary singleton and empty tuples. Complete source row enumeration therefore reaches every target row. At each target marker,first source row retained;all later projected operation Option values or predicate bools must equal it. Stored Some((row,None)) is a seen undefined value,not unseen row. A conflicting source row proves no descended total target table on that quotient can agree with every source row;error identifies first input table/first conflicting row and first saved representative.\",\n    \"When all fibers constant,the target function at each tuple is uniquely determined by surjectivity. Operation projection Option.map(outputMap) reflects undefinedness (None iff sourceNone),while defined outputs may collapse legitimately;predicates preserve/reflection of false as well as true. Lean exists_descent_iff/factor_spec/unique/conflict_refuses prove exact fiber criterion;Option/reflection/composition lemmas cover partial operations and Bool inequality covers predicates. Source many-sorted row/signature/order refinement remains explicit,not generic category-law authority.\",\n    \"Private generic fiber helper instantiated only with Copy/Eq Optionusize/bool and concrete stack closures constructing existing typed error enums;no arbitrary caller callback/side effect. It matches exact old outerOption row logic,retains first representative on equal revisits and invokes conflict only on inequality. Per-operation/predicate helper called in old order,with same target count/tuple/output observations;finish moves exact target-index values. Therefore old and refactored results/first error fields identical for all admitted inputs,not just small native domains.\",\n    \"Success output has quotient target sorts with same sort-count;all operation/predicate sort IDs copied from admitted source,values mapped within targetoutput sort,lengths exact target cardinalities,so it is a valid raw structure. Replay computes this output and compares every claim field;invalid or different raw claim never used as an index. No owned enduring certificate or guarantee about later mutations of source/map/target. All own arithmetic/indexing relies on the admitted conditions above;allocator/capacity remain TCB.\"\n  ],\n  \"failure_paths\": {\n    \"cardinality\": \"Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.\",\n    \"Structure::validate\": \"For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.\",\n    \"SortQuotient::validate\": \"Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.\",\n    \"SortQuotient::tuple_image\": \"Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.\",\n    \"insert_fiber\": \"Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.\",\n    \"finish_fibers\": \"Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.\",\n    \"descend_operation\": \"Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.\",\n    \"descend_predicate\": \"Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.\",\n    \"descend\": \"Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.\",\n    \"verify\": \"Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate.\"\n  },\n  \"trust_boundary\": \"Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffect None.\",\n    \"Raw structure/map/target remain mutable;replay against supplied current context only.\",\n    \"Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.\",\n    \"Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.\",\n    \"Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_partial_structure.score.yaml\",\n      \"sha256\": \"b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106",
-      "bytes": 4674,
-      "record": {
-        "schema_version": "2.0.0",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
-          "language": "Rust",
-          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
-        "engineering_target": "A",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -267,58 +291,40 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
-        "is_complete": true,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-19T21:45:13.943516+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_partial_structure",
-          "description": "Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 29,
+          "survived": 0,
+          "unrun": 0
         },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
+        "structure": {
+          "cognitive_complexity_upper_bound": 7,
+          "control_nesting": 3,
+          "expanded_ast": false,
+          "functions_exceeding_A": [],
+          "max_production_ccn": 9,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 317,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261019T214257Z/baseline.json",
-            "sha256": "766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T214257Z/summary.json",
-            "sha256": "c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T214257Z/mutations.json",
-            "sha256": "4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json",
-            "sha256": "48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json",
-            "sha256": "a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
-          },
-          {
-            "path": "code/rust/quality/category_homology/assessments/finite_partial_structure.json",
-            "sha256": "3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
-          }
-        ],
         "verification": {
           "baseline_ok": true,
-          "source_snapshot_unchanged": true,
           "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "dependency_contents_stable": true,
           "local_mutant_ids": [
             "RR-1-0",
             "RR-2-1",
@@ -350,62 +356,37 @@
             "RR-28-27",
             "RR-29-28"
           ],
-          "dependency_contents_stable": true
-        },
-        "mutation_accounting": {
-          "killed": 29,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": 1.0
-        },
-        "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 317,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 9,
-          "cognitive_complexity_upper_bound": 7,
-          "control_nesting": 3,
-          "opaque_function_macros": [],
-          "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        },
-        "open_findings": [],
-        "assurance_limits": [
-          "Contracts pending;AuthorityEffect None.",
-          "Raw structure/map/target remain mutable;replay against supplied current context only.",
-          "Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.",
-          "Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.",
-          "Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality."
-        ]
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_partial_structure.rs\"\n  language: \"Rust\"\n  sha256: \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:45:13.943516+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_partial_structure\"\n  description: \"Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/baseline.json\", \"sha256\": \"766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/summary.json\", \"sha256\": \"c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/mutations.json\", \"sha256\": \"4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json\", \"sha256\": \"48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json\", \"sha256\": \"a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_partial_structure.json\", \"sha256\": \"3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 29\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 317\n  parsed_production_functions: 10\n  max_production_ccn: 9\n  cognitive_complexity_upper_bound: 7\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffect None.\"\n  - \"Raw structure/map/target remain mutable;replay against supplied current context only.\"\n  - \"Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.\"\n  - \"Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.\"\n  - \"Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality.\"\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_partial_structure.score.yaml"
-      ]
+      "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
     },
     {
-      "sha256": "a20b69d68cdd6fa43cd4e7dd51b7d82ff94a831976c7be4ce1f36f1e5a321700",
       "bytes": 2353,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_partial_structure.rs.scoring.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.score.yaml\",\n    \"sha256\": \"b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml\",\n    \"sha256\": \"15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
-          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
-          "language": "Rust"
-        },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
         "architecture_target": "L4",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
+          "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
+        },
+        "assessment_status": "existing_source_review_referenced",
+        "composite_grade": "A",
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml",
+          "sha256": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c"
+        },
         "engineering_target": "A",
-        "level": "L3",
         "gates": {
           "G1": "A",
           "G2": "A",
@@ -413,30 +394,16 @@
           "G4": "A",
           "G5": "A"
         },
-        "composite_grade": "A",
-        "score_token": "L3A",
         "is_complete": true,
-        "assessment_status": "existing_source_review_referenced",
-        "assessment_source": {
-          "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
-          "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
-        },
-        "contract": {
-          "path": "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml",
-          "sha256": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c"
-        },
-        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "level": "L3",
         "open_obligations": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3A",
         "structural_measurement": {
-          "source_sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
-          "function_count": 10,
-          "maxima": {
-            "ccn": 9,
-            "cognitive_upper_bound": 7,
-            "control_nesting": 3
-          },
-          "structural_ceiling": "A",
-          "opaque_macros": [],
           "evidence": [
             {
               "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
@@ -451,29 +418,69 @@
               "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
             }
           ],
-          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+          "function_count": 10,
+          "maxima": {
+            "ccn": 9,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 3
+          },
+          "opaque_macros": [],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.",
+          "source_sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
+          "structural_ceiling": "A"
         }
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.score.yaml\",\n    \"sha256\": \"b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml\",\n    \"sha256\": \"15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"function_count\": 10,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
-      "original_paths": [
-        "code/rust/src/category_theory/finite_partial_structure.rs.scoring.yaml"
-      ]
+      "sha256": "a20b69d68cdd6fa43cd4e7dd51b7d82ff94a831976c7be4ce1f36f1e5a321700"
     },
     {
-      "sha256": "3a71d17cd0c70f713bb670993d17867ce142fa93e1fb1cb10ac1f3b1e5630c26",
       "bytes": 3623,
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/partial-structure-previous/finite_partial_structure.score.yaml"
+      ],
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_partial_structure.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"aa1494601a44d22f8ea7977f0e31b98240ec0e67ad5e1c666edbfbfddab7b0da\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_partial_structure\"\r\n  description: \"Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 344\r\n  parsed_production_functions: 6\r\n  max_production_ccn: 15\r\n  cognitive_complexity_upper_bound: 22\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 15, \"cognitive_upper_bound\": 22, \"control_nesting\": 4, \"line\": 109, \"name\": \"descend\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
       "record": {
-        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "architecture_target": "L5",
         "artifact": {
-          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
           "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
           "sha256": "aa1494601a44d22f8ea7977f0e31b98240ec0e67ad5e1c666edbfbfddab7b0da"
         },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
-        "architecture_target": "L5",
+        "claim": {
+          "description": "Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.",
+          "urn": "urn:tfqm:rust:category_theory:finite_partial_structure"
+        },
+        "composite_grade": null,
+        "contract": {
+          "note": "Reserved for a later user-requested contract; none created or asserted here.",
+          "path": null,
+          "status": "pending"
+        },
         "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -481,69 +488,32 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "C",
-        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
-        "AuthorityEffect": "None",
-        "claim": {
-          "urn": "urn:tfqm:rust:category_theory:finite_partial_structure",
-          "description": "Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.",
-          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
-        },
-        "contract": {
-          "status": "pending",
-          "path": null,
-          "note": "Reserved for a later user-requested contract; none created or asserted here."
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
-          },
-          {
-            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
-          }
-        ],
-        "verification": {
-          "baseline_ok": true,
-          "source_snapshot_unchanged": true,
-          "compiled_scope": "shared scoped crate build",
-          "local_mutant_ids": []
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
+          "unrun": 0
         },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": null,
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 344,
-          "parsed_production_functions": 6,
-          "max_production_ccn": 15,
           "cognitive_complexity_upper_bound": 22,
           "control_nesting": 4,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [
             {
               "ccn": 15,
@@ -554,44 +524,35 @@
               "opaque_macros": []
             }
           ],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+          "max_production_ccn": 15,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 6,
+          "physical_lines": 344,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
         },
-        "open_findings": [
-          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
-          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
-          "External path dependency source contents have not received a separate origin/content attestation.",
-          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
-        ]
+        "verification": {
+          "baseline_ok": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [],
+          "source_snapshot_unchanged": true
+        }
       },
-      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_partial_structure.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"aa1494601a44d22f8ea7977f0e31b98240ec0e67ad5e1c666edbfbfddab7b0da\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_partial_structure\"\r\n  description: \"Exact finite many-sorted partial-algebra and relation descent. No omitted operation is completed; predicates preserve both truth and falsity.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 344\r\n  parsed_production_functions: 6\r\n  max_production_ccn: 15\r\n  cognitive_complexity_upper_bound: 22\r\n  control_nesting: 4\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 15, \"cognitive_upper_bound\": 22, \"control_nesting\": 4, \"line\": 109, \"name\": \"descend\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
-      "original_paths": [
-        "evidence/quality/category_homology/resume-20261019/partial-structure-previous/finite_partial_structure.score.yaml"
-      ]
+      "sha256": "3a71d17cd0c70f713bb670993d17867ce142fa93e1fb1cb10ac1f3b1e5630c26"
     },
     {
-      "sha256": "b56ee3bfdea4ae19abbb03c025667a97321fc7e868dacef5438a3533d2e40a4e",
       "bytes": 5661,
+      "original_paths": [
+        "code/rust/src/category_theory/finite_partial_structure.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-partial-structure:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/baseline.json\",\n      \"sha256\": \"766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/summary.json\",\n      \"sha256\": \"c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/mutations.json\",\n      \"sha256\": \"4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json\",\n      \"sha256\": \"48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json\",\n      \"sha256\": \"a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_partial_structure.json\",\n      \"sha256\": \"3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 317,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 9,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/category_theory/finite_partial_structure.rs",
-          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "A",
-          "G2": "A",
-          "G3": "A",
-          "G4": "A",
-          "G5": "A"
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:category_theory:finite-partial-structure:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -600,24 +561,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 9,
-          "lizard_ccn": 9,
-          "weighted_control_upper_bound": 7,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "A",
-        "score_token": "L4A",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -625,81 +569,155 @@
           },
           {
             "path": "evidence/quality/category_homology/20261019T214257Z/baseline.json",
-            "sha256": "766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd"
           },
           {
             "path": "evidence/quality/category_homology/20261019T214257Z/summary.json",
-            "sha256": "c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045"
           },
           {
             "path": "evidence/quality/category_homology/20261019T214257Z/mutations.json",
-            "sha256": "4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494"
           },
           {
             "path": "evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json",
-            "sha256": "48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80"
           },
           {
             "path": "evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json",
-            "sha256": "a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c",
-            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.",
+            "sha256": "a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c"
           },
           {
             "path": "code/rust/quality/category_homology/assessments/finite_partial_structure.json",
-            "sha256": "3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2",
-            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping.",
+            "sha256": "3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
-            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
-            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
-            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
-            "scope": "Source snapshot binding and complete six-outcome accounting."
+            "scope": "Source snapshot binding and complete six-outcome accounting.",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67"
           },
           {
             "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
-            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
-            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below.",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5"
           },
           {
             "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
-            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
-            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1"
           }
         ],
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 9,
+          "radon_ccn": 9,
+          "weighted_control_upper_bound": 7
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4A",
         "structure": {
-          "tool": "syn 3.0.9 source AST",
-          "source_ast_parsed": true,
-          "expanded_ast": false,
-          "physical_lines": 317,
-          "parsed_production_functions": 10,
-          "max_production_ccn": 9,
           "cognitive_complexity_upper_bound": 7,
           "control_nesting": 3,
-          "opaque_function_macros": [],
+          "expanded_ast": false,
           "functions_exceeding_A": [],
-          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-        }
+          "max_production_ccn": 9,
+          "opaque_function_macros": [],
+          "parsed_production_functions": 10,
+          "physical_lines": 317,
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.",
+          "source_ast_parsed": true,
+          "tool": "syn 3.0.9 source AST"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:category_theory:finite-partial-structure:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 9 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 9,\n    \"lizard_ccn\": 9,\n    \"weighted_control_upper_bound\": 7,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/baseline.json\",\n      \"sha256\": \"766bf0cd14509189ec191c3cb7652900d54f0714a81fd84db9be55c18b2eadbd\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/summary.json\",\n      \"sha256\": \"c5f1db3596fe11248c5a1d0c12f2bd09030659d30a7fdd58111f69a4dc0d5045\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/mutations.json\",\n      \"sha256\": \"4b19eb47fa22530a04b27b5a32e7a9d1a951109a43c7f8afac46e355fae79494\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214202Z-metrics/receipt.json\",\n      \"sha256\": \"48f4bd96f40a92c57c830243544e82b1fa812bef0eb92dad4a3e7f4eda69bc80\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T214257Z/dependency_receipt.json\",\n      \"sha256\": \"a4032a97a3a77d94757f690acb6f385a5b983a25e341030018e5c33a21f34f6c\",\n      \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"\n    },\n    {\n      \"path\": \"code/rust/quality/category_homology/assessments/finite_partial_structure.json\",\n      \"sha256\": \"3304173469d5fd1a85084762edc26cd00432a4d778222b023c8101322741a3d2\",\n      \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\",\n      \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\",\n      \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\",\n      \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\",\n      \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\",\n      \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\",\n      \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\",\n      \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\",\n      \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn 3.0.9 source AST\",\n    \"source_ast_parsed\": true,\n    \"expanded_ast\": false,\n    \"physical_lines\": 317,\n    \"parsed_production_functions\": 10,\n    \"max_production_ccn\": 9,\n    \"cognitive_complexity_upper_bound\": 7,\n    \"control_nesting\": 3,\n    \"opaque_function_macros\": [],\n    \"functions_exceeding_A\": [],\n    \"scope\": \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\n  }\n}\n",
+      "sha256": "b56ee3bfdea4ae19abbb03c025667a97321fc7e868dacef5438a3533d2e40a4e"
+    },
+    {
+      "bytes": 1628,
       "original_paths": [
-        "code/rust/src/category_theory/finite_partial_structure.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/category_theory/finite_partial_structure.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n    \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_partial_structure.rs\",\n      \"sha256\": \"e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+          "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+            "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "f2caf4a37a84a4fe7573256e61052fcfc7263ec30d7cac0cd6cdc81e461a3f29"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/category_theory/finite_partial_structure.rs.contract.yaml": "15b3f805df8ecd8c6c54dffeee6b3f887d5b469a2254ed320236d475c0ffb99c",
-    "code/rust/src/category_theory/finite_partial_structure.score.yaml": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106",
-    "code/rust/src/category_theory/finite_partial_structure.rs.scoring.yaml": "a20b69d68cdd6fa43cd4e7dd51b7d82ff94a831976c7be4ce1f36f1e5a321700",
-    "evidence/quality/category_homology/resume-20261019/partial-structure-previous/finite_partial_structure.score.yaml": "3a71d17cd0c70f713bb670993d17867ce142fa93e1fb1cb10ac1f3b1e5630c26"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

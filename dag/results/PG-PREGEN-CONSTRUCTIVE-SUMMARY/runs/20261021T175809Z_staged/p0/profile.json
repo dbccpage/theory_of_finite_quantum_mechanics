@@ -1,0 +1,178 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "The external source ListedHistorySummary.lean (named by the operad bindings, outside this repository; the line numbers cited from it are taken from that external file and are not verified by any gate) is general (arbitrary types, DecidableEq reports, explicit List); it calls itself a proposal. The existing Rust witness verify_pregenesis_constructive_summary_witness checks one fixed four-pair listing and one split listing, an instance, not the general statement. This node re-proves the criterion by structural recursion instead of List.find? lemmas, adds recon_wrong_off_list, a classical-instance variant that records where Classical.choice enters, and checks exhaustively all listings, reports and answers on 15 small tuples. It is the constructive companion of PG-HISTORY-REPORT-CRITERION and does not repeat that node.",
+  "independent_predicates": [
+    "Enumeration of first-occurrence sequences weighted by Stirling numbers of the second kind (sum_k S2(k,t)), instead of enumerating all listings.",
+    "Reconstruction by a first-occurrence table per report; listed fiber constancy by pairwise equality on the listed set; both compared per triple.",
+    "Total listings equal sum_{k<=ell} p^k and total triples equal listings * v^p * s^p.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Own re-derivation (lean4/PregenConstructive.lean, structural recursion) over a list of histories with DecidableEq reports: first-match reconstruction recon returns every listed answer iff the answer is constant on report fibers among the listed histories; recon is none exactly on unreported values; any f returning the listed answers agrees with recon on listed reports; a complete listing plus global fiber constancy gives the factor through the report image (the choice-free bridge to node 163); with an unlisted history of a listed report and a different answer, recon returns the listed answer, which is then wrong. The kernel reports NO axioms at all for the seven general theorems recon_of_fiberConstant, fiberConstantOn_of_recon, listed_history_report_criterion, recon_eq_none_iff, recon_unique, recon_wrong_off_list and listed_factor_exists (relative to the supplied DecidableEq instance on reports); the instance anchors report at most propext (instance_wrong_off_list and instance_not_fiberConstant: propext); the variant for a report type without decidable equality (instance from Classical.propDecidable) reports propext, Classical.choice, Quot.sound for that proof term. The external ListedHistorySummary.lean is not in this repository and was not part of the gated evidence; all kernel claims are for the in-repo re-derivation PregenConstructive. Exhaustive native check over ALL listings of length <= ell (repeats included), all reports and all answers for 11 non-degenerate tuples (p >= 1, v >= 1, s >= 1) and 4 degenerate boundary tuples (p = 0, or v = 0 or s = 0, where there is at most one triple): recon correct on every listed history iff listed fiber constant, zero mismatches; complete listings agree with the global criterion; partial_false_positive = triples on a non-complete listing that are listed-fiber-constant but not globally fiber-constant; unlisted_refused/correct/wrong = quadruples (listing, report, answer, unlisted history) whose triple is listed-fiber-constant, classified by what recon returns for the unlisted history.",
+    "does_not_support": "Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.",
+    "narrowest_claim": "Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.",
+    "next_test": "Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument)."
+  },
+  "carrier": "FactorMap, HistoryType, Listing, OptionAnswer, QuestionMap, ReportMap, ReportValue, Verdict",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/PregenConstructive.lean",
+    "code/python/src/qm/pfp_pregen_constructive.py",
+    "code/python/tests/test_pfp_pregen_constructive.py",
+    "code/rust/src/finite_probability/pfp_pregen_constructive.rs",
+    "code/rust/src/finite_probability/examples/pfp_pregen_constructive_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus eight semantic near misses: first match always right, partial listing implies global, off-listing never wrong, repeats ignored, off-listing never refused, criterion failing on a triple, complete listing disagreeing with the global criterion, a listing of full length taken as complete.",
+  "composition_tree": [
+    "image_factor_from_listing(listing, report, answer)",
+    "first_match_recon(listing, report, answer, x)"
+  ],
+  "anchors": [
+    "PregenConstructive.recon_of_fiberConstant",
+    "PregenConstructive.fiberConstantOn_of_recon",
+    "PregenConstructive.listed_history_report_criterion",
+    "PregenConstructive.recon_eq_none_iff",
+    "PregenConstructive.recon_unique",
+    "PregenConstructive.recon_wrong_off_list",
+    "PregenConstructive.listed_factor_exists",
+    "PregenConstructive.listed_history_report_criterion_classical",
+    "PregenConstructive.instance_reconstructs",
+    "PregenConstructive.instance_wrong_off_list"
+  ],
+  "checker_id": "independent-pregen-constructive-v1",
+  "result_or_obstruction": "Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.",
+  "next_mathematical_step": "Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument).",
+  "report": "# PG-PREGEN-CONSTRUCTIVE-SUMMARY\n\nThe external source ListedHistorySummary.lean (named by the operad bindings, outside this repository; the line numbers cited from it are taken from that external file and are not verified by any gate) is general (arbitrary types, DecidableEq reports, explicit List); it calls itself a proposal. The existing Rust witness verify_pregenesis_constructive_summary_witness checks one fixed four-pair listing and one split listing, an instance, not the general statement. This node re-proves the criterion by structural recursion instead of List.find? lemmas, adds recon_wrong_off_list, a classical-instance variant that records where Classical.choice enters, and checks exhaustively all listings, reports and answers on 15 small tuples. It is the constructive companion of PG-HISTORY-REPORT-CRITERION and does not repeat that node.\n\nSupported: Own re-derivation (lean4/PregenConstructive.lean, structural recursion) over a list of histories with DecidableEq reports: first-match reconstruction recon returns every listed answer iff the answer is constant on report fibers among the listed histories; recon is none exactly on unreported values; any f returning the listed answers agrees with recon on listed reports; a complete listing plus global fiber constancy gives the factor through the report image (the choice-free bridge to node 163); with an unlisted history of a listed report and a different answer, recon returns the listed answer, which is then wrong. The kernel reports NO axioms at all for the seven general theorems recon_of_fiberConstant, fiberConstantOn_of_recon, listed_history_report_criterion, recon_eq_none_iff, recon_unique, recon_wrong_off_list and listed_factor_exists (relative to the supplied DecidableEq instance on reports); the instance anchors report at most propext (instance_wrong_off_list and instance_not_fiberConstant: propext); the variant for a report type without decidable equality (instance from Classical.propDecidable) reports propext, Classical.choice, Quot.sound for that proof term. The external ListedHistorySummary.lean is not in this repository and was not part of the gated evidence; all kernel claims are for the in-repo re-derivation PregenConstructive. Exhaustive native check over ALL listings of length <= ell (repeats included), all reports and all answers for 11 non-degenerate tuples (p >= 1, v >= 1, s >= 1) and 4 degenerate boundary tuples (p = 0, or v = 0 or s = 0, where there is at most one triple): recon correct on every listed history iff listed fiber constant, zero mismatches; complete listings agree with the global criterion; partial_false_positive = triples on a non-complete listing that are listed-fiber-constant but not globally fiber-constant; unlisted_refused/correct/wrong = quadruples (listing, report, answer, unlisted history) whose triple is listed-fiber-constant, classified by what recon returns for the unlisted history.\n\nRemaining: Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.",
+  "construction": "Exhaustive enumeration of every listing, report and answer on 15 small tuples (11 non-degenerate); Lean proves the general listed criterion by structural recursion with no axiom in the kernel.",
+  "colour_meanings": {
+    "HistoryType": "Type of histories",
+    "Listing": "Finite list of histories, repeats allowed",
+    "ReportMap": "Function from histories to reports",
+    "QuestionMap": "Function from histories to answers",
+    "ReportValue": "A value of the report type",
+    "OptionAnswer": "Answer or none",
+    "Verdict": "Proposition",
+    "FactorMap": "Function from the report image to answers"
+  },
+  "lean_anchors": [
+    "PregenConstructive.recon_of_fiberConstant",
+    "PregenConstructive.fiberConstantOn_of_recon",
+    "PregenConstructive.listed_history_report_criterion",
+    "PregenConstructive.recon_eq_none_iff",
+    "PregenConstructive.recon_unique",
+    "PregenConstructive.recon_wrong_off_list",
+    "PregenConstructive.listed_factor_exists",
+    "PregenConstructive.listed_history_report_criterion_classical",
+    "PregenConstructive.instance_reconstructs",
+    "PregenConstructive.instance_wrong_off_list"
+  ],
+  "relation_evidence": {
+    "recon_of_fiber_constant": "Kernel theorem (no axioms); native zero mismatch on all 15 tuples (11 non-degenerate).",
+    "recon_wrong_off_listing": "Kernel theorem; native unlisted_wrong counts."
+  },
+  "dag_status_depends_on_result": false,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_pregen_constructive.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_pregen_constructive",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_pregen_constructive_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/PregenConstructive.olean",
+        "PregenConstructive.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "PregenConstructive.recon_of_fiberConstant",
+        "PregenConstructive.fiberConstantOn_of_recon",
+        "PregenConstructive.listed_history_report_criterion",
+        "PregenConstructive.recon_eq_none_iff",
+        "PregenConstructive.recon_unique",
+        "PregenConstructive.recon_wrong_off_list",
+        "PregenConstructive.listed_factor_exists",
+        "PregenConstructive.listed_history_report_criterion_classical",
+        "PregenConstructive.instance_reconstructs",
+        "PregenConstructive.instance_wrong_off_list"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  }
+}

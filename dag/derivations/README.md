@@ -318,7 +318,7 @@ Folder: [`08_l1_to_l2/`](./08_l1_to_l2/)
 | [`TFQ-1000`](./08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md) | l1-operator-lift-trace-embed-013 | `PROVED_LEAN` | [`TFQ-0005`](./07_l1_emergence/tfq_0005_declared_l1_sector_weights.md) |
 | [`TFQ-1001`](./08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md) | l1-imp-sector-symmetry-law | `IMPORTED_ASSUMPTION` | [`TFQ-0296`](./08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md) |
 | [`TFQ-1002`](./08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md) | l1-wdp-realification-j | `DEFINITION` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
-| [`TFQ-1003`](./08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md) | l1-u1-selector-other-segment | `PROVED_LEAN` | [`TFQ-0312`](./09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md) |
+| [`TFQ-1003`](./08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md) | l1-u1-selector-other-segment | `OPEN_OBLIGATION` | [`TFQ-0312`](./09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md) |
 | [`TFQ-1004`](./08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md) | l1-qm020-c10-branch-localization | `PROVED_LEAN` | [`TFQ-0234`](./10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md) |
 | [`TFQ-1005`](./08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md) | l1-qm003-c17-composable-factorization | `PROVED_LEAN` | [`TFQ-0355`](./07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md) |
 | [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) | gp-import-complex-field | `IMPORTED_ASSUMPTION` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |

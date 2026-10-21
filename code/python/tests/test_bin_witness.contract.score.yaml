@@ -1,132 +1,187 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/tests/test_bin_witness.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "code/python/tests/test_bin_witness.py",
       "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
     },
-    "profile": "Exact",
-    "claim": "urn:omega:fqm:bin:pythagorean-ray:v1",
-    "role": "test checker",
-    "purpose": "Unit, negative, integration, end-to-end, and mutation tests for the bin ray.",
-    "operations": {
-      "test_pythagorean_ray_matches_the_theorem": "Function test_pythagorean_ray_matches_the_theorem operation.",
-      "test_negative_type_failures": "Function test_negative_type_failures operation.",
-      "test_negative_shape_failures": "Function test_negative_shape_failures operation.",
-      "test_integration_matches_packet_norm": "Function test_integration_matches_packet_norm operation.",
-      "test_end_to_end_cli_prints_one": "Function test_end_to_end_cli_prints_one operation.",
-      "test_cli_returns_one_on_witness_mismatch": "Function test_cli_returns_one_on_witness_mismatch operation.",
-      "test_cli_returns_two_on_output_failure": "Function test_cli_returns_two_on_output_failure operation.",
-      "test_collect_avoids_vector_allocation": "Function test_collect_avoids_vector_allocation operation.",
-      "test_origin_resolves_in_repo": "Function test_origin_resolves_in_repo operation.",
-      "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-    },
-    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
-    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
+        "path": "code/python/tests/test_bin_witness.py",
+        "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
+      },
+      {
         "path": "SCORING.md",
-        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "test or verification harness",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196",
+    "subject": "code/python/tests/test_bin_witness.py"
   },
-  "current_contract": "7047b57a9bed40d6a111e1ac2cf633dc508727c57f5c8554be4d105653506250",
-  "current_scoring": "7007ce1193edabcb89143e144d78d8b66a079433e2210ef78d5d994f5273a253",
   "contract_history": [
     {
-      "sha256": "3e2fba2a072fc54611d7ee2a3c5afc2340309ab5e340d8c117a356abce130c05",
       "bytes": 911,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"role\": \"test\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Pythagorean ray arithmetic and packet-norm composition, typed negative cases, stdout and scoped legacy mutation probes.\",\n  \"negative_fixture_policy\": \"Binary floats and hostile classes are deliberate rejection probes; they are not admitted mathematical coefficients.\",\n  \"scope\": \"Ancillary test outside the 24 target directories; this partial review does not certify an L4 score.\",\n  \"trust\": \"Pytest and CPython; imported implementations and host processes are separately scoped.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_bin_witness.py",
           "sha256": "cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a"
         },
-        "role": "test",
-        "profile": "Exact",
-        "purpose": "Pythagorean ray arithmetic and packet-norm composition, typed negative cases, stdout and scoped legacy mutation probes.",
-        "negative_fixture_policy": "Binary floats and hostile classes are deliberate rejection probes; they are not admitted mathematical coefficients.",
-        "scope": "Ancillary test outside the 24 target directories; this partial review does not certify an L4 score.",
-        "trust": "Pytest and CPython; imported implementations and host processes are separately scoped.",
         "evidence": [
           {
             "path": "evidence/quality/expanded_scope/batch2-baseline.log",
             "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
           }
-        ]
+        ],
+        "negative_fixture_policy": "Binary floats and hostile classes are deliberate rejection probes; they are not admitted mathematical coefficients.",
+        "profile": "Exact",
+        "purpose": "Pythagorean ray arithmetic and packet-norm composition, typed negative cases, stdout and scoped legacy mutation probes.",
+        "role": "test",
+        "scope": "Ancillary test outside the 24 target directories; this partial review does not certify an L4 score.",
+        "trust": "Pytest and CPython; imported implementations and host processes are separately scoped."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"role\": \"test\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Pythagorean ray arithmetic and packet-norm composition, typed negative cases, stdout and scoped legacy mutation probes.\",\n  \"negative_fixture_policy\": \"Binary floats and hostile classes are deliberate rejection probes; they are not admitted mathematical coefficients.\",\n  \"scope\": \"Ancillary test outside the 24 target directories; this partial review does not certify an L4 score.\",\n  \"trust\": \"Pytest and CPython; imported implementations and host processes are separately scoped.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/contract"
-      ]
+      "sha256": "3e2fba2a072fc54611d7ee2a3c5afc2340309ab5e340d8c117a356abce130c05"
     },
     {
-      "sha256": "7047b57a9bed40d6a111e1ac2cf633dc508727c57f5c8554be4d105653506250",
       "bytes": 2617,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:bin:pythagorean-ray:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit, negative, integration, end-to-end, and mutation tests for the bin ray.\",\n  \"operations\": {\n    \"test_pythagorean_ray_matches_the_theorem\": \"Function test_pythagorean_ray_matches_the_theorem operation.\",\n    \"test_negative_type_failures\": \"Function test_negative_type_failures operation.\",\n    \"test_negative_shape_failures\": \"Function test_negative_shape_failures operation.\",\n    \"test_integration_matches_packet_norm\": \"Function test_integration_matches_packet_norm operation.\",\n    \"test_end_to_end_cli_prints_one\": \"Function test_end_to_end_cli_prints_one operation.\",\n    \"test_cli_returns_one_on_witness_mismatch\": \"Function test_cli_returns_one_on_witness_mismatch operation.\",\n    \"test_cli_returns_two_on_output_failure\": \"Function test_cli_returns_two_on_output_failure operation.\",\n    \"test_collect_avoids_vector_allocation\": \"Function test_collect_avoids_vector_allocation operation.\",\n    \"test_origin_resolves_in_repo\": \"Function test_origin_resolves_in_repo operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_bin_witness.py",
           "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
         },
-        "profile": "Exact",
         "claim": "urn:omega:fqm:bin:pythagorean-ray:v1",
-        "role": "test checker",
-        "purpose": "Unit, negative, integration, end-to-end, and mutation tests for the bin ray.",
-        "operations": {
-          "test_pythagorean_ray_matches_the_theorem": "Function test_pythagorean_ray_matches_the_theorem operation.",
-          "test_negative_type_failures": "Function test_negative_type_failures operation.",
-          "test_negative_shape_failures": "Function test_negative_shape_failures operation.",
-          "test_integration_matches_packet_norm": "Function test_integration_matches_packet_norm operation.",
-          "test_end_to_end_cli_prints_one": "Function test_end_to_end_cli_prints_one operation.",
-          "test_cli_returns_one_on_witness_mismatch": "Function test_cli_returns_one_on_witness_mismatch operation.",
-          "test_cli_returns_two_on_output_failure": "Function test_cli_returns_two_on_output_failure operation.",
-          "test_collect_avoids_vector_allocation": "Function test_collect_avoids_vector_allocation operation.",
-          "test_origin_resolves_in_repo": "Function test_origin_resolves_in_repo operation.",
-          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation."
-        },
-        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
-        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
         "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
-        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
-        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
-        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
+        ],
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "operations": {
+          "test_cli_returns_one_on_witness_mismatch": "Function test_cli_returns_one_on_witness_mismatch operation.",
+          "test_cli_returns_two_on_output_failure": "Function test_cli_returns_two_on_output_failure operation.",
+          "test_collect_avoids_vector_allocation": "Function test_collect_avoids_vector_allocation operation.",
+          "test_end_to_end_cli_prints_one": "Function test_end_to_end_cli_prints_one operation.",
+          "test_integration_matches_packet_norm": "Function test_integration_matches_packet_norm operation.",
+          "test_mutation_suite_kills_non_equivalent_mutants": "Function test_mutation_suite_kills_non_equivalent_mutants operation.",
+          "test_negative_shape_failures": "Function test_negative_shape_failures operation.",
+          "test_negative_type_failures": "Function test_negative_type_failures operation.",
+          "test_origin_resolves_in_repo": "Function test_origin_resolves_in_repo operation.",
+          "test_pythagorean_ray_matches_the_theorem": "Function test_pythagorean_ray_matches_the_theorem operation."
+        },
+        "profile": "Exact",
+        "purpose": "Unit, negative, integration, end-to-end, and mutation tests for the bin ray.",
+        "role": "test checker",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:bin:pythagorean-ray:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Unit, negative, integration, end-to-end, and mutation tests for the bin ray.\",\n  \"operations\": {\n    \"test_pythagorean_ray_matches_the_theorem\": \"Function test_pythagorean_ray_matches_the_theorem operation.\",\n    \"test_negative_type_failures\": \"Function test_negative_type_failures operation.\",\n    \"test_negative_shape_failures\": \"Function test_negative_shape_failures operation.\",\n    \"test_integration_matches_packet_norm\": \"Function test_integration_matches_packet_norm operation.\",\n    \"test_end_to_end_cli_prints_one\": \"Function test_end_to_end_cli_prints_one operation.\",\n    \"test_cli_returns_one_on_witness_mismatch\": \"Function test_cli_returns_one_on_witness_mismatch operation.\",\n    \"test_cli_returns_two_on_output_failure\": \"Function test_cli_returns_two_on_output_failure operation.\",\n    \"test_collect_avoids_vector_allocation\": \"Function test_collect_avoids_vector_allocation operation.\",\n    \"test_origin_resolves_in_repo\": \"Function test_origin_resolves_in_repo operation.\",\n    \"test_mutation_suite_kills_non_equivalent_mutants\": \"Function test_mutation_suite_kills_non_equivalent_mutants operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "sha256": "7047b57a9bed40d6a111e1ac2cf633dc508727c57f5c8554be4d105653506250"
+    },
+    {
+      "bytes": 1607,
       "original_paths": [
-        "code/python/tests/test_bin_witness.contract.score.yaml#contract"
-      ]
+        "code/python/tests/test_bin_witness.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_bin_witness.py\",\n      \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"test or verification harness\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\",\n  \"subject\": \"code/python/tests/test_bin_witness.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_bin_witness.py",
+          "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/tests/test_bin_witness.py",
+            "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "test or verification harness",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196",
+        "subject": "code/python/tests/test_bin_witness.py"
+      },
+      "sha256": "ec0978bdb942f0035283490344f298e5569d6c0e4726a48171f9ab27bc337cde"
     }
   ],
+  "current_contract": "ec0978bdb942f0035283490344f298e5569d6c0e4726a48171f9ab27bc337cde",
+  "current_scoring": "468328914f0614dcc4c69ba9f1aeb69c63681c9fb6293bd82451eba6c4eb0956",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/contract": "3e2fba2a072fc54611d7ee2a3c5afc2340309ab5e340d8c117a356abce130c05",
+    "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/scoring": "1ff299f4257511a565fb3576dd28ff9c653978348578c9c2ecd95152b30f29f9"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "1ff299f4257511a565fb3576dd28ff9c653978348578c9c2ecd95152b30f29f9",
       "bytes": 1051,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Substantive finite exact/adversarial test logic; complete production test-file capability and gates not reviewed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"open_findings\": [\n    \"Legacy mutation helper catches broad exceptions and lacks generic invalid/inconclusive classification; do not promote its fixed recipe count into whole-campaign assurance.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_bin_witness.py",
           "sha256": "cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a"
         },
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "level": "L3",
-        "level_basis": "Substantive finite exact/adversarial test logic; complete production test-file capability and gates not reviewed.",
+        "composite_grade": null,
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          }
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -135,47 +190,31 @@
           "G5": null
         },
         "is_complete": false,
-        "composite_grade": null,
-        "score_token": null,
-        "target_achieved": false,
+        "level": "L3",
+        "level_basis": "Substantive finite exact/adversarial test logic; complete production test-file capability and gates not reviewed.",
         "open_findings": [
           "Legacy mutation helper catches broad exceptions and lacks generic invalid/inconclusive classification; do not promote its fixed recipe count into whole-campaign assurance."
         ],
-        "evidence": [
-          {
-            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
-            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
-          }
-        ]
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": null,
+        "target_achieved": false
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"level\": \"L3\",\n  \"level_basis\": \"Substantive finite exact/adversarial test logic; complete production test-file capability and gates not reviewed.\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": \"D\",\n    \"G5\": null\n  },\n  \"is_complete\": false,\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"target_achieved\": false,\n  \"open_findings\": [\n    \"Legacy mutation helper catches broad exceptions and lacks generic invalid/inconclusive classification; do not promote its fixed recipe count into whole-campaign assurance.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/scoring"
-      ]
+      "sha256": "1ff299f4257511a565fb3576dd28ff9c653978348578c9c2ecd95152b30f29f9"
     },
     {
-      "sha256": "0d8738a0d1c98213a0f7a3137ea02aeba8d74d57de740a158f9783e28f07ea85",
       "bytes": 2176,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 5), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/tests/test_bin_witness.py",
           "sha256": "cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "B"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -184,59 +223,59 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 5), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 12,
-          "control_nesting": 4
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline guarantees"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
             "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"cbe6dc8f588dc49091b7604142b878451aad6b12d4511cb32afff86fd786c95a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 10), Lizard CCN (max 5), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_bin_witness.contract.score.yaml#scoring"
-      ]
-    },
-    {
-      "sha256": "7007ce1193edabcb89143e144d78d8b66a079433e2210ef78d5d994f5273a253",
-      "bytes": 2150,
-      "record": {
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/python/tests/test_bin_witness.py",
-          "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        ],
         "gates": {
           "G1": "C",
           "G2": "C",
           "G3": "C",
           "G4": "C",
           "G5": "B"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 4,
+          "lizard_ccn": 5,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 12
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "0d8738a0d1c98213a0f7a3137ea02aeba8d74d57de740a158f9783e28f07ea85"
+    },
+    {
+      "bytes": 2150,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/tests/test_bin_witness.py",
+          "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -245,41 +284,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 10,
-          "lizard_ccn": 5,
-          "weighted_control_upper_bound": 12,
-          "control_nesting": 4
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 4,
+          "lizard_ccn": 5,
+          "radon_ccn": 10,
+          "weighted_control_upper_bound": 12
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "7007ce1193edabcb89143e144d78d8b66a079433e2210ef78d5d994f5273a253"
+    },
+    {
+      "bytes": 1588,
+      "original_paths": [
+        "code/python/tests/test_bin_witness.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_bin_witness.py\",\n      \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_bin_witness.py",
+          "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/tests/test_bin_witness.py",
+            "sha256": "443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/tests/test_bin_witness.py\",\n    \"sha256\": \"443fcad87dfd12cf4b9f21b1f80136cb96a9b2dd8c817382659ead5d65723196\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:bin:pythagorean-ray:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 10 <= 10 (A), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 10,\n    \"lizard_ccn\": 5,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/tests/test_bin_witness.contract.score.yaml#scoring"
-      ]
+      "sha256": "468328914f0614dcc4c69ba9f1aeb69c63681c9fb6293bd82451eba6c4eb0956"
     }
-  ],
-  "legacy_paths": {
-    "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/contract": "3e2fba2a072fc54611d7ee2a3c5afc2340309ab5e340d8c117a356abce130c05",
-    "code/python/tests/test_bin_witness.contract.score.yaml#batch2-ancillary-review/scoring": "1ff299f4257511a565fb3576dd28ff9c653978348578c9c2ecd95152b30f29f9"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

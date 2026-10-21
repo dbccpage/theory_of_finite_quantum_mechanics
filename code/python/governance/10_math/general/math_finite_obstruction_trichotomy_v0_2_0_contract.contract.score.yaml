@@ -1,230 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
-    "title": "Finite Obstruction Trichotomy",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "urn:omega:math:phi1_obstruction_mass:v1.0.0",
-          "urn:omega:math:gamma2_closure_defect:v1.0.0",
-          "urn:omega:math:phi1:v1.0.0"
-        ],
-        "proof_obligations": [
-          "PO-D3",
-          "PO-D2b"
-        ]
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": [
-          "ExactRepair",
-          "StabilizedSurvivor",
-          "OpenObstruction"
-        ]
-      },
-      "refusals": {
-        "may_emit": [
-          "Invalid",
-          "Incomparable",
-          "TriRefused(NumericUndecidable)"
-        ]
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+      "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
     },
-    "math": {
-      "object_kind": "finite_exact_classifier",
-      "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
-      "ascii_symbol": "FiniteObstructionClass",
-      "domain": [
-        "verified exact finite rational Phi1 certificate",
-        "exact rational Gamma2 quotient evidence"
-      ],
-      "codomain": {
-        "classes": [
-          "ExactRepair",
-          "StabilizedSurvivor",
-          "OpenObstruction"
-        ],
-        "meta_outcomes": [
-          "Invalid",
-          "Incomparable",
-          "TriRefused(NumericUndecidable)"
-        ]
-      },
-      "definition": {
-        "exact_repair": "Phi1 = 0",
-        "stabilized_survivor": "Phi1 > 0 and Gamma2 = 0",
-        "open_obstruction": "Phi1 > 0 and Gamma2 > 0"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "verified exact rational Phi1 primal-dual certificate",
-        "exact rational Gamma2 value computed from the certified Phi1 residual",
-        "exact verification that d1 d0 = 0",
-        "same residual and d0 repair map in the Phi1 and Gamma2 artifacts"
-      ],
-      "compatibility": [
-        "Phi1 and Gamma2 must refer to the same carrier/layer or declared transport"
-      ],
-      "refusal_if_approximate": [
-        "TriRefused(NumericUndecidable)"
-      ]
-    },
-    "laws": {
-      "totality": "Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.",
-      "survivor_meaning": "Survivor means StabilizedSurvivor only.",
-      "descriptive_only": "Trichotomy does not decide admissibility and does not issue ActionLicense.",
-      "closure_dependency": "StabilizedSurvivor depends on exact Gamma2 = 0.",
-      "exact_dependency": "ExactRepair depends on exact certified Phi1 = 0.",
-      "floating_firewall": "No floating heuristic may emit an exact trichotomy constructor."
-    },
-    "equivalence": {
-      "class_equality": "Same enum label under same comparison mode and compatible carrier/layer.",
-      "exact_mode": "Exact comparisons require exact scalar semantics.",
-      "tolerance_mode": "Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary."
-    },
-    "replay": {
-      "requirements": [
-        "finite numeric values",
-        "no NaN",
-        "no infinite values",
-        "nonnegative Phi1 and Gamma2",
-        "exact rational arithmetic replay",
-        "mandatory Phi1 primal-dual certificate replay",
-        "exact Gamma2 and d1d0 = 0 replay",
-        "carrier/layer compatibility replay"
-      ]
-    },
-    "relationships": {
-      "Phi1": "Primary scalar; determines ExactRepair versus survivor/open cases.",
-      "Gamma2": "Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.",
-      "Z1": "Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.",
-      "H1": "StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.",
-      "Q1": "ExactRepair means the Q1 class has zero Phi1.",
-      "EvaluationHierarchy": "Trichotomy describes state; hierarchy compares before/after diagnostics.",
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "rust_binding": {
-      "crate": "omega_policy",
-      "module": "trichotomy",
-      "symbols": [
-        "CertifiedExactTrichotomy",
-        "ObstructionDiagnosticClass",
-        "TrichotomyOutcome",
-        "TrichotomyRefusal",
-        "classify_exact"
-      ]
-    },
-    "negative_tests": [
-      "NaN values",
-      "Infinite values",
-      "Negative Phi1 or Gamma2",
-      "Tolerance mode used to emit exact trichotomy",
-      "StabilizedSurvivor claimed with Gamma2 > 0",
-      "ExactRepair claimed with Phi1 > 0",
-      "OpenObstruction claimed with Gamma2 = 0",
-      "Phi1 and Gamma2 from different carriers compared without transport",
-      "Trichotomy used as ActionLicense",
-      "Trichotomy rendered as customer-facing claim"
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "doctrine": {
-      "summary": "Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\n",
-      "non_role": [
-        "Does not decide admissibility.",
-        "Does not rank business severity.",
-        "Does not issue ActionLicense.",
-        "Does not issue certificates.",
-        "Does not terminalize.",
-        "Does not produce customer-facing claims."
-      ],
-      "compact_yaml": {
-        "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
-          "symbol": "ExactRepair|StabilizedSurvivor|OpenObstruction",
-          "ascii_symbol": "FiniteObstructionClass",
-          "formula": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
-          "status": "mathematical_definition_wip",
-          "authority_effect": "none",
-          "customer_claim_allowed": false,
-          "domain": "Phi1,Gamma2 with comparison mode",
-          "codomain": "descriptive obstruction class",
-          "required_structures": [
-            "verified exact rational Phi1 primal-dual certificate",
-            "exact rational Gamma2 value computed from the certified Phi1 residual",
-            "exact verification that d1 d0 = 0",
-            "carrier/layer compatibility or declared transport"
-          ],
-          "definition": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
-          "laws": [
-            "total under verified exact finite rational Phi1/Gamma2 evidence",
-            "descriptive only; does not decide admissibility",
-            "floating heuristics cannot emit exact trichotomy constructors"
-          ],
-          "forbidden_interpretations": [
-            "floating heuristic exact class",
-            "policy decision",
-            "ActionLicense",
-            "business severity ranking",
-            "customer claim"
-          ],
-          "relationships": [
-            "Phi1 determines ExactRepair versus survivor/open cases",
-            "Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0",
-            "EvaluationHierarchy compares before/after diagnostics"
-          ],
-          "negative_tests": [
-            "NaN or infinite values",
-            "negative Phi1 or Gamma2",
-            "tolerance mode emits exact trichotomy",
-            "carrier mismatch without transport",
-            "trichotomy used as ActionLicense"
-          ],
-          "open_questions": [
-            "canonical tolerance-zero predicate",
-            "optional diagnostic vocabulary for approximate displays"
-          ]
-        }
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+        "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "wip": [
-      "Canonical tolerance-zero predicate.",
-      "Positive/zero/indeterminate tolerance vocabulary.",
-      "Optional diagnostic vocabulary for approximate displays; it must not force an exact class."
-    ]
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d",
+    "subject": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py"
   },
-  "current_contract": "f6e4714ad1101b4f2fe16c319b5e93c78948e2dfa2a9b8f81e9f18b6674f7499",
-  "current_scoring": "7f55ba0f2bb481b4e3f35bd172aa315f93ce9b1717cdc3dd0eeb30a3a011c6b8",
   "contract_history": [
     {
-      "sha256": "f6e4714ad1101b4f2fe16c319b5e93c78948e2dfa2a9b8f81e9f18b6674f7499",
       "bytes": 7684,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_obstruction_trichotomy:v0.2.0\",\n  \"title\": \"Finite Obstruction Trichotomy\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1_obstruction_mass:v1.0.0\",\n        \"urn:omega:math:gamma2_closure_defect:v1.0.0\",\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        \"PO-D3\",\n        \"PO-D2b\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ]\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"Invalid\",\n        \"Incomparable\",\n        \"TriRefused(NumericUndecidable)\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_exact_classifier\",\n    \"symbol\": \"ExactRepair | StabilizedSurvivor | OpenObstruction\",\n    \"ascii_symbol\": \"FiniteObstructionClass\",\n    \"domain\": [\n      \"verified exact finite rational Phi1 certificate\",\n      \"exact rational Gamma2 quotient evidence\"\n    ],\n    \"codomain\": {\n      \"classes\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ],\n      \"meta_outcomes\": [\n        \"Invalid\",\n        \"Incomparable\",\n        \"TriRefused(NumericUndecidable)\"\n      ]\n    },\n    \"definition\": {\n      \"exact_repair\": \"Phi1 = 0\",\n      \"stabilized_survivor\": \"Phi1 > 0 and Gamma2 = 0\",\n      \"open_obstruction\": \"Phi1 > 0 and Gamma2 > 0\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"verified exact rational Phi1 primal-dual certificate\",\n      \"exact rational Gamma2 value computed from the certified Phi1 residual\",\n      \"exact verification that d1 d0 = 0\",\n      \"same residual and d0 repair map in the Phi1 and Gamma2 artifacts\"\n    ],\n    \"compatibility\": [\n      \"Phi1 and Gamma2 must refer to the same carrier/layer or declared transport\"\n    ],\n    \"refusal_if_approximate\": [\n      \"TriRefused(NumericUndecidable)\"\n    ]\n  },\n  \"laws\": {\n    \"totality\": \"Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.\",\n    \"survivor_meaning\": \"Survivor means StabilizedSurvivor only.\",\n    \"descriptive_only\": \"Trichotomy does not decide admissibility and does not issue ActionLicense.\",\n    \"closure_dependency\": \"StabilizedSurvivor depends on exact Gamma2 = 0.\",\n    \"exact_dependency\": \"ExactRepair depends on exact certified Phi1 = 0.\",\n    \"floating_firewall\": \"No floating heuristic may emit an exact trichotomy constructor.\"\n  },\n  \"equivalence\": {\n    \"class_equality\": \"Same enum label under same comparison mode and compatible carrier/layer.\",\n    \"exact_mode\": \"Exact comparisons require exact scalar semantics.\",\n    \"tolerance_mode\": \"Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary.\"\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"finite numeric values\",\n      \"no NaN\",\n      \"no infinite values\",\n      \"nonnegative Phi1 and Gamma2\",\n      \"exact rational arithmetic replay\",\n      \"mandatory Phi1 primal-dual certificate replay\",\n      \"exact Gamma2 and d1d0 = 0 replay\",\n      \"carrier/layer compatibility replay\"\n    ]\n  },\n  \"relationships\": {\n    \"Phi1\": \"Primary scalar; determines ExactRepair versus survivor/open cases.\",\n    \"Gamma2\": \"Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.\",\n    \"Z1\": \"Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.\",\n    \"H1\": \"StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.\",\n    \"Q1\": \"ExactRepair means the Q1 class has zero Phi1.\",\n    \"EvaluationHierarchy\": \"Trichotomy describes state; hierarchy compares before/after diagnostics.\",\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_policy\",\n    \"module\": \"trichotomy\",\n    \"symbols\": [\n      \"CertifiedExactTrichotomy\",\n      \"ObstructionDiagnosticClass\",\n      \"TrichotomyOutcome\",\n      \"TrichotomyRefusal\",\n      \"classify_exact\"\n    ]\n  },\n  \"negative_tests\": [\n    \"NaN values\",\n    \"Infinite values\",\n    \"Negative Phi1 or Gamma2\",\n    \"Tolerance mode used to emit exact trichotomy\",\n    \"StabilizedSurvivor claimed with Gamma2 > 0\",\n    \"ExactRepair claimed with Phi1 > 0\",\n    \"OpenObstruction claimed with Gamma2 = 0\",\n    \"Phi1 and Gamma2 from different carriers compared without transport\",\n    \"Trichotomy used as ActionLicense\",\n    \"Trichotomy rendered as customer-facing claim\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\\n\",\n    \"non_role\": [\n      \"Does not decide admissibility.\",\n      \"Does not rank business severity.\",\n      \"Does not issue ActionLicense.\",\n      \"Does not issue certificates.\",\n      \"Does not terminalize.\",\n      \"Does not produce customer-facing claims.\"\n    ],\n    \"compact_yaml\": {\n      \"FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT\": {\n        \"symbol\": \"ExactRepair|StabilizedSurvivor|OpenObstruction\",\n        \"ascii_symbol\": \"FiniteObstructionClass\",\n        \"formula\": \"ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0\",\n        \"status\": \"mathematical_definition_wip\",\n        \"authority_effect\": \"none\",\n        \"customer_claim_allowed\": false,\n        \"domain\": \"Phi1,Gamma2 with comparison mode\",\n        \"codomain\": \"descriptive obstruction class\",\n        \"required_structures\": [\n          \"verified exact rational Phi1 primal-dual certificate\",\n          \"exact rational Gamma2 value computed from the certified Phi1 residual\",\n          \"exact verification that d1 d0 = 0\",\n          \"carrier/layer compatibility or declared transport\"\n        ],\n        \"definition\": \"ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0\",\n        \"laws\": [\n          \"total under verified exact finite rational Phi1/Gamma2 evidence\",\n          \"descriptive only; does not decide admissibility\",\n          \"floating heuristics cannot emit exact trichotomy constructors\"\n        ],\n        \"forbidden_interpretations\": [\n          \"floating heuristic exact class\",\n          \"policy decision\",\n          \"ActionLicense\",\n          \"business severity ranking\",\n          \"customer claim\"\n        ],\n        \"relationships\": [\n          \"Phi1 determines ExactRepair versus survivor/open cases\",\n          \"Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0\",\n          \"EvaluationHierarchy compares before/after diagnostics\"\n        ],\n        \"negative_tests\": [\n          \"NaN or infinite values\",\n          \"negative Phi1 or Gamma2\",\n          \"tolerance mode emits exact trichotomy\",\n          \"carrier mismatch without transport\",\n          \"trichotomy used as ActionLicense\"\n        ],\n        \"open_questions\": [\n          \"canonical tolerance-zero predicate\",\n          \"optional diagnostic vocabulary for approximate displays\"\n        ]\n      }\n    }\n  },\n  \"wip\": [\n    \"Canonical tolerance-zero predicate.\",\n    \"Positive/zero/indeterminate tolerance vocabulary.\",\n    \"Optional diagnostic vocabulary for approximate displays; it must not force an exact class.\"\n  ]\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
-        "title": "Finite Obstruction Trichotomy",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -237,13 +61,10 @@
               "PO-D2b"
             ]
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": [
-              "ExactRepair",
-              "StabilizedSurvivor",
-              "OpenObstruction"
-            ]
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": [
@@ -252,19 +73,91 @@
               "TriRefused(NumericUndecidable)"
             ]
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": [
+              "ExactRepair",
+              "StabilizedSurvivor",
+              "OpenObstruction"
+            ]
           }
         },
-        "math": {
-          "object_kind": "finite_exact_classifier",
-          "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction",
-          "ascii_symbol": "FiniteObstructionClass",
-          "domain": [
-            "verified exact finite rational Phi1 certificate",
-            "exact rational Gamma2 quotient evidence"
+        "doctrine": {
+          "compact_yaml": {
+            "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
+              "ascii_symbol": "FiniteObstructionClass",
+              "authority_effect": "none",
+              "codomain": "descriptive obstruction class",
+              "customer_claim_allowed": false,
+              "definition": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+              "domain": "Phi1,Gamma2 with comparison mode",
+              "forbidden_interpretations": [
+                "floating heuristic exact class",
+                "policy decision",
+                "ActionLicense",
+                "business severity ranking",
+                "customer claim"
+              ],
+              "formula": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
+              "laws": [
+                "total under verified exact finite rational Phi1/Gamma2 evidence",
+                "descriptive only; does not decide admissibility",
+                "floating heuristics cannot emit exact trichotomy constructors"
+              ],
+              "negative_tests": [
+                "NaN or infinite values",
+                "negative Phi1 or Gamma2",
+                "tolerance mode emits exact trichotomy",
+                "carrier mismatch without transport",
+                "trichotomy used as ActionLicense"
+              ],
+              "open_questions": [
+                "canonical tolerance-zero predicate",
+                "optional diagnostic vocabulary for approximate displays"
+              ],
+              "relationships": [
+                "Phi1 determines ExactRepair versus survivor/open cases",
+                "Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0",
+                "EvaluationHierarchy compares before/after diagnostics"
+              ],
+              "required_structures": [
+                "verified exact rational Phi1 primal-dual certificate",
+                "exact rational Gamma2 value computed from the certified Phi1 residual",
+                "exact verification that d1 d0 = 0",
+                "carrier/layer compatibility or declared transport"
+              ],
+              "status": "mathematical_definition_wip",
+              "symbol": "ExactRepair|StabilizedSurvivor|OpenObstruction"
+            }
+          },
+          "non_role": [
+            "Does not decide admissibility.",
+            "Does not rank business severity.",
+            "Does not issue ActionLicense.",
+            "Does not issue certificates.",
+            "Does not terminalize.",
+            "Does not produce customer-facing claims."
           ],
+          "summary": "Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\n"
+        },
+        "equivalence": {
+          "class_equality": "Same enum label under same comparison mode and compatible carrier/layer.",
+          "exact_mode": "Exact comparisons require exact scalar semantics.",
+          "tolerance_mode": "Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary."
+        },
+        "kind": "math_contract",
+        "laws": {
+          "closure_dependency": "StabilizedSurvivor depends on exact Gamma2 = 0.",
+          "descriptive_only": "Trichotomy does not decide admissibility and does not issue ActionLicense.",
+          "exact_dependency": "ExactRepair depends on exact certified Phi1 = 0.",
+          "floating_firewall": "No floating heuristic may emit an exact trichotomy constructor.",
+          "survivor_meaning": "Survivor means StabilizedSurvivor only.",
+          "totality": "Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds."
+        },
+        "layer": "math",
+        "math": {
+          "ascii_symbol": "FiniteObstructionClass",
           "codomain": {
             "classes": [
               "ExactRepair",
@@ -279,70 +172,15 @@
           },
           "definition": {
             "exact_repair": "Phi1 = 0",
-            "stabilized_survivor": "Phi1 > 0 and Gamma2 = 0",
-            "open_obstruction": "Phi1 > 0 and Gamma2 > 0"
-          }
-        },
-        "requirements": {
-          "required_structures": [
-            "verified exact rational Phi1 primal-dual certificate",
-            "exact rational Gamma2 value computed from the certified Phi1 residual",
-            "exact verification that d1 d0 = 0",
-            "same residual and d0 repair map in the Phi1 and Gamma2 artifacts"
+            "open_obstruction": "Phi1 > 0 and Gamma2 > 0",
+            "stabilized_survivor": "Phi1 > 0 and Gamma2 = 0"
+          },
+          "domain": [
+            "verified exact finite rational Phi1 certificate",
+            "exact rational Gamma2 quotient evidence"
           ],
-          "compatibility": [
-            "Phi1 and Gamma2 must refer to the same carrier/layer or declared transport"
-          ],
-          "refusal_if_approximate": [
-            "TriRefused(NumericUndecidable)"
-          ]
-        },
-        "laws": {
-          "totality": "Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.",
-          "survivor_meaning": "Survivor means StabilizedSurvivor only.",
-          "descriptive_only": "Trichotomy does not decide admissibility and does not issue ActionLicense.",
-          "closure_dependency": "StabilizedSurvivor depends on exact Gamma2 = 0.",
-          "exact_dependency": "ExactRepair depends on exact certified Phi1 = 0.",
-          "floating_firewall": "No floating heuristic may emit an exact trichotomy constructor."
-        },
-        "equivalence": {
-          "class_equality": "Same enum label under same comparison mode and compatible carrier/layer.",
-          "exact_mode": "Exact comparisons require exact scalar semantics.",
-          "tolerance_mode": "Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary."
-        },
-        "replay": {
-          "requirements": [
-            "finite numeric values",
-            "no NaN",
-            "no infinite values",
-            "nonnegative Phi1 and Gamma2",
-            "exact rational arithmetic replay",
-            "mandatory Phi1 primal-dual certificate replay",
-            "exact Gamma2 and d1d0 = 0 replay",
-            "carrier/layer compatibility replay"
-          ]
-        },
-        "relationships": {
-          "Phi1": "Primary scalar; determines ExactRepair versus survivor/open cases.",
-          "Gamma2": "Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.",
-          "Z1": "Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.",
-          "H1": "StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.",
-          "Q1": "ExactRepair means the Q1 class has zero Phi1.",
-          "EvaluationHierarchy": "Trichotomy describes state; hierarchy compares before/after diagnostics.",
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "rust_binding": {
-          "crate": "omega_policy",
-          "module": "trichotomy",
-          "symbols": [
-            "CertifiedExactTrichotomy",
-            "ObstructionDiagnosticClass",
-            "TrichotomyOutcome",
-            "TrichotomyRefusal",
-            "classify_exact"
-          ]
+          "object_kind": "finite_exact_classifier",
+          "symbol": "ExactRepair | StabilizedSurvivor | OpenObstruction"
         },
         "negative_tests": [
           "NaN values",
@@ -356,100 +194,129 @@
           "Trichotomy used as ActionLicense",
           "Trichotomy rendered as customer-facing claim"
         ],
-        "doctrine": {
-          "summary": "Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\n",
-          "non_role": [
-            "Does not decide admissibility.",
-            "Does not rank business severity.",
-            "Does not issue ActionLicense.",
-            "Does not issue certificates.",
-            "Does not terminalize.",
-            "Does not produce customer-facing claims."
-          ],
-          "compact_yaml": {
-            "FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT": {
-              "symbol": "ExactRepair|StabilizedSurvivor|OpenObstruction",
-              "ascii_symbol": "FiniteObstructionClass",
-              "formula": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
-              "status": "mathematical_definition_wip",
-              "authority_effect": "none",
-              "customer_claim_allowed": false,
-              "domain": "Phi1,Gamma2 with comparison mode",
-              "codomain": "descriptive obstruction class",
-              "required_structures": [
-                "verified exact rational Phi1 primal-dual certificate",
-                "exact rational Gamma2 value computed from the certified Phi1 residual",
-                "exact verification that d1 d0 = 0",
-                "carrier/layer compatibility or declared transport"
-              ],
-              "definition": "ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0",
-              "laws": [
-                "total under verified exact finite rational Phi1/Gamma2 evidence",
-                "descriptive only; does not decide admissibility",
-                "floating heuristics cannot emit exact trichotomy constructors"
-              ],
-              "forbidden_interpretations": [
-                "floating heuristic exact class",
-                "policy decision",
-                "ActionLicense",
-                "business severity ranking",
-                "customer claim"
-              ],
-              "relationships": [
-                "Phi1 determines ExactRepair versus survivor/open cases",
-                "Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0",
-                "EvaluationHierarchy compares before/after diagnostics"
-              ],
-              "negative_tests": [
-                "NaN or infinite values",
-                "negative Phi1 or Gamma2",
-                "tolerance mode emits exact trichotomy",
-                "carrier mismatch without transport",
-                "trichotomy used as ActionLicense"
-              ],
-              "open_questions": [
-                "canonical tolerance-zero predicate",
-                "optional diagnostic vocabulary for approximate displays"
-              ]
-            }
-          }
+        "relationships": {
+          "EvaluationHierarchy": "Trichotomy describes state; hierarchy compares before/after diagnostics.",
+          "Gamma2": "Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.",
+          "H1": "StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.",
+          "Phi1": "Primary scalar; determines ExactRepair versus survivor/open cases.",
+          "Q1": "ExactRepair means the Q1 class has zero Phi1.",
+          "Z1": "Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.",
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
         },
+        "replay": {
+          "requirements": [
+            "finite numeric values",
+            "no NaN",
+            "no infinite values",
+            "nonnegative Phi1 and Gamma2",
+            "exact rational arithmetic replay",
+            "mandatory Phi1 primal-dual certificate replay",
+            "exact Gamma2 and d1d0 = 0 replay",
+            "carrier/layer compatibility replay"
+          ]
+        },
+        "requirements": {
+          "compatibility": [
+            "Phi1 and Gamma2 must refer to the same carrier/layer or declared transport"
+          ],
+          "refusal_if_approximate": [
+            "TriRefused(NumericUndecidable)"
+          ],
+          "required_structures": [
+            "verified exact rational Phi1 primal-dual certificate",
+            "exact rational Gamma2 value computed from the certified Phi1 residual",
+            "exact verification that d1 d0 = 0",
+            "same residual and d0 repair map in the Phi1 and Gamma2 artifacts"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_policy",
+          "module": "trichotomy",
+          "symbols": [
+            "CertifiedExactTrichotomy",
+            "ObstructionDiagnosticClass",
+            "TrichotomyOutcome",
+            "TrichotomyRefusal",
+            "classify_exact"
+          ]
+        },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "Finite Obstruction Trichotomy",
         "wip": [
           "Canonical tolerance-zero predicate.",
           "Positive/zero/indeterminate tolerance vocabulary.",
           "Optional diagnostic vocabulary for approximate displays; it must not force an exact class."
         ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_obstruction_trichotomy:v0.2.0\",\n  \"title\": \"Finite Obstruction Trichotomy\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:math:phi1_obstruction_mass:v1.0.0\",\n        \"urn:omega:math:gamma2_closure_defect:v1.0.0\",\n        \"urn:omega:math:phi1:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        \"PO-D3\",\n        \"PO-D2b\"\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ]\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"Invalid\",\n        \"Incomparable\",\n        \"TriRefused(NumericUndecidable)\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"finite_exact_classifier\",\n    \"symbol\": \"ExactRepair | StabilizedSurvivor | OpenObstruction\",\n    \"ascii_symbol\": \"FiniteObstructionClass\",\n    \"domain\": [\n      \"verified exact finite rational Phi1 certificate\",\n      \"exact rational Gamma2 quotient evidence\"\n    ],\n    \"codomain\": {\n      \"classes\": [\n        \"ExactRepair\",\n        \"StabilizedSurvivor\",\n        \"OpenObstruction\"\n      ],\n      \"meta_outcomes\": [\n        \"Invalid\",\n        \"Incomparable\",\n        \"TriRefused(NumericUndecidable)\"\n      ]\n    },\n    \"definition\": {\n      \"exact_repair\": \"Phi1 = 0\",\n      \"stabilized_survivor\": \"Phi1 > 0 and Gamma2 = 0\",\n      \"open_obstruction\": \"Phi1 > 0 and Gamma2 > 0\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"verified exact rational Phi1 primal-dual certificate\",\n      \"exact rational Gamma2 value computed from the certified Phi1 residual\",\n      \"exact verification that d1 d0 = 0\",\n      \"same residual and d0 repair map in the Phi1 and Gamma2 artifacts\"\n    ],\n    \"compatibility\": [\n      \"Phi1 and Gamma2 must refer to the same carrier/layer or declared transport\"\n    ],\n    \"refusal_if_approximate\": [\n      \"TriRefused(NumericUndecidable)\"\n    ]\n  },\n  \"laws\": {\n    \"totality\": \"Under verified exact finite rational Phi1/Gamma2 evidence, exactly one trichotomy class holds.\",\n    \"survivor_meaning\": \"Survivor means StabilizedSurvivor only.\",\n    \"descriptive_only\": \"Trichotomy does not decide admissibility and does not issue ActionLicense.\",\n    \"closure_dependency\": \"StabilizedSurvivor depends on exact Gamma2 = 0.\",\n    \"exact_dependency\": \"ExactRepair depends on exact certified Phi1 = 0.\",\n    \"floating_firewall\": \"No floating heuristic may emit an exact trichotomy constructor.\"\n  },\n  \"equivalence\": {\n    \"class_equality\": \"Same enum label under same comparison mode and compatible carrier/layer.\",\n    \"exact_mode\": \"Exact comparisons require exact scalar semantics.\",\n    \"tolerance_mode\": \"Tolerance comparisons are diagnostic-only and return TriRefused(NumericUndecidable) at the exact-classifier boundary.\"\n  },\n  \"replay\": {\n    \"requirements\": [\n      \"finite numeric values\",\n      \"no NaN\",\n      \"no infinite values\",\n      \"nonnegative Phi1 and Gamma2\",\n      \"exact rational arithmetic replay\",\n      \"mandatory Phi1 primal-dual certificate replay\",\n      \"exact Gamma2 and d1d0 = 0 replay\",\n      \"carrier/layer compatibility replay\"\n    ]\n  },\n  \"relationships\": {\n    \"Phi1\": \"Primary scalar; determines ExactRepair versus survivor/open cases.\",\n    \"Gamma2\": \"Closure scalar; separates StabilizedSurvivor from OpenObstruction when Phi1 > 0.\",\n    \"Z1\": \"Gamma2 = 0 corresponds to closed residual under valid Gamma2 definition.\",\n    \"H1\": \"StabilizedSurvivor corresponds to a closed nonexact residual class under valid Phi1/Gamma2 definitions.\",\n    \"Q1\": \"ExactRepair means the Q1 class has zero Phi1.\",\n    \"EvaluationHierarchy\": \"Trichotomy describes state; hierarchy compares before/after diagnostics.\",\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_policy\",\n    \"module\": \"trichotomy\",\n    \"symbols\": [\n      \"CertifiedExactTrichotomy\",\n      \"ObstructionDiagnosticClass\",\n      \"TrichotomyOutcome\",\n      \"TrichotomyRefusal\",\n      \"classify_exact\"\n    ]\n  },\n  \"negative_tests\": [\n    \"NaN values\",\n    \"Infinite values\",\n    \"Negative Phi1 or Gamma2\",\n    \"Tolerance mode used to emit exact trichotomy\",\n    \"StabilizedSurvivor claimed with Gamma2 > 0\",\n    \"ExactRepair claimed with Phi1 > 0\",\n    \"OpenObstruction claimed with Gamma2 = 0\",\n    \"Phi1 and Gamma2 from different carriers compared without transport\",\n    \"Trichotomy used as ActionLicense\",\n    \"Trichotomy rendered as customer-facing claim\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Descriptive exact finite rational classifier for obstruction state. It is not a policy decision, not a customer-facing claim, and not an authority source.\\n\",\n    \"non_role\": [\n      \"Does not decide admissibility.\",\n      \"Does not rank business severity.\",\n      \"Does not issue ActionLicense.\",\n      \"Does not issue certificates.\",\n      \"Does not terminalize.\",\n      \"Does not produce customer-facing claims.\"\n    ],\n    \"compact_yaml\": {\n      \"FINITE_OBSTRUCTION_TRICHOTOMY_CONTRACT\": {\n        \"symbol\": \"ExactRepair|StabilizedSurvivor|OpenObstruction\",\n        \"ascii_symbol\": \"FiniteObstructionClass\",\n        \"formula\": \"ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0\",\n        \"status\": \"mathematical_definition_wip\",\n        \"authority_effect\": \"none\",\n        \"customer_claim_allowed\": false,\n        \"domain\": \"Phi1,Gamma2 with comparison mode\",\n        \"codomain\": \"descriptive obstruction class\",\n        \"required_structures\": [\n          \"verified exact rational Phi1 primal-dual certificate\",\n          \"exact rational Gamma2 value computed from the certified Phi1 residual\",\n          \"exact verification that d1 d0 = 0\",\n          \"carrier/layer compatibility or declared transport\"\n        ],\n        \"definition\": \"ExactRepair iff Phi1=0; StabilizedSurvivor iff Phi1>0 and Gamma2=0; OpenObstruction iff Phi1>0 and Gamma2>0\",\n        \"laws\": [\n          \"total under verified exact finite rational Phi1/Gamma2 evidence\",\n          \"descriptive only; does not decide admissibility\",\n          \"floating heuristics cannot emit exact trichotomy constructors\"\n        ],\n        \"forbidden_interpretations\": [\n          \"floating heuristic exact class\",\n          \"policy decision\",\n          \"ActionLicense\",\n          \"business severity ranking\",\n          \"customer claim\"\n        ],\n        \"relationships\": [\n          \"Phi1 determines ExactRepair versus survivor/open cases\",\n          \"Gamma2 separates StabilizedSurvivor from OpenObstruction when Phi1 > 0\",\n          \"EvaluationHierarchy compares before/after diagnostics\"\n        ],\n        \"negative_tests\": [\n          \"NaN or infinite values\",\n          \"negative Phi1 or Gamma2\",\n          \"tolerance mode emits exact trichotomy\",\n          \"carrier mismatch without transport\",\n          \"trichotomy used as ActionLicense\"\n        ],\n        \"open_questions\": [\n          \"canonical tolerance-zero predicate\",\n          \"optional diagnostic vocabulary for approximate displays\"\n        ]\n      }\n    }\n  },\n  \"wip\": [\n    \"Canonical tolerance-zero predicate.\",\n    \"Positive/zero/indeterminate tolerance vocabulary.\",\n    \"Optional diagnostic vocabulary for approximate displays; it must not force an exact class.\"\n  ]\n}\n",
+      "sha256": "f6e4714ad1101b4f2fe16c319b5e93c78948e2dfa2a9b8f81e9f18b6674f7499"
+    },
+    {
+      "bytes": 1757,
       "original_paths": [
-        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n    \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n      \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\",\n  \"subject\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+          "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+            "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d",
+        "subject": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py"
+      },
+      "sha256": "72b582ec0ab263e8bf64f1d2dc1e49ab111a267ec19b1f704ad221fbf16cfb13"
     }
   ],
+  "current_contract": "72b582ec0ab263e8bf64f1d2dc1e49ab111a267ec19b1f704ad221fbf16cfb13",
+  "current_scoring": "21a4bdab1ce3230a7d06f994dcf00b3fb8358d826ea9c145e46d5aefadd3a4f2",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml": "47eaab65416b8388d807083a3eb276252cd5433abf44706f5536f66d8181e43b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "7f55ba0f2bb481b4e3f35bd172aa315f93ce9b1717cdc3dd0eeb30a3a011c6b8",
       "bytes": 2255,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n    \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-finite-obstruction-trichotomy-v0-2-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
           "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-finite-obstruction-trichotomy-v0-2-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -458,40 +325,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "7f55ba0f2bb481b4e3f35bd172aa315f93ce9b1717cdc3dd0eeb30a3a011c6b8"
+    },
+    {
+      "bytes": 1698,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n    \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n      \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Numerical\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+          "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py",
+            "sha256": "95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Numerical",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.py\",\n    \"sha256\": \"95147cde7abdffbed0399414d8d24af34345ba3cedffe8f9b97931d48c8b990d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-finite-obstruction-trichotomy-v0-2-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "21a4bdab1ce3230a7d06f994dcf00b3fb8358d826ea9c145e46d5aefadd3a4f2"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_finite_obstruction_trichotomy_v0_2_0.contract.yaml": "47eaab65416b8388d807083a3eb276252cd5433abf44706f5536f66d8181e43b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

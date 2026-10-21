@@ -1,0 +1,66 @@
+⚠ [1648/1650] Replayed OperationalSymmetry
+warning: OperationalSymmetry.lean: imports `Mathlib.Basic.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.Kronecker` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.LinearAlgebra.Matrix.ToLin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: OperationalSymmetry.lean:328:11: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: OperationalSymmetry.lean:328:11: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [1649/1650] Building OperationalCoherence (29s)
+trace: .> LEAN_PATH=C:\lq\l4\.lake\packages\Cli\.lake\build\lib\lean;C:\lq\l4\.lake\packages\batteries\.lake\build\lib\lean;C:\lq\l4\.lake\packages\Qq\.lake\build\lib\lean;C:\lq\l4\.lake\packages\aesop\.lake\build\lib\lean;C:\lq\l4\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\lq\l4\.lake\packages\importGraph\.lake\build\lib\lean;C:\lq\l4\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\lq\l4\.lake\packages\plausible\.lake\build\lib\lean;C:\lq\l4\.lake\packages\mathlib\.lake\build\lib\lean;C:\t\cfs\lean4\b\lib\lean c:\Users\a343o\source\repos\.elan\toolchains\leanprover--lean4---v4.35.0\bin\lean.exe C:\t\cfs\lean4\OperationalCoherence.lean -o C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.olean -i C:\t\cfs\lean4\b\lib\lean\OperationalCoherence.ilean -c C:\t\cfs\lean4\b\ir\OperationalCoherence.c --setup C:\t\cfs\lean4\b\ir\OperationalCoherence.setup.json --json
+warning: OperationalCoherence.lean:99:18: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [identity, Subsingleton.elim PUnit.unit x.1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: OperationalCoherence.lean:107:18: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [identity, Subsingleton.elim PUnit.unit x.2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: OperationalCoherence.lean:166:37: This simp argument is unused:
+  Invariant
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [correlation]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: OperationalCoherence.lean:196:2: Type mismatch
+  one_kronecker_one
+has type
+  kroneckerMap (fun x1 x2 => x1 * x2) 1 1 = 1
+but is expected to have type
+  (parallel (identity A) (identity B)).matrix = (identity (A ⊗ₛ B)).matrix
+error: OperationalCoherence.lean:218:11: `simp` made no progress
+
+Note: The target expression is not type-correct under the `implicit` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    failure._proof_2 T hT
+  has type
+    ∀ (x : A.Point), 0 ≤ 1 - column T x
+  but is expected to have type
+    Positive fun x => 1 - column T x
+  in the application
+    test (fun x => 1 - column T x) ⋯ ⋯
+warning: OperationalCoherence.lean:225:51: `if_false` has been deprecated: Use `ite_false` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲
+warning: OperationalCoherence.lean:225:61: `if_true` has been deprecated: Use `ite_true` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲
+Some required targets logged failures:
+- OperationalCoherence
+error: build failed

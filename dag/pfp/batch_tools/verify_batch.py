@@ -15,6 +15,7 @@ never required to match.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -24,6 +25,21 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import Ctx, check_lean_version, lean_toolchain, load_json, load_module, load_yaml, require, sha  # noqa: E402
 from stages import AXIOM_REPORT, STANDARD_AXIOMS, Batch  # noqa: E402
+
+
+LATER_RUN_AREAS = ('dag/operads/', 'dag/results/')
+# Workspace manifests that later committed work legitimately extends (a new crate, a dev-dependency, lock entries).
+SHARED_BUILD_FILES = ('Cargo.toml', 'Cargo.lock')
+
+
+def historical_version(root, path, digest):
+    """True when some committed version of the file in the history of HEAD has this sha256."""
+    commits = subprocess.run(['git', 'log', '--format=%H', '--', path], cwd=root, capture_output=True, text=True)
+    for commit in commits.stdout.split():
+        blob = subprocess.run(['git', 'show', commit + ':' + path], cwd=root, capture_output=True)
+        if blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest() == digest:
+            return True
+    return False
 
 
 def axiom_reports(text, anchors):
@@ -144,18 +160,30 @@ def verify(batch: Batch):
     manifest = batch.dir / 'manifest.json'
     require(manifest.is_file(), 'Batch is not sealed (manifest.json missing)')
     for pin in load_json(manifest)['files']:
+        if pin['path'] == 'dag/operads/index.json':
+            continue  # shared with every later batch; its rows are checked in verify_selection
+        if sha(ctx.root / pin['path']) != pin['sha256'] and pin['path'].endswith(SHARED_BUILD_FILES):
+            # Later committed work extends the shared workspace manifests; the sealed version must still be in history.
+            require(historical_version(ctx.root, pin['path'], pin['sha256']), 'sealed artifact changed ' + pin['path'])
+            continue
         require(sha(ctx.root / pin['path']) == pin['sha256'], 'sealed artifact changed ' + pin['path'])
     selected = verify_selection(batch)
     nodes = [verify_node(batch, row['node_id'], i) for i, row in enumerate(batch.rows)]
     companions = verify_companions(batch)
     preservation = batch.dir / 'review/preservation.json'
-    kept = 0
+    kept, updated = 0, []
     if preservation.is_file():
         for entry in load_json(preservation)['files']:
-            require(sha(ctx.root / entry['path']) == entry['sha256'], 'prior artifact changed ' + entry['path'])
+            if sha(ctx.root / entry['path']) != entry['sha256']:
+                # Later batches and single-node runs legitimately extend operad collections and result folders. The recorded
+                # state must then still exist in Git history; any other prior file must be byte-identical.
+                later = entry['path'].startswith(LATER_RUN_AREAS) and subprocess.run(
+                    ['git', 'cat-file', '-e', entry['git_blob']], cwd=ctx.root, capture_output=True).returncode == 0
+                require(later, 'prior artifact changed ' + entry['path'])
+                updated.append(entry['path'])
             kept += 1
     drift = [p['path'] for p in batch.selection.get('tooling_pins', []) if (ctx.root / p['path']).is_file() and sha(ctx.root / p['path']) != p['sha256']]
-    return {'runs': selected, 'verified_nodes': nodes, 'companions_checked': companions, 'preserved_files_checked': kept,
+    return {'runs': selected, 'verified_nodes': nodes, 'companions_checked': companions, 'preserved_files_checked': kept, 'prior_files_updated_by_later_runs': updated,
             'tooling_files_changed_since_selection': drift,
             'scope': 'Read-only replay; saved native/kernel receipts checked, compilers not rerun.'}
 

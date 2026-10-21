@@ -1,0 +1,820 @@
+{
+  "task_id": "PG-OLD-IMAGE-INJECTIVE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "6e2fc8d8429b2d905bceb5af93f6d2167aa55cb0e921f582fcdfb5b518dd34e8",
+  "candidate_sha256": "7ee4b1b02706eb08e2dc9a9d6543ddfb9dc069fcb70f39ccae353a6dda6badf0",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "No operation candidate was recovered, so the declarations were mined by hand: Paper.lean line 54 (old_image_injective, a general theorem over arbitrary types A B E) and Paper001.lean lines 103 (E = Unit), 111, 128, 138. The injectivity theorem is general and non-vacuous. The three negative-boundary theorems are fixed Fin instances (off_image_not_implied: u constant 0 and r constant inl 0 on Fin 1 -> Fin 2; observation_not_implied: identity on Fin 2; repair_not_implied: the constant-true predicate on Fin 1), and repair_not_implied states only that a constant-true predicate stays true, so it defines no repair. This node proves the general forms of the first two boundaries, a converse and an exact count, keeps the repair statement at the weak persistence reading, and enumerates all (u, r) pairs for small finite sets to see that the claim could fail on them.",
+    "reviewed_sha256": "1df807d02f440959927ccb2606163c32db5957207f1792d4021c9d91ebc7f740"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "lift",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::old_image_injective (line 54) binder u : A -> B (function-valued premise, no definition)",
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::old_image_injective (line 103) binder u : A -> B"
+        ],
+        "ordered_inputs": [
+          "OldTerm"
+        ],
+        "output": "NewTerm",
+        "semantic_predicate": "An arbitrary function u : A -> B; injectivity is a consequence of the law, not an assumption.",
+        "hypotheses": [
+          "Types A, B, E (finite only for the counting relations), a lift u : A -> B and r : B -> A + E with r(u a) = inl a for every a; nothing is assumed off the image of u."
+        ],
+        "arity": 1,
+        "carrier": "OldTerm",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "typed_recovery",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::old_image_injective (line 54) binder r : B -> Sum A E",
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::old_image_injective (line 103) binder r : B -> Sum A Unit"
+        ],
+        "ordered_inputs": [
+          "NewTerm"
+        ],
+        "output": "OldTermOrRefusal",
+        "semantic_predicate": "A function r : B -> A + E (E = Unit in Paper001); nothing is required of it off the image of u.",
+        "hypotheses": [
+          "Types A, B, E (finite only for the counting relations), a lift u : A -> B and r : B -> A + E with r(u a) = inl a for every a; nothing is assumed off the image of u."
+        ],
+        "arity": 1,
+        "carrier": "NewTerm",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "old_image",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::off_image_not_implied (line 111) quantifies over b with forall a, u a != b (the complement of the image)"
+        ],
+        "ordered_inputs": [
+          "NewTerm"
+        ],
+        "output": "ImageTest",
+        "semantic_predicate": "Membership of b in the range of u.",
+        "hypotheses": [
+          "Types A, B, E (finite only for the counting relations), a lift u : A -> B and r : B -> A + E with r(u a) = inl a for every a; nothing is assumed off the image of u."
+        ],
+        "arity": 1,
+        "carrier": "NewTerm",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "old_image_law_implies_injective",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::old_image_injective (line 54): a general theorem over arbitrary types A B E",
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::old_image_injective (line 103): the same with E = Unit"
+        ],
+        "equation_or_predicate": "r(u a) = inl a for all a implies u injective",
+        "typing_conditions": "u : A -> B, r : B -> A + E",
+        "evidence_status": "Kernel theorem old_image_injective; native: zero law pairs with a non-injective lift in every case",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "old_image_law",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::old_image_injective (line 54) hypothesis old : forall a, r (u a) = Sum.inl a",
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::old_image_injective (line 103) hypothesis h"
+        ],
+        "equation_or_predicate": "r(u a) = inl a for all a (the hypothesis of the theorem)",
+        "typing_conditions": "u : A -> B, r : B -> A + E",
+        "evidence_status": "Definition OldImageLaw; native: tested on every (u, r) pair of the census",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "injective_iff_recovery_exists",
+        "source_declarations": [
+          "no source declaration; new converse"
+        ],
+        "equation_or_predicate": "u injective iff some r : B -> A + Unit satisfies the old-image law",
+        "typing_conditions": "u : A -> B",
+        "evidence_status": "Kernel theorem injective_iff_exists_law (E = Unit only); native: law_refusing = injective_u and law_noninjective = 0, i.e. exactly the injective lifts carry a law pair, one refusing pair each",
+        "scope": "All types A, B with E = Unit",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "off_image_not_implied",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::off_image_not_implied (line 111): a fixed instance Fin 1 -> Fin 2, not a general statement"
+        ],
+        "equation_or_predicate": "for injective u and b0 off the image there are law-satisfying r (refusing b0) and r2 (accepting b0)",
+        "typing_conditions": "u injective, b0 outside the range",
+        "evidence_status": "Kernel theorems law_freedom_off_image, off_image_not_implied_general (all types) and off_image_not_implied_instance; native nonrefusing counts",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "observation_not_implied",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::observation_not_implied (line 128): a fixed instance on Fin 2"
+        ],
+        "equation_or_predicate": "the law does not imply q2 after u = q",
+        "typing_conditions": "Nonempty A and two distinct observation values",
+        "evidence_status": "Kernel theorem observation_not_implied_general and instance; native obs_preserved < obs_total",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "repair_not_implied",
+        "source_declarations": [
+          "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::repair_not_implied (line 138): a fixed instance with the constant-true predicate; it defines no notion of repair"
+        ],
+        "equation_or_predicate": "the identity lift satisfies the law and leaves every predicate unchanged",
+        "typing_conditions": "u = id",
+        "evidence_status": "Kernel theorem repair_not_implied_general (weak: persistence only) and instance; native persists/cleared counts",
+        "scope": "Persistence of a Boolean predicate through a lift; not a repair theorem",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      },
+      {
+        "id": "law_count",
+        "source_declarations": [
+          "no source declaration; new counting theorem"
+        ],
+        "equation_or_predicate": "for injective u between finite types the number of law-satisfying r : B -> A + Unit is (|A|+1)^(|B|-|A|)",
+        "typing_conditions": "finite A, B",
+        "evidence_status": "Kernel theorem law_card; native law counts for eleven cases",
+        "scope": "All finite types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_old_image_injective_proved_lean.yaml",
+            "sha256": "126ac3efcd44ee602d36df971a1e2e2662a9d367a5308dc6f42bcd800c6d4893"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_old_image_injective.yaml",
+            "sha256": "147630e7bd93d7eb97685361cce4c740d4b7775ac342fbba4bfcc1f47e1a936a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0371_old_image_injective_lift.md",
+            "sha256": "9da6a29b27f35b0a97aabbee427c58348109c1abdc68c73004512a0318f9971d"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md",
+            "sha256": "8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_old_image_injective.py",
+            "sha256": "25f289ee973012ddb154ce0bc6bf1b26c2c753fc5e9f7174e8f1f7d0ee5f76fe"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_old_image_injective.py",
+            "sha256": "87fe460b7466818a4a0205951857905ec5505f02f590f80246f678acdf83d96a"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_old_image_injective.rs",
+            "sha256": "635860b0bec82ccf4ede3e39111f6b54c5e6b585a4333ee0a9b8c4c46aeefb71"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_old_image_injective_replay.rs",
+            "sha256": "4cdedde1e5a95e091f3c09a8a7c69477d52e80aaaf326fcc88ad94f5fa3c6ea1"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "43b267cbfd2d1275e99801a2491a51a8a540bfe413460dc6e8a11109fcd5799a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-OLD-IMAGE-INJECTIVE/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "077a9637f1cfbbf1283f73132c3551a8784decb2cb69dac6790c0c1ea95d8d1f"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "typed_recovery",
+        "input_slot": 0,
+        "inner_operation": "lift",
+        "colour_match": "NewTerm",
+        "hypothesis_match": "Types A, B, E (finite only for the counting relations), a lift u : A -> B and r : B -> A + E with r(u a) = inl a for every a; nothing is assumed off the image of u.",
+        "licensing_relations": [
+          "old_image_law",
+          "old_image_law_implies_injective",
+          "law_count"
+        ],
+        "evidence_status": "Kernel and native"
+      }
+    ],
+    "failed_compositions": [
+      {
+        "composition": "lift o typed_recovery as a map B -> B",
+        "reason": "Not a map: the refusal summand of A + E has no image under u (source paper, section 10); a partial composite exists only on the non-refused part."
+      },
+      {
+        "composition": "old_image applied to typed_recovery to conclude refusal",
+        "reason": "The law constrains r only on the image of u; off the image r is free, so refusal does not follow (kernel off_image_not_implied_general)."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "off_image_accepts",
+        "statement": "u : Fin 1 -> Fin 2 constant 0; r = (0 -> inl 0, 1 -> inr ()) and r2 = constant inl 0 both obey the law; r2 accepts the off-image point 1.",
+        "scope": "Instance; kernel off_image_not_implied_instance."
+      },
+      {
+        "id": "observations_unconstrained",
+        "statement": "identity lift on Fin 2 with q = 0 and q2 = val: law holds, q2 after u != q.",
+        "scope": "Instance; kernel observation_not_implied_instance."
+      },
+      {
+        "id": "obstruction_persists",
+        "statement": "identity lift on Fin 1 with the constant-true predicate: law holds, the obstruction persists at 0 and at u 0.",
+        "scope": "Instance with a constant predicate; kernel repair_not_implied_instance."
+      }
+    ],
+    "open_obligations": [
+      "A definition of obstruction repair for a lift and a theorem deciding it.",
+      "Off-image refusal for the pinned S(n) retraction (PG-SN-OFF-IMAGE-REFUSAL).",
+      "Infinite sets: injectivity holds, but the count law_card is for finite types only."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Kernel-checked (types in Type): for arbitrary A, B, E the old-image law r(u a) = inl a implies u injective, hence |A| <= |B| when finite; for arbitrary A, B and E = Unit every injective lift has a law-satisfying recovery r : B -> A + Unit (injective_iff_exists_law; with E empty the converse fails when A is empty and B is not); for injective u the law can be extended by any single value x : A + E at all off-image points (law_freedom_off_image; the independent free value at each off-image point is the content of law_card), so for an off-image point and an old term a0 there are two law-satisfying recoveries, one refusing and one accepting it (off_image_not_implied_general); for any lift u and recovery r, with A nonempty and two distinct observation values, there are observations q, q2 with q2 after u different from q (observation_not_implied_general; the law hypothesis is not used), while q := q2 after u preserves observations on the same lift (observation_preserved_possible), so observation preservation is an extra condition the law neither implies nor excludes; the identity lift satisfies the law while leaving every predicate on the old terms unchanged (repair_not_implied_general, a persistence statement for the identity lift only); for finite A, B and injective u the number of law-satisfying recoveries into A + Unit is (|A|+1)^(|B|-|A|) (law_card). The three source negative boundaries are fixed Fin instances and are reproduced as such. Native: exhaustive enumeration of all (u, r) pairs for eleven (|A|,|B|,|O|) cases with |A|,|B| <= 4: the number of law pairs, none with a non-injective lift, the number that refuse every off-image point (one per injective lift) and those that do not, observation pairs preserved, and obstruction pairs that persist or clear, all exact integers. Column definitions: persists = number of (law pair, oA, oB) with some a such that oA a and oB (u a); cleared = number with oA nonempty and no such a; these are counting conventions, not a repair notion. obs_preserved, persists and cleared are the law-pair count times a factor independent of r, so they carry no information about the law; the Lean statements carry that claim. The agreement of the producer enumeration with the checker closed forms is the independent evidence, not either alone.",
+    "does_not_support": "Off-image rejection as a property of the S(n) retraction (that is PG-SN-OFF-IMAGE-REFUSAL, which needs an added soundness hypothesis on r); the pinned SnCarrier lift and retraction; any definition of obstruction repair beyond persistence of a Boolean predicate through a lift (the source repair_not_implied instance uses the constant-true predicate and defines no repair); sets with more than four elements in the native census (the Lean count law_card is general for finite types); infinite types for the count; any physical or categorical reading.",
+    "narrowest_claim": "A recovery r : B -> A + Unit obeying r(u a) = inl a exists exactly when u is injective. For an injective lift it is determined only on the image: there are (|A|+1)^(|B|-|A|) of them, exactly one of which refuses every off-image point; when |A| >= 1 and |B| > |A| the others accept some off-image point as an old term, and for |B| = |A| or |A| = 0 the recovery is unique. The law fixes neither observations nor obstruction predicates (persistence through the identity lift only).",
+    "next_test": "Define repair of an obstruction for a lift (a witness-count or chain criterion on the lifted pair) and decide for the identity embedding and for a non-identity injective lift whether the old obstruction count strictly drops, replacing the constant-predicate instance of repair_not_implied by a statement with a stated repair criterion."
+  }
+}

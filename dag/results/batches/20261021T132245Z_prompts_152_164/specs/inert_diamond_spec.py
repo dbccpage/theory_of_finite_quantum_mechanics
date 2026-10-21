@@ -1,0 +1,117 @@
+"""Build specs/PG-INERT-DIAMOND.json from the producer and the node's reviewed claims."""
+import importlib.util
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+ROOT = next((p for p in HERE.parents if (p / 'dag/pfp/prepare_stage.py').is_file()),
+            Path(r'C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.claude\worktrees\unified-dag\.claude\worktrees\pfp-batch-01'))
+sys.path.insert(0, str(ROOT / 'dag/pfp/batch_tools'))
+from spec_builder import build_spec, write_spec  # noqa: E402
+
+_s = importlib.util.spec_from_file_location('producer', ROOT / 'code/python/src/qm/pfp_inert_diamond.py')
+producer = importlib.util.module_from_spec(_s)
+_s.loader.exec_module(producer)
+
+NODE = 'PG-INERT-DIAMOND'
+H = ('Tokens 0 = "<>", 1 = a Difference datum, 2 = a Structure datum; events are supply, admit-datum and admit-form (a three-event fragment of the six-operation alphabet); '
+     'supply never changes the admitted state (rule L1, a stipulation of the model, not derived from the spelling); re-admission designates (L6); form arity 0 is refused.')
+GC = 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean'
+RS = 'code/rust/src/wdp/genesis_construction.rs'
+ADM = 'omega_engine/crates_rs/omega_ooutwire_primitives/src/admission.rs'
+DQ = 'lean4/DerivationDagQMClosure.lean'
+
+
+def spec():
+    boundary = {
+        'supports': ('The node is a DEFINITION, so the result is a consistency and independence result for it, not a proof of it. In a three-event finite admission model (supply, admit datum, admit form) in which supply is STIPULATED to be the identity on the admitted state, the kernel proves (lean4/InertDiamond.lean, over any token type with decidable equality): '
+                     'in the UNROOTED replay, deleting every supply event changes no outcome or refusal, so any function of the outcome is independent of how many times, or where, <> (or any token) is mentioned; '
+                     'in the ROOTED replay (the model of the Rust gate: the first event must be the supply of <>) the FIRST supply is an admission precondition (omitting it from an accepted history is refused) and every later supply is inert; '
+                     'only admission-class events can change the state, and admitting a not-yet-admitted token does; '
+                     'a history that only supplies and admits <> never satisfies the model predicate HasCoproduct (an admitted Difference-classified datum and an admitted Structure-classified datum) for ANY classification of tokens (Lean statement; the native replay uses one fixed classification); '
+                     'the predicate HasCoproduct is independent of inscribing <> (same supply subsequence, one history without and one with two admitted channel data); the identification Real_0 = Difference join Structure is NOT modelled; '
+                     '"coproduct predicate without any supply of <>" is realised only in the UNROOTED model (the rooted replay refuses it for lacking the root event), so in the rooted model inscription is necessary and only its non-sufficiency is shown; '
+                     'and inertness is a rule of the step function, not of the spelling: a rival rule under which supply admits is exhibited. '
+                     'Exhaustive native replay of all 8-event traces of length <= 5 (37449 traces), with a rooted-replay column set (later supplies change the rooted outcome in 0 traces; omitting the root supply is refused for 1, 7, 49, 343, 2401 histories at lengths 1 to 5; the rooted gate refuses 7, 49, ... histories the unrooted model accepts). '
+                     'The zero native counts of supply-deletion and prefix-mention differences follow from supply being the identity by definition and corroborate the implementation, not the inertness hypothesis. '
+                     'The correspondence of the model rules (supply is the identity, arity 0 refused, re-admission designates) to the Rust admission step rests on reading omega_ooutwire_primitives/src/admission.rs, which is not among the run inputs; the gate on the first event is read from genesis_construction.rs line 174.'),
+        'does_not_support': ('The identification Real_0 = Difference joined with Structure (it is not modelled; only a stand-in predicate is shown independent of the inscription); the remaining three events of the six-operation alphabet (instance, rule, imposition) and their refusal rules; '
+                             'the Rust partial admission rules beyond the three-event fragment; any claim that supply is inert independently of the stipulated step rule; inertness of the FIRST supply in the rooted replay; any physical or interpretive reading of <>.'),
+        'narrowest_claim': ('In a three-event admission model where supply is the identity by stipulation: in the unrooted replay a mention of <> (or any token) is invisible to every function of the admitted state; in the rooted replay the first supply of <> is an admission precondition and only later supplies are inert; '
+                            'the model predicate HasCoproduct is independent of inscribing <> (the identification Real_0 = Difference join Structure is not modelled), and coproduct without inscription occurs only in the unrooted model; '
+                            'inertness is the model rule rather than a consequence of the spelling; verified exhaustively for all traces of length <= 5.'),
+        'next_test': ('Extend the finite model to the remaining three events of the six-operation alphabet (admit instance, admit rule, impose) with the refusal rules of admission.rs, and prove that supply stays inert and that no supply history forces a coproduct structure on the admitted state.')}
+    generators = [
+        {'id': 'literal_inscription', 'source_declarations': [GC + '::literalRoot (line 27, definition: the String "<>")', RS + '::GENESIS_INSCRIPTION (line 12, constant "<>")'],
+         'ordered_inputs': ['TokenType'], 'output': 'Token', 'semantic_predicate': 'The distinguished host token <>; no object-language meaning is attached.', 'hypotheses': [H]},
+        {'id': 'supply_event', 'source_declarations': [ADM + '::step, arm Event::Supply (line 27-29; unpinned external file, sha256 42639beab216d3f631ec89998dcca6096aabf00e8d1365948c8c4d584d085bc9)', GC + '::rootedHistory (line 117; inertness is the hypothesis `inert`)'],
+         'ordered_inputs': ['Token'], 'output': 'Event', 'semantic_predicate': 'Mention a token; the step function returns the state unchanged.', 'hypotheses': [H]},
+        {'id': 'admit_event', 'source_declarations': [ADM + '::step, arm Event::AdmitDatum (line 30-37)', RS + '::interpret_event (line 85)'],
+         'ordered_inputs': ['Token'], 'output': 'Event', 'semantic_predicate': 'Admit a token as a datum; a re-admission designates the existing datum (L6).', 'hypotheses': [H]},
+        {'id': 'model_step', 'source_declarations': [ADM + '::step (line 27)', RS + '::GenesisConstruction::advance (line 166; first event must be Supply("<>"))'],
+         'ordered_inputs': ['State', 'Event'], 'output': 'StateOrRefusal', 'semantic_predicate': 'Deterministic partial step; ill-formed admissions are refused.', 'hypotheses': [H]},
+        {'id': 'replay', 'source_declarations': [GC + '::literal_supply_replay (line 137) and ::literal_root_construction (line 151), both general theorems UNDER the explicit hypothesis that supply of the literal is a state no-op'],
+         'ordered_inputs': ['EventList', 'State'], 'output': 'StateOrRefusal', 'semantic_predicate': 'Fold of the step function over a finite history.', 'hypotheses': [H]},
+        {'id': 'coproduct_structure', 'source_declarations': ['no source declaration; the root Real_0 = Difference + Structure is declared separately in the papers (tfq_0392 inscription-to-coproduct gap), not defined from <>'],
+         'ordered_inputs': ['State', 'Classification'], 'output': 'Verdict', 'semantic_predicate': 'Both a Difference-class datum and a Structure-class datum are admitted.', 'hypotheses': [H]}]
+    relations = [
+        {'id': 'supply_state_inert', 'source_declarations': [GC + '::literal_supply_replay (line 137, general theorem assuming inertness as a hypothesis)', ADM + '::tests l2_only_admissions_and_impositions_change_state (fixed instance)'],
+         'equation_or_predicate': 'replay (es with supply events deleted) s = replay es s; hence mention count and position are irrelevant', 'typing_conditions': 'EventList x State',
+         'evidence_status': 'Kernel theorems replay_filter_supply, replay_eq_of_same_admissions, mention_count_irrelevant; native supply_deletion_changes = 0 and mention_prefix_diff = 0', 'scope': 'Any token type with decidable equality'},
+        {'id': 'only_admission_changes_state', 'source_declarations': [ADM + '::module doc L2 and test l2_only_admissions_and_impositions_change_state (fixed instance)'],
+         'equation_or_predicate': 'step s e = some s\' and s\' != s implies e is not a supply; admitting a new token changes the state', 'typing_conditions': 'State x Event',
+         'evidence_status': 'Kernel theorems step_changes_only_by_admission, admit_changes_state; native moved counts', 'scope': 'Any token type with decidable equality'},
+        {'id': 'rooted_replay_requires_literal', 'source_declarations': [RS + '::advance (line 174-176, MissingLiteralRoot)'],
+         'equation_or_predicate': 'a rooted history begins with supply of the literal; a history beginning with anything else is refused', 'typing_conditions': 'EventList',
+         'evidence_status': 'Kernel theorems rooted_refuses_without_root, rooted_root_supply_is_precondition, rooted_later_supply_inert, rooted_inscription_alone; native rooted_ok, root_omission_visible, rooted_later_supply_changes, rooted_refuses_unrooted_accepted', 'scope': 'Any token type with decidable equality'},
+        {'id': 'inscription_independent_of_coproduct', 'source_declarations': ['dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md (route PG-R-GAP-DIAMOND-TO-ROOT is GAP_NO_DERIVATION)', 'no Lean/Rust source declaration; new theorems'],
+         'equation_or_predicate': 'root-only histories have no coproduct for any classification; same supply subsequence can have and lack the coproduct; coproduct histories without supply of the literal exist in the unrooted model', 'typing_conditions': 'EventList x Classification',
+         'evidence_status': 'Kernel theorems no_coproduct_of_single_token, root_only_no_coproduct, inscription_does_not_determine_coproduct, coproduct_without_inscription; native counts', 'scope': 'Any token type for the first; the three-token instance for the existence claims'},
+        {'id': 'inertness_is_a_rule_not_spelling', 'source_declarations': [GC + '::header lines 12-17 (step-commutation and supply-inertness hypotheses are explicit interfaces, not derived from the spelling)'],
+         'equation_or_predicate': 'a rival step rule that admits on supply moves the state; the model rule does not', 'typing_conditions': 'State x Event',
+         'evidence_status': 'Kernel theorem rival_supply_not_inert; native rival_mention_prefix_diff > 0', 'scope': 'Any token type with decidable equality'},
+        {'id': 'dag_local_theorem_is_vacuous', 'source_declarations': [DQ + '::pg_root_coproduct_inert_diamond_and_six_operation_separation (line 1111, fixed arithmetic, vacuous)', 'omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness (line 1207, hard-coded vector, vacuous)'],
+         'equation_or_predicate': 'none: the declaration states 0 != 1, d+0=d, 0+s=s and indicator arithmetic on Fin 6; it mentions neither <> nor an admission event', 'typing_conditions': 'none',
+         'evidence_status': 'Reviewed as vacuous; no result is drawn from it', 'scope': 'Fixed arithmetic only'}]
+    compositions = [
+        {'outer_operation': 'replay', 'input_slot': 1, 'inner_operation': 'model_step', 'colour_match': 'StateOrRefusal -> State',
+         'hypothesis_match': 'Each event is applied to the previous state; a refusal is absorbing.', 'licensing_relations': ['supply_state_inert', 'only_admission_changes_state'], 'evidence_status': 'Kernel and native'},
+        {'outer_operation': 'coproduct_structure', 'input_slot': 0, 'inner_operation': 'replay', 'colour_match': 'StateOrRefusal -> State',
+         'hypothesis_match': 'The coproduct predicate reads the admitted data of the final state under a declared classification; the classification is not part of the inscription.',
+         'licensing_relations': ['inscription_independent_of_coproduct'], 'evidence_status': 'Kernel and native'}]
+    failed = [{'composition': 'coproduct_structure(replay(supply of the literal only))', 'reason': 'Supply leaves the empty state, which has no admitted datum; the composite is false for every classification (kernel no_coproduct_init, root_only_no_coproduct). The route PG-R-GAP-DIAMOND-TO-ROOT therefore has no derivation from inscription alone.'},
+              {'composition': 'replay under the rival rule composed with the inertness claim', 'reason': 'Under the rival rule supply of the literal admits it, so the mention-count independence fails (kernel rival_supply_not_inert; native rival_mention_prefix_diff).'}]
+    counterexamples = [{'id': 'same_inscription_different_structure', 'statement': 'Histories [supply <>] and [supply <>, admit d, admit s] have the same supply subsequence; the first has no coproduct structure, the second has it (tokens d, s classified Difference, Structure).', 'scope': 'Instance (Fin 3), Lean inscription_does_not_determine_coproduct.'},
+                       {'id': 'coproduct_without_inscription', 'statement': 'The history [admit d, admit s] reaches coproduct structure with no supply of <>; the rooted replay of the Rust construction refuses it (MissingLiteralRoot).', 'scope': 'Instance (Fin 3), Lean coproduct_without_inscription.'}]
+    return build_spec(
+        node=NODE, short='inert_diamond', lean='InertDiamond',
+        anchors=['InertDiamond.replay_filter_supply', 'InertDiamond.replay_eq_of_same_admissions', 'InertDiamond.mention_count_irrelevant',
+                 'InertDiamond.step_changes_only_by_admission', 'InertDiamond.admit_changes_state', 'InertDiamond.supply_then_admit_root',
+                 'InertDiamond.rooted_refuses_without_root', 'InertDiamond.rooted_root_supply_is_precondition', 'InertDiamond.rooted_later_supply_inert', 'InertDiamond.no_coproduct_of_single_token', 'InertDiamond.root_only_no_coproduct',
+                 'InertDiamond.rooted_with_coproduct', 'InertDiamond.coproduct_without_inscription', 'InertDiamond.inscription_without_coproduct',
+                 'InertDiamond.inscription_does_not_determine_coproduct', 'InertDiamond.rival_supply_not_inert'],
+        cases=[list(c) for c in producer.CASES], public_tsv=producer.public_tsv(), data=producer.certificate(),
+        scope_review=('The DAG node is a DEFINITION: <> is a literal inscription, supplied or mentioned, with no object-language meaning until a separate admission event; it is NOT defined as Real_0 = Difference + Structure, and MSS-0 admits only <>. '
+                      'The Lean source GenesisConstruction.lean states the supply-inertness as an explicit hypothesis, not a theorem, and says it derives no incidence from the spelling of <>; the Rust construction requires the first event to be Supply("<>") and its admission step returns the state unchanged on Supply. '
+                      'The DAG-local Lean theorem pg_root_coproduct_inert_diamond_and_six_operation_separation and the Rust tranche-11 witness are vacuous fixed arithmetic about numerals and a hard-coded vector (they never mention <> or admission). '
+                      'A definition has no proof obligation; this node therefore builds a three-event finite model of the Rust/Lean admission fragment and proves its consistency (inertness for every function of the outcome) and independence from the coproduct identification, with the inertness shown to be the model rule rather than a consequence of the spelling.'),
+        predicates=['Dynamic programming over joint states (model run, supply-deleted run, prefixed run, rival run) with string-encoded states, instead of replaying traces one by one.',
+                    'Supply-deletion and prefix-mention differences are zero and root-only histories never have coproduct structure, as record-level consistency conditions.',
+                    'Existence of coproduct structure without inscription (L >= 2) and of inscribed histories without it (L >= 3), and positivity of the rival-rule prefix difference.',
+                    'Rooted-replay columns: later supplies leave the rooted outcome unchanged, the omitted root supply is refused, and the rooted gate refuses histories the unrooted model accepts.',
+                    'Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.'],
+        boundary=boundary, generators=generators, relations=relations, compositions=compositions, failed_compositions=failed, counterexamples=counterexamples,
+        open_obligations=['Remaining events of the six-operation alphabet (admit instance, admit rule, impose) and their refusal rules.', 'The full Rust partial admission rules beyond the three-event fragment.',
+                          'Whether the root Real_0 = Difference + Structure can be derived from any admission history under a declared classification (declared separately in the papers).'],
+        colour_meanings={'TokenType': 'Type of host tokens', 'Token': 'A host token, including the literal <>', 'Event': 'Supply, admit-datum or admit-form event', 'State': 'Admitted data and admitted form arities',
+                         'StateOrRefusal': 'A state or a refusal', 'EventList': 'Finite list of events', 'Classification': 'Assignment of tokens to Difference or Structure channels or neither', 'Verdict': 'Proposition'},
+        depends_on_result=True,
+        qualification='The node is a definition; the kernel establishes consistency of the inert-inscription reading and independence of the model predicate HasCoproduct from inscribing <> in a three-event fragment where supply is stipulated to be a state no-op (an explicit hypothesis in GenesisConstruction.lean); the first supply is an admission precondition in the rooted replay; neither inertness nor the root identification Real_0 = Difference join Structure is derived or modelled.',
+        challenge_plan='Coordinate mutants of every certificate leaf plus eleven semantic near misses: rooted-replay root supply invisible, rooted gate vacuous, later supply changes rooted outcome, supply moves state, inscription implies coproduct, coproduct requires inscription, root admission gives coproduct, mention count matters, inertness is spelling, rooted replay accepts everything, re-admission duplicates.',
+        composition_tree=['replay(es, model_step(s, e))', 'coproduct_structure(replay(es, init), cls)'],
+        construction='Exhaustive replay of all traces of length <= 5 over 8 events in a three-token model; Lean proves the general inertness and independence theorems.',
+        relation_evidence={'supply_state_inert': 'Kernel theorems; native zero supply-deletion changes on 37449 traces.', 'inscription_independent_of_coproduct': 'Kernel theorems; native counts of inscribed histories with and without coproduct and of uninscribed histories with it.'})
+
+
+if __name__ == '__main__':
+    print(write_spec(HERE, NODE, spec()))

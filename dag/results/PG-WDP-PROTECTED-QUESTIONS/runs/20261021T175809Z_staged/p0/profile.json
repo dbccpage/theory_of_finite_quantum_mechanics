@@ -1,0 +1,182 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "Mined external Symmetry.lean (FullyInvariantPoint, no_fully_invariant_point: a general swap argument, not vacuous; no selection-function type or equivariance notion exists in it) and the local DAG witness pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed, which is a fixed instance and partly vacuous (a constant function, the swap on Fin 2, unrelated KKT arithmetic). The ledger D01 definition of the asymmetry-price frontier has no Lean/Rust declaration; it is modelled here by the pointwise stabiliser of a declared set, which is a modelling choice with a different quantifier pattern from D01 (minimal declarations producing invariance versus minimal input sets whose removal frees a symmetry). The node proves the general theorem and the frontier characterisation in Lean and replays exact tables for carriers of size 0..6 with a brute-force permutation checker. The bottleneck WDP-CH03-P03 (declare-then-assert one-item separation) stays unported.",
+  "independent_predicates": [
+    "Independent brute-force enumeration of all n! permutations fixing each declared subset pointwise (producer and Rust use different decompositions: closed form vs enumeration).",
+    "Minimality decided from the definition over all proper subsets.",
+    "Theorem-level consistency: for n>=2 the empty declaration never selects and the frontier is the singletons.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Over an arbitrary type X (Lean, general; the cardinality statement frontier_card is informative only for finite X, frontierEquiv and minimalSelecting_iff_singleton carry the general content): no point is fixed by every permutation when X has two distinct points (the bare-set form of \"no Sym(X)-equivariant distinguished-point selection\"); a point is invariant under the pointwise stabiliser of a declared set S iff it lies in S or the complement of S is that single point; S selects some point iff S is nonempty or X has exactly one point; for X with two distinct points the inclusion-minimal selecting sets are exactly the singletons, one per point (a consequence of the pointwise-stabiliser definition: a declared point is fixed because it is declared); on a one-point carrier the empty declaration already selects and on an empty carrier nothing does. Replay bound (not part of the Lean claim): exact tables for every subset of every carrier of size 0..6 (127 subsets), invariant points by enumerating all permutations fixing S, and the minimal selecting sets.",
+    "does_not_support": "Retention, dynamics or observers being impossible or available (WDP-CH03-N01 is a nonclaim, not formalised); that Selecting / MinimalSelecting formalises WDP-CH03-D01 (D01 minimises declared input sets whose removal restores a symmetry that moves the output, relative to an implementation class and dependency preorder; here the minimal declarations making some point invariant under the pointwise stabiliser are computed, and the two agree on singletons only because the output is the declared point); a Lean notion of equivariant selection function (no_fully_invariant_point is its bare-set specialisation); the price of selection on structured carriers (rigid, cyclic, graph) or under the setwise stabiliser; WDP-CH03-P03; infinite-carrier cardinality; any physical or interpretive claim.",
+    "narrowest_claim": "On a bare set of at least two points no point is invariant under all permutations, and in the pointwise-stabiliser model the minimal selecting declarations are exactly the single declared points (price one declared point; price zero on a one-point carrier; no selection on the empty carrier); symmetry-price bookkeeping only.",
+    "next_test": "On structured carriers compute the same selecting and minimal tables with Sym(X) replaced by an explicit automorphism group G (n-cycle with rotations, K4 graph with its automorphisms, a rigid carrier with trivial G) and test whether the frontier is still the singletons: a rigid carrier must give price 0 and the n-cycle with rotations price 1; any other value falsifies the claim that the singleton frontier is generic."
+  },
+  "carrier": "Carrier, DeclaredSet, DeclaredSetFamily, PointPredicate, PointSet, Verdict",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/WdpProtectedQuestions.lean",
+    "code/python/src/qm/pfp_wdp_protected_questions.py",
+    "code/python/tests/test_pfp_wdp_protected_questions.py",
+    "code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+    "code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus nine semantic near misses: empty declaration selects, complement singleton ignored, rigidification price, non-minimal marked minimal, one-point carrier pays a declaration, empty carrier selects, price zero at five points, setwise stabiliser table, rigid carrier price zero.",
+  "composition_tree": [
+    "selecting_test(stabiliser_invariant_points(X, S))",
+    "asymmetry_price_frontier(X, selecting_test(...))"
+  ],
+  "anchors": [
+    "WdpProtectedQuestions.no_fully_invariant_point",
+    "WdpProtectedQuestions.no_fully_invariant_point_card",
+    "WdpProtectedQuestions.invariantUnder_iff",
+    "WdpProtectedQuestions.selecting_iff",
+    "WdpProtectedQuestions.selecting_iff_nonempty",
+    "WdpProtectedQuestions.minimalSelecting_iff_singleton",
+    "WdpProtectedQuestions.frontierEquiv",
+    "WdpProtectedQuestions.frontier_card",
+    "WdpProtectedQuestions.one_point_empty_selects",
+    "WdpProtectedQuestions.empty_carrier_no_selection",
+    "WdpProtectedQuestions.bool_instance"
+  ],
+  "checker_id": "independent-wdp-protected-questions-v1",
+  "result_or_obstruction": "On a bare set of at least two points no point is invariant under all permutations, and in the pointwise-stabiliser model the minimal selecting declarations are exactly the single declared points (price one declared point; price zero on a one-point carrier; no selection on the empty carrier); symmetry-price bookkeeping only.",
+  "next_mathematical_step": "On structured carriers compute the same selecting and minimal tables with Sym(X) replaced by an explicit automorphism group G (n-cycle with rotations, K4 graph with its automorphisms, a rigid carrier with trivial G) and test whether the frontier is still the singletons: a rigid carrier must give price 0 and the n-cycle with rotations price 1; any other value falsifies the claim that the singleton frontier is generic.",
+  "report": "# PG-WDP-PROTECTED-QUESTIONS\n\nMined external Symmetry.lean (FullyInvariantPoint, no_fully_invariant_point: a general swap argument, not vacuous; no selection-function type or equivariance notion exists in it) and the local DAG witness pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed, which is a fixed instance and partly vacuous (a constant function, the swap on Fin 2, unrelated KKT arithmetic). The ledger D01 definition of the asymmetry-price frontier has no Lean/Rust declaration; it is modelled here by the pointwise stabiliser of a declared set, which is a modelling choice with a different quantifier pattern from D01 (minimal declarations producing invariance versus minimal input sets whose removal frees a symmetry). The node proves the general theorem and the frontier characterisation in Lean and replays exact tables for carriers of size 0..6 with a brute-force permutation checker. The bottleneck WDP-CH03-P03 (declare-then-assert one-item separation) stays unported.\n\nSupported: Over an arbitrary type X (Lean, general; the cardinality statement frontier_card is informative only for finite X, frontierEquiv and minimalSelecting_iff_singleton carry the general content): no point is fixed by every permutation when X has two distinct points (the bare-set form of \"no Sym(X)-equivariant distinguished-point selection\"); a point is invariant under the pointwise stabiliser of a declared set S iff it lies in S or the complement of S is that single point; S selects some point iff S is nonempty or X has exactly one point; for X with two distinct points the inclusion-minimal selecting sets are exactly the singletons, one per point (a consequence of the pointwise-stabiliser definition: a declared point is fixed because it is declared); on a one-point carrier the empty declaration already selects and on an empty carrier nothing does. Replay bound (not part of the Lean claim): exact tables for every subset of every carrier of size 0..6 (127 subsets), invariant points by enumerating all permutations fixing S, and the minimal selecting sets.\n\nRemaining: Retention, dynamics or observers being impossible or available (WDP-CH03-N01 is a nonclaim, not formalised); that Selecting / MinimalSelecting formalises WDP-CH03-D01 (D01 minimises declared input sets whose removal restores a symmetry that moves the output, relative to an implementation class and dependency preorder; here the minimal declarations making some point invariant under the pointwise stabiliser are computed, and the two agree on singletons only because the output is the declared point); a Lean notion of equivariant selection function (no_fully_invariant_point is its bare-set specialisation); the price of selection on structured carriers (rigid, cyclic, graph) or under the setwise stabiliser; WDP-CH03-P03; infinite-carrier cardinality; any physical or interpretive claim.",
+  "construction": "Exact subset-mask tables for carriers of size 0..6; Lean proves the general statements over any type.",
+  "colour_meanings": {
+    "Carrier": "Unstructured finite or arbitrary set with its full permutation group",
+    "DeclaredSet": "Subset of the carrier fixed pointwise (declared input)",
+    "PointSet": "Set of points invariant under the stabiliser of the declared set",
+    "Verdict": "Selecting or not",
+    "DeclaredSetFamily": "Family of inclusion-minimal selecting declared sets",
+    "PointPredicate": "Predicate on points of the carrier"
+  },
+  "lean_anchors": [
+    "WdpProtectedQuestions.no_fully_invariant_point",
+    "WdpProtectedQuestions.no_fully_invariant_point_card",
+    "WdpProtectedQuestions.invariantUnder_iff",
+    "WdpProtectedQuestions.selecting_iff",
+    "WdpProtectedQuestions.selecting_iff_nonempty",
+    "WdpProtectedQuestions.minimalSelecting_iff_singleton",
+    "WdpProtectedQuestions.frontierEquiv",
+    "WdpProtectedQuestions.frontier_card",
+    "WdpProtectedQuestions.one_point_empty_selects",
+    "WdpProtectedQuestions.empty_carrier_no_selection",
+    "WdpProtectedQuestions.bool_instance"
+  ],
+  "relation_evidence": {
+    "no_fully_invariant_point": "Kernel theorem; native empty-declaration rows n=2..6 have no invariant point.",
+    "frontier_is_singletons": "Kernel theorem; native frontier rows n=2..6."
+  },
+  "dag_status_depends_on_result": true,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_wdp_protected_questions.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_wdp_protected_questions",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_wdp_protected_questions_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/WdpProtectedQuestions.olean",
+        "WdpProtectedQuestions.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "WdpProtectedQuestions.no_fully_invariant_point",
+        "WdpProtectedQuestions.no_fully_invariant_point_card",
+        "WdpProtectedQuestions.invariantUnder_iff",
+        "WdpProtectedQuestions.selecting_iff",
+        "WdpProtectedQuestions.selecting_iff_nonempty",
+        "WdpProtectedQuestions.minimalSelecting_iff_singleton",
+        "WdpProtectedQuestions.frontierEquiv",
+        "WdpProtectedQuestions.frontier_card",
+        "WdpProtectedQuestions.one_point_empty_selects",
+        "WdpProtectedQuestions.empty_carrier_no_selection",
+        "WdpProtectedQuestions.bool_instance"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  },
+  "review": {
+    "reviewed_target_qualification": "No fully invariant point on a bare set of at least two elements is kernel-checked (re-proved here); the asymmetry-price frontier is proved only in the pointwise-stabiliser modelling choice, not relative to an implementation class and dependency preorder."
+  }
+}

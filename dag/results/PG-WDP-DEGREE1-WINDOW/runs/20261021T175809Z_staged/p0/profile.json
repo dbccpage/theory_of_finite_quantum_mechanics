@@ -1,0 +1,201 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "The node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1, kappa, kappa_well_defined, H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs (Cochain1, the exact LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature) plus the external omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff Phi1 = 0, closed residual iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2 > 0 (first variant named ExactRepair in Rust, ExactClass in the node). The node statement defines R_cl only for Phi1 > 0; Rust returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare Add type; here kappa is proved to exist iff d1 d0 = 0 over modules over a field. The ledger pin in dag/derivations/06_wdp/tfq_0344 is a CRLF-era hash: the LF bytes in the tree hash differently (custody record in dag/pfp/filename_custody.json).",
+  "independent_predicates": [
+    "Phi1 from the dual LP (vertices of d0^T y = 0, |y_e| <= w_e), independent of the producer primal vertex enumeration over r = rank d0 zeroed residuals; plus exact verification of the carried primal potential x and dual vector y (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e).",
+    "Repair invariance in the certificate: windows with the same structure whose cochains differ by a coboundary carry equal Phi1, Gamma2, R_cl and class.",
+    "Ranks by fraction-free (Bareiss) elimination; d1 d0 expanded entrywise; dim H1 = m - rank d1 - rank d0 only when d1 d0 = 0.",
+    "Class by the source if-chain on (Phi1, Gamma2), NotAWindow exactly when d1 d0 != 0 (then Gamma2 is withheld); R_cl only when Phi1 > 0.",
+    "Theorem-level consistency: 0 <= Phi1 <= unrepaired residual sum; Phi1 = 0 implies Gamma2 = 0 on a complex; dim Q1 = dim H1 + rank d1.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "Kernel-checked over a field (the integer graph windows are tensored with Q, so Q1, dim Q1 and dim H1 are Q-quantities): d1 descends to Q1 = C1/im d0 exactly when d1 o d0 = 0 (an instance with d1 d0 != 0 has no kappa1 and two representatives of the zero class with different d1 values); H1 = ker kappa1 is the image of ker d1 in Q1 and a class is closed iff every representative is. For the abstract defect IsPhi (attained minimum of a function J over h + im d0): it is repair invariant and unique; for nonnegative definite J it is nonnegative and zero exactly on the zero class. BRIDGE (kernel): for the weighted-L1 graph cost, cost D w h x = wl1 w (h + negD D x), IsPhi (wl1 w) (negD D) is the attained minimum of cost (isPhi_graph_iff), wl1 is nonnegative and, for positive weights, definite, so Phi1 = 0 iff the class is zero for EVERY graph window with positive weights (graph_phi_zero_iff). Weak duality and its certificate form isPhi_of_certificate (a primal potential x and a dual vector y with equal values give the attained minimum); the filled triangle has Phi1 = Gamma2 = 2. Every (Phi1, Gamma2) pair lies in exactly one of ExactClass / ClosedResidual / ActiveClosureFailure; for Phi1 >= 0 the spellings phi != 0 and phi > 0 agree (ne_zero_iff_pos). Native table over 17 graph windows (loop, disconnected, empty C2, d1 = 0, zero class, weights, a gauge-shifted pair, two windows with d1 d0 != 0 marked NotAWindow with a kappa witness): every record carries a primal potential x and a dual vector y that the checker verifies exactly (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e), plus the dual-LP value recomputed independently of the producer; the two gauge-shifted windows must carry equal Phi1, Gamma2, R_cl and class. For a non-window Phi1 (a class function of d0, J, h) is kept and Gamma2 is withheld, because the representative norm ||d1 h||_1 depends on the representative there.",
+    "does_not_support": "Any derivation of the window from Genesis admission or Real_0 (it stays a declared datum); norms other than weighted L1; non-graph d0 beyond the module-level lemmas; existence of the attained minimum for the weighted-L1 cost as a Lean theorem (attainment is part of IsPhi and is witnessed natively by x and y, but LP strong duality / minimiser existence is not formalised); complex coefficients; any meaning of Gamma2 for a non-window (representative dependent); that R_cl = Gamma2/Phi1 mixes the weighted Phi1 with the unweighted Gamma2 and so depends on the weight scale; any physical reading of the three classes.",
+    "narrowest_claim": "For modules over a field (the graph windows tensored with Q), kappa1 exists on Q1 = C1/im d0 exactly when d1 d0 = 0 (kernel); for graph windows with positive weights the weighted-L1 cost is the IsPhi defect of a nonnegative definite J, so Phi1 = 0 iff the class is zero (kernel); on the 17 tabulated integer windows Phi1 is the weighted-L1 minimum over rational potentials with a verified primal potential and dual vector; each (Phi1, Gamma2) pair has exactly one class: ExactClass iff Phi1 = 0, ClosedResidual iff Phi1 > 0 and Gamma2 = 0, ActiveClosureFailure iff both are positive (the Lean diag theorems state phi != 0, equivalent for Phi1 >= 0).",
+    "next_test": "Prove in Lean that the weighted-L1 quotient defect of every graph window is attained (existence of a minimising potential, or strong duality for the pair of linear programs), so that the attainment clause of IsPhi becomes a theorem for the windows instead of resting on the verified primal and dual witnesses tabulated here."
+  },
+  "carrier": "ClosureCharge, DiagnosticClass, Gamma2, Phi1, RepairQuotient, Window",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/WdpDegree1Window.lean",
+    "code/python/src/qm/pfp_wdp_degree1_window.py",
+    "code/python/tests/test_pfp_wdp_degree1_window.py",
+    "code/rust/src/finite_probability/pfp_wdp_degree1_window.rs",
+    "code/rust/src/finite_probability/examples/pfp_wdp_degree1_window_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus sixteen semantic near misses (kappa on a non-complex, closure ignored, closed read as exact, unrepaired sum as Phi1 and under a gauge shift, weights ignored or applied to Gamma2, H1 without quotient, dim Q1 swap, sign-ignored rank, ratio at Phi1 = 0, loop repaired, refusal hidden, representative Gamma2 for a non-window, non-optimal primal witness, dual vector beyond the weights) and one control.",
+  "composition_tree": [
+    "diagnostic_class(quotient_defect_phi1(q), closure_gamma2(kappa1(q)))"
+  ],
+  "anchors": [
+    "WdpDegree1Window.kappa_descends_iff",
+    "WdpDegree1Window.ker_kappa_eq_map",
+    "WdpDegree1Window.kappa_eq_zero_iff",
+    "WdpDegree1Window.kappa_not_defined_instance",
+    "WdpDegree1Window.isPhi_shift",
+    "WdpDegree1Window.isPhi_zero_iff",
+    "WdpDegree1Window.isPhi_nonneg",
+    "WdpDegree1Window.diag_unique",
+    "WdpDegree1Window.ne_zero_iff_pos",
+    "WdpDegree1Window.ratio_class",
+    "WdpDegree1Window.weak_duality",
+    "WdpDegree1Window.isPhi_of_certificate",
+    "WdpDegree1Window.cost_eq",
+    "WdpDegree1Window.isPhi_graph_iff",
+    "WdpDegree1Window.wl1_definite",
+    "WdpDegree1Window.graph_phi_zero_iff",
+    "WdpDegree1Window.tri_phi",
+    "WdpDegree1Window.tri_gamma2"
+  ],
+  "checker_id": "independent-wdp-degree1-window-v1",
+  "result_or_obstruction": "For modules over a field (the graph windows tensored with Q), kappa1 exists on Q1 = C1/im d0 exactly when d1 d0 = 0 (kernel); for graph windows with positive weights the weighted-L1 cost is the IsPhi defect of a nonnegative definite J, so Phi1 = 0 iff the class is zero (kernel); on the 17 tabulated integer windows Phi1 is the weighted-L1 minimum over rational potentials with a verified primal potential and dual vector; each (Phi1, Gamma2) pair has exactly one class: ExactClass iff Phi1 = 0, ClosedResidual iff Phi1 > 0 and Gamma2 = 0, ActiveClosureFailure iff both are positive (the Lean diag theorems state phi != 0, equivalent for Phi1 >= 0).",
+  "next_mathematical_step": "Prove in Lean that the weighted-L1 quotient defect of every graph window is attained (existence of a minimising potential, or strong duality for the pair of linear programs), so that the attainment clause of IsPhi becomes a theorem for the windows instead of resting on the verified primal and dual witnesses tabulated here.",
+  "report": "# PG-WDP-DEGREE1-WINDOW\n\nThe node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1, kappa, kappa_well_defined, H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs (Cochain1, the exact LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature) plus the external omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff Phi1 = 0, closed residual iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2 > 0 (first variant named ExactRepair in Rust, ExactClass in the node). The node statement defines R_cl only for Phi1 > 0; Rust returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare Add type; here kappa is proved to exist iff d1 d0 = 0 over modules over a field. The ledger pin in dag/derivations/06_wdp/tfq_0344 is a CRLF-era hash: the LF bytes in the tree hash differently (custody record in dag/pfp/filename_custody.json).\n\nSupported: Kernel-checked over a field (the integer graph windows are tensored with Q, so Q1, dim Q1 and dim H1 are Q-quantities): d1 descends to Q1 = C1/im d0 exactly when d1 o d0 = 0 (an instance with d1 d0 != 0 has no kappa1 and two representatives of the zero class with different d1 values); H1 = ker kappa1 is the image of ker d1 in Q1 and a class is closed iff every representative is. For the abstract defect IsPhi (attained minimum of a function J over h + im d0): it is repair invariant and unique; for nonnegative definite J it is nonnegative and zero exactly on the zero class. BRIDGE (kernel): for the weighted-L1 graph cost, cost D w h x = wl1 w (h + negD D x), IsPhi (wl1 w) (negD D) is the attained minimum of cost (isPhi_graph_iff), wl1 is nonnegative and, for positive weights, definite, so Phi1 = 0 iff the class is zero for EVERY graph window with positive weights (graph_phi_zero_iff). Weak duality and its certificate form isPhi_of_certificate (a primal potential x and a dual vector y with equal values give the attained minimum); the filled triangle has Phi1 = Gamma2 = 2. Every (Phi1, Gamma2) pair lies in exactly one of ExactClass / ClosedResidual / ActiveClosureFailure; for Phi1 >= 0 the spellings phi != 0 and phi > 0 agree (ne_zero_iff_pos). Native table over 17 graph windows (loop, disconnected, empty C2, d1 = 0, zero class, weights, a gauge-shifted pair, two windows with d1 d0 != 0 marked NotAWindow with a kappa witness): every record carries a primal potential x and a dual vector y that the checker verifies exactly (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e), plus the dual-LP value recomputed independently of the producer; the two gauge-shifted windows must carry equal Phi1, Gamma2, R_cl and class. For a non-window Phi1 (a class function of d0, J, h) is kept and Gamma2 is withheld, because the representative norm ||d1 h||_1 depends on the representative there.\n\nRemaining: Any derivation of the window from Genesis admission or Real_0 (it stays a declared datum); norms other than weighted L1; non-graph d0 beyond the module-level lemmas; existence of the attained minimum for the weighted-L1 cost as a Lean theorem (attainment is part of IsPhi and is witnessed natively by x and y, but LP strong duality / minimiser existence is not formalised); complex coefficients; any meaning of Gamma2 for a non-window (representative dependent); that R_cl = Gamma2/Phi1 mixes the weighted Phi1 with the unweighted Gamma2 and so depends on the weight scale; any physical reading of the three classes.",
+  "construction": "Exact table over 17 graph windows with primal and dual witnesses; Lean proves the module-level statements, the weak-duality certificate and the cost/IsPhi bridge.",
+  "colour_meanings": {
+    "Window": "Graph window (nv, edges, weights, d1 rows, cochain h)",
+    "RepairQuotient": "Q1 = C1 / im d0",
+    "ClosureCharge": "d1 h in C2",
+    "Phi1": "Exact rational quotient defect",
+    "Gamma2": "Exact rational L1 norm of d1 h",
+    "DiagnosticClass": "ExactClass | ClosedResidual | ActiveClosureFailure (NotAWindow marks a refusal)"
+  },
+  "lean_anchors": [
+    "WdpDegree1Window.kappa_descends_iff",
+    "WdpDegree1Window.ker_kappa_eq_map",
+    "WdpDegree1Window.kappa_eq_zero_iff",
+    "WdpDegree1Window.kappa_not_defined_instance",
+    "WdpDegree1Window.isPhi_shift",
+    "WdpDegree1Window.isPhi_zero_iff",
+    "WdpDegree1Window.isPhi_nonneg",
+    "WdpDegree1Window.diag_unique",
+    "WdpDegree1Window.ne_zero_iff_pos",
+    "WdpDegree1Window.ratio_class",
+    "WdpDegree1Window.weak_duality",
+    "WdpDegree1Window.isPhi_of_certificate",
+    "WdpDegree1Window.cost_eq",
+    "WdpDegree1Window.isPhi_graph_iff",
+    "WdpDegree1Window.wl1_definite",
+    "WdpDegree1Window.graph_phi_zero_iff",
+    "WdpDegree1Window.tri_phi",
+    "WdpDegree1Window.tri_gamma2"
+  ],
+  "relation_evidence": {
+    "kappa_descends_iff_complex": "Kernel iff theorem plus two refused native windows.",
+    "diagnostic_trichotomy": "Kernel partition theorem; native table has all three classes and a refusal."
+  },
+  "dag_status_depends_on_result": false,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_wdp_degree1_window.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_wdp_degree1_window",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_wdp_degree1_window_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/WdpDegree1Window.olean",
+        "WdpDegree1Window.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "WdpDegree1Window.kappa_descends_iff",
+        "WdpDegree1Window.ker_kappa_eq_map",
+        "WdpDegree1Window.kappa_eq_zero_iff",
+        "WdpDegree1Window.kappa_not_defined_instance",
+        "WdpDegree1Window.isPhi_shift",
+        "WdpDegree1Window.isPhi_zero_iff",
+        "WdpDegree1Window.isPhi_nonneg",
+        "WdpDegree1Window.diag_unique",
+        "WdpDegree1Window.ne_zero_iff_pos",
+        "WdpDegree1Window.ratio_class",
+        "WdpDegree1Window.weak_duality",
+        "WdpDegree1Window.isPhi_of_certificate",
+        "WdpDegree1Window.cost_eq",
+        "WdpDegree1Window.isPhi_graph_iff",
+        "WdpDegree1Window.wl1_definite",
+        "WdpDegree1Window.graph_phi_zero_iff",
+        "WdpDegree1Window.tri_phi",
+        "WdpDegree1Window.tri_gamma2"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "The source declares only two witnesses (psi1, psi2) and a Bool-indexed readout; the claim \"the phase fiber over a weight vector is nontrivial\" and \"mixing separates fibers\" is general. Mine the actual declarations phaseBlind, mix, readout, no_descent_through_fiber, then prove the general Z[i] statements and compute fibers by exact enumeration. The weight vector must have both entries positive and realizable (sum of two squares) for the fiber to be nontrivial; the zero-weight sector is the exact boundary where descent holds.",
+  "independent_predicates": [
+    "Independent brute-force Gaussian fiber enumeration over the integer box.",
+    "Closed-form readout (W+2c, W-2c) with c=Re(a conj b), not the literal addition used by the producer.",
+    "Descent flag equals (distinct readouts <= 1), and every realizable pair with both weights positive is flagged non-descending.",
+    "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+  ],
+  "claim_boundary": {
+    "supports": "For Gaussian-integer sector amplitudes a, b, both nonzero, the phase-blind weights (|a|^2, |b|^2) do not determine the unnormalized Hadamard readout (|a+b|^2, |a-b|^2) (kernel-checked for every such pair, not only for the (1,1)/(1,-1) witnesses); mixing always doubles the total weight; the readout difference is 4 Re(a conj b); a zero first sector (a = 0, by w_eq_zero the fiber of weight 0 is the single point 0) or a zero second sector forces the readout to depend on the other weight only, so it descends (descends_when_zero_sector, descends_when_second_zero). Exact fiber and readout tables for ten weight pairs, including the unrealizable weight 3 (for which descends=true is vacuous: both fibers empty).",
+    "does_not_support": "Complex-Hilbert amplitudes beyond Z[i]; normalized or projective states; more than two sectors; mixes other than the unnormalized 2x2 Hadamard; the embedding of Z[i] into C (non-descent on the Gaussian-lattice fibers gives non-descent on the full complex phase fibers only after that embedding is formalised); the identification of the module readout with the source declarations phaseBlind/mix/readout over Vec GaussInt Bool (H008/H010), which is a modelling identification, not a checked one; any measurement, branch or physical interpretation of the phase fiber.",
+    "narrowest_claim": "Over Z[i] with the unnormalized two-sector Hadamard readout: both sector amplitudes nonzero implies the weight pair does not determine the readout; a zero first or zero second sector implies it does.",
+    "next_test": "Decide non-descent of the normalized projective readout w(a+b)/(2(w(a)+w(b))) for n>=3 complex sectors under a unitary mix other than the 2x2 Hadamard, by exhibiting a fiber pair with different readouts or a descending fiber."
+  },
+  "carrier": "GaussianAmplitude, GaussianAmplitudeSet, ReadoutPair, Weight",
+  "coefficient_ring": "Exact integers and rationals",
+  "production_sources": [
+    "lean4/PhaseBlindFiber.lean",
+    "code/python/src/qm/pfp_phase_blind_fiber.py",
+    "code/python/tests/test_pfp_phase_blind_fiber.py",
+    "code/rust/src/finite_probability/pfp_phase_blind_fiber.rs",
+    "code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs"
+  ],
+  "build_sources": [
+    "code/rust/Cargo.toml",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lake-manifest.json",
+    "lean4/lean-toolchain"
+  ],
+  "challenge_plan": "Coordinate mutants of every certificate leaf plus seven semantic near misses: real-sign fiber, unit-orbit fiber (with its true readouts), zero first or second sector treated as generic, unrealizable weight accepted, total not doubled, equal weights imply equal readout.",
+  "composition_tree": [
+    "readout_total(hadamard_readout(a,b))",
+    "hadamard_readout(phase_fiber(w0)[i], phase_fiber(w1)[j])"
+  ],
+  "anchors": [
+    "PhaseBlindFiber.w_I_mul",
+    "PhaseBlindFiber.readout_total",
+    "PhaseBlindFiber.readout_interference",
+    "PhaseBlindFiber.fiber_changes_readout",
+    "PhaseBlindFiber.w_eq_zero",
+    "PhaseBlindFiber.descends_when_second_zero",
+    "PhaseBlindFiber.no_descent",
+    "PhaseBlindFiber.descends_when_zero_sector",
+    "PhaseBlindFiber.witness_readouts",
+    "PhaseBlindFiber.phase_blind_fiber_interference"
+  ],
+  "checker_id": "independent-phase-blind-fiber-v1",
+  "result_or_obstruction": "Over Z[i] with the unnormalized two-sector Hadamard readout: both sector amplitudes nonzero implies the weight pair does not determine the readout; a zero first or zero second sector implies it does.",
+  "next_mathematical_step": "Decide non-descent of the normalized projective readout w(a+b)/(2(w(a)+w(b))) for n>=3 complex sectors under a unitary mix other than the 2x2 Hadamard, by exhibiting a fiber pair with different readouts or a descending fiber.",
+  "report": "# L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\n\nThe source declares only two witnesses (psi1, psi2) and a Bool-indexed readout; the claim \"the phase fiber over a weight vector is nontrivial\" and \"mixing separates fibers\" is general. Mine the actual declarations phaseBlind, mix, readout, no_descent_through_fiber, then prove the general Z[i] statements and compute fibers by exact enumeration. The weight vector must have both entries positive and realizable (sum of two squares) for the fiber to be nontrivial; the zero-weight sector is the exact boundary where descent holds.\n\nSupported: For Gaussian-integer sector amplitudes a, b, both nonzero, the phase-blind weights (|a|^2, |b|^2) do not determine the unnormalized Hadamard readout (|a+b|^2, |a-b|^2) (kernel-checked for every such pair, not only for the (1,1)/(1,-1) witnesses); mixing always doubles the total weight; the readout difference is 4 Re(a conj b); a zero first sector (a = 0, by w_eq_zero the fiber of weight 0 is the single point 0) or a zero second sector forces the readout to depend on the other weight only, so it descends (descends_when_zero_sector, descends_when_second_zero). Exact fiber and readout tables for ten weight pairs, including the unrealizable weight 3 (for which descends=true is vacuous: both fibers empty).\n\nRemaining: Complex-Hilbert amplitudes beyond Z[i]; normalized or projective states; more than two sectors; mixes other than the unnormalized 2x2 Hadamard; the embedding of Z[i] into C (non-descent on the Gaussian-lattice fibers gives non-descent on the full complex phase fibers only after that embedding is formalised); the identification of the module readout with the source declarations phaseBlind/mix/readout over Vec GaussInt Bool (H008/H010), which is a modelling identification, not a checked one; any measurement, branch or physical interpretation of the phase fiber.",
+  "construction": "Exact integer fibers and readouts for ten weight pairs; Lean proves the general Z[i] statements.",
+  "colour_meanings": {
+    "GaussianAmplitude": "Gaussian integer amplitude (re, im)",
+    "Weight": "Nonnegative integer phase-blind weight",
+    "GaussianAmplitudeSet": "Finite phase fiber of one weight",
+    "ReadoutPair": "Pair (w(a+b), w(a-b))"
+  },
+  "lean_anchors": [
+    "PhaseBlindFiber.w_I_mul",
+    "PhaseBlindFiber.readout_total",
+    "PhaseBlindFiber.readout_interference",
+    "PhaseBlindFiber.fiber_changes_readout",
+    "PhaseBlindFiber.w_eq_zero",
+    "PhaseBlindFiber.descends_when_second_zero",
+    "PhaseBlindFiber.no_descent",
+    "PhaseBlindFiber.descends_when_zero_sector",
+    "PhaseBlindFiber.witness_readouts",
+    "PhaseBlindFiber.phase_blind_fiber_interference"
+  ],
+  "relation_evidence": {
+    "weight_unit_invariance": "Kernel theorem; native fibers closed under units.",
+    "nonzero_sectors_nondescent": "Kernel theorem for every nonzero pair; native tables for 7 realizable pairs."
+  },
+  "dag_status_depends_on_result": true,
+  "p2_gates": [
+    {
+      "id": "python",
+      "argv": [
+        "{python}",
+        "-X",
+        "utf8",
+        "code/python/tests/test_pfp_phase_blind_fiber.py",
+        "-v"
+      ],
+      "needs": null,
+      "cwd": "."
+    },
+    {
+      "id": "rust",
+      "argv": [
+        "{cargo}",
+        "test",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--lib",
+        "pfp_phase_blind_fiber",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": "."
+    },
+    {
+      "id": "rust_replay",
+      "argv": [
+        "{cargo}",
+        "run",
+        "--manifest-path",
+        "code/rust/Cargo.toml",
+        "-p",
+        "tfqm_finite_probability",
+        "--example",
+        "pfp_phase_blind_fiber_replay",
+        "--offline",
+        "--locked"
+      ],
+      "needs": "cargo",
+      "cwd": ".",
+      "stdin_file": "public_input.tsv"
+    },
+    {
+      "id": "lean",
+      "argv": [
+        "{lean}",
+        "-j",
+        "1",
+        "-o",
+        ".lake/build/lib/lean/PhaseBlindFiber.olean",
+        "PhaseBlindFiber.lean"
+      ],
+      "needs": "lean",
+      "cwd": "lean4"
+    }
+  ],
+  "p2_checks": {
+    "lean": {
+      "gate": "lean",
+      "anchors": [
+        "PhaseBlindFiber.w_I_mul",
+        "PhaseBlindFiber.readout_total",
+        "PhaseBlindFiber.readout_interference",
+        "PhaseBlindFiber.fiber_changes_readout",
+        "PhaseBlindFiber.w_eq_zero",
+        "PhaseBlindFiber.descends_when_second_zero",
+        "PhaseBlindFiber.no_descent",
+        "PhaseBlindFiber.descends_when_zero_sector",
+        "PhaseBlindFiber.witness_readouts",
+        "PhaseBlindFiber.phase_blind_fiber_interference"
+      ]
+    },
+    "wire": {
+      "gate": "rust_replay"
+    },
+    "tests": {
+      "python": {
+        "gate": "python",
+        "stream": "stderr"
+      },
+      "rust": {
+        "gate": "rust",
+        "stream": "stdout",
+        "pattern": "test result: ok\\. (\\d+) passed; 0 failed"
+      }
+    }
+  },
+  "challenge": {
+    "ignore_paths": [],
+    "max_coordinate_mutants": null
+  },
+  "review": {
+    "reviewed_target_qualification": "Scope is the Z[i] two-sector unnormalized Hadamard readout; the source witnesses are instances, and the normalized/projective and complex-Hilbert versions are not established."
+  }
+}

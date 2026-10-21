@@ -93,6 +93,36 @@
         "tier": 0
       }
     },
+    "NEG-03533814A7EF": {
+      "id": "NEG-03533814A7EF",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_permU: (K, Q, τ, R, v) -> Vec K Q [FableHilbertWalk20260819.H006.permU]",
+      "evidence": "lean def permU has 3 explicit binders (3 with conclusion arrows); the claim says 5 (heuristic count)",
+      "decl_key": "FableHilbertWalk20260819.H006.permU",
+      "claim_pattern": "wrong_signature:gen_permu k q r v vec k q fablehilbertwalk# h# permu",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for FableHilbertWalk20260819.H006.permU.",
+      "first_seen_utc": "2026-10-21T21:46:43Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "L1-IMP-SECTOR-SYMMETRY-LAW"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:46:43Z",
+      "last": {
+        "node_id": "L1-IMP-SECTOR-SYMMETRY-LAW",
+        "run_id": "L1-IMP-SECTOR-SYMMETRY-LAW/20261021T214638Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-09161C263C0C": {
       "id": "NEG-09161C263C0C",
       "entry_type": "failed_composition",
@@ -246,6 +276,66 @@
         "tier": 3
       }
     },
+    "NEG-206781CA7CF6": {
+      "id": "NEG-206781CA7CF6",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_reset . slot 0 <- gen_preparation via rel_normalized_reset_family",
+      "evidence": "output colour 'K→ₗ[K]V' of gen_preparation does not match input colour 'V' (slot 0) of gen_reset",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_reset slot # gen_preparation via rel_normalized_reset_family",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T21:47:38Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:47:38Z",
+      "last": {
+        "node_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+        "run_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY/20261021T214710Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
+    "NEG-23A1EB81B15F": {
+      "id": "NEG-23A1EB81B15F",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_holonomy . slot 0 <- gen_connection via rel_holonomy_consistency",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_holonomy slot # gen_connection via rel_holonomy_consistency",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T21:49:03Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:03Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-246DC5FBE1EB": {
       "id": "NEG-246DC5FBE1EB",
       "entry_type": "failed_composition",
@@ -304,6 +394,36 @@
         "provider": "anthropic",
         "model": "claude-opus-5-5",
         "tier": 4
+      }
+    },
+    "NEG-408F893D6930": {
+      "id": "NEG-408F893D6930",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_connection . slot 0 <- gen_connection via rel_holonomy_consistency",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_connection slot # gen_connection via rel_holonomy_consistency",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T21:49:31Z",
+      "occurrences": 1,
+      "models": [
+        "nvidia/nemotron-3.5-lightning:free"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:31Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
+        "attempt_id": "a0-4",
+        "provider": "openrouter",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
       }
     },
     "NEG-452E93396795": {
@@ -394,6 +514,36 @@
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
         "tier": 0
+      }
+    },
+    "NEG-5F75AA85F5F9": {
+      "id": "NEG-5F75AA85F5F9",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "gen_flux_tube_curvature: (ColorRepresentation) -> Nat [NonAbelianGaugeSigns.fluxTubeCurvature]",
+      "evidence": "lean def fluxTubeCurvature has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+      "decl_key": "NonAbelianGaugeSigns.fluxTubeCurvature",
+      "claim_pattern": "wrong_signature:gen_flux_tube_curvature colorrepresentation nat nonabeliangaugesigns fluxtubecurvature",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for NonAbelianGaugeSigns.fluxTubeCurvature.",
+      "first_seen_utc": "2026-10-21T21:49:41Z",
+      "occurrences": 1,
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:41Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
+        "attempt_id": "a2-5",
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "tier": 2
       }
     },
     "NEG-62F4013E50DF": {
@@ -576,6 +726,36 @@
         "tier": 4
       }
     },
+    "NEG-9A3116584C9A": {
+      "id": "NEG-9A3116584C9A",
+      "entry_type": "counterexample",
+      "class": "wrong_signature",
+      "claim_kind": "generator",
+      "claim": "carrier_def: () -> Carrier [BornFable.MatrixCarrier.space]",
+      "evidence": "lean def space has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+      "decl_key": "BornFable.MatrixCarrier.space",
+      "claim_pattern": "wrong_signature:carrier_def carrier bornfable matrixcarrier space",
+      "confidence": "exact",
+      "forbidden_move": "Do not state that arity/signature for BornFable.MatrixCarrier.space.",
+      "first_seen_utc": "2026-10-21T21:48:08Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0007"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:48:08Z",
+      "last": {
+        "node_id": "TFQ-0007",
+        "run_id": "TFQ-0007/20261021T214806Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-9C00FCC2C3A6": {
       "id": "NEG-9C00FCC2C3A6",
       "entry_type": "failed_composition",
@@ -756,6 +936,36 @@
         "tier": 0
       }
     },
+    "NEG-C2B8FF394629": {
+      "id": "NEG-C2B8FF394629",
+      "entry_type": "failed_composition",
+      "class": "composition_type_mismatch",
+      "claim_kind": "composition",
+      "claim": "gen_curvature . slot 0 <- gen_connection via rel_curvature_def",
+      "evidence": "the outer and inner generators are not a verified generator of this reply",
+      "decl_key": null,
+      "claim_pattern": "composition_type_mismatch:gen_curvature slot # gen_connection via rel_curvature_def",
+      "confidence": "exact",
+      "forbidden_move": "Do not compose operations whose colours do not match.",
+      "first_seen_utc": "2026-10-21T21:49:03Z",
+      "occurrences": 1,
+      "models": [
+        "openai/gpt-oss-120b"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:03Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
+        "attempt_id": "a0-1",
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "tier": 0
+      }
+    },
     "NEG-C96B5F313B8D": {
       "id": "NEG-C96B5F313B8D",
       "entry_type": "failed_composition",
@@ -810,6 +1020,66 @@
       "last": {
         "node_id": "TFQ-0022",
         "run_id": "TFQ-0022/20261021T182638Z_ladder",
+        "attempt_id": "a0-4",
+        "provider": "openrouter",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
+    "NEG-DBEFE62D5FF4": {
+      "id": "NEG-DBEFE62D5FF4",
+      "entry_type": "failed_composition",
+      "class": "wrong_source_location",
+      "claim_kind": "generator",
+      "claim": "gen_connection: (base_point, direction) -> connection [NonAbelianGaugeSigns.connection]",
+      "evidence": "lean4/NonAbelianGaugeSigns.lean has no declaration NonAbelianGaugeSigns.connection; it exists at code/python/src/fsp/sign_sql/exact_models.py",
+      "decl_key": "NonAbelianGaugeSigns.connection",
+      "claim_pattern": "wrong_source_location:NonAbelianGaugeSigns.connection",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite NonAbelianGaugeSigns.connection at that path; see the evidence for where it lives.",
+      "first_seen_utc": "2026-10-21T21:49:31Z",
+      "occurrences": 1,
+      "models": [
+        "nvidia/nemotron-3.5-lightning:free"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:31Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
+        "attempt_id": "a0-4",
+        "provider": "openrouter",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "tier": 0
+      }
+    },
+    "NEG-E0D3D4B93537": {
+      "id": "NEG-E0D3D4B93537",
+      "entry_type": "failed_composition",
+      "class": "nonexistent_declaration",
+      "claim_kind": "relation",
+      "claim": "rel_holonomy_consistency: Holonomy around a loop is invariant under reparametrisation of the loop. [NonAbelianGaugeSigns.holonomy_consistency]",
+      "evidence": "lean4/NonAbelianGaugeSigns.lean has no declaration NonAbelianGaugeSigns.holonomy_consistency and none exists in the indexed sources",
+      "decl_key": "NonAbelianGaugeSigns.holonomy_consistency",
+      "claim_pattern": "nonexistent_declaration:NonAbelianGaugeSigns.holonomy_consistency",
+      "confidence": "exact",
+      "forbidden_move": "Do not cite NonAbelianGaugeSigns.holonomy_consistency as an existing declaration.",
+      "first_seen_utc": "2026-10-21T21:49:31Z",
+      "occurrences": 1,
+      "models": [
+        "nvidia/nemotron-3.5-lightning:free"
+      ],
+      "nodes": [
+        "TFQ-0009"
+      ],
+      "authority_effect": "None",
+      "last_seen_utc": "2026-10-21T21:49:31Z",
+      "last": {
+        "node_id": "TFQ-0009",
+        "run_id": "TFQ-0009/20261021T214856Z_ladder",
         "attempt_id": "a0-4",
         "provider": "openrouter",
         "model": "nvidia/nemotron-3.5-lightning:free",
@@ -968,6 +1238,21 @@
     }
   },
   "by_declaration": {
+    "BornFable.MatrixCarrier.space": [
+      "NEG-9A3116584C9A"
+    ],
+    "FableHilbertWalk20260819.H006.permU": [
+      "NEG-03533814A7EF"
+    ],
+    "NonAbelianGaugeSigns.connection": [
+      "NEG-DBEFE62D5FF4"
+    ],
+    "NonAbelianGaugeSigns.fluxTubeCurvature": [
+      "NEG-5F75AA85F5F9"
+    ],
+    "NonAbelianGaugeSigns.holonomy_consistency": [
+      "NEG-E0D3D4B93537"
+    ],
     "beta0_definition": [
       "NEG-A94471430058"
     ],
@@ -1005,6 +1290,18 @@
     "composition_type_mismatch:g_creutz_ratio slot # g_wilson_loop via r_creutz_def": [
       "NEG-E9754F5006EF"
     ],
+    "composition_type_mismatch:gen_connection slot # gen_connection via rel_holonomy_consistency": [
+      "NEG-408F893D6930"
+    ],
+    "composition_type_mismatch:gen_curvature slot # gen_connection via rel_curvature_def": [
+      "NEG-C2B8FF394629"
+    ],
+    "composition_type_mismatch:gen_holonomy slot # gen_connection via rel_holonomy_consistency": [
+      "NEG-23A1EB81B15F"
+    ],
+    "composition_type_mismatch:gen_reset slot # gen_preparation via rel_normalized_reset_family": [
+      "NEG-206781CA7CF6"
+    ],
     "composition_type_mismatch:qcdbeta#_#_#_implies_asymptotic_window slot # qcdbeta#_#_# via r asymptotic_freedom_window": [
       "NEG-01704F3C5358"
     ],
@@ -1025,6 +1322,9 @@
     ],
     "false_numeric_claim:tfq # nm_indices # # # #": [
       "NEG-907B83F9ADA4"
+    ],
+    "nonexistent_declaration:NonAbelianGaugeSigns.holonomy_consistency": [
+      "NEG-E0D3D4B93537"
     ],
     "nonexistent_declaration:beta0_definition": [
       "NEG-A94471430058"
@@ -1071,17 +1371,29 @@
     "vacuous_proof:tfq#_exhaustive_matches_scalar the weighted fierz identity #/# delta_il delta_kj #/# delta_ij delta_kl holds for all relevant indices in both the exhaustive rep": [
       "NEG-86D334235D12"
     ],
+    "wrong_signature:carrier_def carrier bornfable matrixcarrier space": [
+      "NEG-9A3116584C9A"
+    ],
     "wrong_signature:g_beta# nc nf beta#coefficient test_part_b_gross_wilczek_politzer_beta#_and_banks_zaks_ratio": [
       "NEG-98A8D15D74CA"
     ],
     "wrong_signature:g_creutz wilsonlooptable creutzratio test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-27D4BAF8F111"
     ],
+    "wrong_signature:gen_flux_tube_curvature colorrepresentation nat nonabeliangaugesigns fluxtubecurvature": [
+      "NEG-5F75AA85F5F9"
+    ],
+    "wrong_signature:gen_permu k q r v vec k q fablehilbertwalk# h# permu": [
+      "NEG-03533814A7EF"
+    ],
     "wrong_signature:generator_tfq_#_# lattice_#x# gluon_entropy test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement": [
       "NEG-8E416CE4E670"
     ],
     "wrong_signature:operadgen tfq# window_window nat window qcd_beta#_asymptotic_freedom_window": [
       "NEG-A35C1CDCDF62"
+    ],
+    "wrong_source_location:NonAbelianGaugeSigns.connection": [
+      "NEG-DBEFE62D5FF4"
     ],
     "wrong_source_location:g": [
       "NEG-007A8244EE31"

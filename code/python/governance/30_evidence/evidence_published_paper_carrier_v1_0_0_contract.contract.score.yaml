@@ -1,123 +1,59 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:evidence:published_paper_carrier:v1.0.0",
-    "title": "PublishedPaperCarrier",
-    "kind": "evidence_contract",
-    "status": "mathematical_wip",
-    "layer": "02_evidence",
-    "role": "Carrier",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+      "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+        "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "definition": {
-      "claim_ledger_marker": "Claim_Ledger",
-      "claim_ledger_marker_lower": "claim_ledger",
-      "proof_ledger_prefix": "proof_ledger_",
-      "paper_id_grammar": {
-        "digits": 3,
-        "optional_lowercase_suffix": true,
-        "separators": [
-          "_",
-          " ",
-          "-"
-        ]
-      },
-      "scoped_paper_id": {
-        "separator": ".",
-        "root_scope_is_self": true
-      },
-      "gt_tower_prefix": {
-        "first": 993,
-        "last": 999
-      },
-      "programme_nesting_depth": 1
-    },
-    "doctrine": {
-      "summary": "Filename and folder grammar of the published paper carrier.\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\ngroup papers rather than be one.\n",
-      "authority_defaults": {
-        "grammar": "EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim."
-      },
-      "consumers": [
-        {
-          "crate": "omega_rip_papers",
-          "module": "carrier",
-          "use": "enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\npaper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the scoped\nkey, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\nfolder; a paper with no paper-shaped parent is self-scoped.\n"
-        }
-      ],
-      "required_tests": [
-        "programme_folder_is_not_emitted_as_a_paper",
-        "papers_inside_a_programme_are_enumerated"
-      ],
-      "canonical_invariant": "A folder matching the paper-id grammar is a programme if it contains at least one child\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\na programme.\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\nproperty of the LEAF id and is decided before scoping.\n"
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_evidence_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07",
+    "subject": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py"
   },
-  "current_contract": "7dda1785f0df9de3b27407b54d2bc0a42ee7042cb8ea8440bf8291c4bec7fc03",
-  "current_scoring": "839fd29b931213bef02b1afb7ad1a226db7c45d1a6dc1a26a1a04147f058ba55",
   "contract_history": [
     {
-      "sha256": "7dda1785f0df9de3b27407b54d2bc0a42ee7042cb8ea8440bf8291c4bec7fc03",
       "bytes": 3288,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:published_paper_carrier:v1.0.0\",\n  \"title\": \"PublishedPaperCarrier\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Carrier\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"definition\": {\n    \"claim_ledger_marker\": \"Claim_Ledger\",\n    \"claim_ledger_marker_lower\": \"claim_ledger\",\n    \"proof_ledger_prefix\": \"proof_ledger_\",\n    \"paper_id_grammar\": {\n      \"digits\": 3,\n      \"optional_lowercase_suffix\": true,\n      \"separators\": [\n        \"_\",\n        \" \",\n        \"-\"\n      ]\n    },\n    \"scoped_paper_id\": {\n      \"separator\": \".\",\n      \"root_scope_is_self\": true\n    },\n    \"gt_tower_prefix\": {\n      \"first\": 993,\n      \"last\": 999\n    },\n    \"programme_nesting_depth\": 1\n  },\n  \"doctrine\": {\n    \"summary\": \"Filename and folder grammar of the published paper carrier.\\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\\ngroup papers rather than be one.\\n\",\n    \"authority_defaults\": {\n      \"grammar\": \"EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim.\"\n    },\n    \"consumers\": [\n      {\n        \"crate\": \"omega_rip_papers\",\n        \"module\": \"carrier\",\n        \"use\": \"enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\\npaper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the scoped\\nkey, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\\nfolder; a paper with no paper-shaped parent is self-scoped.\\n\"\n      }\n    ],\n    \"required_tests\": [\n      \"programme_folder_is_not_emitted_as_a_paper\",\n      \"papers_inside_a_programme_are_enumerated\"\n    ],\n    \"canonical_invariant\": \"A folder matching the paper-id grammar is a programme if it contains at least one child\\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\\na programme.\\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\\nproperty of the LEAF id and is decided before scoping.\\n\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:evidence:published_paper_carrier:v1.0.0",
-        "title": "PublishedPaperCarrier",
-        "kind": "evidence_contract",
-        "status": "mathematical_wip",
-        "layer": "02_evidence",
-        "role": "Carrier",
-        "descriptor": {
-          "authority_effect": "evidence_only",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
-          "customer_claim_allowed": false,
-          "dependencies": {
-            "contracts": [],
-            "proof_obligations": []
-          },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
-          },
-          "refusals": {
-            "may_emit": []
-          },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
-          }
-        },
         "definition": {
           "claim_ledger_marker": "Claim_Ledger",
           "claim_ledger_marker_lower": "claim_ledger",
-          "proof_ledger_prefix": "proof_ledger_",
+          "gt_tower_prefix": {
+            "first": 993,
+            "last": 999
+          },
           "paper_id_grammar": {
             "digits": 3,
             "optional_lowercase_suffix": true,
@@ -127,21 +63,39 @@
               "-"
             ]
           },
+          "programme_nesting_depth": 1,
+          "proof_ledger_prefix": "proof_ledger_",
           "scoped_paper_id": {
-            "separator": ".",
-            "root_scope_is_self": true
+            "root_scope_is_self": true,
+            "separator": "."
+          }
+        },
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
           },
-          "gt_tower_prefix": {
-            "first": 993,
-            "last": 999
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
-          "programme_nesting_depth": 1
+          "refusals": {
+            "may_emit": []
+          },
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          }
         },
         "doctrine": {
-          "summary": "Filename and folder grammar of the published paper carrier.\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\ngroup papers rather than be one.\n",
           "authority_defaults": {
             "grammar": "EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim."
           },
+          "canonical_invariant": "A folder matching the paper-id grammar is a programme if it contains at least one child\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\na programme.\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\nproperty of the LEAF id and is decided before scoping.\n",
           "consumers": [
             {
               "crate": "omega_rip_papers",
@@ -153,45 +107,87 @@
             "programme_folder_is_not_emitted_as_a_paper",
             "papers_inside_a_programme_are_enumerated"
           ],
-          "canonical_invariant": "A folder matching the paper-id grammar is a programme if it contains at least one child\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\na programme.\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\nproperty of the LEAF id and is decided before scoping.\n"
+          "summary": "Filename and folder grammar of the published paper carrier.\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\ngroup papers rather than be one.\n"
         },
+        "kind": "evidence_contract",
+        "layer": "02_evidence",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_evidence_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "Carrier",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "PublishedPaperCarrier"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:published_paper_carrier:v1.0.0\",\n  \"title\": \"PublishedPaperCarrier\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Carrier\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"definition\": {\n    \"claim_ledger_marker\": \"Claim_Ledger\",\n    \"claim_ledger_marker_lower\": \"claim_ledger\",\n    \"proof_ledger_prefix\": \"proof_ledger_\",\n    \"paper_id_grammar\": {\n      \"digits\": 3,\n      \"optional_lowercase_suffix\": true,\n      \"separators\": [\n        \"_\",\n        \" \",\n        \"-\"\n      ]\n    },\n    \"scoped_paper_id\": {\n      \"separator\": \".\",\n      \"root_scope_is_self\": true\n    },\n    \"gt_tower_prefix\": {\n      \"first\": 993,\n      \"last\": 999\n    },\n    \"programme_nesting_depth\": 1\n  },\n  \"doctrine\": {\n    \"summary\": \"Filename and folder grammar of the published paper carrier.\\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\\ngroup papers rather than be one.\\n\",\n    \"authority_defaults\": {\n      \"grammar\": \"EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim.\"\n    },\n    \"consumers\": [\n      {\n        \"crate\": \"omega_rip_papers\",\n        \"module\": \"carrier\",\n        \"use\": \"enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\\npaper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the scoped\\nkey, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\\nfolder; a paper with no paper-shaped parent is self-scoped.\\n\"\n      }\n    ],\n    \"required_tests\": [\n      \"programme_folder_is_not_emitted_as_a_paper\",\n      \"papers_inside_a_programme_are_enumerated\"\n    ],\n    \"canonical_invariant\": \"A folder matching the paper-id grammar is a programme if it contains at least one child\\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\\na programme.\\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\\nproperty of the LEAF id and is decided before scoping.\\n\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "7dda1785f0df9de3b27407b54d2bc0a42ee7042cb8ea8440bf8291c4bec7fc03"
+    },
+    {
+      "bytes": 1739,
       "original_paths": [
-        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n    \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n      \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\",\n  \"subject\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+          "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+            "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07",
+        "subject": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py"
+      },
+      "sha256": "120a0a105416e19dc93a8e85a4a483d852bb88bca68e56eab0dfe18df7a21495"
     }
   ],
+  "current_contract": "120a0a105416e19dc93a8e85a4a483d852bb88bca68e56eab0dfe18df7a21495",
+  "current_scoring": "8a8302f1f9761ffc93fc98e0543a9b2c868b6c0d84f4305b49fedbffe46d2bde",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml": "8bb0bc4ff7ea59a6f43f3f4cb0e1241c8ac0cb0263ff88c4e0a577018fe8fc79"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "839fd29b931213bef02b1afb7ad1a226db7c45d1a6dc1a26a1a04147f058ba55",
       "bytes": 2251,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n    \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-published-paper-carrier-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
           "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:30_evidence:evidence-published-paper-carrier-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -200,40 +196,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "839fd29b931213bef02b1afb7ad1a226db7c45d1a6dc1a26a1a04147f058ba55"
+    },
+    {
+      "bytes": 1688,
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n    \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n      \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+          "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+            "sha256": "784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py\",\n    \"sha256\": \"784038ff809f1228d2100d67c1c7f8582f18664d54ce90d5463259f13bec7d07\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-published-paper-carrier-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "8a8302f1f9761ffc93fc98e0543a9b2c868b6c0d84f4305b49fedbffe46d2bde"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml": "8bb0bc4ff7ea59a6f43f3f4cb0e1241c8ac0cb0263ff88c4e0a577018fe8fc79"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -3,21 +3,21 @@ node_id: L1-WDP-REALIFICATION-J
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of complex
-    matrices with J^2 = -I and Tr_R R(A) = 2 Re Tr_C A (Thm 1). A real matrix is in the image iff it commutes
-    with J (Thm 2). States are sigma = R(rho)/2. J is declared.
+  source_statement: R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of
+    complex matrices with J^2 = -I and Tr_R R(A) = 2 Re Tr_C A (Thm 1). A real matrix is in the image
+    iff it commutes with J (Thm 2). States are sigma = R(rho)/2. J is declared.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001
+  declared_assumptions:
   - 'complex structure J: assumption'
-  source_bottleneck: Selection of J is not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean for Thm 1/2 not looked
-    for.
+  source_bottleneck: Selection of J is not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean for Thm 1/2
+    not looked for.
   source_refs:
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_qm_realification_bridge.md
   paper_refs:
   - dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
   source_claim_label: DEFINITION
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
   paper_relocations:
@@ -58,7 +58,8 @@ relation_candidates:
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso
   availability: local
@@ -114,47 +115,1540 @@ source_bindings:
   line: 1207
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Complex matrices here are the declared pair model (P, Q) with the hand-written product. R(A)
+    = [[P,-Q],[Q,P]] is an injective ring-linear multiplicative embedding of these into real matrices
+    with J_m R(A) = R(A) J_n and Tr R(A) = 2 Re Tr A, and its image is exactly the real matrices that
+    intertwine the DECLARED J (block coordinate order); the same J^2 = -1 identity holds for other matrices
+    (kernel instance, bounded census), so the choice of J remains an input.
+  colours:
+  - id: ComplexMatrix
+    meaning: Pair (P, Q) of real matrices, A = P + iQ
+  - id: ComplexMatrixOrRefusal
+    meaning: The unique preimage A or a refusal
+  - id: Dimension
+    meaning: Finite index type
+  - id: RealMatrix
+    meaning: Real matrix on the doubled carrier
+  - id: Scalar
+    meaning: Ring element
+  generators:
+  - id: realify
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): FIXED INSTANCE
+      by decide: the 2 x 2 integer matrices J = [[0,-1],[1,0]], S, K, Z1 = [[3,-4],[4,3]], Z2 = [[1,-2],[2,1]]
+      and one product Z1 Z2; this is R on 1 x 1 Gaussian integers'
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+      (line 1503): GENERAL in (a1,b1,a2,b2) but only for 1 x 1: additivity and injectivity of (a,b) ->
+      [[a,-b],[b,a]]'
+    - 'the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs::realify_operator_with_limits
+      (line 42): external executable realification of rectangular BasicMatrix<GaussianRat> with resource
+      limits'
+    ordered_inputs:
+    - ComplexMatrix
+    output: RealMatrix
+    semantic_predicate: R(A) = [[P,-Q],[Q,P]], real coordinates first.
+    hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    arity: 1
+    carrier: ComplexMatrix
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: complex_structure_J
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): J is a
+      let-bound 2 x 2 literal inside a theorem, not a definition'
+    - 'dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md (paper pin): lists the
+      complex structure as an import'
+    ordered_inputs:
+    - Dimension
+    output: RealMatrix
+    semantic_predicate: J_m = [[0,-I],[I,0]] with J^2 = -I; declared, not selected.
+    hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    - 'J is an assumption (node declared_assumptions: complex structure J).'
+    arity: 1
+    carrier: Dimension
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: complex_product
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::Mat2Int.mul (line 184): definition, the 2 x 2 integer matrix
+      product, used as the realified Gaussian product on fixed examples'
+    ordered_inputs:
+    - ComplexMatrix
+    - ComplexMatrix
+    output: ComplexMatrix
+    semantic_predicate: (P+iQ)(S+iT) = (PS - QT) + i (PT + QS).
+    hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    arity: 2
+    carrier: ComplexMatrix
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: real_trace
+    source_declarations:
+    - no source declaration; paper Theorem 1 states Tr R(A) = 2 Re Tr A with the qualification that A
+      = 1 + i has real trace 2, not 2 + 2i
+    ordered_inputs:
+    - RealMatrix
+    output: Scalar
+    semantic_predicate: Tr R(A) = 2 Tr P.
+    hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    arity: 1
+    carrier: RealMatrix
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: image_decision
+    source_declarations:
+    - no source declaration; paper Theorem 2 (exact image), proof by block equations W = -V, Z = U
+    ordered_inputs:
+    - RealMatrix
+    output: ComplexMatrixOrRefusal
+    semantic_predicate: M = R(A) for exactly one A iff J_m M = M J_n; then A = U - iV from the top blocks.
+    hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    arity: 1
+    carrier: RealMatrix
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+  relations:
+  - id: R_multiplicative
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): fixed product
+      Z1 Z2 = Zprod only (1 x 1 Gaussian integers, by decide)'
+    equation_or_predicate: R(AB) = R(A)R(B), R(A+B) = R(A)+R(B), R(1) = 1, R injective
+    typing_conditions: ComplexMatrix m x n, n x k over a commutative ring
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: all finite shapes
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorem for all finite shapes; native R(A)R(B) = R(AB) on 9
+      product cases.
+    named_Lean_scope: &id001
+    - RealificationJ.R_add
+    - RealificationJ.R_smul
+    - RealificationJ.R_mul
+    - RealificationJ.R_one
+    - RealificationJ.R_injective
+    - RealificationJ.J_sq
+    - RealificationJ.J_R_comm
+    - RealificationJ.R_imul
+    - RealificationJ.R_star
+    - RealificationJ.hermitian_iff_symmetric
+    - RealificationJ.trace_R
+    - RealificationJ.trace_not_twice_complex_trace
+    - RealificationJ.image_iff
+    - RealificationJ.commutes_conj
+    - RealificationJ.other_square_root_instance
+    - RealificationJ.other_root_not_in_image
+  - id: J_squares_to_minus_one_and_intertwines
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): fixed J*J
+      = -I on 2 x 2 only'
+    equation_or_predicate: J^2 = -1; J_m R(A) = R(A) J_n; R(iA) = J_m R(A)
+    typing_conditions: rectangular allowed
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: all finite shapes
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems J_sq, J_R_comm, R_imul; native flags
+    named_Lean_scope: *id001
+  - id: star_is_transpose
+    source_declarations:
+    - no source declaration; paper Theorem 1 R(A*) = R(A)^T
+    equation_or_predicate: R(A*) = R(A)^T; A Hermitian iff R(A) symmetric
+    typing_conditions: square for the Hermitian statement
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: all finite shapes
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems R_star, hermitian_iff_symmetric; native flags
+    named_Lean_scope: *id001
+  - id: trace_is_twice_real_part
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification
+      (line 1121): excluded lead, an aggregate of unrelated numeral facts plus the trivial iff (b = -c
+      and a = d) <-> (b + c = 0 and a - d = 0); no R, no trace'
+    equation_or_predicate: Tr R(A) = 2 Tr P; not 2 Tr_C A unless Im Tr A = 0
+    typing_conditions: square
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: all square shapes
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems trace_R, trace_not_twice_complex_trace; native trace
+      columns
+    named_Lean_scope: *id001
+  - id: image_iff_commutes_with_J
+    source_declarations:
+    - no source declaration; the node bottleneck says "Lean for Thm 1/2 not looked for"
+    equation_or_predicate: M = R(A) for exactly one A iff J_m M = M J_n
+    typing_conditions: M indexed by (m+m) x (n+n); even real dimensions only
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: all finite shapes
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel iff; native image decision agrees with the commutation test
+      on 13 real matrices.
+    named_Lean_scope: *id001
+  - id: J_is_declared
+    source_declarations:
+    - 'lean4/DerivationDagQMClosure.lean::ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+      (line 1503): fixed K = [[0,1],[1,0]] with K^2 = I (a square root of +I) and S, K not commuting;
+      J is not singled out'
+    equation_or_predicate: 'J^2 = -1 does not determine J: other square roots exist, conjugate to J, with
+      a different commutant'
+    typing_conditions: Fin 2 over Int (instance); conjugation transport general
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: general transport, 2 x 2 integer instance and census
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    latest_host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel general conjugation transport and a 2 x 2 instance; native
+      BOUNDED census 2/10/10/26/26 square roots for B = 1,2,3,5,7, of which exactly 2 commute with J (enumeration,
+      not a theorem).
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: real_trace
+    input_slot: 0
+    inner_operation: realify
+    colour_match: RealMatrix
+    hypothesis_match: Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative
+      ring; R(A) = [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]]
+      is DECLARED. Fixed contexts must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - trace_is_twice_real_part
+    evidence_status: Kernel and native
+  - outer_operation: realify
+    input_slot: 0
+    inner_operation: complex_product
+    colour_match: ComplexMatrix
+    hypothesis_match: Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative
+      ring; R(A) = [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]]
+      is DECLARED. Fixed contexts must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - R_multiplicative
+    evidence_status: Kernel and native
+  - outer_operation: image_decision
+    input_slot: 0
+    inner_operation: realify
+    colour_match: RealMatrix
+    hypothesis_match: The decision returns the unique preimage A. Fixed contexts must agree across both
+      operations. Formal universal refined-carrier closure is unpaid.
+    licensing_relations:
+    - image_iff_commutes_with_J
+    - R_multiplicative
+    evidence_status: Kernel and native
+  identities:
+  - colour: ComplexMatrix
+    proposed_operation: id_ComplexMatrix
+    signature: ComplexMatrix -> ComplexMatrix
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ComplexMatrixOrRefusal
+    proposed_operation: id_ComplexMatrixOrRefusal
+    signature: ComplexMatrixOrRefusal -> ComplexMatrixOrRefusal
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Dimension
+    proposed_operation: id_Dimension
+    signature: Dimension -> Dimension
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RealMatrix
+    proposed_operation: id_RealMatrix
+    signature: RealMatrix -> RealMatrix
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Scalar
+    proposed_operation: id_Scalar
+    signature: Scalar -> Scalar
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id003
+  - Positivity preservation and reflection for Hermitian A and the state map sigma = R(rho)/2 with real
+    trace 1 (native psd rows only); identification of the pair model with Mathlib complex matrices; a
+    kernel proof that only +-J commute with J among the square roots of -I.
+  - Instrument (Theorem 3) and channel composition statements.
+  - Selection of J and of the complex field (owned by L1-U1-SELECTOR-OTHER-SEGMENT; not established here).
+  - The balanced tensor lift of the doubled carrier.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - composition: image_decision o realify on an unrestricted real matrix
+    reason: diag(1,0,0,0), diag(-1,1,1,1) and diag(1,-1) are real, symmetric or orthogonal but do not
+      commute with J, so image_decision refuses; the image of realify is a strict subset of the real matrices
+      (kernel image_iff).
+  - composition: real_trace o realify read as twice the complex trace
+    reason: Tr R(A) = 2 Re Tr A drops Im Tr A; A = 1 + i gives 2, not 2 + 2i (kernel instance).
+  counterexamples:
+  - id: other_square_root_of_minus_one
+    statement: The integer matrix [[1,-1],[2,-1]] squares to -I, is conjugate to J by the unimodular [[1,0],[1,1]],
+      and does not commute with J, so it is not R of a complex number.
+    scope: Instance; kernel other_square_root_instance.
+  - id: census_of_square_roots
+    statement: In the box [-7,7] there are 26 integer 2 x 2 matrices with X^2 = -I but only two (+-J)
+      commute with J.
+    scope: Native census, bounded box; the general count is not claimed.
+  - id: semantic_interleaved_ordering_same_J
+    kind: semantic_near_miss
+    rationale: 'The interleaved order (re_1, im_1, re_2, ...) is a different convention: R in that order
+      is P (x) I2 + Q (x) J1, does not commute with the block J_2, and equals the block R only for 1 x
+      1 matrices.'
+    rejected_by: check_candidate
+  - id: semantic_star_without_transpose_sign
+    kind: semantic_near_miss
+    rationale: R(A*) uses the conjugate transpose (P^T, -Q^T); a plain transpose (P^T, Q^T) gives R(A^T),
+      which differs from R(A*) whenever Q != 0.
+    rejected_by: check_candidate
+  - id: semantic_positivity_preserved_asserted
+    kind: semantic_near_miss
+    rationale: The Hermitian matrix [[1,2],[2,1]] has determinant -3 and is indefinite; asserting that
+      it or its realification is positive semidefinite contradicts the exact minors / elimination.
+    rejected_by: check_candidate
+  - id: semantic_trace_is_twice_complex_trace
+    kind: semantic_near_miss
+    rationale: For A = 1 + i read Tr R(A) = 2 as twice the complex trace 1 + i; it is twice the REAL part
+      only.
+    rejected_by: check_candidate
+  - id: semantic_swapped_block_convention
+    kind: semantic_near_miss
+    rationale: 'Use [[P,Q],[-Q,P]] (imaginary part first / J replaced by -J): still multiplicative, but
+      it is R of the conjugate and R(AB) differs.'
+    rejected_by: check_candidate
+  - id: semantic_unrestricted_real_matrix_in_image
+    kind: semantic_near_miss
+    rationale: diag(1,0,0,0) is a positive trace-one real matrix but does not commute with J_2, hence
+      is no R(A).
+    rejected_by: check_candidate
+  - id: semantic_conjugation_counted_as_complex_linear
+    kind: semantic_near_miss
+    rationale: 'diag(1,-1) implements complex conjugation: it anticommutes with J, so it is not R of a
+      complex matrix.'
+    rejected_by: check_candidate
+  - id: semantic_rectangular_ok_declared_noncommuting
+    kind: semantic_near_miss
+    rationale: For a 2 x 4 doubled operator the test is J_1 M = M J_2 between different carriers; the
+      square-only "commutes with J" is the wrong test.
+    rejected_by: check_candidate
+  - id: semantic_any_square_root_of_minus_one_is_J
+    kind: semantic_near_miss
+    rationale: 'The integer matrix [[1,-1],[2,-1]] squares to -I but is neither J nor commutes with J:
+      J is declared, not forced by J^2 = -I.'
+    rejected_by: check_candidate
+  - id: semantic_j_is_the_only_square_root_of_minus_one
+    kind: semantic_near_miss
+    rationale: Only +-J commute with J, but J^2 = -I has 26 integer solutions in the box [-5,5]; reading
+      J as unique hides the declaration.
+    rejected_by: check_candidate
+  - id: semantic_symmetric_real_matrix_is_hermitian_image
+    kind: semantic_near_miss
+    rationale: 'Symmetry alone does not put a real matrix in the image: diag(1,2,3,4) is symmetric but
+      does not commute with J_2.'
+    rejected_by: check_candidate
+  - id: semantic_odd_dimension_has_a_J
+    kind: semantic_near_miss
+    rationale: A complex structure needs even real dimension; a 3 x 3 real matrix has no J_n to commute
+      with.
+    rejected_by: check_candidate
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: ComplexMatrix, ComplexMatrixOrRefusal, Dimension, RealMatrix, Scalar
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+      sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+      sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+      sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+      sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+      sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+      sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+      sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+      sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+      sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    public_input:
+      cases:
+      - - prod
+        - 1
+        - 1
+        - 1
+        - - '1:1'
+        - - 2:-3
+      - - prod
+        - 2
+        - 2
+        - 2
+        - - '1:1'
+          - '2:0'
+          - 0:-1
+          - '3:0'
+        - - 0:0
+          - 1:-1
+          - '1:0'
+          - 0:1
+      - - prod
+        - 3
+        - 3
+        - 3
+        - - 1/2:1/3
+          - 0:1
+          - '2:0'
+          - 1:-1
+          - 1/4:0
+          - 0:-2
+          - '3:1'
+          - 0:0
+          - -1:1/2
+        - - '1:0'
+          - 0:1
+          - '1:1'
+          - 0:-1
+          - '2:0'
+          - 1/3:0
+          - 0:0
+          - 1:-2
+          - '5:0'
+      - - prod
+        - 2
+        - 3
+        - 1
+        - - '1:2'
+          - 0:1
+          - 3:-1
+          - '-1:0'
+          - '2:2'
+          - 0:0
+        - - '1:0'
+          - 0:1
+          - 2:-1
+      - - prod
+        - 3
+        - 2
+        - 2
+        - - '1:0'
+          - 0:1
+          - '2:1'
+          - 1:-1
+          - 0:0
+          - '3:0'
+        - - 0:1
+          - '1:0'
+          - '-1:1'
+          - '2:0'
+      - - prod
+        - 2
+        - 2
+        - 2
+        - - '2:0'
+          - 1:-1
+          - '1:1'
+          - '3:0'
+        - - '1:0'
+          - 0:0
+          - 0:0
+          - '1:0'
+      - - prod
+        - 2
+        - 2
+        - 2
+        - - 0:0
+          - 0:0
+          - 0:0
+          - 0:0
+        - - '1:2'
+          - '3:4'
+          - '5:6'
+          - '7:8'
+      - - prod
+        - 3
+        - 3
+        - 3
+        - - '1:0'
+          - 0:0
+          - 0:0
+          - 0:0
+          - '1:0'
+          - 0:0
+          - 0:0
+          - 0:0
+          - '1:0'
+        - - '1:1'
+          - '2:0'
+          - 0:3
+          - 0:0
+          - 1:-1
+          - '4:0'
+          - 1/2:0
+          - 0:1
+          - '2:2'
+      - - prod
+        - 2
+        - 2
+        - 2
+        - - 0:1
+          - 0:0
+          - 0:0
+          - 0:1
+        - - '1:2'
+          - '3:0'
+          - 0:-1
+          - '1:1'
+      - - img
+        - 4
+        - 4
+        - - '1'
+          - '3'
+          - '-2'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '2'
+          - '0'
+          - '1'
+          - '3'
+          - '0'
+          - '-1'
+          - '0'
+          - '0'
+      - - img
+        - 4
+        - 4
+        - - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+      - - img
+        - 4
+        - 4
+        - - '-1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+      - - img
+        - 4
+        - 4
+        - - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '-1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '-1'
+      - - img
+        - 3
+        - 3
+        - - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+      - - img
+        - 2
+        - 2
+        - - '2'
+          - '-3'
+          - '3'
+          - '2'
+      - - img
+        - 2
+        - 2
+        - - '2'
+          - '3'
+          - '-3'
+          - '2'
+      - - img
+        - 2
+        - 4
+        - - '1'
+          - '3'
+          - '-2'
+          - '1'
+          - '2'
+          - '-1'
+          - '1'
+          - '3'
+      - - img
+        - 2
+        - 4
+        - - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '1'
+          - '0'
+          - '0'
+      - - img
+        - 4
+        - 4
+        - - '2'
+          - '1'
+          - '0'
+          - '1'
+          - '1'
+          - '3'
+          - '-1'
+          - '0'
+          - '0'
+          - '-1'
+          - '2'
+          - '1'
+          - '1'
+          - '0'
+          - '1'
+          - '3'
+      - - img
+        - 2
+        - 2
+        - - '1'
+          - '0'
+          - '0'
+          - '-1'
+      - - img
+        - 4
+        - 4
+        - - '1'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '2'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '3'
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - '4'
+      - - img
+        - 4
+        - 4
+        - - 1/2
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - 1/2
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - 1/2
+          - '0'
+          - '0'
+          - '0'
+          - '0'
+          - 1/2
+      - - psd
+        - 2
+        - - '2:0'
+          - 1:-1
+          - '1:1'
+          - '1:0'
+      - - psd
+        - 2
+        - - '1:0'
+          - '2:0'
+          - '2:0'
+          - '1:0'
+      - - psd
+        - 2
+        - - '2:0'
+          - 1:-1
+          - '1:1'
+          - '3:0'
+      - - psd
+        - 2
+        - - '1:0'
+          - 0:1
+          - 0:1
+          - '1:0'
+      - - psd
+        - 3
+        - - '2:0'
+          - 0:1
+          - 0:0
+          - 0:-1
+          - '2:0'
+          - '1:0'
+          - 0:0
+          - '1:0'
+          - '1:0'
+      - - psd
+        - 3
+        - - '1:0'
+          - 0:-1
+          - '1:0'
+          - 0:1
+          - '1:0'
+          - 0:1
+          - '1:0'
+          - 0:-1
+          - '1:0'
+      - - psd
+        - 1
+        - - '-1:0'
+      - - psd
+        - 2
+        - - '1:0'
+          - 0:0
+          - 0:0
+          - 0:0
+      - - psd
+        - 2
+        - - 0:0
+          - '1:0'
+          - '1:0'
+          - 0:0
+      - - jstruct
+        - 0
+        - -1
+        - 1
+        - 0
+      - - jstruct
+        - 0
+        - 1
+        - -1
+        - 0
+      - - jstruct
+        - 1
+        - -1
+        - 2
+        - -1
+      - - jstruct
+        - 2
+        - -5
+        - 1
+        - -2
+      - - jstruct
+        - 1
+        - 0
+        - 0
+        - -1
+      - - jstruct
+        - 0
+        - 1
+        - 1
+        - 0
+      - - jstruct
+        - 1
+        - 1
+        - 1
+        - 1
+      - - jstruct
+        - 0
+        - 0
+        - 0
+        - 0
+      - - jcensus
+        - 1
+      - - jcensus
+        - 2
+      - - jcensus
+        - 3
+      - - jcensus
+        - 5
+      - - jcensus
+        - 7
+    original_target: R(A) = [[P,-Q],[Q,P]] is an injective real-linear multiplicative representation of
+      complex matrices with J^2 = -I and Tr_R R(A) = 2 Re Tr_C A (Thm 1). A real matrix is in the image
+      iff it commutes with J (Thm 2). States are sigma = R(rho)/2. J is declared.
+    source_scope_review: 'The node is a DEFINITION whose bottleneck says Lean for Theorems 1 and 2 was
+      not looked for. The local source ds_qm062_u1_selector_layers_and_ring_iso is a fixed 2 x 2 integer
+      instance (J, S, K, Z1, Z2 and one product), ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+      is general in four integers but only for 1 x 1 Gaussian integers, and the paper anchor l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification
+      is an excluded aggregate (its only structural conjunct is the trivial iff (b = -c and a = d) <->
+      (b + c = 0 and a - d = 0)). The theorems are therefore proved afresh for general finite index types
+      in Lean (Theorem 1 pieces and Theorem 2), the trace qualification (A = 1 + i) is a kernel instance,
+      and J is shown to be a declaration: a different square root of -I exists and carves out a different
+      commutant.'
+    admitted_assumptions:
+    - 'complex structure J: assumption'
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    - 'J is an assumption (node declared_assumptions: complex structure J).'
+    historical_source_assumptions:
+    - 'complex structure J: assumption'
+    work_unit_admitted_hypotheses:
+    - Complex matrices are pairs (P, Q) of real matrices (A = P + iQ) over a commutative ring; R(A) =
+      [[P,-Q],[Q,P]] with all real coordinates before all imaginary ones; J_n = [[0,-I],[I,0]] is DECLARED.
+    - 'J is an assumption (node declared_assumptions: complex structure J).'
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: realify
+      inputs:
+      - ComplexMatrix
+      output: RealMatrix
+      semantic_predicate: R(A) = [[P,-Q],[Q,P]], real coordinates first.
+    - catalog_id: complex_structure_J
+      inputs:
+      - Dimension
+      output: RealMatrix
+      semantic_predicate: J_m = [[0,-I],[I,0]] with J^2 = -I; declared, not selected.
+    - catalog_id: complex_product
+      inputs:
+      - ComplexMatrix
+      - ComplexMatrix
+      output: ComplexMatrix
+      semantic_predicate: (P+iQ)(S+iT) = (PS - QT) + i (PT + QS).
+    - catalog_id: real_trace
+      inputs:
+      - RealMatrix
+      output: Scalar
+      semantic_predicate: Tr R(A) = 2 Tr P.
+    - catalog_id: image_decision
+      inputs:
+      - RealMatrix
+      output: ComplexMatrixOrRefusal
+      semantic_predicate: M = R(A) for exactly one A iff J_m M = M J_n; then A = U - iV from the top blocks.
+    composition_plan: *id002
+    tree:
+    - real_trace(realify(A))
+    - realify(complex_product(A,B))
+    - image_decision(realify(A))
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: R_multiplicative
+      source_declarations:
+      - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): fixed
+        product Z1 Z2 = Zprod only (1 x 1 Gaussian integers, by decide)'
+      equation_or_predicate: R(AB) = R(A)R(B), R(A+B) = R(A)+R(B), R(1) = 1, R injective
+      typing_conditions: ComplexMatrix m x n, n x k over a commutative ring
+      evidence_status: Kernel theorems R_mul, R_add, R_smul, R_one, R_injective; native tables
+      scope: all finite shapes
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    - id: J_squares_to_minus_one_and_intertwines
+      source_declarations:
+      - 'lean4/DerivationDagQMClosure.lean::ds_qm062_u1_selector_layers_and_ring_iso (line 685): fixed
+        J*J = -I on 2 x 2 only'
+      equation_or_predicate: J^2 = -1; J_m R(A) = R(A) J_n; R(iA) = J_m R(A)
+      typing_conditions: rectangular allowed
+      evidence_status: Kernel theorems J_sq, J_R_comm, R_imul; native flags
+      scope: all finite shapes
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    - id: star_is_transpose
+      source_declarations:
+      - no source declaration; paper Theorem 1 R(A*) = R(A)^T
+      equation_or_predicate: R(A*) = R(A)^T; A Hermitian iff R(A) symmetric
+      typing_conditions: square for the Hermitian statement
+      evidence_status: Kernel theorems R_star, hermitian_iff_symmetric; native flags
+      scope: all finite shapes
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    - id: trace_is_twice_real_part
+      source_declarations:
+      - 'lean4/DerivationDagQMClosure.lean::l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification
+        (line 1121): excluded lead, an aggregate of unrelated numeral facts plus the trivial iff (b =
+        -c and a = d) <-> (b + c = 0 and a - d = 0); no R, no trace'
+      equation_or_predicate: Tr R(A) = 2 Tr P; not 2 Tr_C A unless Im Tr A = 0
+      typing_conditions: square
+      evidence_status: Kernel theorems trace_R, trace_not_twice_complex_trace; native trace columns
+      scope: all square shapes
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    - id: image_iff_commutes_with_J
+      source_declarations:
+      - no source declaration; the node bottleneck says "Lean for Thm 1/2 not looked for"
+      equation_or_predicate: M = R(A) for exactly one A iff J_m M = M J_n
+      typing_conditions: M indexed by (m+m) x (n+n); even real dimensions only
+      evidence_status: Kernel theorem image_iff; native membership decided independently by the block
+        form
+      scope: all finite shapes
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    - id: J_is_declared
+      source_declarations:
+      - 'lean4/DerivationDagQMClosure.lean::ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity
+        (line 1503): fixed K = [[0,1],[1,0]] with K^2 = I (a square root of +I) and S, K not commuting;
+        J is not singled out'
+      equation_or_predicate: 'J^2 = -1 does not determine J: other square roots exist, conjugate to J,
+        with a different commutant'
+      typing_conditions: Fin 2 over Int (instance); conjugation transport general
+      evidence_status: Kernel theorems commutes_conj (general), other_square_root_instance, other_root_not_in_image
+        (instances); native census
+      scope: general transport, 2 x 2 integer instance and census
+      source_pins:
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_wdp_realification_j_definition.yaml
+        sha256: 2267c9b809c938817344ada92dc510422cc3129c8d5e79ec0d8191cf6be70d73
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_wdp_realification_j.yaml
+        sha256: af0f0f5e7da7112e2c8f1e21840ae2cfce1780ba3454dc3be093262fdfa155fc
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs
+        sha256: b639bda98c69e49a15bb8168ac109c17a8775b5d1b420f71438df85c236837a6
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_realification_adapter.rs
+        sha256: 353606916383598fa2af76b1d273b9a548870729f765efc69c100c665994471d
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+        sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_realification_j.py
+        sha256: 6a73d40a44a573fe99a85aa9fef7cc8e5389c7206e2f147189ec4237f1eb2642
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_realification_j.py
+        sha256: e056d57b39334edbddcad89a66b9be88ecc24cc8cf5fa91749a94cf05f1b406b
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_realification_j.rs
+        sha256: 78cbecc77c0c67eae1ee206cbdf7952c8f6289d5b64ac78e6b1adfdb534d9671
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_realification_j_replay.rs
+        sha256: 9320e358b1e7f4cd8d536dae1a8b70ea83298b6b565db53d842bee53494ac75e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 7e628bf9ec745e800de56294777fe636476b553ae63704a4669c9a733c87d6c5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 501ed9cf1a549949cb2ab25c756037a1b211af00d1a3f2f6c4f15a14da7e6816
+    rejection_predicates:
+    - Independent construction R = I2 (x) P + [[0,-1],[1,0]] (x) Q and J_m = [[0,-1],[1,0]] (x) I_m; the
+      REAL product R(A)R(B) is computed first and compared with R of the complex product.
+    - Image membership decided from the top blocks (R(U - iV) == M) independently of the commutation test
+      J_m M = M J_n, and the two must agree on every tested real matrix; odd dimensions refused.
+    - Trace identity Tr R(A) = 2 Re Tr A recomputed from the real matrix, with the complex-trace failure
+      flag (A = 1 + i, A = iI); Hermitian <-> symmetric recomputed from A and from R(A).
+    - J-structure flags by direct 2 x 2 multiplication, and the square-root-of-minus-one census by brute
+      force over the whole integer box; only +-J commute with J.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: 'Coordinate mutants of every certificate leaf plus twelve semantic near misses:
+      trace read as twice the complex trace, swapped block convention, unrestricted real matrix in the
+      image, conjugation as complex-linear, rectangular treated as square, any square root of -I as J,
+      J unique, symmetric implies image, odd dimension has a J, interleaved ordering read as the same
+      J, conjugate transpose without the sign of Q, positivity asserted for an indefinite matrix.'
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent construction R = I2 (x) P + [[0,-1],[1,0]] (x) Q and J_m = [[0,-1],[1,0]] (x) I_m; the
+      REAL product R(A)R(B) is computed first and compared with R of the complex product.
+    - Image membership decided from the top blocks (R(U - iV) == M) independently of the commutation test
+      J_m M = M J_n, and the two must agree on every tested real matrix; odd dimensions refused.
+    - Trace identity Tr R(A) = 2 Re Tr A recomputed from the real matrix, with the complex-trace failure
+      flag (A = 1 + i, A = iI); Hermitian <-> symmetric recomputed from A and from R(A).
+    - J-structure flags by direct 2 x 2 multiplication, and the square-root-of-minus-one census by brute
+      force over the whole integer box; only +-J commute with J.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - RealificationJ.R_add
+    - RealificationJ.R_smul
+    - RealificationJ.R_mul
+    - RealificationJ.R_one
+    - RealificationJ.R_injective
+    - RealificationJ.J_sq
+    - RealificationJ.J_R_comm
+    - RealificationJ.R_imul
+    - RealificationJ.R_star
+    - RealificationJ.hermitian_iff_symmetric
+    - RealificationJ.trace_R
+    - RealificationJ.trace_not_twice_complex_trace
+    - RealificationJ.image_iff
+    - RealificationJ.commutes_conj
+    - RealificationJ.other_square_root_instance
+    - RealificationJ.other_root_not_in_image
+    unpaid_imports:
+    - Positivity preservation and reflection for Hermitian A and the state map sigma = R(rho)/2 with real
+      trace 1 (native psd rows only); identification of the pair model with Mathlib complex matrices;
+      a kernel proof that only +-J commute with J among the square roots of -I.
+    - Instrument (Theorem 3) and channel composition statements.
+    - Selection of J and of the complex field (owned by L1-U1-SELECTOR-OTHER-SEGMENT; not established
+      here).
+    - The balanced tensor lift of the doubled carrier.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p5/host_check.json
+open_obligations: *id003
 excluded_relation_leads:
 - source: lean4/DerivationDagQMClosure.lean
   name: l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification
   reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+operad_slots_scope:
+  work_unit: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/scope_review.json
+latest_run:
+  path: dag/results/L1-WDP-REALIFICATION-J/runs/20261021T132245Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The node is a DEFINITION whose bottleneck says Lean for Theorems 1 and 2 was not looked for. The local
+  source ds_qm062_u1_selector_layers_and_ring_iso is a fixed 2 x 2 integer instance (J, S, K, Z1, Z2 and
+  one product), ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity is general in
+  four integers but only for 1 x 1 Gaussian integers, and the paper anchor l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification
+  is an excluded aggregate (its only structural conjunct is the trivial iff (b = -c and a = d) <-> (b
+  + c = 0 and a - d = 0)). The theorems are therefore proved afresh for general finite index types in
+  Lean (Theorem 1 pieces and Theorem 2), the trace qualification (A = 1 + i) is a kernel instance, and
+  J is shown to be a declaration: a different square root of -I exists and carves out a different commutant.'
+- The node is a DEFINITION with Lean for Theorems 1 and 2 not looked for; the new module proves them for
+  general finite shapes on the pair model of complex matrices, and the statement "Tr R(A) = 2 Re Tr A"
+  is exactly the real-part statement, not twice the complex trace. The selection of J remains an import;
+  positivity and states sigma = R(rho)/2 have native instances only.
+reviewed_target_qualification:
+  text: The node is a DEFINITION with Lean for Theorems 1 and 2 not looked for; the new module proves
+    them for general finite shapes on the pair model of complex matrices, and the statement "Tr R(A) =
+    2 Re Tr A" is exactly the real-part statement, not twice the complex trace. The selection of J remains
+    an import; positivity and states sigma = R(rho)/2 have native instances only.
+  status: corrected_or_qualified_scope
+  review: dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/scope_review.json
+latest_review:
+  path: dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/operad_delta.yaml
+  delivery_result: dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json

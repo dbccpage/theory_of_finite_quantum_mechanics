@@ -1,337 +1,54 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:obstruction:residual_projection:v1.0.0",
-    "title": "ResidualProjection",
-    "kind": "obstruction_contract",
-    "status": "mathematical_wip",
-    "layer": "03_obstruction",
-    "role": "FixedLayerOperatorAlgebra",
-    "descriptor": {
-      "authority_effect": "evidence_only",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [
-          "FixedLayerOperatorAlgebra",
-          "CarrierContract",
-          "ObstructionContract"
-        ],
-        "proof_obligations": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
-      }
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+      "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
     },
-    "doctrine": {
-      "summary": "A checked ResidualProjection may instantiate R = residual projection in the fixed-layer\noperator algebra: a deterministic projection to a residual representative under declared\nTiePolicy, preserving required invariants and recording discarded information.\n\nResidual Projection is one of the five fixed-layer effect-classes in the obstruction algebra.\n\nResidualProjectionCandidate is EvidenceOnly.\nCheckedResidualProjection may become FactOnly after surjectivity, TiePolicy, invariant\npreservation, discarded-information evidence, and replay checks.\nResidualProjectionLicense, if emitted, is AuthorizesTransition.\nEngine-executed projection is StateTransition.\n",
-      "non_role": [
-        "Reconstructing discarded information",
-        "Certifying that discarded information was irrelevant without evidence",
-        "Executing state transitions",
-        "Evaluating admissibility"
-      ],
-      "effect_class_designation": {
-        "effect_class": "R",
-        "name": "Residual Projection",
-        "composition_laws": [
-          "R . R may normalize to R only when source/target compatibility, deterministic TiePolicy composition, invariant preservation, replay support, and explicit RewriteLaw or certificate are present.",
-          "R . M or M . R targets M only under checked composition; malformed refusal records are invalid evidence, not automatically M.",
-          "C . R != identity in general (information loss in R is irreversible)"
-        ]
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+        "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
       },
-      "structural_representation": {
-        "candidate": {
-          "struct_name": "ResidualProjectionCandidate",
-          "fields": [
-            {
-              "name": "projection_id",
-              "type": "ProjectionId"
-            },
-            {
-              "name": "source_carrier",
-              "type": "CarrierRef"
-            },
-            {
-              "name": "target_carrier_schema",
-              "type": "CarrierSchemaRef"
-            },
-            {
-              "name": "projection_map_ref",
-              "type": "ProjectionWitnessId"
-            },
-            {
-              "name": "tie_policy",
-              "type": "TiePolicyId"
-            },
-            {
-              "name": "discarded_dimensions",
-              "type": "Vec<DimensionId>"
-            },
-            {
-              "name": "invariants_preserved",
-              "type": "Vec<InvariantId>"
-            },
-            {
-              "name": "invariants_discarded",
-              "type": "Vec<InvariantId>"
-            },
-            {
-              "name": "evidence_refs",
-              "type": "Vec<EvidenceRef>"
-            },
-            {
-              "name": "witness_refs",
-              "type": "Vec<WitnessId>"
-            },
-            {
-              "name": "certificate_refs",
-              "type": "Vec<CertificateId>"
-            },
-            {
-              "name": "replay_refs",
-              "type": "Vec<ReplayRef>"
-            },
-            {
-              "name": "projection_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "EvidenceOnly"
-            }
-          ]
-        },
-        "checked": {
-          "struct_name": "CheckedResidualProjection",
-          "fields": [
-            {
-              "name": "projection_id",
-              "type": "ProjectionId"
-            },
-            {
-              "name": "candidate_ref",
-              "type": "ProjectionId"
-            },
-            {
-              "name": "surjectivity_certificate",
-              "type": "CertificateId"
-            },
-            {
-              "name": "tie_policy_certificate",
-              "type": "CertificateId"
-            },
-            {
-              "name": "preservation_certificate",
-              "type": "CertificateId"
-            },
-            {
-              "name": "discarded_information_certificate",
-              "type": "CertificateId"
-            },
-            {
-              "name": "checked_hash",
-              "type": "Hash256"
-            },
-            {
-              "name": "authority_effect",
-              "type": "AuthorityEffect",
-              "default": "FactOnly"
-            }
-          ]
-        },
-        "enums": [
-          {
-            "name": "ResidualProjectionRefusal",
-            "variants": [
-              "SourceMalformed",
-              "TargetNotSubspace",
-              "ProjectionNotSurjective",
-              {
-                "name": "RequiredInvariantDiscarded",
-                "fields": {
-                  "invariant": "InvariantId"
-                }
-              },
-              {
-                "name": "NoEvidenceForIrrelevance",
-                "fields": {
-                  "dimension": "DimensionId"
-                }
-              },
-              "AuthorityExceedsEvidence"
-            ]
-          }
-        ]
-      },
-      "authority_boundary": {
-        "may": [
-          "Project a carrier to a lower-dimensional subspace",
-          "Discard dimensions that are certified as irrelevant",
-          "Produce a residual carrier with preserved invariants"
-        ],
-        "must_not": [
-          "Reconstruct discarded information",
-          "Certify relevance/irrelevance without evidence",
-          "Execute state transitions",
-          "Evaluate admissibility (that is the Evaluator's role)",
-          "Terminalize",
-          "Create certificates"
-        ]
-      },
-      "admissibility_checklist": [
-        "Source carrier must be well-formed",
-        "Target carrier must be a valid subspace of source",
-        "Projection map must be surjective",
-        "All invariants required by the target must be preserved",
-        "Discarded dimensions must be certified as irrelevant by attached evidence",
-        "Candidate authority effect is EvidenceOnly. Evaluation may be required before licensing or execution. The checked projection fact may be FactOnly if all certificates verify."
-      ],
-      "tie_policy_law": "Residual projection requires a deterministic TiePolicy.\n\nIf multiple residual representatives are possible, the projection is invalid unless the\nTiePolicy selects one deterministically and replayably.\n\nR without declared TiePolicy is refused.\n",
-      "refusal_conditions": "If any refusal condition triggers, the candidate is refused. The attempted mutation may be\nclassified as M = refused mutation only by the fixed-layer operator classifier/checker.\nThe ResidualProjection contract itself does not self-assign M.\n",
-      "replay_and_certificate_obligation": "- Every residual projection MUST be replayable from its ProjectionWitness\n- The projection map, discarded dimensions, TiePolicy, evidence refs, and certificate refs\n  must be replayable and recordable by Trace when execution occurs. Trace records execution;\n  it does not certify the projection.\n- A certificate wrapping a residual projection inherits the authority of the weakest evidence\n  it references (Doctrine 6)\n",
-      "cross_subsystem_interfaces": [
-        {
-          "subsystem": "Carrier",
-          "interface": "Source and target are Carrier instances"
-        },
-        {
-          "subsystem": "Obstruction",
-          "interface": "R may be generated in response to an obstruction"
-        },
-        {
-          "subsystem": "Certificate",
-          "interface": "R's evidence refs must reference valid certificates"
-        },
-        {
-          "subsystem": "Evaluator",
-          "interface": "candidate authority is EvidenceOnly; evaluator judges admissibility"
-        },
-        {
-          "subsystem": "Engine",
-          "interface": "Engine executes a residual projection only after a valid ActionLicense is present and required evaluator/certificate/replay checks have passed."
-        },
-        {
-          "subsystem": "Trace",
-          "interface": "R is recorded in the execution trace"
-        }
-      ],
-      "llm_exclusion": {
-        "doctrine": 5,
-        "text": "The LLM is candidate generator only. An LLM may propose a residual projection as a\ncandidate, but the candidate carries no authority until certified by the obstruction\nkernel and judged admissible by the Evaluator.\n"
-      },
-      "certificate_authority_bound": {
-        "doctrine": 6,
-        "text": "Certificate authority wrapping a residual projection MUST NOT exceed the authority of\nthe evidence certifying that the discarded dimensions were irrelevant.\n"
-      },
-      "forbidden_implementation_tokens": {
-        "scope": "behavior, not substring",
-        "tokens": [
-          "execute_now(",
-          "certify_now(",
-          "evaluate_admissibility(",
-          "terminalize(",
-          "reconstruct_discarded(",
-          "authority_upgrade(",
-          "sign_certificate(",
-          "apply_operator_now(",
-          "self_declare_effect_class",
-          "missing_tie_policy",
-          "allow_nondeterministic_projection",
-          "skip_tie_policy_check"
-        ]
-      },
-      "required_tests": [
-        "residual_projection_is_surjective",
-        "residual_projection_preserves_required_invariants",
-        "residual_projection_cannot_reconstruct_discarded",
-        "residual_projection_candidate_defaults_to_evidence_only",
-        "residual_projection_checked_fact_requires_certificates",
-        "residual_projection_evidence_bound",
-        "residual_projection_composes_to_residual",
-        "residual_projection_absorbed_by_refusal",
-        "residual_projection_replayable",
-        "residual_projection_candidate_defaults_to_evidence_only",
-        "checked_residual_projection_may_be_factonly_after_certificates",
-        "residual_projection_requires_deterministic_tie_policy",
-        "residual_projection_without_tie_policy_refused",
-        "residual_projection_cannot_self_assign_m_refusal",
-        "residual_projection_does_not_emit_action",
-        "residual_projection_execution_requires_action_license",
-        "residual_projection_records_discarded_information_certificate"
-      ],
-      "canonical_invariant": "ResidualProjection candidates are EvidenceOnly. A checked ResidualProjection may instantiate\nR = residual projection only with surjectivity evidence, deterministic TiePolicy,\ninvariant-preservation evidence, discarded-information evidence, and replay support.\nR does not reconstruct discarded information, certify itself, evaluate admissibility,\nterminalize, authorize, mutate, or execute. Engine execution requires a separate ActionLicense.\n",
-      "legacy_metadata": {
-        "name": "ResidualProjection",
-        "role": "Effect-class R candidate/check: deterministic residual projection with explicit discarded-information evidence",
-        "version": "2.0",
-        "classification": "operator",
-        "effect_class_target": "R",
-        "effect_class_authority": "checker_only",
-        "depends_on": [
-          "FixedLayerOperatorAlgebra",
-          "CarrierContract",
-          "ObstructionContract"
-        ],
-        "forbidden_authority": [
-          "Reconstructing discarded information",
-          "Certifying that discarded information was irrelevant without evidence",
-          "Executing state transitions",
-          "Evaluating admissibility"
-        ],
-        "primary_output_family": "EvidenceEnvelope",
-        "referenced_output_families": [
-          "FactEnvelope",
-          "EvidenceEnvelope"
-        ],
-        "referenced_domain_kinds": [
-          "WitnessEnvelope",
-          "CertificateEnvelope"
-        ],
-        "supports_downstream": [
-          "LicensingBoundary"
-        ],
-        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_obstruction_contract:v1.0.0"
-      ]
-    }
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e",
+    "subject": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py"
   },
-  "current_contract": "ea3575b6c710488d9b4ce99526f8fc6ca66fac6759c8068a8e1afea02c422fe1",
-  "current_scoring": "22dcf5ef6f6a7fbd924e90a07777b22681dcc9fed2be4cb8113a5f7d1483cde6",
   "contract_history": [
     {
-      "sha256": "ea3575b6c710488d9b4ce99526f8fc6ca66fac6759c8068a8e1afea02c422fe1",
       "bytes": 12247,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:obstruction:residual_projection:v1.0.0\",\n  \"title\": \"ResidualProjection\",\n  \"kind\": \"obstruction_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"03_obstruction\",\n  \"role\": \"FixedLayerOperatorAlgebra\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"FixedLayerOperatorAlgebra\",\n        \"CarrierContract\",\n        \"ObstructionContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"A checked ResidualProjection may instantiate R = residual projection in the fixed-layer\\noperator algebra: a deterministic projection to a residual representative under declared\\nTiePolicy, preserving required invariants and recording discarded information.\\n\\nResidual Projection is one of the five fixed-layer effect-classes in the obstruction algebra.\\n\\nResidualProjectionCandidate is EvidenceOnly.\\nCheckedResidualProjection may become FactOnly after surjectivity, TiePolicy, invariant\\npreservation, discarded-information evidence, and replay checks.\\nResidualProjectionLicense, if emitted, is AuthorizesTransition.\\nEngine-executed projection is StateTransition.\\n\",\n    \"non_role\": [\n      \"Reconstructing discarded information\",\n      \"Certifying that discarded information was irrelevant without evidence\",\n      \"Executing state transitions\",\n      \"Evaluating admissibility\"\n    ],\n    \"effect_class_designation\": {\n      \"effect_class\": \"R\",\n      \"name\": \"Residual Projection\",\n      \"composition_laws\": [\n        \"R . R may normalize to R only when source/target compatibility, deterministic TiePolicy composition, invariant preservation, replay support, and explicit RewriteLaw or certificate are present.\",\n        \"R . M or M . R targets M only under checked composition; malformed refusal records are invalid evidence, not automatically M.\",\n        \"C . R != identity in general (information loss in R is irreversible)\"\n      ]\n    },\n    \"structural_representation\": {\n      \"candidate\": {\n        \"struct_name\": \"ResidualProjectionCandidate\",\n        \"fields\": [\n          {\n            \"name\": \"projection_id\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"projection_map_ref\",\n            \"type\": \"ProjectionWitnessId\"\n          },\n          {\n            \"name\": \"tie_policy\",\n            \"type\": \"TiePolicyId\"\n          },\n          {\n            \"name\": \"discarded_dimensions\",\n            \"type\": \"Vec<DimensionId>\"\n          },\n          {\n            \"name\": \"invariants_preserved\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"invariants_discarded\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"evidence_refs\",\n            \"type\": \"Vec<EvidenceRef>\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"projection_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"checked\": {\n        \"struct_name\": \"CheckedResidualProjection\",\n        \"fields\": [\n          {\n            \"name\": \"projection_id\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"candidate_ref\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"surjectivity_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"tie_policy_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"preservation_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"discarded_information_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"checked_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"FactOnly\"\n          }\n        ]\n      },\n      \"enums\": [\n        {\n          \"name\": \"ResidualProjectionRefusal\",\n          \"variants\": [\n            \"SourceMalformed\",\n            \"TargetNotSubspace\",\n            \"ProjectionNotSurjective\",\n            {\n              \"name\": \"RequiredInvariantDiscarded\",\n              \"fields\": {\n                \"invariant\": \"InvariantId\"\n              }\n            },\n            {\n              \"name\": \"NoEvidenceForIrrelevance\",\n              \"fields\": {\n                \"dimension\": \"DimensionId\"\n              }\n            },\n            \"AuthorityExceedsEvidence\"\n          ]\n        }\n      ]\n    },\n    \"authority_boundary\": {\n      \"may\": [\n        \"Project a carrier to a lower-dimensional subspace\",\n        \"Discard dimensions that are certified as irrelevant\",\n        \"Produce a residual carrier with preserved invariants\"\n      ],\n      \"must_not\": [\n        \"Reconstruct discarded information\",\n        \"Certify relevance/irrelevance without evidence\",\n        \"Execute state transitions\",\n        \"Evaluate admissibility (that is the Evaluator's role)\",\n        \"Terminalize\",\n        \"Create certificates\"\n      ]\n    },\n    \"admissibility_checklist\": [\n      \"Source carrier must be well-formed\",\n      \"Target carrier must be a valid subspace of source\",\n      \"Projection map must be surjective\",\n      \"All invariants required by the target must be preserved\",\n      \"Discarded dimensions must be certified as irrelevant by attached evidence\",\n      \"Candidate authority effect is EvidenceOnly. Evaluation may be required before licensing or execution. The checked projection fact may be FactOnly if all certificates verify.\"\n    ],\n    \"tie_policy_law\": \"Residual projection requires a deterministic TiePolicy.\\n\\nIf multiple residual representatives are possible, the projection is invalid unless the\\nTiePolicy selects one deterministically and replayably.\\n\\nR without declared TiePolicy is refused.\\n\",\n    \"refusal_conditions\": \"If any refusal condition triggers, the candidate is refused. The attempted mutation may be\\nclassified as M = refused mutation only by the fixed-layer operator classifier/checker.\\nThe ResidualProjection contract itself does not self-assign M.\\n\",\n    \"replay_and_certificate_obligation\": \"- Every residual projection MUST be replayable from its ProjectionWitness\\n- The projection map, discarded dimensions, TiePolicy, evidence refs, and certificate refs\\n  must be replayable and recordable by Trace when execution occurs. Trace records execution;\\n  it does not certify the projection.\\n- A certificate wrapping a residual projection inherits the authority of the weakest evidence\\n  it references (Doctrine 6)\\n\",\n    \"cross_subsystem_interfaces\": [\n      {\n        \"subsystem\": \"Carrier\",\n        \"interface\": \"Source and target are Carrier instances\"\n      },\n      {\n        \"subsystem\": \"Obstruction\",\n        \"interface\": \"R may be generated in response to an obstruction\"\n      },\n      {\n        \"subsystem\": \"Certificate\",\n        \"interface\": \"R's evidence refs must reference valid certificates\"\n      },\n      {\n        \"subsystem\": \"Evaluator\",\n        \"interface\": \"candidate authority is EvidenceOnly; evaluator judges admissibility\"\n      },\n      {\n        \"subsystem\": \"Engine\",\n        \"interface\": \"Engine executes a residual projection only after a valid ActionLicense is present and required evaluator/certificate/replay checks have passed.\"\n      },\n      {\n        \"subsystem\": \"Trace\",\n        \"interface\": \"R is recorded in the execution trace\"\n      }\n    ],\n    \"llm_exclusion\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is candidate generator only. An LLM may propose a residual projection as a\\ncandidate, but the candidate carries no authority until certified by the obstruction\\nkernel and judged admissible by the Evaluator.\\n\"\n    },\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Certificate authority wrapping a residual projection MUST NOT exceed the authority of\\nthe evidence certifying that the discarded dimensions were irrelevant.\\n\"\n    },\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute_now(\",\n        \"certify_now(\",\n        \"evaluate_admissibility(\",\n        \"terminalize(\",\n        \"reconstruct_discarded(\",\n        \"authority_upgrade(\",\n        \"sign_certificate(\",\n        \"apply_operator_now(\",\n        \"self_declare_effect_class\",\n        \"missing_tie_policy\",\n        \"allow_nondeterministic_projection\",\n        \"skip_tie_policy_check\"\n      ]\n    },\n    \"required_tests\": [\n      \"residual_projection_is_surjective\",\n      \"residual_projection_preserves_required_invariants\",\n      \"residual_projection_cannot_reconstruct_discarded\",\n      \"residual_projection_candidate_defaults_to_evidence_only\",\n      \"residual_projection_checked_fact_requires_certificates\",\n      \"residual_projection_evidence_bound\",\n      \"residual_projection_composes_to_residual\",\n      \"residual_projection_absorbed_by_refusal\",\n      \"residual_projection_replayable\",\n      \"residual_projection_candidate_defaults_to_evidence_only\",\n      \"checked_residual_projection_may_be_factonly_after_certificates\",\n      \"residual_projection_requires_deterministic_tie_policy\",\n      \"residual_projection_without_tie_policy_refused\",\n      \"residual_projection_cannot_self_assign_m_refusal\",\n      \"residual_projection_does_not_emit_action\",\n      \"residual_projection_execution_requires_action_license\",\n      \"residual_projection_records_discarded_information_certificate\"\n    ],\n    \"canonical_invariant\": \"ResidualProjection candidates are EvidenceOnly. A checked ResidualProjection may instantiate\\nR = residual projection only with surjectivity evidence, deterministic TiePolicy,\\ninvariant-preservation evidence, discarded-information evidence, and replay support.\\nR does not reconstruct discarded information, certify itself, evaluate admissibility,\\nterminalize, authorize, mutate, or execute. Engine execution requires a separate ActionLicense.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"ResidualProjection\",\n      \"role\": \"Effect-class R candidate/check: deterministic residual projection with explicit discarded-information evidence\",\n      \"version\": \"2.0\",\n      \"classification\": \"operator\",\n      \"effect_class_target\": \"R\",\n      \"effect_class_authority\": \"checker_only\",\n      \"depends_on\": [\n        \"FixedLayerOperatorAlgebra\",\n        \"CarrierContract\",\n        \"ObstructionContract\"\n      ],\n      \"forbidden_authority\": [\n        \"Reconstructing discarded information\",\n        \"Certifying that discarded information was irrelevant without evidence\",\n        \"Executing state transitions\",\n        \"Evaluating admissibility\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"FactEnvelope\",\n        \"EvidenceEnvelope\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\",\n        \"CertificateEnvelope\"\n      ],\n      \"supports_downstream\": [\n        \"LicensingBoundary\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_obstruction_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:obstruction:residual_projection:v1.0.0",
-        "title": "ResidualProjection",
-        "kind": "obstruction_contract",
-        "status": "mathematical_wip",
-        "layer": "03_obstruction",
-        "role": "FixedLayerOperatorAlgebra",
         "descriptor": {
           "authority_effect": "evidence_only",
-          "evidence_ceiling": "LocalReplay",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [
@@ -341,38 +58,166 @@
             ],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "LocalReplay",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
         "doctrine": {
-          "summary": "A checked ResidualProjection may instantiate R = residual projection in the fixed-layer\noperator algebra: a deterministic projection to a residual representative under declared\nTiePolicy, preserving required invariants and recording discarded information.\n\nResidual Projection is one of the five fixed-layer effect-classes in the obstruction algebra.\n\nResidualProjectionCandidate is EvidenceOnly.\nCheckedResidualProjection may become FactOnly after surjectivity, TiePolicy, invariant\npreservation, discarded-information evidence, and replay checks.\nResidualProjectionLicense, if emitted, is AuthorizesTransition.\nEngine-executed projection is StateTransition.\n",
+          "admissibility_checklist": [
+            "Source carrier must be well-formed",
+            "Target carrier must be a valid subspace of source",
+            "Projection map must be surjective",
+            "All invariants required by the target must be preserved",
+            "Discarded dimensions must be certified as irrelevant by attached evidence",
+            "Candidate authority effect is EvidenceOnly. Evaluation may be required before licensing or execution. The checked projection fact may be FactOnly if all certificates verify."
+          ],
+          "authority_boundary": {
+            "may": [
+              "Project a carrier to a lower-dimensional subspace",
+              "Discard dimensions that are certified as irrelevant",
+              "Produce a residual carrier with preserved invariants"
+            ],
+            "must_not": [
+              "Reconstruct discarded information",
+              "Certify relevance/irrelevance without evidence",
+              "Execute state transitions",
+              "Evaluate admissibility (that is the Evaluator's role)",
+              "Terminalize",
+              "Create certificates"
+            ]
+          },
+          "canonical_invariant": "ResidualProjection candidates are EvidenceOnly. A checked ResidualProjection may instantiate\nR = residual projection only with surjectivity evidence, deterministic TiePolicy,\ninvariant-preservation evidence, discarded-information evidence, and replay support.\nR does not reconstruct discarded information, certify itself, evaluate admissibility,\nterminalize, authorize, mutate, or execute. Engine execution requires a separate ActionLicense.\n",
+          "certificate_authority_bound": {
+            "doctrine": 6,
+            "text": "Certificate authority wrapping a residual projection MUST NOT exceed the authority of\nthe evidence certifying that the discarded dimensions were irrelevant.\n"
+          },
+          "cross_subsystem_interfaces": [
+            {
+              "interface": "Source and target are Carrier instances",
+              "subsystem": "Carrier"
+            },
+            {
+              "interface": "R may be generated in response to an obstruction",
+              "subsystem": "Obstruction"
+            },
+            {
+              "interface": "R's evidence refs must reference valid certificates",
+              "subsystem": "Certificate"
+            },
+            {
+              "interface": "candidate authority is EvidenceOnly; evaluator judges admissibility",
+              "subsystem": "Evaluator"
+            },
+            {
+              "interface": "Engine executes a residual projection only after a valid ActionLicense is present and required evaluator/certificate/replay checks have passed.",
+              "subsystem": "Engine"
+            },
+            {
+              "interface": "R is recorded in the execution trace",
+              "subsystem": "Trace"
+            }
+          ],
+          "effect_class_designation": {
+            "composition_laws": [
+              "R . R may normalize to R only when source/target compatibility, deterministic TiePolicy composition, invariant preservation, replay support, and explicit RewriteLaw or certificate are present.",
+              "R . M or M . R targets M only under checked composition; malformed refusal records are invalid evidence, not automatically M.",
+              "C . R != identity in general (information loss in R is irreversible)"
+            ],
+            "effect_class": "R",
+            "name": "Residual Projection"
+          },
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute_now(",
+              "certify_now(",
+              "evaluate_admissibility(",
+              "terminalize(",
+              "reconstruct_discarded(",
+              "authority_upgrade(",
+              "sign_certificate(",
+              "apply_operator_now(",
+              "self_declare_effect_class",
+              "missing_tie_policy",
+              "allow_nondeterministic_projection",
+              "skip_tie_policy_check"
+            ]
+          },
+          "legacy_metadata": {
+            "classification": "operator",
+            "depends_on": [
+              "FixedLayerOperatorAlgebra",
+              "CarrierContract",
+              "ObstructionContract"
+            ],
+            "effect_class_authority": "checker_only",
+            "effect_class_target": "R",
+            "forbidden_authority": [
+              "Reconstructing discarded information",
+              "Certifying that discarded information was irrelevant without evidence",
+              "Executing state transitions",
+              "Evaluating admissibility"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority.",
+            "name": "ResidualProjection",
+            "primary_output_family": "EvidenceEnvelope",
+            "referenced_domain_kinds": [
+              "WitnessEnvelope",
+              "CertificateEnvelope"
+            ],
+            "referenced_output_families": [
+              "FactEnvelope",
+              "EvidenceEnvelope"
+            ],
+            "role": "Effect-class R candidate/check: deterministic residual projection with explicit discarded-information evidence",
+            "supports_downstream": [
+              "LicensingBoundary"
+            ],
+            "version": "2.0"
+          },
+          "llm_exclusion": {
+            "doctrine": 5,
+            "text": "The LLM is candidate generator only. An LLM may propose a residual projection as a\ncandidate, but the candidate carries no authority until certified by the obstruction\nkernel and judged admissible by the Evaluator.\n"
+          },
           "non_role": [
             "Reconstructing discarded information",
             "Certifying that discarded information was irrelevant without evidence",
             "Executing state transitions",
             "Evaluating admissibility"
           ],
-          "effect_class_designation": {
-            "effect_class": "R",
-            "name": "Residual Projection",
-            "composition_laws": [
-              "R . R may normalize to R only when source/target compatibility, deterministic TiePolicy composition, invariant preservation, replay support, and explicit RewriteLaw or certificate are present.",
-              "R . M or M . R targets M only under checked composition; malformed refusal records are invalid evidence, not automatically M.",
-              "C . R != identity in general (information loss in R is irreversible)"
-            ]
-          },
+          "refusal_conditions": "If any refusal condition triggers, the candidate is refused. The attempted mutation may be\nclassified as M = refused mutation only by the fixed-layer operator classifier/checker.\nThe ResidualProjection contract itself does not self-assign M.\n",
+          "replay_and_certificate_obligation": "- Every residual projection MUST be replayable from its ProjectionWitness\n- The projection map, discarded dimensions, TiePolicy, evidence refs, and certificate refs\n  must be replayable and recordable by Trace when execution occurs. Trace records execution;\n  it does not certify the projection.\n- A certificate wrapping a residual projection inherits the authority of the weakest evidence\n  it references (Doctrine 6)\n",
+          "required_tests": [
+            "residual_projection_is_surjective",
+            "residual_projection_preserves_required_invariants",
+            "residual_projection_cannot_reconstruct_discarded",
+            "residual_projection_candidate_defaults_to_evidence_only",
+            "residual_projection_checked_fact_requires_certificates",
+            "residual_projection_evidence_bound",
+            "residual_projection_composes_to_residual",
+            "residual_projection_absorbed_by_refusal",
+            "residual_projection_replayable",
+            "residual_projection_candidate_defaults_to_evidence_only",
+            "checked_residual_projection_may_be_factonly_after_certificates",
+            "residual_projection_requires_deterministic_tie_policy",
+            "residual_projection_without_tie_policy_refused",
+            "residual_projection_cannot_self_assign_m_refusal",
+            "residual_projection_does_not_emit_action",
+            "residual_projection_execution_requires_action_license",
+            "residual_projection_records_discarded_information_certificate"
+          ],
           "structural_representation": {
             "candidate": {
-              "struct_name": "ResidualProjectionCandidate",
               "fields": [
                 {
                   "name": "projection_id",
@@ -427,14 +272,14 @@
                   "type": "Hash256"
                 },
                 {
+                  "default": "EvidenceOnly",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "EvidenceOnly"
+                  "type": "AuthorityEffect"
                 }
-              ]
+              ],
+              "struct_name": "ResidualProjectionCandidate"
             },
             "checked": {
-              "struct_name": "CheckedResidualProjection",
               "fields": [
                 {
                   "name": "projection_id",
@@ -465,11 +310,12 @@
                   "type": "Hash256"
                 },
                 {
+                  "default": "FactOnly",
                   "name": "authority_effect",
-                  "type": "AuthorityEffect",
-                  "default": "FactOnly"
+                  "type": "AuthorityEffect"
                 }
-              ]
+              ],
+              "struct_name": "CheckedResidualProjection"
             },
             "enums": [
               {
@@ -479,189 +325,104 @@
                   "TargetNotSubspace",
                   "ProjectionNotSurjective",
                   {
-                    "name": "RequiredInvariantDiscarded",
                     "fields": {
                       "invariant": "InvariantId"
-                    }
+                    },
+                    "name": "RequiredInvariantDiscarded"
                   },
                   {
-                    "name": "NoEvidenceForIrrelevance",
                     "fields": {
                       "dimension": "DimensionId"
-                    }
+                    },
+                    "name": "NoEvidenceForIrrelevance"
                   },
                   "AuthorityExceedsEvidence"
                 ]
               }
             ]
           },
-          "authority_boundary": {
-            "may": [
-              "Project a carrier to a lower-dimensional subspace",
-              "Discard dimensions that are certified as irrelevant",
-              "Produce a residual carrier with preserved invariants"
-            ],
-            "must_not": [
-              "Reconstruct discarded information",
-              "Certify relevance/irrelevance without evidence",
-              "Execute state transitions",
-              "Evaluate admissibility (that is the Evaluator's role)",
-              "Terminalize",
-              "Create certificates"
-            ]
-          },
-          "admissibility_checklist": [
-            "Source carrier must be well-formed",
-            "Target carrier must be a valid subspace of source",
-            "Projection map must be surjective",
-            "All invariants required by the target must be preserved",
-            "Discarded dimensions must be certified as irrelevant by attached evidence",
-            "Candidate authority effect is EvidenceOnly. Evaluation may be required before licensing or execution. The checked projection fact may be FactOnly if all certificates verify."
-          ],
-          "tie_policy_law": "Residual projection requires a deterministic TiePolicy.\n\nIf multiple residual representatives are possible, the projection is invalid unless the\nTiePolicy selects one deterministically and replayably.\n\nR without declared TiePolicy is refused.\n",
-          "refusal_conditions": "If any refusal condition triggers, the candidate is refused. The attempted mutation may be\nclassified as M = refused mutation only by the fixed-layer operator classifier/checker.\nThe ResidualProjection contract itself does not self-assign M.\n",
-          "replay_and_certificate_obligation": "- Every residual projection MUST be replayable from its ProjectionWitness\n- The projection map, discarded dimensions, TiePolicy, evidence refs, and certificate refs\n  must be replayable and recordable by Trace when execution occurs. Trace records execution;\n  it does not certify the projection.\n- A certificate wrapping a residual projection inherits the authority of the weakest evidence\n  it references (Doctrine 6)\n",
-          "cross_subsystem_interfaces": [
-            {
-              "subsystem": "Carrier",
-              "interface": "Source and target are Carrier instances"
-            },
-            {
-              "subsystem": "Obstruction",
-              "interface": "R may be generated in response to an obstruction"
-            },
-            {
-              "subsystem": "Certificate",
-              "interface": "R's evidence refs must reference valid certificates"
-            },
-            {
-              "subsystem": "Evaluator",
-              "interface": "candidate authority is EvidenceOnly; evaluator judges admissibility"
-            },
-            {
-              "subsystem": "Engine",
-              "interface": "Engine executes a residual projection only after a valid ActionLicense is present and required evaluator/certificate/replay checks have passed."
-            },
-            {
-              "subsystem": "Trace",
-              "interface": "R is recorded in the execution trace"
-            }
-          ],
-          "llm_exclusion": {
-            "doctrine": 5,
-            "text": "The LLM is candidate generator only. An LLM may propose a residual projection as a\ncandidate, but the candidate carries no authority until certified by the obstruction\nkernel and judged admissible by the Evaluator.\n"
-          },
-          "certificate_authority_bound": {
-            "doctrine": 6,
-            "text": "Certificate authority wrapping a residual projection MUST NOT exceed the authority of\nthe evidence certifying that the discarded dimensions were irrelevant.\n"
-          },
-          "forbidden_implementation_tokens": {
-            "scope": "behavior, not substring",
-            "tokens": [
-              "execute_now(",
-              "certify_now(",
-              "evaluate_admissibility(",
-              "terminalize(",
-              "reconstruct_discarded(",
-              "authority_upgrade(",
-              "sign_certificate(",
-              "apply_operator_now(",
-              "self_declare_effect_class",
-              "missing_tie_policy",
-              "allow_nondeterministic_projection",
-              "skip_tie_policy_check"
-            ]
-          },
-          "required_tests": [
-            "residual_projection_is_surjective",
-            "residual_projection_preserves_required_invariants",
-            "residual_projection_cannot_reconstruct_discarded",
-            "residual_projection_candidate_defaults_to_evidence_only",
-            "residual_projection_checked_fact_requires_certificates",
-            "residual_projection_evidence_bound",
-            "residual_projection_composes_to_residual",
-            "residual_projection_absorbed_by_refusal",
-            "residual_projection_replayable",
-            "residual_projection_candidate_defaults_to_evidence_only",
-            "checked_residual_projection_may_be_factonly_after_certificates",
-            "residual_projection_requires_deterministic_tie_policy",
-            "residual_projection_without_tie_policy_refused",
-            "residual_projection_cannot_self_assign_m_refusal",
-            "residual_projection_does_not_emit_action",
-            "residual_projection_execution_requires_action_license",
-            "residual_projection_records_discarded_information_certificate"
-          ],
-          "canonical_invariant": "ResidualProjection candidates are EvidenceOnly. A checked ResidualProjection may instantiate\nR = residual projection only with surjectivity evidence, deterministic TiePolicy,\ninvariant-preservation evidence, discarded-information evidence, and replay support.\nR does not reconstruct discarded information, certify itself, evaluate admissibility,\nterminalize, authorize, mutate, or execute. Engine execution requires a separate ActionLicense.\n",
-          "legacy_metadata": {
-            "name": "ResidualProjection",
-            "role": "Effect-class R candidate/check: deterministic residual projection with explicit discarded-information evidence",
-            "version": "2.0",
-            "classification": "operator",
-            "effect_class_target": "R",
-            "effect_class_authority": "checker_only",
-            "depends_on": [
-              "FixedLayerOperatorAlgebra",
-              "CarrierContract",
-              "ObstructionContract"
-            ],
-            "forbidden_authority": [
-              "Reconstructing discarded information",
-              "Certifying that discarded information was irrelevant without evidence",
-              "Executing state transitions",
-              "Evaluating admissibility"
-            ],
-            "primary_output_family": "EvidenceEnvelope",
-            "referenced_output_families": [
-              "FactEnvelope",
-              "EvidenceEnvelope"
-            ],
-            "referenced_domain_kinds": [
-              "WitnessEnvelope",
-              "CertificateEnvelope"
-            ],
-            "supports_downstream": [
-              "LicensingBoundary"
-            ],
-            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
-          }
+          "summary": "A checked ResidualProjection may instantiate R = residual projection in the fixed-layer\noperator algebra: a deterministic projection to a residual representative under declared\nTiePolicy, preserving required invariants and recording discarded information.\n\nResidual Projection is one of the five fixed-layer effect-classes in the obstruction algebra.\n\nResidualProjectionCandidate is EvidenceOnly.\nCheckedResidualProjection may become FactOnly after surjectivity, TiePolicy, invariant\npreservation, discarded-information evidence, and replay checks.\nResidualProjectionLicense, if emitted, is AuthorizesTransition.\nEngine-executed projection is StateTransition.\n",
+          "tie_policy_law": "Residual projection requires a deterministic TiePolicy.\n\nIf multiple residual representatives are possible, the projection is invalid unless the\nTiePolicy selects one deterministically and replayably.\n\nR without declared TiePolicy is refused.\n"
         },
+        "kind": "obstruction_contract",
+        "layer": "03_obstruction",
         "relationships": {
           "extends": [
             "urn:omega:governance:base_contract:v1.0.0",
             "urn:omega:constitution:base_obstruction_contract:v1.0.0"
           ]
-        }
+        },
+        "role": "FixedLayerOperatorAlgebra",
+        "schema_version": "omega.contract.v1",
+        "status": "mathematical_wip",
+        "title": "ResidualProjection"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:obstruction:residual_projection:v1.0.0\",\n  \"title\": \"ResidualProjection\",\n  \"kind\": \"obstruction_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"03_obstruction\",\n  \"role\": \"FixedLayerOperatorAlgebra\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"FixedLayerOperatorAlgebra\",\n        \"CarrierContract\",\n        \"ObstructionContract\"\n      ],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"A checked ResidualProjection may instantiate R = residual projection in the fixed-layer\\noperator algebra: a deterministic projection to a residual representative under declared\\nTiePolicy, preserving required invariants and recording discarded information.\\n\\nResidual Projection is one of the five fixed-layer effect-classes in the obstruction algebra.\\n\\nResidualProjectionCandidate is EvidenceOnly.\\nCheckedResidualProjection may become FactOnly after surjectivity, TiePolicy, invariant\\npreservation, discarded-information evidence, and replay checks.\\nResidualProjectionLicense, if emitted, is AuthorizesTransition.\\nEngine-executed projection is StateTransition.\\n\",\n    \"non_role\": [\n      \"Reconstructing discarded information\",\n      \"Certifying that discarded information was irrelevant without evidence\",\n      \"Executing state transitions\",\n      \"Evaluating admissibility\"\n    ],\n    \"effect_class_designation\": {\n      \"effect_class\": \"R\",\n      \"name\": \"Residual Projection\",\n      \"composition_laws\": [\n        \"R . R may normalize to R only when source/target compatibility, deterministic TiePolicy composition, invariant preservation, replay support, and explicit RewriteLaw or certificate are present.\",\n        \"R . M or M . R targets M only under checked composition; malformed refusal records are invalid evidence, not automatically M.\",\n        \"C . R != identity in general (information loss in R is irreversible)\"\n      ]\n    },\n    \"structural_representation\": {\n      \"candidate\": {\n        \"struct_name\": \"ResidualProjectionCandidate\",\n        \"fields\": [\n          {\n            \"name\": \"projection_id\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"source_carrier\",\n            \"type\": \"CarrierRef\"\n          },\n          {\n            \"name\": \"target_carrier_schema\",\n            \"type\": \"CarrierSchemaRef\"\n          },\n          {\n            \"name\": \"projection_map_ref\",\n            \"type\": \"ProjectionWitnessId\"\n          },\n          {\n            \"name\": \"tie_policy\",\n            \"type\": \"TiePolicyId\"\n          },\n          {\n            \"name\": \"discarded_dimensions\",\n            \"type\": \"Vec<DimensionId>\"\n          },\n          {\n            \"name\": \"invariants_preserved\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"invariants_discarded\",\n            \"type\": \"Vec<InvariantId>\"\n          },\n          {\n            \"name\": \"evidence_refs\",\n            \"type\": \"Vec<EvidenceRef>\"\n          },\n          {\n            \"name\": \"witness_refs\",\n            \"type\": \"Vec<WitnessId>\"\n          },\n          {\n            \"name\": \"certificate_refs\",\n            \"type\": \"Vec<CertificateId>\"\n          },\n          {\n            \"name\": \"replay_refs\",\n            \"type\": \"Vec<ReplayRef>\"\n          },\n          {\n            \"name\": \"projection_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"EvidenceOnly\"\n          }\n        ]\n      },\n      \"checked\": {\n        \"struct_name\": \"CheckedResidualProjection\",\n        \"fields\": [\n          {\n            \"name\": \"projection_id\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"candidate_ref\",\n            \"type\": \"ProjectionId\"\n          },\n          {\n            \"name\": \"surjectivity_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"tie_policy_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"preservation_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"discarded_information_certificate\",\n            \"type\": \"CertificateId\"\n          },\n          {\n            \"name\": \"checked_hash\",\n            \"type\": \"Hash256\"\n          },\n          {\n            \"name\": \"authority_effect\",\n            \"type\": \"AuthorityEffect\",\n            \"default\": \"FactOnly\"\n          }\n        ]\n      },\n      \"enums\": [\n        {\n          \"name\": \"ResidualProjectionRefusal\",\n          \"variants\": [\n            \"SourceMalformed\",\n            \"TargetNotSubspace\",\n            \"ProjectionNotSurjective\",\n            {\n              \"name\": \"RequiredInvariantDiscarded\",\n              \"fields\": {\n                \"invariant\": \"InvariantId\"\n              }\n            },\n            {\n              \"name\": \"NoEvidenceForIrrelevance\",\n              \"fields\": {\n                \"dimension\": \"DimensionId\"\n              }\n            },\n            \"AuthorityExceedsEvidence\"\n          ]\n        }\n      ]\n    },\n    \"authority_boundary\": {\n      \"may\": [\n        \"Project a carrier to a lower-dimensional subspace\",\n        \"Discard dimensions that are certified as irrelevant\",\n        \"Produce a residual carrier with preserved invariants\"\n      ],\n      \"must_not\": [\n        \"Reconstruct discarded information\",\n        \"Certify relevance/irrelevance without evidence\",\n        \"Execute state transitions\",\n        \"Evaluate admissibility (that is the Evaluator's role)\",\n        \"Terminalize\",\n        \"Create certificates\"\n      ]\n    },\n    \"admissibility_checklist\": [\n      \"Source carrier must be well-formed\",\n      \"Target carrier must be a valid subspace of source\",\n      \"Projection map must be surjective\",\n      \"All invariants required by the target must be preserved\",\n      \"Discarded dimensions must be certified as irrelevant by attached evidence\",\n      \"Candidate authority effect is EvidenceOnly. Evaluation may be required before licensing or execution. The checked projection fact may be FactOnly if all certificates verify.\"\n    ],\n    \"tie_policy_law\": \"Residual projection requires a deterministic TiePolicy.\\n\\nIf multiple residual representatives are possible, the projection is invalid unless the\\nTiePolicy selects one deterministically and replayably.\\n\\nR without declared TiePolicy is refused.\\n\",\n    \"refusal_conditions\": \"If any refusal condition triggers, the candidate is refused. The attempted mutation may be\\nclassified as M = refused mutation only by the fixed-layer operator classifier/checker.\\nThe ResidualProjection contract itself does not self-assign M.\\n\",\n    \"replay_and_certificate_obligation\": \"- Every residual projection MUST be replayable from its ProjectionWitness\\n- The projection map, discarded dimensions, TiePolicy, evidence refs, and certificate refs\\n  must be replayable and recordable by Trace when execution occurs. Trace records execution;\\n  it does not certify the projection.\\n- A certificate wrapping a residual projection inherits the authority of the weakest evidence\\n  it references (Doctrine 6)\\n\",\n    \"cross_subsystem_interfaces\": [\n      {\n        \"subsystem\": \"Carrier\",\n        \"interface\": \"Source and target are Carrier instances\"\n      },\n      {\n        \"subsystem\": \"Obstruction\",\n        \"interface\": \"R may be generated in response to an obstruction\"\n      },\n      {\n        \"subsystem\": \"Certificate\",\n        \"interface\": \"R's evidence refs must reference valid certificates\"\n      },\n      {\n        \"subsystem\": \"Evaluator\",\n        \"interface\": \"candidate authority is EvidenceOnly; evaluator judges admissibility\"\n      },\n      {\n        \"subsystem\": \"Engine\",\n        \"interface\": \"Engine executes a residual projection only after a valid ActionLicense is present and required evaluator/certificate/replay checks have passed.\"\n      },\n      {\n        \"subsystem\": \"Trace\",\n        \"interface\": \"R is recorded in the execution trace\"\n      }\n    ],\n    \"llm_exclusion\": {\n      \"doctrine\": 5,\n      \"text\": \"The LLM is candidate generator only. An LLM may propose a residual projection as a\\ncandidate, but the candidate carries no authority until certified by the obstruction\\nkernel and judged admissible by the Evaluator.\\n\"\n    },\n    \"certificate_authority_bound\": {\n      \"doctrine\": 6,\n      \"text\": \"Certificate authority wrapping a residual projection MUST NOT exceed the authority of\\nthe evidence certifying that the discarded dimensions were irrelevant.\\n\"\n    },\n    \"forbidden_implementation_tokens\": {\n      \"scope\": \"behavior, not substring\",\n      \"tokens\": [\n        \"execute_now(\",\n        \"certify_now(\",\n        \"evaluate_admissibility(\",\n        \"terminalize(\",\n        \"reconstruct_discarded(\",\n        \"authority_upgrade(\",\n        \"sign_certificate(\",\n        \"apply_operator_now(\",\n        \"self_declare_effect_class\",\n        \"missing_tie_policy\",\n        \"allow_nondeterministic_projection\",\n        \"skip_tie_policy_check\"\n      ]\n    },\n    \"required_tests\": [\n      \"residual_projection_is_surjective\",\n      \"residual_projection_preserves_required_invariants\",\n      \"residual_projection_cannot_reconstruct_discarded\",\n      \"residual_projection_candidate_defaults_to_evidence_only\",\n      \"residual_projection_checked_fact_requires_certificates\",\n      \"residual_projection_evidence_bound\",\n      \"residual_projection_composes_to_residual\",\n      \"residual_projection_absorbed_by_refusal\",\n      \"residual_projection_replayable\",\n      \"residual_projection_candidate_defaults_to_evidence_only\",\n      \"checked_residual_projection_may_be_factonly_after_certificates\",\n      \"residual_projection_requires_deterministic_tie_policy\",\n      \"residual_projection_without_tie_policy_refused\",\n      \"residual_projection_cannot_self_assign_m_refusal\",\n      \"residual_projection_does_not_emit_action\",\n      \"residual_projection_execution_requires_action_license\",\n      \"residual_projection_records_discarded_information_certificate\"\n    ],\n    \"canonical_invariant\": \"ResidualProjection candidates are EvidenceOnly. A checked ResidualProjection may instantiate\\nR = residual projection only with surjectivity evidence, deterministic TiePolicy,\\ninvariant-preservation evidence, discarded-information evidence, and replay support.\\nR does not reconstruct discarded information, certify itself, evaluate admissibility,\\nterminalize, authorize, mutate, or execute. Engine execution requires a separate ActionLicense.\\n\",\n    \"legacy_metadata\": {\n      \"name\": \"ResidualProjection\",\n      \"role\": \"Effect-class R candidate/check: deterministic residual projection with explicit discarded-information evidence\",\n      \"version\": \"2.0\",\n      \"classification\": \"operator\",\n      \"effect_class_target\": \"R\",\n      \"effect_class_authority\": \"checker_only\",\n      \"depends_on\": [\n        \"FixedLayerOperatorAlgebra\",\n        \"CarrierContract\",\n        \"ObstructionContract\"\n      ],\n      \"forbidden_authority\": [\n        \"Reconstructing discarded information\",\n        \"Certifying that discarded information was irrelevant without evidence\",\n        \"Executing state transitions\",\n        \"Evaluating admissibility\"\n      ],\n      \"primary_output_family\": \"EvidenceEnvelope\",\n      \"referenced_output_families\": [\n        \"FactEnvelope\",\n        \"EvidenceEnvelope\"\n      ],\n      \"referenced_domain_kinds\": [\n        \"WitnessEnvelope\",\n        \"CertificateEnvelope\"\n      ],\n      \"supports_downstream\": [\n        \"LicensingBoundary\"\n      ],\n      \"llm_boundary\": \"LLM is candidate generator only. LLM output carries no authority.\"\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_obstruction_contract:v1.0.0\"\n    ]\n  }\n}\n",
+      "sha256": "ea3575b6c710488d9b4ce99526f8fc6ca66fac6759c8068a8e1afea02c422fe1"
+    },
+    {
+      "bytes": 1739,
       "original_paths": [
-        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0.contract.yaml"
-      ]
+        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n    \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n      \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\",\n  \"subject\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+          "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+            "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e",
+        "subject": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py"
+      },
+      "sha256": "a44a47355b07ce6dba52737cc84fe914adcdf8d3f6562fa128e00faf2f6c4f33"
     }
   ],
+  "current_contract": "a44a47355b07ce6dba52737cc84fe914adcdf8d3f6562fa128e00faf2f6c4f33",
+  "current_scoring": "77a66ba2b6675816ddb4ce7bfc7cba8913c24239b6b609e4090c81e03be17bbb",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0.contract.yaml": "1edb761c19cf5304cae5342df2dcf09b73049d090d34ebe6a85a80f8b8c8102a"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "22dcf5ef6f6a7fbd924e90a07777b22681dcc9fed2be4cb8113a5f7d1483cde6",
       "bytes": 2251,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n    \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:obstruction-residual-projection-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
           "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:20_execution:obstruction-residual-projection-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -670,40 +431,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "22dcf5ef6f6a7fbd924e90a07777b22681dcc9fed2be4cb8113a5f7d1483cde6"
+    },
+    {
+      "bytes": 1688,
+      "original_paths": [
+        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n    \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n      \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+          "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py",
+            "sha256": "214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.py\",\n    \"sha256\": \"214406061a1ba016dee4588fd5924e6c40d359a3170e6416197ac17f41694f4e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:obstruction-residual-projection-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "77a66ba2b6675816ddb4ce7bfc7cba8913c24239b6b609e4090c81e03be17bbb"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/20_execution/obstruction_residual_projection_v1_0_0.contract.yaml": "1edb761c19cf5304cae5342df2dcf09b73049d090d34ebe6a85a80f8b8c8102a"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

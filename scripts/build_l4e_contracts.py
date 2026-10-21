@@ -1,4 +1,11 @@
-"""Generate or upgrade L4E contract score companion files for target Python, Rust, and source packages."""
+"""Retired unsafe L4E companion generator.
+
+This file is retained so historical command references fail with an explicit
+explanation.  Source inspection and file-name heuristics cannot establish the
+five SCORING.md gates, so this command must not manufacture completed L4
+records.  Use ``scripts/score_scope_contracts.py prepare`` for source-pinned
+coverage contracts and incomplete baseline assessments.
+"""
 from __future__ import annotations
 
 import argparse
@@ -10,7 +17,12 @@ from pathlib import Path
 import re
 import sys
 
-import lizard
+try:
+    import lizard
+except ImportError:
+    # The legacy implementation is no longer reachable from the CLI.  Keeping
+    # this import optional lets the safety refusal run in minimal environments.
+    lizard = None
 
 ROOT = Path(__file__).resolve().parents[1]
 SCORING_MD_SHA = "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
@@ -778,60 +790,17 @@ def process_target(target_file: Path, companion_path: Path | None = None) -> Pat
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate or upgrade L4E contract score companion files.")
-    parser.add_argument("target", nargs="?", default=None, help="Target file or directory (defaults to code/python)")
-    args = parser.parse_args()
-
-    work_items: list[tuple[Path, Path | None]] = []
-
-    if args.target:
-        tpath = (ROOT / args.target).resolve()
-        if tpath.is_file():
-            work_items = [(tpath, None)]
-        else:
-            # Discover companions under tpath
-            companions = sorted(tpath.rglob("*.contract.score.yaml"))
-            if companions:
-                for comp in companions:
-                    try:
-                        doc = json.loads(comp.read_text(encoding="utf-8"))
-                        art = doc.get("artifact")
-                        if art:
-                            target = (ROOT / art).resolve()
-                            if not target.is_file():
-                                target = comp.parent / Path(art).name
-                            work_items.append((target, comp))
-                    except Exception as exc:
-                        print(f"Warning: could not read companion {comp}: {exc}", file=sys.stderr)
-            else:
-                # Fallback to source files if no companions exist yet
-                files = [
-                    p for p in tpath.rglob("*.py")
-                    if "__pycache__" not in p.parts
-                    and not p.name.endswith(".contract.score.yaml")
-                ]
-                work_items = [(f, None) for f in sorted(files)]
-    else:
-        py_dir = ROOT / "code" / "python"
-        files = [
-            p for p in py_dir.rglob("*.py")
-            if "__pycache__" not in p.parts
-            and not p.name.endswith(".contract.score.yaml")
-        ]
-        work_items = [(f, None) for f in sorted(files)]
-
-    total = len(work_items)
-    print(f"Discovered {total} target items under {args.target or 'code/python'}.")
-
-    processed = 0
-    for idx, (target_f, comp_p) in enumerate(work_items, start=1):
-        comp = process_target(target_f, comp_p)
-        processed += 1
-        if idx % 200 == 0 or idx == total:
-            print(f"Progress: [{idx}/{total}] processed companion {comp.name}")
-
-    print(f"\nAll {total} targets successfully processed to L4E or higher.")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("target", nargs="?", help="Retained only to explain the retired interface.")
+    parser.parse_args()
+    print(
+        "Refusing to synthesize L4E scores from static source inspection. "
+        "Run `py -3.9 scripts/score_scope_contracts.py prepare` for "
+        "source-pinned contracts with explicitly incomplete baseline scores.",
+        file=sys.stderr,
+    )
+    return 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

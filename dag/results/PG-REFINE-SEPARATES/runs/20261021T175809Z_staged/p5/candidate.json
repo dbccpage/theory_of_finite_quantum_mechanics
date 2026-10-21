@@ -1,0 +1,1138 @@
+{
+  "task_id": "PG-REFINE-SEPARATES",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "7b2c2083bdec25435cd05d6d687ce3a89a433ccae78de603648435efa0f5681c",
+  "result_or_obstruction": "For a report q and a conflict relation C inside its collapse, SOME b-bit tag resolves all conflicts iff C has a proper 2^b-colouring (refine_separates_many); a GIVEN tag resolves C iff it is proper (resolves_iff_proper). The source refine_separates is the forward direction for one pair; refine_separates_iff is the one-pair equivalence on collapsed pairs.",
+  "attempt_refs": [
+    "p0",
+    "p1",
+    "p2",
+    "p4"
+  ],
+  "source_bindings": [
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/lean4/RefineSeparates.lean",
+      "sha256": "27eb996394f29091540847f284ccfb33e220f0e6d25974810e9888ff4223a5ea"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/python/src/qm/pfp_refine_separates.py",
+      "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/python/tests/test_pfp_refine_separates.py",
+      "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/pfp_refine_separates.rs",
+      "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+      "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/rust/Cargo.toml",
+      "sha256": "6813ac6394be98080a3b154b013812793e6d49ce416f7ab388ab065330046c9b"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/rust/src/finite_probability/Cargo.toml",
+      "sha256": "bd93eba120dc7276f33958a32f27dd2a2e77425c53ae494839951e440d6ed409"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/code/rust/Cargo.lock",
+      "sha256": "a40b6a5c9affd297602a10514826670767afb9d05e2adb694c0a76ce11a5159b"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/lean4/lake-manifest.json",
+      "sha256": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1"
+    },
+    {
+      "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p1/construction/lean4/lean-toolchain",
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    }
+  ],
+  "remaining_obligations": [
+    "Algorithmic or complexity statements about finding a tag; the node proves existence criteria only.",
+    "Conflict graphs beyond the 14 named graphs and the exhaustive range of 5 vertices.",
+    "Any host-level meaning of conflicts, tags or bits beyond the abstract report/tag model."
+  ],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "refine_report",
+        "source_declarations": [
+          "the_symbol_game Paper.lean::refineReport (line 59) - a definition (general in A O T)"
+        ],
+        "ordered_inputs": [
+          "Report",
+          "Tag"
+        ],
+        "output": "RefinedReport",
+        "semantic_predicate": "a |-> (q a, t a); the tag is an input argument, never searched.",
+        "hypotheses": [
+          "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements."
+        ],
+        "arity": 2,
+        "carrier": "Report",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "project_old_report",
+        "source_declarations": [
+          "the_symbol_game Paper.lean::refine_preserves (line 61) - general theorem, proved by rfl"
+        ],
+        "ordered_inputs": [
+          "RefinedReport"
+        ],
+        "output": "Report",
+        "semantic_predicate": "First projection; recovers the old report q from the refined report.",
+        "hypotheses": [
+          "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements."
+        ],
+        "arity": 1,
+        "carrier": "RefinedReport",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "proper_tag_test",
+        "source_declarations": [
+          "the_symbol_game Paper001.lean::supplied_tag_separates (line 96) - general in A O but the tag is Fin 2 and the statement concerns ONE pair; the conflict-graph reading is prose only (paper.md section 9)"
+        ],
+        "ordered_inputs": [
+          "ConflictRelation",
+          "Tag"
+        ],
+        "output": "Verdict",
+        "semantic_predicate": "Proper C t: every conflicting pair gets different tag values.",
+        "hypotheses": [
+          "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements."
+        ],
+        "arity": 2,
+        "carrier": "ConflictRelation",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "tag_pair",
+        "source_declarations": [
+          "no source declaration; new general lemma proper_union"
+        ],
+        "ordered_inputs": [
+          "Tag",
+          "Tag"
+        ],
+        "output": "Tag",
+        "semantic_predicate": "Pair of tags (t1, t2): bit counts add; a proper t1 for C1 and a proper t2 for C2 give a proper pair for C1 or C2.",
+        "hypotheses": [
+          "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements."
+        ],
+        "arity": 2,
+        "carrier": "Tag",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "bits_needed",
+        "source_declarations": [
+          "no source declaration; paper.md section 9 states prose \"a three-clique needs three colors\"; new general lemmas bits_iff_colours, fibre_bits_iff"
+        ],
+        "ordered_inputs": [
+          "ConflictRelation"
+        ],
+        "output": "BitCount",
+        "semantic_predicate": "Least b such that C has a proper 2^b-colouring (ceil log2 chi for a finite graph).",
+        "hypotheses": [
+          "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements."
+        ],
+        "arity": 1,
+        "carrier": "ConflictRelation",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "refine_retains_old_report",
+        "source_declarations": [
+          "the_symbol_game Paper.lean::refine_preserves (line 61): general"
+        ],
+        "equation_or_predicate": "fst o refine q t = q",
+        "typing_conditions": "A O T arbitrary types",
+        "evidence_status": "Kernel theorem refine_retains",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "tag_difference_separates_pair",
+        "source_declarations": [
+          "the_symbol_game Paper.lean::refine_separates (line 64), Paper001.lean::supplied_tag_separates (line 96): general / Fin 2 tag"
+        ],
+        "equation_or_predicate": "t a != t b implies refine q t a != refine q t b",
+        "typing_conditions": "any tag type T",
+        "evidence_status": "Kernel theorem refine_separates",
+        "scope": "All types, one pair",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "collapsed_pair_separated_iff_tags_differ",
+        "source_declarations": [
+          "no source declaration; the source proves only the forward direction"
+        ],
+        "equation_or_predicate": "q a = q b implies (refine q t a != refine q t b iff t a != t b)",
+        "typing_conditions": "a b collapsed by q",
+        "evidence_status": "Kernel theorem refine_separates_iff; native count table (iff_failures 0)",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "many_conflicts_iff_proper_colouring",
+        "source_declarations": [
+          "paper.md section 9 prose (\"a tag assignment separating every edge is a proper coloring\"), no Lean statement in the source"
+        ],
+        "equation_or_predicate": "C inside collapse(q) implies (some b-bit tag resolves C iff C has a proper 2^b-colouring)",
+        "typing_conditions": "arbitrary relation C on A",
+        "evidence_status": "Kernel theorem for arbitrary relations; native bipartite counts 1,2,7,41,376 agree with the colouring-pair identity.",
+        "scope": "All types; existence only",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "proper_union_of_tags",
+        "source_declarations": [
+          "no source declaration"
+        ],
+        "equation_or_predicate": "a proper t1 for C1 and a proper t2 for C2 give the proper pair tag (t1, t2) for C1 or C2",
+        "typing_conditions": "any relations and tag types",
+        "evidence_status": "Kernel theorem proper_union",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "odd_closed_walk_refuses_one_bit",
+        "source_declarations": [
+          "the_symbol_game Paper.lean::triangle_not_two_colored (line 69): a FIXED instance (three Bool values), not the general statement"
+        ],
+        "equation_or_predicate": "odd closed walk in C implies no Bool tag is proper",
+        "typing_conditions": "any C, any closed walk of odd length",
+        "evidence_status": "Kernel theorem; every native graph with positive odd girth has zero one-bit tags.",
+        "scope": "All types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "fibre_bit_count",
+        "source_declarations": [
+          "no source declaration"
+        ],
+        "equation_or_predicate": "all pairs of a fibre of size m separated by a b-bit tag iff m <= 2^b",
+        "typing_conditions": "finite fibre",
+        "evidence_status": "Kernel theorems fibre_bits_iff, fibre_one_bit_iff (complete conflict relation on a finite type), fibre_report_bits_iff (fibre of a report); native injective-tag counts",
+        "scope": "All finite types",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_refine_separates_proved_lean.yaml",
+            "sha256": "d1495589e33d26194f93029a9181f349fd40a6b18274e9c88082ed6b36045092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_refine_separates.yaml",
+            "sha256": "8082ce0161da5e573571e7285c2b11003800e880182b08e7370a429a27d1f573"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean",
+            "sha256": "b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean",
+            "sha256": "b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0370_supplied_binary_refinement.md",
+            "sha256": "6231decd1f0d8bbd2343b5bc2c4302aef0b8b5ef431b29b2ba9e7a947c835a56"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0334_let_one_supplied_binary_tag_separate_one_collapsed_pair_and_keep_the.md",
+            "sha256": "736fd2f68c58d965418ee2bba17e283a397b821777bac6e9b65021a3f5d88def"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_refine_separates.py",
+            "sha256": "b5bb3788d07e98316e7c78ad273e81b79a94c2b5f76cd31abc70061b0b25f26d"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_refine_separates.py",
+            "sha256": "b242d9226f9d8b8f5b23f9f8eef9b2aa8bf0e13fd4cc7f24c3fc8496be617c78"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_refine_separates.rs",
+            "sha256": "77962f1c54cd8cbe1f32611f093ed0d1fe3d36a6d64d6229e1899168297df209"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_refine_separates_replay.rs",
+            "sha256": "2022cef9e145b0ef4ef26b4d3f97c2f0440508c8609ac392253b2fd5fb864964"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "a6846a8fe1d8caa9570bbfec1257dfc23f4e549157efd229db83563b5521eea3"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6"
+          }
+        ],
+        "latest_host_check": "dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json"
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "project_old_report",
+        "input_slot": 0,
+        "inner_operation": "refine_report",
+        "colour_match": "RefinedReport",
+        "hypothesis_match": "A report q : A -> O, a supplied tag t : A -> T (an input, never chosen), and a conflict relation C on A given as data; finite A for the counting statements.",
+        "licensing_relations": [
+          "refine_retains_old_report"
+        ],
+        "evidence_status": "Kernel and native (retained-old-report counts)"
+      },
+      {
+        "outer_operation": "proper_tag_test",
+        "input_slot": 1,
+        "inner_operation": "tag_pair",
+        "colour_match": "Tag",
+        "hypothesis_match": "Union of the two conflict relations; tags are supplied.",
+        "licensing_relations": [
+          "proper_union_of_tags"
+        ],
+        "evidence_status": "Kernel theorem proper_union"
+      }
+    ],
+    "failed_compositions": [
+      {
+        "composition": "proper_tag_test(triangle conflicts, Bool tag)",
+        "reason": "No Bool tag is proper on a triangle or any odd closed walk (kernel no_one_bit_of_odd_cycle); two bits are needed."
+      },
+      {
+        "composition": "refine_report(q, tag chosen by the operad)",
+        "reason": "The operad has no generator producing a tag from (report, conflicts): the tag is an input, and no source or kernel statement derives it."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "triangle_needs_two_bits",
+        "statement": "Three mutually conflicting collapsed elements: chi=3, min_bits=2, proper one-bit tags 0.",
+        "scope": "Instance of the odd-cycle theorem."
+      },
+      {
+        "id": "five_cycle_needs_two_bits",
+        "statement": "A 5-cycle has no triangle yet no proper one-bit tag (odd girth 5, chi 3).",
+        "scope": "Instance of the odd-cycle theorem; shows cliques are not the only obstruction."
+      },
+      {
+        "id": "fibre_of_three_needs_two_bits",
+        "statement": "A collapsed fibre of size 3: no one-bit injective tag; 24 injective tags with two bits.",
+        "scope": "Instance of fibre_bits_iff."
+      },
+      {
+        "id": "semantic_refinement_iff_fails",
+        "kind": "semantic_near_miss",
+        "rationale": "Claim a refinement can leave a collapsed pair with different tags unseparated (or merge a pair): the equality of refined reports is exactly equality of both components.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_tag_difference_separates_everything",
+        "kind": "semantic_near_miss",
+        "rationale": "Count every pair with different tags as separated by the tag, ignoring that pairs the old report already separates are not collapsed pairs.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_petersen_is_four_chromatic",
+        "kind": "semantic_near_miss",
+        "rationale": "Confuse the odd girth with the chromatic number: the Petersen graph has odd girth 5 and chromatic number 3.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_edgeless_needs_a_bit",
+        "kind": "semantic_near_miss",
+        "rationale": "Claim a tag bit is needed when there is no conflict at all; zero bits suffice.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_dense_bipartite_is_not_bipartite",
+        "kind": "semantic_near_miss",
+        "rationale": "Read the dense complete bipartite graph K33 as non-2-colourable because it has many edges; density is not an odd cycle.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_triangle_one_bit",
+        "kind": "semantic_near_miss",
+        "rationale": "The source shows a Bool triangle cannot be 2-coloured only as a fixed instance; claiming one bit separates a 3-clique reads the supplied-tag theorem as if one tag always settles many conflicts.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_odd_cycle_one_bit",
+        "kind": "semantic_near_miss",
+        "rationale": "A 5-cycle has no triangle yet is not 2-colourable: forgetting the odd-cycle obstruction beyond cliques.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_fibre_of_three_one_bit",
+        "kind": "semantic_near_miss",
+        "rationale": "A collapsed fibre of size 3 cannot be separated by one binary tag; the single-pair theorem does not give it.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_tag_is_unique",
+        "kind": "semantic_near_miss",
+        "rationale": "Treat the supplied tag as determined by the conflict: a proper tag and its complement are two distinct tags, so the choice is not forced.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_components_ignored",
+        "kind": "semantic_near_miss",
+        "rationale": "Count proper tags as if the graph were connected: each connected component can be flipped independently.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_refinement_merges_old",
+        "kind": "semantic_near_miss",
+        "rationale": "Claim a refinement can merge reports the old report distinguished; the old report is retained as a projection so it cannot.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_bits_equal_colours",
+        "kind": "semantic_near_miss",
+        "rationale": "Confuse the number of tag values (chi) with the number of bits (ceil log2 chi).",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_isomorphism_classes_for_labelled",
+        "kind": "semantic_near_miss",
+        "rationale": "Report unlabelled graph counts for the labelled enumeration of all graphs on four vertices.",
+        "rejected_by": "check_candidate"
+      },
+      {
+        "id": "semantic_degree_bound_as_colouring",
+        "kind": "semantic_near_miss",
+        "rationale": "Treat K4 as 2-colourable from a degree argument; a complete graph on 4 vertices needs 4 tag values, i.e. 2 bits.",
+        "rejected_by": "check_candidate"
+      }
+    ],
+    "open_obligations": [
+      "Algorithmic or complexity statements about finding a tag; the node proves existence criteria only.",
+      "Conflict graphs beyond the 14 named graphs and the exhaustive range of 5 vertices.",
+      "Any host-level meaning of conflicts, tags or bits beyond the abstract report/tag model."
+    ]
+  },
+  "next_mathematical_step": "First prove in Lean the converse of no_one_bit_of_odd_cycle (a finite symmetric conflict relation with no odd closed walk has a proper Bool tag), then that breadth-first 2-colouring is sound and complete for deciding it, as the first algorithmic statement about finding a tag; the present node proves existence criteria only.",
+  "claim_boundary": {
+    "supports": "Kernel-checked and general over all types A, O, T: the refined report (q, t) keeps q as its first projection; a differing tag separates a pair (the source theorem refine_separates is this forward direction only); on a pair the old report collapses, the tag decides separation exactly (refine_separates_iff, new); refinement never merges what q separated. For a conflict relation C contained in the collapse of q: a GIVEN tag resolves every conflict iff it is proper for C (resolves_iff_proper); SOME b-bit tag (Fin b -> Bool) resolves every conflict iff C has a proper 2^b-colouring (refine_separates_many, an existence statement over tags). A Bool tag proper for C forbids any odd closed walk in C (so no triangle, no 5-cycle); this is the forward direction only, the converse (no odd closed walk implies a one-bit tag, Konig) is not in the kernel and is used natively (bipartite iff odd girth 0; one-bit tags 2^components when bipartite). For a finite type A in which every pair of distinct elements conflicts (a collapsed fibre taken as its own type, or q constant) a b-bit tag separating all pairs exists iff |A| <= 2^b (fibre_bits_iff; one bit iff |A| <= 2, fibre_one_bit_iff); for the fibre {a // q a = x} of an arbitrary report q some b-bit tag on the whole type resolves all conflicts between distinct fibre elements iff the fibre has at most 2^b elements (fibre_report_bits_iff). Native columns are counts over all (q, t) and ordered pairs (a, b), a = b allowed: quadruples = o^n t^n n^2; separated_by_tag = pairs with q a = q b and t a != t b; refined_equal = pairs with equal refined reports; old_separation_kept = pairs with q a != q b (all stay separated); iff_failures = pairs where equality of refined reports differs from equality of both components (0; the checker evaluates the refinement itself). Exact native tables: 14 named conflict graphs (components, proper one-bit tag counts 2^c or 0, chromatic number, minimal bits, odd girth), all labelled graphs on 1..5 vertices (labelled bipartite counts 1,2,7,41,376; minimal-bit distributions), fibre tag counts for m=1..5 and bits for m=6,8,9,17, and refinement counts for five small (n,o,t).",
+    "does_not_support": "Any algorithm, complexity or guarantee for FINDING a tag (the tables and the iff are existence statements, not search procedures); which tag a host should supply; the converse of the odd-closed-walk theorem in the kernel (Konig; native only); conflict graphs on more than 5 vertices beyond the 14 named ones; infinite carriers; any measurement, physical or interpretive reading of tags.",
+    "narrowest_claim": "For a report q and a conflict relation C inside its collapse, SOME b-bit tag resolves all conflicts iff C has a proper 2^b-colouring (refine_separates_many); a GIVEN tag resolves C iff it is proper (resolves_iff_proper). The source refine_separates is the forward direction for one pair; refine_separates_iff is the one-pair equivalence on collapsed pairs.",
+    "next_test": "First prove in Lean the converse of no_one_bit_of_odd_cycle (a finite symmetric conflict relation with no odd closed walk has a proper Bool tag), then that breadth-first 2-colouring is sound and complete for deciding it, as the first algorithmic statement about finding a tag; the present node proves existence criteria only."
+  },
+  "status": "recorded_pending_batch_review",
+  "execution_accounting": {
+    "external_provider_calls": 0,
+    "chat_cost": "unmeasured",
+    "researcher": "one local researcher, independent native predicates"
+  }
+}

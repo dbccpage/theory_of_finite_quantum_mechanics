@@ -1,164 +1,124 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "omega.contract.v1",
-    "contract_id": "urn:omega:math:equivalence:v0.1.0",
-    "title": "Equivalence Contract",
-    "kind": "math_contract",
-    "status": "exact_rational_classifier_implemented",
-    "layer": "math",
-    "descriptor": {
-      "authority_effect": "none",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "customer_claim_allowed": false,
-      "dependencies": {
-        "contracts": [],
-        "proof_obligations": []
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+      "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
+    },
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    ],
+    "contract_id": "source-coverage-baseline-v1",
+    "evidence": [
+      {
+        "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+        "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
       },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": []
-      },
-      "operator_classes": {
-        "may_support": [],
-        "must_not_self_assign": true
+      {
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    },
-    "math": {
-      "object_kind": "equivalence",
-      "symbol": "A ≃ B, f: A ≃ B",
-      "ascii_symbol": "equivalence",
-      "notation": "A ≃ B, f: A ≃ B",
-      "domain": [
-        "domain: Type A",
-        "codomain: Type B",
-        "function: f: A → B",
-        "proof: Equivalence proof term"
-      ],
-      "codomain": {
-        "description": "An equivalence consists of a function f: A → B together with a proof that f is an equivalence. The proof can be given in multiple equivalent forms: bi-invertible, half-adjoint equivalence, or contractible fibers.\n"
-      }
-    },
-    "requirements": {
-      "required_structures": [
-        "Domain type A and codomain type B must exist and be resolvable",
-        "Function f must have type A → B",
-        "Proof type must be one of: bi_invertible, half_adjoint, contractible_fibers",
-        "Proof data must constitute a valid equivalence proof of the specified type",
-        "Artifact hash must be SHA-256 over canonical representation"
-      ]
-    },
-    "laws": [
-      "For all b: B, the fiber f^{-1}(b) is contractible",
-      "There exist g, h: B → A such that fg ∼ id and hf ∼ id",
-      "There exists g: B → A, proofs fg ∼ id, gf ∼ id, and coherence"
     ],
-    "replay": {
-      "requirements": [
-        "No external state",
-        "No randomness",
-        "No time-dependent data",
-        "Proof data serialized canonically",
-        "Validators and computation functions are content-addressed"
-      ]
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
     },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    },
-    "negative_tests": [
-      "domain_type_id does not resolve",
-      "codomain_type_id does not resolve",
-      "function does not have type A → B",
-      "proof_type = 'magic' (not recognized)",
-      "proof_data missing required components",
-      "function is not an equivalence (e.g., not surjective)"
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
     ],
-    "doctrine": {
-      "summary": "An Equivalence (A ≃ B) in HoTT is a function f: A → B together with a proof that f is an equivalence (bi-invertible, half- adjoint, or contractible fibers).  Equivalences are the correct notion of \"sameness\" for types.  The contract validates the function and its equivalence proof.",
-      "non_role": [
-        "Does not handle equivalences between types in different universes without care",
-        "Does not automatically convert between different proof representations",
-        "Does not handle non-constructive proofs of equivalence"
-      ]
-    },
-    "wip": [
-      "The three definitions of equivalence (bi-invertible, half-adjoint, contractible fibers) are logically equivalent; proof conversion should be implemented as ComputationWitness operations",
-      "Univalence states (A ≃ B) ≃ (A = B); this relates Equivalence to IdentityType and needs contract integration",
-      "Equivalences between types in different universes require careful handling and universe level tracking",
-      "Contract version 0.1.0 establishes basic structure for HoTT equivalences",
-      "Current implementation focuses on contractible fibers definition as primary",
-      "Proof conversion between different equivalence definitions to be added in future version",
-      "Integration with univalence axiom requires coordination with IdentityType contract"
-    ],
-    "rust_binding": {
-      "crate": "omega_category_theory",
-      "module": "functor::equivalence_of_categories",
-      "symbols": [
-        "EquivalenceOfCategories"
-      ],
-      "required_tests": [
-        "validate_ok",
-        "validate_rejects_empty",
-        "validate_rejects_missing_functors"
-      ]
-    }
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d",
+    "subject": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py"
   },
-  "current_contract": "ebd4d2552a588f7a7f2f1bce9ae4d427505f3d6e6fefa990072a114d841cf971",
-  "current_scoring": "f4197531cb78c27cc6bebfd13ae778cc9ed66092ad6a862a4a11a54eb42a24d1",
   "contract_history": [
     {
-      "sha256": "ebd4d2552a588f7a7f2f1bce9ae4d427505f3d6e6fefa990072a114d841cf971",
       "bytes": 4186,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_equivalence_v0_1_0.contract.yaml"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:equivalence:v0.1.0\",\n  \"title\": \"Equivalence Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"equivalence\",\n    \"symbol\": \"A ≃ B, f: A ≃ B\",\n    \"ascii_symbol\": \"equivalence\",\n    \"notation\": \"A ≃ B, f: A ≃ B\",\n    \"domain\": [\n      \"domain: Type A\",\n      \"codomain: Type B\",\n      \"function: f: A → B\",\n      \"proof: Equivalence proof term\"\n    ],\n    \"codomain\": {\n      \"description\": \"An equivalence consists of a function f: A → B together with a proof that f is an equivalence. The proof can be given in multiple equivalent forms: bi-invertible, half-adjoint equivalence, or contractible fibers.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Domain type A and codomain type B must exist and be resolvable\",\n      \"Function f must have type A → B\",\n      \"Proof type must be one of: bi_invertible, half_adjoint, contractible_fibers\",\n      \"Proof data must constitute a valid equivalence proof of the specified type\",\n      \"Artifact hash must be SHA-256 over canonical representation\"\n    ]\n  },\n  \"laws\": [\n    \"For all b: B, the fiber f^{-1}(b) is contractible\",\n    \"There exist g, h: B → A such that fg ∼ id and hf ∼ id\",\n    \"There exists g: B → A, proofs fg ∼ id, gf ∼ id, and coherence\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Proof data serialized canonically\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"domain_type_id does not resolve\",\n    \"codomain_type_id does not resolve\",\n    \"function does not have type A → B\",\n    \"proof_type = 'magic' (not recognized)\",\n    \"proof_data missing required components\",\n    \"function is not an equivalence (e.g., not surjective)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An Equivalence (A ≃ B) in HoTT is a function f: A → B together with a proof that f is an equivalence (bi-invertible, half- adjoint, or contractible fibers).  Equivalences are the correct notion of \\\"sameness\\\" for types.  The contract validates the function and its equivalence proof.\",\n    \"non_role\": [\n      \"Does not handle equivalences between types in different universes without care\",\n      \"Does not automatically convert between different proof representations\",\n      \"Does not handle non-constructive proofs of equivalence\"\n    ]\n  },\n  \"wip\": [\n    \"The three definitions of equivalence (bi-invertible, half-adjoint, contractible fibers) are logically equivalent; proof conversion should be implemented as ComputationWitness operations\",\n    \"Univalence states (A ≃ B) ≃ (A = B); this relates Equivalence to IdentityType and needs contract integration\",\n    \"Equivalences between types in different universes require careful handling and universe level tracking\",\n    \"Contract version 0.1.0 establishes basic structure for HoTT equivalences\",\n    \"Current implementation focuses on contractible fibers definition as primary\",\n    \"Proof conversion between different equivalence definitions to be added in future version\",\n    \"Integration with univalence axiom requires coordination with IdentityType contract\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"functor::equivalence_of_categories\",\n    \"symbols\": [\n      \"EquivalenceOfCategories\"\n    ],\n    \"required_tests\": [\n      \"validate_ok\",\n      \"validate_rejects_empty\",\n      \"validate_rejects_missing_functors\"\n    ]\n  }\n}\n",
       "record": {
-        "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:equivalence:v0.1.0",
-        "title": "Equivalence Contract",
-        "kind": "math_contract",
-        "status": "exact_rational_classifier_implemented",
-        "layer": "math",
         "descriptor": {
           "authority_effect": "none",
-          "evidence_ceiling": "ShapeOnly",
-          "runtime_enforcement": false,
           "customer_claim_allowed": false,
           "dependencies": {
             "contracts": [],
             "proof_obligations": []
           },
-          "terminals": {
-            "may_emit": [],
-            "may_support": []
+          "evidence_ceiling": "ShapeOnly",
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
           },
           "refusals": {
             "may_emit": []
           },
-          "operator_classes": {
-            "may_support": [],
-            "must_not_self_assign": true
+          "runtime_enforcement": false,
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
           }
         },
+        "doctrine": {
+          "non_role": [
+            "Does not handle equivalences between types in different universes without care",
+            "Does not automatically convert between different proof representations",
+            "Does not handle non-constructive proofs of equivalence"
+          ],
+          "summary": "An Equivalence (A ≃ B) in HoTT is a function f: A → B together with a proof that f is an equivalence (bi-invertible, half- adjoint, or contractible fibers).  Equivalences are the correct notion of \"sameness\" for types.  The contract validates the function and its equivalence proof."
+        },
+        "kind": "math_contract",
+        "laws": [
+          "For all b: B, the fiber f^{-1}(b) is contractible",
+          "There exist g, h: B → A such that fg ∼ id and hf ∼ id",
+          "There exists g: B → A, proofs fg ∼ id, gf ∼ id, and coherence"
+        ],
+        "layer": "math",
         "math": {
-          "object_kind": "equivalence",
-          "symbol": "A ≃ B, f: A ≃ B",
           "ascii_symbol": "equivalence",
-          "notation": "A ≃ B, f: A ≃ B",
+          "codomain": {
+            "description": "An equivalence consists of a function f: A → B together with a proof that f is an equivalence. The proof can be given in multiple equivalent forms: bi-invertible, half-adjoint equivalence, or contractible fibers.\n"
+          },
           "domain": [
             "domain: Type A",
             "codomain: Type B",
             "function: f: A → B",
             "proof: Equivalence proof term"
           ],
-          "codomain": {
-            "description": "An equivalence consists of a function f: A → B together with a proof that f is an equivalence. The proof can be given in multiple equivalent forms: bi-invertible, half-adjoint equivalence, or contractible fibers.\n"
-          }
+          "notation": "A ≃ B, f: A ≃ B",
+          "object_kind": "equivalence",
+          "symbol": "A ≃ B, f: A ≃ B"
+        },
+        "negative_tests": [
+          "domain_type_id does not resolve",
+          "codomain_type_id does not resolve",
+          "function does not have type A → B",
+          "proof_type = 'magic' (not recognized)",
+          "proof_data missing required components",
+          "function is not an equivalence (e.g., not surjective)"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Proof data serialized canonically",
+            "Validators and computation functions are content-addressed"
+          ]
         },
         "requirements": {
           "required_structures": [
@@ -169,41 +129,21 @@
             "Artifact hash must be SHA-256 over canonical representation"
           ]
         },
-        "laws": [
-          "For all b: B, the fiber f^{-1}(b) is contractible",
-          "There exist g, h: B → A such that fg ∼ id and hf ∼ id",
-          "There exists g: B → A, proofs fg ∼ id, gf ∼ id, and coherence"
-        ],
-        "replay": {
-          "requirements": [
-            "No external state",
-            "No randomness",
-            "No time-dependent data",
-            "Proof data serialized canonically",
-            "Validators and computation functions are content-addressed"
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "functor::equivalence_of_categories",
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_empty",
+            "validate_rejects_missing_functors"
+          ],
+          "symbols": [
+            "EquivalenceOfCategories"
           ]
         },
-        "relationships": {
-          "extends": [
-            "urn:omega:governance:base_contract:v1.0.0"
-          ]
-        },
-        "negative_tests": [
-          "domain_type_id does not resolve",
-          "codomain_type_id does not resolve",
-          "function does not have type A → B",
-          "proof_type = 'magic' (not recognized)",
-          "proof_data missing required components",
-          "function is not an equivalence (e.g., not surjective)"
-        ],
-        "doctrine": {
-          "summary": "An Equivalence (A ≃ B) in HoTT is a function f: A → B together with a proof that f is an equivalence (bi-invertible, half- adjoint, or contractible fibers).  Equivalences are the correct notion of \"sameness\" for types.  The contract validates the function and its equivalence proof.",
-          "non_role": [
-            "Does not handle equivalences between types in different universes without care",
-            "Does not automatically convert between different proof representations",
-            "Does not handle non-constructive proofs of equivalence"
-          ]
-        },
+        "schema_version": "omega.contract.v1",
+        "status": "exact_rational_classifier_implemented",
+        "title": "Equivalence Contract",
         "wip": [
           "The three definitions of equivalence (bi-invertible, half-adjoint, contractible fibers) are logically equivalent; proof conversion should be implemented as ComputationWitness operations",
           "Univalence states (A ≃ B) ≃ (A = B); this relates Equivalence to IdentityType and needs contract integration",
@@ -212,50 +152,74 @@
           "Current implementation focuses on contractible fibers definition as primary",
           "Proof conversion between different equivalence definitions to be added in future version",
           "Integration with univalence axiom requires coordination with IdentityType contract"
-        ],
-        "rust_binding": {
-          "crate": "omega_category_theory",
-          "module": "functor::equivalence_of_categories",
-          "symbols": [
-            "EquivalenceOfCategories"
-          ],
-          "required_tests": [
-            "validate_ok",
-            "validate_rejects_empty",
-            "validate_rejects_missing_functors"
-          ]
-        }
+        ]
       },
-      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:equivalence:v0.1.0\",\n  \"title\": \"Equivalence Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"equivalence\",\n    \"symbol\": \"A ≃ B, f: A ≃ B\",\n    \"ascii_symbol\": \"equivalence\",\n    \"notation\": \"A ≃ B, f: A ≃ B\",\n    \"domain\": [\n      \"domain: Type A\",\n      \"codomain: Type B\",\n      \"function: f: A → B\",\n      \"proof: Equivalence proof term\"\n    ],\n    \"codomain\": {\n      \"description\": \"An equivalence consists of a function f: A → B together with a proof that f is an equivalence. The proof can be given in multiple equivalent forms: bi-invertible, half-adjoint equivalence, or contractible fibers.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Domain type A and codomain type B must exist and be resolvable\",\n      \"Function f must have type A → B\",\n      \"Proof type must be one of: bi_invertible, half_adjoint, contractible_fibers\",\n      \"Proof data must constitute a valid equivalence proof of the specified type\",\n      \"Artifact hash must be SHA-256 over canonical representation\"\n    ]\n  },\n  \"laws\": [\n    \"For all b: B, the fiber f^{-1}(b) is contractible\",\n    \"There exist g, h: B → A such that fg ∼ id and hf ∼ id\",\n    \"There exists g: B → A, proofs fg ∼ id, gf ∼ id, and coherence\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Proof data serialized canonically\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"domain_type_id does not resolve\",\n    \"codomain_type_id does not resolve\",\n    \"function does not have type A → B\",\n    \"proof_type = 'magic' (not recognized)\",\n    \"proof_data missing required components\",\n    \"function is not an equivalence (e.g., not surjective)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An Equivalence (A ≃ B) in HoTT is a function f: A → B together with a proof that f is an equivalence (bi-invertible, half- adjoint, or contractible fibers).  Equivalences are the correct notion of \\\"sameness\\\" for types.  The contract validates the function and its equivalence proof.\",\n    \"non_role\": [\n      \"Does not handle equivalences between types in different universes without care\",\n      \"Does not automatically convert between different proof representations\",\n      \"Does not handle non-constructive proofs of equivalence\"\n    ]\n  },\n  \"wip\": [\n    \"The three definitions of equivalence (bi-invertible, half-adjoint, contractible fibers) are logically equivalent; proof conversion should be implemented as ComputationWitness operations\",\n    \"Univalence states (A ≃ B) ≃ (A = B); this relates Equivalence to IdentityType and needs contract integration\",\n    \"Equivalences between types in different universes require careful handling and universe level tracking\",\n    \"Contract version 0.1.0 establishes basic structure for HoTT equivalences\",\n    \"Current implementation focuses on contractible fibers definition as primary\",\n    \"Proof conversion between different equivalence definitions to be added in future version\",\n    \"Integration with univalence axiom requires coordination with IdentityType contract\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"functor::equivalence_of_categories\",\n    \"symbols\": [\n      \"EquivalenceOfCategories\"\n    ],\n    \"required_tests\": [\n      \"validate_ok\",\n      \"validate_rejects_empty\",\n      \"validate_rejects_missing_functors\"\n    ]\n  }\n}\n",
+      "sha256": "ebd4d2552a588f7a7f2f1bce9ae4d427505f3d6e6fefa990072a114d841cf971"
+    },
+    {
+      "bytes": 1703,
       "original_paths": [
-        "code/python/governance/10_math/general/math_equivalence_v0_1_0.contract.yaml"
-      ]
+        "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n    \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n      \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\",\n  \"subject\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+          "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+            "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d",
+        "subject": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py"
+      },
+      "sha256": "7a539b3359d096da6673c18da54b3f1b028d98d364955b496ac331a54bb5655a"
     }
   ],
+  "current_contract": "7a539b3359d096da6673c18da54b3f1b028d98d364955b496ac331a54bb5655a",
+  "current_scoring": "f1a574633898db5d5839a707af3db1580b6d6afb22abcd9e6fd3a27c0dd882e6",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_equivalence_v0_1_0.contract.yaml": "4fe0e96d573c5d1c9ae1a69c111a218ee176d635b72911066c881405b8a3ab2d"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "f4197531cb78c27cc6bebfd13ae778cc9ed66092ad6a862a4a11a54eb42a24d1",
       "bytes": 2219,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n    \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-equivalence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
           "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:general:math-equivalence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -264,40 +228,100 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 2,
-          "lizard_ccn": 2,
-          "weighted_control_upper_bound": 1,
-          "control_nesting": 1
+        "composite_grade": "C",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
         },
         "is_complete": true,
-        "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 1,
+          "lizard_ccn": 2,
+          "radon_ccn": 2,
+          "weighted_control_upper_bound": 1
+        },
         "open_higher_grade_findings": [
           "Full downstream provenance and provider audits",
           "Formal or exhaustive semantic/failure assurance",
           "Independent alternate checker",
           "Measured peak allocation and process deadline guarantees"
         ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
+      },
+      "sha256": "f4197531cb78c27cc6bebfd13ae778cc9ed66092ad6a862a4a11a54eb42a24d1"
+    },
+    {
+      "bytes": 1658,
+      "original_paths": [
+        "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n    \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n      \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Exact\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+          "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
         "evidence": [
           {
-            "path": "SCORING.md",
-            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+            "path": "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py",
+            "sha256": "b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d"
           }
-        ]
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Exact",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.py\",\n    \"sha256\": \"b9b5b44340fa12a394fcfb7534384ff3c5e8daab9937f99d908df4884935098d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-equivalence-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/python/governance/10_math/general/math_equivalence_v0_1_0_contract.contract.score.yaml#scoring"
-      ]
+      "sha256": "f1a574633898db5d5839a707af3db1580b6d6afb22abcd9e6fd3a27c0dd882e6"
     }
-  ],
-  "legacy_paths": {
-    "code/python/governance/10_math/general/math_equivalence_v0_1_0.contract.yaml": "4fe0e96d573c5d1c9ae1a69c111a218ee176d635b72911066c881405b8a3ab2d"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

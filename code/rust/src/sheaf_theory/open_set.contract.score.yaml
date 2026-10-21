@@ -1,358 +1,226 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "code/rust/src/sheaf_theory/open_set.rs",
+  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
-    "schema_version": "1.0.0",
-    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Rust",
       "path": "code/rust/src/sheaf_theory/open_set.rs",
-      "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
-      "language": "Rust"
+      "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
     },
-    "contract_urn": "urn:tfqm:contract:sheaf_theory:open_set.rs",
-    "status": "draft_requires_semantic_review",
-    "target": "L4A",
-    "profile": "Exact",
-    "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
-    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
-    "compilation": {
-      "disabled_by_cfg_any": false,
-      "test_or_support_file": false,
-      "compatibility_mirror_tree": false
-    },
-    "declaration_index": [
-      {
-        "kind": "struct",
-        "name": "OpenSet",
-        "line": 8,
-        "declaration_line": "pub struct OpenSet {"
-      },
-      {
-        "kind": "fn",
-        "name": "new",
-        "line": 13,
-        "declaration_line": "pub fn new(elements: impl IntoIterator<Item = impl Into<String>>) -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "empty",
-        "line": 19,
-        "declaration_line": "pub fn empty() -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "contains",
-        "line": 25,
-        "declaration_line": "pub fn contains(&self, item: &str) -> bool {"
-      },
-      {
-        "kind": "fn",
-        "name": "is_subset",
-        "line": 29,
-        "declaration_line": "pub fn is_subset(&self, other: &Self) -> bool {"
-      },
-      {
-        "kind": "fn",
-        "name": "union",
-        "line": 33,
-        "declaration_line": "pub fn union(&self, other: &Self) -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "intersection",
-        "line": 39,
-        "declaration_line": "pub fn intersection(&self, other: &Self) -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "is_empty",
-        "line": 49,
-        "declaration_line": "pub fn is_empty(&self) -> bool {"
-      },
-      {
-        "kind": "fn",
-        "name": "len",
-        "line": 53,
-        "declaration_line": "pub fn len(&self) -> usize {"
-      },
-      {
-        "kind": "struct",
-        "name": "PosetTopology",
-        "line": 59,
-        "declaration_line": "pub struct PosetTopology {"
-      },
-      {
-        "kind": "fn",
-        "name": "new",
-        "line": 65,
-        "declaration_line": "pub fn new("
-      },
-      {
-        "kind": "fn",
-        "name": "discrete",
-        "line": 78,
-        "declaration_line": "pub fn discrete(base_elements: impl IntoIterator<Item = impl Into<String>>) -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "from_simplicial_complex",
-        "line": 88,
-        "declaration_line": "pub fn from_simplicial_complex(complex: &SimplicialComplex) -> Self {"
-      },
-      {
-        "kind": "fn",
-        "name": "minimal_open_neighborhood",
-        "line": 117,
-        "declaration_line": "pub fn minimal_open_neighborhood(&self, x: &str) -> OpenSet {"
-      },
-      {
-        "kind": "fn",
-        "name": "is_open",
-        "line": 128,
-        "declaration_line": "pub fn is_open(&self, u: &OpenSet) -> bool {"
-      },
-      {
-        "kind": "struct",
-        "name": "Cover",
-        "line": 141,
-        "declaration_line": "pub struct Cover {"
-      },
-      {
-        "kind": "fn",
-        "name": "new",
-        "line": 149,
-        "declaration_line": "pub fn new("
-      },
-      {
-        "kind": "fn",
-        "name": "canonical_serialization",
-        "line": 199,
-        "declaration_line": "pub fn canonical_serialization(&self) -> Vec<u8> {"
-      },
-      {
-        "kind": "fn",
-        "name": "artifact_hash",
-        "line": 223,
-        "declaration_line": "pub fn artifact_hash(&self) -> String {"
-      },
-      {
-        "kind": "fn",
-        "name": "compute_nerve",
-        "line": 230,
-        "declaration_line": "pub fn compute_nerve(&self) -> Result<SimplicialComplex, String> {"
-      }
+    "authority_effect": "None",
+    "boundaries": [
+      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
     ],
-    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
-    "requirements": [
-      {
-        "id": "G1",
-        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
-      },
-      {
-        "id": "G2",
-        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
-      },
-      {
-        "id": "G3",
-        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
-      },
-      {
-        "id": "G4",
-        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
-      },
-      {
-        "id": "G5",
-        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
-      }
-    ],
-    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
-    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
-    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
-    "open_obligations": [
-      "Complete source-to-requirement and downstream consumer review is outstanding.",
-      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
-      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
-    ],
+    "contract_id": "source-coverage-baseline-v1",
     "evidence": [
       {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+        "path": "code/rust/src/sheaf_theory/open_set.rs",
+        "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
       },
       {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-      },
-      {
-        "path": "code/rust/quality/l4a_qm_six/records.py",
-        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-      },
-      {
-        "path": "code/rust/quality/l4a_qm_six/specs.json",
-        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-      },
-      {
-        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+        "path": "SCORING.md",
+        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ]
+    ],
+    "operations": {
+      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+      "source_identity": "The exact source bytes identified by subject and source_sha256."
+    },
+    "owned_invariants": [
+      "The companion identifies one source path and its exact current SHA-256 digest.",
+      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+    ],
+    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+    "role": "source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
+    "subject": "code/rust/src/sheaf_theory/open_set.rs"
   },
-  "current_contract": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
-  "current_scoring": "f6155c4b13de50b86b38c625d2e7bb49711c4a5e42f3b79d4971ac6fc1872fc8",
   "contract_history": [
     {
-      "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
       "bytes": 6896,
+      "original_paths": [
+        "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.contract.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:sheaf_theory:open_set.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"OpenSet\",\n      \"line\": 8,\n      \"declaration_line\": \"pub struct OpenSet {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn new(elements: impl IntoIterator<Item = impl Into<String>>) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"empty\",\n      \"line\": 19,\n      \"declaration_line\": \"pub fn empty() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains\",\n      \"line\": 25,\n      \"declaration_line\": \"pub fn contains(&self, item: &str) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_subset\",\n      \"line\": 29,\n      \"declaration_line\": \"pub fn is_subset(&self, other: &Self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"union\",\n      \"line\": 33,\n      \"declaration_line\": \"pub fn union(&self, other: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"intersection\",\n      \"line\": 39,\n      \"declaration_line\": \"pub fn intersection(&self, other: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_empty\",\n      \"line\": 49,\n      \"declaration_line\": \"pub fn is_empty(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"len\",\n      \"line\": 53,\n      \"declaration_line\": \"pub fn len(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"PosetTopology\",\n      \"line\": 59,\n      \"declaration_line\": \"pub struct PosetTopology {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 65,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"discrete\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn discrete(base_elements: impl IntoIterator<Item = impl Into<String>>) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_simplicial_complex\",\n      \"line\": 88,\n      \"declaration_line\": \"pub fn from_simplicial_complex(complex: &SimplicialComplex) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"minimal_open_neighborhood\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn minimal_open_neighborhood(&self, x: &str) -> OpenSet {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_open\",\n      \"line\": 128,\n      \"declaration_line\": \"pub fn is_open(&self, u: &OpenSet) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Cover\",\n      \"line\": 141,\n      \"declaration_line\": \"pub struct Cover {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 149,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"canonical_serialization\",\n      \"line\": 199,\n      \"declaration_line\": \"pub fn canonical_serialization(&self) -> Vec<u8> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"artifact_hash\",\n      \"line\": 223,\n      \"declaration_line\": \"pub fn artifact_hash(&self) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compute_nerve\",\n      \"line\": 230,\n      \"declaration_line\": \"pub fn compute_nerve(&self) -> Result<SimplicialComplex, String> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
       "record": {
-        "schema_version": "1.0.0",
         "AuthorityEffect": "None",
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/sheaf_theory/open_set.rs",
-          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
-          "language": "Rust"
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+        },
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "compilation": {
+          "compatibility_mirror_tree": false,
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
         },
         "contract_urn": "urn:tfqm:contract:sheaf_theory:open_set.rs",
-        "status": "draft_requires_semantic_review",
-        "target": "L4A",
-        "profile": "Exact",
-        "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
-        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
-        "compilation": {
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false
-        },
         "declaration_index": [
           {
+            "declaration_line": "pub struct OpenSet {",
             "kind": "struct",
-            "name": "OpenSet",
             "line": 8,
-            "declaration_line": "pub struct OpenSet {"
+            "name": "OpenSet"
           },
           {
+            "declaration_line": "pub fn new(elements: impl IntoIterator<Item = impl Into<String>>) -> Self {",
             "kind": "fn",
-            "name": "new",
             "line": 13,
-            "declaration_line": "pub fn new(elements: impl IntoIterator<Item = impl Into<String>>) -> Self {"
+            "name": "new"
           },
           {
+            "declaration_line": "pub fn empty() -> Self {",
             "kind": "fn",
-            "name": "empty",
             "line": 19,
-            "declaration_line": "pub fn empty() -> Self {"
+            "name": "empty"
           },
           {
+            "declaration_line": "pub fn contains(&self, item: &str) -> bool {",
             "kind": "fn",
-            "name": "contains",
             "line": 25,
-            "declaration_line": "pub fn contains(&self, item: &str) -> bool {"
+            "name": "contains"
           },
           {
+            "declaration_line": "pub fn is_subset(&self, other: &Self) -> bool {",
             "kind": "fn",
-            "name": "is_subset",
             "line": 29,
-            "declaration_line": "pub fn is_subset(&self, other: &Self) -> bool {"
+            "name": "is_subset"
           },
           {
+            "declaration_line": "pub fn union(&self, other: &Self) -> Self {",
             "kind": "fn",
-            "name": "union",
             "line": 33,
-            "declaration_line": "pub fn union(&self, other: &Self) -> Self {"
+            "name": "union"
           },
           {
+            "declaration_line": "pub fn intersection(&self, other: &Self) -> Self {",
             "kind": "fn",
-            "name": "intersection",
             "line": 39,
-            "declaration_line": "pub fn intersection(&self, other: &Self) -> Self {"
+            "name": "intersection"
           },
           {
+            "declaration_line": "pub fn is_empty(&self) -> bool {",
             "kind": "fn",
-            "name": "is_empty",
             "line": 49,
-            "declaration_line": "pub fn is_empty(&self) -> bool {"
+            "name": "is_empty"
           },
           {
+            "declaration_line": "pub fn len(&self) -> usize {",
             "kind": "fn",
-            "name": "len",
             "line": 53,
-            "declaration_line": "pub fn len(&self) -> usize {"
+            "name": "len"
           },
           {
+            "declaration_line": "pub struct PosetTopology {",
             "kind": "struct",
-            "name": "PosetTopology",
             "line": 59,
-            "declaration_line": "pub struct PosetTopology {"
+            "name": "PosetTopology"
           },
           {
+            "declaration_line": "pub fn new(",
             "kind": "fn",
-            "name": "new",
             "line": 65,
-            "declaration_line": "pub fn new("
+            "name": "new"
           },
           {
+            "declaration_line": "pub fn discrete(base_elements: impl IntoIterator<Item = impl Into<String>>) -> Self {",
             "kind": "fn",
-            "name": "discrete",
             "line": 78,
-            "declaration_line": "pub fn discrete(base_elements: impl IntoIterator<Item = impl Into<String>>) -> Self {"
+            "name": "discrete"
           },
           {
+            "declaration_line": "pub fn from_simplicial_complex(complex: &SimplicialComplex) -> Self {",
             "kind": "fn",
-            "name": "from_simplicial_complex",
             "line": 88,
-            "declaration_line": "pub fn from_simplicial_complex(complex: &SimplicialComplex) -> Self {"
+            "name": "from_simplicial_complex"
           },
           {
+            "declaration_line": "pub fn minimal_open_neighborhood(&self, x: &str) -> OpenSet {",
             "kind": "fn",
-            "name": "minimal_open_neighborhood",
             "line": 117,
-            "declaration_line": "pub fn minimal_open_neighborhood(&self, x: &str) -> OpenSet {"
+            "name": "minimal_open_neighborhood"
           },
           {
+            "declaration_line": "pub fn is_open(&self, u: &OpenSet) -> bool {",
             "kind": "fn",
-            "name": "is_open",
             "line": 128,
-            "declaration_line": "pub fn is_open(&self, u: &OpenSet) -> bool {"
+            "name": "is_open"
           },
           {
+            "declaration_line": "pub struct Cover {",
             "kind": "struct",
-            "name": "Cover",
             "line": 141,
-            "declaration_line": "pub struct Cover {"
+            "name": "Cover"
           },
           {
+            "declaration_line": "pub fn new(",
             "kind": "fn",
-            "name": "new",
             "line": 149,
-            "declaration_line": "pub fn new("
+            "name": "new"
           },
           {
+            "declaration_line": "pub fn canonical_serialization(&self) -> Vec<u8> {",
             "kind": "fn",
-            "name": "canonical_serialization",
             "line": 199,
-            "declaration_line": "pub fn canonical_serialization(&self) -> Vec<u8> {"
+            "name": "canonical_serialization"
           },
           {
+            "declaration_line": "pub fn artifact_hash(&self) -> String {",
             "kind": "fn",
-            "name": "artifact_hash",
             "line": 223,
-            "declaration_line": "pub fn artifact_hash(&self) -> String {"
+            "name": "artifact_hash"
           },
           {
+            "declaration_line": "pub fn compute_nerve(&self) -> Result<SimplicialComplex, String> {",
             "kind": "fn",
-            "name": "compute_nerve",
             "line": 230,
-            "declaration_line": "pub fn compute_nerve(&self) -> Result<SimplicialComplex, String> {"
+            "name": "compute_nerve"
           }
         ],
         "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "profile": "Exact",
+        "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
         "requirements": [
           {
             "id": "G1",
@@ -375,14 +243,94 @@
             "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
           }
         ],
-        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
         "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
-        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
-        "open_obligations": [
-          "Complete source-to-requirement and downstream consumer review is outstanding.",
-          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
-          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        "schema_version": "1.0.0",
+        "status": "draft_requires_semantic_review",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "target": "L4A"
+      },
+      "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89"
+    },
+    {
+      "bytes": 1593,
+      "original_paths": [
+        "code/rust/src/sheaf_theory/open_set.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n      \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n  \"subject\": \"code/rust/src/sheaf_theory/open_set.rs\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/sheaf_theory/open_set.rs",
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
         ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "code/rust/src/sheaf_theory/open_set.rs",
+            "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
+        "subject": "code/rust/src/sheaf_theory/open_set.rs"
+      },
+      "sha256": "5d99666bb4c6d9f98b7d3eee1eb363fee64396ff65b563a7c17e0d65b390ad3e"
+    }
+  ],
+  "current_contract": "5d99666bb4c6d9f98b7d3eee1eb363fee64396ff65b563a7c17e0d65b390ad3e",
+  "current_scoring": "ac9539b712b12bca74e4b81abc9b978e51ef7a18c9ca735dc189bb6ee72dedc8",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/rust/src/sheaf_theory/open_set.rs.contract.yaml": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
+    "code/rust/src/sheaf_theory/open_set.rs.scoring.yaml": "e3bee799c9afd9351b3383606ca5c57a6ff1da0b89b31f17d552b921f75de973",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.contract.yaml": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.scoring.yaml": "82258f11f85d27b5db7e0d859a5569989bbd794edfe22970938ff17f1b572ed2"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 8564,
+      "original_paths": [
+        "code/rust/src/sheaf_theory/open_set.rs.scoring.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/sheaf_theory/open_set.rs",
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+        },
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "composite_grade": null,
+        "contract": {
+          "path": "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
+          "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
+          "status": "draft_requires_semantic_review"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
         "evidence": [
           {
             "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
@@ -412,32 +360,7 @@
             "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
             "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
           }
-        ]
-      },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:sheaf_theory:open_set.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"OpenSet\",\n      \"line\": 8,\n      \"declaration_line\": \"pub struct OpenSet {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 13,\n      \"declaration_line\": \"pub fn new(elements: impl IntoIterator<Item = impl Into<String>>) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"empty\",\n      \"line\": 19,\n      \"declaration_line\": \"pub fn empty() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains\",\n      \"line\": 25,\n      \"declaration_line\": \"pub fn contains(&self, item: &str) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_subset\",\n      \"line\": 29,\n      \"declaration_line\": \"pub fn is_subset(&self, other: &Self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"union\",\n      \"line\": 33,\n      \"declaration_line\": \"pub fn union(&self, other: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"intersection\",\n      \"line\": 39,\n      \"declaration_line\": \"pub fn intersection(&self, other: &Self) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_empty\",\n      \"line\": 49,\n      \"declaration_line\": \"pub fn is_empty(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"len\",\n      \"line\": 53,\n      \"declaration_line\": \"pub fn len(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"PosetTopology\",\n      \"line\": 59,\n      \"declaration_line\": \"pub struct PosetTopology {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 65,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"discrete\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn discrete(base_elements: impl IntoIterator<Item = impl Into<String>>) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_simplicial_complex\",\n      \"line\": 88,\n      \"declaration_line\": \"pub fn from_simplicial_complex(complex: &SimplicialComplex) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"minimal_open_neighborhood\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn minimal_open_neighborhood(&self, x: &str) -> OpenSet {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_open\",\n      \"line\": 128,\n      \"declaration_line\": \"pub fn is_open(&self, u: &OpenSet) -> bool {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Cover\",\n      \"line\": 141,\n      \"declaration_line\": \"pub struct Cover {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 149,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"canonical_serialization\",\n      \"line\": 199,\n      \"declaration_line\": \"pub fn canonical_serialization(&self) -> Vec<u8> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"artifact_hash\",\n      \"line\": 223,\n      \"declaration_line\": \"pub fn artifact_hash(&self) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compute_nerve\",\n      \"line\": 230,\n      \"declaration_line\": \"pub fn compute_nerve(&self) -> Result<SimplicialComplex, String> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
-        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "e3bee799c9afd9351b3383606ca5c57a6ff1da0b89b31f17d552b921f75de973",
-      "bytes": 8564,
-      "record": {
-        "schema_version": "2.0.0",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/sheaf_theory/open_set.rs",
-          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
-        "engineering_target": "A",
-        "requested_target": "L4A",
+        ],
         "gates": {
           "G1": null,
           "G2": null,
@@ -445,237 +368,19 @@
           "G4": null,
           "G5": null
         },
-        "composite_grade": null,
-        "score_token": null,
-        "is_complete": false,
         "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
         "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
-        "contract": {
-          "path": "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
-          "status": "draft_requires_semantic_review",
-          "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89"
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/records.py",
-            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/specs.json",
-            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
-          }
-        ],
-        "verification": {
-          "baseline": {
-            "command": [
-              "cargo",
-              "test",
-              "--offline",
-              "--target-dir",
-              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
-              "--quiet",
-              "-p",
-              "tfqm_sheaf_theory",
-              "--tests"
-            ],
-            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
-            "elapsed_seconds": 44.946,
-            "environment": {
-              "CARGO_BUILD_JOBS": "2",
-              "CARGO_INCREMENTAL": "0",
-              "CARGO_PROFILE_DEV_DEBUG": "0",
-              "CARGO_PROFILE_TEST_DEBUG": "0"
-            },
-            "exit_code": 0,
-            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
-            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
-            "timed_out": false
-          },
-          "sources_unchanged": true,
-          "doctests": [],
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false,
-          "dependency_sources_unchanged": true,
-          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
-          "designated_mutations": [],
-          "mutation_restoration_baselines_ok": null,
-          "reproduced_defects": [],
-          "current_manifest_assessment_complete": false
-        },
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
         "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
           "killed": 0,
           "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
-        },
-        "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
-          "functions": [
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 13,
-              "name": "new",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 19,
-              "name": "empty",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 25,
-              "name": "contains",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 29,
-              "name": "is_subset",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 33,
-              "name": "union",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 39,
-              "name": "intersection",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 49,
-              "name": "is_empty",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 1,
-              "control_nesting": 0,
-              "line": 53,
-              "name": "len",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 1,
-              "line": 65,
-              "name": "new",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 1,
-              "line": 78,
-              "name": "discrete",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 6,
-              "cognitive_upper_bound": 9,
-              "control_nesting": 3,
-              "line": 88,
-              "name": "from_simplicial_complex",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 3,
-              "cognitive_upper_bound": 3,
-              "control_nesting": 2,
-              "line": 117,
-              "name": "minimal_open_neighborhood",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 5,
-              "cognitive_upper_bound": 7,
-              "control_nesting": 3,
-              "line": 128,
-              "name": "is_open",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 8,
-              "cognitive_upper_bound": 12,
-              "control_nesting": 2,
-              "line": 149,
-              "name": "new",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 6,
-              "cognitive_upper_bound": 8,
-              "control_nesting": 2,
-              "line": 199,
-              "name": "canonical_serialization",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 1,
-              "cognitive_upper_bound": 0,
-              "control_nesting": 0,
-              "line": 223,
-              "name": "artifact_hash",
-              "opaque_macros": []
-            },
-            {
-              "ccn": 8,
-              "cognitive_upper_bound": 12,
-              "control_nesting": 3,
-              "line": 230,
-              "name": "compute_nerve",
-              "opaque_macros": []
-            }
-          ],
-          "exceeding_A": [],
-          "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+          "unrun": 0
         },
         "open_findings": [
           "Complete source-to-requirement and downstream consumer review is outstanding.",
@@ -684,128 +389,13 @@
           "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
           "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
         ],
-        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
-        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
-        "capability_status": "provisional_unverified",
-        "profile_status": "declared_target_unverified"
-      },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
-      "original_paths": [
-        "code/rust/src/sheaf_theory/open_set.rs.scoring.yaml"
-      ]
-    },
-    {
-      "sha256": "82258f11f85d27b5db7e0d859a5569989bbd794edfe22970938ff17f1b572ed2",
-      "bytes": 7748,
-      "record": {
-        "schema_version": "2.0.0",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "code/rust/src/sheaf_theory/open_set.rs",
-          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
-          "language": "Rust"
-        },
         "profile": "Exact",
-        "level": "L3",
-        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
-        "engineering_target": "A",
+        "profile_status": "declared_target_unverified",
         "requested_target": "L4A",
-        "gates": {
-          "G1": null,
-          "G2": null,
-          "G3": null,
-          "G4": null,
-          "G5": null
-        },
-        "composite_grade": null,
+        "schema_version": "2.0.0",
         "score_token": null,
-        "is_complete": false,
-        "grade_ceiling": "A",
-        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
-        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
-        "contract": {
-          "path": "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
-          "status": "draft_requires_semantic_review",
-          "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89"
-        },
-        "evidence": [
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
-            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
-            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/records.py",
-            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
-          },
-          {
-            "path": "code/rust/quality/l4a_qm_six/specs.json",
-            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
-            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
-            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
-          },
-          {
-            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
-            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
-          }
-        ],
-        "verification": {
-          "baseline": {
-            "command": [
-              "cargo",
-              "test",
-              "--offline",
-              "--target-dir",
-              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
-              "--quiet",
-              "-p",
-              "tfqm_sheaf_theory",
-              "--tests"
-            ],
-            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
-            "elapsed_seconds": 44.946,
-            "environment": {
-              "CARGO_BUILD_JOBS": "2",
-              "CARGO_INCREMENTAL": "0",
-              "CARGO_PROFILE_DEV_DEBUG": "0",
-              "CARGO_PROFILE_TEST_DEBUG": "0"
-            },
-            "exit_code": 0,
-            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
-            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
-            "timed_out": false
-          },
-          "sources_unchanged": true,
-          "doctests": [],
-          "disabled_by_cfg_any": false,
-          "test_or_support_file": false,
-          "compatibility_mirror_tree": false,
-          "dependency_sources_unchanged": true,
-          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
-          "designated_mutations": [],
-          "mutation_restoration_baselines_ok": null,
-          "reproduced_defects": []
-        },
-        "mutation_accounting": {
-          "killed": 0,
-          "survived": 0,
-          "demonstrably_equivalent": 0,
-          "invalid": 0,
-          "inconclusive": 0,
-          "unrun": 0,
-          "conservative_ratio": null
-        },
         "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "exceeding_A": [],
           "functions": [
             {
               "ccn": 1,
@@ -944,46 +534,329 @@
               "opaque_macros": []
             }
           ],
-          "exceeding_A": [],
           "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
+        },
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_sheaf_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 44.946,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
+            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
+            "timed_out": false
+          },
+          "compatibility_mirror_tree": false,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "current_manifest_assessment_complete": false,
+          "dependency_sources_unchanged": true,
+          "designated_mutations": [],
+          "disabled_by_cfg_any": false,
+          "doctests": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "sources_unchanged": true,
+          "test_or_support_file": false
+        }
+      },
+      "sha256": "e3bee799c9afd9351b3383606ca5c57a6ff1da0b89b31f17d552b921f75de973"
+    },
+    {
+      "bytes": 7748,
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.scoring.yaml"
+      ],
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/sheaf_theory/open_set.rs",
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+        },
+        "composite_grade": null,
+        "contract": {
+          "path": "code/rust/src/sheaf_theory/open_set.rs.contract.yaml",
+          "sha256": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
+          "status": "draft_requires_semantic_review"
+        },
+        "engineering_target": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "mutation_accounting": {
+          "conservative_ratio": null,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 0,
+          "survived": 0,
+          "unrun": 0
         },
         "open_findings": [
           "Complete source-to-requirement and downstream consumer review is outstanding.",
           "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
           "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
         ],
-        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+        "profile": "Exact",
+        "requested_target": "L4A",
+        "schema_version": "2.0.0",
+        "score_token": null,
+        "structure": {
+          "exceeding_A": [],
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 13,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 19,
+              "name": "empty",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 25,
+              "name": "contains",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 29,
+              "name": "is_subset",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 33,
+              "name": "union",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 39,
+              "name": "intersection",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 49,
+              "name": "is_empty",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 53,
+              "name": "len",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 65,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 78,
+              "name": "discrete",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 88,
+              "name": "from_simplicial_complex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 117,
+              "name": "minimal_open_neighborhood",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 128,
+              "name": "is_open",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 2,
+              "line": 149,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 199,
+              "name": "canonical_serialization",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 223,
+              "name": "artifact_hash",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 230,
+              "name": "compute_nerve",
+              "opaque_macros": []
+            }
+          ],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
+        },
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_sheaf_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 44.946,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
+            "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
+            "timed_out": false
+          },
+          "compatibility_mirror_tree": false,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "dependency_sources_unchanged": true,
+          "designated_mutations": [],
+          "disabled_by_cfg_any": false,
+          "doctests": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "sources_unchanged": true,
+          "test_or_support_file": false
+        }
       },
-      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_sheaf_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 44.946,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log\",\n      \"log_sha256\": \"dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
-      "original_paths": [
-        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.scoring.yaml"
-      ]
+      "sha256": "82258f11f85d27b5db7e0d859a5569989bbd794edfe22970938ff17f1b572ed2"
     },
     {
-      "sha256": "f6155c4b13de50b86b38c625d2e7bb49711c4a5e42f3b79d4971ac6fc1872fc8",
       "bytes": 6728,
+      "original_paths": [
+        "code/rust/src/sheaf_theory/open_set.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:sheaf_theory:open-set:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Rust",
           "path": "code/rust/src/sheaf_theory/open_set.rs",
-          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82",
-          "language": "Rust"
-        },
-        "profile": "Exact",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
-        },
-        "phase": "production-and-checker-review",
-        "level": "L4",
-        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
-        "gates": {
-          "G1": "C",
-          "G2": "C",
-          "G3": "C",
-          "G4": "C",
-          "G5": "A"
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
         },
         "basis": {
           "G1": "Claim URN urn:omega:fqm:sheaf_theory:open-set:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
@@ -992,24 +865,7 @@
           "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
           "G5": "Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
         },
-        "metrics": {
-          "radon_ccn": 8,
-          "lizard_ccn": 8,
-          "weighted_control_upper_bound": 12,
-          "control_nesting": 3
-        },
-        "is_complete": true,
         "composite_grade": "C",
-        "score_token": "L4C",
-        "requested_target": "L4E or higher",
-        "target_achieved": true,
-        "target_scope": "This exact source revision only.",
-        "open_higher_grade_findings": [
-          "Full downstream provenance and provider audits",
-          "Formal or exhaustive semantic/failure assurance",
-          "Independent alternate checker",
-          "Measured peak allocation and process deadline bounds"
-        ],
         "evidence": [
           {
             "path": "SCORING.md",
@@ -1044,8 +900,38 @@
             "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
           }
         ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.",
+        "metrics": {
+          "control_nesting": 3,
+          "lizard_ccn": 8,
+          "radon_ccn": 8,
+          "weighted_control_upper_bound": 12
+        },
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline bounds"
+        ],
+        "phase": "production-and-checker-review",
+        "profile": "Exact",
+        "requested_target": "L4E or higher",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "score_token": "L4C",
         "structure": {
-          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "exceeding_A": [],
           "functions": [
             {
               "ccn": 1,
@@ -1184,23 +1070,67 @@
               "opaque_macros": []
             }
           ],
-          "exceeding_A": [],
           "metric_ceiling": "A",
-          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
-        }
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed.",
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)"
+        },
+        "target_achieved": true,
+        "target_scope": "This exact source revision only."
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero bare asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:sheaf_theory:open-set:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested under Rust semantics.\",\n    \"G3\": \"Typed Result<T, E> error returns refuse unadmitted inputs, out-of-range bounds, and malformed state; zero unhandled panics on public interfaces.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: CCN 8 <= 10 (A), nesting depth 3 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 8,\n    \"lizard_ccn\": 8,\n    \"weighted_control_upper_bound\": 12,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline bounds\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 13,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 19,\n        \"name\": \"empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 25,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 29,\n        \"name\": \"is_subset\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 33,\n        \"name\": \"union\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"intersection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 49,\n        \"name\": \"is_empty\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"len\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 65,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 78,\n        \"name\": \"discrete\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 88,\n        \"name\": \"from_simplicial_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 117,\n        \"name\": \"minimal_open_neighborhood\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 128,\n        \"name\": \"is_open\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 149,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 199,\n        \"name\": \"canonical_serialization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"artifact_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 230,\n        \"name\": \"compute_nerve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  }\n}\n",
+      "sha256": "f6155c4b13de50b86b38c625d2e7bb49711c4a5e42f3b79d4971ac6fc1872fc8"
+    },
+    {
+      "bytes": 1590,
       "original_paths": [
-        "code/rust/src/sheaf_theory/open_set.contract.score.yaml#scoring"
-      ]
+        "code/rust/src/sheaf_theory/open_set.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n    \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/rust/src/sheaf_theory/open_set.rs\",\n      \"sha256\": \"26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/sheaf_theory/open_set.rs",
+          "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "code/rust/src/sheaf_theory/open_set.rs",
+            "sha256": "26a9a928efd3a30b37c728189e3ac7ebe9003f42d18b69ae38de0ae314f83d82"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Non-Numeric",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "ac9539b712b12bca74e4b81abc9b978e51ef7a18c9ca735dc189bb6ee72dedc8"
     }
-  ],
-  "legacy_paths": {
-    "code/rust/src/sheaf_theory/open_set.rs.contract.yaml": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
-    "code/rust/src/sheaf_theory/open_set.rs.scoring.yaml": "e3bee799c9afd9351b3383606ca5c57a6ff1da0b89b31f17d552b921f75de973",
-    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.contract.yaml": "31a61adb488560f1d6a015c617bbb36a194ea832bb1c3cfae16a871bacb43f89",
-    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/sheaf_theory/open_set.rs.scoring.yaml": "82258f11f85d27b5db7e0d859a5569989bbd794edfe22970938ff17f1b572ed2"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }
