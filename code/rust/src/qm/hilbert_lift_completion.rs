@@ -20,7 +20,14 @@
 //!   modulus, an exact square-root-free bound on the fluctuation of inner products along two
 //!   such sequences (a native estimate not stated in the Lean run), and the quantitative density
 //!   step (grid approximation with `sqdist f q < r²`);
-//! * mutation controls: unit vectors are not ℓ²-Cauchy, and the shifted modulus `k ↦ k` fails.
+//! * mutation controls: unit vectors are not ℓ²-Cauchy, and the shifted modulus `k ↦ k` fails;
+//! * the operator statements of `lean4/HilbertLiftOperators.lean`
+//!   (`dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps`): bounded
+//!   exact operators `qinner (A f) (A f) ≤ C qinner f f` and their Lipschitz consequence, the
+//!   transported Cauchy modulus, the unilateral shift (isometric) and the stage projection
+//!   (bound 1), and the coordinate-sum functional with its harmonic gap
+//!   `coordSum (h_{2n}) − coordSum (h_n) ≥ 1/2` beside `qinner (h_N) (h_N) ≤ 2`; `certify`
+//!   locks the `n = 1` gap `1/2`.
 //!
 //! The completion itself (a real or complex Hilbert space) is not represented; the scalar field,
 //! the ℓ² uniformity and the Cauchy hypothesis are supplied, not derived.  AuthorityEffect: None.
@@ -28,7 +35,7 @@
 use std::collections::BTreeMap;
 
 use num_bigint::BigInt;
-use num_traits::{One, Signed, Zero};
+use num_traits::{One, Signed, ToPrimitive, Zero};
 
 use crate::linear_algebra::{q, Q};
 
@@ -59,6 +66,12 @@ pub enum HilbertLiftError {
     NonpositiveTolerance,
     #[error("distinct stages required")]
     EqualStages,
+    #[error("a nonnegative bound is required")]
+    NegativeBound,
+    #[error("the bound block does not fit a machine integer")]
+    BoundNotRepresentable,
+    #[error("coordinate-sum harmonic gap drifted")]
+    CertificateDrift,
 }
 
 fn qn(n: usize) -> Q {
@@ -397,6 +410,105 @@ pub fn shifted_modulus_fails() -> bool {
     matches!(modulus_holds(harmonic, |k| k, 0, 1), Ok(false))
 }
 
+// ------------------------------------------------ bounded exact operators (HilbertLiftOperators)
+
+/// `BoundedExactOperator.norm_sq_le` on supplied samples: `qinner (A f) (A f) ≤ bound · qinner f f`.
+pub fn bounded_operator_holds<A: Fn(&ExactSeq) -> ExactSeq>(
+    apply: A,
+    bound: &Q,
+    samples: &[ExactSeq],
+) -> Result<bool, HilbertLiftError> {
+    if *bound < q(0) {
+        return Err(HilbertLiftError::NegativeBound);
+    }
+    Ok(samples.iter().all(|f| {
+        let af = apply(f);
+        qinner(&af, &af) <= bound * qinner(f, f)
+    }))
+}
+
+/// `sqdist_map_le`: `sqdist (A f) (A g) ≤ bound · sqdist f g` (for an additive `A`).
+pub fn operator_lipschitz_holds<A: Fn(&ExactSeq) -> ExactSeq>(
+    apply: A,
+    bound: &Q,
+    f: &ExactSeq,
+    g: &ExactSeq,
+) -> bool {
+    sqdist(&apply(f), &apply(g)) <= bound * sqdist(f, g)
+}
+
+/// The block `B = ⌈bound + 1⌉` used by [`transported_modulus`].
+pub fn bound_block(bound: &Q) -> Result<usize, HilbertLiftError> {
+    if *bound < q(0) {
+        return Err(HilbertLiftError::NegativeBound);
+    }
+    (bound + q(1))
+        .ceil()
+        .to_integer()
+        .to_usize()
+        .ok_or(HilbertLiftError::BoundNotRepresentable)
+}
+
+/// `isCauchyL2_map` made explicit: if `x` has modulus `μ` then `A x` has modulus
+/// `k ↦ μ((k+1) B − 1)`, since `sqdist (A x_m) (A x_n) ≤ bound / ((k+1) B) < 1/(k+1)`.
+pub fn transported_modulus<M: Fn(usize) -> usize>(modulus: M, block: usize) -> impl Fn(usize) -> usize {
+    move |k| modulus((k + 1) * block - 1)
+}
+
+/// `shiftMap`: `e_i ↦ e_{i+1}`.
+pub fn shift(f: &ExactSeq) -> ExactSeq {
+    ExactSeq::from_entries(f.entries().map(|(i, a)| (i + 1, a.clone())))
+}
+
+/// `qinner_shift`: `qinner (shift f) (shift g) = qinner f g`.
+pub fn shift_is_isometric(f: &ExactSeq, g: &ExactSeq) -> bool {
+    qinner(&shift(f), &shift(g)) == qinner(f, g)
+}
+
+/// `projMap n`: the stage projection `ofFin (trunc n f)`, bound `1` by `finInner_trunc_le`.
+pub fn proj(n: usize, f: &ExactSeq) -> ExactSeq {
+    of_fin(&trunc(n, f))
+}
+
+/// `coordSum`: the `ℚ`-linear coordinate-sum functional.
+pub fn coord_sum(f: &ExactSeq) -> Q {
+    f.entries().fold(q(0), |acc, (_, a)| acc + a)
+}
+
+/// `coordSum_harmonic_gap`: `coordSum (harmonic 2n) − coordSum (harmonic n)`, at least `1/2` for
+/// `n ≥ 1`.
+pub fn coord_sum_gap(n: usize) -> Result<Q, HilbertLiftError> {
+    if n < 1 {
+        return Err(HilbertLiftError::StagePositive);
+    }
+    Ok(coord_sum(&harmonic(2 * n)) - coord_sum(&harmonic(n)))
+}
+
+/// `qinner_harmonic_le_two`: `qinner (harmonic N) (harmonic N) ≤ 2`.
+pub fn harmonic_norm_sq_le_two_holds(n: usize) -> bool {
+    qinner(&harmonic(n), &harmonic(n)) <= q(2)
+}
+
+/// `no_continuous_extension_coordSum`, finite form: the pairs `(m, n)` with
+/// `|coordSum (harmonic m) − coordSum (harmonic n)| ≥ 1/2`.
+pub fn coord_sum_not_cauchy_refutations(pairs: &[(usize, usize)]) -> Vec<(usize, usize)> {
+    pairs
+        .iter()
+        .cloned()
+        .filter(|(m, n)| (coord_sum(&harmonic(*m)) - coord_sum(&harmonic(*n))).abs() >= qinv(2))
+        .collect()
+}
+
+/// The locked certificate value: `coordSum (harmonic 2) − coordSum (harmonic 1) = 1/2`
+/// (`coordSum_harmonic_gap` at `n = 1`), mirroring `certify` of the Python twin.
+pub fn certify() -> Result<Q, HilbertLiftError> {
+    let value = coord_sum_gap(1)?;
+    if value != qinv(2) {
+        return Err(HilbertLiftError::CertificateDrift);
+    }
+    Ok(value)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -561,5 +673,56 @@ mod tests {
     fn fences_are_declared() {
         assert!(AUTHORITY_FENCE.contains("AuthorityEffect None"));
         assert!(PROVENANCE.contains("20261020T230000Z_completion"));
+    }
+
+    #[test]
+    fn shift_and_projection_are_bounded() {
+        let samples = vec![f(), g(), h(), harmonic(7), ExactSeq::default()];
+        assert_eq!(bounded_operator_holds(shift, &q(1), &samples), Ok(true));
+        assert_eq!(bounded_operator_holds(|v| proj(3, v), &q(1), &samples), Ok(true));
+        assert_eq!(bounded_operator_holds(|v| smul(&r(-3, 2), v), &r(9, 4), &samples), Ok(true));
+        assert_eq!(bounded_operator_holds(|v| smul(&q(2), v), &q(1), &samples), Ok(false));
+        assert_eq!(bounded_operator_holds(shift, &q(-1), &samples), Err(HilbertLiftError::NegativeBound));
+        for (a, b) in [(f(), g()), (g(), h()), (harmonic(4), harmonic(9))] {
+            assert!(shift_is_isometric(&a, &b));
+            assert!(operator_lipschitz_holds(shift, &q(1), &a, &b));
+            assert!(operator_lipschitz_holds(|v| proj(3, v), &q(1), &a, &b));
+        }
+    }
+
+    #[test]
+    fn transported_modulus_works() {
+        let block = bound_block(&q(1)).unwrap();
+        assert_eq!(block, 2);
+        let mu = transported_modulus(harmonic_modulus, block);
+        for k in 0..4 {
+            assert_eq!(modulus_holds(|n| shift(&harmonic(n)), &mu, k, mu(k) + 10), Ok(true));
+        }
+        let block3 = bound_block(&r(5, 2)).unwrap();
+        assert_eq!(block3, 4);
+        let mu3 = transported_modulus(harmonic_modulus, block3);
+        assert_eq!(mu3(0), harmonic_modulus(3));
+        assert_eq!(modulus_holds(|n| smul(&r(3, 2), &harmonic(n)), &mu3, 1, mu3(1) + 10), Ok(true));
+        assert_eq!(bound_block(&q(-1)), Err(HilbertLiftError::NegativeBound));
+    }
+
+    #[test]
+    fn coord_sum_gap_and_bounded_norms() {
+        assert_eq!(coord_sum(&f()), r(7, 2));
+        assert_eq!(coord_sum(&add(&f(), &g())), coord_sum(&f()) + coord_sum(&g()));
+        for n in 1..12 {
+            assert!(coord_sum_gap(n).unwrap() >= qinv(2));
+        }
+        for n in 0..40 {
+            assert!(harmonic_norm_sq_le_two_holds(n));
+        }
+        let pairs: Vec<(usize, usize)> = (1..8).map(|n| (2 * n, n)).collect();
+        assert_eq!(coord_sum_not_cauchy_refutations(&pairs), pairs);
+        assert_eq!(coord_sum_gap(0), Err(HilbertLiftError::StagePositive));
+    }
+
+    #[test]
+    fn certificate_value() {
+        assert_eq!(certify(), Ok(qinv(2)));
     }
 }

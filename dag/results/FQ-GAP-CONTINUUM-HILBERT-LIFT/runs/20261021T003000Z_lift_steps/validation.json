@@ -1,0 +1,36 @@
+{
+  "authority_effect": "None",
+  "lean": {
+    "compiler": "Lean 4.33.1 (pinned toolchain leanprover/lean4:v4.33.1)",
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474 (lean4/lake-manifest.json; existing olean cache of lean4/.lake reused, not rebuilt)",
+    "sources": ["HilbertLiftFiniteTower.lean", "HilbertLiftRationalUniformity.lean", "HilbertLiftCompletion.lean", "HilbertLiftComplexCarrier.lean", "HilbertLiftIntrinsicUniformity.lean", "HilbertLiftL2Model.lean", "HilbertLiftOperators.lean"],
+    "receipts": {"tower_01": 29, "uniformity_01": 28, "completion_01": 38, "complex_01": 17, "intrinsic_01": 16, "l2model_01": 15, "operators_01": 25, "total": 168},
+    "axioms": "every printed receipt within [propext, Classical.choice, Quot.sound]; no sorry, axiom, opaque or unsafe in any accepted source; no warning or error line in any accepted compile output",
+    "install": "the three new sources are byte-identical copies under lean4/ and registered in lean4/lakefile.lean after HilbertLiftComplexCarrier; the four dependencies are byte-identical to their merged lean4/ copies"
+  },
+  "python": {
+    "command": "cd code/python && python -m pytest tests/test_hilbert_lift_completion.py -q",
+    "tests": 20,
+    "result": "20 passed",
+    "certificate_harness": "cd code/python && python -m pytest src/qm/tests/test_isolated_certificates.py -q (row hilbert_lift_completion.py added): 37 passed",
+    "dag_witness_tests": "cd code/python && python -m pytest tests/test_dag_witnesses.py tests/test_e2e_foundational_derivation_closure_control.py -q: 14 passed"
+  },
+  "rust": {
+    "command": "cd code/rust && cargo test --lib hilbert_lift_completion",
+    "tests": 18,
+    "result": "NOT RUN TO COMPLETION in this session: the first build failed with 'There is not enough space on the disk' (os error 112) while linking workspace crates, and the retry with CARGO_PROFILE_DEV_DEBUG=0 was stopped by the session supervisor for low system memory inside a path-dependency build script; the 14 pre-extension tests passed on 2026-10-20; the 4 new tests (shift_and_projection_are_bounded, transported_modulus_works, coord_sum_gap_and_bounded_norms, certificate_value) are unverified; the partial target directory was removed"
+  },
+  "dag": {
+    "command_structural": "python dag/validate_derivation_dag.py --repo-root . --no-files",
+    "structural": "nodes=198 routes=194 failures=0 after the split (197/192/0 before)",
+    "command_files": "python dag/validate_derivation_dag.py --repo-root .",
+    "file_resolution": "2062 pre-existing failures (omega_engine_atlas/, omega_engine/ and lean4/quantum_mechanics/ paths outside this checkout) before and after; none mentions a file or symbol of this run",
+    "edit": "tools/dag_update.py: new node FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION, routes FQ-R-CONTINUUM-HILBERT-LIFT-CONSTRUCTION and FQ-R-GAP-CONTINUUM-FROM-CONSTRUCTION, gap node statement/source_status/bottleneck/see_also/lean rewritten; LF line endings preserved; python dag/sync_application_branches.py rerun afterwards so that the fragment-owned routes stay last",
+    "tests": "python -m pytest dag/test_validate_derivation_dag.py dag/test_application_branches.py dag/test_tensor_measurement_receipt.py dag/test_tensor_countermodel_receipt.py code/python/tests/test_l1_seminorm.py -q: 28 passed",
+    "receipt_rebinding": "dag/research/tensor_measurement_validation.json and tensor_countermodel_validation.json bind the DAG node and route counts (197/192); tools/rebind_receipts.py set them to 198/194 and, for the countermodel receipt, rebound the digests of dag/derivation_dag.json and lean4/lakefile.lean, recording every previous value under 'rebound'. On the pristine main DAG the countermodel receipt test already failed (its DAG digest matched neither the pre-PR-117 nor the main file). The Lean replay sections of both receipts are untouched."
+  },
+  "operational_notes": [
+    "The bundle re-replays its four dependencies because tools/replay.py resolves imports only from the run's own build/ directory and the Mathlib cache.",
+    "Run-directory and label names were kept short so that every verification/<label>/<Source>.lean path stays below the Windows 260-character limit."
+  ]
+}

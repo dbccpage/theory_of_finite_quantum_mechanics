@@ -252,6 +252,9 @@ lean_lib «FiniteQuantum» where
     `HilbertLiftRationalUniformity,
     `HilbertLiftCompletion,
     `HilbertLiftComplexCarrier,
+    `HilbertLiftIntrinsicUniformity,
+    `HilbertLiftL2Model,
+    `HilbertLiftOperators,
     -- Primitive difference foundation modules
     `E003_projection_fiber_primitive_difference,
     `E005_fiber_quotient_equivalence,

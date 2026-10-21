@@ -12,20 +12,58 @@ harmonic witness, its ℓ¹ failure, and its non-convergence to every exact vect
 itself (a real or complex Hilbert space) is not representable here; a point of it is represented
 constructively as a sequence with an explicit Cauchy modulus, and the inner-product fluctuation
 bound below is a native estimate that the Lean run does not state.
+Also replays the operator statements of
+dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps
+(lean4/HilbertLiftOperators.lean: bounded exact operators, the stage projection, the unilateral shift,
+and the coordinate-sum functional whose harmonic gap theorem coordSum_harmonic_gap is the locked
+certificate value 1/2 returned by certify()).
 The scalar field, the ℓ² uniformity and the Cauchy hypothesis are supplied; nothing selects them.
 AuthorityEffect: None.
+Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/qm/tests/test_isolated_certificates.py.
+Scope Fence: certify locks coordSum (harmonic 2) - coordSum (harmonic 1) = 1/2, the n = 1 case of
+coordSum_harmonic_gap; it does not construct the completion or any operator on it.
 """
 from fractions import Fraction as Q
+from math import ceil
+from typing import Mapping
 
 AUTHORITY_FENCE = ("AuthorityEffect None; not PROVED; the completion is not represented, only exact "
                    "rational statements about finite stages and Cauchy sequences are replayed; "
                    "the scalar field and the ℓ² uniformity are supplied hypotheses.")
 
 
+class HilbertLiftError(ValueError):
+    """One violated exact-carrier invariant, with the measured parameters."""
+
+    def __init__(self, invariant: str, parameters: Mapping[str, object] | None = None) -> None:
+        self.invariant = invariant
+        self.parameters = {} if parameters is None else dict(parameters)
+        rendered = ", ".join(f"{key}={value}" for key, value in self.parameters.items())
+        message = invariant if rendered == "" else f"{invariant} ({rendered})"
+        super().__init__(message)
+
+
+def _fail(invariant: str, **parameters: object) -> HilbertLiftError:
+    return HilbertLiftError(invariant, parameters)
+
+
+def _require_fraction(value: object, role: str) -> Q:
+    if isinstance(value, float):
+        raise _fail("float refused at the public boundary", role=role, received="float")
+    if type(value) is bool:
+        raise _fail("boolean refused where a rational was required", role=role)
+    if isinstance(value, Fraction):
+        return value
+    if type(value) is int:
+        return Q(value)
+    raise _fail("value is not an exact rational", role=role, received=type(value).__name__)
+
+
+Fraction = Q
+
+
 def _q(x):
-    if type(x) not in (int, Q):
-        raise ValueError('exact integer or Fraction entries required')
-    return Q(x)
+    return _require_fraction(x, "entry")
 
 
 # ---------------------------------------------------------------- finite carriers (FinCarrier n)
@@ -293,3 +331,101 @@ def shifted_modulus_fails():
     """The modulus k -> k (one stage too early) fails for the harmonic witness at k = 0:
     sqdist (harmonic 1) (harmonic 0) = 1 is not < 1."""
     return not modulus_holds(harmonic, lambda k: k, 0, 1)
+
+
+# ------------------------------------------------ bounded exact operators (HilbertLiftOperators)
+
+def bounded_operator_holds(apply, bound, samples):
+    """BoundedExactOperator.norm_sq_le on supplied samples: qinner (A f) (A f) <= bound * qinner f f."""
+    bound = _q(bound)
+    if bound < 0:
+        raise ValueError('a nonnegative bound is required')
+    return all(qinner(apply(f), apply(f)) <= bound * qinner(f, f) for f in samples)
+
+
+def operator_lipschitz_holds(apply, bound, f, g):
+    """sqdist_map_le: sqdist (A f) (A g) <= bound * sqdist f g (for an additive A)."""
+    return sqdist(apply(f), apply(g)) <= _q(bound) * sqdist(f, g)
+
+
+def transported_modulus(modulus, bound):
+    """isCauchyL2_map made explicit: if x has modulus mu then A x has modulus
+    k -> mu((k+1) B - 1) with B = ceil(bound + 1), because
+    sqdist (A x_m) (A x_n) <= bound * sqdist (x_m) (x_n) < bound / ((k+1) B) < 1/(k+1)."""
+    B = ceil(_q(bound) + 1)
+    return lambda k: modulus((k + 1) * B - 1)
+
+
+def shift(f):
+    """shiftMap: e_i -> e_{i+1}."""
+    return seq({i + 1: a for i, a in f.items()})
+
+
+def shift_is_isometric(f, g):
+    """qinner_shift: qinner (shift f) (shift g) = qinner f g."""
+    return qinner(shift(f), shift(g)) == qinner(f, g)
+
+
+def proj(n, f):
+    """projMap n: the stage projection ofFin (trunc n f); bound 1 by finInner_trunc_le."""
+    return of_fin(trunc(n, f))
+
+
+def coord_sum(f):
+    """coordSum: the Q-linear coordinate-sum functional."""
+    return sum(f.values(), Q(0))
+
+
+def coord_sum_gap(n):
+    """coordSum_harmonic_gap: coordSum (harmonic 2n) - coordSum (harmonic n), at least 1/2 for n >= 1."""
+    if type(n) is not int or n < 1:
+        raise ValueError('n >= 1 required')
+    return coord_sum(harmonic(2 * n)) - coord_sum(harmonic(n))
+
+
+def harmonic_norm_sq_le_two_holds(N):
+    """qinner_harmonic_le_two: qinner (harmonic N) (harmonic N) <= 2."""
+    return qinner(harmonic(N), harmonic(N)) <= 2
+
+
+def coord_sum_not_cauchy_refutations(pairs):
+    """no_continuous_extension_coordSum, finite form: pairs (m, n) with
+    |coordSum (harmonic m) - coordSum (harmonic n)| >= 1/2 while the harmonic vectors stay
+    within squared norm 2 and converge in the lift."""
+    return [(m, n) for m, n in pairs if abs(coord_sum(harmonic(m)) - coord_sum(harmonic(n))) >= Q(1, 2)]
+
+
+# ------------------------------------------------------------------------- locked certificate
+
+def _locked(value, expected, invariant):
+    if value != expected:
+        raise _fail(invariant, value=str(value), expected=str(expected))
+    return value
+
+
+_MARK = 7
+
+
+def _mark() -> int:
+    return _MARK
+
+
+def certify(probe: object | None = None) -> Q:
+    """Refuse a non-rational probe, then return the locked harmonic gap coordSum (h_2) - coordSum (h_1) = 1/2."""
+    if probe is not None:
+        _require_fraction(probe, "probe")
+    if _mark() != 7:
+        raise _fail("certificate mark drifted", mark=_mark())
+    return _locked(coord_sum_gap(1), Q(1, 2), "coordinate-sum harmonic gap drifted")
+
+
+def main() -> int:
+    value = certify()
+    print(value)
+    if value == Q(1, 2):
+        return 0
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

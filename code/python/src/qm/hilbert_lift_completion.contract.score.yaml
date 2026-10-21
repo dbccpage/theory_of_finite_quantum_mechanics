@@ -5,14 +5,23 @@
   "contract": {
     "schema_id": "finite-qm.code-companion.v1",
     "subject": "code/python/src/qm/hilbert_lift_completion.py",
-    "source_sha256": "65f200e5850a4008338c37286a5b9e525506ff9def8e9cc49b66c76f6a8bad95",
+    "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
     "authority_effect": "None",
-    "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:65f200e5850a4008338c",
+    "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4",
     "symbols": [
+      "_fail",
+      "_locked",
+      "_mark",
       "_q",
+      "_require_fraction",
       "add",
       "bessel_truncation_holds",
+      "bounded_operator_holds",
       "cauchy_schwarz_holds",
+      "certify",
+      "coord_sum",
+      "coord_sum_gap",
+      "coord_sum_not_cauchy_refutations",
       "doubling_triangle_holds",
       "exhaustion",
       "fin_inner",
@@ -22,6 +31,7 @@
       "harmonic_l1_lower_bound_holds",
       "harmonic_modulus",
       "harmonic_nonconvergence_bound_holds",
+      "harmonic_norm_sq_le_two_holds",
       "harmonic_sqdist_bound_holds",
       "harmonic_term",
       "inner_fluctuation_holds",
@@ -29,13 +39,18 @@
       "l1_cauchy_fails",
       "l1_dominates_l2",
       "l1dist",
+      "main",
       "modulus_holds",
       "of_fin",
+      "operator_lipschitz_holds",
       "pad",
       "padding_is_isometric",
+      "proj",
       "qinner",
       "restriction_identity",
       "seq",
+      "shift",
+      "shift_is_isometric",
       "shifted_modulus_fails",
       "smul",
       "sqdist",
@@ -43,6 +58,7 @@
       "supdist",
       "support_bound",
       "telescoping_bound_holds",
+      "transported_modulus",
       "trunc",
       "unit_vector",
       "unit_vectors_not_cauchy"
@@ -53,14 +69,14 @@
     ],
     "boundaries": [
       "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
-      "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean run."
+      "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean runs."
     ],
     "evidence": [
-      "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md"
+      "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
     ]
   },
-  "current_contract": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
-  "current_scoring": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23",
+  "current_contract": "fef86f6fb28bbe789a6eaefeeb89f7f8b6bd3b655f1165ffb327dc5c9a649eab",
+  "current_scoring": "0cbeba23e9b32c5c0c71754c50ddf00a210d4ec2bb36ebec906450bcd172c0a4",
   "contract_history": [
     {
       "sha256": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
@@ -126,6 +142,87 @@
       "original_paths": [
         "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
       ]
+    },
+    {
+      "sha256": "fef86f6fb28bbe789a6eaefeeb89f7f8b6bd3b655f1165ffb327dc5c9a649eab",
+      "bytes": 1764,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py",
+        "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4",
+        "symbols": [
+          "_fail",
+          "_locked",
+          "_mark",
+          "_q",
+          "_require_fraction",
+          "add",
+          "bessel_truncation_holds",
+          "bounded_operator_holds",
+          "cauchy_schwarz_holds",
+          "certify",
+          "coord_sum",
+          "coord_sum_gap",
+          "coord_sum_not_cauchy_refutations",
+          "doubling_triangle_holds",
+          "exhaustion",
+          "fin_inner",
+          "fin_vector",
+          "grid_approximation",
+          "harmonic",
+          "harmonic_l1_lower_bound_holds",
+          "harmonic_modulus",
+          "harmonic_nonconvergence_bound_holds",
+          "harmonic_norm_sq_le_two_holds",
+          "harmonic_sqdist_bound_holds",
+          "harmonic_term",
+          "inner_fluctuation_holds",
+          "inner_fluctuation_sq_bound",
+          "l1_cauchy_fails",
+          "l1_dominates_l2",
+          "l1dist",
+          "main",
+          "modulus_holds",
+          "of_fin",
+          "operator_lipschitz_holds",
+          "pad",
+          "padding_is_isometric",
+          "proj",
+          "qinner",
+          "restriction_identity",
+          "seq",
+          "shift",
+          "shift_is_isometric",
+          "shifted_modulus_fails",
+          "smul",
+          "sqdist",
+          "sub",
+          "supdist",
+          "support_bound",
+          "telescoping_bound_holds",
+          "transported_modulus",
+          "trunc",
+          "unit_vector",
+          "unit_vectors_not_cauchy"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared exact replay contract of this source are claimed.",
+          "Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical target."
+        ],
+        "boundaries": [
+          "Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general proof.",
+          "The completion itself is not represented; the inner-product fluctuation bound is a native estimate not stated in the Lean runs."
+        ],
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:continuum-hilbert-lift:f77719357c943a2986e4\nsymbols:\n- _fail\n- _locked\n- _mark\n- _q\n- _require_fraction\n- add\n- bessel_truncation_holds\n- bounded_operator_holds\n- cauchy_schwarz_holds\n- certify\n- coord_sum\n- coord_sum_gap\n- coord_sum_not_cauchy_refutations\n- doubling_triangle_holds\n- exhaustion\n- fin_inner\n- fin_vector\n- grid_approximation\n- harmonic\n- harmonic_l1_lower_bound_holds\n- harmonic_modulus\n- harmonic_nonconvergence_bound_holds\n- harmonic_norm_sq_le_two_holds\n- harmonic_sqdist_bound_holds\n- harmonic_term\n- inner_fluctuation_holds\n- inner_fluctuation_sq_bound\n- l1_cauchy_fails\n- l1_dominates_l2\n- l1dist\n- main\n- modulus_holds\n- of_fin\n- operator_lipschitz_holds\n- pad\n- padding_is_isometric\n- proj\n- qinner\n- restriction_identity\n- seq\n- shift\n- shift_is_isometric\n- shifted_modulus_fails\n- smul\n- sqdist\n- sub\n- supdist\n- support_bound\n- telescoping_bound_holds\n- transported_modulus\n- trunc\n- unit_vector\n- unit_vectors_not_cauchy\nowned_invariants:\n- Only the literal definitions and the declared exact replay contract of this source are claimed.\n- Source bytes and kernel/native receipts are retained; labels do not admit a mathematical or physical\n  target.\nboundaries:\n- Finite exact replay of the kernel-checked statements on supplied data; a passing check is not a general\n  proof.\n- The completion itself is not represented; the inner-product fluctuation bound is a native estimate not\n  stated in the Lean runs.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.contract.yaml"
+      ]
     }
   ],
   "scoring_history": [
@@ -173,11 +270,56 @@
       "original_paths": [
         "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
       ]
+    },
+    {
+      "sha256": "0cbeba23e9b32c5c0c71754c50ddf00a210d4ec2bb36ebec906450bcd172c0a4",
+      "bytes": 926,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "code/python/src/qm/hilbert_lift_completion.py",
+        "source_sha256": "f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3",
+        "authority_effect": "None",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "capability_level": null,
+        "engineering_grade": null,
+        "composite_score": null,
+        "assessment_status": "formal_scoring_not_performed",
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; kernel, native and custody receipts support only their stated bounded scopes.",
+        "evidence": [
+          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md"
+        ]
+      },
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: code/python/src/qm/hilbert_lift_completion.py\nsource_sha256: f77719357c943a2986e4c1ba80c1f10a60e5cfccc30d55d9891aaa26984b9fb3\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; kernel, native and custody\n  receipts support only their stated bounded scopes.\nevidence:\n- dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md\n",
+      "original_paths": [
+        "code/python/src/qm/hilbert_lift_completion.py.score.yaml"
+      ]
     }
   ],
   "legacy_paths": {
-    "code/python/src/qm/hilbert_lift_completion.py.contract.yaml": "46d3a1365e91d30c8ea2cd58c65f309bd2424d9296674d858beaa283a9766436",
-    "code/python/src/qm/hilbert_lift_completion.py.score.yaml": "7d5fb8aa40b97229e2af0c4999a1eca98a6a49850b4e4a28a63c1238b3d33e23"
+    "code/python/src/qm/hilbert_lift_completion.py.contract.yaml": "fef86f6fb28bbe789a6eaefeeb89f7f8b6bd3b655f1165ffb327dc5c9a649eab",
+    "code/python/src/qm/hilbert_lift_completion.py.score.yaml": "0cbeba23e9b32c5c0c71754c50ddf00a210d4ec2bb36ebec906450bcd172c0a4"
   },
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
