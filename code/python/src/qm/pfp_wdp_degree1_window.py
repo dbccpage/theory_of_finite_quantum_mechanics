@@ -9,7 +9,7 @@ Gamma2 = unweighted L1 norm of d1 h. Not a statement about complex coefficients,
 the window (it is declared). AuthorityEffect: None.
 """
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, product
 
 # ---- shared window core (duplicated verbatim in the three wdp producers) ----
 
@@ -79,22 +79,90 @@ def solve_rows(rows, rhs):
     return x
 
 
-def phi1(nv, edges, w, h):
-    """Quotient defect: attained minimum of sum_e w_e |h_e - (d0 x)_e| over potentials x."""
+def cost(d0, w, h, x):
+    return sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(len(x)))) for i in range(len(d0)))
+
+
+def phi1_x(nv, edges, w, h):
+    """Primal: attained minimum of sum_e w_e |h_e - (d0 x)_e| and a minimising potential x (first best vertex)."""
     d0 = d0_rows(nv, edges)
     m = len(d0)
     r = rank(d0)
     if r == 0:
-        return sum(Fraction(w[i]) * abs(h[i]) for i in range(m))
-    best = None
+        return sum((Fraction(w[i]) * abs(h[i]) for i in range(m)), Fraction(0)), [Fraction(0)] * nv
+    best, best_x = None, None
     for sub in combinations(range(m), r):
         x = solve_rows([d0[i] for i in sub], [h[i] for i in sub])
         if x is None:
             continue
-        cost = sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(nv))) for i in range(m))
-        if best is None or cost < best:
-            best = cost
-    return best
+        c = cost(d0, w, h, x)
+        if best is None or c < best:
+            best, best_x = c, x
+    return best, best_x
+
+
+def phi1(nv, edges, w, h):
+    return phi1_x(nv, edges, w, h)[0]
+
+
+def unique_solution(cols, rhs):
+    """Solve sum_j y_j cols[j] = rhs; None unless the solution exists and is unique."""
+    r, n = len(cols), len(rhs)
+    rows = [[Fraction(cols[j][i]) for j in range(r)] + [Fraction(rhs[i])] for i in range(n)]
+    used = []
+    for j in range(r):
+        p = next((i for i in range(n) if i not in used and rows[i][j] != 0), None)
+        if p is None:
+            return None
+        used.append(p)
+        pivot = rows[p][j]
+        rows[p] = [a / pivot for a in rows[p]]
+        for i in range(n):
+            if i != p and rows[i][j] != 0:
+                f = rows[i][j]
+                rows[i] = [a - f * b for a, b in zip(rows[i], rows[p])]
+    if any(rows[i][r] != 0 for i in range(n) if i not in used):
+        return None
+    return [rows[used[j]][r] for j in range(r)]
+
+
+def dual_y(nv, edges, w, h):
+    """Dual: maximum of y.h over d0^T y = 0, |y_e| <= w_e, and the first maximising vertex y."""
+    d0 = d0_rows(nv, edges)
+    m = len(edges)
+    r = rank(d0)
+    best, best_y = None, None
+    for pinned in combinations(range(m), m - r):
+        free = [e for e in range(m) if e not in pinned]
+        for signs in product((1, -1), repeat=len(pinned)):
+            y = {e: Fraction(s * w[e]) for e, s in zip(pinned, signs)}
+            if free:
+                rhs = [-sum(y[e] * d0[e][v] for e in pinned) for v in range(nv)]
+                sol = unique_solution([[d0[e][v] for v in range(nv)] for e in free], rhs)
+                if sol is None:
+                    continue
+                for e, val in zip(free, sol):
+                    y[e] = val
+                if any(abs(y[e]) > w[e] for e in free):
+                    continue
+            elif any(sum(y[e] * d0[e][v] for e in pinned) != 0 for v in range(nv)):
+                continue
+            val = sum(y[e] * h[e] for e in range(m))
+            if best is None or val > best:
+                best, best_y = val, [y[e] for e in range(m)]
+    return best, best_y
+
+
+def fs(x):
+    return str(Fraction(x))
+
+
+def witness(nv, edges, w, h):
+    """(Phi1, witness string 'x=..|y=..'): a primal potential and a dual vector with equal values."""
+    phi, x = phi1_x(nv, edges, w, h)
+    val, y = dual_y(nv, edges, w, h)
+    assert phi == val == sum(y[e] * h[e] for e in range(len(h))), 'primal and dual values differ'
+    return phi, 'x=' + ','.join(fs(v) for v in x) + '|y=' + ','.join(fs(v) for v in y)
 
 
 def gamma2(d1, h):
@@ -117,10 +185,6 @@ def diag_class(phi, gam):
     return 'ClosedResidual' if gam == 0 else 'ActiveClosureFailure'
 
 
-def fs(x):
-    return str(Fraction(x))
-
-
 def tsv_window(c):
     edges = ','.join('%d>%d' % (s, t) for s, t in c['edges'])
     d1 = ';'.join(','.join(str(x) for x in row) for row in c['d1']) or '-'
@@ -141,6 +205,7 @@ def win(id_, nv, edges, w, d1, h):
 
 CASES = [
     win('tri_filled_active', 3, TRI_E, [1, 1, 1], TRI_D1, [1, 1, 0]),
+    win('tri_filled_active_shifted', 3, TRI_E, [1, 1, 1], TRI_D1, [2, 1, 1]),  # h + d0 (0,1,1): same class
     win('tri_filled_exact', 3, TRI_E, [1, 1, 1], TRI_D1, [1, 2, 3]),
     win('tri_unfilled_closed', 3, TRI_E, [1, 1, 1], [], [1, 0, 0]),
     win('tri_filled_zero_class', 3, TRI_E, [1, 1, 1], TRI_D1, [0, 0, 0]),
@@ -165,17 +230,18 @@ def record(c):
     d0 = d0_rows(nv, edges)
     r0 = rank(d0)
     r1 = rank(d1) if d1 else 0
-    witness = cochain_defect(nv, edges, d1)
-    ok = witness is None
-    phi = phi1(nv, edges, w, h)
+    bad = cochain_defect(nv, edges, d1)
+    ok = bad is None
+    phi, wit = witness(nv, edges, w, h)
     gam = gamma2(d1, h)
     return {
         'id': c['id'], 'nv': nv, 'm': len(edges), 'k': len(d1), 'rank_d0': r0, 'rank_d1': r1, 'complex': ok,
         'dim_q1': len(edges) - r0, 'dim_h1': (len(edges) - r1 - r0) if ok else None,
-        'phi1': fs(phi), 'gamma2': fs(gam),
+        'phi1': fs(phi), 'gamma2': fs(gam) if ok else None,
         'r_cl': fs(gam / phi) if ok and phi > 0 else None,
-        'diag': diag_class(phi, gam) if ok else 'NoRule',
-        'kappa_witness': None if ok else '%d:%s' % (witness[0], ','.join(str(x) for x in witness[1])),
+        'diag': diag_class(phi, gam) if ok else 'NotAWindow',
+        'kappa_witness': None if ok else '%d:%s' % (bad[0], ','.join(str(x) for x in bad[1])),
+        'witness': wit,
     }
 
 
@@ -186,13 +252,13 @@ def certificate(cases=CASES):
 def wire_lines(data):
     out = []
     for r in data['records']:
-        out.append('\t'.join([
+        out.append(chr(9).join([
             'window', r['id'], str(r['nv']), str(r['m']), str(r['k']), str(r['rank_d0']), str(r['rank_d1']),
             str(int(r['complex'])), str(r['dim_q1']), '-' if r['dim_h1'] is None else str(r['dim_h1']),
-            r['phi1'], r['gamma2'], '-' if r['r_cl'] is None else r['r_cl'], r['diag'],
-            '-' if r['kappa_witness'] is None else r['kappa_witness']]))
+            r['phi1'], '-' if r['gamma2'] is None else r['gamma2'], '-' if r['r_cl'] is None else r['r_cl'], r['diag'],
+            '-' if r['kappa_witness'] is None else r['kappa_witness'], r['witness']]))
     return out
 
 
 def public_tsv(cases=CASES):
-    return ''.join('window\t' + tsv_window(c) + '\n' for c in cases)
+    return ''.join('window' + chr(9) + tsv_window(c) + chr(10) for c in cases)

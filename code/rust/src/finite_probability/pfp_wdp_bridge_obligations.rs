@@ -3,12 +3,13 @@
 //! Exact replay of `code/python/src/qm/pfp_wdp_bridge_obligations.py` for PFP batch 01, node
 //! PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Statuses: 0 open, 1 control-only, 2 discharged. End-to-end is DEFINED as
 //! all five discharged (a modelling choice). The programme order O01<..<O05 is our mapping of the derivation order
-//! in the programme document, not a stated prerequisite relation. Rust derives the upgrade counts by simulating
+//! in the programme document, not a stated prerequisite relation. The vocabulary open/control-only/discharged and the
+//! all-control-only vector 11111 (`NODE_READING`) are the node's reading; the register itself labels each obligation OPEN. Rust derives the upgrade counts by simulating
 //! every strict single-position update (the Python producer uses a closed form). Nothing here discharges any
 //! obligation. AuthorityEffect: None.
 
 pub const N: usize = 5;
-const SOURCE_REPORTED: [u8; N] = [1, 1, 1, 1, 1];
+const NODE_READING: [u8; N] = [1, 1, 1, 1, 1];
 
 fn all_discharged(v: &[u8; N]) -> bool {
     v.iter().all(|&s| s == 2)
@@ -50,7 +51,7 @@ pub fn line(v: &[u8; N]) -> String {
         prefix as i32,
         upgrades,
         completing,
-        (*v == SOURCE_REPORTED) as i32
+        (*v == NODE_READING) as i32
     )
 }
 

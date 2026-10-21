@@ -155,6 +155,12 @@ theorem isPhi_zero_iff (J : C1 → ℚ) (d0 : C0 →ₗ[K] C1) (h : C1)
     rw [map_neg, hx]
     simp [(hdef 0).mpr rfl]
 
+/-- A nonnegative `J` gives a nonnegative defect. -/
+theorem isPhi_nonneg {J : C1 → ℚ} {d0 : C0 →ₗ[K] C1} {h : C1} {p : ℚ} (hnn : ∀ v, 0 ≤ J v)
+    (hp : IsPhi J d0 h p) : 0 ≤ p := by
+  obtain ⟨_, x, hx⟩ := hp
+  rw [← hx]; exact hnn _
+
 end Phi
 
 section Diagnostic
@@ -188,6 +194,10 @@ theorem diag_eq_closed_iff (phi gam : ℚ) : diag phi gam = .closedResidual ↔ 
 
 theorem diag_eq_active_iff (phi gam : ℚ) : diag phi gam = .active ↔ phi ≠ 0 ∧ gam ≠ 0 := by
   unfold diag; split_ifs <;> simp_all
+
+/-- For `Phi1 ≥ 0` the two spellings "`phi ≠ 0`" and "`0 < phi`" agree. -/
+theorem ne_zero_iff_pos {phi : ℚ} (hp : 0 ≤ phi) : phi ≠ 0 ↔ 0 < phi :=
+  ⟨fun h => lt_of_le_of_ne hp (Ne.symm h), fun h => h.ne'⟩
 
 /-- `R_cl = Gamma2 / Phi1`, defined only when `Phi1 > 0`. -/
 def ratio (phi gam : ℚ) : Option ℚ := if 0 < phi then some (gam / phi) else none
@@ -256,6 +266,69 @@ theorem isPhi_of_certificate (D : E → V → ℚ) (w h y : E → ℚ) (hann : �
 
 end Dual
 
+section Bridge
+
+open Finset
+
+variable {E V : Type*} [Fintype E] [Fintype V]
+
+/-- Weighted L1 norm on edge cochains. -/
+def wl1 (w v : E → ℚ) : ℚ := ∑ e, w e * |v e|
+
+/-- The repair map `x ↦ -(D x)` so that `h + negD x = h - D x`. -/
+def negD (D : E → V → ℚ) : (V → ℚ) →ₗ[ℚ] (E → ℚ) where
+  toFun x e := -(∑ v, D e v * x v)
+  map_add' x y := by
+    funext e
+    simp only [Pi.add_apply, mul_add, Finset.sum_add_distrib]
+    ring
+  map_smul' c x := by
+    funext e
+    simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply]
+    have h1 : c * -(∑ v, D e v * x v) = -(∑ v, c * (D e v * x v)) := by rw [mul_neg, Finset.mul_sum]
+    rw [h1]
+    exact congrArg Neg.neg (Finset.sum_congr rfl fun v _ => by ring)
+
+/-- BRIDGE: the graph repair cost is the module-form norm of `h + d0 x` for `d0 = negD D`. -/
+theorem cost_eq (D : E → V → ℚ) (w h : E → ℚ) (x : V → ℚ) :
+    cost D w h x = wl1 w (h + negD D x) := by
+  unfold cost wl1
+  refine Finset.sum_congr rfl fun e _ => ?_
+  simp [negD, sub_eq_add_neg]
+
+/-- BRIDGE: the abstract defect `IsPhi` of the weighted L1 norm is the minimum of the graph cost. -/
+theorem isPhi_graph_iff (D : E → V → ℚ) (w h : E → ℚ) (p : ℚ) :
+    IsPhi (wl1 w) (negD D) h p ↔ ((∀ x, p ≤ cost D w h x) ∧ ∃ x, cost D w h x = p) := by
+  unfold IsPhi
+  simp only [cost_eq]
+
+theorem wl1_nonneg {w : E → ℚ} (hw : ∀ e, 0 ≤ w e) (v : E → ℚ) : 0 ≤ wl1 w v :=
+  Finset.sum_nonneg fun e _ => mul_nonneg (hw e) (abs_nonneg _)
+
+/-- Weighted L1 with positive weights is definite. -/
+theorem wl1_definite {w : E → ℚ} (hw : ∀ e, 0 < w e) (v : E → ℚ) : wl1 w v = 0 ↔ v = 0 := by
+  constructor
+  · intro h
+    have h0 := (Finset.sum_eq_zero_iff_of_nonneg
+      (fun e _ => mul_nonneg (hw e).le (abs_nonneg (v e)))).mp h
+    funext e
+    have := h0 e (Finset.mem_univ e)
+    rcases mul_eq_zero.mp this with h1 | h1
+    · exact absurd h1 (hw e).ne'
+    · simpa using h1
+  · rintro rfl
+    simp [wl1]
+
+/-- BRIDGE INSTANCE-FREE: for positive weights, `Phi1 = 0` iff the class of `h` in `Q1` is zero,
+for every graph window (any matrix `D`). -/
+theorem graph_phi_zero_iff {w : E → ℚ} (hw : ∀ e, 0 < w e) (D : E → V → ℚ) (h : E → ℚ) :
+    ((∀ x, 0 ≤ cost D w h x) ∧ ∃ x, cost D w h x = 0) ↔
+      (Submodule.Quotient.mk h : Q1 (negD D)) = 0 := by
+  rw [← isPhi_graph_iff]
+  exact isPhi_zero_iff (wl1 w) (negD D) h (wl1_nonneg fun e => (hw e).le) (wl1_definite hw)
+
+end Bridge
+
 section Triangle
 
 /-- Filled triangle, edges `(01, 12, 02)`: `d0 f = (f1 - f0, f2 - f1, f2 - f0)`. -/
@@ -305,5 +378,12 @@ end WdpDegree1Window
 #print axioms WdpDegree1Window.diag_unique
 #print axioms WdpDegree1Window.ratio_class
 #print axioms WdpDegree1Window.weak_duality
+#print axioms WdpDegree1Window.isPhi_of_certificate
+#print axioms WdpDegree1Window.isPhi_nonneg
+#print axioms WdpDegree1Window.ne_zero_iff_pos
+#print axioms WdpDegree1Window.cost_eq
+#print axioms WdpDegree1Window.isPhi_graph_iff
+#print axioms WdpDegree1Window.wl1_definite
+#print axioms WdpDegree1Window.graph_phi_zero_iff
 #print axioms WdpDegree1Window.tri_phi
 #print axioms WdpDegree1Window.tri_gamma2

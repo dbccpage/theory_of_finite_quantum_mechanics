@@ -169,15 +169,28 @@ fn combos(m: usize, r: usize) -> Vec<Vec<usize>> {
     out
 }
 
-/// Quotient defect: attained minimum of sum_e w_e |h_e - (d0 x)_e| over potentials x.
-pub fn phi1(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> BigRational {
+fn cost(d0: &[Vec<i64>], w: &[i64], h: &[i64], x: &[BigRational]) -> BigRational {
+    let mut total = BigRational::zero();
+    for i in 0..d0.len() {
+        let mut dx = BigRational::zero();
+        for j in 0..x.len() {
+            dx += q(d0[i][j]) * x[j].clone();
+        }
+        total += q(w[i]) * (q(h[i]) - dx).abs();
+    }
+    total
+}
+
+/// Primal: attained minimum of sum_e w_e |h_e - (d0 x)_e| and the first minimising vertex potential x.
+pub fn phi1_x(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> (BigRational, Vec<BigRational>) {
     let d0 = d0_rows(nv, edges);
     let m = d0.len();
     let r = rank(&d0);
     if r == 0 {
-        return (0..m).fold(BigRational::zero(), |a, i| a + q(w[i]) * q(h[i]).abs());
+        let total = (0..m).fold(BigRational::zero(), |a, i| a + q(w[i]) * q(h[i]).abs());
+        return (total, vec![BigRational::zero(); nv]);
     }
-    let mut best: Option<BigRational> = None;
+    let mut best: Option<(BigRational, Vec<BigRational>)> = None;
     for sub in combos(m, r) {
         let rows: Vec<Vec<i64>> = sub.iter().map(|&i| d0[i].clone()).collect();
         let rhs: Vec<i64> = sub.iter().map(|&i| h[i]).collect();
@@ -185,19 +198,124 @@ pub fn phi1(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> BigRat
             Some(x) => x,
             None => continue,
         };
-        let mut cost = BigRational::zero();
-        for i in 0..m {
-            let mut dx = BigRational::zero();
-            for j in 0..nv {
-                dx += q(d0[i][j]) * x[j].clone();
-            }
-            cost += q(w[i]) * (q(h[i]) - dx).abs();
-        }
-        if best.as_ref().map_or(true, |b| cost < *b) {
-            best = Some(cost);
+        let c = cost(&d0, w, h, &x);
+        if best.as_ref().map_or(true, |b| c < b.0) {
+            best = Some((c, x));
         }
     }
     best.expect("a vertex exists when rank > 0")
+}
+
+pub fn phi1(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> BigRational {
+    phi1_x(nv, edges, w, h).0
+}
+
+/// Solve sum_j y_j cols[j] = rhs; None unless the solution exists and is unique.
+fn unique_solution(cols: &[Vec<i64>], rhs: &[BigRational]) -> Option<Vec<BigRational>> {
+    let r = cols.len();
+    let n = rhs.len();
+    let mut rows: Vec<Vec<BigRational>> = (0..n)
+        .map(|i| {
+            let mut row: Vec<BigRational> = (0..r).map(|j| q(cols[j][i])).collect();
+            row.push(rhs[i].clone());
+            row
+        })
+        .collect();
+    let mut used: Vec<usize> = Vec::new();
+    for j in 0..r {
+        let p = (0..n).find(|i| !used.contains(i) && !rows[*i][j].is_zero())?;
+        used.push(p);
+        let pivot = rows[p][j].clone();
+        for c in 0..=r {
+            rows[p][c] = rows[p][c].clone() / pivot.clone();
+        }
+        for i in 0..n {
+            if i != p && !rows[i][j].is_zero() {
+                let f = rows[i][j].clone();
+                let base = rows[p].clone();
+                for c in 0..=r {
+                    rows[i][c] = rows[i][c].clone() - f.clone() * base[c].clone();
+                }
+            }
+        }
+    }
+    if (0..n).any(|i| !used.contains(&i) && !rows[i][r].is_zero()) {
+        return None;
+    }
+    Some((0..r).map(|j| rows[used[j]][r].clone()).collect())
+}
+
+/// Dual: maximum of y.h over d0^T y = 0, |y_e| <= w_e and the first maximising vertex y (same order as the Python producer).
+pub fn dual_y(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> (BigRational, Vec<BigRational>) {
+    let d0 = d0_rows(nv, edges);
+    let m = edges.len();
+    let r = rank(&d0);
+    let mut best: Option<(BigRational, Vec<BigRational>)> = None;
+    for pinned in combos(m, m - r) {
+        let free: Vec<usize> = (0..m).filter(|e| !pinned.contains(e)).collect();
+        let k = pinned.len();
+        for t in 0u32..(1u32 << k) {
+            let mut y = vec![BigRational::zero(); m];
+            for (pos, &e) in pinned.iter().enumerate() {
+                let sign = if (t >> (k - 1 - pos)) & 1 == 0 { 1 } else { -1 };
+                y[e] = q(sign * w[e]);
+            }
+            if !free.is_empty() {
+                let rhs: Vec<BigRational> = (0..nv)
+                    .map(|v| {
+                        let mut s = BigRational::zero();
+                        for &e in &pinned {
+                            s += y[e].clone() * q(d0[e][v]);
+                        }
+                        -s
+                    })
+                    .collect();
+                let cols: Vec<Vec<i64>> = free.iter().map(|&e| (0..nv).map(|v| d0[e][v]).collect()).collect();
+                let sol = match unique_solution(&cols, &rhs) {
+                    Some(s) => s,
+                    None => continue,
+                };
+                for (&e, val) in free.iter().zip(sol) {
+                    y[e] = val;
+                }
+                if free.iter().any(|&e| y[e].abs() > q(w[e])) {
+                    continue;
+                }
+            } else {
+                let mut bad = false;
+                for v in 0..nv {
+                    let mut s = BigRational::zero();
+                    for &e in &pinned {
+                        s += y[e].clone() * q(d0[e][v]);
+                    }
+                    if !s.is_zero() {
+                        bad = true;
+                    }
+                }
+                if bad {
+                    continue;
+                }
+            }
+            let mut val = BigRational::zero();
+            for e in 0..m {
+                val += y[e].clone() * q(h[e]);
+            }
+            if best.as_ref().map_or(true, |b| val > b.0) {
+                best = Some((val, y));
+            }
+        }
+    }
+    best.expect("the dual polytope contains 0")
+}
+
+/// (Phi1, witness string `x=..|y=..`): a primal potential and a dual vector with equal values.
+pub fn witness(nv: usize, edges: &[(usize, usize)], w: &[i64], h: &[i64]) -> (BigRational, String) {
+    let (phi, x) = phi1_x(nv, edges, w, h);
+    let (val, y) = dual_y(nv, edges, w, h);
+    assert_eq!(phi, val, "primal and dual values differ");
+    let xs: Vec<String> = x.iter().map(fs).collect();
+    let ys: Vec<String> = y.iter().map(fs).collect();
+    (phi, format!("x={}|y={}", xs.join(","), ys.join(",")))
 }
 
 pub fn gamma2(d1: &[Vec<i64>], h: &[i64]) -> BigRational {
@@ -277,7 +395,7 @@ pub fn line(c: &Window) -> String {
     let r0 = rank(&d0_rows(c.nv, &c.edges));
     let r1 = if c.d1.is_empty() { 0 } else { rank(&c.d1) };
     let ok = cochain_defect(c.nv, &c.edges, &c.d1).is_none();
-    let phi = phi1(c.nv, &c.edges, &c.w, &c.h);
+    let (phi, wit) = witness(c.nv, &c.edges, &c.w, &c.h);
     let gam = gamma2(&c.d1, &c.h);
     let zero = class_zero(c.nv, &c.edges, &c.h);
     let dim_h1 = if ok { Some(m - r1 - r0) } else { None };
@@ -285,8 +403,8 @@ pub fn line(c: &Window) -> String {
     let op = opnorm(&c.d1, &c.w);
     let classes = [phi.is_zero(), phi > BigRational::zero() && gam.is_zero(), phi > BigRational::zero() && !gam.is_zero()];
     let hit = classes.iter().filter(|&&x| x).count();
-    let diag = if ok { diag_class(&phi, &gam) } else { "NoRule" };
-    let bound = op.as_ref().map(|o| gam <= o.clone() * phi.clone());
+    let diag = if ok { diag_class(&phi, &gam) } else { "NotAWindow" };
+    let bound = if ok { op.as_ref().map(|o| gam <= o.clone() * phi.clone()) } else { None };
     let cols: Vec<String> = vec![
         "seq".to_string(),
         c.id.clone(),
@@ -303,12 +421,13 @@ pub fn line(c: &Window) -> String {
         cell(zero),
         cell(c.w.iter().all(|&x| x > 0)),
         fs(&phi),
-        fs(&gam),
+        if ok { fs(&gam) } else { "-".to_string() },
         diag.to_string(),
-        hit.to_string(),
+        if ok { hit.to_string() } else { "-".to_string() },
         op.as_ref().map_or("-".to_string(), fs),
         opt_cell(bound),
         cell(phi.is_zero() == zero),
+        wit,
     ];
     cols.join("\t")
 }
@@ -320,7 +439,7 @@ pub fn replay(input: &str) -> Option<String> {
         return None;
     }
     let c = parse_window(parts)?;
-    if c.nv == 0 || c.edges.iter().any(|&(s, t)| s >= c.nv || t >= c.nv) || c.d1.iter().any(|r| r.len() != c.edges.len()) || c.w.iter().any(|&x| x < 0) {
+    if c.nv == 0 || c.edges.is_empty() || c.edges.iter().any(|&(s, t)| s >= c.nv || t >= c.nv) || c.d1.iter().any(|r| r.len() != c.edges.len()) || c.w.iter().any(|&x| x < 0) {
         return None;
     }
     Some(line(&c))
@@ -333,7 +452,7 @@ mod tests {
     #[test]
     fn pfp_wdp_quotient_sequence_filled_triangle_row() {
         let l = replay("window\tt\t3\t0>1,1>2,0>2\t1,1,1\t1,1,-1\t1,1,0").unwrap();
-        assert_eq!(l, "seq\tt\t1\t3\t2\t1\t1\t0\t1\t1\t0\t1\t0\t1\t2\t2\tActiveClosureFailure\t1\t1\t1\t1");
+        assert_eq!(l, "seq\tt\t1\t3\t2\t1\t1\t0\t1\t1\t0\t1\t0\t1\t2\t2\tActiveClosureFailure\t1\t1\t1\t1\tx=-2,-1,0|y=1,1,-1");
     }
 
     #[test]
@@ -342,7 +461,7 @@ mod tests {
         let l = replay("window\tm\t6\t0>1,1>2,0>2,3>4,4>5,3>5\t1,1,1,1,1,1\t1,1,-1,0,0,0\t1,1,0,1,0,0").unwrap();
         let cols: Vec<&str> = l.split('\t').collect();
         assert_eq!((cols[7], cols[8], cols[10], cols[11]), ("1", "1", "1", "0"));
-        // largest entry is 1 but the J-to-L1 norm of the column (1,1,1) is 3: the bound is tight, not violated
+        // the column (1,1,1) has largest entry 1 but J-to-L1 norm 3: the bound is tight, not violated
         let loop3 = replay("window\tl\t1\t0>0\t1\t1;1;1\t1").unwrap();
         let cols: Vec<&str> = loop3.split('\t').collect();
         assert_eq!((cols[14], cols[15], cols[18], cols[19]), ("1", "3", "3", "1"));
@@ -351,7 +470,7 @@ mod tests {
     #[test]
     fn pfp_wdp_quotient_sequence_refusal_seminorm_and_malformed() {
         let refused = replay("window\tv\t2\t0>1\t1\t1\t2").unwrap();
-        assert_eq!(refused, "seq\tv\t0\t1\t1\t1\t0\t-\t1\t-\t-\t-\t1\t1\t0\t2\tNoRule\t1\t1\t0\t1");
+        assert_eq!(refused, "seq\tv\t0\t1\t1\t1\t0\t-\t1\t-\t-\t-\t1\t1\t0\t-\tNotAWindow\t-\t1\t-\t1\tx=-2,0|y=0");
         let semi = replay("window\ts\t3\t0>1,1>2,0>2\t0,1,1\t-\t1,0,0").unwrap();
         assert!(semi.contains("\tExactClass\t"));
         let cols: Vec<&str> = semi.split('\t').collect();

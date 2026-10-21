@@ -24,7 +24,7 @@ CASES = ([['trace', 2, 4, mask] for mask in range(4)]
          + [['footprint', k] for k in KINDS]
          + [['pair', KINDS[i], KINDS[j]] for i in range(6) for j in range(i + 1, 6)]
          + [['conflation', name] for name in CONFLATIONS]
-         + [['reading', 0]])
+         + [['reading', 0, 'supply_includes_admit'], ['reading', 0, 'admit_includes_supply']])
 
 
 def empty(admitted=()):
@@ -136,12 +136,15 @@ def conflation_record(name):
     raise ValueError('no witness for ' + name)
 
 
-def reading_record(token):
-    stepper = conflated('supply', 'admit')
+READING_MODELS = {'supply_includes_admit': ('supply', 'admit'), 'admit_includes_supply': ('admit', 'supply')}
+
+
+def reading_record(token, name):
+    stepper = conflated(*READING_MODELS[name])
     tl, tf = [('supply', token)], [('supply', token), ('admit', token)]
     six_l, six_f = run(empty(), tl)[3], run(empty(), tf)[3]
     conf_l, conf_f = run(empty(), tl, stepper)[3], run(empty(), tf, stepper)[3]
-    return {'kind': 'reading', 'token': token, 'six_L_admitted': sorted(six_l), 'six_F_admitted': sorted(six_f),
+    return {'kind': 'reading', 'token': token, 'conflation': name, 'six_L_admitted': sorted(six_l), 'six_F_admitted': sorted(six_f),
             'conflated_L_admitted': sorted(conf_l), 'conflated_F_admitted': sorted(conf_f),
             'six_separated': six_l != six_f, 'conflated_separated': conf_l != conf_f}
 
@@ -157,7 +160,7 @@ def record(case):
     if kind == 'conflation':
         return conflation_record(case[1])
     if kind == 'reading':
-        return reading_record(case[1])
+        return reading_record(case[1], case[2])
     raise ValueError('unknown case kind ' + str(kind))
 
 
@@ -185,7 +188,7 @@ def _line(r):
     if k == 'conflation':
         return '\t'.join(['conflation', r['name'], str(r['min_len']), str(r['witness_count']), ','.join(r['witness']), r['differing_fields'],
                           str(int(r['admitted_differs'])), _state(r['six_state']), _state(r['conflated_state'])])
-    return '\t'.join(['reading', str(r['token']), _items(r['six_L_admitted']), _items(r['six_F_admitted']),
+    return '\t'.join(['reading', str(r['token']), r['conflation'], _items(r['six_L_admitted']), _items(r['six_F_admitted']),
                       _items(r['conflated_L_admitted']), _items(r['conflated_F_admitted']),
                       str(int(r['six_separated'])), str(int(r['conflated_separated']))])
 

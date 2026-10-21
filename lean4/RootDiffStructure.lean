@@ -156,6 +156,11 @@ theorem no_reduction_to_s (hS : IsEmpty S) (hP : Nonempty PD) : ¬ RetractsToS P
   · exact not_nonempty_iff.mpr hS hs
   · exact not_nonempty_iff.mpr h hP
 
+/-- Whenever both channels are inhabited (as the record types of the real `OntologyBasic.Real0` are), retractions onto
+each channel exist, so bare existence of such a map is NOT a non-reduction statement there. -/
+theorem retractions_both_ways_of_nonempty (hP : Nonempty PD) (hS : Nonempty S) : RetractsToPD PD S ∧ RetractsToS PD S :=
+  ⟨retracts_to_pd_iff.mpr (Or.inl hP), retracts_to_s_iff.mpr (Or.inl hS)⟩
+
 /-! ## The two posits are independent of the construction -/
 
 /-- The coproduct is nonempty iff at least one channel is. -/
@@ -195,6 +200,7 @@ end RootDiffStructure
 #print axioms RootDiffStructure.retracts_to_s_iff
 #print axioms RootDiffStructure.no_reduction_to_pd
 #print axioms RootDiffStructure.no_reduction_to_s
+#print axioms RootDiffStructure.retractions_both_ways_of_nonempty
 #print axioms RootDiffStructure.nonempty_real0_iff
 #print axioms RootDiffStructure.real0_empty_of_both_empty
 #print axioms RootDiffStructure.posits_independent

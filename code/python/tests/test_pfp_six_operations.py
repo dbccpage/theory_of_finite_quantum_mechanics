@@ -63,11 +63,14 @@ class SixOperations(unittest.TestCase):
         self.assertEqual(len(set(results)), 6)
 
     def test_readings_separated_by_admitted_state_only_without_conflation(self):
-        row = m.reading_record(0)
+        row = m.reading_record(0, 'supply_includes_admit')
         self.assertEqual((row['six_L_admitted'], row['six_F_admitted']), ([], [0]))
         self.assertEqual((row['conflated_L_admitted'], row['conflated_F_admitted']), ([0], [0]))
         self.assertTrue(row['six_separated'])
         self.assertFalse(row['conflated_separated'])
+        other = m.reading_record(0, 'admit_includes_supply')
+        self.assertTrue(other['six_separated'] and other['conflated_separated'])
+        self.assertEqual((other['conflated_L_admitted'], other['conflated_F_admitted']), ([], [0]))
 
     def test_every_conflation_has_a_short_witness_and_only_admit_conflations_touch_admitted(self):
         for name, (a, b) in m.CONFLATIONS.items():

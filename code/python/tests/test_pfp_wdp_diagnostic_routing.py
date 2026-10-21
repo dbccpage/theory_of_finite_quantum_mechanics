@@ -1,5 +1,7 @@
 """Exact controls for the diagnostic / routing / residual / authority-tag tables (PFP batch 01, PG-WDP-DIAGNOSTIC-NOT-ROUTING)."""
+import hashlib
 import importlib.util
+import re
 import unittest
 from itertools import product
 from pathlib import Path
@@ -12,6 +14,10 @@ _SPEC.loader.exec_module(m)
 
 def summary(name):
     return next(r for r in m.certificate()['records'] if r['kind'] == 'sum' and r['name'] == name)
+
+_EXT = Path(r'C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_types\src')
+_PIN = {'routing.rs': '7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c',
+        'terminal_status.rs': 'fa4b67c847ea16cb8a3289ce3e18195f83175996a9d597158347db9fa0568160'}
 
 
 class DiagnosticRouting(unittest.TestCase):
@@ -81,6 +87,36 @@ class DiagnosticRouting(unittest.TestCase):
         self.assertEqual(lines[0], 'stat\t0\tExactRuleDerived\tCheckPassed\tExact\tCertifiable\t1')
         self.assertEqual(lines[31], 'diag\t0\tExactClass\tExactRepair\t-\t1')
         self.assertTrue(lines[-1].startswith('sum\tauthority\t21;2;4;15;2;0;2\t-'))
+
+    def test_tables_match_the_pinned_rust_sources_when_the_checkout_is_present(self):
+        routing, status = _EXT / 'routing.rs', _EXT / 'terminal_status.rs'
+        if not (routing.is_file() and status.is_file()):
+            self.skipTest('external the_symbol_game checkout not available')
+        for path, pin in ((routing, _PIN['routing.rs']), (status, _PIN['terminal_status.rs'])):
+            if hashlib.sha256(path.read_bytes()).hexdigest() != pin:
+                self.skipTest('external source differs from the pinned sha256: %s' % path.name)
+        text = routing.read_text(encoding='utf-8')
+        block = text[text.index('impl From<TerminalStatus>'):text.index('/// The PFP terminal statuses')]
+        self.assertEqual(dict(re.findall(r'TerminalStatus::(\w+) => RoutingTerminal::(\w+)', block)), dict(m.STATUS_ROUTE))
+        pf = text[text.index('impl From<PfpTerminal>'):text.index('#[cfg(test)]')]
+        pfp = {}
+        for names, r in re.findall(r'((?:\s*PfpTerminal::\w+\s*\|?)+)=>\s*\{?\s*RoutingTerminal::(\w+)', pf):
+            for n in re.findall(r'PfpTerminal::(\w+)', names):
+                pfp[n] = r
+        self.assertEqual(pfp, dict(m.PFP_ROUTE))
+        ts = status.read_text(encoding='utf-8')
+        rc = ts[ts.index('pub fn residual_class'):ts.index('pub fn can_teach')]
+        res = {}
+        for names, cls in re.findall(r'((?:\s*TerminalStatus::\w+\s*\|?)+)=>\s*\{?\s*ResidualClass::(\w+)', rc):
+            for n in re.findall(r'TerminalStatus::(\w+)', names):
+                res[n] = cls
+        self.assertTrue(all(res[n] == m.residual_of(n) for n, _ in m.STATUS_ROUTE))
+
+    def test_public_input_has_the_complete_family(self):
+        kinds = {}
+        for c in m.CASES:
+            kinds[c.split('\t')[0]] = kinds.get(c.split('\t')[0], 0) + 1
+        self.assertEqual(kinds, {'stat': 21, 'pfp': 10, 'diag': 3, 'rel': 8, 'fib': 640, 'sum': 8})
 
 
 if __name__ == '__main__':

@@ -20,10 +20,13 @@ Proved here (general over finite index types, unless marked INSTANCE):
   weights are the restrictions (weights `≤`), then `Phi1(sub) ≤ Phi1(big)`.  Growth with an extending cochain
   therefore never lowers `Phi1` (`phi_growth_not_lower`).
 * `phi_le_unrepaired`: the source's list sum is only the unrepaired upper bound `cost 0 ≥ Phi1`.
-* `phi_attach_iff` (definitional), `gamma2_attach` (`Gamma2` gains `|row · h|`), `gamma2_attach_ge`,
-  `closed_attach`, `triangle_row_closed`: attaching 2-cells leaves `Phi1` alone and can only raise `Gamma2`.
+* `phi_attach_iff` (definitional), `gamma2_attach` (the representative norm `‖d1 h‖₁` gains `|row · h|`),
+  `gamma2_attach_ge`, `closed_attach`, `triangle_row_closed`, `gamma2_repair` (under `d1 d0 = 0` the norm is the
+  same at every repair, hence at a minimal residual, which is where the source takes `Gamma2`): attaching 2-cells
+  leaves `Phi1` alone and can only raise `Gamma2`.  Every inequality assumes the minima exist (`IsPhi`).
 * Boundaries (INSTANCES): `incompatible_d0_instance` (`hcompat` dropped), `rescaled_weights_instance`
-  (weights `≤` dropped), `nonmonotone_norm_instance` (a norm that is not monotone under coordinate deletion).
+  (weights `≤` dropped), `nonmonotone_norm_instance` (norm arithmetic only: `J(1,-1) < J(1,0)`; for `d0 = 0` the defect of `h` is `J h`, so deleting a coordinate
+raises it, a consequence that is NOT stated as a theorem about `IsPhi`).
 It does NOT prove: monotonicity for arbitrary norms (false, see the last instance), existence of minimisers
 (part of `IsPhi`), or anything about equal-weight subdivision, filtration limit pages or complex coefficients.
 -/
@@ -132,6 +135,25 @@ theorem closed_attach (W : Win E V R) (row : E → ℚ) (hW : W.closed)
   cases r with
   | inl r => exact hW r v
   | inr u => exact hrow v
+
+/-- With `d1 d0 = 0`, `Gamma2 = ‖d1 h‖₁` is the same at every repair `h - D0 x`, in particular at a
+minimal residual (the source Gamma2 is taken there).  Without closure the two readings differ. -/
+theorem gamma2_repair (W : Win E V R) (hW : W.closed) (x : V → ℚ) :
+    ∑ r, |∑ e, W.D1 r e * (W.h e - ∑ v, W.D0 e v * x v)| = W.gamma2 := by
+  unfold Win.gamma2
+  refine Finset.sum_congr rfl fun r _ => ?_
+  congr 1
+  have key : ∑ e, W.D1 r e * (∑ v, W.D0 e v * x v) = 0 := by
+    calc ∑ e, W.D1 r e * (∑ v, W.D0 e v * x v) = ∑ e, ∑ v, W.D1 r e * W.D0 e v * x v := by
+          simp only [Finset.mul_sum, mul_assoc]
+      _ = ∑ v, ∑ e, W.D1 r e * W.D0 e v * x v := Finset.sum_comm
+      _ = ∑ v, (∑ e, W.D1 r e * W.D0 e v) * x v := by simp only [Finset.sum_mul]
+      _ = 0 := by simp [hW r]
+  have : ∑ e, W.D1 r e * (W.h e - ∑ v, W.D0 e v * x v) =
+      ∑ e, W.D1 r e * W.h e - ∑ e, W.D1 r e * (∑ v, W.D0 e v * x v) := by
+    rw [← Finset.sum_sub_distrib]
+    exact Finset.sum_congr rfl fun e _ => by ring
+  rw [this, key, sub_zero]
 
 /-- Graph window: edge `e` runs from `s e` to `t e`; `d0 f = f (t e) - f (s e)`. -/
 def graphD0 {E V : Type*} [DecidableEq V] (s t : E → V) (e : E) (v : V) : ℚ :=
@@ -244,6 +266,7 @@ end WdpGrowthNoRepair
 #print axioms WdpGrowthNoRepair.gamma2_attach
 #print axioms WdpGrowthNoRepair.gamma2_attach_ge
 #print axioms WdpGrowthNoRepair.closed_attach
+#print axioms WdpGrowthNoRepair.gamma2_repair
 #print axioms WdpGrowthNoRepair.triangle_row_closed
 #print axioms WdpGrowthNoRepair.incompatible_d0_instance
 #print axioms WdpGrowthNoRepair.rescaled_weights_instance

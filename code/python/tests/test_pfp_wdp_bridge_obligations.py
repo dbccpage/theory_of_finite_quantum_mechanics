@@ -24,7 +24,7 @@ class BridgeObligations(unittest.TestCase):
         controls = [r for r in recs if r['controls_run']]
         self.assertEqual(len(controls), 32)
         self.assertEqual(len([r for r in controls if not r['end_to_end']]), 31)
-        source = [r for r in recs if r['source_reported']]
+        source = [r for r in recs if r['node_reading']]
         self.assertEqual([r['v'] for r in source], [[1, 1, 1, 1, 1]])
         self.assertTrue(source[0]['controls_run'] and not source[0]['end_to_end'])
 

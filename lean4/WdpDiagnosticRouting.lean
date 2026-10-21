@@ -12,13 +12,20 @@ AuthorityEffect: None.  Scope: transcription of the finite enumerations and tota
 `omega_types/src/routing.rs` (RoutingTerminal, TerminalStatus -> RoutingTerminal, PfpTerminal -> RoutingTerminal),
 `omega_types/src/terminal_status.rs` (TerminalStatus, ResidualClass, the authority tag, `terminal_from_fiber`),
 `omega_policy/src/trichotomy.rs` (ObstructionDiagnosticClass; the Rust variant for the exact class is named
-`ExactRepair`, the ledger calls it `ExactClass`), `omega_id_run/src/run.rs` lines 626-633 (the only code that turns a
-diagnostic class into a status tag), `omega_certifiers/src/checked_packet.rs` line 248 (the only code that turns a diagnostic
-class into an authority terminal) and external WitnessedDifference/Routing.lean (`RelativeStatus`, `route`, a FOURTH
-axis with Bool inputs that is not the 7-valued routing terminal).  The `Fintype` enumerations are literal copies.
-Identification of `ResidualClass` with the diagnostic class is NOT made here.  The tag "ExactRepair" emitted by run.rs for the
-exact class is not a key of terminal_routing.json: the exact class has NO declared route in the sources (`diagRoute`).
-Nothing here is a claim about authority: `tag_never_certified` is the source test `authority_level_never_returns_certified_from_tag_alone`.
+`ExactRepair`, the ledger calls it `ExactClass`), `omega_id_run/src/run.rs` lines 626-633 (emits a status-tag STRING per
+diagnostic class), `omega_certifiers/src/checked_packet.rs` line 248 (an eligibility gate: only the exact class can seal a
+checked-packet certificate, which keeps AuthorityEffect None) and a re-transcription of external WitnessedDifference/Routing.lean
+(`RelativeStatus`, `route`, a FOURTH axis with Bool inputs that is not the 7-valued routing terminal; copies, not the external
+theorems).  The enumerations are hand transcriptions shared by Lean, producer and checker.
+No source code composes the run.rs tag with the PfpTerminal map (omega_id_run never references terminal_routing or PfpTerminal): `diagRoute`
+is OUR composition by string identity, and the tag "ExactRepair" is not a key of terminal_routing.json, so the exact class has no route
+by this composition (`runTag .ExactClass = none` encodes "tag is not a Pfp" by definition).
+Identification of `terminal_status::ResidualClass` with the diagnostic class is NOT made here (a second, unrelated Rust enum
+`omega_homology::...::ResidualClass` {ExactRepair, StabilizedSurvivor, OpenObstruction} has the diagnostic class's three values and is not modelled).
+`AuthTag` has no `Certified` constructor, so "tag never Certified" is true BY CONSTRUCTION of the modelled type; `Situation.authority` and
+`Situation.terminal` are defined from (status, witness) only, so `diag_cannot_set_*` hold by construction of the model (`rfl`); the only link
+from the class to authority is the eligibility gate `sealed`.  The policy theorems are cardinality facts about maps from any 3-set to any 7-set.
+`exactRepairAllowed` is the same predicate as `certEligible`: the ledger clause "ExactClass is not ExactRepair" has no anchor of its own here.
 -/
 
 namespace WdpDiagnosticRouting
@@ -122,7 +129,7 @@ def residualOf : TermStatus → Residual
   | .ParseRefused => .Refused
   | _ => .Open
 
-/-- terminal_status.rs `authority_level` below `Certified` (the tag alone is never `Certified`). -/
+/-- terminal_status.rs `authority_level` below `Certified`; the type has no `Certified` value, so tag-level never-certified holds by construction. -/
 def authTag : TermStatus → AuthTag
   | .ExactRuleDerived => .Certifiable
   | .UniqueOutputDerived => .Certifiable
@@ -162,13 +169,13 @@ def fiberStatus (selected : Bool) (cand out : Nat) (exh : Bool) (agr : Option (B
      else some .UniqueOutputDerived)
   else some .NonUniqueOutput
 
-/-- run.rs 626-633: the status tag of a diagnostic class; the exact class emits the tag "ExactRepair", which is not a `Pfp`. -/
+/-- run.rs 626-633 emits a status-tag string per class; the exact class emits "ExactRepair", which is not a `Pfp` (encoded as `none` by definition). -/
 def runTag : DiagClass → Option Pfp
   | .ExactClass => none
   | .ClosedResidual => some .StabilizedSurvivor
   | .ActiveClosureFailure => some .OpenObstruction
 
-/-- Composite of run.rs and terminal_routing.json; `none` where the source has no route. -/
+/-- OUR composition by string identity of the run.rs tag with the PfpTerminal map (no source code performs it); `none` where there is no route. -/
 def diagRoute (d : DiagClass) : Option Routing := (runTag d).map routePfp
 
 /-- checked_packet.rs line 248: only the exact class is certificate-eligible (necessary, not sufficient). -/
@@ -181,8 +188,16 @@ def exactRepairAllowed : DiagClass → Bool
   | .ExactClass => true
   | _ => false
 
-/-- Certified authority needs a witness AND an authority-bearing terminal; the diagnostic class is not an input. -/
+/-- Certified authority needs a witness AND an authority-bearing terminal. -/
 def certified (s : TermStatus) (witness : Bool) : Bool := witness && authTerminal s
+
+/-- checked_packet.rs line 248 as a gate: the class selects the authority terminal (exact class only) and a witness is also required. -/
+def sealTerminal : DiagClass → Option TermStatus
+  | .ExactClass => some .ExactRuleDerived
+  | _ => none
+
+/-- A certificate can be sealed only for an eligible class and with a witness (the sealed certificate keeps AuthorityEffect None). -/
+def sealed (d : DiagClass) (witness : Bool) : Bool := witness && (sealTerminal d).isSome
 
 /-- A situation: the three axes plus the witness flag. -/
 structure Situation where
@@ -190,6 +205,7 @@ structure Situation where
   status : TermStatus
   witness : Bool
 
+/-- Defined from (status, witness) only: the independence from `diag` below is by construction of this model. -/
 def Situation.authority (x : Situation) : Bool := certified x.status x.witness
 def Situation.terminal (x : Situation) : Routing := routeStatus x.status
 
@@ -275,6 +291,10 @@ theorem routePfp_not_surjective : ¬ Function.Surjective routePfp := by
   obtain ⟨p, hp⟩ := h Routing.Repair
   cases p <;> simp [routePfp] at hp
 
+/-- Both Repair and NoRule are missing from the image of the PfpTerminal map (so its image has at most 5 values). -/
+theorem routePfp_misses_repair_and_norule (p : Pfp) : routePfp p ≠ Routing.Repair ∧ routePfp p ≠ Routing.NoRule := by
+  cases p <;> simp [routePfp]
+
 theorem residual_not_determine_route : ¬ ∃ f : Residual → Routing, ∀ s, routeStatus s = f (residualOf s) := by
   rintro ⟨f, hf⟩
   have h1 := hf .NonUniqueOutput
@@ -315,7 +335,7 @@ theorem certified_only_for_authority_terminals (s : TermStatus) (w : Bool) (h : 
     s = .ExactRuleDerived ∨ s = .UniqueOutputDerived := by
   cases s <;> simp_all [certified, authTerminal]
 
-/-- The diagnostic class is not an input of authority: changing it changes nothing. -/
+/-- By construction of `Situation.authority` (it omits `diag`): changing the class changes nothing in this model. -/
 theorem diag_cannot_set_authority (x : Situation) (d : DiagClass) :
     ({ x with diag := d } : Situation).authority = x.authority := rfl
 
@@ -330,6 +350,15 @@ theorem exactClass_not_authority :
 
 theorem certEligible_iff (d : DiagClass) : certEligible d = true ↔ d = .ExactClass := by cases d <;> simp [certEligible]
 
+/-- The class IS a necessary gate for sealing a certificate (checked_packet.rs line 248): only the exact class can be sealed. -/
+theorem sealed_only_exact (d : DiagClass) (w : Bool) (h : sealed d w = true) : d = .ExactClass := by
+  cases d <;> simp_all [sealed, sealTerminal]
+
+/-- ... and never sufficient: without a witness even the exact class is not sealed. -/
+theorem sealed_needs_witness (d : DiagClass) : sealed d false = false := by simp [sealed]
+
+theorem sealed_exact_with_witness : sealed .ExactClass true = true := by decide
+
 /-- Tension between two source tables if the closed classes are identified (a modelling choice, not asserted). -/
 theorem closed_tension :
     residualOf .NoRuleInSearchClass = .ClosedSurvivor ∧ routeStatus .NoRuleInSearchClass = .NoRule ∧
@@ -341,7 +370,7 @@ theorem fiber_route_in (selected : Bool) (cand out : Nat) (exh : Bool) (agr : Op
     (s : TermStatus) (h : fiberStatus selected cand out exh agr verifier = some s) :
     routeStatus s = .CheckPassed ∨ routeStatus s = .Repair ∨ routeStatus s = .NoRule ∨ routeStatus s = .Refusal := by
   unfold fiberStatus at h
-  split_ifs at h <;> first | (cases h) | skip
+  split_ifs at h <;> cases h
   all_goals simp [routeStatus]
 
 /-- Three of the seven terminals are not reachable from the fiber classifier whatever the counts. -/
@@ -387,6 +416,7 @@ end WdpDiagnosticRouting
 #print axioms WdpDiagnosticRouting.diagRoute_injective_where_defined
 #print axioms WdpDiagnosticRouting.routeStatus_surjective
 #print axioms WdpDiagnosticRouting.routePfp_not_surjective
+#print axioms WdpDiagnosticRouting.routePfp_misses_repair_and_norule
 #print axioms WdpDiagnosticRouting.residual_not_determine_route
 #print axioms WdpDiagnosticRouting.route_not_determine_residual
 #print axioms WdpDiagnosticRouting.auth_not_determine_route
@@ -397,6 +427,9 @@ end WdpDiagnosticRouting
 #print axioms WdpDiagnosticRouting.diag_cannot_set_terminal
 #print axioms WdpDiagnosticRouting.exactClass_not_authority
 #print axioms WdpDiagnosticRouting.certEligible_iff
+#print axioms WdpDiagnosticRouting.sealed_only_exact
+#print axioms WdpDiagnosticRouting.sealed_needs_witness
+#print axioms WdpDiagnosticRouting.sealed_exact_with_witness
 #print axioms WdpDiagnosticRouting.closed_tension
 #print axioms WdpDiagnosticRouting.fiber_route_in
 #print axioms WdpDiagnosticRouting.fiber_never_lift_budget_refused

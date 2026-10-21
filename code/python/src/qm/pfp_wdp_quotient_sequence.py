@@ -10,7 +10,7 @@ max over edges with w_e > 0 of (column L1 sum)/w_e, undefined (None) when a weig
 Not a statement about norms other than weighted L1 or complex coefficients. AuthorityEffect: None.
 """
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, product
 
 # ---- shared window core (duplicated verbatim in the three wdp producers) ----
 
@@ -80,22 +80,90 @@ def solve_rows(rows, rhs):
     return x
 
 
-def phi1(nv, edges, w, h):
-    """Quotient defect: attained minimum of sum_e w_e |h_e - (d0 x)_e| over potentials x."""
+def cost(d0, w, h, x):
+    return sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(len(x)))) for i in range(len(d0)))
+
+
+def phi1_x(nv, edges, w, h):
+    """Primal: attained minimum of sum_e w_e |h_e - (d0 x)_e| and a minimising potential x (first best vertex)."""
     d0 = d0_rows(nv, edges)
     m = len(d0)
     r = rank(d0)
     if r == 0:
-        return sum(Fraction(w[i]) * abs(h[i]) for i in range(m))
-    best = None
+        return sum((Fraction(w[i]) * abs(h[i]) for i in range(m)), Fraction(0)), [Fraction(0)] * nv
+    best, best_x = None, None
     for sub in combinations(range(m), r):
         x = solve_rows([d0[i] for i in sub], [h[i] for i in sub])
         if x is None:
             continue
-        cost = sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(nv))) for i in range(m))
-        if best is None or cost < best:
-            best = cost
-    return best
+        c = cost(d0, w, h, x)
+        if best is None or c < best:
+            best, best_x = c, x
+    return best, best_x
+
+
+def phi1(nv, edges, w, h):
+    return phi1_x(nv, edges, w, h)[0]
+
+
+def unique_solution(cols, rhs):
+    """Solve sum_j y_j cols[j] = rhs; None unless the solution exists and is unique."""
+    r, n = len(cols), len(rhs)
+    rows = [[Fraction(cols[j][i]) for j in range(r)] + [Fraction(rhs[i])] for i in range(n)]
+    used = []
+    for j in range(r):
+        p = next((i for i in range(n) if i not in used and rows[i][j] != 0), None)
+        if p is None:
+            return None
+        used.append(p)
+        pivot = rows[p][j]
+        rows[p] = [a / pivot for a in rows[p]]
+        for i in range(n):
+            if i != p and rows[i][j] != 0:
+                f = rows[i][j]
+                rows[i] = [a - f * b for a, b in zip(rows[i], rows[p])]
+    if any(rows[i][r] != 0 for i in range(n) if i not in used):
+        return None
+    return [rows[used[j]][r] for j in range(r)]
+
+
+def dual_y(nv, edges, w, h):
+    """Dual: maximum of y.h over d0^T y = 0, |y_e| <= w_e, and the first maximising vertex y."""
+    d0 = d0_rows(nv, edges)
+    m = len(edges)
+    r = rank(d0)
+    best, best_y = None, None
+    for pinned in combinations(range(m), m - r):
+        free = [e for e in range(m) if e not in pinned]
+        for signs in product((1, -1), repeat=len(pinned)):
+            y = {e: Fraction(s * w[e]) for e, s in zip(pinned, signs)}
+            if free:
+                rhs = [-sum(y[e] * d0[e][v] for e in pinned) for v in range(nv)]
+                sol = unique_solution([[d0[e][v] for v in range(nv)] for e in free], rhs)
+                if sol is None:
+                    continue
+                for e, val in zip(free, sol):
+                    y[e] = val
+                if any(abs(y[e]) > w[e] for e in free):
+                    continue
+            elif any(sum(y[e] * d0[e][v] for e in pinned) != 0 for v in range(nv)):
+                continue
+            val = sum(y[e] * h[e] for e in range(m))
+            if best is None or val > best:
+                best, best_y = val, [y[e] for e in range(m)]
+    return best, best_y
+
+
+def fs(x):
+    return str(Fraction(x))
+
+
+def witness(nv, edges, w, h):
+    """(Phi1, witness string 'x=..|y=..'): a primal potential and a dual vector with equal values."""
+    phi, x = phi1_x(nv, edges, w, h)
+    val, y = dual_y(nv, edges, w, h)
+    assert phi == val == sum(y[e] * h[e] for e in range(len(h))), 'primal and dual values differ'
+    return phi, 'x=' + ','.join(fs(v) for v in x) + '|y=' + ','.join(fs(v) for v in y)
 
 
 def gamma2(d1, h):
@@ -116,10 +184,6 @@ def diag_class(phi, gam):
     if phi == 0:
         return 'ExactClass'
     return 'ClosedResidual' if gam == 0 else 'ActiveClosureFailure'
-
-
-def fs(x):
-    return str(Fraction(x))
 
 
 def tsv_window(c):
@@ -182,7 +246,7 @@ def record(c):
     r0 = rank(d0_rows(nv, edges))
     r1 = rank(d1) if d1 else 0
     ok = cochain_defect(nv, edges, d1) is None
-    phi = phi1(nv, edges, w, h)
+    phi, wit = witness(nv, edges, w, h)
     gam = gamma2(d1, h)
     zero = class_zero(nv, edges, h)
     dim_h1 = (m - r1 - r0) if ok else None
@@ -193,9 +257,10 @@ def record(c):
         'id': c['id'], 'complex': ok, 'm': m, 'rank_d0': r0, 'rank_d1': r1, 'dim_q1': m - r0, 'dim_h1': dim_h1, 'dim_im': r1,
         'exact_dims': (m - r0 == dim_h1 + r1) if ok else None, 'section_dim': section,
         'canonical_split': (section == 0) if ok else None, 'class_zero': zero, 'norm_ok': all(x > 0 for x in w),
-        'phi1': fs(phi), 'gamma2': fs(gam), 'diag': diag_class(phi, gam) if ok else 'NoRule', 'classes_hit': sum(classes),
-        'opnorm': None if on is None else fs(on), 'bound_holds': None if on is None else gam <= on * phi,
-        'phi_zero_iff_class_zero': (phi == 0) == zero,
+        'phi1': fs(phi), 'gamma2': fs(gam) if ok else None, 'diag': diag_class(phi, gam) if ok else 'NotAWindow',
+        'classes_hit': sum(classes) if ok else None,
+        'opnorm': None if on is None else fs(on), 'bound_holds': (gam <= on * phi) if ok and on is not None else None,
+        'phi_zero_iff_class_zero': (phi == 0) == zero, 'witness': wit,
     }
 
 
@@ -209,7 +274,7 @@ def _t(x):
 
 def wire_lines(data):
     keys = ['complex', 'm', 'rank_d0', 'rank_d1', 'dim_q1', 'dim_h1', 'dim_im', 'exact_dims', 'section_dim', 'canonical_split', 'class_zero',
-            'norm_ok', 'phi1', 'gamma2', 'diag', 'classes_hit', 'opnorm', 'bound_holds', 'phi_zero_iff_class_zero']
+            'norm_ok', 'phi1', 'gamma2', 'diag', 'classes_hit', 'opnorm', 'bound_holds', 'phi_zero_iff_class_zero', 'witness']
     return [chr(9).join(['seq', r['id']] + [_t(r[k]) for k in keys]) for r in data['records']]
 
 

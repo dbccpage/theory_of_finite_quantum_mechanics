@@ -16,7 +16,7 @@ are proved to leave it unchanged for every state, and the iff is proved for sing
 finite trace.  The conflated models (supply or other operations also admitting, designation also retaining)
 are explicit counter-models: they change the admitted state or the retained set where the six-operation
 reading does not.  This is a definitional-separation model; it does not derive the Reading L / Reading F
-split of Genesis, it only shows that the two readings are distinguishable exactly when Supply is not Admit.
+split of Genesis; it only compares two machines (Supply as a no-op versus Supply also admitting), in which the two readings end in different, respectively the same, admitted state.  That each operation writes its own state field, and so that the six operations are pairwise distinguishable, holds by construction of the machine.
 Cross-reference (not imported): node PG-INERT-DIAMOND carries the inert-inscription model.
 -/
 
@@ -66,7 +66,7 @@ def admitItem : Op I → Option I
 
 theorem step_admit (s : St I) (x : I) : (step s (.admit x)).admitted = insert x s.admitted := rfl
 
-/-- Supply does not admit (source theorem `supply_no_op` of the Genesis model, here for every state). -/
+/-- Supply does not admit: the frame lemma of this machine for every state (the external Genesis `supply_no_op` was not read or imported here). -/
 theorem supply_keeps_admitted (s : St I) (x : I) : (step s (.supply x)).admitted = s.admitted := rfl
 
 /-- Each of the other five operations leaves the admitted component unchanged, in every state. -/
@@ -174,7 +174,7 @@ def opAt (k : Fin 6) : Op Nat :=
 /-- A probe state in which the item `0` is already admitted. -/
 def probe : St Nat := ⟨∅, ∅, none, {0}, ∅, ∅⟩
 
-/-- Instance: at the probe, the six operations have six pairwise different results. -/
+/-- INSTANCE (Nat items, item 0): at the probe, the six operations have six pairwise different results; this holds by construction, each operation writing its own field. -/
 theorem six_results_pairwise_distinct : Function.Injective (fun k : Fin 6 => step probe (opAt k)) := by
   decide
 
@@ -198,7 +198,7 @@ def readingL (t : I) : List (Op I) := [.supply t]
 /-- Reading F: the token `t` is supplied and then admitted. -/
 def readingF (t : I) : List (Op I) := [.supply t, .admit t]
 
-/-- Six-operation reading: Readings L and F end in different admitted states, for every token. -/
+/-- Six-operation machine: Readings L and F end in different admitted states, for every token. -/
 theorem readings_separated_six_ops (t : I) :
     (run St.empty (readingL t)).admitted ≠ (run St.empty (readingF t)).admitted := by
   intro h
@@ -209,7 +209,7 @@ theorem readings_separated_six_ops (t : I) :
   rw [← h] at h2
   exact absurd h2 (Finset.notMem_empty t)
 
-/-- Conflated reading (Supply = Admit): the two readings are no longer distinguishable. -/
+/-- Machine in which Supply also admits: the two readings end in the same admitted state, for every token. -/
 theorem readings_collapse_when_supply_admits (t : I) :
     (runWith stepSupplyAdmits St.empty (readingL t)).admitted
       = (runWith stepSupplyAdmits St.empty (readingF t)).admitted := by

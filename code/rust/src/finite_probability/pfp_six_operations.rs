@@ -226,20 +226,26 @@ fn conflation_line(name: &str) -> Option<String> {
     None
 }
 
-fn reading_line(token: u8) -> Option<String> {
+fn reading_line(token: u8, name: &str) -> Option<String> {
     if token > 1 {
         return None;
     }
+    let (a_kind, b_kind) = match name {
+        "supply_includes_admit" => (1usize, 3usize),
+        "admit_includes_supply" => (3usize, 1usize),
+        _ => return None,
+    };
     let z: St = (0, 0, 0, 0, 0, 0);
     let (supply, admit) = (1usize, 3usize);
     let six_l = step(z, (supply, token)).3;
     let six_f = step(step(z, (supply, token)), (admit, token)).3;
-    let cl = step_conflated(z, (supply, token), supply, admit);
+    let cl = step_conflated(z, (supply, token), a_kind, b_kind);
     let conf_l = cl.3;
-    let conf_f = step(cl, (admit, token)).3;
+    let conf_f = step_conflated(cl, (admit, token), a_kind, b_kind).3;
     Some(format!(
-        "reading\t{}\t{}\t{}\t{}\t{}\t{}\t{}",
+        "reading	{}	{}	{}	{}	{}	{}	{}	{}",
         token,
+        name,
         items_text(six_l, 2),
         items_text(six_f, 2),
         items_text(conf_l, 2),
@@ -257,7 +263,7 @@ pub fn replay(input: &str) -> Option<String> {
         "footprint" if p.len() == 2 => footprint_line(p[1]),
         "pair" if p.len() == 3 => pair_line(p[1], p[2]),
         "conflation" if p.len() == 2 => conflation_line(p[1]),
-        "reading" if p.len() == 2 => reading_line(p[1].parse().ok()?),
+        "reading" if p.len() == 3 => reading_line(p[1].parse().ok()?, p[2]),
         _ => None,
     }
 }
@@ -288,7 +294,8 @@ mod tests {
 
     #[test]
     fn pfp_six_operations_readings_collapse_only_when_supply_admits() {
-        assert_eq!(replay("reading\t0").unwrap(), "reading\t0\t-\t0\t0\t0\t1\t0");
+        assert_eq!(replay("reading\t0\tsupply_includes_admit").unwrap(), "reading\t0\tsupply_includes_admit\t-\t0\t0\t0\t1\t0");
+        assert_eq!(replay("reading\t0\tadmit_includes_supply").unwrap(), "reading\t0\tadmit_includes_supply\t-\t0\t-\t0\t1\t1");
         let c = replay("conflation\tsupply_includes_admit").unwrap();
         assert!(c.starts_with("conflation\tsupply_includes_admit\t1\t2\tsupply:0\t000100\t1\t"));
     }

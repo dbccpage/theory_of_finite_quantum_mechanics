@@ -9,6 +9,7 @@ _SOURCE = Path(__file__).resolve().parents[1] / 'src/qm/pfp_wdp_degree1_window.p
 _SPEC = importlib.util.spec_from_file_location('pfp_wdp_degree1_window', _SOURCE)
 m = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(m)
+CERT = m.certificate()
 
 
 def lattice_phi(c, radius):
@@ -52,9 +53,9 @@ class Degree1Window(unittest.TestCase):
         self.assertEqual(complexes, 3)  # (0,0,0), (1,1,-1), (-1,-1,1)
 
     def test_every_case_has_exactly_one_class_or_a_refusal(self):
-        names = {'ExactClass', 'ClosedResidual', 'ActiveClosureFailure', 'NoRule'}
+        names = {'ExactClass', 'ClosedResidual', 'ActiveClosureFailure', 'NotAWindow'}
         seen = set()
-        for r in m.certificate()['records']:
+        for r in CERT['records']:
             self.assertIn(r['diag'], names)
             seen.add(r['diag'])
             if r['complex']:
@@ -64,7 +65,7 @@ class Degree1Window(unittest.TestCase):
         self.assertEqual(seen, names)
 
     def test_exact_sequence_dimensions_and_ratio(self):
-        for r in m.certificate()['records']:
+        for r in CERT['records']:
             if r['complex']:
                 self.assertEqual(r['dim_q1'], r['dim_h1'] + r['rank_d1'], r['id'])
                 self.assertEqual(r['r_cl'] is None, Fraction(r['phi1']) == 0, r['id'])
@@ -72,10 +73,11 @@ class Degree1Window(unittest.TestCase):
                     self.assertEqual(Fraction(r['r_cl']) * Fraction(r['phi1']), Fraction(r['gamma2']))
             else:
                 self.assertIsNone(r['dim_h1'])
+                self.assertIsNone(r['gamma2'])
                 self.assertIsNotNone(r['kappa_witness'])
 
     def test_named_instances(self):
-        by = {r['id']: r for r in m.certificate()['records']}
+        by = {r['id']: r for r in CERT['records']}
         self.assertEqual((by['tri_filled_active']['phi1'], by['tri_filled_active']['gamma2'], by['tri_filled_active']['r_cl']), ('2', '2', '1'))
         self.assertEqual(by['tri_heavy_weights']['r_cl'], '1/3')
         self.assertEqual(by['k4_three_faces']['phi1'], '3')
@@ -87,8 +89,26 @@ class Degree1Window(unittest.TestCase):
         self.assertEqual(sum(w * abs(x) for w, x in zip(c['w'], c['h'])), 5)
         self.assertEqual(m.phi1(c['nv'], c['edges'], c['w'], c['h']), 3)
 
+    def test_certificates_carry_a_primal_potential_and_a_dual_vector(self):
+        by = {c['id']: c for c in m.CASES}
+        for r in CERT['records']:
+            c = by[r['id']]
+            xt, yt = r['witness'][2:].split('|y=')
+            x = [Fraction(t) for t in xt.split(',')]
+            y = [Fraction(t) for t in yt.split(',')]
+            d0 = m.d0_rows(c['nv'], c['edges'])
+            self.assertEqual(m.cost(d0, c['w'], c['h'], x), Fraction(r['phi1']), c['id'])
+            self.assertEqual(sum(a * b for a, b in zip(y, c['h'])), Fraction(r['phi1']), c['id'])
+            self.assertTrue(all(sum(y[e] * d0[e][v] for e in range(len(y))) == 0 for v in range(c['nv'])), c['id'])
+            self.assertTrue(all(abs(y[e]) <= c['w'][e] for e in range(len(y))), c['id'])
+
+    def test_gauge_shifted_window_has_the_same_invariants(self):
+        by = {r['id']: r for r in CERT['records']}
+        a, b = by['tri_filled_active'], by['tri_filled_active_shifted']
+        self.assertEqual([a[k] for k in ('phi1', 'gamma2', 'r_cl', 'diag')], [b[k] for k in ('phi1', 'gamma2', 'r_cl', 'diag')])
+
     def test_wire_format_has_one_line_per_case(self):
-        lines = m.wire_lines(m.certificate())
+        lines = m.wire_lines(CERT)
         self.assertEqual(len(lines), len(m.CASES))
         self.assertTrue(lines[0].startswith('window\ttri_filled_active\t3\t3\t1\t2\t1\t1\t1\t0\t2\t2\t1\tActiveClosureFailure\t-'))
         self.assertEqual(len(m.public_tsv().splitlines()), len(m.CASES))

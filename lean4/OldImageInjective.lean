@@ -163,6 +163,7 @@ end OldImageInjective
 #print axioms OldImageInjective.off_image_not_implied_general
 #print axioms OldImageInjective.off_image_not_implied_instance
 #print axioms OldImageInjective.observation_not_implied_general
+#print axioms OldImageInjective.observation_preserved_possible
 #print axioms OldImageInjective.observation_not_implied_instance
 #print axioms OldImageInjective.repair_not_implied_general
 #print axioms OldImageInjective.repair_not_implied_instance

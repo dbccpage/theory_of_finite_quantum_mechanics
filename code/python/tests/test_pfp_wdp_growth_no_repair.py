@@ -9,6 +9,7 @@ _SOURCE = Path(__file__).resolve().parents[1] / 'src/qm/pfp_wdp_growth_no_repair
 _SPEC = importlib.util.spec_from_file_location('pfp_wdp_growth_no_repair', _SOURCE)
 m = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(m)
+CERT = m.certificate()
 
 
 def lattice_phi(nv, edges, w, h, radius=5):
@@ -89,20 +90,46 @@ class GrowthNoRepair(unittest.TestCase):
         self.assertGreater(strict, 0)
 
     def test_table_verdicts(self):
-        by = {r['id']: r for r in m.certificate()['records']}
+        by = {r['id']: r for r in CERT['records']}
         self.assertEqual(by['parallel_restrict_rescaled_weights']['verdict'], 'sub_phi_gt')
         self.assertEqual((by['parallel_restrict_rescaled_weights']['phi_a'], by['parallel_restrict_rescaled_weights']['phi_b']), ('4', '6'))
         self.assertEqual(by['tri_unfilled_attach_face']['verdict'], 'phi_equal_gamma_up')
         self.assertEqual((by['tri_unfilled_attach_face']['diag_a'], by['tri_unfilled_attach_face']['diag_b']), ('ClosedResidual', 'ActiveClosureFailure'))
         self.assertEqual(by['tri_attach_invalid_row']['verdict'], 'attach_not_a_window')
+        self.assertEqual((by['tri_attach_invalid_row']['diag_b'], by['tri_attach_invalid_row']['gamma_b']), ('NotAWindow', None))
         self.assertEqual(by['tri_edit_h_gauge_shift']['verdict'], 'phi_same')
         self.assertEqual(by['tri_edit_h_to_exact']['verdict'], 'phi_lower')
         verdicts = {r['verdict'] for r in by.values()}
         self.assertEqual(verdicts, {'sub_phi_le', 'sub_phi_gt', 'phi_equal_gamma_up', 'phi_equal_gamma_same', 'attach_not_a_window',
                                     'phi_lower', 'phi_same', 'phi_higher'})
 
+    def test_witnesses_are_a_primal_potential_and_a_dual_vector_with_equal_values(self):
+        for c, r in zip(m.CASES, CERT['records']):
+            nvb, eb, wb, db, hb = m.derive_b(c)
+            for (nv, edges, w, h, text, phi) in ((c['nv'], c['edges'], c['w'], c['h'], r['witness_a'], r['phi_a']),
+                                                 (nvb, eb, wb, hb, r['witness_b'], r['phi_b'])):
+                xt, yt = text[2:].split('|y=')
+                x = [Fraction(t) for t in xt.split(',')]
+                y = [Fraction(t) for t in yt.split(',')]
+                d0 = m.d0_rows(nv, edges)
+                self.assertEqual(m.cost(d0, w, h, x), Fraction(phi), c['id'])
+                self.assertEqual(sum(a * b for a, b in zip(y, h)), Fraction(phi), c['id'])
+                self.assertTrue(all(sum(y[e] * d0[e][v] for e in range(len(edges))) == 0 for v in range(nv)), c['id'])
+                self.assertTrue(all(abs(y[e]) <= w[e] for e in range(len(edges))), c['id'])
+
+    def test_gamma2_is_the_same_at_every_repair_when_d1_d0_vanishes(self):
+        # source Gamma2 is taken at the minimal residual h - d0 x*; equal to the representative norm on a window
+        for c in m.CASES[:19]:
+            nvb, eb, wb, db, hb = m.derive_b(c)
+            if m.cochain_defect(nvb, eb, db) is not None:
+                continue
+            d0 = m.d0_rows(nvb, eb)
+            _, x = m.phi1_x(nvb, eb, wb, hb)
+            residual = [hb[i] - sum(d0[i][j] * x[j] for j in range(nvb)) for i in range(len(eb))]
+            self.assertEqual(m.gamma2(db, residual), m.gamma2(db, hb), c['id'])
+
     def test_wire_format_has_one_line_per_case(self):
-        lines = m.wire_lines(m.certificate())
+        lines = m.wire_lines(CERT)
         self.assertEqual(len(lines), len(m.CASES))
         self.assertTrue(lines[0].startswith('pair\tk4_restrict_to_triangle\trestrict\t6\t3\t4\t1\t1\t1\t3\t2\t6\t2\t'))
         self.assertEqual(len(m.public_tsv().splitlines()), len(m.CASES))

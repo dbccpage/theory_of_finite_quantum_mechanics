@@ -57,11 +57,11 @@ pub fn line(n: usize) -> String {
         .collect();
     let sel_count = selecting.iter().filter(|&&s| s).count();
     let frontier: Vec<String> = (0..size).filter(|&i| minimal[i]).map(|i| i.to_string()).collect();
-    let min_price: i64 = (0..size)
+    let min_price: String = (0..size)
         .filter(|&i| selecting[i])
         .map(|i| (i as u32).count_ones() as i64)
         .min()
-        .unwrap_or(-1);
+        .map_or("-".to_string(), |v| v.to_string());
     let table: Vec<String> = (0..size)
         .map(|i| format!("{}:{}:{}:{}", i, inv[i], selecting[i] as i32, minimal[i] as i32))
         .collect();
@@ -115,7 +115,7 @@ mod tests {
 
     #[test]
     fn pfp_wdp_protected_questions_boundary_carriers() {
-        assert_eq!(line(0), "sel\t0\t0\t0\t-1\t-\t0:0:0:0");
+        assert_eq!(line(0), "sel\t0\t0\t0\t-\t-\t0:0:0:0");
         assert_eq!(line(1), "sel\t1\t2\t1\t0\t0\t0:1:1:1;1:1:1:0");
     }
 

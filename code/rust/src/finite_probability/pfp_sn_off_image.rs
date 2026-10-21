@@ -153,7 +153,7 @@ pub fn offimage_line(g: u8, stages: usize, maxlen: usize, n: usize) -> String {
         if out.is_none() != off {
             iff_viol += 1;
         }
-        if lax_retr(n, p).is_none() != off {
+        if lax_retr(n, p).is_none() {
             lax_viol += 1;
         }
         match out {
@@ -197,7 +197,7 @@ pub fn offimage_line(g: u8, stages: usize, maxlen: usize, n: usize) -> String {
             }
         }
     }
-    let lax_law_fail = base.iter().filter(|b| lax_retr(n, &section_lift(n, b)) != Some(to_pres(b))).count() as u64;
+    let lax_law_holds = base.iter().filter(|b| lax_retr(n, &section_lift(n, b)) == Some(to_pres(b))).count() as u64;
     let fields = vec![
         "offimage".to_string(),
         g.to_string(),
@@ -208,13 +208,14 @@ pub fn offimage_line(g: u8, stages: usize, maxlen: usize, n: usize) -> String {
         accepted.to_string(),
         refused.to_string(),
         image.len().to_string(),
+        (base.len() - image.len()).to_string(),
         iff_viol.to_string(),
         payload_fail.to_string(),
         rt_holds.to_string(),
         rt_fails.to_string(),
         mismatch.to_string(),
         long_refused.to_string(),
-        lax_law_fail.to_string(),
+        lax_law_holds.to_string(),
         lax_viol.to_string(),
     ];
     fields.join("\t")
@@ -308,9 +309,12 @@ mod tests {
     fn pfp_sn_off_image_lax_retraction_obeys_law_and_refuses_nothing() {
         let l = offimage_line(2, 4, 3, 0);
         let cols: Vec<&str> = l.split('\t').collect();
-        assert_eq!(cols[15], "0");
-        assert_eq!(cols[16], cols[7]);
-        assert_eq!(cols[9], "0");
+        assert_eq!(cols[16], cols[8], "lax law holds on every base presentation");
+        assert_eq!(cols[17], "0", "lax refuses nothing");
+        assert_eq!(cols[8], cols[6], "image size equals accepted");
+        assert_eq!(cols[9], "0", "no lift collisions");
+        assert_eq!(cols[10], "0", "refusal is exactly off-image");
+        assert_eq!(cols[11], "0", "payloads correct");
     }
 
     #[test]
@@ -321,7 +325,7 @@ mod tests {
             }
         }
         assert_eq!(replay("toy\t3\t2").unwrap(), "toy\t3\t2\t6\t3\t3\t0\t0");
-        assert_eq!(replay("offimage\t0\t2\t2\t0").unwrap(), "offimage\t0\t2\t2\t0\t6\t1\t5\t1\t0\t0\t1\t5\t1\t0\t0\t5");
+        assert_eq!(replay("offimage\t0\t2\t2\t0").unwrap(), "offimage\t0\t2\t2\t0\t6\t1\t5\t1\t0\t0\t0\t1\t5\t1\t0\t1\t0");
         assert!(replay("offimage\t1\t2\t2\t2").is_none());
         assert!(replay("toy\t3\t0").is_none());
         assert!(replay("other\t1").is_none());

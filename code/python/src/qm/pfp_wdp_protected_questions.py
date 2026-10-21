@@ -8,7 +8,7 @@ permutations): inv(S) = S, plus the complement of S when it is a single point.
 Symmetry-price bookkeeping only. AuthorityEffect: None.
 """
 
-CASES = [0, 1, 2, 3, 4, 5, 6]
+CASES = [0, 1, 2, 3, 4, 5, 6]  # replay bound n <= 6 (at most 720 permutations x 64 subsets); not part of the Lean claim
 
 
 def popcount(x):
@@ -42,7 +42,7 @@ def record(n):
         'selecting_count': len(selecting),
         'frontier': frontier,
         'frontier_size': len(frontier),
-        'min_price': min(popcount(m) for m in selecting) if selecting else -1,
+        'min_price': min(popcount(m) for m in selecting) if selecting else None,
         'table': table,
     }
 
@@ -56,7 +56,7 @@ def wire_lines(data):
     for r in data['records']:
         front = ';'.join(str(m) for m in r['frontier']) or '-'
         table = ';'.join('%d:%d:%d:%d' % (t[0], t[1], int(t[2]), int(t[3])) for t in r['table'])
-        out.append('\t'.join(['sel', str(r['n']), str(r['selecting_count']), str(r['frontier_size']), str(r['min_price']), front, table]))
+        out.append('\t'.join(['sel', str(r['n']), str(r['selecting_count']), str(r['frontier_size']), '-' if r['min_price'] is None else str(r['min_price']), front, table]))
     return out
 
 

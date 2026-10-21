@@ -532,6 +532,7 @@ fn triad_line(name: &str, n: usize, edges_text: &str, faces_text: &str) -> Optio
     let m = edges.len();
     let cochains = 3usize.pow(m as u32);
     let (mut ce, mut cc, mut cr, mut cx) = (0u64, 0u64, 0u64, 0u64);
+    let mut refusals = 0u64;
     let (mut phi_sum, mut phi_max) = (0i64, 0i64);
     let (mut gauge, mut relabel) = (true, true);
     let perms = permutations(n);
@@ -540,7 +541,13 @@ fn triad_line(name: &str, n: usize, edges_text: &str, faces_text: &str) -> Optio
         let p = phi1(n, &edges, &h);
         phi_sum += p;
         phi_max = phi_max.max(p);
-        let closed = coboundary(&edges, &faces, &h).iter().all(|&x| x == 0);
+        let cob = coboundary(&edges, &faces, &h);
+        let closed = cob.iter().all(|&x| x == 0);
+        let gamma: i64 = cob.iter().map(|x| x.abs()).sum();
+        // R_cl refuses (None) exactly when phi = 0 and gamma != 0
+        if p == 0 && gamma != 0 {
+            refusals += 1;
+        }
         let exact = p == 0;
         match (exact, closed) {
             (true, true) => ce += 1,
@@ -582,7 +589,7 @@ fn triad_line(name: &str, n: usize, edges_text: &str, faces_text: &str) -> Optio
         cc,
         cr,
         cx,
-        cx,
+        refusals,
         phi_sum,
         phi_max,
         gauge as i32,

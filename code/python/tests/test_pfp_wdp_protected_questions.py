@@ -30,7 +30,7 @@ class ProtectedQuestions(unittest.TestCase):
     def test_boundary_cases(self):
         self.assertEqual(m.record(0)['table'], [[0, 0, False, False]])
         self.assertEqual(m.record(0)['frontier'], [])
-        self.assertEqual(m.record(0)['min_price'], -1)
+        self.assertIsNone(m.record(0)['min_price'])
         r1 = m.record(1)
         self.assertEqual(r1['frontier'], [0])
         self.assertEqual(r1['min_price'], 0)
@@ -61,7 +61,7 @@ class ProtectedQuestions(unittest.TestCase):
     def test_wire_format(self):
         lines = m.wire_lines(m.certificate())
         self.assertEqual(len(lines), len(m.CASES))
-        self.assertEqual(lines[0], 'sel\t0\t0\t0\t-1\t-\t0:0:0:0')
+        self.assertEqual(lines[0], 'sel\t0\t0\t0\t-\t-\t0:0:0:0')
         self.assertTrue(lines[2].startswith('sel\t2\t3\t2\t1\t1;2\t0:0:0:0;1:3:1:1;2:3:1:1;3:3:1:0'))
 
 

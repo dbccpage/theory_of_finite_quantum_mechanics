@@ -8,7 +8,7 @@ r_n and the section u_n are executed on the whole universe and the claims of the
 outcomes are exactly the section image, refusal holds exactly off the image (violations counted), the payload of an
 accepted outcome is the base presentation, the round trip s(r(p)) = p holds on the image and fails on every refused
 point, lifts at another stage are refused, over-long bodies are refused, and a lax retraction that accepts the
-refused points as the ground presentation obeys the old-image law but breaks the refusal characterisation.
+refused points as the ground presentation obeys the old-image law but refuses nothing (lax_law_holds counts the base presentations it recovers, lax_refused the points it refuses; both are by-construction consequences and the Lean file carries the statement).
 Scope: the declared local model only; no cardinality theorem; no nested lift/retraction as a base member.
 AuthorityEffect: None.
 """
@@ -18,8 +18,8 @@ CASES = [['offimage', 0, 2, 2, 0], ['offimage', 1, 3, 3, 1], ['offimage', 2, 4, 
          ['offimage', 2, 1, 2, 0], ['offimage', 3, 4, 3, 1], ['offimage', 2, 2, 2, 1],
          ['toy', 3, 2], ['toy', 0, 2], ['toy', 4, 1], ['toy', 2, 3], ['toy', 5, 3]]
 
-FIELDS = ['universe', 'accepted', 'refused', 'image_size', 'iff_violations', 'payload_failures', 'roundtrip_holds',
-          'roundtrip_fails', 'stage_mismatch_refused', 'long_body_refused', 'lax_law_failures', 'lax_iff_violations']
+FIELDS = ['universe', 'accepted', 'refused', 'image_size', 'lift_collisions', 'iff_violations', 'payload_failures', 'roundtrip_holds',
+          'roundtrip_fails', 'stage_mismatch_refused', 'long_body_refused', 'lax_law_holds', 'lax_refused']
 
 
 def bases(g):
@@ -96,14 +96,14 @@ def record(g, stages, maxlen, n):
     base = bases(g)
     uni = universe(g, stages, maxlen)
     image = {section_lift(n, b): b for b in base}
-    accepted = refused = iff_viol = payload_fail = rt_holds = rt_fails = long_refused = lax_viol = 0
+    accepted = refused = iff_viol = payload_fail = rt_holds = rt_fails = long_refused = lax_refused = 0
     for p in uni:
         out = retr(n, p)
         off = p not in image
         if (out[0] == 'nonDescent') != off:
             iff_viol += 1
-        if (lax_retr(n, p)[0] == 'nonDescent') != off:
-            lax_viol += 1
+        if lax_retr(n, p)[0] == 'nonDescent':
+            lax_refused += 1
         if out[0] == 'accepted':
             accepted += 1
             b = image.get(p)
@@ -119,10 +119,10 @@ def record(g, stages, maxlen, n):
             if p[0] == 'lift' and p[1] == n and p[2][0] == 'glyphs' and len(p[2][1]) >= 3:
                 long_refused += 1
     mismatch = sum(1 for m in range(stages) if m != n for b in base if retr(n, section_lift(m, b))[0] == 'nonDescent')
-    lax_law_fail = sum(1 for b in base if lax_retr(n, section_lift(n, b)) != ('accepted', to_pres(b)))
+    lax_law_holds = sum(1 for b in base if lax_retr(n, section_lift(n, b)) == ('accepted', to_pres(b)))
     rec = {'kind': 'offimage', 'input': [g, stages, maxlen, n]}
-    rec.update(dict(zip(FIELDS, [len(uni), accepted, refused, len(image), iff_viol, payload_fail, rt_holds, rt_fails,
-                                 mismatch, long_refused, lax_law_fail, lax_viol])))
+    rec.update(dict(zip(FIELDS, [len(uni), accepted, refused, len(image), len(base) - len(image), iff_viol, payload_fail,
+                                 rt_holds, rt_fails, mismatch, long_refused, lax_law_holds, lax_refused])))
     return rec
 
 

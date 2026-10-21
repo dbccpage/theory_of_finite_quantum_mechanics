@@ -8,7 +8,7 @@ The table records Phi1 and Gamma2 before and after; it does not assert the monot
 nor anything about equal-weight subdivision. AuthorityEffect: None.
 """
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, product
 
 # ---- shared window core (duplicated verbatim in the three wdp producers) ----
 
@@ -78,22 +78,90 @@ def solve_rows(rows, rhs):
     return x
 
 
-def phi1(nv, edges, w, h):
-    """Quotient defect: attained minimum of sum_e w_e |h_e - (d0 x)_e| over potentials x."""
+def cost(d0, w, h, x):
+    return sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(len(x)))) for i in range(len(d0)))
+
+
+def phi1_x(nv, edges, w, h):
+    """Primal: attained minimum of sum_e w_e |h_e - (d0 x)_e| and a minimising potential x (first best vertex)."""
     d0 = d0_rows(nv, edges)
     m = len(d0)
     r = rank(d0)
     if r == 0:
-        return sum(Fraction(w[i]) * abs(h[i]) for i in range(m))
-    best = None
+        return sum((Fraction(w[i]) * abs(h[i]) for i in range(m)), Fraction(0)), [Fraction(0)] * nv
+    best, best_x = None, None
     for sub in combinations(range(m), r):
         x = solve_rows([d0[i] for i in sub], [h[i] for i in sub])
         if x is None:
             continue
-        cost = sum(Fraction(w[i]) * abs(h[i] - sum(d0[i][j] * x[j] for j in range(nv))) for i in range(m))
-        if best is None or cost < best:
-            best = cost
-    return best
+        c = cost(d0, w, h, x)
+        if best is None or c < best:
+            best, best_x = c, x
+    return best, best_x
+
+
+def phi1(nv, edges, w, h):
+    return phi1_x(nv, edges, w, h)[0]
+
+
+def unique_solution(cols, rhs):
+    """Solve sum_j y_j cols[j] = rhs; None unless the solution exists and is unique."""
+    r, n = len(cols), len(rhs)
+    rows = [[Fraction(cols[j][i]) for j in range(r)] + [Fraction(rhs[i])] for i in range(n)]
+    used = []
+    for j in range(r):
+        p = next((i for i in range(n) if i not in used and rows[i][j] != 0), None)
+        if p is None:
+            return None
+        used.append(p)
+        pivot = rows[p][j]
+        rows[p] = [a / pivot for a in rows[p]]
+        for i in range(n):
+            if i != p and rows[i][j] != 0:
+                f = rows[i][j]
+                rows[i] = [a - f * b for a, b in zip(rows[i], rows[p])]
+    if any(rows[i][r] != 0 for i in range(n) if i not in used):
+        return None
+    return [rows[used[j]][r] for j in range(r)]
+
+
+def dual_y(nv, edges, w, h):
+    """Dual: maximum of y.h over d0^T y = 0, |y_e| <= w_e, and the first maximising vertex y."""
+    d0 = d0_rows(nv, edges)
+    m = len(edges)
+    r = rank(d0)
+    best, best_y = None, None
+    for pinned in combinations(range(m), m - r):
+        free = [e for e in range(m) if e not in pinned]
+        for signs in product((1, -1), repeat=len(pinned)):
+            y = {e: Fraction(s * w[e]) for e, s in zip(pinned, signs)}
+            if free:
+                rhs = [-sum(y[e] * d0[e][v] for e in pinned) for v in range(nv)]
+                sol = unique_solution([[d0[e][v] for v in range(nv)] for e in free], rhs)
+                if sol is None:
+                    continue
+                for e, val in zip(free, sol):
+                    y[e] = val
+                if any(abs(y[e]) > w[e] for e in free):
+                    continue
+            elif any(sum(y[e] * d0[e][v] for e in pinned) != 0 for v in range(nv)):
+                continue
+            val = sum(y[e] * h[e] for e in range(m))
+            if best is None or val > best:
+                best, best_y = val, [y[e] for e in range(m)]
+    return best, best_y
+
+
+def fs(x):
+    return str(Fraction(x))
+
+
+def witness(nv, edges, w, h):
+    """(Phi1, witness string 'x=..|y=..'): a primal potential and a dual vector with equal values."""
+    phi, x = phi1_x(nv, edges, w, h)
+    val, y = dual_y(nv, edges, w, h)
+    assert phi == val == sum(y[e] * h[e] for e in range(len(h))), 'primal and dual values differ'
+    return phi, 'x=' + ','.join(fs(v) for v in x) + '|y=' + ','.join(fs(v) for v in y)
 
 
 def gamma2(d1, h):
@@ -116,10 +184,6 @@ def diag_class(phi, gam):
     return 'ClosedResidual' if gam == 0 else 'ActiveClosureFailure'
 
 
-def fs(x):
-    return str(Fraction(x))
-
-
 def tsv_window(c):
     edges = ','.join('%d>%d' % (s, t) for s, t in c['edges'])
     d1 = ';'.join(','.join(str(x) for x in row) for row in c['d1']) or '-'
@@ -138,6 +202,15 @@ C4_E = [[0, 1], [1, 2], [2, 3], [0, 3]]
 
 def pair(id_, nv, edges, w, d1, h, kind, arg):
     return {'id': id_, 'nv': nv, 'edges': edges, 'w': w, 'd1': d1, 'h': h, 'kind': kind, 'arg': arg}
+
+
+def k4_subsets():
+    """All 63 non-empty edge subsets of K4 (one cochain), restricted with the inherited weights."""
+    out = []
+    for mask in range(1, 64):
+        keep = [i for i in range(6) if mask & (1 << i)]
+        out.append(pair('k4_sub_%02d' % mask, 4, K4_E, [1] * 6, K4_D1, [1, 0, 2, 1, 0, 1], 'restrict', ','.join(map(str, keep)) + '|-'))
+    return out
 
 
 CASES = [
@@ -160,7 +233,7 @@ CASES = [
     pair('tri_edit_h_gauge_shift', 3, TRI_E, [1, 1, 1], TRI_D1, [1, 1, 0], 'edit_h', '2,1,1'),
     pair('tri_edit_w_down', 3, TRI_E, [3, 3, 3], TRI_D1, [1, 1, 0], 'edit_w', '1,1,1'),
     pair('tri_edit_w_up', 3, TRI_E, [1, 1, 1], [], [1, 0, 0], 'edit_w', '2,2,2'),
-]
+] + k4_subsets()
 
 
 def derive_b(c):
@@ -186,9 +259,9 @@ def derive_b(c):
 
 def side(nv, edges, w, d1, h):
     ok = cochain_defect(nv, edges, d1) is None
-    phi = phi1(nv, edges, w, h)
+    phi, wit = witness(nv, edges, w, h)
     gam = gamma2(d1, h)
-    return ok, phi, gam, (diag_class(phi, gam) if ok else 'NoRule')
+    return ok, phi, (gam if ok else None), (diag_class(phi, gam) if ok else 'NotAWindow'), wit
 
 
 def verdict(kind, ok_b, phi_a, phi_b, gam_a, gam_b):
@@ -204,13 +277,15 @@ def verdict(kind, ok_b, phi_a, phi_b, gam_a, gam_b):
 
 
 def record(c):
-    ok_a, phi_a, gam_a, cls_a = side(c['nv'], c['edges'], c['w'], c['d1'], c['h'])
+    ok_a, phi_a, gam_a, cls_a, wit_a = side(c['nv'], c['edges'], c['w'], c['d1'], c['h'])
     nvb, eb, wb, db, hb = derive_b(c)
-    ok_b, phi_b, gam_b, cls_b = side(nvb, eb, wb, db, hb)
+    ok_b, phi_b, gam_b, cls_b, wit_b = side(nvb, eb, wb, db, hb)
     return {
         'id': c['id'], 'kind': c['kind'], 'm_a': len(c['edges']), 'm_b': len(eb), 'k_a': len(c['d1']), 'k_b': len(db),
-        'complex_a': ok_a, 'complex_b': ok_b, 'phi_a': fs(phi_a), 'phi_b': fs(phi_b), 'gamma_a': fs(gam_a), 'gamma_b': fs(gam_b),
+        'complex_a': ok_a, 'complex_b': ok_b, 'phi_a': fs(phi_a), 'phi_b': fs(phi_b),
+        'gamma_a': None if gam_a is None else fs(gam_a), 'gamma_b': None if gam_b is None else fs(gam_b),
         'diag_a': cls_a, 'diag_b': cls_b, 'verdict': verdict(c['kind'], ok_b, phi_a, phi_b, gam_a, gam_b),
+        'witness_a': wit_a, 'witness_b': wit_b,
     }
 
 
@@ -218,10 +293,14 @@ def certificate(cases=CASES):
     return {'records': [record(c) for c in cases]}
 
 
+def _t(x):
+    return '-' if x is None else str(x)
+
+
 def wire_lines(data):
     return [chr(9).join(['pair', r['id'], r['kind'], str(r['m_a']), str(r['m_b']), str(r['k_a']), str(r['k_b']),
-                         str(int(r['complex_a'])), str(int(r['complex_b'])), r['phi_a'], r['phi_b'], r['gamma_a'], r['gamma_b'],
-                         r['diag_a'], r['diag_b'], r['verdict']]) for r in data['records']]
+                         str(int(r['complex_a'])), str(int(r['complex_b'])), r['phi_a'], r['phi_b'], _t(r['gamma_a']), _t(r['gamma_b']),
+                         r['diag_a'], r['diag_b'], r['verdict'], r['witness_a'], r['witness_b']]) for r in data['records']]
 
 
 def public_tsv(cases=CASES):

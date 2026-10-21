@@ -45,8 +45,9 @@ class SnOffImage(unittest.TestCase):
             for b in m.bases(g):
                 self.assertEqual(m.lax_retr(0, m.section_lift(0, b)), ('accepted', m.to_pres(b)))
         r = m.record(2, 4, 3, 0)
-        self.assertEqual(r['lax_law_failures'], 0)
-        self.assertEqual(r['lax_iff_violations'], r['refused'])
+        self.assertEqual(r['lax_law_holds'], r['image_size'])
+        self.assertEqual(r['lax_refused'], 0)
+        self.assertEqual(r['lift_collisions'], 0)
         self.assertGreater(r['refused'], 0)
 
     def test_toy_witness_matches_the_source_numbers(self):
@@ -66,7 +67,7 @@ class SnOffImage(unittest.TestCase):
     def test_wire_format(self):
         lines = m.wire_lines(m.certificate())
         self.assertEqual(len(lines), len(m.CASES))
-        self.assertEqual(lines[0], 'offimage\t0\t2\t2\t0\t6\t1\t5\t1\t0\t0\t1\t5\t1\t0\t0\t5')
+        self.assertEqual(lines[0], 'offimage\t0\t2\t2\t0\t6\t1\t5\t1\t0\t0\t0\t1\t5\t1\t0\t1\t0')
         self.assertEqual(lines[8], 'toy\t3\t2\t6\t3\t3\t0\t0')
         self.assertEqual(m.public_tsv().count('\n'), len(m.CASES))
 

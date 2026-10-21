@@ -7,9 +7,13 @@ import Mathlib.Data.Set.Card
 
 AuthorityEffect: None.  Scope: a bare type `X` with the full permutation action `Equiv.Perm X`.
 A *declared input set* `S` is modelled as a subset whose points are fixed pointwise (the stabiliser of `S`);
-this is the narrowest model of "declared input breaks the symmetry" and is a MODELLING CHOICE: the ledger
+this is the narrowest model of "declared input breaks the symmetry" and is a MODELLING CHOICE (the setwise
+stabiliser, which only fixes `S` as a set, would give a different table): the ledger
 definition WDP-CH03-D01 is relative to an implementation class and a dependency preorder, which are not
-modelled here.  Everything below is symmetry-price bookkeeping only.  It does not say that retention,
+modelled here.  The singleton frontier below is a near-consequence of that choice: a declared point is fixed because it is declared
+(first disjunct of `invariantUnder_iff`).  `Selecting`/`MinimalSelecting` is NOT ledger D01 (minimal input sets whose
+removal restores a symmetry that moves the output); no equivariant-selection-function type is defined, `no_fully_invariant_point`
+is its bare-set specialisation.  Everything below is symmetry-price bookkeeping only.  It does not say that retention,
 dynamics or observers are impossible, and it does not port WDP-CH03-P03 (declare-then-assert grammar).
 The source theorem `no_fully_invariant_point` is general (any type with two distinct points); the source
 witness `pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed` is unrelated fixed arithmetic.
@@ -118,18 +122,19 @@ theorem minimalSelecting_iff_singleton [DecidableEq X] [Nontrivial X] (S : Set X
     subst this
     exact hT.2 (Set.singleton_subset_iff.mpr hy)
 
-/-- The frontier has exactly one member per point of the carrier (at least two points). -/
+/-- The frontier is in bijection with the carrier (at least two points); this carries the content for infinite
+carriers, where a cardinality statement would read `0 = 0`. -/
+noncomputable def frontierEquiv [DecidableEq X] [Nontrivial X] : X ≃ {S : Set X // MinimalSelecting S} :=
+  Equiv.ofBijective (fun x => (⟨{x}, (minimalSelecting_iff_singleton _).mpr ⟨x, rfl⟩⟩ : {S : Set X // MinimalSelecting S}))
+    ⟨fun a b hab => Set.singleton_eq_singleton_iff.mp (congrArg Subtype.val hab),
+     fun ⟨S, hS⟩ => by
+       obtain ⟨x, rfl⟩ := (minimalSelecting_iff_singleton S).mp hS
+       exact ⟨x, rfl⟩⟩
+
+/-- Cardinality form; informative only for finite carriers (`Nat.card` of an infinite type is `0`). -/
 theorem frontier_card [DecidableEq X] [Nontrivial X] :
-    Nat.card {S : Set X // MinimalSelecting S} = Nat.card X := by
-  symm
-  refine Nat.card_congr (Equiv.ofBijective (fun x => (⟨{x}, (minimalSelecting_iff_singleton _).mpr ⟨x, rfl⟩⟩ :
-    {S : Set X // MinimalSelecting S})) ⟨?_, ?_⟩)
-  · intro a b hab
-    have := congrArg Subtype.val hab
-    exact Set.singleton_eq_singleton_iff.mp this
-  · rintro ⟨S, hS⟩
-    obtain ⟨x, rfl⟩ := (minimalSelecting_iff_singleton S).mp hS
-    exact ⟨x, rfl⟩
+    Nat.card {S : Set X // MinimalSelecting S} = Nat.card X :=
+  (Nat.card_congr frontierEquiv).symm
 
 /-- Boundary (hypothesis dropped): on a one-point carrier the empty declaration already selects, price zero. -/
 theorem one_point_empty_selects [DecidableEq X] [Subsingleton X] [Nonempty X] : Selecting (∅ : Set X) := by
@@ -157,6 +162,7 @@ end WdpProtectedQuestions
 #print axioms WdpProtectedQuestions.selecting_iff
 #print axioms WdpProtectedQuestions.selecting_iff_nonempty
 #print axioms WdpProtectedQuestions.minimalSelecting_iff_singleton
+#print axioms WdpProtectedQuestions.frontierEquiv
 #print axioms WdpProtectedQuestions.frontier_card
 #print axioms WdpProtectedQuestions.one_point_empty_selects
 #print axioms WdpProtectedQuestions.empty_carrier_no_selection

@@ -69,8 +69,10 @@ theorem roundtrip_fails_off_image (h : SectionRetraction s r) (y : Y) (hoff : �
 
 end
 
-/-- Any total left inverse `r0` of a section yields a refusing retraction by testing the round trip
-`s (r0 y) = y`; the result is a `SectionRetraction`.  This is the construction behind the toy witness of the source
+/-- CIRCULAR BY CONSTRUCTION: refusal is defined as failure of the round trip, so refusal-iff-off-image holds by
+construction here and is not evidence for the S(n) statement (`sn_refused_iff_off_image`).  Any total left inverse
+`r0` of a section yields a refusing retraction by testing the round trip `s (r0 y) = y`; the result is a
+`SectionRetraction`.  This is the construction behind the toy witness of the source
 (`s x = 2 x`, `r0 y = y / 2`; odd points are refused). -/
 def refuseOffImage {S Y : Type} [DecidableEq Y] (s : S → Y) (r0 : Y → S) : Y → S ⊕ Unit :=
   fun y => if s (r0 y) = y then Sum.inl (r0 y) else Sum.inr ()
@@ -89,7 +91,8 @@ theorem refuseOffImage_isSectionRetraction {S Y : Type} [DecidableEq Y] (s : S �
     · rw [if_neg hc] at hx
       cases hx
 
-/-- The toy witness over `ℕ` (section `2x`, total retraction `y / 2`): a point is refused exactly when it is odd. -/
+/-- The toy witness over `ℕ` (section `2x`, total retraction `y / 2`): a point is refused exactly when it is odd.
+Circular by construction (refusal is the round-trip test); it reproduces the source toy witness only. -/
 theorem toy_refused_iff_odd (y : ℕ) :
     refuseOffImage (fun x : ℕ => 2 * x) (fun y => y / 2) y = Sum.inr () ↔ y % 2 = 1 := by
   have hsr : SectionRetraction (fun x : ℕ => 2 * x) (refuseOffImage (fun x : ℕ => 2 * x) (fun y => y / 2)) :=
@@ -247,6 +250,49 @@ theorem nonDescent_iff_off_image (n : Nat) (p : Pres G) :
       exact absurd hb (h b)
     | nonDescent => rfl
 
+/-! ### Bridge: the S(n) pair is a `SectionRetraction` of Part 1 -/
+
+/-- Read an accepted presentation back as a base presentation. -/
+def toBase : Pres G → Option (Base G)
+  | .ground => some .ground
+  | .supplied m => some (.supplied m)
+  | .relation r => some (.relation r)
+  | _ => none
+
+theorem toBase_toPres (b : Base G) : toBase b.toPres = some b := by
+  cases b <;> rfl
+
+/-- The retraction with the outcome read as `Base G ⊕ Unit` (accepted payloads that are not base shapes
+cannot occur, see `accepted_only_from_section`). -/
+def retrB (n : Nat) (p : Pres G) : Base G ⊕ Unit :=
+  match retr n p with
+  | .accepted q => match toBase q with
+    | some b => Sum.inl b
+    | none => Sum.inr ()
+  | .nonDescent => Sum.inr ()
+
+/-- The pinned pair (restated) is a section/retraction pair in the sense of Part 1: law and soundness. -/
+theorem sn_is_section_retraction (n : Nat) : SectionRetraction (sectionLift n : Base G → Pres G) (retrB n) := by
+  constructor
+  · intro b
+    simp [retrB, old_image_base, toBase_toPres]
+  · intro p b h
+    unfold retrB at h
+    cases hr : retr n p with
+    | nonDescent => rw [hr] at h; cases h
+    | accepted q =>
+      obtain ⟨b0, hp, hq⟩ := accepted_only_from_section n p q hr
+      rw [hr] at h
+      simp only [hq, toBase_toPres] at h
+      have : b0 = b := Sum.inl.inj h
+      rw [← this, hp]
+
+/-- Hence, for the S(n) pair, refusal (`retrB n p = inr ()`) is exactly "no base presentation lifts to `p`",
+and the round trip `s (r p) = p` fails exactly there (Part 1 applied to the restated model). -/
+theorem sn_refused_iff_off_image (n : Nat) (p : Pres G) :
+    retrB n p = Sum.inr () ↔ ∀ b : Base G, sectionLift n b ≠ p :=
+  refused_iff_off_image (sn_is_section_retraction n) p
+
 /-- The stage carried by a lift. -/
 def liftStage : Pres G → Option Nat
   | .lift l _ => some l
@@ -336,6 +382,9 @@ end SnOffImageRefusal
 #print axioms SnOffImageRefusal.refuseOffImage_isSectionRetraction
 #print axioms SnOffImageRefusal.toy_refused_iff_odd
 #print axioms SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image
+#print axioms SnOffImageRefusal.sn_is_section_retraction
+#print axioms SnOffImageRefusal.sn_refused_iff_off_image
+#print axioms SnOffImageRefusal.sectionLift_injective
 #print axioms SnOffImageRefusal.old_image_base
 #print axioms SnOffImageRefusal.accepted_only_from_section
 #print axioms SnOffImageRefusal.accepted_iff

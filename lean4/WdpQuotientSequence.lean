@@ -20,8 +20,9 @@ Proved (general over modules over a field unless marked INSTANCE):
 * `finrank_sequence`: `dim Q1 = dim H1 + dim im d1`, `dim Q1 + dim im d0 = dim C1` (finite dimension).
 * `no_natural_section`: if `H1` and `im d1` are both nontrivial then NO section of `pi` is fixed by all
   automorphisms `1 + incl ∘ f ∘ pi` (they fix `H1` pointwise and induce the identity on `im d1`):
-  the sequence has no canonical splitting.  Boundary: `section_unique_of_subsingleton` (when `H1 = 0` the
-  section is unique, so "no canonical splitting" is FALSE there, as it is for `d1 = 0`).
+  the sequence has no canonical splitting.  Boundary: `section_unique_of_subsingleton` and `exists_unique_invariant_section_of_trivial` (when `H1 = 0` or
+  `im d1 = 0`, i.e. `d1 = 0`, there is exactly one section and it is invariant, so "no canonical splitting" is FALSE there).
+  The automorphisms `1 + incl f pi` are automorphisms of the EXTENSION, not of the window or isometries of `J`.
 * `window_instance_no_natural_section` (INSTANCE): the model `C1 = ℚ²`, `d0 = 0`, `d1 (a,b) = b`.
 * `diag_unique`, `isPhi_zero_iff`: exactly one diagnostic class; `Phi1 = 0` iff the class is zero when `J`
   is definite; `seminorm_instance`: for a seminorm `Phi1 = 0` does NOT force the zero class.
@@ -172,6 +173,35 @@ theorem section_unique_of_subsingleton [Subsingleton H] (s t : I →ₗ[K] Q)
   have hx0 : x = 0 := Subsingleton.elim _ _
   have : s y - t y = 0 := by rw [← hx, hx0, map_zero]
   exact sub_eq_zero.mp this
+
+include hex in
+/-- Boundary, both halves: when `H` or `I` is trivial (and `p` is onto) there is exactly one section, and it is
+invariant under every `1 + i f p` (they act as the identity). -/
+theorem exists_unique_invariant_section_of_trivial (hsurj : Function.Surjective p)
+    (htriv : Subsingleton H ∨ Subsingleton I) :
+    ∃! s : I →ₗ[K] Q, (∀ y, p (s y) = y) ∧ ∀ f : I →ₗ[K] H, ∀ y, phi i p f (s y) = s y := by
+  rcases htriv with hH | hI
+  · have hinj : Function.Injective p := by
+      intro a b hab
+      have h0 : p (a - b) = 0 := by rw [map_sub, hab, sub_self]
+      obtain ⟨x, hx⟩ := (hex _).mp h0
+      have hx0 : x = 0 := Subsingleton.elim _ _
+      rw [hx0, map_zero] at hx
+      exact sub_eq_zero.mp hx.symm
+    let e := LinearEquiv.ofBijective p ⟨hinj, hsurj⟩
+    refine ⟨e.symm.toLinearMap, ⟨fun y => e.apply_symm_apply y, fun f y => ?_⟩, ?_⟩
+    · have : f (p (e.symm y)) = 0 := Subsingleton.elim _ _
+      simp [phi, this]
+    · rintro s' ⟨hs', _⟩
+      exact section_unique_of_subsingleton i p hex s' e.symm.toLinearMap hs' (fun y => e.apply_symm_apply y)
+  · refine ⟨0, ⟨fun y => ?_, fun f y => ?_⟩, ?_⟩
+    · have : y = 0 := Subsingleton.elim _ _
+      simp [this]
+    · simp [phi]
+    · rintro s' _
+      ext y
+      have : y = 0 := Subsingleton.elim _ _
+      simp [this]
 
 end Splitting
 
@@ -335,6 +365,17 @@ theorem gamma_le_opnorm_phi (D0 : Fin m → Fin n → ℚ) (D1 : Fin k → Fin m
   rw [hx] at this
   exact this
 
+/-- The source reading: `Gamma2` taken at the minimal residual obeys the bound with NO closure hypothesis. -/
+theorem gamma_at_minimiser_le (D0 : Fin m → Fin n → ℚ) (D1 : Fin k → Fin m → ℚ) (w h : Fin m → ℚ)
+    (c p : ℚ) (hcol : ∀ e, ∑ r, |D1 r e| ≤ c * w e) (hp : IsPhiM D0 w h p) :
+    ∃ x : Fin n → ℚ, gamma2 D1 (fun e => h e + ∑ v, D0 e v * x v) ≤ c * p := by
+  obtain ⟨_, x, hx⟩ := hp
+  refine ⟨x, ?_⟩
+  have := opbound_of_columns D1 w c hcol (fun e => h e + ∑ v, D0 e v * x v)
+  unfold rcost at hx
+  rw [hx] at this
+  exact this
+
 /-- Nonnegativity of `Gamma2`. -/
 theorem gamma2_nonneg (D1 : Fin k → Fin m → ℚ) (v : Fin m → ℚ) : 0 ≤ gamma2 D1 v :=
   Finset.sum_nonneg fun _ _ => abs_nonneg _
@@ -363,6 +404,10 @@ end WdpQuotientSequence
 #print axioms WdpQuotientSequence.finrank_sequence
 #print axioms WdpQuotientSequence.no_natural_section
 #print axioms WdpQuotientSequence.section_unique_of_subsingleton
+#print axioms WdpQuotientSequence.exists_unique_invariant_section_of_trivial
+#print axioms WdpQuotientSequence.gamma2_repair
+#print axioms WdpQuotientSequence.gamma_at_minimiser_le
+#print axioms WdpQuotientSequence.gamma2_nonneg
 #print axioms WdpQuotientSequence.window_instance_no_natural_section
 #print axioms WdpQuotientSequence.diag_unique
 #print axioms WdpQuotientSequence.isPhi_zero_iff

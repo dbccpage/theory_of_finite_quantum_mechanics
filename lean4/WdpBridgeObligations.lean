@@ -11,7 +11,10 @@ import Mathlib.Data.Nat.Prime.Basic
 # Ledger of the five open Genesis-to-WDP bridge obligations (GEN-WDP-O01 .. O05)
 
 AuthorityEffect: None.  Scope: bookkeeping.  An obligation carries one of three statuses: `Open`, `ControlOnly`
-(a scoped control passes but the obligation is not discharged) or `Discharged`.  `EndToEnd` is DEFINED as
+(a scoped control passes but the obligation is not discharged) or `Discharged`.  This vocabulary is INVENTED
+here: the register (genesis_bridge_register.md rows GEN-WDP-O01..O05) labels each obligation OPEN and never says "control-only";
+reading all five as `ControlOnly` (the vector 11111 of the certificate) is this node's reading of "scoped controls are done,
+end-to-end claims are not".  `EndToEnd` is DEFINED as
 "every obligation is Discharged": this is a modelling choice (the register gives no independent semantics for
 "end-to-end", only that the end-to-end claims are not done), so `endToEnd_iff_*` below are definitional
 bookkeeping lemmas, not mathematical discoveries.  The `Fin n` versions are general; `n = 5` is an instance.
@@ -20,7 +23,11 @@ mapped to O01 < O02 < O03 < O04 < O05 by us; the sources call it an order of der
 prerequisite relation.  Nothing here discharges, or says anything about the dischargeability of, any obligation.
 The source witness `pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` contains a Boolean AND of
 five flags (proved here as `bool_and_iff`) and a bounded check `p*p <> 2*q*q` for `p <= 6, q <= 4`, which is
-generalised here to all naturals (`no_sq_eq_two_sq`, the O04 rational-scalar obstruction).
+generalised here to all naturals (`no_sq_eq_two_sq`; this is the arithmetic core of the separate row GEN-WDP-68, it does not
+bear on O04 as the register words it).  `wdpPairDefect` is only the symmetrisation `adj u v || adj v u` of a finite window
+(`false` exactly when there is no edge in either direction); no source transition system and no map to preserve or reflect
+is constructed (that is O02).  The columns `upgrades`, `completing_upgrades`, `prefix_order` and `node_reading` of the certificate
+are native definitions (only `raise_completes`, `prefixOrder_of_endToEnd` have Lean counterparts).
 -/
 
 namespace WdpBridgeObligations
@@ -133,6 +140,16 @@ theorem raise_preserves_endToEnd [DecidableEq (Fin n)] {v : Fin n → Status} (k
     (hv : EndToEnd v) : EndToEnd (raise v k s) :=
   endToEnd_mono (le_raise v k s) hv
 
+/-- One monotone update completes the ledger when exactly the updated position was undischarged. -/
+theorem raise_completes [DecidableEq (Fin n)] (v : Fin n → Status) (k : Fin n)
+    (h : ∀ j, j ≠ k → v j = .Discharged) : EndToEnd (raise v k .Discharged) := by
+  intro j
+  by_cases hj : j = k
+  · subst hj
+    have h2 : (v j).rank ≤ Status.Discharged.rank := rank_le_two _
+    simp [raise, h2]
+  · simp [raise, Function.update, hj, h j hj]
+
 /-- Programme order (our mapping of the derivation order of the programme document): discharged obligations form a prefix. -/
 def PrefixOrder (v : Fin n → Status) : Prop := ∀ j k : Fin n, j ≤ k → v k = .Discharged → v j = .Discharged
 
@@ -164,7 +181,7 @@ theorem bool_and_iff (o1 o2 o3 o4 o5 : Bool) :
     (o1 && o2 && o3 && o4 && o5) = true ↔ (o1 = true ∧ o2 = true ∧ o3 = true ∧ o4 = true ∧ o5 = true) := by
   cases o1 <;> cases o2 <;> cases o3 <;> cases o4 <;> cases o5 <;> simp
 
-/-- Source: finite window and its pair defect (genesis_to_wdp_bridge_preserves_and_reflects). -/
+/-- Source: finite window and its symmetrised adjacency (genesis_to_wdp_bridge_preserves_and_reflects). -/
 structure FiniteGenesisWindow (m : Nat) where
   adj : Fin m → Fin m → Bool
 
@@ -175,7 +192,7 @@ theorem pairDefect_preserves_and_reflects {m : Nat} (w : FiniteGenesisWindow m) 
   unfold wdpPairDefect
   rw [Bool.or_eq_false_iff]
 
-/-- Limit of that bridge map: it forgets orientation, so two different windows have the same pair defect. -/
+/-- Limit of that map: it forgets orientation, so two different windows have the same symmetrisation. -/
 theorem pairDefect_forgets_orientation :
     ∃ w w' : FiniteGenesisWindow 2, (∃ u v, w.adj u v ≠ w'.adj u v) ∧ ∀ u v, wdpPairDefect w u v = wdpPairDefect w' u v := by
   refine ⟨⟨fun u v => decide (u = 0 ∧ v = 1)⟩, ⟨fun u v => decide (u = 1 ∧ v = 0)⟩, ⟨0, 1, by decide⟩, ?_⟩
@@ -184,7 +201,7 @@ theorem pairDefect_forgets_orientation :
   revert u v
   decide
 
-/-- O04 scalar obstruction at general scope: no positive denominator and numerator with p^2 = 2 q^2. -/
+/-- Arithmetic core of GEN-WDP-68 at general scope (the source checks only q <= 4, p <= 6): no p, q > 0 with p^2 = 2 q^2. -/
 theorem no_sq_eq_two_sq : ∀ q : Nat, 0 < q → ∀ p : Nat, p * p ≠ 2 * (q * q) := by
   intro q
   induction q using Nat.strong_induction_on with
@@ -212,6 +229,7 @@ end WdpBridgeObligations
 #print axioms WdpBridgeObligations.endToEnd_mono
 #print axioms WdpBridgeObligations.le_raise
 #print axioms WdpBridgeObligations.raise_preserves_endToEnd
+#print axioms WdpBridgeObligations.raise_completes
 #print axioms WdpBridgeObligations.prefixOrder_of_endToEnd
 #print axioms WdpBridgeObligations.prefixOrder_violation
 #print axioms WdpBridgeObligations.card_vectors

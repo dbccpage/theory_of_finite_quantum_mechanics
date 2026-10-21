@@ -20,9 +20,9 @@ What is proved here, for arbitrary types: the kernel's accept/refuse behaviour (
 checked; A1 is checked before carrier membership; duplicates and both orientations are accepted); the
 cochain identity `d1 (d0 phi) = 0`; the exact condition under which a PARTIAL face boundary composes to zero
 with `d0` (all three boundary edges present or all absent); that a coboundary `d1` descends to the quotient by
-the image of `d0` iff `d1 o d0 = 0` (A7 is A5 again); gauge invariance of any quotient-defect functional (A6);
+the image of `d0` iff `d1 o d0 = 0` (A7, read as `d1 vanishes on im d0`, is A5 again; that reading is ours); gauge invariance of any Nat-valued defect of the form `inf_phi N(h - d0 phi)` (A6; the rational-valued Phi1 of the source is not covered);
 the exact/closed trichotomy and the one cell, `exact but not closed`, that is empty under nilpotency and
-nonempty otherwise (where the `R_cl` rule of the source refuses); and that the reflexive-transitive closure is
+nonempty otherwise (where the TRANSCRIBED `R_cl` rule refuses; the source complex constructor rejects `d1 o d0 != 0`, so its None branch is not reachable through `compute_triad_signature`); and that the reflexive-transitive closure is
 the least preorder containing a relation (A3).  Small concrete models are labelled instances.
 -/
 
@@ -231,6 +231,13 @@ def A4 {n : ℕ} (E : Fin n → Fin n → Bool) : Prop := (∀ a, E a a = false)
 /-- A5 for the single face (0,1,2) on three vertices, in the equivalent form of `face_nilpotent_iff`. -/
 def A5 (E : Fin 3 → Fin 3 → Bool) (F : Bool) : Prop := F = true → (E 0 1 = E 1 2 ∧ E 1 2 = E 0 2)
 
+/-- The decidable form `A5` of the instance section is the nilpotence of the partial coboundary on the face (0,1,2). -/
+theorem a5_iff_nilpotent (E : Fin 3 → Fin 3 → Bool) :
+    A5 E true ↔ ∀ φ : Fin 3 → ℤ, d1E E (d0 φ) 0 1 2 = 0 := by
+  rw [face_nilpotent_iff E (by decide) (by decide) (by decide)]
+  unfold A5
+  simp
+
 instance {n : ℕ} (D : Fin n → Fin n → Bool) : Decidable (A1 D) := by unfold A1; infer_instance
 instance {n : ℕ} (E : Fin n → Fin n → Bool) : Decidable (A4 E) := by unfold A4; infer_instance
 instance (E : Fin 3 → Fin 3 → Bool) (F : Bool) : Decidable (A5 E F) := by unfold A5; infer_instance
@@ -270,5 +277,6 @@ end PrimdiffAxioms
 #print axioms PrimdiffAxioms.rcl_eq_none_iff
 #print axioms PrimdiffAxioms.rcl_defined_of_nilpotent
 #print axioms PrimdiffAxioms.rcl_refuses_zero_one
+#print axioms PrimdiffAxioms.a5_iff_nilpotent
 #print axioms PrimdiffAxioms.a1_a4_a5_independent_on_three_vertices
 #print axioms PrimdiffAxioms.empty_structure_is_a_model

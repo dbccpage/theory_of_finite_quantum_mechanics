@@ -357,9 +357,18 @@ def coboundary(edges, faces, h):
     return out
 
 
+def rcl(phi, gamma):
+    """The R_cl rule of TriadSignature::r_cl on integers: gamma/phi, 0 when both vanish, None (refusal) when phi = 0 and gamma != 0.
+    Here Phi is the unit-weight L1 distance to im d0 and Gamma the L1 norm of the coboundary d1 h (a stand-in; the source Gamma2 is not reproduced)."""
+    if phi != 0:
+        return (gamma, phi)
+    return (0, 1) if gamma == 0 else None
+
+
 def triad_record(name, n, edges_text, faces_text):
     edges, faces = parse_edges(edges_text), parse_faces(faces_text)
     counts = {'E': 0, 'C': 0, 'R': 0, 'X': 0}
+    refusals = 0
     phi_sum = phi_max = 0
     gauge = relabel = True
     box = list(product((-1, 0, 1), repeat=len(edges)))
@@ -368,9 +377,12 @@ def triad_record(name, n, edges_text, faces_text):
         p = phi1(n, edges, h)
         phi_sum += p
         phi_max = max(phi_max, p)
-        closed = all(x == 0 for x in coboundary(edges, faces, h))
+        cob = coboundary(edges, faces, h)
+        closed = all(x == 0 for x in cob)
         exact = p == 0
         counts['E' if exact and closed else 'X' if exact else 'C' if closed else 'R'] += 1
+        if rcl(p, sum(abs(x) for x in cob)) is None:
+            refusals += 1
         for psi in gauges:
             shifted = [h[i] + psi[edges[i][1]] - psi[edges[i][0]] for i in range(len(edges))]
             if phi1(n, edges, shifted) != p:
@@ -381,7 +393,7 @@ def triad_record(name, n, edges_text, faces_text):
                 relabel = False
     return {'kind': 'triad', 'name': name, 'n': n, 'edges': [list(e) for e in edges], 'faces': [list(f) for f in faces],
             'cochains': len(box), 'exact': counts['E'], 'closed_nonexact': counts['C'], 'rupture': counts['R'],
-            'exact_nonclosed': counts['X'], 'rcl_refusals': counts['X'], 'phi1_sum': phi_sum, 'phi1_max': phi_max,
+            'exact_nonclosed': counts['X'], 'rcl_refusals': refusals, 'phi1_sum': phi_sum, 'phi1_max': phi_max,
             'gauge_invariant': gauge, 'relabel_invariant': relabel, 'nilpotent': a5_holds(n, edges, faces),
             'well_formed': well_formed(edges, faces)}
 

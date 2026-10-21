@@ -9,6 +9,7 @@ _SOURCE = Path(__file__).resolve().parents[1] / 'src/qm/pfp_wdp_quotient_sequenc
 _SPEC = importlib.util.spec_from_file_location('pfp_wdp_quotient_sequence', _SOURCE)
 m = importlib.util.module_from_spec(_SPEC)
 _SPEC.loader.exec_module(m)
+CERT = m.certificate()
 
 P = 3
 
@@ -45,7 +46,7 @@ class QuotientSequence(unittest.TestCase):
             self.assertEqual(m.phi1(c['nv'], c['edges'], c['w'], c['h']), best, c['id'])
 
     def test_exact_sequence_cardinalities_and_section_count_over_gf3(self):
-        for r in m.certificate()['records']:
+        for r in CERT['records']:
             if not r['complex']:
                 continue
             c = next(c for c in m.CASES if c['id'] == r['id'])
@@ -63,8 +64,8 @@ class QuotientSequence(unittest.TestCase):
         for phi, gam in product(range(0, 6), repeat=2):
             flags = [phi == 0, phi > 0 and gam == 0, phi > 0 and gam > 0]
             self.assertEqual(sum(flags), 1)
-        for r in m.certificate()['records']:
-            self.assertEqual(r['classes_hit'], 1)
+        for r in CERT['records']:
+            self.assertEqual(r['classes_hit'], 1 if r['complex'] else None)
 
     def test_gamma2_le_operator_norm_times_phi1_on_every_triangle_window(self):
         edges = [[0, 1], [1, 2], [0, 2]]
@@ -96,17 +97,45 @@ class QuotientSequence(unittest.TestCase):
             self.assertTrue(ok and tight, c['id'])
 
     def test_named_instances(self):
-        by = {r['id']: r for r in m.certificate()['records']}
+        by = {r['id']: r for r in CERT['records']}
         self.assertEqual((by['loop_three_faces']['opnorm'], by['loop_three_faces']['phi1'], by['loop_three_faces']['gamma2']), ('3', '1', '3'))
         self.assertEqual(by['tri_heavy_weights']['opnorm'], '1/3')
-        self.assertFalse(by['violates_d1d0_edge']['bound_holds'])          # the inequality needs d1 d0 = 0
+        self.assertIsNone(by['violates_d1d0_edge']['bound_holds'])         # Gamma2 is representative dependent without d1 d0 = 0
+        self.assertIsNone(by['violates_d1d0_edge']['gamma2'])
         self.assertFalse(by['seminorm_zero_weight_unfilled']['phi_zero_iff_class_zero'])
         self.assertIsNone(by['seminorm_zero_weight_filled']['opnorm'])
         self.assertTrue(by['k4_all_faces']['canonical_split'] and by['k4_two_faces']['canonical_split'] is False)
         self.assertEqual([r['id'] for r in by.values() if r['canonical_split'] is False], ['two_triangles_mixed', 'k4_two_faces', 'parallel_bigon_active'])
 
+    def test_gamma2_at_the_minimal_residual_obeys_the_bound_even_without_closure(self):
+        # the source takes Gamma2 at the minimal residual h - d0 x*; there the bound holds with no closure hypothesis
+        for c in m.CASES:
+            on = m.opnorm(c['d1'], c['w'])
+            if on is None:
+                continue
+            d0 = m.d0_rows(c['nv'], c['edges'])
+            phi, x = m.phi1_x(c['nv'], c['edges'], c['w'], c['h'])
+            residual = [c['h'][i] - sum(d0[i][j] * x[j] for j in range(c['nv'])) for i in range(len(c['edges']))]
+            self.assertLessEqual(m.gamma2(c['d1'], residual), on * phi, c['id'])
+        c = next(c for c in m.CASES if c['id'] == 'violates_d1d0_edge')
+        self.assertEqual(m.gamma2(c['d1'], c['h']), 2)   # representative norm, a convention artefact
+        self.assertEqual(m.gamma2(c['d1'], [0]), 0)      # source reading at the minimal residual h* = 0
+
+    def test_witnesses_are_primal_and_dual_certificates(self):
+        by = {c['id']: c for c in m.CASES}
+        for r in CERT['records']:
+            c = by[r['id']]
+            xt, yt = r['witness'][2:].split('|y=')
+            x = [Fraction(t) for t in xt.split(',')]
+            y = [Fraction(t) for t in yt.split(',')]
+            d0 = m.d0_rows(c['nv'], c['edges'])
+            self.assertEqual(m.cost(d0, c['w'], c['h'], x), Fraction(r['phi1']), c['id'])
+            self.assertEqual(sum(a * b for a, b in zip(y, c['h'])), Fraction(r['phi1']), c['id'])
+            self.assertTrue(all(sum(y[e] * d0[e][v] for e in range(len(y))) == 0 for v in range(c['nv'])), c['id'])
+            self.assertTrue(all(abs(y[e]) <= c['w'][e] for e in range(len(y))), c['id'])
+
     def test_wire_format_has_one_line_per_case(self):
-        lines = m.wire_lines(m.certificate())
+        lines = m.wire_lines(CERT)
         self.assertEqual(len(lines), len(m.CASES))
         self.assertTrue(lines[0].startswith('seq\ttri_filled_active\t1\t3\t2\t1\t1\t0\t1\t1\t0\t1\t0\t1\t2\t2\tActiveClosureFailure\t1\t1\t1\t1'))
         self.assertEqual(len(m.public_tsv().splitlines()), len(m.CASES))

@@ -158,6 +158,25 @@ theorem fibre_one_bit_iff [Fintype A] :
     obtain ⟨f⟩ := Function.Embedding.nonempty_of_card_le this
     exact ⟨f, (proper_ne_iff_injective f).mpr f.injective⟩
 
+/-- The fibre of a report: some `b`-bit tag on the whole type resolves every conflict between distinct elements of
+the fibre `{a // q a = x}` iff the fibre has at most `2^b` elements. -/
+theorem fibre_report_bits_iff (q : A → O) (x : O) [Fintype {a // q a = x}] (b : ℕ) :
+    (∃ t : A → (Fin b → Bool), Resolves q t (fun a a' => q a = x ∧ q a' = x ∧ a ≠ a')) ↔
+      Fintype.card {a // q a = x} ≤ 2 ^ b := by
+  classical
+  rw [← fibre_bits_iff (A := {a // q a = x}) b]
+  have hC : ∀ a a' : A, (q a = x ∧ q a' = x ∧ a ≠ a') → q a = q a' := fun a a' h => h.1.trans h.2.1.symm
+  constructor
+  · rintro ⟨t, ht⟩
+    have hp := (resolves_iff_proper q t _ hC).mp ht
+    exact ⟨fun a => t a.1, fun a a' hne => hp a.1 a'.1 ⟨a.2, a'.2, fun e => hne (Subtype.ext e)⟩⟩
+  · rintro ⟨s, hs⟩
+    refine ⟨fun a => if h : q a = x then s ⟨a, h⟩ else fun _ => false, ?_⟩
+    apply resolves_of_proper
+    rintro a a' ⟨h1, h2, hne⟩
+    simp only [h1, h2, dite_true]
+    exact hs ⟨a, h1⟩ ⟨a', h2⟩ (fun e => hne (congrArg Subtype.val e))
+
 /-- Headline: for a conflict relation contained in a collapse of `q`, some `b`-bit refinement resolves
 all conflicts iff the conflict relation has a proper `2^b`-colouring (for `b = 1`: a proper
 2-colouring, refused by any odd closed walk; for the complete conflict relation on a fibre: iff the
@@ -184,4 +203,5 @@ end RefineSeparates
 #print axioms RefineSeparates.triangle_no_one_bit
 #print axioms RefineSeparates.fibre_bits_iff
 #print axioms RefineSeparates.fibre_one_bit_iff
+#print axioms RefineSeparates.fibre_report_bits_iff
 #print axioms RefineSeparates.refine_separates_many
