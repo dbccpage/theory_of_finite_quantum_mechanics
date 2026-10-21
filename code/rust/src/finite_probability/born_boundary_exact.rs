@@ -22,14 +22,31 @@ fn act(a: &[Q], v: &[Q]) -> Vec<Q> {
 fn sq(v: &Q) -> Q {
     v * v
 }
-pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
-    let x = values.iter().map(|v| parse(v)).collect::<Vec<_>>();
-    let mut o: Vec<Q> = vec![];
+
+fn shadow_step(gs: &[(i64, i64); 3], matrix_a: &[Q], u: &[Q], means: &mut [Q], vals: &mut Vec<Q>) {
+    let mut matrix_b = vec![];
+    for s in 0..3 {
+        for t in 0..3 {
+            matrix_b.push(&matrix_a[3 * s + t] * n(gs[s].0 * gs[t].0 + gs[s].1 * gs[t].1));
+            matrix_b.push(&matrix_a[3 * s + t] * n(gs[s].1 * gs[t].0 - gs[s].0 * gs[t].1));
+        }
+    }
+    for z in 0..18 {
+        means[z] += &matrix_b[z];
+    }
+    let mut v = n(0);
+    for s in 0..3 {
+        for t in 0..3 {
+            v += &u[s] * &matrix_b[2 * (3 * s + t)] * &u[t];
+        }
+    }
+    vals.push(v);
+}
+
+fn eval_isometry(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
     let bit = |v: bool| n(v as i64);
-    macro_rules! e{($($v:expr),* $(,)?)=>{$(o.push($v);)*};}
-    match kind {
-        "isometry" => {
-            let k = x[0].to_integer().to_usize().unwrap();
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let k = x[0].to_integer().to_usize().unwrap();
             assert!(x[0].is_integer() && k < 4);
             let (a, b) = (&x[1], &x[2]);
             let f = [k / 2, k % 2];
@@ -50,9 +67,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             e!(&t[0] * &t[3] - &t[1] * &t[2], bit(f[0] != f[1]));
             o.extend(v.clone());
             e!(a * a + b * b, v.iter().map(sq).sum());
-        }
-        "orthogonal" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_orthogonal(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             assert!(a * a + b * b == n(1));
             let p = vec![a * a, a * b, a * b, b * b];
             let r = vec![b * b, -a * b, -a * b, a * a];
@@ -70,14 +91,18 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 sq(&sq(c)) + sq(&sq(d)),
                 &u * &u + &v * &v - sq(&sq(c)) - sq(&sq(d))
             );
-        }
-        "sqrt" => {
-            if x.iter().any(|v| v < &n(0)) {
-                return vec!["-1".into()];
+    None
+}
+
+fn eval_sqrt(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    if x.iter().any(|v| v < &n(0)) {
+                return Some(vec!["-1".into()]);
             };
             let m = x.iter().cloned().sum::<Q>();
             if m.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let p = x.iter().map(|v| v / &m).collect::<Vec<_>>();
             let mut roots = vec![];
@@ -94,22 +119,30 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(flags.clone());
             o.extend(roots);
             o.push(bit(flags.iter().all(|v| *v == n(1))));
-        }
-        "phases" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_phases(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             e!(a * a, b * b);
             for (u, v) in [(1, 0), (0, 1), (-1, 0), (0, -1)] {
                 o.push(sq(&(a + b * n(u))) + sq(&(b * n(v))));
             }
             e!(sq(&(a + b)), sq(&(a + b)), sq(&(a - b)), n(2) * a * b);
-        }
-        "trace" => {
-            let v = &x[..3];
+    None
+}
+
+fn eval_trace(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let v = &x[..3];
             let (s, has, m) = (&x[3], &x[4], &x[5]);
             assert!((*has == n(0) || *has == n(1)) && *m >= n(0));
             let w = v.iter().map(|z| z.abs()).sum::<Q>();
             if w.is_zero() || s.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let p = v.iter().map(|z| z.abs() / &w).collect::<Vec<_>>();
             let scaled = v.iter().map(|z| (s * z).abs()).collect::<Vec<_>>();
@@ -133,9 +166,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.push(bit(
                 !has.is_zero() && out == v.iter().map(|z| z.abs()).collect::<Vec<_>>()
             ));
-        }
-        "factor" => {
-            let (p, q, r, s, a, b) = (&x[0], &x[1], &x[2], &x[3], &x[4], &x[5]);
+    None
+}
+
+fn eval_factor(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (p, q, r, s, a, b) = (&x[0], &x[1], &x[2], &x[3], &x[4], &x[5]);
             assert!(
                 [p, q, r, s].iter().all(|z| **z >= n(0) && **z <= n(1))
                     && *a >= n(0)
@@ -166,12 +203,16 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 n(0),
                 n(1)
             );
-        }
-        "branch" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_branch(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let nn = a * a + b * b;
             if nn.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let matrix_a = vec![a * a / &nn, a * b / &nn, a * b / &nn, b * b / &nn];
             let matrix_b = vec![a * a / &nn, -a * b / &nn, -a * b / &nn, b * b / &nn];
@@ -189,13 +230,17 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(v.iter().map(|v| v * v / &nn));
             o.extend(w.iter().map(|v| v * v / &nn));
             o.push(-n(4) * c * s * a * b / &nn);
-        }
-        "normalize" => {
-            let w = &x[..3];
+    None
+}
+
+fn eval_normalize(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let w = &x[..3];
             let c = &x[3];
             let m = w.iter().cloned().sum::<Q>();
             if m.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let p = w.iter().map(|v| v / &m).collect::<Vec<_>>();
             let scaled = w.iter().map(|v| c * v).collect::<Vec<_>>();
@@ -214,9 +259,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 bit(*c > n(0)),
                 bit(w.iter().all(|v| *v >= n(0)) && m > n(0))
             );
-        }
-        "defect" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_defect(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let d = a.abs() + b.abs() - (a + b).abs();
             e!(
                 a.abs(),
@@ -228,9 +277,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 bit(d.is_zero()),
                 bit(a * b < n(0))
             );
-        }
-        "minkowski" => {
-            let (a, b, p) = (&x[0], &x[1], &x[2]);
+    None
+}
+
+fn eval_minkowski(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, p) = (&x[0], &x[1], &x[2]);
             let k = p.to_integer().to_i32().unwrap();
             assert!(p.is_integer() && (2..=6).contains(&k) && *a >= n(0) && *b >= n(0));
             let aa = a.pow(k);
@@ -245,9 +298,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 bit(cc > aa + bb),
                 bit(*a > n(0) && *b > n(0))
             );
-        }
-        "sparse" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_sparse(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             let plus = vec![sq(&(a + b)), sq(&(c + d))];
             let minus = vec![sq(&(a - b)), sq(&(c - d))];
             let rs = (a * b).is_zero() && (c * d).is_zero();
@@ -265,9 +322,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(minus.clone());
             o.extend((0..2).map(|i| &plus[i] - &minus[i]));
             e!(bit(rs), det, bit(mono), n(rank));
-        }
-        "redundancy" => {
-            let w = &x[..3];
+    None
+}
+
+fn eval_redundancy(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let w = &x[..3];
             let a = &x[3..];
             assert!(w.iter().all(|v| *v >= n(0)));
             let z = (0..3)
@@ -276,7 +337,7 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             let ww = w.iter().cloned().sum::<Q>();
             let nn = z.iter().cloned().sum::<Q>();
             if ww.is_zero() || nn.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let p = w.iter().map(|v| v / &ww).collect::<Vec<_>>();
             let q = z.iter().map(|v| v / &nn).collect::<Vec<_>>();
@@ -286,41 +347,25 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(p.clone());
             o.extend(q.clone());
             o.push(bit(p == q));
-        }
-        "shadow" => {
-            let matrix_a = &x[..9];
+    None
+}
+
+fn eval_shadow(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let matrix_a = &x[..9];
             let u = &x[9..];
             let ph = [(1, 0), (0, 1), (-1, 0), (0, -1)];
             let mut means = vec![n(0); 18];
             let mut vals = vec![];
             for i in 0..4 {
-                for j in 0..4 {
-                    for k in 0..4 {
-                        let gs = [ph[i], ph[j], ph[k]];
-                        let mut matrix_b = vec![];
-                        for s in 0..3 {
-                            for t in 0..3 {
-                                matrix_b.push(
-                                    &matrix_a[3 * s + t] * n(gs[s].0 * gs[t].0 + gs[s].1 * gs[t].1),
-                                );
-                                matrix_b.push(
-                                    &matrix_a[3 * s + t] * n(gs[s].1 * gs[t].0 - gs[s].0 * gs[t].1),
-                                );
-                            }
-                        }
-                        for z in 0..18 {
-                            means[z] += &matrix_b[z];
-                        }
-                        let mut v = n(0);
-                        for s in 0..3 {
-                            for t in 0..3 {
-                                v += &u[s] * &matrix_b[2 * (3 * s + t)] * &u[t];
-                            }
-                        }
-                        vals.push(v);
-                    }
-                }
+        for j in 0..4 {
+            for k in 0..4 {
+                let gs = [ph[i], ph[j], ph[k]];
+                shadow_step(&gs, matrix_a, u, &mut means, &mut vals);
             }
+        }
+    }
             let diag = (0..3)
                 .flat_map(|i| {
                     (0..3).map(move |j| {
@@ -345,15 +390,19 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 (0..3).map(|i| sq(&u[i]) * &matrix_a[4 * i]).sum::<Q>(),
                 coherent
             );
-        }
-        "scope" => {
-            if x.iter().any(|v| *v < n(0)) {
-                return vec!["-1".into()];
+    None
+}
+
+fn eval_scope(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    if x.iter().any(|v| *v < n(0)) {
+                return Some(vec!["-1".into()]);
             };
             let w = x.iter().cloned().sum::<Q>();
             let s = x.iter().map(sq).sum::<Q>();
             if w.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let p = x.iter().map(|v| v / &w).collect::<Vec<_>>();
             let q = x.iter().map(|v| v * v / &s).collect::<Vec<_>>();
@@ -369,12 +418,16 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 n(1)
             );
             o.extend((0..3).map(|i| &p[i] - &q[i]));
-        }
-        "gleason" => {
-            let (a, b, c, u, v) = (&x[0], &x[1], &x[2], &x[3], &x[4]);
+    None
+}
+
+fn eval_gleason(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, u, v) = (&x[0], &x[1], &x[2], &x[3], &x[4]);
             assert!(a + c == n(1) && *a >= n(0) && *c >= n(0) && a * c >= b * b);
             if u * u + v * v != n(1) {
-                return vec!["-1".into()];
+                return Some(vec!["-1".into()]);
             };
             let f = |s: &Q, t: &Q| a * s * s + n(2) * b * s * t + c * t * t;
             let ee = f(u, v);
@@ -397,13 +450,17 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 c.clone(),
                 a * c - b * b
             );
-        }
-        "capacity" => {
-            let (a, b, c, s) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_capacity(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, s) = (&x[0], &x[1], &x[2], &x[3]);
             assert!(c * c + s * s == n(1));
             let nn = a * a + b * b;
             if nn.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let matrix_r = vec![c.clone(), -s, s.clone(), c.clone()];
             let matrix_t = vec![c.clone(), s.clone(), -s, c.clone()];
@@ -422,9 +479,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 nn.clone(),
                 -n(4) * c * s * a * b / nn
             );
-        }
-        "ladder" => {
-            let (p, q, a, b, k) = (&x[0], &x[1], &x[2], &x[3], &x[4]);
+    None
+}
+
+fn eval_ladder(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (p, q, a, b, k) = (&x[0], &x[1], &x[2], &x[3], &x[4]);
             let nnstep = k.to_integer().to_usize().unwrap();
             assert!(
                 k.is_integer()
@@ -436,7 +497,7 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             );
             let nn = a * a + b * b;
             if nn.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let matrix_t = vec![p.clone(), n(1) - q, n(1) - p, q.clone()];
             let mut power = vec![n(1), n(0), n(0), n(1)];
@@ -471,15 +532,19 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 Q::new(1.into(), 2.into()),
                 a * b / nn
             );
-        }
-        "pairing" => {
-            let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
+    None
+}
+
+fn eval_pairing(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b, c, d) = (&x[0], &x[1], &x[2], &x[3]);
             let aa = a * a + b * b;
             let bb = c * c + d * d;
             let ww = &aa + &bb;
             let ss = &aa * &aa + &bb * &bb;
             if ww.is_zero() {
-                return vec!["0".into()];
+                return Some(vec!["0".into()]);
             };
             let matrix_h = vec![sq(&(a + c)) + sq(&(b + d)), sq(&(a - c)) + sq(&(b - d))];
             let matrix_r = vec![sq(&(a - d)) + sq(&(b + c)), sq(&(a + d)) + sq(&(b - c))];
@@ -507,9 +572,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
                 matrix_r.iter().map(sq).sum(),
                 matrix_h.iter().map(sq).sum::<Q>() - matrix_r.iter().map(sq).sum::<Q>()
             );
-        }
-        "selector" => {
-            let nn = x[0].to_integer().to_usize().unwrap();
+    None
+}
+
+fn eval_selector(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let nn = x[0].to_integer().to_usize().unwrap();
             assert!(x[0].is_integer() && [2, 3, 4].contains(&nn));
             let matrix_t = (0..nn)
                 .flat_map(|i| (0..nn).map(move |j| bit(i == (j + 1) % nn)))
@@ -533,9 +602,13 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             o.extend(matrix_s.clone());
             o.extend(matrix_i.clone());
             e!(n(nn as i64), bit(matrix_s == matrix_i), bit(nn > 2));
-        }
-        "finish" => {
-            let (a, b) = (&x[0], &x[1]);
+    None
+}
+
+fn eval_finish(x: &[Q], o: &mut Vec<Q>) -> Option<Vec<String>> {
+    let bit = |v: bool| n(v as i64);
+    macro_rules! e { ($($v:expr),* $(,)?) => { $(o.push($v);)* }; }
+    let (a, b) = (&x[0], &x[1]);
             let nn = a * a + b * b;
             let units = (0..4)
                 .map(|k| (0..4).map(|j| bit(k == j)).collect::<Vec<_>>())
@@ -555,8 +628,44 @@ pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
             let matrix_u = mm(&units[1], &units[2]);
             let matrix_v = mm(&units[2], &units[1]);
             o.extend((0..4).map(|i| &matrix_u[i] - &matrix_v[i]));
+    None
+}
+
+type EvalFn = fn(&[Q], &mut Vec<Q>) -> Option<Vec<String>>;
+
+const HANDLERS: &[(&str, EvalFn)] = &[
+    ("isometry", eval_isometry),
+    ("orthogonal", eval_orthogonal),
+    ("sqrt", eval_sqrt),
+    ("phases", eval_phases),
+    ("trace", eval_trace),
+    ("factor", eval_factor),
+    ("branch", eval_branch),
+    ("normalize", eval_normalize),
+    ("defect", eval_defect),
+    ("minkowski", eval_minkowski),
+    ("sparse", eval_sparse),
+    ("redundancy", eval_redundancy),
+    ("shadow", eval_shadow),
+    ("scope", eval_scope),
+    ("gleason", eval_gleason),
+    ("capacity", eval_capacity),
+    ("ladder", eval_ladder),
+    ("pairing", eval_pairing),
+    ("selector", eval_selector),
+    ("finish", eval_finish)
+];
+
+pub fn evaluate(kind: &str, values: &[String]) -> Vec<String> {
+    let x = values.iter().map(|v| parse(v)).collect::<Vec<_>>();
+    let mut o: Vec<Q> = vec![];
+    for &(k, handler) in HANDLERS {
+        if k == kind {
+            if let Some(early) = handler(&x, &mut o) {
+                return early;
+            }
+            return o.iter().map(ToString::to_string).collect();
         }
-        _ => panic!("unknown declared finite operation"),
     }
     o.iter().map(ToString::to_string).collect()
 }

@@ -157,29 +157,35 @@ class ChiralSuperconductorBisimulationBridge:
         anomaly_status = anomaly_dict.get("anomaly_status", "CHIRAL_ANOMALY_DEFECT")
         bulk_boundary_status = flow_dict.get("bulk_boundary_status", "BULK_BOUNDARY_DISCREPANCY")
 
-        majorana_status = "MAJORANA_SELF_CONJUGATE_VALID"
-        for a in arc_rows:
-            if a["majorana_status"] != "MAJORANA_SELF_CONJUGATE_VALID":
-                majorana_status = a["majorana_status"]
-                break
+        if not arc_rows:
+            majorana_status = "NO_MAJORANA_ARCS_RECORDED"
+        else:
+            majorana_status = "MAJORANA_SELF_CONJUGATE_VALID"
+            for a in arc_rows:
+                if a["majorana_status"] != "MAJORANA_SELF_CONJUGATE_VALID":
+                    majorana_status = a["majorana_status"]
+                    break
 
-        inflow_verdict = "ANOMALY_INFLOW_CONSERVED"
-        for i in inflow_rows:
-            if i["inflow_verdict"] != "ANOMALY_INFLOW_CONSERVED":
-                inflow_verdict = i["inflow_verdict"]
-                break
+        if not inflow_rows:
+            inflow_verdict = "NO_INFLOW_AUDIT_ROWS"
+        else:
+            inflow_verdict = "ANOMALY_INFLOW_CONSERVED"
+            for i in inflow_rows:
+                if i["inflow_verdict"] != "ANOMALY_INFLOW_CONSERVED":
+                    inflow_verdict = i["inflow_verdict"]
+                    break
 
-        lean_bisim_passed = True
-        if not model.phs_symmetric and route != "CLOSURE_FAILURE":
+        if not arc_rows or not inflow_rows or not anomaly_dict or not flow_dict:
             lean_bisim_passed = False
-        if majorana_status != "MAJORANA_SELF_CONJUGATE_VALID" and route != "CLOSURE_FAILURE":
-            lean_bisim_passed = False
-        if anomaly_status != "ANOMALY_CANCELLED_VALID" and route != "SPLIT_BRAIN_REFUSAL":
-            lean_bisim_passed = False
-        if bulk_boundary_status != "BULK_BOUNDARY_MATCH" and route != "SPLIT_BRAIN_REFUSAL":
-            lean_bisim_passed = False
-        if inflow_verdict != "ANOMALY_INFLOW_CONSERVED" and route != "SPLIT_BRAIN_REFUSAL":
-            lean_bisim_passed = False
+        else:
+            lean_bisim_passed = (
+                model.phs_symmetric
+                and majorana_status == "MAJORANA_SELF_CONJUGATE_VALID"
+                and anomaly_status == "ANOMALY_CANCELLED_VALID"
+                and bulk_boundary_status == "BULK_BOUNDARY_MATCH"
+                and inflow_verdict == "ANOMALY_INFLOW_CONSERVED"
+                and route == "REPAIR"
+            )
 
         return ChiralSuperconductorReceipt(
             lattice_id=model.lattice_id,

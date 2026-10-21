@@ -52,7 +52,7 @@ class SimplicialDiracOperator:
             hop_forward = 1.0j * np.exp(1.0j * theta + self.chemical_potential)
             hop_backward = 1.0j * np.exp(-1.0j * theta - self.chemical_potential)
             D[u, v] += hop_forward
-            D[v, u] -= hop_backward.conjugate() if self.chemical_potential == 0.0 else hop_backward
+            D[v, u] += hop_backward
 
         return D
 
@@ -103,6 +103,7 @@ class BqnfInvolutionResult:
     is_sign_reversing: bool = False
     is_weight_preserving: bool = False
     is_involution_certified: bool = False
+    max_weight_discrepancy: float = 0.0
 
 
 class CdtFermionSignEvaluator:
@@ -242,21 +243,23 @@ class CdtFermionSignEvaluator:
             config_dict[involution_map[cid]].fermion_sign == -config_dict[cid].fermion_sign
             for cid in involution_map
         )
-        is_weight_pres = all(
-            abs(config_dict[involution_map[cid]].boltzmann_weight - config_dict[cid].boltzmann_weight) <= tol
-            for cid in involution_map
+        max_diff = max(
+            (abs(config_dict[involution_map[cid]].boltzmann_weight - config_dict[cid].boltzmann_weight)
+             for cid in involution_map),
+            default=0.0,
         )
-
-        certified = is_involutive and is_fp_free and is_sign_rev and is_weight_pres
+        is_weight_pres = max_diff <= tol
+        is_exact = is_involutive and is_fp_free and is_sign_rev and (max_diff <= 1e-12)
 
         return BqnfInvolutionResult(
-            has_exact_involution=certified,
+            has_exact_involution=is_exact,
             involution_map=involution_map,
             is_involutive=is_involutive,
             is_fixed_point_free=is_fp_free,
             is_sign_reversing=is_sign_rev,
             is_weight_preserving=is_weight_pres,
-            is_involution_certified=certified,
+            is_involution_certified=is_exact,
+            max_weight_discrepancy=float(max_diff),
         )
 
     def compute_bqnf_quotient_bounds(
@@ -272,20 +275,23 @@ class CdtFermionSignEvaluator:
         avg_sign = z_f / z_b if z_b > 0 else 0.0
 
         c1_norm1 = z_b
+        phi_1 = abs(z_f)
 
-        if involution.is_involution_certified:
-            phi_1 = 0.0
+        if involution.is_involution_certified and abs(z_f) <= 1e-12:
             bound_satisfied = True
             classification = "ExactCancellation"
             return z_b, z_f, avg_sign, c1_norm1, phi_1, bound_satisfied, classification
 
         z_pos = sum(c.boltzmann_weight for c in configs if c.fermion_sign == 1)
         z_neg = sum(c.boltzmann_weight for c in configs if c.fermion_sign == -1)
-        phi_1 = abs(z_pos - z_neg)
 
         sign_bound_lower = (z_pos - z_neg) / z_b if z_b > 0 else 0.0
         bound_satisfied = avg_sign >= sign_bound_lower - 1e-12
-        classification = "OpenSignObstruction"
+        classification = (
+            "ApproximateCancellation"
+            if (involution.is_involutive and involution.is_fixed_point_free and involution.is_sign_reversing and involution.is_weight_preserving)
+            else "OpenSignObstruction"
+        )
 
         return z_b, z_f, avg_sign, c1_norm1, phi_1, bound_satisfied, classification
 

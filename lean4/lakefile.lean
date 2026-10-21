@@ -490,6 +490,9 @@ lean_lib «FiniteQuantum» where
     `ReggePachnerWdw,
     `regge_wdw_core,
     -- Majorana formalization modules
+    `MajoranaF2Trichotomy,
+    `MajoranaMZM,
+    `MajoranaTransferBounds,
     `MajoranaCore
   ]
 

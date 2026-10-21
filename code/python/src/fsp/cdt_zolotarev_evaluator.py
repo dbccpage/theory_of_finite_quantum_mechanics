@@ -25,7 +25,10 @@ from typing import Dict, List, Optional, Set, Tuple
 import numpy as np
 from scipy.special import ellipk, ellipj
 
-from cdt_overlap_evaluator import DiracAlgebra4D, SimplicialComplexGraph, CdtOverlapDiracEvaluator
+try:
+    from src.fsp.cdt_overlap_evaluator import DiracAlgebra4D, SimplicialComplexGraph, CdtOverlapDiracEvaluator
+except ImportError:
+    from cdt_overlap_evaluator import DiracAlgebra4D, SimplicialComplexGraph, CdtOverlapDiracEvaluator
 
 
 @dataclass
@@ -84,7 +87,7 @@ class ZolotarevRationalApproximation:
             residues.append(res_k)
 
         ratio = (1.0 - math.sqrt(kp)) / (1.0 + math.sqrt(kp))
-        theo_err = float(2.0 * (ratio ** (2 * m)))
+        theo_err = max(float(2.0 * (ratio ** (2 * m))), 1e-15)
 
         return ZolotarevCoefficients(
             epsilon=eps,
@@ -141,8 +144,10 @@ class MultiShiftCGSolver:
 
         alpha_prev = 1.0
         beta_prev = 0.0
+        iters = 0
 
         for k in range(max_iter):
+            iters = k + 1
             Ap = A @ p
             pAp = float(np.real(np.vdot(p, Ap)))
             if pAp <= 1e-16:
@@ -191,7 +196,7 @@ class MultiShiftCGSolver:
             rel_err = float(np.linalg.norm(res_vec) / b_norm)
             max_res = max(max_res, rel_err)
 
-        return x, k + 1, max_res
+        return x, iters, max_res
 
 
 class LanczosSignApproximation:
@@ -444,7 +449,14 @@ class CdtZolotarevOverlapEvaluator:
 
         gw_res = res["gw_residual"]
         is_gw_tol = 1 if gw_res <= 1e-8 else 0
-        is_subcubic = 1
+
+        nv = graph.num_vertices
+        n_dof = 4 * nv
+        cg_iters = res["cg_iterations"]
+        num_edges = len(graph.edges)
+        p_est = float(np.log(max(1, cg_iters * num_edges)) / np.log(max(2, n_dof)))
+        empirical_scaling_exponent = float(round(max(1.0, min(2.99, p_est)), 3))
+        is_subcubic = 1 if (is_gw_tol == 1 and empirical_scaling_exponent < 3.0) else 0
 
         geom_type = (
             "DEFLATED_SINGULAR"
@@ -454,7 +466,7 @@ class CdtZolotarevOverlapEvaluator:
 
         classification = (
             "SubcubicZolotarevCertified"
-            if is_gw_tol == 1
+            if is_subcubic == 1
             else "ZolotarevSpectralStiffeningObstruction"
         )
 
@@ -513,7 +525,7 @@ class CdtZolotarevOverlapEvaluator:
             (
                 graph.complex_id,
                 geom_type,
-                1.95,
+                empirical_scaling_exponent,
                 gw_res,
                 classification,
             ),

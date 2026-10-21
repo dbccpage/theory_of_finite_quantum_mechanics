@@ -236,12 +236,22 @@ class CdtOverlapDiracEvaluator:
         trace_val = float(np.real(np.trace(Gamma_5 @ (a * D_ov))))
         index_val = 0.5 * trace_val
 
-        eigenvals = np.linalg.eigvals(D_ov)
+        # Solve for zero eigenspace of D_ov using SVD
         zero_threshold = 1e-6
-        zero_indices = [i for i, val in enumerate(eigenvals) if abs(val) < zero_threshold]
+        u, s, vh = np.linalg.svd(D_ov)
+        zero_mask = s < zero_threshold
+        null_dim = int(np.sum(zero_mask))
 
-        n_pos = sum(1 for idx in zero_indices if idx % 2 == 0)
-        n_neg = sum(1 for idx in zero_indices if idx % 2 == 1)
+        if null_dim == 0:
+            n_pos = 0
+            n_neg = 0
+        else:
+            # Nullspace basis vectors are columns of vh.conj().T corresponding to zero singular values
+            v0 = vh[zero_mask, :].conj().T
+            g5_sub = v0.conj().T @ Gamma_5 @ v0
+            chiral_vals = np.linalg.eigvalsh(0.5 * (g5_sub + g5_sub.conj().T))
+            n_pos = int(np.sum(chiral_vals > 0.5))
+            n_neg = int(np.sum(chiral_vals < -0.5))
 
         return index_val, n_pos, n_neg
 
@@ -250,28 +260,71 @@ class CdtOverlapDiracEvaluator:
     ) -> Tuple[float, float, bool]:
         """Evaluates spatial localization length xi of overlap kernel ||D_ov(u, v)|| <= C exp(-d(u,v)/xi).
 
+        Computes shortest-path graph distances between vertices and measures genuine block decay
+        as a function of graph distance, independent of complex labels.
+
         Returns:
             (decay_length_xi, max_nonlocal_tail, is_exponentially_local)
         """
         nv = graph.num_vertices
-        distant_couplings = []
+        dist = np.full((nv, nv), np.inf)
+        np.fill_diagonal(dist, 0.0)
+        for u, v in graph.edges:
+            dist[u, v] = 1.0
+            dist[v, u] = 1.0
+        for k in range(nv):
+            for i in range(nv):
+                for j in range(nv):
+                    if dist[i, k] + dist[k, j] < dist[i, j]:
+                        dist[i, j] = dist[i, k] + dist[k, j]
+
+        couplings_by_dist = {}
         for u in range(nv):
             for v in range(nv):
-                if u != v:
-                    block = D_ov[4 * u : 4 * (u + 1), 4 * v : 4 * (v + 1)]
-                    norm_uv = float(np.max(np.abs(block)))
-                    distant_couplings.append(norm_uv)
+                d = int(dist[u, v]) if not np.isinf(dist[u, v]) else -1
+                if d < 0:
+                    continue
+                block = D_ov[4 * u : 4 * (u + 1), 4 * v : 4 * (v + 1)]
+                norm_uv = float(np.max(np.abs(block)))
+                if d not in couplings_by_dist:
+                    couplings_by_dist[d] = []
+                couplings_by_dist[d].append(norm_uv)
 
+        distant_couplings = [norm for d, norms in couplings_by_dist.items() if d > 0 for norm in norms]
         max_tail = float(max(distant_couplings)) if distant_couplings else 0.0
 
-        if graph.geometry_type == "REGULAR_GAPPED":
-            decay_xi = 0.85
-            is_local = True
-        else:
-            decay_xi = 999.0
-            is_local = False
+        distances = sorted([d for d in couplings_by_dist.keys() if d >= 0])
+        max_couplings = {d: max(couplings_by_dist[d]) for d in distances}
 
-        return decay_xi, max_tail, is_local
+        if max(distances) >= 2:
+            # Multi-distance complex: require monotonic exponential decay
+            is_monotonic = True
+            for i in range(1, len(distances) - 1):
+                if max_couplings[distances[i + 1]] >= max_couplings[distances[i]]:
+                    is_monotonic = False
+                    break
+            if not is_monotonic:
+                return 999.0, max_tail, False
+
+            xs = [float(d) for d in distances]
+            ys = [float(np.log(max(max_couplings[d], 1e-15))) for d in distances]
+            slope, _ = np.polyfit(xs, ys, 1)
+            if slope < -0.2:
+                decay_xi = float(-1.0 / slope)
+                is_local = (decay_xi < 5.0)
+                return decay_xi, max_tail, is_local
+            else:
+                return 999.0, max_tail, False
+        else:
+            # Single-distance complex: evaluate ratio of on-site (d=0) to nearest-neighbor (d=1)
+            c0 = max_couplings.get(0, 1.0)
+            c1 = max_couplings.get(1, 0.0)
+            if c0 > c1 and c1 > 0:
+                decay_xi = float(1.0 / np.log(c0 / c1))
+                is_local = (decay_xi < 5.0)
+                return decay_xi, max_tail, is_local
+            else:
+                return 999.0, max_tail, False
 
     def record_complex_evaluation(
         self,

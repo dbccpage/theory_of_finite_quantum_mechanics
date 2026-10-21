@@ -146,3 +146,34 @@ def test_sqlite_relational_views():
     assert r_curved["classification"] == "KahlerDiracIndexObstruction"
 
     evaluator.close()
+
+
+def test_boundary_nilpotence_under_orientation_reversals():
+    """9. Test that d^2 = 0 is invariant under arbitrary simplex orientation permutations."""
+    evaluator = CdtKahlerDiracEvaluator()
+
+    # Reversed triangle
+    s_rev_tri = evaluator.build_flat_4simplex("rev_tri")
+    t0 = s_rev_tri.triangles[0]
+    s_rev_tri.triangles[0] = (t0[1], t0[0], t0[2])
+    is_nilp, max_cob, max_b = evaluator.evaluate_boundary_nilpotence(s_rev_tri)
+    assert is_nilp
+    assert max_cob <= 1e-12
+
+    # Reversed tetrahedron
+    s_rev_tet = evaluator.build_flat_4simplex("rev_tet")
+    tet0 = s_rev_tet.tetrahedra[0]
+    s_rev_tet.tetrahedra[0] = (tet0[1], tet0[0], tet0[2], tet0[3])
+    is_nilp, max_cob, max_b = evaluator.evaluate_boundary_nilpotence(s_rev_tet)
+    assert is_nilp
+    assert max_cob <= 1e-12
+
+    # Reversed 4-simplex
+    s_rev_4s = evaluator.build_flat_4simplex("rev_4s")
+    f0 = s_rev_4s.four_simplices[0]
+    s_rev_4s.four_simplices[0] = (f0[1], f0[0], f0[2], f0[3], f0[4])
+    is_nilp, max_cob, max_b = evaluator.evaluate_boundary_nilpotence(s_rev_4s)
+    assert is_nilp
+    assert max_cob <= 1e-12
+
+    evaluator.close()

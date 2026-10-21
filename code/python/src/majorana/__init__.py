@@ -294,6 +294,30 @@ from .repair_limit import (
     syndrome_is_zero,
 )
 
+from .majorana_evaluator import (
+    ContinuumCrossJunctionFemModel,
+    DetectorAdequacyAudit,
+    DetectorAdequacyReceipt,
+    F2CochainComplex,
+    IsingFusionAlgebra,
+    KitaevSweetSpotChain,
+    MultiTerminalTransferReceipt,
+    NonMarkovianBosonicBathModel,
+    NonMarkovianTransferReceipt,
+    OpenSystemMajoranaBraidModel,
+    ParityAlgebraModel,
+    TetronCarrier,
+    TransferBoundReceipt,
+    TrichotomyClass,
+    audit_legacy_carrier,
+    build_tetron_carrier,
+    compute_coset_weight,
+    compute_skew_pfaffian,
+    logical_representative,
+    pfaffian_z2_invariant,
+    verify_norm_equivalence,
+)
+
 AUTHORITY_FENCE: str = (
     "AuthorityEffect None; not PROVED; not GlobalGreen; not physical Majorana; "
     "diagnostic GF(2) only."

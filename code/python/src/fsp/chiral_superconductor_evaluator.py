@@ -3,6 +3,19 @@ chiral_superconductor_evaluator.py — 3D Interacting Chiral Topological Superco
 
 AuthorityEffect: None.
 
+Claim Hygiene:
+1. What this supports:
+   - Discrete relational prototype parameterizing 3D Weyl superconductor node locations, momentum-slice Chern numbers N(k_z), and surface Majorana arc endpoints.
+   - Exact relational verification of Nielsen-Ninomiya chirality balance sum chi_i = 0 and bulk-boundary arc matching.
+   - Relational GIN inverted posting index linking spatial slices and boundary modes to SQL audit views.
+2. What this does not support:
+   - Ab initio numerical diagonalization of continuous 3D BdG Hamiltonians.
+   - Direct numerical Berry-curvature integration over the continuous Brillouin zone.
+3. Narrowest defensible claim:
+   - In this relational prototype, parameterized topological invariants satisfy declared discrete consistency conditions and populate relational audit views.
+4. Next test needed:
+   - Implement tight-binding BdG matrix construction and compute slice Chern numbers via Wilson loop / discrete Berry phase links.
+
 Mechanizes:
 1. 3D Weyl Superconductor BdG Hamiltonian on slab and periodic geometries.
 2. Nielsen-Ninomiya bulk chiral anomaly cancellation (sum C_i = 0).

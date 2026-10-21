@@ -196,9 +196,17 @@ class BFTopologicalModel:
         gamma_2 = abs(holonomy - 1.0)
         return theta_bf, holonomy, gamma_2
 
-    def evaluate_statistical_ensemble(self, is_chiral: bool = False, is_z2_energy_split: bool = False) -> Tuple[float, float, float, float, bool]:
+    def evaluate_statistical_ensemble(
+        self,
+        is_chiral: bool = False,
+        is_z2_energy_split: bool = False,
+        lk: int = 1,
+    ) -> Tuple[float, float, float, float, bool]:
         """
         Evaluates loop configuration weights and sign cancellation:
+        Orientation reversal cancels the imaginary holonomy component (sin theta_BF -> 0),
+        leaving real holonomy cos(theta_BF). This real component may be negative (e.g. cos(pi) = -1
+        for k=2, lk=1), so orientation symmetry does not imply a sign-free ensemble or exact repair.
         - If is_chiral is True (mu_l > 0):
             w_+ = exp(beta * mu_l), w_- = exp(-beta * mu_l).
             Delta w = |w_+ - w_-| > 0.
@@ -210,14 +218,16 @@ class BFTopologicalModel:
         - Else (symmetric, mu_l = 0):
             w_+ = w_- = 1.0.
             Delta w = 0.0.
-            Exact pairing holds.
+            avg_sign = math.cos((2.0 * math.pi / self.level_k) * lk)
+            is_paired = (abs(avg_sign - 1.0) <= 1e-6 and abs((2.0 * math.pi / self.level_k) * lk) <= 1e-6)
         Returns (w_pos, w_neg, delta_w, avg_sign, is_paired).
         """
+        phase = (2.0 * math.pi / self.level_k) * lk
         if is_chiral:
             w_pos = math.exp(self.beta * self.mu_l)
             w_neg = math.exp(-self.beta * self.mu_l)
             delta_w = abs(w_pos - w_neg)
-            avg_sign = (w_pos + w_neg * math.cos(2.0 * math.pi / self.level_k)) / (w_pos + w_neg)
+            avg_sign = (w_pos * math.cos(phase) + w_neg * math.cos(-phase)) / (w_pos + w_neg)
             is_paired = False
         elif is_z2_energy_split:
             w_pos = 1.0
@@ -229,8 +239,8 @@ class BFTopologicalModel:
             w_pos = 1.0
             w_neg = 1.0
             delta_w = 0.0
-            avg_sign = 1.0
-            is_paired = True
+            avg_sign = math.cos(phase)
+            is_paired = (abs(avg_sign - 1.0) <= 1e-6 and abs(phase) <= 1e-6)
 
         return w_pos, w_neg, delta_w, avg_sign, is_paired
 
@@ -290,21 +300,25 @@ class BFTopologicalBraidingEngine:
         w_pos, w_neg, delta_w, avg_sign, is_paired = model.evaluate_statistical_ensemble(
             is_chiral=is_chiral,
             is_z2_energy_split=is_z2_energy_split,
+            lk=lk,
         )
 
         is_symmetric = (not is_chiral) and (not is_z2_energy_split)
 
-        if test_unlinked:
+        if test_unlinked or lk == 0:
+            phi_1 = 0.0
+            terminal_route = TerminalRoute.EXACT_REPAIR.value
+        elif is_symmetric and is_paired and is_contractible:
             phi_1 = 0.0
             terminal_route = TerminalRoute.EXACT_REPAIR.value
         elif is_symmetric:
-            phi_1 = 0.0
-            terminal_route = TerminalRoute.EXACT_REPAIR.value
+            phi_1 = round(abs(1.0 - avg_sign) + gamma_2, 6)
+            terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
         elif is_chiral:
-            phi_1 = delta_w + gamma_2
+            phi_1 = round(delta_w + gamma_2, 6)
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
         elif is_z2_energy_split:
-            phi_1 = delta_w + gamma_2
+            phi_1 = round(delta_w + gamma_2, 6)
             terminal_route = TerminalRoute.OPEN_SIGN_OBSTRUCTION.value
         else:
             phi_1 = gamma_2

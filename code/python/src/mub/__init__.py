@@ -49,12 +49,19 @@ from .verifier import (
 
 from . import mub_verify
 from . import conj2_symbolic_verification
+from pathlib import Path
+
+_mub_path = str(Path(__file__).parent)
+for _mod in (mub_verify, conj2_symbolic_verification):
+    _mod.__path__ = [_mub_path]
+    if hasattr(_mod, "__spec__") and _mod.__spec__ is not None:
+        _mod.__spec__.submodule_search_locations = [_mub_path]
 
 _self = sys.modules[__name__]
-sys.modules.setdefault("mub_verify", mub_verify)
-sys.modules.setdefault("src.mub.mub_verify", mub_verify)
-sys.modules.setdefault("conj2_symbolic_verification", conj2_symbolic_verification)
-sys.modules.setdefault("src.mub.conj2_symbolic_verification", conj2_symbolic_verification)
+sys.modules["mub_verify"] = mub_verify
+sys.modules["src.mub.mub_verify"] = mub_verify
+sys.modules["conj2_symbolic_verification"] = conj2_symbolic_verification
+sys.modules["src.mub.conj2_symbolic_verification"] = conj2_symbolic_verification
 
 AUTHORITY_EFFECT: str = "None"
 

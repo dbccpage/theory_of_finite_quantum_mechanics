@@ -1,4 +1,6 @@
 """Facade for backward compatibility with src.mub.mub_verify."""
+from pathlib import Path
+__path__ = [str(Path(__file__).parent)]
 from .cyclotomic import *
 from .interval import *
 from .mub_triples import *
