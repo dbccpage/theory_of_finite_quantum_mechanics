@@ -8,7 +8,7 @@ Every paper declares its parent prerequisites, mathematical statement, exact rat
 
 ## Table of Contents by Stage
 
-### PREGENESIS (22 derivations)
+### PREGENESIS (35 derivations)
 
 Folder: [`01_pregenesis/`](./01_pregenesis/)
 
@@ -36,6 +36,19 @@ Folder: [`01_pregenesis/`](./01_pregenesis/)
 | [`TFQ-0393`](./01_pregenesis/tfq_0393_admitted_root_coproduct.md) | admitted-root-coproduct | `SOURCE_RECORD` | [`TFQ-0392`](./01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md) |
 | [`TFQ-0394`](./01_pregenesis/tfq_0394_primitive_axiom_list_underived.md) | primitive-axiom-list-underived | `OPEN_OBLIGATION` | [`TFQ-0393`](./01_pregenesis/tfq_0393_admitted_root_coproduct.md) |
 | [`TFQ-0395`](./01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) | law-bearing-cut-not-two-marks | `OPEN_OBLIGATION` | [`TFQ-0394`](./01_pregenesis/tfq_0394_primitive_axiom_list_underived.md) |
+| [`TFQ-0417`](./01_pregenesis/tfq_0417_pregenesis_grammar.md) | pregenesis-grammar | `DEFINITION` | [`TFQ-0362`](./01_pregenesis/tfq_0362_four_host_conditions.md) |
+| [`TFQ-0418`](./01_pregenesis/tfq_0418_no_transition_quiescence.md) | no-transition-quiescence | `DEFINITION` | [`TFQ-0417`](./01_pregenesis/tfq_0417_pregenesis_grammar.md) |
+| [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) | successor-not-unique | `SOURCE_RECORD` | [`TFQ-0418`](./01_pregenesis/tfq_0418_no_transition_quiescence.md) |
+| [`TFQ-0420`](./01_pregenesis/tfq_0420_repetition_needs_structure.md) | repetition-needs-structure | `SOURCE_RECORD` | [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) |
+| [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) | observational-equivalence | `DEFINITION` | [`TFQ-0362`](./01_pregenesis/tfq_0362_four_host_conditions.md) |
+| [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | presentation-not-expressive-lift | `CONDITIONAL` | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) |
+| [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) | identity-convention-undecidable | `SOURCE_RECORD` | [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) |
+| [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) | absence-of-rule-not-identification | `SOURCE_RECORD` | [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) |
+| [`TFQ-0425`](./01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) | forced-separation-lift-not-unique | `SOURCE_RECORD` | [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) |
+| [`TFQ-0426`](./01_pregenesis/tfq_0426_replay_necessity.md) | replay-necessity | `PROVED_LEAN` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
+| [`TFQ-0427`](./01_pregenesis/tfq_0427_context_fidelity.md) | context-fidelity | `OPEN_OBLIGATION` | [`TFQ-0426`](./01_pregenesis/tfq_0426_replay_necessity.md) |
+| [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) | admission-before-distinction | `SOURCE_RECORD` | [`TFQ-0364`](./01_pregenesis/tfq_0364_three_trial_record_bound.md) |
+| [`TFQ-0429`](./01_pregenesis/tfq_0429_bundled_extension_refused.md) | bundled-extension-refused | `SOURCE_RECORD` | [`TFQ-0428`](./01_pregenesis/tfq_0428_admission_before_distinction.md) |
 
 ### GENESIS (17 derivations)
 

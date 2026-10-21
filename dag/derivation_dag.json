@@ -103,6 +103,9 @@
       "NOT COVERED: roots with no incoming route in this fragment (DS-QM090-092-AUTHORITY-FIREWALL from the GTLA/pregenesis side; DS-QM080-IMPORT-FREE-TRACE-NORM-CORE, finite convex duality over any normed space); routes from XREF L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED and L1-CHAIN-D1D0-AXIOM record only that the carrier (weights) or the d1 d0 = 0 flatness is taken from the L1 fragment, not a source-stated derivation; QM_212 (ledger path listed, rows not read); QM_201 and QM_200 content (200 is a stub; 201 not opened); QM_207-231 finite-map controls are in the FQ fragment; the 090/091/092 mid-ledger rows (QM-090-C13, QM-091-C2..C16, GOMC-01..13, QM-092-C2..C24) are only summarized into DS-QM090-092-AUTHORITY-FIREWALL; the Lean modules named in QM-092 (OmegaCore/*, QM/*) were not opened; Rust crates omega_majorana, omega_lie_theory/cayley_unitary.rs, omega_types/authority.rs were located but not cited; the repo validator (dag_pregenesis_to_finite_qm/validate_derivation_dag.py) was not run by me.",
       "Dropped refs: any Lean/Rust symbol I could not find by grep in a file of the stated name was removed from lean[]/rust[] rather than kept; the dropped list is in the next note.",
       "Dropped (unverified) refs: H053EverettForkingTree::everett_forking_tree; SemiringTransport::lsum_mul_right; cochain_repair_code.rs::cochain_repair_code; difference_transport_channel.rs::difference_transport_channel; everett.rs::everett; exact_channel.rs::exact_channel; finite_chsh_correlations.rs::finite_chsh_correlations; parity_context_packet.rs::parity_context_packet; qubit_bloch_map.rs::qubit_bloch_map; threshold_repair_certificate.rs::threshold_repair_certificate; trace_distance_quotient.rs::trace_distance_quotient; u1_graph_connection.rs::is_gauge_trivial"
+    ],
+    "pregenesis_to_wdp": [
+      "PREGENESIS-TO-WDP FRAGMENT (dag/fragments/pregenesis_to_wdp.json, records TFQ-0417 upward): one paper per on-route step from the inert inscription through Genesis, its expansion past the 19L57G1 freeze, S(n), MSS-N and WDP. Lean references prefixed external:github.com/dbccpage/19L57G1 name declarations at commit 85a83ae7ce64dc2123ff218568a4ecd37e566d33 that are not in this checkout or in the_symbol_game; their nodes are CONDITIONAL on that import and are not recorded as PROVED_LEAN. References without a prefix are paths in the_symbol_game at commit 7351ed452e518cb8cf2bf973d4c4881289084bce, as in the existing PG nodes."
     ]
   },
   "nodes": [
@@ -5191,6 +5194,253 @@
       ]
     },
     {
+      "id": "PGW-PREGENESIS-GRAMMAR",
+      "stage": "PREGENESIS",
+      "status": "DEFINITION",
+      "source_status": "000_oepregen grammar/pre_genesis.ebnf lines 1-37; 30 conformance cases PG_001-PG_030",
+      "statement": "The Pre-Genesis host grammar declares the inscription alphabet {<, >, a, b} and three public starts: ground_token (exactly <>), inscription (one balanced, non-nested bracketed inscription) and pre_genesis_regime (zero or more inscriptions between braces, where {} is host list notation and not the empty word). It keeps four states apart: absent input, the empty word, the literal token <> and the ground carrier that S(0) adopts. It has no event productions: the first event, supply(<>), is the Genesis boundary, and parsing a word admits no carrier, transition or observational operation.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
+        "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:14-19",
+        "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:26-28"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Declared host grammar pre_genesis.ebnf, a later host notation not tested by the model trials (assumption)"
+      ],
+      "bottleneck": "A grammar verdict is a syntax check of host notation; it assigns no semantics to <> and does not decide whether an inscription is admitted.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0417",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-NO-TRANSITION-QUIESCENCE",
+      "stage": "PREGENESIS",
+      "status": "DEFINITION",
+      "source_status": "000_oepregen 03_results_and_arguments.md section 1 (statement 1, true by definition)",
+      "statement": "If a regime's transition relation is empty, no state has a successor; that is the definition of an empty relation and needs no experiment. All three replies to Prompt 11 said no continuation is forced, so a move from <> to <a> has to come from outside: a caller supplies it, or a rule is added.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:21-27"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "True by definition of an empty relation; the trial replies are behaviour, not evidence for the definition.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0418",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-OBSERVATIONAL-EQUIVALENCE",
+      "stage": "PREGENESIS",
+      "status": "DEFINITION",
+      "source_status": "000_genesis_19l57g1 paper.md section 4 definition; v1 Formalization B; 000_oepregen rewriting Definition 2.3",
+      "statement": "Relative to the family O_n of internal observations available at stage n, x ≈ₙ y holds exactly when o(x) = o(y) for every o in O_n, with equality taken in each observation's codomain. If O_n is empty, every pair is equivalent vacuously, so with no observations <a> ≈ₙ <ab>. This is regime-relative equivalence: it does not make the strings equal and does not install an equality operator inside the regime.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:107-116",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:177-215",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:64-70"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::SameProfile",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "A declared carrier of inscriptions and a declared family O_n of observations on it (assumption)"
+      ],
+      "bottleneck": "The relation depends on the declared O_n and compares observation values in the metatheory; it is not literal string equality and does not say which observations a regime should have.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0421",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+      "stage": "PREGENESIS",
+      "status": "CONDITIONAL",
+      "source_status": "000_oepregen 03_results_and_arguments.md section 2 (statement 2, holds under one convention); v1 Derivation 3",
+      "statement": "Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:110-135",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:925-975",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:29-43"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "Opaque identity convention: a state is what the regime can tell apart, so internal identity is the quotient by ≈ₙ (assumption)"
+      ],
+      "bottleneck": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0422",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
+      "stage": "PREGENESIS",
+      "status": "CONDITIONAL",
+      "source_status": "v1 Red round item 1 (conditional verdict); 000_oepregen 03_results_and_arguments.md section 2 and 02_trial_record.md Prompt 12",
+      "statement": "Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:731-737",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:36-43",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:43-53"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "A declared identity convention, opaque or exact-inscription, chosen by the host (assumption)"
+      ],
+      "bottleneck": "Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0423",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+      "stage": "PREGENESIS",
+      "status": "DEFINITION",
+      "source_status": "v1 section 3 Formalization A (declared UNDECIDABLE status) beside Formalization B; 04_named_failure_modes.md premature relation",
+      "statement": "Asked whether the regime distinguishes <a> and <ab>, identifies them or cannot decide, Trial 1 answered that the current regime identifies them; the analysis corrects this, since the absence of a distinguishing rule does not imply identification. Formalization A: with no equality, equivalence or observation relation declared, neither <a> = <ab> nor <a> ≠ <ab> is internally derivable, and status(<a>, <ab>) = UNDECIDABLE. Formalization B is the separate definition ≈ₙ, under which an empty O_n gives <a> ≈ₙ <ab> vacuously. The reply 'identifies them' imported an identification relation unless B had been declared first, and the failure-mode chapter names it premature relation.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:62-68",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:147-175",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:55-60"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A and B are two declared readings and no theorem chooses between them; vacuous ≈ₙ under B does not install an object-language equality rule.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0424",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
+      "stage": "PREGENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "000_oepregen 03_results_and_arguments.md section 5 (statement 5, argument with proof); 000_genesis_19l57g1 paper.md Proposition 1; Lean Paper000.separation_not_on_quotient",
+      "statement": "Suppose an external task requires <a> and <ab> to differ while the current regime has <a> ≈ₙ <ab>. Every operation f on the quotient S_n/≈ₙ gives f([<a>]) = f([<ab>]), so no operation on the current quotient answers the task on every input, and a refinement adding at least one observation o with o(<a>) ≠ o(<ab>) is forced; the analysis gives this as an argument with proof. The lift is not unique: under a supplied string decoder, 'payload has more than one position' and 'payload contains b' both separate <a> from <ab> but disagree on <aa> (true and false), and full inscription identity also separates the pair while carrying more than one bit. A canonical tower therefore needs a declared minimality or initiality policy, such as fewest new predicates, minimum description length, maximal preservation of old equivalences, a free or initial completion, or retention of every tied minimum branch.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:118-133",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:283-305",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:81-88"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::separation_not_on_quotient",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quotient_barrier",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::collapsed_quotient_barrier"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
+      ],
+      "imported_structure": [
+        "Supplied string decoder for the payloads of <a>, <ab> and <aa>, used only by the non-uniqueness example (assumption)"
+      ],
+      "bottleneck": "The Lean declarations cover the quotient barrier; the non-uniqueness of the lift rests on the two-predicate example, and no selection policy, fixed ladder of quotients or minimal multiplicity lift is derived.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0425",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-REPLAY-NECESSITY",
+      "stage": "PREGENESIS",
+      "status": "PROVED_LEAN",
+      "source_status": "000_oepregen 03_results_and_arguments.md section 6 (statement 6, theorem with proof); v1 Derivation 4; Lean Paper000.insufficient_history_view",
+      "statement": "Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last turn. If π(h₁) = π(h₂) but σ(h₁) ≠ σ(h₂), no auditor A that sees only π reports σ(h) for every h, because A(π(h₁)) = A(π(h₂)) would give σ(h₁) = σ(h₂). The trial failures motivate the theorem: the blind auditor flagged the licensed words 'We' (Trial 1) and 'rule' (Trial 2) as imports, so an audit needs two levels; in Trial 2, Prompt 14's false attribution was answered without objection, so claim provenance is a check separate from claim correctness, Result 15 lost the state, saying the regime contains only <> after <a> had been supplied; and the two-level auditor, shown only that turn, answered None. State certification therefore needs replay information that separates the relevant histories, and on a declared finite population a summary on which σ is constant per fiber of the view can stand in for the raw history.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1009-1047",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:100-106",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:101-111"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::insufficient_history_view",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::no_factor_through_common_view"
+      ],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The trial contrasts motivate the theorem and do not instantiate it: the truncated window and the full replay received different inputs, so they are not a checked pair with equal auditor views; raw history retention is a provenance policy, and task-sufficient reconstruction is the mathematical requirement.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0426",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-CONTEXT-FIDELITY",
+      "stage": "PREGENESIS",
+      "status": "OPEN",
+      "source_status": "v1 Derivation 5 (clean theorem target, no proof); 000_oepregen 03_results_and_arguments.md section 7 (statement 7)",
+      "statement": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1065-1087",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:127-134",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:120-130"
+      ],
+      "lean": [],
+      "rust": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies"
+      ],
+      "imported_structure": [],
+      "bottleneck": "A target statement and verifier requirement with no proof and no declared trace semantics; the replay certifiers listed check a claimed Genesis regime against its event history and do not define ValidTrace.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0427",
+        "pregenesis"
+      ]
+    },
+    {
+      "id": "PGW-ADMISSION-BEFORE-DISTINCTION",
+      "stage": "PREGENESIS",
+      "status": "DEFINITION",
+      "source_status": "recorded requirement: 000_oepregen 02_trial_record.md Prompts 18 and 19; curriculum Lesson 8; v1 Trial 2 main result",
+      "statement": "Given the corrected state, the full replay answered that the task of making <a> and <ab> internally distinguishable cannot be evaluated until <ab> is brought into the regime. The first addition can supply <ab> as data or write it into a rule pattern; the two are equally minimal and neither is uniquely forced. After Prompt 19 admitted <ab> beside <a> with no comparison, counting or matching, nothing in the regime reacts to them differently, so admission alone distinguishes nothing and no unique continuation is dictated. The requirement recorded is an order: the regime must admit inscriptions, retain them across turns and replay the current state before a separation task on them can be posed.",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:605-609",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:132-149",
+        "omega_engine_education/documentation/000_oepregen/curriculum/README.md:179-194"
+      ],
+      "lean": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::single_admission_does_not_separate"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A recorded requirement drawn from model replies that no host checker evaluated; the two-flag Lean and Python models encode admission acts and separation by declaration and do not choose a first addition.",
+      "tags": [
+        "pregenesis-to-wdp",
+        "TFQ-0428",
+        "pregenesis"
+      ]
+    },
+    {
       "id": "DFM-GROUP-CONNECTION",
       "stage": "DRESSING_FIELD",
       "status": "DEFINITION",
@@ -8145,6 +8395,138 @@
         "lean4/SectorFormHermitian.lean"
       ],
       "note": "Holds once sector additivity of the quadratic readout is supplied; orthogonality of the sector basis follows without any symmetry assumption. Frame additivity beyond the sector basis is not covered."
+    },
+    {
+      "id": "PGW-R-PREGENESIS-GRAMMAR",
+      "inputs": [
+        "PG-INERT-DIAMOND"
+      ],
+      "output": "PGW-PREGENESIS-GRAMMAR",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
+        "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:14-19",
+        "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:26-28"
+      ]
+    },
+    {
+      "id": "PGW-R-NO-TRANSITION-QUIESCENCE",
+      "inputs": [
+        "PGW-PREGENESIS-GRAMMAR"
+      ],
+      "output": "PGW-NO-TRANSITION-QUIESCENCE",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:21-27"
+      ]
+    },
+    {
+      "id": "PGW-R-OBSERVATIONAL-EQUIVALENCE",
+      "inputs": [
+        "PG-INERT-DIAMOND"
+      ],
+      "output": "PGW-OBSERVATIONAL-EQUIVALENCE",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:107-116",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:177-215"
+      ]
+    },
+    {
+      "id": "PGW-R-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+      "inputs": [
+        "PGW-OBSERVATIONAL-EQUIVALENCE"
+      ],
+      "output": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:110-135",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:925-975"
+      ]
+    },
+    {
+      "id": "PGW-R-IDENTITY-CONVENTION-UNDECIDABLE",
+      "inputs": [
+        "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"
+      ],
+      "output": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:731-737",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:36-43"
+      ]
+    },
+    {
+      "id": "PGW-R-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+      "inputs": [
+        "PGW-IDENTITY-CONVENTION-UNDECIDABLE"
+      ],
+      "output": "PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:62-68",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:147-175"
+      ]
+    },
+    {
+      "id": "PGW-R-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
+      "inputs": [
+        "PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION",
+        "PG-COLLAPSE-BARRIER"
+      ],
+      "output": "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:118-133",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:283-305"
+      ]
+    },
+    {
+      "id": "PGW-R-REPLAY-NECESSITY",
+      "inputs": [
+        "PG-SIX-OPERATIONS",
+        "PG-COLLAPSE-BARRIER",
+        "PG-HISTORY-REPORT-CRITERION"
+      ],
+      "output": "PGW-REPLAY-NECESSITY",
+      "status": "DERIVED_LEAN",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1009-1047",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:100-106"
+      ]
+    },
+    {
+      "id": "PGW-R-CONTEXT-FIDELITY",
+      "inputs": [
+        "PGW-REPLAY-NECESSITY"
+      ],
+      "output": "PGW-CONTEXT-FIDELITY",
+      "status": "GAP_NO_DERIVATION",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1065-1087",
+        "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:127-134"
+      ]
+    },
+    {
+      "id": "PGW-R-ADMISSION-BEFORE-DISTINCTION",
+      "inputs": [
+        "PG-SIX-OPERATIONS"
+      ],
+      "output": "PGW-ADMISSION-BEFORE-DISTINCTION",
+      "status": "DERIVED_PROSE",
+      "source": [
+        "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
+        "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:605-609",
+        "omega_engine_education/documentation/000_oepregen/02_trial_record.md:132-149"
+      ]
     },
     {
       "id": "APP-R-DFM-GROUP-CONNECTION",

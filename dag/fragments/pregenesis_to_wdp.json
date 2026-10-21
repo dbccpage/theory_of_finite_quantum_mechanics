@@ -1,0 +1,840 @@
+{
+  "schema_version": "pregenesis_to_wdp.v1",
+  "authority_effect": "None",
+  "source_slice": "pregenesis_to_wdp",
+  "first_id": "TFQ-0417",
+  "planned_last_id": "TFQ-0558",
+  "uuid_namespace": {
+    "recipe": "uuid5(NAMESPACE_URL, 'https://github.com/dbccpage/theory_of_finite_quantum_mechanics/dag/theory_of_finite_qm.jsonl'); record uuid = uuid5(namespace, record id)",
+    "value": "7d2b44b5-7434-5980-8075-3088cef503f8"
+  },
+  "external_roots": {
+    "symbol_game": {
+      "remote": "https://github.com/dbccpage/the_symbol_game",
+      "commit": "7351ed452e518cb8cf2bf973d4c4881289084bce",
+      "discover": "sibling directory the_symbol_game, or TFQ_SYMBOL_GAME_ROOT"
+    },
+    "github19l": {
+      "remote": "https://github.com/dbccpage/19L57G1",
+      "commit": "85a83ae7ce64dc2123ff218568a4ecd37e566d33"
+    }
+  },
+  "segment_note": "PREGENESIS-TO-WDP FRAGMENT (dag/fragments/pregenesis_to_wdp.json, records TFQ-0417 upward): one paper per on-route step from the inert inscription through Genesis, its expansion past the 19L57G1 freeze, S(n), MSS-N and WDP. Lean references prefixed external:github.com/dbccpage/19L57G1 name declarations at commit 85a83ae7ce64dc2123ff218568a4ecd37e566d33 that are not in this checkout or in the_symbol_game; their nodes are CONDITIONAL on that import and are not recorded as PROVED_LEAN. References without a prefix are paths in the_symbol_game at commit 7351ed452e518cb8cf2bf973d4c4881289084bce, as in the existing PG nodes.",
+  "records": [
+    {
+      "id": "TFQ-0417",
+      "name": "pregenesis-grammar",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0362",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0361"
+      ],
+      "summary": "The Pre-Genesis host grammar declares the inscription alphabet {<, >, a, b} and three public starts: ground_token (exactly <>), inscription (one balanced, non-nested bracketed inscription) and pre_genesis_regime (zero or more inscriptions between braces, where {} is host list notation and not the empty word). It keeps four states apart: absent input, the empty word, the literal token <> and the ground carrier that S(0) adopts. It has no event productions: the first event, supply(<>), is the Genesis boundary, and parsing a word admits no carrier, transition or observational operation.",
+      "obligation": "Parse Pre-Genesis words with the declared grammar only, refuse the empty word at every public start, and admit nothing by parsing; supply(<>) belongs to Genesis.",
+      "imports": [
+        "Declared host grammar pre_genesis.ebnf, a later host notation not tested by the model trials (assumption)"
+      ],
+      "fence": "A grammar verdict is a syntax check of host notation; it assigns no semantics to <> and does not decide whether an inscription is admitted.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the Pre-Genesis grammar; the grammar is checked in Python only"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust parser for pre_genesis.ebnf"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py",
+            "symbol": "validate_cases"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py",
+            "symbol": "test_four_state_separation"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf",
+          "lines": "14-19",
+          "quote": "Four states this grammar keeps apart"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf",
+          "lines": "26-28",
+          "quote": "There are no event productions. The first event, supply(\"<>\"), is the Genesis boundary"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "000_oepregen grammar/pre_genesis.ebnf lines 1-37; 30 conformance cases PG_001-PG_030"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0418",
+      "name": "no-transition-quiescence",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0417",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "If a regime's transition relation is empty, no state has a successor; that is the definition of an empty relation and needs no experiment. All three replies to Prompt 11 said no continuation is forced, so a move from <> to <a> has to come from outside: a caller supplies it, or a rule is added.",
+      "obligation": "Record that with no declared transition rule nothing follows from <>, and attribute any successor to an external supply or an added rule.",
+      "imports": [],
+      "fence": "True by definition of an empty relation; the trial replies are behaviour, not evidence for the definition.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "the Genesis counterpart is genesis_underivable in Derivation/Inertia.lean, recorded under Challenge 0"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of an empty transition relation"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of an empty transition relation"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "21-27",
+          "quote": "If a regime's transition relation is empty, no state has a successor."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "000_oepregen 03_results_and_arguments.md section 1 (statement 1, true by definition)"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0419",
+      "name": "successor-not-unique",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0418",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "The replies to the fixed Prompt 11 give at least two admissible continuations of <>: Trial 1 proposed no successor (quiescence) and Trial 2 proposed <> again under an added repetition rule, so |Adm(P_1)| ≥ 2 for that one prompt. The two replies rest on different proposed assumptions, so they show that the prompt did not prescribe a continuation, not that one fixed transition system has two successors. Primitive Difference plus the prompt does not determine a unique S_1; selecting a canonical next stage needs declared operations and a selection rule, such as a minimality order, a cost functional, a deterministic tie-breaker or retention of every tied minimal branch.",
+      "obligation": "Record the quiescent reply and the repetition reply to Prompt 11 as distinct admissible continuations under different assumptions, and select no canonical S_1 until the allowed operations and a selection rule are declared.",
+      "imports": [],
+      "fence": "Two replies from one unrecorded model witness underdetermination for one prompt; they are not two successors of one fixed transition system, and admissibility was judged by the analysis, not by a host checker.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement; the observation concerns two recorded replies, not a declared transition relation"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust check of the recorded Prompt 11 replies"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python check of the recorded Prompt 11 replies"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "658-676",
+          "quote": "It means the first transition is not canonical unless an additional selection principle is supplied."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "868-884",
+          "quote": "Primitive Difference plus the current prompt does not determine a unique (S_1)."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "45-52",
+          "quote": "they do not constitute two successors of one fixed transition system."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": null,
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0420",
+      "name": "repetition-needs-structure",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0419",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "To tell 'the inscription remains' from 'a second occurrence has been produced', a regime needs at least two stages or positions, an identity criterion across them, a copying or persistence rule and a stable alphabet: repetition is succession plus retained identity. Trial 2's proposed step <> → <> therefore already carries structure, the self-loop id_<> : <> → <>, and is not a free primitive. The first generated operation may then be identity, persistence or reproduction rather than a new payload such as <a>. The source labels this an analysis of what the word 'repeat' presupposes, not a proof.",
+      "obligation": "Treat a proposed repetition of <> as requiring declared positions, a cross-position identity criterion, a persistence rule and a stable alphabet, and record a self-loop as added structure, not as the absence of a step.",
+      "imports": [],
+      "fence": "Conceptual analysis with no proof; it does not show that repetition is the canonical first operation, and Genesis does not adopt a repetition rule from it.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the four presuppositions of repetition"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust model of positions, persistence or a repetition self-loop at Pre-Genesis"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python model of positions, persistence or a repetition self-loop at Pre-Genesis"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "888-921",
+          "quote": "repetition requires succession plus retained identity"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "54-60",
+          "quote": "A self-loop is already an operator."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": null,
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0421",
+      "name": "observational-equivalence",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "DEFINITION",
+      "parent_id": "TFQ-0362",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Relative to the family O_n of internal observations available at stage n, x ≈ₙ y holds exactly when o(x) = o(y) for every o in O_n, with equality taken in each observation's codomain. If O_n is empty, every pair is equivalent vacuously, so with no observations <a> ≈ₙ <ab>. This is regime-relative equivalence: it does not make the strings equal and does not install an equality operator inside the regime.",
+      "obligation": "Define x ≈ₙ y as agreement of every declared observation in O_n, and with O_n empty put all inscriptions in one class without asserting string equality or an internal equality rule.",
+      "imports": [
+        "A declared carrier of inscriptions and a declared family O_n of observations on it (assumption)"
+      ],
+      "fence": "The relation depends on the declared O_n and compares observation values in the metatheory; it is not literal string equality and does not say which observations a regime should have.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean",
+            "symbol": "SameProfile"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean",
+            "symbol": "empty_profiles_equal"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/rust/src/separability.rs"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/derivation/observe.py"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "107-116",
+          "quote": "If O is empty, every pair is equivalent."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "177-215",
+          "quote": "It should not be written as literal string equality."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "64-70",
+          "quote": "This is regime-relative equivalence, not string equality."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "000_genesis_19l57g1 paper.md section 4 definition; v1 Formalization B; 000_oepregen rewriting Definition 2.3"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0422",
+      "name": "presentation-not-expressive-lift",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "CONDITIONAL",
+      "parent_id": "TFQ-0421",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.",
+      "obligation": "Keep the presentation P and the internal quotient N as separate records, so that supplying <a> with O empty adds a presentation state and no internal class, and never infer x = y from q(x) = q(y).",
+      "imports": [
+        "Opaque identity convention: a state is what the regime can tell apart, so internal identity is the quotient by ≈ₙ (assumption)"
+      ],
+      "fence": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean",
+            "symbol": "empty_profiles_equal"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust record separating presentation state from internal class"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python record separating presentation state from internal class"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "110-135",
+          "quote": "Adding a glyph to the presentation does not necessarily increase the internal expressive power of the regime."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "925-975",
+          "quote": "map an inscription into the distinctions available to the internal regime."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "29-43",
+          "quote": "Supplying `<a>` after `<>` changes P and leaves O empty, so no new internal distinction is available."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "CONDITIONAL",
+        "source_status": "000_oepregen 03_results_and_arguments.md section 2 (statement 2, holds under one convention); v1 Derivation 3"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0423",
+      "name": "identity-convention-undecidable",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0422",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.",
+      "obligation": "Require a declared identity convention before answering whether a supplied inscription is a new state, and report the opaque and exact-inscription answers as separate branches until one is declared.",
+      "imports": [
+        "A declared identity convention, opaque or exact-inscription, chosen by the host (assumption)"
+      ],
+      "fence": "Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean statement of the opaque and exact-inscription identity conventions"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust switch between identity conventions"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python switch between identity conventions"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "731-737",
+          "quote": "without declaring either convention, the effect is undecidable."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "36-43",
+          "quote": "the question is undecidable until one convention is declared"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "43-53",
+          "quote": "Which is right depends on a convention nobody had declared"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "CONDITIONAL",
+        "source_status": "v1 Red round item 1 (conditional verdict); 000_oepregen 03_results_and_arguments.md section 2 and 02_trial_record.md Prompt 12"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0424",
+      "name": "absence-of-rule-not-identification",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0423",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "Asked whether the regime distinguishes <a> and <ab>, identifies them or cannot decide, Trial 1 answered that the current regime identifies them; the analysis corrects this, since the absence of a distinguishing rule does not imply identification. Formalization A: with no equality, equivalence or observation relation declared, neither <a> = <ab> nor <a> ≠ <ab> is internally derivable, and status(<a>, <ab>) = UNDECIDABLE. Formalization B is the separate definition ≈ₙ, under which an empty O_n gives <a> ≈ₙ <ab> vacuously. The reply 'identifies them' imported an identification relation unless B had been declared first, and the failure-mode chapter names it premature relation.",
+      "obligation": "Return UNDECIDABLE for the status of a pair when no equality, equivalence or observation relation is declared, and report ≈ₙ-equivalence only after O_n has been declared.",
+      "imports": [],
+      "fence": "A and B are two declared readings and no theorem chooses between them; vacuous ≈ₙ under B does not install an object-language equality rule.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean three-valued status for an undeclared relation; the vacuous case of formalization B is empty_profiles_equal in 000_pre_genesis_to_mssn/lean4/Observation.lean"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust UNDECIDABLE status for a pair with no declared relation"
+          }
+        ],
+        "python": [
+          {
+            "absent": "no Python UNDECIDABLE status for a pair with no declared relation"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "62-68",
+          "quote": "Lack of a distinguishing operation does not itself install an object-language equality rule."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "147-175",
+          "quote": "Formalization A: no relation has been declared"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "55-60",
+          "quote": "the absence of a distinguishing rule does not imply identification"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "v1 section 3 Formalization A (declared UNDECIDABLE status) beside Formalization B; 04_named_failure_modes.md premature relation"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0425",
+      "name": "forced-separation-lift-not-unique",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0424",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0365"
+      ],
+      "summary": "Suppose an external task requires <a> and <ab> to differ while the current regime has <a> ≈ₙ <ab>. Every operation f on the quotient S_n/≈ₙ gives f([<a>]) = f([<ab>]), so no operation on the current quotient answers the task on every input, and a refinement adding at least one observation o with o(<a>) ≠ o(<ab>) is forced; the analysis gives this as an argument with proof. The lift is not unique: under a supplied string decoder, 'payload has more than one position' and 'payload contains b' both separate <a> from <ab> but disagree on <aa> (true and false), and full inscription identity also separates the pair while carrying more than one bit. A canonical tower therefore needs a declared minimality or initiality policy, such as fewest new predicates, minimum description length, maximal preservation of old equivalences, a free or initial completion, or retention of every tied minimum branch.",
+      "obligation": "Refuse any answer to a separation task computed only from the collapsed quotient, require an added separating observation, and keep every tied separating predicate as a branch unless a declared minimality or initiality policy selects one.",
+      "imports": [
+        "Supplied string decoder for the payloads of <a>, <ab> and <aa>, used only by the non-uniqueness example (assumption)"
+      ],
+      "fence": "The Lean declarations cover the quotient barrier; the non-uniqueness of the lift rests on the two-predicate example, and no selection policy, fixed ladder of quotients or minimal multiplicity lift is derived.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "separation_not_on_quotient"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+            "symbol": "quotient_barrier"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean",
+            "symbol": "collapsed_quotient_barrier"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs",
+            "symbol": "factor"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
+            "symbol": "quotient_factor"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+            "symbol": "test_quotient_and_history_refuse_collapsed_answers"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+          "lines": "118-133",
+          "quote": "The proposition does not select that observation."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "283-305",
+          "quote": "The obstruction forces separation, but does not by itself uniquely force a particular separating structure."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "81-88",
+          "quote": "but f(`<aa>`) is true while g(`<aa>`) is false."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "000_oepregen 03_results_and_arguments.md section 5 (statement 5, argument with proof); 000_genesis_19l57g1 paper.md Proposition 1; Lean Paper000.separation_not_on_quotient"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0426",
+      "name": "replay-necessity",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "PROVED_LEAN",
+      "parent_id": "TFQ-0364",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0365",
+        "TFQ-0366"
+      ],
+      "summary": "Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last turn. If π(h₁) = π(h₂) but σ(h₁) ≠ σ(h₂), no auditor A that sees only π reports σ(h) for every h, because A(π(h₁)) = A(π(h₂)) would give σ(h₁) = σ(h₂). The trial failures motivate the theorem: the blind auditor flagged the licensed words 'We' (Trial 1) and 'rule' (Trial 2) as imports, so an audit needs two levels; in Trial 2, Prompt 14's false attribution was answered without objection, so claim provenance is a check separate from claim correctness, Result 15 lost the state, saying the regime contains only <> after <a> had been supplied; and the two-level auditor, shown only that turn, answered None. State certification therefore needs replay information that separates the relevant histories, and on a declared finite population a summary on which σ is constant per fiber of the view can stand in for the raw history.",
+      "obligation": "Reject any auditor that certifies the adopted state from a view π under which two admissible histories with different states coincide, and give it the replayed history or a summary on which σ is constant per fiber.",
+      "imports": [],
+      "fence": "The trial contrasts motivate the theorem and do not instantiate it: the truncated window and the full replay received different inputs, so they are not a checked pair with equal auditor views; raw history retention is a provenance policy, and task-sufficient reconstruction is the mathematical requirement.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "insufficient_history_view"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "no_factor_through_common_view"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs",
+            "symbol": "factor"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
+            "symbol": "history_auditor"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+            "symbol": "test_quotient_and_history_refuse_collapsed_answers"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "1009-1047",
+          "quote": "state certification requires replay information sufficient to distinguish relevant histories"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "100-106",
+          "quote": "no auditor A that sees only π can report the correct state for every history."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "101-111",
+          "quote": "the auditor saw only one turn, and one turn cannot show that the state had been lost."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "PROVED_LEAN",
+        "source_status": "000_oepregen 03_results_and_arguments.md section 6 (statement 6, theorem with proof); v1 Derivation 4; Lean Paper000.insufficient_history_view"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0427",
+      "name": "context-fidelity",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "OPEN_OBLIGATION",
+      "parent_id": "TFQ-0426",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
+      "obligation": "Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.",
+      "imports": [],
+      "fence": "A target statement and verifier requirement with no proof and no declared trace semantics; the replay certifiers listed check a claimed Genesis regime against its event history and do not define ValidTrace.",
+      "witnesses": {
+        "lean": [
+          {
+            "absent": "no Lean definition of ValidTrace or of the context-fidelity non-implication; Represented.replay_deterministic in 000_genesis_19l57g1/lean4/Derivation/Represented.lean shows only that replay is a function of the history"
+          }
+        ],
+        "rust": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs",
+            "symbol": "certifies"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
+            "symbol": "certify"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "1065-1087",
+          "quote": "local trace validity does not imply run validity."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md",
+          "lines": "127-134",
+          "quote": "and gives no proof; it is a requirement for a verifier"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "120-130",
+          "quote": "It is an information boundary."
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "OPEN",
+        "source_status": "v1 Derivation 5 (clean theorem target, no proof); 000_oepregen 03_results_and_arguments.md section 7 (statement 7)"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0428",
+      "name": "admission-before-distinction",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0364",
+      "pinned_parent": false,
+      "prerequisites": [
+        "TFQ-0363"
+      ],
+      "summary": "Given the corrected state, the full replay answered that the task of making <a> and <ab> internally distinguishable cannot be evaluated until <ab> is brought into the regime. The first addition can supply <ab> as data or write it into a rule pattern; the two are equally minimal and neither is uniquely forced. After Prompt 19 admitted <ab> beside <a> with no comparison, counting or matching, nothing in the regime reacts to them differently, so admission alone distinguishes nothing and no unique continuation is dictated. The requirement recorded is an order: the regime must admit inscriptions, retain them across turns and replay the current state before a separation task on them can be posed.",
+      "obligation": "Refuse to evaluate a separation task on a pair until both members are admitted, record supply as data and rule-pattern admission as tied first additions, and report an admitted pair with no declared operation as not separated.",
+      "imports": [],
+      "fence": "A recorded requirement drawn from model replies that no host checker evaluated; the two-flag Lean and Python models encode admission acts and separation by declaration and do not choose a first addition.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "single_admission_does_not_separate"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust two-flag admission model; Genesis admission events are step in 000_genesis_19l57g1/code/rust/src/admission.rs"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
+            "symbol": "single_admission_report"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md",
+          "lines": "605-609",
+          "quote": "it must be able to admit inscriptions, retain them across turns, and replay which inscriptions constitute the current state."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "132-149",
+          "quote": "Neither is uniquely forced."
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/curriculum/README.md",
+          "lines": "179-194",
+          "quote": "why admission alone distinguishes nothing"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": {
+        "status": "DEFINITION",
+        "source_status": "recorded requirement: 000_oepregen 02_trial_record.md Prompts 18 and 19; curriculum Lesson 8; v1 Trial 2 main result"
+      },
+      "terminal": false
+    },
+    {
+      "id": "TFQ-0429",
+      "name": "bundled-extension-refused",
+      "stage": "PREGENESIS",
+      "group": null,
+      "record_status": "SOURCE_RECORD",
+      "parent_id": "TFQ-0428",
+      "pinned_parent": false,
+      "prerequisites": [],
+      "summary": "For Prompt 15 the full replay offered four extensions that would separate <a> from <ab> (declarative distinctness, conditional deletion, insertion and substitution), with no new glyphs and no counting, and said none was unique. Prompt 18 then defined a one-step extension as one that adds exactly one primitive capability, and the reply refused all four as one-step; the failure-mode chapter records that each needed several undeclared capabilities, such as branching, matching and rewriting. The refusal ties to the spine of relations that the Trial 2 failures had pulled apart, mention → supply → designation → admission → retention → internal operation, and the analysis that draws it adds that not every arrow has yet been defined. In the declared two-flag admission model of Paper000.lean no single act (datum, form or instance) separates from the empty state, while form then instance does.",
+      "obligation": "Count the capabilities an extension adds against the six-operation spine, refuse to label it one-step when it adds more than one, and leave the undefined arrows of the spine undefined.",
+      "imports": [],
+      "fence": "A recorded refusal by one unrecorded model with no host check; the two-flag Lean model encodes form and instance by declaration and is not the Genesis minimum-cost theorem.",
+      "witnesses": {
+        "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "form_then_instance_separates"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
+            "symbol": "single_admission_does_not_separate"
+          }
+        ],
+        "rust": [
+          {
+            "absent": "no Rust count of the capabilities a proposed extension adds"
+          }
+        ],
+        "python": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
+            "symbol": "form_then_instance"
+          },
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+            "symbol": "test_admission_cost_and_pair_rounds"
+          }
+        ]
+      },
+      "sources": [
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "132-140",
+          "quote": "adds exactly one primitive capability"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/04_named_failure_modes.md",
+          "lines": "20",
+          "quote": "each needed several undeclared capabilities (branching, matching, rewriting)"
+        },
+        {
+          "root": "symbol_game",
+          "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
+          "lines": "151-159",
+          "quote": "Not every arrow has yet been defined, but the failures are forcing the"
+        }
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "dag": null,
+      "terminal": false
+    }
+  ]
+}

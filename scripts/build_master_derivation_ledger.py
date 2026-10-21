@@ -22,10 +22,12 @@ from src.qm.textbook_problems import build_qm_question_atlas
 
 
 def build_ledger() -> str:
-    # 1. Load 417 derivations from JSONL
+    # 1. Load every derivation record from JSONL
     jsonl_path = REPO_ROOT / "dag" / "theory_of_finite_qm.jsonl"
     with open(jsonl_path, "r", encoding="utf-8") as f:
         records = [json.loads(line) for line in f if line.strip()]
+    record_count = len(records)
+    last_id = max(r["id"] for r in records)
 
     # 2. Map file paths
     files = list(REPO_ROOT.glob("dag/derivations/**/*.md"))
@@ -151,7 +153,7 @@ def build_ledger() -> str:
         "",
         "---",
         "",
-        "## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-0416`)",
+        f"## 3. The Master Derivation Ledger Table (`TFQ-0000` through `{last_id}`)",
         "",
         "Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.",
         "",
@@ -264,7 +266,7 @@ def build_ledger() -> str:
         "## 6. Claim Hygiene Assessment",
         "",
         "### 6.1 What this Master Ledger Supports",
-        "- Complete, un-truncated mathematical cataloging of all 417 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).",
+        f"- Complete, un-truncated mathematical cataloging of all {record_count} derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).",
         "- Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.",
         "- Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.",
         "- Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.",
@@ -275,7 +277,7 @@ def build_ledger() -> str:
         "- Does not assert that passing computational and formal verification replaces experimental laboratory observation.",
         "",
         "### 6.3 The Narrowest Defensible Claim",
-        "Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains an unbroken, verified chain of 417 finite derivations from `<>` to quantum gravity whose structural invariants, boundaries, and witnesses are certified by Lean 4, Rust, and Python without sorry or un-scoped assumptions.",
+        f"Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of {record_count} finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.",
         "",
         "### 6.4 The Next Test Needed",
         "Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.",

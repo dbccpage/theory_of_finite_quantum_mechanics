@@ -315,7 +315,8 @@ def test_suite_5_ledger_397_nodes_witness_resolution() -> dict[str, list[str]]:
                     if not p.exists():
                         missing_paths.append(f"{node_id} (lean4): {clean_path}")
 
-    assert valid_nodes == 397, f"Expected 397 records, found {valid_nodes}"
+    expected = len(list((REPO_ROOT / "dag" / "derivations").rglob("tfq_*.md")))
+    assert valid_nodes == expected, f"Expected {expected} records (one per derivation paper), found {valid_nodes}"
     return {
         "missing_paths": missing_paths,
         "py_ast_errors": py_ast_errors,
@@ -401,7 +402,7 @@ def run_all_stress_tests() -> int:
     print("  -> Suite 4 PASSED: all 65 Lean4 witness files exist on disk and contain symbols.")
 
     # Suite 5
-    print("\n[Suite 5] Testing All 397 Nodes in dag/theory_of_finite_qm.jsonl for Path Resolution...")
+    print("\n[Suite 5] Testing All Records in dag/theory_of_finite_qm.jsonl for Path Resolution...")
     s5_res = test_suite_5_ledger_397_nodes_witness_resolution()
     if s5_res["missing_paths"] or s5_res["py_ast_errors"]:
         print(f"  FAILED: {len(s5_res['missing_paths'])} missing paths, {len(s5_res['py_ast_errors'])} AST errors")
@@ -410,7 +411,7 @@ def run_all_stress_tests() -> int:
         for err in s5_res["py_ast_errors"][:20]:
             print(f"    - AST error: {err}")
         return 1
-    print("  -> Suite 5 PASSED: all 397 nodes verified (zero missing paths, zero Python AST errors).")
+    print("  -> Suite 5 PASSED: every record verified (zero missing paths, zero Python AST errors).")
 
     # Suite 6
     print("\n[Suite 6] Testing Negative Control & Falsification Invariants...")

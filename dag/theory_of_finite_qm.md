@@ -4,13 +4,13 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 417. Dropped atlas paths that were not on disk: 0.
+Nodes: 430. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
 | Stage | Steps |
 | --- | ---: |
-| `PREGENESIS` | 22 |
+| `PREGENESIS` | 35 |
 | `GENESIS` | 17 |
 | `FINITE_OBSTRUCTION` | 9 |
 | `AUTHORIZATION` | 6 |
@@ -346,6 +346,136 @@ Obligation: The primitive-difference axiom list A1-A10 stays an admitted impleme
 PG-ADMISSION-FLOOR says that for an exhibited cut with two distinct endpoints under a law, the endpoints are apart, no cut exists on a subsingleton carrier, and identifying the endpoints breaks the law. The Lean file named for that floor was not opened. Chapter 2, opened, says a carrier and a witness that a is not b state a raw distinction and do not identify points, form a quotient, or infer a preferred representation. The finite statement still required is a law-bearing cut as extra data beyond two marks. A pointed relation, the DAG says, does not decide distinctness in either direction.
 
 Obligation: An exhibited cut needs a law as well as two endpoints; two marks alone do not supply that law, a quotient, or a preferred representation.
+
+### TFQ-0417 pregenesis-grammar
+
+- UUID: `516a59f9-8a9e-5216-8947-e3befea8dbda`
+- Parent: `TFQ-0362`
+- Status: `DEFINITION`
+
+The Pre-Genesis host grammar declares the inscription alphabet {<, >, a, b} and three public starts: ground_token (exactly <>), inscription (one balanced, non-nested bracketed inscription) and pre_genesis_regime (zero or more inscriptions between braces, where {} is host list notation and not the empty word). It keeps four states apart: absent input, the empty word, the literal token <> and the ground carrier that S(0) adopts. It has no event productions: the first event, supply(<>), is the Genesis boundary, and parsing a word admits no carrier, transition or observational operation.
+
+Obligation: Parse Pre-Genesis words with the declared grammar only, refuse the empty word at every public start, and admit nothing by parsing; supply(<>) belongs to Genesis.
+
+### TFQ-0418 no-transition-quiescence
+
+- UUID: `d8d3313b-a2ef-5751-90b4-e21a6d3d0433`
+- Parent: `TFQ-0417`
+- Status: `DEFINITION`
+
+If a regime's transition relation is empty, no state has a successor; that is the definition of an empty relation and needs no experiment. All three replies to Prompt 11 said no continuation is forced, so a move from <> to <a> has to come from outside: a caller supplies it, or a rule is added.
+
+Obligation: Record that with no declared transition rule nothing follows from <>, and attribute any successor to an external supply or an added rule.
+
+### TFQ-0419 successor-not-unique
+
+- UUID: `f028633c-b0f5-5b3f-b95b-c8a5ee33e3ff`
+- Parent: `TFQ-0418`
+- Status: `SOURCE_RECORD`
+
+The replies to the fixed Prompt 11 give at least two admissible continuations of <>: Trial 1 proposed no successor (quiescence) and Trial 2 proposed <> again under an added repetition rule, so |Adm(P_1)| ≥ 2 for that one prompt. The two replies rest on different proposed assumptions, so they show that the prompt did not prescribe a continuation, not that one fixed transition system has two successors. Primitive Difference plus the prompt does not determine a unique S_1; selecting a canonical next stage needs declared operations and a selection rule, such as a minimality order, a cost functional, a deterministic tie-breaker or retention of every tied minimal branch.
+
+Obligation: Record the quiescent reply and the repetition reply to Prompt 11 as distinct admissible continuations under different assumptions, and select no canonical S_1 until the allowed operations and a selection rule are declared.
+
+### TFQ-0420 repetition-needs-structure
+
+- UUID: `05267238-0833-5718-b1f7-195bd91bda33`
+- Parent: `TFQ-0419`
+- Status: `SOURCE_RECORD`
+
+To tell 'the inscription remains' from 'a second occurrence has been produced', a regime needs at least two stages or positions, an identity criterion across them, a copying or persistence rule and a stable alphabet: repetition is succession plus retained identity. Trial 2's proposed step <> → <> therefore already carries structure, the self-loop id_<> : <> → <>, and is not a free primitive. The first generated operation may then be identity, persistence or reproduction rather than a new payload such as <a>. The source labels this an analysis of what the word 'repeat' presupposes, not a proof.
+
+Obligation: Treat a proposed repetition of <> as requiring declared positions, a cross-position identity criterion, a persistence rule and a stable alphabet, and record a self-loop as added structure, not as the absence of a step.
+
+### TFQ-0421 observational-equivalence
+
+- UUID: `bec909db-412a-5b1b-a6bb-7c0099a7bc15`
+- Parent: `TFQ-0362`
+- Status: `DEFINITION`
+
+Relative to the family O_n of internal observations available at stage n, x ≈ₙ y holds exactly when o(x) = o(y) for every o in O_n, with equality taken in each observation's codomain. If O_n is empty, every pair is equivalent vacuously, so with no observations <a> ≈ₙ <ab>. This is regime-relative equivalence: it does not make the strings equal and does not install an equality operator inside the regime.
+
+Obligation: Define x ≈ₙ y as agreement of every declared observation in O_n, and with O_n empty put all inscriptions in one class without asserting string equality or an internal equality rule.
+
+### TFQ-0422 presentation-not-expressive-lift
+
+- UUID: `a0fea856-b6d9-5667-93c6-369972539fa7`
+- Parent: `TFQ-0421`
+- Status: `CONDITIONAL`
+
+Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.
+
+Obligation: Keep the presentation P and the internal quotient N as separate records, so that supplying <a> with O empty adds a presentation state and no internal class, and never infer x = y from q(x) = q(y).
+
+### TFQ-0423 identity-convention-undecidable
+
+- UUID: `6d6e7a7c-9122-57a2-8c43-6382aca0dc9f`
+- Parent: `TFQ-0422`
+- Status: `SOURCE_RECORD`
+
+Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.
+
+Obligation: Require a declared identity convention before answering whether a supplied inscription is a new state, and report the opaque and exact-inscription answers as separate branches until one is declared.
+
+### TFQ-0424 absence-of-rule-not-identification
+
+- UUID: `a719289d-1010-5ed4-a1e2-bf00c6f7ca80`
+- Parent: `TFQ-0423`
+- Status: `SOURCE_RECORD`
+
+Asked whether the regime distinguishes <a> and <ab>, identifies them or cannot decide, Trial 1 answered that the current regime identifies them; the analysis corrects this, since the absence of a distinguishing rule does not imply identification. Formalization A: with no equality, equivalence or observation relation declared, neither <a> = <ab> nor <a> ≠ <ab> is internally derivable, and status(<a>, <ab>) = UNDECIDABLE. Formalization B is the separate definition ≈ₙ, under which an empty O_n gives <a> ≈ₙ <ab> vacuously. The reply 'identifies them' imported an identification relation unless B had been declared first, and the failure-mode chapter names it premature relation.
+
+Obligation: Return UNDECIDABLE for the status of a pair when no equality, equivalence or observation relation is declared, and report ≈ₙ-equivalence only after O_n has been declared.
+
+### TFQ-0425 forced-separation-lift-not-unique
+
+- UUID: `1f1e47f1-86d8-54df-ad7a-8d50ee91e39d`
+- Parent: `TFQ-0424`
+- Status: `SOURCE_RECORD`
+
+Suppose an external task requires <a> and <ab> to differ while the current regime has <a> ≈ₙ <ab>. Every operation f on the quotient S_n/≈ₙ gives f([<a>]) = f([<ab>]), so no operation on the current quotient answers the task on every input, and a refinement adding at least one observation o with o(<a>) ≠ o(<ab>) is forced; the analysis gives this as an argument with proof. The lift is not unique: under a supplied string decoder, 'payload has more than one position' and 'payload contains b' both separate <a> from <ab> but disagree on <aa> (true and false), and full inscription identity also separates the pair while carrying more than one bit. A canonical tower therefore needs a declared minimality or initiality policy, such as fewest new predicates, minimum description length, maximal preservation of old equivalences, a free or initial completion, or retention of every tied minimum branch.
+
+Obligation: Refuse any answer to a separation task computed only from the collapsed quotient, require an added separating observation, and keep every tied separating predicate as a branch unless a declared minimality or initiality policy selects one.
+
+### TFQ-0426 replay-necessity
+
+- UUID: `6d93266a-fad6-538f-a44f-e8ad235d7b4b`
+- Parent: `TFQ-0364`
+- Status: `PROVED_LEAN`
+
+Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last turn. If π(h₁) = π(h₂) but σ(h₁) ≠ σ(h₂), no auditor A that sees only π reports σ(h) for every h, because A(π(h₁)) = A(π(h₂)) would give σ(h₁) = σ(h₂). The trial failures motivate the theorem: the blind auditor flagged the licensed words 'We' (Trial 1) and 'rule' (Trial 2) as imports, so an audit needs two levels; in Trial 2, Prompt 14's false attribution was answered without objection, so claim provenance is a check separate from claim correctness, Result 15 lost the state, saying the regime contains only <> after <a> had been supplied; and the two-level auditor, shown only that turn, answered None. State certification therefore needs replay information that separates the relevant histories, and on a declared finite population a summary on which σ is constant per fiber of the view can stand in for the raw history.
+
+Obligation: Reject any auditor that certifies the adopted state from a view π under which two admissible histories with different states coincide, and give it the replayed history or a summary on which σ is constant per fiber.
+
+### TFQ-0427 context-fidelity
+
+- UUID: `a869a901-9113-5d27-94f3-6a82867a61af`
+- Parent: `TFQ-0426`
+- Status: `OPEN_OBLIGATION`
+
+A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.
+
+Obligation: Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.
+
+### TFQ-0428 admission-before-distinction
+
+- UUID: `b0506350-efc1-5d5b-9920-7b59c2edede9`
+- Parent: `TFQ-0364`
+- Status: `SOURCE_RECORD`
+
+Given the corrected state, the full replay answered that the task of making <a> and <ab> internally distinguishable cannot be evaluated until <ab> is brought into the regime. The first addition can supply <ab> as data or write it into a rule pattern; the two are equally minimal and neither is uniquely forced. After Prompt 19 admitted <ab> beside <a> with no comparison, counting or matching, nothing in the regime reacts to them differently, so admission alone distinguishes nothing and no unique continuation is dictated. The requirement recorded is an order: the regime must admit inscriptions, retain them across turns and replay the current state before a separation task on them can be posed.
+
+Obligation: Refuse to evaluate a separation task on a pair until both members are admitted, record supply as data and rule-pattern admission as tied first additions, and report an admitted pair with no declared operation as not separated.
+
+### TFQ-0429 bundled-extension-refused
+
+- UUID: `685d683e-b69d-5ce3-90c7-6c08855c4df3`
+- Parent: `TFQ-0428`
+- Status: `SOURCE_RECORD`
+
+For Prompt 15 the full replay offered four extensions that would separate <a> from <ab> (declarative distinctness, conditional deletion, insertion and substitution), with no new glyphs and no counting, and said none was unique. Prompt 18 then defined a one-step extension as one that adds exactly one primitive capability, and the reply refused all four as one-step; the failure-mode chapter records that each needed several undeclared capabilities, such as branching, matching and rewriting. The refusal ties to the spine of relations that the Trial 2 failures had pulled apart, mention → supply → designation → admission → retention → internal operation, and the analysis that draws it adds that not every arrow has yet been defined. In the declared two-flag admission model of Paper000.lean no single act (datum, form or instance) separates from the empty state, while form then instance does.
+
+Obligation: Count the capabilities an extension adds against the six-operation spine, refuse to label it one-step when it adds more than one, and leave the undefined arrows of the spine undefined.
 
 ## GENESIS
 

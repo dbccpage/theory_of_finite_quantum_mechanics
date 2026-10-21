@@ -39,6 +39,8 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0365](tfq_0365_collapsed_observation_barrier.md)
+- [TFQ-0426](tfq_0426_replay_necessity.md)
+- [TFQ-0428](tfq_0428_admission_before_distinction.md)
 
 ---
 
