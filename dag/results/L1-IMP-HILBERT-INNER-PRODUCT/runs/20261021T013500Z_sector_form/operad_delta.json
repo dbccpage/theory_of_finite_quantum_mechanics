@@ -1,0 +1,1377 @@
+{
+  "schema_version": 2,
+  "namespace": "IP-SECTOR-FORM",
+  "records": [
+    {
+      "id": "IP-01",
+      "name": "Pairing, disjoint supports and sector additivity on the rational sector carrier",
+      "inputs": "Gram matrix G on Fin n -> Q; carrier vectors u, v, x, y",
+      "output_or_relation": "pair G x y = x . (G y) with pair G x x = qf G x (the Born carrier readout); DisjointSupport; SectorAdditive; the l1 sector weight is additive on disjoint supports; qf (u+v) expands into the two pairings; pair on unit vectors reads the entry",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.pair",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.pair_self",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.DisjointSupport",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.SectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.l1_disjoint_additive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_add_vec",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.mulVec_single_one'",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.pair_single_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.disjoint_single_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.single_ne_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-02",
+      "name": "Sector additivity forces an orthogonal sector basis",
+      "inputs": "Sector-additive G (symmetric for the entrywise statement)",
+      "output_or_relation": "G i j + G j i = 0 for i != j; a symmetric sector-additive G is diagonal; the readout of any sector-additive G is sum G i i * x i ^ 2 (the skew part is invisible)",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.transpose_entry",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.offdiag_eq_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_diagonal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_transpose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.symmPart",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.symmPart_transpose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.symmPart_apply",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_symmPart",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.sectorAdditive_symmPart",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-03",
+      "name": "Sector permutations, invariance and the generated group",
+      "inputs": "Sector permutations sigma, tau; a set S of permutations",
+      "output_or_relation": "permute sigma moves unit vectors forward; Invariant and TransitiveOn; Generated S is the group generated by S; invariance is closed under 1, products and inverses, so generators suffice",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.permute",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.Invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.TransitiveOn",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.Generated",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_one",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_mul",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_inv_left",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_inv_right",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.invariant_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.invariant_mul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.invariant_inv",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.invariant_of_generated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-04",
+      "name": "Transitive symmetry collapses the diagonal: the form is a scalar multiple of the identity",
+      "inputs": "Symmetric sector-additive G invariant under S with S (or Generated S) transitive; a sector i0",
+      "output_or_relation": "G i i is constant; G = G i0 i0 * 1; qf G x = c * (x . x); pair G x y = c * (x . y); c > 0 for a positive-definite readout",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.diag_eq_of_invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.eq_smul_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.eq_smul_one_generated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.qf_eq_scale_dot",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.pair_smul_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.pair_eq_scale_dot",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.scale_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-05",
+      "name": "Uniqueness and nonvacuity of the selected form",
+      "inputs": "Two selected forms G, G2; the standard form 1",
+      "output_or_relation": "Equal once one diagonal entry is matched; proportional in general; every diagonal form is sector additive; 1 is sector additive, invariant under every permutation and positive definite; the unit-normalised selected form is 1",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.unique_of_normalized",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unique_up_to_scale",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.pair_diagonal_eq_zero_of_disjoint",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diagonal_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.one_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.dot_permute",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.one_invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.one_posdef",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.eq_one_of_normalized",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-06",
+      "name": "Countermodels: each hypothesis is used",
+      "inputs": "diag(1,2) and 1 + (all ones) on two sectors; the swap",
+      "output_or_relation": "diag(1,2) is symmetric, positive definite and sector additive but not swap invariant and not scalar; 1 + (all ones) is symmetric, positive definite and invariant under the swap (which is transitive) but not sector additive and not scalar",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.SectorForm.diag12",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_transpose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_qf",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_posdef",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_not_invariant_swap",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.diag12_not_scalar",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_apply",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_transpose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_qf",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_posdef",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_swap_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.permute_swap_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.S₂",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.S₂_transitive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_not_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.SectorForm.unif12_not_scalar",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormUniqueness.lean",
+          "source_sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+          "receipt": "verification/s01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-07",
+      "name": "Hermitian sector additivity along the directions 1 and i",
+      "inputs": "Gaussian-rational H; sectors i != j",
+      "output_or_relation": "hf H (e_i s + e_j t) expands with the two cross terms; the real direction kills re(H i j + H j i), the imaginary direction kills im(H j i - H i j); a Hermitian sector-additive H has zero off-diagonal entries",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.HermitianSectorForm.DisjointSupport",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.SectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.disjoint_single_single",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.cross_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.hf_single_add_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.offdiag_re_add_re",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.offdiag_im_sub_im",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.offdiag_eq_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-08",
+      "name": "Hermitian permutations, generated group, diagonal collapse and the scalar form",
+      "inputs": "Hermitian sector-additive H invariant under S with Generated S transitive; a sector i0",
+      "output_or_relation": "Real diagonal constant on orbits; H = re(H i0 i0) * 1 (rational scalar); hf H x = re(H i0 i0) * vnorm x; the scale is positive for a positive-definite readout",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute_single",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.Invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.TransitiveOn",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.hf_single_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.diag_re_eq_of_invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.diag_re_const_of_transitive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.Generated",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute_one",
+          "axioms": [
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute_mul",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute_inv_left",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.permute_inv_right",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.invariant_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.invariant_mul",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.invariant_inv",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.invariant_of_generated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.diag_eq_of_hermitian_transitive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.eq_smul_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.eq_smul_one_generated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.single_ne_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.scale_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        }
+      ]
+    },
+    {
+      "id": "IP-09",
+      "name": "Hermitian uniqueness, nonvacuity and the two-direction control",
+      "inputs": "Two selected Hermitian forms; the identity; the matrix [[1, i], [-i, 1]]",
+      "output_or_relation": "Equal once normalised; 1 is sector additive, invariant and positive definite; [[1,i],[-i,1]] is Hermitian and additive on (e0, e1) along the real direction yet not sector additive, so the imaginary direction is needed",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Substitute only matching carrier types and supply every displayed binder; sector additivity and the symmetry set are hypotheses, not consequences; the scale is a unit choice.",
+      "proofs": [
+        {
+          "name": "InnerProductFable.HermitianSectorForm.unique_of_normalized",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.eq_one_of_normalized",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.normSq_add_of_disjoint",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.vnorm_add_of_disjoint",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.one_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.vnorm_permute",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.one_invariant",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.one_posdef",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_apply_00",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_apply_01",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_apply_10",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_apply_11",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_hermitian",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_real_direction_additive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        },
+        {
+          "name": "InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SectorFormHermitian.lean",
+          "source_sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+          "receipt": "verification/h01/receipt.json"
+        }
+      ]
+    }
+  ],
+  "formal_operad_claim": "Scoped typed operations with kernel-checked relations and exact receipts; no complete higher-arity operad is claimed.",
+  "authority_effect": "None"
+}
