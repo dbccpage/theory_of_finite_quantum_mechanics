@@ -1,5 +1,5 @@
 """Origin: dag/test_validate_derivation_dag.py
-Claim: derivation DAG checks reject cycles, bad vocabulary, and forbidden words, and the packaged graph reports zero failures
+Claim: derivation DAG checks reject cycles, bad vocabulary, forbidden words, malformed or unlinked TFQ records and stale views, and the packaged graph reports zero failures
 AuthorityEffect: None
 Scope Fence: this file does not claim that a recorded statement is true
 Level: L5
@@ -172,6 +172,113 @@ def test_pfp_review_file_and_sha256_are_checked(tmp_path: Path) -> None:
     assert any("file missing" in err for err in dag.check(_graph([gone], []), tmp_path))
 
 
+def _record(rid: str, parent: str | None, names: list[str], stage: str = "PREGENESIS") -> dict[str, object]:
+    return {
+        "coda_atlas_ids": [],
+        "coda_atlas_paths": [],
+        "existing_derivation_dag_ids": names,
+        "f004_refs": [],
+        "id": rid,
+        "lean4": [],
+        "local_id": rid,
+        "name": "step " + rid,
+        "obligation": "keep the step finite",
+        "parent_id": parent,
+        "python": [],
+        "record_status": "SOURCE_RECORD",
+        "rust": [],
+        "source_slice": "00",
+        "stage": stage,
+        "summary": "a finite step",
+        "uuid": "00000000-0000-0000-0000-000000000000",
+    }
+
+
+def _v2(records: list[dict[str, object]] | None = None) -> dict[str, object]:
+    nodes = [_node("a", "PREGENESIS", "ADMITTED_PRIMITIVE"), _node("b", "PREGENESIS")]
+    nodes[0]["source"] = []
+    return {
+        "schema_version": dag.SCHEMA_VERSION,
+        "stages": ["PREGENESIS"],
+        "index_document": {
+            "header_markdown": "# Tree\n\n",
+            "record_count_note": "No atlas paths dropped.",
+            "stage_index": ["PREGENESIS"],
+            "application_stages": [],
+            "coda_atlas_packages": {"heading": "Packages", "rows": [{"floor": "F0", "shelf": "S0", "package": "p", "path": "x/p"}]},
+            "source_corpus_restatements": [],
+        },
+        "nodes": nodes,
+        "routes": [_route("r", "b", ["a"])],
+        "records": records if records is not None else [_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0000", ["b", "R-b"])],
+    }
+
+
+def _write_views(graph: dict[str, object], folder: Path) -> None:
+    for path, data in dag.render_dag_views.views(graph, folder.parent).items():
+        (folder / path.name).write_bytes(data)
+
+
+def test_v2_records_and_views_pass(tmp_path: Path) -> None:
+    graph = _v2()
+    _write_views(graph, tmp_path)
+    assert dag.check(graph, None, tmp_path) == []
+    jsonl = (tmp_path / "theory_of_finite_qm.jsonl").read_bytes()
+    assert jsonl.count(b"\r\n") == 2 and b'"id": "TFQ-0001"' in jsonl
+    md = (tmp_path / "theory_of_finite_qm.md").read_text(encoding="utf-8")
+    assert "Nodes: 2. No atlas paths dropped." in md and "| `PREGENESIS` | 2 |" in md
+
+
+def test_v2_top_level_keys_are_checked() -> None:
+    old = {**_v2(), "schema_version": "derivation_dag.v1"}
+    assert any("is not derivation_dag.v2" in err for err in dag.check(old, None))
+    missing = _v2()
+    del missing["index_document"]
+    assert any("missing top-level keys ['index_document']" in err for err in dag.check(missing, None))
+    extra = {**_v2(), "notes": []}
+    assert any("unknown top-level keys ['notes']" in err for err in dag.check(extra, None))
+    bad_doc = _v2()
+    bad_doc["index_document"]["stage_index"] = ["NOPE"]  # type: ignore[index]
+    assert any("unknown stage NOPE" in err for err in dag.check(bad_doc, None))
+
+
+def test_v2_records_are_checked() -> None:
+    dup = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0000", None, ["b"])])
+    assert any("duplicate record id TFQ-0000" in err for err in dag.check(dup, None))
+    orphan = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0009", ["b"])])
+    assert any("parent_id TFQ-0009 is not another record" in err for err in dag.check(orphan, None))
+    cycle = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0002", ["b"]), _record("TFQ-0002", "TFQ-0001", ["b"])])
+    assert any("parent_id chain is a cycle" in err for err in dag.check(cycle, None))
+    nameless = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0000", ["b"]), _record("TFQ-0002", "TFQ-0000", ["R-b"])])
+    assert any("record TFQ-0002: names no DAG node" in err for err in dag.check(nameless, None))
+    unnamed = _v2([_record("TFQ-0000", None, ["a"])])
+    assert any("node b: named by no record" in err for err in dag.check(unnamed, None))
+    shape = _record("TFQ-01", "TFQ-0000", ["b"])
+    shape["extra"] = 1
+    shape["lean4"] = "x.lean"
+    errs = dag.check(_v2([_record("TFQ-0000", None, ["a"]), shape]), None)
+    assert any("id is not TFQ-NNNN" in err for err in errs)
+    assert any("unknown keys ['extra']" in err for err in errs)
+    assert any("field lean4 must be a list of strings" in err for err in errs)
+
+
+def test_v2_views_and_papers_are_checked(tmp_path: Path) -> None:
+    graph = _v2()
+    _write_views(graph, tmp_path)
+    (tmp_path / "theory_of_finite_qm.md").write_text("hand edit\n", encoding="utf-8")
+    assert any("view theory_of_finite_qm.md differs" in err for err in dag.check(graph, None, tmp_path))
+    (tmp_path / "theory_of_finite_qm.jsonl").unlink()
+    assert any("view theory_of_finite_qm.jsonl differs" in err for err in dag.check(graph, None, tmp_path))
+    root = tmp_path / "repo"
+    papers = root / "dag" / "derivations" / "01_pregenesis"
+    papers.mkdir(parents=True)
+    (root / "dag" / "derivation_dag.json").write_text("{}", encoding="utf-8")
+    (papers / "tfq_0000_root.md").write_text("# root\n", encoding="utf-8")
+    errs = dag.check(graph, root)
+    assert any("record TFQ-0001: no derivation paper" in err for err in errs)
+    assert not any("record TFQ-0000: no derivation paper" in err for err in errs)
+
+
 def test_packaged_graph_end_to_end() -> None:
     root = HERE.parent
     result = subprocess.run(
@@ -215,6 +322,18 @@ def test_mutation_kills_are_recorded() -> None:
             "if PFP_STATUS_RANK[status] > PFP_STATUS_RANK[prior]:",
             "if False and PFP_STATUS_RANK[status] > PFP_STATUS_RANK[prior]:",
         ),
+        "record_dup": ("if rid in seen_records:", "if False and rid in seen_records:"),
+        "record_parent": (
+            "if pid is not None and (pid not in seen_records or pid == rid):",
+            "if False and pid is not None and (pid not in seen_records or pid == rid):",
+        ),
+        "record_node": ("if not any(x in ids for x in dag_ids):", "if False and not any(x in ids for x in dag_ids):"),
+        "node_named": ("if node_id not in named:", "if False and node_id not in named:"),
+        "views": (
+            'if not path.is_file() or path.read_bytes() != text.encode("utf-8"):',
+            'if False and (not path.is_file() or path.read_bytes() != text.encode("utf-8")):',
+        ),
+        "paper": ('for r in records if _text(r, "id") not in papers]', "for r in records if False]"),
     }
     killed = 0
     for name, (old, new) in mutants.items():
@@ -224,12 +343,42 @@ def test_mutation_kills_are_recorded() -> None:
         if not _killed(module, name):
             raise AssertionError(name)
         killed += 1
-    assert killed == 4
-    assert "MutationKillCount: 4" in source
+    assert killed == 10
+    assert "MutationKillCount: 10" in source
+
+
+def _killed_v2(module: object, name: str) -> bool:
+    """A v2 mutant is killed when the check it disables no longer reports the defect."""
+    import tempfile
+
+    check = getattr(module, "check")
+    if name == "record_dup":
+        graph = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0000", None, ["b"])])
+        return not any("duplicate record id" in err for err in check(graph, None))
+    if name == "record_parent":
+        graph = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0009", ["b"])])
+        return not any("is not another record" in err for err in check(graph, None))
+    if name == "record_node":
+        graph = _v2([_record("TFQ-0000", None, ["a"]), _record("TFQ-0001", "TFQ-0000", ["b"]), _record("TFQ-0002", "TFQ-0000", ["x"])])
+        return not any("names no DAG node" in err for err in check(graph, None))
+    if name == "node_named":
+        return not any("named by no record" in err for err in check(_v2([_record("TFQ-0000", None, ["a"])]), None))
+    with tempfile.TemporaryDirectory() as folder:
+        root = Path(folder)
+        graph = _v2()
+        if name == "views":
+            _write_views(graph, root)
+            (root / "theory_of_finite_qm.md").write_text("hand edit\n", encoding="utf-8")
+            return not any("differs" in err for err in check(graph, None, root))
+        (root / "dag" / "derivations").mkdir(parents=True)
+        (root / "dag" / "derivation_dag.json").write_text("{}", encoding="utf-8")
+        return not any("no derivation paper" in err for err in check(graph, root))
 
 
 def _killed(module: object, name: str) -> bool:
     check = getattr(module, "check")
+    if name in ("record_dup", "record_parent", "record_node", "node_named", "views", "paper"):
+        return _killed_v2(module, name)
     if name == "cycle":
         nodes = [_node("a", "PREGENESIS", "ADMITTED_PRIMITIVE"), _node("b", "GENESIS")]
         nodes[0]["source"] = []
