@@ -33,10 +33,16 @@ try:
         verify_born_normalization,
     )
 except ImportError:
-    from qm_020_born_normalization_and_conditional_hilbert_lift_core import (
-        l1_to_l2_amplitude_lift,
-        verify_born_normalization,
-    )
+    try:
+        from qm.born_normalization import (
+            l1_to_l2_amplitude_lift,
+            verify_born_normalization,
+        )
+    except ImportError:
+        from src.qm.born_normalization import (
+            l1_to_l2_amplitude_lift,
+            verify_born_normalization,
+        )
 
 
 

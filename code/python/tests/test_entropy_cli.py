@@ -108,6 +108,22 @@ def test_end_to_end_cli_prints_half() -> None:
     assert collision_probability((Fraction(1, 3), Fraction(1, 3), Fraction(1, 3))) == Fraction(1, 3)
 
 
+def test_cli_returns_one_on_parity_mismatch(monkeypatch: pytest.MonkeyPatch) -> None:
+    import src.bin.entropy_cli as entropy_mod
+    def _raise_mismatch() -> Fraction:
+        raise ParityError("injected parity mismatch")
+    monkeypatch.setattr(entropy_mod, "parity_gap", _raise_mismatch)
+    assert entropy_mod.main() == 1
+
+
+def test_cli_returns_two_on_output_failure(monkeypatch: pytest.MonkeyPatch) -> None:
+    import builtins
+    def _failing_print(*args: object, **kwargs: object) -> None:
+        raise OSError("broken stdout pipe")
+    monkeypatch.setattr(builtins, "print", _failing_print)
+    assert main() == 2
+
+
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
     source = (root / "lean4" / "DerivationDagQMClosure.lean").read_text(encoding="utf-8")

@@ -135,7 +135,10 @@ def parity_gap() -> Fraction:
 
 
 def main() -> int:
-    gap = parity_gap()
+    try:
+        gap = parity_gap()
+    except ParityError:
+        return 1
     try:
         print(gap)
     except (OSError, ValueError):

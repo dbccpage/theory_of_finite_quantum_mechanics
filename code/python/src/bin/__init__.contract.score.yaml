@@ -6,7 +6,7 @@
     "AuthorityEffect": "None",
     "artifact": {
       "path": "code/python/src/bin/__init__.py",
-      "sha256": "2d5abfe22d052757a46ba84dbc71a2ce625b03a0c1a28fc987f9be1eda8e55fa"
+      "sha256": "08a0862f40f3d7f7392b45d59fbe535da8880a6fb7520bade710fc48ecb84202"
     },
     "claim": "urn:omega:fqm:bin:pythagorean-ray:v1",
     "profile": "Exact",
@@ -15,11 +15,11 @@
     "operations": {
       "ray_power_two": "None selects the named (3/5,4/5,0) ray. Otherwise require exactly three built-in Fraction/int values in a built-in tuple; return sum of squares exactly, including zero and signed amplitudes.",
       "bin_two_square": "On the declared ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.",
-      "main": "Print the fixed witness; return 0 for the expected value, 1 for a mismatch, and 2 for unavailable output. No stream is owned or closed by this function."
+      "main": "Print the fixed witness; return 0 for the expected value, 1 for a mismatch or BinWitnessError, and 2 for unavailable output. No stream is owned or closed by this function."
     },
     "engineering_policy": "Input numerator/denominator or integer components at most 1024 bits. Three inputs bound the number of rational operations; there is no vector allocation or input-controlled iteration.",
     "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
-    "failure_boundary": "BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Broken/closed stdout returns 2.",
+    "failure_boundary": "BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Catching BinWitnessError returns status 1; broken/closed stdout returns 2.",
     "cost_model": "A fixed number of rational operations; bit cost depends on the admitted 1024-bit components. Named fourth-degree work uses the fixed small fixture only.",
     "scope_ceiling": "No all-ray Born theorem, Lean extraction, floating approximation or hostile-code sandbox guarantee.",
     "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
@@ -43,7 +43,7 @@
       }
     ]
   },
-  "current_contract": "d09a2c19753ddac3c70b5193b8321102af04d006d64b00e126da56db3fe8e900",
+  "current_contract": "c54fddf1fe373dd3f33e83f2ce8f299636c0fba730e24989070a7c8710d02e54",
   "current_scoring": "657da92cecc3281b1fca0f8dd10b6f34d65245cee8673b7b04f595e7a73aa7ed",
   "contract_history": [
     {
@@ -629,6 +629,55 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/bin/__init__.py\",\n    \"sha256\": \"2d5abfe22d052757a46ba84dbc71a2ce625b03a0c1a28fc987f9be1eda8e55fa\"\n  },\n  \"claim\": \"urn:omega:fqm:bin:pythagorean-ray:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"library and entrypoint\",\n  \"purpose\": \"Bounded exact rational quadratic ray evaluator and named degree-four consistency witness.\",\n  \"operations\": {\n    \"ray_power_two\": \"None selects the named (3/5,4/5,0) ray. Otherwise require exactly three built-in Fraction/int values in a built-in tuple; return sum of squares exactly, including zero and signed amplitudes.\",\n    \"bin_two_square\": \"On the declared ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.\",\n    \"main\": \"Print the fixed witness; return 0 for the expected value, 1 for a mismatch, and 2 for unavailable output. No stream is owned or closed by this function.\"\n  },\n  \"engineering_policy\": \"Input numerator/denominator or integer components at most 1024 bits. Three inputs bound the number of rational operations; there is no vector allocation or input-controlled iteration.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Broken/closed stdout returns 2.\",\n  \"cost_model\": \"A fixed number of rational operations; bit cost depends on the admitted 1024-bit components. Named fourth-degree work uses the fixed small fixture only.\",\n  \"scope_ceiling\": \"No all-ray Born theorem, Lean extraction, floating approximation or hostile-code sandbox guarantee.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json\",\n      \"sha256\": \"b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
       "original_paths": [
         "code/python/src/bin/__init__.contract.score.yaml#bounded-production-and-checker-review/contract"
+      ]
+    },
+    {
+      "sha256": "c54fddf1fe373dd3f33e83f2ce8f299636c0fba730e24989070a7c8710d02e54",
+      "bytes": 2894,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/bin/__init__.py",
+          "sha256": "08a0862f40f3d7f7392b45d59fbe535da8880a6fb7520bade710fc48ecb84202"
+        },
+        "claim": "urn:omega:fqm:bin:pythagorean-ray:v1",
+        "profile": "Exact",
+        "role": "library and entrypoint",
+        "purpose": "Bounded exact rational quadratic ray evaluator and named degree-four consistency witness.",
+        "operations": {
+          "ray_power_two": "None selects the named (3/5,4/5,0) ray. Otherwise require exactly three built-in Fraction/int values in a built-in tuple; return sum of squares exactly, including zero and signed amplitudes.",
+          "bin_two_square": "On the declared ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.",
+          "main": "Print the fixed witness; return 0 for the expected value, 1 for a mismatch or BinWitnessError, and 2 for unavailable output. No stream is owned or closed by this function."
+        },
+        "engineering_policy": "Input numerator/denominator or integer components at most 1024 bits. Three inputs bound the number of rational operations; there is no vector allocation or input-controlled iteration.",
+        "policy_origin": "Declared engineering limits, not empirical measurements or derived physical constants.",
+        "failure_boundary": "BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Catching BinWitnessError returns status 1; broken/closed stdout returns 2.",
+        "cost_model": "A fixed number of rational operations; bit cost depends on the admitted 1024-bit components. Named fourth-degree work uses the fixed small fixture only.",
+        "scope_ceiling": "No all-ray Born theorem, Lean extraction, floating approximation or hostile-code sandbox guarantee.",
+        "trust": "Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Tests may deliberately supply binary floats only as rejection probes under SCORING.md.",
+        "evidence": [
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json",
+            "sha256": "b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json",
+            "sha256": "395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-baseline.log",
+            "sha256": "ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169"
+          },
+          {
+            "path": "evidence/quality/expanded_scope/batch2-atlas.log",
+            "sha256": "45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/bin/__init__.py\",\n    \"sha256\": \"08a0862f40f3d7f7392b45d59fbe535da8880a6fb7520bade710fc48ecb84202\"\n  },\n  \"claim\": \"urn:omega:fqm:bin:pythagorean-ray:v1\",\n  \"profile\": \"Exact\",\n  \"role\": \"library and entrypoint\",\n  \"purpose\": \"Bounded exact rational quadratic ray evaluator and named degree-four consistency witness.\",\n  \"operations\": {\n    \"ray_power_two\": \"None selects the named (3/5,4/5,0) ray. Otherwise require exactly three built-in Fraction/int values in a built-in tuple; return sum of squares exactly, including zero and signed amplitudes.\",\n    \"bin_two_square\": \"On the declared ray check P2=1, P4=337/625, P22=144/625 and P4=1-2*P22; return P2.\",\n    \"main\": \"Print the fixed witness; return 0 for the expected value, 1 for a mismatch or BinWitnessError, and 2 for unavailable output. No stream is owned or closed by this function.\"\n  },\n  \"engineering_policy\": \"Input numerator/denominator or integer components at most 1024 bits. Three inputs bound the number of rational operations; there is no vector allocation or input-controlled iteration.\",\n  \"policy_origin\": \"Declared engineering limits, not empirical measurements or derived physical constants.\",\n  \"failure_boundary\": \"BinWitnessError with invariant and scalar index for invalid arity/container/scalar or coefficient budget. Catching BinWitnessError returns status 1; broken/closed stdout returns 2.\",\n  \"cost_model\": \"A fixed number of rational operations; bit cost depends on the admitted 1024-bit components. Named fourth-degree work uses the fixed small fixture only.\",\n  \"scope_ceiling\": \"No all-ray Born theorem, Lean extraction, floating approximation or hostile-code sandbox guarantee.\",\n  \"trust\": \"Pinned CPython and providers in the challenge inputs. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Tests may deliberately supply binary floats only as rejection probes under SCORING.md.\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212330Z-entrypoints-challenge/receipt.json\",\n      \"sha256\": \"b7c426b9fb3b58c0f80ca3a6af8bbe82db83333f8046af728dcb10f22d684a49\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/20261020T212358Z-source-metrics/receipt.json\",\n      \"sha256\": \"395b619a318a5b519b9b2b11f24b7bc76ae1a373c3f2fb16220d13ad69b52d68\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-baseline.log\",\n      \"sha256\": \"ac4614164e22c790103ce4db5a662da099a1027b7b96a131e748f88b9a843169\"\n    },\n    {\n      \"path\": \"evidence/quality/expanded_scope/batch2-atlas.log\",\n      \"sha256\": \"45425bc105e799841cffa39d959410b2947cb7f8fb62879199a2fa95f302b7f3\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/bin/__init__.contract.score.yaml#repaired-allocation-and-cli-status/contract"
       ]
     }
   ],

@@ -332,9 +332,136 @@ def check():
         raise SystemExit(1)
 
 
+def export_v2(path_or_document):
+    """Deterministically export active assessment as a canonical SCORING.md v2.0.0 record."""
+    if isinstance(path_or_document, (str, Path)):
+        doc = load(canonical_path(path_or_document))
+    else:
+        doc = path_or_document
+    
+    scoring_id = doc.get("current_scoring")
+    if not scoring_id:
+        raise ValueError("Document has no current_scoring assessment")
+    
+    entry = next((e for e in doc.get("scoring_history", []) if e["sha256"] == scoring_id), None)
+    if not entry:
+        raise ValueError(f"Current scoring digest {scoring_id} not found in history")
+    
+    record = entry["record"]
+    contract = doc.get("contract") or {}
+    
+    art_path = doc.get("artifact") or record.get("artifact", {}).get("path")
+    if isinstance(art_path, dict):
+        rel_path = art_path.get("path", "")
+    else:
+        rel_path = str(art_path) if art_path else ""
+    
+    ext = Path(rel_path).suffix.lower()
+    lang_map = {
+        ".py": "Python",
+        ".rs": "Rust",
+        ".lean": "Lean 4",
+        ".sql": "SQL",
+        ".cs": "C#",
+        ".cpp": "C++",
+        ".cc": "C++",
+        ".cxx": "C++",
+        ".v": "Coq/Rocq",
+        ".wl": "WolframLanguage",
+        ".m": "WolframLanguage",
+    }
+    language = record.get("artifact", {}).get("language") or lang_map.get(ext, "Other")
+    
+    source_sha = record.get("artifact", {}).get("sha256")
+    if not source_sha and rel_path and (ROOT / rel_path).is_file():
+        source_sha = sha((ROOT / rel_path).read_bytes())
+    if not source_sha:
+        source_sha = "0" * 64
+    
+    profile = record.get("profile") or contract.get("profile", "Exact")
+    level = record.get("level", "L2")
+    gates_in = record.get("gates", {})
+    gates = {
+        "G1": gates_in.get("G1"),
+        "G2": gates_in.get("G2"),
+        "G3": gates_in.get("G3"),
+        "G4": gates_in.get("G4"),
+        "G5": gates_in.get("G5"),
+    }
+    
+    composite_grade = record.get("composite_grade")
+    score_token = record.get("score_token")
+    if score_token == "null":
+        score_token = None
+    is_complete = record.get("is_complete", False)
+    
+    grade_ceiling = record.get("grade_ceiling")
+    if not grade_ceiling:
+        assessed = [g for g in gates.values() if g is not None]
+        if assessed:
+            ranks = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4, "A+": 5}
+            grade_ceiling = min(assessed, key=lambda g: ranks.get(g, -1))
+        else:
+            grade_ceiling = "E"
+    
+    timestamp = record.get("evaluation_timestamp")
+    if not timestamp:
+        receipt_paths = [ev.get("path", "") for ev in record.get("evidence", []) if isinstance(ev, dict)]
+        for rp in receipt_paths:
+            m = re.search(r"(\d{8})T(\d{6})Z", rp)
+            if m:
+                d_str, t_str = m.group(1), m.group(2)
+                timestamp = f"{d_str[:4]}-{d_str[4:6]}-{d_str[6:8]}T{t_str[:2]}:{t_str[2:4]}:{t_str[4:6]}+00:00"
+                break
+        if not timestamp:
+            timestamp = "2026-10-20T22:00:00+00:00"
+    
+    v2 = {
+        "schema_version": "2.0.0",
+        "artifact": {
+            "path": rel_path,
+            "language": language,
+            "sha256": source_sha,
+        },
+        "profile": profile,
+        "level": level,
+        "gates": gates,
+        "composite_grade": composite_grade,
+        "score_token": score_token,
+        "is_complete": is_complete,
+        "grade_ceiling": grade_ceiling,
+        "evaluation_timestamp": timestamp,
+    }
+    
+    mutation = record.get("mutation_accounting")
+    if mutation:
+        v2["mutation_accounting"] = mutation
+    elif "mutation_outcomes" in record:
+        outcomes = record["mutation_outcomes"]
+        killed = outcomes.get("KILLED", outcomes.get("killed", 0))
+        survived = outcomes.get("SURVIVED", outcomes.get("survived", 0))
+        equiv = outcomes.get("EQUIVALENT", outcomes.get("demonstrably_equivalent", 0))
+        invalid = outcomes.get("INVALID", outcomes.get("invalid", 0))
+        inconc = outcomes.get("INCONCLUSIVE", outcomes.get("inconclusive", 0))
+        unrun = outcomes.get("UNRUN", outcomes.get("unrun", 0))
+        denom = killed + survived + inconc + unrun
+        ratio = (killed / denom) if denom > 0 else None
+        v2["mutation_accounting"] = {
+            "killed": killed,
+            "survived": survived,
+            "demonstrably_equivalent": equiv,
+            "invalid": invalid,
+            "inconclusive": inconc,
+            "unrun": unrun,
+            "conservative_ratio": ratio,
+        }
+    
+    return v2
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("migrate", "check", "read", "hash"))
+    parser.add_argument("command", choices=("migrate", "check", "read", "hash", "export-v2"))
     parser.add_argument("path", nargs="?")
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--sha256")
@@ -343,6 +470,10 @@ def main():
         migrate(args.apply)
     elif args.command == "check":
         check()
+    elif args.command == "export-v2":
+        if args.path is None:
+            parser.error("path is required")
+        print(json.dumps(export_v2(ROOT / args.path), indent=2))
     else:
         if args.path is None:
             parser.error("path is required")

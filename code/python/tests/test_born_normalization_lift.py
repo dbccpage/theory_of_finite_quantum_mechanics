@@ -4,8 +4,7 @@ Verifies:
 1. Pure L1 probability distribution converts to unit L2 Hilbert amplitude.
 2. Born rule normalization redundancy under phase variation.
 3. Exact rational purity calculation and consistency checks.
-4. Seamless import and evaluation parity across both `src.qm.born_normalization`
-   and `qm_020_born_normalization_and_conditional_hilbert_lift_core`.
+4. Seamless evaluation in `src.qm.born_normalization`.
 5. Property-based tests across higher-dimensional finite probability simplices
    with random phase profiles under Hypothesis.
 
@@ -21,28 +20,22 @@ import pytest
 
 from src.qm.born_normalization import (
     BornNormalizationError,
-    PaperEvaluator as QmPaperEvaluator,
+    PaperEvaluator,
     exact_born_purity,
     l1_to_l2_amplitude_lift,
     verify_born_normalization,
 )
-from src.qm_020_born_normalization_and_conditional_hilbert_lift_core import (
-    PaperEvaluator as CorePaperEvaluator,
-)
 
 
 def test_qm020_evaluators_pass():
-    """Verify both evaluator interfaces yield consistent passing certificates."""
-    ev1 = QmPaperEvaluator()
-    res1 = ev1.evaluate()
-    assert res1["paper_id"] == "qm_020_born_normalization_and_conditional_hilbert_lift"
-    assert res1["status"] == "EVALUATED_PASS"
-    assert res1["born_normalization"] is True
-    assert res1["exact_purity"] == Fraction(5, 8)
-
-    ev2 = CorePaperEvaluator()
-    res2 = ev2.evaluate()
-    assert res2 == res1
+    """Verify PaperEvaluator yields consistent passing certificates."""
+    ev = PaperEvaluator()
+    res = ev.evaluate()
+    assert res["paper_id"] == "qm_020_born_normalization_and_conditional_hilbert_lift"
+    assert res["status"] == "EVALUATED_PASS"
+    assert res["born_normalization"] is True
+    assert res["exact_purity"] == Fraction(5, 8)
+    assert pytest.approx(res["sample_l2_norm_sq"], 1e-9) == 1.0
 
 
 def test_l1_to_l2_amplitude_lift():

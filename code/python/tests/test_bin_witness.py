@@ -100,6 +100,30 @@ def test_end_to_end_cli_prints_one() -> None:
     assert stdout.getvalue() == "1\n"
 
 
+def test_cli_returns_one_on_witness_mismatch(monkeypatch: pytest.MonkeyPatch) -> None:
+    import src.bin as bin_mod
+    def _raise_mismatch() -> Fraction:
+        raise BinWitnessError("injected witness mismatch")
+    monkeypatch.setattr(bin_mod, "bin_two_square", _raise_mismatch)
+    assert bin_mod.main() == 1
+
+
+def test_cli_returns_two_on_output_failure(monkeypatch: pytest.MonkeyPatch) -> None:
+    import builtins
+    def _failing_print(*args: object, **kwargs: object) -> None:
+        raise OSError("broken stdout pipe")
+    monkeypatch.setattr(builtins, "print", _failing_print)
+    assert main() == 2
+
+
+def test_collect_avoids_vector_allocation() -> None:
+    from src.bin import _collect
+    amplitudes = (Fraction(3, 5), Fraction(4, 5), Fraction(0))
+    res = _collect(amplitudes)
+    assert res == (Fraction(3, 5), Fraction(4, 5), Fraction(0))
+    assert type(res) is tuple
+
+
 def test_origin_resolves_in_repo() -> None:
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "Origin: lean4/FiniteQM.lean theorem unit_sphere_pythagorean_ray_witness" in source

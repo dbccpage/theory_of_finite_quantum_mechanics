@@ -78,10 +78,11 @@ def _require_bits(value: int, index: int) -> None:
 
 
 def _collect(amplitudes: tuple[object, ...]) -> tuple[Fraction, Fraction, Fraction]:
-    collected: list[Fraction] = []
-    for index, value in enumerate(amplitudes):
-        collected.append(_require_amplitude(value, index))
-    return (collected[0], collected[1], collected[2])
+    return (
+        _require_amplitude(amplitudes[0], 0),
+        _require_amplitude(amplitudes[1], 1),
+        _require_amplitude(amplitudes[2], 2),
+    )
 
 
 def _parsed(amplitudes: object) -> tuple[Fraction, Fraction, Fraction]:
@@ -134,7 +135,10 @@ def bin_two_square() -> Fraction:
 
 
 def main() -> int:
-    value = bin_two_square()
+    try:
+        value = bin_two_square()
+    except BinWitnessError:
+        return 1
     try:
         print(value)
     except (OSError, ValueError):
