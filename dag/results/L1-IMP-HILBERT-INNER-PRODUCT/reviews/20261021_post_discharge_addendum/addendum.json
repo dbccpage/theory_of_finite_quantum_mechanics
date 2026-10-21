@@ -1,0 +1,35 @@
+{
+  "schema_id": "finite-qm.pfp.post-discharge-addendum.v1",
+  "authority_effect": "None",
+  "task_id": "L1-IMP-HILBERT-INNER-PRODUCT",
+  "added": "2026-10-21",
+  "rule": "Sealed run, review and operad files are not edited. This addendum points from the sealed record to the later artifact that changes how it is read.",
+  "items": [
+    {
+      "kind": "later_run_supersedes_operad_record",
+      "operad": "dag/operads/l1_imp_hilbert_inner_product.yaml",
+      "operad_merged_in_this_change": false,
+      "operad_sealed_by_batch_manifest": [
+        "dag/results/batches/20261019T232430Z_prompts_112_131/manifest.json"
+      ],
+      "index_latest_run_before": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261019T232430Z_staged",
+      "index_json_sealed_by_batch_manifest": [
+        "dag/results/batches/20261020T000351Z_prompts_132_151/manifest.json"
+      ],
+      "newer_runs": [
+        {
+          "run": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form",
+          "operad_delta": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/operad_delta.json",
+          "operad_delta_sha256": "27a3c405416000fefe54b78ac89c0f36db09ef895ec15e44cc905b056c8edaff",
+          "operad_namespace": "IP-SECTOR-FORM",
+          "operad_records": 9,
+          "claim_status": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/claim_status.json",
+          "claim_status_sha256": "23425ea7fa175342f2a1fa66f27925dd6ac878ff082e4fcb9a91a5e1513e2937",
+          "next_steps": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/next_steps.md",
+          "readme": "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md"
+        }
+      ],
+      "note": "The later Lean run(s) were never merged into the operad collection. The collection is sealed by a batch manifest and is not edited; this addendum is the pointer to the newer run(s). dag/operads/index.json is sealed by the manifest of batch 20261020T000351Z_prompts_132_151 and is not edited, so its latest_run field still names the run before the newer one."
+    }
+  ]
+}
