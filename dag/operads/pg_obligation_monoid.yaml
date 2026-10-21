@@ -3,19 +3,21 @@ node_id: PG-OBLIGATION-MONOID
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Genesis morphisms are meant to carry generated and discharged obligation vectors in the free
-    commutative monoid on obligation ids. Rust implements Obligations with empty/single/of/combine/count and ObligationError.
+  source_statement: Genesis morphisms are meant to carry generated and discharged obligation vectors in
+    the free commutative monoid on obligation ids. Rust implements Obligations with empty/single/of/combine/count
+    and ObligationError.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001 []
-  source_bottleneck: Mechanized for finite Genesis event traces and the commutative 3-counter obligation monoid.
+  declared_assumptions: []
+  source_bottleneck: Mechanized for finite Genesis event traces and the commutative 3-counter obligation
+    monoid.
   source_refs:
   - .claude/rules/authority/rl_gtla_rules_rubric.md:34-41
   - omega_engine_governance/contracts/contract_canonical_definitions/rust/omega_kernel/obligation.contract.yaml
   paper_refs:
   - dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
   paper_relocations:
@@ -99,13 +101,14 @@ relation_candidates:
 - kind: theorem
   name: traceObligation_append
   line: 39
-  signature_excerpt: "theorem traceObligation_append (xs ys : List PrimGenEvent) :\n    traceObligation (xs ++\
-    \ ys) = ObligationMonoid.add (traceObligation xs) (traceObligation ys)"
+  signature_excerpt: "theorem traceObligation_append (xs ys : List PrimGenEvent) :\n    traceObligation\
+    \ (xs ++ ys) = ObligationMonoid.add (traceObligation xs) (traceObligation ys)"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: declare_then_assert_cost_floor
   line: 52
@@ -115,7 +118,8 @@ relation_candidates:
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.traceObligation_append
   availability: local
@@ -172,44 +176,1403 @@ source_bindings:
   line: 209
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Obligation counters under pointwise sum are the free commutative monoid on the ids (cancellative,
+    not a group); the re-declared copy of the source four-event three-counter trace is a homomorphism
+    from event lists with total cost equal to length; in the abstract unbounded k-id model every successful
+    generate/discharge run from the empty ledger keeps discharged within generated and a discharge succeeds
+    exactly when it fits the outstanding count; Genesis events and S(n) maps being morphisms remains unproved.
+  colours:
+  - id: Count
+    meaning: Natural number, u64 in the Rust source
+  - id: EventList
+    meaning: List of GenesisEvent
+  - id: GenesisEvent
+    meaning: One of declareTerm, assertDiff, removeDiff, identifyTerms
+  - id: Ledger
+    meaning: Pair (generated, discharged) of vectors
+  - id: LedgerOrError
+    meaning: Ledger, NeverGenerated, OverDischarge or CountOverflow
+  - id: ObligationId
+    meaning: Index i in Fin k
+  - id: ObligationVector
+    meaning: Counter vector Fin k -> Nat (multiset)
+  - id: Unit
+    meaning: One-point colour used for the nullary operation empty
+  generators:
+  - id: empty
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::ObligationMonoid.zero (line 19; definition)
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations::empty (line 101; definition)
+    ordered_inputs:
+    - Unit
+    output: ObligationVector
+    semantic_predicate: 'Nullary: the all-zero counter vector (empty multiset), taken from the one-point
+      colour Unit.'
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 1
+    carrier: Unit
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: single
+    source_declarations:
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations::single (line 105) and of (line
+      109); definitions, a zero count gives the empty multiset
+    ordered_inputs:
+    - ObligationId
+    output: ObligationVector
+    semantic_predicate: Basis vector of one id (count 1).
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 1
+    carrier: ObligationId
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: combine
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::ObligationMonoid.add (line 21; definition)
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations::combine (line 118; definition
+      with checked_add, returns CountOverflow)
+    ordered_inputs:
+    - ObligationVector
+    - ObligationVector
+    output: ObligationVector
+    semantic_predicate: Pointwise sum; partial when a count would exceed the bound.
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 2
+    carrier: ObligationVector
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: event_obligation
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::eventObligation (line 29; definition, the table is data) over
+      PrimGenEvent (line 6; inductive)
+    ordered_inputs:
+    - GenesisEvent
+    output: ObligationVector
+    semantic_predicate: declare -> (1,0,0), assert -> (0,1,0), remove and identify -> (0,0,1).
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 1
+    carrier: GenesisEvent
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: trace_obligation
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::traceObligation (line 35; definition by recursion on the event
+      list)
+    ordered_inputs:
+    - EventList
+    output: ObligationVector
+    semantic_predicate: Sum of event vectors along the list.
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 1
+    carrier: EventList
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  - id: discharge
+    source_declarations:
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::ObligationLedger::discharge (line 189; definition)
+      with ObligationError (line 85)
+    ordered_inputs:
+    - Ledger
+    - ObligationId
+    - Count
+    output: LedgerOrError
+    semantic_predicate: Zero is a no-op; never-generated, then over-discharge, else add to discharged.
+    hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    arity: 3
+    carrier: Ledger
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+  relations:
+  - id: monoid_laws
+    source_declarations:
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::tests combine_is_commutative, combine_is_associative,
+      empty_is_the_identity (lines 313-340; Rust unit tests on fixed multisets, not a proof)
+    equation_or_predicate: (x+y)+z = x+(y+z); x+y = y+x; x+0 = x
+    typing_conditions: ObligationVector
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All k
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems combine_assoc, combine_comm, combine_empty (general
+      in k); native box tables
+    named_Lean_scope: &id001
+    - ObligationMonoid.combine_assoc
+    - ObligationMonoid.combine_comm
+    - ObligationMonoid.combine_empty
+    - ObligationMonoid.combine_cancel
+    - ObligationMonoid.no_inverse
+    - ObligationMonoid.lift_single
+    - ObligationMonoid.lift_unique
+    - ObligationMonoid.trace_append
+    - ObligationMonoid.trace_total
+    - ObligationMonoid.trace_terms
+    - ObligationMonoid.trace_assertions
+    - ObligationMonoid.trace_destructive
+    - ObligationMonoid.cost_floor
+    - ObligationMonoid.valid_fresh_order_blind
+    - ObligationMonoid.trace_swap
+    - ObligationMonoid.event_table_not_injective
+    - ObligationMonoid.combineB_assoc
+    - ObligationMonoid.discharge_valid
+    - ObligationMonoid.discharge_ok_iff
+    - ObligationMonoid.discharge_never_generated
+    - ObligationMonoid.over_discharge_needs_generated
+    - ObligationMonoid.run_valid
+    - ObligationMonoid.run_from_empty_valid
+    - ObligationMonoid.genB_valid
+    - ObligationMonoid.genB_none_iff
+    - ObligationMonoid.overdischarge_instance
+  - id: cancellative_not_group
+    source_declarations:
+    - no source declaration; the source says only "commutative monoid"
+    equation_or_predicate: x+z = y+z implies x = y; x != 0 implies x+y != 0
+    typing_conditions: ObligationVector
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All k
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems combine_cancel, no_inverse; native cancel_failures
+      = 0, invertible_nonzero = 0
+    named_Lean_scope: *id001
+  - id: free_commutative_monoid
+    source_declarations:
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations (line 65; doc comment "an element
+      of the free commutative monoid on obligation ids"; the claim is prose, no universal property is
+      stated)
+    equation_or_predicate: every additive map from ObligationVector to a commutative monoid is determined
+      by its values on single; lift exists
+    typing_conditions: Fin k ids, AddCommMonoid target
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All k, all commutative monoids
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel lift_unique; no native analogue beyond the box laws.
+    named_Lean_scope: *id001
+  - id: trace_append
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::traceObligation_append (line 39; general theorem over lists of
+      PrimGenEvent)
+    equation_or_predicate: trace(a ++ b) = trace(a) + trace(b); trace [] = 0
+    typing_conditions: EventList
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Lists of the four declared events
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel trace_append; native split tables.
+    named_Lean_scope: *id001
+  - id: cost_is_length
+    source_declarations:
+    - lean4/DerivationDagQMClosure.lean::declare_then_assert_cost_floor (line 52; hypothesis ValidFreshAssertionTrace
+      at line 49 is a pure counter condition, so the theorem is the arithmetic fact termsAdded + assertionsAdded
+      >= 2)
+    equation_or_predicate: sum of the three counters of trace l = length l; ValidFresh l implies length
+      l >= 2
+    typing_conditions: EventList
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Lists of the four declared events
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems trace_total, trace_terms, cost_floor, valid_fresh_order_blind;
+      native cost = length
+    named_Lean_scope: *id001
+  - id: order_and_identity_lost
+    source_declarations:
+    - no source declaration; new observation
+    equation_or_predicate: trace permutation-invariant; evOb removeDiff = evOb identifyTerms
+    typing_conditions: EventList, GenesisEvent
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Four declared events
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorems trace_swap, event_table_not_injective; native perm_trace_failures
+      = 0
+    named_Lean_scope: *id001
+  - id: bounded_partial_associativity
+    source_declarations:
+    - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations::combine (line 118; checked_add
+      refusal) and tests (no overflow test for associativity)
+    equation_or_predicate: 'combineB M is associative with identical definedness: both bracketings are
+      defined iff every coordinate sum x+y+z <= M'
+    typing_conditions: ObligationVector, bound M
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All k, all M
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel theorem combineB_assoc; native bounded tables
+    named_Lean_scope: *id001
+  - id: ledger_discharge_rule
+    source_declarations:
+    - 'omega_engine/crates_rs/omega_kernel/src/obligation.rs::ObligationLedger::discharge (line 189) and
+      LedgerWire validation (line 242); doc: discharged never exceeds generated'
+    equation_or_predicate: valid ledger and ok result imply valid ledger; ok iff c <= generated - discharged;
+      never-generated iff generated = 0 and c > 0
+    typing_conditions: Ledger, Fin k, Nat
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All k in Lean (unbounded); three ids with the u64 bound natively
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    latest_host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+    historical_evidence_annotation: Kernel discharge_ok_iff and run_valid; native traces with every error
+      kind.
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: combine
+    input_slot: 0
+    inner_operation: trace_obligation
+    colour_match: ObligationVector
+    hypothesis_match: Counters are natural numbers (u64 with checked addition in the Rust source); the
+      ledger model has the three ids A, B, C; Genesis events are the four declared events only. Fixed
+      contexts must agree across both operations. Formal universal refined-carrier closure is unpaid.
+    licensing_relations:
+    - trace_append
+    - monoid_laws
+    evidence_status: Kernel and native
+  identities:
+  - colour: Count
+    proposed_operation: id_Count
+    signature: Count -> Count
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: EventList
+    proposed_operation: id_EventList
+    signature: EventList -> EventList
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: GenesisEvent
+    proposed_operation: id_GenesisEvent
+    signature: GenesisEvent -> GenesisEvent
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Ledger
+    proposed_operation: id_Ledger
+    signature: Ledger -> Ledger
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: LedgerOrError
+    proposed_operation: id_LedgerOrError
+    signature: LedgerOrError -> LedgerOrError
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ObligationId
+    proposed_operation: id_ObligationId
+    signature: ObligationId -> ObligationId
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ObligationVector
+    proposed_operation: id_ObligationVector
+    signature: ObligationVector -> ObligationVector
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: Unit
+    proposed_operation: id_Unit
+    signature: Unit -> Unit
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id003
+  - Derive Genesis events and S(n) maps as morphisms into the obligation monoid (PG-GAP-EVENT-OBLIGATION).
+  - Relate the three-counter Lean monoid to the string-keyed Rust multiset.
+  - Execute the real omega_kernel ledger on the replayed traces.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - composition: event_obligation as a monoid morphism from Genesis events and S(n) maps
+    reason: Only list append of the four declared events is shown to map to combine; events of the Genesis
+      regime and S(n) maps are not defined here, and the table is copied data (TFQ-0342).
+  - composition: saturating total in place of checked combine
+    reason: Saturating addition is associative and commutative but not cancellative (native 20 failures
+      at cap 3); the source refuses it, and the checked combine returns CountOverflow instead.
+  - composition: declare_then_assert_cost_floor read as ordering declare before assert
+    reason: ValidFreshAssertionTrace counts occurrences only; the trace [assertDiff, declareTerm] satisfies
+      it.
+  - composition: discharge (slot 0) o combine
+    reason: 'Colour mismatch: the outer slot takes Ledger but the inner operation outputs ObligationVector;
+      composing needs a coercion or a partial-map convention that this presentation does not contain,
+      so it is not a checked graft.'
+    original_entry:
+      outer_operation: discharge
+      input_slot: 0
+      inner_operation: combine
+      colour_match: Ledger
+      hypothesis_match: Generation is combine on the generated vector; discharge reads the outstanding
+        count.
+      licensing_relations:
+      - ledger_discharge_rule
+      - bounded_partial_associativity
+      evidence_status: Kernel and native
+  counterexamples:
+  - id: assert_before_declare
+    statement: trace A D has valid_fresh true and declare_then_assert false.
+    scope: Source theorem name versus hypothesis.
+  - id: saturating_not_cancellative
+    statement: min(x+z, cap) = min(y+z, cap) with x != y occurs 20 times at cap 3.
+    scope: Alternative total operation.
+  - id: remove_identify_share_vector
+    statement: evOb removeDiff = evOb identifyTerms = (0,0,1) although the events differ.
+    scope: Four declared events.
+  - id: semantic_cancellation_fails_for_counters
+    kind: semantic_near_miss
+    rationale: Claim x + z = y + z does not imply x = y for counter vectors; it holds, and failure belongs
+      to saturating sums.
+    rejected_by: check_candidate
+  - id: semantic_counters_form_a_group
+    kind: semantic_near_miss
+    rationale: Claim nonzero counter vectors are invertible; an obligation count cannot be negative, so
+      the monoid is not a group.
+    rejected_by: check_candidate
+  - id: semantic_saturating_sum_is_cancellative
+    kind: semantic_near_miss
+    rationale: Treat the saturating total as cancellative; saturating sums are associative and commutative
+      but cancel only below the cap.
+    rejected_by: check_candidate
+  - id: semantic_overflow_hidden
+    kind: semantic_near_miss
+    rationale: Accept a generated count above 2^64-1 instead of reporting CountOverflow.
+    rejected_by: check_candidate
+  - id: semantic_bound_ignored
+    kind: semantic_near_miss
+    rationale: Count every pair as defined under the bound; pairs whose coordinate sum exceeds M are refused.
+    rejected_by: check_candidate
+  - id: semantic_discharge_of_ungenerated_is_ok
+    kind: semantic_near_miss
+    rationale: Let a positive discharge of a never-generated id succeed; the ledger refuses it.
+    rejected_by: check_candidate
+  - id: semantic_zero_discharge_is_an_error
+    kind: semantic_near_miss
+    rationale: Treat discharge of count zero as an error; the rule makes it a no-op even for a never-generated
+      id.
+    rejected_by: check_candidate
+  - id: semantic_over_discharge_reported_as_never_generated
+    kind: semantic_near_miss
+    rationale: 'Swap the two refusal kinds: over-discharge needs a positive generated count.'
+    rejected_by: check_candidate
+  - id: semantic_declare_then_assert_is_order_blind
+    kind: semantic_near_miss
+    rationale: Claim the trace A D declares before it asserts; the counter condition ValidFresh holds
+      but the order does not.
+    rejected_by: check_candidate
+  - id: semantic_removal_counted_as_declaration
+    kind: semantic_near_miss
+    rationale: 'Send the event removeDiff to the declare vector instead of the destructive one: a confusion
+      of the term counter and the destructive counter (the table sends removeDiff and identifyTerms to
+      the same destructive vector).'
+    rejected_by: check_candidate
+  - id: semantic_trace_is_order_sensitive
+    kind: semantic_near_miss
+    rationale: Claim the four-letter word has a single arrangement; the trace is invariant under all 24
+      permutations, which is why order is lost.
+    rejected_by: check_candidate
+  - id: semantic_bounded_combine_not_associative
+    kind: semantic_near_miss
+    rationale: Claim the bounded combine is defined for one bracketing and not the other on some triple;
+      both are defined exactly when every coordinate sum x+y+z is within the bound.
+    rejected_by: check_candidate
+  - id: semantic_saturating_sum_not_associative
+    kind: semantic_near_miss
+    rationale: Claim the saturating sum fails associativity; it is associative and commutative and fails
+      only cancellation.
+    rejected_by: check_candidate
+  - id: semantic_discharge_checked_against_generated
+    kind: semantic_near_miss
+    rationale: 'Check a discharge against the total generated count instead of the outstanding count:
+      g:A:2, d:A:2, d:A:1 would be accepted with discharged 3 > generated 2.'
+    rejected_by: check_candidate
+  - id: semantic_generation_at_the_bound_refused
+    kind: semantic_near_miss
+    rationale: Treat a generation that lands exactly on 2^64-1 as an overflow; only a count above the
+      bound is refused.
+    rejected_by: check_candidate
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Count, EventList, GenesisEvent, Ledger, LedgerOrError, ObligationId, ObligationVector, Unit
+    coefficient_ring: Exact integers and rationals
+    source_pins:
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+      sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+      sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+      sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+      sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+      sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+      sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+      sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+      sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+      sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+      sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    public_input:
+      cases:
+      - - laws
+        - 1
+        - 5
+      - - laws
+        - 2
+        - 3
+      - - laws
+        - 3
+        - 3
+      - - laws
+        - 3
+        - 4
+      - - bounded
+        - 1
+        - 6
+      - - bounded
+        - 2
+        - 5
+      - - bounded
+        - 3
+        - 3
+      - - saturating
+        - 3
+      - - saturating
+        - 6
+      - - events
+        - '-'
+      - - events
+        - D
+      - - events
+        - A
+      - - events
+        - R
+      - - events
+        - I
+      - - events
+        - DA
+      - - events
+        - AD
+      - - events
+        - DAR
+      - - events
+        - DARI
+      - - events
+        - RI
+      - - events
+        - IR
+      - - events
+        - DDAA
+      - - events
+        - ADDA
+      - - ledger
+        - '-'
+      - - ledger
+        - g:A:2,d:A:1,d:A:1
+      - - ledger
+        - g:A:2,g:B:1,d:A:2,d:B:1
+      - - ledger
+        - d:A:1
+      - - ledger
+        - d:A:0
+      - - ledger
+        - g:A:2,d:A:3
+      - - ledger
+        - g:A:2,d:A:2,d:A:1
+      - - ledger
+        - g:A:0,d:A:1
+      - - ledger
+        - g:C:18446744073709551615,g:C:1
+      - - ledger
+        - g:C:18446744073709551615,g:B:5,d:C:18446744073709551615
+      - - ledger
+        - g:A:18446744073709551615,d:A:18446744073709551615
+      - - ledger
+        - g:A:1,g:B:2,g:A:4,d:B:1,d:A:5,d:C:1,g:C:1
+    original_target: Genesis morphisms are meant to carry generated and discharged obligation vectors
+      in the free commutative monoid on obligation ids. Rust implements Obligations with empty/single/of/combine/count
+      and ObligationError.
+    source_scope_review: 'Read DerivationDagQMClosure.lean lines 6-56 (sha c9ad9c23a4) and obligation.rs
+      (sha 172ab7d7cb, matches the pin). The source Lean ObligationMonoid is a Nat triple with componentwise
+      add; traceObligation_append is a correct general list-append lemma. declare_then_assert_cost_floor
+      is the arithmetic fact that two counters >= 1 sum to >= 2: its hypothesis ValidFreshAssertionTrace
+      does not order declare before assert. The Rust Obligations is described as the free commutative
+      monoid in a doc comment only; no universal property is stated. The node states that Genesis morphisms
+      are meant to carry these vectors: this bundle proves the monoid facts, the free-monoid property,
+      the declared-event trace homomorphism and the ledger rule, and does not prove the Genesis/S(n) morphism
+      claim, as TFQ-0342 requires. Found: the monoid is cancellative and not a group (not a failure of
+      cancellation as one might fear), the saturating alternative fails cancellation, the event table
+      loses order and identifies two events.'
+    admitted_assumptions:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - Counters are natural numbers (u64 with checked addition in the Rust source); the ledger model has
+      the three ids A, B, C; Genesis events are the four declared events only.
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: empty
+      inputs:
+      - Unit
+      output: ObligationVector
+      semantic_predicate: 'Nullary: the all-zero counter vector (empty multiset), taken from the one-point
+        colour Unit.'
+    - catalog_id: single
+      inputs:
+      - ObligationId
+      output: ObligationVector
+      semantic_predicate: Basis vector of one id (count 1).
+    - catalog_id: combine
+      inputs:
+      - ObligationVector
+      - ObligationVector
+      output: ObligationVector
+      semantic_predicate: Pointwise sum; partial when a count would exceed the bound.
+    - catalog_id: event_obligation
+      inputs:
+      - GenesisEvent
+      output: ObligationVector
+      semantic_predicate: declare -> (1,0,0), assert -> (0,1,0), remove and identify -> (0,0,1).
+    - catalog_id: trace_obligation
+      inputs:
+      - EventList
+      output: ObligationVector
+      semantic_predicate: Sum of event vectors along the list.
+    - catalog_id: discharge
+      inputs:
+      - Ledger
+      - ObligationId
+      - Count
+      output: LedgerOrError
+      semantic_predicate: Zero is a no-op; never-generated, then over-discharge, else add to discharged.
+    composition_plan: *id002
+    tree:
+    - combine(trace_obligation(a), trace_obligation(b))
+    - discharge(combine(generated, v), id, c)
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: monoid_laws
+      source_declarations:
+      - omega_engine/crates_rs/omega_kernel/src/obligation.rs::tests combine_is_commutative, combine_is_associative,
+        empty_is_the_identity (lines 313-340; Rust unit tests on fixed multisets, not a proof)
+      equation_or_predicate: (x+y)+z = x+(y+z); x+y = y+x; x+0 = x
+      typing_conditions: ObligationVector
+      evidence_status: Kernel theorems combine_assoc, combine_comm, combine_empty (general in k); native
+        box tables
+      scope: All k
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: cancellative_not_group
+      source_declarations:
+      - no source declaration; the source says only "commutative monoid"
+      equation_or_predicate: x+z = y+z implies x = y; x != 0 implies x+y != 0
+      typing_conditions: ObligationVector
+      evidence_status: Kernel theorems combine_cancel, no_inverse; native cancel_failures = 0, invertible_nonzero
+        = 0
+      scope: All k
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: free_commutative_monoid
+      source_declarations:
+      - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations (line 65; doc comment "an element
+        of the free commutative monoid on obligation ids"; the claim is prose, no universal property is
+        stated)
+      equation_or_predicate: every additive map from ObligationVector to a commutative monoid is determined
+        by its values on single; lift exists
+      typing_conditions: Fin k ids, AddCommMonoid target
+      evidence_status: Kernel theorems lift_single, lift_unique
+      scope: All k, all commutative monoids
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: trace_append
+      source_declarations:
+      - lean4/DerivationDagQMClosure.lean::traceObligation_append (line 39; general theorem over lists
+        of PrimGenEvent)
+      equation_or_predicate: trace(a ++ b) = trace(a) + trace(b); trace [] = 0
+      typing_conditions: EventList
+      evidence_status: Kernel theorem trace_append (re-proved with a different proof); native split_failures
+        = 0
+      scope: Lists of the four declared events
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: cost_is_length
+      source_declarations:
+      - lean4/DerivationDagQMClosure.lean::declare_then_assert_cost_floor (line 52; hypothesis ValidFreshAssertionTrace
+        at line 49 is a pure counter condition, so the theorem is the arithmetic fact termsAdded + assertionsAdded
+        >= 2)
+      equation_or_predicate: sum of the three counters of trace l = length l; ValidFresh l implies length
+        l >= 2
+      typing_conditions: EventList
+      evidence_status: Kernel theorems trace_total, trace_terms, cost_floor, valid_fresh_order_blind;
+        native cost = length
+      scope: Lists of the four declared events
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: order_and_identity_lost
+      source_declarations:
+      - no source declaration; new observation
+      equation_or_predicate: trace permutation-invariant; evOb removeDiff = evOb identifyTerms
+      typing_conditions: EventList, GenesisEvent
+      evidence_status: Kernel theorems trace_swap, event_table_not_injective; native perm_trace_failures
+        = 0
+      scope: Four declared events
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: bounded_partial_associativity
+      source_declarations:
+      - omega_engine/crates_rs/omega_kernel/src/obligation.rs::Obligations::combine (line 118; checked_add
+        refusal) and tests (no overflow test for associativity)
+      equation_or_predicate: 'combineB M is associative with identical definedness: both bracketings are
+        defined iff every coordinate sum x+y+z <= M'
+      typing_conditions: ObligationVector, bound M
+      evidence_status: Kernel theorem combineB_assoc; native bounded tables
+      scope: All k, all M
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    - id: ledger_discharge_rule
+      source_declarations:
+      - 'omega_engine/crates_rs/omega_kernel/src/obligation.rs::ObligationLedger::discharge (line 189)
+        and LedgerWire validation (line 242); doc: discharged never exceeds generated'
+      equation_or_predicate: valid ledger and ok result imply valid ledger; ok iff c <= generated - discharged;
+        never-generated iff generated = 0 and c > 0
+      typing_conditions: Ledger, Fin k, Nat
+      evidence_status: Kernel theorems discharge_valid, discharge_ok_iff, discharge_never_generated, over_discharge_needs_generated
+        (one step), run_valid and run_from_empty_valid (whole traces, unbounded), genB_valid and genB_none_iff
+        (bounded generation); native ledger traces
+      scope: All k in Lean (unbounded); three ids with the u64 bound natively
+      source_pins:
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml
+        sha256: 89fcc600caac8b87d95fa38c7deb3760f89f486583bcefc6a499dc232b7101cb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_obligation_monoid.yaml
+        sha256: 1ba934d0c7843f819572be0d98bdac4c5a1a114d135b9ad0514ce20ecee01a1e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_kernel/src/obligation.rs
+        sha256: 172ab7d7cbb34961975bd4705468ed18021c7a2904dab3d109a3a872d0c65d5d
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md
+        sha256: 3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_obligation_monoid.py
+        sha256: 6fcbe58f117f0d8216653ac2ee9f4ad269152f151493cf82ed238be5ac9e55d0
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_obligation_monoid.py
+        sha256: e93278b3c1da28edb5530f71e32c271a0341fed8770202b0331484e2c3eec4f5
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_obligation_monoid.rs
+        sha256: c215092d11cd324caf1d9870048d3e3b656d2413c79c9b84aaa4debaa834a077
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_obligation_monoid_replay.rs
+        sha256: cf94ee3c07d95ae8f125264d7536757b4ff16d1858c42abfd9a662082ec38685
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/check_candidate.py
+        sha256: 1c662c921b2677ef84a68548a8f5cc9b519a33cf225c1b0c053ce66bcca42702
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/format_certificate.py
+        sha256: 0803e08539f3791f5e9e1d55ab8885c3859e9e8469da17a4c4c845deb9b82105
+    rejection_predicates:
+    - Counter-vector laws recomputed on positionally packed integers (vector sum = integer sum) rather
+      than coordinate tuples.
+    - 'Bounded combine counted by closed forms: a+b <= M has (M+1)(M+2)/2 solutions per coordinate, a+b+c
+      <= M has C(M+3,3).'
+    - Saturating cancellation failures cap(cap+1)(cap+2)/3 against brute force with a clamp-form operator.
+    - Event traces by str.count, ordering by regular expression D.*A, distinct permutations by the multinomial
+      coefficient.
+    - Ledger recomputed from generated and outstanding counts (producer tracks generated and discharged)
+      with exact big integers and the 2^64-1 bound.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    negative_control_plan: 'Coordinate mutants of every certificate leaf plus fifteen semantic near misses:
+      false cancellation failure, group claim, cancellative saturation, hidden overflow, bound ignored,
+      ungenerated discharge accepted, zero discharge as error, swapped refusal kinds, order-blind floor
+      read as ordered, removal counted as declaration, order-sensitive trace, non-associative bounded
+      combine, non-associative saturation, discharge checked against generated, generation at the bound
+      refused.'
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Counter-vector laws recomputed on positionally packed integers (vector sum = integer sum) rather
+      than coordinate tuples.
+    - 'Bounded combine counted by closed forms: a+b <= M has (M+1)(M+2)/2 solutions per coordinate, a+b+c
+      <= M has C(M+3,3).'
+    - Saturating cancellation failures cap(cap+1)(cap+2)/3 against brute force with a clamp-form operator.
+    - Event traces by str.count, ordering by regular expression D.*A, distinct permutations by the multinomial
+      coefficient.
+    - Ledger recomputed from generated and outstanding counts (producer tracks generated and discharged)
+      with exact big integers and the 2^64-1 bound.
+    - Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports.
+    anchors:
+    - ObligationMonoid.combine_assoc
+    - ObligationMonoid.combine_comm
+    - ObligationMonoid.combine_empty
+    - ObligationMonoid.combine_cancel
+    - ObligationMonoid.no_inverse
+    - ObligationMonoid.lift_single
+    - ObligationMonoid.lift_unique
+    - ObligationMonoid.trace_append
+    - ObligationMonoid.trace_total
+    - ObligationMonoid.trace_terms
+    - ObligationMonoid.trace_assertions
+    - ObligationMonoid.trace_destructive
+    - ObligationMonoid.cost_floor
+    - ObligationMonoid.valid_fresh_order_blind
+    - ObligationMonoid.trace_swap
+    - ObligationMonoid.event_table_not_injective
+    - ObligationMonoid.combineB_assoc
+    - ObligationMonoid.discharge_valid
+    - ObligationMonoid.discharge_ok_iff
+    - ObligationMonoid.discharge_never_generated
+    - ObligationMonoid.over_discharge_needs_generated
+    - ObligationMonoid.run_valid
+    - ObligationMonoid.run_from_empty_valid
+    - ObligationMonoid.genB_valid
+    - ObligationMonoid.genB_none_iff
+    - ObligationMonoid.overdischarge_instance
+    unpaid_imports:
+    - Derive Genesis events and S(n) maps as morphisms into the obligation monoid (PG-GAP-EVENT-OBLIGATION).
+    - Relate the three-counter Lean monoid to the string-keyed Rust multiset.
+    - Execute the real omega_kernel ledger on the replayed traces.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p5/host_check.json
+open_obligations: *id003
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/scope_review.json
+latest_run:
+  path: dag/results/PG-OBLIGATION-MONOID/runs/20261021T132245Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'Read DerivationDagQMClosure.lean lines 6-56 (sha c9ad9c23a4) and obligation.rs (sha 172ab7d7cb, matches
+  the pin). The source Lean ObligationMonoid is a Nat triple with componentwise add; traceObligation_append
+  is a correct general list-append lemma. declare_then_assert_cost_floor is the arithmetic fact that two
+  counters >= 1 sum to >= 2: its hypothesis ValidFreshAssertionTrace does not order declare before assert.
+  The Rust Obligations is described as the free commutative monoid in a doc comment only; no universal
+  property is stated. The node states that Genesis morphisms are meant to carry these vectors: this bundle
+  proves the monoid facts, the free-monoid property, the declared-event trace homomorphism and the ledger
+  rule, and does not prove the Genesis/S(n) morphism claim, as TFQ-0342 requires. Found: the monoid is
+  cancellative and not a group (not a failure of cancellation as one might fear), the saturating alternative
+  fails cancellation, the event table loses order and identifies two events.'
+- Mechanized for lists of the four declared events and counter vectors only; the declare_then_assert floor
+  is a counter inequality that does not order the events, the Lean trace is a re-declared copy of the
+  source table, and Genesis events and S(n) maps being monoid morphisms is not established (the original
+  wording of the node should be read as an intent, with the morphism claim left open).
+reviewed_target_qualification:
+  text: Mechanized for lists of the four declared events and counter vectors only; the declare_then_assert
+    floor is a counter inequality that does not order the events, the Lean trace is a re-declared copy
+    of the source table, and Genesis events and S(n) maps being monoid morphisms is not established (the
+    original wording of the node should be read as an intent, with the morphism claim left open).
+  status: corrected_or_qualified_scope
+  review: dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/scope_review.json
+latest_review:
+  path: dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/operad_delta.yaml
+  delivery_result: dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json

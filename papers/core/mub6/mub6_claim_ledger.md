@@ -454,7 +454,7 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 | `MUB6-DERIV-013` | ALIAS | - | `DS-QM090-092-AUTHORITY-FIREWALL` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | restated in trunk |
 | `MUB6-DERIV-014` | ALIAS | - | `DS-QM103-SHOW-THE-PACKET-PROTOCOL` | PROVED_LEAN | **DEFINITION** | restated in trunk |
 | `MUB6-DERIV-015` | ALIAS | - | `PG-WDP-DIAGNOSTIC-NOT-ROUTING` | PROVED_LEAN | **DEFINITION** | restated in trunk |
-| `MUB6-DERIV-016` | ALIAS | - | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | PROVED_LEAN | **PROVED_LEAN** | restated in trunk |
+| `MUB6-DERIV-016` | ALIAS | - | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` | PROVED_LEAN | **CONDITIONAL** | restated in trunk |
 | `MUB6-DERIV-017` | ALIAS | - | `L1-WDP-WITNESS-MASS` | PROVED_LEAN | **DEFINITION** | restated in trunk |
 | `MUB6-DERIV-018` | ALIAS | - | `DS-QM081-STOCHASTIC-L1-CONTRACTION` | PROVED_LEAN | **PROVED_LEAN** | restated in trunk |
 | `MUB6-DERIV-019` | ALIAS | - | `L1-QM121-LADDER-RUNGS-2-6` | PROVED_LEAN | **PROVED_LEAN** | restated in trunk |

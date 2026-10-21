@@ -1,0 +1,26 @@
+{
+  "task_id": "PG-ADMISSION-FLOOR",
+  "reviewed_finding": "Read PrimitiveAdmissionFloor.lean (sha df9d149bbd06, Core Lean, no Mathlib) and PointedRelation.lean (sha 2d36b5427b54): the cut theorems are general and correct (apartness, subsingleton refusal, identification) but the instance/law singleton theorems are stated only on Unit, and pointed_relation_independence is over Type u with the third clause needing irreflexivity. The local aggregate (DerivationDagQMClosure.lean line 1257) is a fixed enumeration. Re-proved all of them for arbitrary carriers and added: cut existence iff two distinct points, the exact converse of identification_breaks_law, and law-from-distinctness independence on every nontrivial carrier. The law is supplied: the node (as the DAG bottleneck says) does not derive it from <> or Real_0 and neither does this bundle.",
+  "claim_boundary": {
+    "supports": "Kernel-checked for arbitrary carriers: an exhibited cut has distinct endpoints, a cut exists on V iff V has two distinct points, no cut exists on a subsingleton, a map carrying the relation into an irreflexive target separates the endpoints and (sharper) such a target exists iff the map separates every related pair; instance-without-law and law-without-instance exist, and the three pointed-relation facts hold. Native: every relation on 0..4 points (65536 at n=4) tabulated by cut data, law, instance and the four related/equal quadrants, and every irreflexive relation, map and target on 1..3 points, all matching closed forms with zero exceptions.",
+    "does_not_support": "Deriving the law (irreflexivity) from the primitive difference <> or from Real_0: the relation and its law remain supplied data; any selection of a preferred cut or orientation (two orientations exist on two points); infinite carriers beyond the Lean statements; the arity-cost tie-breaker of the source (declared_arity_cost_selects is a decide on a priced toy, not used here); the aggregate local theorem pg_to_sn_and_wdp_route_chain_composition, which is a fixed enumeration.",
+    "narrowest_claim": "A law-bearing cut (an irreflexive relation with an exhibited pair) exists exactly on carriers with two distinct points, its endpoints are apart, and a map separates the endpoints of every cut it carries into an irreflexive target; the pair of marks alone does not supply the relation or its law.",
+    "next_test": "Replay the admission-floor model counts on 1..4 points with the declared Real_0 axiom list added as constraints and decide whether any declared axiom forces irreflexivity of the relation, i.e. whether the counts of relations with an exhibited pair but no law drop to zero."
+  },
+  "accepted": {
+    "attempt": "p1",
+    "host": "p2",
+    "failed_checkpoints": [],
+    "mutant_counts": {
+      "coordinate": 192,
+      "semantic": 7,
+      "semantic_controls": 1
+    }
+  },
+  "additional_scope_clarifications": {},
+  "reviewer": "one local researcher (author self-review). Separate checker code and native kernels do not constitute an independent author/model panel.",
+  "needs_second_reviewer": false,
+  "second_review": null,
+  "second_review_independent": false,
+  "authority_effect": "None"
+}

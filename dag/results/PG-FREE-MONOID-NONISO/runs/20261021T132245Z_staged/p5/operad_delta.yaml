@@ -1,0 +1,646 @@
+add_or_refine_generators:
+- id: free_monoid
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::WordIso
+    (line 200, structure on List A: the free monoid presented as lists)'
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::MonoidIso
+    (line 193, structure on List alpha)
+  ordered_inputs:
+  - Alphabet
+  output: FreeMonoid
+  semantic_predicate: Words over the alphabet with concatenation and the empty word.
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 1
+  carrier: Alphabet
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: atoms
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::unitAtom
+    (line 177) and ::word_atom_iff_singleton (line 180, general theorem)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::Indecomposable
+    (line 147) and ::indecomposable_iff (line 175, general theorem)
+  ordered_inputs:
+  - FreeMonoid
+  output: AtomSet
+  semantic_predicate: Nonidentity elements that are not a product of two nonidentity elements; exactly
+    the one-letter words.
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 1
+  carrier: FreeMonoid
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: monoid_iso
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::WordIso
+    (line 200, definition)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::MonoidIso
+    (line 193, definition)
+  ordered_inputs:
+  - FreeMonoid
+  - FreeMonoid
+  output: IsoSet
+  semantic_predicate: Multiplicative bijections with multiplicative inverse (a MulEquiv).
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 2
+  carrier: FreeMonoid
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: alphabet_bijection
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::word_iso_alphabet_bijection
+    (line 238, general theorem using Classical.choice)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::iso_letters
+    (line 235) and ::no_free_monoid_iso (line 353, general theorem)
+  ordered_inputs:
+  - IsoSet
+  output: AlphabetBijection
+  semantic_predicate: Restriction of an isomorphism to the atoms, read back as a bijection of alphabets.
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 1
+  carrier: IsoSet
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: discrete_category
+  source_declarations:
+  - 'omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::DiscreteEquiv
+    (line 373, definition: a pair of mutually inverse maps of objects, i.e. a bijection, by definition)'
+  ordered_inputs:
+  - Alphabet
+  output: DiscreteCategory
+  semantic_predicate: A category whose only morphisms are identities.
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 1
+  carrier: Alphabet
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: discrete_equivalence_objects
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::no_discrete_equivalence
+    (line 379, general theorem about the DiscreteEquiv structure)
+  ordered_inputs:
+  - DiscreteCategory
+  - DiscreteCategory
+  output: AlphabetBijection
+  semantic_predicate: An equivalence matches isomorphism classes bijectively; classes of a discrete category
+    are its objects.
+  hypotheses:
+  - Alphabets are arbitrary types in Lean and the finite sets {0..n-1} natively; the structure compared
+    is the multiplication of the free monoid (words with concatenation); an isomorphism is a multiplicative
+    bijection; a discrete category has only identity morphisms. Native homomorphism search is bounded
+    by image length d <= 2 and word length 2.
+  arity: 2
+  carrier: DiscreteCategory
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: atoms_are_letters
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::word_atom_iff_singleton
+    (line 180)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::indecomposable_iff
+    (line 175)
+  equation_or_predicate: x is an atom iff x = of a for a letter a
+  typing_conditions: FreeMonoid
+  evidence_status: Kernel theorem isAtom_iff; native atom counts
+  scope: Arbitrary alphabets
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: iso_preserves_atoms
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::word_iso_preserves_atoms
+    (line 214)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::iso_preserves_indecomp
+    (line 213)
+  equation_or_predicate: IsAtom (e x) iff IsAtom x for every monoid isomorphism e
+  typing_conditions: IsoSet x AtomSet
+  evidence_status: Kernel theorem isAtom_map_iff (any monoids); native bijective candidates are permutations
+  scope: Arbitrary monoids
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: iso_gives_alphabet_bijection
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean::word_iso_alphabet_bijection
+    (line 238)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::no_free_monoid_iso
+    (line 353)
+  equation_or_predicate: FreeMonoid a ~ FreeMonoid b (as monoids) iff a ~ b (as sets); hence n != m implies
+    no isomorphism
+  typing_conditions: IsoSet -> AlphabetBijection
+  evidence_status: 'Kernel theorems; native: bijective candidates are exactly the permutations on 15 pairs.'
+  scope: Arbitrary alphabets
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: discrete_equivalence_is_bijection
+  source_declarations:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean::no_discrete_equivalence
+    (line 379; its DiscreteEquiv is a bijection by definition, so the source statement is the pigeonhole
+    fact)
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py::discrete_categories_inequivalent
+    (returns left != right, a tautology)
+  equation_or_predicate: Discrete a ~ Discrete b (categorical equivalence) gives a ~ b; for Fin n, Fin
+    m it holds iff n = m
+  typing_conditions: DiscreteCategory x DiscreteCategory
+  evidence_status: Kernel theorems discrete_equivalence_card, discrete_equivalence_iff; native count of
+    mutually inverse pairs
+  scope: Arbitrary types; finite counts for Fin
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: set_bijection_but_not_iso
+  source_declarations:
+  - no source declaration; the paper (section 11.1) says decoders can map the strings onto the same natural
+    numbers without making the monoids identical
+  equation_or_predicate: FreeMonoid (Fin n) and FreeMonoid (Fin m) are in set bijection for n, m >= 1,
+    with n != m giving no multiplicative one
+  typing_conditions: FreeMonoid x FreeMonoid
+  evidence_status: Kernel theorem; native violation counts 841 and 609.
+  scope: n, m >= 1
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+- id: dag_local_theorem_is_vacuous
+  source_declarations:
+  - lean4/DerivationDagQMClosure.lean::pg_to_sn_and_wdp_route_chain_composition (line 1257, fixed arithmetic
+    about 1+1=2, a Fin 3 injectivity and two list literals; mentions neither monoids nor alphabets, vacuous)
+  equation_or_predicate: 'none: no content about free monoids'
+  typing_conditions: none
+  evidence_status: Reviewed as vacuous; no result is drawn from it
+  scope: Fixed arithmetic only
+  source_pins:
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/pregenesis_pg_free_monoid_noniso_proved_lean.yaml
+    sha256: 49e778255a4f18ae4f02f88beb70ceac2575240fa3db0d3e856345b5a1e9fb70
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/pg_free_monoid_noniso.yaml
+    sha256: 7770a41980d323ad78ca5fbc1b853cc6076bef43fbeadf294aca8192769970e6
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+    sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
+    sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md
+    sha256: 5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md
+    sha256: 8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_free_monoid_noniso.py
+    sha256: 754c99609eb71b8055fc0224a1440ffd3205404ae47102d1197c66bbd58b0af2
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_free_monoid_noniso.py
+    sha256: ffdd3904203f6c08f4bc5747d6d85c9f728bcbb648aa3706a311cf760ae1ca82
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_free_monoid_noniso.rs
+    sha256: 8a07a997dba18017ef1a5b147fb976130b89a28928321421d340c10a0f058350
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_free_monoid_noniso_replay.rs
+    sha256: 0b2e3540f96a33c2925c0b105fe2e6b8687971576020c7946c399b96080d381c
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: dcdc1caf103bcfd648f049667c3f59dc85ec29b9d5f2cf244bc3e7f181686ee9
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 7aaa04d47b61168d8aad9642a9c59d5ce4ce1d8512c83112234f1047adae3a78
+  latest_host_check: dag/results/PG-FREE-MONOID-NONISO/runs/20261021T132245Z_staged/p2/host_check.json
+checked_compositions:
+- outer_operation: alphabet_bijection
+  input_slot: 0
+  inner_operation: monoid_iso
+  colour_match: IsoSet
+  hypothesis_match: The isomorphism restricts to the atoms of both sides; atoms are the letters.
+  licensing_relations:
+  - atoms_are_letters
+  - iso_preserves_atoms
+  evidence_status: Kernel and native
+- outer_operation: discrete_equivalence_objects
+  input_slot: 0
+  inner_operation: discrete_category
+  colour_match: DiscreteCategory
+  hypothesis_match: Isomorphism classes of a discrete category are its objects.
+  licensing_relations:
+  - discrete_equivalence_is_bijection
+  evidence_status: Kernel and native
+failed_compositions:
+- composition: monoid_iso(free_monoid(Fin n), free_monoid(Fin m)) for n != m
+  reason: Empty (kernel no_free_monoid_iso); no isomorphism exists although the underlying sets are in
+    bijection for n, m >= 1.
+- composition: a numeral or alphabet re-presentation read as an isomorphism of the free monoids
+  reason: Fails for different alphabet sizes; the shortlex re-presentation is a set bijection that fails
+    multiplicativity on 841 of the 900 pairs of the first 30 words for sizes 2 and 3 (native homomorphism_violations;
+    the 59 passing pairs involve the empty word).
+counterexamples:
+- id: bijection_not_homomorphism
+  statement: For sizes 2 and 3 the shortlex-rank bijection of the underlying sets is a bijection on the
+    first 30 words but fails multiplicativity on 841 of 900 pairs.
+  scope: Native instance; Lean bijection_but_not_isomorphic states the general fact.
+- id: collapsing_surjection
+  statement: Homomorphisms from three generators onto two letters (36 of them with images of length at
+    most 2 are onto the letters) identify two generators and are never injective.
+  scope: Native instance (3,2,2).
+- id: semantic_set_bijection_read_as_isomorphism
+  kind: semantic_near_miss
+  rationale: Read the explicit shortlex bijection of the underlying sets of Fin 2 and Fin 3 words as multiplicative;
+    it fails on 841 of 900 pairs.
+  rejected_by: check_candidate
+- id: semantic_different_alphabets_different_sets
+  kind: semantic_near_miss
+  rationale: Claim the underlying sets differ in cardinality, so non-isomorphism is a cardinality fact;
+    both are countably infinite and the shortlex map is a bijection.
+  rejected_by: check_candidate
+- id: semantic_collapsing_surjection_read_as_bijection
+  kind: semantic_near_miss
+  rationale: Count homomorphisms from three generators onto two letters as bijective; they identify two
+    generators and are not injective.
+  rejected_by: check_candidate
+- id: semantic_longer_words_are_atoms
+  kind: semantic_near_miss
+  rationale: Claim some words of length two are indecomposable; the atoms are exactly the one-letter words.
+  rejected_by: check_candidate
+- id: semantic_discrete_equivalence_between_unequal_sizes
+  kind: semantic_near_miss
+  rationale: Claim discrete categories on 2 and 3 objects are equivalent; an equivalence of discrete categories
+    is a bijection of objects.
+  rejected_by: check_candidate
+- id: semantic_trivial_monoid_isomorphic_to_one_generator
+  kind: semantic_near_miss
+  rationale: Claim the free monoid on the empty alphabet (one element) is isomorphic to the free monoid
+    on one letter (countably infinite).
+  rejected_by: check_candidate
+- id: semantic_unique_isomorphism_for_equal_sizes
+  kind: semantic_near_miss
+  rationale: Claim equal alphabets give a unique isomorphism; every permutation of the 3 letters gives
+    one (6 of them).
+  rejected_by: check_candidate
+- id: semantic_words_by_length_ignore_alphabet
+  kind: semantic_near_miss
+  rationale: Report the word counts by length of the 2-letter alphabet for a 3-letter one, hiding that
+    the counts differ.
+  rejected_by: check_candidate
+open_obligations:
+- Classification of structure-preserving re-presentations (injective and onto homomorphisms between free
+  monoids on different alphabets).
+- Language restriction, partial recovery and total erasure (row WDP-P001-009).
+- Any structure other than the free-monoid multiplication and the discrete category.

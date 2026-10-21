@@ -1,0 +1,548 @@
+add_or_refine_generators:
+- id: restrict_window
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::edgeResidualL1 (line 74), wdp_growth_subcomplex_monotone (line
+    78): list of naturals, appending to a list; not a window restriction'
+  ordered_inputs:
+  - Window
+  output: Window
+  semantic_predicate: Keep an edge subset with cochain values, weights and the 2-cells supported inside;
+    vertices unchanged.
+  hypotheses:
+  - Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows and cochain; restriction
+    keeps a set of edges with their cochain values, weights not increased, and the 2-cells supported inside;
+    attachment adds rows with d1 d0 = 0.
+  arity: 1
+  carrier: Window
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: attach_two_cell
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::SimplicialComplex2D (line 86), attachTwoSimplex (line 90): record
+    update that does not touch edgeResiduals'
+  ordered_inputs:
+  - Window
+  - Row
+  output: Window
+  semantic_predicate: Append one row to d1; legal exactly when row . d0 = 0.
+  hypotheses:
+  - Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows and cochain; restriction
+    keeps a set of edges with their cochain values, weights not increased, and the 2-cells supported inside;
+    attachment adds rows with d1 d0 = 0.
+  arity: 2
+  carrier: Window
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: edit_cochain_or_weights
+  source_declarations:
+  - no source declaration; the paper clause of WDP-CH04-N02 names these routes in prose
+  ordered_inputs:
+  - Window
+  - CochainOrWeights
+  output: Window
+  semantic_predicate: Replace h or w on the same graph.
+  hypotheses:
+  - Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows and cochain; restriction
+    keeps a set of edges with their cochain values, weights not increased, and the 2-cells supported inside;
+    attachment adds rows with d1 d0 = 0.
+  arity: 2
+  carrier: Window
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: phi1
+  source_declarations:
+  - 'code/rust/src/wdp/obstruction.rs::solve_exact_potential_weighted (line 142): Rust LP; the source
+    Lean has no definition of Phi1 for these theorems'
+  ordered_inputs:
+  - Window
+  output: Phi1
+  semantic_predicate: Attained minimum over potentials of the weighted L1 residual.
+  hypotheses:
+  - Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows and cochain; restriction
+    keeps a set of edges with their cochain values, weights not increased, and the 2-cells supported inside;
+    attachment adds rows with d1 d0 = 0.
+  arity: 1
+  carrier: Window
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: gamma2
+  source_declarations:
+  - code/rust/src/wdp/primitive_axiomatics.rs::compute_triad_signature (line 207)
+  ordered_inputs:
+  - Window
+  output: Gamma2
+  semantic_predicate: L1 norm of d1 h.
+  hypotheses:
+  - Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows and cochain; restriction
+    keeps a set of edges with their cochain values, weights not increased, and the 2-cells supported inside;
+    attachment adds rows with d1 d0 = 0.
+  arity: 1
+  carrier: Window
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: restriction_monotone
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::wdp_growth_subcomplex_monotone (line 78): general theorem, but
+    about a sum of naturals appended to a list, i.e. an upper bound for Phi1, not Phi1'
+  equation_or_predicate: hcompat, h restricts, w_sub <= w  implies  Phi1(sub) <= Phi1(big)
+  typing_conditions: Window, Window with an edge embedding
+  evidence_status: 'Kernel theorem plus the certificate itself: all 63 edge subsets of K4 for one cochain,
+    each with primal and dual witnesses (the Python unit test also covers 243 cochains).'
+  scope: Finite index types over Q
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: attachment_preserves_phi1
+  source_declarations:
+  - 'lean4/DerivationDagQMClosure.lean::wdp_two_simplex_attachment_preserves_phi1 (line 93): proved by
+    rfl because the record update leaves edgeResiduals alone (vacuous)'
+  equation_or_predicate: Phi1(attach W row) = Phi1(W)
+  typing_conditions: Window, Row
+  evidence_status: Definitional in Lean (the source one is rfl too); native rows show Phi1 equal and Gamma2
+    up.
+  scope: Finite index types over Q
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: attachment_raises_gamma2_only
+  source_declarations:
+  - no source declaration; new general theorem
+  equation_or_predicate: Gamma2(attach W row) = Gamma2(W) + |row . h| >= Gamma2(W)
+  typing_conditions: Window, Row
+  evidence_status: Kernel theorems gamma2_attach, gamma2_attach_ge, closed_attach; native table
+  scope: Finite index types over Q
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: gamma2_at_minimal_residual
+  source_declarations:
+  - 'external omega_wdp run.rs lines 169-171 (not bound): Gamma2 is the norm of d1 at the SAME minimal
+    residual; no Lean source'
+  equation_or_predicate: d1 d0 = 0 implies ||d1 (h - d0 x)||_1 = ||d1 h||_1 for every potential x, in
+    particular at a minimal residual
+  typing_conditions: Closed window
+  evidence_status: Kernel theorem gamma2_repair; native test over all pairs
+  scope: Finite index types over Q
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: triangle_row_cocycle
+  source_declarations:
+  - no source declaration; new general theorem
+  equation_or_predicate: row(ab + bc - ac) . d0 = 0 for any graph window and any triangle a,b,c
+  typing_conditions: Graph window
+  evidence_status: Kernel theorem triangle_row_closed; native invalid-row pair
+  scope: Any edge type with endpoint maps
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+- id: unrepaired_sum_upper_bound
+  source_declarations:
+  - lean4/DerivationDagQMClosure.lean::edgeResidualL1 (line 74)
+  equation_or_predicate: Phi1 <= sum_e w_e |h_e|
+  typing_conditions: Window
+  evidence_status: Kernel theorem phi_le_unrepaired; native K4 pair has Phi1 = 3 < 5
+  scope: Finite index types over Q
+  source_pins:
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_growth_no_repair_proved_lean.yaml
+    sha256: 8dfbd15066a7cfc9804c1d30156f4af559f93da499201a33304a4eaf9c7accb6
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_growth_no_repair.yaml
+    sha256: a8f5f2fb00cc15ffa5b33f185ebe57e3ff5eb015e99df9e31be7b155f9e2e565
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md
+    sha256: 6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_growth_no_repair.py
+    sha256: 21c39fa7901bab9506ef799f1129e468b14c7ae8745f73c4c5f008c6d8a63209
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_growth_no_repair.py
+    sha256: eab49493b6947d3a4e24db4897d5d15689342544bfe220a967db8ce85c9a2459
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_growth_no_repair.rs
+    sha256: 3fa0289594c09bb36caf4b55b013e4bc85cdd2f9bd6795a284258e53613b7829
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_growth_no_repair_replay.rs
+    sha256: b7117da7670e5e8c4d14b2e32a3440baa435358ea69df9200f747b61160f662f
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/check_candidate.py
+    sha256: 1ca340e6af33da3fc57aebaf675b8ed8b77d997ac92319dbc89c6c924481ebd0
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/format_certificate.py
+    sha256: 354a90d779e7b0682790c20f7c15185fa2335310a7812c9e93d38031e7b460f4
+  latest_host_check: dag/results/PG-WDP-GROWTH-NO-REPAIR/runs/20261021T175809Z_staged/p2/host_check.json
+checked_compositions:
+- outer_operation: phi1
+  input_slot: 0
+  inner_operation: attach_two_cell
+  colour_match: Window
+  hypothesis_match: Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows
+    and cochain; restriction keeps a set of edges with their cochain values, weights not increased, and
+    the 2-cells supported inside; attachment adds rows with d1 d0 = 0.
+  licensing_relations:
+  - attachment_preserves_phi1
+  evidence_status: Kernel (definitional) and native
+- outer_operation: phi1
+  input_slot: 0
+  inner_operation: restrict_window
+  colour_match: Window
+  hypothesis_match: Graph windows with weighted-L1 norm J (positive integer weights), integer d1 rows
+    and cochain; restriction keeps a set of edges with their cochain values, weights not increased, and
+    the 2-cells supported inside; attachment adds rows with d1 d0 = 0.
+  licensing_relations:
+  - restriction_monotone
+  evidence_status: Kernel and native
+failed_compositions:
+- composition: phi1 o restrict_window with weights raised
+  reason: 'Phi1 can go up (parallel edges, weights 2 -> 3, Phi1 4 -> 6): the inequality needs w_sub <=
+    w.'
+- composition: phi1 o restrict_window for a norm J not monotone under coordinate deletion
+  reason: J(a,b) = |a+b| + |a-b|/4 with d0 = 0 gives 1/2 for h = (1,-1) and 5/4 for its restriction (kernel
+    instance).
+- composition: phi1 o restrict_window with a sub d0 that is not the restriction of d0
+  reason: 'One edge, d0 = (1) big and (0) small: Phi1 goes from 0 to 1 (kernel instance).'
+- composition: attach_two_cell with a row that is not a cocycle
+  reason: Row (1,0,0) on the triangle has d1 d0 != 0; the result is not a window (table verdict attach_not_a_window,
+    class marker NotAWindow, Gamma2 withheld).
+counterexamples:
+- id: parallel_restrict_rescaled_weights
+  statement: 'Three parallel edges 0->1, h = (1,-1,0), weights 2: Phi1 = 4; restricting to the first two
+    edges with weights 3 gives Phi1 = 6.'
+  scope: Instance (kernel rescaled_weights_instance and native pair).
+- id: nonmonotone_norm
+  statement: 'J(a,b) = |a+b| + |a-b|/4: J(1,-1) = 1/2 but J(1,0) = 5/4.'
+  scope: Instance (kernel nonmonotone_norm_instance).
+- id: source_vacuity
+  statement: The source growth theorem is edgeResidualL1 base <= edgeResidualL1 (base ++ added) for Lists
+    of Nat and the attachment theorem is rfl; neither mentions the minimum over potentials.
+  scope: Reading of lean4/DerivationDagQMClosure.lean lines 74-93.
+- id: source_rust_witness_constants
+  statement: verify_wdp_obligations_and_growth_witness compares the hard-coded constants 1 <= 1 for the
+    C3/K4 growth claim and adds 3 + 2 = 5 for the exact sequence; it computes no Phi1.
+  scope: External omega_symbol_game/src/derivation_dag_witnesses.rs lines 227-239.
+- id: semantic_rescaled_weights_claimed_monotone
+  kind: semantic_near_miss
+  rationale: 'Claim restriction never raises Phi1 although the sub-window weights were raised from 2 to
+    3 (hypothesis "restricted weights" dropped): Phi1 goes from 4 to 6.'
+  rejected_by: check_candidate
+- id: semantic_attachment_lowers_phi1
+  kind: semantic_near_miss
+  rationale: Claim that filling the triangle with a 2-cell repairs the residual; Phi1 depends only on
+    (C0, C1, d0, J, h) and stays 1.
+  rejected_by: check_candidate
+- id: semantic_attachment_keeps_gamma
+  kind: semantic_near_miss
+  rationale: Claim attaching a 2-cell cannot change Gamma2; the new face has d1 h = 1, so Gamma2 rises
+    from 0 to 1 and the class moves from ClosedResidual to ActiveClosureFailure.
+  rejected_by: check_candidate
+- id: semantic_invalid_row_accepted
+  kind: semantic_near_miss
+  rationale: Accept a "face" row (1,0,0) as a 2-cell although d1 d0 != 0; the enlarged data is not a window.
+  rejected_by: check_candidate
+- id: semantic_residual_sum_as_restricted_phi1
+  kind: semantic_near_miss
+  rationale: Read the sum of kept edge residuals (the source list sum) as Phi1 of the sub-window; the
+    minimum over potentials is 2.
+  rejected_by: check_candidate
+- id: semantic_class_unchanged_after_attachment
+  kind: semantic_near_miss
+  rationale: Say growth does not change the diagnostic class because Phi1 is unchanged; the filled square
+    is ActiveClosureFailure.
+  rejected_by: check_candidate
+- id: semantic_gauge_shift_counted_as_repair
+  kind: semantic_near_miss
+  rationale: Count an edit of h by a coboundary as lowering Phi1; Phi1 is a class function and stays 2.
+  rejected_by: check_candidate
+- id: semantic_weight_change_called_invariant
+  kind: semantic_near_miss
+  rationale: Claim changing the declared weights leaves Phi1 alone; down-weighting from 3 to 1 lowers
+    it from 6 to 2.
+  rejected_by: check_candidate
+- id: semantic_gamma2_at_representative_for_nonwindow
+  kind: semantic_near_miss
+  rationale: Report Gamma2 = 1 for the invalid-row window as if it were the source Gamma2 at the minimal
+    residual; non-closed windows have non-unique minimal residuals and no class value.
+  rejected_by: check_candidate
+- id: semantic_lowered_weights_called_raising
+  kind: semantic_near_miss
+  rationale: Claim a restriction with lowered weights (2 to 1) raised Phi1 to 6; with weights not raised
+    the monotonicity theorem applies and Phi1 is 2.
+  rejected_by: check_candidate
+- id: semantic_deletion_called_phi_neutral
+  kind: semantic_near_miss
+  rationale: Claim deleting five of six K4 edges leaves Phi1 = 3; the surviving edge is exact, so Phi1
+    falls to 0.
+  rejected_by: check_candidate
+- id: semantic_routing_name_as_class
+  kind: semantic_near_miss
+  rationale: Put the routing/status name NoRule into the diagnostic-class field; the classes are ExactClass,
+    ClosedResidual, ActiveClosureFailure, and a non-window is marked NotAWindow.
+  rejected_by: check_candidate
+- id: semantic_subset_restriction_raised
+  kind: semantic_near_miss
+  rationale: Claim a restriction of K4 to three edges raised Phi1 from 3 to 4 although the weights and
+    cochain are the restrictions.
+  rejected_by: check_candidate
+- id: semantic_primal_witness_not_optimal
+  kind: semantic_near_miss
+  rationale: Carry the zero potential and zero dual vector as the witness for the whole K4 window; both
+    are feasible but their common value 0 is not Phi1 = 3.
+  rejected_by: check_candidate
+- id: semantic_face_survives_without_its_edges
+  kind: semantic_near_miss
+  rationale: Keep all four K4 faces after deleting edges; a 2-cell survives restriction only when its
+    whole support does.
+  rejected_by: check_candidate
+open_obligations:
+- Equal-weight subdivision and filtration limit pages (WDP-CH04-P09).
+- Existence of minimisers (IsPhi attainment) for weighted L1 as a Lean theorem.
+- Norms other than weighted L1 and complex coefficients.

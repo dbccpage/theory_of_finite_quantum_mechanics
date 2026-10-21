@@ -125,6 +125,16 @@ def validate_spec(profile, delta):
     require(not missing, 'Operad delta lacks: ' + ', '.join(missing))
     require(profile['source_scope_review'] and profile['independent_predicates'] and delta['add_or_refine_generators']
             and delta['add_or_refine_relations'], 'Incomplete four missions')
+    # The same graft rule validate_prompts applies after P5: the outer slot colour must equal the inner output colour.
+    generators = {g['id']: g for g in delta['add_or_refine_generators']}
+    require(len(generators) == len(delta['add_or_refine_generators']), 'Duplicate generator ids')
+    for composition in delta['checked_compositions']:
+        outer, inner = generators.get(composition['outer_operation']), generators.get(composition['inner_operation'])
+        require(outer is not None and inner is not None, 'Composition names an unknown generator: %s o %s' % (composition['outer_operation'], composition['inner_operation']))
+        slot = composition['input_slot']
+        require(type(slot) is int and 0 <= slot < len(outer['ordered_inputs']), 'Invalid graft slot in %s o %s' % (outer['id'], inner['id']))
+        require(outer['ordered_inputs'][slot] == inner['output'],
+                'Graft colour mismatch: %s slot %d takes %s but %s outputs %s' % (outer['id'], slot, outer['ordered_inputs'][slot], inner['id'], inner['output']))
 
 
 def p0_missions(batch: Batch, task, spec, spec_dir=None):

@@ -1,0 +1,51 @@
+{
+  "task_id": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "2e86bafe38ed0949a5fc96cb45b3ee9fd6d974d4b82ec999b89f7e29f623ef62",
+  "candidate_sha256": "af1d6efc2c3617b1854fd5da557cbfb7e7d697cef9c129df1a5ddb9ff7f4014b",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 10,
+      "rust": 7
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 2.128,
+      "cleared": false,
+      "free_gb_after": 24.387,
+      "min_free_gb": 20.0,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "On the n-cycle with the unweighted (equal edge mass) L1 form (kernel-checked for every n, every cochain c, over every commutative linearly ordered ring incl. Int and Rat): the class of c in C^1/im d0 is determined by the holonomy S = sum c; Phi1(c) = min_h L1(c - d0 h) = |S| and is attained; the minimizers are exactly the cochains with sum S all of whose entries have the sign of S (a scaled simplex); for n >= 2 and S != 0 two minimizers share Phi1 and the holonomy S but differ as residuals and in the weights of any bipartition into two nonempty sectors, so the sector weights are NOT a function of (Phi1, Gamma2), where Gamma2 is MODELLED as the holonomy (class invariant) as in the TFQ-0354 M1 syndrome; the repo PUB-009 witness uses Gamma_2 = sum w_i^2, and under that reading the minimizers do not even share Gamma2 (native: sum of squares ranges from sumsq_min to sumsq_max, e.g. 2 to 4 for the class (1,0,1,0)), but that reading is not a Lean anchor; the weights of the two sectors always add up to Phi1; S = 0 forces the zero residual (total mass 0, refused by the node) and n = 1 has a unique minimizer; the cyclically invariant minimizer exists and is unique over a field (constant S/n) and is integral iff n divides S, so it is a separate declared selector. Native (exact enumeration, not kernel theorems): 16 unweighted cases incl. S = 0, S < 0, n = 1 and a single sector; 6 WEIGHTED cases with declared integer masses showing that the minimizer lives on the minimal-mass edges (unique when the minimum is attained once, so the sector weights can then be determined by the declared masses, and determined-but-not-unique when all minimal edges share a sector); and 4 two-disjoint-cycle cases (cycle rank 2) where one total holonomy does not determine Phi1.",
+      "does_not_support": "Any derivation of declared sector weights from Phi1 and Gamma2 in the setting of the node source: the result is specific to EQUAL edge masses; for a weighted L1 form with a unique minimal-mass edge the minimizer, hence the sector weights, are unique (native weighted rows), so non-derivability can fail in the weighted setting that the node source declares (the masses are then the declared input); a Lean proof of the weighted statement or of the sum-of-squares reading of Gamma2; connected graphs of cycle rank > 1 (only two DISJOINT cycles are tabulated natively); the Hilbert lift, density matrices or any physical reading of the weights; that the dihedral or cyclic symmetry is itself available (it is an extra declared input).",
+      "narrowest_claim": "For the n-cycle with the unweighted L1 form, the set of minimizing residuals is the scaled simplex of sign-definite cochains with sum S (minimizer_iff); the sector weights are its block sums, which are not a function of (Phi1, Gamma2 = holonomy) for n >= 2, S != 0 and at least two sectors (sector_weights_not_determined), because (Phi1, Gamma2) determine only the signed holonomy S (hence Phi1 = |S| and the sign pattern); any single choice, including the cyclically symmetric average S/n, is an extra declaration, and with unequal declared masses the minimizer concentrates on the minimal-mass edges (native rows) so the masses themselves are the declared input.",
+      "next_test": "Prove in the kernel that for the weighted form sum_i m_i |r_i| with declared positive edge masses the minimizers on the n-cycle are exactly the sign-definite cochains of holonomy S supported on the edges of minimal mass, so that the weights are unique iff the minimal mass is attained once."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "On the n-cycle with the unweighted (equal edge mass) L1 form (kernel-checked for every n, every cochain c, over every commutative linearly ordered ring incl. Int and Rat): the class of c in C^1/im d0 is determined by the holonomy S = sum c; Phi1(c) = min_h L1(c - d0 h) = |S| and is attained; the minimizers are exactly the cochains with sum S all of whose entries have the sign of S (a scaled simplex); for n >= 2 and S != 0 two minimizers share Phi1 and the holonomy S but differ as residuals and in the weights of any bipartition into two nonempty sectors, so the sector weights are NOT a function of (Phi1, Gamma2), where Gamma2 is MODELLED as the holonomy (class invariant) as in the TFQ-0354 M1 syndrome; the repo PUB-009 witness uses Gamma_2 = sum w_i^2, and under that reading the minimizers do not even share Gamma2 (native: sum of squares ranges from sumsq_min to sumsq_max, e.g. 2 to 4 for the class (1,0,1,0)), but that reading is not a Lean anchor; the weights of the two sectors always add up to Phi1; S = 0 forces the zero residual (total mass 0, refused by the node) and n = 1 has a unique minimizer; the cyclically invariant minimizer exists and is unique over a field (constant S/n) and is integral iff n divides S, so it is a separate declared selector. Native (exact enumeration, not kernel theorems): 16 unweighted cases incl. S = 0, S < 0, n = 1 and a single sector; 6 WEIGHTED cases with declared integer masses showing that the minimizer lives on the minimal-mass edges (unique when the minimum is attained once, so the sector weights can then be determined by the declared masses, and determined-but-not-unique when all minimal edges share a sector); and 4 two-disjoint-cycle cases (cycle rank 2) where one total holonomy does not determine Phi1.",
+    "does_not_support": "Any derivation of declared sector weights from Phi1 and Gamma2 in the setting of the node source: the result is specific to EQUAL edge masses; for a weighted L1 form with a unique minimal-mass edge the minimizer, hence the sector weights, are unique (native weighted rows), so non-derivability can fail in the weighted setting that the node source declares (the masses are then the declared input); a Lean proof of the weighted statement or of the sum-of-squares reading of Gamma2; connected graphs of cycle rank > 1 (only two DISJOINT cycles are tabulated natively); the Hilbert lift, density matrices or any physical reading of the weights; that the dihedral or cyclic symmetry is itself available (it is an extra declared input).",
+    "narrowest_claim": "For the n-cycle with the unweighted L1 form, the set of minimizing residuals is the scaled simplex of sign-definite cochains with sum S (minimizer_iff); the sector weights are its block sums, which are not a function of (Phi1, Gamma2 = holonomy) for n >= 2, S != 0 and at least two sectors (sector_weights_not_determined), because (Phi1, Gamma2) determine only the signed holonomy S (hence Phi1 = |S| and the sign pattern); any single choice, including the cyclically symmetric average S/n, is an extra declaration, and with unequal declared masses the minimizer concentrates on the minimal-mass edges (native rows) so the masses themselves are the declared input.",
+    "next_test": "Prove in the kernel that for the weighted form sum_i m_i |r_i| with declared positive edge masses the minimizers on the n-cycle are exactly the sign-definite cochains of holonomy S supported on the edges of minimal mass, so that the weights are unique iff the minimal mass is attained once."
+  }
+}

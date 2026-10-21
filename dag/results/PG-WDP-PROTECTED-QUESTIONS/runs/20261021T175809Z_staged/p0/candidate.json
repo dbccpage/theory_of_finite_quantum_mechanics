@@ -1,0 +1,1374 @@
+{
+  "task_id": "PG-WDP-PROTECTED-QUESTIONS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "d7ea880d5ba90d4c70605264ede4453eef4e1bbbc12aebf3356eea9f16caf57b",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "FILLED",
+      "carrier": "Carrier, DeclaredSet, DeclaredSetFamily, PointPredicate, PointSet, Verdict",
+      "coefficient_ring": "Exact integers and rationals",
+      "source_pins": [
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+          "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+          "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+          "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+          "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+          "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+          "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+          "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+          "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+          "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+          "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+          "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+        },
+        {
+          "path": "dag/pfp/exact_json.py",
+          "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+        },
+        {
+          "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+          "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+        }
+      ],
+      "public_input": {
+        "cases": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "original_target": "On an unstructured finite set with at least two elements, no Sym(X)-equivariant distinguished-point selection exists (no_fully_invariant_point). The asymmetry-price frontier is the family of inclusion-minimal declared input sets restoring the symmetry. The result says selection is not free; it does not say retention or observers cannot exist.",
+      "source_scope_review": "Mined external Symmetry.lean (FullyInvariantPoint, no_fully_invariant_point: a general swap argument, not vacuous; no selection-function type or equivariance notion exists in it) and the local DAG witness pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed, which is a fixed instance and partly vacuous (a constant function, the swap on Fin 2, unrelated KKT arithmetic). The ledger D01 definition of the asymmetry-price frontier has no Lean/Rust declaration; it is modelled here by the pointwise stabiliser of a declared set, which is a modelling choice with a different quantifier pattern from D01 (minimal declarations producing invariance versus minimal input sets whose removal frees a symmetry). The node proves the general theorem and the frontier characterisation in Lean and replays exact tables for carriers of size 0..6 with a brute-force permutation checker. The bottleneck WDP-CH03-P03 (declare-then-assert one-item separation) stays unported.",
+      "admitted_assumptions": []
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "FILLED",
+      "operations": [
+        {
+          "catalog_id": "fully_invariant_point",
+          "inputs": [
+            "Carrier"
+          ],
+          "output": "PointPredicate",
+          "semantic_predicate": "x is fixed by every permutation of the carrier."
+        },
+        {
+          "catalog_id": "stabiliser_invariant_points",
+          "inputs": [
+            "Carrier",
+            "DeclaredSet"
+          ],
+          "output": "PointSet",
+          "semantic_predicate": "Points fixed by every permutation that fixes the declared set pointwise."
+        },
+        {
+          "catalog_id": "selecting_test",
+          "inputs": [
+            "PointSet"
+          ],
+          "output": "Verdict",
+          "semantic_predicate": "The declared set selects iff its invariant-point set is nonempty."
+        },
+        {
+          "catalog_id": "asymmetry_price_frontier",
+          "inputs": [
+            "Carrier",
+            "Verdict"
+          ],
+          "output": "DeclaredSetFamily",
+          "semantic_predicate": "Inclusion-minimal declared sets that select."
+        }
+      ],
+      "composition_plan": [
+        {
+          "outer_operation": "selecting_test",
+          "input_slot": 0,
+          "inner_operation": "stabiliser_invariant_points",
+          "colour_match": "PointSet",
+          "hypothesis_match": "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled).",
+          "licensing_relations": [
+            "invariant_points_characterisation",
+            "selecting_iff_nonempty"
+          ],
+          "evidence_status": "Kernel and native"
+        },
+        {
+          "outer_operation": "asymmetry_price_frontier",
+          "input_slot": 1,
+          "inner_operation": "selecting_test",
+          "colour_match": "Verdict",
+          "hypothesis_match": "At least two points for the singleton form of the frontier.",
+          "licensing_relations": [
+            "frontier_is_singletons"
+          ],
+          "evidence_status": "Kernel and native"
+        }
+      ],
+      "tree": [
+        "selecting_test(stabiliser_invariant_points(X, S))",
+        "asymmetry_price_frontier(X, selecting_test(...))"
+      ]
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "FILLED",
+      "algebraic_relations": [
+        {
+          "id": "no_fully_invariant_point",
+          "source_declarations": [
+            "external WitnessedDifference/Symmetry.lean::no_fully_invariant_point (line 25): general theorem, proved by a swap; reproved here"
+          ],
+          "equation_or_predicate": "two distinct points imply no x with sigma x = x for all sigma",
+          "typing_conditions": "Carrier with DecidableEq and Nontrivial",
+          "evidence_status": "Kernel theorem no_fully_invariant_point, no_fully_invariant_point_card; native tables for n=2..6 at S empty",
+          "scope": "Every type with two distinct points",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        },
+        {
+          "id": "invariant_points_characterisation",
+          "source_declarations": [
+            "no source declaration; new general theorem"
+          ],
+          "equation_or_predicate": "x invariant under Stab(S) iff x in S or every point outside S equals x",
+          "typing_conditions": "Carrier with DecidableEq",
+          "evidence_status": "Kernel theorem invariantUnder_iff; native brute-force tables for n=0..6",
+          "scope": "Every type",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        },
+        {
+          "id": "selecting_iff_nonempty",
+          "source_declarations": [
+            "no source declaration; new general theorem"
+          ],
+          "equation_or_predicate": "S selects iff S nonempty or the carrier has exactly one point; with two distinct points iff S nonempty",
+          "typing_conditions": "Carrier with DecidableEq",
+          "evidence_status": "Kernel theorems selecting_iff, selecting_iff_nonempty; native tables",
+          "scope": "Every type",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        },
+        {
+          "id": "frontier_is_singletons",
+          "source_declarations": [
+            "no source declaration; new general theorem"
+          ],
+          "equation_or_predicate": "with two distinct points the minimal selecting sets are exactly the singletons, so there are card X of them",
+          "typing_conditions": "Nontrivial carrier",
+          "evidence_status": "Kernel theorems minimalSelecting_iff_singleton, frontierEquiv, frontier_card (finite carriers); native frontier tables n=2..6",
+          "scope": "Every type with two distinct points",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        },
+        {
+          "id": "small_carrier_boundary",
+          "source_declarations": [
+            "no source declaration; new boundary theorems"
+          ],
+          "equation_or_predicate": "one point: the empty declaration selects (price 0); no points: nothing selects",
+          "typing_conditions": "Subsingleton nonempty carrier; empty carrier",
+          "evidence_status": "Kernel theorems one_point_empty_selects, empty_carrier_no_selection; native rows n=0, n=1",
+          "scope": "Every such type",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        },
+        {
+          "id": "dag_witness_is_fixed_instance",
+          "source_declarations": [
+            "lean4/DerivationDagQMClosure.lean::pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed (line 1157): fixed instance, partly vacuous"
+          ],
+          "equation_or_predicate": "its first conjunct g (f true) = g (f false) holds by rfl for a constant f; its second shows only that x -> 1 - x has no fixed point on Fin 2, one involution, not Sym(X)-invariance; the rest is unrelated cochain/KKT arithmetic",
+          "typing_conditions": "Nat/Int arithmetic on fixed numbers",
+          "evidence_status": "Read, not reused as support; replaced by the general kernel theorems above",
+          "scope": "Fixed instance only",
+          "source_pins": [
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+              "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+              "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+              "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+              "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+              "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+              "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+              "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+              "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+              "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+              "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+              "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+            },
+            {
+              "path": "dag/pfp/exact_json.py",
+              "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+            },
+            {
+              "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+              "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+            }
+          ]
+        }
+      ],
+      "rejection_predicates": [
+        "Independent brute-force enumeration of all n! permutations fixing each declared subset pointwise (producer and Rust use different decompositions: closed form vs enumeration).",
+        "Minimality decided from the definition over all proper subsets.",
+        "Theorem-level consistency: for n>=2 the empty declaration never selects and the frontier is the singletons.",
+        "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+      ],
+      "negative_control_plan": "Coordinate mutants of every certificate leaf plus nine semantic near misses: empty declaration selects, complement singleton ignored, rigidification price, non-minimal marked minimal, one-point carrier pays a declaration, empty carrier selects, price zero at five points, setwise stabiliser table, rigid carrier price zero."
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "FILLED",
+      "certificate_predicates": [
+        "Independent brute-force enumeration of all n! permutations fixing each declared subset pointwise (producer and Rust use different decompositions: closed form vs enumeration).",
+        "Minimality decided from the definition over all proper subsets.",
+        "Theorem-level consistency: for n>=2 the empty declaration never selects and the frontier is the singletons.",
+        "Exact cross-language (Python/Rust) wire equality and literal Lean axiom reports."
+      ],
+      "anchors": [
+        "WdpProtectedQuestions.no_fully_invariant_point",
+        "WdpProtectedQuestions.no_fully_invariant_point_card",
+        "WdpProtectedQuestions.invariantUnder_iff",
+        "WdpProtectedQuestions.selecting_iff",
+        "WdpProtectedQuestions.selecting_iff_nonempty",
+        "WdpProtectedQuestions.minimalSelecting_iff_singleton",
+        "WdpProtectedQuestions.frontierEquiv",
+        "WdpProtectedQuestions.frontier_card",
+        "WdpProtectedQuestions.one_point_empty_selects",
+        "WdpProtectedQuestions.empty_carrier_no_selection",
+        "WdpProtectedQuestions.bool_instance"
+      ],
+      "unpaid_imports": [
+        "WDP-CH03-P03 declare-then-assert one-item separation has no Lean port.",
+        "Selecting/minimal tables on structured carriers (explicit automorphism groups) and under the setwise stabiliser.",
+        "Asymmetry-price frontier relative to an implementation class and dependency preorder (D01 full definition).",
+        "WDP-CH03-N01: whether retention, dynamics or observers exist is not decided by this obstruction."
+      ],
+      "anchor_status": "New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled source leads retain their literal scope."
+    }
+  },
+  "source_checks": [
+    {
+      "repository": "this_repository",
+      "source_path": "dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+      "recorded_sha256": null,
+      "available": true,
+      "actual_sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd",
+      "matches_recorded_pin": true,
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml"
+    },
+    {
+      "repository": "this_repository",
+      "source_path": "dag/operads/pg_wdp_protected_questions.yaml",
+      "recorded_sha256": null,
+      "available": true,
+      "actual_sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143",
+      "matches_recorded_pin": true,
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml"
+    },
+    {
+      "repository": "the_symbol_game",
+      "source_path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+      "recorded_sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90",
+      "available": true,
+      "actual_sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90",
+      "matches_recorded_pin": true,
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean"
+    },
+    {
+      "repository": "this_repository",
+      "source_path": "lean4/DerivationDagQMClosure.lean",
+      "recorded_sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154",
+      "available": true,
+      "actual_sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154",
+      "matches_recorded_pin": true,
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean"
+    },
+    {
+      "repository": "the_symbol_game",
+      "source_path": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+      "recorded_sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb",
+      "available": true,
+      "actual_sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb",
+      "matches_recorded_pin": true,
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs"
+    },
+    {
+      "repository": "this_repository",
+      "source_path": "dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+      "recorded_sha256": "c88fb0b7f2d90ec4a1d5560c1e6156817833dfaa15dd4d9d972b132057ba2952",
+      "available": true,
+      "actual_sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5",
+      "matches_recorded_pin": false,
+      "pin_resolution": "Explicit filename-custody migration; original expected digest retained",
+      "custody_ledger_sha256": "dfe87711e9c89da7e9142b688d7a78c51853f76e2c2d2c6d95286f267f50c0fc",
+      "snapshot": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md"
+    }
+  ],
+  "next_missing_dependency": "Actual candidate construction and independent/native/kernel P2 execution",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "fully_invariant_point",
+        "source_declarations": [
+          "external WitnessedDifference/Symmetry.lean::FullyInvariantPoint (line 12): definition"
+        ],
+        "ordered_inputs": [
+          "Carrier"
+        ],
+        "output": "PointPredicate",
+        "semantic_predicate": "x is fixed by every permutation of the carrier.",
+        "hypotheses": [
+          "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled)."
+        ],
+        "arity": 1,
+        "carrier": "Carrier",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "stabiliser_invariant_points",
+        "source_declarations": [
+          "no source declaration; new definition modelling WDP-CH03-D01 (ledger text only, no Lean/Rust declaration)"
+        ],
+        "ordered_inputs": [
+          "Carrier",
+          "DeclaredSet"
+        ],
+        "output": "PointSet",
+        "semantic_predicate": "Points fixed by every permutation that fixes the declared set pointwise.",
+        "hypotheses": [
+          "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled)."
+        ],
+        "arity": 2,
+        "carrier": "Carrier",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "selecting_test",
+        "source_declarations": [
+          "no source declaration; new definition"
+        ],
+        "ordered_inputs": [
+          "PointSet"
+        ],
+        "output": "Verdict",
+        "semantic_predicate": "The declared set selects iff its invariant-point set is nonempty.",
+        "hypotheses": [
+          "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled)."
+        ],
+        "arity": 1,
+        "carrier": "PointSet",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "asymmetry_price_frontier",
+        "source_declarations": [
+          "ledger WDP-CH03-D01 (definition; no Lean/Rust declaration) - this node fixes the pointwise-stabiliser reading"
+        ],
+        "ordered_inputs": [
+          "Carrier",
+          "Verdict"
+        ],
+        "output": "DeclaredSetFamily",
+        "semantic_predicate": "Inclusion-minimal declared sets that select.",
+        "hypotheses": [
+          "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled)."
+        ],
+        "arity": 2,
+        "carrier": "Carrier",
+        "coefficient_ring": "Exact integers and rationals",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "no_fully_invariant_point",
+        "source_declarations": [
+          "external WitnessedDifference/Symmetry.lean::no_fully_invariant_point (line 25): general theorem, proved by a swap; reproved here"
+        ],
+        "equation_or_predicate": "two distinct points imply no x with sigma x = x for all sigma",
+        "typing_conditions": "Carrier with DecidableEq and Nontrivial",
+        "evidence_status": "Kernel theorem no_fully_invariant_point, no_fully_invariant_point_card; native tables for n=2..6 at S empty",
+        "scope": "Every type with two distinct points",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      },
+      {
+        "id": "invariant_points_characterisation",
+        "source_declarations": [
+          "no source declaration; new general theorem"
+        ],
+        "equation_or_predicate": "x invariant under Stab(S) iff x in S or every point outside S equals x",
+        "typing_conditions": "Carrier with DecidableEq",
+        "evidence_status": "Kernel theorem invariantUnder_iff; native brute-force tables for n=0..6",
+        "scope": "Every type",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      },
+      {
+        "id": "selecting_iff_nonempty",
+        "source_declarations": [
+          "no source declaration; new general theorem"
+        ],
+        "equation_or_predicate": "S selects iff S nonempty or the carrier has exactly one point; with two distinct points iff S nonempty",
+        "typing_conditions": "Carrier with DecidableEq",
+        "evidence_status": "Kernel theorems selecting_iff, selecting_iff_nonempty; native tables",
+        "scope": "Every type",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      },
+      {
+        "id": "frontier_is_singletons",
+        "source_declarations": [
+          "no source declaration; new general theorem"
+        ],
+        "equation_or_predicate": "with two distinct points the minimal selecting sets are exactly the singletons, so there are card X of them",
+        "typing_conditions": "Nontrivial carrier",
+        "evidence_status": "Kernel theorems minimalSelecting_iff_singleton, frontierEquiv, frontier_card (finite carriers); native frontier tables n=2..6",
+        "scope": "Every type with two distinct points",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      },
+      {
+        "id": "small_carrier_boundary",
+        "source_declarations": [
+          "no source declaration; new boundary theorems"
+        ],
+        "equation_or_predicate": "one point: the empty declaration selects (price 0); no points: nothing selects",
+        "typing_conditions": "Subsingleton nonempty carrier; empty carrier",
+        "evidence_status": "Kernel theorems one_point_empty_selects, empty_carrier_no_selection; native rows n=0, n=1",
+        "scope": "Every such type",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      },
+      {
+        "id": "dag_witness_is_fixed_instance",
+        "source_declarations": [
+          "lean4/DerivationDagQMClosure.lean::pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed (line 1157): fixed instance, partly vacuous"
+        ],
+        "equation_or_predicate": "its first conjunct g (f true) = g (f false) holds by rfl for a constant f; its second shows only that x -> 1 - x has no fixed point on Fin 2, one involution, not Sym(X)-invariance; the rest is unrelated cochain/KKT arithmetic",
+        "typing_conditions": "Nat/Int arithmetic on fixed numbers",
+        "evidence_status": "Read, not reused as support; replaced by the general kernel theorems above",
+        "scope": "Fixed instance only",
+        "source_pins": [
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/prompts/wdp_pg_wdp_protected_questions_proved_lean.yaml",
+            "sha256": "63404c6c266fc3951167179c64456c9be90a968a1083893422342bf46873adfd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/operads/pg_wdp_protected_questions.yaml",
+            "sha256": "5164a1867149a17cd4deb80633375bfa718e44e0b25c8a459dfcf234d20db143"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
+            "sha256": "5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/inputs/this_repository/dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md",
+            "sha256": "c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/src/qm/pfp_wdp_protected_questions.py",
+            "sha256": "7be0179a39b93be4a3f7ea54aefe4578d9c08594db245a6df7efcbef68810ce6"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/python/tests/test_pfp_wdp_protected_questions.py",
+            "sha256": "4edf752bb4708624dc6629e4fe9563b954f09916469b19da79e59fcf1d7be28a"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_wdp_protected_questions.rs",
+            "sha256": "b24782bf643134983564dd728ab08092db3e4d002b0b5b63139527a3a3128edc"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_wdp_protected_questions_replay.rs",
+            "sha256": "b7ff5d77cd23216c05a85702a2f414511dd9934475830a04a32d3cccc6a480fd"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/check_candidate.py",
+            "sha256": "b77dc84b194331999b4e125a9ef67704d814e82c5fb9075e0f6685246d0eefe4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/PG-WDP-PROTECTED-QUESTIONS/runs/20261021T175809Z_staged/format_certificate.py",
+            "sha256": "719ec35a39db409690efc6460f95d2e2568e9ade373cfb0c84e902ceaec14b4c"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "selecting_test",
+        "input_slot": 0,
+        "inner_operation": "stabiliser_invariant_points",
+        "colour_match": "PointSet",
+        "hypothesis_match": "Unstructured carrier with the full permutation action; a declared input set S is fixed pointwise (a modelling choice narrower than WDP-CH03-D01, which is relative to an implementation class and a dependency preorder that are not modelled).",
+        "licensing_relations": [
+          "invariant_points_characterisation",
+          "selecting_iff_nonempty"
+        ],
+        "evidence_status": "Kernel and native"
+      },
+      {
+        "outer_operation": "asymmetry_price_frontier",
+        "input_slot": 1,
+        "inner_operation": "selecting_test",
+        "colour_match": "Verdict",
+        "hypothesis_match": "At least two points for the singleton form of the frontier.",
+        "licensing_relations": [
+          "frontier_is_singletons"
+        ],
+        "evidence_status": "Kernel and native"
+      }
+    ],
+    "failed_compositions": [
+      {
+        "composition": "selecting_test(stabiliser_invariant_points(X, empty set)) at card X >= 2",
+        "reason": "Fails by no_fully_invariant_point: the empty declaration has no invariant point, so selection is not free."
+      },
+      {
+        "composition": "asymmetry_price_frontier at card X = 1 read as singletons",
+        "reason": "On one point the empty set already selects, so the frontier is {empty set} at price 0, not the singleton."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "two_point_complement",
+        "statement": "n=2, S={0}: the complement {1} is a single point, so both points are invariant; the pattern for n>=3 (only declared points are invariant) fails.",
+        "scope": "Instance of the characterisation theorem"
+      },
+      {
+        "id": "dag_witness_not_equivariance",
+        "statement": "The attached local Lean witness proves x -> 1 - x has no fixed point on Fin 2 and g (f true) = g (f false) for constant f; neither is Sym(X)-invariance.",
+        "scope": "Source reading; not a counterexample to the general theorem"
+      }
+    ],
+    "open_obligations": [
+      "WDP-CH03-P03 declare-then-assert one-item separation has no Lean port.",
+      "Selecting/minimal tables on structured carriers (explicit automorphism groups) and under the setwise stabiliser.",
+      "Asymmetry-price frontier relative to an implementation class and dependency preorder (D01 full definition).",
+      "WDP-CH03-N01: whether retention, dynamics or observers exist is not decided by this obstruction."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Over an arbitrary type X (Lean, general; the cardinality statement frontier_card is informative only for finite X, frontierEquiv and minimalSelecting_iff_singleton carry the general content): no point is fixed by every permutation when X has two distinct points (the bare-set form of \"no Sym(X)-equivariant distinguished-point selection\"); a point is invariant under the pointwise stabiliser of a declared set S iff it lies in S or the complement of S is that single point; S selects some point iff S is nonempty or X has exactly one point; for X with two distinct points the inclusion-minimal selecting sets are exactly the singletons, one per point (a consequence of the pointwise-stabiliser definition: a declared point is fixed because it is declared); on a one-point carrier the empty declaration already selects and on an empty carrier nothing does. Replay bound (not part of the Lean claim): exact tables for every subset of every carrier of size 0..6 (127 subsets), invariant points by enumerating all permutations fixing S, and the minimal selecting sets.",
+    "does_not_support": "Retention, dynamics or observers being impossible or available (WDP-CH03-N01 is a nonclaim, not formalised); that Selecting / MinimalSelecting formalises WDP-CH03-D01 (D01 minimises declared input sets whose removal restores a symmetry that moves the output, relative to an implementation class and dependency preorder; here the minimal declarations making some point invariant under the pointwise stabiliser are computed, and the two agree on singletons only because the output is the declared point); a Lean notion of equivariant selection function (no_fully_invariant_point is its bare-set specialisation); the price of selection on structured carriers (rigid, cyclic, graph) or under the setwise stabiliser; WDP-CH03-P03; infinite-carrier cardinality; any physical or interpretive claim.",
+    "narrowest_claim": "On a bare set of at least two points no point is invariant under all permutations, and in the pointwise-stabiliser model the minimal selecting declarations are exactly the single declared points (price one declared point; price zero on a one-point carrier; no selection on the empty carrier); symmetry-price bookkeeping only.",
+    "next_test": "On structured carriers compute the same selecting and minimal tables with Sym(X) replaced by an explicit automorphism group G (n-cycle with rotations, K4 graph with its automorphisms, a rigid carrier with trivial G) and test whether the frontier is still the singletons: a rigid carrier must give price 0 and the n-cycle with rotations price 1; any other value falsifies the claim that the singleton frontier is generic."
+  },
+  "execution": "Serialized local researcher artifact, not a provider transcript."
+}

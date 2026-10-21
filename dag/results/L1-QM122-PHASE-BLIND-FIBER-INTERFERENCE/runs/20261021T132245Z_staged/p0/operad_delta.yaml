@@ -1,0 +1,417 @@
+add_or_refine_generators:
+- id: phase_blind_weight
+  source_declarations:
+  - lean4/H008PhaseBlindPresentation.lean::phaseBlind (line 18), weight_nonneg (line 23)
+  ordered_inputs:
+  - GaussianAmplitude
+  output: Weight
+  semantic_predicate: w(z)=re^2+im^2; invariant under multiplication by the units {1,i,-1,-i}.
+  hypotheses:
+  - Amplitudes are Gaussian integers; the mix is the unnormalized two-sector Hadamard (a+b, a-b); unit
+    phases are the declared assumption.
+  arity: 1
+  carrier: GaussianAmplitude
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: phase_fiber
+  source_declarations:
+  - lean4/H008PhaseBlindPresentation.lean::psi1, psi2 (lines 37-40) are two points of one fiber; the general
+    fiber is not declared in the source
+  ordered_inputs:
+  - Weight
+  output: GaussianAmplitudeSet
+  semantic_predicate: All Gaussian integers of a given weight (the phase fiber); empty when the weight
+    is not a sum of two squares, a single point at weight 0.
+  hypotheses:
+  - Amplitudes are Gaussian integers; the mix is the unnormalized two-sector Hadamard (a+b, a-b); unit
+    phases are the declared assumption.
+  arity: 1
+  carrier: Weight
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: hadamard_readout
+  source_declarations:
+  - lean4/H010InterferenceNonDescent.lean::mix (line 20), readout (line 25)
+  ordered_inputs:
+  - GaussianAmplitude
+  - GaussianAmplitude
+  output: ReadoutPair
+  semantic_predicate: Unnormalized mix readout (w(a+b), w(a-b)).
+  hypotheses:
+  - Amplitudes are Gaussian integers; the mix is the unnormalized two-sector Hadamard (a+b, a-b); unit
+    phases are the declared assumption.
+  arity: 2
+  carrier: GaussianAmplitude
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: readout_total
+  source_declarations:
+  - lean4/H008PhaseBlindPresentation.lean::totalWeight (line 21)
+  ordered_inputs:
+  - ReadoutPair
+  output: Weight
+  semantic_predicate: Sum of the two readout components.
+  hypotheses:
+  - Amplitudes are Gaussian integers; the mix is the unnormalized two-sector Hadamard (a+b, a-b); unit
+    phases are the declared assumption.
+  arity: 1
+  carrier: ReadoutPair
+  coefficient_ring: Exact integers and rationals
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+add_or_refine_relations:
+- id: weight_unit_invariance
+  source_declarations:
+  - lean4/H008PhaseBlindPresentation.lean::global_phase_blind (source is general over Vec; this node proves
+    the pair case again for the Z[i] pair carrier)
+  equation_or_predicate: w(i*z)=w(z)=w(-z)
+  typing_conditions: GaussianAmplitude
+  evidence_status: Kernel theorem w_I_mul, w_neg
+  scope: All Gaussian integers
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+- id: readout_total_doubling
+  source_declarations:
+  - lean4/H010InterferenceNonDescent.lean::mix_doubles_total (fixed witnesses psi1, psi2 only)
+  equation_or_predicate: sum(readout(a,b)) = 2(w(a)+w(b))
+  typing_conditions: GaussianAmplitude x GaussianAmplitude
+  evidence_status: Kernel theorem readout_total; native table
+  scope: All Gaussian integers
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+- id: interference_term
+  source_declarations:
+  - no source declaration; new general identity
+  equation_or_predicate: readout(a,b).1 - readout(a,b).2 = 4 Re(a conj b)
+  typing_conditions: GaussianAmplitude x GaussianAmplitude
+  evidence_status: Kernel theorem readout_interference; native table
+  scope: All Gaussian integers
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+- id: nonzero_sectors_nondescent
+  source_declarations:
+  - 'lean4/H010InterferenceNonDescent.lean::no_descent_through_fiber (fixed witnesses psi1, psi2: an instance,
+    not the general statement)'
+  equation_or_predicate: a!=0 and b!=0 imply no f with readout(x,y)=f(w x,w y) on fiber(w a) x fiber(w
+    b)
+  typing_conditions: Weight x Weight with realizable fibers
+  evidence_status: Kernel theorem no_descent via fiber_changes_readout; native table
+  scope: All nonzero Gaussian pairs
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+- id: zero_sector_descent
+  source_declarations:
+  - no source declaration; new boundary theorem
+  equation_or_predicate: w(a)=0 implies the readout is a function of the weights
+  typing_conditions: Weight 0 fiber is {0}
+  evidence_status: Kernel theorem descends_when_zero_sector; native table
+  scope: All Gaussian b
+  source_pins:
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_phase_blind_fiber_interference_proved_lean.yaml
+    sha256: 237eaf53274850be4c4eb7f25d6e93f6c1bb0c1c03eac3592211a315c22b69f1
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/operads/l1_qm122_phase_blind_fiber_interference.yaml
+    sha256: 5e63ec3a24dbb4207c3cd156f5f521262cad21ed60ab7d7029800e123e0f6a4a
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H008PhaseBlindPresentation.lean
+    sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/H010InterferenceNonDescent.lean
+    sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+    sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md
+    sha256: 5d85302e705e7e492d9a932ef0c16f805d688d99f58d61a6d646e5f71b3ca0c7
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/src/qm/pfp_phase_blind_fiber.py
+    sha256: 59884f2e2c14c2e35ecec3ebeed1e951756d3f4729f0160bdce82b55d4e837f3
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/python/tests/test_pfp_phase_blind_fiber.py
+    sha256: 590cbefe5fc22b69598d2f6dc2e20591c1211e204767211a2e53cf14879e033b
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_phase_blind_fiber.rs
+    sha256: 4629a26ed8729dc15efaf0f66bbe73e1c34b5ce47de840cc347ffb2b824be412
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/pfp_phase_blind_fiber_replay.rs
+    sha256: f847db93fb894dc7f348ce7c9d7a1a3a30458c5c30a697fb6b4f01461b31294d
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/check_candidate.py
+    sha256: d47916f63ee255f422ff05b25975c17b4c32365da338d0f2cc2c20f6dbfdc7cc
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/format_certificate.py
+    sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
+checked_compositions:
+- outer_operation: readout_total
+  input_slot: 0
+  inner_operation: hadamard_readout
+  colour_match: ReadoutPair
+  hypothesis_match: Amplitudes are Gaussian integers; the mix is the unnormalized two-sector Hadamard
+    (a+b, a-b); unit phases are the declared assumption.
+  licensing_relations:
+  - readout_total_doubling
+  evidence_status: Kernel and native
+failed_compositions:
+- composition: hadamard_readout factored through (phase_blind_weight, phase_blind_weight)
+  reason: No such factorization exists when both sectors are nonzero (kernel no_descent); it exists when
+    a sector is zero.
+- composition: hadamard_readout (slot 0) o phase_fiber
+  reason: 'Colour mismatch: the outer slot takes GaussianAmplitude but the inner operation outputs GaussianAmplitudeSet;
+    composing needs a coercion or a partial-map convention that this presentation does not contain, so
+    it is not a checked graft.'
+  original_entry:
+    outer_operation: hadamard_readout
+    input_slot: 0
+    inner_operation: phase_fiber
+    colour_match: GaussianAmplitudeSet element -> GaussianAmplitude
+    hypothesis_match: Fiber element chosen explicitly; selection is not an operation of the quotient.
+    licensing_relations:
+    - nonzero_sectors_nondescent
+    evidence_status: Kernel and native
+counterexamples:
+- id: psi1_psi2_witness
+  statement: amplitudes (1,1) and (1,-1) share weights (1,1) but read out (4,0) and (0,4).
+  scope: Instance of no_descent with a=b=1.
+open_obligations:
+- Normalized and projective readouts on complex amplitudes.
+- More than two sectors and mixes other than the 2x2 Hadamard.
+- Any physical or branch interpretation of the phase fiber.

@@ -1,0 +1,51 @@
+{
+  "task_id": "PG-WDP-QUOTIENT-EXACT-SEQUENCE",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "3e2579af0fa2c9cf8a8cf46c983aa815727bc62ac5a7ea2c084553d3848fa757",
+  "candidate_sha256": "40e3bc22064e2ec6853f8389c482896469de3f50622d4738476419c8b40962f5",
+  "status": "scoped_result_or_obstruction_recorded_pending_batch_review",
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "rust_replay": 0,
+      "lean_version": 0,
+      "lean": 0
+    },
+    "required_named_Lean_reports": true,
+    "lean_version": {
+      "expected": "v4.35.0",
+      "reported": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "matches": true
+    },
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "test_counts": {
+      "python": 9,
+      "rust": 4
+    },
+    "cargo_guard": {
+      "target": "C:\\Users\\a343o\\.pfp-ct",
+      "size_gb_before": 1.364,
+      "cleared": false,
+      "free_gb_after": 5.397,
+      "min_free_gb": 1.2,
+      "max_target_gb": 6.0
+    },
+    "scope": {
+      "supports": "Kernel-checked for modules over a field: with d1 d0 = 0 the sequence 0 -> H1 -> Q1 -> im d1 -> 0 is exact (injective, ker = range, onto) and, in finite dimension, dim Q1 = dim H1 + dim im d1 and dim Q1 + dim im d0 = dim C1. When H1 and im d1 are both nontrivial NO section is invariant under the automorphisms 1 + incl f pi of the extension (these act simply transitively on the sections and are automorphisms of the extension, not of the window and not isometries of J; INSTANCE model C1 = Q^2, d0 = 0, d1(a,b) = b); when H1 or im d1 is trivial (and pi is onto) there is exactly one section and it is invariant (exists_unique_invariant_section_of_trivial). Exactly one diagnostic class holds for every (Phi1, Gamma2); for a definite J, Phi1 = 0 iff the class is zero (false for a seminorm, kernel instance with J = 0 on Q). For d1 d0 = 0 and an attained minimum Phi1, ||d1 h||_1 <= c Phi1 whenever sum_r |d1_re| <= c w_e for all e (gamma_le_opnorm_phi, with gamma2_repair moving from the representative to the minimiser); at the minimiser itself the bound needs no closure (gamma_at_minimiser_le). The operator bound ||d1 v||_1 <= c ||v||_J for all v is equivalent to these column inequalities (opbound_of_columns, columns_of_opbound), so the least c is max_e column sum / w_e when all w_e > 0 (that max formula and its null-weight convention are the checker definition); a smaller constant fails (kernel instance with the largest entry as c). Native table over 14 windows with a verified primal potential and dual vector each (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e), dim H1 recomputed in the checker from an explicit nullspace basis of d1 minus rank d0, splitting freedom dim H1 * dim im d1, class, operator norm and inequality. One window has d1 d0 != 0: there kappa1 is undefined and the representative norm ||d1 h||_1 = 2 exceeds ||d1|| Phi1 = 0, but the source Gamma2 at the minimal residual h* = 0 is 0 and the inequality holds, so Gamma2 is withheld for it. For a seminorm (a zero-weight edge) the label ExactClass means only Phi1 = 0: seminorm_zero_weight_filled has Phi1 = 0 and ||d1 h||_1 = 1.",
+      "does_not_support": "Any derivation of the window; norms other than weighted L1 for the inequality; complex coefficients; a statement that the sequence has or lacks a section natural for automorphisms of the window (graph automorphisms preserving d0, d1 and the weights); the converse \"if there is an invariant section then dim H1 * dim im d1 = 0\" is native by dimension (section_dim) with the trivial-factor halves in the kernel; existence of minimisers for general norms; Phi1 >= 0 as a theorem for the weighted-L1 window (gamma2_nonneg is anchored, Phi1 >= 0 needs the cost bridge of the degree-1 window node); any physical reading of the classes.",
+      "narrowest_claim": "For a window over a field with d1 d0 = 0 the sequence 0 -> H1 -> Q1 -> im d1 -> 0 is exact; no section is invariant under 1 + incl f pi when dim H1 > 0 and dim im d1 > 0 (kernel), and when dim H1 * dim im d1 = 0 there is exactly one section and it is invariant (kernel); every class has exactly one diagnostic class; Phi1 = 0 iff the class is zero for a definite J; and ||d1 h||_1 <= c Phi1 for an attained minimum and c at least the J-to-L1 column bound.",
+      "next_test": "Decide the splitting claim for the finite group G of automorphisms of the K4 two-face window (graph automorphisms preserving the two faces, d0, d1 and the weights) by solving the linear fixed-point equations of G on the affine section space over Hom(im d1, H1) = Q^2: either a G-fixed section exists or the fixed locus is empty."
+    }
+  },
+  "bounded_failure_codes": [],
+  "claim_boundary": {
+    "supports": "Kernel-checked for modules over a field: with d1 d0 = 0 the sequence 0 -> H1 -> Q1 -> im d1 -> 0 is exact (injective, ker = range, onto) and, in finite dimension, dim Q1 = dim H1 + dim im d1 and dim Q1 + dim im d0 = dim C1. When H1 and im d1 are both nontrivial NO section is invariant under the automorphisms 1 + incl f pi of the extension (these act simply transitively on the sections and are automorphisms of the extension, not of the window and not isometries of J; INSTANCE model C1 = Q^2, d0 = 0, d1(a,b) = b); when H1 or im d1 is trivial (and pi is onto) there is exactly one section and it is invariant (exists_unique_invariant_section_of_trivial). Exactly one diagnostic class holds for every (Phi1, Gamma2); for a definite J, Phi1 = 0 iff the class is zero (false for a seminorm, kernel instance with J = 0 on Q). For d1 d0 = 0 and an attained minimum Phi1, ||d1 h||_1 <= c Phi1 whenever sum_r |d1_re| <= c w_e for all e (gamma_le_opnorm_phi, with gamma2_repair moving from the representative to the minimiser); at the minimiser itself the bound needs no closure (gamma_at_minimiser_le). The operator bound ||d1 v||_1 <= c ||v||_J for all v is equivalent to these column inequalities (opbound_of_columns, columns_of_opbound), so the least c is max_e column sum / w_e when all w_e > 0 (that max formula and its null-weight convention are the checker definition); a smaller constant fails (kernel instance with the largest entry as c). Native table over 14 windows with a verified primal potential and dual vector each (cost(x) = y.h = Phi1, d0^T y = 0, |y_e| <= w_e), dim H1 recomputed in the checker from an explicit nullspace basis of d1 minus rank d0, splitting freedom dim H1 * dim im d1, class, operator norm and inequality. One window has d1 d0 != 0: there kappa1 is undefined and the representative norm ||d1 h||_1 = 2 exceeds ||d1|| Phi1 = 0, but the source Gamma2 at the minimal residual h* = 0 is 0 and the inequality holds, so Gamma2 is withheld for it. For a seminorm (a zero-weight edge) the label ExactClass means only Phi1 = 0: seminorm_zero_weight_filled has Phi1 = 0 and ||d1 h||_1 = 1.",
+    "does_not_support": "Any derivation of the window; norms other than weighted L1 for the inequality; complex coefficients; a statement that the sequence has or lacks a section natural for automorphisms of the window (graph automorphisms preserving d0, d1 and the weights); the converse \"if there is an invariant section then dim H1 * dim im d1 = 0\" is native by dimension (section_dim) with the trivial-factor halves in the kernel; existence of minimisers for general norms; Phi1 >= 0 as a theorem for the weighted-L1 window (gamma2_nonneg is anchored, Phi1 >= 0 needs the cost bridge of the degree-1 window node); any physical reading of the classes.",
+    "narrowest_claim": "For a window over a field with d1 d0 = 0 the sequence 0 -> H1 -> Q1 -> im d1 -> 0 is exact; no section is invariant under 1 + incl f pi when dim H1 > 0 and dim im d1 > 0 (kernel), and when dim H1 * dim im d1 = 0 there is exactly one section and it is invariant (kernel); every class has exactly one diagnostic class; Phi1 = 0 iff the class is zero for a definite J; and ||d1 h||_1 <= c Phi1 for an attained minimum and c at least the J-to-L1 column bound.",
+    "next_test": "Decide the splitting claim for the finite group G of automorphisms of the K4 two-face window (graph automorphisms preserving the two faces, d0, d1 and the weights) by solving the linear fixed-point equations of G on the affine section space over Hom(im d1, H1) = Q^2: either a G-fixed section exists or the fixed locus is empty."
+  }
+}
