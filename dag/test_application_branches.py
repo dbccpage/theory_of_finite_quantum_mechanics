@@ -25,7 +25,9 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     records = [json.loads(line) for line in (ROOT / 'dag/theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
     ids = {r['id'] for r in records}
     pregenesis_to_wdp = json.loads((ROOT / 'dag/fragments/pregenesis_to_wdp.json').read_text(encoding='utf-8'))
-    assert len(ids) == len(records) == 397 + len(pregenesis_to_wdp['records']) + len(f["records"])
+    unified = json.loads((ROOT / 'dag/fragments/unified_dag.json').read_text(encoding='utf-8'))
+    assert len(ids) == len(records) == (397 + len(unified['node_records']) + len(pregenesis_to_wdp['records'])
+                                        + len(f["records"]))
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids = ['TFQ-' + re.match(r'tfq_(\d{4})_', p.name)[1] for p in papers]
     assert len(paper_ids) == len(set(paper_ids)) == len(records)
@@ -43,7 +45,9 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
                 source = ROOT / path
                 assert source.is_file(), reference
                 if symbol:
-                    assert re.search(r'\b' + re.escape(symbol.split('.')[-1]) + r'\b', source.read_text(encoding='utf-8'))
+                    # Same leaf rule as validate_derivation_dag.py: last segment after :: and after a dot.
+                    leaf = symbol.split('::')[-1].split('.')[-1]
+                    assert re.search(r'\b' + re.escape(leaf) + r'\b', source.read_text(encoding='utf-8')), reference
     assert {r['stage'] for r in f['records']} == set(f['stages'])
 
 

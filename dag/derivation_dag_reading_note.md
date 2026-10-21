@@ -9,7 +9,18 @@ This directory holds `derivation_dag.json`, a derivation graph that starts at th
 - The format is the one in `010_mub6/research/derivation_dag_20261011.json`. The path `omega_engine_woland/tests/mub6` named in the request does not exist on main, so that file is the model.
 - Nodes carry id, stage, status, source_status, statement, source (file:line or ledger row), lean, rust, imported_structure, bottleneck and tags.
 - A route lists the inputs it needs together and one output. Routes with one output are alternatives. A route with status `GAP_NO_DERIVATION` carries no source: it marks a link that no record derives.
-- Node statuses are ADMITTED_PRIMITIVE, DEFINITION, PROVED_PROSE, PROVED_LEAN, COMPUTATIONALLY_CHECKED, CONDITIONAL, IMPORTED_ASSUMPTION, OPEN and REFUTED. Route statuses are DERIVED_PROSE, DERIVED_LEAN, COMPUTED, CONDITIONAL_ON_IMPORT and GAP_NO_DERIVATION.
+- Node statuses are ADMITTED_PRIMITIVE, DEFINITION, PROVED_PROSE, PROVED_LEAN, COMPUTATIONALLY_CHECKED, CONDITIONAL, IMPORTED_ASSUMPTION, OPEN, REFUTED and SOURCE_RECORD. Route statuses are DERIVED_PROSE, DERIVED_LEAN, COMPUTED, CONDITIONAL_ON_IMPORT, GAP_NO_DERIVATION and RECORD_PARENT.
+
+## One graph: the DAG and the TFQ tree
+
+`derivation_dag.json` and `theory_of_finite_qm.jsonl` (with its index `theory_of_finite_qm.md`) are one graph. `sync_unified_dag.py`, driven by `fragments/unified_dag.json`, keeps them joined: every TFQ record names at least one DAG node and every DAG node is named by at least one record.
+
+- A record that named no node has a node with the record's own id (tag `unified-dag`) and a route from the node of its parent record. Its status is the record status mapped down, never up: `COMPUTATIONAL_CONTROL` becomes COMPUTATIONALLY_CHECKED, `GAP` and `OPEN_*` become OPEN, and `SOURCE_RECORD` together with the fence labels of a source slice (`FLOAT_SCRIPT`, `EXACT_PROXY_NOT_EH`, `FINITE_TOY`, ...) become SOURCE_RECORD, which carries no derivation status. A route that only restates the tree link is RECORD_PARENT.
+- A node that no record named has a record from `TFQ-1000` upward and a generated paper.
+- The audited records of four source corpora are application-branch nodes: the fermion sign problem (`papers/core/fsp/`, stage FERMION_SIGN), dimension-six MUBs (`papers/core/mub6/`, MUTUALLY_UNBIASED_BASES), the Majorana problem (`papers/core/majorana/`, MAJORANA) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`, DRESSING_FIELD). Each was audited against the declarations present in this checkout; a node's `source_status` names the status its source claims and the audited status. Records that restate a trunk step are `alias:` tags on that trunk node, listed in the crosswalk section of `theory_of_finite_qm.md`.
+- The packet crosswalk of `papers/core/master_derivation_ledger.md` is carried as `packet:` tags. The ledger itself is regenerated from the JSONL and the DAG by `scripts/build_master_derivation_ledger.py`.
+
+Run order after an edit: `sync_unified_dag.py`, `sync_application_branches.py`, `sync_pregenesis_to_wdp.py`; then `--check` on all three, `sync_unified_dag.py --invariants` and `validate_derivation_dag.py --no-files`.
 - Nodes named `GP-IMPORT-*` and `L1-IMP-*` are structure the lift or the finite carrier takes in from outside. They are assumptions, not results.
 - `see_also` links nodes that two segments each describe. No node was deleted to remove an overlap.
 

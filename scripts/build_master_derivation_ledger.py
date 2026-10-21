@@ -38,6 +38,11 @@ def build_ledger() -> str:
             rel = f.relative_to(REPO_ROOT).as_posix()
             path_by_id[f"TFQ-{m.group(1)}"] = rel
 
+    # 2b. DAG node of each record: derivation_dag.json and the JSONL are one graph (dag/sync_unified_dag.py)
+    dag = json.loads((REPO_ROOT / "dag" / "derivation_dag.json").read_text(encoding="utf-8"))
+    node_status = {n["id"]: n["status"] for n in dag["nodes"]}
+    unified = json.loads((REPO_ROOT / "dag" / "fragments" / "unified_dag.json").read_text(encoding="utf-8"))
+
     # 3. Load 65 atlas questions
     atlas_questions = build_qm_question_atlas()
 
@@ -70,6 +75,7 @@ def build_ledger() -> str:
         "MUTUALLY_UNBIASED_BASES",
         "FERMION_SIGN",
         "TENSOR_COMPOSITION",
+        "MAJORANA",
     ]
 
     records_by_stage: dict[str, list[dict]] = {s: [] for s in stages_order}
@@ -146,6 +152,7 @@ def build_ledger() -> str:
             "MUTUALLY_UNBIASED_BASES": "Exact projector MUBs, prime-power constructions, MUB(6) non-existence fences",
             "FERMION_SIGN": "Signed-graph switching normal form, meron character cancellation on flip orbits",
             "TENSOR_COMPOSITION": "Tomographic composite coordinates, operational effect cones, finite POVMs",
+            "MAJORANA": "F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers",
         }
         lines.append(f"| §{idx:02d} | `{stage}` | {len(recs)} | {desc_map.get(stage, 'Specialized domain')} | [`{first_id}`..`{last_id}`] |")
 
@@ -157,8 +164,8 @@ def build_ledger() -> str:
         "",
         "Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.",
         "",
-        "| ID | Canonical Derivation Name | Stage | Status | Parent | Standalone Paper | Multi-Tier Witnesses |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+        "| ID | Canonical Derivation Name | Stage | Status | Parent | DAG Node (status) | Standalone Paper | Multi-Tier Witnesses |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
     ])
 
     for r in records:
@@ -179,9 +186,17 @@ def build_ledger() -> str:
             witnesses.append(f"Py: `{len(r['python'])}`")
         wit_str = ", ".join(witnesses) if witnesses else "Declarative / Formal Spec"
 
-        lines.append(f"| **`{rid}`** | {name} | `{st}` | `{status}` | `{pid}` | {doc_link} | {wit_str} |")
+        dag_ids = [x for x in r.get("existing_derivation_dag_ids", []) if x in node_status]
+        dag_cell = ", ".join(f"`{x}` ({node_status[x]})" for x in dag_ids) or "none"
+        lines.append(f"| **`{rid}`** | {name} | `{st}` | `{status}` | `{pid}` | {dag_cell} | {doc_link} | {wit_str} |")
 
     lines.extend([
+        "",
+        "---",
+        "",
+        "## 3b. One Derivation Graph",
+        "",
+        f"`dag/derivation_dag.json` ({len(dag['nodes'])} nodes, {len(dag['routes'])} routes) and `dag/theory_of_finite_qm.jsonl` ({record_count} records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as {len(unified['domain_records'])} new records; {len(unified['domain_aliases'])} of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.",
         "",
         "---",
         "",

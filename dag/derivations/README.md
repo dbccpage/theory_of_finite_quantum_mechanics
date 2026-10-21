@@ -283,7 +283,7 @@ Folder: [`07_l1_emergence/`](./07_l1_emergence/)
 | [`TFQ-0358`](./07_l1_emergence/tfq_0358_normalize_a_declared_positive_witness_mass_to_cell_values_that_are_nonnegative.md) | Normalize a declared positive witness mass to cell values that are nonnegative | `OPEN_OBLIGATION` | [`TFQ-0349`](./07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md) |
 | [`TFQ-0359`](./07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md) | Keep the Phi1 Banach-quotient reading on a finite-dimensional repair packet, and leave | `OPEN_OBLIGATION` | [`TFQ-0349`](./07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md) |
 
-### L1_TO_L2 (26 derivations)
+### L1_TO_L2 (39 derivations)
 
 Folder: [`08_l1_to_l2/`](./08_l1_to_l2/)
 
@@ -315,6 +315,19 @@ Folder: [`08_l1_to_l2/`](./08_l1_to_l2/)
 | [`TFQ-0304`](./08_l1_to_l2/tfq_0304_lift_capacity_is_not_a_dynamics_derivation.md) | Lift capacity is not a dynamics derivation | `SOURCE_RECORD` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
 | [`TFQ-0305`](./08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md) | Sector weights do not force the quadratic form | `SOURCE_RECORD` | [`TFQ-0304`](./08_l1_to_l2/tfq_0304_lift_capacity_is_not_a_dynamics_derivation.md) |
 | [`TFQ-0306`](./08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md) | Born uniqueness stays an imported boundary | `GAP` | [`TFQ-0305`](./08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md) |
+| [`TFQ-1000`](./08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md) | l1-operator-lift-trace-embed-013 | `PROVED_LEAN` | [`TFQ-0005`](./07_l1_emergence/tfq_0005_declared_l1_sector_weights.md) |
+| [`TFQ-1001`](./08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md) | l1-imp-sector-symmetry-law | `IMPORTED_ASSUMPTION` | [`TFQ-0296`](./08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md) |
+| [`TFQ-1002`](./08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md) | l1-wdp-realification-j | `DEFINITION` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
+| [`TFQ-1003`](./08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md) | l1-u1-selector-other-segment | `PROVED_LEAN` | [`TFQ-0312`](./09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md) |
+| [`TFQ-1004`](./08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md) | l1-qm020-c10-branch-localization | `PROVED_LEAN` | [`TFQ-0234`](./10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md) |
+| [`TFQ-1005`](./08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md) | l1-qm003-c17-composable-factorization | `PROVED_LEAN` | [`TFQ-0355`](./07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md) |
+| [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) | gp-import-complex-field | `IMPORTED_ASSUMPTION` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
+| [`TFQ-1030`](./08_l1_to_l2/tfq_1030_gp_import_circle_u1.md) | gp-import-circle-u1 | `IMPORTED_ASSUMPTION` | [`TFQ-0294`](./08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md) |
+| [`TFQ-1031`](./08_l1_to_l2/tfq_1031_gp_import_gleason.md) | gp-import-gleason | `IMPORTED_ASSUMPTION` | [`TFQ-0306`](./08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md) |
+| [`TFQ-1032`](./08_l1_to_l2/tfq_1032_gp_import_tensor_product.md) | gp-import-tensor-product | `IMPORTED_ASSUMPTION` | [`TFQ-0006`](./08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md) |
+| [`TFQ-1033`](./08_l1_to_l2/tfq_1033_gp_import_cptp_class.md) | gp-import-cptp-class | `IMPORTED_ASSUMPTION` | [`TFQ-0008`](./11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md) |
+| [`TFQ-1034`](./08_l1_to_l2/tfq_1034_gp_import_continuous_time.md) | gp-import-continuous-time | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
+| [`TFQ-1035`](./08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md) | gp-import-continuum-hilbert | `IMPORTED_ASSUMPTION` | [`TFQ-0085`](./20_continuum_interface/tfq_0085_open_finite_to_continuum_interface.md) |
 
 ### FINITE_HILBERT (15 derivations)
 
@@ -338,7 +351,7 @@ Folder: [`09_finite_hilbert/`](./09_finite_hilbert/)
 | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) | Three Lean files stay on a narrow carrier | `OPEN_OBLIGATION` | [`TFQ-0316`](./09_finite_hilbert/tfq_0316_package_chapter_states_a_conditional_lift.md) |
 | [`TFQ-0318`](./09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md) | Float lift helper is not the exact embedding | `OPEN_OBLIGATION` | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) |
 
-### FINITE_QM_CORE (2 derivations)
+### FINITE_QM_CORE (19 derivations)
 
 Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 
@@ -346,8 +359,25 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 |---|---|---|---|
 | [`TFQ-0007`](./10_finite_qm_core/tfq_0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md) | Finite quantum mechanics core on an admitted carrier | `OPEN_OBLIGATION` | [`TFQ-0006`](./08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md) |
 | [`TFQ-0234`](./10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md) | Supplied Hilbert carrier after the conditional lift | `SOURCE_RECORD` | [`TFQ-0006`](./08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md) |
+| [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) | fq-carrier-contract-v2 | `DEFINITION` | [`TFQ-0007`](./10_finite_qm_core/tfq_0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md) |
+| [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) | fq-primdiff-quotient-kernel | `PROVED_LEAN` | [`TFQ-0001`](./01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md) |
+| [`TFQ-1008`](./10_finite_qm_core/tfq_1008_fq_positive_weights_admitted.md) | fq-positive-weights-admitted | `IMPORTED_ASSUMPTION` | [`TFQ-0005`](./07_l1_emergence/tfq_0005_declared_l1_sector_weights.md) |
+| [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) | fq-declared-quantum-interface | `IMPORTED_ASSUMPTION` | [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) |
+| [`TFQ-1010`](./10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md) | fq-prim-to-qm-selection-open | `CONDITIONAL` | [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) |
+| [`TFQ-1011`](./10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md) | fq-sorkin-readout-class-qm208 | `PROVED_LEAN` | [`TFQ-0251`](./12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md) |
+| [`TFQ-1012`](./10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md) | fq-power-rule-p2-selection | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1014`](./10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md) | fq-gleason-d2-rational-plane-obstruction | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1015`](./10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md) | fq-cabello-no-integer-frame | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1016`](./10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md) | fq-cabello-frame-polytope-146 | `PROVED_LEAN` | [`TFQ-1015`](./10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md) |
+| [`TFQ-1019`](./10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md) | fq-gap-tensor-uniqueness | `CONDITIONAL` | [`TFQ-1018`](./12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md) |
+| [`TFQ-1021`](./10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md) | fq-continuum-hilbert-lift-construction | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
+| [`TFQ-1023`](./10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md) | fq-gap-custody-and-receipts | `OPEN_OBLIGATION` | [`TFQ-0200`](./23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md) |
+| [`TFQ-1024`](./10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md) | fq-gap-corpus-rewrite | `OPEN_OBLIGATION` | [`TFQ-0007`](./10_finite_qm_core/tfq_0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md) |
+| [`TFQ-1025`](./10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md) | fq-gap-c500-original-targets | `OPEN_OBLIGATION` | [`TFQ-0007`](./10_finite_qm_core/tfq_0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md) |
+| [`TFQ-1037`](./10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md) | gp-fin-gauss-matrix-algebra | `PROVED_LEAN` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
+| [`TFQ-1038`](./10_finite_qm_core/tfq_1038_gp_drop_one_census.md) | gp-drop-one-census | `PROVED_LEAN` | [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) |
 
-### FINITE_QM_DYNAMICS (15 derivations)
+### FINITE_QM_DYNAMICS (18 derivations)
 
 Folder: [`11_finite_qm_dynamics/`](./11_finite_qm_dynamics/)
 
@@ -368,8 +398,11 @@ Folder: [`11_finite_qm_dynamics/`](./11_finite_qm_dynamics/)
 | [`TFQ-0246`](./11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md) | Hamiltonian generator admission still reserved | `OPEN_OBLIGATION` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) | Heisenberg picture on a finite carrier | `SOURCE_RECORD` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0248`](./11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md) | Finite history decoherence matrix | `SOURCE_RECORD` | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) |
+| [`TFQ-1022`](./11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md) | fq-gap-real-embedding-choice | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
+| [`TFQ-1039`](./11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md) | ds-qm030-transfer-operator-shadow | `PROVED_LEAN` | [`TFQ-0239`](./11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md) |
+| [`TFQ-1040`](./11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md) | ds-continuous-time-exp-generator | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
 
-### FINITE_QM_STRUCTURE (21 derivations)
+### FINITE_QM_STRUCTURE (29 derivations)
 
 Folder: [`12_finite_qm_structure/`](./12_finite_qm_structure/)
 
@@ -396,6 +429,14 @@ Folder: [`12_finite_qm_structure/`](./12_finite_qm_structure/)
 | [`TFQ-0267`](./12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md) | Completely-positive import annex | `SOURCE_RECORD` | [`TFQ-0266`](./12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md) |
 | [`TFQ-0273`](./12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md) | Finite descent of an imported quantum interface | `OPEN_OBLIGATION` | [`TFQ-0272`](./13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md) |
 | [`TFQ-0274`](./12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md) | Tier-3 uniqueness left without a derivation | `GAP` | [`TFQ-0273`](./12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md) |
+| [`TFQ-1013`](./12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md) | fq-five-import-proxy-separation | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1017`](./12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md) | fq-busch-effect-frame | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1018`](./12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md) | fq-tensor-lu-rival-exclusion | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1020`](./12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md) | fq-weyl-finite-schrodinger-irreducibility | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
+| [`TFQ-1036`](./12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md) | gp-gap-exact-duality | `PROVED_LEAN` | [`TFQ-0185`](./22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md) |
+| [`TFQ-1041`](./12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md) | ds-qm206-boundary-synthesis | `PROVED_LEAN` | [`TFQ-0250`](./12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md) |
+| [`TFQ-1042`](./12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md) | ds-qm207-211-five-import-cascade | `PROVED_LEAN` | [`TFQ-0253`](./12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md) |
+| [`TFQ-1043`](./12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md) | ds-qm204-born-uniqueness-import-boundary | `IMPORTED_ASSUMPTION` | [`TFQ-0306`](./08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md) |
 
 ### FINITE_QM_INFORMATION (9 derivations)
 
@@ -578,7 +619,7 @@ Folder: [`20_continuum_interface/`](./20_continuum_interface/)
 | [`TFQ-0123`](./20_continuum_interface/tfq_0123_gap_f002_s000_002_carrier_mismatch_and_gap_f002_s000_001_supergravity_triangulation_stay_open.md) | GAP-F002-S000-002 carrier mismatch and GAP-F002-S000-001 supergravity triangulation stay open | `OPEN_BRIDGE` | [`TFQ-0111`](./19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md) |
 | [`TFQ-0124`](./20_continuum_interface/tfq_0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_manifold.md) | GAP: continuum limit, Einstein equation, physical cosmological constant, and smooth-manifold | `GAP` | [`TFQ-0111`](./19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md) |
 
-### IMPLEMENTATION_CORE (41 derivations)
+### IMPLEMENTATION_CORE (47 derivations)
 
 Folder: [`21_implementation_core/`](./21_implementation_core/)
 
@@ -625,6 +666,12 @@ Folder: [`21_implementation_core/`](./21_implementation_core/)
 | [`TFQ-0163`](./21_implementation_core/tfq_0163_interference_cancellation_and_path_sums.md) | Interference, cancellation, and path sums | `COMPUTATIONAL_CONTROL` | [`TFQ-0129`](./21_implementation_core/tfq_0129_exact_rays_and_pure_states.md) |
 | [`TFQ-0164`](./21_implementation_core/tfq_0164_ribbon_anyons_and_yang_baxter.md) | Ribbon anyons and Yang-Baxter | `COMPUTATIONAL_CONTROL` | [`TFQ-0127`](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) |
 | [`TFQ-0165`](./21_implementation_core/tfq_0165_spin_network_area_labels.md) | Spin-network area labels | `COMPUTATIONAL_CONTROL` | [`TFQ-0127`](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) |
+| [`TFQ-1026`](./21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md) | fq-impl-wdp-amplitude-bridge | `PROVED_LEAN` | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) |
+| [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) | fq-impl-realification-adapter | `PROVED_LEAN` | [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) |
+| [`TFQ-1028`](./21_implementation_core/tfq_1028_fq_impl_pairing_audit.md) | fq-impl-pairing-audit | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1044`](./21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md) | impl-fsp-switching-normal-form-nf002 | `PROVED_LEAN` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
+| [`TFQ-1045`](./21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md) | impl-thymus-screening-soundness | `PROVED_LEAN` | [`TFQ-0367`](./01_pregenesis/tfq_0367_listed_history_choice_free_summary.md) |
+| [`TFQ-1046`](./21_implementation_core/tfq_1046_impl_lggr_finite_results_lean.md) | impl-lggr-finite-results-lean | `PROVED_LEAN` | [`TFQ-0352`](./07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md) |
 
 ### IMPLEMENTATION_SIBLING (34 derivations)
 
@@ -730,7 +777,7 @@ Section 4 of a custody-pinned paper is not rewritten. These children name it as 
 
 These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and the [initial application receipt](../research/application_branches_validation.json). The [tensor receipt](../research/tensor_composition_validation.json) is the historical prose/kernel snapshot; the [formalization receipt](../research/tensor_formalization_validation.json) records the verified tomography and Schmidt extension. The [measurement receipt](../research/tensor_measurement_validation.json) records the effect cone, binary interval and finite POVMs with explicit saturation premises. The [countermodel receipt](../research/tensor_countermodel_validation.json) verifies the TFQ-0413 hypothesis boundaries.
 
-### DRESSING_FIELD (5 derivations)
+### DRESSING_FIELD (43 derivations)
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
@@ -739,6 +786,44 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-0399](./24_dressing_field/tfq_0399_dfm_tree_change.md) | Tree-change covariance of the residual connection | `PROVED_LEAN` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-TREE-CHANGE` |
 | [TFQ-0400](./24_dressing_field/tfq_0400_dfm_hierarchical_borel.md) | Hierarchical Borel dressing beyond the diamond control | `OPEN_OBLIGATION` | [TFQ-0399](./24_dressing_field/tfq_0399_dfm_tree_change.md) | `DFM-HIERARCHICAL-BOREL` |
 | [TFQ-0401](./24_dressing_field/tfq_0401_dfm_continuum_interface.md) | Dressing-field continuum and physical interpretation obligations | `GAP` | [TFQ-0400](./24_dressing_field/tfq_0400_dfm_hierarchical_borel.md) | `DFM-CONTINUUM-INTERFACE` |
+| [TFQ-1100](./24_dressing_field/tfq_1100_dfm_tree_chord_coordinates.md) | Tree and chord coordinates of a connection: triangle Mat2 witness | `PROVED_LEAN` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-TREE-CHORD-COORDINATES` |
+| [TFQ-1101](./24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md) | Abelian tree-dressing projector on rational 1-cochains | `DEFINITION` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-ABELIAN-TREE-PROJECTOR` |
+| [TFQ-1102](./24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md) | Abelian tree retraction on the diamond graph | `COMPUTATIONAL_CONTROL` | [TFQ-1101](./24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md) | `DFM-ABELIAN-RETRACTION-DIAMOND` |
+| [TFQ-1103](./24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md) | Unimodular tree change and first Symanzik polynomial on the diamond | `COMPUTATIONAL_CONTROL` | [TFQ-1102](./24_dressing_field/tfq_1102_dfm_abelian_retraction_diamond.md) | `DFM-TREE-CHANGE-GLZ-SYMANZIK-U` |
+| [TFQ-1104](./24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md) | Continuum Feynman parameters and the QED a_e enclosure | `OPEN_OBLIGATION` | [TFQ-1103](./24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md) | `DFM-SYMANZIK-QED-AE-FENCE` |
+| [TFQ-1105](./24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md) | Borel group B_2(Q), unipotent N and torus Levi factorization | `DEFINITION` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-BOREL-LEVI-FACTORIZATION` |
+| [TFQ-1106](./24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md) | Two-stage Borel dressing and artificial/substantial split on the diamond | `COMPUTATIONAL_CONTROL` | [TFQ-1105](./24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md) | `DFM-BOREL-TWO-STAGE-DIAMOND` |
+| [TFQ-1107](./24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md) | Tree momentum routing and second Symanzik 2-forest polynomial | `DEFINITION` | [TFQ-1101](./24_dressing_field/tfq_1101_dfm_abelian_tree_projector.md) | `DFM-TREE-MOMENTUM-ROUTING` |
+| [TFQ-1108](./24_dressing_field/tfq_1108_dfm_two_forest_f0_diamond.md) | Tree-routed completed square equals F_0 on the diamond | `COMPUTATIONAL_CONTROL` | [TFQ-1107](./24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md) | `DFM-TWO-FOREST-F0-DIAMOND` |
+| [TFQ-1109](./24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md) | Four-forest subtraction on a rational two-parameter sector kernel | `COMPUTATIONAL_CONTROL` | [TFQ-1107](./24_dressing_field/tfq_1107_dfm_tree_momentum_routing.md) | `DFM-BPHZ-SECTOR-KERNEL` |
+| [TFQ-1110](./24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md) | Continuum BPHZ and momentum integration remain outside the finite map | `OPEN_OBLIGATION` | [TFQ-1109](./24_dressing_field/tfq_1109_dfm_bphz_sector_kernel.md) | `DFM-BPHZ-CONTINUUM-FENCE` |
+| [TFQ-1111](./24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md) | Clifford Dirac propagator and tree-dressed matter fields | `DEFINITION` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-DRESSED-DIRAC-PROPAGATOR` |
+| [TFQ-1112](./24_dressing_field/tfq_1112_dfm_dressed_correlator_diamond.md) | Tree-dressed two-point correlator on the diamond | `COMPUTATIONAL_CONTROL` | [TFQ-1111](./24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md) | `DFM-DRESSED-CORRELATOR-DIAMOND` |
+| [TFQ-1113](./24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md) | Exact Clifford Ward-Takahashi propagator identity | `PROVED_PROSE` | [TFQ-1111](./24_dressing_field/tfq_1111_dfm_dressed_dirac_propagator.md) | `DFM-CLIFFORD-WARD-TAKAHASHI` |
+| [TFQ-1114](./24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md) | Z_1 = Z_2 counterterm equality under BPHZ subtraction | `OPEN_OBLIGATION` | [TFQ-1113](./24_dressing_field/tfq_1113_dfm_clifford_ward_takahashi.md) | `DFM-Z1-Z2-COUNTERTERM-FENCE` |
+| [TFQ-1115](./24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md) | Page-Wootters history shift and clock-dressing unitary | `DEFINITION` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-PAGE-WOOTTERS-CLOCK-DRESSING` |
+| [TFQ-1116](./24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md) | Clock dressing intertwines the history shift | `PROVED_PROSE` | [TFQ-1115](./24_dressing_field/tfq_1115_dfm_page_wootters_clock_dressing.md) | `DFM-CLOCK-DRESSING-INTERTWINER` |
+| [TFQ-1117](./24_dressing_field/tfq_1117_dfm_relational_time_fence.md) | Relational clock dressing and continuum time | `OPEN_OBLIGATION` | [TFQ-1116](./24_dressing_field/tfq_1116_dfm_clock_dressing_intertwiner.md) | `DFM-RELATIONAL-TIME-FENCE` |
+| [TFQ-1118](./24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md) | Electroweak doublet dressing matrix and Weinberg projectors | `DEFINITION` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-ELECTROWEAK-DOUBLET-DRESSING` |
+| [TFQ-1119](./24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md) | Doublet dressing reduces Phi to (0, r) | `PROVED_LEAN` | [TFQ-1118](./24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md) | `DFM-EW-DOUBLET-REDUCTION` |
+| [TFQ-1120](./24_dressing_field/tfq_1120_dfm_weinberg_projectors_rho.md) | Rational Weinberg projectors and custodial rho = 1 | `PROVED_LEAN` | [TFQ-1118](./24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md) | `DFM-WEINBERG-PROJECTORS-RHO` |
+| [TFQ-1121](./24_dressing_field/tfq_1121_dfm_sm_anomaly_nc_three.md) | One-generation hypercharge anomaly polynomials vanish iff N_c = 3 | `PROVED_LEAN` | [TFQ-1118](./24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md) | `DFM-SM-ANOMALY-NC-THREE` |
+| [TFQ-1122](./24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md) | Electroweak dressing: residual U(1) covariance and the continuum Standard Model | `OPEN_OBLIGATION` | [TFQ-1119](./24_dressing_field/tfq_1119_dfm_ew_doublet_reduction.md) | `DFM-ELECTROWEAK-CONTINUUM-FENCE` |
+| [TFQ-1123](./24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md) | Bipartite flavour graph rephasing and Jarlskog plaquettes | `DEFINITION` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-CKM-BIPARTITE-REPHASING` |
+| [TFQ-1124](./24_dressing_field/tfq_1124_dfm_ckm_cycle_count.md) | Cycle and CP-phase counting arithmetic for K_{n,n} | `PROVED_LEAN` | [TFQ-1123](./24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md) | `DFM-CKM-CYCLE-COUNT` |
+| [TFQ-1125](./24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md) | Jarlskog quartet invariance under vertex rephasing | `PROVED_LEAN` | [TFQ-1123](./24_dressing_field/tfq_1123_dfm_ckm_bipartite_rephasing.md) | `DFM-JARLSKOG-QUARTET-INVARIANCE` |
+| [TFQ-1126](./24_dressing_field/tfq_1126_dfm_cabibbo_cp_phase_zero.md) | Two-generation quartet is real | `PROVED_LEAN` | [TFQ-1125](./24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md) | `DFM-CABIBBO-CP-PHASE-ZERO` |
+| [TFQ-1127](./24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md) | Pythagorean three-generation Jarlskog witness | `COMPUTATIONAL_CONTROL` | [TFQ-1125](./24_dressing_field/tfq_1125_dfm_jarlskog_quartet_invariance.md) | `DFM-JARLSKOG-PYTHAGOREAN-WITNESS` |
+| [TFQ-1128](./24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md) | CKM origin and physical CP violation stay outside the flavour-graph map | `OPEN_OBLIGATION` | [TFQ-1127](./24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md) | `DFM-CKM-PHYSICS-FENCE` |
+| [TFQ-1129](./24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md) | Discrete Landau condition, Klein four-group copies and Hessian form | `DEFINITION` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-LANDAU-GRIBOV-KLEIN-FOUR` |
+| [TFQ-1130](./24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md) | 64 anchored Klein-four Landau copies collapse under tree dressing | `COMPUTATIONAL_CONTROL` | [TFQ-1129](./24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md) | `DFM-SU3-GRIBOV-COPIES-DIAMOND` |
+| [TFQ-1131](./24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md) | Non-Abelian SU(3, Q(i)) tree dressing on the diamond | `COMPUTATIONAL_CONTROL` | [TFQ-1129](./24_dressing_field/tfq_1129_dfm_landau_gribov_klein_four.md) | `DFM-SU3-TREE-DRESSING-DIAMOND` |
+| [TFQ-1132](./24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md) | Continuum Gribov ambiguity, ghosts and Yang-Mills remain open | `OPEN_OBLIGATION` | [TFQ-1130](./24_dressing_field/tfq_1130_dfm_su3_gribov_copies_diamond.md) | `DFM-GRIBOV-CONTINUUM-FENCE` |
+| [TFQ-1133](./24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | Rational Lorentz boosts, simplex tetrads and dressed affine transport | `DEFINITION` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-CARTAN-REGGE-TETRAD` |
+| [TFQ-1134](./24_dressing_field/tfq_1134_dfm_boost_plane_lean.md) | Boost-plane Lorentz invariance of the tetrad metric | `PROVED_LEAN` | [TFQ-1133](./24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-BOOST-PLANE-LEAN` |
+| [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | Frame-invariant, metric-compatible dressed transport | `PROVED_PROSE` | [TFQ-1133](./24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-DRESSED-AFFINE-TRANSPORT` |
+| [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | Artificial versus substantial hinge holonomy witness | `COMPUTATIONAL_CONTROL` | [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | `DFM-HINGE-HOLONOMY-WITNESS` |
+| [TFQ-1137](./24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | Regge geometry, spinor coupling and continuum gravity remain open | `OPEN_OBLIGATION` | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-REGGE-GRAVITY-FENCE` |
 
 ### MUTUALLY_UNBIASED_BASES (4 derivations)
 
@@ -749,7 +834,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-0404](./25_mub/tfq_0404_mub_tomography_inversion.md) | Tomography from a supplied complete MUB family | `PROVED_PROSE` | [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | `MUB-TOMOGRAPHY-INVERSION` |
 | [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | Dimension-six MUB reductions and global obligations | `OPEN_OBLIGATION` | [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | `MUB6-GLOBAL-OBLIGATIONS` |
 
-### FERMION_SIGN (4 derivations)
+### FERMION_SIGN (41 derivations)
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
@@ -757,6 +842,43 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-0407](./26_fsp/tfq_0407_fsp_meron_character_cancellation.md) | Meron character cancellation on a supplied flip orbit | `PROVED_LEAN` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-MERON-CHARACTER-CANCELLATION` |
 | [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | Protected Hubbard representations and negative witnesses | `CONDITIONAL` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-HUBBARD-PROTECTED-REPRESENTATIONS` |
 | [TFQ-0409](./26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md) | Efficient sampling and general FSP obligations | `OPEN_OBLIGATION` | [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | `FSP-EFFICIENT-SAMPLING-OBLIGATIONS` |
+| [TFQ-1184](./26_fsp/tfq_1184_fsp_car_exterior_fock.md) | Canonical anticommutation relations on the exterior Fock space | `PROVED_PROSE` | [TFQ-0296](./08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md) | `FSP-CAR-EXTERIOR-FOCK` |
+| [TFQ-1185](./26_fsp/tfq_1185_fsp_jordan_wigner_hop_sign.md) | Jordan-Wigner parity sign of an occupation-basis hop | `COMPUTATIONAL_CONTROL` | [TFQ-1184](./26_fsp/tfq_1184_fsp_car_exterior_fock.md) | `FSP-JORDAN-WIGNER-HOP-SIGN` |
+| [TFQ-1186](./26_fsp/tfq_1186_fsp_majorana_clifford_parity.md) | Majorana decomposition, Clifford relations and fermion parity | `IMPORTED_ASSUMPTION` | [TFQ-1184](./26_fsp/tfq_1184_fsp_car_exterior_fock.md) | `FSP-MAJORANA-CLIFFORD-PARITY` |
+| [TFQ-1187](./26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md) | CAR kinematics do not select a fermionic Hamiltonian | `PROVED_PROSE` | [TFQ-1184](./26_fsp/tfq_1184_fsp_car_exterior_fock.md) | `FSP-CAR-DYNAMICS-NONUNIQUE` |
+| [TFQ-1188](./26_fsp/tfq_1188_fsp_signed_hopping_path_series.md) | Closed-path series for a signed hopping Hamiltonian | `PROVED_PROSE` | [TFQ-1187](./26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md) | `FSP-SIGNED-HOPPING-PATH-SERIES` |
+| [TFQ-1189](./26_fsp/tfq_1189_fsp_average_sign_definition.md) | Average sign and free-energy gap of a declared representation | `DEFINITION` | [TFQ-1188](./26_fsp/tfq_1188_fsp_signed_hopping_path_series.md) | `FSP-AVERAGE-SIGN-DEFINITION` |
+| [TFQ-1190](./26_fsp/tfq_1190_fsp_sign_estimator_variance.md) | Variance of the Monte Carlo sign estimator | `PROVED_PROSE` | [TFQ-1189](./26_fsp/tfq_1189_fsp_average_sign_definition.md) | `FSP-SIGN-ESTIMATOR-VARIANCE` |
+| [TFQ-1191](./26_fsp/tfq_1191_fsp_free_triangle_representation.md) | Representation-dependent negativity on the free triangle | `COMPUTATIONAL_CONTROL` | [TFQ-1188](./26_fsp/tfq_1188_fsp_signed_hopping_path_series.md) | `FSP-FREE-TRIANGLE-REPRESENTATION` |
+| [TFQ-1192](./26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md) | Troyer-Wiese worst-case reduction (imported) | `IMPORTED_ASSUMPTION` | [TFQ-1190](./26_fsp/tfq_1190_fsp_sign_estimator_variance.md) | `FSP-TROYER-WIESE-REDUCTION` |
+| [TFQ-1193](./26_fsp/tfq_1193_fsp_involution_pair_cancellation.md) | Sign-reversing equal-weight involution pairs cancel | `PROVED_LEAN` | [TFQ-1188](./26_fsp/tfq_1188_fsp_signed_hopping_path_series.md) | `FSP-INVOLUTION-PAIR-CANCELLATION` |
+| [TFQ-1194](./26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md) | GIN equal-weight pairing on the four-site ring fixture | `COMPUTATIONAL_CONTROL` | [TFQ-1193](./26_fsp/tfq_1193_fsp_involution_pair_cancellation.md) | `FSP-GIN-EQUAL-WEIGHT-PAIRING` |
+| [TFQ-1195](./26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md) | Rational cochain quotient normal form | `PROVED_PROSE` | [TFQ-0349](./07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md) | `FSP-RATIONAL-QUOTIENT-NORMAL-FORM` |
+| [TFQ-1196](./26_fsp/tfq_1196_fsp_u1_wilson_action.md) | Compact lattice U(1) Wilson action gauge invariance | `IMPORTED_ASSUMPTION` | [TFQ-0091](./19_finite_qg/tfq_0091_finite_loop_words_stay_on_the_declared_graph_continuum_connection_and_the.md) | `FSP-U1-WILSON-ACTION` |
+| [TFQ-1197](./26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md) | Wilson-Dirac gamma5-hermiticity and real determinant | `IMPORTED_ASSUMPTION` | [TFQ-1196](./26_fsp/tfq_1196_fsp_u1_wilson_action.md) | `FSP-WILSON-DIRAC-GAMMA5` |
+| [TFQ-1198](./26_fsp/tfq_1198_fsp_theta_term_complex_weight.md) | Topological theta term makes lattice weights complex | `IMPORTED_ASSUMPTION` | [TFQ-1196](./26_fsp/tfq_1196_fsp_u1_wilson_action.md) | `FSP-THETA-TERM-COMPLEX-WEIGHT` |
+| [TFQ-1199](./26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md) | Callan-Harvey anomaly inflow on a finite slab lattice | `OPEN_OBLIGATION` | [TFQ-1197](./26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md) | `FSP-LATTICE-ANOMALY-INFLOW` |
+| [TFQ-1200](./26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md) | SU(2) adjoint fermions have a real determinant | `IMPORTED_ASSUMPTION` | [TFQ-1196](./26_fsp/tfq_1196_fsp_u1_wilson_action.md) | `FSP-SU2-ADJOINT-REAL-DET` |
+| [TFQ-1201](./26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md) | Complex quark determinant at real chemical potential | `IMPORTED_ASSUMPTION` | [TFQ-1200](./26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md) | `FSP-QCD-CHEMICAL-POTENTIAL-DET` |
+| [TFQ-1202](./26_fsp/tfq_1202_fsp_triality_center_projection.md) | Z3 center projection and baryon triality | `OPEN_OBLIGATION` | [TFQ-1201](./26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md) | `FSP-TRIALITY-CENTER-PROJECTION` |
+| [TFQ-1203](./26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md) | Real determinant at imaginary chemical potential | `IMPORTED_ASSUMPTION` | [TFQ-1201](./26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md) | `FSP-IMAGINARY-MU-REAL-DET` |
+| [TFQ-1204](./26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md) | Lattice Wess-Zumino supercharge algebra | `OPEN_OBLIGATION` | [TFQ-1184](./26_fsp/tfq_1184_fsp_car_exterior_fock.md) | `FSP-LATTICE-WESS-ZUMINO-SUSY` |
+| [TFQ-1205](./26_fsp/tfq_1205_fsp_nicolai_map_claim.md) | Nicolai map sign elimination (unsupported) | `OPEN_OBLIGATION` | [TFQ-1204](./26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md) | `FSP-NICOLAI-MAP-CLAIM` |
+| [TFQ-1206](./26_fsp/tfq_1206_fsp_witten_index_invariance.md) | Witten index beta-independence under exact supersymmetry | `IMPORTED_ASSUMPTION` | [TFQ-1204](./26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md) | `FSP-WITTEN-INDEX-INVARIANCE` |
+| [TFQ-1207](./26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md) | Kitaev honeycomb exact Majorana solution | `IMPORTED_ASSUMPTION` | [TFQ-1186](./26_fsp/tfq_1186_fsp_majorana_clifford_parity.md) | `FSP-KITAEV-HONEYCOMB-SOLUTION` |
+| [TFQ-1208](./26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md) | Laughlin quasihole exchange phase pi/m | `IMPORTED_ASSUMPTION` | [TFQ-1207](./26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md) | `FSP-LAUGHLIN-EXCHANGE-PHASE` |
+| [TFQ-1209](./26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md) | Fibonacci anyon fusion and braiding data | `IMPORTED_ASSUMPTION` | [TFQ-1208](./26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md) | `FSP-FIBONACCI-ANYON-DATA` |
+| [TFQ-1210](./26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md) | BF and 2-group anomaly sign cancellation (unsupported) | `OPEN_OBLIGATION` | [TFQ-1208](./26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md) | `FSP-BF-2GROUP-SIGN-CLAIM` |
+| [TFQ-1211](./26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md) | Cobordism invariant as intrinsic sign obstruction (unsupported) | `OPEN_OBLIGATION` | [TFQ-1210](./26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md) | `FSP-COBORDISM-INTRINSIC-SIGN` |
+| [TFQ-1212](./26_fsp/tfq_1212_fsp_regge_deficit_action.md) | Regge deficit angles and action | `IMPORTED_ASSUMPTION` | [TFQ-0549](./06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) | `FSP-REGGE-DEFICIT-ACTION` |
+| [TFQ-1213](./26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md) | Discrete Wheeler-DeWitt constraint on triangulations | `OPEN_OBLIGATION` | [TFQ-1212](./26_fsp/tfq_1212_fsp_regge_deficit_action.md) | `FSP-DISCRETE-WDW-CONSTRAINT` |
+| [TFQ-1214](./26_fsp/tfq_1214_fsp_pachner_invariance_claim.md) | Pachner-move invariance of a triangulation sum (unsupported) | `OPEN_OBLIGATION` | [TFQ-1212](./26_fsp/tfq_1212_fsp_regge_deficit_action.md) | `FSP-PACHNER-INVARIANCE-CLAIM` |
+| [TFQ-1215](./26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md) | CDT causal foliation and positive transfer matrix (unsupported) | `OPEN_OBLIGATION` | [TFQ-1213](./26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md) | `FSP-CDT-FOLIATION-POSITIVITY` |
+| [TFQ-1216](./26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md) | Dirac-Kaehler tastes and spinfoam boundary signs (unsupported) | `OPEN_OBLIGATION` | [TFQ-1215](./26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md) | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` |
+| [TFQ-1217](./26_fsp/tfq_1217_fsp_xcube_fracton_model.md) | X-cube fracton model ground-state degeneracy | `IMPORTED_ASSUMPTION` | [TFQ-1210](./26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md) | `FSP-XCUBE-FRACTON-MODEL` |
+| [TFQ-1218](./26_fsp/tfq_1218_fsp_fracton_mobility.md) | X-cube excitation mobility classes | `IMPORTED_ASSUMPTION` | [TFQ-1217](./26_fsp/tfq_1217_fsp_xcube_fracton_model.md) | `FSP-FRACTON-MOBILITY` |
+| [TFQ-1219](./26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md) | Hinge-lineon fermion sign elimination (unsupported) | `OPEN_OBLIGATION` | [TFQ-1218](./26_fsp/tfq_1218_fsp_fracton_mobility.md) | `FSP-HINGE-LINEON-SIGN-CLAIM` |
+| [TFQ-1220](./26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md) | Involution-or-NP-hard dichotomy for finite systems (refuted as stated) | `REFUTED` | [TFQ-1192](./26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md) | `FSP-MASTER-DICHOTOMY-REFUTED` |
 
 ### TENSOR_COMPOSITION (7 derivations)
 
@@ -769,3 +891,54 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-0414](./27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md) | Generated operational effect cone | `PROVED_LEAN` | [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | `TENSOR-GENERATED-EFFECT-CONE` |
 | [TFQ-0415](./27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md) | Binary effects and explicit effect saturation | `PROVED_LEAN` | [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | `TENSOR-BINARY-EFFECT-INTERVAL` |
 | [TFQ-0416](./27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md) | Finite POVMs and separate test saturation | `PROVED_LEAN` | [TFQ-0415](./27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md) | `TENSOR-FINITE-POVM-AVAILABILITY` |
+
+### MAJORANA (46 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | F2 parity schedule on a declared finite cochain complex | `DEFINITION` | [TFQ-0181](./22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md) | `MAJ-F2-PARITY-SCHEDULE` |
+| [TFQ-1139](./28_majorana/tfq_1139_maj_trichotomy_labels.md) | Exact, ClosedResidual and OpenObstruction residual predicates | `DEFINITION` | [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | `MAJ-TRICHOTOMY-LABELS` |
+| [TFQ-1140](./28_majorana/tfq_1140_maj_phi1_hamming_coset.md) | Logical cohomology H1 and Hamming coset weight Phi1 over F2 | `DEFINITION` | [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | `MAJ-PHI1-HAMMING-COSET` |
+| [TFQ-1141](./28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md) | Pairwise exclusion of the three residual labels | `PROVED_LEAN` | [TFQ-1139](./28_majorana/tfq_1139_maj_trichotomy_labels.md) | `MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION` |
+| [TFQ-1142](./28_majorana/tfq_1142_maj_trichotomy_exhaustive.md) | Residual trichotomy partitions C1 | `PROVED_PROSE` | [TFQ-1141](./28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md) | `MAJ-TRICHOTOMY-EXHAUSTIVE` |
+| [TFQ-1143](./28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md) | Polynomial decision of the residual class by F2 elimination | `PROVED_PROSE` | [TFQ-1142](./28_majorana/tfq_1142_maj_trichotomy_exhaustive.md) | `MAJ-TRICHOTOMY-ELIMINATION-DECISION` |
+| [TFQ-1144](./28_majorana/tfq_1144_maj_nilpotency_refusal.md) | RepresentationInvalid refusal when d1 d0 is nonzero | `DEFINITION` | [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | `MAJ-NILPOTENCY-REFUSAL` |
+| [TFQ-1145](./28_majorana/tfq_1145_maj_torus_2x2_worked_grid.md) | Worked 2x2 periodic plaquette grid | `COMPUTATIONAL_CONTROL` | [TFQ-1142](./28_majorana/tfq_1142_maj_trichotomy_exhaustive.md) | `MAJ-TORUS-2X2-WORKED-GRID` |
+| [TFQ-1146](./28_majorana/tfq_1146_maj_lggr_torus_instance.md) | Local green, global red on the 2x2 torus schedule | `COMPUTATIONAL_CONTROL` | [TFQ-1145](./28_majorana/tfq_1145_maj_torus_2x2_worked_grid.md) | `MAJ-LGGR-TORUS-INSTANCE` |
+| [TFQ-1147](./28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md) | Exact syndrome-recovery criterion for an admitted error set | `PROVED_PROSE` | [TFQ-1140](./28_majorana/tfq_1140_maj_phi1_hamming_coset.md) | `MAJ-SYNDROME-RECOVERY-CRITERION` |
+| [TFQ-1148](./28_majorana/tfq_1148_maj_distance_weight_correction.md) | Weight-t errors are recoverable iff 2t < d | `OPEN_OBLIGATION` | [TFQ-1147](./28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md) | `MAJ-DISTANCE-WEIGHT-CORRECTION` |
+| [TFQ-1149](./28_majorana/tfq_1149_maj_open_lieb_robinson_locality.md) | Lieb-Robinson extension of syndrome detectability | `OPEN_OBLIGATION` | [TFQ-1147](./28_majorana/tfq_1147_maj_syndrome_recovery_criterion.md) | `MAJ-OPEN-LIEB-ROBINSON-LOCALITY` |
+| [TFQ-1150](./28_majorana/tfq_1150_maj_surface_shadow_fence.md) | Surface-code shadows are diagnostic schedules, not threshold proofs | `DEFINITION` | [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | `MAJ-SURFACE-SHADOW-FENCE` |
+| [TFQ-1151](./28_majorana/tfq_1151_maj_tetron_array_carrier.md) | Parameterized tetron-array carriers (disk, cylinder, torus) | `DEFINITION` | [TFQ-1138](./28_majorana/tfq_1138_maj_f2_parity_schedule.md) | `MAJ-TETRON-ARRAY-CARRIER` |
+| [TFQ-1152](./28_majorana/tfq_1152_maj_tetron_betti_computed.md) | Computed dim H1 = 0, 1, 2 on disk, cylinder and torus tetron arrays | `COMPUTATIONAL_CONTROL` | [TFQ-1151](./28_majorana/tfq_1151_maj_tetron_array_carrier.md) | `MAJ-TETRON-BETTI-COMPUTED` |
+| [TFQ-1153](./28_majorana/tfq_1153_maj_trivial_h1_no_closed.md) | Trivial H1 admits no ClosedResidual | `PROVED_LEAN` | [TFQ-1141](./28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md) | `MAJ-TRIVIAL-H1-NO-CLOSED` |
+| [TFQ-1154](./28_majorana/tfq_1154_maj_legacy_carrier_retraction.md) | Retraction of the legacy tetron carrier | `CONDITIONAL` | [TFQ-1153](./28_majorana/tfq_1153_maj_trivial_h1_no_closed.md) | `MAJ-LEGACY-CARRIER-RETRACTION` |
+| [TFQ-1155](./28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md) | Per-class minimum weights 3, 4, 7 and distance 3 on the 3x4 torus | `COMPUTATIONAL_CONTROL` | [TFQ-1152](./28_majorana/tfq_1152_maj_tetron_betti_computed.md) | `MAJ-TORUS-3X4-COSET-WEIGHTS` |
+| [TFQ-1156](./28_majorana/tfq_1156_maj_open_distance_family.md) | Distance formulas for the tetron-array families | `OPEN_OBLIGATION` | [TFQ-1155](./28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md) | `MAJ-OPEN-DISTANCE-FAMILY` |
+| [TFQ-1157](./28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md) | Coset-weight decoding is NP-hard for general binary codes | `IMPORTED_ASSUMPTION` | [TFQ-1140](./28_majorana/tfq_1140_maj_phi1_hamming_coset.md) | `MAJ-IMPORT-COSET-WEIGHT-NP-HARD` |
+| [TFQ-1158](./28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md) | Computing Phi1 is coset-leader decoding of im d0 | `CONDITIONAL` | [TFQ-1140](./28_majorana/tfq_1140_maj_phi1_hamming_coset.md) | `MAJ-PHI1-SYNDROME-DECODING` |
+| [TFQ-1159](./28_majorana/tfq_1159_maj_capped_coset_search.md) | Budget-capped coset search returns a flagged upper bound | `COMPUTATIONAL_CONTROL` | [TFQ-1158](./28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md) | `MAJ-CAPPED-COSET-SEARCH` |
+| [TFQ-1160](./28_majorana/tfq_1160_maj_torus_6x6_benchmark.md) | 6x6 torus classification timing and budget overflow | `COMPUTATIONAL_CONTROL` | [TFQ-1143](./28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md) | `MAJ-TORUS-6X6-BENCHMARK` |
+| [TFQ-1161](./28_majorana/tfq_1161_maj_lp_invariance_binary.md) | L^p norms coincide with Hamming weight on binary carriers | `PROVED_PROSE` | [TFQ-1140](./28_majorana/tfq_1140_maj_phi1_hamming_coset.md) | `MAJ-LP-INVARIANCE-BINARY` |
+| [TFQ-1162](./28_majorana/tfq_1162_maj_realization_packet_gap.md) | The Majorana problem as a realization packet gap | `DEFINITION` | [TFQ-0181](./22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md) | `MAJ-REALIZATION-PACKET-GAP` |
+| [TFQ-1163](./28_majorana/tfq_1163_maj_detector_inadequate.md) | DETECTOR_INADEQUATE for a non-injective measurement map | `DEFINITION` | [TFQ-1162](./28_majorana/tfq_1162_maj_realization_packet_gap.md) | `MAJ-DETECTOR-INADEQUATE` |
+| [TFQ-1164](./28_majorana/tfq_1164_maj_syndrome_readout_inadequate.md) | Syndrome-only readout is inadequate on the 2x2 tetron torus | `COMPUTATIONAL_CONTROL` | [TFQ-1163](./28_majorana/tfq_1163_maj_detector_inadequate.md) | `MAJ-SYNDROME-READOUT-INADEQUATE` |
+| [TFQ-1165](./28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md) | Hardware narratives are quarantined observer projections | `DEFINITION` | [TFQ-1162](./28_majorana/tfq_1162_maj_realization_packet_gap.md) | `MAJ-HARDWARE-NARRATIVE-QUARANTINE` |
+| [TFQ-1166](./28_majorana/tfq_1166_maj_binding_nonclaims.md) | Binding non-claims of the Majorana monograph | `DEFINITION` | [TFQ-1162](./28_majorana/tfq_1162_maj_realization_packet_gap.md) | `MAJ-BINDING-NONCLAIMS` |
+| [TFQ-1167](./28_majorana/tfq_1167_maj_import_kitaev_chain.md) | Imported 1D Kitaev chain model | `IMPORTED_ASSUMPTION` | [TFQ-0181](./22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md) | `MAJ-IMPORT-KITAEV-CHAIN` |
+| [TFQ-1168](./28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md) | Sweet-spot bonds avoid the edge Majorana indices | `PROVED_LEAN` | [TFQ-1167](./28_majorana/tfq_1167_maj_import_kitaev_chain.md) | `MAJ-KITAEV-EDGE-INDEX-DISJOINT` |
+| [TFQ-1169](./28_majorana/tfq_1169_maj_kitaev_sweetspot_exact.md) | Exact sweet-spot Kitaev commutators on two modes | `COMPUTATIONAL_CONTROL` | [TFQ-1167](./28_majorana/tfq_1167_maj_import_kitaev_chain.md) | `MAJ-KITAEV-SWEETSPOT-EXACT` |
+| [TFQ-1170](./28_majorana/tfq_1170_maj_import_ising_anyons.md) | Imported Ising anyon model and its braiding limits | `IMPORTED_ASSUMPTION` | [TFQ-1165](./28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md) | `MAJ-IMPORT-ISING-ANYONS` |
+| [TFQ-1171](./28_majorana/tfq_1171_maj_ising_braid_exact_open.md) | Exact Q(zeta16) braid identities for the Ising 2x2 matrices | `OPEN_OBLIGATION` | [TFQ-1170](./28_majorana/tfq_1170_maj_import_ising_anyons.md) | `MAJ-ISING-BRAID-EXACT-OPEN` |
+| [TFQ-1172](./28_majorana/tfq_1172_maj_majorana_braid_yb_exact.md) | Exact Yang-Baxter relation for the signed Majorana braid action | `COMPUTATIONAL_CONTROL` | [TFQ-1170](./28_majorana/tfq_1170_maj_import_ising_anyons.md) | `MAJ-MAJORANA-BRAID-YB-EXACT` |
+| [TFQ-1173](./28_majorana/tfq_1173_maj_parity_observable_fence.md) | Parity observable bookkeeping is algebraic consistency only | `DEFINITION` | [TFQ-1165](./28_majorana/tfq_1165_maj_hardware_narrative_quarantine.md) | `MAJ-PARITY-OBSERVABLE-FENCE` |
+| [TFQ-1174](./28_majorana/tfq_1174_maj_parity_sector_split_exact.md) | Exact parity-sector splitting on the 2-mode Fock carrier | `COMPUTATIONAL_CONTROL` | [TFQ-1173](./28_majorana/tfq_1173_maj_parity_observable_fence.md) | `MAJ-PARITY-SECTOR-SPLIT-EXACT` |
+| [TFQ-1175](./28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md) | Sign-reversing pairs cancel in a signed sum | `PROVED_LEAN` | [TFQ-0409](./26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md) | `MAJ-GIN-INVOLUTION-PAIR-CANCEL` |
+| [TFQ-1176](./28_majorana/tfq_1176_maj_gin_terminal_routing.md) | GIN fermion-recovery routing rule | `DEFINITION` | [TFQ-1175](./28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md) | `MAJ-GIN-TERMINAL-ROUTING` |
+| [TFQ-1177](./28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md) | Continuous-to-discrete transfer envelope under quasiparticle poisoning | `OPEN_OBLIGATION` | [TFQ-1162](./28_majorana/tfq_1162_maj_realization_packet_gap.md) | `MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE` |
+| [TFQ-1178](./28_majorana/tfq_1178_maj_open_non_markovian_envelope.md) | Non-Markovian bosonic-bath transfer envelope | `OPEN_OBLIGATION` | [TFQ-1177](./28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md) | `MAJ-OPEN-NON-MARKOVIAN-ENVELOPE` |
+| [TFQ-1179](./28_majorana/tfq_1179_maj_open_multiterminal_envelope.md) | Multi-terminal cross-junction transfer envelope under disorder | `OPEN_OBLIGATION` | [TFQ-1177](./28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md) | `MAJ-OPEN-MULTITERMINAL-ENVELOPE` |
+| [TFQ-1180](./28_majorana/tfq_1180_maj_envelope_nat_arithmetic.md) | Natural-number positivity lemmas cited for the transfer envelopes | `PROVED_LEAN` | [TFQ-1177](./28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md) | `MAJ-ENVELOPE-NAT-ARITHMETIC` |
+| [TFQ-1181](./28_majorana/tfq_1181_maj_open_lp_dual_certified_ceiling.md) | Exact rational l1 LP dual lower bounds for Phi1 | `OPEN_OBLIGATION` | [TFQ-1159](./28_majorana/tfq_1159_maj_capped_coset_search.md) | `MAJ-OPEN-LP-DUAL-CERTIFIED-CEILING` |
+| [TFQ-1182](./28_majorana/tfq_1182_maj_open_evidence_adequacy.md) | Evidence adequacy of laboratory measurement maps | `OPEN_OBLIGATION` | [TFQ-1163](./28_majorana/tfq_1163_maj_detector_inadequate.md) | `MAJ-OPEN-EVIDENCE-ADEQUACY` |
+| [TFQ-1183](./28_majorana/tfq_1183_maj_open_poisson_schrodinger.md) | Self-consistent Poisson-Schrodinger junction solver | `OPEN_OBLIGATION` | [TFQ-1179](./28_majorana/tfq_1179_maj_open_multiterminal_envelope.md) | `MAJ-OPEN-POISSON-SCHRODINGER` |
