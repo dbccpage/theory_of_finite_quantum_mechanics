@@ -151,3 +151,31 @@ def test_optimized_checker_keeps_scope_guard(tmp_path):
     rejected=subprocess.run([sys.executable,'-I','-O',str(script),str(path)],capture_output=True)
     assert good.returncode==0
     assert rejected.returncode!=0 and b'PREMISES' in rejected.stderr
+
+
+def test_direct_integer_inputs_remain_exact():
+    for n in (2**54, 10**100):
+        a = [[n, n+1], [n+1, n+2]]
+        assert a[0][0]*a[1][1] - a[0][1]*a[1][0] == -1
+        assert ot.rank(a) == 2
+        assert ot.analyze(a, [[1,0],[0,1]], [ot.identity(2)],
+                          [ot.identity(2)])['tomographic'] is True
+
+
+@pytest.mark.parametrize('bad', [[], [[]], [[1,2],[3]], [[1],[2,3]]])
+def test_direct_matrix_shape_rejected(bad):
+    for op in (ot.rank, lambda a: ot.multiply(a, [[1],[1]]),
+               lambda a: ot.subtract(a, a),
+               lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+        with pytest.raises(ValueError, match='MATRIX_SHAPE'):
+            op(bad)
+
+
+@pytest.mark.parametrize('scalar', [True, False, 0.5, 1.0, '1'])
+def test_direct_inexact_or_ambiguous_scalars_rejected(scalar):
+    a = [[scalar]]
+    for op in (ot.rank, lambda a: ot.multiply(a, [[1]]),
+               lambda a: ot.subtract(a, a),
+               lambda a: ot.analyze(a, [[1]], [[[1]]], [[[1]]])):
+        with pytest.raises(ValueError, match='SCALAR_TYPE'):
+            op(a)

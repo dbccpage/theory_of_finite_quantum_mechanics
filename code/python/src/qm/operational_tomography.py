@@ -3,6 +3,9 @@
 The generic analyzer proves no universal statement. Full operator span is a
 sufficient irreducibility certificate over Q, not its definition or a necessary
 condition. All model matrices and scopes are independently checked.
+Direct arithmetic accepts nonempty rectangular lists of int/Fraction entries;
+integers are promoted to Fraction before elimination. Booleans and floats are
+rejected rather than silently weakening the exact-arithmetic contract.
 """
 from fractions import Fraction as Q
 import hashlib
@@ -30,21 +33,33 @@ def identity(n):
     return a
 
 
+def exact_matrix(a):
+    """Validate the supported matrix domain and copy it into exact rationals."""
+    if (type(a) is not list or not a or type(a[0]) is not list or not a[0]
+            or any(type(row) is not list or len(row) != len(a[0]) for row in a)):
+        raise ValueError('MATRIX_SHAPE')
+    if any(type(x) not in (int, Q) for row in a for x in row):
+        raise ValueError('SCALAR_TYPE')
+    return [[Q(x) for x in row] for row in a]
+
+
 def multiply(a, b):
-    if not a or not b or len(a[0]) != len(b):
+    a, b = exact_matrix(a), exact_matrix(b)
+    if len(a[0]) != len(b):
         raise ValueError('MATRIX_SHAPE')
     return [[sum((x*y for x,y in zip(row, col)), Q(0))
              for col in zip(*b)] for row in a]
 
 
 def subtract(a, b):
+    a, b = exact_matrix(a), exact_matrix(b)
     if len(a) != len(b) or any(len(x) != len(y) for x,y in zip(a,b)):
         raise ValueError('MATRIX_SHAPE')
     return [[x-y for x,y in zip(row,other)] for row,other in zip(a,b)]
 
 
 def rank(a):
-    a = [row[:] for row in a]
+    a = exact_matrix(a)
     r = 0
     for j in range(len(a[0])):
         k = next((i for i in range(r,len(a)) if a[i][j]), None)
@@ -73,9 +88,12 @@ def units(n):
 
 
 def analyze(M, R, operations, coordinate_operations):
+    M, R = exact_matrix(M), exact_matrix(R)
     c, n = len(M), len(M[0])
     if not operations or len(operations) != len(coordinate_operations):
         raise ValueError('OPERATION_COUNT')
+    operations = [exact_matrix(t) for t in operations]
+    coordinate_operations = [exact_matrix(l) for l in coordinate_operations]
     # Shapes are also checked for direct callers, before any zip-based algebra.
     for a, rows, cols in [(M,c,n),(R,n,c), *[(t,n,n) for t in operations],
                           *[(l,c,c) for l in coordinate_operations]]:
@@ -83,13 +101,14 @@ def analyze(M, R, operations, coordinate_operations):
             raise ValueError('MATRIX_SHAPE')
     hidden = subtract(identity(n),multiply(R,M))
     r = rank(M)
+    span = rank([[x for row in t for x in row] for t in operations])
     return {
         'calibrated': multiply(M,R) == identity(c),
         'descent': all(multiply(M,t) == multiply(l,M)
                        for t,l in zip(operations,coordinate_operations)),
         'nonzero_observation': any(x for row in M for x in row),
-        'full_operator_span': rank([[x for row in t for x in row] for t in operations]) == n*n,
-        'operator_span_rank': rank([[x for row in t for x in row] for t in operations]),
+        'full_operator_span': span == n*n,
+        'operator_span_rank': span,
         'tomographic': r == n,
         'observation_rank': r,
         'hidden_dimension': n-r,

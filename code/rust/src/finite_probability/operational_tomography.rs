@@ -13,8 +13,13 @@ fn eye(n: usize) -> Mat {
         .map(|i| (0..n).map(|j| if i == j { q(1) } else { q(0) }).collect())
         .collect()
 }
+fn shape(a: &Mat) -> (usize, usize) {
+    assert!(!a.is_empty() && !a[0].is_empty(), "empty matrix");
+    assert!(a.iter().all(|row| row.len() == a[0].len()), "ragged matrix");
+    (a.len(), a[0].len())
+}
 fn mul(a: &Mat, b: &Mat) -> Mat {
-    assert_eq!(a[0].len(), b.len());
+    assert_eq!(shape(a).1, shape(b).0, "product dimensions");
     (0..a.len())
         .map(|i| {
             (0..b[0].len())
@@ -24,6 +29,7 @@ fn mul(a: &Mat, b: &Mat) -> Mat {
         .collect()
 }
 fn sub(a: &Mat, b: &Mat) -> Mat {
+    assert_eq!(shape(a), shape(b), "difference dimensions");
     a.iter()
         .zip(b)
         .map(|(r, s)| r.iter().zip(s).map(|(x, y)| x - y).collect())
@@ -31,6 +37,7 @@ fn sub(a: &Mat, b: &Mat) -> Mat {
 }
 fn rank(input: &Mat) -> usize {
     // Reduced echelon elimination, independent of Python's forward elimination.
+    shape(input);
     let mut a = input.clone();
     let mut r = 0;
     for c in 0..a[0].len() {
@@ -58,7 +65,8 @@ fn rank(input: &Mat) -> usize {
     r
 }
 fn parse(v: &Value) -> Mat {
-    v.as_array()
+    let a: Mat = v
+        .as_array()
         .unwrap()
         .iter()
         .map(|row| {
@@ -73,7 +81,9 @@ fn parse(v: &Value) -> Mat {
                 })
                 .collect()
         })
-        .collect()
+        .collect();
+    shape(&a);
+    a
 }
 fn candidate() -> Value {
     let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(
@@ -85,7 +95,9 @@ fn ops(e: &Value, key: &str) -> Vec<Mat> {
 }
 #[test]
 fn exact_ranks_and_descent() {
-    let c = candidate();
+    check_ranks_and_descent(&candidate());
+}
+fn check_ranks_and_descent(c: &Value) {
     for (name, n, defect, span, descent) in [
         ("product_filters", 4, 0, 16, true),
         ("doubled_filters", 8, 4, 16, true),
@@ -95,10 +107,17 @@ fn exact_ranks_and_descent() {
         let e = &c["examples"][name];
         let m = parse(&e["observe"]);
         let r = parse(&e["prepare"]);
+        assert_eq!(shape(&m), (4, n));
+        assert_eq!(shape(&r), (n, 4));
         assert_eq!(mul(&m, &r), eye(4));
         assert_eq!(n - rank(&m), defect);
         let ts = ops(e, "operations");
         let ls = ops(e, "coordinate_operations");
+        // Both complete fixture families are required before zip-based descent.
+        assert_eq!(ts.len(), span, "state operation coverage");
+        assert_eq!(ls.len(), span, "coordinate operation coverage");
+        assert!(ts.iter().all(|t| shape(t) == (n, n)));
+        assert!(ls.iter().all(|l| shape(l) == (4, 4)));
         let flat = ts
             .iter()
             .map(|t| t.iter().flatten().cloned().collect())
@@ -204,4 +223,31 @@ fn zero_observation_shows_nonzero_premise_is_needed() {
     for t in ts {
         assert_eq!(mul(&z, &t), z);
     }
+}
+
+#[test]
+fn incomplete_operation_pairs_are_rejected() {
+    for count in [0, 15, 17] {
+        let mut c = candidate();
+        let ls = c["examples"]["product_filters"]["coordinate_operations"]
+            .as_array_mut()
+            .unwrap();
+        if count > ls.len() {
+            ls.push(ls[0].clone());
+        } else {
+            ls.truncate(count);
+        }
+        assert!(
+            std::panic::catch_unwind(|| check_ranks_and_descent(&c)).is_err(),
+            "accepted {count} coordinate operations for 16 state operations"
+        );
+    }
+}
+
+#[test]
+fn malformed_matrix_shapes_are_rejected() {
+    let a = vec![vec![q(1), q(2)], vec![q(3)]];
+    assert!(std::panic::catch_unwind(|| sub(&a, &a)).is_err());
+    assert!(std::panic::catch_unwind(|| sub(&eye(2), &eye(1))).is_err());
+    assert!(std::panic::catch_unwind(|| parse(&serde_json::json!([]))).is_err());
 }
