@@ -50,6 +50,8 @@
 4. **Repair `verify_batch.py`** for the companion layout. Pre-clear the cargo target before Rust replays (the errno 28 case).
 
 ### Phase B — incorporate the 151 results (one PR)
+*Done on branch `pfp-results` (2026-10-21).* `dag/sync_pfp_results.py` writes a `pfp_review` object on each of the 151 reviewed nodes from the decisions in `dag/fragments/pfp_review_decisions.json` (68 consistent, 9 caveat_added, 52 statement_narrowed, 22 status_lowered) and `pfp_review_refs` onto the base JSONL rows; the validator checks the object; the later Born, Hilbert-lift and U(1) run deltas are merged into their operad collections, and the sealed collections and `dag/operads/index.json` are left byte-identical, with `reviews/20261021_post_discharge_addendum/` added to the 25 affected result folders (later runs, the custody repair of the "global baseline failing" status, and the CPTP v2 carrier correction). The 20 operads that still say "global baseline failing" are 14 DS and 6 FQ collections.
+
 5. **Run `sync_pfp_results.py` dry** to list candidates.
 6. **Apply status edits by review rule.** A node stays PROVED_LEAN only if its statement lies within the narrowest claim. Otherwise either rewrite the statement down to the narrowest claim (preferred), or move it to CONDITIONAL / COMPUTATIONALLY_CHECKED with the unmet part in the bottleneck. Start with the vacuous-source and overclaim lists above.
 7. **Merge the unmerged run deltas** (#113, #117, #122, #125, U1, Stone) into `dag/operads/`. Add "superseded by run …" pointers to the stale reviews, and refresh the CPTP v2 artifacts and the 14 "baseline failing" statuses.

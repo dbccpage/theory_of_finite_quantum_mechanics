@@ -368,7 +368,7 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 | [`TFQ-1012`](./10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md) | fq-power-rule-p2-selection | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1014`](./10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md) | fq-gleason-d2-rational-plane-obstruction | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1015`](./10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md) | fq-cabello-no-integer-frame | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
-| [`TFQ-1016`](./10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md) | fq-cabello-frame-polytope-146 | `PROVED_LEAN` | [`TFQ-1015`](./10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md) |
+| [`TFQ-1016`](./10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md) | fq-cabello-frame-polytope-146 | `COMPUTATIONAL_CONTROL` | [`TFQ-1015`](./10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md) |
 | [`TFQ-1019`](./10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md) | fq-gap-tensor-uniqueness | `CONDITIONAL` | [`TFQ-1018`](./12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md) |
 | [`TFQ-1021`](./10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md) | fq-continuum-hilbert-lift-construction | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
 | [`TFQ-1023`](./10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md) | fq-gap-custody-and-receipts | `OPEN_OBLIGATION` | [`TFQ-0200`](./23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md) |
@@ -398,8 +398,8 @@ Folder: [`11_finite_qm_dynamics/`](./11_finite_qm_dynamics/)
 | [`TFQ-0246`](./11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md) | Hamiltonian generator admission still reserved | `OPEN_OBLIGATION` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) | Heisenberg picture on a finite carrier | `SOURCE_RECORD` | [`TFQ-0245`](./11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md) |
 | [`TFQ-0248`](./11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md) | Finite history decoherence matrix | `SOURCE_RECORD` | [`TFQ-0247`](./11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md) |
-| [`TFQ-1022`](./11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md) | fq-gap-real-embedding-choice | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
-| [`TFQ-1039`](./11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md) | ds-qm030-transfer-operator-shadow | `PROVED_LEAN` | [`TFQ-0239`](./11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md) |
+| [`TFQ-1022`](./11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md) | fq-gap-real-embedding-choice | `COMPUTATIONAL_CONTROL` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
+| [`TFQ-1039`](./11_finite_qm_dynamics/tfq_1039_ds_qm030_transfer_operator_shadow.md) | ds-qm030-transfer-operator-shadow | `COMPUTATIONAL_CONTROL` | [`TFQ-0239`](./11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md) |
 | [`TFQ-1040`](./11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md) | ds-continuous-time-exp-generator | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
 
 ### FINITE_QM_STRUCTURE (29 derivations)
@@ -433,9 +433,9 @@ Folder: [`12_finite_qm_structure/`](./12_finite_qm_structure/)
 | [`TFQ-1017`](./12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md) | fq-busch-effect-frame | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1018`](./12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md) | fq-tensor-lu-rival-exclusion | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1020`](./12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md) | fq-weyl-finite-schrodinger-irreducibility | `PROVED_LEAN` | [`TFQ-1006`](./10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md) |
-| [`TFQ-1036`](./12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md) | gp-gap-exact-duality | `PROVED_LEAN` | [`TFQ-0185`](./22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md) |
-| [`TFQ-1041`](./12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md) | ds-qm206-boundary-synthesis | `PROVED_LEAN` | [`TFQ-0250`](./12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md) |
-| [`TFQ-1042`](./12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md) | ds-qm207-211-five-import-cascade | `PROVED_LEAN` | [`TFQ-0253`](./12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md) |
+| [`TFQ-1036`](./12_finite_qm_structure/tfq_1036_gp_gap_exact_duality.md) | gp-gap-exact-duality | `COMPUTATIONAL_CONTROL` | [`TFQ-0185`](./22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md) |
+| [`TFQ-1041`](./12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md) | ds-qm206-boundary-synthesis | `COMPUTATIONAL_CONTROL` | [`TFQ-0250`](./12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md) |
+| [`TFQ-1042`](./12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md) | ds-qm207-211-five-import-cascade | `COMPUTATIONAL_CONTROL` | [`TFQ-0253`](./12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md) |
 | [`TFQ-1043`](./12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md) | ds-qm204-born-uniqueness-import-boundary | `IMPORTED_ASSUMPTION` | [`TFQ-0306`](./08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md) |
 
 ### FINITE_QM_INFORMATION (9 derivations)
@@ -668,7 +668,7 @@ Folder: [`21_implementation_core/`](./21_implementation_core/)
 | [`TFQ-0165`](./21_implementation_core/tfq_0165_spin_network_area_labels.md) | Spin-network area labels | `COMPUTATIONAL_CONTROL` | [`TFQ-0127`](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) |
 | [`TFQ-1026`](./21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md) | fq-impl-wdp-amplitude-bridge | `PROVED_LEAN` | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) |
 | [`TFQ-1027`](./21_implementation_core/tfq_1027_fq_impl_realification_adapter.md) | fq-impl-realification-adapter | `PROVED_LEAN` | [`TFQ-1007`](./10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md) |
-| [`TFQ-1028`](./21_implementation_core/tfq_1028_fq_impl_pairing_audit.md) | fq-impl-pairing-audit | `PROVED_LEAN` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
+| [`TFQ-1028`](./21_implementation_core/tfq_1028_fq_impl_pairing_audit.md) | fq-impl-pairing-audit | `COMPUTATIONAL_CONTROL` | [`TFQ-1009`](./10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md) |
 | [`TFQ-1044`](./21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md) | impl-fsp-switching-normal-form-nf002 | `PROVED_LEAN` | [`TFQ-0345`](./06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md) |
 | [`TFQ-1045`](./21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md) | impl-thymus-screening-soundness | `PROVED_LEAN` | [`TFQ-0367`](./01_pregenesis/tfq_0367_listed_history_choice_free_summary.md) |
 | [`TFQ-1046`](./21_implementation_core/tfq_1046_impl_lggr_finite_results_lean.md) | impl-lggr-finite-results-lean | `PROVED_LEAN` | [`TFQ-0352`](./07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md) |

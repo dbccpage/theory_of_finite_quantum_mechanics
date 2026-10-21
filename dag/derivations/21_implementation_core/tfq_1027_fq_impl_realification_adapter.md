@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
+Reviewed scope: Actual scalar realification products, multiplication quotient, balancing kernel and normalization factor are exact; literal algebraic product/balancing identities are kernel checked.
 
 ### Governing Obligation
-Adapter only; supplies no derivation of the complex structure (FQ-PRIM-TO-QM-SELECTION-OPEN).
+Unmet after the PFP review: Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 module docs: "preserve a supplied operational model; they select no scalar/Born axioms from the primitive mark and grant no execution permission"

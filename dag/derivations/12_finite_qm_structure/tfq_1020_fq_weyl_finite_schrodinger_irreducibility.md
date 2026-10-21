@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-For odd prime dimension the clock and shift matrices have scalar commutant (clock_shift_commutant_scalar) and the Schrodinger representation is irreducible by full Weyl operator reconstruction; Weyl commutator X^a Z^b X^-a Z^-b = omega^{-ab} I over Q(zeta_d). Finite and exact; no statement for infinite dimension.
+Reviewed scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.
 
 ### Governing Obligation
-Anchored seed (which commutation data) is supplied.
+Unmet after the PFP review: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant scalar

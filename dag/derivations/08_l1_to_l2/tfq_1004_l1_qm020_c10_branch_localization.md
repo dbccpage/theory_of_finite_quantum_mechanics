@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Branch-localization and many-worlds readings of the lifted phases are conjectures, not part of the QM_020 theorems.
+Reviewed scope: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.
 
 ### Governing Obligation
-None (C10 scope-fence theorem mechanized in l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure: diagonal Z-shadows do not distinguish orthogonal Hadamard branches without an off-diagonal observable).
+Unmet after the PFP review: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm

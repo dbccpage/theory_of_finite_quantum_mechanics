@@ -1,6 +1,6 @@
 # [TFQ-1016] FQ-CABELLO-FRAME-POLYTOPE-146
 
-> **Stage**: `FINITE_QM_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-CABELLO-FRAME-POLYTOPE-146` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-CABELLO-FRAME-POLYTOPE-146` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `652edcdd-1fb0-5246-98e1-0097d40c0a64`  
 > **Parent Derivation**: [TFQ-1015](tfq_1015_fq_cabello_no_integer_frame.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-The frame polytope {f in R^18 : f >= 0, Af = 1} of the Cabello configuration has exactly 146 half-integral extreme valuations; none has a PSD real-symmetric representative H_f (26 have smallest eigenvalue -1/2; 120 have smallest eigenvalue > -1/4).
+Reviewed scope: Independently exhaustive exact basis computations and every actual finite matrix witness, with a separate literal integer-list kernel certificate; the general real-polytope completeness bridge remains open.
 
 ### Governing Obligation
-No Lean artifact: the string 146 occurs in no Lean file under lean4/quantum_mechanics and not in frame_function_polytope.rs; the enumeration is exercised through the generic vertices() routine and the Python/test harness not read here.
+Unmet after the PFP review: A formal Lean theorem identifying the entire real polytope vertex set, a general real spectral/PSD transport theorem, or positivity from finite frame additivity. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 paper s11.5: exact enumeration and exact characteristic-polynomial certificates (supplement s11.52)

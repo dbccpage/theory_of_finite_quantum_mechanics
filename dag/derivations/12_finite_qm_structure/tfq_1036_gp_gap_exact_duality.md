@@ -1,6 +1,6 @@
 # [TFQ-1036] GP-GAP-EXACT-DUALITY
 
-> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `PROVED_LEAN` | **DAG node**: `GP-GAP-EXACT-DUALITY` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `GP-GAP-EXACT-DUALITY` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `16db7832-66a5-509e-80c9-6acee21b8f90`  
 > **Parent Derivation**: [TFQ-0185](../22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Exact zero-duality-gap certificate for QM_080 Theorems 5-6 (quotient duality in finite dimension). The Lean file DualWitness.lean is a candidate mirror for QM-120 only (2-integer pairing bound plus Mermin-Peres parity).
+Reviewed scope: A complete nine-witness rational l1 dual control has exact zero gap; Lean establishes the literal triangle/positive-sign identities.
 
 ### Governing Obligation
-Exact zero-duality-gap certificates are mechanized for the finite K_{2,3} and 3-cycle instances; general infinite-dimensional dual attainment remains outside the finite carrier.
+Unmet after the PFP review: Construct the actual QM080 primal/dual quotient maps, hypotheses and attainment proof. This two-coordinate support function is not the general quotient theorem or a revalidation of the source K2,3 model. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 Exact zero-duality-gap primal=dual certificates for K_{2,3} and 3-cycle mechanized in DerivationDagQMClosure.lean and LggrFiniteResults.lean

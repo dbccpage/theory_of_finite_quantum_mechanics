@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Diagonal Markov-composable channels factor through the residual density carrier (qm003_c17_diagonal_composable_factorization), while Hadamard off-diagonal coherence separates matrix composition from diagonal multiplication.
+Reviewed scope: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
 
 ### Governing Obligation
-Diagonal Markov-composable channels factor through the residual density carrier; phase-coherent off-diagonal channels require the full 2x2 matrix carrier.
+Unmet after the PFP review: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary mechanized in DerivationDagQMClosure.lean

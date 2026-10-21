@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Thymus screening soundness for the epistemic immune system (OEPFP), Lean file ThymusScreening.lean attached to the draft PR with an empty axiom report.
+Reviewed scope: Complete finite panel/predicate controls and mismatch witnesses are exact; zero in-panel false positives under the actual screened predicate is kernel checked.
 
 ### Governing Obligation
-Mechanized for finite self-panels and deterministic detector predicates.
+Unmet after the PFP review: Bind an actual production detector, executed code and authenticated self-panel to these predicates, and state any out-of-panel assumptions. No generalization beyond the sealed panel or physical immune-system theorem is claimed. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness

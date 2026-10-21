@@ -1,6 +1,6 @@
 # [TFQ-1039] DS-QM030-TRANSFER-OPERATOR-SHADOW
 
-> **Stage**: `FINITE_QM_DYNAMICS` | **Status**: `PROVED_LEAN` | **DAG node**: `DS-QM030-TRANSFER-OPERATOR-SHADOW` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_DYNAMICS` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `DS-QM030-TRANSFER-OPERATOR-SHADOW` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `39f835a2-17a4-5f6c-b839-d96abb2cdaf0`  
 > **Parent Derivation**: [TFQ-0239](tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-For R a commutative ring and free module R^X, each generator acts as a transfer operator T_e; the finite transfer-matrix identity is an internal Fubini sum. The dual basis functional carries no metric (C8).
+Reviewed scope: All coefficients of AB, (AB)v, A(Bv), fA, f(Av), and (fA)v agree on exact retained inputs.
 
 ### Governing Obligation
-Ring hypothesis H2; no inner product produced.
+Unmet after the PFP review: Formalize the full arbitrary finite action/dual sum transport; the state carrier, linearity and coefficients are supplied. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
 [PROVEN, CONDITIONAL-DERIVED + H2] (QM-030-C6)
