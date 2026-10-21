@@ -26,38 +26,38 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 
 | Fact | Value | Source |
 |---|---|---|
-| Derivation DAG nodes / routes | 819 / 816 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Derivation DAG nodes / routes | 821 / 818 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | DAG stages (declared / with nodes) | 30 / 28 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| DAG validator | `nodes=819 routes=816 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
-| TFQ records | 871 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
-| Derivation papers | 871 in 29 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 734 resolve to a file in this checkout, 781 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| Rust references in DAG nodes | 277 resolve to a file in this checkout, 653 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| PFP prompts / indexed operad collections | 177 / 177 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
-| PFP stage per prompt | P5_RECORD 151, P0_MINE_OPERAD 26 | [`dag/operads/index.json`](dag/operads/index.json) |
-| Nodes with executed review results | 151 nodes, 153 review directories | `dag/results/*/reviews/` |
+| DAG validator | `nodes=821 routes=818 records=873 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
+| TFQ records | 873 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
+| Derivation papers | 873 in 29 stage folders | [`dag/derivations`](dag/derivations) |
+| Lean references in DAG nodes | 774 resolve to a file in this checkout, 781 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Rust references in DAG nodes | 287 resolve to a file in this checkout, 653 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| PFP prompts / indexed operad collections | 821 / 821 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
+| PFP stage per prompt | P0_MINE_OPERAD 670, P5_RECORD 151 | [`dag/operads/index.json`](dag/operads/index.json) |
+| Nodes with executed review results | 151 nodes, 181 review directories | `dag/results/*/reviews/` |
 | Review directories with a supports / does_not_support / narrowest_claim boundary | 150 | `dag/results/*/reviews/*/*.json` |
 | P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory) | 11654 | `dag/results/*/reviews/*/*.json` |
-| PFP review outcomes on DAG nodes | pending merge of #133 (no node on this branch carries a `pfp_review` key) | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| PFP review outcomes on DAG nodes | 151 nodes carry `pfp_review`; scope_effect: consistent 68, caveat_added 9, statement_narrowed 52, status_lowered 22 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 265 records from 8 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 86, refuted 2, recorded lower 85 (OPEN 38, IMPORTED_ASSUMPTION 18, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 543, papers 59, code 66, dag 2334, other 2 (the `dag` files are run snapshots) | `git ls-files` |
-| Lake libraries / module roots in `lean4/lakefile.lean` | 5 / 489 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
+| Tracked `.lean` files | lean4 551, papers 59, code 66, dag 2343, other 2 (the `dag` files are run snapshots) | `git ls-files` |
+| Lake libraries / module roots in `lean4/lakefile.lean` | 5 / 497 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |
 | Axiom receipts / declaration lines audited | 8 files / 396 lines (literal `#print axioms` lines: 1) | `dag/research/*axioms*.txt`, `papers/**/axiom_report*.txt`, `**/evidence/axiom_reports/*.txt` |
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 86) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6006 (plus 3567 in `dag/results` snapshots) | `git ls-files '*.py'` |
-| Rust test functions (`#[test]`) | 6733 (plus 7584 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 7081, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
+| Python test functions (`def test_`) | 6155 (plus 3577 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Rust test functions (`#[test]`) | 6801 (plus 7590 in `dag/results` snapshots) | `git ls-files '*.rs'` |
+| Contract/score companions | combined_files = 7126, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 270, OPEN 161, COMPUTATIONALLY_CHECKED 130, DEFINITION 90, SOURCE_RECORD 55, IMPORTED_ASSUMPTION 50, CONDITIONAL 31, PROVED_PROSE 27, ADMITTED_PRIMITIVE 3, REFUTED 2.
+Nodes by status: PROVED_LEAN 248, OPEN 161, COMPUTATIONALLY_CHECKED 152, DEFINITION 90, SOURCE_RECORD 55, IMPORTED_ASSUMPTION 50, CONDITIONAL 33, PROVED_PROSE 27, ADMITTED_PRIMITIVE 3, REFUTED 2.
 
-Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 47, FINITE_QM_CORE 32, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 66, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82.
+Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 33, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 66, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82.
 
 Nodes named in this README:
 
@@ -67,10 +67,10 @@ Nodes named in this README:
 | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` | FINITE_QM_CORE | `PROVED_LEAN` |
 | `FQ-GAP-CONTINUUM-HILBERT-LIFT` | FINITE_QM_CORE | `CONDITIONAL` |
 | `L1-IMP-HILBERT-INNER-PRODUCT` | L1_TO_L2 | `CONDITIONAL` |
-| `L1-IMP-COMPLEX-FIELD` | L1_TO_L2 | `IMPORTED_ASSUMPTION` |
+| `L1-IMP-COMPLEX-FIELD` | L1_TO_L2 | `CONDITIONAL` |
 | `FQ-GAP-STONE-CONTINUOUS-TIME` | FINITE_QM_DYNAMICS | `CONDITIONAL` |
 | `FQ-GAP-U1-CIRCLE` | FINITE_QM_CORE | `CONDITIONAL` |
-| `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | L1_TO_L2 | `IMPORTED_ASSUMPTION` |
+| `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | L1_TO_L2 | `CONDITIONAL` |
 | `PGW-ENDOGENOUS-DEMAND-OB1` | GENESIS | `OPEN` |
 | `COMP-C4-UNBOUNDED-SUPPLY-IMPORT` | COMPUTATION | `IMPORTED_ASSUMPTION` |
 | `COMP-C7-NF-REACH-UNDECIDABLE` | COMPUTATION | `PROVED_LEAN` |
@@ -100,8 +100,9 @@ The current status of each named node is in the generated table above.
 | Born rule via effect-additive valuations | Every positive, normalized, effect-additive valuation on rational n×n matrices is E ↦ tr(ρE) for a unique symmetric rational PSD trace-one ρ. **CONDITIONAL**: the matrix carrier and effect additivity are supplied, not derived. | [#113](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/113); [`lean4/BornEffectValuation.lean`](lean4/BornEffectValuation.lean), [`lean4/BornMatrixCarrier.lean`](lean4/BornMatrixCarrier.lean); `dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean`; node `FQ-GAP-BORN-UNIQUENESS-GLEASON` |
 | Continuum Hilbert lift | Finite exact carriers form a tower whose Hausdorff completion is a Hilbert space, once the scalar field (ℝ or ℂ) and the ℓ² uniformity are supplied. The construction is `PROVED_LEAN`. Selecting those two inputs is **CONDITIONAL**, and ℓ¹ is shown to give a different Cauchy structure. | [#117](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/117), [#122](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/122); [`lean4/HilbertLiftCompletion.lean`](lean4/HilbertLiftCompletion.lean), [`lean4/HilbertLiftRationalUniformity.lean`](lean4/HilbertLiftRationalUniformity.lean); nodes `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION`, `FQ-GAP-CONTINUUM-HILBERT-LIFT` |
 | Sector-form inner product | A Hermitian Gram form whose quadratic readout is additive on disjoint sectors and invariant under a transitive group of sector permutations equals the standard form up to a positive scale. Without the symmetry law it is not unique: the counterexample is diag(1,2). **CONDITIONAL** on the two laws. | [#125](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/125); [`lean4/SectorFormUniqueness.lean`](lean4/SectorFormUniqueness.lean); node `L1-IMP-HILBERT-INNER-PRODUCT` |
-| Complex-field selection from local tomography | Conditional selection of the complex matrix carrier. Not on this branch. The scope is as stated in the PR. | [#138](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/138) |
-| Local tomography from operational premises | Conditional local tomography from operational kernel invariance. Not on this branch. | [#144](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/144) |
+| Complex-field selection | Among the supplied same-family matrix carriers, the dimension law K_d(n) = n + d binom(n,2) is multiplicative on composites iff d = 2 (for d > 0). The real tag fails by an explicit product-test-invisible witness and the quaternionic tag fails by a dimension count. **CONDITIONAL**: local tomography, the R/C/H carrier restriction and completeness are imported, so this selects among supplied carriers and does not derive the complex field. | [#138](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/138); [`lean4/ComplexFieldSelection.lean`](lean4/ComplexFieldSelection.lean); node `L1-IMP-COMPLEX-FIELD` |
+| Operational form of local tomography | Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family forces injectivity of the observation. The existence of such a family is equivalent to local tomography, and test-then-prepare reset filters built under stated closure rules (#147) do not discharge it non-circularly. This re-expresses local tomography; it does not derive it. Node status `IMPORTED_ASSUMPTION`. | [#144](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/144), [#147](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/147); [`lean4/OperationalTomography.lean`](lean4/OperationalTomography.lean), [`lean4/OperationalFilterFamily.lean`](lean4/OperationalFilterFamily.lean); node `FQ-OPERATIONAL-LOCAL-TOMOGRAPHY` |
+| Finite exact Wigner dynamics | On the exact carrier Q(i)^n, a ray map preserving the Born transition probability is induced by a Q(i)-linear similarity F^H F = d (d > 0 rational), possibly composed with conjugation, and is reversible, without a continuity hypothesis. The scale is removable iff d is a sum of two rational squares; a scale-3 countermodel is neither unitary nor antiunitary. **CONDITIONAL** on the transition-probability law, which is supplied (`L1-IMP-TRANSITION-PROBABILITY-LAW`, `IMPORTED_ASSUMPTION`). | [#150](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/150); [`lean4/FiniteWignerTheorem.lean`](lean4/FiniteWignerTheorem.lean); node `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` |
 | Quantum-computation self-obstruction | Within an exactly declared finite model, the answer is a threshold condition, not a no-go. Viability holds iff the fresh supply reaches λ/((1−g)κ) and the level overheads stay bounded. The four named requirements are net-efficient repair, fresh supply, bounded overhead and a physical error rate below threshold. Whether a physical system meets them stays `OPEN`. | [#142](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/142); [`lean4/QcSelfObstruction.lean`](lean4/QcSelfObstruction.lean); [`dag/research/quantum_computation_self_obstruction.md`](dag/research/quantum_computation_self_obstruction.md); axiom receipt [`dag/research/quantum_computation_self_obstruction_axioms.txt`](dag/research/quantum_computation_self_obstruction_axioms.txt) |
 | Genesis → general-purpose computation | For one fixed rewriting regime built from separated marks, TM0 simulation, halting equivalence and non-computability of normal-form reachability are kernel-checked. Mathlib's computability theory is cited as imported infrastructure. Unbounded supply of fresh marks is a declared import (`COMP-C4-UNBOUNDED-SUPPLY-IMPORT`), and no minimal machine is claimed. | [#143](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/143); [`lean4/GenesisComputation.lean`](lean4/GenesisComputation.lean), [`lean4/GenesisCompTM.lean`](lean4/GenesisCompTM.lean), [`lean4/GenesisCompUniv.lean`](lean4/GenesisCompUniv.lean); [`dag/research/genesis_to_universal_computation.md`](dag/research/genesis_to_universal_computation.md); receipt [`dag/research/genesis_to_universal_computation.axioms.txt`](dag/research/genesis_to_universal_computation.axioms.txt) |
 | Lean 4.35.0 migration | Every live Lean package was moved to `leanprover/lean4:v4.35.0` and Mathlib `v4.35.0`, and the replays were re-pinned. | [#137](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/137); [`lean4/lean-toolchain`](lean4/lean-toolchain) |
@@ -136,7 +137,7 @@ Each item is a DAG node with a staged PFP prompt or a named obligation. The curr
 - **Scalar-field and ℓ² selection**: `FQ-GAP-CONTINUUM-HILBERT-LIFT`, `L1-IMP-COMPLEX-FIELD`. Nothing in the finite carrier yet selects ℝ or ℂ, or ℓ² over ℓ¹. #138 and #144 attack the field question conditionally.
 - **Stone theorem and continuous time**: `FQ-GAP-STONE-CONTINUOUS-TIME`. Over ℚ(i) and larger carriers, whether a one-parameter group exists through a given unitary step is open.
 - **The U(1) circle**: `FQ-GAP-U1-CIRCLE`. In ℚ(i), u = (3+4i)/5 has no square root, so no rational one-parameter group passes through it.
-- **Wigner-type dynamics**: `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS`. Reversible linear isometric dynamics is imported. Work on it is in progress and not yet on this branch.
+- **Wigner-type dynamics**: `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS`. Conditional on the supplied transition-probability law; the dynamics is then a reversible similarity (see the table above). The law itself is not derived.
 - **Endogenous unbounded supply** (`TFQ-0504`, node `PGW-ENDOGENOUS-DEMAND-OB1`): an object-language rule that generates the next demand. The computation chain imports this supply (`COMP-C4-UNBOUNDED-SUPPLY-IMPORT`).
 - **max MUB(6)**: `MUB6-MAX-MUB-SIX-EQUALS-THREE`. This is open in the literature, and none of the recorded certificates closes it.
 - **Regge / Schläfli target**: `TFQ-0084`. State the exact finite gravity shadow (a Regge deficit on a finite simplicial complex) in all three languages. P0 mining is in [#139](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/139).

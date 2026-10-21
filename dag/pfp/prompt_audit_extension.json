@@ -23,7 +23,7 @@
       "ADMITTED_PRIMITIVE"
     ]
   },
-  "prompts_reviewed": 560,
+  "prompts_reviewed": 644,
   "claim_boundary": "Generated source-candidate collections for nodes that had no prompt. This audit binds prompt digests and generation inputs; it does not certify any source claim or complete semantic operad mining.",
   "nodes": [
     {
@@ -69,6 +69,104 @@
           {
             "path": "lean4/SectorFormUniqueness.lean",
             "sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
+      "prompt": "dag/prompts/l1_to_l2_l1_imp_transition_probability_law_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "48499750e7d949934145b0a30417e340217309c88462eec4bbceda72ded0c2eb",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/l1_imp_transition_probability_law.yaml",
+      "operad_collection_sha256": "c60bfbacc1b979da4b3859a12d07678b87e73d189dbf9e6b13ec9f7e59514476",
+      "inputs": {
+        "statement_sha256": "549e6fa4161d8f4c9dffa0b47ef49febbff44c0676a89ecec5341f2fcd48d5ee",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "L1_TO_L2",
+        "assumptions_sha256": "d43ed2cc1714fe214083b47bb745801d08884d4a6ccf27a10f863c98699cb833",
+        "bottleneck_sha256": "4108acaabba8350357c79ce5986b1a65ee9164d71994bd52dfd41811cade2e9e",
+        "source_refs_sha256": "68817cc184ae89c08556f8f02fd95ace476e029c2c0d91c0c3f036ca0f828041",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+            "sha256": "9d8bf5432cf3807345efd0f3f8cf827cf8ecd08c9bf94e9d83432870fe14851b"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/finite_wigner.rs",
+            "sha256": "4bb3ada0b37f7eb54f994c358eb477c1fd32b5cc57ce801de2f926bc4c33995f"
+          },
+          {
+            "path": "lean4/FiniteWignerKernel.lean",
+            "sha256": "29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab"
+          },
+          {
+            "path": "lean4/FiniteWignerSimilarity.lean",
+            "sha256": "d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37"
+          },
+          {
+            "path": "lean4/FiniteWignerTheorem.lean",
+            "sha256": "b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+      "prompt": "dag/prompts/finite_qm_core_fq_operational_local_tomography_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "e5adc950925d715c35717ee1a4941192adb36218dd913bcfa6e2a631a8a2d192",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 7,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/fq_operational_local_tomography.yaml",
+      "operad_collection_sha256": "f06489b2c66a27efaa24629e0e9075f331293082ff313f11d2e7ec0520f7db5b",
+      "inputs": {
+        "statement_sha256": "cc80c7ba03de93855b28788c49e1f7f2aa9ed0085895dcc833cb5f24ca551f05",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "FINITE_QM_CORE",
+        "assumptions_sha256": "fe0d0f41ffda0fafc6a0880ec070a0565b93d3d5383da484f0c7ce43825a5175",
+        "bottleneck_sha256": "fe5d0a93a035470aa62d0cbcf7c554869a3d1c457c4069d0a00a9e5c63515e16",
+        "source_refs_sha256": "6e0902d12715939a8493047e399d24cf943b1c9f1cc21d1a4f8d94fdb44b4dd3",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+            "sha256": "020322fa4d2e632a9c1212a2b918b9e06c13663b040bad2a0a03ce39f710ba13"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/finite_probability/operational_filters.rs",
+            "sha256": "1d69d4ca8a8a26ae138923c88e2cf984f0f9b5ae8bde373052d6001604cd0317"
+          },
+          {
+            "path": "code/rust/src/finite_probability/operational_tomography.rs",
+            "sha256": "b1c7f2a2c3900b44015406122590129dbbc86ca11332adeea66a2a19439ce0b9"
+          },
+          {
+            "path": "lean4/OperationalFieldSelection.lean",
+            "sha256": "943e3482de098fdd76ed1134f309aca5d908c53bc6f798f4829b4b41ae5bed36"
+          },
+          {
+            "path": "lean4/OperationalFilterFamily.lean",
+            "sha256": "6a9b7b9a3a0f5da83e8c13aa6b9efb0c708f5bc4bf7c3007f5186276a56edc85"
+          },
+          {
+            "path": "lean4/OperationalTomography.lean",
+            "sha256": "aca538f81a9e97e58129c85e27b11c93aea157acd5bdab7a9137d7d136b2a2c0"
           }
         ]
       }
@@ -1422,7 +1520,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0043.yaml",
-      "operad_collection_sha256": "2de11517f1a15d2b98020d91b931a1decf079af1fabb2d2401089b77366468b9",
+      "operad_collection_sha256": "987f109458fc992f5f74b1f2c8231aa6f05ed9d30f950d053c2b96e73bdf3bd0",
       "inputs": {
         "statement_sha256": "658475b9620089247d56ca464f5f3f6c8d0756cf01a29d79fff16f38313f54d6",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -1443,7 +1541,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -1945,7 +2043,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0100.yaml",
-      "operad_collection_sha256": "ec67518d60c9f926bf809326b66b4a5448797bf4ea69fe5c3d5141ac21aeaa50",
+      "operad_collection_sha256": "f6e0654caa888812225d71e036e5371179efdb40826bf2f2cfdba0535362fb90",
       "inputs": {
         "statement_sha256": "dc3a4485208e72ccda6c0387ca1dd28056aaec6597f2218cf141c086d9b5390d",
         "status": "SOURCE_RECORD",
@@ -1970,7 +2068,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -1988,7 +2086,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0101.yaml",
-      "operad_collection_sha256": "7190683397619907dfb16ab16825a2299b82d4710e80155262863ddc67ad9b60",
+      "operad_collection_sha256": "1874d6b8cfa43c7a3100f6b3a0e6b30eaeb0f7d0cabf0fc4e0c33b38672caa82",
       "inputs": {
         "statement_sha256": "7c1659316d029089bb9a4ab408aab860b0e060949ad719b24d5ef54dd3b3c546",
         "status": "SOURCE_RECORD",
@@ -2009,7 +2107,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -2122,7 +2220,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0105.yaml",
-      "operad_collection_sha256": "b4f42c04f3562bb487c6e7774f722d070edb8c03f01bdb9a45c8aec0dec68405",
+      "operad_collection_sha256": "2f681426b2652f900f5415483a53d8a89c48cb6d9494da2b0b9c085b3c3245f9",
       "inputs": {
         "statement_sha256": "3a75884e2b3a44f3ff1e1932f9ffcf64997bc7d0bb28c3ac3a577bbcec1f4ffe",
         "status": "SOURCE_RECORD",
@@ -2143,7 +2241,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -2510,7 +2608,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0125.yaml",
-      "operad_collection_sha256": "648799d3f9bfc162e9f7e2522b3e352382aa2da0f22052926ecdeae17a7a9ae3",
+      "operad_collection_sha256": "c8a518a66caf4632819e8c25b16da1efda201bd204f53062ce1d2641cb0b7654",
       "inputs": {
         "statement_sha256": "4bebe780eab63c965920a5a0d574970a625d9e00029a4a9530b4c2f4e0e6cf73",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -2535,7 +2633,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -3844,7 +3942,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0166.yaml",
-      "operad_collection_sha256": "d0d0164333a364a37bf35cae1ae9e1cfb1f9c6cc7604d3130ea9421b35e46e99",
+      "operad_collection_sha256": "3aa17cfe860999ab524fd412e878f17d73048f12f7f35af8103208ce4bed8cda",
       "inputs": {
         "statement_sha256": "a036ae8085d5a4ad2ef5830ad8c70e7c1faa302f395046aa3e4fcff438d8a579",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -3861,7 +3959,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -3879,7 +3977,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0168.yaml",
-      "operad_collection_sha256": "80f3caa7779565160c35718df71bbc05a57a28e53e81ecafb64e11f818d0183b",
+      "operad_collection_sha256": "81d25fb24a1ccd0a02be766ee0e570983055eaabab7bcdfa29d5ba420d73c212",
       "inputs": {
         "statement_sha256": "c425ee594fffadb2b48185e4624bd1ec58ae85095d083a4ce6cb3c0ddf761db0",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -3904,7 +4002,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4055,7 +4153,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0172.yaml",
-      "operad_collection_sha256": "571ec8fcafafb5034b0c649c2d238938ef80272751732959f2bc1bd6dd7c147b",
+      "operad_collection_sha256": "68f027108ecd12b2be42553318be4820184c381afa0ec288db67b9f20737d33e",
       "inputs": {
         "statement_sha256": "e50bf08dc344112561fd6d2fb4304b4f2f2764b398420b107840bbded80101d1",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4084,7 +4182,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/CoboundaryHolonomy.lean",
@@ -4106,7 +4204,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0173.yaml",
-      "operad_collection_sha256": "34e3356d1d0bfc76f02e2261656b3bdef14861cae5615fed49148a46da3fa348",
+      "operad_collection_sha256": "c4d960afd91ec371d11f22f609cb51251c87ac536c291ca35acbda18c83d18ed",
       "inputs": {
         "statement_sha256": "aa80a76692fbe8bf762eebb0222a146414c9f388a028d6b1a9822914de866a35",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4127,7 +4225,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4239,7 +4337,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0176.yaml",
-      "operad_collection_sha256": "4056573aacd64fb492631264fdfe5a3c9f36df78b6d179eef4ceb76dba8cd87d",
+      "operad_collection_sha256": "35767488ed85c6f96a283af96ce48548b9e1772f461d6fd3eb9b419d7fd7b5ad",
       "inputs": {
         "statement_sha256": "0c3bc7c3070837b27648c61cac34c4222099ac25d65649219ffd462ea37da0c2",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4260,7 +4358,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4352,7 +4450,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0180.yaml",
-      "operad_collection_sha256": "3b474741226b185c3ae333382e1686043ea35212457710758b1d0d98bb74c0bd",
+      "operad_collection_sha256": "d2a682113cccc5ac5c489cafb79d492ebc257e43d732b92f98a22ddf7dd0a84b",
       "inputs": {
         "statement_sha256": "a7cf598fcc7b6405e35cf45555b6eb79e2733bb841986d3e44ea23c2f9d0e60f",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4369,7 +4467,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/H030OctahedralMubCliftonKent.lean",
@@ -4446,7 +4544,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0183.yaml",
-      "operad_collection_sha256": "867530286c20769390dc217812f3ccc593653c39aa6eefb63799cd1242f937e7",
+      "operad_collection_sha256": "b08ccdc4f6a840fc38d0dd3daf99d9946c3452103935bc9977717173bac9a05f",
       "inputs": {
         "statement_sha256": "05d8e1f3799fad26d90735dc85651e0b8a25b4de028c4ef9c8dd16e87c7f06a0",
         "status": "OPEN",
@@ -4475,7 +4573,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4493,7 +4591,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0184.yaml",
-      "operad_collection_sha256": "421bfa88a97c78a16f3af8645fd64c2bf8ceadf259b71e3add5a0f966d32eb81",
+      "operad_collection_sha256": "4e61eb0ac1b79c2596e8d9ac456769a77192bae012f8359a7f49431987517ff2",
       "inputs": {
         "statement_sha256": "274a6d9591c7d002a941fc9af36c686fea4b1fab134f4df87e829b48ce706cfb",
         "status": "OPEN",
@@ -4510,7 +4608,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4528,7 +4626,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0187.yaml",
-      "operad_collection_sha256": "d82602db9d74a3bf0c83c4324d57fb31b3cd76bb784f1cac691e22ca984f30d1",
+      "operad_collection_sha256": "58f5601182573f5247229b5fa7e9eb14be7a66bf83f5235de2381391342c801d",
       "inputs": {
         "statement_sha256": "94131f849ee476b93858fbe584ed2d9d4880fdd2c4e066a91b7ea65055dc0c48",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4545,7 +4643,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/PrimitiveLiftCertificate.lean",
@@ -4567,7 +4665,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0189.yaml",
-      "operad_collection_sha256": "d8db11a0d35b833a412f832efe452d850be4aedb68bcdcf8659e0fd30bc0220c",
+      "operad_collection_sha256": "40d1424a4fea0ca6b148b7b850985e0525d4da98bcb4e58690383bf0576d73ca",
       "inputs": {
         "statement_sha256": "cbe1ed0fc4dd9ca5c604f4f29bbd1921cb31a28a86d5091a2e5ce1252430b697",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4584,7 +4682,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/H058EffectFrameBusch.lean",
@@ -4666,7 +4764,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0193.yaml",
-      "operad_collection_sha256": "3dd28691c3b8f56dbe554e347aba49e60f3c5d07f80fe958b5df99317d01ff7e",
+      "operad_collection_sha256": "46494faa62b388260667aa72833202e858d215abd272e2c4f15cad49026cb5f7",
       "inputs": {
         "statement_sha256": "20655c62784322a13916dd950736dabeb2462e9ea052d2175872d1a0582a0034",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4699,7 +4797,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/H019RationalLieSpan.lean",
@@ -4768,7 +4866,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0196.yaml",
-      "operad_collection_sha256": "fa9b30c7f72c58ffacb2991663f66a7acd91c38f875f4c756e62574c553c333a",
+      "operad_collection_sha256": "ab90636c3611b0c1e9fe52c6ce98c504d484dfa6355818480946025c15590fe2",
       "inputs": {
         "statement_sha256": "e492f47d3b890d1a06cbeaf6688977569cb40b53dbdc2f223eaecff721ae700c",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4801,7 +4899,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -4819,7 +4917,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0197.yaml",
-      "operad_collection_sha256": "fbabdc2fd67efbbd323ecf43a406ff689b5ba5411d4ee5d18212c70e69852ec1",
+      "operad_collection_sha256": "78036b47b52224d3598a7246ad8f623493d56d168a322d1e0cc3c4324fb54e2a",
       "inputs": {
         "statement_sha256": "82fb2603ea5a1def474d2c91abbb96d54be9130285993347a2a9205ff4ca437e",
         "status": "COMPUTATIONALLY_CHECKED",
@@ -4844,7 +4942,7 @@
           },
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           },
           {
             "path": "lean4/FiniteQFTAndGravity.lean",
@@ -5516,7 +5614,7 @@
       "mining_status": "semantic_review_open",
       "tier": "A",
       "operad_collection": "dag/operads/tfq_0216.yaml",
-      "operad_collection_sha256": "f4ec45db44b7b5c18a430e832ca4bbedbc8c230a990e507d8601f0ec64029088",
+      "operad_collection_sha256": "08b533fa772609bcafb174c0f659d6ef37eae4d7fa0aaaa358bc4e2b1958b781",
       "inputs": {
         "statement_sha256": "011c18784862590c46dca3711852f44e75dcb8ba50b2f1d38c9f95aa01d75d43",
         "status": "SOURCE_RECORD",
@@ -5533,7 +5631,7 @@
         "local_sources": [
           {
             "path": "code/rust/src/wdp/lib.rs",
-            "sha256": "183a6ce727072daa08575a1b9d25296c276186b68c0e921208717160b68063fe"
+            "sha256": "aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c"
           }
         ]
       }
@@ -17740,6 +17838,2911 @@
             "sha256": "d953e80582cc32abe39d7a40690d11a968e5d198a2f20195f7d3455646e55c00"
           }
         ]
+      }
+    },
+    {
+      "node_id": "COMP-C1-FIRST-SEPARATION-REPLAY",
+      "prompt": "dag/prompts/computation_comp_c1_first_separation_replay_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "1464c45d0756482b4c484bcdd69d3730b71e4c3b90d9734f36e6613cdaa15bdd",
+      "removed_patterns": [],
+      "operation_candidates": 13,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c1_first_separation_replay.yaml",
+      "operad_collection_sha256": "0a67231b155576f5aa9631c616488dcf0b8b098e4a6ac3863758df7a31b05499",
+      "inputs": {
+        "statement_sha256": "c15c3085714a3cf3b918228b8586025edb18ae24aaf7d4f94f61e12b5be016c0",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "2876c25b0c04fb5614415abc122b469288ff64ce9b337dd1f8deb996d617629a",
+        "bottleneck_sha256": "0816ae6d8e56380c5efc9fdbea41608becd968525c4fb0058194b0bdd71ab39b",
+        "source_refs_sha256": "a5b7507f7ebb4478da758d7d936b972eb8277667e7e1b5a220e228390a44d36d",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md",
+            "sha256": "27a7d05796c4abb6c46ab7354d94ffd64432114851edc754e2c0f00e000f4a49"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+      "prompt": "dag/prompts/computation_comp_c1_canonical_separated_alphabet_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "ba6e9fc841b8854138684dc443099283d56ff4898253b79f73661e197c319289",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c1_canonical_separated_alphabet.yaml",
+      "operad_collection_sha256": "d8821f7dddbec4571bea14042bdbc228269e90406b7be0f147f139fd9e7fbb79",
+      "inputs": {
+        "statement_sha256": "275ce7a55d05944eb96f43bd322e162456d855a4e470eced918aa2935a3abff2",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "780a1cda1e577cc3571684b0df02c3ae827b7c5a4c7822d56d64b75ddd776f89",
+        "bottleneck_sha256": "1a6d29faaefaf156962a946d75fcf48f15d97b554b03026385761692add5fd1c",
+        "source_refs_sha256": "38f53cb720cdaec0d8577ff98fe6f53014cf8f71623fcfe6a05029f3b6a7873e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1284_comp_c1_canonical_separated_alphabet.md",
+            "sha256": "46fa853f954dbfab626d2a0ee5217cf207f553a03bccbb4672602abcc533c4f1"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C1-IDENTITY-CONVENTION-INPUT",
+      "prompt": "dag/prompts/computation_comp_c1_identity_convention_input_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "84454214d63a12cdbdd8568caa0efb2dbcf2a19b339a5dd4401d56835bbd6d39",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c1_identity_convention_input.yaml",
+      "operad_collection_sha256": "96c9c48c0fca382eca7e6b9be431ecdfa08f492b7d2d7e6906a08f69f1e7cb8b",
+      "inputs": {
+        "statement_sha256": "6c94dca6c500a4499b7a72c1ad650e1862018dde0663b7e775c4131566bb1fd0",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "01055ba5aa31927f612dc39f8482527414570e93420d4b674322f8813d9f73ce",
+        "bottleneck_sha256": "eec1726985a70cb9d4b7be332168824759ef840e0fa9bb8f2f64e314ccfafff5",
+        "source_refs_sha256": "ca926a1b918d651f0f3a283076d0120bd46656878b7b1a18b3d688c9b0edb8cf",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1285_comp_c1_identity_convention_input.md",
+            "sha256": "e98b82c1aed736d42e0c667a2d27908b0efa94283323022e381e224ad12af603"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C2-WORD-REWRITING",
+      "prompt": "dag/prompts/computation_comp_c2_word_rewriting_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "91c82946df8d0d6f9d8146823a7783a450db6225923186b61449419d85510cda",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/comp_c2_word_rewriting.yaml",
+      "operad_collection_sha256": "d7de000a3c9311aeeaba365405ec451f5023b9044a5e41153d806c613659b3c0",
+      "inputs": {
+        "statement_sha256": "e85047252b2d490b2e6e8e046f61985bcf5ed77652340d4a36a39443f3dc8134",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "576f92a0638a7907a7074a90f48cb007ead17130fe58aad701b7d71db3ddb1a7",
+        "source_refs_sha256": "e246fc7e9e49131a0b42132d3ca69f3f0e7d1617fcbe21023bf9c2ef259b4a93",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1286_comp_c2_word_rewriting.md",
+            "sha256": "b83bd9038600964c230c543f592527b814fb3725a23edddacb9eebaccf40aad3"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C2-LETTER-RENAME-COMMUTES",
+      "prompt": "dag/prompts/computation_comp_c2_letter_rename_commutes_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "dac0799461c16ab6e05f705211796a223bb9e66e05b5a365c5dbd42ad1044782",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c2_letter_rename_commutes.yaml",
+      "operad_collection_sha256": "af2a2f763ce93c1a8e09c56f66eb9eec8d60960128bf6c97802a60c271347e5a",
+      "inputs": {
+        "statement_sha256": "a80836ab002fef37f68471f287d737d7b3c5614a44e5413106b9130f2eab8eac",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "0bc4befbb2f793250bccc56b7306f01573db486939044ec3fb3d46b394ef9700",
+        "source_refs_sha256": "2b6cd189db50dafcca543bb1d18f6e474e6fe4be70f0e64f7ccff018b01d4c68",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md",
+            "sha256": "4d7972f430d77e5435956fec6f92c23f3eac76d05ed6f8b3bfb83f49b8ab48ab"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C2-ONE-HOLE-CONTEXTS",
+      "prompt": "dag/prompts/computation_comp_c2_one_hole_contexts_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "e41e8331213964494c4eeb8d240cf9b79de6f9b6d1a5337200588b42d3c6ff60",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c2_one_hole_contexts.yaml",
+      "operad_collection_sha256": "1b27dbf3404fd461e2291b930b3041f471249d7b67f143f77c1bfec7b416ba91",
+      "inputs": {
+        "statement_sha256": "aac718a2d131b148aa07c1d5cd190b80c1ed2da567deeccc65e71e6e6bb6b726",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "30658adf4c74806d1cc9e02a7a05e61d6e5f360bcd1b778fc69fe1e65f5f5243",
+        "source_refs_sha256": "5dfe688f8485ec4ebd3d7ee56a373dfefa5b417841c6d8b849781cc7911e0bdd",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1288_comp_c2_one_hole_contexts.md",
+            "sha256": "7ce9dae5a891bca0bec872c98c5894fc4dafb238bf805018b1ba6b4edabb2721"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C2-CONTEXT-COUNTS-CHECKED",
+      "prompt": "dag/prompts/computation_comp_c2_context_counts_checked_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "4be731884f575dd1ba4cb941cfa0cc1e348c3b7c275b6dd928691680d4787bf9",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c2_context_counts_checked.yaml",
+      "operad_collection_sha256": "ed6754a0a4dc0bb01240c91b86f9d2eda1aa37affeef964ab6cb1959f6ee1b37",
+      "inputs": {
+        "statement_sha256": "c4669085cc5db17b475d2bc7638a7b6ec16bea180d519083370cc3e9cc315ea7",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "3a3523504bd5082029eb857005a5ecf7476166ed58b84edc239849f6b208badb",
+        "source_refs_sha256": "ac19feb0c05b5ac50b4dad4d5c34e6b52075e0269880ce525aa82bcd4f85dad0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md",
+            "sha256": "9b5ae28944e647b2166847bdaf76d09aaaf75b503f76e248bc53ba594907a27c"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C2-STEP3-NOT-WORD-STEP",
+      "prompt": "dag/prompts/computation_comp_c2_step3_not_word_step_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "7c5e5b73a5fa329f579402d43ca884f692f9fbdbc6663f73780293e8201368b8",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c2_step3_not_word_step.yaml",
+      "operad_collection_sha256": "3cdc5f81ad618eab3e03aef529c58302e8725e0f76552fedfceb29129889da9f",
+      "inputs": {
+        "statement_sha256": "1faac1143ca13468bcf80f47f6e4601d77cc13d8f69d9be85e53ff40886e4706",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "8788fec0b43898aebd3955aec9190f18befb98a2a46ba20fda63a3beb29ca529",
+        "source_refs_sha256": "ab83c323bf6bce6e3d4e7b4a5fb22f2696ef7363dc40d9ff332886f7e2445163",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md",
+            "sha256": "c3dcaa4a282b3dd65a7eccf6918e6ed0e1e52f6678910d5993c24df5f7e3135e"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "COMP-C3-BOUNDED-REACH-DECIDABLE",
+      "prompt": "dag/prompts/computation_comp_c3_bounded_reach_decidable_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "eb5a028f40a1b343ded420f6fd8dec3c956ed1f9d708c6d368273c30195b493d",
+      "removed_patterns": [],
+      "operation_candidates": 11,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c3_bounded_reach_decidable.yaml",
+      "operad_collection_sha256": "13788bfe556bfca0eca2b0af0aefe0db073cb5344f6bae465d1a07c032bccd8f",
+      "inputs": {
+        "statement_sha256": "3a3cd5778dabed59e2c5c6c681dd91963b5ea534a02049e2951bf16bca8f3edc",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "73a423f80bf1e552d73baa929ef4e2ba9040de39db559b9e4d8ceea30bb3d76d",
+        "source_refs_sha256": "1ed06830ecaf6766453f33589e87a093f433c5e1b480a53153b0caa744760fd9",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1291_comp_c3_bounded_reach_decidable.md",
+            "sha256": "06b55c284e6b33daff554769cbddde32845f360260bbf11bc54e63ef3e2ef580"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C3-VERDICT-SOUND",
+      "prompt": "dag/prompts/computation_comp_c3_verdict_sound_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "dffd90043f5a29e0e8ce7dcdb29a8f0c319b9bccae6a28e3153184530b9da0a6",
+      "removed_patterns": [],
+      "operation_candidates": 14,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 1,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c3_verdict_sound.yaml",
+      "operad_collection_sha256": "9da160a4d60554abc22d5b30fad540f561156b4cefb8418bab7aff87a0d26a95",
+      "inputs": {
+        "statement_sha256": "99377ef6873e06c9a011742ee59a9e639c1de08cffa8fda44f234b0afe76dad9",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "6301e0d8e5e39032d110d6fa8c83a8400e1ee6f79254c1eda025b206b130cad3",
+        "source_refs_sha256": "50d05095166e47b6b850a8738587779446f5e75b000b05227173193e1f1bdbd8",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1292_comp_c3_verdict_sound.md",
+            "sha256": "c3cec34b119f3c43107b13bc60f30baf794ba5d4ff607848ca65d9df1b06dc9e"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C3-CONTEXT-DECISION-PARTIAL",
+      "prompt": "dag/prompts/computation_comp_c3_context_decision_partial_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "a5f30114412aa2b9b364efda0333fe66478fdad9a1a61623fb763a57929199d7",
+      "removed_patterns": [],
+      "operation_candidates": 5,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c3_context_decision_partial.yaml",
+      "operad_collection_sha256": "93c83318205e6f57891e602abe19c0d79098c65e1d9ce245742ade2e22915a01",
+      "inputs": {
+        "statement_sha256": "555e29d76662be86bb4da1f6459f8b7409dcfbc5ed1be7be0b5149eb9416f05f",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "69e5af0a9729666d4d019759d2f4c1a414192719452caa49890d85a6d00b841e",
+        "source_refs_sha256": "d6a80666102ecf0190fc263035497fc74f912e7f7d1bae5fcc6014ae26338fd3",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
+            "sha256": "bb8b5defd4adee92a0fb99aff7ea6ecf24a9aa10fa23e31dd3f5cfc3ac3dbdb1"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C3-RUNNER-NEEDS-BLANKS",
+      "prompt": "dag/prompts/computation_comp_c3_runner_needs_blanks_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "773d99f30caccfa0f2c0ec4f7aeae29846d2ce21976ef7916d58bc7119cd9301",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c3_runner_needs_blanks.yaml",
+      "operad_collection_sha256": "67359d6de93ca4003aafc1157398154456a3a1c32d64d7c226f83a300933cba7",
+      "inputs": {
+        "statement_sha256": "dff47196a8880d50255a3a7556c19c12fdbb3bbb9031dca89f4355bdcf7b4778",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "4420303bd66e2fbc5fd8b9e42436f46d56c9efab659fd44a4484e312215300e9",
+        "source_refs_sha256": "110887095b70d412c07027fe3a4b497751b4ff0d5889cb5cb04ad1549fa381a2",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1294_comp_c3_runner_needs_blanks.md",
+            "sha256": "1532bcf561e0af208403d732cc9dc296fb2688ecb619ca99dbef917095d77735"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisCompTM.lean",
+            "sha256": "5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C3-NO-FIXED-BOUND",
+      "prompt": "dag/prompts/computation_comp_c3_no_fixed_bound_conditional.yaml",
+      "before_sha256": null,
+      "after_sha256": "3b4a4295f50afeff90a980d2b84692f407bd8c9d452c8589b63e6e3cdadb5195",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c3_no_fixed_bound.yaml",
+      "operad_collection_sha256": "d4ae80bdaa0d80fd536897e02d6da2c03ca5fe913930020d6170f29145d1f8c9",
+      "inputs": {
+        "statement_sha256": "2ecd34e1f8736abcfcd41fd56972c956a71277366de425087b683631055f286f",
+        "status": "CONDITIONAL",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "8b96f5a26c0bfd71b06cbe62c82ff0fe68d481ace2c712c928c1a40ab5beaed5",
+        "bottleneck_sha256": "30e772c9b62ad661303d190ba6d3ae8f68d383c8a4e538e8fc39d4e2e8f60f44",
+        "source_refs_sha256": "729c7682c47ad413c8b8e98cdf2dac5425978a8c14f13b49ef441325dc7cba37",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md",
+            "sha256": "67b7f46be638410a35786030b0c4f5014cd4f5334e5923e38211e850fb8cb251"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C4-STEPE-UNCAPPED",
+      "prompt": "dag/prompts/computation_comp_c4_stepe_uncapped_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "8efbcdbc8943207699a5fd7b18ce58c397fdfd54c625392c250a474840c9d516",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c4_stepe_uncapped.yaml",
+      "operad_collection_sha256": "8c2dadc656f4310474a9ea9a94a6546014cd6e559c3471783ae6767cc73915d9",
+      "inputs": {
+        "statement_sha256": "f2503abcc0b9cc681f10a055b6815a651906313c9e90257b715a4a649798eadc",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "39e456e78665c3b006ce6f2fbaff018a08bc38c9606ac8db5c4f7d413cffecc6",
+        "source_refs_sha256": "d4bfce35d6b8cee8924d8eb42539d4b50c1764f257b7768243098c33ebeb011e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1296_comp_c4_stepe_uncapped.md",
+            "sha256": "ce75002557552695699573a30e589cfdb2d8b4eaa4b61815b18d24bd96fa50a2"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "prompt": "dag/prompts/computation_comp_c4_unbounded_supply_import_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "c0610168bcc4a6cd817afbea46dbe6c3abed53a96bb7dd11f690b2ee99336626",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c4_unbounded_supply_import.yaml",
+      "operad_collection_sha256": "6b1fe145838ebc6d131075fab17a3b6aa417f6fb71fdcd005f77a1af036edf44",
+      "inputs": {
+        "statement_sha256": "248137c74f5843cb9fed85a3ef95890733b4c658d5b5ecc142932639610ca2a5",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "5ead41bb4ab1fb20784427f7e607c0e89a4a263fbd542360f541fc405bb8b002",
+        "bottleneck_sha256": "b428a7052889ac46737cacbc0249da538dac1ce6e6df4e44a13256faa8ebc5aa",
+        "source_refs_sha256": "b3ae9f96242746afbce503d9d9df3db7909c20b0c809438d9b4c192de02a526a",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1297_comp_c4_unbounded_supply_import.md",
+            "sha256": "18044581259d4923269d63660936f4d79f03b5aa126ed00c89e13aabd077b414"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C4-SUPPLY-GROWTH",
+      "prompt": "dag/prompts/computation_comp_c4_supply_growth_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "877022fa82092dab99457ae069a359e692be4c89734892efb8f3917901edf24e",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c4_supply_growth.yaml",
+      "operad_collection_sha256": "0666d9314240e5249eda108039fd487b18d1962f2a122e75adf0bb6bf7de1f27",
+      "inputs": {
+        "statement_sha256": "0eb3765edfb39ef0887aa6d0dcc05a58d69c6e68a8b4c462ac95f05d3d83bc6c",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "59bed7d99659de488ddcfdd9808c4f28875ee242ae338b96940813230188b601",
+        "source_refs_sha256": "d2a47228ead27192c59b887c4c056d52ed58869446cb9be3a4e5b078c2a5558e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1298_comp_c4_supply_growth.md",
+            "sha256": "58addd139d91ac4d37bb54d3860c7a69be570116b378767b194ec18a64c0eefe"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C5-TM0-STEP-SIMULATION",
+      "prompt": "dag/prompts/computation_comp_c5_tm0_step_simulation_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "3468ea025d78e5025e1501e8f9f5023122abf394d05581862e63372cc083fb3b",
+      "removed_patterns": [],
+      "operation_candidates": 5,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c5_tm0_step_simulation.yaml",
+      "operad_collection_sha256": "ebbe681ebfc996ae8876f2bb67480d87fcde5aec9d56a6062e2c336213e8246a",
+      "inputs": {
+        "statement_sha256": "1970e434c8dd0422723eb4a5ef8e394c6d738cac2986970faab91c0998568a0c",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "daa906667fe59ba9918df77cf18b3702e6b1ff68eaac9229ff3af5540daaf4b8",
+        "bottleneck_sha256": "94c41012fd7ecf8a0caf279f0f40e9c15f947e7be489c35f3df9ffcd3344b9dc",
+        "source_refs_sha256": "88766cd382811bedaf3471fc7fb52e9f860b75d611c5e234f4ae3077481137d8",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md",
+            "sha256": "a8331ef32a78a7908aaa95636c15ec9929265b852180118dfbba6b81ca990df2"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisCompTM.lean",
+            "sha256": "5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C5-CLOSURES-HALTING",
+      "prompt": "dag/prompts/computation_comp_c5_closures_halting_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "38ba85d79d201337df5a75810d0f8423ed8fa7aba463d29b4b7b0685aa987869",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c5_closures_halting.yaml",
+      "operad_collection_sha256": "758096698b261375d9ad8524fc06bc64f68060c7ff721640841157445a967994",
+      "inputs": {
+        "statement_sha256": "4f169b1d0043cdd5ee09937012333fa4e6ff9f31c5e8d1ffccddf67cfa1d0dd4",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "65e850b0e5866c607425e2882b60806396af5e10c0ab252780115e4de6dd5112",
+        "source_refs_sha256": "fbf62def05d04132cc3ded5c429d20d3f003a6ee7da4dcbfd092682f15e76f9b",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1300_comp_c5_closures_halting.md",
+            "sha256": "4e926b8cf5074fbf6098aceb568d8329c7b7b4793dbb971bdde1788f055347e2"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompTM.lean",
+            "sha256": "5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C5-MARK-BUDGET-RULE-LIST",
+      "prompt": "dag/prompts/computation_comp_c5_mark_budget_rule_list_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "143788ca78c926f7fbd37f792fba6e3bbcae2aaa2d4ca92d91013156f3abef7f",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c5_mark_budget_rule_list.yaml",
+      "operad_collection_sha256": "8e3471be622ce83921902fc753ee3adec54f080014ff792396e478e744fe29fe",
+      "inputs": {
+        "statement_sha256": "ae02653c7095442d9a54a583852331183b5e410e8ca2edd56ade147c0f6b40cb",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "242ea919c27419f17016fbf16f087aa75d8818ae8aff37e830fe0c1673d6f77a",
+        "source_refs_sha256": "1e68c2d44a1615fb3afedf05767e5fd11e31d59e27760049e97c2446c971bf87",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1301_comp_c5_mark_budget_rule_list.md",
+            "sha256": "b4c05b579156bbf428f8dd41dda91e50fd1eb57e0ea712cbfea582e08aab1b60"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompTM.lean",
+            "sha256": "5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C5-SMALL-MACHINES-CHECKED",
+      "prompt": "dag/prompts/computation_comp_c5_small_machines_checked_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "1a666f9c4fade524646787085ba879b50f9c8fa415e18454f1d34b4e3b652dc3",
+      "removed_patterns": [],
+      "operation_candidates": 2,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c5_small_machines_checked.yaml",
+      "operad_collection_sha256": "399bfb674d18ef9b904ab65f0637eaf026776de5ec6a320f491ab5b3e9803133",
+      "inputs": {
+        "statement_sha256": "8cd5205a646b3c9bde5ba9f1bc69adf87ac8b5bb9d0ee02ae0962c1e2747b6d4",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "8198787b63538b305d89b19110cfcc052227d3970609b2ec92c254edc06bb61e",
+        "source_refs_sha256": "89b0b4af267e8064ae6e958651a1cee2210e84775edb0706b35680ad71140a76",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md",
+            "sha256": "130a3316f341a83bf8a45d1f51b6b0c77848a221d22cce61bb3ca4e12334d812"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisCompTM.lean",
+            "sha256": "5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C6-EVAL-HAS-A-CODE",
+      "prompt": "dag/prompts/computation_comp_c6_eval_has_a_code_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "eb6b402121781c9a7352b0ad984704d41af5201f9f7e3fbfb39cdd86015aa6fa",
+      "removed_patterns": [],
+      "operation_candidates": 1,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c6_eval_has_a_code.yaml",
+      "operad_collection_sha256": "5fe063b470822a8b4edafb3297d74bc75a80ef71bb3d53f85c37a1cb51b97cde",
+      "inputs": {
+        "statement_sha256": "d898a6ef3d64000e47cc69957f2f4cab608c6acd4ac609b7841c1a8b4148b6c0",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "95922d702b911d2da353b19d6ab2de7b7124fcb06720fdc137ec2b325be254d1",
+        "bottleneck_sha256": "b32f8f6caefdec36a7b565fc8551b0c7c02f04b265878495be3bba373ea8cd37",
+        "source_refs_sha256": "5f90c02c7b442513892a5c66f6ea349da2ff660f366c2640bbb13349e566b7a0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1303_comp_c6_eval_has_a_code.md",
+            "sha256": "4fa478c19ba6ccff8d7c05d5d2abc1b62a8daaedfc4f2d146f28bd4a1ebb1bc1"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C6-TM2-OUTPUT-FORM",
+      "prompt": "dag/prompts/computation_comp_c6_tm2_output_form_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "1d742035289d5a2abcdce2c253611c34bb0e4c869ab55c6ee17a70e4675fbc38",
+      "removed_patterns": [],
+      "operation_candidates": 2,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c6_tm2_output_form.yaml",
+      "operad_collection_sha256": "eb08026e2d43c6c2b0b48b5e3d6632c725c57be92a61aa9741cea9912695d0a9",
+      "inputs": {
+        "statement_sha256": "bcb8c0a47d1a99bff3f58ca39cec8b90e8661f2b02f5561ec078083af9a23071",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "837cf4cadce59d08395c92a5a000699c6875b41ddf8a4be4b9419b76f048bd6b",
+        "bottleneck_sha256": "6679e8923960aa026364ea97a9095bebd3897f15c5880173ed19c4f9cd9f6cf2",
+        "source_refs_sha256": "da83482572ffe73b92b99bd1481240a012e0a74eb19a8092e33f0868c9e75b90",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1304_comp_c6_tm2_output_form.md",
+            "sha256": "01f316d4c693f10ca308cd9d75a6c9033c0aab0a84cfe7ec1315434326bbe721"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C6-TM0-HALTING-EQUIVALENCE",
+      "prompt": "dag/prompts/computation_comp_c6_tm0_halting_equivalence_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "afdf2bb0ef93046487dbb84d08cd52e20a533161aa9b6021df67540240eb5d85",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c6_tm0_halting_equivalence.yaml",
+      "operad_collection_sha256": "0d2912de49c7dd96e1a328a0726dc3fb494bb8b707dc62c392b27681a1bc47f0",
+      "inputs": {
+        "statement_sha256": "1d2fc970c6954070e491618a05b0182c066ea378852efc9096dca35683b3793d",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "89b3e9fdd51e61ab2d2529b0eda0326ace4e4171c0171c746a83053d76a0ff71",
+        "bottleneck_sha256": "b2938bf282c230a22118488135111539ed4cf556a533f2a4cac1ebb2859cb18f",
+        "source_refs_sha256": "7cbcad6999aa31efb720c971ecdb8e1b00793adce6c7bd84b347338ba0dd02c5",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md",
+            "sha256": "2271540a21ffb0fdd0a858004353e5d7b092979dc5833a167ff54181705a0ed4"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C6-FINITE-MARKS",
+      "prompt": "dag/prompts/computation_comp_c6_finite_marks_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "d442604fc4741f54e8de64fa34cc1cadae0d045092fe6261495e397fff3a2e9b",
+      "removed_patterns": [],
+      "operation_candidates": 14,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c6_finite_marks.yaml",
+      "operad_collection_sha256": "643aaaf58b9af317de621f3b61cc3c807309cf1c7b616b87819cd0208d49be0a",
+      "inputs": {
+        "statement_sha256": "be65c8116ba8d74d76848a474b7b3d35ab32fd577b51e14617186eb18dc370e3",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "700c5b9184f758b056635f7aeed1e45b9f21bfe6c67aeaabd803c912bd2b708d",
+        "bottleneck_sha256": "55fb131fc4f607c8659c32033e9838b040242267fb253cd6caaffc6a8e21b077",
+        "source_refs_sha256": "723262e1a1afc5e2c02f3030a5c7651fe5539bbd6c87958cfb40de0f2be31257",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md",
+            "sha256": "7dab3c108ab0db31a69bb05e4fbe2a370273138d716cb61e212367977f6b4c75"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
+      "prompt": "dag/prompts/computation_comp_c6_tm0_output_form_open_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "c317a6372ed2ad320288b1ea9e786e25527abde8f4cee68045b72b4d7f84aec9",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c6_tm0_output_form_open.yaml",
+      "operad_collection_sha256": "be6f9444560b38f1aabe2464927c6ac5b13e04e3afc4d035788bf1b9514fb502",
+      "inputs": {
+        "statement_sha256": "85df2c7d027449ac7b787f797a595c0a71f76f1b392cb32f9356f58a59177e5a",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "f19885ba512f0b783949067a1a36714d7058e35740c70bcbac04a98fcf6bbce2",
+        "source_refs_sha256": "c9afb80f240a65fa922efa834f6c16b8043841e1fed27ceb02b1dbdf17070836",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md",
+            "sha256": "d7b7ab14815d229866f24a31693ab16d2b177aed0872326a6941c09b0662056b"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "COMP-C7-MACHINE-HALTING-UNDECIDABLE",
+      "prompt": "dag/prompts/computation_comp_c7_machine_halting_undecidable_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "e4c9bba928d74b141ec7c46793572e699f420272faa4a13d9569c63e4d005087",
+      "removed_patterns": [],
+      "operation_candidates": 9,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c7_machine_halting_undecidable.yaml",
+      "operad_collection_sha256": "2a3cdab5af12f040ac2f2c47f3e640cdeae9e851645ce5e006048655d5c8f882",
+      "inputs": {
+        "statement_sha256": "44decc2738e98ca0b142b0f734d675cf7b5ff623739a2e17534c7603554ae62b",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "671c492ba709e77b8e0ec39e9e609624b1723d17c88e663fc346029bd97f3f64",
+        "bottleneck_sha256": "b47def8286bf5b99db795faf3343dbcdd3797eab10cd0db1dc7b85e101f4725d",
+        "source_refs_sha256": "c583a596499a82472ffa3c6787fb9615b94a3b087f7d26b1dbeddb7886b67b9a",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1308_comp_c7_machine_halting_undecidable.md",
+            "sha256": "495b959a2ef01a0959d87d54a91d7ffbc407e9af2b846518505dce7b247ee0c7"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C7-NF-REACH-UNDECIDABLE",
+      "prompt": "dag/prompts/computation_comp_c7_nf_reach_undecidable_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "2177e693a5f65132cda75ba22f6b0a0b39e17f60e40a14baf99751daa80f423d",
+      "removed_patterns": [],
+      "operation_candidates": 12,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c7_nf_reach_undecidable.yaml",
+      "operad_collection_sha256": "1d3af3fd4c474a351b5b632ea64fa7f4abab31b8ec26ec48d84621421ab13aab",
+      "inputs": {
+        "statement_sha256": "f5b10ba2096e6bb0f9369a155025262f84ad144627fd3a41f5b910853346d33a",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "671c492ba709e77b8e0ec39e9e609624b1723d17c88e663fc346029bd97f3f64",
+        "bottleneck_sha256": "84e12d2c4f2338f812c326e4cd01ff3ecd7623ecaf2b838097814972a0dcba65",
+        "source_refs_sha256": "e24f6cb7892b7812832ccce382f6e52fc648dc17a9cd11a6a3b920a19c40adc0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1309_comp_c7_nf_reach_undecidable.md",
+            "sha256": "23d47205164dea84203754bfa3013b7d27ed65624881541d98bedb7c8dcb340f"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
+      "prompt": "dag/prompts/computation_comp_c7_encoded_instance_reduction_conditional.yaml",
+      "before_sha256": null,
+      "after_sha256": "194d060f6cbcd16d64d393755810626f07eaeb0e8600a33bcf7fbee42b1456db",
+      "removed_patterns": [],
+      "operation_candidates": 10,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c7_encoded_instance_reduction.yaml",
+      "operad_collection_sha256": "16bdf30bdf1d1946d025722e167592726c08e80a5cf5d4f88ae4ff1bc2d31597",
+      "inputs": {
+        "statement_sha256": "12eaa43e88c733897ab89f2e505ee89e5bc79bd7fa82112d0e1c93495a6eeea1",
+        "status": "CONDITIONAL",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4dd2de2ce19005856e9e47dbf2d773c4e5722bff82223235d35bd01207b49bb5",
+        "bottleneck_sha256": "7a8ca9c372e6fdf80ab6573a38f30ee13de29cca50255599f86051cfabbd32bc",
+        "source_refs_sha256": "5a20c0ddca78747c692e284a36a9346b34732e14deba90db49f119f9f1100736",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
+            "sha256": "48015f9383eb0f57c090c0cbeb4efa4692453fe6e70d08f20cdf9a840dca5e4b"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "sha256": "966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C7-FIXED-TARGET-OPEN",
+      "prompt": "dag/prompts/computation_comp_c7_fixed_target_open_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "ea53ad4eaff141eb128338a71b7e7d50bc963453bc8a3ccaaedb56709f120862",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c7_fixed_target_open.yaml",
+      "operad_collection_sha256": "f7d8153c405da328660bfbccf63e33069ab030a2a70e59b8794557c3fd24f34c",
+      "inputs": {
+        "statement_sha256": "5a5b31f345bc0bddb784ed6689a14ab44e039963e65564c5cd779ef2c7d095f3",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "fb8294099045fc7f94f1726678a32b55092941e15629fae12286de8e8ed14ab5",
+        "source_refs_sha256": "edef4813df2058bb23e71d928b7f06872dbfb533c5662a52a45372a8681d80a0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md",
+            "sha256": "fc33c155c99849527d36c734ca3553fb02187c4c333a639f752db35dc2fc2bcb"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "COMP-C8-BINARY-CODING",
+      "prompt": "dag/prompts/computation_comp_c8_binary_coding_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "0fed01d88c651c060dcea4b96256a68ac5e648731452f3dfd2815c96893b1170",
+      "removed_patterns": [],
+      "operation_candidates": 12,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/comp_c8_binary_coding.yaml",
+      "operad_collection_sha256": "55d4951ac0dcf204e85e406d20c7aafd3ed5dc2d34d4e4970b7f11a453f51bbd",
+      "inputs": {
+        "statement_sha256": "57509e18198d1991d7636a76e3b6a65d65eed054f36688bea5a264963faac33f",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "2ceec6749f73a73f05aba9589ebaa454fbddf60239315ed05fcd0e605514ff74",
+        "source_refs_sha256": "0b4f6fa25e2fe5e82a3061a4a1d171df6e1ab237227621e34f0d21078c441855",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1312_comp_c8_binary_coding.md",
+            "sha256": "fe0f3adcc8c5c73758dbbcffc534e5e23b9f6e033f72fdb63cc6baea5868dc63"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/wdp/genesis_tm.rs",
+            "sha256": "5ac31a360716dd646e3aa897a7a1fe2e73d74246e262aa4bc93fd9e8df720cb4"
+          },
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "COMP-C8-MINIMALITY-FENCE",
+      "prompt": "dag/prompts/computation_comp_c8_minimality_fence_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "cb0b2d67924877f8695525264e1813b6f7dd3a4b8a11e974f8fde0348bfc2d8b",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/comp_c8_minimality_fence.yaml",
+      "operad_collection_sha256": "63b497410065518c6516b78a95b7d2652a81e83785ffab1b9222b8b728d90813",
+      "inputs": {
+        "statement_sha256": "cdcf683210c1ec6edf6fd778c9ebedc598ef88410c44b8e10ee00cbc8c457589",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "7995e96b09b5f0d04850ac744fb50bc88556d8662a3b8761396bdd7156f9abea",
+        "source_refs_sha256": "e2410fc3b5de35ee193e4baf15001bd144584659681bee47ed5e3e13626f7f77",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md",
+            "sha256": "edba962298bb562d50a8cd46a844ad8666afb1a081a160e280d29abcd8bede3a"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "QCV-QUESTION-SELF-LIMITING-REPAIR",
+      "prompt": "dag/prompts/computation_qcv_question_self_limiting_repair_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "04cfef885f3ae6af5a548cfa62c8435942d66e9c70c11c1439f1d9e173ee7248",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/qcv_question_self_limiting_repair.yaml",
+      "operad_collection_sha256": "503fb2845c9066221a9ddf30aa34c3d91cee685f38a0bc8733b2f4a7436f003b",
+      "inputs": {
+        "statement_sha256": "7590f16d8919080f89b9231b21b4493c809b25a7165a0014a8af48ab77c0ab98",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "ff40b7a1e0ad53669ef0be1f15d53f470205a47f64172fa1d5c3c8585c6418c1",
+        "source_refs_sha256": "98450ce0b2327b837adc9761df0e327dc9004eb3c32fca43e754ded914e5233d",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1314_qcv_question_self_limiting_repair.md",
+            "sha256": "315bbcd9ca572938ee56c343c4c6ca08c606ff50c051c983bed76b1f3fd3984a"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "QCV-SELF-OBSTRUCTION-MODEL",
+      "prompt": "dag/prompts/computation_qcv_self_obstruction_model_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "006248fd03dc7146172c8b5187ef28ae6f18d946b90fc1daf542b0e4c7ce910d",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/qcv_self_obstruction_model.yaml",
+      "operad_collection_sha256": "d8e6c163e165fa0d404662558b1a0e2771ecd70808be674e2282c7bf8030138a",
+      "inputs": {
+        "statement_sha256": "4d1a611a0f952ce96a6da43222db035a38c56e8bf01500b7383346c017752c56",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "1c6176111ab4b35a0e34d16125ecbf2cc19a36ae5e7e1f330b13cd226351edeb",
+        "bottleneck_sha256": "407c420aaf78b484c96722a4e37a2e69c1633013b6e3be91c29f0fb0c659a127",
+        "source_refs_sha256": "446533794729a759bffebc7a39302e50e912ccef74648a5106320b3db8db4fe8",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md",
+            "sha256": "041e6e718533e0a7a8b64c12abc77e0c6582379dbec1c1b29c56a6129e88b845"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "sha256": "5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63"
+          },
+          {
+            "path": "lean4/QcRepairQueue.lean",
+            "sha256": "8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-NET-RATE-BACKLOG-DICHOTOMY",
+      "prompt": "dag/prompts/computation_qcv_net_rate_backlog_dichotomy_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "bb25bedf208dc93bf5cb38bf96ee02609e7e7f54940f3ee1f803b400570c87cc",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_net_rate_backlog_dichotomy.yaml",
+      "operad_collection_sha256": "d92612a2e92a9071f952fd7fde25c75fc00c885f664451a64b5f588b8c16c16b",
+      "inputs": {
+        "statement_sha256": "6ca555a863a21b1942e1aa05036f3d8e103ff5215b92e3c47c76859d8fbf36e9",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "c298676845be849fcd511a2b7610bd23da6e8d5c3ab47b78132fe176614e313b",
+        "source_refs_sha256": "f0cc4e32a956b93e37c0dc9d5cbb0e396ef7e54b5f3ffad52ce252b4945913e6",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1316_qcv_net_rate_backlog_dichotomy.md",
+            "sha256": "b1bea1575d51ca9c7bddb5bee7ab5eae63399cdca2198bafd7a64a20da91e52b"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcRepairQueue.lean",
+            "sha256": "8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-REPAIR-NEEDED-BUT-COSTLY",
+      "prompt": "dag/prompts/computation_qcv_repair_needed_but_costly_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "e6461e693149e3d59a1dcb42b4fd2920361df8d9ec1a1e52295204b0a5b7d623",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_repair_needed_but_costly.yaml",
+      "operad_collection_sha256": "792769c7e6d8b8c5a3ec3370d155bdbecc10543af6e3ea4ec0f037d43921be08",
+      "inputs": {
+        "statement_sha256": "001c891a6dc5810c724d77dc00d1060ea4f439fa450f694532f48f4958028eaa",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "458ce34f33cceb534f1c21ec1b71bef41272c98068a9c62dbb9201fefbbce4f3",
+        "source_refs_sha256": "b4de4e2cef25eda7c6755eda2875040015120bfb81bdf038c065080f583a9b30",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1317_qcv_repair_needed_but_costly.md",
+            "sha256": "85ca6f259f21f925c0efd38ea3702027b3c5cd08ab24173784e32bdd918d9d82"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "sha256": "5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-IMPORT-THRESHOLD-THEOREM",
+      "prompt": "dag/prompts/computation_qcv_import_threshold_theorem_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "5f55e7f7f4a85e616044ed1cf80f6383fe9b53f75007bc5db41f50b115db6c51",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/qcv_import_threshold_theorem.yaml",
+      "operad_collection_sha256": "8bddbdbd01fc4141c4d717f37c2bd8d124c8fccd955fb6bfbdfcfa987fdc7fc3",
+      "inputs": {
+        "statement_sha256": "425d09db87cb27663b6f1f0abd4bb6f3555d2b09ea4daa734d18df524703de30",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "9b4125490b7753e0ae22168f86545cb4bff1425d45c1f851379401c1d88e21d9",
+        "bottleneck_sha256": "20eb73512082d0385d4dc65dc8d36d57a4192b63fc32a51f5692ef858ee06762",
+        "source_refs_sha256": "8ad174c407dc9c86b5df7918a2ee19b3120ec613bde76cb8e9c8781bc922297c",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md",
+            "sha256": "cf8990b4134fb6ad97ce1fe7c7729fb396fece7854248748994a2d32a7156d82"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "QCV-CONCATENATION-THRESHOLD-DICHOTOMY",
+      "prompt": "dag/prompts/computation_qcv_concatenation_threshold_dichotomy_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "3584045e7ae5bd4aab2b356dcd5524c3162ea6c30876ec4d1d43eca4a0183fd1",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 9,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_concatenation_threshold_dichotomy.yaml",
+      "operad_collection_sha256": "c265f23a5c860e85227263769d90a577117b3abe79d2197d1d91c2e709fdb4e1",
+      "inputs": {
+        "statement_sha256": "a3690022c6c95c8f1a9b911806122dea229ee4391f4e55eabb8489a64698fd13",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "0eca8b33a1873379312443d6323cae5a7308874c589013114e221a6e42e6539f",
+        "source_refs_sha256": "4736a636bd4907f98fd924f52aca94f14907e0b87ce2bb1415d75047026520c7",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md",
+            "sha256": "3d98a033f36992969e098f65f595cc567c98a64d3c9167fb8eb3fb2358c264df"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "sha256": "5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-OVERHEAD-GROWTH-CRITERION",
+      "prompt": "dag/prompts/computation_qcv_overhead_growth_criterion_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "8340cd2292c300682c833e222bda7983baadb7d5be7d6aceaef8eb2817ad5a93",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 13,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_overhead_growth_criterion.yaml",
+      "operad_collection_sha256": "23343dd83227dc332c6b4d6fa9b02d91edbe318ab476c80ab2a766adc2b9bb04",
+      "inputs": {
+        "statement_sha256": "cc13974963d9d70e8720772c2c0c5e04b39d94883082591cb070cbebec580800",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "736103fb058282e8fd87bc915721ae510ca6f539bdb1c7553b65ae7ba2627291",
+        "source_refs_sha256": "7c9735fbc7ea351f738e13d060822acd778255e6bee205e83a419916564f2e5e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1320_qcv_overhead_growth_criterion.md",
+            "sha256": "d3fc380988251f78ddec1b1291472a05f9f8a8ffb3ffaf02d8422c1c6ad412a4"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcConcatenation.lean",
+            "sha256": "5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+      "prompt": "dag/prompts/computation_qcv_import_noisy_reversible_limits_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "bec5be92418825b8e0c391317b6616b0bd651be03d5a88ab8d44c1b6c634e08e",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/qcv_import_noisy_reversible_limits.yaml",
+      "operad_collection_sha256": "7641e5ea236313f63b8049a232222d52b83a16c3b44f8015904ef3a088c7d4d8",
+      "inputs": {
+        "statement_sha256": "e0c37e6c74df450d71fcec07e45ac39e1860d5adc4e94096f6ab2e98de03f240",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "cf91df2a86f2fe7a68f2737b85d8d4dd4b9539708f3369ebb2a32846f20db541",
+        "bottleneck_sha256": "822889d7c523d9400e760f317bd4af07f5091574eedad48864126fcab1ef3dfb",
+        "source_refs_sha256": "2472d179dadc59154891d395ad53dd370e90b62ae72d91859558fe6dc91a95d9",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
+            "sha256": "214c92352394f02f001e8041289c11b37418dd47639692203d72801ace45c522"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+      "prompt": "dag/prompts/computation_qcv_noisy_history_trace_distance_decay_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "f063da176a8f3901ffb4df6ee197e0c02af5cf17c2d6f7b6ab223e6e5155f7f0",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 9,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_noisy_history_trace_distance_decay.yaml",
+      "operad_collection_sha256": "1fb043b9a93816ca6c208473f914774297a10d1872f530b0df21bb61bd7ab7f1",
+      "inputs": {
+        "statement_sha256": "3b1361822038fd31c1631bceb54feacd138cfb4a2aa182e6bc87fa2030b7a801",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "6fd595fdc870989984cffdc4ae3756a8ae1a8be8f5d0d5a74d0ed44fe09ccef6",
+        "bottleneck_sha256": "e8329d90aaa2fa1e7c1fe6ad3298fd542d9778cf0d37c660908194713b7424e0",
+        "source_refs_sha256": "27912eaf9035ec1e96ba311d37e34a73991904146775334d2b808fdb6dbfff7f",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md",
+            "sha256": "e806ef87fd15d67692848a5c0a0036f8986114d8f07cc69b8d4d0acd65723b23"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcEntropySink.lean",
+            "sha256": "361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-QUBIT-BLOCH-DECAY-EXACT",
+      "prompt": "dag/prompts/computation_qcv_qubit_bloch_decay_exact_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "6a93d420b3b01e17e1aeeac7ae8174109117180d8de374b06e88c66510a27b54",
+      "removed_patterns": [],
+      "operation_candidates": 7,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_qubit_bloch_decay_exact.yaml",
+      "operad_collection_sha256": "6b3f0f9ff8ef7ed7a186ccf6a234d2cf878165689fcbe6bfadc84c02aadb628b",
+      "inputs": {
+        "statement_sha256": "e51fd40084617d008edf8f8d24418e0cc198cecd2c1e9643d123fb78e9b3b1e9",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "a6e2a833bbd0b692d6cc0126db905f313f7b8cc3f2049fc1eab3e7c51af52d88",
+        "bottleneck_sha256": "193b800be89e748c1c6d0aab834ffe3c96136d687eeb4a2d4c8d9d9b0b73fa3d",
+        "source_refs_sha256": "58c63a6b8352c328d3449aea77b758881e0cc685cf09ca64b902ff20795c4283",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md",
+            "sha256": "55d721d603760a0527de5e219b11eef271096e6b13bd7bee08ad4e0009f24ff6"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcEntropySink.lean",
+            "sha256": "361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
+      "prompt": "dag/prompts/computation_qcv_conditional_viability_certificate_conditional.yaml",
+      "before_sha256": null,
+      "after_sha256": "32d0f7948ffcd45bbdabb7655b8a530f468184042bb24b9a6939825f9b20a71a",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/qcv_conditional_viability_certificate.yaml",
+      "operad_collection_sha256": "5f56cb1f16757374f4b1843a972a7b297f45cc6a1ef7ef27588729381b3b0fd1",
+      "inputs": {
+        "statement_sha256": "44b66146fe14e1daf16f6ad8de6983740b2b51d2a45a087a4e379303871f1ca3",
+        "status": "CONDITIONAL",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "b9bdfa9fd325571a8ba8c6d46e51a63df6b8d59d50d9254ebc04d4c6c86c18ee",
+        "bottleneck_sha256": "67fb9af357b6b7f96746963c4d8cab246577c2a839aff7c2cbcfa23c2923758e",
+        "source_refs_sha256": "699f6bcb36e39cf1d5e92062f3e748c74b1ad80523d2b41aa671f2acf3094df8",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md",
+            "sha256": "dd0903560bbc7d8c2ff26aebb5053d15e7d6e6f62f9d93e872a756356dbc4a23"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcSelfObstruction.lean",
+            "sha256": "be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS",
+      "prompt": "dag/prompts/computation_qcv_viability_needs_all_requirements_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "eb7bc458c4e040c4db4316c340cb5f66232742043f37c8376ff39cd64353c706",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/qcv_viability_needs_all_requirements.yaml",
+      "operad_collection_sha256": "09915eee35d345f9b09c035f79852f6a5ba286932cd75fbadaef447faf3613f1",
+      "inputs": {
+        "statement_sha256": "1c1e5fa914174d98d39dff56dd719051d478283f3aed9e27d06f38c80aa58b26",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "430229f444228e87fd5f6b26883aa16f29efdff0a85c502126397cdabb636464",
+        "source_refs_sha256": "0b52d14f915bf390a0e162a3e5c19411435d0b06bec597b135562746f4f4a0ad",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md",
+            "sha256": "196f85b0fc3f1f5bb91ed666083b003fec8ce6aa7ee26e926b6a9db566ea8dbd"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcSelfObstruction.lean",
+            "sha256": "be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "QCV-PHYSICAL-SATISFIABILITY-OPEN",
+      "prompt": "dag/prompts/computation_qcv_physical_satisfiability_open_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "ebf9748da0799a3d53d92afb00b94e7f5e9db0d1ef491252295ffa531b60d27f",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/qcv_physical_satisfiability_open.yaml",
+      "operad_collection_sha256": "d5aa32f66e58a4b7ccea801dd371368177b5f2a1b57402ce41ea614b61b8259b",
+      "inputs": {
+        "statement_sha256": "24f742f66126daf8a58df07219e6a818821b369ad661e95d1de6a6c2e511bb54",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "0bee2f6e340bcc6ea9d5e637abf6b54a33ad7c0fb7e6e2c0a6465b2a0da790ed",
+        "source_refs_sha256": "3cf061783e43c3a47bc3caeb38a18a424c4b8fc34e2ce6684113df2d174d37f9",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1326_qcv_physical_satisfiability_open.md",
+            "sha256": "8794ed69e8fcb70837974ee551b090147d17ff812ed446c645b3386390a25899"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "QCV-FRESH-MARK-SUPPLY-BRIDGE",
+      "prompt": "dag/prompts/computation_qcv_fresh_mark_supply_bridge_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "9a9d1dca9a5118dfc46f2da9b6db55a74abfa69978cac6790cd64d1c47df3a7c",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/qcv_fresh_mark_supply_bridge.yaml",
+      "operad_collection_sha256": "158b4f17e39e37a52bd6ba188369d0acf06f8d07239e7a89cac239fd671ca329",
+      "inputs": {
+        "statement_sha256": "43b252131f645eb1809f2bd52c77ab0bbee8919b014cf2fe2cfd8130e6fd39fb",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "358007d2f8ef2cfb1a4a6f71bd28167b8f964497a4cadf3a781359e4520e3bc3",
+        "source_refs_sha256": "8c1b31b0668d4c4e3f73ecc9e3f2dac44c8e2f941d0cd897641a6a161f5d0152",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1327_qcv_fresh_mark_supply_bridge.md",
+            "sha256": "b4f45e8040fefcc82c0f83c861a18a84136e4d4da5c1af36535f8f8f22c5f1d8"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "code/rust/src/qm/campaigns/qc_self_obstruction.rs",
+            "sha256": "7ec8808a14754317eca2df6528a90985a6cbbaaddbf17c611cd236cd45eef4e3"
+          },
+          {
+            "path": "lean4/QcRepairQueue.lean",
+            "sha256": "8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-TC0-TAPE-CONTROL-TYPING",
+      "prompt": "dag/prompts/computation_auth_tc0_tape_control_typing_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "c2a074ada54c1d9ec269fe26f886ed464007a7cad8c99093e2d2d54524c44a2a",
+      "removed_patterns": [],
+      "operation_candidates": 10,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/auth_tc0_tape_control_typing.yaml",
+      "operad_collection_sha256": "34af56c807f913b01915ef8bc7663c30160e1f758bec091cf16e1444d18c5616",
+      "inputs": {
+        "statement_sha256": "e8d4bf97b77a80d04f2167c974a0ffc1a7c4ecfc090fe01dcaef1d34957245d4",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "d209866e3a4de7992923a0a8a6ebb0059918c10137d1bec57e3cf453b4108cb0",
+        "bottleneck_sha256": "2dba7ed06b3ca4137766289e56fa5e3a505ad3e5a62541c2824bfb13a58c1925",
+        "source_refs_sha256": "e839845116ae049ba9ee376f48b904fd8bfaef89ae1bf9ee88e9ef026ae23750",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1328_auth_tc0_tape_control_typing.md",
+            "sha256": "ef820c2be5590d9bd08ef2d16f0a9e584ed7051144bcf6e57e4f2b79dff2e108"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean",
+            "sha256": "c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-TC2-FINITE-TRANSITION-CONTRACT",
+      "prompt": "dag/prompts/computation_auth_tc2_finite_transition_contract_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "39166328177f54bf860f26a030ec2773a148c859c0904048a34df72e902173a8",
+      "removed_patterns": [],
+      "operation_candidates": 11,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/auth_tc2_finite_transition_contract.yaml",
+      "operad_collection_sha256": "dfe90d2db448e96566b922c0f88487bff027f1f757262a5a140cab53b0b3b484",
+      "inputs": {
+        "statement_sha256": "9466c1bf44994ede17293589763a38e5bdcb4a23a99c453468956258c7c6fef4",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f3ee97f415eb4bf2255a67cfaa71a45ecc9ef2e5116e9a62c8b593a70c9d31d",
+        "bottleneck_sha256": "7fec6c7971d55c69506a4121d5d9a1ceaddac55fc2b442be7dec3bff84478285",
+        "source_refs_sha256": "d3c816ea9c7bdeb6609d000b53d716e5c47fc8d3a81588ceb1bb7da41e1d0a64",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md",
+            "sha256": "aca32faadec07fc27757648df8b973cd01313df3892d342b4855ab9ba7ffd0d8"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean",
+            "sha256": "5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-DTM0-FINITE-RULE-MACHINE",
+      "prompt": "dag/prompts/computation_auth_dtm0_finite_rule_machine_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "dd0142d90ace849ffe3c46ee190e801dd613debcf0bed0e0a7d7447b5ba9122e",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/auth_dtm0_finite_rule_machine.yaml",
+      "operad_collection_sha256": "5ad6505c22297f043c55905ce4af49a4ae0512874aa1001c393d306304c224ac",
+      "inputs": {
+        "statement_sha256": "5354175bdceab859a26e2c89562d0af5abc26ee4e84c81170007209a3383b809",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4158d772571b2f94a9700cae0a17938472d5b83c7e168e6254f2b39b306b290b",
+        "bottleneck_sha256": "82d8119d94147e8015522c93d0fd0c640829b1043f558725e1ee757222135495",
+        "source_refs_sha256": "4486f4d8f831c2a5185eb8056e829dab9c34482fad0b997bae74135729f6c5c7",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1330_auth_dtm0_finite_rule_machine.md",
+            "sha256": "aea8f8ecc8f2f8f8d5480b77c12b5e05040ac39586039ecce9a5db0dc020c42f"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "sha256": "0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+      "prompt": "dag/prompts/computation_auth_fuel_exhaustion_typed_stop_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "527e6d31f7fda91dc483d4889cd65af2df689a4d12730da484e6619b07f2b8de",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/auth_fuel_exhaustion_typed_stop.yaml",
+      "operad_collection_sha256": "300e98f9db4af4cadfa95f6dcdcaddfb463c8406957af8e3dfd11750c67d0e33",
+      "inputs": {
+        "statement_sha256": "ac00e638fc6fad12c0f441f0eb4e95c06f399138e67cb4896bb610d67ae1326a",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "efafb0a1e3725b947151f33370a8f0d1d1c390bf68686fe4a8243579b8d1b0c4",
+        "source_refs_sha256": "965e6dd758fd65360d76f4fedd28a54fff0894f338f56b30b901d906d23af6e0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md",
+            "sha256": "71d48336c845d4913920263dbf49ca41b55093e9e5196b689193510d86f0c69f"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "sha256": "0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP",
+      "prompt": "dag/prompts/computation_auth_dtm1_token_code_roundtrip_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "147b5a211ecc725cbc7efbfa6118e6c0b85a96194353de776a69fa27ae9c80cb",
+      "removed_patterns": [],
+      "operation_candidates": 9,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/auth_dtm1_token_code_roundtrip.yaml",
+      "operad_collection_sha256": "bd2bc4a062cf18efb856818f48f55d5c853884544f415a54cf24007f6abcbeec",
+      "inputs": {
+        "statement_sha256": "e845f61f17d3921b46667fab0cf50b7eca94d09c81e165092c62a90594c26472",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "8ff2dc8f6dc1d7ffa9960742811f579e7f41a8983d2db9f4be358d67fb6b3374",
+        "source_refs_sha256": "64434a06722468af15ad06b46976b29320599b748bc3137c07bde6e0f0b9f9d9",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1332_auth_dtm1_token_code_roundtrip.md",
+            "sha256": "c0b28167100a86a1fa47ee00c013f386f68440970547bc04c9d524c55c737268"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean",
+            "sha256": "6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+      "prompt": "dag/prompts/computation_auth_dtm2_input_request_planned_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "86974074d89e4ff015b0269786fd36123e0c90b0a801ceee99ba3fec52c3719a",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/auth_dtm2_input_request_planned.yaml",
+      "operad_collection_sha256": "d4a8fd64cae4afd025f697590197da6b8dfbd49178ddb002949d4af9d7cd8ae4",
+      "inputs": {
+        "statement_sha256": "a4640a5d3f0dbbe4843b84035ebc67eee2ae818c3303529ab40f80aac2bb8e66",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "0796081d39fa76b4fcee8b4f65b1b3b5819ff76f3ef27098ca57c94cb898dd76",
+        "source_refs_sha256": "3c8c00f17f38148d583552057cf641022b72549ec273dd1c73329dac416e5b96",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md",
+            "sha256": "8f0d253d4630ee216dff1d24abc9d5b118740c81b6cbd8ece037e029d4b68f4f"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+      "prompt": "dag/prompts/computation_auth_g5a_class_relative_transport_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "d6b208ee038b893142a6d9f7cd2c57b369b706d9ffac91fce818343753fc265a",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/auth_g5a_class_relative_transport.yaml",
+      "operad_collection_sha256": "f3b921f023acd5a5d8152cc4e1e45949da089cb9b57eff47c93b603f8d2d7b34",
+      "inputs": {
+        "statement_sha256": "7828538430566ad224ceeaf39f8491edef2e4f7f4dc97d69f8adbb75528f73eb",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "03fb61b5cce632a4413fd3cbd9a9a36260f63a826dfe9ea6fcf7fdd550b48e7c",
+        "bottleneck_sha256": "b2916abae7bd0d54168ac63e60a613eb5dc291ab8496fb8c0a50e1341c644f88",
+        "source_refs_sha256": "12d29a13cbc5ed0a170d2646d20503cc97c01d83d8991703dbae9f00d742e4b7",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1334_auth_g5a_class_relative_transport.md",
+            "sha256": "a18d753563e9a069689eb8991818203deb0eb5e8224897268b251b8601671043"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean",
+            "sha256": "c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "prompt": "dag/prompts/computation_auth_g5c_terminalization_consequence_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "08aa21e4dd274d74a108a3b798b72ebf3a2817805f5e89acfbea1d30741c349a",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/auth_g5c_terminalization_consequence.yaml",
+      "operad_collection_sha256": "989d00dab5edd5fabd00ddc7524c4c73fcca706b852f5059ca6d4c0411ec8c7e",
+      "inputs": {
+        "statement_sha256": "03400e4ea47613b03c27bb584eb6568aadd64d278f2df7cf4e55f473a9466faa",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "b3d04b533b01d62a0c84980007d8350c6d21aa6c68d67eabbda523039efc6fe3",
+        "bottleneck_sha256": "826ccb79f94991e1fcb86a20b9299a82342e4c912a50d9c4218c9a60169151b8",
+        "source_refs_sha256": "b5489ea27edb6fd30715633c6ac150de5e494758f7f7532ea425c1302d932d6c",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1335_auth_g5c_terminalization_consequence.md",
+            "sha256": "96fd2488724e35f0dbd77a5554baaed97b29ef182412d3de3d9bd135d4b063bc"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean",
+            "sha256": "a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "prompt": "dag/prompts/computation_auth_g5b_carrier_admission_gate_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "1cc7059995aeb4d209be9a1f8f4c7c13ca1e53c9f389c28bc84f1e96b046e867",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/auth_g5b_carrier_admission_gate.yaml",
+      "operad_collection_sha256": "de1c8d96a2ee59ee3bfe29bf40ac068c5cc85c5d6548fbd2df1851390787780d",
+      "inputs": {
+        "statement_sha256": "6e674de221c5eaa3fb28c6833c5e23c624ec6a6d884438d2a5553da095e9d5b4",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "f064470ba0d9b5317b3391f329a2dd6fa2fca108d6fa271d93c4167d77c7c177",
+        "source_refs_sha256": "fae8f0c0c067a43617c95470053f25fbdd6da17d7cff66d20a666c19b7221cb7",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1336_auth_g5b_carrier_admission_gate.md",
+            "sha256": "83488dbba9edfb5c19e70666eeffb9c71f4fbb9364b7e9b4d59409e37e8b3028"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTH-RICE-THEOREM-IMPORT",
+      "prompt": "dag/prompts/computation_auth_rice_theorem_import_imported_assumption.yaml",
+      "before_sha256": null,
+      "after_sha256": "ec53c6b1bca6c954be1f547001f3af636826c3e19787e355e62379a9f43c092f",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/auth_rice_theorem_import.yaml",
+      "operad_collection_sha256": "65504fc607fb2dab2df83fd65c192f48daa76fee2d2a50ba70260e11d3b89974",
+      "inputs": {
+        "statement_sha256": "ec6a88cd2a84cbbab1b3fe8d2e937cd272e51bdbb1c9376978339007d3062024",
+        "status": "IMPORTED_ASSUMPTION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "b765b23cb3fb1e00c65f5a4764918ac50a95017ee9fd7b6b647c0a3ff19d3b62",
+        "bottleneck_sha256": "9ab0274844f659707da3383b02abbcf7adeb6e6e65f992aa4dda09870972ff9f",
+        "source_refs_sha256": "dde652772f8dae9a90fb2c7b785d7fd728e854cb7c45e6b0ac08a0e270894fad",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
+            "sha256": "c23b62a743f3429a04dbcc70d3c71947b2a131f6bc0fce80e64ae4e07c93ac51"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "prompt": "dag/prompts/computation_auth_g5_global_computability_lift_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "81d131b85ba092666e717d3852a8eb1a7802591ddd61bc2fd83b124986ad7884",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/auth_g5_global_computability_lift.yaml",
+      "operad_collection_sha256": "e3f543036caf5cce0cd6012368994b3376f79c8fe1300d9b0e425a11ea578f37",
+      "inputs": {
+        "statement_sha256": "7925aee7b6b4a962070086899f795f38773007b607d28669b0ef1a72157868fa",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "8fbbe2ac608dbc2675c8256fb30b0cca0897877563c5851d8a8d0b2a4516278a",
+        "bottleneck_sha256": "84c681c4706b2bc40361ffa129b0407d0432bcefa1d9a77e29bad4b660789be3",
+        "source_refs_sha256": "12ff831cb0c7338fe728733cd4a97a7c57d48e0b3b3218164fecba3f7f152f06",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1338_auth_g5_global_computability_lift.md",
+            "sha256": "99a2083d34843f2dc21b9b8833ea990c1248d155a2ab99188cb362040d9c950f"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTH-BLIND-DERIVATION-PROTOCOL",
+      "prompt": "dag/prompts/computation_auth_blind_derivation_protocol_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "d0204029a0e15c6497d4240d849c039a81a0aabe78f712879c5156495b8423e5",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/auth_blind_derivation_protocol.yaml",
+      "operad_collection_sha256": "524c937fa9c9e012f986c42a53ba4d61cdea6a61120e57db2ed75464496943ae",
+      "inputs": {
+        "statement_sha256": "3caebb167b061c9f87ed258d911b573c98f685b8e83bbc51a8fe87811cff6d12",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "fa93af042124b829477bdb8bf00029da2c4a633dac4269134b2e3cb3bb3448aa",
+        "source_refs_sha256": "f50dd164399901d6400f18cebd5336bc80002d8bcd2e3125cc043c8701784647",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1339_auth_blind_derivation_protocol.md",
+            "sha256": "424bcbf1a9a83177601079c1bf4ad9775918a2377895fff6dde23306fc1e01be"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM0-RULE-MACHINE",
+      "prompt": "dag/prompts/computation_authf_dtm0_rule_machine_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "cbd09130f7aca3c7781d3736bc15048890b089f697887f75461481cd473a0e17",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/authf_dtm0_rule_machine.yaml",
+      "operad_collection_sha256": "85fea7dfc8a928d8dd6ab8527975f9e06d2262a5a23efbf3d95b3eed04206a20",
+      "inputs": {
+        "statement_sha256": "24d3ded092f5abbce194fa5f427e852d5a4fd5886c221e145db91478bc035620",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "75465ca9cb635f5c55e17f7c2ecff1edb329ac4ccb684280f286f79603ef7fbd",
+        "bottleneck_sha256": "cbabeb08476866deca8bfaf40698ee8fc5d1153d447e367aa6a1afc013620d6c",
+        "source_refs_sha256": "3fafdd18157be7c156604910b5f06cfb4c397ded0991739a5db19259f76736fe",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1340_authf_dtm0_rule_machine.md",
+            "sha256": "f5632fc9c0f7f77c8a95054b16c4ff6a23627efc4758122ae44e6c537934547c"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "sha256": "7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM0-HALT-IFF-STATE",
+      "prompt": "dag/prompts/computation_authf_dtm0_halt_iff_state_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "31fe5768894dd07e5b976fe8b1379e9e2603afb670ca48a80150345aa2f2e9e5",
+      "removed_patterns": [],
+      "operation_candidates": 15,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_dtm0_halt_iff_state.yaml",
+      "operad_collection_sha256": "c10df1cd10ec2a219a8b471a2b9e2e7f312a5cec11bb2a155dc38a5b569580f2",
+      "inputs": {
+        "statement_sha256": "c8fd0038e404d64a4c2916403991c81808f425feab4a80371984ddf72ba96336",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "b09a93d59d88f06f4c6afe4eb2546bfd2834c1318e8cbf00128bbeaf67bf2414",
+        "source_refs_sha256": "65d576dea204c1bb9ebe627b69ee80328a1a4e0820f948a38202bdfd2b72bba1",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1341_authf_dtm0_halt_iff_state.md",
+            "sha256": "926b7e3985854cd18435a91cd005a2fa44e0911c8da2d15a28591c8173b9a632"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "sha256": "7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM0-FIXTURES",
+      "prompt": "dag/prompts/computation_authf_dtm0_fixtures_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "d07a82f178d24ff80d9c69acff8b36db20a244fe223e204ba2ff5d125af8c62a",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 5,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_dtm0_fixtures.yaml",
+      "operad_collection_sha256": "0961a662a32c1ea894289e06eca31ad64bc9014bdc2be6b5c81df646e31a6b24",
+      "inputs": {
+        "statement_sha256": "bc5ee1d9aae73939d23538fd24a7f0190ddde8ed8118ae64884283e63182689e",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "f1fef9dec4f147a06a40121a778867a77ea1ade6335620133c8daf3ab328fc22",
+        "source_refs_sha256": "2dbb2be06528a23ed549f4d1c5f78aeed368f01187fc1572f46e10209918dda7",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md",
+            "sha256": "7910849197fef2104083d598b9d2dc6f03d9b671f09ead32d21117908e659ddf"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "sha256": "7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "prompt": "dag/prompts/computation_authf_dtm1_token_grammar_definition.yaml",
+      "before_sha256": null,
+      "after_sha256": "870b47699bac96f7119788bfc5babbb1d186c4a58798f46eaf47762c4c165d0a",
+      "removed_patterns": [],
+      "operation_candidates": 5,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "C",
+      "operad_collection": "dag/operads/authf_dtm1_token_grammar.yaml",
+      "operad_collection_sha256": "0d26ac2bb6a30afee3f3d87248fe71cf97ffd6b5781e37bc6abe92a6f871284c",
+      "inputs": {
+        "statement_sha256": "39946a7c7ae0278ab54eeeea40bea28d71be74ed331001ad5aba039eeb26e777",
+        "status": "DEFINITION",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "73e08f73b3d39f33a016ba0d2122501b8e315c355356dd4ba298a87576f1e12c",
+        "source_refs_sha256": "d74c94cdfa18d72a1f01ba9d707e85e4a0c6dfe581c9c9e668c8822c2a620fee",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md",
+            "sha256": "66b71d48c4e3987d6633baff6553cb9d8e4ec5866269dd908e216a570fa690a6"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TokenCode.lean",
+            "sha256": "462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM1-ROUNDTRIP",
+      "prompt": "dag/prompts/computation_authf_dtm1_roundtrip_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "65ceaee84020e7b8f6e51bb900b92e65579c1b05b0e03b0f54d8a4f0b4908928",
+      "removed_patterns": [],
+      "operation_candidates": 9,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_dtm1_roundtrip.yaml",
+      "operad_collection_sha256": "88bbd4b7a370a064a4b4bcb534aa1ba0f0f241244ca0b24629c15b2975165b41",
+      "inputs": {
+        "statement_sha256": "578056b1f7178b120bade5c7abc45d0554940d15db02353a322558f34d4db904",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "8700bcf88f9e27231df31e3ab9d1033d2c92b9e0461062b2cd54bfaa33844ba6",
+        "source_refs_sha256": "8a56b93b9e4a34e59642aab01cd52a2d7107b77bc47ccc5f84a81a65a018dee5",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md",
+            "sha256": "54c64e07cd588c90b01016d3c29c5fcbad5fcd81affd5b176abdee99eebac9d3"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TokenCode.lean",
+            "sha256": "462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM1-MALFORMED-CODES",
+      "prompt": "dag/prompts/computation_authf_dtm1_malformed_codes_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "1557f88640ad65e28a933d2a58ab6a55c23cf71c12b2bce026ecf46249192c8b",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_dtm1_malformed_codes.yaml",
+      "operad_collection_sha256": "764e7c4fb5472f91271fa117e073bfca72a374b82dd08e6ca193eca6a5d538f2",
+      "inputs": {
+        "statement_sha256": "e676eb9d6ced1ad5291c7b234abc2b4cfe15005d0237705affd23849ce6c4eef",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "01ecb7a23031e4262b6550ec1fdec8e96bb9ef1a207b7d8ed0e9f8dcbc98d2ff",
+        "source_refs_sha256": "92869114e54af6d1a9feb24cd6667bf0be19c6ee5cd31166e6ce532ef4b4d7dd",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1345_authf_dtm1_malformed_codes.md",
+            "sha256": "58a523083e9e5d521ae963e64e00e2fe3eb289e484446cfbe7eec65ed16c97e3"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TokenCode.lean",
+            "sha256": "462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-SELF-RECEIPT-TOY",
+      "prompt": "dag/prompts/computation_authf_self_receipt_toy_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "e6888077695720fc4e53f323c0991e440e4fee7f22fd78c33cc98e3aa3bdd87c",
+      "removed_patterns": [],
+      "operation_candidates": 5,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_self_receipt_toy.yaml",
+      "operad_collection_sha256": "44d4f081ddc6c3a093311ceaf5618965775d6eb506736b23cc76dee961f37201",
+      "inputs": {
+        "statement_sha256": "c4e0e9e37097c24d17a720c5fc3d300c39f764a627a2bbdcbff705fb14b15c73",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "bc05735c65b554dd7b0f4fd2622110ea2a469f21a8c8fee421706c5e5f16fc57",
+        "source_refs_sha256": "13df7678dc683c0fa163ed3a34218cdba1106999512b863fa909e4c9324ef1a3",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md",
+            "sha256": "c4653f526643c83609126b1c79ed59f1fbee85c90b897a8ab62c5a833773145c"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "sha256": "28aba23d3c11dfe5847c72fe8fac86f4041ee5e979776f5ce0e6b3d81fdc29ce"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-CLASS-RELATIVE-TRANSPORT",
+      "prompt": "dag/prompts/computation_authf_class_relative_transport_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "93b09f033f23f882f5b61c2b1094d232d18853219a775041040de3b264b5f3d6",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_class_relative_transport.yaml",
+      "operad_collection_sha256": "7ef92fc23b2cc3bf1e631110d87c4499785fe297a756de8eca23d0ce27c27367",
+      "inputs": {
+        "statement_sha256": "f9105c36877f22f2a71a354a315e2eee226b0e15f8dc304c1b0e761724a00aa3",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "aac7f3efb50412d795fe5fefbfeac1c926706eedbbea53532d618f3be7be6637",
+        "source_refs_sha256": "cac33419e6420303e4866b047698c72b1e147e25ba904840e9bea63664663c83",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1347_authf_class_relative_transport.md",
+            "sha256": "5be59ac840aa87a6ad771cf976e8779e42c0d19be995fb9ed220f1de82b4fb8f"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "sha256": "9b488fac5fdf6cdf084af17a0dfe773bdd18f1e95803a27bfaf118da82d1a49b"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-MATHLIB-HALTING-BRIDGE",
+      "prompt": "dag/prompts/computation_authf_mathlib_halting_bridge_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "250efc332357c8f6f297a923e2deb824b9521ebf816ab6435c93565d6ee4f9ba",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_mathlib_halting_bridge.yaml",
+      "operad_collection_sha256": "24d5275a11b61eda4f94d264b7bbc41427c903d396ef1f2d1fc9d873832c1e1e",
+      "inputs": {
+        "statement_sha256": "5f649849d3f8a4d36205ac9c02b90b85b30f8a930a721b45a981c39aca468439",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "b802d8f7bfd627e3290ab61c1675140da55df133eaddfeef0de2a307148bea85",
+        "source_refs_sha256": "512bd6c23e85712037a7acbfb8d5e87b05da758cff0e97d92853a10ca3d01f91",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md",
+            "sha256": "549bdc0d6ec87752a5b13aa20794ea150615fe960755de49e04e74d06b02e4eb"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/MathlibBridge.lean",
+            "sha256": "ca675198cccf4d30999c8a63a6469ba0d63f2d6f6e0fc09f081069cc17ff9b49"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TERMINAL-ACCEPT-BIT",
+      "prompt": "dag/prompts/computation_authf_terminal_accept_bit_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "17a83cf7f10ef8b3468fe588f2d061e3a6fbc82b6f3d1b6586c70f9eecddb989",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_terminal_accept_bit.yaml",
+      "operad_collection_sha256": "64905293649007d5ea91350864b1ae22537089d17656af500fdd7820d63ae71a",
+      "inputs": {
+        "statement_sha256": "f39c94e1227b0958a3e109d760e3333814e5316ae02e84d34fdda1cf3ed997d6",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "c521f048adc1e27dc599f09774b2f343d25782b4a80ebb18985e0e4997f58cfe",
+        "source_refs_sha256": "97a760a93362a30701e87e0d6afa430b6c47830573ff0816a2ace3abd59a8530",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1349_authf_terminal_accept_bit.md",
+            "sha256": "e2578e2e894563a396d10a9cfb786cf5f99f9f013a12b22c9255df5a074c482a"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Terminal.lean",
+            "sha256": "f1e83667ed1ece4713d348bcdf1e3b77f3b9a092b0ac766cbe9204d3cf9e2b99"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TERMINAL-CLOSED-TWO-SIDED",
+      "prompt": "dag/prompts/computation_authf_terminal_closed_two_sided_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "c0b960b9c66a87acfb9c0d38c9afef29b226fb95d944262055b9ef569d85300b",
+      "removed_patterns": [],
+      "operation_candidates": 6,
+      "relation_candidates": 2,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_terminal_closed_two_sided.yaml",
+      "operad_collection_sha256": "f6c831b038a0e0346c945302ec85d26ccd7865387ae2896dd2ba1ed77c4e0a3c",
+      "inputs": {
+        "statement_sha256": "0f3afe64dfcbe2e06e27b11157c10663a3ebb847cce9bf9a6290e3c657ec5a11",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "7d9792083b4d765e8727b3a1687e113c34d35f9ab69a9809848e17d18b39436f",
+        "source_refs_sha256": "3a8902f5ec62e5a49c4d92708a40ffb9d40575be3faccc9088faf66c2fb39bda",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1350_authf_terminal_closed_two_sided.md",
+            "sha256": "7b36e67cca0ec9cb1d08bba6b477619edbeb080d1dad0ca26f2ecaa6f82be219"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Terminal.lean",
+            "sha256": "f1e83667ed1ece4713d348bcdf1e3b77f3b9a092b0ac766cbe9204d3cf9e2b99"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TERMINAL-BOOL-FIXTURE",
+      "prompt": "dag/prompts/computation_authf_terminal_bool_fixture_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "99c9085b5dfb9f33fd058fe9e37e10c4721a39495a76c17797056b4e4cfe9e17",
+      "removed_patterns": [],
+      "operation_candidates": 7,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_terminal_bool_fixture.yaml",
+      "operad_collection_sha256": "0f600dd2781adda14369a036503f02c7fb9f8bfcdfe953c42dfc5ce04de0ac4d",
+      "inputs": {
+        "statement_sha256": "9c72215c602327f7ad2463fc3bc3026b6cfdaf8a08b58c2190f55822f138fdb3",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "256f5159a7916300859b24399a03949a2ca34cde9576b82b852cee05f1e7bfe0",
+        "source_refs_sha256": "537e53bea58e2fcf5f6060044cc497e5a0d502cbd6b5d9cb38c6b2a8489c3712",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md",
+            "sha256": "14b04ed29e274d181c5438e171f858015d39d84cd4f1a54bce8d0ab86c6a6502"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Terminal.lean",
+            "sha256": "f1e83667ed1ece4713d348bcdf1e3b77f3b9a092b0ac766cbe9204d3cf9e2b99"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TAPE-CONTROL-REPORTS",
+      "prompt": "dag/prompts/computation_authf_tape_control_reports_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "916997378e262d8a3dc04f3b6dc987e0819103b1f97aa1807c74bbd1bd3e6e8b",
+      "removed_patterns": [],
+      "operation_candidates": 11,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_tape_control_reports.yaml",
+      "operad_collection_sha256": "c2895476ba5328a227e10518cf926f3935abf252520f91dc9e98f448d4b6c5fe",
+      "inputs": {
+        "statement_sha256": "5ab4684206f5a188880341d3e3b371b47bb84efc3ce9f4e7f3d2307c162e7e60",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "8b30b3ea37f3d7c47f3ef4403a016e5b64f7dc9b11b4655809f95c1b05a2616d",
+        "source_refs_sha256": "35c017f9ed4ee7eefbef6e5625d2ae91aa3fd6fa65aa9219a727df4e81f3dfce",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1352_authf_tape_control_reports.md",
+            "sha256": "b4abac63ecf6e940835ffc96ed612e03bcf45fc0413ecf008c5e3714079e712b"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TapeControl.lean",
+            "sha256": "88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-HALT-NOT-POLICY",
+      "prompt": "dag/prompts/computation_authf_halt_not_policy_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "23944eb1c71aa6593605e2b0d1648f2f327a19604037691e189bc51407f85ef2",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_halt_not_policy.yaml",
+      "operad_collection_sha256": "cc0e12e9e5160b752e198ee4d4ec74940116f35bf19a39d47c590ce58d7c7fdb",
+      "inputs": {
+        "statement_sha256": "621f18afd2aa1ca3008877b33f4d26298a0b284ff03d7dc6d64ee7344d5332e0",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "244832b3c7191b9a38eb6c86ababc9f1359b7aa7862cffd1c4140865090f3861",
+        "source_refs_sha256": "8b2c8332f839c935fb6d71b5fd327cc916719fd8d84936ad23c7602f6158bb46",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md",
+            "sha256": "a2c244b8bec4a2594abfefcb73ac0cf399aa0c698d8ee8b4e0e7b0626140cc18"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "sha256": "7a64ee188f1fbfc2b593571eee43b0996021cd68eb694a4e48b3cb384e20310a"
+          },
+          {
+            "path": "lean4/AuthIncompleteness/Replay.lean",
+            "sha256": "5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362"
+          },
+          {
+            "path": "lean4/AuthIncompleteness/TapeControl.lean",
+            "sha256": "88462fe7ef09d03d0250de9aaf91c0f43a86a17166a07e0bf3639981f3a584a8"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TRANSITION-INVARIANTS",
+      "prompt": "dag/prompts/computation_authf_transition_invariants_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "3ccb1efaa47a58a2243999fde4e95b8a33fd71b012c3e77d85c5f17d910f4f0c",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_transition_invariants.yaml",
+      "operad_collection_sha256": "78e8696cd118576b06b863775cbec3e48e629c2e96ec5c699c20e049f0d7d3d4",
+      "inputs": {
+        "statement_sha256": "ccda0ebc4b3ba5a289e87ed143fe475cfb17f7669873ece6b332de689a4c5614",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "7a3ed707a1692be2ed80535750310b60511e5bbeb2e4d7fb10e8806ec8543ddd",
+        "source_refs_sha256": "51e665b36aa0708b539c0ecf3b6c83e694b5bd3777d58a23c2a100c59a662ac4",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1354_authf_transition_invariants.md",
+            "sha256": "a863685e4fa53aa6e8417395343092685bc7567352e132c6f3f9808d022c0a10"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+            "sha256": "107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-TRANSITION-ADEQUACY",
+      "prompt": "dag/prompts/computation_authf_transition_adequacy_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "0f3a0b89a641dfb6429514c2c3cf6f154a99695d4896b5dd965dfcbc70fe722c",
+      "removed_patterns": [],
+      "operation_candidates": 8,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_transition_adequacy.yaml",
+      "operad_collection_sha256": "49c810b0473f28153e9a91841d51cfd1384c1f94f37d9f44175cb3e9d64acd64",
+      "inputs": {
+        "statement_sha256": "b86bcf578bb1c7693aea642f754c26dd435ffb1fb83a42682b4433370a2a632b",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "b8fd55be4cac41f28e2a2b7be4b93ca979d7c790c904d9793ebc904c48d65aa0",
+        "source_refs_sha256": "19f2b2a200cfd0a8568dba1aa4ab0348cc8344d65b0697f7c12223696a9c0f50",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1355_authf_transition_adequacy.md",
+            "sha256": "fe769f13f590b8508c5a365fe727c30ebe56b52d5ed9674290bc1cd035e10bdf"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+            "sha256": "107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-REPLAY-BOUND-SUBMISSION",
+      "prompt": "dag/prompts/computation_authf_replay_bound_submission_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "e6df0ee12c3ebc0575c0c883efa5c70f81f8b661309c85549008e740e5891b6b",
+      "removed_patterns": [],
+      "operation_candidates": 10,
+      "relation_candidates": 1,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_replay_bound_submission.yaml",
+      "operad_collection_sha256": "ad9b5a87a4e0e438e2c15527643d24e448a7412ddb13157f4f71f3ff3ca5cf8d",
+      "inputs": {
+        "statement_sha256": "4d3b9a92b373ec25a18bee9e9063d905f5cc631ef980591be8eacc20c4b5948e",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "4fbb604d7121bc3a7577f594c82ab97838169ee263c8d3c13a1d6bd8f0ba0788",
+        "source_refs_sha256": "e9d7d9c9ad578625618efa00cc248b24bdaed031413040282be08bd1870c9f92",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1356_authf_replay_bound_submission.md",
+            "sha256": "51aec62f42754c0b8e2dc916e0f8d4961fd6fc98d8a488532c76c4438bbf05fa"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Replay.lean",
+            "sha256": "5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-REPLAY-SUBSTITUTIONS",
+      "prompt": "dag/prompts/computation_authf_replay_substitutions_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "a0187474449a284c3622fedb3d1cdc24b2eb8dc1da2b2e8bc44a2590e1815193",
+      "removed_patterns": [],
+      "operation_candidates": 16,
+      "relation_candidates": 6,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_replay_substitutions.yaml",
+      "operad_collection_sha256": "a27fa48071adf6256ab5bd55aaa4583735e8bb292bd8afcba73a08beb5db4476",
+      "inputs": {
+        "statement_sha256": "b9f97e96702337b76c93594cb54c5b212dc4ef0e12d54f83cd08b766d0869905",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "01f9314a85bbb2ab6e84bfde04d0fce7c58019b78b7315b98ba88a773d9ee592",
+        "source_refs_sha256": "3bc819216b1692f2b478cea3343f5cc882a5d3628a452683f9eccd4bdcb7d3ba",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md",
+            "sha256": "39f72e86f4e7a4962bd09dd34d4bf5d6f3fd49cee462ee64d4f1c95c03c50ece"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Replay.lean",
+            "sha256": "5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-LOGICAL-EXTERNALITY",
+      "prompt": "dag/prompts/computation_authf_logical_externality_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "0f9547822426c2c9abf8b63636b14cd2c7aedbbd59fb0b4c113b0f54808c1aa3",
+      "removed_patterns": [],
+      "operation_candidates": 4,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_logical_externality.yaml",
+      "operad_collection_sha256": "074845d34e003238f9705de5efc6138539098ec84bfcc0738c590f7749eb3bd4",
+      "inputs": {
+        "statement_sha256": "07fdc9dca6dd190e001ace5523c4024071ebf809d721a21f5d841e445a1d6aa5",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "60841f44ae81d99adfa625f9dfd8af2fd86b759f5277aac09358f09687e9126f",
+        "source_refs_sha256": "c1d6d497ed81181ced86bee5d80e5d1036eb061cbfc843619c798f2c6f2c5bdb",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1358_authf_logical_externality.md",
+            "sha256": "ce41742c0478ff1a3fa3d8fd1c33dea0e5e47a0c2201022e98eb84c778e7d79f"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/Externality.lean",
+            "sha256": "dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+      "prompt": "dag/prompts/computation_authf_pd_extension_nonunique_proved_lean.yaml",
+      "before_sha256": null,
+      "after_sha256": "f4c10f2b850a783055e52a27e1e5bc45a3f24fce9ba0460def67bdc62a5e03ee",
+      "removed_patterns": [],
+      "operation_candidates": 1,
+      "relation_candidates": 3,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "B",
+      "operad_collection": "dag/operads/authf_pd_extension_nonunique.yaml",
+      "operad_collection_sha256": "ff6514ec8dc2d0bfe140af7d8c48b7f5375b136f70457bd358c52fc5af7fad24",
+      "inputs": {
+        "statement_sha256": "030e435497506d4446dcbcbc1733bb9f891c1f0337c643b04a02790a300b61d3",
+        "status": "PROVED_LEAN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "d2236d7dd1c392c537c794166a4a7f7d12655f6b42d07e3faa6d5eac40c6b01f",
+        "source_refs_sha256": "ae3e4d9457d55543d2502deeb0fe3c1caccaf064d3e7c5301e1d69174eaaea6f",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md",
+            "sha256": "9a4488b48fa23c4bf52efbffdf7109da076bdfb5f97268eec1349503e0771670"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/PDModels.lean",
+            "sha256": "6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-PD-QUOTIENT-BRIDGE",
+      "prompt": "dag/prompts/computation_authf_pd_quotient_bridge_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "a9a919e8fa27aaa1d6ee16907c30e6605f68f3746381feaaeb5e83cf0ad99293",
+      "removed_patterns": [],
+      "operation_candidates": 3,
+      "relation_candidates": 4,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_pd_quotient_bridge.yaml",
+      "operad_collection_sha256": "7503eee6cbdd3c3af3b1c81a9cd505e56c1c59be7f0b8ea92a4c20a24cb9b4b4",
+      "inputs": {
+        "statement_sha256": "799be76a18af4cd15cf5d0340bff0072561486bee7c7e82e5dee049b3f2b51c1",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "e1b603d433f43a8f5381d47b3557c632683347d54ea9bd0aa0f4eee06f99640f",
+        "bottleneck_sha256": "4be30a362bfd57769097d35954088786ee9f70ea906c22f602912f69b2cf301a",
+        "source_refs_sha256": "e2a4a1e625fd6ace39b80cf0bf95e01a01e6835721cc4c1e5d8773f4558e4312",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md",
+            "sha256": "d30b493bff90266d5884a896d51e03ac910bb6b6a0fc2402ca308588d8546a07"
+          }
+        ],
+        "local_sources": [
+          {
+            "path": "lean4/AuthIncompleteness/PDBridge.lean",
+            "sha256": "660b990da5b35b9d764737e6b2f0effd5db1751fa4fd8783697c83508923ca2f"
+          }
+        ]
+      }
+    },
+    {
+      "node_id": "AUTHF-REPLAY-PACKET-PYTHON",
+      "prompt": "dag/prompts/computation_authf_replay_packet_python_computationally_checked.yaml",
+      "before_sha256": null,
+      "after_sha256": "a41170e4e043be893e4b0161ac6b5e385b18bf52f59a38453c4a046c53d95fd5",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_replay_packet_python.yaml",
+      "operad_collection_sha256": "762d7e757fc430e9b5bd2adc4e9e831e1085478212ee667955641c46c7523d2b",
+      "inputs": {
+        "statement_sha256": "723cf34fcffe4aaa455afd6b5f2d51eae30f6a47e52b924c221c6eecf9868352",
+        "status": "COMPUTATIONALLY_CHECKED",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "0e5e91bec3be97f607e3c6385ffff03aa4ba4af1a17718c3a719b09e6020c0d1",
+        "source_refs_sha256": "ff8638cfa847e0f28a91b01230a053a8b6ba785614c4fc51c445997b6fc3fc9e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md",
+            "sha256": "0b8139913b4b2c961f179fb2f1eaaf558fdd73b12487278f0cb2296742353e2d"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTHF-CARRIER-ADMISSION-GATE",
+      "prompt": "dag/prompts/computation_authf_carrier_admission_gate_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "427bf1c8fe2c445f93b66ce6aa105b578fad2146669c9089fd3bb745f10f3391",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_carrier_admission_gate.yaml",
+      "operad_collection_sha256": "42fb6f6731a1b5e32aa5775a5e8e20c26c97e2d4215462c9e3f47501721fbec4",
+      "inputs": {
+        "statement_sha256": "06bdb14cea9b2f6d5464e7ad36a6a28b4e1b00c2025b39c780b9582a5b4c38ab",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "45cdc2ddedbdb0da6aedfc087f13e8c91397b39ebcfb71a765b5487fcc038131",
+        "source_refs_sha256": "21940fef73add60dcae7cb661490baee11fa98ace9b01af663260ddf583c863e",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md",
+            "sha256": "0a6293022c0501393dcae76d616663e3b8bb723894dae33d14dd1f869d390b08"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTHF-RICE-GODEL-OPEN",
+      "prompt": "dag/prompts/computation_authf_rice_godel_open_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "987a5f47cb0218439cce475e2432d363ea3d1ba3ab3c9558f0740bdcfe444164",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_rice_godel_open.yaml",
+      "operad_collection_sha256": "aa8783017ba04e8f0ce86fe634877494de08bc65bb9bb267e6c6c1c5781cf511",
+      "inputs": {
+        "statement_sha256": "07a446d355438040f323a7820299e8503fdb1061a33b737686aaf2d299ff1e91",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "746289ac3551ff9a970e43738a66da42b551f9f65ee69d7ffa1e51abb4b6e009",
+        "source_refs_sha256": "dd14985a723ccb77f52cc5c16514f0262e933e5b8572819077ce484ef6f1a5e0",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md",
+            "sha256": "fa0f29d2d1b71525c5dbfb96d79c57ad47928313725a94d1a4d59fdba9411dfa"
+          }
+        ],
+        "local_sources": []
+      }
+    },
+    {
+      "node_id": "AUTHF-DTM0-SIMULATION-OPEN",
+      "prompt": "dag/prompts/computation_authf_dtm0_simulation_open_open.yaml",
+      "before_sha256": null,
+      "after_sha256": "9b08f163101c1147a04b01022486e73edccc1cd03f4486c54f69f904bb8c000b",
+      "removed_patterns": [],
+      "operation_candidates": 0,
+      "relation_candidates": 0,
+      "excluded_aggregate_relation_leads": 0,
+      "source_binding_issues": [],
+      "mining_status": "semantic_review_open",
+      "tier": "A",
+      "operad_collection": "dag/operads/authf_dtm0_simulation_open.yaml",
+      "operad_collection_sha256": "a01846bb88ed01bdd95ee7311e163f5cf4e07a0fdcf690279541b789f215cbf2",
+      "inputs": {
+        "statement_sha256": "3d9c35c58e9e21d52c31611ac32e2191c70974cdea5ae8231d093bb131daa13e",
+        "status": "OPEN",
+        "stage": "COMPUTATION",
+        "assumptions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bottleneck_sha256": "e2b47c82b84534a33e33890c500f8e47569759a781ba950d9dad1423cf127607",
+        "source_refs_sha256": "1a0c584d67c5bf439611fcfa0f50900ddf88abfbddb9ab18371130cb6e9bc035",
+        "paper_pins": [
+          {
+            "path": "dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md",
+            "sha256": "0ea11217026b9c84fdc16e4f90b48ef8d903651d99fb3fa3fa56f385ee634372"
+          }
+        ],
+        "local_sources": []
       }
     }
   ]

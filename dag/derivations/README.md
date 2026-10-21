@@ -283,7 +283,7 @@ Folder: [`07_l1_emergence/`](./07_l1_emergence/)
 | [`TFQ-0358`](./07_l1_emergence/tfq_0358_normalize_a_declared_positive_witness_mass_to_cell_values_that_are_nonnegative.md) | Normalize a declared positive witness mass to cell values that are nonnegative | `OPEN_OBLIGATION` | [`TFQ-0349`](./07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md) |
 | [`TFQ-0359`](./07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md) | Keep the Phi1 Banach-quotient reading on a finite-dimensional repair packet, and leave | `OPEN_OBLIGATION` | [`TFQ-0349`](./07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md) |
 
-### L1_TO_L2 (39 derivations)
+### L1_TO_L2 (40 derivations)
 
 Folder: [`08_l1_to_l2/`](./08_l1_to_l2/)
 
@@ -328,6 +328,7 @@ Folder: [`08_l1_to_l2/`](./08_l1_to_l2/)
 | [`TFQ-1033`](./08_l1_to_l2/tfq_1033_gp_import_cptp_class.md) | gp-import-cptp-class | `IMPORTED_ASSUMPTION` | [`TFQ-0008`](./11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md) |
 | [`TFQ-1034`](./08_l1_to_l2/tfq_1034_gp_import_continuous_time.md) | gp-import-continuous-time | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
 | [`TFQ-1035`](./08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md) | gp-import-continuum-hilbert | `IMPORTED_ASSUMPTION` | [`TFQ-0085`](./20_continuum_interface/tfq_0085_open_finite_to_continuum_interface.md) |
+| [`TFQ-1047`](./08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md) | l1-imp-transition-probability-law | `IMPORTED_ASSUMPTION` | [`TFQ-0303`](./08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md) |
 
 ### FINITE_HILBERT (15 derivations)
 
@@ -351,7 +352,7 @@ Folder: [`09_finite_hilbert/`](./09_finite_hilbert/)
 | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) | Three Lean files stay on a narrow carrier | `OPEN_OBLIGATION` | [`TFQ-0316`](./09_finite_hilbert/tfq_0316_package_chapter_states_a_conditional_lift.md) |
 | [`TFQ-0318`](./09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md) | Float lift helper is not the exact embedding | `OPEN_OBLIGATION` | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) |
 
-### FINITE_QM_CORE (19 derivations)
+### FINITE_QM_CORE (20 derivations)
 
 Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 
@@ -376,6 +377,7 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 | [`TFQ-1025`](./10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md) | fq-gap-c500-original-targets | `OPEN_OBLIGATION` | [`TFQ-0007`](./10_finite_qm_core/tfq_0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md) |
 | [`TFQ-1037`](./10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md) | gp-fin-gauss-matrix-algebra | `PROVED_LEAN` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
 | [`TFQ-1038`](./10_finite_qm_core/tfq_1038_gp_drop_one_census.md) | gp-drop-one-census | `PROVED_LEAN` | [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) |
+| [`TFQ-1048`](./10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md) | fq-operational-local-tomography | `IMPORTED_ASSUMPTION` | [`TFQ-1019`](./10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md) |
 
 ### FINITE_QM_DYNAMICS (18 derivations)
 

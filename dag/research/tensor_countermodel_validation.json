@@ -17,9 +17,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL; no derivation of local complex QM or logical minimality theorem is asserted."
   },
   "counts": {
-    "dag_nodes": 819,
-    "dag_routes": 816,
-    "master_records": 871
+    "dag_nodes": 821,
+    "dag_routes": 818,
+    "master_records": 873
   },
   "preservation": {
     "other_master_records_unchanged_byte_for_byte": 416,
@@ -250,9 +250,9 @@
     "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
   ],
   "sha256": {
-    "dag/derivation_dag.json": "7d47692f1d53a94f14fe16dec4c13285d18bd7e20e240874c8f7a01e459ddd93",
+    "dag/derivation_dag.json": "19efb4eff13502c07973f331a8e77cf86300c3ca68866474d791b657ea9ab426",
     "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
-    "dag/derivations/README.md": "209664d2b0d469872b257db7fbe07b045df131fa64176dd98d637bd813483bc6",
+    "dag/derivations/README.md": "f9cdaf337b5ddda0d5eb286166e19d2140fe080e2c7b30c03f211507f29c55fe",
     "dag/fragments/application_branches.json": "337b0a212553ff774a1706a1e0548774abe98b3cf1ed006e16640e9a2918093f",
     "dag/research/replay_tensor_countermodels.py": "4a104ca91efee4e5fb1311a962a7c7c64d6f7c4918b94085946c73b331944d52",
     "dag/research/tensor_countermodel_failed_replay.json": "e97668cf2cb3f78847b66a007de9b947b57b58f5a74be659db0311d62e46ae35",
@@ -260,14 +260,14 @@
     "dag/test_application_branches.py": "7f7609683a46d292b81a1d0bbbd5f6fd5377a2133584134a1e5a0b96b415e44f",
     "dag/test_tensor_countermodel_receipt.py": "c21e303b0d616513fae733bdab323315f7e4831f5b2e1479e379fdf81a0aedf2",
     "dag/test_tensor_measurement_receipt.py": "2b943c4d2892623f1296a2764ca128789428bd141a8ff5ec219bbbc6fb2459c6",
-    "dag/theory_of_finite_qm.jsonl": "6afcbd51b7e3fc71fb741eacd1f1c41cd5ec34826265aa553aed0d04e5802bde",
-    "dag/theory_of_finite_qm.md": "c146e55b88e17f14ad66f21069b5c92ad13c5fffcc5d022fd95d6f9fb5421640",
+    "dag/theory_of_finite_qm.jsonl": "fc3e449ea44a26e68583a367618c939ebbdff43375e584da0d280916f6058999",
+    "dag/theory_of_finite_qm.md": "ddbd896cb1d2ae1d2c24f91e2e870e6022b9e055d34b2e95696f89acbbf8db2f",
     "lean4/TensorCountermodelCones.lean": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
     "lean4/TensorCountermodelEmbeddings.lean": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
     "lean4/TensorCountermodelWitnesses.lean": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
     "lean4/TensorHiddenCoordinates.lean": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
     "lean4/TensorPartialTranspose.lean": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
-    "lean4/lakefile.lean": "6c57e3be438fed8424b4ac20e021860b5d15f0e433416fb12d99b474abdc3805"
+    "lean4/lakefile.lean": "b1a4cb75f0cf6204031949e95966019c9647cae0bf6ffbe017de8c592d9ec178"
   },
   "rebound": [
     {
@@ -553,6 +553,61 @@
       "current": "7f7609683a46d292b81a1d0bbbd5f6fd5377a2133584134a1e5a0b96b415e44f",
       "reason": "current-file digest rebound when derivation_dag.json became the single source of the derivation graph (schema derivation_dag.v2): the tests read the records from derivation_dag.json; the Lean replay section and every tensor node, route and master record are unchanged",
       "run": "branch dag-single-source"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 819,
+        "dag_routes": 816,
+        "master_records": 871
+      },
+      "current": {
+        "dag_nodes": 821,
+        "dag_routes": 818,
+        "master_records": 873
+      },
+      "reason": "the integration of the unified DAG with the results of #138, #144, #147 and #150 added the nodes L1-IMP-TRANSITION-PROBABILITY-LAW and FQ-OPERATIONAL-LOCAL-TOMOGRAPHY, the routes L1-R-DYNAMICS-FINITE-WIGNER and FQ-R-OPERATIONAL-LOCAL-TOMOGRAPHY and their master records (TFQ-1047, TFQ-1048); no tensor node, route or master record changed",
+      "run": "branch integration-main"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "7d47692f1d53a94f14fe16dec4c13285d18bd7e20e240874c8f7a01e459ddd93",
+      "current": "19efb4eff13502c07973f331a8e77cf86300c3ca68866474d791b657ea9ab426",
+      "reason": "current-file digest rebound when the unified DAG, #138, #144, #147 and #150 were integrated and the sync cycle was re-run: the graph gained the nodes L1-IMP-TRANSITION-PROBABILITY-LAW and FQ-OPERATIONAL-LOCAL-TOMOGRAPHY, their routes, and the conditional status of L1-IMP-COMPLEX-FIELD and L1-IMP-LINEAR-ISOMETRIC-DYNAMICS; the Lean replay section and every other digest are unchanged",
+      "run": "branch integration-main"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivations/README.md",
+      "previous": "209664d2b0d469872b257db7fbe07b045df131fa64176dd98d637bd813483bc6",
+      "current": "f9cdaf337b5ddda0d5eb286166e19d2140fe080e2c7b30c03f211507f29c55fe",
+      "reason": "current-file digest rebound when the unified DAG, #138, #144, #147 and #150 were integrated and the sync cycle was re-run: the derivation index lists the two new records; the Lean replay section and every other digest are unchanged",
+      "run": "branch integration-main"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "previous": "6afcbd51b7e3fc71fb741eacd1f1c41cd5ec34826265aa553aed0d04e5802bde",
+      "current": "fc3e449ea44a26e68583a367618c939ebbdff43375e584da0d280916f6058999",
+      "reason": "current-file digest rebound when the unified DAG, #138, #144, #147 and #150 were integrated and the sync cycle was re-run: two master records were added; the Lean replay section and every other digest are unchanged",
+      "run": "branch integration-main"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.md",
+      "previous": "c146e55b88e17f14ad66f21069b5c92ad13c5fffcc5d022fd95d6f9fb5421640",
+      "current": "ddbd896cb1d2ae1d2c24f91e2e870e6022b9e055d34b2e95696f89acbbf8db2f",
+      "reason": "current-file digest rebound when the unified DAG, #138, #144, #147 and #150 were integrated and the sync cycle was re-run: the master record listing gained two records; the Lean replay section and every other digest are unchanged",
+      "run": "branch integration-main"
+    },
+    {
+      "field": "sha256",
+      "path": "lean4/lakefile.lean",
+      "previous": "6c57e3be438fed8424b4ac20e021860b5d15f0e433416fb12d99b474abdc3805",
+      "current": "b1a4cb75f0cf6204031949e95966019c9647cae0bf6ffbe017de8c592d9ec178",
+      "reason": "current-file digest rebound when the unified DAG, #138, #144, #147 and #150 were integrated and the sync cycle was re-run: the ComplexFieldSelection, OperationalTomography, OperationalFieldSelection, OperationalFilterFamily and FiniteWigner libraries were registered next to the existing roots; the tensor roots are unchanged; the Lean replay section and every other digest are unchanged",
+      "run": "branch integration-main"
     }
   ]
 }

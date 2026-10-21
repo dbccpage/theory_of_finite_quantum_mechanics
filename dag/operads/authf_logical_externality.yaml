@@ -1,0 +1,177 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-LOGICAL-EXTERNALITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For the presentation with identity report and equal source and evaluator sites, a
+    report-only authorization exists; for the presentation with a Unit report and distinct sites, none
+    exists.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Site is an unused finite label; the statement carries no custody, security or independence
+    content.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1358_authf_logical_externality.md
+  - lean4/AuthIncompleteness/Externality.lean
+  - papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1358_authf_logical_externality.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1358_authf_logical_externality.md
+    sha256: ce41742c0478ff1a3fa3d8fd1c33dea0e5e47a0c2201022e98eb84c778e7d79f
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_logical_externality_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: CanAuthorize
+  line: 42
+  signature_excerpt: |-
+    def CanAuthorize {Proposal Report Site : Type}
+        (presentation : Presentation Proposal Report Site) : Prop
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: coLocatedComplete
+  line: 57
+  signature_excerpt: 'def coLocatedComplete : Presentation Bool Bool Unit'
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separatedCollapsed
+  line: 75
+  signature_excerpt: 'def separatedCollapsed : Presentation Bool Unit Bool'
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Presentation
+  line: 34
+  signature_excerpt: 'structure Presentation (Proposal Report Site : Type)'
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: physical_separation_neither_needed_nor_sufficient_for_toy_authorization
+  line: 99
+  signature_excerpt: |-
+    theorem physical_separation_neither_needed_nor_sufficient_for_toy_authorization :
+        (coLocatedComplete.sourceSite = coLocatedComplete.evaluatorSite ∧
+          CanAuthorize coLocatedComplete) ∧
+        (separatedCollapsed.sourceSite ≠ separatedCollapsed.evaluatorSite ∧
+          ¬ CanAuthorize separatedCollapsed)
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: coLocatedComplete_can_authorize
+  line: 67
+  signature_excerpt: |-
+    theorem coLocatedComplete_can_authorize :
+        CanAuthorize coLocatedComplete
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: separatedCollapsed_cannot_authorize
+  line: 92
+  signature_excerpt: |-
+    theorem separatedCollapsed_cannot_authorize :
+        ¬ CanAuthorize separatedCollapsed
+  source: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  source_sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.physical_separation_neither_needed_nor_sufficient_for_toy_authorization
+  availability: local
+  symbol: AuthorizationIncompleteness.LogicalExternalityModels.physical_separation_neither_needed_nor_sufficient_for_toy_authorization
+  path: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  declaration_status: declaration_found_not_proof_checked
+  line: 99
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize
+  availability: local
+  symbol: AuthorizationIncompleteness.LogicalExternalityModels.coLocatedComplete_can_authorize
+  path: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Externality.lean::AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize
+  availability: local
+  symbol: AuthorizationIncompleteness.LogicalExternalityModels.separatedCollapsed_cannot_authorize
+  path: lean4/AuthIncompleteness/Externality.lean
+  repository: this_repository
+  sha256: dbd4af95185200d0b103354ef2282b29bf78ba4f3548a8bfcd76417f4328c90f
+  declaration_status: declaration_found_not_proof_checked
+  line: 92
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

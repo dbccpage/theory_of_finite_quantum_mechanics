@@ -1,0 +1,163 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-PD-EXTENSION-NONUNIQUE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Over the minimal Bool analogue of a primitive difference with two unequal marks, identityExtension
+    and rejectingExtension give different validity and terminal values at the same carrier point.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The analogue is not the J011 interface and no naturality statement about all primitive
+    differences follows.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md
+  - lean4/AuthIncompleteness/PDModels.lean
+  - papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md
+    sha256: 9a4488b48fa23c4bf52efbffdf7109da076bdfb5f97268eec1349503e0771670
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_pd_extension_nonunique_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: boolPrimitive
+  line: 36
+  signature_excerpt: 'def boolPrimitive : RawPrimitiveDifference'
+  source: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  source_sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: primitive_interface_has_distinct_authorization_extensions
+  line: 84
+  signature_excerpt: |-
+    theorem primitive_interface_has_distinct_authorization_extensions :
+        (true : boolPrimitive.Carrier) != false /\
+          boolPrimitive.mark true false = true /\
+          identityExtension.valid true = true /\
+          rejectingExtension.valid true = false /\
+          identityExtension.terminal true = true /\
+          rejectingExtension.terminal true = false
+  source: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  source_sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same_primitive_extensions_split_validity
+  line: 72
+  signature_excerpt: |-
+    theorem same_primitive_extensions_split_validity :
+        identityExtension.valid true = true /\
+          rejectingExtension.valid true = false
+  source: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  source_sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same_primitive_extensions_split_policy
+  line: 78
+  signature_excerpt: |-
+    theorem same_primitive_extensions_split_policy :
+        identityExtension.terminal true = true /\
+          rejectingExtension.terminal true = false
+  source: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  source_sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions
+  availability: local
+  symbol: AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions
+  path: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity
+  availability: local
+  symbol: AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity
+  path: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  declaration_status: declaration_found_not_proof_checked
+  line: 72
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy
+  availability: local
+  symbol: AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy
+  path: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive
+  availability: local
+  symbol: AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive
+  path: lean4/AuthIncompleteness/PDModels.lean
+  repository: this_repository
+  sha256: 6ae7afc020db9edcfcb842f7953ad85abb4838263e56a6078b2b91881c26a33d
+  declaration_status: declaration_found_not_proof_checked
+  line: 36
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

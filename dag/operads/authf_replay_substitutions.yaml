@@ -1,0 +1,333 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-REPLAY-SUBSTITUTIONS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Under authorizeTrueRoot, verify returns contractRejected for the invalid submission
+    that sets selfPass, returns bindingRejected for the checker, contract-version and schema-version substitutions,
+    issues a receipt that replays the valid submission as verified, and rejects the invalid payload as
+    a substitution.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Six rfl facts on five named submissions; the model does not prove that every substitution
+    is caught.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md
+  - lean4/AuthIncompleteness/Replay.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md
+    sha256: 39f72e86f4e7a4962bd09dd34d4bf5d6f3fd49cee462ee64d4f1c95c03c50ece
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_replay_substitutions_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: verify
+  line: 113
+  signature_excerpt: 'def verify (root : TrustRoot) (submission : Submission) : Verification'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: authorizeTrueRoot
+  line: 172
+  signature_excerpt: 'def authorizeTrueRoot : TrustRoot'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: invalidSelfPassingSubmission
+  line: 200
+  signature_excerpt: 'def invalidSelfPassingSubmission : Submission'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TrustRoot
+  line: 55
+  signature_excerpt: structure TrustRoot
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Submission
+  line: 66
+  signature_excerpt: structure Submission
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Verification
+  line: 77
+  signature_excerpt: inductive Verification
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bindingsMatch
+  line: 105
+  signature_excerpt: 'def bindingsMatch (root : TrustRoot) (submission : Submission) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkerResult
+  line: 92
+  signature_excerpt: 'def checkerResult (tag : CheckerTag) (payload : Bool) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: contractValid
+  line: 98
+  signature_excerpt: 'def contractValid (tag : ContractTag) (payload : Bool) : Bool'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Terminal
+  line: 85
+  signature_excerpt: inductive Terminal
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Version
+  line: 30
+  signature_excerpt: inductive Version
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: CheckerTag
+  line: 36
+  signature_excerpt: inductive CheckerTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ContractTag
+  line: 42
+  signature_excerpt: inductive ContractTag
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TerminalPolicy
+  line: 48
+  signature_excerpt: inductive TerminalPolicy
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: replay
+  line: 162
+  signature_excerpt: 'def replay (receipt : ReplayReceipt) (observed : Submission) : ReplayStatus'
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: ReplayReceipt
+  line: 140
+  signature_excerpt: structure ReplayReceipt
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: self_pass_cannot_authorize_invalid_content
+  line: 244
+  signature_excerpt: |-
+    theorem self_pass_cannot_authorize_invalid_content :
+        verify authorizeTrueRoot invalidSelfPassingSubmission = .contractRejected
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: checker_substitution_is_binding_rejected
+  line: 248
+  signature_excerpt: |-
+    theorem checker_substitution_is_binding_rejected :
+        verify authorizeTrueRoot checkerTamperedSubmission = .bindingRejected
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: contract_version_substitution_is_binding_rejected
+  line: 252
+  signature_excerpt: |-
+    theorem contract_version_substitution_is_binding_rejected :
+        verify authorizeTrueRoot contractVersionTamperedSubmission = .bindingRejected
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schema_version_substitution_is_binding_rejected
+  line: 256
+  signature_excerpt: |-
+    theorem schema_version_substitution_is_binding_rejected :
+        verify authorizeTrueRoot schemaVersionTamperedSubmission = .bindingRejected
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: issued_receipt_replays_exact_submission
+  line: 260
+  signature_excerpt: |-
+    theorem issued_receipt_replays_exact_submission :
+        replay (issueReceipt authorizeTrueRoot validSubmission) validSubmission =
+          .replayed .verified
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: replay_rejects_payload_substitution
+  line: 265
+  signature_excerpt: |-
+    theorem replay_rejects_payload_substitution :
+        replay (issueReceipt authorizeTrueRoot validSubmission)
+          invalidSelfPassingSubmission = .bindingRejected
+  source: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  source_sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 244
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 248
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.contract_version_substitution_is_binding_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.contract_version_substitution_is_binding_rejected
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 252
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 256
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issued_receipt_replays_exact_submission
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.issued_receipt_replays_exact_submission
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 260
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution
+  availability: local
+  symbol: AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution
+  path: lean4/AuthIncompleteness/Replay.lean
+  repository: this_repository
+  sha256: 5d1411fd9a1b692f18bbe037dc42532911d7468415ea5ae0bcd91d64f7463362
+  declaration_status: declaration_found_not_proof_checked
+  line: 265
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

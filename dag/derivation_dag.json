@@ -2841,33 +2841,51 @@
     {
       "id": "L1-IMP-COMPLEX-FIELD",
       "stage": "L1_TO_L2",
-      "status": "IMPORTED_ASSUMPTION",
-      "source_status": "WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field",
-      "statement": "Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
+      "status": "CONDITIONAL",
+      "source_status": "Conditional selection kernel-checked in dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection (Lean 4.35.0; ComplexFieldSelection, 22 headline axiom audits; exact Python and Rust replays, 291 rejected fixture-integrity mutations) and independently reviewed in dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261021T171132Z_pr138. Local tomography itself is an import here: OperationalTomography re-expresses it (an irreducible operation family that descends through the product observation exists iff local tomography holds; see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY and OperationalFilterFamily.product_resets_irreducible_iff) and OperationalFieldSelection.selected_parameter consumes it (dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography). Authority effect: none. Earlier: WDP-CH05-D01/N01: a quantum-capable package declares a complex carrier; QM_122 H007: Gaussian integers are not a field",
+      "statement": "Under the imported R/C/H matrix-carrier restriction and the supplied same-family composite dimension multiplicativity K_d(nm) = K_d(n) K_d(m), K_d(n) = n + d binom(n,2), which follows from independent product preparations, factorized nondegenerate tests and (imported) local tomography, the parameter d = 2 is selected over the positive naturals (d = 0 also passes the bare equation but is not a carrier); the exact stand-in is Q(i). The real tag fails (a symmetric product-test-invisible witness over Q), the quaternionic tag fails by a dimension count, and the Gaussian-rational product span is proved for all finite index types. Not derived: local tomography, the carrier restriction (including exclusion of additional spin factors, direct sums and the exceptional algebra), or the completeness of the field. Earlier: Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH05-D01"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH05-D01",
+        "dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md",
+        "dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md"
       ],
       "lean": [
         "lean4/quantum_mechanics/H007Complexification.lean::gi_not_embedded",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.dimension_selection",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.gaussian_product_span",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.rho_states",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.rho_same_product_statistics",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.quaternion_refuted",
+        "lean4/ComplexFieldSelection.lean::ComplexFieldSelection.conditional_discharge",
+        "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
+        "code/rust/src/finite_probability/complex_selection.rs"
       ],
       "imported_structure": [
-        "complex field C: assumption"
+        "matrix carrier restriction, including extra spin-factor, exceptional and direct-sum exclusion",
+        "same-family n*m composites",
+        "independent product preparations and factorized nondegenerate tests",
+        "local tomography (imported; its operational form, an irreducible operation family descending through the product observation, is equivalent to it and so re-expresses rather than derives it: see FQ-OPERATIONAL-LOCAL-TOMOGRAPHY, OperationalFilterFamily.product_resets_irreducible_iff)",
+        "real/complex completeness"
       ],
-      "bottleneck": "No derivation of C from <> or from the window in the sources read. See route L1-R-COMPLEX-GAP.",
+      "bottleneck": "Local tomography and the carrier restriction are not derived from primitive difference, and the operational form of local tomography is equivalent to it; no continuum completion is supplied by this selection. Next test: derive field-neutral independent product preparations, factorized tests and state separation from operational primitives by a noncircular principle, or exclude additional spin-factor alternatives.",
       "tags": [
-        "gap"
+        "gap",
+        "conditional-selection"
       ],
       "see_also": [
-        "GP-IMPORT-COMPLEX-FIELD"
+        "GP-IMPORT-COMPLEX-FIELD",
+        "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+        "FQ-GAP-TENSOR-UNIQUENESS"
       ],
       "pfp_review": {
         "review": "dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -2881,9 +2899,9 @@
         "next_test": "Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field.",
         "scope_effect": "consistent",
         "reason": "Imported node; the review adds exact Q(i) controls. A later complex-carrier run constructs the completion.",
-        "prior_status": "IMPORTED_ASSUMPTION",
-        "prior_statement": "Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
-        "prior_bottleneck": "No derivation of C from <> or from the window in the sources read. See route L1-R-COMPLEX-GAP.",
+        "prior_status": "CONDITIONAL",
+        "prior_statement": "Under the imported R/C/H matrix-carrier restriction and the supplied same-family composite dimension multiplicativity K_d(nm) = K_d(n) K_d(m), K_d(n) = n + d binom(n,2), which follows from independent product preparations, factorized nondegenerate tests and (imported) local tomography, the parameter d = 2 is selected over the positive naturals (d = 0 also passes the bare equation but is not a carrier); the exact stand-in is Q(i). The real tag fails (a symmetric product-test-invisible witness over Q), the quaternionic tag fails by a dimension count, and the Gaussian-rational product span is proved for all finite index types. Not derived: local tomography, the carrier restriction (including exclusion of additional spin factors, direct sums and the exceptional algebra), or the completeness of the field. Earlier: Complex scalars as a field are declared, not derived. The finite stand-in is Q(i) / Z[i]; Z[i] is not a field (H007 gi_not_embedded).",
+        "prior_bottleneck": "Local tomography and the carrier restriction are not derived from primitive difference, and the operational form of local tomography is equivalent to it; no continuum completion is supplied by this selection. Next test: derive field-neutral independent product preparations, factorized tests and state separation from operational primitives by a noncircular principle, or exclude additional spin-factor alternatives.",
         "superseded_by": [
           "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
           "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
@@ -3145,29 +3163,57 @@
     {
       "id": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
       "stage": "L1_TO_L2",
-      "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Thm 6 assumption 5: reversible lifted dynamics by linear isometries; QM_122 H002/H003 determinism does not give reversibility",
-      "statement": "Dynamics on the lift are reversible linear isometries. QM_122 H003 shows deterministic report dynamics do not by themselves give reversibility; H006 gives a permutation isometry envelope that is not a Hilbert unitary.",
+      "status": "CONDITIONAL",
+      "source_status": "Finite exact Wigner theorem kernel-checked in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner (Lean 4.35.0): a map of the exact Born carrier Q(i)^n that sends nonzero vectors to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2 |y|^2) (the normalised Born readout of rank-one effects, Kernel.tp_eq_born) is induced on rays by a Q(i)-linear similarity F^H F = d * 1 with a positive rational scale d, composed with the identity or with componentwise conjugation (Theorem.finite_wigner, finite_wigner_cases); the converse holds (tpPreserving_of_similarity) and the induced map is a bijection with inverse (1/d) F^H (similarity_bijective, Kernel.Similarity.inverse), so the dynamics is reversible and linear or antilinear, and no continuity hypothesis is used. The scale is removable (F = c * U with U unitary) iff d is a sum of two rational squares (Similarity.exists_unitary_iff); the countermodel F3 = [[1, -1+i], [1+i, 1]] with F3^H F3 = 3 * 1 preserves transition probabilities but is induced by no Q(i)-unitary and no Q(i)-antiunitary (F3_not_induced_by_unitary, F3_not_induced_by_antiunitary, three_not_sum_two_sq), so over the exact carrier the honest statement is similarity, not unitarity. The H006 permutation envelope is the unitary permMatrix (permMatrix_unitary). Aut Q(i) = {id, conjugation} (GaussRatAut.ringHom_eq_id_or_star). Exact replays: code/python/src/qm/finite_wigner.py (24 tests), code/rust/src/qm/finite_wigner.rs (29 tests). Earlier: Thm 6 assumption 5: reversible lifted dynamics by linear isometries; QM_122 H002/H003 determinism does not give reversibility",
+      "statement": "Derived part (dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner): on the exact Born carrier Q(i)^n with the inner product fixed up to scale by the sector-form run, every ray map preserving Born transition probabilities between rays is induced by a Q(i)-linear similarity (F^H F = d * 1, d > 0) or by conjugation followed by one; the map is invertible, so the dynamics is reversible and linear or antilinear, isometric up to the positive scale d, with no continuity hypothesis. The scale is a unit choice only when d is a norm from Q(i): the scale-3 countermodel F3 preserves transition probabilities yet is no unitary nor antiunitary ray map, so the imported form \"reversible linear isometries\" is strictly stronger than what the finite carrier supports; the finite statement is \"reversible linear or antilinear similarities\". Imported part: that the dynamics acts on the rays of the lift and preserves the Born transition probabilities (node L1-IMP-TRANSITION-PROBABILITY-LAW); the carrier, the scalar field Q(i) and the quadratic readout. QM_122 H003 still shows that deterministic report dynamics do not by themselves give reversibility, and H006 supplies the permutation envelope, now a special (unitary) case.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md"
       ],
       "lean": [
         "lean4/quantum_mechanics/H003ReversibilityGate.lean",
         "lean4/quantum_mechanics/H006PermutationUnitary.lean",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.eq_smul_of_normSq_ip_eq",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.Similarity",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.expansion",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.finite_wigner",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.finite_wigner_cases",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.similarity_bijective",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.coord_rigidity",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.sgn_consistent",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.exists_unitary_iff",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.three_not_sum_two_sq",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.F3_similarity",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.F3_tpPreserving",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.F3_not_induced_by_unitary",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.F3_not_induced_by_antiunitary",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.permMatrix_unitary",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
+        "lean4/GaussRatAutomorphisms.lean::WignerFable.GaussRatAut.ringHom_eq_id_or_star"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/finite_report_dynamics.rs",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness",
-        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
+        "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
+        "code/rust/src/qm/finite_wigner.rs::reconstruct",
+        "code/rust/src/qm/finite_wigner.rs::similarity_certificate",
+        "code/rust/src/qm/finite_wigner.rs::unitary_normalisation",
+        "code/rust/src/qm/finite_wigner.rs::f3"
       ],
       "imported_structure": [
-        "linear structure on dynamics: assumption",
-        "isometry / unitarity: assumption"
+        "ray dynamics preserving Born transition probabilities: assumption (node L1-IMP-TRANSITION-PROBABILITY-LAW)",
+        "sector carrier, scalar field Q(i) and quadratic readout: assumption",
+        "unitarity (scale a norm from Q(i)): extra arithmetic condition, not derived (countermodel F3)"
       ],
-      "bottleneck": "Lean module symbols not grepped; file existence only checked via listing in prior survey.",
+      "bottleneck": "Transition-probability preservation of the ray dynamics is supplied as an operational law (node L1-IMP-TRANSITION-PROBABILITY-LAW), not derived from primitive difference; the carrier, the scalar field and the quadratic readout remain imports; the similarity scale is a norm from Q(i) only under an extra arithmetic condition, and continuous time remains the Stone gap. The earlier Lean references under lean4/quantum_mechanics/ are retained as source annotations.",
       "tags": [
-        "lean-ref-unverified"
+        "conditional-on-readout-laws",
+        "finite-wigner"
       ],
       "pfp_review": {
         "review": "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json",
@@ -3181,14 +3227,46 @@
         "next_test": "Refine the native extension to the source carrier and justify linearity/reversibility/isometry of physical dynamics. No permutation envelope derives a complex Hilbert unitary.",
         "scope_effect": "consistent",
         "reason": "Imported node; the review adds Boolean linear-extension controls. The later operator-lift run lifts bounded exact operators.",
-        "prior_status": "IMPORTED_ASSUMPTION",
-        "prior_statement": "Dynamics on the lift are reversible linear isometries. QM_122 H003 shows deterministic report dynamics do not by themselves give reversibility; H006 gives a permutation isometry envelope that is not a Hilbert unitary.",
-        "prior_bottleneck": "Lean module symbols not grepped; file existence only checked via listing in prior survey.",
+        "prior_status": "CONDITIONAL",
+        "prior_statement": "Derived part (dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner): on the exact Born carrier Q(i)^n with the inner product fixed up to scale by the sector-form run, every ray map preserving Born transition probabilities between rays is induced by a Q(i)-linear similarity (F^H F = d * 1, d > 0) or by conjugation followed by one; the map is invertible, so the dynamics is reversible and linear or antilinear, isometric up to the positive scale d, with no continuity hypothesis. The scale is a unit choice only when d is a norm from Q(i): the scale-3 countermodel F3 preserves transition probabilities yet is no unitary nor antiunitary ray map, so the imported form \"reversible linear isometries\" is strictly stronger than what the finite carrier supports; the finite statement is \"reversible linear or antilinear similarities\". Imported part: that the dynamics acts on the rays of the lift and preserves the Born transition probabilities (node L1-IMP-TRANSITION-PROBABILITY-LAW); the carrier, the scalar field Q(i) and the quadratic readout. QM_122 H003 still shows that deterministic report dynamics do not by themselves give reversibility, and H006 supplies the permutation envelope, now a special (unitary) case.",
+        "prior_bottleneck": "Transition-probability preservation of the ray dynamics is supplied as an operational law (node L1-IMP-TRANSITION-PROBABILITY-LAW), not derived from primitive difference; the carrier, the scalar field and the quadratic readout remain imports; the similarity scale is a norm from Q(i) only under an extra arithmetic condition, and continuous time remains the Stone gap. The earlier Lean references under lean4/quantum_mechanics/ are retained as source annotations.",
         "superseded_by": [
           "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
           "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
         ]
       }
+    },
+    {
+      "id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
+      "stage": "L1_TO_L2",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem.",
+      "statement": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "source": [
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
+        "lean4/FiniteWignerTheorem.lean"
+      ],
+      "lean": [
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+      ],
+      "rust": [
+        "code/rust/src/qm/finite_wigner.rs::transition_probability",
+        "code/rust/src/qm/finite_wigner.rs::born_transition",
+        "code/rust/src/qm/finite_wigner.rs::verify_induced"
+      ],
+      "imported_structure": [
+        "transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption"
+      ],
+      "bottleneck": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "tags": [
+        "gap",
+        "readout-law"
+      ]
     },
     {
       "id": "L1-WDP-REALIFICATION-J",
@@ -4467,7 +4545,8 @@
         "TENSOR-TOMOGRAPHIC-COORDINATES",
         "TENSOR-GENERATED-EFFECT-CONE",
         "TENSOR-BINARY-EFFECT-INTERVAL",
-        "TENSOR-FINITE-POVM-AVAILABILITY"
+        "TENSOR-FINITE-POVM-AVAILABILITY",
+        "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "pfp_review": {
         "review": "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
@@ -4491,6 +4570,50 @@
           "dag/research/tensor_countermodel_validation.json"
         ]
       }
+    },
+    {
+      "id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+      "stage": "FINITE_QM_CORE",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Local tomography is imported. dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography (Lean 4.35.0, OperationalTomography and OperationalFieldSelection; independent review in dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144) establishes a field-neutral conditional theorem, and dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family (OperationalFilterFamily) establishes that its operational premise is equivalent to local tomography, so the pair re-expresses local tomography and does not derive it. Replays: Python Fraction and Rust BigRational; fixture-integrity mutations rejected (277 for the tomography fixtures, 623 for the filter fixtures). Authority effect: none.",
+      "statement": "Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity of the observation (Schur-type; tomography_of_irreducible, calibrated_tomography). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. Converse (OperationalFilterFamily): for a calibrated observation, irreducibility of the lifted coordinate (product-test) resets, and descent of all visibly normalized global resets, are each equivalent to local tomography (product_resets_irreducible_iff, global_reset_descent_iff_tomography). Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects) test-then-prepare resets are constructed as a positive, subnormalized, irreducible family (normalized_reset_family); this construction does not discharge the descent premise non-circularly. With the same-family dimension law K(d,n) = n + d binom(n,2), d > 0, local tomography selects d = 2 (OperationalFieldSelection.selected_parameter). The classical doubled-pair control satisfies calibration, factorization and descent yet violates irreducibility and tomography. Narrowest claim of the filter-family run: Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), test-then-prepare resets form a positive, subnormalized, irreducible family. For a calibrated observation, irreducibility of the lifted coordinate resets, and descent of all visibly normalized global resets, are each equivalent to local tomography. So resets cannot non-circularly discharge the descent-plus-irreducibility premise of OperationalTomography.",
+      "source": [
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
+      ],
+      "lean": [
+        "lean4/OperationalTomography.lean::OperationalTomography.tomography_of_irreducible",
+        "lean4/OperationalTomography.lean::OperationalTomography.calibrated_tomography",
+        "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.normalized_reset_family",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.product_test_pullback",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.product_resets_irreducible_iff",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.global_reset_descent_iff_tomography"
+      ],
+      "rust": [
+        "code/rust/src/finite_probability/operational_tomography.rs",
+        "code/rust/src/finite_probability/operational_filters.rs"
+      ],
+      "imported_structure": [
+        "local tomography (equivalent to the existence of an irreducible operation family that descends through the observation)",
+        "field-linear state and effect spaces (not derived from primitive difference)",
+        "independent dual product-frame calibration and factorization",
+        "same-family dimension law and positive parameter (for the selection bridge)"
+      ],
+      "bottleneck": "Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity (Schur-type). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. A noncircular operational principle excluding hidden sectors is open; general tensor-cone uniqueness and operational classification remain open (FQ-GAP-TENSOR-UNIQUENESS). Does not support: A derivation of local tomography from primitive difference or from weaker operational premises; a noncircular principle excluding hidden sectors; tensor-cone uniqueness; physical availability of the constructed resets in any particular operational theory.",
+      "tags": [
+        "gap",
+        "tomography-equivalence"
+      ],
+      "see_also": [
+        "FQ-GAP-TENSOR-UNIQUENESS",
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "L1-IMP-COMPLEX-FIELD"
+      ]
     },
     {
       "id": "FQ-CPTP-CLASS-DEFINITION",
@@ -5771,7 +5894,7 @@
       "id": "GP-IMPORT-COMPLEX-FIELD",
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "imported / lost on this host (GaussInt is not a field)",
+      "source_status": "imported / lost on this host (GaussInt is not a field); conditional selection of d = 2 among supplied same-family matrix carriers is established by ComplexFieldSelection (node L1-IMP-COMPLEX-FIELD), but the original complete-field claim remains imported because completeness is not derived",
       "statement": "Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-009",
@@ -25670,14 +25793,34 @@
     {
       "id": "L1-R-DYNAMICS-GAP",
       "inputs": [
-        "L1-IMP-HILBERT-INNER-PRODUCT"
+        "L1-IMP-HILBERT-INNER-PRODUCT",
+        "L1-IMP-TRANSITION-PROBABILITY-LAW"
       ],
       "output": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
-      "status": "GAP_NO_DERIVATION",
+      "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
-      ]
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "lean4/FiniteWignerTheorem.lean"
+      ],
+      "note": "Formerly GAP_NO_DERIVATION. Conditional on the imported transition-probability law (L1-IMP-TRANSITION-PROBABILITY-LAW): the finite exact Wigner theorem makes the dynamics a reversible Q(i)-linear or conjugate-linear similarity, unitary iff the scale is a sum of two rational squares. Same content as L1-R-DYNAMICS-FINITE-WIGNER; the id is retained for continuity. The law itself is not derived."
+    },
+    {
+      "id": "L1-R-DYNAMICS-FINITE-WIGNER",
+      "inputs": [
+        "L1-IMP-HILBERT-INNER-PRODUCT",
+        "L1-IMP-TRANSITION-PROBABILITY-LAW"
+      ],
+      "output": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "lean4/FiniteWignerKernel.lean",
+        "lean4/FiniteWignerTheorem.lean",
+        "lean4/FiniteWignerSimilarity.lean"
+      ],
+      "note": "Holds once the inner product is fixed up to scale (L1-IMP-HILBERT-INNER-PRODUCT, whose scale the transition probability does not see) and the ray dynamics preserves Born transition probabilities (L1-IMP-TRANSITION-PROBABILITY-LAW): the dynamics is then a reversible Q(i)-linear or conjugate-linear similarity with positive rational scale, unitary iff the scale is a sum of two rational squares (countermodel F3 with scale 3). No continuity is used."
     },
     {
       "id": "L1-R-U1-SELECTOR",
@@ -25903,6 +26046,21 @@
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
+    },
+    {
+      "id": "FQ-R-OPERATIONAL-LOCAL-TOMOGRAPHY",
+      "inputs": [
+        "FQ-DECLARED-QUANTUM-INTERFACE"
+      ],
+      "output": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "source": [
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "lean4/OperationalTomography.lean",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "lean4/OperationalFilterFamily.lean"
+      ],
+      "note": "Holds once the declared interface is supplemented by a field-linear carrier, calibrated independent product frames, observation descent for the admitted operations and an irreducible operation family. The last two premises are together equivalent to local tomography (OperationalFilterFamily.product_resets_irreducible_iff, global_reset_descent_iff_tomography), so the route re-expresses local tomography and does not derive it. The dependence of L1-IMP-COMPLEX-FIELD on this import (ComplexFieldSelection consumes it through OperationalFieldSelection.selected_parameter) is recorded in that node and by see_also, not as a route, because the declared quantum interface already lies downstream of the complex field and a route would close a cycle."
     },
     {
       "id": "FQ-R-CPTP",
@@ -51335,6 +51493,81 @@
       "stage": "IMPLEMENTATION_CORE",
       "summary": "LggrFiniteResults.lean under lean4/quantum_mechanics: finite LGGR results only, from the QDDC, LGGR and no-go implementation-status thread. Gaps named by that thread: the l1 defect and LP dual live only in Rust, the Lean gate model is not linked to the Rust gate, and Proposition II-open stays OPEN.",
       "uuid": "6e92aaf2-6a1f-550a-a414-34ec79458055"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "L1-IMP-TRANSITION-PROBABILITY-LAW"
+      ],
+      "f004_refs": [
+        "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
+        "lean4/FiniteWignerTheorem.lean"
+      ],
+      "id": "TFQ-1047",
+      "lean4": [
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
+        "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
+        "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+      ],
+      "local_id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
+      "name": "l1-imp-transition-probability-law",
+      "obligation": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "parent_id": "TFQ-0303",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [
+        "code/rust/src/qm/finite_wigner.rs::transition_probability",
+        "code/rust/src/qm/finite_wigner.rs::born_transition",
+        "code/rust/src/qm/finite_wigner.rs::verify_induced"
+      ],
+      "source_slice": "unified_dag",
+      "stage": "L1_TO_L2",
+      "summary": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "uuid": "e3bc6875-5cb5-523c-bc4f-5674205306c9"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
+      ],
+      "f004_refs": [
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
+      ],
+      "id": "TFQ-1048",
+      "lean4": [
+        "lean4/OperationalTomography.lean::OperationalTomography.tomography_of_irreducible",
+        "lean4/OperationalTomography.lean::OperationalTomography.calibrated_tomography",
+        "lean4/OperationalFieldSelection.lean::OperationalFieldSelection.selected_parameter",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.normalized_reset_family",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.product_test_pullback",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.product_resets_irreducible_iff",
+        "lean4/OperationalFilterFamily.lean::OperationalFilterFamily.global_reset_descent_iff_tomography"
+      ],
+      "local_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
+      "name": "fq-operational-local-tomography",
+      "obligation": "Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity (Schur-type). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. A noncircular operational principle excluding hidden sectors is open; general tensor-cone uniqueness and operational classification remain open (FQ-GAP-TENSOR-UNIQUENESS). Does not support: A derivation of local tomography from primitive difference or from weaker operational premises; a noncircular principle excluding hidden sectors; tensor-cone uniqueness; physical availability of the constructed resets in any particular operational theory.",
+      "parent_id": "TFQ-1019",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [
+        "code/rust/src/finite_probability/operational_tomography.rs",
+        "code/rust/src/finite_probability/operational_filters.rs"
+      ],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QM_CORE",
+      "summary": "Under calibration, a nonzero observation and descent of an admitted operation family, irreducibility of that family on the global state space forces injectivity of the observation (Schur-type; tomography_of_irreducible, calibrated_tomography). The existence of such a family is equivalent to local tomography, so this re-expresses rather than derives local tomography. Converse (OperationalFilterFamily): for a calibrated observation, irreducibility of the lifted coordinate (product-test) resets, and descent of all visibly normalized global resets, are each equivalent to local tomography (product_resets_irreducible_iff, global_reset_descent_iff_tomography). Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects) test-then-prepare resets are constructed as a positive, subnormalized, irreducible family (normalized_reset_family); this construction does not discharge the descent premise non-circularly. With the same-family dimension law K(d,n) = n + d binom(n,2), d > 0, local tomography selects d = 2 (OperationalFieldSelection.selected_parameter). The classical doubled-pair control satisfies calibration, factorization and descent yet violates irreducibility and tomography. Narrowest claim of the filter-family run: Under explicit closure rules (sequential admission, generating cone, preparability of all normalized states, bounded globally separating admitted effects), test-then-prepare resets form a positive, subnormalized, irreducible family. For a calibrated observation, irreducibility of the lifted coordinate resets, and descent of all visibly normalized global resets, are each equivalent to local tomography. So resets cannot non-circularly discharge the descent-plus-irreducibility premise of OperationalTomography.",
+      "uuid": "f5a54166-89b6-5899-9066-ef2ca412f7a4"
     },
     {
       "coda_atlas_ids": [],

@@ -1630,33 +1630,33 @@ This section reports what the derivation DAG records and what the Lean closure m
 
 <!-- BEGIN GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
-The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v1`) now has 737 nodes in 27 stages and 734 routes. The tables below are generated from that file by `papers/core/tools/build_results_audit_table.py`; they replace the earlier 177-node, 172-route partition.
+The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now has 821 nodes in 28 stages and 818 routes. The tables below are generated from that file by `papers/core/tools/build_results_audit_table.py`; they replace the earlier 177-node, 172-route partition.
 
 | Node status | Nodes | PFP-reviewed |
 | --- | ---: | ---: |
 | `ADMITTED_PRIMITIVE` | 3 | 2 |
-| `DEFINITION` | 81 | 8 |
+| `DEFINITION` | 90 | 8 |
 | `PROVED_PROSE` | 27 | 0 |
-| `PROVED_LEAN` | 205 | 84 |
-| `COMPUTATIONALLY_CHECKED` | 143 | 22 |
-| `CONDITIONAL` | 28 | 9 |
-| `IMPORTED_ASSUMPTION` | 45 | 23 |
-| `OPEN` | 148 | 3 |
+| `PROVED_LEAN` | 248 | 84 |
+| `COMPUTATIONALLY_CHECKED` | 152 | 22 |
+| `CONDITIONAL` | 33 | 11 |
+| `IMPORTED_ASSUMPTION` | 50 | 21 |
+| `OPEN` | 161 | 3 |
 | `REFUTED` | 2 | 0 |
 | `SOURCE_RECORD` | 55 | 0 |
-| **Total** | **737** | **151** |
+| **Total** | **821** | **151** |
 
 | Route status | Routes |
 | --- | ---: |
-| `DERIVED_PROSE` | 94 |
-| `DERIVED_LEAN` | 216 |
-| `COMPUTED` | 147 |
-| `CONDITIONAL_ON_IMPORT` | 65 |
-| `GAP_NO_DERIVATION` | 157 |
+| `DERIVED_PROSE` | 103 |
+| `DERIVED_LEAN` | 259 |
+| `COMPUTED` | 156 |
+| `CONDITIONAL_ON_IMPORT` | 76 |
+| `GAP_NO_DERIVATION` | 169 |
 | `RECORD_PARENT` | 55 |
-| **Total** | **734** |
+| **Total** | **818** |
 
-Of the 151 reviewed nodes, 68 are `consistent`, 9 are `caveat_added`, 52 are `statement_narrowed`, 22 are `status_lowered`. Only 191 of the 737 nodes cite two or more Lean declarations and two or more Rust witnesses; 329 cite no Lean declaration and 386 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 151 reviewed nodes, 68 are `consistent`, 9 are `caveat_added`, 52 are `statement_narrowed`, 22 are `status_lowered`. Only 213 of the 821 nodes cite two or more Lean declarations and two or more Rust witnesses; 346 cite no Lean declaration and 444 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
@@ -1765,12 +1765,12 @@ The table has one row for each of the 151 DAG nodes that carry a `pfp_review` ob
 | `L1-QM020-THM6-P2-GLEASON` | `IMPORTED_ASSUMPTION` | `consistent` | Exact quadratic-frame resolution, positivity determinant and coefficient reconstruction, plus general quadratic frame identity and known-ansatz reconstruction in Lean. | Discharge full Gleason or POVM uniqueness with its dimension and measure hypotheses. A source named Gleason or a quadratic ansatz is not that theorem. |
 | `L1-QM020-THM7-REPRESENTATION-CAPACITY` | `PROVED_LEAN` | `consistent` | Actual rotation/inverse product, conserved norm and sign-dependent probability arrays, with generic norm and interference identities in Lean. | Justify physical linear isometric dynamics, source refinement and the complex Hilbert carrier. Capacity does not supply these hypotheses. |
 | `L1-IMP-SQRT-FIELD` | `IMPORTED_ASSUMPTION` | `consistent` | Exact normalized-square classification on the retained rational packets, including zero/negative mass refusal and nonsquare controls. | Prove the rational-square decision refinement and construct any admitted algebraic/real square-root field. No blanket irrationality theorem is inferred from finite search. |
-| `L1-IMP-COMPLEX-FIELD` | `IMPORTED_ASSUMPTION` | `consistent` | Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean. | Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field. |
+| `L1-IMP-COMPLEX-FIELD` | `CONDITIONAL` | `consistent` | Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean. | Construct the field instance/refinement and topology/completion required for C; these rational pairs do not admit a complete field. |
 | `L1-IMP-U1-PHASES` | `IMPORTED_ASSUMPTION` | `consistent` | Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean. | Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection. |
 | `L1-IMP-HILBERT-INNER-PRODUCT` | `CONDITIONAL` | `consistent` | Exact three Gram pairings/norms and anisotropy controls, with general weighted difference and concrete nonuniqueness in Lean. | Prove positive-definite inner-product instances and source-carrier refinement, then justify any physical selection. The inner product remains admitted structure. |
 | `L1-IMP-ORTHOGONAL-ADDITIVITY` | `CONDITIONAL` | `consistent` | Exact projector resolution of identity, quadratic frame totals and quartic basis dependence, with generic orthogonal-frame algebra in Lean. | Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason. |
 | `L1-IMP-HAAR-INDEPENDENT-PHASES` | `IMPORTED_ASSUMPTION` | `consistent` | Complete exact independent/correlated C4 intensity tables and averages, with general four-phase cancellation and correlated-gap identities in Lean. | Admit/construct Haar probability on U(1)^n and justify independence and continuum integration. C4 cancellation of this polynomial moment is not Haar construction. |
-| `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | `IMPORTED_ASSUMPTION` | `consistent` | Every Boolean map has an exact linear-extension control; only the two bijections have identity Gram matrices. Lean establishes swap preservation and collapse loss. | Refine the native extension to the source carrier and justify linearity/reversibility/isometry of physical dynamics. No permutation envelope derives a complex Hilbert unitary. |
+| `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | `CONDITIONAL` | `consistent` | Every Boolean map has an exact linear-extension control; only the two bijections have identity Gram matrices. Lean establishes swap preservation and collapse loss. | Refine the native extension to the source carrier and justify linearity/reversibility/isometry of physical dynamics. No permutation envelope derives a complex Hilbert unitary. |
 | `L1-QM121-LADDER-RUNGS-2-6` | `PROVED_LEAN` | `statement_narrowed` | Complete retained stochastic path tables and matrix-power equality, diagonal action and exact two-phase readout, with finite composition algebra in Lean. | Prove arbitrary-rung/source representation refinements and discharge the admitted carrier, Born uniqueness and continuous/unitary limits. |
 | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY` | `PROVED_LEAN` | `statement_narrowed` | Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean. | Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1). |
 | `L1-QM122-BORN-PAIRING-NONUNIQUE` | `PROVED_LEAN` | `statement_narrowed` | Exact quadratic/quartic/swapped atom values, honest normalization contracts and Gaussian Hadamard/rotated frame countercontrols; literal unit and frame identities in Lean. | Formalize full source pairing refinement and the additional frame/POVM/Gleason uniqueness hypotheses. These rivals share only their stated weak contracts. |

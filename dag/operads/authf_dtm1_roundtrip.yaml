@@ -1,0 +1,320 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: AUTHF-DTM1-ROUNDTRIP
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For every DTM0 machine m, decodeMachine (encodeMachine m) = some m, supported by the
+    tag round trips decodeTapeSymbol_encodeTapeSymbol and decodeMove_encodeMove and the rule-list round
+    trip decodeRules_encodeRules.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Only decode after encode is stated; injectivity of decode on arbitrary lists and
+    encode after decode are not stated.
+  source_refs:
+  - dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md
+  - lean4/AuthIncompleteness/TokenCode.lean
+  paper_refs:
+  - dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/29_computation/tfq_1344_authf_dtm1_roundtrip.md
+    sha256: 54c64e07cd588c90b01016d3c29c5fcbad5fcd81affd5b176abdee99eebac9d3
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/computation_authf_dtm1_roundtrip_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: decodeMachine
+  line: 100
+  signature_excerpt: |-
+    def decodeMachine : List Nat -> Option Machine
+      | [] => none
+      | haltState :: ruleCode =>
+        match decodeRules ruleCode with
+        | none => none
+        | some rules => some { haltState
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeMachine
+  line: 96
+  signature_excerpt: 'def encodeMachine (machine : Machine) : List Nat'
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeRules
+  line: 76
+  signature_excerpt: |-
+    def decodeRules : List Nat -> Option (List Rule)
+      | [] => some []
+      | state :: scannedCode :: nextState :: writtenCode :: moveCode :: rest =>
+        match decodeTapeSymbol scannedCode with
+        | none => none
+        | some scanned =>
+          match decodeTapeSymbol writtenCode with
+          | none => none
+          | some written =>
+            match decodeMove moveCode with
+            | none => none
+            | some move =>
+              match decodeRules rest with
+              | none => none
+              | some rules =>
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeRules
+  line: 70
+  signature_excerpt: |-
+    def encodeRules : List Rule -> List Nat
+      | [] => []
+      | rule :: rules => encodeRule rule ++ encodeRules rules
+
+    /-- Parse complete rule frames only. Any incomplete suffix or invalid tag is
+        rejected rather than ignored. -/
+    def decodeRules : List Nat -> Option (List Rule)
+      | [] => some []
+      | state :: scannedCode :: nextState :: writtenCode :: moveCode :: rest =>
+        match decodeTapeSymbol scannedCode with
+        | none => none
+        | some scanned =>
+          match decodeTapeSymbol writtenCode with
+          | none => none
+          | some written =>
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeTapeSymbol
+  line: 46
+  signature_excerpt: |-
+    def decodeTapeSymbol : Nat -> Option TapeSymbol
+      | 0 => some .blank
+      | 1 => some .marked
+      | _ => none
+
+    /-- Canonical finite tag for a declared head movement. -/
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+
+    /-- Partial decoder for the three declared movement tags. -/
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeMove
+  line: 58
+  signature_excerpt: |-
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+      | 2 => some .stay
+      | _ => none
+
+    /-- One rule is a complete five-token frame. -/
+    def encodeRule (rule : Rule) : List Nat
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeRule
+  line: 65
+  signature_excerpt: 'def encodeRule (rule : Rule) : List Nat'
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeTapeSymbol
+  line: 41
+  signature_excerpt: |-
+    def encodeTapeSymbol : TapeSymbol -> Nat
+      | .blank => 0
+      | .marked => 1
+
+    /-- Partial decoder for the two declared tape-symbol tags. -/
+    def decodeTapeSymbol : Nat -> Option TapeSymbol
+      | 0 => some .blank
+      | 1 => some .marked
+      | _ => none
+
+    /-- Canonical finite tag for a declared head movement. -/
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeMove
+  line: 52
+  signature_excerpt: |-
+    def encodeMove : Move -> Nat
+      | .left => 0
+      | .right => 1
+      | .stay => 2
+
+    /-- Partial decoder for the three declared movement tags. -/
+    def decodeMove : Nat -> Option Move
+      | 0 => some .left
+      | 1 => some .right
+      | 2 => some .stay
+      | _ => none
+
+    /-- One rule is a complete five-token frame. -/
+    def encodeRule (rule : Rule) : List Nat
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: decodeMachine_encodeMachine
+  line: 131
+  signature_excerpt: |-
+    theorem decodeMachine_encodeMachine (machine : Machine) :
+        decodeMachine (encodeMachine machine) = some machine
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decodeRules_encodeRules
+  line: 118
+  signature_excerpt: |-
+    theorem decodeRules_encodeRules (rules : List Rule) :
+        decodeRules (encodeRules rules) = some rules
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decodeTapeSymbol_encodeTapeSymbol
+  line: 108
+  signature_excerpt: |-
+    theorem decodeTapeSymbol_encodeTapeSymbol (symbol : TapeSymbol) :
+        decodeTapeSymbol (encodeTapeSymbol symbol) = some symbol
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decodeMove_encodeMove
+  line: 113
+  signature_excerpt: |-
+    theorem decodeMove_encodeMove (move : Move) :
+        decodeMove (encodeMove move) = some move
+  source: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  source_sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine
+  path: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  declaration_status: declaration_found_not_proof_checked
+  line: 131
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules
+  path: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol
+  path: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/AuthIncompleteness/TokenCode.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove
+  availability: local
+  symbol: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove
+  path: lean4/AuthIncompleteness/TokenCode.lean
+  repository: this_repository
+  sha256: 462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

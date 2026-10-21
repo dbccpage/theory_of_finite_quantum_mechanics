@@ -64,7 +64,7 @@ the lowered type.
 | OPEN | 91 | An unresolved claim or conjecture. |
 | DEFINITION | 112 | A declared definition. |
 | UNTYPED | 48 | Historical source status still requires triage. |
-| CONDITIONAL | 66 | A statement with explicit antecedents and imported structure. |
+| CONDITIONAL | 68 | A statement with explicit antecedents and imported structure. |
 | REFUTED BY AUDIT | 32 | Historical audit refuted the source claim; do not cite it as true. |
 | REFUTED BY COMPUTATION | 11 | A named countermodel refutes the source claim; the corrected boundary is in the statement. |
 | LEAN PROVED (RECEIPTED) | 27 | Historical receipted source classification; receipt applicability remains subject to GAP-FQM-020. |
@@ -72,7 +72,7 @@ the lowered type.
 | FINITE COMPUTATION | 185 | Named finite computations with the domains and limits stated in each evidence field; not a general proof. |
 | EXACT FINITE ALGEBRA | 80 | An exact algebraic result or finite decision at the declared scope. |
 | FINITE FIXTURE | 12 | A declared regression fixture, not a general theorem. |
-| DECLARED | 43 | An imported or supplied input. |
+| DECLARED | 41 | An imported or supplied input. |
 | REFUSAL | 7 | A typed refusal. |
 | PARTIAL | 1 | A bounded result with the remaining obligation explicitly retained. |
 | **Total** | **1015** | |
@@ -1683,12 +1683,12 @@ Generated on 2026-10-21 from the `pfp_review` object of each reviewed node of `d
 | L1-QM020-THM6-P2-GLEASON | Exact quadratic-frame resolution, positivity determinant and coefficient reconstruction, plus general quadratic frame identity and known-ansatz reconstruction in Lean. | DECLARED | `dag/results/L1-QM020-THM6-P2-GLEASON/reviews/20261020_born_boundary_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
 | L1-QM020-THM7-REPRESENTATION-CAPACITY | Actual rotation/inverse product, conserved norm and sign-dependent probability arrays, with generic norm and interference identities in Lean. | PROVED_LEAN | `dag/results/L1-QM020-THM7-REPRESENTATION-CAPACITY/reviews/20261020_born_boundary_audit/delivery_review_result.json` | PROVED_LEAN (consistent) |
 | L1-IMP-SQRT-FIELD | Exact normalized-square classification on the retained rational packets, including zero/negative mass refusal and nonsquare controls. | DECLARED | `dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
-| L1-IMP-COMPLEX-FIELD | Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean. | DECLARED | `dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
+| L1-IMP-COMPLEX-FIELD | Exact Q(i) multiplication/norm/reciprocal controls, general norm multiplicativity and integer norm5 nonunit control in Lean. | CONDITIONAL | `dag/results/L1-IMP-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json` | CONDITIONAL (consistent) |
 | L1-IMP-U1-PHASES | Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean. | DECLARED | `dag/results/L1-IMP-U1-PHASES/reviews/20261020_born_boundary_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
 | L1-IMP-HILBERT-INNER-PRODUCT | Exact three Gram pairings/norms and anisotropy controls, with general weighted difference and concrete nonuniqueness in Lean. | CONDITIONAL | `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json` | CONDITIONAL (consistent) |
 | L1-IMP-ORTHOGONAL-ADDITIVITY | Exact projector resolution of identity, quadratic frame totals and quartic basis dependence, with generic orthogonal-frame algebra in Lean. | CONDITIONAL | `dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json` | CONDITIONAL (consistent) |
 | L1-IMP-HAAR-INDEPENDENT-PHASES | Complete exact independent/correlated C4 intensity tables and averages, with general four-phase cancellation and correlated-gap identities in Lean. | DECLARED | `dag/results/L1-IMP-HAAR-INDEPENDENT-PHASES/reviews/20261019_l1_import_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
-| L1-IMP-LINEAR-ISOMETRIC-DYNAMICS | Every Boolean map has an exact linear-extension control; only the two bijections have identity Gram matrices. Lean establishes swap preservation and collapse loss. | DECLARED | `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json` | IMPORTED_ASSUMPTION (consistent) |
+| L1-IMP-LINEAR-ISOMETRIC-DYNAMICS | Every Boolean map has an exact linear-extension control; only the two bijections have identity Gram matrices. Lean establishes swap preservation and collapse loss. | CONDITIONAL | `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/reviews/20261020_born_boundary_audit/delivery_review_result.json` | CONDITIONAL (consistent) |
 | L1-QM121-LADDER-RUNGS-2-6 | Complete retained stochastic path tables and matrix-power equality, diagonal action and exact two-phase readout, with finite composition algebra in Lean. | PROVED_LEAN | `dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json` | PROVED_LEAN (statement_narrowed) |
 | L1-QM122-CIRCLE-SELECTOR-BOUNDARY | Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean. | PROVED_LEAN | `dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json` | PROVED_LEAN (statement_narrowed) |
 | L1-QM122-BORN-PAIRING-NONUNIQUE | Exact quadratic/quartic/swapped atom values, honest normalization contracts and Gaussian Hadamard/rotated frame countercontrols; literal unit and frame identities in Lean. | PROVED_LEAN | `dag/results/L1-QM122-BORN-PAIRING-NONUNIQUE/reviews/20261020_born_boundary_audit/delivery_review_result.json` | PROVED_LEAN (statement_narrowed) |
