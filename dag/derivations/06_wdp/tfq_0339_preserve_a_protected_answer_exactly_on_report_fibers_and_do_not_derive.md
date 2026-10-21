@@ -40,6 +40,7 @@ In accordance with strict constructive principles:
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-0340](tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md)
+- [TFQ-0553](tfq_0553_wdp_observer_quotient_passivity.md)
 
 ---
 

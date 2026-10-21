@@ -4,18 +4,18 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 462. Dropped atlas paths that were not on disk: 0.
+Nodes: 559. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
 | Stage | Steps |
 | --- | ---: |
 | `PREGENESIS` | 35 |
-| `GENESIS` | 49 |
+| `GENESIS` | 92 |
 | `FINITE_OBSTRUCTION` | 9 |
-| `AUTHORIZATION` | 6 |
-| `MSSN_SN` | 8 |
-| `WDP` | 10 |
+| `AUTHORIZATION` | 11 |
+| `MSSN_SN` | 34 |
+| `WDP` | 33 |
 | `L1_EMERGENCE` | 12 |
 | `L1_TO_L2` | 26 |
 | `FINITE_HILBERT` | 15 |
@@ -1021,6 +1021,436 @@ The final source closeout records three independent axes after the author's 2026
 
 Obligation: Keep the three axes as separate verdicts, reproduce the w1 fresh-label collision, and report the axiom census and the finite cross-language agreement populations with their scopes.
 
+### TFQ-0462 rung0-inheritance-replay
+
+- UUID: `02afe41a-eeda-5192-97b5-ad5c157ece12`
+- Parent: `TFQ-0461`
+- Status: `SOURCE_RECORD`
+
+Rung zero of the second derivation (pull request 130) answers Challenge 0 at stated scope: the sealed challenge reports and both sealed closed baselines regenerate exactly (reading L, 4 nodes, 3 terminal; reading F, 20 nodes, 16 terminal). The sealed grammar has six event kinds, of which only the supply preserves the state, and the two remaining declared inputs are named: the stake and the stream. Inertia is a finite computation from both readings: up to eight supplies leave the regime unchanged, and growth to five data under the all-free stake admits no form, raises no demand and leaves every state totally collapsed. The only Lean evidence cited is the sealed supply_no_op.
+
+Obligation: Replay the sealed receipts byte for byte, census the six event kinds and the two declared inputs, and check inertia from both sealed readings to eight supplies and five data under no stake and under the all-free stake.
+
+### TFQ-0463 rung1-stream-as-response
+
+- UUID: `1be259fa-341d-5d61-893f-736f52bddf28`
+- Parent: `TFQ-0462`
+- Status: `OPEN_OBLIGATION`
+
+Challenge 1, whether the stream can be a response, stays OPEN after rung one (pull request 133). On the rectangle of both readings, five stakes, two measures, at most three items, arity two, fifteen rounds and a pre-expansion guard of 250 nodes, none of the 1680 retained V1 minimum response edges carries a datum, and 32 of them were selected at three items. The frontier has 1974 nodes, 1039 of them stopped at the guard in six runs, and targets after a node's first refusal were not searched. At two items a fresh datum is valid but priced out in 219 rows, 58 of them for a same demand; the four-item prediction R1-X was not computed.
+
+Obligation: Decide whether a fresh datum is ever part of a minimum response within the bounds by expanding the 1039 guard-stopped nodes and every target skipped after a first refusal, then compute the four-item rectangle and score R1-X.
+
+### TFQ-0464 rung2a-stake-declared-label
+
+- UUID: `e7617de1-d55f-5505-a807-6bd87365d463`
+- Parent: `TFQ-0462`
+- Status: `SOURCE_RECORD`
+
+Rung two track one (pull request 136) extends the reconstructed sealed grammar by a declared two-sided stake: a label apart, same or free on every ordered pair of datum indices, free on the diagonal, declared once, with a demand a held labelled pair the regime does not honour. A demand comes from a declared label only, at the level of a definition: the free stake carries no demand at any regime and a supply changes no demand. Supply, imposition and, at a well-formed regime, form admission are demand-inert, and from a well-formed base every run of inert events carries exactly the base's demands, so from a demand-free base no demand is first under such a run. Growth generates an apart demand where no instance is admitted, and a same demand only under a separability hypothesis the rung did not discharge.
+
+Obligation: State the label-source assembly, the three demand-inert kinds and the two growth cases over the stake-extended grammar, keeping the same-demand case conditional on its separability hypothesis.
+
+### TFQ-0465 rung2b-stake-menu
+
+- UUID: `5c1d3782-fb74-553e-94c5-a52bd8537678`
+- Parent: `TFQ-0464`
+- Status: `SOURCE_RECORD`
+
+Rung two track two (pull request 135) answers Challenge 2, the stake read off the state, within a declared menu and rectangle and by finite computation only. The menu has nine rules E1 to E9 reading six observables (profile equality, profile emptiness, profile size, pair-orbit membership, class count, requirement pattern). On both readings, both measures, two items, arity two, four held data, fifteen rounds and guard 250 (847 reached regimes), six rules commute with every renaming over 1,345,706 cases, while E3, E4 and E6, which read pair orbits, are OPEN at transport replay. E4 alone generates demands of both kinds and its invariance is among the OPEN three, so no member is both checked invariant and two-kinded; all nine are retained.
+
+Obligation: Compute each menu rule's labels under every datum and form renaming on the reached regimes and its generation of both demand kinds under growth, and list the members that are both.
+
+### TFQ-0466 rung3-first-demand-index
+
+- UUID: `d85f4154-63c3-5e3e-b49f-0fa61c1d8013`
+- Parent: `TFQ-0464`
+- Status: `SOURCE_RECORD`
+
+Rung three (pull request 239) takes leftover L-2, the first-demand index over an arbitrary run: a first count is a prefix length at which a demand stands with no shorter prefix carrying one. In Lean the first count is unique with no decidability hypothesis, every event preserves well-formedness, a successor first count never consumes a demand-inert event last, and from the empty base no count below two is a first count. Existence is proved only given a decision for a demand at a regime (X-1, OPEN). Countermodels: the first count is not a function of the reached regime (two datum admissions, and a supply followed by the same two, give counts two and three under the all-apart stake), and a demand can cease.
+
+Obligation: Over every base, history and stake, carry uniqueness of the first count and the two countermodels, and keep its existence conditional on a decision procedure for a demand at a regime.
+
+### TFQ-0467 rung4-index-up-to-isomorphism
+
+- UUID: `a6e062a3-1ca7-5232-86a7-4f1dfacf8d25`
+- Parent: `TFQ-0466`
+- Status: `SOURCE_RECORD`
+
+Rung four (pull request 255) takes leftover X-3, the first-demand index up to the sealed isomorphism. In Lean separability and honour transport across the isomorphism, a label-preserving isomorphism carries a demand, and under a uniform stake (one label on every distinct pair) carrying a demand is class-invariant and class-matched histories have one first count; renaming supply tokens moves no first count. Under the three index readers parity, chain and residueThree the index escapes: isomorphic regimes of three or four data differ in carrying a demand, and class-matched histories of eight and eleven events have first counts eight or eleven against none. On the rectangle (2316 regimes in 402 classes, automorphism counts one to 240) the first count is constant on every trajectory class inside four events, which the Lean witnesses show is the bound's doing.
+
+Obligation: Carry demand transport and first-count transport under a uniform stake for every pair of related regimes, and exhibit the non-uniform countermodels of eight and eleven events through Boolean checks proved sound.
+
+### TFQ-0468 rung5-symmetry-along-history
+
+- UUID: `1933f5e5-ad73-5418-8874-993dac785521`
+- Parent: `TFQ-0467`
+- Status: `SOURCE_RECORD`
+
+Rung five (pull request 258) takes Y-3, symmetry along a history. In Lean a supply keeps every automorphism, datum and form admissions at a well-formed regime lose none, and an instance, rule or requirement admission keeps exactly the automorphisms fixing the added element. Each of the three adding kinds loses automorphisms at some regime and gains them at another, so the automorphism count moves both ways; on the rectangle the largest rise is five, at datum edges, and the largest fall 24, at instance edges. Every event keeps the regime or raises the element count by exactly one, so no history returns to a regime it left after a changing event.
+
+Obligation: Characterise per event kind which automorphisms survive, exhibit loss and gain for each adding kind, and carry the element-count step law and no-return along every replayed history.
+
+### TFQ-0469 rung6-succession-element-count
+
+- UUID: `b6fa2aa4-84d2-5399-829d-1d10543adeb3`
+- Parent: `TFQ-0468`
+- Status: `SOURCE_RECORD`
+
+Rung six (pull request 259) takes Z-4, succession of accepted rounds through the element count, under three readings of a round: EVERY event, every ADMITTING event (not a supply) and every CHANGING event (the regime differs after it). In Lean, under CHANGING the count of any replayed history is the element count of the regime reached less the base's, so it is a function of base and regime, and counted from the empty regime a function of the regime alone; for every history CHANGING is at most ADMITTING, which is at most EVERY. Countermodels: EVERY and ADMITTING are not functions of base and regime, and CHANGING is not a function of the regime alone across bases (the Lean reading regime R2L is reached from the empty regime with count three and from itself with count zero).
+
+Obligation: Carry the CHANGING count as element count less the base's over every replayed history, the ordering of the three counts, and the three countermodels.
+
+### TFQ-0470 rung7-duration-under-changing
+
+- UUID: `9220d16d-e497-5b67-a318-8fa7076f757c`
+- Parent: `TFQ-0469`
+- Status: `SOURCE_RECORD`
+
+Rung seven (pull request 260) takes W-1, duration under CHANGING: a growth is a changing round that adds a datum, a rest round a changing round that does not, and the duration vector counts rest rounds between successive growths. In Lean the growths and rest rounds of any replayed history are functions of base and regime, so the number of segments and their sum are definable, and the data that instances and requirements name bound later segments from below. Countermodels: no segment is a function of position, base and regime, and no duration between the first two growths is a function of the regime, even over histories from the empty regime. On the rectangle the vectors reached at every regime are exactly the envelope, and the envelope is not a class invariant.
+
+Obligation: Carry the growth and rest counts as functions of base and regime and the naming lower bound over every replayed history, and exhibit the segment and gap countermodels.
+
+### TFQ-0471 rung8-element-count-across-iso
+
+- UUID: `c83ddeaf-d108-58a3-9059-4ac2549cd6c5`
+- Parent: `TFQ-0470`
+- Status: `SOURCE_RECORD`
+
+Rung eight (pull request 262) takes Z-1, the element count across the sealed isomorphism. In Lean every inhabitant of the isomorphism keeps the numbers of data and forms with no hypothesis, and two clean regimes (well-formed, no list holding an entry twice) that it relates have all five component counts equal; six exhibited pairs show neither hypothesis can be dropped for instances, rules or requirements. Every event keeps cleanness and the empty and both Lean reading regimes are clean; from a clean base no class left is reached again, a class revisited is the very regime reached by unchanging events, so recurrence is only a stutter, and the counts of a history are functions of the class it reaches. Across two bases the class does not carry the count.
+
+Obligation: Carry the component counts across the isomorphism between clean regimes and the no-return-to-class and stutter laws from every clean base, with the six hypothesis countermodels.
+
+### TFQ-0472 rung9-two-ness-observational-classes
+
+- UUID: `16f0755d-8406-5bed-94b4-6c7817b531d4`
+- Parent: `TFQ-0471`
+- Status: `SOURCE_RECORD`
+
+Rung nine (pull request 264) takes X-6 for two-ness and observational classes: a regime holds two when some two admitted data are separable, and a representative list holds pairwise separable admitted data with every admitted datum collapsed with an entry. In Lean separability, collapse, holding two and representative lists are carried by the isomorphism with no hypothesis, collapse is reflexive, symmetric and transitive, and holding two needs two data, a form and an instance, so its first stage is four events from the empty regime and two from each Lean reading regime, both attained. Supply, datum, form and requirement admissions keep separable pairs, while an instance or a rule admission can end holding two. That two representative lists of one regime have one length, the class count as a number, is OPEN in Lean (T-1).
+
+Obligation: Carry holding two and representative lists across the isomorphism, the least lengths four and two, and the per-kind keeping laws, leaving the class count as a number to a decision for collapse.
+
+### TFQ-0473 rung10-responder-adjacency-reach
+
+- UUID: `9a1f1b2d-2654-5522-840d-6b9514b2ec5b`
+- Parent: `TFQ-0472`
+- Status: `SOURCE_RECORD`
+
+Rung ten (pull request 265) takes X-6 for adjacency, reach, branching and exhaustion through the sealed responder: the demand is a collapsed pair, a response is a minimum of the sealed candidate space of at most two items and arity two under mu1 or mu2, and the responder refuses a regime holding a uniform rule. Adjacency, reach and branching are useful realizations at two declared capabilities, and exhaustion is definable: in Lean a form is exhausted exactly when it does not distinguish, exhaustion is carried by the isomorphism, and for a well-formed base a pair a history moves is mentioned by an instance admission of the history or the history holds a rule admission. On the rectangle 3110 demands are answered with none refused within two items, reach is at most three and finite adjacency distance at most two, and the measure changes the adjacency graph and the tie counts.
+
+Obligation: Compute adjacency, reach and branching through the sealed responder on the rectangle at their declared price, and carry exhaustion and the moved-pair mention law over every history.
+
+### TFQ-0474 c1-engine-class-144
+
+- UUID: `9f9ccb57-f88a-5bbe-b2c3-6230ca5cd3fb`
+- Parent: `TFQ-0473`
+- Status: `SOURCE_RECORD`
+
+Continuation attempt one (pull request 267), authorized by the author after the original twelve attempts, takes Challenge 3, the engine: a generator (one of the nine stake rules, read in a plain or flipped mode), a responder (one sealed measure and one of rung one's two validity members, answering a demand by every tied minimum), a continuation (a subset of growth and switch fired only at a demand-free state, the empty subset named HALT) and the sealed replay extended by the switch marker. The class has 144 members, 108 of them without HALT, with capability counts from six to ten, so no member is one declaration. Probed to depth two from both readings (288 probes), 64 members are LIVE and 16 TWO-KINDED; a count-minimal and inclusion-minimal member exists in every declared subclass, none of the minima is unique up to probe-isomorphism, and no member is initial under inclusions of declarations. No engine is run forward.
+
+Obligation: Enumerate the declared engine class and its capability counts, probe every member to depth two from both readings, and decide existence, uniqueness up to probe-isomorphism and initiality of minimal members under inclusions of declarations.
+
+### TFQ-0475 c2-run-forward-every-history
+
+- UUID: `9d38a1eb-4b20-5ba5-af54-95ea4ab588e5`
+- Parent: `TFQ-0474`
+- Status: `PROVED_LEAN`
+
+Continuation attempt two (pull request 269) takes Challenge 4 and runs every one of the 144 engines forward from both sealed readings to declared bounds (two items, growth below four data, fifteen rounds, a node guard of 250 per run): 288 runs, 25,932 nodes, 69,490 edges and 43,846 merges, every node and edge replayed and quotiented by the implemented isomorphism. In the local Lean package SecondRun/Run.lean, for every history of sealed events and switch markers from any engine state, the element count never falls (ereplay_elems_le), a history leaving it unchanged leaves the regime unchanged, no further history reaches a regime once left (no_return), and on a history returning to its starting state every state part of the way holds the starting regime (cycle_regime_const). A pair collapsed with a common third datum is not separable in that regime (not_separable_through), the shape of all 772 refused apart demands of the runs.
+
+Obligation: Carry ereplay_elems_le, no_return and cycle_regime_const for every history of sealed events and switch markers, and replay every node and edge of the 288 bounded runs.
+
+### TFQ-0476 forced-census-column
+
+- UUID: `80e2daa0-9f5d-56e7-bd59-7f03667874b8`
+- Parent: `TFQ-0475`
+- Status: `SOURCE_RECORD`
+
+Continuation attempt two decides the FORCED column of all twelve rows of the definability census over the declared engine class at its bounds (rounds zero to fifteen, both readings), each NOT FORCED verdict naming a first failing engine and a path of its run. The element count and irreversibility are FORCED, at the bounds by computation and beyond them by the every-history theorems, every cycle of every run being made of switch edges; two-ness is FORCED over the 64 LIVE engines, every path holding two before any bound or guard node. Every other row (the observational class count, succession, duration, adjacency, reach, symmetry, branching, exhaustion and recurrence) is NOT FORCED with an executable countermodel; one state of one run is reached in five rounds and in six, so succession and duration are not functions of the state.
+
+Obligation: Read each census row off every node and run of the 288 bounded runs, record FORCED or NOT FORCED with a first failing engine and path, and carry only the element count and irreversibility beyond the bounds.
+
+### TFQ-0477 go-reach-ceiling
+
+- UUID: `97908fda-7b94-5274-864e-6c5c4f8f852f`
+- Parent: `TFQ-0389`
+- Status: `PROVED_LEAN`
+
+In the base genesis-ongoing seed (terms a and b, arb asserted, xrx forbidden; the changes are identification, removal, adding a term and adding an assertion), ledger row D9 says every finite legal state with at least one term, names anywhere, is a result under either beginning. The Lean edit path reach_by_edits reaches a legal well-formed goal that contains the start's terms and keeps its names, by removing what the goal does not assert, adding the missing terms and adding the missing assertions, in that many changes; givenA_to_oneTerm and givenB_to_oneTerm reach the one-term result in two and three changes. Row N5 is the expressive ceiling that follows from D9: no statement about the asserting that holds in one finite legal state and fails in another follows from the seed.
+
+Obligation: Exhibit for every finite legal state with a term an edit path from either beginning of length removals plus added terms plus added assertions, and read N5 from it.
+
+### TFQ-0478 go-contraction-step2-step3
+
+- UUID: `20bb6f6e-8a55-5f5d-a4a9-a619c74f0b65`
+- Parent: `TFQ-0477`
+- Status: `PROVED_LEAN`
+
+The contraction family strikes changes from the base seed. The second derivation strikes removal and keeps identification, adding a term and adding an assertion (Lean Step3); every change comes with a carrying map q, the identity for an addition and a merge for an identification, sending terms to terms, each asserted xry to an asserted q(x) r q(y) and the names to the names, and carrying maps compose along every sequence (Step3.carries, Reach3.carries). The third derivation also strikes identification (Lean Step2, two kinds): Step2.toStep3 embeds each of its changes as a second-seed change and Reach2.toReach3 each sequence, so the earlier one-change and sequence theorems restrict to it, and its containment of a state in its outcome is a carrying map with the identity.
+
+Obligation: Carry the carrying map along every second-seed sequence, and embed every third-seed change and sequence into the second seed through Step2.toStep3 and Reach2.toReach3.
+
+### TFQ-0479 go-multiplicity-monotone
+
+- UUID: `5ed7752f-d340-574c-9b73-cc7563b7fc3b`
+- Parent: `TFQ-0478`
+- Status: `PROVED_LEAN`
+
+The fourth derivation counts assertions: a state has terms, a multiplicity per ordered pair and the names, arb is asserted once to begin with, and every change adds one term or raises one multiplicity by one, taking nothing away. Every change leaves its state contained in its outcome and containment composes, so along every sequence Reach4 s t n each multiplicity is the same or higher (Reach4.mult_le), at the pair writing arb as well (Reach4.arb_mult_le); terms, assertions and names persist and an obstruction is never cleared. A counted containment gives a containment of the supports, so the third derivation's conclusions survive on the supports.
+
+Obligation: Carry multiplicity monotonicity at every ordered pair along every sequence of fourth-seed changes, through counted containment.
+
+### TFQ-0480 go-two-relations-swap
+
+- UUID: `4d92d732-000f-5920-a65a-15188f3d8372`
+- Parent: `TFQ-0479`
+- Status: `PROVED_LEAN`
+
+The eighth derivation adds a second relation s beside r, and the ninth combines two relations with an empty beginning: a state has terms and a multiplicity table per relation. The two relations interact through the terms alone: an assertion of one leaves the other part as it is, a term or an identification acts on both, and a sequence projects to a sequence on either part. The seventh derivation's one-relation states embed with nothing in s (proj_ofR9_false, proj_ofR9_true), and the exchange of the two relations is an involution (swap9_swap) and a symmetry of the results, the cost and reachability (ledger D16, with Reach9.swap and reach9_swap).
+
+Obligation: Carry the projection of two-relation states and sequences onto either relation, the embedding of one-relation states with nothing in s, and the exchange as an involution that is a symmetry of results, cost and reachability.
+
+### TFQ-0481 go-admission-gate
+
+- UUID: `b54af9d0-8a34-598f-b296-29bb8075f5cc`
+- Parent: `TFQ-0480`
+- Status: `SOURCE_RECORD`
+
+The fifteenth derivation keeps the ninth's states and changes and adds one given sentence: a result is reached, whether it is admitted is not given by the reaching, and the admission of every result is recorded. Under the chosen reading C-A1 admission is a two-valued record kept with the result: reaching leaves not-admitted, and every reached result can be admitted by a record that is not one of the four kinds of change. The Lean statements reaching_does_not_admit and reaching_ne_admitted hold by definition (reaching = .notAdmitted, and the two records differ), and admission is neither an assertion of r or s nor a third multiplicity.
+
+Obligation: Record admission separately from reaching for every reached result, keep reaching at not-admitted, and never read a reached state as admitted by its generation.
+
+### TFQ-0482 go-leftover-unboundedness
+
+- UUID: `1c3ac00a-5d11-5b75-990b-4f773d22cb47`
+- Parent: `TFQ-0481`
+- Status: `PROVED_LEAN`
+
+The tenth derivation records a leftover with each change in a side ledger and keeps the ninth's state model; the sixteenth admits the recorded leftover back into the state. The feedback does not terminate: remove-then-admit is a two-change cycle at every state with an assertion, and a term added and identified away is one at every state with a term, while the ninth's add-then-remove is not a cycle. In Lean, if Reach16 s t n holds from a well-formed state with a term then Reach16 s t (2k + n) holds for every k (Reach16.unbounded), and ara reaches itself in 2k changes by removing and admitting for every k (admit_remove_unbounded), so the lengths of sequences reaching a result are unbounded.
+
+Obligation: Exhibit the two-change cycles of the sixteenth seed and carry Reach16 s t (2k + n) for every k from a well-formed state with a term.
+
+### TFQ-0483 go-h1-cancellation-excess
+
+- UUID: `f584a729-4a88-5417-a9e6-a4755abe035d`
+- Parent: `TFQ-0482`
+- Status: `PROVED_LEAN`
+
+Climbing round H1, installed as the twenty-second derivation, replaces one sameness sentence of the ninth seed: two results are the same when they differ only in how their terms are written, or only by an xry and an xsy asserted together. Two states are then one result exactly when they have equally many terms and, after one rewriting, the same excess e = M_r − M_s at every ordered pair (gen_iff_same, same_iff_excess), and each result has one plain state up to writing, asserting no pair in both relations (plain_reduced). The fewest changes to a result is Φ(G) = n + Σ|e(x,y)|, the plain state's size, and a shortest sequence is additions only through plain states (fewest_changes).
+
+Obligation: Carry sameness as equal term count and equal excess after one rewriting, the plain state as the representative of each result, and fewest changes n + Σ|e| on every well-formed state.
+
+### TFQ-0484 go-h2-state-raising-gauge
+
+- UUID: `b8c9098e-3277-5be3-9b76-59d02fd9bac3`
+- Parent: `TFQ-0483`
+- Status: `SOURCE_RECORD`
+
+Climbing round H2, installed as the twenty-third derivation, adds raising to the sameness: raising a term x adds xry and ysx once for every other term y, and results differing only by raising terms are the same. Raising moves the excess by [u = x] − [v = x], so the generated sameness is equally many terms and excesses differing by a gauge g(x) − g(y) after one rewriting (excess_raise, gen3_iff_same3). Loops e(x,x), two-way sums e(x,y) + e(y,x) and sums around three terms are kept by the sameness (Same3.loop, Same3.twoWay, Same3.around), and a state is the result asserting nothing exactly when all of them are zero (same3_nothing_iff). Adding or removing an assertion respects the sameness, but adding a term does only with one term and identifying only with at most three, so the twenty-second's independence of a change from the state fails (addTerm_not_respected, step_of_same3_fails).
+
+Obligation: Carry the gauge form of the H2 sameness, the invariance of loops, two-way sums and sums around three terms, and the countermodels to state-independence of adding a term.
+
+### TFQ-0485 go-h3-twin-fills-holonomy
+
+- UUID: `919e367f-8b9a-5b19-8546-11dd40f40fe3`
+- Parent: `TFQ-0484`
+- Status: `PROVED_LEAN`
+
+Climbing round H3 is two fills on the H2 carrier. In the twenty-fourth derivation a fifth change fills one term, and a filled term x balances exactly when its loop excess e(x,x) is zero, the same in every state of a result and every writing (balances_iff); a result is told from the one asserting nothing exactly when some filled term's loop excess is non-zero (told_iff). In the twenty-fifth a filled triple (x,y,z) balances when the sum around e(x,y) + e(y,z) + e(z,x) is zero, which the sameness keeps; a result is told exactly when some filled triple does not balance (nothing_balanced, told_iff), with three terms it is blind exactly when the sum around 0,1,2 is zero and the two-way sums add up to zero (blind_three_iff), and with every loop and two-way sum zero the triples through one term decide (cone_decides). A scratch rank computation of the sums around filled triples modulo raising gives 2 of 7 dimensions at three terms, 7 of 13 at four and 16 of 21 at five, only the loops unseen from five terms.
+
+Obligation: Carry loop balance for filled terms, triangle balance for filled triples, the told criteria, blind_three_iff and cone_decides, and keep the rank figures as scratch computation.
+
+### TFQ-0486 genesis-freeze-endpoint-ledger
+
+- UUID: `4ca87524-0814-5bee-b2b5-ad28a2078e83`
+- Parent: `TFQ-0476`
+- Status: `SOURCE_RECORD`
+
+Genesis 19L57G1 closed on three independent axes (GENESIS_CLOSEOUT §10): research_phase CLOSED_WITH_OPEN_OBSTRUCTIONS, alpha_reference READY_WITHIN_DECLARED_SCOPE and original_seed_completion_gate UNSATISFIED; the author approved the freeze of the §9.5 snapshot on 2026-09-28, and this programme reads that frozen state at 19L57G1 commit 85a83ae7c. The residual ledger (§9.1) leaves open D2 (G10, G13 and G14 are not live injections), D3 (no Lean evidence for CL-ISO-SOUND), D4 (python_driver_refinement NOT_PROVED), D5 (the original completion gate) and D10 (the input-count clause, frozen as NOT_ESTABLISHED), with successor research S2 (OB-1, endogenous demand) and S3 (Driver B) unchanged. The second derivation's open register (continuation §13) holds H-1 to H-9 from attempt two, G-3 to G-6, G-8 and G-9 from attempt one (G-1, G-2 and G-7 were taken by attempt two), the context decision procedure X-1, the responder items S-1 to S-4 and the carrier bridge L-1. No core blocker remains inside the frozen scope: B1, B2 and B3 were reproduced, repaired in one pass and checked by live injection.
+
+Obligation: Carry the frozen endpoint as a ledger: the three axis values, each open residual id with its source section, and no residual closed or reclassified without a cited later source.
+
+### TFQ-0487 endogenous-demands-exogenous-payments
+
+- UUID: `45df2a61-85ea-57df-b5e3-1f007c0ba792`
+- Parent: `TFQ-0486`
+- Status: `SOURCE_RECORD`
+
+Without the external continuation policy the closed system saturates: under the declared round shape a closed run from an empty requirement store makes at most n(n-1)/2 rounds (Lean closedRun_round_bound_from_empty, 2 * rounds ≤ n * (n - 1)), and at the fixpoint any further requirement needs a fresh datum (external supply) or a new requirement kind (external goal) (genesis_source §9 item 6). With external supply the runs grow in width, not in kind: the sealed mu2 trees record 53 (reading L) and 83 (reading F) innovation edges (fresh form plus instance), which the education audit reads as unary forms with 0 binary (finite computation to the requested depth of 15 transition steps). In the reflective composite reflState n demand never dries: for n ≥ 3 the distinct data 1 and 2 have equal depth-one profiles (Lean Generator.generation_never_dries). Within the declared local finite-alphabet class (one radius d, one colour bound k independent of chain length) every strategy fires and none clears (Lean G1Class.g1_class_exclusion), while the clearing members perPairFreshMark (recurring import) and valued (one-time identity-grade rule) lie outside the finite declaration. The education audit names the pattern 'endogenous demands, exogenous payments'.
+
+Obligation: Carry the three Lean statements with their hypotheses (ClosedRun from an empty store; n ≥ 3 in reflState; FiniteDeclaration k S) and keep the unary-innovation count as a finite computation over the exported mu2 trees.
+
+### TFQ-0488 declared-challenge-import-per-level
+
+- UUID: `61abda58-10dc-5095-9ee3-f5cfb7202708`
+- Parent: `TFQ-0487`
+- Status: `DEFINITION`
+
+Declared here as this programme's stage-change rule: each stage change S(n) to S(n+1) consumes exactly one declared, priced and recorded challenge import, either a fresh datum (external supply) or a new requirement kind (external goal), entered as one row of the demand ledger. It is the sealed external continuation policy (the supply and admission of one fresh opaque token at the closure fixpoint, declared metatheory and not a derived transition) made a typed ledger entry, and it follows the education audit's reading that progression requires one declared challenge import per level. In the Alpha slice the import is host-supplied: the host gives the target pair, the measure and the bounds, and nothing in the harness chooses a next demand.
+
+Obligation: Record each stage change with exactly one import row (kind fresh-datum or new-requirement-kind, its price, its source) and refuse a stage change that carries no import or an unrecorded one.
+
+### TFQ-0489 typed-requirement-kinds
+
+- UUID: `4bfe1283-c997-5389-b8a2-5a13781923e4`
+- Parent: `TFQ-0488`
+- Status: `DEFINITION`
+
+Declared here as the requirement kinds a challenge import may introduce beyond the sealed one, an ordered pair of admitted data to be separated (a regime with n data has n(n-1)/2 such pairs, allPairs_length). The second derivation's declared stake is the typed extension it ran: a label apart, same or free on every ordered pair of datum indices, free on the diagonal, declared once; a pair is honoured when apart pairs are separable and same pairs collapsed, so its two demand kinds are a held apart pair that is collapsed and a held same pair that is separable. In rung two's menu of nine rules E4 alone generates both demand kinds (continuation §4), and stake invariance for E3, E4 and E6 is OPEN at target-regime transport replay, with no Lean statement about any menu rule (G-3 asks for the other five rules in Lean and E6's invariance). The education audit cites the Desc 64-toggle and KindDesc 1024-member families; in the sealed Lean these count guard toggles (Constitution.allDescs_length) and event-kind enable bits (ControllerCategory.allKinds_length), not requirement kinds.
+
+Obligation: Type each requirement by kind (separate, apart, same) with its label source, and do not count a requirement kind as available to a stage until its invariance under the declared isomorphism is checked.
+
+### TFQ-0490 k-item-delta-grammar
+
+- UUID: `c06b7aeb-a75f-538e-ad42-b19e32eb4eee`
+- Parent: `TFQ-0488`
+- Status: `OPEN_OBLIGATION`
+
+The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.
+
+Obligation: Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.
+
+### TFQ-0491 capability-stage-counter
+
+- UUID: `3380012e-3ffa-5b48-99ed-7ea054ceee41`
+- Parent: `TFQ-0488`
+- Status: `DEFINITION`
+
+Declared here as the stage index n of S(n): it counts licensed stage changes, each consuming one recorded challenge import (TFQ-0488), and not rounds or events. The second derivation's census motivates the choice: succession of accepted rounds is NOT FORCED under EVERY and CHANGING because one state is reached in five rounds and in six (SD-CF-3), so a round count is not a function of the state, while under the CHANGING reading (an accepted round after which the regime differs) the count is definable from base and regime, and from the regime alone when counted from the empty regime. In Lean, along any history of sealed events and switch markers the element count never falls, and a step or history that changes the regime raises it (estep_elems_lt_of_ne, ereplay_elems_lt_of_ne).
+
+Obligation: Increment n only on a licensed stage change with its import row, keep the round and event counters separate, and never read n off a round count.
+
+### TFQ-0492 candidate-extension-generator
+
+- UUID: `663344b2-9f35-5f90-b220-eb90c7893e49`
+- Parent: `TFQ-0488`
+- Status: `DEFINITION`
+
+Declared here as the map from an unresolved residual, a demand given as source node, target pair, measure and bounds, to a legal proposal space, in the Alpha harness's three phases. Propose: a Proposal is Supply-shaped and no offering is ever executed. Evaluate: evaluate enumerates the sealed min_responses, groups them by canonical key and returns an EvalResult that is evidence only and is recomputed on the admission path. License: an authorization is bound to the source history digest, the target, the measure and the bounds, reuse with any field changed is refused, and uniqueness is not authorization (M3, M4). Endogenous demand generation stays OPEN (AE-DEMAND-OPEN): the generator answers a host-supplied demand and chooses none.
+
+Obligation: Given a host-supplied demand, return the retained classes as evidence only, admit nothing without a License bound to that source, target, measure and bounds, and never emit a next demand.
+
+### TFQ-0493 four-gate-active-obstruction
+
+- UUID: `4d46dc1e-1af7-5eb6-8ecc-df675e9be6c0`
+- Parent: `TFQ-0492`
+- Status: `DEFINITION`
+
+Declared here as the test a residual must pass before it counts as an active obstruction: obstP = retainedP ∧ protectedP ∧ declaredP ∧ zeroDeclP, that is, the pair is retained in the witness store, carries a protected demand, an observation is declared, and the declared observation does not separate the pair. In the sealed passage system this is an identity of Bool-valued functions at every state and pair (PrimitivePassage.obstP_factors), with sufficiency obst_of_gates and necessity gates_of_obst; the source calls the factorization near-definitional, gives the four-way reading content through the four gate_*_independent theorems, and refutes joint freedom of the gates (obs_gates_not_both_false). zeroDeclP answers true before any observation by a declared convention that never makes anything obstructed (obst_requires_observation). The education module MssnObstructionDetector restates the factorization over supplied observation columns.
+
+Obligation: Report a residual as an active obstruction only when all four gates hold at the stated state and pair, and keep a collapsed pair that fails a gate as an observation, not a demand.
+
+### TFQ-0494 stage-change-contract-proposal-record
+
+- UUID: `ffbac7b5-27eb-5615-88ff-2a5d4090a859`
+- Parent: `TFQ-0493`
+- Status: `SOURCE_RECORD`
+
+The sealed GraphGenesis.ProposalRecord s is a represented growth proposal at state s whose fields are exactly: a block proved to be a member of the complete family upFamily s (branch-local, with no canonicality or uniqueness claim); an embedding and a retraction with retract (embed x) = x for every represented position x < s.occ.length; freshness of every token the block admits; preservation of every old asserted, retained and protected pair and of every pair the declared observation separates, transported along embed; a new pair equal to (parentPos, freshPos) with the parent represented and the fresh position the next one; and a declared cost : Nat. It has no license, execution or activation field: on a halted state its block replays to the same state (proposal_confers_no_execution), and upProposal inhabits the record with the identity embedding on a store-bounded live state. The education audit reads this record as the stage-change contract for S(n).
+
+Obligation: Carry a stage change as a ProposalRecord with every obligation discharged, and execute it only through the separately gated step under a license and a budget.
+
+### TFQ-0495 genesis-to-sn-crosswalk
+
+- UUID: `8115aae1-e557-5a14-a583-18209a4c7792`
+- Parent: `TFQ-0494`
+- Status: `DEFINITION`
+
+Declared here as the bridge table from the Genesis endpoint to the entry of S(n), taken from the pre-Genesis-to-MSS-N finite-stage crosswalk with its required qualifications: S(0) asks what is received as the opaque ground inscription (<> has no inherited object-language meaning); S(1) whether a newly supplied mark was consumed or admitted (supply alone may be a no-op); S(2) which data are retained and which profiles stay equal; S(3) how a supplied pair-separation task is met (the cost-two result is relative to a response grammar and cost); S(4) whether the relevant pairs are separated under the chosen closure policy; S(5) where the next requirement or fresh datum comes from (external continuation is a declared policy, not an endogenous generator proved by saturation); S(6) how old presentations are represented and recovered after an extension (typed maps and their preservation laws must be supplied and checked). The indices stay distinct: S(n) is a presentation stage in the admission account, MSS-m an externally specified atlas target, and H_j homology in degree j of a declared complex, separate from stage n.
+
+Obligation: Keep each S(n) row with its qualification, and refuse any identification of S(n) with MSS-n or with a homology or homotopy degree by numeral.
+
+### TFQ-0496 responder-in-lean
+
+- UUID: `bb19a38b-1b3e-5ad3-af65-21e0237ad470`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+The sealed responder, a minimum of the sealed candidate space of at most two items and arity at most two under mu1 or mu2, has no Lean counterpart in the second derivation's packages: no Lean statement about a minimum, cost or tie (S-3); the responder's domain excludes ruled regimes, since it refuses to run on a regime holding a uniform rule (S-1); the other demand kind, a same pair that is separable, is not read (S-2); and the distance bound of two is not known to be the grammar's (S-4). Attempt one's G-4 asks for the same responder in Lean, and attempt two's H-1 (the four streamless carriers past the bounds) needs it.
+
+Obligation: State in Lean the responder's minimum, cost and tie relation over the sealed candidate space, extend its domain to ruled regimes or record why not, and read both demand kinds.
+
+### TFQ-0497 context-decision-procedure
+
+- UUID: `5e9af5a2-14e5-5838-8153-60f15fb2000d`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).
+
+Obligation: Build a decision procedure for collapse and separability over the well-formed contexts of a finite regime, prove it correct in Lean, and use it to decide Y-2, T-1, holding two and exhaustion.
+
+### TFQ-0498 declared-input-floor
+
+- UUID: `55d68a4f-522d-5581-9299-3ee49eebef8f`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).
+
+Obligation: Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated.
+
+### TFQ-0499 python-lean-carrier-bridge
+
+- UUID: `0306c224-964b-5b0d-ab75-f3f37014c49d`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE); the Alpha harness's Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it does not model the new license binding (D4); attempt two's Lean speaks of every history of sealed events and switch markers, and that each edge of a Python run is such a history is read, not proved. Rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act), and the reading regimes differ: R2L and R2F in Lean, the sealed genesis histories that stop before the requirement in Python.
+
+Obligation: Prove a refinement from each cited Python computation to its Lean statement (run edges as sealed histories, harness driver to harness Lean), or keep every joined claim marked as executable-check evidence only.
+
+### TFQ-0500 isomorphism-soundness-in-lean
+
+- UUID: `227af173-29ef-5b89-9ba9-89e345667a6c`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.
+
+Obligation: State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.
+
+### TFQ-0501 runs-past-declared-bounds
+
+- UUID: `3efbdd85-b75c-5743-a3cf-b3360016d8a7`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250 per run, growth below four data, two items): 11,266 nodes stopped at the guard and 368 at the bound, and 116 runs are not closed. Attempt two's leftovers H-2 to H-9 remain: the 970 refused same demands (H-2), the twenty-eight merges rung two's observable budget refused (H-3), the 482 regimes above the brute-force key limit (H-4), a distance on adjacency (H-5), a reading of carrying forward that admits switch (H-6), the forty-four closed runs with switch cycles UNDECIDED under ONE VALUE PER NODE (H-7), why E1 and E5 share one run under mu2 (H-8), and five data (H-9). Whether the augmentation sequence is unbounded is unresolved in the sealed paper (question 7): with the external continuation policy every requested depth tried was reached and every supplied demand has a response (mark_progress), and no unboundedness claim is made.
+
+Obligation: Run the declared class past the bounds or prove the FORCED verdicts that are computations at the bounds, and dispose of each of H-2 to H-9 with its own evidence.
+
+### TFQ-0502 stream-at-four-items
+
+- UUID: `4970530a-d2d8-54e0-b42a-b5d0b73dce71`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of them were selected at three items, all fourteen recorded refusal situations are answered at exactly three items, and two new first refusals appear. 1039 nodes stopped at the guard, targets after a node's first refusal were not searched (the first-refusal short-circuit), and four items were not computed (R1-X PENDING); V2 beyond nineteen situations and the narrow-versus-wide comparison are also OPEN. Attempt two's runs add only that no response carries a datum at two items, and the continuation was not authorized to take Challenge 1 up.
+
+Obligation: Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary.
+
+### TFQ-0503 driver-b-seventh-event
+
+- UUID: `1b95c368-c471-594f-b63d-e89ff4b9648c`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+
+Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.
+
+### TFQ-0504 endogenous-demand-ob1
+
+- UUID: `c259276b-e842-5fd2-b75a-6fa1c6e51b45`
+- Parent: `TFQ-0486`
+- Status: `OPEN_OBLIGATION`
+
+No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.
+
+Obligation: Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.
+
 ## FINITE_OBSTRUCTION
 
 ### TFQ-0003 Finite obstruction calculus on a declared carrier
@@ -1237,6 +1667,56 @@ Chapter 06 is report-erasure and the Paper 0 boundary. S001-GAP-PD-TO-P0-NOT-IMP
 
 Obligation: Hold the Paper 0 report-erasure boundary as a supplied factorization, and leave S001-GAP-PD-TO-P0-NOT-IMPORTED unclosed.
 
+### TFQ-0505 alpha-license-binding-m1-m8
+
+- UUID: `09cd8a3d-d387-50cf-9527-f8f22a0c33f4`
+- Parent: `TFQ-0331`
+- Status: `SOURCE_RECORD`
+
+The Alpha reference slice is READY_WITHIN_DECLARED_SCOPE: after one repair pass (commit b698cf7f) the eight mandatory conditions hold within the §7 trust boundary. M1 authorized admission executes only a member freshly recomputed from the sealed kernel; M2 a parent Node whose history does not replay to its regime is refused; M3 a License is bound to the source history digest, the target, the measure and the bounds, and reuse with any field changed is refused; M4 uniqueness is not authorization; M5 every retained class receives one disposition (explored, pruned or open); M6 proposal and evaluation are inert and OPEN, bound or guard outcomes are typed stops, never admitted successes; M7 the slice replays offline with no model provider; M8 one local command (python verify.py) passed nine of nine steps with 0 skipped checks, including 169 tests and the sealed kernel's 66. The audit reproduced B1, B2 and B3 through the real path, and each repair fired and recovered under live injection.
+
+Obligation: Admit only through apply_licensed or explore with a host-built License bound to source, target, measure and bounds, recompute the evaluation from the sealed kernel, and refuse every mismatch by name.
+
+### TFQ-0506 pfp-tripartite-law
+
+- UUID: `cafca083-326e-54fe-b82d-fd4dafb643dd`
+- Parent: `TFQ-0505`
+- Status: `DEFINITION`
+
+The PFP non-conflation law keeps three acts apart. Repair inside a frozen context is a same-level adjustment within the declared repair gauge W = im d₀ that changes slot values without altering the carrier set or the cochain dimension. Extending the representation (Λₙ) adjoins carrier elements, cochain dimensions or relations after same-level repair is exhausted, under the 12 extension audit conditions. Promoting evidence or authorizing action (Ω) moves an object across the authority firewall, and model output, packet admission, local replay and zero residuals never authorize external actions.
+
+Obligation: Type every PFP act as repair, extend or promote, and refuse any route that turns a zero residual, a replay or an admission into an authorization.
+
+### TFQ-0507 pfp-carrier-origin-nilpotency
+
+- UUID: `e23ba9b7-570c-59ac-b932-81c60739c74b`
+- Parent: `TFQ-0506`
+- Status: `PROVED_LEAN`
+
+CarrierOrigin.lean (namespace SymbolGame.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
+
+Obligation: Use the two theorems only as stated: a 1-simplex needs distinct endpoints, and a supplied d₁ ∘ d₀ = 0 propagates pointwise; establish nilpotency for each concrete complex separately.
+
+### TFQ-0508 pfp-stealth-cochain-phi1-gamma2
+
+- UUID: `56e8597c-df9b-5aa7-a1dd-dfd73eac6ef2`
+- Parent: `TFQ-0507`
+- Status: `DEFINITION`
+
+When a packet family declares a cochain representation C⁰ → C¹ → C² with maps d₀ and d₁, the discrepancy of a candidate 1-cochain c is measured by the boundary defect Φ₁ = ‖[c]‖ in C¹/im d₀ (the quotient infimum of ‖c − d₀a‖ over 0-cochains a), the cycle defect Γ₂ = ‖d₁c‖ in C², and the total residual Ξ = Φ₁ + Γ₂; a candidate is accepted exactly when Ξ = 0 over the declared observer. Because d₁d₀ = 0, Φ₁ = 0 forces Γ₂ = 0, so Ξ = 0 exactly when Φ₁ = 0. Worked example: on the oriented triangle 0 → 1 → 2 → 0 with one declared face, c = (1, 1, 1) gives Φ₁ = 3 and Γ₂ = 3, so Ξ = 6, while c = (1, 1, −2) = d₀(0, 1, 2) gives Φ₁ = Γ₂ = Ξ = 0.
+
+Obligation: Compute Φ₁ as the exact quotient infimum and Γ₂ under the declared face map with exact rationals, report both, and accept only at Ξ = 0.
+
+### TFQ-0509 pfp-c4-certificate
+
+- UUID: `95811873-a405-5a41-b167-ad4e056422c2`
+- Parent: `TFQ-0508`
+- Status: `SOURCE_RECORD`
+
+On the supplied oriented 4-cycle with vertices 0 to 3, edges 01, 12, 23, 03 in that order, one declared face 01+12+23−03 and c = (2, −3, 5, 7), the potential a = (0, 2, −1, 4) gives d₀a = (2, −3, 5, 4) and residual r = (0, 0, 0, 3) with L1 norm 3, an upper bound. The dual w = (−1, −1, −1, 1) is feasible (max |wᵢ| = 1 and d₀ᵀw = 0 at all four vertices) with w·c = 3, so every potential leaves L1 cost at least 3 and φ₁ = 3. The face row d₁ = (1, 1, 1, −1) satisfies d₁d₀ = 0 and d₁c = −3, so γ₂ = 3. The fixture c4_public_input.json carries this complex, and test_native_certificate_positive_and_decisive_mutations checks the certificate through the native Rust checker, rejects a +1 change to each answer field and accepts a constant shift of the potential; it passed in the recorded receipt of 2026-10-19 (2 passed, 0 failed).
+
+Obligation: Check the C4 certificate with exact rationals: primal residual norm, dual feasibility (|wᵢ| ≤ 1, d₀ᵀw = 0), matching objectives w·c = ‖r‖₁ = 3, and γ₂ = |d₁c| = 3.
+
 ## MSSN_SN
 
 ### TFQ-0333 Account finite demand by s_next = s - d + b only
@@ -1326,6 +1806,266 @@ Obligation: Refuse unrestricted old-image recovery and the advertised SnCarrier 
 The pregenesis segment note in derivation_dag.json still says no source opened there derives Genesis events or S(n) maps as morphisms carrying generated and discharged obligation vectors in the free commutative monoid. The monoid is present as Rust in omega_kernel/src/obligation.rs: Obligations is a BTreeMap of ObligationId to positive counts, with empty, single, of, and combine, and ObligationError for never-generated and over-discharge. Node PG-OBLIGATION-MONOID says Genesis morphisms are meant to carry those vectors. The later route label is not adopted; the join stays open.
 
 Obligation: Do not treat Genesis events or S(n) maps as obligation-monoid morphisms until generated and discharged vectors are derived, not only implemented.
+
+### TFQ-0510 sn-two-boxed-laws
+
+- UUID: `2a10993f-18e8-59bb-a20e-db74c2093f2f`
+- Parent: `TFQ-0495`
+- Status: `DEFINITION`
+
+The S(n) strand states two boxed laws: S(n+1) may contain only structure forced by an unresolved Genesis obstruction at S(n), and a mathematical realization R(S(n)) has no authority to extend S(n). sn.md section 1 reads them as design requirements on later work, not as independent theorems that force the next event, and accepts an external continuation request and a chosen response grammar as recorded inputs. A property shown in a model returns to Genesis only through an explicitly proved reflection bridge. No checker enforces the two laws; they mark which arguments are not allowed.
+
+Obligation: Treat the two boxed laws as design rules: name the unresolved demand and the licensed response before admitting S(n+1), and refuse any extension of S(n) argued from a property of a realization alone.
+
+### TFQ-0511 sn0-ground-inertia
+
+- UUID: `59269d06-9e1f-5766-aa4a-9f8e5c5c9024`
+- Parent: `TFQ-0510`
+- Status: `PROVED_LEAN`
+
+S(0) supplies the literal <> as one opaque token: one presentation-token slot and two ASCII bytes, and neither count is the number of admitted data. In the sealed Genesis model nothing is derivable at genesis (genesis_underivable) and a bare supply leaves every regime unchanged (supply_no_op). The sealed Challenge 0 computation records admitted data empty in reading L and the single opaque datum in reading F, with no internal observables in either reading. The local S(n) Lean model has carrierCard 0 = 0 beside the two-character wire form of the ground token (ground_presentation_vs_carrier), and Carrier 0 has no inhabitant (ground_carrier_empty).
+
+Obligation: Keep the two-byte, one-token presentation <> apart from the admitted carrier: at S(0) nothing is derivable, supply changes no admitted state, and the declared index-0 carrier has no element.
+
+### TFQ-0512 sn1-supply-not-admission
+
+- UUID: `ff418654-f39d-58f2-819c-4d5c6fff27e7`
+- Parent: `TFQ-0511`
+- Status: `SOURCE_RECORD`
+
+S(1) supplies <a>. Supply(<a>) alone leaves the admitted regime unchanged (supply_no_op), and AdmitDatum(<a>) is a separate event that may create one admitted datum. The sealed source records that whether <a> is admitted at Challenge 1 is underdetermined, and that the two sub-readings converge at Challenge 2 because admission deduplicates on presentation identity. With no admitted instances every pair of data is observationally collapsed, even with uniform rules present (collapsed_of_no_insts). The ledger value s₁ = 1 is chosen for the exercise that issues the demand obs_unconsumed_mark and is not inferred from singleton cardinality.
+
+Obligation: Model supply and admission as different events, so that a supply of <a> admits nothing, and keep s₁ = 1 as a declared ledger entry tied to an issued demand.
+
+### TFQ-0513 sn2-opaque-collapse
+
+- UUID: `2e1dd528-952c-56b1-99b1-3789752e105b`
+- Parent: `TFQ-0512`
+- Status: `SOURCE_RECORD`
+
+S(2) retains opaque wholes: reading L admits (<a>, <ab>) and reading F admits (<>, <a>, <ab>). R2L_collapsed and R2F_collapsed show that every pair of admitted data stays observationally collapsed before distinguishing instances are admitted, so two externally different inscriptions remain internally indistinguishable, and the source does not decompose <ab> into a and b. A collapsed pair by itself is not an active obstruction; it becomes one only when a supplied question or separation requirement demands different answers. The later flat grammar sn.ebnf parses <ab> as a pair of glyphs, which is a new interpretation with its own parser.
+
+Obligation: Keep <a> and <ab> as opaque admitted data with equal observation profiles, and record a collapse as an obstruction only after a separation demand is supplied.
+
+### TFQ-0514 sn3-cost-two-unary-mark
+
+- UUID: `b6c3cbd8-ff69-500b-933a-29bcc3cbf6a1`
+- Parent: `TFQ-0513`
+- Status: `SOURCE_RECORD`
+
+S(3) requires the admitted opaque data <a> and <ab> to be separated, starting from a form-less, instance-less regime and counting each admitted item once. No response of at most one item separates the pair (cost1_insufficient_general), and one new unary form with one instance at a demanded endpoint does, so the minimum item count is 2 in both readings. Under item count the minima tie: at max_items 2 and max_arity 2 reading L has 6 valid deltas in 3 classes (unary mark, binary link, binary self-loop) and reading F has 10 in 5, and in reading L the tie class over all arities is countably infinite. Under the lexicographic cost mu2 = (items, new-form arity sum) the unique minimum up to source isomorphism is the unary mark (2,1), in reading L (mu2_unique) and reading F (mu2_unique_F).
+
+Obligation: Show that no response of at most one item separates the pair and that every valid two-item response with new-form arity sum at most 1 is isomorphic to the unary mark, and keep the binary edge out of the minimizer.
+
+### TFQ-0515 sn-endpoint-lemma
+
+- UUID: `73f17d1a-9cbe-5e41-aeb2-52d91dcce353`
+- Parent: `TFQ-0514`
+- Status: `PROVED_LEAN`
+
+For a supplied irreflexive relation R, R(a,b) implies a ≠ b, since a = b would turn the witness into R(a,a); so the support of an asserted pair has exactly two elements, |{a,b}| = 2. This counts endpoints, not witnesses: single_oriented_witness_consistent builds a model with one forward witness and no reverse witness, so endpoints are 2 while witnesses can be 1. For the pointed two-element directed graph D₂ = ({0,1}, 0→1), each asserted pair (a,b) receives exactly one point-preserving map with f(0) = a and f(1) = b, and that map preserves the edge (D2_initial_pointed).
+
+Obligation: From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 2 separately from witness multiplicity, and give the unique point-preserving map from D₂ to each asserted pair.
+
+### TFQ-0516 sn4-policy-closure-cycle-space
+
+- UUID: `d59a360a-630d-51f0-984b-8cd671f1f702`
+- Parent: `TFQ-0514`
+- Status: `SOURCE_RECORD`
+
+S(4) applies a supplied pair-separation closure policy. The sealed source derives no object-language endogenous demand generator; under the declared policy, which reads admitted structure and automorphism orbits and issues one requirement per orbit, the fixed finite datum set reaches the all-pairs-separated fixpoint, and a closed run from an empty requirement store makes at most n(n−1)/2 rounds (closedRun_round_bound_from_empty). At that terminal state the active separation-demand set is empty, so W₄ = ∅ and s₄ = 0, while the retained history H₄ stays nonempty. A complete graph K_m records the separated pairs of m data; for m ≥ 1 it is connected with cycle-space dimension m(m−1)/2 − m + 1.
+
+Obligation: Under the declared closure policy, reach W₄ = ∅ with H₄ retained, bound a closed run by n(n−1)/2 rounds, and compute the cycle-space dimension m(m−1)/2 − m + 1 of K_m as a graph count, not a demand count.
+
+### TFQ-0517 sn5-continuation-recorded-request
+
+- UUID: `33de54ce-e3c1-504a-a210-7e615c2185f4`
+- Parent: `TFQ-0516`
+- Status: `SOURCE_RECORD`
+
+After a selected closure procedure reaches its target, continuation needs a stated next input or policy. The sealed source declares its external continuation policy, supply and admission of one fresh opaque token at the closure fixpoint, as explicit metatheory and not a derived transition, and the closeout lists endogenous demand generation (OB-1) as successor research. A continuation request may name a fresh token, a new protected question or a new response class, and is recorded before a response is selected. The local ledger labels one such request obs_continuation_gap, giving s₅ = 1 for the exercise.
+
+Obligation: Record each continuation request as an external input before selecting its response, and state OB-1 as an unresolved question, not a no-go theorem about endogenous continuation.
+
+### TFQ-0518 sn-off-image-refusal-proposal
+
+- UUID: `732546f5-4026-55ca-9ede-9bf086bd82ba`
+- Parent: `TFQ-0517`
+- Status: `SOURCE_RECORD`
+
+For the pinned education SnCarrier model, SnOffImage.lean compiles the domain restriction of the S(6) retraction law: retractionDownMap n p = accepted q implies p = sectionLift n b and q = b.toPresentation for some base presentation b (accepted_only_from_section), refusal holds exactly off the section image (nonDescent_iff_off_image), the witness b is unique (sectionLift_injective), a lift at stage m ≠ n is refused by r_n (retraction_stage_strict), and image membership is a Bool test computed from the syntax (inImage_iff). With old_image_base this gives a left inverse on the image and refusal off it. The accompanying note is a proposal with AuthorityEffect None and records a Lean 4.34.0 build whose six axiom lines stay within propext and Quot.sound.
+
+Obligation: Show that retractionDownMap n accepts exactly the images of sectionLift n, with a unique witness, an exact stage test and a decidable image test, inside the five base shapes of the pinned carrier.
+
+### TFQ-0519 sn-protected-answer-transport
+
+- UUID: `26db6fbc-6946-5835-975b-48f71515ff5a`
+- Parent: `TFQ-0518`
+- Status: `OPEN_OBLIGATION`
+
+S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. The sources state these as requirements and supply no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.
+
+Obligation: For each protected answer F supply F′ with F′∘u = F, and for each future admitted event supply the commuting transition square, before claiming that the lift preserves that answer or operation.
+
+### TFQ-0520 sn-postnikov-refusal
+
+- UUID: `e3ff16d7-f5d8-5b58-983b-34d9b2631e2b`
+- Parent: `TFQ-0518`
+- Status: `SOURCE_RECORD`
+
+The construction index n of S(n) is distinct from Postnikov depth j. For j ≥ 0 the Postnikov truncations of a fixed space preserve π₀, so an empty space followed by a point cannot be two truncations of one space. If a topological realization ρ is supplied, its tower at fixed n is written P_j(ρ(S(n))) with its own hypotheses, and growth across n stays a separate construction that needs its own maps and preservation proofs. The combined paper lists S(n) is automatically a Postnikov tower among withdrawn inferences, and ledger row WDP-P001-017 withdraws automatic Postnikov structure.
+
+Obligation: Index any Postnikov tower as P_j(ρ(S(n))) for a supplied realization ρ, and refuse to read the stage sequence S(n) as successive truncations of one space.
+
+### TFQ-0521 sn-representation-quotient
+
+- UUID: `86d3e34c-bb92-59da-91da-f8cdebd6d204`
+- Parent: `TFQ-0518`
+- Status: `SOURCE_RECORD`
+
+In a supplied complex model with one coordinate at each of two sites, the balance map T sends the ordinary tensor coefficients (rr, ri, ir, ii) to (rr − ii, ri + ir), so for m = n = 1 its rows are (1,0,0,−1) and (0,1,1,0). With u = Tᵗ/2 and r = T, r u = I₂ while u r = P = TᵗT/2 is a rank-2 idempotent, and the vector (1,0,0,1) lies in ker T, so P ≠ I₄. The exact kernel of T is the complex balancing relation. The reading guide uses this as a representation quotient: it names the declared questions that survive and the information quotiented away, and it supplies no native S(n) obstruction.
+
+Obligation: Check r u = I₂ and u r = P ≠ I₄ for the balance map, exhibit (1,0,0,1) in ker T, and record the quotient as a declared representation with its preserved questions.
+
+### TFQ-0522 sn-e08-weighted-l1-duality
+
+- UUID: `a8ebe4a6-bb20-5e89-af1f-5335d1c5dc93`
+- Parent: `TFQ-0516`
+- Status: `SOURCE_RECORD`
+
+Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_e ω_e |c_e − (d₀g)_e| equals the maximum of cᵀy subject to d₀ᵀy = 0 and |y_e| ≤ ω_e, as finite linear-programming duality for the stated feasible bounded problem. Matching primal and dual feasible values certify optimality. An ℓ¹ minimizer need not be unique and is not in general the ℓ² harmonic residual. The page separately defines a categorical adjunction by functors, unit, counit and triangle identities, and says these maps are not the matrix pair d₀, d₀ᵀ.
+
+Obligation: For a declared weighted ℓ¹ cochain problem, certify a value by a primal g and a dual y with d₀ᵀy = 0, |y_e| ≤ ω_e and equal objective values, and keep the categorical adjunction a separate construction.
+
+### TFQ-0523 sn-e12-circulation-functional
+
+- UUID: `e7d71799-b168-52a6-a3e9-d8865af6de80`
+- Parent: `TFQ-0522`
+- Status: `SOURCE_RECORD`
+
+Example E12 takes the oriented triangle a→b→c→a with C₀ = C₁ = ℤ³, coboundary d₀ and supplied edge record x = (1,0,0). On the open path a→b→c the potential g = (0,1,1) realizes the first two records but predicts −1 on ca. The circulation I(x) = x_ab + x_bc + x_ca vanishes on every d₀g and I(x) = 1, so no integer or rational potential realizes all three records; conversely I(x) = 0 gives the potential (0, x_ab, x_ab + x_bc), so im d₀ = ker I and C¹/im d₀ ≅ ℤ. The combined paper states the same criterion over ℤ, and Cochain.lean establishes it as triangle_repair_invariant and triangle_repair_exact_iff.
+
+Obligation: Check I∘d₀ = 0, replay the local potential g = (0,1,1), establish both inclusions of im d₀ = ker I, and return I(x) = 1 as the obstruction certificate for x = (1,0,0).
+
+### TFQ-0524 sn-e18-l1-ties-l2-center
+
+- UUID: `386f3ff7-c062-531d-a8b7-b046efd3b1ff`
+- Parent: `TFQ-0522`
+- Status: `SOURCE_RECORD`
+
+Example E18 keeps the unfilled triangle with x = (1,0,0) and I(x) = 1, so every residual r = x − d₀g has I(r) = 1. Under ℓ¹ the bound ‖r‖₁ ≥ |I(r)| = 1 is attained by r = (1,0,0) and by ties such as (1/2,1/2,0), with dual certificate y = (1,1,1) satisfying d₀ᵀy = 0, ‖y‖∞ ≤ 1 and xᵀy = 1. Under ℓ² over ℚ, Σ(r_i − 1/3)² = ‖r‖₂² − 1/3 ≥ 0 gives the unique minimizer h = (1/3,1/3,1/3) with squared norm 1/3, from g = (0,2/3,1/3) with x = d₀g + h and d₀ᵀh = 0. Both optimal representatives keep I = 1: optimization selects a representative and does not remove the obstruction.
+
+Obligation: Verify ℓ¹ primal and dual feasibility with common value 1, the ℓ² reconstruction x = d₀g + h with d₀ᵀh = 0 and ‖h‖₂² = 1/3, and I(h) = 1.
+
+### TFQ-0525 sn-e19-torsion-erased-over-q
+
+- UUID: `c1ea3d31-3a25-517e-b67e-35a7b1c35330`
+- Parent: `TFQ-0523`
+- Status: `SOURCE_RECORD`
+
+Example E19 takes the free chain complex C₂ = ℤ → C₁ = ℤ → C₀ = ℤ with ∂₂(1) = 2 and ∂₁ = 0. The cycle z = 1 is nonzero in H₁ = ℤ/2 because no integer c has 2c = 1. After tensoring with ℚ, ∂₂(1/2) = 1, so H₁(C;ℚ) = 0, but the rational primitive 1/2 is not an integral repair witness. Adjoining one integer generator f with ∂₂f = 1 removes the class over ℤ at a cost of one new generator, against zero new generators for the coefficient change; replacing 2 by m ≥ 2 gives H₁ = ℤ/m over ℤ and 0 over ℚ.
+
+Obligation: Verify non-exactness of z modulo m over ℤ, exhibit the rational primitive 1/m over ℚ, and keep a coefficient change apart from an integral boundary added in the source ring.
+
+### TFQ-0526 sn-e20-observer-completion
+
+- UUID: `058bc393-6817-54a9-8e76-5b769169e252`
+- Parent: `TFQ-0523`
+- Status: `SOURCE_RECORD`
+
+Example E20 works over V = ℚ³ with B = im d₀ = ker I. For linear Q: V → W with K = ker Q, the induced map V/B → W/Q(B) has kernel (B + K)/B ≅ K/(K ∩ B), so quotient observation is injective exactly when K ⊆ B. The defective observer Q_bad(x) = x₁ hides z = (0,1,0), which has Q_bad(z) = 0 and I(z) = 1. Adding the coordinate I(x) gives Q_complete(x) = (x₁, I(x)) with kernel {(0,t,−t)} ⊆ B; the hidden part K/(K ∩ B) has dimension 1 while ker Q_bad has dimension 2, so one added linear functional is necessary and sufficient, and the first projection recovers x₁.
+
+Obligation: Exhibit the hidden class z, verify that the induced map has kernel isomorphic to K/(K ∩ B), check ker Q_complete ⊆ B, and certify the lower bound of one added coordinate.
+
+### TFQ-0527 sn-e21-repair-rank
+
+- UUID: `a43a422b-80f0-55ee-a4fc-724f91777783`
+- Parent: `TFQ-0523`
+- Status: `SOURCE_RECORD`
+
+Example E21 takes vertices a, b, c, d and edges (ab, bc, ac, cd, da), so the 1-cycle space has dimension 5 − rank ∂₁ = 5 − 3 = 2, with z₁ = (1,1,−1,0,0) for triangle abc and z₂ = (0,0,1,1,1) for triangle acd. Adjoining two faces with boundaries z₁ and z₂ gives rank ∂₂ = 2, ∂₁∂₂ = 0 and H₁ = 0. Adjoining two free degree-two generators with the same boundary z₁ gives rank ∂₂ = 1 and dim H₁ = 1, so the receipt count is 2 while the repair rank is 1. Transport from orientation ca to the common basis edge ac needs e_ca = −e_ac, and a wrong sign gives ∂₁z ≠ 0.
+
+Obligation: Compute rank ∂₂ for the submitted faces, verify ∂₁∂₂ = 0 and the remaining dim H₁, check orientation-sign transport, and count repair progress by boundary rank, not by receipt count.
+
+### TFQ-0528 mssn-atlas-not-derivation
+
+- UUID: `c279eb7a-6e70-50e5-a95b-badbb9237425`
+- Parent: `TFQ-0518`
+- Status: `DEFINITION`
+
+MSS-N is an externally designed atlas of glyph grammars and declared verification targets, a side branch and not the next Genesis stage, so MSS-2 ≠ S(2). Its 101 rows MSS-0 to MSS-100 are proposed capability rows: each row is a specification target and a stated obligation, not evidence that the target was met. Coverage C(N) counts specified rows, and licensed depth D(k) is the length of an unbroken chain of machine-checked lift records. No licensed lift exists, so D = 0, and 100 rows give C(100) coverage without showing that row 0 generated row 100.
+
+Obligation: Report atlas coverage C(N) and licensed depth D separately, with D = 0 until a lift record is licensed, and never infer depth from the number of rows or folders.
+
+### TFQ-0529 mssn-ascent-triad
+
+- UUID: `55982e66-1ae2-5efc-b96e-a260555bef51`
+- Parent: `TFQ-0528`
+- Status: `DEFINITION`
+
+MSS-N separates three evidence states: declared successor ≠ candidate lift ≠ licensed lift. A declared successor is a research obligation stated by an atlas row; a candidate lift is submitted data, a proposed pair of maps with repair witnesses; a licensed lift has exhausted repairs, a minimized extension, a verified retraction and a passing host replay. Every atlas row is a declared successor specification, and its successor rationale stays unproved until an accepted lift record is attested.
+
+Obligation: Tag each MSS transition as declared successor, candidate lift or licensed lift, and grant licensed only with exhausted repairs, a minimized extension, a verified retraction and a passing host replay.
+
+### TFQ-0530 mssn-alphabet-declarations
+
+- UUID: `78654ef3-111a-5519-9b8d-75184e9037be`
+- Parent: `TFQ-0529`
+- Status: `DEFINITION`
+
+The MSS-N alphabet Γ38 is 26 lowercase letters, 10 digits and the two marks < and >; the grammar's word production uses Σ36, the letters and digits, and raw_glyphs treats < and > as ordinary marks, so balanced pairing is not an axiom there. A model must declare eight things separately: terminal spellings, tokenization, grammar, public start, layout, identity policy, annotation decoding and manipulation rules. Three relations that share notation stay apart: an encoded relation E ⊆ V × V, a rewrite relation, and an observation map q: V → O.
+
+Obligation: Declare all eight dimensions for each MSS-N model, accept raw glyphs only from Γ38, and keep encoded, rewrite and observation relations distinct.
+
+### TFQ-0531 mssn-many-readings
+
+- UUID: `22a059ff-1017-590f-b429-bfae14aa7982`
+- Parent: `TFQ-0530`
+- Status: `DEFINITION`
+
+mssn.ebnf declares 22 public starts, and every conformance case names its start; there is no guessed union or default start. The string a>b>c>a is accepted by raw_glyphs, label_path and glyph_path and refused by suffix_path, whose vertices need a digit annotation; a0>b2>c1>a0 is accepted by raw_glyphs, label_path and suffix_path and refused by glyph_path, which reads a0 as two adjacent vertices with no direction. check_mssn.py runs 39 cases over the 22 starts.
+
+Obligation: Parse every MSS-N string under an explicitly named public start, and report acceptance per start rather than under a default reading.
+
+### TFQ-0532 mssn-syntax-not-decoding
+
+- UUID: `022495d0-6a1f-53e9-a002-8b27719488c3`
+- Parent: `TFQ-0531`
+- Status: `DEFINITION`
+
+A grammar verdict is recognition, not decoding: a:1/0 parses in scalar_path, and division by zero is a later numeric refusal unless the grammar is changed to exclude zero denominators. Side conditions fall into three classes: zero denominators can be excluded lexically, bracket matching is context-free, and acyclicity or triangle inequalities are semantic obligations. a>2<b is refused in edge_weight_path because both marks on a step must agree. Recognition, AST construction, decoding, evaluation and exact serialization are distinct checks.
+
+Obligation: Classify each side condition as lexical, context-free or semantic, enforce semantic conditions in a decoder or evaluator, and never read a parse as a decoded value.
+
+### TFQ-0533 mssn-rows-1-to-6-specified
+
+- UUID: `9310dc27-3279-55f3-b0dc-baf703ad5681`
+- Parent: `TFQ-0532`
+- Status: `SOURCE_RECORD`
+
+Atlas rows MSS-1 to MSS-6 are specified targets whose lift status is unlicensed. MSS-1 introduces a single mark ⟨a⟩; MSS-2 specifies irreflexive pairings ⟨ab⟩ and obstructed cuts ⟨⟨ab⟩⟨⟩⟩ and refuses ⟨aa⟩; MSS-3 specifies abstract k-simplices for 0 ≤ k ≤ 3 with ∂² = 0; MSS-4 specifies 1-skeleton graph projections, a k-simplex decomposing into K_{k+1}; MSS-6 specifies stage packets with up-maps u_N and down-maps r_N satisfying r_N(u_N(x)) = x, with typed NON_DESCENT for new terms. MSS-0 is recorded in TFQ-0377, and MSS-5 is not part of this record.
+
+Obligation: Treat MSS-1, MSS-2, MSS-3, MSS-4 and MSS-6 as specified targets, verify each submitted packet against its row's obligation, and grant no lift between rows.
+
+### TFQ-0534 mssn-circulation-obstruction
+
+- UUID: `075e9e55-a165-5d67-a1da-04817bdfde7f`
+- Parent: `TFQ-0533`
+- Status: `PROVED_LEAN`
+
+MssnObstructionDetector.lean defines a Boolean active-obstruction predicate obstP on a passage state with witness pairs, protected pairs and an optional list of observation columns, and shows that it equals the conjunction of four gates: retained, protected, observation declared, and declared observation not separating the pair (obstP_factors, obst_of_gates). On the triangle a→b→c→a it shows that the cycle circulation vanishes on every integer coboundary d₀g (cycle_circulation_coboundary_vanishes), that x = (1,0,0) has circulation 1 (circulation_flux_obstruction), and that no integer potential g has d₀g = (1,0,0) (no_scalar_potential_for_unit_flux). candidateLiftCondition is a necessary condition on supplied metadata, not an implementation of the lift laws or an authorization decision.
+
+Obligation: Factor obstP into its four gates, show I(d₀g) = 0 for every integer potential and I(1,0,0) = 1, conclude that no potential exists, and keep candidateLiftCondition distinct from a lift.
+
+### TFQ-0535 mssn-l1-cuts-hodge-rows
+
+- UUID: `19e9ef05-615d-5fa9-8aba-3ec3bd0d3c65`
+- Parent: `TFQ-0534`
+- Status: `SOURCE_RECORD`
+
+Atlas row MSS-8 specifies exact primal-dual ℓ¹ cochain cuts over ℚ: the primal Φ₁(c) = min over g of ‖c − d₀g‖_{1,ω}, the dual max ⟨c, y⟩ subject to d₀ᵀy = 0 and |y_e| ≤ ω_e, certified when primal and dual masses agree, and a zero-gap string without dual feasibility is refused. Row MSS-18 specifies the rational ℓ² Hodge split c = d_{k−1}p + h + d_k* q with d_k* = M_k⁻¹ d_kᵀ M_{k+1} for symmetric positive-definite rational weights, unique in its three components while the potentials p and q need not be. Both rows are specified with lift status unlicensed, and their evaluators ConcentricDispatcher and HodgeProjector are proposed labels.
+
+Obligation: Treat MSS-8 and MSS-18 as specified verifier obligations: replay primal-dual feasibility and equal masses for ℓ¹, and nilpotence, positive definiteness, reconstruction and orthogonality for the ℓ² split, without crediting either evaluator label.
 
 ## WDP
 
@@ -1442,6 +2182,236 @@ Obligation: Certify a rational Phi1 value by a bounded circulation that meets a 
 WDP-CH01-D01 defines an admitted cut as a finite tuple (X, E, tau, K) of tokens, incidences, roles, and admissible comparisons, supplied rather than selected from equality alone. WDP-CH01-P02 states that for a pointed relation on a finite carrier, relatedness does not imply distinctness, distinctness does not imply relatedness, and relatedness plus irreflexivity does imply distinctness. WDP-CH01-N01 says the admitted cut does not derive a spectral ground state, a physical vacuum, or a cosmological ground state.
 
 Obligation: Supply the admitted cut (X, E, tau, K) as data, and do not obtain a ground state or a discharged O01 floor from equality alone.
+
+### TFQ-0536 wdp-failed-sameness
+
+- UUID: `61c77f02-bd23-5f87-afe7-7d7010ba31b3`
+- Parent: `TFQ-0360`
+- Status: `SOURCE_RECORD`
+
+WDP-CH01-P01: within a fixed comparison family K, a failed declared sameness comparison Same_K(p, q) = 0 exhibits that the two compared presentations are not interchangeable under that comparison. The statement is local: it does not say the presentations differ under every comparison, does not make the failure intrinsic to the tokens, and supplies no order. A failed comparison is a residual at the level of predicates; encoding it as p − q is a stronger step that presupposes subtraction, scalars and a zero.
+
+Obligation: Report a failed declared comparison as non-interchangeability under that comparison only, and do not encode it as a difference p − q without first admitting a group or vector-space carrier.
+
+### TFQ-0537 wdp-pointed-apartness
+
+- UUID: `2048523c-d29b-5a9b-bf70-5fb66f0dcbaa`
+- Parent: `TFQ-0360`
+- Status: `PROVED_LEAN`
+
+WDP-CH01-P02: for a pointed relation (X, R, a, b) on a finite carrier, R(a,b) does not imply a ≠ b (one-point carrier with R = {(a,a)} and b = a), a ≠ b does not imply R(a,b) (the empty relation on two points), and R(a,b) with R irreflexive implies a ≠ b, since a = b would give R(a,a). Irreflexivity is therefore a declared ingredient of the admitted package, not a consequence of relatedness, and a carrier hosting an irreflexive related pair has at least two elements; PrimDiff.lean states the same endpoint fact for an irreflexive witness. The Python census over every pointed relation on carriers of size 1 to 3 counts 4674 relations, 2337 with R(a,b), 196 with R(a,b) and R irreflexive, 3104 with a ≠ b, and none with R irreflexive, R(a,b) and a = b.
+
+Obligation: Check the two countermodels and the irreflexive substitution step, and reproduce the bounded census 4674 / 2337 / 196 / 3104 with zero irreflexive related pairs having equal poles at carrier sizes 1 to 3.
+
+### TFQ-0538 wdp-quotient-defect-root-p
+
+- UUID: `880d7ad8-af13-55eb-b1d2-a2173f6b1a46`
+- Parent: `TFQ-0536`
+- Status: `DEFINITION`
+
+Root P, the evaluation layer: with V a finite-dimensional real space of defects, A a finite-dimensional space of repairs, d: A → V a linear repair map, δ ∈ V an exhibited defect and J a declared seminorm or cost, the quotient defect is Φ_J([δ]) = inf_{α ∈ A} J(δ − dα), where [δ] is the coset of δ modulo im d. The expression is not primitive: it imports a linear carrier, a repair map and a cost, each declared rather than derived. Root P presupposes Root W, the admitted cut with its witnessed irreflexive relation, as carrier and never substitutes for it. This infimum over repairs is the quantity WDP later writes Φ₁.
+
+Obligation: Compute Φ_J as the infimum of J(δ − dα) over the declared repair space, record V, A, d and J as inputs, and never evaluate J on a single representative in its place.
+
+### TFQ-0539 wdp-seven-witness-roles
+
+- UUID: `3b6acf08-795d-531f-8426-d409992edcae`
+- Parent: `TFQ-0538`
+- Status: `DEFINITION`
+
+WDP-CH02-D01 defines a residual-locus witness as a typed locus L with evidence that the residual's component at L is nonzero under the declared test; the locus is a witness to a proposition, not a memory, observer, agent or apparatus. Section 2.2 replaces the one word witness by seven typed roles, ResidualLocusWitness, RetentionWitness, RepairWitness, ContextWitness, DualCertificateWitness, DescentReceipt and CounterexampleWitness, written Witness_k[P](x, e) with the proposition P and kind k in the type. WDP-CH02-P01 states that in the nominal typed interface no role tag coerces to another unless an explicit adapter and its hypotheses are declared. On the oriented triangle the circulation functional ℓ vanishes on im d₀ and gives ℓ(1,1,1) = 3, a dual certificate that observes, retains and decides nothing.
+
+Obligation: Carry the role and the proposition in every witness type, refuse a change of role without a declared adapter, and keep certificates, stored marks, repairs and counterexamples apart.
+
+### TFQ-0540 wdp-asymmetry-injection-ledger
+
+- UUID: `e062b03f-acd7-56c6-99c0-f546bcb9abc1`
+- Parent: `TFQ-0536`
+- Status: `DEFINITION`
+
+For any proposed selection the injection ledger records the first input that breaks the relevant symmetry: a named element or base point, an orientation, an order or clock, a measure or weighting, a boundary condition, a representation, an observer profile, a stochastic device with its distribution, or a physical law outside the root package. WDP-CH03-D01 defines the asymmetry-price frontier, relative to a specified implementation class and dependency preorder, as the family of inclusion-minimal declared input sets whose removal restores a symmetry that moves the output; a scalar price needs a stated cost function, and frontier elements may tie or be incomparable. In the declare-then-assert search, a refinement can leave a single class made of two responses exchanged by the swap of the data, so choosing one is a further declared input recorded in the ledger.
+
+Obligation: Enter the first symmetry-breaking input of every selection in the injection ledger, and report frontier elements relative to the declared implementation class and preorder without claiming a unique or global minimum.
+
+### TFQ-0541 wdp-retention-packet
+
+- UUID: `6a969a37-34b0-5ebb-afd4-2c1b3e6ae684`
+- Parent: `TFQ-0539`
+- Status: `DEFINITION`
+
+A difference at one exhibition does not by itself remain available at another; a retention packet R = (M, u, r, ≈) with memory carrier M, update u: M × I → M, report r: M → O and declared recognition comparison ≈ is a definition, not a derivation. Five finite countermodels CM1–CM5 separate the components in their instances (a static carrier, a blind readout, a coarse report, a tolerant comparison, a lossy reset). WDP-CH03-O01, now a finite proposition: for a finite nonempty carrier with total labelled deterministic updates and exact readouts or a validated report equivalence, descending partition refinement computes the greatest report-respecting update congruence, its minimal quotient and behavioural classification without a global chronology. WDP-CH03-O02: typed retention extensions on fixed finite M, I, O form the product M^{I×M} × O^M × P(O×O), with quotient and literal-readout descent under separate conditions.
+
+Obligation: Declare all four packet components before claiming retention, compute the greatest behavioural congruence by partition refinement on the declared finite packet, and keep the CM1–CM5 separations.
+
+### TFQ-0542 wdp-graph-cochain-host
+
+- UUID: `83837bdc-fae4-5eef-ad3c-a0e355a0d5e0`
+- Parent: `TFQ-0360`
+- Status: `DEFINITION`
+
+On a finite oriented graph G = (V, E) with a normed coefficient space A, the host sets C⁰ = A^V, C¹ = A^E and (d₀f)(u, v) = f(v) − f(u); an edge field δ is exact when δ = d₀f. Q¹ = C¹/im d₀ records edge fields modulo vertex-potential repair, relative to the declared graph, coefficient space and repair map, and it is not the first cohomology group unless a next differential d₁ is supplied with d₁d₀ = 0. Worked cases: on the path 0 → 1 → 2, δ = (2, 3) = d₀(0, 2, 5) is exact; on the hollow cyclic triangle (01, 12, 20) every repair of δ = (1, 1, 1) still sums to 3, a quotient obstruction that is not contextuality without a measurement cover and an empirical model.
+
+Obligation: Build C⁰, C¹ and d₀ from the declared oriented graph and coefficient space, treat Q¹ as a repair quotient, and withhold the name H¹ until a d₁ and a d₁d₀ = 0 certificate are supplied.
+
+### TFQ-0543 wdp-incidence-orientation-transport
+
+- UUID: `f37c8c13-16b2-5692-94eb-e7cc41619357`
+- Parent: `TFQ-0542`
+- Status: `OPEN_OBLIGATION`
+
+GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
+
+Obligation: Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d₀ and d₁ are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d₁d₀ = 0 and the filled-triangle signature after transport.
+
+### TFQ-0544 wdp-phi-well-defined-l1-duality
+
+- UUID: `e9c07c57-ad2e-591b-9c5f-34c327144059`
+- Parent: `TFQ-0542`
+- Status: `CONDITIONAL`
+
+WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.
+
+Obligation: Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.
+
+### TFQ-0545 wdp-closure-needs-degree
+
+- UUID: `c43a77a8-f287-5fa3-b382-23e210e37763`
+- Parent: `TFQ-0542`
+- Status: `DEFINITION`
+
+Given d₁: C¹ → C² from a finite 2-cell structure, the closure diagnostic Γ(δ) = J₂(d₁δ) descends to Q¹ exactly when d₁d₀ = 0 on the admissible repairs if J₂ is a norm (for a seminorm, exactly when im(d₁d₀) ⊆ ker J₂): necessity by comparing a repair with the zero representative, sufficiency by linearity. Otherwise K = d₁d₀ is itself a typed curvature or composition defect, calling Q¹ cohomology while K ≠ 0 is an error, and none of the window results of §§4.8–4.11 applies. WDP-CH04-D01 makes the d₁d₀ = 0 certificate part of the degree-1 window: automatic on the simplicial nerve route, verified for any hand-declared pair; degree_one_window multiplies the exact matrices and refuses a nonzero product with CERTIFICATE_MISMATCH.
+
+Obligation: Compute K = d₁d₀ exactly for every declared pair, report a nonzero K as a typed composition defect, and apply closure descent, H¹ and the signature only when K = 0.
+
+### TFQ-0546 wdp-exact-sequence-h1-q1
+
+- UUID: `4a6a4ef2-08bd-5b80-8552-97333289af2b`
+- Parent: `TFQ-0004`
+- Status: `PROVED_LEAN`
+
+WDP-CH04-P03: in a window with d₁d₀ = 0, κ¹([h]) = d₁h is well defined on Q¹ because d₁(h + d₀α) = d₁h + d₁d₀α = d₁h, and 0 → H¹ → Q¹ → im d₁ → 0 is exact with H¹ = ker κ¹; closedness of a class does not depend on the representative, so H¹ is the usual Z¹/B¹ of the window. The sequence is an extension: in finite dimension it splits, but a splitting Q¹ ≅ H¹ ⊕ im d₁ requires a chosen section and is not canonical. Lean kappa_exact_sequence, with kappa_well_defined and kappa_mk, establishes on the literal quotient Quot (Repair d₀), for an additive d₁ with d₁ ∘ d₀ = 0, that the inclusion of H¹ is injective, its image is the kernel of κ, a class has zero charge exactly when every representative is closed, and κ maps onto the image of d₁; these three declarations use no axioms.
+
+Obligation: Construct κ¹ on the repair quotient from an additive d₁ with a d₁d₀ = 0 certificate, check the four exactness clauses, and fix no splitting of Q¹ without a declared section.
+
+### TFQ-0547 wdp-trichotomy-bounds
+
+- UUID: `45decd49-4235-54ad-ad92-42e148b8f311`
+- Parent: `TFQ-0546`
+- Status: `SOURCE_RECORD`
+
+WDP-CH04-P04: in a window with d₁d₀ = 0 and a norm J meeting the norm hypothesis, every class [h] ∈ Q¹ has exactly one of ExactClass ([h] = 0), ClosedResidual ([h] ≠ 0 and Γ₂ = 0) or ActiveClosureFailure (Γ₂ > 0); Φ₁ = 0 exactly on ExactClass, and every active class has Φ₁ > 0. WDP-CH04-P05: Φ₁, Γ₂ ≥ 0, Γ₂ = 0 iff [h] ∈ H¹, Γ₂ ≤ ‖d₁‖_{J→1}Φ₁ (repair invariance of d₁h, then the infimum), no constant c > 0 gives Γ₂ ≥ cΦ₁ when H¹ ≠ 0, and Γ₂ is a norm on Q¹/H¹. WDP-CH04-P06: if Φ₁ > 0 then 0 ≤ R_cl ≤ ‖d₁‖_{J→1}, and the normalized ratio is undefined (0/0) when d₁ = 0. The norm hypothesis (ℝ, ℂ, or ℚ with J restricted from a norm on the real extension) is needed: J(x) = |x₀₁ + √2 x₁₂ + √3 x₀₂| is a norm on ℚ³, yet on the filled triangle with δ = (1, 1, 0) its repair values accumulate at 0, so Φ₁ = 0 while Γ₂ = 2.
+
+Obligation: Assign every class exactly one diagnostic class, check Γ₂ ≤ ‖d₁‖_{J→1}Φ₁ and 0 ≤ R_cl ≤ ‖d₁‖_{J→1} in exact arithmetic, refuse with NoRule a window missing its carrier, norm, closure data or d₁d₀ = 0 certificate, and apply none of this to a norm outside the norm hypothesis.
+
+### TFQ-0548 wdp-filled-triangle
+
+- UUID: `38fc9b45-ab2a-5ad0-a960-041d06596531`
+- Parent: `TFQ-0348`
+- Status: `PROVED_LEAN`
+
+WDP-CH04-P08: on vertices {0, 1, 2}, edges (01, 12, 02) and one 2-simplex, with d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂, the field δ = (1, 1, 0) over ℚ with unit weights has d₁d₀ = 0, Φ₁ = 2 attained at f = (0, 1, 0) (residual (0, 2, 0)) and certified by the circulation y = (1, 1, −1), Γ₂ = |1 + 1 − 0| = 2, ‖d₁‖_{1→1} = 1 and R_cl = 1, which saturates the closure-ratio bound; the class is ActiveClosureFailure. Without the 2-simplex, C² = 0 and the cyclic field (1, 1, 1) has Φ₁ = 3 (certificate y = (1, 1, 1)) and Γ₂ = 0, a ClosedResidual; filling the triangle converts that closed residual into closure charge without changing Φ₁. Orthogonal projection of δ onto ker d₁ subtracts (2/3, 2/3, −2/3) ∈ im d₁*, which meets im d₀ only in 0, so it is not a repair and Φ₁ of the original class stays 2.
+
+Obligation: Reproduce the filled-triangle signature exactly over ℚ (d₁d₀ = 0; Φ₁ = 2 with its repair and circulation; Γ₂ = 2; ‖d₁‖_{1→1} = 1; R_cl = 1), the hollow comparison Φ₁ = 3, Γ₂ = 0, and refuse an orthogonal projection onto ker d₁ as a repair.
+
+### TFQ-0549 wdp-degree-k-torsion-balance
+
+- UUID: `efae4646-2dbd-5c7a-8e23-071f2c56783b`
+- Parent: `TFQ-0004`
+- Status: `SOURCE_RECORD`
+
+WDP-CH05-P03: on a finite oriented simplicial complex δ^{k+1}δ^k = 0 for every k, since each k-face of a (k+2)-simplex arises by deleting two vertices in either order with opposite signs; each triple (C^{k−1}, C^k, C^{k+1}) with a norm meeting the §4.8 hypothesis is then a window with κ^k well defined on Q^k, 0 → H^k → Q^k → im δ^k → 0 exact, and Γ_{k+1} ≤ ‖δ^k‖_{J→1}Φ_k. WDP-CH05-P06: the six-vertex, fifteen-edge, ten-triangle triangulation of RP² has rank_ℚ δ¹ = 10 and rank_{F₂} δ¹ = 9, so H²(K; ℚ) = 0 while H²(K; F₂) ≅ F₂; the single-triangle indicator is exact over ℚ (Φ₂ = 0) with only non-integral rational repairs. WDP-CH05-P04: on every finite oriented graph Σ_v (d₀*x)(v) = 0, so d₀*x = ρ needs Σ_v ρ(v) = 0 (necessary, not sufficient, and with no closedness or boundary condition); a functional invariant under A ↦ A + d₀λ descends uniquely to Q¹, so the pairing with a 1-cycle is invariant; and δ²δ¹ = 0 on complexes with 3-simplices.
+
+Obligation: Verify δ^{k+1}δ^k = 0 exactly on each declared simplicial complex, reproduce the RP² ranks 10 over ℚ and 9 over F₂, and check the zero-sum balance and 1-cycle pairing invariance on finite graphs, stating the coefficient field with every answer.
+
+### TFQ-0550 wdp-succession-strict-order
+
+- UUID: `a3c21415-5b0f-53fb-8f04-07dd0d5379b0`
+- Parent: `TFQ-0541`
+- Status: `DEFINITION`
+
+WDP-CH06-D01 defines a constitutive succession packet 𝔖 = (S, ⇝, ≺, π): ⇝ an exhibited immediate-transition relation, ≺ a declared or proved strict partial order containing ⇝, and π the assumptions under which that containment and order hold, so it is visible whether the order is primitive, generated by acyclic reachability, or inferred from records. WDP-CH06-P01: nonempty reachability on a finite directed graph is a strict partial order exactly when the graph is acyclic, since a directed cycle through x gives x ≺ x. WDP-CH06-O01, now a finite proposition: a declared finite labelled transition system with exact reports admits greatest strong bisimilarity and its minimal bounded quotient, its raw directed relation has a strict transitive edge extension exactly when acyclic, and no nonempty strict order can be chosen invariantly from a fully symmetric carrier, so directional order data must be declared. Lean Succession.lean separates constitutive order from immediate succession on the chain α ⇝ β ⇝ γ: α precedes γ, but γ does not immediately succeed α.
+
+Obligation: Record π with every succession packet, compute reachability by transitive closure, accept it as a strict order only on an acyclic transition graph, and supply directional order data instead of deriving it from a symmetric carrier.
+
+### TFQ-0551 wdp-duration-exactness-period-witness
+
+- UUID: `15dfcca5-03d7-5e92-8e37-3d03d8729d14`
+- Parent: `TFQ-0550`
+- Status: `DEFINITION`
+
+WDP-CH07-D01: a finite duration gauge is a path system with an additive edge valuation λ: E → M into a commutative monoid, D_λ(p) = Σ_j λ(e_j); positivity, Archimedean structure, units and real values are extra hypotheses, and WDP-CH07-P01 gives D_λ(pq) = D_λ(p) + D_λ(q) whenever pq is defined. Section 7.2 keeps four statuses apart: exact (a displayed t with d₀t = λ), closed nonexact (d₁λ = 0 for a declared d₁ while a period or dual certificate shows λ ∉ im d₀), active closure failure (d₁λ ≠ 0 on an exhibited 2-cell) and exactness undetermined. WDP-CH07-P02: if λ = d₀t, every directed path from a to b has duration t(b) − t(a). The converse needs more than weak connectedness: a base vertex reaching every vertex with path-independent sums, or vanishing periods under signed walks; the difference of two path sums with common endpoints is a period witness, and a nonzero period refutes exactness.
+
+Obligation: Sum durations exactly along declared paths, report one of the four exactness statuses, construct t from a rooted path family only under the stated hypotheses, and return a period witness when two paths with common endpoints disagree.
+
+### TFQ-0552 wdp-finite-valuations
+
+- UUID: `47087444-272c-50a6-b069-9cca348019d7`
+- Parent: `TFQ-0541`
+- Status: `DEFINITION`
+
+WDP-CH08-D01: finite families A and B are congruent relative to a comparison family K when a matching preserving K is exhibited, a bijective correspondence with no primitive number object that still presupposes the exhibited families, so plurality itself is not derived from one cut. With a declared mass m: W → ℝ≥0, μ(A) = Σ_{w∈A} m(w) is finitely additive by construction, and on a declared finite partition with μ(W) > 0 the values p(A_i) = μ(A_i)/μ(W) are nonnegative and sum to 1 (WDP-CH08-P01). WDP-CH08-O01: a nonnegative additive valuation on a finite Boolean algebra has unique atom masses and pushforwards, and witness-level masses extending it are unique exactly when every nonsingleton atom has mass zero. WDP-CH08-C01 (conditional): an aggregator with a continuous associative composition law with identity 0, singleton values ct with c > 0 and replica extensivity has composition x + y and value c Σ_e a_e. WDP-CH09-P01: |z_i|^q / Σ_j |z_j|^q is a probability vector for every q > 0, and distinct exponents give distinct vectors when two nonzero magnitudes differ, so normalization does not select q = 2.
+
+Obligation: Exhibit the matching behind every congruence claim, normalize exact masses only on a declared partition with positive total, and select no Born exponent from normalization.
+
+### TFQ-0553 wdp-observer-quotient-passivity
+
+- UUID: `536cfc9c-2b86-5241-a593-0c544f3e71b4`
+- Parent: `TFQ-0339`
+- Status: `DEFINITION`
+
+Chapter 10 replaces one observer tuple by four declared layers joined by typed adapters: presentation (X, P, q, C), memory (a retention packet), evaluator (D, A, d, J, Γ, T) and policy, with policy not authority; the quotient evaluator computes Φ_O([δ]) = inf_α J(δ − dα), and a terminalizer may return Accept, Reject or Undetermined against observer-profile data. For source adapters, a partial operation descends along onto sort maps iff its output, including undefinedness, is constant on each input fibre after the output map, and a relation descends iff its truth value is fibre-constant. WDP-CH10-D06: a quotient observer is a linear report map R: C¹ → F^k with Rd₀ = 0, entering only as a presentation report and as the induced cost Φ_O(y) = inf{Φ₁(r) : O(r) = y} on im R, with memory, policy and authority refused. WDP-CH10-P01: Φ_O(O q) ≤ Φ₁(q), so no observer reports positive obstruction for an exact class; WDP-CH10-P02 orders a declared observer family by kernel inclusion (identity finest, zero coarsest); WDP-CH10-P03: a report map into a finite grammar G exposes at most |G| visible classes, so more than |G| core classes collide.
+
+Obligation: Admit a quotient observer only when Rd₀ = 0 exactly, refuse memory, policy and authority requests on it, report Φ_O only with a checked preimage and dual, check Φ_O(O q) ≤ Φ₁(q), and report grammar collisions.
+
+### TFQ-0554 wdp-genesis-bridges-ledger
+
+- UUID: `cdbc715c-21d0-5b62-88a5-ed099e76d9a7`
+- Parent: `TFQ-0553`
+- Status: `SOURCE_RECORD`
+
+WDP Level 22 presents eleven proposed Genesis-to-WDP bridges drawn from register rows GEN-WDP-01 to GEN-WDP-10: the inertia boundary (01), apartness from R(a,b) with protected irreflexivity (02), report-fibre factorization of a protected decision (03), joint evaluation and permission reports (04), the replay append-fold law (05), history-loss countermodels (06), the fixed-carrier repair quotient of directed assertion tables (07), the marked-balance boundary (08), the doubled-real representation of a declared complex model (09) and the agent-count countermodel (10), plus finite parity, finite-list ℓ¹ attainment, flat-locus, odd-cycle anticorrelation and acyclic-succession checks. The register belongs to the enlarged first-principles programme and its IDs are separate from the 154 canonical WDP rows; its obligations GEN-WDP-O01 to O05 stay open (TFQ-0343). Bridge 1 also describes the S(n) stages as resolving W_n as a discrete Postnikov tower, but the derivation programme states that these are construction stages, not Postnikov truncations of a single space, and that reading is kept.
+
+Obligation: Cite each Genesis-to-WDP bridge at its register scope (P, N, C or L), keep GEN-WDP-O01 to O05 open, and do not describe the S(n) stages as a Postnikov tower.
+
+### TFQ-0555 wdp-bridge-ongoing-to-window
+
+- UUID: `9bbf4493-1bac-5676-886a-9bd927e505f8`
+- Parent: `TFQ-0554`
+- Status: `OPEN_OBLIGATION`
+
+GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.
+
+Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification.
+
+### TFQ-0556 wdp-bridge-report-fiber-observer
+
+- UUID: `5bab811b-025d-5577-bf50-db44169260a1`
+- Parent: `TFQ-0554`
+- Status: `CONDITIONAL`
+
+GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
+
+Obligation: Admit a WDP observer for a protected question only when the question is constant on the declared report's fibres, return a conflicting pair otherwise, and keep evaluation and permission in a joint report when both are protected.
+
+### TFQ-0557 wdp-synthesis-trunk-tiers
+
+- UUID: `33121e43-8366-5ef7-8e64-692c97750bbb`
+- Parent: `TFQ-0556`
+- Status: `SOURCE_RECORD`
+
+Chapter 21 names, for each result family, the small countermodel that would refute it: quotient well-definedness fails if a representative change alters the value, cohomology language fails if d₁d₀ ≠ 0, a weighted-ℓ¹ Φ₁ is uncertified without a matching repair and bounded circulation, the signature bound fails on a class with Γ₂ > ‖d₁‖_{J→1}Φ₁, a coefficient-free claim fails on RP², projection onto ker d₁ is not a repair, and growth cannot lower Φ₁. Its §21.8 records the nineteen registered open targets as resolved at finite or conditional scope, while the enlarged source-derivation obligations (Appendix L) and analytic and physical-model obligations (Appendix M) remain open. Chapter 22 restates a trunk (admitted cut, typed witnesses, symmetry, cochains, succession, duration, finite probability), an observer/measurement waist with authority outside the chain, and three branches, and sorts ambition into four tiers, with Tier 4, unique selection of continuous spacetime, ℂ, U(1), Gleason frame uniqueness or the Born rule from primitive difference, explicitly refused. WDP-CH22-C01 concludes that every transition from residual to retention, order, magnitude, probability, observer, observation, measurement, history or quantum-capable representation is exposed as a typed construction with a visible assumption cost.
+
+Obligation: Attach a named falsifier to each WDP result family, keep the Appendix L and M obligations open, and read WDP-CH22-C01 as an architectural summary with Tier 4 refused.
+
+### TFQ-0558 wdp-handoff-to-l1
+
+- UUID: `315f5352-fe40-5e3f-89d1-0633412de97d`
+- Parent: `TFQ-0557`
+- Status: `OPEN_OBLIGATION`
+
+WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
+
+Obligation: Hand onward only the certified window values (Φ₁ as the quotient infimum with its certificate, Γ₂, the diagnostic class) and the report-fibre discipline, and supply a checked adapter before any LGGR verdict reads Φ₁ as ‖d₀h‖₁.
 
 ## L1_EMERGENCE
 

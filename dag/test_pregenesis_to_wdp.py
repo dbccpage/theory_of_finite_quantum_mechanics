@@ -79,7 +79,8 @@ def test_new_papers_have_five_sections_and_no_pfp_receipt():
 
 
 def _links(path: Path, text: str):
-    for reference in re.findall(r'\]\(([^)]+)\)', text):
+    # A CommonMark link destination has no whitespace; math such as Witness_k[P](x, e) is not a link.
+    for reference in re.findall(r'\]\(([^)\s]+)\)', text):
         if reference.startswith(('https://', 'http://')):
             continue
         yield reference

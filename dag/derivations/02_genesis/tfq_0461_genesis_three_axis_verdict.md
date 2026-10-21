@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-*None (Leaf or Terminal derivation in current tree)*
+- [TFQ-0462](tfq_0462_rung0_inheritance_replay.md)
 
 ---
 

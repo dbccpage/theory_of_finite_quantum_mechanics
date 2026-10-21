@@ -24,16 +24,16 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **417 primary derivation steps** structured across **27 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **559 primary derivation steps** structured across **27 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
-| §01 | `PREGENESIS` | 22 | Inert literal inscription `<>`, 6 primitive operations, report fiber criterion | [`TFQ-0000`..`TFQ-0395`] |
-| §02 | `GENESIS` | 17 | Genesis regime events, distinction events, obligation cost floor $\ge 2$ | [`TFQ-0002`..`TFQ-0396`] |
+| §01 | `PREGENESIS` | 35 | Inert literal inscription `<>`, 6 primitive operations, report fiber criterion | [`TFQ-0000`..`TFQ-0429`] |
+| §02 | `GENESIS` | 92 | Genesis regime events, distinction events, obligation cost floor $\ge 2$ | [`TFQ-0002`..`TFQ-0504`] |
 | §03 | `FINITE_OBSTRUCTION` | 9 | Discrete cochain complexes, $d_0$ coboundary, repair kernel and fibers | [`TFQ-0003`..`TFQ-0326`] |
-| §04 | `AUTHORIZATION` | 6 | Proposal spaces, reporting alphabets, terminalization classifications | [`TFQ-0327`..`TFQ-0332`] |
-| §05 | `MSSN_SN` | 8 | Finite demand accounting $s_{next} = s - d + b$, binary refinement, lift injectivity | [`TFQ-0333`..`TFQ-0342`] |
-| §06 | `WDP` | 10 | Witnessed difference degree-1 window $(C_0, C_1, C_2, d_0, d_1)$, bounded circulations | [`TFQ-0004`..`TFQ-0360`] |
+| §04 | `AUTHORIZATION` | 11 | Proposal spaces, reporting alphabets, terminalization classifications | [`TFQ-0327`..`TFQ-0509`] |
+| §05 | `MSSN_SN` | 34 | Finite demand accounting $s_{next} = s - d + b$, binary refinement, lift injectivity | [`TFQ-0333`..`TFQ-0535`] |
+| §06 | `WDP` | 33 | Witnessed difference degree-1 window $(C_0, C_1, C_2, d_0, d_1)$, bounded circulations | [`TFQ-0004`..`TFQ-0558`] |
 | §07 | `L1_EMERGENCE` | 12 | $\ell^1$ quotient repair seminorm $\Phi_1([x])$, $\Gamma_2$ obstruction, replica extensivity | [`TFQ-0005`..`TFQ-0359`] |
 | §08 | `L1_TO_L2` | 26 | Conditional finite Hilbert lift, square-root coordinate field, phase-blind quotient | [`TFQ-0006`..`TFQ-0306`] |
 | §09 | `FINITE_HILBERT` | 15 | Exact density operators, rational ray representation, Gleason boundary in $d=3$ | [`TFQ-0289`..`TFQ-0318`] |
@@ -58,7 +58,7 @@ The derivation tree comprises **417 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-0416`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-0558`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -461,6 +461,148 @@ Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) 
 | **`TFQ-0394`** | primitive-axiom-list-underived | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0393` | [`TFQ-0394.md`](../../dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md) | Lean: `2`, Rust: `1`, Py: `2` |
 | **`TFQ-0395`** | law-bearing-cut-not-two-marks | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0394` | [`TFQ-0395.md`](../../dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) | Lean: `2`, Rust: `1`, Py: `2` |
 | **`TFQ-0396`** | sealed-tag-to-carrier-gap | `GENESIS` | `GAP` | `TFQ-0395` | [`TFQ-0396.md`](../../dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md) | Lean: `2`, Rust: `1`, Py: `3` |
+| **`TFQ-0417`** | pregenesis-grammar | `PREGENESIS` | `DEFINITION` | `TFQ-0362` | [`TFQ-0417.md`](../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0418`** | no-transition-quiescence | `PREGENESIS` | `DEFINITION` | `TFQ-0417` | [`TFQ-0418.md`](../../dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0419`** | successor-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0418` | [`TFQ-0419.md`](../../dag/derivations/01_pregenesis/tfq_0419_successor_not_unique.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0420`** | repetition-needs-structure | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0419` | [`TFQ-0420.md`](../../dag/derivations/01_pregenesis/tfq_0420_repetition_needs_structure.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0421`** | observational-equivalence | `PREGENESIS` | `DEFINITION` | `TFQ-0362` | [`TFQ-0421.md`](../../dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0422`** | presentation-not-expressive-lift | `PREGENESIS` | `CONDITIONAL` | `TFQ-0421` | [`TFQ-0422.md`](../../dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0423`** | identity-convention-undecidable | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0422` | [`TFQ-0423.md`](../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0424`** | absence-of-rule-not-identification | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0423` | [`TFQ-0424.md`](../../dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0425`** | forced-separation-lift-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0424` | [`TFQ-0425.md`](../../dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0426`** | replay-necessity | `PREGENESIS` | `PROVED_LEAN` | `TFQ-0364` | [`TFQ-0426.md`](../../dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md) | Lean: `2`, Rust: `1`, Py: `2` |
+| **`TFQ-0427`** | context-fidelity | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0426` | [`TFQ-0427.md`](../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0428`** | admission-before-distinction | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0364` | [`TFQ-0428.md`](../../dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0429`** | bundled-extension-refused | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0428` | [`TFQ-0429.md`](../../dag/derivations/01_pregenesis/tfq_0429_bundled_extension_refused.md) | Lean: `2`, Rust: `1`, Py: `2` |
+| **`TFQ-0430`** | metatheory-object-language-split | `GENESIS` | `DEFINITION` | `TFQ-0002` | [`TFQ-0430.md`](../../dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0431`** | regime-isomorphism-unordered-pairs | `GENESIS` | `DEFINITION` | `TFQ-0430` | [`TFQ-0431.md`](../../dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0432`** | challenge0-inertia-second-token | `GENESIS` | `PROVED_LEAN` | `TFQ-0430` | [`TFQ-0432.md`](../../dag/derivations/02_genesis/tfq_0432_challenge0_inertia_second_token.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0433`** | contexts-plugging-profiles | `GENESIS` | `DEFINITION` | `TFQ-0431` | [`TFQ-0433.md`](../../dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md) | Lean: `5`, Rust: `2`, Py: `3` |
+| **`TFQ-0434`** | collapse-without-instances | `GENESIS` | `PROVED_LEAN` | `TFQ-0433` | [`TFQ-0434.md`](../../dag/derivations/02_genesis/tfq_0434_collapse_without_instances.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0435`** | challenge2-admitted-but-collapsed | `GENESIS` | `PROVED_LEAN` | `TFQ-0380` | [`TFQ-0435.md`](../../dag/derivations/02_genesis/tfq_0435_challenge2_admitted_but_collapsed.md) | Lean: `5`, Rust: `1`, Py: `1` |
+| **`TFQ-0436`** | context-count-formula | `GENESIS` | `PROVED_LEAN` | `TFQ-0433` | [`TFQ-0436.md`](../../dag/derivations/02_genesis/tfq_0436_context_count_formula.md) | Lean: `3`, Rust: `2`, Py: `2` |
+| **`TFQ-0437`** | collection-extensionality | `GENESIS` | `PROVED_LEAN` | `TFQ-0433` | [`TFQ-0437.md`](../../dag/derivations/02_genesis/tfq_0437_collection_extensionality.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0438`** | responses-costs-mu1-mu2 | `GENESIS` | `DEFINITION` | `TFQ-0433` | [`TFQ-0438.md`](../../dag/derivations/02_genesis/tfq_0438_responses_costs_mu1_mu2.md) | Lean: `3`, Rust: `2`, Py: `3` |
+| **`TFQ-0439`** | challenge3-current-regime-fails | `GENESIS` | `PROVED_LEAN` | `TFQ-0435` | [`TFQ-0439.md`](../../dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md) | Lean: `3`, Rust: `1`, Py: `1` |
+| **`TFQ-0440`** | mu1-minimum-not-unique-l | `GENESIS` | `PROVED_LEAN` | `TFQ-0439` | [`TFQ-0440.md`](../../dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0441`** | mu1-arity-indexed-tie-family | `GENESIS` | `PROVED_LEAN` | `TFQ-0440` | [`TFQ-0441.md`](../../dag/derivations/02_genesis/tfq_0441_mu1_arity_indexed_tie_family.md) | Lean: `3`, Rust: `1`, Py: `1` |
+| **`TFQ-0442`** | bounded-tie-census | `GENESIS` | `SOURCE_RECORD` | `TFQ-0440` | [`TFQ-0442.md`](../../dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md) | Lean: `1`, Rust: `2`, Py: `2` |
+| **`TFQ-0443`** | challenge-source-policies | `GENESIS` | `DEFINITION` | `TFQ-0382` | [`TFQ-0443.md`](../../dag/derivations/02_genesis/tfq_0443_challenge_source_policies.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0444`** | orbit-branching-repairs-least-pair | `GENESIS` | `PROVED_LEAN` | `TFQ-0443` | [`TFQ-0444.md`](../../dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md) | Lean: `4`, Rust: `2`, Py: `1` |
+| **`TFQ-0445`** | response-existence-mark-progress | `GENESIS` | `PROVED_LEAN` | `TFQ-0444` | [`TFQ-0445.md`](../../dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0446`** | pruning-lemmas-cost-two | `GENESIS` | `PROVED_LEAN` | `TFQ-0445` | [`TFQ-0446.md`](../../dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md) | Lean: `5`, Rust: `2`, Py: `2` |
+| **`TFQ-0447`** | count-invariance-transport | `GENESIS` | `PROVED_LEAN` | `TFQ-0444` | [`TFQ-0447.md`](../../dag/derivations/02_genesis/tfq_0447_count_invariance_transport.md) | Lean: `4`, Rust: `2`, Py: `2` |
+| **`TFQ-0448`** | branch-trees-and-roles | `GENESIS` | `SOURCE_RECORD` | `TFQ-0446` | [`TFQ-0448.md`](../../dag/derivations/02_genesis/tfq_0448_branch_trees_and_roles.md) | Lean: `1`, Rust: `3`, Py: `1` |
+| **`TFQ-0449`** | closed-baseline-terminates | `GENESIS` | `SOURCE_RECORD` | `TFQ-0383` | [`TFQ-0449.md`](../../dag/derivations/02_genesis/tfq_0449_closed_baseline_terminates.md) | Lean: `1`, Rust: `2`, Py: `1` |
+| **`TFQ-0450`** | policy-endpoint-all-separated | `GENESIS` | `PROVED_LEAN` | `TFQ-0449` | [`TFQ-0450.md`](../../dag/derivations/02_genesis/tfq_0450_policy_endpoint_all_separated.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0451`** | no-endogenous-demand-generator | `GENESIS` | `SOURCE_RECORD` | `TFQ-0450` | [`TFQ-0451.md`](../../dag/derivations/02_genesis/tfq_0451_no_endogenous_demand_generator.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0452`** | identity-is-index-not-profile | `GENESIS` | `SOURCE_RECORD` | `TFQ-0451` | [`TFQ-0452.md`](../../dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0453`** | minimal-or-initial-refused | `GENESIS` | `SOURCE_RECORD` | `TFQ-0451` | [`TFQ-0453.md`](../../dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0454`** | sealed-terminal-statement | `GENESIS` | `SOURCE_RECORD` | `TFQ-0451` | [`TFQ-0454.md`](../../dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0455`** | d2-initial-pointed | `GENESIS` | `PROVED_LEAN` | `TFQ-0454` | [`TFQ-0455.md`](../../dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0456`** | five-presentation-questions | `GENESIS` | `DEFINITION` | `TFQ-0455` | [`TFQ-0456.md`](../../dag/derivations/02_genesis/tfq_0456_five_presentation_questions.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0457`** | quotient-retention | `GENESIS` | `PROVED_LEAN` | `TFQ-0456` | [`TFQ-0457.md`](../../dag/derivations/02_genesis/tfq_0457_quotient_retention.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0458`** | faithful-descent-round-trip | `GENESIS` | `PROVED_LEAN` | `TFQ-0457` | [`TFQ-0458.md`](../../dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0459`** | canonical-key-classification | `GENESIS` | `PROVED_LEAN` | `TFQ-0431` | [`TFQ-0459.md`](../../dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md) | Lean: `5`, Rust: `1`, Py: `1` |
+| **`TFQ-0460`** | incidence-construction-betti | `GENESIS` | `SOURCE_RECORD` | `TFQ-0455` | [`TFQ-0460.md`](../../dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md) | Lean: `4`, Rust: `2`, Py: `1` |
+| **`TFQ-0461`** | genesis-three-axis-verdict | `GENESIS` | `SOURCE_RECORD` | `TFQ-0454` | [`TFQ-0461.md`](../../dag/derivations/02_genesis/tfq_0461_genesis_three_axis_verdict.md) | Lean: `1`, Rust: `1`, Py: `3` |
+| **`TFQ-0462`** | rung0-inheritance-replay | `GENESIS` | `SOURCE_RECORD` | `TFQ-0461` | [`TFQ-0462.md`](../../dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0463`** | rung1-stream-as-response | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0462` | [`TFQ-0463.md`](../../dag/derivations/02_genesis/tfq_0463_rung1_stream_as_response.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0464`** | rung2a-stake-declared-label | `GENESIS` | `SOURCE_RECORD` | `TFQ-0462` | [`TFQ-0464.md`](../../dag/derivations/02_genesis/tfq_0464_rung2a_stake_declared_label.md) | Lean: `5`, Rust: `1`, Py: `2` |
+| **`TFQ-0465`** | rung2b-stake-menu | `GENESIS` | `SOURCE_RECORD` | `TFQ-0464` | [`TFQ-0465.md`](../../dag/derivations/02_genesis/tfq_0465_rung2b_stake_menu.md) | Lean: `1`, Rust: `1`, Py: `3` |
+| **`TFQ-0466`** | rung3-first-demand-index | `GENESIS` | `SOURCE_RECORD` | `TFQ-0464` | [`TFQ-0466.md`](../../dag/derivations/02_genesis/tfq_0466_rung3_first_demand_index.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0467`** | rung4-index-up-to-isomorphism | `GENESIS` | `SOURCE_RECORD` | `TFQ-0466` | [`TFQ-0467.md`](../../dag/derivations/02_genesis/tfq_0467_rung4_index_up_to_isomorphism.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0468`** | rung5-symmetry-along-history | `GENESIS` | `SOURCE_RECORD` | `TFQ-0467` | [`TFQ-0468.md`](../../dag/derivations/02_genesis/tfq_0468_rung5_symmetry_along_history.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0469`** | rung6-succession-element-count | `GENESIS` | `SOURCE_RECORD` | `TFQ-0468` | [`TFQ-0469.md`](../../dag/derivations/02_genesis/tfq_0469_rung6_succession_element_count.md) | Lean: `5`, Rust: `1`, Py: `1` |
+| **`TFQ-0470`** | rung7-duration-under-changing | `GENESIS` | `SOURCE_RECORD` | `TFQ-0469` | [`TFQ-0470.md`](../../dag/derivations/02_genesis/tfq_0470_rung7_duration_under_changing.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0471`** | rung8-element-count-across-iso | `GENESIS` | `SOURCE_RECORD` | `TFQ-0470` | [`TFQ-0471.md`](../../dag/derivations/02_genesis/tfq_0471_rung8_element_count_across_iso.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0472`** | rung9-two-ness-observational-classes | `GENESIS` | `SOURCE_RECORD` | `TFQ-0471` | [`TFQ-0472.md`](../../dag/derivations/02_genesis/tfq_0472_rung9_two_ness_observational_classes.md) | Lean: `5`, Rust: `1`, Py: `2` |
+| **`TFQ-0473`** | rung10-responder-adjacency-reach | `GENESIS` | `SOURCE_RECORD` | `TFQ-0472` | [`TFQ-0473.md`](../../dag/derivations/02_genesis/tfq_0473_rung10_responder_adjacency_reach.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0474`** | c1-engine-class-144 | `GENESIS` | `SOURCE_RECORD` | `TFQ-0473` | [`TFQ-0474.md`](../../dag/derivations/02_genesis/tfq_0474_c1_engine_class_144.md) | Lean: `5`, Rust: `1`, Py: `3` |
+| **`TFQ-0475`** | c2-run-forward-every-history | `GENESIS` | `PROVED_LEAN` | `TFQ-0474` | [`TFQ-0475.md`](../../dag/derivations/02_genesis/tfq_0475_c2_run_forward_every_history.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0476`** | forced-census-column | `GENESIS` | `SOURCE_RECORD` | `TFQ-0475` | [`TFQ-0476.md`](../../dag/derivations/02_genesis/tfq_0476_forced_census_column.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0477`** | go-reach-ceiling | `GENESIS` | `PROVED_LEAN` | `TFQ-0389` | [`TFQ-0477.md`](../../dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md) | Lean: `3`, Rust: `1`, Py: `1` |
+| **`TFQ-0478`** | go-contraction-step2-step3 | `GENESIS` | `PROVED_LEAN` | `TFQ-0477` | [`TFQ-0478.md`](../../dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0479`** | go-multiplicity-monotone | `GENESIS` | `PROVED_LEAN` | `TFQ-0478` | [`TFQ-0479.md`](../../dag/derivations/02_genesis/tfq_0479_go_multiplicity_monotone.md) | Lean: `3`, Rust: `1`, Py: `1` |
+| **`TFQ-0480`** | go-two-relations-swap | `GENESIS` | `PROVED_LEAN` | `TFQ-0479` | [`TFQ-0480.md`](../../dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0481`** | go-admission-gate | `GENESIS` | `SOURCE_RECORD` | `TFQ-0480` | [`TFQ-0481.md`](../../dag/derivations/02_genesis/tfq_0481_go_admission_gate.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0482`** | go-leftover-unboundedness | `GENESIS` | `PROVED_LEAN` | `TFQ-0481` | [`TFQ-0482.md`](../../dag/derivations/02_genesis/tfq_0482_go_leftover_unboundedness.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0483`** | go-h1-cancellation-excess | `GENESIS` | `PROVED_LEAN` | `TFQ-0482` | [`TFQ-0483.md`](../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md) | Lean: `4`, Rust: `1`, Py: `3` |
+| **`TFQ-0484`** | go-h2-state-raising-gauge | `GENESIS` | `SOURCE_RECORD` | `TFQ-0483` | [`TFQ-0484.md`](../../dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md) | Lean: `5`, Rust: `1`, Py: `2` |
+| **`TFQ-0485`** | go-h3-twin-fills-holonomy | `GENESIS` | `PROVED_LEAN` | `TFQ-0484` | [`TFQ-0485.md`](../../dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md) | Lean: `6`, Rust: `1`, Py: `3` |
+| **`TFQ-0486`** | genesis-freeze-endpoint-ledger | `GENESIS` | `SOURCE_RECORD` | `TFQ-0476` | [`TFQ-0486.md`](../../dag/derivations/02_genesis/tfq_0486_genesis_freeze_endpoint_ledger.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0487`** | endogenous-demands-exogenous-payments | `GENESIS` | `SOURCE_RECORD` | `TFQ-0486` | [`TFQ-0487.md`](../../dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md) | Lean: `4`, Rust: `1`, Py: `2` |
+| **`TFQ-0488`** | declared-challenge-import-per-level | `GENESIS` | `DEFINITION` | `TFQ-0487` | [`TFQ-0488.md`](../../dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0489`** | typed-requirement-kinds | `GENESIS` | `DEFINITION` | `TFQ-0488` | [`TFQ-0489.md`](../../dag/derivations/02_genesis/tfq_0489_typed_requirement_kinds.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0490`** | k-item-delta-grammar | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0488` | [`TFQ-0490.md`](../../dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md) | Lean: `2`, Rust: `1`, Py: `2` |
+| **`TFQ-0491`** | capability-stage-counter | `GENESIS` | `DEFINITION` | `TFQ-0488` | [`TFQ-0491.md`](../../dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0492`** | candidate-extension-generator | `GENESIS` | `DEFINITION` | `TFQ-0488` | [`TFQ-0492.md`](../../dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0493`** | four-gate-active-obstruction | `GENESIS` | `DEFINITION` | `TFQ-0492` | [`TFQ-0493.md`](../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0494`** | stage-change-contract-proposal-record | `GENESIS` | `SOURCE_RECORD` | `TFQ-0493` | [`TFQ-0494.md`](../../dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0495`** | genesis-to-sn-crosswalk | `GENESIS` | `DEFINITION` | `TFQ-0494` | [`TFQ-0495.md`](../../dag/derivations/02_genesis/tfq_0495_genesis_to_sn_crosswalk.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0496`** | responder-in-lean | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0496.md`](../../dag/derivations/02_genesis/tfq_0496_responder_in_lean.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0497`** | context-decision-procedure | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0497.md`](../../dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0498`** | declared-input-floor | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0498.md`](../../dag/derivations/02_genesis/tfq_0498_declared_input_floor.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0499`** | python-lean-carrier-bridge | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0499.md`](../../dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0500`** | isomorphism-soundness-in-lean | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0500.md`](../../dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0501`** | runs-past-declared-bounds | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0501.md`](../../dag/derivations/02_genesis/tfq_0501_runs_past_declared_bounds.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0502`** | stream-at-four-items | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0502.md`](../../dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0503`** | driver-b-seventh-event | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0503.md`](../../dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0504`** | endogenous-demand-ob1 | `GENESIS` | `OPEN_OBLIGATION` | `TFQ-0486` | [`TFQ-0504.md`](../../dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0505`** | alpha-license-binding-m1-m8 | `AUTHORIZATION` | `SOURCE_RECORD` | `TFQ-0331` | [`TFQ-0505.md`](../../dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md) | Lean: `1`, Rust: `1`, Py: `3` |
+| **`TFQ-0506`** | pfp-tripartite-law | `AUTHORIZATION` | `DEFINITION` | `TFQ-0505` | [`TFQ-0506.md`](../../dag/derivations/04_authorization/tfq_0506_pfp_tripartite_law.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0507`** | pfp-carrier-origin-nilpotency | `AUTHORIZATION` | `PROVED_LEAN` | `TFQ-0506` | [`TFQ-0507.md`](../../dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0508`** | pfp-stealth-cochain-phi1-gamma2 | `AUTHORIZATION` | `DEFINITION` | `TFQ-0507` | [`TFQ-0508.md`](../../dag/derivations/04_authorization/tfq_0508_pfp_stealth_cochain_phi1_gamma2.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0509`** | pfp-c4-certificate | `AUTHORIZATION` | `SOURCE_RECORD` | `TFQ-0508` | [`TFQ-0509.md`](../../dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0510`** | sn-two-boxed-laws | `MSSN_SN` | `DEFINITION` | `TFQ-0495` | [`TFQ-0510.md`](../../dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0511`** | sn0-ground-inertia | `MSSN_SN` | `PROVED_LEAN` | `TFQ-0510` | [`TFQ-0511.md`](../../dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0512`** | sn1-supply-not-admission | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0511` | [`TFQ-0512.md`](../../dag/derivations/05_mssn_sn/tfq_0512_sn1_supply_not_admission.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0513`** | sn2-opaque-collapse | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0512` | [`TFQ-0513.md`](../../dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0514`** | sn3-cost-two-unary-mark | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0513` | [`TFQ-0514.md`](../../dag/derivations/05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md) | Lean: `3`, Rust: `1`, Py: `2` |
+| **`TFQ-0515`** | sn-endpoint-lemma | `MSSN_SN` | `PROVED_LEAN` | `TFQ-0514` | [`TFQ-0515.md`](../../dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md) | Lean: `4`, Rust: `1`, Py: `1` |
+| **`TFQ-0516`** | sn4-policy-closure-cycle-space | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0514` | [`TFQ-0516.md`](../../dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0517`** | sn5-continuation-recorded-request | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0516` | [`TFQ-0517.md`](../../dag/derivations/05_mssn_sn/tfq_0517_sn5_continuation_recorded_request.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0518`** | sn-off-image-refusal-proposal | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0517` | [`TFQ-0518.md`](../../dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md) | Lean: `5`, Rust: `1`, Py: `1` |
+| **`TFQ-0519`** | sn-protected-answer-transport | `MSSN_SN` | `OPEN_OBLIGATION` | `TFQ-0518` | [`TFQ-0519.md`](../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0520`** | sn-postnikov-refusal | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0518` | [`TFQ-0520.md`](../../dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0521`** | sn-representation-quotient | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0518` | [`TFQ-0521.md`](../../dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md) | Lean: `3`, Rust: `2`, Py: `1` |
+| **`TFQ-0522`** | sn-e08-weighted-l1-duality | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0516` | [`TFQ-0522.md`](../../dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0523`** | sn-e12-circulation-functional | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0522` | [`TFQ-0523.md`](../../dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0524`** | sn-e18-l1-ties-l2-center | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0522` | [`TFQ-0524.md`](../../dag/derivations/05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0525`** | sn-e19-torsion-erased-over-q | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0523` | [`TFQ-0525.md`](../../dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0526`** | sn-e20-observer-completion | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0523` | [`TFQ-0526.md`](../../dag/derivations/05_mssn_sn/tfq_0526_sn_e20_observer_completion.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0527`** | sn-e21-repair-rank | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0523` | [`TFQ-0527.md`](../../dag/derivations/05_mssn_sn/tfq_0527_sn_e21_repair_rank.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0528`** | mssn-atlas-not-derivation | `MSSN_SN` | `DEFINITION` | `TFQ-0518` | [`TFQ-0528.md`](../../dag/derivations/05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0529`** | mssn-ascent-triad | `MSSN_SN` | `DEFINITION` | `TFQ-0528` | [`TFQ-0529.md`](../../dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0530`** | mssn-alphabet-declarations | `MSSN_SN` | `DEFINITION` | `TFQ-0529` | [`TFQ-0530.md`](../../dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0531`** | mssn-many-readings | `MSSN_SN` | `DEFINITION` | `TFQ-0530` | [`TFQ-0531.md`](../../dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0532`** | mssn-syntax-not-decoding | `MSSN_SN` | `DEFINITION` | `TFQ-0531` | [`TFQ-0532.md`](../../dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0533`** | mssn-rows-1-to-6-specified | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0532` | [`TFQ-0533.md`](../../dag/derivations/05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0534`** | mssn-circulation-obstruction | `MSSN_SN` | `PROVED_LEAN` | `TFQ-0533` | [`TFQ-0534.md`](../../dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md) | Lean: `5`, Rust: `2`, Py: `1` |
+| **`TFQ-0535`** | mssn-l1-cuts-hodge-rows | `MSSN_SN` | `SOURCE_RECORD` | `TFQ-0534` | [`TFQ-0535.md`](../../dag/derivations/05_mssn_sn/tfq_0535_mssn_l1_cuts_hodge_rows.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0536`** | wdp-failed-sameness | `WDP` | `SOURCE_RECORD` | `TFQ-0360` | [`TFQ-0536.md`](../../dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0537`** | wdp-pointed-apartness | `WDP` | `PROVED_LEAN` | `TFQ-0360` | [`TFQ-0537.md`](../../dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0538`** | wdp-quotient-defect-root-p | `WDP` | `DEFINITION` | `TFQ-0536` | [`TFQ-0538.md`](../../dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0539`** | wdp-seven-witness-roles | `WDP` | `DEFINITION` | `TFQ-0538` | [`TFQ-0539.md`](../../dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0540`** | wdp-asymmetry-injection-ledger | `WDP` | `DEFINITION` | `TFQ-0536` | [`TFQ-0540.md`](../../dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0541`** | wdp-retention-packet | `WDP` | `DEFINITION` | `TFQ-0539` | [`TFQ-0541.md`](../../dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0542`** | wdp-graph-cochain-host | `WDP` | `DEFINITION` | `TFQ-0360` | [`TFQ-0542.md`](../../dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0543`** | wdp-incidence-orientation-transport | `WDP` | `OPEN_OBLIGATION` | `TFQ-0542` | [`TFQ-0543.md`](../../dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0544`** | wdp-phi-well-defined-l1-duality | `WDP` | `CONDITIONAL` | `TFQ-0542` | [`TFQ-0544.md`](../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0545`** | wdp-closure-needs-degree | `WDP` | `DEFINITION` | `TFQ-0542` | [`TFQ-0545.md`](../../dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0546`** | wdp-exact-sequence-h1-q1 | `WDP` | `PROVED_LEAN` | `TFQ-0004` | [`TFQ-0546.md`](../../dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md) | Lean: `3`, Rust: `1`, Py: `1` |
+| **`TFQ-0547`** | wdp-trichotomy-bounds | `WDP` | `SOURCE_RECORD` | `TFQ-0546` | [`TFQ-0547.md`](../../dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md) | Lean: `2`, Rust: `1`, Py: `2` |
+| **`TFQ-0548`** | wdp-filled-triangle | `WDP` | `PROVED_LEAN` | `TFQ-0348` | [`TFQ-0548.md`](../../dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0549`** | wdp-degree-k-torsion-balance | `WDP` | `SOURCE_RECORD` | `TFQ-0004` | [`TFQ-0549.md`](../../dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md) | Lean: `1`, Rust: `1`, Py: `3` |
+| **`TFQ-0550`** | wdp-succession-strict-order | `WDP` | `DEFINITION` | `TFQ-0541` | [`TFQ-0550.md`](../../dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md) | Lean: `2`, Rust: `1`, Py: `1` |
+| **`TFQ-0551`** | wdp-duration-exactness-period-witness | `WDP` | `DEFINITION` | `TFQ-0550` | [`TFQ-0551.md`](../../dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md) | Lean: `2`, Rust: `1`, Py: `2` |
+| **`TFQ-0552`** | wdp-finite-valuations | `WDP` | `DEFINITION` | `TFQ-0541` | [`TFQ-0552.md`](../../dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md) | Lean: `1`, Rust: `1`, Py: `2` |
+| **`TFQ-0553`** | wdp-observer-quotient-passivity | `WDP` | `DEFINITION` | `TFQ-0339` | [`TFQ-0553.md`](../../dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md) | Lean: `3`, Rust: `1`, Py: `3` |
+| **`TFQ-0554`** | wdp-genesis-bridges-ledger | `WDP` | `SOURCE_RECORD` | `TFQ-0553` | [`TFQ-0554.md`](../../dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0555`** | wdp-bridge-ongoing-to-window | `WDP` | `OPEN_OBLIGATION` | `TFQ-0554` | [`TFQ-0555.md`](../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0556`** | wdp-bridge-report-fiber-observer | `WDP` | `CONDITIONAL` | `TFQ-0554` | [`TFQ-0556.md`](../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0557`** | wdp-synthesis-trunk-tiers | `WDP` | `SOURCE_RECORD` | `TFQ-0556` | [`TFQ-0557.md`](../../dag/derivations/06_wdp/tfq_0557_wdp_synthesis_trunk_tiers.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0558`** | wdp-handoff-to-l1 | `WDP` | `OPEN_OBLIGATION` | `TFQ-0557` | [`TFQ-0558.md`](../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0397`** | Group-valued connections on a finite multigraph | `DRESSING_FIELD` | `DEFINITION` | `TFQ-0009` | [`TFQ-0397.md`](../../dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md) | Py: `1` |
 | **`TFQ-0398`** | General finite-graph dressing and closed-walk holonomy | `DRESSING_FIELD` | `PROVED_LEAN` | `TFQ-0397` | [`TFQ-0398.md`](../../dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | Lean: `3`, Rust: `1`, Py: `1` |
 | **`TFQ-0399`** | Tree-change covariance of the residual connection | `DRESSING_FIELD` | `PROVED_LEAN` | `TFQ-0398` | [`TFQ-0399.md`](../../dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md) | Lean: `1`, Rust: `1`, Py: `1` |
@@ -557,7 +699,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 417 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 559 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -568,7 +710,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains an unbroken, verified chain of 417 finite derivations from `<>` to quantum gravity whose structural invariants, boundaries, and witnesses are certified by Lean 4, Rust, and Python without sorry or un-scoped assumptions.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 559 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

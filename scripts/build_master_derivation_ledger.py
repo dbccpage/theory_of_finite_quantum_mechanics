@@ -27,7 +27,7 @@ def build_ledger() -> str:
     with open(jsonl_path, "r", encoding="utf-8") as f:
         records = [json.loads(line) for line in f if line.strip()]
     record_count = len(records)
-    last_id = max(r["id"] for r in records)
+    highest_id = max(r["id"] for r in records)
 
     # 2. Map file paths
     files = list(REPO_ROOT.glob("dag/derivations/**/*.md"))
@@ -153,7 +153,7 @@ def build_ledger() -> str:
         "",
         "---",
         "",
-        f"## 3. The Master Derivation Ledger Table (`TFQ-0000` through `{last_id}`)",
+        f"## 3. The Master Derivation Ledger Table (`TFQ-0000` through `{highest_id}`)",
         "",
         "Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.",
         "",

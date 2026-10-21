@@ -43,7 +43,9 @@ In accordance with strict constructive principles:
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-*None (Leaf or Terminal derivation in current tree)*
+- [TFQ-0536](tfq_0536_wdp_failed_sameness.md)
+- [TFQ-0537](tfq_0537_wdp_pointed_apartness.md)
+- [TFQ-0542](tfq_0542_wdp_graph_cochain_host.md)
 
 ---
 
