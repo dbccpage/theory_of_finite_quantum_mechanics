@@ -250,9 +250,9 @@
     "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
   ],
   "sha256": {
-    "dag/derivation_dag.json": "147716e6401b171fc06d29481f45f14f3e4cc4f56d69009ff97c31c8113da9f7",
+    "dag/derivation_dag.json": "ea298fa3004b0d165e68be6239e63a96119f2fc177a64f84eec6f344c4fd5046",
     "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
-    "dag/derivations/README.md": "0a9308f84dcb2af036979f7427fc0599cb74df955241dafc76b6a2fb746dcffa",
+    "dag/derivations/README.md": "209664d2b0d469872b257db7fbe07b045df131fa64176dd98d637bd813483bc6",
     "dag/fragments/application_branches.json": "337b0a212553ff774a1706a1e0548774abe98b3cf1ed006e16640e9a2918093f",
     "dag/research/replay_tensor_countermodels.py": "4a104ca91efee4e5fb1311a962a7c7c64d6f7c4918b94085946c73b331944d52",
     "dag/research/tensor_countermodel_failed_replay.json": "e97668cf2cb3f78847b66a007de9b947b57b58f5a74be659db0311d62e46ae35",
@@ -260,8 +260,8 @@
     "dag/test_application_branches.py": "04e6f152d53cfa91d302ebee8b82706309e32faf1954aef8dc411d006705dcde",
     "dag/test_tensor_countermodel_receipt.py": "c21e303b0d616513fae733bdab323315f7e4831f5b2e1479e379fdf81a0aedf2",
     "dag/test_tensor_measurement_receipt.py": "2b943c4d2892623f1296a2764ca128789428bd141a8ff5ec219bbbc6fb2459c6",
-    "dag/theory_of_finite_qm.jsonl": "bec3ebccb5116bbb42ce064e18fe6b2871f48f1575db2002d19289204b6a7404",
-    "dag/theory_of_finite_qm.md": "0b99f72320824269df7653c6000aa578eace0042cacaa479954ac2673dfa0b22",
+    "dag/theory_of_finite_qm.jsonl": "6afcbd51b7e3fc71fb741eacd1f1c41cd5ec34826265aa553aed0d04e5802bde",
+    "dag/theory_of_finite_qm.md": "c146e55b88e17f14ad66f21069b5c92ad13c5fffcc5d022fd95d6f9fb5421640",
     "lean4/TensorCountermodelCones.lean": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
     "lean4/TensorCountermodelEmbeddings.lean": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
     "lean4/TensorCountermodelWitnesses.lean": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
@@ -497,6 +497,38 @@
       "current": "6c57e3be438fed8424b4ac20e021860b5d15f0e433416fb12d99b474abdc3805",
       "reason": "current-file digest rebound after the COMPUTATION stage was folded into the unified DAG: the AuthIncompleteness, QcSelfObstruction and GenesisComp libraries were registered; the tensor roots are unchanged; the Lean replay section and every other digest are unchanged",
       "run": "branch comp-integration"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "147716e6401b171fc06d29481f45f14f3e4cc4f56d69009ff97c31c8113da9f7",
+      "current": "ea298fa3004b0d165e68be6239e63a96119f2fc177a64f84eec6f344c4fd5046",
+      "reason": "current-file digest rebound when the lean-v4-35 (#137) and comp-integration (#145) commits were cherry-picked onto pfp-prompts (#131, #133, #136, #139) and the sync cycle was re-run: the graph now carries both the PFP review objects and prompts side and the Lean 4.35.0 replay notes and COMPUTATION stage side; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivations/README.md",
+      "previous": "0a9308f84dcb2af036979f7427fc0599cb74df955241dafc76b6a2fb746dcffa",
+      "current": "209664d2b0d469872b257db7fbe07b045df131fa64176dd98d637bd813483bc6",
+      "reason": "current-file digest rebound when the lean-v4-35 (#137) and comp-integration (#145) commits were cherry-picked onto pfp-prompts (#131, #133, #136, #139) and the sync cycle was re-run: the derivation index was regenerated from the consolidated graph; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "previous": "bec3ebccb5116bbb42ce064e18fe6b2871f48f1575db2002d19289204b6a7404",
+      "current": "6afcbd51b7e3fc71fb741eacd1f1c41cd5ec34826265aa553aed0d04e5802bde",
+      "reason": "current-file digest rebound when the lean-v4-35 (#137) and comp-integration (#145) commits were cherry-picked onto pfp-prompts (#131, #133, #136, #139) and the sync cycle was re-run: the master records were regenerated from the consolidated graph (PFP review refs and the COMPUTATION records together); the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.md",
+      "previous": "0b99f72320824269df7653c6000aa578eace0042cacaa479954ac2673dfa0b22",
+      "current": "c146e55b88e17f14ad66f21069b5c92ad13c5fffcc5d022fd95d6f9fb5421640",
+      "reason": "current-file digest rebound when the lean-v4-35 (#137) and comp-integration (#145) commits were cherry-picked onto pfp-prompts (#131, #133, #136, #139) and the sync cycle was re-run: the master listing was regenerated from the consolidated graph; the Lean replay section and every tensor node, route and master record are unchanged",
+      "run": "branch dag-single-source"
     }
   ]
 }
