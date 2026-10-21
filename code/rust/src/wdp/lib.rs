@@ -28,6 +28,8 @@ pub mod observer_adapter_completeness;
 pub mod observer_world_adapter;
 pub mod obstruction;
 pub mod path_kernel_gluing;
+pub mod po000_24g2;
+pub mod po000_exact;
 pub mod po000_projection_obstruction;
 pub mod policy_observer_adapter;
 pub mod presheaf;
