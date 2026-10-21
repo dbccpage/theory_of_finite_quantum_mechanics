@@ -222,7 +222,7 @@ def test_combined_report_reads_its_audits() -> None:
     assert report.passed
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'regge_gravity.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'regge_gravity.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

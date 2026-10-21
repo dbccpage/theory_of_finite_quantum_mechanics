@@ -3,104 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0",
-    "title": "Skill Operand v1",
-    "kind": "packet_contract",
-    "layer": "40_packets",
-    "role": "PacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "clean_architecture_layer": "infrastructure",
-      "refusals": {
-        "may_emit": [
-          "OPERAND_TOO_LARGE",
-          "COLOUR_MISMATCH",
-          "UNPROMOTED_OPERAND_REFUSED",
-          "PRECONDITION_UNMET"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py",
+      "sha256": "6a0f36ecaac27379112da2d3f3a41f36532a2df95ea68f62077e09b3740c59c4"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-symbol-game-skill-operand-v1-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "SkillOperandV1 represents a learned, modular operadic rewrite or prompt composition block that can be injected into candidate generation prompts. Operands must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted via the admission pipeline before injection.",
-      "invariants": [
-        "Operands are injected if and only if status is 'promoted', colours match under partial_compose, and preconditions hold.",
-        "Candidate or suppressed operands are strictly prohibited from prompt injection.",
-        "Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.",
-        "At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt."
-      ],
-      "non_roles": [
-        "authority_source",
-        "truth_oracle"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification",
-        "no_implicit_authority_upgrade"
-      ]
-    },
-    "structure": {
-      "rust_crate": "omega_symbol_game_runtime",
-      "rust_module": "operand",
-      "rust_type": "SkillOperandV1",
-      "form": "struct",
-      "serde": {
-        "deny_unknown_fields": true
-      },
-      "fields": [
-        {
-          "name": "operand_id"
-        },
-        {
-          "name": "title"
-        },
-        {
-          "name": "description"
-        },
-        {
-          "name": "source_colour"
-        },
-        {
-          "name": "target_colour"
-        },
-        {
-          "name": "ddc_motif"
-        },
-        {
-          "name": "content_bytes_len"
-        },
-        {
-          "name": "token_estimate"
-        },
-        {
-          "name": "status"
-        },
-        {
-          "name": "prompt_injection_text"
-        },
-        {
-          "name": "replay_evidence_hash"
-        },
-        {
-          "name": "authority_effect"
-        }
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed",
-  "current_scoring": null,
+  "current_contract": "ce311cd908151d6428dee853ce4265396c3f39b4fd6b35a1cb8a2e7f17068821",
+  "current_scoring": "f0e6004351f803cd0631346aeef980fb82d0e4ace00b12adbfadfa1a5fa2a2df",
   "contract_history": [
     {
-      "sha256": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed",
-      "bytes": 1892,
+      "sha256": "cdd4770bb0b7437f54237bb6a8fc60328aaa599ef44e14c63ffb47c3aec86911",
+      "bytes": 2504,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0",
@@ -194,13 +128,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0\ntitle: Skill Operand v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - OPERAND_TOO_LARGE\n    - COLOUR_MISMATCH\n    - UNPROMOTED_OPERAND_REFUSED\n    - PRECONDITION_UNMET\ndoctrine:\n  summary: SkillOperandV1 represents a learned, modular operadic rewrite or prompt\n    composition block that can be injected into candidate generation prompts. Operands\n    must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted\n    via the admission pipeline before injection.\n  invariants:\n  - Operands are injected if and only if status is 'promoted', colours match under\n    partial_compose, and preconditions hold.\n  - Candidate or suppressed operands are strictly prohibited from prompt injection.\n  - Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.\n  - At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt.\n  non_roles:\n  - authority_source\n  - truth_oracle\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: operand\n  rust_type: SkillOperandV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: operand_id\n  - name: title\n  - name: description\n  - name: source_colour\n  - name: target_colour\n  - name: ddc_motif\n  - name: content_bytes_len\n  - name: token_estimate\n  - name: status\n  - name: prompt_injection_text\n  - name: replay_evidence_hash\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0\",\n  \"title\": \"Skill Operand v1\",\n  \"kind\": \"packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"PacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"clean_architecture_layer\": \"infrastructure\",\n    \"refusals\": {\n      \"may_emit\": [\n        \"OPERAND_TOO_LARGE\",\n        \"COLOUR_MISMATCH\",\n        \"UNPROMOTED_OPERAND_REFUSED\",\n        \"PRECONDITION_UNMET\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"SkillOperandV1 represents a learned, modular operadic rewrite or prompt composition block that can be injected into candidate generation prompts. Operands must satisfy size constraints (<= 400 tokens, <= 1600 bytes) and must be promoted via the admission pipeline before injection.\",\n    \"invariants\": [\n      \"Operands are injected if and only if status is 'promoted', colours match under partial_compose, and preconditions hold.\",\n      \"Candidate or suppressed operands are strictly prohibited from prompt injection.\",\n      \"Total size of a single operand must not exceed 1600 bytes and 400 estimated tokens.\",\n      \"At most 3 promoted operands (<= 1200 tokens) may be injected into a single prompt.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"truth_oracle\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\",\n      \"no_implicit_authority_upgrade\"\n    ]\n  },\n  \"structure\": {\n    \"rust_crate\": \"omega_symbol_game_runtime\",\n    \"rust_module\": \"operand\",\n    \"rust_type\": \"SkillOperandV1\",\n    \"form\": \"struct\",\n    \"serde\": {\n      \"deny_unknown_fields\": true\n    },\n    \"fields\": [\n      {\n        \"name\": \"operand_id\"\n      },\n      {\n        \"name\": \"title\"\n      },\n      {\n        \"name\": \"description\"\n      },\n      {\n        \"name\": \"source_colour\"\n      },\n      {\n        \"name\": \"target_colour\"\n      },\n      {\n        \"name\": \"ddc_motif\"\n      },\n      {\n        \"name\": \"content_bytes_len\"\n      },\n      {\n        \"name\": \"token_estimate\"\n      },\n      {\n        \"name\": \"status\"\n      },\n      {\n        \"name\": \"prompt_injection_text\"\n      },\n      {\n        \"name\": \"replay_evidence_hash\"\n      },\n      {\n        \"name\": \"authority_effect\"\n      }\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "ce311cd908151d6428dee853ce4265396c3f39b4fd6b35a1cb8a2e7f17068821",
+      "bytes": 1870,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py",
+          "sha256": "6a0f36ecaac27379112da2d3f3a41f36532a2df95ea68f62077e09b3740c59c4"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-symbol-game-skill-operand-v1-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py\",\n    \"sha256\": \"6a0f36ecaac27379112da2d3f3a41f36532a2df95ea68f62077e09b3740c59c4\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-symbol-game-skill-operand-v1-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:symbol_game:skill_operand_v1:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f0e6004351f803cd0631346aeef980fb82d0e4ace00b12adbfadfa1a5fa2a2df",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py",
+          "sha256": "6a0f36ecaac27379112da2d3f3a41f36532a2df95ea68f62077e09b3740c59c4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-symbol-game-skill-operand-v1-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.py\",\n    \"sha256\": \"6a0f36ecaac27379112da2d3f3a41f36532a2df95ea68f62077e09b3740c59c4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-symbol-game-skill-operand-v1-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_symbol_game_skill_operand_v1_v1_0_0.contract.yaml": "94ba24f93308038b9826335fccf419d887fca6d9a839e303e08d5508e79481ed"
   },

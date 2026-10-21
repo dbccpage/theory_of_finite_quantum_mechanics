@@ -21,12 +21,19 @@ class RationalBellTests(unittest.TestCase):
     def test_actual_born_table_violation_and_full_support(self):
         result=bell.certify(*data())
         self.assertEqual(result['chsh'],'14/5');self.assertEqual(result['minimum_probability'],'1/20')
-        self.assertEqual(result['support_assignments'],16);self.assertEqual(result['violating_mask'],8)
+        self.assertEqual(result['support_assignments'],16)
+        self.assertEqual(result['locally_supported_assignments'],16)
+        self.assertEqual(result['violating_mask'],8)
         self.assertGreater(Q(result['separator_lower']),Q(result['separator_upper']))
     def test_same_full_support_can_extend_for_uniform_density(self):
         _,a,b=data();rho=[[Q(i==j,4) for j in range(4)] for i in range(4)]
         result=bell.certify(rho,a,b);self.assertEqual(result['support_assignments'],16)
+        self.assertEqual(result['locally_supported_assignments'],16)
         self.assertEqual(result['chsh'],'0');self.assertIsNone(result['violating_mask'])
+    def test_oversized_integer_refused(self):
+        rho,a,b=data()
+        rho[0][0]=1<<1025
+        with self.assertRaises(ValueError):bell.born_pairs(rho,a,b)
     def test_nonpositive_and_nonnormalized_states_are_refused(self):
         for value in (Q(-1,2),Q(3,2)):
             rho,a,b=data();rho[0][0]=value

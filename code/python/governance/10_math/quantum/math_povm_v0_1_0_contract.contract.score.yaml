@@ -97,12 +97,12 @@
       ]
     }
   },
-  "current_contract": "28553dc9969a49459c26e76e0af58abbc69ae2d9a40f9e02f7fdf9a0b6fad255",
-  "current_scoring": null,
+  "current_contract": "ae5ccb1de0dd2827e8e59913600c9dea1b3521e87548bd414dfa4e96067a8fca",
+  "current_scoring": "6e06ce72ff025041b7be11f2736ce91862dda3f0d84b0d4d34719393edacd749",
   "contract_history": [
     {
-      "sha256": "28553dc9969a49459c26e76e0af58abbc69ae2d9a40f9e02f7fdf9a0b6fad255",
-      "bytes": 2962,
+      "sha256": "ae5ccb1de0dd2827e8e59913600c9dea1b3521e87548bd414dfa4e96067a8fca",
+      "bytes": 3456,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:povm:v0.1.0",
@@ -198,13 +198,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:povm:v0.1.0\ntitle: POVM Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: povm\n  symbol: povm\n  ascii_symbol: povm\n  notation: Exact Finite POVM\n  domain:\n  - A nonempty finite family of equal-size positive Hermitian Q(i) effects resolving\n    identity\n  codomain:\n    description: Declared finite results of omega_quantum_physics::instruments; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Each effect is Hermitian positive semidefinite and their exact sum is identity\n- For an admitted density operator probabilities are Tr(E_i rho), nonnegative, and\n  sum to one\n- Outcome indices are precisely the checked effect-family positions\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject malformed dimensions, non-Hermitian effects, nonpositive effects and failed\n  completeness\ndoctrine:\n  summary: Each effect is Hermitian positive semidefinite and their exact sum is identity;\n    For an admitted density operator probabilities are Tr(E_i rho), nonnegative, and\n    sum to one; Outcome indices are precisely the checked effect-family positions.\n  non_role:\n  - A POVM does not determine its instrument or physical implementation\n  - Continuous outcome carriers\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n- The former generic metadata scaffold remains outside this explicitly declared finite\n  executable domain; its unsupported hash obligations are not claimed discharged.\nrust_binding:\n  crate: omega_quantum_physics\n  module: instruments\n  symbols:\n  - ExactPovm\n  - ExactPovm::try_new\n  - ExactPovm::probabilities\n  required_tests:\n  - spectral_projective_measurements_are_repeatable_and_refuse_noncommuting_joint\n  - measurement_exact_laws::naimark_compression_replays_a_nonprojective_povm_without_rational_square_roots\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:povm:v0.1.0\",\n  \"title\": \"POVM Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"povm\",\n    \"symbol\": \"povm\",\n    \"ascii_symbol\": \"povm\",\n    \"notation\": \"Exact Finite POVM\",\n    \"domain\": [\n      \"A nonempty finite family of equal-size positive Hermitian Q(i) effects resolving identity\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::instruments; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Each effect is Hermitian positive semidefinite and their exact sum is identity\",\n    \"For an admitted density operator probabilities are Tr(E_i rho), nonnegative, and sum to one\",\n    \"Outcome indices are precisely the checked effect-family positions\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Reject malformed dimensions, non-Hermitian effects, nonpositive effects and failed completeness\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Each effect is Hermitian positive semidefinite and their exact sum is identity; For an admitted density operator probabilities are Tr(E_i rho), nonnegative, and sum to one; Outcome indices are precisely the checked effect-family positions.\",\n    \"non_role\": [\n      \"A POVM does not determine its instrument or physical implementation\",\n      \"Continuous outcome carriers\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\",\n    \"The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged.\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"instruments\",\n    \"symbols\": [\n      \"ExactPovm\",\n      \"ExactPovm::try_new\",\n      \"ExactPovm::probabilities\"\n    ],\n    \"required_tests\": [\n      \"spectral_projective_measurements_are_repeatable_and_refuse_noncommuting_joint\",\n      \"measurement_exact_laws::naimark_compression_replays_a_nonprojective_povm_without_rational_square_roots\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_povm_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6e06ce72ff025041b7be11f2736ce91862dda3f0d84b0d4d34719393edacd749",
+      "bytes": 2205,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_povm_v0_1_0_contract.py",
+          "sha256": "116e975bde8bdbbaab939c27a72af048e24d719ac5e0857086f3bf722eba5eb1"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-povm-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_povm_v0_1_0_contract.py\",\n    \"sha256\": \"116e975bde8bdbbaab939c27a72af048e24d719ac5e0857086f3bf722eba5eb1\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-povm-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_povm_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_povm_v0_1_0.contract.yaml": "28553dc9969a49459c26e76e0af58abbc69ae2d9a40f9e02f7fdf9a0b6fad255"
   },

@@ -37,7 +37,7 @@ def _all_hold(flags: tuple[bool, ...]) -> bool:
     return True
 
 
-_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "matrix_recovery.py"
+_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "matrix_recovery.py"
 _Q = Fraction
 _COLUMNS = ((_Q(1), _Q(3)), (_Q(2), _Q(4)))
 _MATRIX = ((_Q(1), _Q(2)), (_Q(3), _Q(4)))

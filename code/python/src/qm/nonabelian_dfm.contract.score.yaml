@@ -1,0 +1,245 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/nonabelian_dfm.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/nonabelian_dfm.py",
+      "sha256": "0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:nonabelian-dfm:v1",
+    "role": "library",
+    "purpose": "Substantial-vs-artificial & hierarchical non-Abelian DFM control for QM-213. Computes over exact rational matrices ``GL(2, Q)`` and the Borel subgroup",
+    "operations": {
+      "mat2": "Construct an exact 2x2 rational matrix.",
+      "id2": "Return the 2x2 identity matrix over Q.",
+      "zero2": "Return the 2x2 zero matrix over Q.",
+      "borel2": "Construct an upper-triangular 2x2 Borel matrix [[d1, b], [0, d2]].",
+      "mat2_add": "Exact 2x2 matrix addition.",
+      "mat2_sub": "Exact 2x2 matrix subtraction.",
+      "mat2_mul": "Exact 2x2 matrix multiplication.",
+      "mat2_det": "Exact determinant of a 2x2 rational matrix.",
+      "mat2_trace": "Exact trace of a 2x2 rational matrix.",
+      "mat2_inv": "Exact inverse of an invertible 2x2 rational matrix.",
+      "borel2_torus_part": "Project a Borel matrix to the diagonal quotient torus T = B/N.",
+      "borel2_unipotent_part": "Extract the right unipotent factor n(M) = diag(d1, d2)^{-1} M in N.",
+      "is_unit_upper_triangular": "Check whether m lies in the normal unipotent subgroup N <| B_2(Q).",
+      "is_diagonal_2x2": "Check whether m lies in the diagonal torus subgroup T subset B_2(Q).",
+      "gauge_transform_edges": "Compute U'_e = g(t) U_e g(s)^{-1} for every directed edge e = (s -> t).",
+      "tree_transport_and_dressing": "Compute root-to-vertex transport T(v), dressing u_T(v) = T(v)^{-1}, and residual R_e.",
+      "walk_holonomy": "Compute path-ordered product along oriented steps (edge_index, direction).",
+      "classify_punctured_diamond_connection": "Classify a connection on the punctured diamond into GaugeTrivial, FlatNontrivial, or Curved.",
+      "poset_p5_chains": "Enumerate all strict chains [v_0, ..., v_degree] in P_5.",
+      "flat_cover_extension_p5": "Extend cover maps along saturated chains in P_5; refuse if two saturated paths disagree.",
+      "dga_internal_differential": "Compute b(f) on chains of degree + 1 by deleting internal vertices i in 1..=degree.",
+      "dga_cup": "Compute (f cup g)_{[v_0, ..., v_{p+q}]} = f_{[v_0, ..., v_p]} * g_{[v_p, ..., v_{p+q}]}.",
+      "dga_curvature": "Compute K(A) = b A + A cup A in C^2(P_5).",
+      "dga_covariant_differential_deg2": "Compute D_A K = b K + A cup K - K cup A in C^3(P_5).",
+      "dga_gauge": "Compute (f^g)_{[v_0, ..., v_p]} = g_{v_0} f_{[v_0, ..., v_p]} g_{v_p}^{-1}.",
+      "Qm213NonAbelianDfmReceipt": "Summary receipt for the QM-213 substantial-vs-artificial & hierarchical DFM control.",
+      "run_qm213_nonabelian_dfm_control": "Execute the full QM-213 substantial-vs-artificial and hierarchical DFM control."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "3f594ddddb51c3ddc85b5a45891062a9101f0005903bae635989294a0e458b1c",
+  "current_scoring": "31c3fd4ed9bd407f001514511baa24263925c9c361743fa63c8ada127de875ee",
+  "contract_history": [
+    {
+      "sha256": "3f594ddddb51c3ddc85b5a45891062a9101f0005903bae635989294a0e458b1c",
+      "bytes": 4053,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/nonabelian_dfm.py",
+          "sha256": "0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:nonabelian-dfm:v1",
+        "role": "library",
+        "purpose": "Substantial-vs-artificial & hierarchical non-Abelian DFM control for QM-213. Computes over exact rational matrices ``GL(2, Q)`` and the Borel subgroup",
+        "operations": {
+          "mat2": "Construct an exact 2x2 rational matrix.",
+          "id2": "Return the 2x2 identity matrix over Q.",
+          "zero2": "Return the 2x2 zero matrix over Q.",
+          "borel2": "Construct an upper-triangular 2x2 Borel matrix [[d1, b], [0, d2]].",
+          "mat2_add": "Exact 2x2 matrix addition.",
+          "mat2_sub": "Exact 2x2 matrix subtraction.",
+          "mat2_mul": "Exact 2x2 matrix multiplication.",
+          "mat2_det": "Exact determinant of a 2x2 rational matrix.",
+          "mat2_trace": "Exact trace of a 2x2 rational matrix.",
+          "mat2_inv": "Exact inverse of an invertible 2x2 rational matrix.",
+          "borel2_torus_part": "Project a Borel matrix to the diagonal quotient torus T = B/N.",
+          "borel2_unipotent_part": "Extract the right unipotent factor n(M) = diag(d1, d2)^{-1} M in N.",
+          "is_unit_upper_triangular": "Check whether m lies in the normal unipotent subgroup N <| B_2(Q).",
+          "is_diagonal_2x2": "Check whether m lies in the diagonal torus subgroup T subset B_2(Q).",
+          "gauge_transform_edges": "Compute U'_e = g(t) U_e g(s)^{-1} for every directed edge e = (s -> t).",
+          "tree_transport_and_dressing": "Compute root-to-vertex transport T(v), dressing u_T(v) = T(v)^{-1}, and residual R_e.",
+          "walk_holonomy": "Compute path-ordered product along oriented steps (edge_index, direction).",
+          "classify_punctured_diamond_connection": "Classify a connection on the punctured diamond into GaugeTrivial, FlatNontrivial, or Curved.",
+          "poset_p5_chains": "Enumerate all strict chains [v_0, ..., v_degree] in P_5.",
+          "flat_cover_extension_p5": "Extend cover maps along saturated chains in P_5; refuse if two saturated paths disagree.",
+          "dga_internal_differential": "Compute b(f) on chains of degree + 1 by deleting internal vertices i in 1..=degree.",
+          "dga_cup": "Compute (f cup g)_{[v_0, ..., v_{p+q}]} = f_{[v_0, ..., v_p]} * g_{[v_p, ..., v_{p+q}]}.",
+          "dga_curvature": "Compute K(A) = b A + A cup A in C^2(P_5).",
+          "dga_covariant_differential_deg2": "Compute D_A K = b K + A cup K - K cup A in C^3(P_5).",
+          "dga_gauge": "Compute (f^g)_{[v_0, ..., v_p]} = g_{v_0} f_{[v_0, ..., v_p]} g_{v_p}^{-1}.",
+          "Qm213NonAbelianDfmReceipt": "Summary receipt for the QM-213 substantial-vs-artificial & hierarchical DFM control.",
+          "run_qm213_nonabelian_dfm_control": "Execute the full QM-213 substantial-vs-artificial and hierarchical DFM control."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/nonabelian_dfm.py\",\n    \"sha256\": \"0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:nonabelian-dfm:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Substantial-vs-artificial & hierarchical non-Abelian DFM control for QM-213. Computes over exact rational matrices ``GL(2, Q)`` and the Borel subgroup\",\n  \"operations\": {\n    \"mat2\": \"Construct an exact 2x2 rational matrix.\",\n    \"id2\": \"Return the 2x2 identity matrix over Q.\",\n    \"zero2\": \"Return the 2x2 zero matrix over Q.\",\n    \"borel2\": \"Construct an upper-triangular 2x2 Borel matrix [[d1, b], [0, d2]].\",\n    \"mat2_add\": \"Exact 2x2 matrix addition.\",\n    \"mat2_sub\": \"Exact 2x2 matrix subtraction.\",\n    \"mat2_mul\": \"Exact 2x2 matrix multiplication.\",\n    \"mat2_det\": \"Exact determinant of a 2x2 rational matrix.\",\n    \"mat2_trace\": \"Exact trace of a 2x2 rational matrix.\",\n    \"mat2_inv\": \"Exact inverse of an invertible 2x2 rational matrix.\",\n    \"borel2_torus_part\": \"Project a Borel matrix to the diagonal quotient torus T = B/N.\",\n    \"borel2_unipotent_part\": \"Extract the right unipotent factor n(M) = diag(d1, d2)^{-1} M in N.\",\n    \"is_unit_upper_triangular\": \"Check whether m lies in the normal unipotent subgroup N <| B_2(Q).\",\n    \"is_diagonal_2x2\": \"Check whether m lies in the diagonal torus subgroup T subset B_2(Q).\",\n    \"gauge_transform_edges\": \"Compute U'_e = g(t) U_e g(s)^{-1} for every directed edge e = (s -> t).\",\n    \"tree_transport_and_dressing\": \"Compute root-to-vertex transport T(v), dressing u_T(v) = T(v)^{-1}, and residual R_e.\",\n    \"walk_holonomy\": \"Compute path-ordered product along oriented steps (edge_index, direction).\",\n    \"classify_punctured_diamond_connection\": \"Classify a connection on the punctured diamond into GaugeTrivial, FlatNontrivial, or Curved.\",\n    \"poset_p5_chains\": \"Enumerate all strict chains [v_0, ..., v_degree] in P_5.\",\n    \"flat_cover_extension_p5\": \"Extend cover maps along saturated chains in P_5; refuse if two saturated paths disagree.\",\n    \"dga_internal_differential\": \"Compute b(f) on chains of degree + 1 by deleting internal vertices i in 1..=degree.\",\n    \"dga_cup\": \"Compute (f cup g)_{[v_0, ..., v_{p+q}]} = f_{[v_0, ..., v_p]} * g_{[v_p, ..., v_{p+q}]}.\",\n    \"dga_curvature\": \"Compute K(A) = b A + A cup A in C^2(P_5).\",\n    \"dga_covariant_differential_deg2\": \"Compute D_A K = b K + A cup K - K cup A in C^3(P_5).\",\n    \"dga_gauge\": \"Compute (f^g)_{[v_0, ..., v_p]} = g_{v_0} f_{[v_0, ..., v_p]} g_{v_p}^{-1}.\",\n    \"Qm213NonAbelianDfmReceipt\": \"Summary receipt for the QM-213 substantial-vs-artificial & hierarchical DFM control.\",\n    \"run_qm213_nonabelian_dfm_control\": \"Execute the full QM-213 substantial-vs-artificial and hierarchical DFM control.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/nonabelian_dfm.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "d7417e42cb74c99037bb79bd2616160696e47431032a24e9532fccddfa49d812",
+      "bytes": 2196,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/nonabelian_dfm.py",
+          "sha256": "0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:nonabelian-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 11), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 11,
+          "weighted_control_upper_bound": 14,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/nonabelian_dfm.py\",\n    \"sha256\": \"0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:nonabelian-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 11), Lizard CCN (max 11), and shallow nesting depth (max 4 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 14,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/nonabelian_dfm.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "31c3fd4ed9bd407f001514511baa24263925c9c361743fa63c8ada127de875ee",
+      "bytes": 2162,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/nonabelian_dfm.py",
+          "sha256": "0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:nonabelian-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 11,
+          "lizard_ccn": 11,
+          "weighted_control_upper_bound": 14,
+          "control_nesting": 4
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/nonabelian_dfm.py\",\n    \"sha256\": \"0d9c33911ac225adfe9a0a8e7551b98fbb4119c949a5d6c05a739bedb9b96925\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:nonabelian-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 11 <= 15 (B), nesting depth 4 <= 4 (B); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 11,\n    \"lizard_ccn\": 11,\n    \"weighted_control_upper_bound\": 14,\n    \"control_nesting\": 4\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/nonabelian_dfm.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

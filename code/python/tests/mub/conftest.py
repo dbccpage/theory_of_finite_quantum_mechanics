@@ -8,3 +8,6 @@ _SRC = _REPO_ROOT / "code" / "python" / "src"
 for p in (_SRC_MUB, _SRC):
     if p.exists() and str(p) not in sys.path:
         sys.path.insert(0, str(p))
+
+import src.mub
+

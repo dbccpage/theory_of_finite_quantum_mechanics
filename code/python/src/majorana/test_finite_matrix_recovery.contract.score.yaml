@@ -1,0 +1,258 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_finite_matrix_recovery.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_finite_matrix_recovery.py",
+      "sha256": "78c10283663b723ca81a1316f259d59f53851ae03f104ca468687dcd47f8403b"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-finite-matrix-recovery:v1",
+    "role": "test checker",
+    "purpose": "Bounded domain operations and invariant verification for test_finite_matrix_recovery.",
+    "operations": {
+      "Component": "Class Component domain record and methods.",
+      "RecoveryStage": "Five-stage reconstruction ladder (design outline; not sealed theorem).",
+      "component_stage": "Dual of Lean `componentStage`.",
+      "stage_components": "Function stage_components operation.",
+      "RecoveryPackage": "Class RecoveryPackage domain record and methods.",
+      "recover_status": "Function recover_status operation.",
+      "component_covered": "Function component_covered operation.",
+      "amp2_pop": "Function amp2_pop operation.",
+      "mat_mul": "Function mat_mul operation.",
+      "mat_sub": "Function mat_sub operation.",
+      "mat_smul": "Function mat_smul operation.",
+      "commutator": "Function commutator operation.",
+      "spectral_update": "Function spectral_update operation.",
+      "s_bool": "Function s_bool operation.",
+      "chsh": "Function chsh operation.",
+      "born_pairing_scalar": "Function born_pairing_scalar operation.",
+      "BornHost": "Class BornHost domain record and methods.",
+      "LiftHost": "Class LiftHost domain record and methods.",
+      "r_born_pathway_recovered": "Function r_born_pathway_recovered operation.",
+      "r_lift_pathway_recovered": "Function r_lift_pathway_recovered operation.",
+      "test_components_card": "Function test_components_card operation.",
+      "test_partial_recovered_card": "Function test_partial_recovered_card operation.",
+      "test_residual_open_card": "Function test_residual_open_card operation.",
+      "test_partial_covers_pathway": "Function test_partial_covers_pathway operation.",
+      "test_core_partial_excludes_spectral_instrument": "Function test_core_partial_excludes_spectral_instrument operation.",
+      "test_spectral_instrument_excludes_ops": "Function test_spectral_instrument_excludes_ops operation.",
+      "test_ops_without_born_excludes_born": "Function test_ops_without_born_excludes_born operation.",
+      "test_born_ops_without_lift_excludes_lift": "Function test_born_ops_without_lift_excludes_lift operation.",
+      "test_pure_finl1_incomplete": "Function test_pure_finl1_incomplete operation.",
+      "test_amp2_pop_squares": "Function test_amp2_pop_squares operation.",
+      "test_pauli_xz_noncommute": "Function test_pauli_xz_noncommute operation.",
+      "test_sigma_x_spectral_scaled": "Function test_sigma_x_spectral_scaled operation.",
+      "test_spectral_update_instrument": "Function test_spectral_update_instrument operation.",
+      "test_r_bell_host_gated": "Function test_r_bell_host_gated operation.",
+      "test_r_context_obstruction": "Function test_r_context_obstruction operation.",
+      "test_r_falsifier_registered": "Function test_r_falsifier_registered operation.",
+      "test_r_compose_product_dim": "Function test_r_compose_product_dim operation.",
+      "test_r_born_host_gated": "Function test_r_born_host_gated operation.",
+      "test_r_lift_host_gated": "Function test_r_lift_host_gated operation.",
+      "test_full_ops_lift_recovery_package": "Function test_full_ops_lift_recovery_package operation.",
+      "test_born_ops_extended_recovery_package": "Function test_born_ops_extended_recovery_package operation.",
+      "test_ops_extended_recovery_package": "Function test_ops_extended_recovery_package operation.",
+      "test_full_recovery_open": "Function test_full_recovery_open operation.",
+      "test_component_stage_freeze_align": "Function test_component_stage_freeze_align operation.",
+      "test_stage_partition_card": "Function test_stage_partition_card operation.",
+      "test_premise_deps_nonempty": "Function test_premise_deps_nonempty operation.",
+      "test_sealed_recovery_closed_false": "Function test_sealed_recovery_closed_false operation.",
+      "test_full_ops_recovered_sealed_still_open": "Function test_full_ops_recovered_sealed_still_open operation.",
+      "test_sealed_recovery_design_package": "Function test_sealed_recovery_design_package operation.",
+      "test_finite_matrix_recovery_partial_package": "Function test_finite_matrix_recovery_partial_package operation.",
+      "RecoveryImportSlot": "Class RecoveryImportSlot domain record and methods.",
+      "FiniteMatrixReconstructionChecklist": "Class FiniteMatrixReconstructionChecklist domain record and methods.",
+      "test_stage_order_and_prereqs": "Function test_stage_order_and_prereqs operation.",
+      "test_provisional_recovery_ledger_b8": "Function test_provisional_recovery_ledger_b8 operation.",
+      "test_finite_matrix_reconstruction_checklist_honesty": "Function test_finite_matrix_reconstruction_checklist_honesty operation.",
+      "test_sealed_recovery_design_deepen_package": "Function test_sealed_recovery_design_deepen_package operation.",
+      "test_spectral_born_compose_stage_discharged_under_full_ops": "W7.1 stage-4 pathway discharge under full-ops (W6.10/14/5/12 bind).",
+      "test_spectral_born_compose_stage_discharge_package": "Function test_spectral_born_compose_stage_discharge_package operation.",
+      "stage_pathway_discharged": "Dual of Lean `stagePathwayDischarged`.",
+      "RecFullTheoremObligations": "Class RecFullTheoremObligations domain record and methods.",
+      "test_all_stages_pathway_discharged_under_full_ops": "Function test_all_stages_pathway_discharged_under_full_ops operation.",
+      "test_pure_finl1_pathway_fence": "Function test_pure_finl1_pathway_fence operation.",
+      "test_rec_full_theorem_still_open": "Function test_rec_full_theorem_still_open operation.",
+      "test_rec_full_theorem_deepen_package": "Function test_rec_full_theorem_deepen_package operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "c76f19fb91bbbda1b50c5c0fe06a2ccabe5cee13da94e935bcc896b9e54ad267",
+  "current_scoring": "a8d08a64e3911c5a07b7cc240dc465b31cf09614f905bb80fca41f89e8f86efa",
+  "contract_history": [
+    {
+      "sha256": "c76f19fb91bbbda1b50c5c0fe06a2ccabe5cee13da94e935bcc896b9e54ad267",
+      "bytes": 7103,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_finite_matrix_recovery.py",
+          "sha256": "78c10283663b723ca81a1316f259d59f53851ae03f104ca468687dcd47f8403b"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-finite-matrix-recovery:v1",
+        "role": "test checker",
+        "purpose": "Bounded domain operations and invariant verification for test_finite_matrix_recovery.",
+        "operations": {
+          "Component": "Class Component domain record and methods.",
+          "RecoveryStage": "Five-stage reconstruction ladder (design outline; not sealed theorem).",
+          "component_stage": "Dual of Lean `componentStage`.",
+          "stage_components": "Function stage_components operation.",
+          "RecoveryPackage": "Class RecoveryPackage domain record and methods.",
+          "recover_status": "Function recover_status operation.",
+          "component_covered": "Function component_covered operation.",
+          "amp2_pop": "Function amp2_pop operation.",
+          "mat_mul": "Function mat_mul operation.",
+          "mat_sub": "Function mat_sub operation.",
+          "mat_smul": "Function mat_smul operation.",
+          "commutator": "Function commutator operation.",
+          "spectral_update": "Function spectral_update operation.",
+          "s_bool": "Function s_bool operation.",
+          "chsh": "Function chsh operation.",
+          "born_pairing_scalar": "Function born_pairing_scalar operation.",
+          "BornHost": "Class BornHost domain record and methods.",
+          "LiftHost": "Class LiftHost domain record and methods.",
+          "r_born_pathway_recovered": "Function r_born_pathway_recovered operation.",
+          "r_lift_pathway_recovered": "Function r_lift_pathway_recovered operation.",
+          "test_components_card": "Function test_components_card operation.",
+          "test_partial_recovered_card": "Function test_partial_recovered_card operation.",
+          "test_residual_open_card": "Function test_residual_open_card operation.",
+          "test_partial_covers_pathway": "Function test_partial_covers_pathway operation.",
+          "test_core_partial_excludes_spectral_instrument": "Function test_core_partial_excludes_spectral_instrument operation.",
+          "test_spectral_instrument_excludes_ops": "Function test_spectral_instrument_excludes_ops operation.",
+          "test_ops_without_born_excludes_born": "Function test_ops_without_born_excludes_born operation.",
+          "test_born_ops_without_lift_excludes_lift": "Function test_born_ops_without_lift_excludes_lift operation.",
+          "test_pure_finl1_incomplete": "Function test_pure_finl1_incomplete operation.",
+          "test_amp2_pop_squares": "Function test_amp2_pop_squares operation.",
+          "test_pauli_xz_noncommute": "Function test_pauli_xz_noncommute operation.",
+          "test_sigma_x_spectral_scaled": "Function test_sigma_x_spectral_scaled operation.",
+          "test_spectral_update_instrument": "Function test_spectral_update_instrument operation.",
+          "test_r_bell_host_gated": "Function test_r_bell_host_gated operation.",
+          "test_r_context_obstruction": "Function test_r_context_obstruction operation.",
+          "test_r_falsifier_registered": "Function test_r_falsifier_registered operation.",
+          "test_r_compose_product_dim": "Function test_r_compose_product_dim operation.",
+          "test_r_born_host_gated": "Function test_r_born_host_gated operation.",
+          "test_r_lift_host_gated": "Function test_r_lift_host_gated operation.",
+          "test_full_ops_lift_recovery_package": "Function test_full_ops_lift_recovery_package operation.",
+          "test_born_ops_extended_recovery_package": "Function test_born_ops_extended_recovery_package operation.",
+          "test_ops_extended_recovery_package": "Function test_ops_extended_recovery_package operation.",
+          "test_full_recovery_open": "Function test_full_recovery_open operation.",
+          "test_component_stage_freeze_align": "Function test_component_stage_freeze_align operation.",
+          "test_stage_partition_card": "Function test_stage_partition_card operation.",
+          "test_premise_deps_nonempty": "Function test_premise_deps_nonempty operation.",
+          "test_sealed_recovery_closed_false": "Function test_sealed_recovery_closed_false operation.",
+          "test_full_ops_recovered_sealed_still_open": "Function test_full_ops_recovered_sealed_still_open operation.",
+          "test_sealed_recovery_design_package": "Function test_sealed_recovery_design_package operation.",
+          "test_finite_matrix_recovery_partial_package": "Function test_finite_matrix_recovery_partial_package operation.",
+          "RecoveryImportSlot": "Class RecoveryImportSlot domain record and methods.",
+          "FiniteMatrixReconstructionChecklist": "Class FiniteMatrixReconstructionChecklist domain record and methods.",
+          "test_stage_order_and_prereqs": "Function test_stage_order_and_prereqs operation.",
+          "test_provisional_recovery_ledger_b8": "Function test_provisional_recovery_ledger_b8 operation.",
+          "test_finite_matrix_reconstruction_checklist_honesty": "Function test_finite_matrix_reconstruction_checklist_honesty operation.",
+          "test_sealed_recovery_design_deepen_package": "Function test_sealed_recovery_design_deepen_package operation.",
+          "test_spectral_born_compose_stage_discharged_under_full_ops": "W7.1 stage-4 pathway discharge under full-ops (W6.10/14/5/12 bind).",
+          "test_spectral_born_compose_stage_discharge_package": "Function test_spectral_born_compose_stage_discharge_package operation.",
+          "stage_pathway_discharged": "Dual of Lean `stagePathwayDischarged`.",
+          "RecFullTheoremObligations": "Class RecFullTheoremObligations domain record and methods.",
+          "test_all_stages_pathway_discharged_under_full_ops": "Function test_all_stages_pathway_discharged_under_full_ops operation.",
+          "test_pure_finl1_pathway_fence": "Function test_pure_finl1_pathway_fence operation.",
+          "test_rec_full_theorem_still_open": "Function test_rec_full_theorem_still_open operation.",
+          "test_rec_full_theorem_deepen_package": "Function test_rec_full_theorem_deepen_package operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_finite_matrix_recovery.py\",\n    \"sha256\": \"78c10283663b723ca81a1316f259d59f53851ae03f104ca468687dcd47f8403b\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-finite-matrix-recovery:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Bounded domain operations and invariant verification for test_finite_matrix_recovery.\",\n  \"operations\": {\n    \"Component\": \"Class Component domain record and methods.\",\n    \"RecoveryStage\": \"Five-stage reconstruction ladder (design outline; not sealed theorem).\",\n    \"component_stage\": \"Dual of Lean `componentStage`.\",\n    \"stage_components\": \"Function stage_components operation.\",\n    \"RecoveryPackage\": \"Class RecoveryPackage domain record and methods.\",\n    \"recover_status\": \"Function recover_status operation.\",\n    \"component_covered\": \"Function component_covered operation.\",\n    \"amp2_pop\": \"Function amp2_pop operation.\",\n    \"mat_mul\": \"Function mat_mul operation.\",\n    \"mat_sub\": \"Function mat_sub operation.\",\n    \"mat_smul\": \"Function mat_smul operation.\",\n    \"commutator\": \"Function commutator operation.\",\n    \"spectral_update\": \"Function spectral_update operation.\",\n    \"s_bool\": \"Function s_bool operation.\",\n    \"chsh\": \"Function chsh operation.\",\n    \"born_pairing_scalar\": \"Function born_pairing_scalar operation.\",\n    \"BornHost\": \"Class BornHost domain record and methods.\",\n    \"LiftHost\": \"Class LiftHost domain record and methods.\",\n    \"r_born_pathway_recovered\": \"Function r_born_pathway_recovered operation.\",\n    \"r_lift_pathway_recovered\": \"Function r_lift_pathway_recovered operation.\",\n    \"test_components_card\": \"Function test_components_card operation.\",\n    \"test_partial_recovered_card\": \"Function test_partial_recovered_card operation.\",\n    \"test_residual_open_card\": \"Function test_residual_open_card operation.\",\n    \"test_partial_covers_pathway\": \"Function test_partial_covers_pathway operation.\",\n    \"test_core_partial_excludes_spectral_instrument\": \"Function test_core_partial_excludes_spectral_instrument operation.\",\n    \"test_spectral_instrument_excludes_ops\": \"Function test_spectral_instrument_excludes_ops operation.\",\n    \"test_ops_without_born_excludes_born\": \"Function test_ops_without_born_excludes_born operation.\",\n    \"test_born_ops_without_lift_excludes_lift\": \"Function test_born_ops_without_lift_excludes_lift operation.\",\n    \"test_pure_finl1_incomplete\": \"Function test_pure_finl1_incomplete operation.\",\n    \"test_amp2_pop_squares\": \"Function test_amp2_pop_squares operation.\",\n    \"test_pauli_xz_noncommute\": \"Function test_pauli_xz_noncommute operation.\",\n    \"test_sigma_x_spectral_scaled\": \"Function test_sigma_x_spectral_scaled operation.\",\n    \"test_spectral_update_instrument\": \"Function test_spectral_update_instrument operation.\",\n    \"test_r_bell_host_gated\": \"Function test_r_bell_host_gated operation.\",\n    \"test_r_context_obstruction\": \"Function test_r_context_obstruction operation.\",\n    \"test_r_falsifier_registered\": \"Function test_r_falsifier_registered operation.\",\n    \"test_r_compose_product_dim\": \"Function test_r_compose_product_dim operation.\",\n    \"test_r_born_host_gated\": \"Function test_r_born_host_gated operation.\",\n    \"test_r_lift_host_gated\": \"Function test_r_lift_host_gated operation.\",\n    \"test_full_ops_lift_recovery_package\": \"Function test_full_ops_lift_recovery_package operation.\",\n    \"test_born_ops_extended_recovery_package\": \"Function test_born_ops_extended_recovery_package operation.\",\n    \"test_ops_extended_recovery_package\": \"Function test_ops_extended_recovery_package operation.\",\n    \"test_full_recovery_open\": \"Function test_full_recovery_open operation.\",\n    \"test_component_stage_freeze_align\": \"Function test_component_stage_freeze_align operation.\",\n    \"test_stage_partition_card\": \"Function test_stage_partition_card operation.\",\n    \"test_premise_deps_nonempty\": \"Function test_premise_deps_nonempty operation.\",\n    \"test_sealed_recovery_closed_false\": \"Function test_sealed_recovery_closed_false operation.\",\n    \"test_full_ops_recovered_sealed_still_open\": \"Function test_full_ops_recovered_sealed_still_open operation.\",\n    \"test_sealed_recovery_design_package\": \"Function test_sealed_recovery_design_package operation.\",\n    \"test_finite_matrix_recovery_partial_package\": \"Function test_finite_matrix_recovery_partial_package operation.\",\n    \"RecoveryImportSlot\": \"Class RecoveryImportSlot domain record and methods.\",\n    \"FiniteMatrixReconstructionChecklist\": \"Class FiniteMatrixReconstructionChecklist domain record and methods.\",\n    \"test_stage_order_and_prereqs\": \"Function test_stage_order_and_prereqs operation.\",\n    \"test_provisional_recovery_ledger_b8\": \"Function test_provisional_recovery_ledger_b8 operation.\",\n    \"test_finite_matrix_reconstruction_checklist_honesty\": \"Function test_finite_matrix_reconstruction_checklist_honesty operation.\",\n    \"test_sealed_recovery_design_deepen_package\": \"Function test_sealed_recovery_design_deepen_package operation.\",\n    \"test_spectral_born_compose_stage_discharged_under_full_ops\": \"W7.1 stage-4 pathway discharge under full-ops (W6.10/14/5/12 bind).\",\n    \"test_spectral_born_compose_stage_discharge_package\": \"Function test_spectral_born_compose_stage_discharge_package operation.\",\n    \"stage_pathway_discharged\": \"Dual of Lean `stagePathwayDischarged`.\",\n    \"RecFullTheoremObligations\": \"Class RecFullTheoremObligations domain record and methods.\",\n    \"test_all_stages_pathway_discharged_under_full_ops\": \"Function test_all_stages_pathway_discharged_under_full_ops operation.\",\n    \"test_pure_finl1_pathway_fence\": \"Function test_pure_finl1_pathway_fence operation.\",\n    \"test_rec_full_theorem_still_open\": \"Function test_rec_full_theorem_still_open operation.\",\n    \"test_rec_full_theorem_deepen_package\": \"Function test_rec_full_theorem_deepen_package operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_finite_matrix_recovery.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a8d08a64e3911c5a07b7cc240dc465b31cf09614f905bb80fca41f89e8f86efa",
+      "bytes": 2186,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_finite_matrix_recovery.py",
+          "sha256": "78c10283663b723ca81a1316f259d59f53851ae03f104ca468687dcd47f8403b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-finite-matrix-recovery:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 14 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 14,
+          "lizard_ccn": 12,
+          "weighted_control_upper_bound": 11,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_finite_matrix_recovery.py\",\n    \"sha256\": \"78c10283663b723ca81a1316f259d59f53851ae03f104ca468687dcd47f8403b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-finite-matrix-recovery:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 14 <= 15 (B), nesting depth 1 <= 3 (A); Gate 5 ceiling B under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 14,\n    \"lizard_ccn\": 12,\n    \"weighted_control_upper_bound\": 11,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_finite_matrix_recovery.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ from pathlib import Path
 try:
     from src.qm.campaigns import ravera_dfm as _MOD
 except ImportError:
-    _REPLAY_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "ravera_dfm.py"
+    _REPLAY_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "ravera_dfm.py"
     _SPEC = importlib.util.spec_from_file_location("ravera_dfm", _REPLAY_PATH)
     assert _SPEC is not None and _SPEC.loader is not None
     _MOD = importlib.util.module_from_spec(_SPEC)

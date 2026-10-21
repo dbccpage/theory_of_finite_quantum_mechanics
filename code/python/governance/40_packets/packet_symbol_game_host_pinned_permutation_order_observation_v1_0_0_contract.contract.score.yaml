@@ -3,88 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0",
-    "title": "Pinned permutation order observation (native runtime result)",
-    "kind": "packet_contract",
-    "layer": "40_packets",
-    "role": "PacketSpecification",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "LocalReplay",
-      "runtime_enforcement": true,
-      "clean_architecture_layer": "infrastructure",
-      "refusals": {
-        "may_emit": [
-          "FW-UNKNOWN-FIELD"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py",
+      "sha256": "bbb6f956c92153632d1f2bcfb95c38bb5c669c68b0aa88e1a2dfe91f69a8fc18"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:packet-symbol-game-host-pinned-permutation-order-observation-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "The versioned observation returned by verify_pinned_permutation_order. It retains the admitted typed request alongside a distinct evaluation and remains inside the complete six-field native runtime outcome.",
-      "invariants": [
-        "This struct's JSON representation must be an object; positional arrays, undeclared fields and wrongly typed fields are refused by typed deserialization.",
-        "The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted authority_effect is always None.",
-        "The exact admitted presentation reference and claimed decimal spelling are retained; the dispatcher resolves actual rules only from its compiled governance catalogue.",
-        "No producer field can replace the compiled catalogue. Unambiguous catalogue names are validated before lookup; malformed compiled catalogue configuration does not silently fall back to an empty catalogue.",
-        "Field presence and enum alternatives are compile-time shape checks. Request binding, exact calculation, semantic status and unknown-field refusal are separately exercised by finite tests.",
-        "This record is unsigned and does not authenticate an actor, bind raw stdin bytes, prove full-source custody, license execution or complete the original M2-M5 campaign."
-      ],
-      "non_roles": [
-        "authority_source",
-        "promotion_granter"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification",
-        "no_implicit_authority_upgrade"
-      ]
-    },
-    "structure": {
-      "language": "rust",
-      "rust_crate": "omega_symbol_game",
-      "rust_module": "pinned_permutation",
-      "rust_type": "PinnedPermutationOrderObservationV1",
-      "form": "struct",
-      "serde": {
-        "deny_unknown_fields": true
-      },
-      "fields": [
-        {
-          "name": "schema_version",
-          "rust_type": "String"
-        },
-        {
-          "name": "submitted_presentation_ref",
-          "rust_type": "String"
-        },
-        {
-          "name": "submitted_claimed_order",
-          "rust_type": "String"
-        },
-        {
-          "name": "evaluation",
-          "rust_type": "PinnedPermutationEvaluationV1"
-        },
-        {
-          "name": "authority_effect",
-          "rust_type": "String"
-        }
-      ]
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973",
-  "current_scoring": null,
+  "current_contract": "db9961f455305b27ca9f9a13503a0d84969c474c9b583d9e324e7033893a1eb4",
+  "current_scoring": "358d0ec9f85e4e5a02a8426d449600bfa6fb5b7fe9ee4f885605257e3c976d00",
   "contract_history": [
     {
-      "sha256": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973",
-      "bytes": 2504,
+      "sha256": "0214779116190f2773c5365d2bf3f2fb21334be9322f84696e62e3899a4bc3f1",
+      "bytes": 2964,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0",
@@ -162,13 +112,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0\ntitle: Pinned permutation order observation (native runtime result)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: The versioned observation returned by verify_pinned_permutation_order.\n    It retains the admitted typed request alongside a distinct evaluation and remains\n    inside the complete six-field native runtime outcome.\n  invariants:\n  - This struct's JSON representation must be an object; positional arrays, undeclared\n    fields and wrongly typed fields are refused by typed deserialization.\n  - The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted\n    authority_effect is always None.\n  - The exact admitted presentation reference and claimed decimal spelling are retained;\n    the dispatcher resolves actual rules only from its compiled governance catalogue.\n  - No producer field can replace the compiled catalogue. Unambiguous catalogue names\n    are validated before lookup; malformed compiled catalogue configuration does not\n    silently fall back to an empty catalogue.\n  - Field presence and enum alternatives are compile-time shape checks. Request binding,\n    exact calculation, semantic status and unknown-field refusal are separately exercised\n    by finite tests.\n  - This record is unsigned and does not authenticate an actor, bind raw stdin bytes,\n    prove full-source custody, license execution or complete the original M2-M5 campaign.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: pinned_permutation\n  rust_type: PinnedPermutationOrderObservationV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n    rust_type: String\n  - name: submitted_presentation_ref\n    rust_type: String\n  - name: submitted_claimed_order\n    rust_type: String\n  - name: evaluation\n    rust_type: PinnedPermutationEvaluationV1\n  - name: authority_effect\n    rust_type: String\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0\",\n  \"title\": \"Pinned permutation order observation (native runtime result)\",\n  \"kind\": \"packet_contract\",\n  \"layer\": \"40_packets\",\n  \"role\": \"PacketSpecification\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": true,\n    \"clean_architecture_layer\": \"infrastructure\",\n    \"refusals\": {\n      \"may_emit\": [\n        \"FW-UNKNOWN-FIELD\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"The versioned observation returned by verify_pinned_permutation_order. It retains the admitted typed request alongside a distinct evaluation and remains inside the complete six-field native runtime outcome.\",\n    \"invariants\": [\n      \"This struct's JSON representation must be an object; positional arrays, undeclared fields and wrongly typed fields are refused by typed deserialization.\",\n      \"The schema is omega.symbol-game.pinned-permutation-order-observation.v1 and emitted authority_effect is always None.\",\n      \"The exact admitted presentation reference and claimed decimal spelling are retained; the dispatcher resolves actual rules only from its compiled governance catalogue.\",\n      \"No producer field can replace the compiled catalogue. Unambiguous catalogue names are validated before lookup; malformed compiled catalogue configuration does not silently fall back to an empty catalogue.\",\n      \"Field presence and enum alternatives are compile-time shape checks. Request binding, exact calculation, semantic status and unknown-field refusal are separately exercised by finite tests.\",\n      \"This record is unsigned and does not authenticate an actor, bind raw stdin bytes, prove full-source custody, license execution or complete the original M2-M5 campaign.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"promotion_granter\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\",\n      \"no_implicit_authority_upgrade\"\n    ]\n  },\n  \"structure\": {\n    \"language\": \"rust\",\n    \"rust_crate\": \"omega_symbol_game\",\n    \"rust_module\": \"pinned_permutation\",\n    \"rust_type\": \"PinnedPermutationOrderObservationV1\",\n    \"form\": \"struct\",\n    \"serde\": {\n      \"deny_unknown_fields\": true\n    },\n    \"fields\": [\n      {\n        \"name\": \"schema_version\",\n        \"rust_type\": \"String\"\n      },\n      {\n        \"name\": \"submitted_presentation_ref\",\n        \"rust_type\": \"String\"\n      },\n      {\n        \"name\": \"submitted_claimed_order\",\n        \"rust_type\": \"String\"\n      },\n      {\n        \"name\": \"evaluation\",\n        \"rust_type\": \"PinnedPermutationEvaluationV1\"\n      },\n      {\n        \"name\": \"authority_effect\",\n        \"rust_type\": \"String\"\n      }\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "db9961f455305b27ca9f9a13503a0d84969c474c9b583d9e324e7033893a1eb4",
+      "bytes": 1945,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py",
+          "sha256": "bbb6f956c92153632d1f2bcfb95c38bb5c669c68b0aa88e1a2dfe91f69a8fc18"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:packet-symbol-game-host-pinned-permutation-order-observation-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py\",\n    \"sha256\": \"bbb6f956c92153632d1f2bcfb95c38bb5c669c68b0aa88e1a2dfe91f69a8fc18\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:packet-symbol-game-host-pinned-permutation-order-observation-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:packet:symbol_game:host_pinned_permutation_order_observation:v1.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "358d0ec9f85e4e5a02a8426d449600bfa6fb5b7fe9ee4f885605257e3c976d00",
+      "bytes": 2305,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py",
+          "sha256": "bbb6f956c92153632d1f2bcfb95c38bb5c669c68b0aa88e1a2dfe91f69a8fc18"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:packet-symbol-game-host-pinned-permutation-order-observation-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.py\",\n    \"sha256\": \"bbb6f956c92153632d1f2bcfb95c38bb5c669c68b0aa88e1a2dfe91f69a8fc18\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:packet-symbol-game-host-pinned-permutation-order-observation-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/packet_symbol_game_host_pinned_permutation_order_observation_v1_0_0.contract.yaml": "b6a1dc4dc72b38e8abaa9f49c7ccdc08568713aef46676dc6a2468d9a1365973"
   },

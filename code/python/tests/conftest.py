@@ -96,19 +96,17 @@ for old, new in _CAMPAIGN_MAP.items():
         sys.modules[f"finite_qm.use_cases.{old}"] = mod
         sys.modules[f"src.qm.campaigns.{old}"] = mod
 
-for f in (_SRC_ROOT / "qm" / "campaigns").glob("*.py"):
+for f in (_SRC_ROOT / "qm").glob("*.py"):
     if f.stem != "__init__":
         mod_name = f.stem
-        if hasattr(_campaigns, mod_name):
-            mod = getattr(_campaigns, mod_name)
+        if hasattr(_qm, mod_name):
+            mod = getattr(_qm, mod_name)
             sys.modules[f"finite_qm.use_cases.{mod_name}"] = mod
-
-for f in (_SRC_ROOT / "qm" / "domain").glob("*.py"):
-    if f.stem != "__init__":
-        mod_name = f.stem
-        if hasattr(_domain, mod_name):
-            mod = getattr(_domain, mod_name)
+            sys.modules[f"finite_qm.campaigns.{mod_name}"] = mod
             sys.modules[f"finite_qm.domain.{mod_name}"] = mod
+            sys.modules[f"src.qm.campaigns.{mod_name}"] = mod
+            sys.modules[f"src.qm.domain.{mod_name}"] = mod
+
 
 
 def witness_norm() -> Fraction:

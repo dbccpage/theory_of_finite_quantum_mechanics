@@ -63,12 +63,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "6932c704182dc2ca0d43a39f421ea24a7e9c0a78e8e925a019fe764fa1797dac",
-  "current_scoring": null,
+  "current_contract": "0993df34e74f04112d62f9f305ff78c6815682e2b6bb8770962b359f31622cf2",
+  "current_scoring": "c126ae8000186e124ca35daa90ab77fe1886147d0f7007dc74b4de652a5b751d",
   "contract_history": [
     {
-      "sha256": "6932c704182dc2ca0d43a39f421ea24a7e9c0a78e8e925a019fe764fa1797dac",
-      "bytes": 1104,
+      "sha256": "0993df34e74f04112d62f9f305ff78c6815682e2b6bb8770962b359f31622cf2",
+      "bytes": 1430,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_linear_algebra:smith_normal_form:v1.0.0",
@@ -130,13 +130,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_linear_algebra:smith_normal_form:v1.0.0\ntitle: Smith Normal Form Module\nkind: rust_file_contract\nstatus: active\ncrate: omega_linear_algebra\nfile: crates_rs/omega_linear_algebra/src/smith_normal_form.rs\nmodule: smith_normal_form\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_linear_algebra\n  module: smith_normal_form\n  file: crates_rs/omega_linear_algebra/src/smith_normal_form.rs\nsymbols:\n- SmithError\n- SmithDiagonal\n- new_checked\n- invariants\n- rank\n- SmithNormalForm\n- diagonal\n- diagonal_matrix\n- u\n- v\n- smith_normal_form_checked\n- from_rational64_integer_matrix\n- from_bigrational_integer_matrix\n- SparseMatrixError\n- SparseColMatrix\n- rows\n- cols\n- columns\n- mul_vec\n- to_dense\n- from_dense\n- SparseColumnGcdProfile\n- sparse_column_gcd_heuristic\nowns:\n- smith_error\n- smith_diagonal\n- new_checked\n- invariants\n- rank\n- smith_normal_form\n- diagonal\n- diagonal_matrix\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_linear_algebra:smith_normal_form:v1.0.0\",\n  \"title\": \"Smith Normal Form Module\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_linear_algebra\",\n  \"file\": \"crates_rs/omega_linear_algebra/src/smith_normal_form.rs\",\n  \"module\": \"smith_normal_form\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"smith_normal_form\",\n    \"file\": \"crates_rs/omega_linear_algebra/src/smith_normal_form.rs\"\n  },\n  \"symbols\": [\n    \"SmithError\",\n    \"SmithDiagonal\",\n    \"new_checked\",\n    \"invariants\",\n    \"rank\",\n    \"SmithNormalForm\",\n    \"diagonal\",\n    \"diagonal_matrix\",\n    \"u\",\n    \"v\",\n    \"smith_normal_form_checked\",\n    \"from_rational64_integer_matrix\",\n    \"from_bigrational_integer_matrix\",\n    \"SparseMatrixError\",\n    \"SparseColMatrix\",\n    \"rows\",\n    \"cols\",\n    \"columns\",\n    \"mul_vec\",\n    \"to_dense\",\n    \"from_dense\",\n    \"SparseColumnGcdProfile\",\n    \"sparse_column_gcd_heuristic\"\n  ],\n  \"owns\": [\n    \"smith_error\",\n    \"smith_diagonal\",\n    \"new_checked\",\n    \"invariants\",\n    \"rank\",\n    \"smith_normal_form\",\n    \"diagonal\",\n    \"diagonal_matrix\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/omega_linear_algebra_smith_normal_form.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c126ae8000186e124ca35daa90ab77fe1886147d0f7007dc74b4de652a5b751d",
+      "bytes": 2249,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/omega_linear_algebra_smith_normal_form_contract.py",
+          "sha256": "c0fabf96e64f7c01e3b81ae7232f62fe722a8157e23b369f2d16a8fa44543614"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:omega-linear-algebra-smith-normal-form-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/omega_linear_algebra_smith_normal_form_contract.py\",\n    \"sha256\": \"c0fabf96e64f7c01e3b81ae7232f62fe722a8157e23b369f2d16a8fa44543614\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:omega-linear-algebra-smith-normal-form-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/omega_linear_algebra_smith_normal_form_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/omega_linear_algebra_smith_normal_form.contract.yaml": "6932c704182dc2ca0d43a39f421ea24a7e9c0a78e8e925a019fe764fa1797dac"
   },

@@ -67,6 +67,12 @@ def test_negative_type_failures() -> None:
         packet_norm(("3/5", Fraction(4, 5)))
     assert text.value.parameters["received"] == "str"
 
+    with pytest.raises(QuantumPacketError, match="1024-bit limit"):
+        packet_norm((1 << 1025, 0))
+
+    with pytest.raises(QuantumPacketError, match="1024-bit limit"):
+        packet_norm((Fraction(1 << 1025, 1), 0))
+
 
 def test_negative_shape_failures() -> None:
     with pytest.raises(QuantumPacketError, match="not a tuple") as listed:

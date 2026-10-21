@@ -103,12 +103,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "b84df811ec882fa477f82446cd042abef92ed46ae657101ef33a3cca11f3f9cd",
-  "current_scoring": null,
+  "current_contract": "51e833cb70cd81b21d8c3d97963e1f9340a633c45b35cebdc8047651ed9ba597",
+  "current_scoring": "dbc13e2cf7e846cb1b17d6762b377fa99e2df900146c99242b8aa39eb72c7802",
   "contract_history": [
     {
-      "sha256": "b84df811ec882fa477f82446cd042abef92ed46ae657101ef33a3cca11f3f9cd",
-      "bytes": 3099,
+      "sha256": "51e833cb70cd81b21d8c3d97963e1f9340a633c45b35cebdc8047651ed9ba597",
+      "bytes": 3629,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_affine_qubit_cp:v0.1.0",
@@ -210,13 +210,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_affine_qubit_cp:v0.1.0\ntitle: Exact Affine Qubit Complete Positivity\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_affine_qubit_cp\n  symbol: exact_affine_qubit_cp\n  ascii_symbol: exact_affine_qubit_cp\n  notation: Exact Affine Qubit Complete Positivity\n  domain:\n  - Rational affine maps r->Tr+t on declared qubit Bloch vectors\n  - Exact 2x2 Gaussian-rational Kraus operators\n  codomain:\n    description: Declared finite results of omega_quantum_physics::qubit_bloch_map;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Complete positivity is exact Choi positivity via rational realification\n- Kraus extraction agrees with the affine map and checks sum K^dagger K=I\n- Composition retains the translation term\n- Fujiwara-Algoet comparisons retain both unsquared nonnegative left sides\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: qubit_bloch_map\n  symbols:\n  - QubitBlochMap\n  - BlochMapError\n  - QubitBlochMap::from_affine\n  - QubitBlochMap::from_kraus\n  - QubitBlochMap::choi_matrix\n  - QubitBlochMap::compose\n  - QubitBlochMap::unital_diagonal_is_cp\n  required_tests:\n  - choi_positivity_matches_kraus_damping_and_keeps_fujiwara_left_sides\nnegative_tests:\n- A perturbation of size 2^-128 below the depolarizing CP boundary is refused\n- A squared-only Fujiwara comparison is excluded by lambda=(0,0,3)\n- Empty/nonqubit/non-TP Kraus families are refused\ndoctrine:\n  summary: Complete positivity is exact Choi positivity via rational realification;\n    Kraus extraction agrees with the affine map and checks sum K^dagger K=I; Composition\n    retains the translation term; Fujiwara-Algoet comparisons retain both unsquared\n    nonnegative left sides.\n  non_role:\n  - Bloch contraction alone does not certify complete positivity\n  - No floating or approximate Choi eigenvalue test\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_affine_qubit_cp:v0.1.0\",\n  \"title\": \"Exact Affine Qubit Complete Positivity\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"exact_affine_qubit_cp\",\n    \"symbol\": \"exact_affine_qubit_cp\",\n    \"ascii_symbol\": \"exact_affine_qubit_cp\",\n    \"notation\": \"Exact Affine Qubit Complete Positivity\",\n    \"domain\": [\n      \"Rational affine maps r->Tr+t on declared qubit Bloch vectors\",\n      \"Exact 2x2 Gaussian-rational Kraus operators\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::qubit_bloch_map; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Complete positivity is exact Choi positivity via rational realification\",\n    \"Kraus extraction agrees with the affine map and checks sum K^dagger K=I\",\n    \"Composition retains the translation term\",\n    \"Fujiwara-Algoet comparisons retain both unsquared nonnegative left sides\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"qubit_bloch_map\",\n    \"symbols\": [\n      \"QubitBlochMap\",\n      \"BlochMapError\",\n      \"QubitBlochMap::from_affine\",\n      \"QubitBlochMap::from_kraus\",\n      \"QubitBlochMap::choi_matrix\",\n      \"QubitBlochMap::compose\",\n      \"QubitBlochMap::unital_diagonal_is_cp\"\n    ],\n    \"required_tests\": [\n      \"choi_positivity_matches_kraus_damping_and_keeps_fujiwara_left_sides\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A perturbation of size 2^-128 below the depolarizing CP boundary is refused\",\n    \"A squared-only Fujiwara comparison is excluded by lambda=(0,0,3)\",\n    \"Empty/nonqubit/non-TP Kraus families are refused\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Complete positivity is exact Choi positivity via rational realification; Kraus extraction agrees with the affine map and checks sum K^dagger K=I; Composition retains the translation term; Fujiwara-Algoet comparisons retain both unsquared nonnegative left sides.\",\n    \"non_role\": [\n      \"Bloch contraction alone does not certify complete positivity\",\n      \"No floating or approximate Choi eigenvalue test\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_exact_affine_qubit_cp_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "dbc13e2cf7e846cb1b17d6762b377fa99e2df900146c99242b8aa39eb72c7802",
+      "bytes": 2239,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_exact_affine_qubit_cp_v0_1_0_contract.py",
+          "sha256": "c9527e404d5f6d7cb23f1008bc4e0b191ffd43e64ddab7f5f2b512c602619c20"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-exact-affine-qubit-cp-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_exact_affine_qubit_cp_v0_1_0_contract.py\",\n    \"sha256\": \"c9527e404d5f6d7cb23f1008bc4e0b191ffd43e64ddab7f5f2b512c602619c20\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-exact-affine-qubit-cp-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_affine_qubit_cp_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_exact_affine_qubit_cp_v0_1_0.contract.yaml": "b84df811ec882fa477f82446cd042abef92ed46ae657101ef33a3cca11f3f9cd"
   },

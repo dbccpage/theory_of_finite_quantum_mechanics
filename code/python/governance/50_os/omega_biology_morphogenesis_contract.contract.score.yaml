@@ -38,12 +38,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "8f894862dbd98d79b50515c430135892f8d7b949a625ff425e4210c0ad05b199",
-  "current_scoring": null,
+  "current_contract": "6733332be01318c2d9080a41e406793216ea5952a32bc35444638a4043dc7d72",
+  "current_scoring": "875920c1cb3ecc477c08bf4a3fa3ce6f8e4c5cc9b5630893f799e7991f0d2b5e",
   "contract_history": [
     {
-      "sha256": "8f894862dbd98d79b50515c430135892f8d7b949a625ff425e4210c0ad05b199",
-      "bytes": 753,
+      "sha256": "6733332be01318c2d9080a41e406793216ea5952a32bc35444638a4043dc7d72",
+      "bytes": 950,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_biology:morphogenesis:v1.0.0",
@@ -80,13 +80,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_biology:morphogenesis:v1.0.0\ntitle: '`morphogenesis` — finite dual-face object for `omega_biology`.  AUTHORING_QUALITY:\n  human_llm_best_effort_slop (best-e...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_biology\nfile: crates_rs/omega_biology/src/morphogenesis.rs\nmodule: morphogenesis\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_biology\n  module: morphogenesis\n  file: crates_rs/omega_biology/src/morphogenesis.rs\nsymbols:\n- Morphogenesis\n- new\n- authority_fence\nowns:\n- morphogenesis\n- new\n- authority_fence\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_biology:morphogenesis:v1.0.0\",\n  \"title\": \"`morphogenesis` — finite dual-face object for `omega_biology`.  AUTHORING_QUALITY: human_llm_best_effort_slop (best-e...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_biology\",\n  \"file\": \"crates_rs/omega_biology/src/morphogenesis.rs\",\n  \"module\": \"morphogenesis\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_biology\",\n    \"module\": \"morphogenesis\",\n    \"file\": \"crates_rs/omega_biology/src/morphogenesis.rs\"\n  },\n  \"symbols\": [\n    \"Morphogenesis\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"owns\": [\n    \"morphogenesis\",\n    \"new\",\n    \"authority_fence\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/50_os/omega_biology_morphogenesis.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "875920c1cb3ecc477c08bf4a3fa3ce6f8e4c5cc9b5630893f799e7991f0d2b5e",
+      "bytes": 2215,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/omega_biology_morphogenesis_contract.py",
+          "sha256": "c80932dbf5a8c4dda4fcca27c1941120610750b68660cebcd4da952c855ae01a"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:omega-biology-morphogenesis-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/omega_biology_morphogenesis_contract.py\",\n    \"sha256\": \"c80932dbf5a8c4dda4fcca27c1941120610750b68660cebcd4da952c855ae01a\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:omega-biology-morphogenesis-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_biology_morphogenesis_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/omega_biology_morphogenesis.contract.yaml": "8f894862dbd98d79b50515c430135892f8d7b949a625ff425e4210c0ad05b199"
   },

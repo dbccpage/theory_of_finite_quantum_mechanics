@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "1d39e5916c9f835c246810d31a623bd15bf5b52cd8922b251a17344ab49c6619",
-  "current_scoring": null,
+  "current_contract": "fdfc8d210d298fba7d8c1532423bc7c5adfedb87575a8c9ed67660173a4bc7e8",
+  "current_scoring": "edc52a711aeeb21c1bab84a0a77dff4524f71a2e387965679928469e6aa8c31a",
   "contract_history": [
     {
-      "sha256": "1d39e5916c9f835c246810d31a623bd15bf5b52cd8922b251a17344ab49c6619",
-      "bytes": 1241,
+      "sha256": "fdfc8d210d298fba7d8c1532423bc7c5adfedb87575a8c9ed67660173a4bc7e8",
+      "bytes": 1598,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_linear_algebra:exact_field_matrix:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_linear_algebra:exact_field_matrix:v1.0.0\ntitle: 'Matrix construction and arithmetic over an exact field.  Every function takes\n  `BasicMatrix<F>` with `F: Field + Exact...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_linear_algebra\nfile: crates_rs/omega_linear_algebra/src/exact_field/matrix.rs\nmodule: exact_field::matrix\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_field::matrix\n  file: crates_rs/omega_linear_algebra/src/exact_field/matrix.rs\nsymbols:\n- identity\n- identity_with_limits\n- zeros\n- zeros_with_limits\n- diagonal\n- from_rows\n- to_rows\n- from_fn\n- from_fn_with_limits\n- row\n- column\n- widen_rational64\n- narrow_to_rational64\n- add\n- sub\n- neg\n- scale\n- transpose\n- trace\n- dot\n- multiply\n- multiply_with_limits\n- multiply_vector\n- multiply_vector_with_limits\n- kronecker\n- kronecker_with_limits\n- commutator\n- anticommutator\n- commutes\n- power\nowns:\n- identity\n- identity_with_limits\n- zeros\n- zeros_with_limits\n- diagonal\n- from_rows\n- to_rows\n- from_fn\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_linear_algebra:exact_field_matrix:v1.0.0\",\n  \"title\": \"Matrix construction and arithmetic over an exact field.  Every function takes `BasicMatrix<F>` with `F: Field + Exact...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_linear_algebra\",\n  \"file\": \"crates_rs/omega_linear_algebra/src/exact_field/matrix.rs\",\n  \"module\": \"exact_field::matrix\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"exact_field::matrix\",\n    \"file\": \"crates_rs/omega_linear_algebra/src/exact_field/matrix.rs\"\n  },\n  \"symbols\": [\n    \"identity\",\n    \"identity_with_limits\",\n    \"zeros\",\n    \"zeros_with_limits\",\n    \"diagonal\",\n    \"from_rows\",\n    \"to_rows\",\n    \"from_fn\",\n    \"from_fn_with_limits\",\n    \"row\",\n    \"column\",\n    \"widen_rational64\",\n    \"narrow_to_rational64\",\n    \"add\",\n    \"sub\",\n    \"neg\",\n    \"scale\",\n    \"transpose\",\n    \"trace\",\n    \"dot\",\n    \"multiply\",\n    \"multiply_with_limits\",\n    \"multiply_vector\",\n    \"multiply_vector_with_limits\",\n    \"kronecker\",\n    \"kronecker_with_limits\",\n    \"commutator\",\n    \"anticommutator\",\n    \"commutes\",\n    \"power\"\n  ],\n  \"owns\": [\n    \"identity\",\n    \"identity_with_limits\",\n    \"zeros\",\n    \"zeros_with_limits\",\n    \"diagonal\",\n    \"from_rows\",\n    \"to_rows\",\n    \"from_fn\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/omega_linear_algebra_exact_field_matrix.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "edc52a711aeeb21c1bab84a0a77dff4524f71a2e387965679928469e6aa8c31a",
+      "bytes": 2251,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/omega_linear_algebra_exact_field_matrix_contract.py",
+          "sha256": "64810ceecf6d53bc4e0eb279bf82fd59da3cb778ac4783006ca988291f37024c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:omega-linear-algebra-exact-field-matrix-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/omega_linear_algebra_exact_field_matrix_contract.py\",\n    \"sha256\": \"64810ceecf6d53bc4e0eb279bf82fd59da3cb778ac4783006ca988291f37024c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:omega-linear-algebra-exact-field-matrix-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/omega_linear_algebra_exact_field_matrix_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/omega_linear_algebra_exact_field_matrix.contract.yaml": "1d39e5916c9f835c246810d31a623bd15bf5b52cd8922b251a17344ab49c6619"
   },

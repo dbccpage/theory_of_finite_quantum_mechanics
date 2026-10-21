@@ -3,83 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/40_packets/pcc_obstruction_contract.py",
   "contract": {
-    "schema_version": "v1.0.0",
-    "packet_id": "urn:omega:packet:omega:pcc_obstruction:v1.0.0",
-    "title": "Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)",
-    "kind": "obstruction_contract",
-    "status": "Active",
-    "layer": "Governance / Obstruction Theory",
-    "authority_effect": "None",
-    "formal_anchor": {
-      "lean_module": "PCC",
-      "source_document": "lean4/pcc_obstruction.lean",
-      "proof_packet": "PCC-20260730",
-      "frozen_statements": "research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md",
-      "estate_anchor": "ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6"
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/40_packets/pcc_obstruction_contract.py",
+      "sha256": "84416c17701631d8dd392f513e4f21346b860a669673dc51d0b2e81a79c08b3e"
     },
-    "definition": {
-      "summary": "State-level returning projection-obstruction witness (RPWitness) and core quotient classification (Coarsest Exact Refinement).",
-      "witness_structure": {
-        "name": "RPWitness(M, p)",
-        "estate_alias": "Critical Context Witness (ENC-0209)",
-        "witness_type": "State-level witness (WD fork W1)",
-        "tuple": "(x, y, c)",
-        "base_condition": "p(x) = p(y)",
-        "returning_condition": "p(c . x) != p(c . y)"
-      }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:40_packets:pcc-obstruction-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
     },
-    "theorems": [
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "C1_descends_iff_no_witness",
-        "statement": "For surjective projection p, action M descends through p iff no RPWitness exists."
-      },
-      {
-        "id": "C2_witness_no_reduced",
-        "statement": "The existence of an RPWitness defeats every memoryless reduced family T (no reduction square can commute)."
-      },
-      {
-        "id": "C2_invariant_no_witness",
-        "statement": "A C-invariant kernel admits no returning witness."
-      },
-      {
-        "id": "C3_core_quotient",
-        "statement": "CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p."
-      },
-      {
-        "id": "C4_universal_property",
-        "statement": "Every invariant refinement of p factors uniquely through CoreQ(M, p)."
-      },
-      {
-        "id": "C5_witness_fence",
-        "statement": "RPWitness is proof-relevant structure. It is a trigger for consideration, NOT authority to lift (lift trigger != lift license, GTOC-3)."
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "laws": [
-      {
-        "id": "PCC_LAW_01_WITNESS_FENCE",
-        "statement": "An RPWitness triggers lift consideration but does not mint authority tokens or lift licenses."
-      },
-      {
-        "id": "PCC_LAW_02_COARSEST_REFINEMENT",
-        "statement": "Reductions violating Core_C(ker p) invariance are non-canonical and produce returning defects."
-      }
-    ],
-    "runtime_bindings": [
-      "omega_engine.crates.obstruction_theory",
-      "omega_engine.crates.projection_obstruction"
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888",
-  "current_scoring": null,
+  "current_contract": "84ca164180c26f3dfcc822c19c7bd652ee5259270f2e71df6b7c5a5051e38f69",
+  "current_scoring": "10c6be8f7550941d82da19197bb4733adea5206c5129fea618fac0f7a9d72767",
   "contract_history": [
     {
-      "sha256": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888",
-      "bytes": 2213,
+      "sha256": "8339c407d0c168d57ae84a3435c0d16791dcf19654f78964b097ea553756396b",
+      "bytes": 2664,
       "record": {
         "schema_version": "v1.0.0",
         "packet_id": "urn:omega:packet:omega:pcc_obstruction:v1.0.0",
@@ -152,13 +107,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: v1.0.0\npacket_id: urn:omega:packet:omega:pcc_obstruction:v1.0.0\ntitle: Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)\nkind: obstruction_contract\nstatus: Active\nlayer: Governance / Obstruction Theory\nauthority_effect: None\nformal_anchor:\n  lean_module: PCC\n  source_document: lean4/pcc_obstruction.lean\n  proof_packet: PCC-20260730\n  frozen_statements: research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md\n  estate_anchor: ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6\ndefinition:\n  summary: State-level returning projection-obstruction witness (RPWitness) and core\n    quotient classification (Coarsest Exact Refinement).\n  witness_structure:\n    name: RPWitness(M, p)\n    estate_alias: Critical Context Witness (ENC-0209)\n    witness_type: State-level witness (WD fork W1)\n    tuple: (x, y, c)\n    base_condition: p(x) = p(y)\n    returning_condition: p(c . x) != p(c . y)\ntheorems:\n- id: C1_descends_iff_no_witness\n  statement: For surjective projection p, action M descends through p iff no RPWitness\n    exists.\n- id: C2_witness_no_reduced\n  statement: The existence of an RPWitness defeats every memoryless reduced family\n    T (no reduction square can commute).\n- id: C2_invariant_no_witness\n  statement: A C-invariant kernel admits no returning witness.\n- id: C3_core_quotient\n  statement: CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p.\n- id: C4_universal_property\n  statement: Every invariant refinement of p factors uniquely through CoreQ(M, p).\n- id: C5_witness_fence\n  statement: RPWitness is proof-relevant structure. It is a trigger for consideration,\n    NOT authority to lift (lift trigger != lift license, GTOC-3).\nlaws:\n- id: PCC_LAW_01_WITNESS_FENCE\n  statement: An RPWitness triggers lift consideration but does not mint authority\n    tokens or lift licenses.\n- id: PCC_LAW_02_COARSEST_REFINEMENT\n  statement: Reductions violating Core_C(ker p) invariance are non-canonical and produce\n    returning defects.\nruntime_bindings:\n- omega_engine.crates.obstruction_theory\n- omega_engine.crates.projection_obstruction\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"v1.0.0\",\n  \"packet_id\": \"urn:omega:packet:omega:pcc_obstruction:v1.0.0\",\n  \"title\": \"Returning Projection-Obstruction Witness & Core Quotient (PCC Setting C)\",\n  \"kind\": \"obstruction_contract\",\n  \"status\": \"Active\",\n  \"layer\": \"Governance / Obstruction Theory\",\n  \"authority_effect\": \"None\",\n  \"formal_anchor\": {\n    \"lean_module\": \"PCC\",\n    \"source_document\": \"lean4/pcc_obstruction.lean\",\n    \"proof_packet\": \"PCC-20260730\",\n    \"frozen_statements\": \"research/proof_packets/pcc_projection_congruence_core/001_frozen_formal_statements.md\",\n    \"estate_anchor\": \"ENC-0209 (Primitive Axiomatics v2.6 §1.8), PO-000 §4.6\"\n  },\n  \"definition\": {\n    \"summary\": \"State-level returning projection-obstruction witness (RPWitness) and core quotient classification (Coarsest Exact Refinement).\",\n    \"witness_structure\": {\n      \"name\": \"RPWitness(M, p)\",\n      \"estate_alias\": \"Critical Context Witness (ENC-0209)\",\n      \"witness_type\": \"State-level witness (WD fork W1)\",\n      \"tuple\": \"(x, y, c)\",\n      \"base_condition\": \"p(x) = p(y)\",\n      \"returning_condition\": \"p(c . x) != p(c . y)\"\n    }\n  },\n  \"theorems\": [\n    {\n      \"id\": \"C1_descends_iff_no_witness\",\n      \"statement\": \"For surjective projection p, action M descends through p iff no RPWitness exists.\"\n    },\n    {\n      \"id\": \"C2_witness_no_reduced\",\n      \"statement\": \"The existence of an RPWitness defeats every memoryless reduced family T (no reduction square can commute).\"\n    },\n    {\n      \"id\": \"C2_invariant_no_witness\",\n      \"statement\": \"A C-invariant kernel admits no returning witness.\"\n    },\n    {\n      \"id\": \"C3_core_quotient\",\n      \"statement\": \"CoreQ(M, p) = X / Core_C(ker p) is the coarsest exact refinement of p.\"\n    },\n    {\n      \"id\": \"C4_universal_property\",\n      \"statement\": \"Every invariant refinement of p factors uniquely through CoreQ(M, p).\"\n    },\n    {\n      \"id\": \"C5_witness_fence\",\n      \"statement\": \"RPWitness is proof-relevant structure. It is a trigger for consideration, NOT authority to lift (lift trigger != lift license, GTOC-3).\"\n    }\n  ],\n  \"laws\": [\n    {\n      \"id\": \"PCC_LAW_01_WITNESS_FENCE\",\n      \"statement\": \"An RPWitness triggers lift consideration but does not mint authority tokens or lift licenses.\"\n    },\n    {\n      \"id\": \"PCC_LAW_02_COARSEST_REFINEMENT\",\n      \"statement\": \"Reductions violating Core_C(ker p) invariance are non-canonical and produce returning defects.\"\n    }\n  ],\n  \"runtime_bindings\": [\n    \"omega_engine.crates.obstruction_theory\",\n    \"omega_engine.crates.projection_obstruction\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/40_packets/pcc_obstruction.contract.yaml"
       ]
+    },
+    {
+      "sha256": "84ca164180c26f3dfcc822c19c7bd652ee5259270f2e71df6b7c5a5051e38f69",
+      "bytes": 1770,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/pcc_obstruction_contract.py",
+          "sha256": "84416c17701631d8dd392f513e4f21346b860a669673dc51d0b2e81a79c08b3e"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:40_packets:pcc-obstruction-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/pcc_obstruction_contract.py\",\n    \"sha256\": \"84416c17701631d8dd392f513e4f21346b860a669673dc51d0b2e81a79c08b3e\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:40_packets:pcc-obstruction-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:unnamed Schema Version: v1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/pcc_obstruction_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "10c6be8f7550941d82da19197bb4733adea5206c5129fea618fac0f7a9d72767",
+      "bytes": 2201,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/40_packets/pcc_obstruction_contract.py",
+          "sha256": "84416c17701631d8dd392f513e4f21346b860a669673dc51d0b2e81a79c08b3e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:40_packets:pcc-obstruction-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/40_packets/pcc_obstruction_contract.py\",\n    \"sha256\": \"84416c17701631d8dd392f513e4f21346b860a669673dc51d0b2e81a79c08b3e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:40_packets:pcc-obstruction-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/40_packets/pcc_obstruction_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/40_packets/pcc_obstruction.contract.yaml": "8e23c653dd3c7998d8e62c02ec312541253068f6e5b9be69afd5bf2211304888"
   },

@@ -3,74 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.file_contract.v1",
-    "kind": "rust_file_contract",
-    "contract_id": "urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0",
-    "title": "Exact finite squared-modulus and nonnegative-weight normalization",
-    "status": "active_provisional",
-    "crate": "omega_functional",
-    "file": "crates_rs/omega_functional/src/born_probabilities.rs",
-    "layer": "functional",
-    "role": "exact_finite_probability_representation",
-    "authority_effect": "none",
-    "evidence_ceiling": "LocalReplay",
-    "customer_claim_allowed": false,
-    "runtime_enforcement": true,
-    "owns": [
-      "nonempty_exact_nonnegative_normalized_probability_vectors",
-      "declared_squared_modulus_rule_for_complex_rational_amplitudes",
-      "zero_denominator_refusal_before_arithmetic",
-      "canonicalization_of_signed_unreduced_rational_inputs",
-      "immutable_normalized_output"
-    ],
-    "does_not_own": [
-      "derivation_or_physical_justification_of_the_Born_rule",
-      "authentication_of_state_or_request_identity",
-      "floating_point_provider_or_display_conversion",
-      "arbitrary_generated_code_or_quantum_hardware",
-      "engine_or_actor_authority"
-    ],
-    "may_call": [],
-    "must_not": [
-      "normalize_an_empty_or_zero_total_vector",
-      "accept_negative_weights",
-      "drop_imaginary_amplitudes",
-      "replace_tiny_nonzero_probabilities_with_zero"
-    ],
-    "exactness": {
-      "mode": "exact_rational",
-      "exact_constructor_required": true,
-      "approximate_modes_allowed": false
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py",
+      "sha256": "aea3b54dd32c3f6db688563813a55c9795f6adc8f6abcced8c7eaa11fe2e7025"
     },
-    "forbidden_substrings": [],
-    "required_substrings": [
-      "fn canonical_rational(",
-      "pub fn from_weights(",
-      "pub fn from_amplitudes("
-    ],
-    "required_tests": [
-      "born_probabilities::tests::exact_nonnegative_weights_normalize_without_rounding",
-      "born_probabilities::tests::complex_squared_modulus_uses_both_components",
-      "born_probabilities::tests::common_nonzero_scale_and_phase_preserve_distribution",
-      "born_probabilities::tests::empty_and_all_zero_inputs_have_distinct_refusals",
-      "born_probabilities::tests::negative_weight_is_refused_after_sign_canonicalization",
-      "born_probabilities::tests::invalid_rationals_are_refused_before_weight_or_amplitude_arithmetic",
-      "born_probabilities::tests::extreme_exact_weights_neither_overflow_nor_disappear"
-    ],
-    "lean_obligations": [],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "urn:omega:constitution:base_file_contract:file:v1.0.0"
-      ]
-    }
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:analysis:rust-omega-functional-exact-born-probabilities-file-v1-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0 Schema Version: omega.file_contract.v1",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
   },
-  "current_contract": "5d02a6f66d36a335c9b5da1b965af91721dbe6dc01f94ee711d180858084f9da",
-  "current_scoring": null,
+  "current_contract": "1c5be607f416c9479d79a46354a23cbac2ba476c8f3133198f5f6e5db541de38",
+  "current_scoring": "cabec2dd8bd11f4f29577d677ead30d016a5216607dbdf896e8755d6c86e7372",
   "contract_history": [
     {
-      "sha256": "5d02a6f66d36a335c9b5da1b965af91721dbe6dc01f94ee711d180858084f9da",
-      "bytes": 2137,
+      "sha256": "9473a9b9c6bdd6565dafd404fa9c0ac8d940d1f3c29b1b9e33389d839d732af9",
+      "bytes": 2471,
       "record": {
         "schema_version": "omega.file_contract.v1",
         "kind": "rust_file_contract",
@@ -134,13 +98,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0\ntitle: Exact finite squared-modulus and nonnegative-weight normalization\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/born_probabilities.rs\nlayer: functional\nrole: exact_finite_probability_representation\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- nonempty_exact_nonnegative_normalized_probability_vectors\n- declared_squared_modulus_rule_for_complex_rational_amplitudes\n- zero_denominator_refusal_before_arithmetic\n- canonicalization_of_signed_unreduced_rational_inputs\n- immutable_normalized_output\ndoes_not_own:\n- derivation_or_physical_justification_of_the_Born_rule\n- authentication_of_state_or_request_identity\n- floating_point_provider_or_display_conversion\n- arbitrary_generated_code_or_quantum_hardware\n- engine_or_actor_authority\nmay_call: []\nmust_not:\n- normalize_an_empty_or_zero_total_vector\n- accept_negative_weights\n- drop_imaginary_amplitudes\n- replace_tiny_nonzero_probabilities_with_zero\nexactness:\n  mode: exact_rational\n  exact_constructor_required: true\n  approximate_modes_allowed: false\nforbidden_substrings: []\nrequired_substrings:\n- fn canonical_rational(\n- pub fn from_weights(\n- pub fn from_amplitudes(\nrequired_tests:\n- born_probabilities::tests::exact_nonnegative_weights_normalize_without_rounding\n- born_probabilities::tests::complex_squared_modulus_uses_both_components\n- born_probabilities::tests::common_nonzero_scale_and_phase_preserve_distribution\n- born_probabilities::tests::empty_and_all_zero_inputs_have_distinct_refusals\n- born_probabilities::tests::negative_weight_is_refused_after_sign_canonicalization\n- born_probabilities::tests::invalid_rationals_are_refused_before_weight_or_amplitude_arithmetic\n- born_probabilities::tests::extreme_exact_weights_neither_overflow_nor_disappear\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.file_contract.v1\",\n  \"kind\": \"rust_file_contract\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0\",\n  \"title\": \"Exact finite squared-modulus and nonnegative-weight normalization\",\n  \"status\": \"active_provisional\",\n  \"crate\": \"omega_functional\",\n  \"file\": \"crates_rs/omega_functional/src/born_probabilities.rs\",\n  \"layer\": \"functional\",\n  \"role\": \"exact_finite_probability_representation\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"customer_claim_allowed\": false,\n  \"runtime_enforcement\": true,\n  \"owns\": [\n    \"nonempty_exact_nonnegative_normalized_probability_vectors\",\n    \"declared_squared_modulus_rule_for_complex_rational_amplitudes\",\n    \"zero_denominator_refusal_before_arithmetic\",\n    \"canonicalization_of_signed_unreduced_rational_inputs\",\n    \"immutable_normalized_output\"\n  ],\n  \"does_not_own\": [\n    \"derivation_or_physical_justification_of_the_Born_rule\",\n    \"authentication_of_state_or_request_identity\",\n    \"floating_point_provider_or_display_conversion\",\n    \"arbitrary_generated_code_or_quantum_hardware\",\n    \"engine_or_actor_authority\"\n  ],\n  \"may_call\": [],\n  \"must_not\": [\n    \"normalize_an_empty_or_zero_total_vector\",\n    \"accept_negative_weights\",\n    \"drop_imaginary_amplitudes\",\n    \"replace_tiny_nonzero_probabilities_with_zero\"\n  ],\n  \"exactness\": {\n    \"mode\": \"exact_rational\",\n    \"exact_constructor_required\": true,\n    \"approximate_modes_allowed\": false\n  },\n  \"forbidden_substrings\": [],\n  \"required_substrings\": [\n    \"fn canonical_rational(\",\n    \"pub fn from_weights(\",\n    \"pub fn from_amplitudes(\"\n  ],\n  \"required_tests\": [\n    \"born_probabilities::tests::exact_nonnegative_weights_normalize_without_rounding\",\n    \"born_probabilities::tests::complex_squared_modulus_uses_both_components\",\n    \"born_probabilities::tests::common_nonzero_scale_and_phase_preserve_distribution\",\n    \"born_probabilities::tests::empty_and_all_zero_inputs_have_distinct_refusals\",\n    \"born_probabilities::tests::negative_weight_is_refused_after_sign_canonicalization\",\n    \"born_probabilities::tests::invalid_rationals_are_refused_before_weight_or_amplitude_arithmetic\",\n    \"born_probabilities::tests::extreme_exact_weights_neither_overflow_nor_disappear\"\n  ],\n  \"lean_obligations\": [],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_file_contract:file:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "1c5be607f416c9479d79a46354a23cbac2ba476c8f3133198f5f6e5db541de38",
+      "bytes": 1927,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py",
+          "sha256": "aea3b54dd32c3f6db688563813a55c9795f6adc8f6abcced8c7eaa11fe2e7025"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:analysis:rust-omega-functional-exact-born-probabilities-file-v1-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0 Schema Version: omega.file_contract.v1",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py\",\n    \"sha256\": \"aea3b54dd32c3f6db688563813a55c9795f6adc8f6abcced8c7eaa11fe2e7025\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:analysis:rust-omega-functional-exact-born-probabilities-file-v1-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:rust:omega_functional:exact_born_probabilities:file:v1.0.0 Schema Version: omega.file_contract.v1\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "cabec2dd8bd11f4f29577d677ead30d016a5216607dbdf896e8755d6c86e7372",
+      "bytes": 2291,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py",
+          "sha256": "aea3b54dd32c3f6db688563813a55c9795f6adc8f6abcced8c7eaa11fe2e7025"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:analysis:rust-omega-functional-exact-born-probabilities-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.py\",\n    \"sha256\": \"aea3b54dd32c3f6db688563813a55c9795f6adc8f6abcced8c7eaa11fe2e7025\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:rust-omega-functional-exact-born-probabilities-file-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/analysis/rust_omega_functional_exact_born_probabilities_file_v1_0_0.contract.yaml": "5d02a6f66d36a335c9b5da1b965af91721dbe6dc01f94ee711d180858084f9da"
   },

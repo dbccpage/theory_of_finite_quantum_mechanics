@@ -1,8 +1,10 @@
 """Finite quantum mechanics: states, observables, campaigns, and exact suites."""
 from ..linear_algebra import ExactMatrix, GaussianRational, Q, q
-from .domain.gaussian_rational import Gaussian as DomainGaussianRational
+from .gaussian_rational import Gaussian as DomainGaussianRational
 import hashlib
 from typing import Sequence, Tuple, Union
+from pathlib import Path
+import sys
 
 class QmError(Exception):
     pass
@@ -69,7 +71,19 @@ class DensityOperator:
 from . import domain
 from . import campaigns
 from . import entrypoints
+from . import data
 from . import born_normalization
+
+_qm_path = str(Path(__file__).parent)
+for _mod in (domain, campaigns, entrypoints, data):
+    _mod.__path__ = [_qm_path]
+    if hasattr(_mod, "__spec__") and _mod.__spec__ is not None:
+        _mod.__spec__.submodule_search_locations = [_qm_path]
+
+sys.modules["src.qm.domain"] = domain
+sys.modules["src.qm.campaigns"] = campaigns
+sys.modules["src.qm.entrypoints"] = entrypoints
+sys.modules["src.qm.data"] = data
 
 __all__ = [
     "QmError",
@@ -77,5 +91,6 @@ __all__ = [
     "domain",
     "campaigns",
     "entrypoints",
+    "data",
     "born_normalization",
 ]

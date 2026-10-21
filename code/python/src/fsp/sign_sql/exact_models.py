@@ -32,13 +32,36 @@ DATABASES_DIR = _find_databases_dir()
 BASE = DATABASES_DIR.parent
 
 
+MAX_INPUT_BITS = 1024
+
+
 def rational(value: object) -> Fraction:
     """Reject approximate numbers, including integral floats and booleans."""
     if isinstance(value, bool) or not isinstance(value, (int, str, Fraction)):
         raise TypeError("exact integer, fraction, or rational string required")
     if isinstance(value, str) and any(c in value.lower() for c in ".e"):
         raise ValueError("decimal/exponent syntax is not an exact rational input")
-    return Fraction(value)
+    frac = Fraction(value)
+    if frac.numerator.bit_length() > MAX_INPUT_BITS or frac.denominator.bit_length() > MAX_INPUT_BITS:
+        raise ValueError(f"integer bit budget exceeded (limit {MAX_INPUT_BITS} bits)")
+    return frac
+
+
+def _sql_qpow(base: object, exp: object) -> str:
+    """Evaluate rational power strictly with exact integer exponent."""
+    if isinstance(exp, bool) or issubclass(type(exp), float):
+        raise TypeError("exponent must be an exact integer; float/bool refused")
+    if isinstance(exp, int):
+        exponent = exp
+    elif isinstance(exp, str):
+        if any(c in exp.lower() for c in ".e/"):
+            raise ValueError("exponent must be an integer string")
+        exponent = int(exp)
+    else:
+        raise TypeError(f"exponent must be an integer, got {type(exp).__name__}")
+    if exponent.bit_length() > MAX_INPUT_BITS:
+        raise ValueError(f"exponent bit budget exceeded (limit {MAX_INPUT_BITS} bits)")
+    return str(rational(base) ** exponent)
 
 
 class RationalSum:
@@ -60,7 +83,7 @@ def connection() -> sqlite3.Connection:
     con.create_function("qdiv", 2, lambda a, b: str(rational(a) / rational(b)))
     con.create_function("qabs", 1, lambda a: str(abs(rational(a))))
     con.create_function("qsign", 1, lambda a: (rational(a) > 0) - (rational(a) < 0))
-    con.create_function("qpow", 2, lambda a, n: str(rational(a) ** n))
+    con.create_function("qpow", 2, _sql_qpow)
     con.create_function("popcount", 1, int.bit_count)
     con.create_aggregate("qsum", 1, RationalSum)
     con.executescript((BASE / "databases" / "meron_hubbard.sql").read_text(encoding="utf-8"))
@@ -207,7 +230,14 @@ def meron_model_defects(con: sqlite3.Connection) -> dict:
 
 def meron_transfer_trace(sites: int, repetitions: int, q: object) -> str:
     """Independent occupation-basis transfer multiplication, without clusters."""
-    q = rational(q)
+    if type(sites) is not int or sites < 4 or sites % 2 or sites > 6:
+        raise ValueError("finite checkerboard fixture requires 4 or 6 sites")
+    if type(repetitions) is not int or repetitions < 1 or sites * repetitions > 12:
+        raise ValueError("at most 12 interaction plaquettes are supported")
+    qvalue = rational(q)
+    if qvalue < 1:
+        raise ValueError("q=exp(epsilon*t) must be at least one")
+    q = qvalue
     dim = 1 << sites
     matrix = [[Fraction(i == j) for j in range(dim)] for i in range(dim)]
     for time in range(2 * repetitions):

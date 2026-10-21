@@ -108,12 +108,12 @@
       ]
     }
   },
-  "current_contract": "84b51739016971e98383d787a374a90d86b62f6001162b9a0b42a85891d2d8e8",
-  "current_scoring": null,
+  "current_contract": "b3fe2c89d5422f8c12811e392b6f0c3cc83d2196ef7bb7e8205c49efb9bd226e",
+  "current_scoring": "8c9a86076df752905bc28790ffd67001b7badc2d72bf3e9ab4c2916ad91f121c",
   "contract_history": [
     {
-      "sha256": "84b51739016971e98383d787a374a90d86b62f6001162b9a0b42a85891d2d8e8",
-      "bytes": 3219,
+      "sha256": "b3fe2c89d5422f8c12811e392b6f0c3cc83d2196ef7bb7e8205c49efb9bd226e",
+      "bytes": 3735,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:quillen_adjunction:v0.1.0",
@@ -220,13 +220,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quillen_adjunction:v0.1.0\ntitle: Quillen Adjunction Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quillen_adjunction\n  symbol: 'F: M ⇆ N :G'\n  ascii_symbol: quillen_adjunction\n  notation: 'F: M ⇆ N :G'\n  domain:\n  - 'source_model: model category M'\n  - 'target_model: model category N'\n  - 'left_functor: F: M → N (left adjoint)'\n  - 'right_functor: G: N → M (right adjoint)'\n  - 'adjunction: adjunction data for F ⊣ G'\n  codomain:\n    description: 'Pair of model categories (M, N) with functors F: M → N, G: N → M\n      forming an adjunction F ⊣ G satisfying the Quillen condition.\n\n      '\nrequirements:\n  required_structures:\n  - Source and target are valid model categories\n  - 'F: M → N and G: N → M are functors between the model categories'\n  - F and G form a categorical adjunction F ⊣ G\n  - 'Either (F preserves cofibrations and acyclic cofibrations) OR (G preserves fibrations\n    and acyclic fibrations)\n\n    '\nlaws:\n- F ⊣ G forms a categorical adjunction\n- 'F preserves cofibrations and acyclic cofibrations (equivalently: F is left Quillen)\n\n  '\n- 'G preserves fibrations and acyclic fibrations (equivalently: G is right Quillen)\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\n  - Computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Source or target lacks model structure\n- F ⊣ G fails adjunction verification\n- F doesn't preserve cofibrations\n- G doesn't preserve fibrations\ndoctrine:\n  summary: A Quillen adjunction between model categories M and N is an adjunction\n    F ⊣ G where F preserves cofibrations and G preserves fibrations (equivalently,\n    F preserves acyclic cofibrations or G preserves acyclic fibrations). It induces\n    an adjunction on homotopy categories.\n  non_role:\n  - Does not implement general adjunctions between arbitrary categories\n  - Does not verify Quillen equivalences (only adjunctions)\n  - Does not compute total derived functors or higher homotopy categories\nwip:\n- Quillen adjunctions induce ∞-categorical adjunctions\n- A Quillen adjunction is a Quillen equivalence if LF ⊣ RG is an equivalence\n- 'Ken Brown''s lemma: F preserves weak equivalences between cofibrant objects'\n- Current implementation validates basic Quillen conditions\n- Derived functor computation assumes cofibrant/fibrant replacement exists\n- Quillen equivalence detection not yet implemented\nrust_binding:\n  crate: omega_higher_category_theory\n  module: model_category\n  symbols:\n  - ModelCategory\n  - CommutativeSquare\n  required_tests:\n  - test_model_category_positive_verification\n  - test_kill_mut_p3_02_lifting_property_violation\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quillen_adjunction:v0.1.0\",\n  \"title\": \"Quillen Adjunction Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quillen_adjunction\",\n    \"symbol\": \"F: M ⇆ N :G\",\n    \"ascii_symbol\": \"quillen_adjunction\",\n    \"notation\": \"F: M ⇆ N :G\",\n    \"domain\": [\n      \"source_model: model category M\",\n      \"target_model: model category N\",\n      \"left_functor: F: M → N (left adjoint)\",\n      \"right_functor: G: N → M (right adjoint)\",\n      \"adjunction: adjunction data for F ⊣ G\"\n    ],\n    \"codomain\": {\n      \"description\": \"Pair of model categories (M, N) with functors F: M → N, G: N → M forming an adjunction F ⊣ G satisfying the Quillen condition.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Source and target are valid model categories\",\n      \"F: M → N and G: N → M are functors between the model categories\",\n      \"F and G form a categorical adjunction F ⊣ G\",\n      \"Either (F preserves cofibrations and acyclic cofibrations) OR (G preserves fibrations and acyclic fibrations)\\n\"\n    ]\n  },\n  \"laws\": [\n    \"F ⊣ G forms a categorical adjunction\",\n    \"F preserves cofibrations and acyclic cofibrations (equivalently: F is left Quillen)\\n\",\n    \"G preserves fibrations and acyclic fibrations (equivalently: G is right Quillen)\\n\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators are content-addressed\",\n      \"Computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Source or target lacks model structure\",\n    \"F ⊣ G fails adjunction verification\",\n    \"F doesn't preserve cofibrations\",\n    \"G doesn't preserve fibrations\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Quillen adjunction between model categories M and N is an adjunction F ⊣ G where F preserves cofibrations and G preserves fibrations (equivalently, F preserves acyclic cofibrations or G preserves acyclic fibrations). It induces an adjunction on homotopy categories.\",\n    \"non_role\": [\n      \"Does not implement general adjunctions between arbitrary categories\",\n      \"Does not verify Quillen equivalences (only adjunctions)\",\n      \"Does not compute total derived functors or higher homotopy categories\"\n    ]\n  },\n  \"wip\": [\n    \"Quillen adjunctions induce ∞-categorical adjunctions\",\n    \"A Quillen adjunction is a Quillen equivalence if LF ⊣ RG is an equivalence\",\n    \"Ken Brown's lemma: F preserves weak equivalences between cofibrant objects\",\n    \"Current implementation validates basic Quillen conditions\",\n    \"Derived functor computation assumes cofibrant/fibrant replacement exists\",\n    \"Quillen equivalence detection not yet implemented\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"model_category\",\n    \"symbols\": [\n      \"ModelCategory\",\n      \"CommutativeSquare\"\n    ],\n    \"required_tests\": [\n      \"test_model_category_positive_verification\",\n      \"test_kill_mut_p3_02_lifting_property_violation\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_quillen_adjunction_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "8c9a86076df752905bc28790ffd67001b7badc2d72bf3e9ab4c2916ad91f121c",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_quillen_adjunction_v0_1_0_contract.py",
+          "sha256": "253fd9a135e212d32f73b1cb0759f6b74db57599af96e6884ef678c4c92b8e81"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-quillen-adjunction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_quillen_adjunction_v0_1_0_contract.py\",\n    \"sha256\": \"253fd9a135e212d32f73b1cb0759f6b74db57599af96e6884ef678c4c92b8e81\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-quillen-adjunction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quillen_adjunction_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_quillen_adjunction_v0_1_0.contract.yaml": "84b51739016971e98383d787a374a90d86b62f6001162b9a0b42a85891d2d8e8"
   },

@@ -95,12 +95,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "bb04822fca286a33bf39d1ea91da1fff2166e2c9d7d2931fefffca6f2746e3a5",
-  "current_scoring": null,
+  "current_contract": "cc3bec0270c1c3769cadc42003d33a59ded88f09377dba0236748db2018c6c54",
+  "current_scoring": "5f790f6de8a1640c0f7702f4d21312cc7105198da892833fdb2b59c18483109c",
   "contract_history": [
     {
-      "sha256": "bb04822fca286a33bf39d1ea91da1fff2166e2c9d7d2931fefffca6f2746e3a5",
-      "bytes": 2940,
+      "sha256": "cc3bec0270c1c3769cadc42003d33a59ded88f09377dba0236748db2018c6c54",
+      "bytes": 3420,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:validated_cellular_coboundaries:v0.1.0",
@@ -194,13 +194,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:validated_cellular_coboundaries:v0.1.0\ntitle: Checked Exact Cellular Coboundaries\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: validated_cellular_coboundaries\n  symbol: validated_cellular_coboundaries\n  ascii_symbol: validated_cellular_coboundaries\n  notation: Checked Exact Cellular Coboundaries\n  domain:\n  - A declared finite oriented two-complex, including its public vertex/edge/face\n    maps and indices.\n  - Explicit dense-storage and nilpotency-replay operation budgets.\n  codomain:\n    description: Declared finite results of omega_holonomy::graph; exact and diagnostic\n      routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Construction replays declared indices, endpoints, maps and closed oriented face\n  boundaries before indexing.\n- The primitive coboundary is f(v)-f(u) and the face coboundary sums its signed boundary\n  edges.\n- The returned exact rational maps obey d1 d0=0.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_holonomy\n  module: graph\n  symbols:\n  - CellComplex\n  - CellComplex::cochain_matrices\n  required_tests:\n  - malformed_public_cell_complex_fields_are_refused_before_indexing\nnegative_tests:\n- Tampered public maps, edge indices, unknown boundary data and oversized matrix/replay\n  work are refused.\ndoctrine:\n  summary: Construction replays declared indices, endpoints, maps and closed oriented\n    face boundaries before indexing.; The primitive coboundary is f(v)-f(u) and the\n    face coboundary sums its signed boundary edges.; The returned exact rational maps\n    obey d1 d0=0..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:validated_cellular_coboundaries:v0.1.0\",\n  \"title\": \"Checked Exact Cellular Coboundaries\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"validated_cellular_coboundaries\",\n    \"symbol\": \"validated_cellular_coboundaries\",\n    \"ascii_symbol\": \"validated_cellular_coboundaries\",\n    \"notation\": \"Checked Exact Cellular Coboundaries\",\n    \"domain\": [\n      \"A declared finite oriented two-complex, including its public vertex/edge/face maps and indices.\",\n      \"Explicit dense-storage and nilpotency-replay operation budgets.\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_holonomy::graph; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Construction replays declared indices, endpoints, maps and closed oriented face boundaries before indexing.\",\n    \"The primitive coboundary is f(v)-f(u) and the face coboundary sums its signed boundary edges.\",\n    \"The returned exact rational maps obey d1 d0=0.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_holonomy\",\n    \"module\": \"graph\",\n    \"symbols\": [\n      \"CellComplex\",\n      \"CellComplex::cochain_matrices\"\n    ],\n    \"required_tests\": [\n      \"malformed_public_cell_complex_fields_are_refused_before_indexing\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Tampered public maps, edge indices, unknown boundary data and oversized matrix/replay work are refused.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Construction replays declared indices, endpoints, maps and closed oriented face boundaries before indexing.; The primitive coboundary is f(v)-f(u) and the face coboundary sums its signed boundary edges.; The returned exact rational maps obey d1 d0=0..\",\n    \"non_role\": [\n      \"No PROVED, GlobalGreen, customer claim, or operational authority.\",\n      \"No extension beyond the declared finite carrier and exact computation budgets.\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/math_validated_cellular_coboundaries_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "5f790f6de8a1640c0f7702f4d21312cc7105198da892833fdb2b59c18483109c",
+      "bytes": 2261,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/math_validated_cellular_coboundaries_v0_1_0_contract.py",
+          "sha256": "318d1c5f9889326433aed7a1dcc92788d38e00fc1321356788efd880cd177e48"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:math-validated-cellular-coboundaries-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_validated_cellular_coboundaries_v0_1_0_contract.py\",\n    \"sha256\": \"318d1c5f9889326433aed7a1dcc92788d38e00fc1321356788efd880cd177e48\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-validated-cellular-coboundaries-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_validated_cellular_coboundaries_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/math_validated_cellular_coboundaries_v0_1_0.contract.yaml": "bb04822fca286a33bf39d1ea91da1fff2166e2c9d7d2931fefffca6f2746e3a5"
   },

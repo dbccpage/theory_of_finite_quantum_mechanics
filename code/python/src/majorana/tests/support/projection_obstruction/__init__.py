@@ -1,1 +1,0 @@
-"""Package. AuthorityEffect: None."""

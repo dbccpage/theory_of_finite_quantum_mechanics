@@ -92,12 +92,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "47847df4415c80f4ae1b83b196666e3f8ebf82e2453529bf0dbf4512a34c1de5",
-  "current_scoring": null,
+  "current_contract": "f49ac3c1908e27b8fbc9d03cdcf8579f0b6bc6b770706d3bced931b2bfe806c6",
+  "current_scoring": "1d22895caceeb03ab23765708e1eb41363334dee131f969a7c768fbd46b0d48a",
   "contract_history": [
     {
-      "sha256": "47847df4415c80f4ae1b83b196666e3f8ebf82e2453529bf0dbf4512a34c1de5",
-      "bytes": 2602,
+      "sha256": "f49ac3c1908e27b8fbc9d03cdcf8579f0b6bc6b770706d3bced931b2bfe806c6",
+      "bytes": 3077,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:causal_set_action:v0.1.0",
@@ -188,13 +188,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:causal_set_action:v0.1.0\ntitle: Finite causal-set intervals and action\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: causal_set_action\n  symbol: causal_set_action\n  ascii_symbol: causal_set_action\n  notation: Finite causal-set intervals and action\n  domain:\n  - Admitted finite poset with declared label; finite interval enumeration.\n  codomain:\n    description: Declared finite results of omega_general_relativity::causal_set;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Past/future/spacelike sets derive from the actual order.\n- Alexandrov intervals include the declared endpoints.\n- The dimension2 interval-polynomial action is computed from interval abundances.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_general_relativity\n  module: causal_set\n  symbols:\n  - CausalSet\n  required_tests:\n  - causal_intervals_and_dimension_two_action_are_computed_from_the_order\nnegative_tests:\n- causal_intervals_and_dimension_two_action_are_computed_from_the_order\ndoctrine:\n  summary: Past/future/spacelike sets derive from the actual order.; Alexandrov intervals\n    include the declared endpoints.; The dimension2 interval-polynomial action is\n    computed from interval abundances..\n  non_role:\n  - An exact finite causal-set action does not prove Lorentzian continuum convergence\n    or determine spacetime dimension.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:causal_set_action:v0.1.0\",\n  \"title\": \"Finite causal-set intervals and action\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"causal_set_action\",\n    \"symbol\": \"causal_set_action\",\n    \"ascii_symbol\": \"causal_set_action\",\n    \"notation\": \"Finite causal-set intervals and action\",\n    \"domain\": [\n      \"Admitted finite poset with declared label; finite interval enumeration.\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_general_relativity::causal_set; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Past/future/spacelike sets derive from the actual order.\",\n    \"Alexandrov intervals include the declared endpoints.\",\n    \"The dimension2 interval-polynomial action is computed from interval abundances.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_general_relativity\",\n    \"module\": \"causal_set\",\n    \"symbols\": [\n      \"CausalSet\"\n    ],\n    \"required_tests\": [\n      \"causal_intervals_and_dimension_two_action_are_computed_from_the_order\"\n    ]\n  },\n  \"negative_tests\": [\n    \"causal_intervals_and_dimension_two_action_are_computed_from_the_order\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Past/future/spacelike sets derive from the actual order.; Alexandrov intervals include the declared endpoints.; The dimension2 interval-polynomial action is computed from interval abundances..\",\n    \"non_role\": [\n      \"An exact finite causal-set action does not prove Lorentzian continuum convergence or determine spacetime dimension.\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/math_causal_set_action_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "1d22895caceeb03ab23765708e1eb41363334dee131f969a7c768fbd46b0d48a",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/math_causal_set_action_v0_1_0_contract.py",
+          "sha256": "2786dfd487eb8a3ece420e3271c6ae4cac995cde4a18abe0fa5f24bc45d097c8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:math-causal-set-action-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/math_causal_set_action_v0_1_0_contract.py\",\n    \"sha256\": \"2786dfd487eb8a3ece420e3271c6ae4cac995cde4a18abe0fa5f24bc45d097c8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:math-causal-set-action-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_causal_set_action_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/math_causal_set_action_v0_1_0.contract.yaml": "47847df4415c80f4ae1b83b196666e3f8ebf82e2453529bf0dbf4512a34c1de5"
   },

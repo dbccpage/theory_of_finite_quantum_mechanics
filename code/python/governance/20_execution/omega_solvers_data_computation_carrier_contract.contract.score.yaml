@@ -63,12 +63,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "e61fffb39530904677881527c7753f407a862da8e528289a8dd8e8d9967cb037",
-  "current_scoring": null,
+  "current_contract": "1982af5a3e791b90511d728de531bd44703521a69adad609c706225a253cc7a0",
+  "current_scoring": "7c374e32d0f4a518c6d31ad12062d4bb6b1ede89468f270e3a88bcb40c3da589",
   "contract_history": [
     {
-      "sha256": "e61fffb39530904677881527c7753f407a862da8e528289a8dd8e8d9967cb037",
-      "bytes": 1110,
+      "sha256": "1982af5a3e791b90511d728de531bd44703521a69adad609c706225a253cc7a0",
+      "bytes": 1434,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_solvers:data_computation_carrier:v1.0.0",
@@ -130,13 +130,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_solvers:data_computation_carrier:v1.0.0\ntitle: Exact supplied Boolean graphs/CNF and deterministic finite-prefix tape machines.\n  No logic, permission, universal comp...\nkind: rust_file_contract\nstatus: active\ncrate: omega_solvers\nfile: crates_rs/omega_solvers/src/data_computation_carrier.rs\nmodule: data_computation_carrier\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_solvers\n  module: data_computation_carrier\n  file: crates_rs/omega_solvers/src/data_computation_carrier.rs\nsymbols:\n- ComputationError\n- Literal\n- Cnf\n- satisfied_by\n- BooleanGraph\n- new\n- arity\n- outputs\n- evaluate\n- graph_cnf\n- verify_cnf\n- Configuration\n- Transition\n- FiniteMachine\n- PrefixTermination\n- MachineRun\n- initial_state\n- is_halting\n- transition_keys\n- checked_read\n- step\n- execute\n- verify_run\nowns:\n- computation_error\n- literal\n- cnf\n- satisfied_by\n- boolean_graph\n- new\n- arity\n- outputs\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_solvers:data_computation_carrier:v1.0.0\",\n  \"title\": \"Exact supplied Boolean graphs/CNF and deterministic finite-prefix tape machines. No logic, permission, universal comp...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_solvers\",\n  \"file\": \"crates_rs/omega_solvers/src/data_computation_carrier.rs\",\n  \"module\": \"data_computation_carrier\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_solvers\",\n    \"module\": \"data_computation_carrier\",\n    \"file\": \"crates_rs/omega_solvers/src/data_computation_carrier.rs\"\n  },\n  \"symbols\": [\n    \"ComputationError\",\n    \"Literal\",\n    \"Cnf\",\n    \"satisfied_by\",\n    \"BooleanGraph\",\n    \"new\",\n    \"arity\",\n    \"outputs\",\n    \"evaluate\",\n    \"graph_cnf\",\n    \"verify_cnf\",\n    \"Configuration\",\n    \"Transition\",\n    \"FiniteMachine\",\n    \"PrefixTermination\",\n    \"MachineRun\",\n    \"initial_state\",\n    \"is_halting\",\n    \"transition_keys\",\n    \"checked_read\",\n    \"step\",\n    \"execute\",\n    \"verify_run\"\n  ],\n  \"owns\": [\n    \"computation_error\",\n    \"literal\",\n    \"cnf\",\n    \"satisfied_by\",\n    \"boolean_graph\",\n    \"new\",\n    \"arity\",\n    \"outputs\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/omega_solvers_data_computation_carrier.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "7c374e32d0f4a518c6d31ad12062d4bb6b1ede89468f270e3a88bcb40c3da589",
+      "bytes": 2251,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/omega_solvers_data_computation_carrier_contract.py",
+          "sha256": "20bde3171b1de3a1bde5a58a7960989bb8f8274f6e1056e406a71f7becee4908"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:omega-solvers-data-computation-carrier-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/omega_solvers_data_computation_carrier_contract.py\",\n    \"sha256\": \"20bde3171b1de3a1bde5a58a7960989bb8f8274f6e1056e406a71f7becee4908\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:omega-solvers-data-computation-carrier-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_solvers_data_computation_carrier_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/omega_solvers_data_computation_carrier.contract.yaml": "e61fffb39530904677881527c7753f407a862da8e528289a8dd8e8d9967cb037"
   },

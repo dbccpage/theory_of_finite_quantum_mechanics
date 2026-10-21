@@ -109,12 +109,12 @@
       "Straightening and unstraightening equivalences"
     ]
   },
-  "current_contract": "44767f2719c56f6c2940be90cee89926d76b738066e4abb7090dfee9666c2474",
-  "current_scoring": null,
+  "current_contract": "5700ad11825fe6e4f5c7e087a9210b9d6fe92221e3e1150e349f9b62e4e6c73d",
+  "current_scoring": "104f443c559ee20bb722eb6bf50e7fbd57a789821f5165244001b462819e4b6f",
   "contract_history": [
     {
-      "sha256": "44767f2719c56f6c2940be90cee89926d76b738066e4abb7090dfee9666c2474",
-      "bytes": 3171,
+      "sha256": "5700ad11825fe6e4f5c7e087a9210b9d6fe92221e3e1150e349f9b62e4e6c73d",
+      "bytes": 3711,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:quasi_category:v0.1.0",
@@ -222,13 +222,75 @@
           "Straightening and unstraightening equivalences"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quasi_category:v0.1.0\ntitle: Quasi-Category (Infinity-Category) Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quasi_category\n  symbol: 'C : (∞, 1)-Cat'\n  ascii_symbol: quasi_category\n  notation: C as simplicial set where every inner horn Λ^k_n (0 < k < n) admits a\n    filler\n  domain:\n  - 'simplicial_set: underlying simplicial set X_•'\n  - 'inner_horns: collection of inner horns Λ^k_n for 0 < k < n'\n  codomain:\n    description: A quasi-category (or Joyal ∞-category, weak Kan complex) is a simplicial\n      set in which every inner horn Λ^k_n (0 < k < n) has a filler Δ^n → X. Inner\n      2-horns correspond to composable pairs of morphisms, and filling provides associative\n      composition up to coherent higher homotopies.\nrequirements:\n  required_structures:\n  - Underlying simplicial set satisfies all 5 simplicial identities.\n  - Every inner horn Λ^k_n (0 < k < n) has at least one filler n-simplex.\n  - Horn boundary faces agree on common intersections.\n  - Kan complexes unconditionally satisfy quasi-category condition.\n  - Deterministic content-addressed artifact hash.\nlaws:\n- 'Inner horn filling: every inner horn Λ^k_n → X (0 < k < n) admits a filler Δ^n\n  → X'\n- 'Kan complexes are quasi-categories: any simplicial set filling all horns fills\n  inner horns'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Simplices and horns serialized in canonical discrete order\n  - Given same data, produces identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: simplicial_set\n  symbols:\n  - QuasiCategoryValidator\n  - KanComplexValidator\n  - Horn\n  - SimplicialSet\n  required_tests:\n  - test_simplicial_set_and_quasi_category_positive_verification\n  - test_kill_mut_p3_04_quasi_category_inner_horn_filling_violation\nlean4_binding:\n  module: HigherCategoryTheory.SimplicialSet\n  symbols:\n  - IsQuasiCategory\n  - IsKanComplex\n  - kan_complex_is_quasi_category\nnegative_tests:\n- Inner horn lacks a filler n-simplex (MUT-P3-04)\n- Outer horn passed to inner horn validator\n- Horn faces boundary mismatch\ndoctrine:\n  summary: A quasi-category is a simplicial set where all inner horns can be filled.\n    Developed by Boardman-Vogt and Joyal, and systematically elaborated by Lurie (Higher\n    Topos Theory), quasi-categories provide the canonical model for (∞,1)-categories\n    where 1-morphisms compose weakly up to coherent invertible higher cells.\n  non_role:\n  - Strict 1-categories\n  - Unbounded higher categories (∞,n) for n > 1\nwip:\n- Joyal model structure on simplicial sets\n- Straightening and unstraightening equivalences\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:quasi_category:v0.1.0\",\n  \"title\": \"Quasi-Category (Infinity-Category) Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quasi_category\",\n    \"symbol\": \"C : (∞, 1)-Cat\",\n    \"ascii_symbol\": \"quasi_category\",\n    \"notation\": \"C as simplicial set where every inner horn Λ^k_n (0 < k < n) admits a filler\",\n    \"domain\": [\n      \"simplicial_set: underlying simplicial set X_•\",\n      \"inner_horns: collection of inner horns Λ^k_n for 0 < k < n\"\n    ],\n    \"codomain\": {\n      \"description\": \"A quasi-category (or Joyal ∞-category, weak Kan complex) is a simplicial set in which every inner horn Λ^k_n (0 < k < n) has a filler Δ^n → X. Inner 2-horns correspond to composable pairs of morphisms, and filling provides associative composition up to coherent higher homotopies.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Underlying simplicial set satisfies all 5 simplicial identities.\",\n      \"Every inner horn Λ^k_n (0 < k < n) has at least one filler n-simplex.\",\n      \"Horn boundary faces agree on common intersections.\",\n      \"Kan complexes unconditionally satisfy quasi-category condition.\",\n      \"Deterministic content-addressed artifact hash.\"\n    ]\n  },\n  \"laws\": [\n    \"Inner horn filling: every inner horn Λ^k_n → X (0 < k < n) admits a filler Δ^n → X\",\n    \"Kan complexes are quasi-categories: any simplicial set filling all horns fills inner horns\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Simplices and horns serialized in canonical discrete order\",\n      \"Given same data, produces identical artifact hash\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_higher_category_theory\",\n    \"module\": \"simplicial_set\",\n    \"symbols\": [\n      \"QuasiCategoryValidator\",\n      \"KanComplexValidator\",\n      \"Horn\",\n      \"SimplicialSet\"\n    ],\n    \"required_tests\": [\n      \"test_simplicial_set_and_quasi_category_positive_verification\",\n      \"test_kill_mut_p3_04_quasi_category_inner_horn_filling_violation\"\n    ]\n  },\n  \"lean4_binding\": {\n    \"module\": \"HigherCategoryTheory.SimplicialSet\",\n    \"symbols\": [\n      \"IsQuasiCategory\",\n      \"IsKanComplex\",\n      \"kan_complex_is_quasi_category\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Inner horn lacks a filler n-simplex (MUT-P3-04)\",\n    \"Outer horn passed to inner horn validator\",\n    \"Horn faces boundary mismatch\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A quasi-category is a simplicial set where all inner horns can be filled. Developed by Boardman-Vogt and Joyal, and systematically elaborated by Lurie (Higher Topos Theory), quasi-categories provide the canonical model for (∞,1)-categories where 1-morphisms compose weakly up to coherent invertible higher cells.\",\n    \"non_role\": [\n      \"Strict 1-categories\",\n      \"Unbounded higher categories (∞,n) for n > 1\"\n    ]\n  },\n  \"wip\": [\n    \"Joyal model structure on simplicial sets\",\n    \"Straightening and unstraightening equivalences\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_quasi_category_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "104f443c559ee20bb722eb6bf50e7fbd57a789821f5165244001b462819e4b6f",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_quasi_category_v0_1_0_contract.py",
+          "sha256": "a65e6349a570ee2040b5e52ac1d9f262eb49a9af2369e4bd592041b356fd7e5d"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-quasi-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_quasi_category_v0_1_0_contract.py\",\n    \"sha256\": \"a65e6349a570ee2040b5e52ac1d9f262eb49a9af2369e4bd592041b356fd7e5d\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-quasi-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quasi_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_quasi_category_v0_1_0.contract.yaml": "44767f2719c56f6c2940be90cee89926d76b738066e4abb7090dfee9666c2474"
   },

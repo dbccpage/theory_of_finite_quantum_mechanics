@@ -99,12 +99,12 @@
       ]
     }
   },
-  "current_contract": "74109a16fed61f212cc6956405b3fedc249eb30ca9222bf21875fd1cfb374f93",
-  "current_scoring": null,
+  "current_contract": "544ab08677bf82e6b61327500a3a0f43b0a13dc29422f7fe5e9d2309df0b42fe",
+  "current_scoring": "7e5779f5ba11eac2696d979ce6f078781fb0d45efb2007cf73293391257ea1fe",
   "contract_history": [
     {
-      "sha256": "74109a16fed61f212cc6956405b3fedc249eb30ca9222bf21875fd1cfb374f93",
-      "bytes": 2785,
+      "sha256": "544ab08677bf82e6b61327500a3a0f43b0a13dc29422f7fe5e9d2309df0b42fe",
+      "bytes": 3291,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:object:v0.1.0",
@@ -202,13 +202,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:object:v0.1.0\ntitle: Object Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: categorical-object\n  symbol: A ∈ Ob(C)\n  ascii_symbol: object\n  notation: A ∈ Ob(C)\n  domain:\n  - 'object_id: unique identifier string'\n  - 'category_id: reference to parent category'\n  codomain:\n    description: An object identifier within a category\nrequirements:\n  required_structures:\n  - The referenced category must exist\n  - The object_id must be listed in the category's object list\n  - Artifact hash must be deterministic from inputs\nlaws:\n- Every object must belong to a category\n- Each object has a unique identity morphism\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- category_id does not resolve to existing Category artifact\n- object_id is not in the category's object list\ndoctrine:\n  summary: 'An Object is an element of a category. In a category C, objects are the\n    nodes of the categorical graph. The contract defines an object by its identifier\n    and its membership in a category. Objects in a category are abstract entities\n    that serve as domains and codomains for morphisms. The internal structure of an\n    object is not visible categorically; objects are only understood through their\n    morphisms. Examples: sets, groups, topological spaces, types.'\n  non_role:\n  - Does not expose internal structure of objects\n  - Does not define morphisms between objects (see Morphism contract)\n  - Does not handle category-wide properties (see Category contract)\nwip:\n- The contract is minimal; objects are primarily defined by their role in the category\n- Internal structure of objects (e.g., elements of a set) is not part of this contract\n- 'The relationship with Category: Objects are listed in the Category artifact'\n- Contract defines objects purely categorically, without internal structure\n- Objects are understood only through their morphisms\n- Future versions may need to handle enriched categories or internal homs\nrust_binding:\n  crate: omega_category_theory\n  module: finite_category\n  symbols:\n  - DeclaredFiniteCategory\n  - ValidatedFiniteCategory\n  required_tests:\n  - try_new_refuses_object_without_identity\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:object:v0.1.0\",\n  \"title\": \"Object Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"categorical-object\",\n    \"symbol\": \"A ∈ Ob(C)\",\n    \"ascii_symbol\": \"object\",\n    \"notation\": \"A ∈ Ob(C)\",\n    \"domain\": [\n      \"object_id: unique identifier string\",\n      \"category_id: reference to parent category\"\n    ],\n    \"codomain\": {\n      \"description\": \"An object identifier within a category\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"The referenced category must exist\",\n      \"The object_id must be listed in the category's object list\",\n      \"Artifact hash must be deterministic from inputs\"\n    ]\n  },\n  \"laws\": [\n    \"Every object must belong to a category\",\n    \"Each object has a unique identity morphism\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"category_id does not resolve to existing Category artifact\",\n    \"object_id is not in the category's object list\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An Object is an element of a category. In a category C, objects are the nodes of the categorical graph. The contract defines an object by its identifier and its membership in a category. Objects in a category are abstract entities that serve as domains and codomains for morphisms. The internal structure of an object is not visible categorically; objects are only understood through their morphisms. Examples: sets, groups, topological spaces, types.\",\n    \"non_role\": [\n      \"Does not expose internal structure of objects\",\n      \"Does not define morphisms between objects (see Morphism contract)\",\n      \"Does not handle category-wide properties (see Category contract)\"\n    ]\n  },\n  \"wip\": [\n    \"The contract is minimal; objects are primarily defined by their role in the category\",\n    \"Internal structure of objects (e.g., elements of a set) is not part of this contract\",\n    \"The relationship with Category: Objects are listed in the Category artifact\",\n    \"Contract defines objects purely categorically, without internal structure\",\n    \"Objects are understood only through their morphisms\",\n    \"Future versions may need to handle enriched categories or internal homs\"\n  ],\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"finite_category\",\n    \"symbols\": [\n      \"DeclaredFiniteCategory\",\n      \"ValidatedFiniteCategory\"\n    ],\n    \"required_tests\": [\n      \"try_new_refuses_object_without_identity\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_object_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "7e5779f5ba11eac2696d979ce6f078781fb0d45efb2007cf73293391257ea1fe",
+      "bytes": 2209,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_object_v0_1_0_contract.py",
+          "sha256": "4e45529e5fc334be845d35bc42bf0e602d105f99a116dfc3ab3d6c67e6dcdce8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-object-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_object_v0_1_0_contract.py\",\n    \"sha256\": \"4e45529e5fc334be845d35bc42bf0e602d105f99a116dfc3ab3d6c67e6dcdce8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-object-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_object_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_object_v0_1_0.contract.yaml": "74109a16fed61f212cc6956405b3fedc249eb30ca9222bf21875fd1cfb374f93"
   },

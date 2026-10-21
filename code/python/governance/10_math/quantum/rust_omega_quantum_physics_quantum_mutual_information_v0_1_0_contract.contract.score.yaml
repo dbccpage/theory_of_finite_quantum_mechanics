@@ -117,12 +117,12 @@
       ]
     }
   },
-  "current_contract": "c0ec171d70d73eea0a3b5456b8810ba9dff0d9df67a4c6bc9acdb0e48cf47eda",
-  "current_scoring": null,
+  "current_contract": "b329e653a235c85e7c22b2711aff5d7f025450cdde8637b122a1c6f8b86e94a9",
+  "current_scoring": "64237e9563b94a1cd3e0a21142b89a28c77bf384b7218c840439bee1d8cdbb92",
   "contract_history": [
     {
-      "sha256": "c0ec171d70d73eea0a3b5456b8810ba9dff0d9df67a4c6bc9acdb0e48cf47eda",
-      "bytes": 4014,
+      "sha256": "b329e653a235c85e7c22b2711aff5d7f025450cdde8637b122a1c6f8b86e94a9",
+      "bytes": 4640,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:quantum_mutual_information:v0.1.0",
@@ -238,13 +238,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:quantum_mutual_information:v0.1.0\ntitle: Quantum Mutual Information (omega_quantum_physics)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quantum_mutual_information\n  symbol: quantum_mutual_information\n  ascii_symbol: quantum_mutual_information\n  notation: Declared finite quantum mutual information with executable operator laws\n  domain:\n  - Declared finite carrier and exact coefficient field for the exact face\n  - Checked shape and resource admission; any f64 face is diagnostic\n  codomain:\n    description: Quantum mutual information uses full reduced density operators; Coherent\n      Bell and product states have distinct mutual information even when population\n      comparisons are insufficient\nrequirements:\n  required_structures:\n  - Canonical scalar and matrix owners\n  - Declared finite physical inputs with independently replayed invariants\n  - AuthorityEffect none; no CertifiedAuthority construction\nlaws:\n- Quantum mutual information uses full reduced density operators\n- Coherent Bell and product states have distinct mutual information even when population\n  comparisons are insufficient\n- Executable finite checks do not confer theorem, host or workload authority\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_mutual_information\n  symbols:\n  - QuantumMutualInformation\n  required_tests:\n  - bell_state_population_mutual_information\n  - bell_state_pure_quantum_mutual_information\n  - product_state_zero_mutual_information\n  - no_carrier_in_this_crate_can_reach_certified_authority\n  - diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\n  - diagnostic_matrix_information_uses_the_supplied_trace_tolerance\nnegative_tests:\n- Malformed carriers, unsupported fields or exhausted admitted operations must fail\n  with their declared refusal\n- Changing an operator relation must leave a replayable nonzero residual\n- No result may self-assign CertifiedAuthority, PROVED or GlobalGreen\n- Matrix mutual and conditional information require finite strictly positive caller\n  tolerances; invalid values are typed refusals and valid loose tolerances are honored\ndoctrine:\n  summary: Quantum mutual information uses full reduced density operators; Coherent\n    Bell and product states have distinct mutual information even when population\n    comparisons are insufficient. This declaration remains mathematical_wip pending\n    mathematics review.\n  non_role:\n  - Human mathematics acceptance or mechanized proof\n  - Continuum limits, experimental realization or workload authority\nwip:\n- Human mathematics review remains required; executable law bindings are implementation\n  evidence\n- No theorem or lifecycle acceptance is inferred from passing Rust checks\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: LLM_BEST_EFFORT_SLOP\n    severity: info\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: 'AUTHORING_QUALITY: human_llm_best_effort_slop (best-effort dual-face\n      scaffold; not human-canon math; not PROVED; not GlobalGreen). module omega_quantum_physics::quantum_mutual_information'\n    recommendation: Keep AuthorityEffect None; deepen only with human review.\n    pass: domain_face_batch_gr_qm_ml_20260801\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:quantum_mutual_information:v0.1.0\",\n  \"title\": \"Quantum Mutual Information (omega_quantum_physics)\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"quantum_mutual_information\",\n    \"symbol\": \"quantum_mutual_information\",\n    \"ascii_symbol\": \"quantum_mutual_information\",\n    \"notation\": \"Declared finite quantum mutual information with executable operator laws\",\n    \"domain\": [\n      \"Declared finite carrier and exact coefficient field for the exact face\",\n      \"Checked shape and resource admission; any f64 face is diagnostic\"\n    ],\n    \"codomain\": {\n      \"description\": \"Quantum mutual information uses full reduced density operators; Coherent Bell and product states have distinct mutual information even when population comparisons are insufficient\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Canonical scalar and matrix owners\",\n      \"Declared finite physical inputs with independently replayed invariants\",\n      \"AuthorityEffect none; no CertifiedAuthority construction\"\n    ]\n  },\n  \"laws\": [\n    \"Quantum mutual information uses full reduced density operators\",\n    \"Coherent Bell and product states have distinct mutual information even when population comparisons are insufficient\",\n    \"Executable finite checks do not confer theorem, host or workload authority\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No wall-clock dependence\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"quantum_mutual_information\",\n    \"symbols\": [\n      \"QuantumMutualInformation\"\n    ],\n    \"required_tests\": [\n      \"bell_state_population_mutual_information\",\n      \"bell_state_pure_quantum_mutual_information\",\n      \"product_state_zero_mutual_information\",\n      \"no_carrier_in_this_crate_can_reach_certified_authority\",\n      \"diagnostic_matrix_information_rejects_invalid_tolerances_and_retains_bell_values\",\n      \"diagnostic_matrix_information_uses_the_supplied_trace_tolerance\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Malformed carriers, unsupported fields or exhausted admitted operations must fail with their declared refusal\",\n    \"Changing an operator relation must leave a replayable nonzero residual\",\n    \"No result may self-assign CertifiedAuthority, PROVED or GlobalGreen\",\n    \"Matrix mutual and conditional information require finite strictly positive caller tolerances; invalid values are typed refusals and valid loose tolerances are honored\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Quantum mutual information uses full reduced density operators; Coherent Bell and product states have distinct mutual information even when population comparisons are insufficient. This declaration remains mathematical_wip pending mathematics review.\",\n    \"non_role\": [\n      \"Human mathematics acceptance or mechanized proof\",\n      \"Continuum limits, experimental realization or workload authority\"\n    ]\n  },\n  \"wip\": [\n    \"Human mathematics review remains required; executable law bindings are implementation evidence\",\n    \"No theorem or lifecycle acceptance is inferred from passing Rust checks\"\n  ],\n  \"nomos_debate_NOT_CANONICAL\": {\n    \"banner\": \"NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect None\",\n    \"not_part_of_contract_law\": true,\n    \"authority_effect\": \"none\",\n    \"potential_defects\": [\n      {\n        \"reviewer\": \"panepistimion-cs-prof-ml-ai-info\",\n        \"role\": \"CS_IMPL_DELTA_REVIEW\",\n        \"code\": \"LLM_BEST_EFFORT_SLOP\",\n        \"severity\": \"info\",\n        \"claim_class\": \"[CODE_DEMO_RUST]\",\n        \"detail\": \"AUTHORING_QUALITY: human_llm_best_effort_slop (best-effort dual-face scaffold; not human-canon math; not PROVED; not GlobalGreen). module omega_quantum_physics::quantum_mutual_information\",\n        \"recommendation\": \"Keep AuthorityEffect None; deepen only with human review.\",\n        \"pass\": \"domain_face_batch_gr_qm_ml_20260801\"\n      }\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/rust_omega_quantum_physics_quantum_mutual_information_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "64237e9563b94a1cd3e0a21142b89a28c77bf384b7218c840439bee1d8cdbb92",
+      "bytes": 2293,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/rust_omega_quantum_physics_quantum_mutual_information_v0_1_0_contract.py",
+          "sha256": "d8fa0b828440cbf1af5f9a89ca3635617238c078b3581981d4bc2d264fe9fe6c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:rust-omega-quantum-physics-quantum-mutual-information-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/rust_omega_quantum_physics_quantum_mutual_information_v0_1_0_contract.py\",\n    \"sha256\": \"d8fa0b828440cbf1af5f9a89ca3635617238c078b3581981d4bc2d264fe9fe6c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:rust-omega-quantum-physics-quantum-mutual-information-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/rust_omega_quantum_physics_quantum_mutual_information_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/rust_omega_quantum_physics_quantum_mutual_information_v0_1_0.contract.yaml": "c0ec171d70d73eea0a3b5456b8810ba9dff0d9df67a4c6bc9acdb0e48cf47eda"
   },

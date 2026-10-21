@@ -108,12 +108,12 @@
       "Full replay determinism enforced through content-addressed validators and fixed canonical basis hash"
     ]
   },
-  "current_contract": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6",
-  "current_scoring": null,
+  "current_contract": "f0a9ffda2663c00e24c71ad25452eae977ea6287042816523bd89cb201a7dd32",
+  "current_scoring": "896fa13ee8974b132173e016e0832a19bf514cce26fecd50ef3ad7545dec6b23",
   "contract_history": [
     {
-      "sha256": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6",
-      "bytes": 4335,
+      "sha256": "f0a9ffda2663c00e24c71ad25452eae977ea6287042816523bd89cb201a7dd32",
+      "bytes": 4852,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:covector:v0.1.0",
@@ -220,13 +220,75 @@
           "Full replay determinism enforced through content-addressed validators and fixed canonical basis hash"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:covector:v0.1.0\ntitle: Covector Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: linear_functional\n  symbol: 'ω : V → K, represented as 1 × n row vector'\n  ascii_symbol: covector\n  notation: 'ω : V → K, represented as 1 × n row vector'\n  domain:\n  - 'matrix: 1 × n Matrix artifact'\n  - 'domain_space: VectorSpace artifact V'\n  - 'codomain: Field K (one-dimensional vector space)'\n  codomain:\n    description: 1 × n matrix representation of a linear map V → K\nrequirements:\n  required_structures:\n  - Domain space and matrix artifacts must exist and be resolvable\n  - Matrix must have exactly 1 row\n  - Matrix column count must equal domain dimension n\n  - Matrix domain_basis_hash must equal V.basis_hash\n  - Matrix codomain_basis_hash must equal canonical field basis hash\n  - Matrix field_id must equal V.field_id\n  - Artifact hash computed as SHA-256 over (contract_id, version, domain_space_id,\n    matrix_id)\nlaws:\n- Matrix must have exactly 1 row and n columns where n = dim(V)\n- Matrix domain basis hash must equal V.basis_hash\n- Matrix codomain basis hash must equal canonical field basis hash of K\n- Matrix field_id must equal V.field_id\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Canonical basis hash for K is fixed well-known constant\n  - Matrix assumed already validated under Matrix contract\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- domain_space_id does not resolve to artifact\n- matrix_id does not resolve to artifact\n- Matrix has 2 rows, 3 columns while V is 3-dim\n- V is 4-dim but matrix has 3 columns\n- matrix.domain_basis_hash != V.basis_hash\n- matrix.codomain_basis_hash is not canonical field basis hash\n- matrix.field_id = GF(5), V.field_id = GF(7)\n- Vector basis hash does not equal V.basis_hash\n- Same matrix artifact with same V must produce identical hash\ndoctrine:\n  summary: A Covector is a representation of a linear functional on a finite- dimensional\n    vector space V over a field K, i.e. an element of the dual space V* = Hom_K(V,\n    K).  It is encoded as a 1 × n Matrix (a row vector) where the domain is V (with\n    its chosen ordered basis) and the codomain is the one-dimensional vector space\n    K with its canonical basis {1K}.  The contract guarantees that the matrix is a\n    valid representation of such a map, that the bases match, and that evaluation\n    produces a Scalar.  No properties (continuity, boundedness) are asserted.\n  non_role:\n  - No infinite-dimensional spaces are supported\n  - No continuity or boundedness properties are asserted\n  - No topological or analytic properties\nwip:\n- The canonical basis hash for K (the string '1_K') must be a well-known constant\n  across all contracts using K. The Field contract should eventually export this constant.\n- The Covector contract could be generalised to allow a dual space representation\n  (a Vector in V*). The current row-matrix representation is concrete and compatible\n  with the Matrix and Scalar contracts.\n- Composition of a covector with a LinearMap yields another covector; that can be\n  a ComputationWitness using matrix multiplication.\n- 'The relationship to the DualBasis contract: a basis of V* can be constructed from\n  the dual basis, and each dual basis vector is a Covector artifact. This integration\n  will be specified later.'\n- Contract is in active development (mathematical_wip status)\n- Row-matrix representation chosen for compatibility with Matrix and Scalar contracts\n- Evaluation produces Scalar artifacts through deterministic row-times-column multiplication\n- All validators emit ValidationWitnesses for audit trail\n- ComputationWitnesses track all operations (evaluate, compose)\n- Full replay determinism enforced through content-addressed validators and fixed\n  canonical basis hash\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:covector:v0.1.0\",\n  \"title\": \"Covector Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"linear_functional\",\n    \"symbol\": \"ω : V → K, represented as 1 × n row vector\",\n    \"ascii_symbol\": \"covector\",\n    \"notation\": \"ω : V → K, represented as 1 × n row vector\",\n    \"domain\": [\n      \"matrix: 1 × n Matrix artifact\",\n      \"domain_space: VectorSpace artifact V\",\n      \"codomain: Field K (one-dimensional vector space)\"\n    ],\n    \"codomain\": {\n      \"description\": \"1 × n matrix representation of a linear map V → K\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Domain space and matrix artifacts must exist and be resolvable\",\n      \"Matrix must have exactly 1 row\",\n      \"Matrix column count must equal domain dimension n\",\n      \"Matrix domain_basis_hash must equal V.basis_hash\",\n      \"Matrix codomain_basis_hash must equal canonical field basis hash\",\n      \"Matrix field_id must equal V.field_id\",\n      \"Artifact hash computed as SHA-256 over (contract_id, version, domain_space_id, matrix_id)\"\n    ]\n  },\n  \"laws\": [\n    \"Matrix must have exactly 1 row and n columns where n = dim(V)\",\n    \"Matrix domain basis hash must equal V.basis_hash\",\n    \"Matrix codomain basis hash must equal canonical field basis hash of K\",\n    \"Matrix field_id must equal V.field_id\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Canonical basis hash for K is fixed well-known constant\",\n      \"Matrix assumed already validated under Matrix contract\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"domain_space_id does not resolve to artifact\",\n    \"matrix_id does not resolve to artifact\",\n    \"Matrix has 2 rows, 3 columns while V is 3-dim\",\n    \"V is 4-dim but matrix has 3 columns\",\n    \"matrix.domain_basis_hash != V.basis_hash\",\n    \"matrix.codomain_basis_hash is not canonical field basis hash\",\n    \"matrix.field_id = GF(5), V.field_id = GF(7)\",\n    \"Vector basis hash does not equal V.basis_hash\",\n    \"Same matrix artifact with same V must produce identical hash\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A Covector is a representation of a linear functional on a finite- dimensional vector space V over a field K, i.e. an element of the dual space V* = Hom_K(V, K).  It is encoded as a 1 × n Matrix (a row vector) where the domain is V (with its chosen ordered basis) and the codomain is the one-dimensional vector space K with its canonical basis {1K}.  The contract guarantees that the matrix is a valid representation of such a map, that the bases match, and that evaluation produces a Scalar.  No properties (continuity, boundedness) are asserted.\",\n    \"non_role\": [\n      \"No infinite-dimensional spaces are supported\",\n      \"No continuity or boundedness properties are asserted\",\n      \"No topological or analytic properties\"\n    ]\n  },\n  \"wip\": [\n    \"The canonical basis hash for K (the string '1_K') must be a well-known constant across all contracts using K. The Field contract should eventually export this constant.\",\n    \"The Covector contract could be generalised to allow a dual space representation (a Vector in V*). The current row-matrix representation is concrete and compatible with the Matrix and Scalar contracts.\",\n    \"Composition of a covector with a LinearMap yields another covector; that can be a ComputationWitness using matrix multiplication.\",\n    \"The relationship to the DualBasis contract: a basis of V* can be constructed from the dual basis, and each dual basis vector is a Covector artifact. This integration will be specified later.\",\n    \"Contract is in active development (mathematical_wip status)\",\n    \"Row-matrix representation chosen for compatibility with Matrix and Scalar contracts\",\n    \"Evaluation produces Scalar artifacts through deterministic row-times-column multiplication\",\n    \"All validators emit ValidationWitnesses for audit trail\",\n    \"ComputationWitnesses track all operations (evaluate, compose)\",\n    \"Full replay determinism enforced through content-addressed validators and fixed canonical basis hash\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/math_covector_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "896fa13ee8974b132173e016e0832a19bf514cce26fecd50ef3ad7545dec6b23",
+      "bytes": 2213,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/math_covector_v0_1_0_contract.py",
+          "sha256": "615b21a6235ee51c69546ec8ba8728d1faa3d0418139328ec511f0a2e6de6407"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:math-covector-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_covector_v0_1_0_contract.py\",\n    \"sha256\": \"615b21a6235ee51c69546ec8ba8728d1faa3d0418139328ec511f0a2e6de6407\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-covector-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_covector_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/math_covector_v0_1_0.contract.yaml": "f1ff26e67cd382759655a9e860aa059ab2f96b94f3400c79c59ed375caebfee6"
   },

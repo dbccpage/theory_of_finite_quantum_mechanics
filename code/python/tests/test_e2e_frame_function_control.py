@@ -118,7 +118,7 @@ def test_ledger_has_three_layers(control: dict) -> None:
     assert "Positivity" in ledger[2]["statement"]
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'frame_function.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'frame_function.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

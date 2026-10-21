@@ -3,79 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py",
   "contract": {
-    "schema_version": "omega.contract.v2",
-    "contract_id": "urn:omega:os:rest_verb_post:v2.0.0",
-    "title": "REST HTTP POST Command Protocol",
-    "kind": "os_contract",
-    "layer": "20_os_kernel",
-    "role": "OperatingSystemKernel",
-    "status": "active",
-    "council_owner": "L3_logos_techne",
-    "descriptor": {
-      "authority_effect": "None",
-      "evidence_ceiling": "ShapeOnly",
-      "runtime_enforcement": false,
-      "clean_architecture_layer": "domain",
-      "dependencies": {
-        "contracts": [],
-        "lean4_theorems": []
-      },
-      "terminals": {
-        "may_emit": [],
-        "may_support": []
-      },
-      "refusals": {
-        "may_emit": [
-          "REFUSAL_INVALID_ARGUMENTS",
-          "REFUSAL_GATE_FAILED",
-          "REFUSAL_INVARIANT_BREACH"
-        ]
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py",
+      "sha256": "96835a1258c6f8cfdb5203c824d43c69d887623f1097959c8c740dc46187a0f2"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:50_os:os-rest-verb-post-v2-0-0-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for urn:omega:os:rest_verb_post:v2.0.0 Schema Version: omega.contract.v2",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    },
-    "doctrine": {
-      "summary": "HTTP POST protocol specification for state-mutating commands returning Result receipts.",
-      "invariants": [
-        "POST requests execute mutating commands.",
-        "Successful execution returns 201 Created or 200 OK with receipt."
-      ],
-      "non_roles": [
-        "authority_source",
-        "promotion_granter",
-        "implicit_coercion"
-      ],
-      "required_negative_capabilities": [
-        "no_self_certification",
-        "no_implicit_authority_upgrade",
-        "no_undeclared_state_transition"
-      ]
-    },
-    "specification": {
-      "algebraic_structure": {
-        "carrier_type": "RestVerbPostCarrier",
-        "operations": []
-      },
-      "ports": {
-        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
-        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
-        "error_type": "Refusal"
-      },
-      "verification": {
-        "fitness_test": null,
-        "lean4_file": null
-      }
-    },
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0"
-      ]
-    }
+    ]
   },
-  "current_contract": "408763d98fc96f4d23739b4d1e23fdc704eddfe61ee67f5be08101f01f3cd798",
-  "current_scoring": null,
+  "current_contract": "4c8c2baf6b9a0c0f455dcd95ff98fd02b51ecdce406bceebac7915f6310cac47",
+  "current_scoring": "17e84f26785e486c8c2c842bc86686a069de568053c952c89bffb06629c348fe",
   "contract_history": [
     {
-      "sha256": "408763d98fc96f4d23739b4d1e23fdc704eddfe61ee67f5be08101f01f3cd798",
-      "bytes": 1409,
+      "sha256": "3067add548bc16b23b638c230774991dd34d24d96bc42d4b8f343f7d660d01df",
+      "bytes": 1794,
       "record": {
         "schema_version": "omega.contract.v2",
         "contract_id": "urn:omega:os:rest_verb_post:v2.0.0",
@@ -144,13 +103,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:os:rest_verb_post:v2.0.0\ntitle: REST HTTP POST Command Protocol\nkind: os_contract\nlayer: 20_os_kernel\nrole: OperatingSystemKernel\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\ndoctrine:\n  summary: HTTP POST protocol specification for state-mutating commands returning\n    Result receipts.\n  invariants:\n  - POST requests execute mutating commands.\n  - Successful execution returns 201 Created or 200 OK with receipt.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\nspecification:\n  algebraic_structure:\n    carrier_type: RestVerbPostCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v2\",\n  \"contract_id\": \"urn:omega:os:rest_verb_post:v2.0.0\",\n  \"title\": \"REST HTTP POST Command Protocol\",\n  \"kind\": \"os_contract\",\n  \"layer\": \"20_os_kernel\",\n  \"role\": \"OperatingSystemKernel\",\n  \"status\": \"active\",\n  \"council_owner\": \"L3_logos_techne\",\n  \"descriptor\": {\n    \"authority_effect\": \"None\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"clean_architecture_layer\": \"domain\",\n    \"dependencies\": {\n      \"contracts\": [],\n      \"lean4_theorems\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"REFUSAL_INVALID_ARGUMENTS\",\n        \"REFUSAL_GATE_FAILED\",\n        \"REFUSAL_INVARIANT_BREACH\"\n      ]\n    }\n  },\n  \"doctrine\": {\n    \"summary\": \"HTTP POST protocol specification for state-mutating commands returning Result receipts.\",\n    \"invariants\": [\n      \"POST requests execute mutating commands.\",\n      \"Successful execution returns 201 Created or 200 OK with receipt.\"\n    ],\n    \"non_roles\": [\n      \"authority_source\",\n      \"promotion_granter\",\n      \"implicit_coercion\"\n    ],\n    \"required_negative_capabilities\": [\n      \"no_self_certification\",\n      \"no_implicit_authority_upgrade\",\n      \"no_undeclared_state_transition\"\n    ]\n  },\n  \"specification\": {\n    \"algebraic_structure\": {\n      \"carrier_type\": \"RestVerbPostCarrier\",\n      \"operations\": []\n    },\n    \"ports\": {\n      \"input_packet\": \"urn:omega:packet:work_packet:v1.0.0\",\n      \"output_packet\": \"urn:omega:packet:swarm_run_receipt:v1.0.0\",\n      \"error_type\": \"Refusal\"\n    },\n    \"verification\": {\n      \"fitness_test\": null,\n      \"lean4_file\": null\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/os_rest_verb_post_v2_0_0.contract.yaml"
       ]
+    },
+    {
+      "sha256": "4c8c2baf6b9a0c0f455dcd95ff98fd02b51ecdce406bceebac7915f6310cac47",
+      "bytes": 1806,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py",
+          "sha256": "96835a1258c6f8cfdb5203c824d43c69d887623f1097959c8c740dc46187a0f2"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:50_os:os-rest-verb-post-v2-0-0-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for urn:omega:os:rest_verb_post:v2.0.0 Schema Version: omega.contract.v2",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py\",\n    \"sha256\": \"96835a1258c6f8cfdb5203c824d43c69d887623f1097959c8c740dc46187a0f2\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-rest-verb-post-v2-0-0-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for urn:omega:os:rest_verb_post:v2.0.0 Schema Version: omega.contract.v2\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "17e84f26785e486c8c2c842bc86686a069de568053c952c89bffb06629c348fe",
+      "bytes": 2209,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py",
+          "sha256": "96835a1258c6f8cfdb5203c824d43c69d887623f1097959c8c740dc46187a0f2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:os-rest-verb-post-v2-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.py\",\n    \"sha256\": \"96835a1258c6f8cfdb5203c824d43c69d887623f1097959c8c740dc46187a0f2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-rest-verb-post-v2-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_rest_verb_post_v2_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/os_rest_verb_post_v2_0_0.contract.yaml": "408763d98fc96f4d23739b4d1e23fdc704eddfe61ee67f5be08101f01f3cd798"
   },

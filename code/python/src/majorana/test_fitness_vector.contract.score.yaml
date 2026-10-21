@@ -1,0 +1,200 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/majorana/test_fitness_vector.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/majorana/test_fitness_vector.py",
+      "sha256": "4b0a90d22394e74aee3d62b202c5c83d12c26248b40aaeb742043e067ef9db62"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:majorana:test-fitness-vector:v1",
+    "role": "test checker",
+    "purpose": "Fitness as an observation with separate dimensions, not a score. `EPIC-OE-PROMPT-CIV-001` section 6 lists what a `FitnessVectorV1` must not do.",
+    "operations": {
+      "digest": "Function digest operation.",
+      "dimension": "Function dimension operation.",
+      "make_preregistration": "Function make_preregistration operation.",
+      "make_vector": "Function make_vector operation.",
+      "test_the_outcome_vocabulary_is_four_valued": "Function test_the_outcome_vocabulary_is_four_valued operation.",
+      "test_there_is_no_pass_rate_method": "The strongest assertion in this suite, and it asserts an absence.",
+      "test_every_outcome_is_tallied_separately": "Function test_every_outcome_is_tallied_separately operation.",
+      "test_an_inconclusive_dimension_is_not_counted_as_a_failure": "Function test_an_inconclusive_dimension_is_not_counted_as_a_failure operation.",
+      "test_a_missing_dimension_is_not_counted_as_a_failure": "Function test_a_missing_dimension_is_not_counted_as_a_failure operation.",
+      "test_conclusiveness_is_reported_not_assumed": "Function test_conclusiveness_is_reported_not_assumed operation.",
+      "test_undecided_dimensions_are_named_not_counted": "Function test_undecided_dimensions_are_named_not_counted operation.",
+      "test_a_missing_dimension_may_not_carry_counts": "Counts on a MISSING dimension describe an evaluation that did not happen.",
+      "test_an_evaluated_dimension_must_carry_counts": "Function test_an_evaluated_dimension_must_carry_counts operation.",
+      "test_every_dimension_states_uncertainty_including_undecided_ones": "\"We could not evaluate this\" is itself a stated uncertainty.",
+      "test_an_outcome_outside_the_vocabulary_is_refused": "Function test_an_outcome_outside_the_vocabulary_is_refused operation.",
+      "test_observed_may_not_exceed_total": "Function test_observed_may_not_exceed_total operation.",
+      "test_a_scalar_without_a_preregistration_is_refused": "The epic's second prohibition, directly.",
+      "test_a_scalar_with_a_preregistration_is_admitted": "The permitted case. Without it the refusal above proves nothing.",
+      "test_a_vector_without_a_scalar_needs_no_preregistration": "The common case must stay cheap; most vectors carry no scalar at all.",
+      "test_a_preregistration_missing_any_part_is_refused": "Function test_a_preregistration_missing_any_part_is_refused operation.",
+      "test_a_preregistration_needs_weights": "Function test_a_preregistration_needs_weights operation.",
+      "test_a_dimension_weighted_twice_is_refused": "Function test_a_dimension_weighted_twice_is_refused operation.",
+      "test_the_preregistration_parts_are_the_five_the_epic_names": "Function test_the_preregistration_parts_are_the_five_the_epic_names operation.",
+      "test_a_preregistration_is_content_addressed": "Function test_a_preregistration_is_content_addressed operation.",
+      "test_a_tampered_preregistration_digest_is_refused": "Function test_a_tampered_preregistration_digest_is_refused operation.",
+      "test_two_vectors_measured_the_same_way_are_comparable": "Function test_two_vectors_measured_the_same_way_are_comparable operation.",
+      "test_changing_a_comparison_binding_makes_vectors_incomparable": "\"Changing a fitness formula, weight, seed, checker, holdout ...\".",
+      "test_changing_the_preregistration_makes_vectors_incomparable": "Function test_changing_the_preregistration_makes_vectors_incomparable operation.",
+      "test_the_comparison_bindings_are_declared": "Function test_the_comparison_bindings_are_declared operation.",
+      "test_comparing_with_a_non_vector_is_refused": "Function test_comparing_with_a_non_vector_is_refused operation.",
+      "test_a_fitness_vector_has_no_status_field": "\"Fitness changes review ordering only and cannot change lifecycle status.\"",
+      "test_authority_effect_is_none_and_anything_else_is_refused": "Function test_authority_effect_is_none_and_anything_else_is_refused operation.",
+      "test_a_vector_with_no_dimensions_is_refused": "Function test_a_vector_with_no_dimensions_is_refused operation.",
+      "test_a_duplicate_dimension_name_is_refused": "Function test_a_duplicate_dimension_name_is_refused operation.",
+      "test_vectors_are_content_addressed": "Function test_vectors_are_content_addressed operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "56bafc98bbfed4172ce2ad8a500e975a66a37f103abb002c7ed72ffe8f514c8c",
+  "current_scoring": "2c292cbb64d5e3e52067fca810acf0f4d79f101328827e615aed9495a86816cc",
+  "contract_history": [
+    {
+      "sha256": "56bafc98bbfed4172ce2ad8a500e975a66a37f103abb002c7ed72ffe8f514c8c",
+      "bytes": 5768,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_fitness_vector.py",
+          "sha256": "4b0a90d22394e74aee3d62b202c5c83d12c26248b40aaeb742043e067ef9db62"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:majorana:test-fitness-vector:v1",
+        "role": "test checker",
+        "purpose": "Fitness as an observation with separate dimensions, not a score. `EPIC-OE-PROMPT-CIV-001` section 6 lists what a `FitnessVectorV1` must not do.",
+        "operations": {
+          "digest": "Function digest operation.",
+          "dimension": "Function dimension operation.",
+          "make_preregistration": "Function make_preregistration operation.",
+          "make_vector": "Function make_vector operation.",
+          "test_the_outcome_vocabulary_is_four_valued": "Function test_the_outcome_vocabulary_is_four_valued operation.",
+          "test_there_is_no_pass_rate_method": "The strongest assertion in this suite, and it asserts an absence.",
+          "test_every_outcome_is_tallied_separately": "Function test_every_outcome_is_tallied_separately operation.",
+          "test_an_inconclusive_dimension_is_not_counted_as_a_failure": "Function test_an_inconclusive_dimension_is_not_counted_as_a_failure operation.",
+          "test_a_missing_dimension_is_not_counted_as_a_failure": "Function test_a_missing_dimension_is_not_counted_as_a_failure operation.",
+          "test_conclusiveness_is_reported_not_assumed": "Function test_conclusiveness_is_reported_not_assumed operation.",
+          "test_undecided_dimensions_are_named_not_counted": "Function test_undecided_dimensions_are_named_not_counted operation.",
+          "test_a_missing_dimension_may_not_carry_counts": "Counts on a MISSING dimension describe an evaluation that did not happen.",
+          "test_an_evaluated_dimension_must_carry_counts": "Function test_an_evaluated_dimension_must_carry_counts operation.",
+          "test_every_dimension_states_uncertainty_including_undecided_ones": "\"We could not evaluate this\" is itself a stated uncertainty.",
+          "test_an_outcome_outside_the_vocabulary_is_refused": "Function test_an_outcome_outside_the_vocabulary_is_refused operation.",
+          "test_observed_may_not_exceed_total": "Function test_observed_may_not_exceed_total operation.",
+          "test_a_scalar_without_a_preregistration_is_refused": "The epic's second prohibition, directly.",
+          "test_a_scalar_with_a_preregistration_is_admitted": "The permitted case. Without it the refusal above proves nothing.",
+          "test_a_vector_without_a_scalar_needs_no_preregistration": "The common case must stay cheap; most vectors carry no scalar at all.",
+          "test_a_preregistration_missing_any_part_is_refused": "Function test_a_preregistration_missing_any_part_is_refused operation.",
+          "test_a_preregistration_needs_weights": "Function test_a_preregistration_needs_weights operation.",
+          "test_a_dimension_weighted_twice_is_refused": "Function test_a_dimension_weighted_twice_is_refused operation.",
+          "test_the_preregistration_parts_are_the_five_the_epic_names": "Function test_the_preregistration_parts_are_the_five_the_epic_names operation.",
+          "test_a_preregistration_is_content_addressed": "Function test_a_preregistration_is_content_addressed operation.",
+          "test_a_tampered_preregistration_digest_is_refused": "Function test_a_tampered_preregistration_digest_is_refused operation.",
+          "test_two_vectors_measured_the_same_way_are_comparable": "Function test_two_vectors_measured_the_same_way_are_comparable operation.",
+          "test_changing_a_comparison_binding_makes_vectors_incomparable": "\"Changing a fitness formula, weight, seed, checker, holdout ...\".",
+          "test_changing_the_preregistration_makes_vectors_incomparable": "Function test_changing_the_preregistration_makes_vectors_incomparable operation.",
+          "test_the_comparison_bindings_are_declared": "Function test_the_comparison_bindings_are_declared operation.",
+          "test_comparing_with_a_non_vector_is_refused": "Function test_comparing_with_a_non_vector_is_refused operation.",
+          "test_a_fitness_vector_has_no_status_field": "\"Fitness changes review ordering only and cannot change lifecycle status.\"",
+          "test_authority_effect_is_none_and_anything_else_is_refused": "Function test_authority_effect_is_none_and_anything_else_is_refused operation.",
+          "test_a_vector_with_no_dimensions_is_refused": "Function test_a_vector_with_no_dimensions_is_refused operation.",
+          "test_a_duplicate_dimension_name_is_refused": "Function test_a_duplicate_dimension_name_is_refused operation.",
+          "test_vectors_are_content_addressed": "Function test_vectors_are_content_addressed operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_fitness_vector.py\",\n    \"sha256\": \"4b0a90d22394e74aee3d62b202c5c83d12c26248b40aaeb742043e067ef9db62\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:majorana:test-fitness-vector:v1\",\n  \"role\": \"test checker\",\n  \"purpose\": \"Fitness as an observation with separate dimensions, not a score. `EPIC-OE-PROMPT-CIV-001` section 6 lists what a `FitnessVectorV1` must not do.\",\n  \"operations\": {\n    \"digest\": \"Function digest operation.\",\n    \"dimension\": \"Function dimension operation.\",\n    \"make_preregistration\": \"Function make_preregistration operation.\",\n    \"make_vector\": \"Function make_vector operation.\",\n    \"test_the_outcome_vocabulary_is_four_valued\": \"Function test_the_outcome_vocabulary_is_four_valued operation.\",\n    \"test_there_is_no_pass_rate_method\": \"The strongest assertion in this suite, and it asserts an absence.\",\n    \"test_every_outcome_is_tallied_separately\": \"Function test_every_outcome_is_tallied_separately operation.\",\n    \"test_an_inconclusive_dimension_is_not_counted_as_a_failure\": \"Function test_an_inconclusive_dimension_is_not_counted_as_a_failure operation.\",\n    \"test_a_missing_dimension_is_not_counted_as_a_failure\": \"Function test_a_missing_dimension_is_not_counted_as_a_failure operation.\",\n    \"test_conclusiveness_is_reported_not_assumed\": \"Function test_conclusiveness_is_reported_not_assumed operation.\",\n    \"test_undecided_dimensions_are_named_not_counted\": \"Function test_undecided_dimensions_are_named_not_counted operation.\",\n    \"test_a_missing_dimension_may_not_carry_counts\": \"Counts on a MISSING dimension describe an evaluation that did not happen.\",\n    \"test_an_evaluated_dimension_must_carry_counts\": \"Function test_an_evaluated_dimension_must_carry_counts operation.\",\n    \"test_every_dimension_states_uncertainty_including_undecided_ones\": \"\\\"We could not evaluate this\\\" is itself a stated uncertainty.\",\n    \"test_an_outcome_outside_the_vocabulary_is_refused\": \"Function test_an_outcome_outside_the_vocabulary_is_refused operation.\",\n    \"test_observed_may_not_exceed_total\": \"Function test_observed_may_not_exceed_total operation.\",\n    \"test_a_scalar_without_a_preregistration_is_refused\": \"The epic's second prohibition, directly.\",\n    \"test_a_scalar_with_a_preregistration_is_admitted\": \"The permitted case. Without it the refusal above proves nothing.\",\n    \"test_a_vector_without_a_scalar_needs_no_preregistration\": \"The common case must stay cheap; most vectors carry no scalar at all.\",\n    \"test_a_preregistration_missing_any_part_is_refused\": \"Function test_a_preregistration_missing_any_part_is_refused operation.\",\n    \"test_a_preregistration_needs_weights\": \"Function test_a_preregistration_needs_weights operation.\",\n    \"test_a_dimension_weighted_twice_is_refused\": \"Function test_a_dimension_weighted_twice_is_refused operation.\",\n    \"test_the_preregistration_parts_are_the_five_the_epic_names\": \"Function test_the_preregistration_parts_are_the_five_the_epic_names operation.\",\n    \"test_a_preregistration_is_content_addressed\": \"Function test_a_preregistration_is_content_addressed operation.\",\n    \"test_a_tampered_preregistration_digest_is_refused\": \"Function test_a_tampered_preregistration_digest_is_refused operation.\",\n    \"test_two_vectors_measured_the_same_way_are_comparable\": \"Function test_two_vectors_measured_the_same_way_are_comparable operation.\",\n    \"test_changing_a_comparison_binding_makes_vectors_incomparable\": \"\\\"Changing a fitness formula, weight, seed, checker, holdout ...\\\".\",\n    \"test_changing_the_preregistration_makes_vectors_incomparable\": \"Function test_changing_the_preregistration_makes_vectors_incomparable operation.\",\n    \"test_the_comparison_bindings_are_declared\": \"Function test_the_comparison_bindings_are_declared operation.\",\n    \"test_comparing_with_a_non_vector_is_refused\": \"Function test_comparing_with_a_non_vector_is_refused operation.\",\n    \"test_a_fitness_vector_has_no_status_field\": \"\\\"Fitness changes review ordering only and cannot change lifecycle status.\\\"\",\n    \"test_authority_effect_is_none_and_anything_else_is_refused\": \"Function test_authority_effect_is_none_and_anything_else_is_refused operation.\",\n    \"test_a_vector_with_no_dimensions_is_refused\": \"Function test_a_vector_with_no_dimensions_is_refused operation.\",\n    \"test_a_duplicate_dimension_name_is_refused\": \"Function test_a_duplicate_dimension_name_is_refused operation.\",\n    \"test_vectors_are_content_addressed\": \"Function test_vectors_are_content_addressed operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_fitness_vector.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "2c292cbb64d5e3e52067fca810acf0f4d79f101328827e615aed9495a86816cc",
+      "bytes": 2166,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/majorana/test_fitness_vector.py",
+          "sha256": "4b0a90d22394e74aee3d62b202c5c83d12c26248b40aaeb742043e067ef9db62"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:majorana:test-fitness-vector:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 4 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 4,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/majorana/test_fitness_vector.py\",\n    \"sha256\": \"4b0a90d22394e74aee3d62b202c5c83d12c26248b40aaeb742043e067ef9db62\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:majorana:test-fitness-vector:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 4 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 4,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/majorana/test_fitness_vector.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

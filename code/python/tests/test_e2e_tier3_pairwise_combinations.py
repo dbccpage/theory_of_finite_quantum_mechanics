@@ -31,7 +31,7 @@ def test_tier3_ladder_cross_term_is_the_destructive_value():
     assert exact_ladder_cross_term() == Fraction(-2)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'quantum_correlation.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'quantum_correlation.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

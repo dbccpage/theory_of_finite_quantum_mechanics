@@ -40,12 +40,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "b8b8a2cff953f5b965a7dc0edc6a240f941d2ba8833b5d35eb12fc0898dd654f",
-  "current_scoring": null,
+  "current_contract": "19baed336ec126da26a7ce3d8de96b89fbf3f02d2fa8bef960d170bbd959f851",
+  "current_scoring": "f91252e37c0008a93b25888bb8ae32d067bba06486a403ca9dc4fb369f2d04d2",
   "contract_history": [
     {
-      "sha256": "b8b8a2cff953f5b965a7dc0edc6a240f941d2ba8833b5d35eb12fc0898dd654f",
-      "bytes": 866,
+      "sha256": "19baed336ec126da26a7ce3d8de96b89fbf3f02d2fa8bef960d170bbd959f851",
+      "bytes": 1073,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_category_theory:monoidal_braided_monoidal:v1.0.0",
@@ -84,13 +84,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_category_theory:monoidal_braided_monoidal:v1.0.0\ntitle: 'braided_monoidal shell for omega_category_theory. AuthorityEffect: None. Not\n  PROVED / GlobalGreen.'\nkind: rust_file_contract\nstatus: active\ncrate: omega_category_theory\nfile: crates_rs/omega_category_theory/src/monoidal/braided_monoidal.rs\nmodule: monoidal::braided_monoidal\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_category_theory\n  module: monoidal::braided_monoidal\n  file: crates_rs/omega_category_theory/src/monoidal/braided_monoidal.rs\nsymbols:\n- BraidedMonoidal\n- new\n- with_braiding\n- validate_shell\nowns:\n- braided_monoidal\n- new\n- with_braiding\n- validate_shell\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_category_theory:monoidal_braided_monoidal:v1.0.0\",\n  \"title\": \"braided_monoidal shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_category_theory\",\n  \"file\": \"crates_rs/omega_category_theory/src/monoidal/braided_monoidal.rs\",\n  \"module\": \"monoidal::braided_monoidal\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"monoidal::braided_monoidal\",\n    \"file\": \"crates_rs/omega_category_theory/src/monoidal/braided_monoidal.rs\"\n  },\n  \"symbols\": [\n    \"BraidedMonoidal\",\n    \"new\",\n    \"with_braiding\",\n    \"validate_shell\"\n  ],\n  \"owns\": [\n    \"braided_monoidal\",\n    \"new\",\n    \"with_braiding\",\n    \"validate_shell\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/omega_category_theory_monoidal_braided_monoidal.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f91252e37c0008a93b25888bb8ae32d067bba06486a403ca9dc4fb369f2d04d2",
+      "bytes": 2269,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/omega_category_theory_monoidal_braided_monoidal_contract.py",
+          "sha256": "82f98a4bdee92b57d4f129c8c5327463057babfe886c83bf2a621be56919e579"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:omega-category-theory-monoidal-braided-monoidal-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/omega_category_theory_monoidal_braided_monoidal_contract.py\",\n    \"sha256\": \"82f98a4bdee92b57d4f129c8c5327463057babfe886c83bf2a621be56919e579\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:omega-category-theory-monoidal-braided-monoidal-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/omega_category_theory_monoidal_braided_monoidal_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/omega_category_theory_monoidal_braided_monoidal.contract.yaml": "b8b8a2cff953f5b965a7dc0edc6a240f941d2ba8833b5d35eb12fc0898dd654f"
   },

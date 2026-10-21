@@ -230,7 +230,7 @@ class TestPfpFspBridge:
             lattice_dims=(2, 2, 2, 2),
             proposals=(proposal,),
             declared_initial_action=Fraction(0, 1),
-            declared_delta_action=Fraction(1, 3),
+            declared_delta_action=Fraction(4, 1),
         )
 
         receipt = referee.evaluate_proposal(packet, random_threshold=Fraction(0, 1))
@@ -253,7 +253,7 @@ class TestPfpFspBridge:
             lattice_dims=(2, 2, 2, 2),
             proposals=(proposal,),
             declared_initial_action=Fraction(0, 1),
-            declared_delta_action=Fraction(1, 3),
+            declared_delta_action=Fraction(4, 1),
         )
 
         receipt = referee.evaluate_proposal(packet, random_threshold=Fraction(1, 1))
@@ -275,7 +275,7 @@ class TestPfpFspBridge:
             lattice_dims=(2, 2, 2, 2),
             proposals=(proposal,),
             declared_initial_action=lattice.total_wilson_action(),
-            declared_delta_action=-Fraction(1, 3),
+            declared_delta_action=-Fraction(4, 1),
         )
 
         receipt = referee.evaluate_proposal(packet, random_threshold=Fraction(9, 10))
@@ -351,3 +351,93 @@ class TestPfpFspBridge:
         for mu in range(4):
             staple = lattice.local_staple_action(coord, mu)
             assert staple == Fraction(0, 1)
+
+    def test_involution_action_invariance_general_lattice(self):
+        """Verifies that reflection involution preserves Wilson gauge action on general non-trivial configurations."""
+        lat = Lattice4DSU2((3, 2, 2, 2))
+        c1 = ExactRationalSU2(Fraction(1, 3), Fraction(2, 3), Fraction(0, 1), Fraction(2, 3))
+        c2 = ExactRationalSU2(Fraction(2, 3), Fraction(1, 3), Fraction(2, 3), Fraction(0, 1))
+        c3 = ExactRationalSU2(Fraction(0, 1), Fraction(3, 5), Fraction(0, 1), Fraction(4, 5))
+
+        lat.set_link(Lattice4DCoord(0, 0, 0, 0, lat.dims), 0, c1)
+        lat.set_link(Lattice4DCoord(0, 1, 0, 0, lat.dims), 1, c2)
+        lat.set_link(Lattice4DCoord(1, 0, 1, 0, lat.dims), 2, c3)
+
+        res = lat.verify_involution_sign_balance()
+        assert res["is_action_invariant"] is True
+        assert res["original_action"] == res["tau_action"]
+        assert res["action_invariance_certified"] is True
+        assert lat.total_wilson_action() == lat.apply_involution().total_wilson_action()
+
+    def test_pfp_refusal_on_forged_packet(self):
+        """Verifies that the referee refuses forged packets declaring false dims, action, or delta."""
+        lattice = Lattice4DSU2((2, 2, 2, 2))
+        referee = FspPfpReferee(lattice)
+        u_cand = ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0)
+        prop = FspLinkProposal(0, 0, 0, 0, 0, u_cand)
+
+        # 1. False lattice dimensions
+        p_forged_dims = FspPfpProposalPacket(
+            round_id="rnd_forge_1",
+            proposer_id="agent_adversary",
+            lattice_dims=(7, 7, 7, 7),
+            proposals=(prop,),
+            declared_initial_action=Fraction(0, 1),
+            declared_delta_action=Fraction(4, 1),
+        )
+        rec1 = referee.evaluate_proposal(p_forged_dims)
+        assert rec1.is_accepted is False
+        assert "REFUSAL: Declared lattice dimensions" in rec1.status_reason
+
+        # 2. False initial action
+        p_forged_action = FspPfpProposalPacket(
+            round_id="rnd_forge_2",
+            proposer_id="agent_adversary",
+            lattice_dims=(2, 2, 2, 2),
+            proposals=(prop,),
+            declared_initial_action=Fraction(123, 1),
+            declared_delta_action=Fraction(4, 1),
+        )
+        rec2 = referee.evaluate_proposal(p_forged_action)
+        assert rec2.is_accepted is False
+        assert "REFUSAL: Declared initial action" in rec2.status_reason
+
+        # 3. False delta action (fraudulent descent claim)
+        p_forged_delta = FspPfpProposalPacket(
+            round_id="rnd_forge_3",
+            proposer_id="agent_adversary",
+            lattice_dims=(2, 2, 2, 2),
+            proposals=(prop,),
+            declared_initial_action=Fraction(0, 1),
+            declared_delta_action=Fraction(-999, 1),
+        )
+        rec3 = referee.evaluate_proposal(p_forged_delta)
+        assert rec3.is_accepted is False
+        assert "REFUSAL: Declared delta action" in rec3.status_reason
+
+    def test_pfp_transactional_rollback_on_error(self):
+        """Verifies transactional atomicity: failure midway restores the entire lattice state."""
+        lattice = Lattice4DSU2((2, 2, 2, 2))
+        referee = FspPfpReferee(lattice)
+        u_cand = ExactRationalSU2.from_pythagorean_quadruple(1, 2, 2, 0)
+
+        # First proposal valid, second proposal references out-of-range coordinate
+        prop_valid = FspLinkProposal(0, 0, 0, 0, 0, u_cand)
+        prop_invalid = FspLinkProposal(99, 0, 0, 0, 0, u_cand)
+
+        packet = FspPfpProposalPacket(
+            round_id="rnd_atomic_test",
+            proposer_id="agent_atomic_tester",
+            lattice_dims=(2, 2, 2, 2),
+            proposals=(prop_valid, prop_invalid),
+            declared_initial_action=Fraction(0, 1),
+        )
+
+        receipt = referee.evaluate_proposal(packet)
+        assert receipt.is_accepted is False
+        assert "REFUSAL: Transaction aborted and rolled back" in receipt.status_reason
+
+        # Verify that the first proposal link (0, 0, 0, 0, 0) was rolled back to identity!
+        c0 = Lattice4DCoord(0, 0, 0, 0, (2, 2, 2, 2))
+        assert lattice.get_link(c0, 0) == ExactRationalSU2.identity()
+        assert lattice.total_wilson_action() == Fraction(0, 1)

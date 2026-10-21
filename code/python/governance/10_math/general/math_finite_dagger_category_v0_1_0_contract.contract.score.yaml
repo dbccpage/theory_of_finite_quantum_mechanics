@@ -97,12 +97,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "3e66f18af6cc006449e1a266e7e5ad61c6851b28f29832377bad82f68feea1a6",
-  "current_scoring": null,
+  "current_contract": "20e7adc43f97f34210ec5c87e6f176ad8f6396a6de38c760fb43447360bf05d5",
+  "current_scoring": "b04a346c7bd70b98c38ba490218284b692cde5f4e3f478e6bbc1236932024347",
   "contract_history": [
     {
-      "sha256": "3e66f18af6cc006449e1a266e7e5ad61c6851b28f29832377bad82f68feea1a6",
-      "bytes": 3038,
+      "sha256": "20e7adc43f97f34210ec5c87e6f176ad8f6396a6de38c760fb43447360bf05d5",
+      "bytes": 3532,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:finite_dagger_category:v0.1.0",
@@ -198,13 +198,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_dagger_category:v0.1.0\ntitle: Checked Finite Dagger Categories\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_dagger_category\n  symbol: finite_dagger_category\n  ascii_symbol: finite_dagger_category\n  notation: Checked Finite Dagger Categories\n  domain:\n  - A sovereign validated finite category with at most sixty-four arrows and a total\n    declared dagger table.\n  codomain:\n    description: Declared finite results of omega_category_theory::dagger; exact and\n      diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Dagger reverses source and target, fixes identities and is involutive.\n- For every composite, dagger reverses its factors exactly.\n- An arrow is unitary exactly when its dagger is a two-sided inverse.\n- Groups, pair groupoids and finite binary relations supply actual admitted examples.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_category_theory\n  module: dagger\n  symbols:\n  - DaggerStructure\n  - DaggerValidationError\n  required_tests:\n  - group_groupoid_and_relations_are_dagger_categories\n  - the_walking_arrow_with_identity_dagger_is_refused\nnegative_tests:\n- The walking arrow with identity dagger is refused because sources and targets fail\n  reversal.\n- Incomplete tables, invalid arrows and carrier budget excess are refused.\ndoctrine:\n  summary: Dagger reverses source and target, fixes identities and is involutive.;\n    For every composite, dagger reverses its factors exactly.; An arrow is unitary\n    exactly when its dagger is a two-sided inverse.; Groups, pair groupoids and finite\n    binary relations supply actual admitted examples..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:finite_dagger_category:v0.1.0\",\n  \"title\": \"Checked Finite Dagger Categories\",\n  \"kind\": \"math_contract\",\n  \"status\": \"exact_rational_classifier_implemented\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"finite_dagger_category\",\n    \"symbol\": \"finite_dagger_category\",\n    \"ascii_symbol\": \"finite_dagger_category\",\n    \"notation\": \"Checked Finite Dagger Categories\",\n    \"domain\": [\n      \"A sovereign validated finite category with at most sixty-four arrows and a total declared dagger table.\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_category_theory::dagger; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Dagger reverses source and target, fixes identities and is involutive.\",\n    \"For every composite, dagger reverses its factors exactly.\",\n    \"An arrow is unitary exactly when its dagger is a two-sided inverse.\",\n    \"Groups, pair groupoids and finite binary relations supply actual admitted examples.\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_category_theory\",\n    \"module\": \"dagger\",\n    \"symbols\": [\n      \"DaggerStructure\",\n      \"DaggerValidationError\"\n    ],\n    \"required_tests\": [\n      \"group_groupoid_and_relations_are_dagger_categories\",\n      \"the_walking_arrow_with_identity_dagger_is_refused\"\n    ]\n  },\n  \"negative_tests\": [\n    \"The walking arrow with identity dagger is refused because sources and targets fail reversal.\",\n    \"Incomplete tables, invalid arrows and carrier budget excess are refused.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Dagger reverses source and target, fixes identities and is involutive.; For every composite, dagger reverses its factors exactly.; An arrow is unitary exactly when its dagger is a two-sided inverse.; Groups, pair groupoids and finite binary relations supply actual admitted examples..\",\n    \"non_role\": [\n      \"No PROVED, GlobalGreen, customer claim, or operational authority.\",\n      \"No extension beyond the declared finite carrier and exact computation budgets.\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_finite_dagger_category_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "b04a346c7bd70b98c38ba490218284b692cde5f4e3f478e6bbc1236932024347",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_finite_dagger_category_v0_1_0_contract.py",
+          "sha256": "f9449c66aa7c168c81eb3ff563c71d34583cdfc458812dd6ab92a98c556eaedc"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-finite-dagger-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_finite_dagger_category_v0_1_0_contract.py\",\n    \"sha256\": \"f9449c66aa7c168c81eb3ff563c71d34583cdfc458812dd6ab92a98c556eaedc\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-finite-dagger-category-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_finite_dagger_category_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_finite_dagger_category_v0_1_0.contract.yaml": "3e66f18af6cc006449e1a266e7e5ad61c6851b28f29832377bad82f68feea1a6"
   },

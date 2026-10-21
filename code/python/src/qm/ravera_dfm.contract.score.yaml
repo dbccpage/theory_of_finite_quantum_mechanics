@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/ravera_dfm.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/ravera_dfm.py",
+      "sha256": "42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:ravera-dfm:v1",
+    "role": "library",
+    "purpose": "Self-contained exact rational replay for the Ravera DFM Finite-to-Continuum Dossier. This standalone module implements and checks all nine finite-to-continuum",
+    "operations": {
+      "Qi": "Exact Gaussian rational re + i * im in Q(i).",
+      "enumerate_diamond_spanning_trees": "Enumerate all 8 spanning trees (tree_edges, cotree_edges) of G_diam.",
+      "enumerate_diamond_two_forests": "Enumerate all 10 spanning 2-forests (forest_edges, cut_edges, v1_comp) of G_diam.",
+      "tree_path": "Find the unique vertex path from start to target along tree_edges.",
+      "fundamental_cycle_vector": "Compute the fundamental cycle vector C_T(c) in C_1(G_diam; Q) for chord_idx.",
+      "verify_pillar1_abelian_tree_dfm_and_symanzik_u": "Function verify_pillar1_abelian_tree_dfm_and_symanzik_u operation.",
+      "verify_pillar2_nonabelian_borel_two_stage_dfm": "Function verify_pillar2_nonabelian_borel_two_stage_dfm operation.",
+      "verify_pillar3_symanzik_two_forest_and_bphz": "Function verify_pillar3_symanzik_two_forest_and_bphz operation.",
+      "verify_pillar4_dressed_dirac_and_ward_takahashi": "Function verify_pillar4_dressed_dirac_and_ward_takahashi operation.",
+      "verify_pillar5_page_wootters_clock_dressing": "Function verify_pillar5_page_wootters_clock_dressing operation.",
+      "verify_pillar6_electroweak_doublet_dfm": "Function verify_pillar6_electroweak_doublet_dfm operation.",
+      "verify_pillar7_ckm_jarlskog_bipartite_dfm": "Function verify_pillar7_ckm_jarlskog_bipartite_dfm operation.",
+      "verify_pillar8_su3_spanning_tree_vs_landau_gribov": "Function verify_pillar8_su3_spanning_tree_vs_landau_gribov operation.",
+      "verify_pillar9_cartan_regge_lorentz_tetrad_dfm": "Function verify_pillar9_cartan_regge_lorentz_tetrad_dfm operation.",
+      "evaluate_ravera_dfm_dossier": "Run all nine finite-to-continuum DFM pillars and return the composite report."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "bd93996beecc71e86dab0898ffcaf54b1b9d19e37c22b1b61212d94a8c196c7c",
+  "current_scoring": "6bfa85d9803bd9b70129b3c814159402a65170bb0b7686ba7f323be2a55a2032",
+  "contract_history": [
+    {
+      "sha256": "bd93996beecc71e86dab0898ffcaf54b1b9d19e37c22b1b61212d94a8c196c7c",
+      "bytes": 3371,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/ravera_dfm.py",
+          "sha256": "42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:ravera-dfm:v1",
+        "role": "library",
+        "purpose": "Self-contained exact rational replay for the Ravera DFM Finite-to-Continuum Dossier. This standalone module implements and checks all nine finite-to-continuum",
+        "operations": {
+          "Qi": "Exact Gaussian rational re + i * im in Q(i).",
+          "enumerate_diamond_spanning_trees": "Enumerate all 8 spanning trees (tree_edges, cotree_edges) of G_diam.",
+          "enumerate_diamond_two_forests": "Enumerate all 10 spanning 2-forests (forest_edges, cut_edges, v1_comp) of G_diam.",
+          "tree_path": "Find the unique vertex path from start to target along tree_edges.",
+          "fundamental_cycle_vector": "Compute the fundamental cycle vector C_T(c) in C_1(G_diam; Q) for chord_idx.",
+          "verify_pillar1_abelian_tree_dfm_and_symanzik_u": "Function verify_pillar1_abelian_tree_dfm_and_symanzik_u operation.",
+          "verify_pillar2_nonabelian_borel_two_stage_dfm": "Function verify_pillar2_nonabelian_borel_two_stage_dfm operation.",
+          "verify_pillar3_symanzik_two_forest_and_bphz": "Function verify_pillar3_symanzik_two_forest_and_bphz operation.",
+          "verify_pillar4_dressed_dirac_and_ward_takahashi": "Function verify_pillar4_dressed_dirac_and_ward_takahashi operation.",
+          "verify_pillar5_page_wootters_clock_dressing": "Function verify_pillar5_page_wootters_clock_dressing operation.",
+          "verify_pillar6_electroweak_doublet_dfm": "Function verify_pillar6_electroweak_doublet_dfm operation.",
+          "verify_pillar7_ckm_jarlskog_bipartite_dfm": "Function verify_pillar7_ckm_jarlskog_bipartite_dfm operation.",
+          "verify_pillar8_su3_spanning_tree_vs_landau_gribov": "Function verify_pillar8_su3_spanning_tree_vs_landau_gribov operation.",
+          "verify_pillar9_cartan_regge_lorentz_tetrad_dfm": "Function verify_pillar9_cartan_regge_lorentz_tetrad_dfm operation.",
+          "evaluate_ravera_dfm_dossier": "Run all nine finite-to-continuum DFM pillars and return the composite report."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ravera_dfm.py\",\n    \"sha256\": \"42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:ravera-dfm:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Self-contained exact rational replay for the Ravera DFM Finite-to-Continuum Dossier. This standalone module implements and checks all nine finite-to-continuum\",\n  \"operations\": {\n    \"Qi\": \"Exact Gaussian rational re + i * im in Q(i).\",\n    \"enumerate_diamond_spanning_trees\": \"Enumerate all 8 spanning trees (tree_edges, cotree_edges) of G_diam.\",\n    \"enumerate_diamond_two_forests\": \"Enumerate all 10 spanning 2-forests (forest_edges, cut_edges, v1_comp) of G_diam.\",\n    \"tree_path\": \"Find the unique vertex path from start to target along tree_edges.\",\n    \"fundamental_cycle_vector\": \"Compute the fundamental cycle vector C_T(c) in C_1(G_diam; Q) for chord_idx.\",\n    \"verify_pillar1_abelian_tree_dfm_and_symanzik_u\": \"Function verify_pillar1_abelian_tree_dfm_and_symanzik_u operation.\",\n    \"verify_pillar2_nonabelian_borel_two_stage_dfm\": \"Function verify_pillar2_nonabelian_borel_two_stage_dfm operation.\",\n    \"verify_pillar3_symanzik_two_forest_and_bphz\": \"Function verify_pillar3_symanzik_two_forest_and_bphz operation.\",\n    \"verify_pillar4_dressed_dirac_and_ward_takahashi\": \"Function verify_pillar4_dressed_dirac_and_ward_takahashi operation.\",\n    \"verify_pillar5_page_wootters_clock_dressing\": \"Function verify_pillar5_page_wootters_clock_dressing operation.\",\n    \"verify_pillar6_electroweak_doublet_dfm\": \"Function verify_pillar6_electroweak_doublet_dfm operation.\",\n    \"verify_pillar7_ckm_jarlskog_bipartite_dfm\": \"Function verify_pillar7_ckm_jarlskog_bipartite_dfm operation.\",\n    \"verify_pillar8_su3_spanning_tree_vs_landau_gribov\": \"Function verify_pillar8_su3_spanning_tree_vs_landau_gribov operation.\",\n    \"verify_pillar9_cartan_regge_lorentz_tetrad_dfm\": \"Function verify_pillar9_cartan_regge_lorentz_tetrad_dfm operation.\",\n    \"evaluate_ravera_dfm_dossier\": \"Run all nine finite-to-continuum DFM pillars and return the composite report.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/ravera_dfm.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "b3ab20646d66c5c4004d8a78130d1f8b0915af11f2d9255da37c971f52754f11",
+      "bytes": 2188,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/ravera_dfm.py",
+          "sha256": "42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:ravera-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 25), Lizard CCN (max 25), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 25,
+          "lizard_ccn": 25,
+          "weighted_control_upper_bound": 51,
+          "control_nesting": 6
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ravera_dfm.py\",\n    \"sha256\": \"42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:ravera-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 25), Lizard CCN (max 25), and shallow nesting depth (max 6 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 25,\n    \"lizard_ccn\": 25,\n    \"weighted_control_upper_bound\": 51,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/ravera_dfm.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "6bfa85d9803bd9b70129b3c814159402a65170bb0b7686ba7f323be2a55a2032",
+      "bytes": 2154,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/ravera_dfm.py",
+          "sha256": "42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:ravera-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 25 <= 50 (D), nesting depth 6 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 25,
+          "lizard_ccn": 25,
+          "weighted_control_upper_bound": 51,
+          "control_nesting": 6
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/ravera_dfm.py\",\n    \"sha256\": \"42e89a39e29b524dbca2b39adff5c8fc4d12161266116f60314134dbf827f4aa\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:ravera-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 25 <= 50 (D), nesting depth 6 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 25,\n    \"lizard_ccn\": 25,\n    \"weighted_control_upper_bound\": 51,\n    \"control_nesting\": 6\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/ravera_dfm.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

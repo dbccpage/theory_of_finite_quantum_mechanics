@@ -231,7 +231,7 @@ def test_negative_full_qm213_receipt_invariants_and_refusals() -> None:
         mat2_inv(mat2(1, 2, 2, 4))
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'nonabelian_dfm.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'nonabelian_dfm.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

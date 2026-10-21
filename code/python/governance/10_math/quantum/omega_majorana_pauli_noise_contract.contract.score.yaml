@@ -65,12 +65,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "97d10b4cc64d638680c0c48f37fe52c12d8f0201014eb74107e12b4a116088d1",
-  "current_scoring": null,
+  "current_contract": "9efa7011dd8bb306a6f7e3f414c91de977baf2c0b76d9045bd28e6bf996401b9",
+  "current_scoring": "6ed39061520174d2457b00a1dc06d1cf4b15d21aa5782a4d18b96403b440547b",
   "contract_history": [
     {
-      "sha256": "97d10b4cc64d638680c0c48f37fe52c12d8f0201014eb74107e12b4a116088d1",
-      "bytes": 1202,
+      "sha256": "9efa7011dd8bb306a6f7e3f414c91de977baf2c0b76d9045bd28e6bf996401b9",
+      "bytes": 1536,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_majorana:pauli_noise:v1.0.0",
@@ -134,13 +134,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_majorana:pauli_noise:v1.0.0\ntitle: Exact local Majorana Hamiltonian noise and deterministic rational sampling.  A\n  skew matrix `K` represents the coeffic...\nkind: rust_file_contract\nstatus: active\ncrate: omega_majorana\nfile: crates_rs/omega_majorana/src/pauli_noise.rs\nmodule: pauli_noise\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_majorana\n  module: pauli_noise\n  file: crates_rs/omega_majorana/src/pauli_noise.rs\nsymbols:\n- NoiseError\n- LocalMajoranaNoise\n- from_rows\n- zero\n- single_pair\n- stray_couplings\n- dim\n- rows\n- leakage_on_mode\n- max_leakage\n- transform\n- commutation_defect\n- transform_matrix\n- commutation_defect_matrix\n- correlated_cluster_couplings\n- DeterministicRationalNoiseGenerator\n- new\n- state\n- next_int_in_range\n- next_fraction\n- generate_skew_symmetric_matrix\n- NoiseEvaluation\n- status_reason\n- evaluate_noise\n- evaluate_noise_matrix\nowns:\n- noise_error\n- local_majorana_noise\n- from_rows\n- zero\n- single_pair\n- stray_couplings\n- dim\n- rows\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_majorana:pauli_noise:v1.0.0\",\n  \"title\": \"Exact local Majorana Hamiltonian noise and deterministic rational sampling.  A skew matrix `K` represents the coeffic...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_majorana\",\n  \"file\": \"crates_rs/omega_majorana/src/pauli_noise.rs\",\n  \"module\": \"pauli_noise\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_majorana\",\n    \"module\": \"pauli_noise\",\n    \"file\": \"crates_rs/omega_majorana/src/pauli_noise.rs\"\n  },\n  \"symbols\": [\n    \"NoiseError\",\n    \"LocalMajoranaNoise\",\n    \"from_rows\",\n    \"zero\",\n    \"single_pair\",\n    \"stray_couplings\",\n    \"dim\",\n    \"rows\",\n    \"leakage_on_mode\",\n    \"max_leakage\",\n    \"transform\",\n    \"commutation_defect\",\n    \"transform_matrix\",\n    \"commutation_defect_matrix\",\n    \"correlated_cluster_couplings\",\n    \"DeterministicRationalNoiseGenerator\",\n    \"new\",\n    \"state\",\n    \"next_int_in_range\",\n    \"next_fraction\",\n    \"generate_skew_symmetric_matrix\",\n    \"NoiseEvaluation\",\n    \"status_reason\",\n    \"evaluate_noise\",\n    \"evaluate_noise_matrix\"\n  ],\n  \"owns\": [\n    \"noise_error\",\n    \"local_majorana_noise\",\n    \"from_rows\",\n    \"zero\",\n    \"single_pair\",\n    \"stray_couplings\",\n    \"dim\",\n    \"rows\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_majorana_pauli_noise.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6ed39061520174d2457b00a1dc06d1cf4b15d21aa5782a4d18b96403b440547b",
+      "bytes": 2225,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_majorana_pauli_noise_contract.py",
+          "sha256": "8005a913921a04d5930b3407a124d4e944fa308e57e1e0be483d273059c65385"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-majorana-pauli-noise-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_majorana_pauli_noise_contract.py\",\n    \"sha256\": \"8005a913921a04d5930b3407a124d4e944fa308e57e1e0be483d273059c65385\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-majorana-pauli-noise-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_majorana_pauli_noise_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_majorana_pauli_noise.contract.yaml": "97d10b4cc64d638680c0c48f37fe52c12d8f0201014eb74107e12b4a116088d1"
   },

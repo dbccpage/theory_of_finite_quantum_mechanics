@@ -119,7 +119,7 @@ def test_residual_import_ledger_names_three_layers(control: dict) -> None:
     assert ledger[2]["status"] == "IMPORTED"
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'dressed_qed.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'dressed_qed.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

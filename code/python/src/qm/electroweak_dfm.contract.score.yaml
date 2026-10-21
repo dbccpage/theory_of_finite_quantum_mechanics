@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/qm/electroweak_dfm.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/qm/electroweak_dfm.py",
+      "sha256": "3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:campaigns:electroweak-dfm:v1",
+    "role": "library",
+    "purpose": "QM-220: Finite Electroweak SU(2)_L x U(1)_Y -> U(1)_EM Dressing Field Method (DFM), Rational Weinberg Spectral Projectors, Custodial rho_EW = 1 Identity,",
+    "operations": {
+      "Qi": "Exact Gaussian rational re + im * i with re, im in Q and i^2 = -1.",
+      "Vec2Qi": "Two-component SU(2)_L doublet over Q[i].",
+      "Mat2Qi": "2x2 matrix over Q[i].",
+      "su2_doublet_dressing_matrix": "Construct u(Phi) = (1/r) * [[phi_0^*, phi_+], [-phi_+^*, phi_0]] in SU(2, Q[i]).",
+      "Su2DoubletDfmAudit": "Class Su2DoubletDfmAudit domain record and methods.",
+      "WeinbergCustodialAudit": "Class WeinbergCustodialAudit domain record and methods.",
+      "GellMannNishijimaAudit": "Class GellMannNishijimaAudit domain record and methods.",
+      "AnomalyCancellationAudit": "Class AnomalyCancellationAudit domain record and methods.",
+      "ElectroweakDfmWeinbergControlReport": "Class ElectroweakDfmWeinbergControlReport domain record and methods.",
+      "evaluate_electroweak_dfm_weinberg_control": "Function evaluate_electroweak_dfm_weinberg_control operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "58241f2f1fcbf029a9ac4a1a45368508936950be7bcccf0a76d11f33c7692d6b",
+  "current_scoring": "7c7a04c428b3bacdfbc65cffeaec16858fb88999f1c3895c84b7cfdeabdef5ed",
+  "contract_history": [
+    {
+      "sha256": "58241f2f1fcbf029a9ac4a1a45368508936950be7bcccf0a76d11f33c7692d6b",
+      "bytes": 2562,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/electroweak_dfm.py",
+          "sha256": "3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:campaigns:electroweak-dfm:v1",
+        "role": "library",
+        "purpose": "QM-220: Finite Electroweak SU(2)_L x U(1)_Y -> U(1)_EM Dressing Field Method (DFM), Rational Weinberg Spectral Projectors, Custodial rho_EW = 1 Identity,",
+        "operations": {
+          "Qi": "Exact Gaussian rational re + im * i with re, im in Q and i^2 = -1.",
+          "Vec2Qi": "Two-component SU(2)_L doublet over Q[i].",
+          "Mat2Qi": "2x2 matrix over Q[i].",
+          "su2_doublet_dressing_matrix": "Construct u(Phi) = (1/r) * [[phi_0^*, phi_+], [-phi_+^*, phi_0]] in SU(2, Q[i]).",
+          "Su2DoubletDfmAudit": "Class Su2DoubletDfmAudit domain record and methods.",
+          "WeinbergCustodialAudit": "Class WeinbergCustodialAudit domain record and methods.",
+          "GellMannNishijimaAudit": "Class GellMannNishijimaAudit domain record and methods.",
+          "AnomalyCancellationAudit": "Class AnomalyCancellationAudit domain record and methods.",
+          "ElectroweakDfmWeinbergControlReport": "Class ElectroweakDfmWeinbergControlReport domain record and methods.",
+          "evaluate_electroweak_dfm_weinberg_control": "Function evaluate_electroweak_dfm_weinberg_control operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/electroweak_dfm.py\",\n    \"sha256\": \"3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:campaigns:electroweak-dfm:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"QM-220: Finite Electroweak SU(2)_L x U(1)_Y -> U(1)_EM Dressing Field Method (DFM), Rational Weinberg Spectral Projectors, Custodial rho_EW = 1 Identity,\",\n  \"operations\": {\n    \"Qi\": \"Exact Gaussian rational re + im * i with re, im in Q and i^2 = -1.\",\n    \"Vec2Qi\": \"Two-component SU(2)_L doublet over Q[i].\",\n    \"Mat2Qi\": \"2x2 matrix over Q[i].\",\n    \"su2_doublet_dressing_matrix\": \"Construct u(Phi) = (1/r) * [[phi_0^*, phi_+], [-phi_+^*, phi_0]] in SU(2, Q[i]).\",\n    \"Su2DoubletDfmAudit\": \"Class Su2DoubletDfmAudit domain record and methods.\",\n    \"WeinbergCustodialAudit\": \"Class WeinbergCustodialAudit domain record and methods.\",\n    \"GellMannNishijimaAudit\": \"Class GellMannNishijimaAudit domain record and methods.\",\n    \"AnomalyCancellationAudit\": \"Class AnomalyCancellationAudit domain record and methods.\",\n    \"ElectroweakDfmWeinbergControlReport\": \"Class ElectroweakDfmWeinbergControlReport domain record and methods.\",\n    \"evaluate_electroweak_dfm_weinberg_control\": \"Function evaluate_electroweak_dfm_weinberg_control operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/electroweak_dfm.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a15020ffeda7ea3d317720e316a114ce8354a0e30a4164d224da7a83006a9aaf",
+      "bytes": 2198,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/electroweak_dfm.py",
+          "sha256": "3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:campaigns:electroweak-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models."
+        },
+        "metrics": {
+          "radon_ccn": 17,
+          "lizard_ccn": 17,
+          "weighted_control_upper_bound": 18,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/electroweak_dfm.py\",\n    \"sha256\": \"3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:campaigns:electroweak-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds, Radon CCN (max 17), Lizard CCN (max 17), and shallow nesting depth (max 3 <= 3) with declared asymptotic cost models.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 17,\n    \"lizard_ccn\": 17,\n    \"weighted_control_upper_bound\": 18,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/electroweak_dfm.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "7c7a04c428b3bacdfbc65cffeaec16858fb88999f1c3895c84b7cfdeabdef5ed",
+      "bytes": 2164,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/qm/electroweak_dfm.py",
+          "sha256": "3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:qm:electroweak-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 17 <= 20 (C), nesting depth 3 <= 3 (A); Gate 5 ceiling C under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 17,
+          "lizard_ccn": 17,
+          "weighted_control_upper_bound": 18,
+          "control_nesting": 3
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/qm/electroweak_dfm.py\",\n    \"sha256\": \"3852606ede5ab00003174d2817c5c4a99ac42929bdee62066c6d36a7b41b6505\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:qm:electroweak-dfm:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 17 <= 20 (C), nesting depth 3 <= 3 (A); Gate 5 ceiling C under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 17,\n    \"lizard_ccn\": 17,\n    \"weighted_control_upper_bound\": 18,\n    \"control_nesting\": 3\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/qm/electroweak_dfm.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

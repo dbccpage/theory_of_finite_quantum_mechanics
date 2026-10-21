@@ -60,12 +60,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "63dc32384b8d11973d390888eff980f44fda8c218ef834dd1b6132f33d34d293",
-  "current_scoring": null,
+  "current_contract": "96ff7a383175f417cc932abc0712be0660f2cf1ad60951e558bc66b38c815728",
+  "current_scoring": "73c092f4c919757047568bfd871935e7c90ecdfdb1f3b2d7ba996d08719215b5",
   "contract_history": [
     {
-      "sha256": "63dc32384b8d11973d390888eff980f44fda8c218ef834dd1b6132f33d34d293",
-      "bytes": 1240,
+      "sha256": "96ff7a383175f417cc932abc0712be0660f2cf1ad60951e558bc66b38c815728",
+      "bytes": 1547,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_prompt_civilization:lamarckian:v1.0.0",
@@ -124,13 +124,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_prompt_civilization:lamarckian:v1.0.0\ntitle: 'Lamarckian Mutation Receipt and Cochain Residual Value Objects (NF-02).  Conforms\n  to normative specification: `urn:om...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_prompt_civilization\nfile: crates_rs/omega_prompt_civilization/src/lamarckian.rs\nmodule: lamarckian\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_prompt_civilization\n  module: lamarckian\n  file: crates_rs/omega_prompt_civilization/src/lamarckian.rs\nsymbols:\n- CochainResidualV1\n- new\n- validate\n- parse_rational\n- phi1_rational\n- gamma2_rational\n- xi_rational\n- delta_phi1\n- is_monotonic_reduction\n- LamarckianMutationReceiptV1\n- calculate_attenuation_weight\n- canonical_bytes\n- canonical_digest\n- LamarckianTrackingError\n- LamarckianVerificationResult\n- LamarckianCochainTrackerV1\n- attenuation_weight\n- verify_mutation\n- CochainHistoryTracker\n- record_generation\nowns:\n- cochain_residual_v1\n- new\n- validate\n- parse_rational\n- phi1_rational\n- gamma2_rational\n- xi_rational\n- delta_phi1\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_prompt_civilization:lamarckian:v1.0.0\",\n  \"title\": \"Lamarckian Mutation Receipt and Cochain Residual Value Objects (NF-02).  Conforms to normative specification: `urn:om...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_prompt_civilization\",\n  \"file\": \"crates_rs/omega_prompt_civilization/src/lamarckian.rs\",\n  \"module\": \"lamarckian\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_prompt_civilization\",\n    \"module\": \"lamarckian\",\n    \"file\": \"crates_rs/omega_prompt_civilization/src/lamarckian.rs\"\n  },\n  \"symbols\": [\n    \"CochainResidualV1\",\n    \"new\",\n    \"validate\",\n    \"parse_rational\",\n    \"phi1_rational\",\n    \"gamma2_rational\",\n    \"xi_rational\",\n    \"delta_phi1\",\n    \"is_monotonic_reduction\",\n    \"LamarckianMutationReceiptV1\",\n    \"calculate_attenuation_weight\",\n    \"canonical_bytes\",\n    \"canonical_digest\",\n    \"LamarckianTrackingError\",\n    \"LamarckianVerificationResult\",\n    \"LamarckianCochainTrackerV1\",\n    \"attenuation_weight\",\n    \"verify_mutation\",\n    \"CochainHistoryTracker\",\n    \"record_generation\"\n  ],\n  \"owns\": [\n    \"cochain_residual_v1\",\n    \"new\",\n    \"validate\",\n    \"parse_rational\",\n    \"phi1_rational\",\n    \"gamma2_rational\",\n    \"xi_rational\",\n    \"delta_phi1\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/50_os/omega_prompt_civilization_lamarckian.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "73c092f4c919757047568bfd871935e7c90ecdfdb1f3b2d7ba996d08719215b5",
+      "bytes": 2233,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/omega_prompt_civilization_lamarckian_contract.py",
+          "sha256": "e6ccb9c92b284580ed6c4d3cb130a1ec7edf5708d8b202bfb63c6b3b2db03d0e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:omega-prompt-civilization-lamarckian-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/omega_prompt_civilization_lamarckian_contract.py\",\n    \"sha256\": \"e6ccb9c92b284580ed6c4d3cb130a1ec7edf5708d8b202bfb63c6b3b2db03d0e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:omega-prompt-civilization-lamarckian-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_prompt_civilization_lamarckian_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/omega_prompt_civilization_lamarckian.contract.yaml": "63dc32384b8d11973d390888eff980f44fda8c218ef834dd1b6132f33d34d293"
   },

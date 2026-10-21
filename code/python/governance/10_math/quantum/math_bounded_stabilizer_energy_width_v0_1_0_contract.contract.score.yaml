@@ -108,12 +108,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5",
-  "current_scoring": null,
+  "current_contract": "1e21fb44624b79b206ca6c86cd67588d3b6baaf7ec0cfc4f9df2315b5b760436",
+  "current_scoring": "96497884ba6bb94c8bb4d18d6cc58362fcedcc88046e7dc2681c1f37f93a48d5",
   "contract_history": [
     {
-      "sha256": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5",
-      "bytes": 3936,
+      "sha256": "1e21fb44624b79b206ca6c86cd67588d3b6baaf7ec0cfc4f9df2315b5b760436",
+      "bytes": 4471,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:bounded_stabilizer_energy_width:v0.1.0",
@@ -220,13 +220,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_stabilizer_energy_width:v0.1.0\ntitle: Exact Bounded Stabilizer Energy Representation\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: bounded_stabilizer_energy_width\n  symbol: bounded_stabilizer_energy_width\n  ascii_symbol: bounded_stabilizer_energy_width\n  notation: Exact Bounded Stabilizer Energy Representation\n  domain:\n  - Declared commuting Pauli Hamiltonians with 1..=8 qubits and at most 24 terms\n  - Nonnegative rational input weights have i64 wire limbs; exact energy sums use\n    arbitrary-precision rationals\n  - SOLVED energy retains the established reduced i64 numerator and positive i64 denominator\n    output carrier\n  codomain:\n    description: Declared finite results of omega_symbol_game_runtime::stabilizer;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The bounded exhaustive assignment search compares exact rational energies without\n  overflow\n- Only the final minimum is checked for output representability; large discarded assignments\n  do not refuse a representable minimum\n- A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED\n- The certificate checker compares signed i64 claims through exact arbitrary-precision\n  rationals\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_symbol_game_runtime\n  module: stabilizer\n  symbols:\n  - MAX_QUBITS\n  - MAX_TERMS\n  - StabilizerOutcome\n  - StabilizerCheckResult\n  - solve\n  - check\n  required_tests:\n  - maximum_i64_weights_accumulate_exactly_and_refuse_only_unrepresentable_minima\n  - test_single_qubit_trivial_solve\n  - test_bell_stabilizer_solve\n  - test_noncommuting_pair_out_of_scope\nnegative_tests:\n- Two forced i64::MAX penalties and coprime large-denominator sums return the width\n  refusal\n- A single forced i64::MAX penalty remains SOLVED with exact boundary value and degeneracy\n- A zero minimum remains SOLVED despite an alternative penalty of twice i64::MAX\n- A forged i64::MIN certificate yields an energy mismatch without arithmetic overflow\ndoctrine:\n  summary: The bounded exhaustive assignment search compares exact rational energies\n    without overflow; Only the final minimum is checked for output representability;\n    large discarded assignments do not refuse a representable minimum; A final minimum\n    outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED; The certificate\n    checker compares signed i64 claims through exact arbitrary-precision rationals.\n  non_role:\n  - No unbounded stabilizer search or extension to noncommuting Hamiltonians\n  - No promise that every exact minimum fits the existing output carrier\n  - No conversion to floating-point energy or widening of the external wire API\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:bounded_stabilizer_energy_width:v0.1.0\",\n  \"title\": \"Exact Bounded Stabilizer Energy Representation\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"bounded_stabilizer_energy_width\",\n    \"symbol\": \"bounded_stabilizer_energy_width\",\n    \"ascii_symbol\": \"bounded_stabilizer_energy_width\",\n    \"notation\": \"Exact Bounded Stabilizer Energy Representation\",\n    \"domain\": [\n      \"Declared commuting Pauli Hamiltonians with 1..=8 qubits and at most 24 terms\",\n      \"Nonnegative rational input weights have i64 wire limbs; exact energy sums use arbitrary-precision rationals\",\n      \"SOLVED energy retains the established reduced i64 numerator and positive i64 denominator output carrier\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_symbol_game_runtime::stabilizer; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"The bounded exhaustive assignment search compares exact rational energies without overflow\",\n    \"Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum\",\n    \"A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED\",\n    \"The certificate checker compares signed i64 claims through exact arbitrary-precision rationals\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_symbol_game_runtime\",\n    \"module\": \"stabilizer\",\n    \"symbols\": [\n      \"MAX_QUBITS\",\n      \"MAX_TERMS\",\n      \"StabilizerOutcome\",\n      \"StabilizerCheckResult\",\n      \"solve\",\n      \"check\"\n    ],\n    \"required_tests\": [\n      \"maximum_i64_weights_accumulate_exactly_and_refuse_only_unrepresentable_minima\",\n      \"test_single_qubit_trivial_solve\",\n      \"test_bell_stabilizer_solve\",\n      \"test_noncommuting_pair_out_of_scope\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Two forced i64::MAX penalties and coprime large-denominator sums return the width refusal\",\n    \"A single forced i64::MAX penalty remains SOLVED with exact boundary value and degeneracy\",\n    \"A zero minimum remains SOLVED despite an alternative penalty of twice i64::MAX\",\n    \"A forged i64::MIN certificate yields an energy mismatch without arithmetic overflow\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The bounded exhaustive assignment search compares exact rational energies without overflow; Only the final minimum is checked for output representability; large discarded assignments do not refuse a representable minimum; A final minimum outside either i64 wire limb returns UNKNOWN with ENERGY_WIDTH_EXCEEDED; The certificate checker compares signed i64 claims through exact arbitrary-precision rationals.\",\n    \"non_role\": [\n      \"No unbounded stabilizer search or extension to noncommuting Hamiltonians\",\n      \"No promise that every exact minimum fits the existing output carrier\",\n      \"No conversion to floating-point energy or widening of the external wire API\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "96497884ba6bb94c8bb4d18d6cc58362fcedcc88046e7dc2681c1f37f93a48d5",
+      "bytes": 2259,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0_contract.py",
+          "sha256": "5bafc7383ed8a5daab27abd0052c35ad68addcd42bf32b91a08376a5eabc0c3e"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-bounded-stabilizer-energy-width-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0_contract.py\",\n    \"sha256\": \"5bafc7383ed8a5daab27abd0052c35ad68addcd42bf32b91a08376a5eabc0c3e\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-bounded-stabilizer-energy-width-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_bounded_stabilizer_energy_width_v0_1_0.contract.yaml": "df09b2390186d21a1e0ba59081f81a6c8a4003df36a502d8efc1b6873f4164a5"
   },

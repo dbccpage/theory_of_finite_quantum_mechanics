@@ -94,12 +94,12 @@
       "No mechanized theorem discharge or lifecycle acceptance is asserted"
     ]
   },
-  "current_contract": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a",
-  "current_scoring": null,
+  "current_contract": "edfecc1e9eb80a4951b3fabbcf65985655841393453e1dac0eee739ead0b8c34",
+  "current_scoring": "e70edd6c847b99324acc2df9454c7ddabc33e4c288e88c5211f148adead3b461",
   "contract_history": [
     {
-      "sha256": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a",
-      "bytes": 2839,
+      "sha256": "edfecc1e9eb80a4951b3fabbcf65985655841393453e1dac0eee739ead0b8c34",
+      "bytes": 3324,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0",
@@ -192,13 +192,75 @@
           "No mechanized theorem discharge or lifecycle acceptance is asserted"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0\ntitle: Pauli sign tables and replayable parity cochain obstruction\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: parity_cochain_pauli_obstruction\n  symbol: parity_cochain_pauli_obstruction\n  ascii_symbol: parity_cochain_pauli_obstruction\n  notation: Pauli sign tables and replayable parity cochain obstruction\n  domain:\n  - Bounded declared finite sign contexts and bit carriers; canonical GF2 elimination\n  codomain:\n    description: Declared finite results of omega_quantum_physics::parity_context_packet;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Image preimages and left-nullspace separators replay against actual targets\n- Pauli context products produce the declared sign table independently\n- No assignment decision relies on cached source labels\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: parity_context_packet\n  symbols:\n  - ParityContextPacket\n  - ParityContextPacket::certificate\n  - ParityContextPacket::verify_certificate\n  required_tests:\n  - measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\nnegative_tests:\n- measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\ndoctrine:\n  summary: Image preimages and left-nullspace separators replay against actual targets;\n    Pauli context products produce the declared sign table independently; No assignment\n    decision relies on cached source labels.\n  non_role:\n  - A finite parity obstruction is not a Bell-locality or arbitrary empirical-model\n    theorem\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:parity_cochain_pauli_obstruction:v0.1.0\",\n  \"title\": \"Pauli sign tables and replayable parity cochain obstruction\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"math\": {\n    \"object_kind\": \"parity_cochain_pauli_obstruction\",\n    \"symbol\": \"parity_cochain_pauli_obstruction\",\n    \"ascii_symbol\": \"parity_cochain_pauli_obstruction\",\n    \"notation\": \"Pauli sign tables and replayable parity cochain obstruction\",\n    \"domain\": [\n      \"Bounded declared finite sign contexts and bit carriers; canonical GF2 elimination\"\n    ],\n    \"codomain\": {\n      \"description\": \"Declared finite results of omega_quantum_physics::parity_context_packet; exact and diagnostic routes retain their stated arithmetic, limits and refusals.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Declared finite carriers, basis order, dimensions and coefficient domain\",\n      \"Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared\",\n      \"Unsupported inputs and exhausted computations return their declared refusal\"\n    ]\n  },\n  \"laws\": [\n    \"Image preimages and left-nullspace separators replay against actual targets\",\n    \"Pauli context products produce the declared sign table independently\",\n    \"No assignment decision relies on cached source labels\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No time-dependent data\",\n      \"Deterministic mathematical replay on identical inputs\",\n      \"Independent operator or witness replay where a certificate is returned\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"parity_context_packet\",\n    \"symbols\": [\n      \"ParityContextPacket\",\n      \"ParityContextPacket::certificate\",\n      \"ParityContextPacket::verify_certificate\"\n    ],\n    \"required_tests\": [\n      \"measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\"\n    ]\n  },\n  \"negative_tests\": [\n    \"measurement_exact_laws::parity_cochains_and_pauli_signs_replay_actual_differentials\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Image preimages and left-nullspace separators replay against actual targets; Pauli context products produce the declared sign table independently; No assignment decision relies on cached source labels.\",\n    \"non_role\": [\n      \"A finite parity obstruction is not a Bell-locality or arbitrary empirical-model theorem\",\n      \"PROVED, GlobalGreen, operational authority or human mathematics acceptance\"\n    ]\n  },\n  \"wip\": [\n    \"Executable finite laws remain local implementation evidence pending human mathematics review\",\n    \"No mechanized theorem discharge or lifecycle acceptance is asserted\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "e70edd6c847b99324acc2df9454c7ddabc33e4c288e88c5211f148adead3b461",
+      "bytes": 2261,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0_contract.py",
+          "sha256": "36c21c5ad141dc416cad8a4eb4bc9c603ce6b7d41162be5774706dbeb0f2d8ea"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:math-parity-cochain-pauli-obstruction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0_contract.py\",\n    \"sha256\": \"36c21c5ad141dc416cad8a4eb4bc9c603ce6b7d41162be5774706dbeb0f2d8ea\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:math-parity-cochain-pauli-obstruction-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/math_parity_cochain_pauli_obstruction_v0_1_0.contract.yaml": "73f8797d9277ac206ac0bdfa11dd6fe08ac2cb916c82b217ff5186d6f1f1561a"
   },

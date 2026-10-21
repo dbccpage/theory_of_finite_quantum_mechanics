@@ -122,7 +122,7 @@ def test_full_qm214_receipt() -> None:
     assert receipt["bphz_uv_boundary_regular_value_at_zero"] == Q(9, 25)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'symanzik_two_forest.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'symanzik_two_forest.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

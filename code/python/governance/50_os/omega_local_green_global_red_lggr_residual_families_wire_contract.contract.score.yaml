@@ -51,12 +51,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "bf93125a47f450c58b73f11b910a3ac6335bad5b12adc4ae9c498b3c412c96a3",
-  "current_scoring": null,
+  "current_contract": "39e797f45c729e56dac1c64dcd82fed233d9e4c62618850a153cf1e681dd3c71",
+  "current_scoring": "fec1260e8b6767077a8bea9fd41c7e97f28523f91e97861a0a47338476a314ba",
   "contract_history": [
     {
-      "sha256": "bf93125a47f450c58b73f11b910a3ac6335bad5b12adc4ae9c498b3c412c96a3",
-      "bytes": 1159,
+      "sha256": "39e797f45c729e56dac1c64dcd82fed233d9e4c62618850a153cf1e681dd3c71",
+      "bytes": 1421,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_local_green_global_red_lggr:residual_families_wire:v1.0.0",
@@ -106,13 +106,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_local_green_global_red_lggr:residual_families_wire:v1.0.0\ntitle: 'Wiring (S7): bind the registry to the real `omega_functional::phi1` and `omega_functional::gamma2`\n  public surfaces. D...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_local_green_global_red_lggr\nfile: crates_rs/omega_local_green_global_red_lggr/src/residual_families/wire.rs\nmodule: residual_families::wire\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_local_green_global_red_lggr\n  module: residual_families::wire\n  file: crates_rs/omega_local_green_global_red_lggr/src/residual_families/wire.rs\nsymbols:\n- derive_q1_class_id\n- derive_gamma2_class_id\n- FamilyResolution\n- signature\n- q1_class_id\n- gamma2_class_id\n- lookup_hit\n- registry_write\n- FamilyCollision\n- reconcile_verified\n- record_from_verified\nowns:\n- derive_q1_class_id\n- derive_gamma2_class_id\n- family_resolution\n- signature\n- q1_class_id\n- gamma2_class_id\n- lookup_hit\n- registry_write\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_local_green_global_red_lggr:residual_families_wire:v1.0.0\",\n  \"title\": \"Wiring (S7): bind the registry to the real `omega_functional::phi1` and `omega_functional::gamma2` public surfaces. D...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_local_green_global_red_lggr\",\n  \"file\": \"crates_rs/omega_local_green_global_red_lggr/src/residual_families/wire.rs\",\n  \"module\": \"residual_families::wire\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_local_green_global_red_lggr\",\n    \"module\": \"residual_families::wire\",\n    \"file\": \"crates_rs/omega_local_green_global_red_lggr/src/residual_families/wire.rs\"\n  },\n  \"symbols\": [\n    \"derive_q1_class_id\",\n    \"derive_gamma2_class_id\",\n    \"FamilyResolution\",\n    \"signature\",\n    \"q1_class_id\",\n    \"gamma2_class_id\",\n    \"lookup_hit\",\n    \"registry_write\",\n    \"FamilyCollision\",\n    \"reconcile_verified\",\n    \"record_from_verified\"\n  ],\n  \"owns\": [\n    \"derive_q1_class_id\",\n    \"derive_gamma2_class_id\",\n    \"family_resolution\",\n    \"signature\",\n    \"q1_class_id\",\n    \"gamma2_class_id\",\n    \"lookup_hit\",\n    \"registry_write\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/50_os/omega_local_green_global_red_lggr_residual_families_wire.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "fec1260e8b6767077a8bea9fd41c7e97f28523f91e97861a0a47338476a314ba",
+      "bytes": 2273,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/omega_local_green_global_red_lggr_residual_families_wire_contract.py",
+          "sha256": "f1ee7b88b21a0139bef92323c1c44ec0db500e15e3647d1032ba5f8a2e7af2db"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:omega-local-green-global-red-lggr-residual-families-wire-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/omega_local_green_global_red_lggr_residual_families_wire_contract.py\",\n    \"sha256\": \"f1ee7b88b21a0139bef92323c1c44ec0db500e15e3647d1032ba5f8a2e7af2db\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:omega-local-green-global-red-lggr-residual-families-wire-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/omega_local_green_global_red_lggr_residual_families_wire_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/omega_local_green_global_red_lggr_residual_families_wire.contract.yaml": "bf93125a47f450c58b73f11b910a3ac6335bad5b12adc4ae9c498b3c412c96a3"
   },

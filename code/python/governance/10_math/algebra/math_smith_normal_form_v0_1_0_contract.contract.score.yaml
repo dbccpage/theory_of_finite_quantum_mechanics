@@ -113,12 +113,12 @@
       "authority_effect is fixed to 'none'; no policy or admissibility claims"
     ]
   },
-  "current_contract": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a",
-  "current_scoring": null,
+  "current_contract": "5d3ac02912c7ecec2fc922b4dc87ac2f3f218bc3d48b2d898d05daac64a7f3b3",
+  "current_scoring": "eb8c8d650e300461c78ec1d9873dab56f0b28f63cfbd05ae225e541004f22bae",
   "contract_history": [
     {
-      "sha256": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a",
-      "bytes": 4655,
+      "sha256": "5d3ac02912c7ecec2fc922b4dc87ac2f3f218bc3d48b2d898d05daac64a7f3b3",
+      "bytes": 5153,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:smith_normal_form:v0.1.0",
@@ -230,13 +230,75 @@
           "authority_effect is fixed to 'none'; no policy or admissibility claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:smith_normal_form:v0.1.0\ntitle: Smith Normal Form Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: smith_decomposition_triple\n  symbol: '(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal'\n  ascii_symbol: smith_normal_form\n  notation: '(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal'\n  domain:\n  - 'matrix_A: M_{m×n}(Z), m≥1, n≥1, exact integer entries'\n  - 'matrix_U: GL(m,Z), det(U) = ±1'\n  - 'matrix_S: M_{m×n}(Z), diagonal, invariant factors with divisibility chain'\n  - 'matrix_V: GL(n,Z), det(V) = ±1'\n  - 'ring: Z (exact integer arithmetic, no floating point)'\n  codomain:\n    description: 'A triple (U, S, V) together with the original matrix A, all over\n      Z with exact arithmetic. U is m×m unimodular, S is m×n diagonal with divisibility\n      chain, V is n×n unimodular.\n\n      '\nrequirements:\n  required_structures:\n  - m ≥ 1 and n ≥ 1\n  - det(U) ∈ {1, -1} and U is m×m\n  - det(V) ∈ {1, -1} and V is n×n\n  - S_{i,j} = 0 for all i ≠ j; no tolerance\n  - 'For k=1 to min(m,n)-1: (S_{k,k}=0 → S_{k+1,k+1}=0); (S_{k,k}≠0 → S_{k+1,k+1}\n    mod S_{k,k} = 0)\n\n    '\n  - U · A · V = S entrywise over Z\n  - 'Re-running validators on canonical serialization of (A, U, S, V) produces a byte-identical\n    ValidationWitness.\n\n    '\nlaws:\n- det(U) ∈ {1, -1}; U is m×m\n- det(V) ∈ {1, -1}; V is n×n\n- S_{i,j} = 0 for all i ≠ j\n- 'For k=1 to min(m,n)-1: if S_{k,k}=0 then S_{k+1,k+1}=0; if S_{k,k}≠0 then S_{k+1,k+1}\n  mod S_{k,k} = 0.\n\n  '\n- U · A · V = S (exact, entrywise over Z)\n- All entries are exact integers; floating-point is disallowed\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - 'Canonical serialization: row-major decimal strings, no whitespace'\n  - Dimensions (m, n) serialized as u64 before matrix entries\n  - ComputationWitness operation trace must be fully deterministic\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- A=[[2]], U=[[2]], S=[[2]], V=[[1]]; det(U)=2 ≠ ±1\n- V provided as non-square matrix; fails before determinant\n- S=[[1,1],[0,1]]; off-diagonal entry nonzero\n- S=diag(2,3); 2 does not divide 3\n- A=[[1]], U=[[1]], V=[[1]], S=[[2]]; U·A·V=[[1]] ≠ [[2]]\n- S=diag(0,5); zero entry must force all later diagonals to zero\n- Entries with decimal point rejected by schema before math checks\n- Artifact claiming authority or admissibility must be rejected\ndoctrine:\n  summary: 'Computation of the Smith normal form of an integer matrix A ∈ M_{m×n}(Z),\n    returning a triple (U, S, V) where U ∈ GL(m,Z), V ∈ GL(n,Z), S is diagonal with\n    the divisibility chain on nonzero invariant factors, and U · A · V = S exactly\n    over Z. Validity is determined solely by mathematical verification: unimodularity,\n    diagonality, divisibility, and exact matrix equality.'\n  non_role:\n  - Does not enforce a unique choice of U or V\n  - Does not extract or assert rank as a separate verified claim\n  - 'Does not handle zero-dimensional matrices (m=0 or n=0): WIP'\n  - Does not define performance requirements or algorithm selection\n  - No policy decisions or authority claims\nwip:\n- Zero-dimensional matrices (m=0 or n=0) are out of scope; edge case handling deferred\n- Canonical serialization format for big integers must be finalized (decimal string\n  recommended)\n- 'Divisibility convention when S_{k,k}=0: adopted rule is zero forces all later diagonals\n  to zero; cross-reference with standard definition needed'\n- Compact trace format for ComputationWitness on large matrices is unspecified; WIP\n- 'Uniqueness: U and V are not unique; downstream consumers must not assume a canonical\n  choice'\n- The contract verifies any valid Smith triple (U, S, V); it does not assert uniqueness\n  of U or V\n- Invariant factors are the unique invariant of the decomposition, but the contract\n  verifies only that the provided triple satisfies the defining equations\n- Exact integer arithmetic is mandatory; no floating-point representations allowed\n- Schema hash algorithm is SHA-256; canonical serialization is row-major decimal strings,\n  no whitespace\n- authority_effect is fixed to 'none'; no policy or admissibility claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:smith_normal_form:v0.1.0\",\n  \"title\": \"Smith Normal Form Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"smith_decomposition_triple\",\n    \"symbol\": \"(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal\",\n    \"ascii_symbol\": \"smith_normal_form\",\n    \"notation\": \"(U, S, V): U·A·V = S, U ∈ GL(m,Z), V ∈ GL(n,Z), S diagonal\",\n    \"domain\": [\n      \"matrix_A: M_{m×n}(Z), m≥1, n≥1, exact integer entries\",\n      \"matrix_U: GL(m,Z), det(U) = ±1\",\n      \"matrix_S: M_{m×n}(Z), diagonal, invariant factors with divisibility chain\",\n      \"matrix_V: GL(n,Z), det(V) = ±1\",\n      \"ring: Z (exact integer arithmetic, no floating point)\"\n    ],\n    \"codomain\": {\n      \"description\": \"A triple (U, S, V) together with the original matrix A, all over Z with exact arithmetic. U is m×m unimodular, S is m×n diagonal with divisibility chain, V is n×n unimodular.\\n\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"m ≥ 1 and n ≥ 1\",\n      \"det(U) ∈ {1, -1} and U is m×m\",\n      \"det(V) ∈ {1, -1} and V is n×n\",\n      \"S_{i,j} = 0 for all i ≠ j; no tolerance\",\n      \"For k=1 to min(m,n)-1: (S_{k,k}=0 → S_{k+1,k+1}=0); (S_{k,k}≠0 → S_{k+1,k+1} mod S_{k,k} = 0)\\n\",\n      \"U · A · V = S entrywise over Z\",\n      \"Re-running validators on canonical serialization of (A, U, S, V) produces a byte-identical ValidationWitness.\\n\"\n    ]\n  },\n  \"laws\": [\n    \"det(U) ∈ {1, -1}; U is m×m\",\n    \"det(V) ∈ {1, -1}; V is n×n\",\n    \"S_{i,j} = 0 for all i ≠ j\",\n    \"For k=1 to min(m,n)-1: if S_{k,k}=0 then S_{k+1,k+1}=0; if S_{k,k}≠0 then S_{k+1,k+1} mod S_{k,k} = 0.\\n\",\n    \"U · A · V = S (exact, entrywise over Z)\",\n    \"All entries are exact integers; floating-point is disallowed\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Canonical serialization: row-major decimal strings, no whitespace\",\n      \"Dimensions (m, n) serialized as u64 before matrix entries\",\n      \"ComputationWitness operation trace must be fully deterministic\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"A=[[2]], U=[[2]], S=[[2]], V=[[1]]; det(U)=2 ≠ ±1\",\n    \"V provided as non-square matrix; fails before determinant\",\n    \"S=[[1,1],[0,1]]; off-diagonal entry nonzero\",\n    \"S=diag(2,3); 2 does not divide 3\",\n    \"A=[[1]], U=[[1]], V=[[1]], S=[[2]]; U·A·V=[[1]] ≠ [[2]]\",\n    \"S=diag(0,5); zero entry must force all later diagonals to zero\",\n    \"Entries with decimal point rejected by schema before math checks\",\n    \"Artifact claiming authority or admissibility must be rejected\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"Computation of the Smith normal form of an integer matrix A ∈ M_{m×n}(Z), returning a triple (U, S, V) where U ∈ GL(m,Z), V ∈ GL(n,Z), S is diagonal with the divisibility chain on nonzero invariant factors, and U · A · V = S exactly over Z. Validity is determined solely by mathematical verification: unimodularity, diagonality, divisibility, and exact matrix equality.\",\n    \"non_role\": [\n      \"Does not enforce a unique choice of U or V\",\n      \"Does not extract or assert rank as a separate verified claim\",\n      \"Does not handle zero-dimensional matrices (m=0 or n=0): WIP\",\n      \"Does not define performance requirements or algorithm selection\",\n      \"No policy decisions or authority claims\"\n    ]\n  },\n  \"wip\": [\n    \"Zero-dimensional matrices (m=0 or n=0) are out of scope; edge case handling deferred\",\n    \"Canonical serialization format for big integers must be finalized (decimal string recommended)\",\n    \"Divisibility convention when S_{k,k}=0: adopted rule is zero forces all later diagonals to zero; cross-reference with standard definition needed\",\n    \"Compact trace format for ComputationWitness on large matrices is unspecified; WIP\",\n    \"Uniqueness: U and V are not unique; downstream consumers must not assume a canonical choice\",\n    \"The contract verifies any valid Smith triple (U, S, V); it does not assert uniqueness of U or V\",\n    \"Invariant factors are the unique invariant of the decomposition, but the contract verifies only that the provided triple satisfies the defining equations\",\n    \"Exact integer arithmetic is mandatory; no floating-point representations allowed\",\n    \"Schema hash algorithm is SHA-256; canonical serialization is row-major decimal strings, no whitespace\",\n    \"authority_effect is fixed to 'none'; no policy or admissibility claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "eb8c8d650e300461c78ec1d9873dab56f0b28f63cfbd05ae225e541004f22bae",
+      "bytes": 2231,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0_contract.py",
+          "sha256": "9b0977b0070835802efb0c247688c17180913e59f5de4e18e6b27d549e4dc942"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:math-smith-normal-form-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0_contract.py\",\n    \"sha256\": \"9b0977b0070835802efb0c247688c17180913e59f5de4e18e6b27d549e4dc942\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-smith-normal-form-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/math_smith_normal_form_v0_1_0.contract.yaml": "2470647f534d22fd60f65866335219e78d37e95b3a37ee93bacf7468fd3db22a"
   },

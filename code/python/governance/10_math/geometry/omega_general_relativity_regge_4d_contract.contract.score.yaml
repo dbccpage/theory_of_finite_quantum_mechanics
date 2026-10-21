@@ -49,12 +49,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "7a7831cd01943159d5382a7917e271faca9068f6f94a1a77d7d1053b34adf215",
-  "current_scoring": null,
+  "current_contract": "0e75c1afd64741555fd26490a9f63a88d72d2af87ac785c8ecad089e96a69372",
+  "current_scoring": "9613dd0a2aa58b3ddcd16b55034b8b18ed32c727d53f91cebc0c50fc9c57fcd0",
   "contract_history": [
     {
-      "sha256": "7a7831cd01943159d5382a7917e271faca9068f6f94a1a77d7d1053b34adf215",
-      "bytes": 1047,
+      "sha256": "0e75c1afd64741555fd26490a9f63a88d72d2af87ac785c8ecad089e96a69372",
+      "bytes": 1301,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_general_relativity:regge_4d:v1.0.0",
@@ -102,13 +102,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_general_relativity:regge_4d:v1.0.0\ntitle: Multi-Simplex 4D Regge Triangulations and Simplicial Gravitational Dynamics\n  (RQ-01, RQ-02).  Extends Regge calculus t...\nkind: rust_file_contract\nstatus: active\ncrate: omega_general_relativity\nfile: crates_rs/omega_general_relativity/src/regge_4d.rs\nmodule: regge_4d\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_general_relativity\n  module: regge_4d\n  file: crates_rs/omega_general_relativity/src/regge_4d.rs\nsymbols:\n- ReggeActionResult4D\n- HingeTriangle4D\n- ReggeTriangulation4D\n- try_new\n- two_pentachora_glued\n- four_pentachora_fan\n- compute_action\n- build_dec_operators\n- schlafli_differential_4d\nowns:\n- regge_action_result4_d\n- hinge_triangle4_d\n- regge_triangulation4_d\n- try_new\n- two_pentachora_glued\n- four_pentachora_fan\n- compute_action\n- build_dec_operators\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_general_relativity:regge_4d:v1.0.0\",\n  \"title\": \"Multi-Simplex 4D Regge Triangulations and Simplicial Gravitational Dynamics (RQ-01, RQ-02).  Extends Regge calculus t...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_general_relativity\",\n  \"file\": \"crates_rs/omega_general_relativity/src/regge_4d.rs\",\n  \"module\": \"regge_4d\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_general_relativity\",\n    \"module\": \"regge_4d\",\n    \"file\": \"crates_rs/omega_general_relativity/src/regge_4d.rs\"\n  },\n  \"symbols\": [\n    \"ReggeActionResult4D\",\n    \"HingeTriangle4D\",\n    \"ReggeTriangulation4D\",\n    \"try_new\",\n    \"two_pentachora_glued\",\n    \"four_pentachora_fan\",\n    \"compute_action\",\n    \"build_dec_operators\",\n    \"schlafli_differential_4d\"\n  ],\n  \"owns\": [\n    \"regge_action_result4_d\",\n    \"hinge_triangle4_d\",\n    \"regge_triangulation4_d\",\n    \"try_new\",\n    \"two_pentachora_glued\",\n    \"four_pentachora_fan\",\n    \"compute_action\",\n    \"build_dec_operators\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/geometry/omega_general_relativity_regge_4d.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "9613dd0a2aa58b3ddcd16b55034b8b18ed32c727d53f91cebc0c50fc9c57fcd0",
+      "bytes": 2241,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/geometry/omega_general_relativity_regge_4d_contract.py",
+          "sha256": "e1f43472bf98159ba08ebbfc9b29330c03441ebba292a4654b31d32d311087a8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:geometry:omega-general-relativity-regge-4d-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/geometry/omega_general_relativity_regge_4d_contract.py\",\n    \"sha256\": \"e1f43472bf98159ba08ebbfc9b29330c03441ebba292a4654b31d32d311087a8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:geometry:omega-general-relativity-regge-4d-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/omega_general_relativity_regge_4d_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/geometry/omega_general_relativity_regge_4d.contract.yaml": "7a7831cd01943159d5382a7917e271faca9068f6f94a1a77d7d1053b34adf215"
   },

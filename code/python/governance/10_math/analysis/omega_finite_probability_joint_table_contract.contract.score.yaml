@@ -70,12 +70,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "319b6d1eae1a88b2f3d670491d8b655add3a1d738ea15aada510b4d1968a6653",
-  "current_scoring": null,
+  "current_contract": "f4e5aa7f06476ec7187b71c7dfbcdddf672c9b49161424542406c1e8fea08339",
+  "current_scoring": "bb4d63eb3253944bbe4b30932a2a406621c17b184a74e92d5d7578dbe48c090a",
   "contract_history": [
     {
-      "sha256": "319b6d1eae1a88b2f3d670491d8b655add3a1d738ea15aada510b4d1968a6653",
-      "bytes": 1385,
+      "sha256": "f4e5aa7f06476ec7187b71c7dfbcdddf672c9b49161424542406c1e8fea08339",
+      "bytes": 1742,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_finite_probability:joint_table:v1.0.0",
@@ -144,13 +144,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_finite_probability:joint_table:v1.0.0\ntitle: 'Finite bipartite weight tables: marginals, conditionals, independence and\n  couplings.  A [`JointTable`] is a declared ...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_finite_probability\nfile: crates_rs/omega_finite_probability/src/joint_table.rs\nmodule: joint_table\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_finite_probability\n  module: joint_table\n  file: crates_rs/omega_finite_probability/src/joint_table.rs\nsymbols:\n- WeightTableError\n- JointTable\n- FrechetBounds\n- new\n- point\n- from_prior_and_kernel\n- independent_coupling\n- northwest_corner_coupling\n- from_product_simplex\n- shape\n- weight\n- weights\n- total\n- marginal_a\n- marginal_b\n- marginal_distribution_a\n- marginal_distribution_b\n- to_simplex\n- transpose\n- conditional_b_given_a\n- conditional_a_given_b\n- product_defect\n- product_defect_mass\n- dependence_total_variation\n- has_vanishing_minors\n- is_independent\n- rank\n- factor_marginals\n- chi_square_statistic\n- expectation_of_product\nowns:\n- weight_table_error\n- joint_table\n- frechet_bounds\n- new\n- point\n- from_prior_and_kernel\n- independent_coupling\n- northwest_corner_coupling\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_finite_probability:joint_table:v1.0.0\",\n  \"title\": \"Finite bipartite weight tables: marginals, conditionals, independence and couplings.  A [`JointTable`] is a declared ...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_finite_probability\",\n  \"file\": \"crates_rs/omega_finite_probability/src/joint_table.rs\",\n  \"module\": \"joint_table\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_finite_probability\",\n    \"module\": \"joint_table\",\n    \"file\": \"crates_rs/omega_finite_probability/src/joint_table.rs\"\n  },\n  \"symbols\": [\n    \"WeightTableError\",\n    \"JointTable\",\n    \"FrechetBounds\",\n    \"new\",\n    \"point\",\n    \"from_prior_and_kernel\",\n    \"independent_coupling\",\n    \"northwest_corner_coupling\",\n    \"from_product_simplex\",\n    \"shape\",\n    \"weight\",\n    \"weights\",\n    \"total\",\n    \"marginal_a\",\n    \"marginal_b\",\n    \"marginal_distribution_a\",\n    \"marginal_distribution_b\",\n    \"to_simplex\",\n    \"transpose\",\n    \"conditional_b_given_a\",\n    \"conditional_a_given_b\",\n    \"product_defect\",\n    \"product_defect_mass\",\n    \"dependence_total_variation\",\n    \"has_vanishing_minors\",\n    \"is_independent\",\n    \"rank\",\n    \"factor_marginals\",\n    \"chi_square_statistic\",\n    \"expectation_of_product\"\n  ],\n  \"owns\": [\n    \"weight_table_error\",\n    \"joint_table\",\n    \"frechet_bounds\",\n    \"new\",\n    \"point\",\n    \"from_prior_and_kernel\",\n    \"independent_coupling\",\n    \"northwest_corner_coupling\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/analysis/omega_finite_probability_joint_table.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "bb4d63eb3253944bbe4b30932a2a406621c17b184a74e92d5d7578dbe48c090a",
+      "bytes": 2247,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/omega_finite_probability_joint_table_contract.py",
+          "sha256": "ccc09ed365f20fe62d0716193cdf93ec529f2604917603d467f88d8021cc8865"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:analysis:omega-finite-probability-joint-table-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/omega_finite_probability_joint_table_contract.py\",\n    \"sha256\": \"ccc09ed365f20fe62d0716193cdf93ec529f2604917603d467f88d8021cc8865\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:omega-finite-probability-joint-table-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/omega_finite_probability_joint_table_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/analysis/omega_finite_probability_joint_table.contract.yaml": "319b6d1eae1a88b2f3d670491d8b655add3a1d738ea15aada510b4d1968a6653"
   },

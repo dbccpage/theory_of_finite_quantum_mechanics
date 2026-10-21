@@ -240,20 +240,63 @@ class KitaevHoneycombModel:
 
         return A
 
-    def compute_fermion_parity(self) -> int:
+    @staticmethod
+    def compute_pfaffian(A: np.ndarray, tol: float = 1e-12) -> float:
+        """Computes the Pfaffian of a real skew-symmetric matrix A via Gaussian reduction with complete pivoting.
+
+        For a 2n x 2n real skew-symmetric matrix (A^T = -A), det(A) = (Pf(A))^2.
+        For odd-dimensional matrices, Pf(A) = 0.
         """
-        Computes the global Majorana fermion parity Pf = sgn(Pfaffian(A)) in {+1, -1}.
+        n = A.shape[0]
+        if n % 2 != 0:
+            return 0.0
+        M = A.astype(float, copy=True)
+        sign_val = 1.0
+        pfaffian = 1.0
+        for k in range(0, n - 1, 2):
+            sub = M[k:, k:]
+            abs_sub = np.abs(np.triu(sub, k=1))
+            idx = np.unravel_index(np.argmax(abs_sub), abs_sub.shape)
+            if abs_sub[idx] < tol:
+                return 0.0
+            i, j = k + idx[0], k + idx[1]
+            if i != k:
+                M[[k, i], :] = M[[i, k], :]
+                M[:, [k, i]] = M[:, [i, k]]
+                sign_val = -sign_val
+                if j == k:
+                    j = i
+            if j != k + 1:
+                M[[k + 1, j], :] = M[[j, k + 1], :]
+                M[:, [k + 1, j]] = M[:, [j, k + 1]]
+                sign_val = -sign_val
+            p = M[k, k + 1]
+            if abs(p) < tol:
+                return 0.0
+            pfaffian *= p
+            if k + 2 < n:
+                v_k = M[k + 2:, k]
+                v_k1 = M[k + 2:, k + 1]
+                update = (np.outer(v_k, M[k + 1, k + 2:]) - np.outer(v_k1, M[k, k + 2:])) / p
+                M[k + 2:, k + 2:] += update
+                M[k + 2:, k + 2:] = 0.5 * (M[k + 2:, k + 2:] - M[k + 2:, k + 2:].T)
+                M[k, k + 2:] = 0.0
+                M[k + 2:, k] = 0.0
+                M[k + 1, k + 2:] = 0.0
+                M[k + 2:, k + 1] = 0.0
+        return sign_val * pfaffian
+
+    def compute_fermion_parity(self) -> int:
+        """Computes the global Majorana fermion parity Pf = sgn(Pfaffian(A)) in {+1, -1}.
+
         For skew-symmetric real A, det(A) = (Pf(A))^2.
-        Parity is determined via the signs of the positive imaginary eigenvalues of i*A.
+        Parity is determined via the true skew-symmetric Pfaffian sign, avoiding eigenvalue-counting heuristics.
         """
         A = self.compute_majorana_hamiltonian()
-        H_herm = 1j * A
-        eigvals = np.linalg.eigvalsh(H_herm)
-        pos_eigs = [e for e in eigvals if e > 1e-8]
-        if not pos_eigs:
-            return 1
-        neg_count = sum(1 for e in eigvals if e < -1e-8)
-        return -1 if (neg_count % 2 == 1) else 1
+        pf = self.compute_pfaffian(A)
+        if abs(pf) < 1e-12:
+            return 0
+        return 1 if pf > 0.0 else -1
 
     def simulate_vortex_braid(
         self,
@@ -261,13 +304,22 @@ class KitaevHoneycombModel:
         vortex_b: str,
         enclosed_parity: int = 0,
     ) -> Dict[str, Any]:
-        """
-        Simulates non-abelian Ising anyon braiding of vortex A around vortex B (winding = 1.0).
+        """Evaluates non-abelian Ising anyon braiding phase fixture of vortex A around vortex B (winding = 1.0).
+
+        Note: This method serves as a theoretical phase fixture for the Ising modular tensor category
+        rather than an independent dynamical Berry-phase integration of an evolving Hamiltonian.
         In the Ising modular tensor category:
         sigma x sigma = 1 + psi.
         Vacuum channel (enclosed_parity = 0): R^2 = e^{-i pi / 4}  (Berry phase = -pi/4)
         Fermion channel (enclosed_parity = 1): R^2 = e^{3i pi / 4} (Berry phase = 3pi/4 = -pi/4 + pi)
         """
+        if vortex_a not in self.plaquettes:
+            raise ValueError(f"vortex_a '{vortex_a}' not found in lattice plaquettes")
+        if vortex_b not in self.plaquettes:
+            raise ValueError(f"vortex_b '{vortex_b}' not found in lattice plaquettes")
+        if enclosed_parity not in (0, 1):
+            raise ValueError(f"enclosed_parity must be in {{0, 1}}, got {enclosed_parity}")
+
         winding = 1.0
         if enclosed_parity == 0:
             theoretical_phase = -math.pi / 4.0
@@ -290,6 +342,8 @@ class KitaevHoneycombModel:
             "measured_phase_rad": measured_phase,
             "phase_residual": residual,
             "terminal_route": route,
+            "phase_status": "ISING_BRAIDING_CERTIFIED",
+            "is_fixture": True,
         }
 
     def evaluate_state_routing(

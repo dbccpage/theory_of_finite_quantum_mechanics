@@ -36,7 +36,7 @@ def _all_hold(flags: tuple[bool, ...]) -> bool:
     return True
 
 
-_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "campaigns" / "separating_preds.py"
+_MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "qm" / "separating_preds.py"
 _Q = Fraction
 _COMP = (_Q(1), _Q(0))
 _TILT = (_Q(3, 5), _Q(4, 5))

@@ -53,12 +53,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "0588cb9b94d4dd0e1bbe5a5bbbe2840e8b4fbb33026005f5f07886d97416e69e",
-  "current_scoring": null,
+  "current_contract": "32016ecc2f9ad1de6cd6bdd00f7c5fcc0d82d18b66ac4aa35d1c25319394b96d",
+  "current_scoring": "6e73a7e7b71fe3a2b491c0743787a31351833dea462dda271c53365523aefa1a",
   "contract_history": [
     {
-      "sha256": "0588cb9b94d4dd0e1bbe5a5bbbe2840e8b4fbb33026005f5f07886d97416e69e",
-      "bytes": 1181,
+      "sha256": "32016ecc2f9ad1de6cd6bdd00f7c5fcc0d82d18b66ac4aa35d1c25319394b96d",
+      "bytes": 1455,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_state:software_change_profile:v1.0.0",
@@ -110,13 +110,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_state:software_change_profile:v1.0.0\ntitle: S08-001 bounded software-change profiles.  These profiles compile bounded Rust,\n  Python, generated-artifact, and manua...\nkind: rust_file_contract\nstatus: active\ncrate: omega_state\nfile: crates_rs/omega_state/src/software_change_profile.rs\nmodule: software_change_profile\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_state\n  module: software_change_profile\n  file: crates_rs/omega_state/src/software_change_profile.rs\nsymbols:\n- SoftwareProfileKindV1\n- SoftwareCommandV1\n- SoftwareProfileV1\n- validate\n- compile_software_profile_v1\n- ChangeActorV1\n- ChangeDiagnosticLevelV1\n- ChangeDiagnosticV1\n- ChangeWitnessV1\n- SoftwareChangeAttemptV1\n- SoftwareChangeReceiptV1\n- evaluate_software_change_v1\n- SoftwareChangeError\nowns:\n- software_profile_kind_v1\n- software_command_v1\n- software_profile_v1\n- validate\n- compile_software_profile_v1\n- change_actor_v1\n- change_diagnostic_level_v1\n- change_diagnostic_v1\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_state:software_change_profile:v1.0.0\",\n  \"title\": \"S08-001 bounded software-change profiles.  These profiles compile bounded Rust, Python, generated-artifact, and manua...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_state\",\n  \"file\": \"crates_rs/omega_state/src/software_change_profile.rs\",\n  \"module\": \"software_change_profile\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_state\",\n    \"module\": \"software_change_profile\",\n    \"file\": \"crates_rs/omega_state/src/software_change_profile.rs\"\n  },\n  \"symbols\": [\n    \"SoftwareProfileKindV1\",\n    \"SoftwareCommandV1\",\n    \"SoftwareProfileV1\",\n    \"validate\",\n    \"compile_software_profile_v1\",\n    \"ChangeActorV1\",\n    \"ChangeDiagnosticLevelV1\",\n    \"ChangeDiagnosticV1\",\n    \"ChangeWitnessV1\",\n    \"SoftwareChangeAttemptV1\",\n    \"SoftwareChangeReceiptV1\",\n    \"evaluate_software_change_v1\",\n    \"SoftwareChangeError\"\n  ],\n  \"owns\": [\n    \"software_profile_kind_v1\",\n    \"software_command_v1\",\n    \"software_profile_v1\",\n    \"validate\",\n    \"compile_software_profile_v1\",\n    \"change_actor_v1\",\n    \"change_diagnostic_level_v1\",\n    \"change_diagnostic_v1\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/omega_state_software_change_profile.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "6e73a7e7b71fe3a2b491c0743787a31351833dea462dda271c53365523aefa1a",
+      "bytes": 2243,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/omega_state_software_change_profile_contract.py",
+          "sha256": "fc6604bde70019554f84b301daee7952f48b5f41dda3a90638f04aa58623eb07"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:omega-state-software-change-profile-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/omega_state_software_change_profile_contract.py\",\n    \"sha256\": \"fc6604bde70019554f84b301daee7952f48b5f41dda3a90638f04aa58623eb07\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:omega-state-software-change-profile-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/omega_state_software_change_profile_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/omega_state_software_change_profile.contract.yaml": "0588cb9b94d4dd0e1bbe5a5bbbe2840e8b4fbb33026005f5f07886d97416e69e"
   },

@@ -50,12 +50,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "8d9c5560a67011d590418d231c6b2fe18c200b0ff2996401d90234f5e5a4002e",
-  "current_scoring": null,
+  "current_contract": "0351d5ecd120d2c8b463b47f38968885584fd3168c76b4d29eab2680d08e9c2f",
+  "current_scoring": "36a05633c38b803f05ac9570662edab6d0374a0fb5f7e10016eae8c828224ac4",
   "contract_history": [
     {
-      "sha256": "8d9c5560a67011d590418d231c6b2fe18c200b0ff2996401d90234f5e5a4002e",
-      "bytes": 973,
+      "sha256": "0351d5ecd120d2c8b463b47f38968885584fd3168c76b4d29eab2680d08e9c2f",
+      "bytes": 1232,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_functional:observer_gauge:v1.0.0",
@@ -104,13 +104,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_functional:observer_gauge:v1.0.0\ntitle: § Observer Gauge Trait Defines the geometry for Scalar, Vector, and Trace state\n  observations. Implements CODA papers ...\nkind: rust_file_contract\nstatus: active\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/observer_gauge.rs\nmodule: observer_gauge\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_functional\n  module: observer_gauge\n  file: crates_rs/omega_functional/src/observer_gauge.rs\nsymbols:\n- GaugeError\n- ObserverGauge\n- ScalarGauge\n- new\n- VectorGauge\n- TraceGauge\n- polyhedral_gauge\n- rational_squared_l2\n- rational_l2_approx\n- mixed_rational_gauge\nowns:\n- gauge_error\n- observer_gauge\n- scalar_gauge\n- new\n- vector_gauge\n- trace_gauge\n- polyhedral_gauge\n- rational_squared_l2\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_functional:observer_gauge:v1.0.0\",\n  \"title\": \"§ Observer Gauge Trait Defines the geometry for Scalar, Vector, and Trace state observations. Implements CODA papers ...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_functional\",\n  \"file\": \"crates_rs/omega_functional/src/observer_gauge.rs\",\n  \"module\": \"observer_gauge\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_functional\",\n    \"module\": \"observer_gauge\",\n    \"file\": \"crates_rs/omega_functional/src/observer_gauge.rs\"\n  },\n  \"symbols\": [\n    \"GaugeError\",\n    \"ObserverGauge\",\n    \"ScalarGauge\",\n    \"new\",\n    \"VectorGauge\",\n    \"TraceGauge\",\n    \"polyhedral_gauge\",\n    \"rational_squared_l2\",\n    \"rational_l2_approx\",\n    \"mixed_rational_gauge\"\n  ],\n  \"owns\": [\n    \"gauge_error\",\n    \"observer_gauge\",\n    \"scalar_gauge\",\n    \"new\",\n    \"vector_gauge\",\n    \"trace_gauge\",\n    \"polyhedral_gauge\",\n    \"rational_squared_l2\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/analysis/omega_functional_observer_gauge.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "36a05633c38b803f05ac9570662edab6d0374a0fb5f7e10016eae8c828224ac4",
+      "bytes": 2237,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/analysis/omega_functional_observer_gauge_contract.py",
+          "sha256": "9852d724f44d16c917a68ca53cd4e132d68e7bf4ec8996ca11c2d8403d7a259c"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:analysis:omega-functional-observer-gauge-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/analysis/omega_functional_observer_gauge_contract.py\",\n    \"sha256\": \"9852d724f44d16c917a68ca53cd4e132d68e7bf4ec8996ca11c2d8403d7a259c\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:analysis:omega-functional-observer-gauge-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/omega_functional_observer_gauge_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/analysis/omega_functional_observer_gauge.contract.yaml": "8d9c5560a67011d590418d231c6b2fe18c200b0ff2996401d90234f5e5a4002e"
   },

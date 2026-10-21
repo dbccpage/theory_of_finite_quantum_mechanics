@@ -53,12 +53,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "1811063011bb5456da7c2ba9e00d61e45d1cae585e5a441135349e8e6be5780c",
-  "current_scoring": null,
+  "current_contract": "7a21dfbac8b440d342b9e562bae57dc3642b77b747abe0cef7d891e15771acd9",
+  "current_scoring": "c893b441fe041913d8667ee6eef47d786d98c15dbf14bda253129fc3fac8b025",
   "contract_history": [
     {
-      "sha256": "1811063011bb5456da7c2ba9e00d61e45d1cae585e5a441135349e8e6be5780c",
-      "bytes": 1040,
+      "sha256": "7a21dfbac8b440d342b9e562bae57dc3642b77b747abe0cef7d891e15771acd9",
+      "bytes": 1314,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_quantum_physics:pauli_context_table:v1.0.0",
@@ -110,13 +110,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_quantum_physics:pauli_context_table:v1.0.0\ntitle: Exact two-qubit Pauli operators on a 3 x 3 context table, and the sign table\n  they induce.  A table declares nine two-...\nkind: rust_file_contract\nstatus: active\ncrate: omega_quantum_physics\nfile: crates_rs/omega_quantum_physics/src/pauli_context_table.rs\nmodule: pauli_context_table\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_quantum_physics\n  module: pauli_context_table\n  file: crates_rs/omega_quantum_physics/src/pauli_context_table.rs\nsymbols:\n- PauliTableError\n- pauli_word\n- context_members\n- PauliContextTable\n- new\n- mermin\n- words\n- observable\n- observables_are_hermitian_involutions\n- commute\n- context_sign\n- sign_table\n- packet\nowns:\n- pauli_table_error\n- pauli_word\n- context_members\n- pauli_context_table\n- new\n- mermin\n- words\n- observable\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_quantum_physics:pauli_context_table:v1.0.0\",\n  \"title\": \"Exact two-qubit Pauli operators on a 3 x 3 context table, and the sign table they induce.  A table declares nine two-...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_quantum_physics\",\n  \"file\": \"crates_rs/omega_quantum_physics/src/pauli_context_table.rs\",\n  \"module\": \"pauli_context_table\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_quantum_physics\",\n    \"module\": \"pauli_context_table\",\n    \"file\": \"crates_rs/omega_quantum_physics/src/pauli_context_table.rs\"\n  },\n  \"symbols\": [\n    \"PauliTableError\",\n    \"pauli_word\",\n    \"context_members\",\n    \"PauliContextTable\",\n    \"new\",\n    \"mermin\",\n    \"words\",\n    \"observable\",\n    \"observables_are_hermitian_involutions\",\n    \"commute\",\n    \"context_sign\",\n    \"sign_table\",\n    \"packet\"\n  ],\n  \"owns\": [\n    \"pauli_table_error\",\n    \"pauli_word\",\n    \"context_members\",\n    \"pauli_context_table\",\n    \"new\",\n    \"mermin\",\n    \"words\",\n    \"observable\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/quantum/omega_quantum_physics_pauli_context_table.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c893b441fe041913d8667ee6eef47d786d98c15dbf14bda253129fc3fac8b025",
+      "bytes": 2255,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/quantum/omega_quantum_physics_pauli_context_table_contract.py",
+          "sha256": "0332af169ee56fb03c57174bfc0404d37708e5564c29a46a85a0e183d5d7ffb2"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:quantum:omega-quantum-physics-pauli-context-table-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/quantum/omega_quantum_physics_pauli_context_table_contract.py\",\n    \"sha256\": \"0332af169ee56fb03c57174bfc0404d37708e5564c29a46a85a0e183d5d7ffb2\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:quantum:omega-quantum-physics-pauli-context-table-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/omega_quantum_physics_pauli_context_table_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/quantum/omega_quantum_physics_pauli_context_table.contract.yaml": "1811063011bb5456da7c2ba9e00d61e45d1cae585e5a441135349e8e6be5780c"
   },

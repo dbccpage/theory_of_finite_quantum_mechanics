@@ -150,12 +150,12 @@
       ]
     }
   },
-  "current_contract": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5",
-  "current_scoring": null,
+  "current_contract": "db320d2d653c320a281fdc1a3842f6a67dcddf7ded4fadf8d809fdf07695c450",
+  "current_scoring": "87e4789acdd780b36a137b8b4704b96b8c8f0fedbca8c8dbd0fc19319d5d4807",
   "contract_history": [
     {
-      "sha256": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5",
-      "bytes": 5053,
+      "sha256": "db320d2d653c320a281fdc1a3842f6a67dcddf7ded4fadf8d809fdf07695c450",
+      "bytes": 6094,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:evidence:published_series_coordinates:v1.0.0",
@@ -304,13 +304,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:published_series_coordinates:v1.0.0\ntitle: PublishedSeriesCoordinates\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Carrier\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndefinition:\n  published_root: omega_engine/research/published\n  required_row_action: none; declared conditional, open, and VERIFY fences preserved\n  papers:\n  - paper_id: paper000\n    programme: 002_finite_obstruction_calculus\n    directory: 000_primitive_axiomatics\n    main: 000_primitive_axiomatics_v2_6.md\n    claim_ledger: 000_primitive_axiomatics_claim_ledger.md\n    claim_row_count: 71\n  - paper_id: paper001\n    programme: 004_projection_obstruction\n    directory: 000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn\n    main: 000_projection_obstruction_v5_6.md\n    claim_ledger: 000_projection_obstruction_claim_ledger.md\n    claim_row_count: 42\n  - paper_id: paper002\n    programme: 005_gauge_selection\n    directory: 001_m_compatible_gauge_classification\n    main: 001_m_compatible_gauge_classification.md\n    claim_ledger: 001_m_compatible_gauge_classification_claim_ledger.md\n    claim_row_count: 25\n  - paper_id: paper003\n    programme: 005_gauge_selection\n    directory: 002_so_k_invariant_gauge_classification\n    main: 002_so_k_invariant_gauge_classification.md\n    claim_ledger: 002_so_k_invariant_gauge_classification_claim_ledger.md\n    claim_row_count: 48\n  - paper_id: paper004\n    programme: 005_gauge_selection\n    directory: 003_coordinate_wise_additivity\n    main: 003_coordinate_wise_additivity.md\n    claim_ledger: 003_coordinate_wise_additivity_claim_ledger.md\n    claim_row_count: 21\n  - paper_id: paper005\n    programme: 003_quantum_foundations\n    directory: 000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses\n    main: 000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses.md\n    claim_ledger: 000_cptp_invariant_obstruction_claim_ledger.md\n    claim_row_count: 24\n  - paper_id: paper006\n    programme: 002_finite_obstruction_calculus\n    directory: 003_l1_native_cohomology\n    main: 003_l1_native_cohomology.md\n    claim_ledger: 003_l1_native_cohomology_claim_ledger.md\n    claim_row_count: 19\n  - paper_id: paper007\n    programme: 002_finite_obstruction_calculus\n    directory: 004_l1_obstruction_framework\n    main: 004_l1_obstruction_framework.md\n    claim_ledger: 004_l1_obstruction_framework_claim_ledger.md\n    claim_row_count: 18\n  - paper_id: paper008\n    programme: 002_finite_obstruction_calculus\n    directory: 005_conditional_lift_descent\n    main: 005_conditional_lift_descent.md\n    claim_ledger: 005_conditional_lift_descent_claim_ledger.md\n    claim_row_count: 17\n  - paper_id: paper009\n    programme: 003_quantum_foundations\n    directory: 001_conditional_density_lift_and_dual_witness_xi_functional\n    main: 001_conditional_density_lift_and_dual_witness_xi_functional.md\n    claim_ledger: 001_conditional_density_lift_claim_ledger.md\n    claim_row_count: 12\n  - paper_id: paper010\n    programme: 003_quantum_foundations\n    directory: 002_born_normalization_and_conditional_hilbert_lift_from_l1_weights\n    main: 002_born_normalization_and_conditional_hilbert_lift_from_l1_weights.md\n    claim_ledger: 002_born_normalization_claim_ledger.md\n    claim_row_count: 16\ndoctrine:\n  summary: 'Canonical on-disk coordinates for the S07-005 published-series agreement\n    matrix (papers 000-010).\n\n    Repository paths are data, not Rust literals: a path buried in a const drifts\n    silently because the\n\n    agreement matrix is compared field-wise and never resolved against the filesystem.\n    That is how the\n\n    PR #1191 programme reorganization left every coordinate stale while the crate\n    still compiled and\n\n    every test still passed.\n\n    '\n  authority_defaults:\n    coordinates: EvidenceOnly. Locating a paper is not a claim about it. This contract\n      pins where a manuscript and its claim ledger live and how many claim rows the\n      ledger declares; it grants no authority over their content and upgrades no status.\n  consumers:\n  - crate: omega_state\n    module: published_series_agreement\n    use: validate_published_series_matrix_v1 compares packet rows against these coordinates\n  required_tests:\n  - manifest_parses_and_is_ordered\n  - every_coordinate_resolves_on_disk\n  canonical_invariant: 'Every coordinate resolves to a file that exists in the published\n    tree, rows are ascending by\n\n    paper_id, and no row points its manuscript and its claim ledger at the same file.\n\n    '\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:evidence:published_series_coordinates:v1.0.0\",\n  \"title\": \"PublishedSeriesCoordinates\",\n  \"kind\": \"evidence_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"02_evidence\",\n  \"role\": \"Carrier\",\n  \"descriptor\": {\n    \"authority_effect\": \"evidence_only\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"definition\": {\n    \"published_root\": \"omega_engine/research/published\",\n    \"required_row_action\": \"none; declared conditional, open, and VERIFY fences preserved\",\n    \"papers\": [\n      {\n        \"paper_id\": \"paper000\",\n        \"programme\": \"002_finite_obstruction_calculus\",\n        \"directory\": \"000_primitive_axiomatics\",\n        \"main\": \"000_primitive_axiomatics_v2_6.md\",\n        \"claim_ledger\": \"000_primitive_axiomatics_claim_ledger.md\",\n        \"claim_row_count\": 71\n      },\n      {\n        \"paper_id\": \"paper001\",\n        \"programme\": \"004_projection_obstruction\",\n        \"directory\": \"000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn\",\n        \"main\": \"000_projection_obstruction_v5_6.md\",\n        \"claim_ledger\": \"000_projection_obstruction_claim_ledger.md\",\n        \"claim_row_count\": 42\n      },\n      {\n        \"paper_id\": \"paper002\",\n        \"programme\": \"005_gauge_selection\",\n        \"directory\": \"001_m_compatible_gauge_classification\",\n        \"main\": \"001_m_compatible_gauge_classification.md\",\n        \"claim_ledger\": \"001_m_compatible_gauge_classification_claim_ledger.md\",\n        \"claim_row_count\": 25\n      },\n      {\n        \"paper_id\": \"paper003\",\n        \"programme\": \"005_gauge_selection\",\n        \"directory\": \"002_so_k_invariant_gauge_classification\",\n        \"main\": \"002_so_k_invariant_gauge_classification.md\",\n        \"claim_ledger\": \"002_so_k_invariant_gauge_classification_claim_ledger.md\",\n        \"claim_row_count\": 48\n      },\n      {\n        \"paper_id\": \"paper004\",\n        \"programme\": \"005_gauge_selection\",\n        \"directory\": \"003_coordinate_wise_additivity\",\n        \"main\": \"003_coordinate_wise_additivity.md\",\n        \"claim_ledger\": \"003_coordinate_wise_additivity_claim_ledger.md\",\n        \"claim_row_count\": 21\n      },\n      {\n        \"paper_id\": \"paper005\",\n        \"programme\": \"003_quantum_foundations\",\n        \"directory\": \"000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses\",\n        \"main\": \"000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses.md\",\n        \"claim_ledger\": \"000_cptp_invariant_obstruction_claim_ledger.md\",\n        \"claim_row_count\": 24\n      },\n      {\n        \"paper_id\": \"paper006\",\n        \"programme\": \"002_finite_obstruction_calculus\",\n        \"directory\": \"003_l1_native_cohomology\",\n        \"main\": \"003_l1_native_cohomology.md\",\n        \"claim_ledger\": \"003_l1_native_cohomology_claim_ledger.md\",\n        \"claim_row_count\": 19\n      },\n      {\n        \"paper_id\": \"paper007\",\n        \"programme\": \"002_finite_obstruction_calculus\",\n        \"directory\": \"004_l1_obstruction_framework\",\n        \"main\": \"004_l1_obstruction_framework.md\",\n        \"claim_ledger\": \"004_l1_obstruction_framework_claim_ledger.md\",\n        \"claim_row_count\": 18\n      },\n      {\n        \"paper_id\": \"paper008\",\n        \"programme\": \"002_finite_obstruction_calculus\",\n        \"directory\": \"005_conditional_lift_descent\",\n        \"main\": \"005_conditional_lift_descent.md\",\n        \"claim_ledger\": \"005_conditional_lift_descent_claim_ledger.md\",\n        \"claim_row_count\": 17\n      },\n      {\n        \"paper_id\": \"paper009\",\n        \"programme\": \"003_quantum_foundations\",\n        \"directory\": \"001_conditional_density_lift_and_dual_witness_xi_functional\",\n        \"main\": \"001_conditional_density_lift_and_dual_witness_xi_functional.md\",\n        \"claim_ledger\": \"001_conditional_density_lift_claim_ledger.md\",\n        \"claim_row_count\": 12\n      },\n      {\n        \"paper_id\": \"paper010\",\n        \"programme\": \"003_quantum_foundations\",\n        \"directory\": \"002_born_normalization_and_conditional_hilbert_lift_from_l1_weights\",\n        \"main\": \"002_born_normalization_and_conditional_hilbert_lift_from_l1_weights.md\",\n        \"claim_ledger\": \"002_born_normalization_claim_ledger.md\",\n        \"claim_row_count\": 16\n      }\n    ]\n  },\n  \"doctrine\": {\n    \"summary\": \"Canonical on-disk coordinates for the S07-005 published-series agreement matrix (papers 000-010).\\nRepository paths are data, not Rust literals: a path buried in a const drifts silently because the\\nagreement matrix is compared field-wise and never resolved against the filesystem. That is how the\\nPR #1191 programme reorganization left every coordinate stale while the crate still compiled and\\nevery test still passed.\\n\",\n    \"authority_defaults\": {\n      \"coordinates\": \"EvidenceOnly. Locating a paper is not a claim about it. This contract pins where a manuscript and its claim ledger live and how many claim rows the ledger declares; it grants no authority over their content and upgrades no status.\"\n    },\n    \"consumers\": [\n      {\n        \"crate\": \"omega_state\",\n        \"module\": \"published_series_agreement\",\n        \"use\": \"validate_published_series_matrix_v1 compares packet rows against these coordinates\"\n      }\n    ],\n    \"required_tests\": [\n      \"manifest_parses_and_is_ordered\",\n      \"every_coordinate_resolves_on_disk\"\n    ],\n    \"canonical_invariant\": \"Every coordinate resolves to a file that exists in the published tree, rows are ascending by\\npaper_id, and no row points its manuscript and its claim ledger at the same file.\\n\"\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "87e4789acdd780b36a137b8b4704b96b8c8f0fedbca8c8dbd0fc19319d5d4807",
+      "bytes": 2261,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0_contract.py",
+          "sha256": "2e26808393c0a01f586cab565ba0597202030d4dd65edeaa860a15ace15b9e4b"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:evidence-published-series-coordinates-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0_contract.py\",\n    \"sha256\": \"2e26808393c0a01f586cab565ba0597202030d4dd65edeaa860a15ace15b9e4b\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:evidence-published-series-coordinates-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0.contract.yaml": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5"
   },

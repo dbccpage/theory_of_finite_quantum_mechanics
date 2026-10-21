@@ -89,12 +89,12 @@
       "Integration with Type/Term contracts is work in progress"
     ]
   },
-  "current_contract": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7",
-  "current_scoring": null,
+  "current_contract": "4ce6c062f9859b926eac984c740e0d30f3facf0b13cbdc3128cf2816aec1e03e",
+  "current_scoring": "88c15991b35d03e8f4e45923f122c815c8ecfbe4585014eae12116380673378b",
   "contract_history": [
     {
-      "sha256": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7",
-      "bytes": 2586,
+      "sha256": "4ce6c062f9859b926eac984c740e0d30f3facf0b13cbdc3128cf2816aec1e03e",
+      "bytes": 3036,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:type_universe:v0.1.0",
@@ -182,13 +182,75 @@
           "Integration with Type/Term contracts is work in progress"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:type_universe:v0.1.0\ntitle: Type Universe Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: type_universe\n  symbol: U_i, where i ≥ 0 is the universe level\n  ascii_symbol: type_universe\n  notation: U_i, where i ≥ 0 is the universe level\n  domain:\n  - 'level: non-negative integer i'\n  - 'cumulative_inclusion: boolean flag for cumulative hierarchy'\n  - 'univalence: optional boolean for univalence axiom'\n  codomain:\n    description: A universe U_i is a type whose inhabitants are types\nrequirements:\n  required_structures:\n  - Universe level must be non-negative (level ≥ 0)\n  - If cumulative=true, all types from lower levels are included\n  - Artifact hash is SHA-256 over contract_id, version, level, cumulative, univalent\nlaws:\n- 'U_i : U_{i+1} for all i ≥ 0'\n- 'If A : U_i and cumulative=true, then A : U_{i+1}'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- level = -1 must be rejected\n- Non-cumulative claim inconsistent with type references from lower level\ndoctrine:\n  summary: 'A TypeUniverse is a type whose elements are themselves types. In HoTT,\n    universes U_i form a hierarchy with U_i : U_{i+1}. The contract defines a universe\n    level, validates cumulative inclusion, and supports type formation rules within\n    the universe.'\n  non_role:\n  - Detailed universe management (polymorphism, constraints) - complex features deferred\n  - Resizing axioms (types shrinking to smaller universes) - handled via FactEnvelope\n  - Detailed integration with Type and Term contracts - WIP\nwip:\n- Detailed universe management (polymorphism, constraints) is complex and deferred\n- Resizing axioms (types can be shrunk to smaller universes) are FactEnvelope topics\n- 'The relationship with Type and Term contracts: Type artifacts reference a TypeUniverse'\n- Contract is minimal to establish basic universe hierarchy\n- Universe polymorphism and constraints require additional design\n- Integration with Type/Term contracts is work in progress\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:type_universe:v0.1.0\",\n  \"title\": \"Type Universe Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"type_universe\",\n    \"symbol\": \"U_i, where i ≥ 0 is the universe level\",\n    \"ascii_symbol\": \"type_universe\",\n    \"notation\": \"U_i, where i ≥ 0 is the universe level\",\n    \"domain\": [\n      \"level: non-negative integer i\",\n      \"cumulative_inclusion: boolean flag for cumulative hierarchy\",\n      \"univalence: optional boolean for univalence axiom\"\n    ],\n    \"codomain\": {\n      \"description\": \"A universe U_i is a type whose inhabitants are types\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Universe level must be non-negative (level ≥ 0)\",\n      \"If cumulative=true, all types from lower levels are included\",\n      \"Artifact hash is SHA-256 over contract_id, version, level, cumulative, univalent\"\n    ]\n  },\n  \"laws\": [\n    \"U_i : U_{i+1} for all i ≥ 0\",\n    \"If A : U_i and cumulative=true, then A : U_{i+1}\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Validators and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"negative_tests\": [\n    \"level = -1 must be rejected\",\n    \"Non-cumulative claim inconsistent with type references from lower level\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"A TypeUniverse is a type whose elements are themselves types. In HoTT, universes U_i form a hierarchy with U_i : U_{i+1}. The contract defines a universe level, validates cumulative inclusion, and supports type formation rules within the universe.\",\n    \"non_role\": [\n      \"Detailed universe management (polymorphism, constraints) - complex features deferred\",\n      \"Resizing axioms (types shrinking to smaller universes) - handled via FactEnvelope\",\n      \"Detailed integration with Type and Term contracts - WIP\"\n    ]\n  },\n  \"wip\": [\n    \"Detailed universe management (polymorphism, constraints) is complex and deferred\",\n    \"Resizing axioms (types can be shrunk to smaller universes) are FactEnvelope topics\",\n    \"The relationship with Type and Term contracts: Type artifacts reference a TypeUniverse\",\n    \"Contract is minimal to establish basic universe hierarchy\",\n    \"Universe polymorphism and constraints require additional design\",\n    \"Integration with Type/Term contracts is work in progress\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_type_universe_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "88c15991b35d03e8f4e45923f122c815c8ecfbe4585014eae12116380673378b",
+      "bytes": 2223,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_type_universe_v0_1_0_contract.py",
+          "sha256": "904479ffea852b88a398b0b3140f147468dd6528a6bddae46cf933a6e9d18110"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-type-universe-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_type_universe_v0_1_0_contract.py\",\n    \"sha256\": \"904479ffea852b88a398b0b3140f147468dd6528a6bddae46cf933a6e9d18110\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-type-universe-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_type_universe_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_type_universe_v0_1_0.contract.yaml": "8d0be8947ba1a84eb4c7d60e7ad92ebc68df3c5a0a6764fbb5b1d6f22d9dc8d7"
   },

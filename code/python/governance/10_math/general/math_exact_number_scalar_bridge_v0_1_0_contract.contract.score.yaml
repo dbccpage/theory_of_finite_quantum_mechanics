@@ -99,12 +99,12 @@
       "All fixed exact scalars use the canonical scalar tower and Involution; generic scalar algorithms remain scoped by their explicit field contracts and budgets."
     ]
   },
-  "current_contract": "7fed3ec1272723b42d97b3107890f6a4c4a6ca4eb10c422ef5dcc17e50b87286",
-  "current_scoring": null,
+  "current_contract": "49566701621f8f3adab993375e2fdd8d7980a7d213498db01ae79530918aa01f",
+  "current_scoring": "24407f885899d00cc6b24ae6dce2febeb6ae775a414d351cd8416139ada7982d",
   "contract_history": [
     {
-      "sha256": "7fed3ec1272723b42d97b3107890f6a4c4a6ca4eb10c422ef5dcc17e50b87286",
-      "bytes": 3180,
+      "sha256": "49566701621f8f3adab993375e2fdd8d7980a7d213498db01ae79530918aa01f",
+      "bytes": 3664,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:exact_number_scalar_bridge:v0.1.0",
@@ -202,13 +202,75 @@
           "All fixed exact scalars use the canonical scalar tower and Involution; generic scalar algorithms remain scoped by their explicit field contracts and budgets."
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_number_scalar_bridge:v0.1.0\ntitle: Exact Number Scalar Bridge Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: trait_implementation_bridge\n  symbol: (+, *, -, 0, 1) with Semiring < Ring < Field < ExactRing on every exact\n    number type\n  ascii_symbol: exact_number_scalar_bridge\n  notation: (+, *, -, 0, 1) with Semiring < Ring < Field < ExactRing on every exact\n    number type\n  domain:\n  - 'fixed-conductor exact types: GaussianRat, EisensteinRat, Cyc5, Cyc8, Cyc12, Cyc24,\n    Cyc28, Cyc44, Cyc52, Cyc120'\n  - the linear_algebra scalar tower traits and std::ops\n  codomain:\n    description: The std::ops operators, num_traits Zero and One, and the linear_algebra\n      Semiring, Ring, Field and ExactRing implementations for every fixed-conductor\n      exact type, sharing one arithmetic per type.\nrequirements:\n  required_structures:\n  - Every canonical scalar-tower implementation delegates to the type's single inherent\n    exact arithmetic; ExactFieldElement is retired.\n  - Field::try_inv refuses zero and inverts every nonzero element through one shared\n    solver\n  - Equality is mathematical equality (canonical reduced form)\nlaws:\n- Commutative ring axioms and distributivity hold through the tower\n- a * a^-1 = 1 for every nonzero a, and try_inv(0) is None\n- The std::ops operators agree with the inherent methods\n- BasicMatrix over these types multiplies as expected (the Hadamard-like matrix squares\n  to the identity)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact arithmetic only; no floating point and no tolerance\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_number_theory\n  module: scalar\n  required_tests:\n  - gaussian_rationals_form_a_field\n  - eisenstein_rationals_form_a_field\n  - cyclotomic_fields_form_fields\n  - large_conductor_fields_invert_through_the_shared_solver\n  - operators_agree_with_the_inherent_methods\n  - cyclotomic_matrices_use_the_linear_algebra_matrix_type\n  symbols:\n  - RationalEmbedding\nnegative_tests:\n- Inversion of zero through the tower must be refused (None)\n- A canonical scalar must not carry a second arithmetic implementation beside its\n  inherent number-field arithmetic.\ndoctrine:\n  summary: 'The bridge that states every fixed-conductor exact type in the vocabulary\n    of the estate: std::ops, num_traits and the linear_algebra scalar tower, so the\n    generic exact matrix algorithms apply.'\n  non_role:\n  - Fixed-width or floating-point scalars\n  - Implementations for types outside this crate\nwip:\n- All fixed exact scalars use the canonical scalar tower and Involution; generic scalar\n  algorithms remain scoped by their explicit field contracts and budgets.\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:exact_number_scalar_bridge:v0.1.0\",\n  \"title\": \"Exact Number Scalar Bridge Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"LocalReplay\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"trait_implementation_bridge\",\n    \"symbol\": \"(+, *, -, 0, 1) with Semiring < Ring < Field < ExactRing on every exact number type\",\n    \"ascii_symbol\": \"exact_number_scalar_bridge\",\n    \"notation\": \"(+, *, -, 0, 1) with Semiring < Ring < Field < ExactRing on every exact number type\",\n    \"domain\": [\n      \"fixed-conductor exact types: GaussianRat, EisensteinRat, Cyc5, Cyc8, Cyc12, Cyc24, Cyc28, Cyc44, Cyc52, Cyc120\",\n      \"the linear_algebra scalar tower traits and std::ops\"\n    ],\n    \"codomain\": {\n      \"description\": \"The std::ops operators, num_traits Zero and One, and the linear_algebra Semiring, Ring, Field and ExactRing implementations for every fixed-conductor exact type, sharing one arithmetic per type.\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Every canonical scalar-tower implementation delegates to the type's single inherent exact arithmetic; ExactFieldElement is retired.\",\n      \"Field::try_inv refuses zero and inverts every nonzero element through one shared solver\",\n      \"Equality is mathematical equality (canonical reduced form)\"\n    ]\n  },\n  \"laws\": [\n    \"Commutative ring axioms and distributivity hold through the tower\",\n    \"a * a^-1 = 1 for every nonzero a, and try_inv(0) is None\",\n    \"The std::ops operators agree with the inherent methods\",\n    \"BasicMatrix over these types multiplies as expected (the Hadamard-like matrix squares to the identity)\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Exact arithmetic only; no floating point and no tolerance\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_number_theory\",\n    \"module\": \"scalar\",\n    \"required_tests\": [\n      \"gaussian_rationals_form_a_field\",\n      \"eisenstein_rationals_form_a_field\",\n      \"cyclotomic_fields_form_fields\",\n      \"large_conductor_fields_invert_through_the_shared_solver\",\n      \"operators_agree_with_the_inherent_methods\",\n      \"cyclotomic_matrices_use_the_linear_algebra_matrix_type\"\n    ],\n    \"symbols\": [\n      \"RationalEmbedding\"\n    ]\n  },\n  \"negative_tests\": [\n    \"Inversion of zero through the tower must be refused (None)\",\n    \"A canonical scalar must not carry a second arithmetic implementation beside its inherent number-field arithmetic.\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"The bridge that states every fixed-conductor exact type in the vocabulary of the estate: std::ops, num_traits and the linear_algebra scalar tower, so the generic exact matrix algorithms apply.\",\n    \"non_role\": [\n      \"Fixed-width or floating-point scalars\",\n      \"Implementations for types outside this crate\"\n    ]\n  },\n  \"wip\": [\n    \"All fixed exact scalars use the canonical scalar tower and Involution; generic scalar algorithms remain scoped by their explicit field contracts and budgets.\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/general/math_exact_number_scalar_bridge_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "24407f885899d00cc6b24ae6dce2febeb6ae775a414d351cd8416139ada7982d",
+      "bytes": 2249,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/general/math_exact_number_scalar_bridge_v0_1_0_contract.py",
+          "sha256": "56b5920bb346d356e9e7e68be573c64c38a59c227a21a1a8bfb4c7ea9652dcc4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:general:math-exact-number-scalar-bridge-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/general/math_exact_number_scalar_bridge_v0_1_0_contract.py\",\n    \"sha256\": \"56b5920bb346d356e9e7e68be573c64c38a59c227a21a1a8bfb4c7ea9652dcc4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:general:math-exact-number-scalar-bridge-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_number_scalar_bridge_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/general/math_exact_number_scalar_bridge_v0_1_0.contract.yaml": "7fed3ec1272723b42d97b3107890f6a4c4a6ca4eb10c422ef5dcc17e50b87286"
   },

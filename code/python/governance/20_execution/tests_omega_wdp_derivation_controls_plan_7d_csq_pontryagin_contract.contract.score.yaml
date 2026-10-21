@@ -36,12 +36,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "a90421ea6dee538c28392bbc3225993e5b68137abcfc9b4fe7b74555a436532c",
-  "current_scoring": null,
+  "current_contract": "4191bbd4c0c86c0dfc1541f9080293169d680c1d170976857751cc795c5fd222",
+  "current_scoring": "211c08594f903d1ea059b8b96318a2e9f188bcc3c4a773e2b0757b0db61f7f7f",
   "contract_history": [
     {
-      "sha256": "a90421ea6dee538c28392bbc3225993e5b68137abcfc9b4fe7b74555a436532c",
-      "bytes": 830,
+      "sha256": "4191bbd4c0c86c0dfc1541f9080293169d680c1d170976857751cc795c5fd222",
+      "bytes": 1021,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:tests:omega_wdp_derivation_controls_plan_7d_csq_pontryagin:v1.0.0",
@@ -76,13 +76,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:tests:omega_wdp_derivation_controls_plan_7d_csq_pontryagin:v1.0.0\ntitle: Plan 7D Csq Pontryagin Module\nkind: rust_test_contract\nstatus: active\ncrate: tests\nfile: crates_rs/tests/omega_wdp/derivation_controls/plan_7d_csq_pontryagin.rs\nmodule: omega_wdp::derivation_controls::plan_7d_csq_pontryagin\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: tests\n  module: omega_wdp::derivation_controls::plan_7d_csq_pontryagin\n  file: crates_rs/tests/omega_wdp/derivation_controls/plan_7d_csq_pontryagin.rs\nsymbols:\n- ControlReceipt\n- evaluate_plan_7d_csq_pontryagin\nowns:\n- control_receipt\n- evaluate_plan_7d_csq_pontryagin\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:tests:omega_wdp_derivation_controls_plan_7d_csq_pontryagin:v1.0.0\",\n  \"title\": \"Plan 7D Csq Pontryagin Module\",\n  \"kind\": \"rust_test_contract\",\n  \"status\": \"active\",\n  \"crate\": \"tests\",\n  \"file\": \"crates_rs/tests/omega_wdp/derivation_controls/plan_7d_csq_pontryagin.rs\",\n  \"module\": \"omega_wdp::derivation_controls::plan_7d_csq_pontryagin\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"tests\",\n    \"module\": \"omega_wdp::derivation_controls::plan_7d_csq_pontryagin\",\n    \"file\": \"crates_rs/tests/omega_wdp/derivation_controls/plan_7d_csq_pontryagin.rs\"\n  },\n  \"symbols\": [\n    \"ControlReceipt\",\n    \"evaluate_plan_7d_csq_pontryagin\"\n  ],\n  \"owns\": [\n    \"control_receipt\",\n    \"evaluate_plan_7d_csq_pontryagin\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_7d_csq_pontryagin.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "211c08594f903d1ea059b8b96318a2e9f188bcc3c4a773e2b0757b0db61f7f7f",
+      "bytes": 2277,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_7d_csq_pontryagin_contract.py",
+          "sha256": "51a84b4961702cc359f1446c3f01a75205513c5cee2f76d58b4ac7e31caec9e6"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:20_execution:tests-omega-wdp-derivation-controls-plan-7d-csq-pontryagin-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_7d_csq_pontryagin_contract.py\",\n    \"sha256\": \"51a84b4961702cc359f1446c3f01a75205513c5cee2f76d58b4ac7e31caec9e6\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:20_execution:tests-omega-wdp-derivation-controls-plan-7d-csq-pontryagin-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"CheckError or assertion failure on mismatched invariants or unadmitted values; expected test exceptions caught and verified.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_7d_csq_pontryagin_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_7d_csq_pontryagin.contract.yaml": "a90421ea6dee538c28392bbc3225993e5b68137abcfc9b4fe7b74555a436532c"
   },

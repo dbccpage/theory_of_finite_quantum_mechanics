@@ -3,193 +3,38 @@
   "AuthorityEffect": "None",
   "artifact": "code/python/governance/50_os/os_constructor_contract.py",
   "contract": {
-    "schema_version": "1.0.0",
-    "contract_id": "os:constructor",
-    "name": "Constructor Contract",
-    "version": "1.0.0",
-    "kind": "os_doctrine_contract",
-    "status": "active_doctrine",
-    "enforcement_status": "partially_enforced",
-    "description": "Constructors are deterministic admission-boundary builders. They ingest raw, unstructured, heterogeneous, or external material and either reject it with a typed construction failure or produce an immutable admitted Carrier, Obstruction, Packet, or other declared Omega Engine structure. Constructors do not evaluate, certify, authorize, terminalize, repair, search, rank, lift, or compute canonical functionals.\n",
-    "layer": "OS",
-    "module_path": "constructors",
-    "governs": [
-      "constructors/**",
-      "adapters/constructors/**",
-      "omega_*/*constructor*.rs"
-    ],
-    "does_not_govern": [
-      "operators/lambdas/**",
-      "operators/reducers/**",
-      "operators/transforms/**",
-      "omega_functional/**",
-      "omega_homological/**",
-      "omega_lifts/**",
-      "omega_certifiers/**",
-      "omega_replay/**",
-      "omega_id_run/**",
-      "omega_pipeline/**",
-      "omega_engines/**"
-    ],
-    "claims": [
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/governance/50_os/os_constructor_contract.py",
+      "sha256": "e00a26b8bc123e4f5be20b34cc2155c4cb9510294d4024746ac89eb2707f146f"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:50_os:os-constructor-contract:v1",
+    "role": "library",
+    "purpose": "Pydantic v2 Twin Model for os:constructor Schema Version: 1.0.0",
+    "operations": {
+      "ContractModel": "Class ContractModel domain record and methods.",
+      "validate_contract": "Function validate_contract operation."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
       {
-        "id": "OP-CONSTRUCTOR",
-        "description": "Constructor output must be an admitted typed structure or a typed failure.",
-        "status": "active",
-        "provenance": "Operator OS Doctrine"
-      },
-      {
-        "id": "OP-CONSTRUCTOR-RAW-QUARANTINE",
-        "description": "Raw input remains untrusted until constructor admission succeeds.",
-        "status": "active",
-        "provenance": "Operator OS Doctrine"
-      },
-      {
-        "id": "OP-CONSTRUCTOR-NO-AUTH",
-        "description": "Construction/admission does not mint authority.",
-        "status": "active",
-        "provenance": "Operator OS Doctrine"
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
       }
-    ],
-    "rules": {
-      "authority_effect": "none",
-      "mutation": "forbidden",
-      "canonical_functional_computation": "forbidden",
-      "terminalize": "forbidden",
-      "certify": "forbidden",
-      "repair": "forbidden",
-      "lift": "forbidden",
-      "search": "forbidden",
-      "rank": "forbidden",
-      "runtime_orchestration": "forbidden",
-      "side_effects": "forbidden_except_declared_hashing_or_parsing",
-      "deterministic": true,
-      "typed_failure_required": true,
-      "admitted_output_required": true,
-      "raw_input_quarantine_required": true
-    },
-    "allowed": [
-      "parse raw input",
-      "normalize representation into a declared canonical form",
-      "validate schema and dimensions",
-      "validate finite carrier membership",
-      "validate decidable typing/admission predicates",
-      "attach source provenance",
-      "attach content hashes",
-      "return admitted immutable structure",
-      "return typed construction failure"
-    ],
-    "forbidden": [
-      "compute Φ₁",
-      "compute Γ₂",
-      "compute R_cl",
-      "compute Ξ",
-      "classify trichotomy",
-      "mint CertifiedAuthority",
-      "call CertifiedAuthority::certify",
-      "call authority_from_outcome_f13",
-      "call terminalize",
-      "emit AuthorityEffect::Authorize",
-      "perform repair",
-      "generate lift candidates",
-      "rank candidate states",
-      "execute operators",
-      "orchestrate engines",
-      "hide lossy coercion",
-      "silently enlarge carrier",
-      "accept malformed finite complexes",
-      "accept non-finite numeric values",
-      "return opaque string-only failure",
-      "return None as failure"
-    ],
-    "output_shape": {
-      "preferred": "Result<Admitted<T>, ConstructionFailure>",
-      "admitted_wrapper_required": true,
-      "raw_output_forbidden": true
-    },
-    "failure_shape": {
-      "enum": "ConstructionFailure",
-      "required_variants": [
-        "MalformedInput",
-        "SchemaViolation",
-        "CarrierAdmissionFailure",
-        "DimensionMismatch",
-        "NonFiniteInput",
-        "UndeclaredCoercion",
-        "UnsupportedRepresentation",
-        "HashMismatch",
-        "ProvenanceMissing"
-      ]
-    },
-    "validator_requirements": {
-      "forbidden_substrings": [
-        "CertifiedAuthority",
-        "authority_from_outcome_f13",
-        "terminalize",
-        "mint_authority",
-        "Phi1Functional",
-        "Gamma2Functional",
-        "XiFunctional",
-        "classify_exact",
-        "ExactRepair",
-        "AuthorityEffect::Authorize",
-        "unwrap()",
-        "expect("
-      ],
-      "required_patterns": [
-        "Result<",
-        "ConstructionFailure"
-      ],
-      "required_tests": [
-        "constructor_rejects_malformed_input",
-        "constructor_rejects_non_finite_input",
-        "constructor_rejects_dimension_mismatch",
-        "constructor_outputs_admitted_structure",
-        "constructor_does_not_mint_authority",
-        "constructor_does_not_compute_functionals"
-      ]
-    },
-    "lean_obligations": [
-      {
-        "id": "CON-L0",
-        "theorem": "Constructor admission produces an object satisfying declared carrier predicates.",
-        "status": "needed"
-      },
-      {
-        "id": "CON-L1",
-        "theorem": "Rejected raw input cannot enter admitted operator execution.",
-        "status": "needed"
-      },
-      {
-        "id": "CON-L2",
-        "theorem": "Construction/admission does not imply authority.",
-        "status": "needed"
-      },
-      {
-        "id": "CON-L3",
-        "theorem": "Constructor normalization preserves declared structural invariants.",
-        "status": "needed"
-      }
-    ],
-    "notes": [
-      "Constructors are admission-boundary builders, not Operators in the strict admitted-input sense.",
-      "A constructor may create an admitted object, but it may not certify that the object is true, repaired, authoritative, or optimal.",
-      "Lossy coercions must be explicit and reflected in typed output or typed failure.",
-      "If construction requires carrier enlargement from an already-admitted object, that is a MetaLift or lift operation, not a constructor."
-    ],
-    "relationships": {
-      "extends": [
-        "urn:omega:governance:base_contract:v1.0.0",
-        "os:base_legacy_contract"
-      ]
-    }
+    ]
   },
-  "current_contract": "020e553b6c7fe17321949f66c1ad77a90823584626367826908babf8ed1593d9",
-  "current_scoring": null,
+  "current_contract": "3ec58ff23872f407ea2a2ac9873c64a916639b3b55b24fc88fb66c50bbf99be5",
+  "current_scoring": "4130a0795ccae07d45e02ac2a13574cd0f143f957c6917ac469fc56f87c188f4",
   "contract_history": [
     {
-      "sha256": "020e553b6c7fe17321949f66c1ad77a90823584626367826908babf8ed1593d9",
-      "bytes": 4787,
+      "sha256": "5f5411fda6e77fa5362896fd9bd0e3f80f69e7a3b6d12eae0e78566c5083a85e",
+      "bytes": 5836,
       "record": {
         "schema_version": "1.0.0",
         "contract_id": "os:constructor",
@@ -372,13 +217,110 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:constructor\nname: Constructor Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: partially_enforced\ndescription: 'Constructors are deterministic admission-boundary builders. They ingest\n  raw, unstructured, heterogeneous, or external material and either reject it with\n  a typed construction failure or produce an immutable admitted Carrier, Obstruction,\n  Packet, or other declared Omega Engine structure. Constructors do not evaluate,\n  certify, authorize, terminalize, repair, search, rank, lift, or compute canonical\n  functionals.\n\n  '\nlayer: OS\nmodule_path: constructors\ngoverns:\n- constructors/**\n- adapters/constructors/**\n- omega_*/*constructor*.rs\ndoes_not_govern:\n- operators/lambdas/**\n- operators/reducers/**\n- operators/transforms/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\nclaims:\n- id: OP-CONSTRUCTOR\n  description: Constructor output must be an admitted typed structure or a typed failure.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-CONSTRUCTOR-RAW-QUARANTINE\n  description: Raw input remains untrusted until constructor admission succeeds.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-CONSTRUCTOR-NO-AUTH\n  description: Construction/admission does not mint authority.\n  status: active\n  provenance: Operator OS Doctrine\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  repair: forbidden\n  lift: forbidden\n  search: forbidden\n  rank: forbidden\n  runtime_orchestration: forbidden\n  side_effects: forbidden_except_declared_hashing_or_parsing\n  deterministic: true\n  typed_failure_required: true\n  admitted_output_required: true\n  raw_input_quarantine_required: true\nallowed:\n- parse raw input\n- normalize representation into a declared canonical form\n- validate schema and dimensions\n- validate finite carrier membership\n- validate decidable typing/admission predicates\n- attach source provenance\n- attach content hashes\n- return admitted immutable structure\n- return typed construction failure\nforbidden:\n- compute Φ₁\n- compute Γ₂\n- compute R_cl\n- compute Ξ\n- classify trichotomy\n- mint CertifiedAuthority\n- call CertifiedAuthority::certify\n- call authority_from_outcome_f13\n- call terminalize\n- emit AuthorityEffect::Authorize\n- perform repair\n- generate lift candidates\n- rank candidate states\n- execute operators\n- orchestrate engines\n- hide lossy coercion\n- silently enlarge carrier\n- accept malformed finite complexes\n- accept non-finite numeric values\n- return opaque string-only failure\n- return None as failure\noutput_shape:\n  preferred: Result<Admitted<T>, ConstructionFailure>\n  admitted_wrapper_required: true\n  raw_output_forbidden: true\nfailure_shape:\n  enum: ConstructionFailure\n  required_variants:\n  - MalformedInput\n  - SchemaViolation\n  - CarrierAdmissionFailure\n  - DimensionMismatch\n  - NonFiniteInput\n  - UndeclaredCoercion\n  - UnsupportedRepresentation\n  - HashMismatch\n  - ProvenanceMissing\nvalidator_requirements:\n  forbidden_substrings:\n  - CertifiedAuthority\n  - authority_from_outcome_f13\n  - terminalize\n  - mint_authority\n  - Phi1Functional\n  - Gamma2Functional\n  - XiFunctional\n  - classify_exact\n  - ExactRepair\n  - AuthorityEffect::Authorize\n  - unwrap()\n  - expect(\n  required_patterns:\n  - Result<\n  - ConstructionFailure\n  required_tests:\n  - constructor_rejects_malformed_input\n  - constructor_rejects_non_finite_input\n  - constructor_rejects_dimension_mismatch\n  - constructor_outputs_admitted_structure\n  - constructor_does_not_mint_authority\n  - constructor_does_not_compute_functionals\nlean_obligations:\n- id: CON-L0\n  theorem: Constructor admission produces an object satisfying declared carrier predicates.\n  status: needed\n- id: CON-L1\n  theorem: Rejected raw input cannot enter admitted operator execution.\n  status: needed\n- id: CON-L2\n  theorem: Construction/admission does not imply authority.\n  status: needed\n- id: CON-L3\n  theorem: Constructor normalization preserves declared structural invariants.\n  status: needed\nnotes:\n- Constructors are admission-boundary builders, not Operators in the strict admitted-input\n  sense.\n- A constructor may create an admitted object, but it may not certify that the object\n  is true, repaired, authoritative, or optimal.\n- Lossy coercions must be explicit and reflected in typed output or typed failure.\n- If construction requires carrier enlargement from an already-admitted object, that\n  is a MetaLift or lift operation, not a constructor.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:base_legacy_contract\n",
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"contract_id\": \"os:constructor\",\n  \"name\": \"Constructor Contract\",\n  \"version\": \"1.0.0\",\n  \"kind\": \"os_doctrine_contract\",\n  \"status\": \"active_doctrine\",\n  \"enforcement_status\": \"partially_enforced\",\n  \"description\": \"Constructors are deterministic admission-boundary builders. They ingest raw, unstructured, heterogeneous, or external material and either reject it with a typed construction failure or produce an immutable admitted Carrier, Obstruction, Packet, or other declared Omega Engine structure. Constructors do not evaluate, certify, authorize, terminalize, repair, search, rank, lift, or compute canonical functionals.\\n\",\n  \"layer\": \"OS\",\n  \"module_path\": \"constructors\",\n  \"governs\": [\n    \"constructors/**\",\n    \"adapters/constructors/**\",\n    \"omega_*/*constructor*.rs\"\n  ],\n  \"does_not_govern\": [\n    \"operators/lambdas/**\",\n    \"operators/reducers/**\",\n    \"operators/transforms/**\",\n    \"omega_functional/**\",\n    \"omega_homological/**\",\n    \"omega_lifts/**\",\n    \"omega_certifiers/**\",\n    \"omega_replay/**\",\n    \"omega_id_run/**\",\n    \"omega_pipeline/**\",\n    \"omega_engines/**\"\n  ],\n  \"claims\": [\n    {\n      \"id\": \"OP-CONSTRUCTOR\",\n      \"description\": \"Constructor output must be an admitted typed structure or a typed failure.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-CONSTRUCTOR-RAW-QUARANTINE\",\n      \"description\": \"Raw input remains untrusted until constructor admission succeeds.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    },\n    {\n      \"id\": \"OP-CONSTRUCTOR-NO-AUTH\",\n      \"description\": \"Construction/admission does not mint authority.\",\n      \"status\": \"active\",\n      \"provenance\": \"Operator OS Doctrine\"\n    }\n  ],\n  \"rules\": {\n    \"authority_effect\": \"none\",\n    \"mutation\": \"forbidden\",\n    \"canonical_functional_computation\": \"forbidden\",\n    \"terminalize\": \"forbidden\",\n    \"certify\": \"forbidden\",\n    \"repair\": \"forbidden\",\n    \"lift\": \"forbidden\",\n    \"search\": \"forbidden\",\n    \"rank\": \"forbidden\",\n    \"runtime_orchestration\": \"forbidden\",\n    \"side_effects\": \"forbidden_except_declared_hashing_or_parsing\",\n    \"deterministic\": true,\n    \"typed_failure_required\": true,\n    \"admitted_output_required\": true,\n    \"raw_input_quarantine_required\": true\n  },\n  \"allowed\": [\n    \"parse raw input\",\n    \"normalize representation into a declared canonical form\",\n    \"validate schema and dimensions\",\n    \"validate finite carrier membership\",\n    \"validate decidable typing/admission predicates\",\n    \"attach source provenance\",\n    \"attach content hashes\",\n    \"return admitted immutable structure\",\n    \"return typed construction failure\"\n  ],\n  \"forbidden\": [\n    \"compute Φ₁\",\n    \"compute Γ₂\",\n    \"compute R_cl\",\n    \"compute Ξ\",\n    \"classify trichotomy\",\n    \"mint CertifiedAuthority\",\n    \"call CertifiedAuthority::certify\",\n    \"call authority_from_outcome_f13\",\n    \"call terminalize\",\n    \"emit AuthorityEffect::Authorize\",\n    \"perform repair\",\n    \"generate lift candidates\",\n    \"rank candidate states\",\n    \"execute operators\",\n    \"orchestrate engines\",\n    \"hide lossy coercion\",\n    \"silently enlarge carrier\",\n    \"accept malformed finite complexes\",\n    \"accept non-finite numeric values\",\n    \"return opaque string-only failure\",\n    \"return None as failure\"\n  ],\n  \"output_shape\": {\n    \"preferred\": \"Result<Admitted<T>, ConstructionFailure>\",\n    \"admitted_wrapper_required\": true,\n    \"raw_output_forbidden\": true\n  },\n  \"failure_shape\": {\n    \"enum\": \"ConstructionFailure\",\n    \"required_variants\": [\n      \"MalformedInput\",\n      \"SchemaViolation\",\n      \"CarrierAdmissionFailure\",\n      \"DimensionMismatch\",\n      \"NonFiniteInput\",\n      \"UndeclaredCoercion\",\n      \"UnsupportedRepresentation\",\n      \"HashMismatch\",\n      \"ProvenanceMissing\"\n    ]\n  },\n  \"validator_requirements\": {\n    \"forbidden_substrings\": [\n      \"CertifiedAuthority\",\n      \"authority_from_outcome_f13\",\n      \"terminalize\",\n      \"mint_authority\",\n      \"Phi1Functional\",\n      \"Gamma2Functional\",\n      \"XiFunctional\",\n      \"classify_exact\",\n      \"ExactRepair\",\n      \"AuthorityEffect::Authorize\",\n      \"unwrap()\",\n      \"expect(\"\n    ],\n    \"required_patterns\": [\n      \"Result<\",\n      \"ConstructionFailure\"\n    ],\n    \"required_tests\": [\n      \"constructor_rejects_malformed_input\",\n      \"constructor_rejects_non_finite_input\",\n      \"constructor_rejects_dimension_mismatch\",\n      \"constructor_outputs_admitted_structure\",\n      \"constructor_does_not_mint_authority\",\n      \"constructor_does_not_compute_functionals\"\n    ]\n  },\n  \"lean_obligations\": [\n    {\n      \"id\": \"CON-L0\",\n      \"theorem\": \"Constructor admission produces an object satisfying declared carrier predicates.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"CON-L1\",\n      \"theorem\": \"Rejected raw input cannot enter admitted operator execution.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"CON-L2\",\n      \"theorem\": \"Construction/admission does not imply authority.\",\n      \"status\": \"needed\"\n    },\n    {\n      \"id\": \"CON-L3\",\n      \"theorem\": \"Constructor normalization preserves declared structural invariants.\",\n      \"status\": \"needed\"\n    }\n  ],\n  \"notes\": [\n    \"Constructors are admission-boundary builders, not Operators in the strict admitted-input sense.\",\n    \"A constructor may create an admitted object, but it may not certify that the object is true, repaired, authoritative, or optimal.\",\n    \"Lossy coercions must be explicit and reflected in typed output or typed failure.\",\n    \"If construction requires carrier enlargement from an already-admitted object, that is a MetaLift or lift operation, not a constructor.\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"os:base_legacy_contract\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/os_constructor.contract.yaml"
       ]
+    },
+    {
+      "sha256": "3ec58ff23872f407ea2a2ac9873c64a916639b3b55b24fc88fb66c50bbf99be5",
+      "bytes": 1754,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_constructor_contract.py",
+          "sha256": "e00a26b8bc123e4f5be20b34cc2155c4cb9510294d4024746ac89eb2707f146f"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:50_os:os-constructor-contract:v1",
+        "role": "library",
+        "purpose": "Pydantic v2 Twin Model for os:constructor Schema Version: 1.0.0",
+        "operations": {
+          "ContractModel": "Class ContractModel domain record and methods.",
+          "validate_contract": "Function validate_contract operation."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_constructor_contract.py\",\n    \"sha256\": \"e00a26b8bc123e4f5be20b34cc2155c4cb9510294d4024746ac89eb2707f146f\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:50_os:os-constructor-contract:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Pydantic v2 Twin Model for os:constructor Schema Version: 1.0.0\",\n  \"operations\": {\n    \"ContractModel\": \"Class ContractModel domain record and methods.\",\n    \"validate_contract\": \"Function validate_contract operation.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_constructor_contract.contract.score.yaml#contract"
+      ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "4130a0795ccae07d45e02ac2a13574cd0f143f957c6917ac469fc56f87c188f4",
+      "bytes": 2189,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/os_constructor_contract.py",
+          "sha256": "e00a26b8bc123e4f5be20b34cc2155c4cb9510294d4024746ac89eb2707f146f"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:os-constructor-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/os_constructor_contract.py\",\n    \"sha256\": \"e00a26b8bc123e4f5be20b34cc2155c4cb9510294d4024746ac89eb2707f146f\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:os-constructor-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_constructor_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/os_constructor.contract.yaml": "020e553b6c7fe17321949f66c1ad77a90823584626367826908babf8ed1593d9"
   },

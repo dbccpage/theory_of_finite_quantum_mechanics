@@ -113,7 +113,7 @@ def test_part_c_so4_runge_lenz_commutes_with_unperturbed_casimir() -> None:
     assert q_is_zero(q_comm(ops_n2["C2_so4"], ops_n2["Kz"]))
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'bound_spectra.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'bound_spectra.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

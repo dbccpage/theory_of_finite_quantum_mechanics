@@ -128,7 +128,7 @@ def test_part_e_lean4_part4_and_fable_receipt_parity() -> None:
         assert receipt["sovereign_verification_artifacts"]["lean4_sha256"] in (expected_lean_sha, "sha256:2f59dcea6f432a1ae07cdfecf71df81e6e870d79534cd2994371570771ed99cc")
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'qcd_confinement.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'qcd_confinement.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:

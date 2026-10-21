@@ -46,12 +46,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "e440d8e778eb547d66c92546cfefa781c1cc5188882e77fa98c6737c9db73d25",
-  "current_scoring": null,
+  "current_contract": "de1c788ebc6968fd6e18f5bad4302bc378f848520d5d566239e76698f03d34bd",
+  "current_scoring": "c2acb7e005478ccf91a3caaeda7e66a7d37141b45feec9fa901fbf36666b1de5",
   "contract_history": [
     {
-      "sha256": "e440d8e778eb547d66c92546cfefa781c1cc5188882e77fa98c6737c9db73d25",
-      "bytes": 921,
+      "sha256": "de1c788ebc6968fd6e18f5bad4302bc378f848520d5d566239e76698f03d34bd",
+      "bytes": 1158,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_epistemic_immune_system:admission:v1.0.0",
@@ -96,13 +96,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_epistemic_immune_system:admission:v1.0.0\ntitle: 'External-review eligibility and independent observation support. AuthorityEffect:\n  None.'\nkind: rust_file_contract\nstatus: active\ncrate: omega_epistemic_immune_system\nfile: crates_rs/omega_epistemic_immune_system/src/admission.rs\nmodule: admission\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_epistemic_immune_system\n  module: admission\n  file: crates_rs/omega_epistemic_immune_system/src/admission.rs\nsymbols:\n- ExternalAdmissionRequest\n- from_value\n- distinct_observations\n- assess\n- RawObservation\n- support\n- execute\nowns:\n- external_admission_request\n- from_value\n- distinct_observations\n- assess\n- raw_observation\n- support\n- execute\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_epistemic_immune_system:admission:v1.0.0\",\n  \"title\": \"External-review eligibility and independent observation support. AuthorityEffect: None.\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_epistemic_immune_system\",\n  \"file\": \"crates_rs/omega_epistemic_immune_system/src/admission.rs\",\n  \"module\": \"admission\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_epistemic_immune_system\",\n    \"module\": \"admission\",\n    \"file\": \"crates_rs/omega_epistemic_immune_system/src/admission.rs\"\n  },\n  \"symbols\": [\n    \"ExternalAdmissionRequest\",\n    \"from_value\",\n    \"distinct_observations\",\n    \"assess\",\n    \"RawObservation\",\n    \"support\",\n    \"execute\"\n  ],\n  \"owns\": [\n    \"external_admission_request\",\n    \"from_value\",\n    \"distinct_observations\",\n    \"assess\",\n    \"raw_observation\",\n    \"support\",\n    \"execute\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/30_evidence/omega_epistemic_immune_system_admission.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "c2acb7e005478ccf91a3caaeda7e66a7d37141b45feec9fa901fbf36666b1de5",
+      "bytes": 2251,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/30_evidence/omega_epistemic_immune_system_admission_contract.py",
+          "sha256": "e9c4ec48a0b16103bb50fa76d905505bc97827332d6ae2a6d8f5476a9d1aaba7"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:30_evidence:omega-epistemic-immune-system-admission-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/30_evidence/omega_epistemic_immune_system_admission_contract.py\",\n    \"sha256\": \"e9c4ec48a0b16103bb50fa76d905505bc97827332d6ae2a6d8f5476a9d1aaba7\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:30_evidence:omega-epistemic-immune-system-admission-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/omega_epistemic_immune_system_admission_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/30_evidence/omega_epistemic_immune_system_admission.contract.yaml": "e440d8e778eb547d66c92546cfefa781c1cc5188882e77fa98c6737c9db73d25"
   },

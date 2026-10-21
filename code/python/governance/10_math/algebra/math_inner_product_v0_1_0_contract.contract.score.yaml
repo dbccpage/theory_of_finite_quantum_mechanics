@@ -119,12 +119,12 @@
       "Infinite-dimensional extension (RKHS) deferred to v1.0.0 or separate contract"
     ]
   },
-  "current_contract": "fa54b0d7a976f38f38954f110a0f7fe551b33652418430957f2714ae98b922dc",
-  "current_scoring": null,
+  "current_contract": "91364fdcb41015f25ebbbed6aef6aea1a4ff4067a3307e72739c1540555d509f",
+  "current_scoring": "84ef8ffeb112d6bccbb7045f85caecb92fb8b07500f3db25d63cfbdbb779f1b5",
   "contract_history": [
     {
-      "sha256": "fa54b0d7a976f38f38954f110a0f7fe551b33652418430957f2714ae98b922dc",
-      "bytes": 5176,
+      "sha256": "91364fdcb41015f25ebbbed6aef6aea1a4ff4067a3307e72739c1540555d509f",
+      "bytes": 5738,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:math:inner_product:v0.1.0",
@@ -242,13 +242,75 @@
           "Infinite-dimensional extension (RKHS) deferred to v1.0.0 or separate contract"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:inner_product:v0.1.0\ntitle: InnerProduct Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bilinear_form\n  symbol: ⟨x, y⟩ = x^T G y (real) or x† G y (complex)\n  ascii_symbol: inner_product\n  notation: ⟨x, y⟩ = x^T G y (real) or x† G y (complex)\n  domain:\n  - 'gram_matrix: n × n array of field elements in row-major order'\n  - 'carrier_space: finite-dimensional vector space V with dimension n'\n  - 'field_spec: field K with element serialization rules'\n  - 'ordered_basis: ordered list of n basis vectors with basis_hash'\n  codomain:\n    description: 'Gram matrix G: n × n array over field K, representing inner product\n      on V'\nrequirements:\n  required_structures:\n  - Gram matrix dimensions must equal carrier space dimension\n  - All matrix entries must be valid field elements\n  - Supplied basis_hash must match SHA-256 of ordered basis\n  - Carrier space field must match field_spec\n  - StructureArtifact hash must match SHA-256 of canonical serialization\nlaws:\n- Gram matrix G must be n × n where n = dim(V)\n- Every entry of G must be a valid element of field K\n- Ordered basis must be linearly independent and span V\n- Carrier space V must be declared over field K\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Gram matrix entries serialized in row-major order\n  - Field elements encoded according to field_spec\n  - Validator and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::vector_space\n  symbols:\n  - InnerProduct\n  required_tests:\n  - inner_product_rejects_dimension_mismatch\nnegative_tests:\n- carrier dimension n=3, gram_matrix is 3×4\n- field_spec = 'GF(2)', gram_matrix contains entry '2'\n- supplied basis_hash does not match SHA-256 of ordered basis\n- carrier_space over ℝ, but field_spec = 'GF(5)'\n- InnerProduct on V, Vector from different space (different basis_hash)\n- V has dimension 3, supplied vector has 4 components\n- FactEnvelope claiming 'is_symmetric' for non-symmetric matrix (G != G^T)\ndoctrine:\n  summary: An InnerProduct represents a bilinear (or sesquilinear) form on a finite-dimensional\n    vector space V over a field K, expressed in a chosen ordered basis of V. The form\n    is given by a square matrix G (the Gram matrix) such that the pairing of vectors\n    x and y (written as column vectors) is x^T G y for real bilinear forms, and x†\n    G y for complex sesquilinear forms. This contract defines the structure of the\n    Gram matrix and its relationship to V, together with deterministic computations\n    (evaluation of the pairing) and decidable facts (e.g. symmetry, positive-definiteness).\n    It does not confer authority or decide admissibility.\n  non_role:\n  - Does not determine whether form is bilinear or sesquilinear (captured by field\n    K)\n  - Does not assert symmetry, Hermitian, or positive-definite properties (use FactEnvelopes)\n  - Does not confer authority or decide admissibility\n  - Does not extend to infinite-dimensional or continuous basis spaces\n  - Does not provide sparse matrix representations\nwip:\n- Contract does not distinguish between bilinear and sesquilinear forms in structure;\n  evaluation function in ComputationWitness must be chosen according to field's conjugation\n  rules. Precise handling of complex conjugation will be part of field_spec contract.\n- Facts like 'positive definite' require ordering on field K; currently only sub-fields\n  of ℝ supported for such properties. Separate 'OrderedField' contract anticipated.\n- Contract limited to finite-dimensional spaces. Extension to continuous bases or\n  reproducing kernel Hilbert spaces is deferred.\n- No sparse representation of Gram matrix defined; only dense row-major serialization\n  used.\n- List of allowed FactEnvelope types and their validators will be specified in future\n  'InnerProductProperties' sub-contract.\n- Canonical scalar artifact for inner product result not defined here; assumes separate\n  'Scalar' contract exists and is referenced.\n- Status set to mathematical_wip until OrderedField and InnerProductProperties contracts\n  are completed\n- 'Validator execution order is critical: dimension → field elements → basis → carrier/field\n  consistency → artifact hash'\n- ComputationWitness for evaluation must include content-addressed evaluation function\n  hash to ensure deterministic replay\n- FactEnvelopes for properties (symmetry, Hermitian, positive-definite) are separate\n  artifacts that reference the InnerProduct StructureArtifact hash\n- Sparse matrix support deferred to v0.2.0\n- Infinite-dimensional extension (RKHS) deferred to v1.0.0 or separate contract\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:math:inner_product:v0.1.0\",\n  \"title\": \"InnerProduct Contract\",\n  \"kind\": \"math_contract\",\n  \"status\": \"mathematical_wip\",\n  \"layer\": \"math\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"ShapeOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [],\n      \"proof_obligations\": []\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": []\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"math\": {\n    \"object_kind\": \"bilinear_form\",\n    \"symbol\": \"⟨x, y⟩ = x^T G y (real) or x† G y (complex)\",\n    \"ascii_symbol\": \"inner_product\",\n    \"notation\": \"⟨x, y⟩ = x^T G y (real) or x† G y (complex)\",\n    \"domain\": [\n      \"gram_matrix: n × n array of field elements in row-major order\",\n      \"carrier_space: finite-dimensional vector space V with dimension n\",\n      \"field_spec: field K with element serialization rules\",\n      \"ordered_basis: ordered list of n basis vectors with basis_hash\"\n    ],\n    \"codomain\": {\n      \"description\": \"Gram matrix G: n × n array over field K, representing inner product on V\"\n    }\n  },\n  \"requirements\": {\n    \"required_structures\": [\n      \"Gram matrix dimensions must equal carrier space dimension\",\n      \"All matrix entries must be valid field elements\",\n      \"Supplied basis_hash must match SHA-256 of ordered basis\",\n      \"Carrier space field must match field_spec\",\n      \"StructureArtifact hash must match SHA-256 of canonical serialization\"\n    ]\n  },\n  \"laws\": [\n    \"Gram matrix G must be n × n where n = dim(V)\",\n    \"Every entry of G must be a valid element of field K\",\n    \"Ordered basis must be linearly independent and span V\",\n    \"Carrier space V must be declared over field K\"\n  ],\n  \"replay\": {\n    \"requirements\": [\n      \"No external state\",\n      \"No randomness\",\n      \"No time-dependent data\",\n      \"Gram matrix entries serialized in row-major order\",\n      \"Field elements encoded according to field_spec\",\n      \"Validator and computation functions are content-addressed\"\n    ]\n  },\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"rust_binding\": {\n    \"crate\": \"omega_linear_algebra\",\n    \"module\": \"linear_algebra::vector_space\",\n    \"symbols\": [\n      \"InnerProduct\"\n    ],\n    \"required_tests\": [\n      \"inner_product_rejects_dimension_mismatch\"\n    ]\n  },\n  \"negative_tests\": [\n    \"carrier dimension n=3, gram_matrix is 3×4\",\n    \"field_spec = 'GF(2)', gram_matrix contains entry '2'\",\n    \"supplied basis_hash does not match SHA-256 of ordered basis\",\n    \"carrier_space over ℝ, but field_spec = 'GF(5)'\",\n    \"InnerProduct on V, Vector from different space (different basis_hash)\",\n    \"V has dimension 3, supplied vector has 4 components\",\n    \"FactEnvelope claiming 'is_symmetric' for non-symmetric matrix (G != G^T)\"\n  ],\n  \"doctrine\": {\n    \"summary\": \"An InnerProduct represents a bilinear (or sesquilinear) form on a finite-dimensional vector space V over a field K, expressed in a chosen ordered basis of V. The form is given by a square matrix G (the Gram matrix) such that the pairing of vectors x and y (written as column vectors) is x^T G y for real bilinear forms, and x† G y for complex sesquilinear forms. This contract defines the structure of the Gram matrix and its relationship to V, together with deterministic computations (evaluation of the pairing) and decidable facts (e.g. symmetry, positive-definiteness). It does not confer authority or decide admissibility.\",\n    \"non_role\": [\n      \"Does not determine whether form is bilinear or sesquilinear (captured by field K)\",\n      \"Does not assert symmetry, Hermitian, or positive-definite properties (use FactEnvelopes)\",\n      \"Does not confer authority or decide admissibility\",\n      \"Does not extend to infinite-dimensional or continuous basis spaces\",\n      \"Does not provide sparse matrix representations\"\n    ]\n  },\n  \"wip\": [\n    \"Contract does not distinguish between bilinear and sesquilinear forms in structure; evaluation function in ComputationWitness must be chosen according to field's conjugation rules. Precise handling of complex conjugation will be part of field_spec contract.\",\n    \"Facts like 'positive definite' require ordering on field K; currently only sub-fields of ℝ supported for such properties. Separate 'OrderedField' contract anticipated.\",\n    \"Contract limited to finite-dimensional spaces. Extension to continuous bases or reproducing kernel Hilbert spaces is deferred.\",\n    \"No sparse representation of Gram matrix defined; only dense row-major serialization used.\",\n    \"List of allowed FactEnvelope types and their validators will be specified in future 'InnerProductProperties' sub-contract.\",\n    \"Canonical scalar artifact for inner product result not defined here; assumes separate 'Scalar' contract exists and is referenced.\",\n    \"Status set to mathematical_wip until OrderedField and InnerProductProperties contracts are completed\",\n    \"Validator execution order is critical: dimension → field elements → basis → carrier/field consistency → artifact hash\",\n    \"ComputationWitness for evaluation must include content-addressed evaluation function hash to ensure deterministic replay\",\n    \"FactEnvelopes for properties (symmetry, Hermitian, positive-definite) are separate artifacts that reference the InnerProduct StructureArtifact hash\",\n    \"Sparse matrix support deferred to v0.2.0\",\n    \"Infinite-dimensional extension (RKHS) deferred to v1.0.0 or separate contract\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/math_inner_product_v0_1_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "84ef8ffeb112d6bccbb7045f85caecb92fb8b07500f3db25d63cfbdbb779f1b5",
+      "bytes": 2223,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/math_inner_product_v0_1_0_contract.py",
+          "sha256": "ef9acfa6431dcd2fd5f9fa7bf90cc2a57b6030cade1de22f7cf07caa438bf091"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:math-inner-product-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/math_inner_product_v0_1_0_contract.py\",\n    \"sha256\": \"ef9acfa6431dcd2fd5f9fa7bf90cc2a57b6030cade1de22f7cf07caa438bf091\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:math-inner-product-v0-1-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_inner_product_v0_1_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/math_inner_product_v0_1_0.contract.yaml": "fa54b0d7a976f38f38954f110a0f7fe551b33652418430957f2714ae98b922dc"
   },

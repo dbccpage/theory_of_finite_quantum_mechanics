@@ -133,12 +133,12 @@
       ]
     }
   },
-  "current_contract": "bc60066ba24bcc5b9f729595307b76465656bbf1a20a58fe7a56ba1cf063ae98",
-  "current_scoring": null,
+  "current_contract": "2e5216152ca01828847a32b868b86afe5f6adddbda7f4fe6c847cc7aa138f100",
+  "current_scoring": "f102fa6296e5436fd4d747006eefa7b775b52b2bf976e1a39b764d9855e34b1d",
   "contract_history": [
     {
-      "sha256": "bc60066ba24bcc5b9f729595307b76465656bbf1a20a58fe7a56ba1cf063ae98",
-      "bytes": 3136,
+      "sha256": "2e5216152ca01828847a32b868b86afe5f6adddbda7f4fe6c847cc7aa138f100",
+      "bytes": 3958,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:oeos:composition_root:v1.0.0",
@@ -270,13 +270,75 @@
           ]
         }
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:composition_root:v1.0.0\ntitle: Immutable OEOS Composition Root\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: CompositionRoot\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    - urn:omega:oeos:cas_store:v1.0.0\n    - urn:omega:oeos:filesystem_adapter:v1.0.0\n    - urn:omega:oeos:process_manager:v1.0.0\n    - urn:omega:oeos:worker_host:v1.0.0\n    proof_obligations:\n    - id: CMP-INV-001\n      statement: Required bindings are exact, unique, complete, and acyclic before\n        the root freezes.\n      verification_status: open\n    - id: CMP-INV-002\n      statement: Missing, duplicate, partial, dynamically injected, or cyclic bindings\n        fail startup closed.\n      verification_status: open\n    - id: CMP-INV-003\n      statement: Freezing host bindings neither activates proposed contracts nor grants\n        inward authority.\n      verification_status: open\n    - id: CMP-INV-004\n      statement: Configuration and task implementation identities are bound before\n        any host request executes.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - COMPOSITION_CYCLE_REFUSED\n    - COMPOSITION_DUPLICATE_REFUSED\n    - COMPOSITION_MISSING_REFUSED\n    - COMPOSITION_UNFROZEN_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: exact_host_bindings\n    type: urn:omega:oeos:type:exact_host_bindings:v1.0.0\n    required: true\n  outputs:\n  - name: frozen_composition_root\n    type: urn:omega:oeos:type:frozen_composition_root:v1.0.0\n    required: true\n  typed_refusals:\n  - COMPOSITION_CYCLE_REFUSED\n  - COMPOSITION_DUPLICATE_REFUSED\n  - COMPOSITION_MISSING_REFUSED\n  - COMPOSITION_UNFROZEN_REFUSED\n  platform_requirements:\n  - profile: immutable_process_composition\n    requirements:\n    - exact_port_protocol_checks\n    - complete_dependency_graph\n    - freeze_before_dispatch\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares the outer wiring boundary that binds concrete host ports without\n    owning inward semantics.\n  non_role:\n  - service_locator_for_domain_code\n  - dynamic_plugin_loader\n  - action_license_boundary\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - successful_composition_does_not_activate_all_proposed_contracts\n  invariants:\n  - bindings_are_unique_and_acyclic\n  - frozen_root_rejects_runtime_registration\n  allowed_operations:\n  - validate_exact_bindings\n  - freeze_complete_composition\n  - resolve_declared_host_port\n  forbidden_operations:\n  - dynamic_runtime_registration\n  - partial_startup\n  - infer_inward_authority_from_host_binding\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:oeos:composition_root:v1.0.0\",\n  \"title\": \"Immutable OEOS Composition Root\",\n  \"kind\": \"host_contract\",\n  \"status\": \"proposed\",\n  \"layer\": \"09_host\",\n  \"role\": \"CompositionRoot\",\n  \"descriptor\": {\n    \"authority_effect\": \"none\",\n    \"evidence_ceiling\": \"RequirementsOnly\",\n    \"runtime_enforcement\": false,\n    \"customer_claim_allowed\": false,\n    \"dependencies\": {\n      \"contracts\": [\n        \"urn:omega:oeos:capability_guard:v1.0.0\",\n        \"urn:omega:oeos:cas_store:v1.0.0\",\n        \"urn:omega:oeos:filesystem_adapter:v1.0.0\",\n        \"urn:omega:oeos:process_manager:v1.0.0\",\n        \"urn:omega:oeos:worker_host:v1.0.0\"\n      ],\n      \"proof_obligations\": [\n        {\n          \"id\": \"CMP-INV-001\",\n          \"statement\": \"Required bindings are exact, unique, complete, and acyclic before the root freezes.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CMP-INV-002\",\n          \"statement\": \"Missing, duplicate, partial, dynamically injected, or cyclic bindings fail startup closed.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CMP-INV-003\",\n          \"statement\": \"Freezing host bindings neither activates proposed contracts nor grants inward authority.\",\n          \"verification_status\": \"open\"\n        },\n        {\n          \"id\": \"CMP-INV-004\",\n          \"statement\": \"Configuration and task implementation identities are bound before any host request executes.\",\n          \"verification_status\": \"open\"\n        }\n      ]\n    },\n    \"terminals\": {\n      \"may_emit\": [],\n      \"may_support\": []\n    },\n    \"refusals\": {\n      \"may_emit\": [\n        \"COMPOSITION_CYCLE_REFUSED\",\n        \"COMPOSITION_DUPLICATE_REFUSED\",\n        \"COMPOSITION_MISSING_REFUSED\",\n        \"COMPOSITION_UNFROZEN_REFUSED\"\n      ]\n    },\n    \"operator_classes\": {\n      \"may_support\": [],\n      \"must_not_self_assign\": true\n    }\n  },\n  \"relationships\": {\n    \"abstract\": false,\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\",\n      \"urn:omega:constitution:base_host_contract:v1.0.0\"\n    ]\n  },\n  \"requirements\": {\n    \"inputs\": [\n      {\n        \"name\": \"exact_host_bindings\",\n        \"type\": \"urn:omega:oeos:type:exact_host_bindings:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"outputs\": [\n      {\n        \"name\": \"frozen_composition_root\",\n        \"type\": \"urn:omega:oeos:type:frozen_composition_root:v1.0.0\",\n        \"required\": true\n      }\n    ],\n    \"typed_refusals\": [\n      \"COMPOSITION_CYCLE_REFUSED\",\n      \"COMPOSITION_DUPLICATE_REFUSED\",\n      \"COMPOSITION_MISSING_REFUSED\",\n      \"COMPOSITION_UNFROZEN_REFUSED\"\n    ],\n    \"platform_requirements\": [\n      {\n        \"profile\": \"immutable_process_composition\",\n        \"requirements\": [\n          \"exact_port_protocol_checks\",\n          \"complete_dependency_graph\",\n          \"freeze_before_dispatch\"\n        ],\n        \"verification_status\": \"requirements_only\"\n      }\n    ],\n    \"evidence_ceiling\": \"RequirementsOnly\"\n  },\n  \"doctrine\": {\n    \"summary\": \"Declares the outer wiring boundary that binds concrete host ports without owning inward semantics.\",\n    \"non_role\": [\n      \"service_locator_for_domain_code\",\n      \"dynamic_plugin_loader\",\n      \"action_license_boundary\"\n    ],\n    \"nonclaims\": [\n      \"does_not_create_mathematical_facts_or_witnesses\",\n      \"does_not_issue_action_licenses\",\n      \"does_not_authorize_engine_state_transitions\",\n      \"successful_composition_does_not_activate_all_proposed_contracts\"\n    ],\n    \"invariants\": [\n      \"bindings_are_unique_and_acyclic\",\n      \"frozen_root_rejects_runtime_registration\"\n    ],\n    \"allowed_operations\": [\n      \"validate_exact_bindings\",\n      \"freeze_complete_composition\",\n      \"resolve_declared_host_port\"\n    ],\n    \"forbidden_operations\": [\n      \"dynamic_runtime_registration\",\n      \"partial_startup\",\n      \"infer_inward_authority_from_host_binding\"\n    ]\n  }\n}\n",
       "original_paths": [
         "code/python/governance/50_os/oeos_composition_root_v1_0_0.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "f102fa6296e5436fd4d747006eefa7b775b52b2bf976e1a39b764d9855e34b1d",
+      "bytes": 2217,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/50_os/oeos_composition_root_v1_0_0_contract.py",
+          "sha256": "8b8459709be73af91ccf062a147e80758bd9ea519bd875e3fab8b9bcd31002b8"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:50_os:oeos-composition-root-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/50_os/oeos_composition_root_v1_0_0_contract.py\",\n    \"sha256\": \"8b8459709be73af91ccf062a147e80758bd9ea519bd875e3fab8b9bcd31002b8\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:50_os:oeos-composition-root-v1-0-0-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_composition_root_v1_0_0_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/50_os/oeos_composition_root_v1_0_0.contract.yaml": "bc60066ba24bcc5b9f729595307b76465656bbf1a20a58fe7a56ba1cf063ae98"
   },

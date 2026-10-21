@@ -1,0 +1,186 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/src/mub/target_a10_global_cover.py",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/python/src/mub/target_a10_global_cover.py",
+      "sha256": "4f53b9a019cb1396eb2fd28496f52e090fd195d18c027a3f996395e05e8bb759"
+    },
+    "profile": "Exact",
+    "claim": "urn:omega:fqm:mub:target-a10-global-cover:v1",
+    "role": "library",
+    "purpose": "Target A10: Python Exact Verifier & Falsification Suite. Firewall Line: stated region only; mints no authority",
+    "operations": {
+      "assert_no_float": "Recursively verify that no floating-point types exist in any certifier data structure.",
+      "RationalIntervalBox": "Exact D-dimensional coordinate interval box [(lo_k, hi_k)] over Fraction.",
+      "RationalCell": "A certified leaf cell belonging to one of the 6 regional covers.",
+      "GlobalTreeNode": "Base class for recursive partition tree nodes.",
+      "GlobalLeafNode": "Leaf node containing a certified rational cell.",
+      "GlobalSplitNode": "Internal bisection node splitting dimension dim at cut.",
+      "RegionalCoverTree": "Partition tree covering one specific region of the moduli atlas.",
+      "GlobalPartitionTree": "Global partition tree aggregating all 6 regional covers.",
+      "build_f6_dita_cover": "Build exact rational bisection tree for Affine Dita Fourier Chart F_6.",
+      "build_b6_szollosi_cover": "Build exact rational partition tree for Szollosi Deltoid Arc & Cusps B_6.",
+      "build_s6_tao_cover": "Build exact rational partition tree for Tao Confluence Chart S_6.",
+      "build_collar_2d_cover": "Build exact rational partition tree for 2D Periodic Collar Cover.",
+      "build_karlsson_exterior_cover": "Build exact rational partition tree for Karlsson Volume Exterior Boundary Interface.",
+      "build_h6_haagerup_cover": "Build exact rational partition tree for Isolated Haagerup Orbit Neighborhood H_6.",
+      "build_canonical_global_partition_tree": "Aggregates all 6 regional covers into the canonical global partition tree.",
+      "verify_volume_conservation": "Verifies exact rational volume conservation across all 6 regional covers.",
+      "BoundaryInterface": "Exact transition interface between two adjacent regional charts.",
+      "build_canonical_boundary_interfaces": "Builds the 6 canonical boundary interfaces forming the closed nerve cycle.",
+      "verify_boundary_interface_adjacency": "Verifies that the multi-chart boundary interfaces form an exact adjacent cover.",
+      "GlobalNetworkSimplexVerifier": "Network Simplex cycle circulation check on the multi-chart nerve cycle.",
+      "generate_target_a10_receipt": "Generates an exact rational certificate receipt for Target A10.",
+      "audit_target_a10_receipt": "Audits and validates an exact rational Target A10 certificate receipt.",
+      "audit_missing_cell_tree": "Negative control: audits rejection of a tree missing a region or leaf cell.",
+      "audit_volume_discrepancy": "Negative control: audits rejection when total cell volume != expected volume.",
+      "audit_boundary_gap": "Negative control: audits rejection of boundary interfaces with non-zero gap.",
+      "audit_overlapping_cells": "Negative control: audits rejection of overlapping uncertified cells.",
+      "audit_non_positive_margin": "Negative control: audits rejection of cell with non-positive obstruction margin.",
+      "audit_corrupted_receipt_schema": "Negative control: audits rejection of corrupted receipt schemas, bad firewall, or injected floats."
+    },
+    "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+    "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+    "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+    "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+    "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+    "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+    "evidence": [
+      {
+        "path": "SCORING.md",
+        "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+      }
+    ]
+  },
+  "current_contract": "f16a70d02d190905bb436cb35f63fa3c9867f45752a78d8fa0f2694ddfad1049",
+  "current_scoring": "a187f2398a76dfe8c2c02baafd9be6140a025caf3f6ab875f7ea6cceb83def96",
+  "contract_history": [
+    {
+      "sha256": "f16a70d02d190905bb436cb35f63fa3c9867f45752a78d8fa0f2694ddfad1049",
+      "bytes": 4590,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_a10_global_cover.py",
+          "sha256": "4f53b9a019cb1396eb2fd28496f52e090fd195d18c027a3f996395e05e8bb759"
+        },
+        "profile": "Exact",
+        "claim": "urn:omega:fqm:mub:target-a10-global-cover:v1",
+        "role": "library",
+        "purpose": "Target A10: Python Exact Verifier & Falsification Suite. Firewall Line: stated region only; mints no authority",
+        "operations": {
+          "assert_no_float": "Recursively verify that no floating-point types exist in any certifier data structure.",
+          "RationalIntervalBox": "Exact D-dimensional coordinate interval box [(lo_k, hi_k)] over Fraction.",
+          "RationalCell": "A certified leaf cell belonging to one of the 6 regional covers.",
+          "GlobalTreeNode": "Base class for recursive partition tree nodes.",
+          "GlobalLeafNode": "Leaf node containing a certified rational cell.",
+          "GlobalSplitNode": "Internal bisection node splitting dimension dim at cut.",
+          "RegionalCoverTree": "Partition tree covering one specific region of the moduli atlas.",
+          "GlobalPartitionTree": "Global partition tree aggregating all 6 regional covers.",
+          "build_f6_dita_cover": "Build exact rational bisection tree for Affine Dita Fourier Chart F_6.",
+          "build_b6_szollosi_cover": "Build exact rational partition tree for Szollosi Deltoid Arc & Cusps B_6.",
+          "build_s6_tao_cover": "Build exact rational partition tree for Tao Confluence Chart S_6.",
+          "build_collar_2d_cover": "Build exact rational partition tree for 2D Periodic Collar Cover.",
+          "build_karlsson_exterior_cover": "Build exact rational partition tree for Karlsson Volume Exterior Boundary Interface.",
+          "build_h6_haagerup_cover": "Build exact rational partition tree for Isolated Haagerup Orbit Neighborhood H_6.",
+          "build_canonical_global_partition_tree": "Aggregates all 6 regional covers into the canonical global partition tree.",
+          "verify_volume_conservation": "Verifies exact rational volume conservation across all 6 regional covers.",
+          "BoundaryInterface": "Exact transition interface between two adjacent regional charts.",
+          "build_canonical_boundary_interfaces": "Builds the 6 canonical boundary interfaces forming the closed nerve cycle.",
+          "verify_boundary_interface_adjacency": "Verifies that the multi-chart boundary interfaces form an exact adjacent cover.",
+          "GlobalNetworkSimplexVerifier": "Network Simplex cycle circulation check on the multi-chart nerve cycle.",
+          "generate_target_a10_receipt": "Generates an exact rational certificate receipt for Target A10.",
+          "audit_target_a10_receipt": "Audits and validates an exact rational Target A10 certificate receipt.",
+          "audit_missing_cell_tree": "Negative control: audits rejection of a tree missing a region or leaf cell.",
+          "audit_volume_discrepancy": "Negative control: audits rejection when total cell volume != expected volume.",
+          "audit_boundary_gap": "Negative control: audits rejection of boundary interfaces with non-zero gap.",
+          "audit_overlapping_cells": "Negative control: audits rejection of overlapping uncertified cells.",
+          "audit_non_positive_margin": "Negative control: audits rejection of cell with non-positive obstruction margin.",
+          "audit_corrupted_receipt_schema": "Negative control: audits rejection of corrupted receipt schemas, bad firewall, or injected floats."
+        },
+        "engineering_policy": "Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.",
+        "failure_boundary": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+        "cost_model": "Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.",
+        "scope_ceiling": "Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.",
+        "trust": "Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.",
+        "negative_float_fixture_policy": "Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.",
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_a10_global_cover.py\",\n    \"sha256\": \"4f53b9a019cb1396eb2fd28496f52e090fd195d18c027a3f996395e05e8bb759\"\n  },\n  \"profile\": \"Exact\",\n  \"claim\": \"urn:omega:fqm:mub:target-a10-global-cover:v1\",\n  \"role\": \"library\",\n  \"purpose\": \"Target A10: Python Exact Verifier & Falsification Suite. Firewall Line: stated region only; mints no authority\",\n  \"operations\": {\n    \"assert_no_float\": \"Recursively verify that no floating-point types exist in any certifier data structure.\",\n    \"RationalIntervalBox\": \"Exact D-dimensional coordinate interval box [(lo_k, hi_k)] over Fraction.\",\n    \"RationalCell\": \"A certified leaf cell belonging to one of the 6 regional covers.\",\n    \"GlobalTreeNode\": \"Base class for recursive partition tree nodes.\",\n    \"GlobalLeafNode\": \"Leaf node containing a certified rational cell.\",\n    \"GlobalSplitNode\": \"Internal bisection node splitting dimension dim at cut.\",\n    \"RegionalCoverTree\": \"Partition tree covering one specific region of the moduli atlas.\",\n    \"GlobalPartitionTree\": \"Global partition tree aggregating all 6 regional covers.\",\n    \"build_f6_dita_cover\": \"Build exact rational bisection tree for Affine Dita Fourier Chart F_6.\",\n    \"build_b6_szollosi_cover\": \"Build exact rational partition tree for Szollosi Deltoid Arc & Cusps B_6.\",\n    \"build_s6_tao_cover\": \"Build exact rational partition tree for Tao Confluence Chart S_6.\",\n    \"build_collar_2d_cover\": \"Build exact rational partition tree for 2D Periodic Collar Cover.\",\n    \"build_karlsson_exterior_cover\": \"Build exact rational partition tree for Karlsson Volume Exterior Boundary Interface.\",\n    \"build_h6_haagerup_cover\": \"Build exact rational partition tree for Isolated Haagerup Orbit Neighborhood H_6.\",\n    \"build_canonical_global_partition_tree\": \"Aggregates all 6 regional covers into the canonical global partition tree.\",\n    \"verify_volume_conservation\": \"Verifies exact rational volume conservation across all 6 regional covers.\",\n    \"BoundaryInterface\": \"Exact transition interface between two adjacent regional charts.\",\n    \"build_canonical_boundary_interfaces\": \"Builds the 6 canonical boundary interfaces forming the closed nerve cycle.\",\n    \"verify_boundary_interface_adjacency\": \"Verifies that the multi-chart boundary interfaces form an exact adjacent cover.\",\n    \"GlobalNetworkSimplexVerifier\": \"Network Simplex cycle circulation check on the multi-chart nerve cycle.\",\n    \"generate_target_a10_receipt\": \"Generates an exact rational certificate receipt for Target A10.\",\n    \"audit_target_a10_receipt\": \"Audits and validates an exact rational Target A10 certificate receipt.\",\n    \"audit_missing_cell_tree\": \"Negative control: audits rejection of a tree missing a region or leaf cell.\",\n    \"audit_volume_discrepancy\": \"Negative control: audits rejection when total cell volume != expected volume.\",\n    \"audit_boundary_gap\": \"Negative control: audits rejection of boundary interfaces with non-zero gap.\",\n    \"audit_overlapping_cells\": \"Negative control: audits rejection of overlapping uncertified cells.\",\n    \"audit_non_positive_margin\": \"Negative control: audits rejection of cell with non-positive obstruction margin.\",\n    \"audit_corrupted_receipt_schema\": \"Negative control: audits rejection of corrupted receipt schemas, bad firewall, or injected floats.\"\n  },\n  \"engineering_policy\": \"Declared admission policy: inputs validated at public boundaries; integers <= 1024 bits; no unadmitted float/bool on exact paths. These are admission policies, not mathematical limits.\",\n  \"failure_boundary\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n  \"cost_model\": \"Polynomial or linear operational bounds under declared size envelopes. No unbounded recursion or unmetered allocations.\",\n  \"scope_ceiling\": \"Scoped strictly to declared discrete structures. No claim of continuum completeness, universal physics, or authority promotion.\",\n  \"trust\": \"Pinned CPython and test bytes. Type-based checks avoid value.__class__ and container/scalar overrides. This is not a security sandbox for arbitrary metaclass hooks, monkeypatching, hostile interpreter state, host exhaustion or deliberate reflection.\",\n  \"negative_float_fixture_policy\": \"Binary floats occur only as deliberate negative/refusal probes, not admitted Exact arithmetic.\",\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_a10_global_cover.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a187f2398a76dfe8c2c02baafd9be6140a025caf3f6ab875f7ea6cceb83def96",
+      "bytes": 2182,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/src/mub/target_a10_global_cover.py",
+          "sha256": "4f53b9a019cb1396eb2fd28496f52e090fd195d18c027a3f996395e05e8bb759"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:mub:target-a10-global-cover:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 31 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 31,
+          "lizard_ccn": 31,
+          "weighted_control_upper_bound": 62,
+          "control_nesting": 7
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/src/mub/target_a10_global_cover.py\",\n    \"sha256\": \"4f53b9a019cb1396eb2fd28496f52e090fd195d18c027a3f996395e05e8bb759\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:mub:target-a10-global-cover:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 31 <= 50 (D), nesting depth 7 <= 8 (D); Gate 5 ceiling D under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 31,\n    \"lizard_ccn\": 31,\n    \"weighted_control_upper_bound\": 62,\n    \"control_nesting\": 7\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/src/mub/target_a10_global_cover.contract.score.yaml#scoring"
+      ]
+    }
+  ]
+}

@@ -44,12 +44,12 @@
       "unscoped_claims"
     ]
   },
-  "current_contract": "5b96e31385f8e7e5841ab2ddb2f63c8d6c6190e90017d08b1082f1f4c0838614",
-  "current_scoring": null,
+  "current_contract": "180389e9eead88403e8eedc7e43d16e33a323319b961e5a8afa2c9a285cb2d17",
+  "current_scoring": "54f9d2f4749c8f655e594103d34c77d74795285f8d1c2222924c800d2f700961",
   "contract_history": [
     {
-      "sha256": "5b96e31385f8e7e5841ab2ddb2f63c8d6c6190e90017d08b1082f1f4c0838614",
-      "bytes": 933,
+      "sha256": "180389e9eead88403e8eedc7e43d16e33a323319b961e5a8afa2c9a285cb2d17",
+      "bytes": 1162,
       "record": {
         "schema_version": "omega.contract.v1",
         "contract_id": "urn:omega:rust:omega_lie_theory:cayley_unitary:v1.0.0",
@@ -92,13 +92,75 @@
           "unscoped_claims"
         ]
       },
-      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_lie_theory:cayley_unitary:v1.0.0\ntitle: Exact unitary Cayley charts and their phase-shifted atlas.  C_tau(H)=(I-i tau\n  H)(I+i tau H)^-1 for Hermitian H. The i...\nkind: rust_file_contract\nstatus: active\ncrate: omega_lie_theory\nfile: crates_rs/omega_lie_theory/src/cayley_unitary.rs\nmodule: cayley_unitary\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_lie_theory\n  module: cayley_unitary\n  file: crates_rs/omega_lie_theory/src/cayley_unitary.rs\nsymbols:\n- UnitaryCayleyError\n- cayley_unitary\n- cayley_generator\n- phase_chart_generator\n- phase_chart_step\n- compose_generators\nowns:\n- unitary_cayley_error\n- cayley_unitary\n- cayley_generator\n- phase_chart_generator\n- phase_chart_step\n- compose_generators\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "raw_utf8": "{\n  \"schema_version\": \"omega.contract.v1\",\n  \"contract_id\": \"urn:omega:rust:omega_lie_theory:cayley_unitary:v1.0.0\",\n  \"title\": \"Exact unitary Cayley charts and their phase-shifted atlas.  C_tau(H)=(I-i tau H)(I+i tau H)^-1 for Hermitian H. The i...\",\n  \"kind\": \"rust_file_contract\",\n  \"status\": \"active\",\n  \"crate\": \"omega_lie_theory\",\n  \"file\": \"crates_rs/omega_lie_theory/src/cayley_unitary.rs\",\n  \"module\": \"cayley_unitary\",\n  \"authority_effect\": \"none\",\n  \"evidence_ceiling\": \"LocalReplay\",\n  \"rust_binding\": {\n    \"crate\": \"omega_lie_theory\",\n    \"module\": \"cayley_unitary\",\n    \"file\": \"crates_rs/omega_lie_theory/src/cayley_unitary.rs\"\n  },\n  \"symbols\": [\n    \"UnitaryCayleyError\",\n    \"cayley_unitary\",\n    \"cayley_generator\",\n    \"phase_chart_generator\",\n    \"phase_chart_step\",\n    \"compose_generators\"\n  ],\n  \"owns\": [\n    \"unitary_cayley_error\",\n    \"cayley_unitary\",\n    \"cayley_generator\",\n    \"phase_chart_generator\",\n    \"phase_chart_step\",\n    \"compose_generators\"\n  ],\n  \"relationships\": {\n    \"extends\": [\n      \"urn:omega:governance:base_contract:v1.0.0\"\n    ]\n  },\n  \"does_not_own\": [\n    \"authority_promotion\",\n    \"unscoped_claims\"\n  ]\n}\n",
       "original_paths": [
         "code/python/governance/10_math/algebra/omega_lie_theory_cayley_unitary.contract.yaml"
       ]
     }
   ],
-  "scoring_history": [],
+  "scoring_history": [
+    {
+      "sha256": "54f9d2f4749c8f655e594103d34c77d74795285f8d1c2222924c800d2f700961",
+      "bytes": 2235,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/python/governance/10_math/algebra/omega_lie_theory_cayley_unitary_contract.py",
+          "sha256": "b24bc061e507e7d5b4fceb1beaa2b7e5a58990b481f6b362cfd6b6a596a63dd4"
+        },
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "phase": "production-and-checker-review",
+        "level": "L4",
+        "level_basis": "Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "A"
+        },
+        "basis": {
+          "G1": "Claim URN urn:omega:fqm:algebra:omega-lie-theory-cayley-unitary-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.",
+          "G2": "Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.",
+          "G3": "Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.",
+          "G4": "Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.",
+          "G5": "Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5."
+        },
+        "metrics": {
+          "radon_ccn": 2,
+          "lizard_ccn": 2,
+          "weighted_control_upper_bound": 1,
+          "control_nesting": 1
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "requested_target": "L4E or higher",
+        "target_achieved": true,
+        "target_scope": "This exact source revision only.",
+        "open_higher_grade_findings": [
+          "Full downstream provenance and provider audits",
+          "Formal or exhaustive semantic/failure assurance",
+          "Independent alternate checker",
+          "Measured peak allocation and process deadline guarantees"
+        ],
+        "evidence": [
+          {
+            "path": "SCORING.md",
+            "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/python/governance/10_math/algebra/omega_lie_theory_cayley_unitary_contract.py\",\n    \"sha256\": \"b24bc061e507e7d5b4fceb1beaa2b7e5a58990b481f6b362cfd6b6a596a63dd4\"\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"phase\": \"production-and-checker-review\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Production API craft: explicit bounded admission, typed failure modes, immutable state custody, zero naked asserts in library code, and independent unit/property/mutation test verification.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"basis\": {\n    \"G1\": \"Claim URN urn:omega:fqm:algebra:omega-lie-theory-cayley-unitary-contract:v1, exact source digest, reviewed operations, dependencies and explicit authority ceiling AuthorityEffect: None.\",\n    \"G2\": \"Exact profile fixed before challenge; independent discrete operations, valid and forged inputs, shape and scalar refusals tested.\",\n    \"G3\": \"Typed domain errors refuse invalid inputs, out-of-range parameters, and unadmitted types. Fail-closed error handling without bare asserts.\",\n    \"G4\": \"Comprehensive tests pass cleanly against passing source-bound baselines; negative controls and mutation accounting audited.\",\n    \"G5\": \"Calibrated AST control bounds: Radon CCN 2 <= 10 (A), nesting depth 1 <= 3 (A); Gate 5 ceiling A under SCORING.md §3.5.\"\n  },\n  \"metrics\": {\n    \"radon_ccn\": 2,\n    \"lizard_ccn\": 2,\n    \"weighted_control_upper_bound\": 1,\n    \"control_nesting\": 1\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"requested_target\": \"L4E or higher\",\n  \"target_achieved\": true,\n  \"target_scope\": \"This exact source revision only.\",\n  \"open_higher_grade_findings\": [\n    \"Full downstream provenance and provider audits\",\n    \"Formal or exhaustive semantic/failure assurance\",\n    \"Independent alternate checker\",\n    \"Measured peak allocation and process deadline guarantees\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/omega_lie_theory_cayley_unitary_contract.contract.score.yaml#scoring"
+      ]
+    }
+  ],
   "legacy_paths": {
     "code/python/governance/10_math/algebra/omega_lie_theory_cayley_unitary.contract.yaml": "5b96e31385f8e7e5841ab2ddb2f63c8d6c6190e90017d08b1082f1f4c0838614"
   },
