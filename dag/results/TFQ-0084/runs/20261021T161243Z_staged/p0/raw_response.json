@@ -63,11 +63,11 @@
         },
         {
           "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py",
-          "sha256": "af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535"
+          "sha256": "e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9"
         },
         {
           "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py",
-          "sha256": "fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f"
+          "sha256": "19f25c9a0db242f4920d45fa94f685ecc9daed04f51f853fae5a29dbbeb152b8"
         }
       ],
       "public_input": {}
@@ -115,7 +115,7 @@
           "output": "SqVolume_k",
           "arity": 1,
           "semantic_predicate": "Squared k-volume of a face from its CM determinant (relation R_CM).",
-          "evidence_status": "Source-confirmed exact (external tests cayley_menger.rs:130-182; exact_regge/action.rs:18 uses it for d=2 areas). Re-tested exactly in this run on 8 integer simplices (R_CM). GR cayley_menger.rs:121 takes an f64 sqrt and is excluded."
+          "evidence_status": "Source-confirmed exact (external tests cayley_menger.rs:130-182; exact_regge/action.rs:18 uses it for d=2 areas). Re-tested exactly in this run on 6 integer simplices (R_CM). GR cayley_menger.rs:121 takes an f64 sqrt and is excluded."
         },
         {
           "id": "facet_sqvolume_from_diagonal_cofactor",
@@ -202,7 +202,7 @@
       ],
       "gaps": [
         "T3: no exact Hessian generator; no Kuhn grid-with-interior-vertex generator (O6).",
-        "T4: witness simplex not yet selected (O7).",
+        "T4: witness W1 selected and evaluated here; independent re-derivation in the P1/P4 checkers pending (O7).",
         "certified_dihedral normal-Gram <-> cofactor bridge (O4)."
       ]
     },
@@ -222,12 +222,12 @@
       ],
       "rejection_predicates": [
         "Degenerate input: det(B_sigma) = 0 or some C_aa = 0 -> the checker must refuse (no division, no identity claimed).",
-        "A_h^2 weighting (T4): the x_h-weighted companion sum is nonzero on a non-equilateral rational-edge tetrahedron while R_e = 0 on the same simplex.",
+        "A_h^2 weighting (T4): on the integer-edge tetrahedron W1 = (2,4,5,4,6,3) the exact sum sum_h A_h * bracket_h is nonzero on all six edges while R_e = sum_h bracket_h = 0 on all six (same inputs, same cofactors); on the regular tetrahedron both vanish, so it is excluded as a witness.",
         "Dropped hinge: R_e minus one summand is generically nonzero (UNTESTED; to be checked in P4 with the same checker).",
         "Perturbed flat configuration claimed flat (T3): detected by the exact Hessian kernel dimension, not by T1.",
         "Missing n/(n-1) in sin theta: NOT detectable by T1 (global constant); detectable by sin^2 + cos^2 = 1 (R_SIN) or by T3 values (f04)."
       ],
-      "negative_control_plan": "Near miss = A_h^2 weighting on a non-equilateral tetrahedron with all six edge lengths rational and strict CM positivity (regular tetrahedron excluded, f05); valid control = R_e = 0 on the same simplex with the same exact checker; both evaluated without square roots.",
+      "negative_control_plan": "Near miss = A_h^2 weighting on the integer-edge tetrahedron W1 = (2,4,5,4,6,3) (all six edge lengths rational, strict CM positivity; regular tetrahedron excluded, f05); valid control = R_e = 0 on the same simplex with the same exact checker; both evaluated without square roots (schlafli_rational_form_check.py, LENGTH_CASES). P4 must re-derive both values in the independent checkers.",
       "excluded_leads": [
         "lean4/regge_wdw_core.lean:26-29 SchlafliVanishing (vacuous hypothesis)",
         "code/rust/src/general_relativity/schlafli.rs:12 (angle sum, f64)",
@@ -255,12 +255,12 @@
         },
         {
           "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py",
-          "sha256": "af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535",
+          "sha256": "e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9",
           "role": "mining evidence, same author as this delta, not the independent checker"
         },
         {
           "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py",
-          "sha256": "fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f",
+          "sha256": "19f25c9a0db242f4920d45fa94f685ecc9daed04f51f853fae5a29dbbeb152b8",
           "role": "mining evidence, same author as this delta, not the independent checker"
         },
         {
@@ -474,26 +474,28 @@
     {
       "script": {
         "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py",
-        "sha256": "af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535"
+        "sha256": "e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9"
       },
       "output": {
         "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.out",
-        "sha256": "3fa3d44d7306cefc285781d3b3fc9b9efae7dd2268bbe6a5b9e80a0157affe77"
+        "sha256": "aa11990a75df9f9316b86515022b3dff6600608d8fdf56fdd311813d4297933a"
       },
       "result": "ALL_RELATIONS_HOLD_ON_FINITE_CARRIER (R_CM, R_COF, R_COS, R_SIN on 4 tetrahedra and 2 pentatopes, exact Fraction arithmetic, no roots)"
     },
     {
       "script": {
         "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py",
-        "sha256": "fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f"
+        "sha256": "19f25c9a0db242f4920d45fa94f685ecc9daed04f51f853fae5a29dbbeb152b8"
       },
       "output": {
         "path": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.out",
-        "sha256": "f5178077f01202262fd1dc6ddac66eb2be2448a76d1f5bfb1024cd086e3209c2"
+        "sha256": "846c05b2217bcc570381b601219e913c0690de070596761e0ee931f0de294ce1"
       },
-      "result": "COMPOSITION_PLAN_HOLDS_ON_FINITE_CARRIER (R_e = 0 on every edge of 5 tetrahedra and 3 pentatopes; x_h-weighted companion nonzero on 4/5 tetrahedra, zero on the regular one)"
+      "result": "COMPOSITION_PLAN_HOLDS_ON_FINITE_CARRIER (R_e = 0 on every edge of 5 tetrahedra and 3 pentatopes) and T4_NEAR_MISS_NONZERO_WITH_VALID_CONTROL (A_h^2-weighted sum nonzero on all six edges of the integer-edge tetrahedra W1 = (2,4,5,4,6,3) and W2 = (3,4,4,5,6,2), zero on the regular unit tetrahedron; R_e = 0 on every edge of all three)"
     }
   ],
+  "host_stage_artifacts": "Not produced by the model: p0/profile.json, p0/reviewed_missions.json, p0/host_review.json and p0/host_check.json are host outputs of the batch toolkit (dag/pfp/batch_tools/stages.py:183-201) and would assert accepted_for_next_step; they are left for the host review. p0/candidate.json is this response, for the host to bind by sha256. Continuing with the toolkit from this run therefore requires the host review (or a toolkit spec for TFQ-0084) first.",
+  "batch_toolkit_note": "The index row carries latest_run, so dag/pfp/batch_tools/selection.py treats TFQ-0084 (index position 226) as run: a batch window may not straddle it (select_batch raises), so the window covering positions 212-231 must be sized to 14 (212-225); first_unrun then starts the next batch at 227. finalize.py counts it among run rows and generate_prompts.py will not regenerate it.",
   "next_missing_dependency": "Host review of (i) the sign convention R_COS (c_n form), (ii) the reduction R_T1_RATIONAL -> R_T1_POLY as the arccos-free, root-free form of T1, (iii) the mutant redirect f04, (iv) the toolchain binding O8; then P1 for T1 (n = 3): prove P_e(x) == 0 for the 6 edges of the tetrahedron.",
   "operad_delta": "dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/operad_delta.yaml",
   "claim_boundary": {

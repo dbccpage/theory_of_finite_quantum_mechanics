@@ -48,7 +48,7 @@ add_or_refine_generators:
     sha256: 0fc9ce5a8d5e466c765edbf4d41e99d29152f55a6b5d59125723b4f37234655b
   - &id003
     path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py
-    sha256: af02cf6be5f68cc1626a66517bd6d4f74860a6fd43bbd86bc2816e16b33be535
+    sha256: e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9
   evidence_status: Numeric exact routine source-confirmed (external cayley_menger.rs:25, BigRational). GR cayley_menger.rs:76
     is the f64 twin (fenced). Symbolic version prototyped only in this run (relation_sign_check.py cm_matrix).
 - id: cm_determinant_and_vertex_cofactors
@@ -75,7 +75,7 @@ add_or_refine_generators:
   - *id002
   - &id005
     path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.py
-    sha256: fe6c4bc05886a52d0f77e1b07c50a28c75b260fbeef3cd2c0e18ca61ed56ca8f
+    sha256: 19f25c9a0db242f4920d45fa94f685ecc9daed04f51f853fae5a29dbbeb152b8
   evidence_status: Exact numeric determinant source-confirmed (external). GR cayley_menger.rs:49 matrix_cofactor
     is f64 (fenced). Division-free dual-number cofactors prototyped only in this run (schlafli_rational_form_check.py
     cofactors_dual).
@@ -97,9 +97,9 @@ add_or_refine_generators:
     sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
   - &id004
     path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.out
-    sha256: 3fa3d44d7306cefc285781d3b3fc9b9efae7dd2268bbe6a5b9e80a0157affe77
+    sha256: aa11990a75df9f9316b86515022b3dff6600608d8fdf56fdd311813d4297933a
   evidence_status: Source-confirmed exact (external tests cayley_menger.rs:130-182; exact_regge/action.rs:18 uses
-    it for d=2 areas). Re-tested exactly in this run on 8 integer simplices (R_CM). GR cayley_menger.rs:121 takes
+    it for d=2 areas). Re-tested exactly in this run on 6 integer simplices (R_CM). GR cayley_menger.rs:121 takes
     an f64 sqrt and is excluded.
 - id: facet_sqvolume_from_diagonal_cofactor
   ordered_inputs:
@@ -269,8 +269,8 @@ add_or_refine_relations:
   source_pins:
   - *id001
   - *id004
-  evidence_status: Imported classical identity; source-confirmed (external kernel tests); re-tested exactly on 8
-    simplices in this run.
+  evidence_status: Imported classical identity; source-confirmed (external kernel tests); re-tested exactly on 6
+    simplices in this run (relation_sign_check.py).
   scope: 'any n (external kernel: n <= 4)'
 - id: R_COF
   equation_or_predicate: C_aa = c_n V_a^2,  c_n = (-1)^n 2^(n-1) ((n-1)!)^2
@@ -323,7 +323,7 @@ add_or_refine_relations:
   - *id005
   - &id014
     path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/schlafli_rational_form_check.out
-    sha256: f5178077f01202262fd1dc6ddac66eb2be2448a76d1f5bfb1024cd086e3209c2
+    sha256: 846c05b2217bcc570381b601219e913c0690de070596761e0ee931f0de294ce1
   evidence_status: 'Composition tested exactly at 8 rational simplices x all edges (5 tetrahedra, 3 pentatopes):
     R_e = 0 every time. The identity R_e == 0 in Q(x) is NOT proved; it is the P1 target. No square roots are needed
     anywhere.'
@@ -368,15 +368,19 @@ add_or_refine_relations:
 - id: R_A2_NEARMISS
   equation_or_predicate: sum_h A_h^2 d_e theta_h = (n/((n-1) V_sigma c_n)) sum_{a<b} A_h [ d_e C_ab - (C_ab/2)(d_e
     C_aa/C_aa + d_e C_bb/C_bb) ]  with A_h = sqrt(hinge CM) hinge-dependent
-  typing_conditions: same hypotheses as R_T1_RATIONAL
+  typing_conditions: 'same hypotheses as R_T1_RATIONAL; exactly evaluable only when every hinge volume A_h is rational
+    (n = 3: every edge length rational)'
   source_pins:
   - *id005
   - *id014
   - *id007
-  evidence_status: Rational companion (x_h-weighted, n=3) is nonzero on 4 of 5 test tetrahedra and ZERO on the regular
-    one (A_h constant => proportional to R_e). A valid T4 witness must be a non-equilateral tetrahedron with all
-    edge lengths rational (every x_h a perfect square) so the sum is exactly evaluable; none selected yet.
-  scope: T4 negative control plan
+  evidence_status: 'Evaluated exactly (sum_h A_h * bracket_h, the near miss up to its nonzero prefactor) on the
+    integer-edge tetrahedron W1 with edge lengths (01,02,03,12,13,23) = (2,4,5,4,6,3), det CM = 448, V^2 = 14/9,
+    strict CM positivity: NONZERO on all six edges (828/5, -4021/30, 326/3, 28684/195, -71696/585, 53558/585) while
+    the control R_e = 0 on all six edges of the same simplex with the same cofactors; the relabelled copy W2 = (3,4,4,5,6,2)
+    gives the same values permuted; the regular unit tetrahedron gives 0 on every edge (A_h constant => proportional
+    to R_e), so it is a false near miss. Independent re-derivation in the P1/P4 checkers is still pending.'
+  scope: 'T4 negative control: witness W1 selected'
 checked_compositions:
 - outer_operation: sum over hinges h of A_h * formal_partial_derivative(theta_h)
   input_slot: theta_h (never evaluated)
@@ -437,8 +441,9 @@ open_obligations:
 - 'O6 (T3): no generator exists for the Kuhn triangulation of [0,2]^4 (or [0,2]^3) with an interior vertex, and
   no exact Hessian generator exists anywhere (quantum_regge.rs takes caller-supplied Hessian data). Both must be
   written; the carrier is Q(sqrt2, sqrt3).'
-- 'O7 (T4): select a non-equilateral tetrahedron with all six edge lengths rational and strict CM positivity, evaluate
-  sum_h A_h^2 d_e theta_h exactly (nonzero) and R_e (zero) on it.'
+- 'O7 (T4): witness selected: the integer-edge tetrahedron W1 = (2,4,5,4,6,3) (strict CM positivity, det CM = 448)
+  has the A_h^2-weighted sum nonzero on all six edges and R_e = 0 on all six; the P1/P4 checkers must re-derive
+  both values independently and keep the regular tetrahedron excluded.'
 - 'O8 (M4): the supplied checker contract names leanprover/lean4:v4.35.0; this branch (pfp-prompts) pins lean4 at
   v4.33.1 / Mathlib 0df444a3 and constraint_closure at v4.34.0-rc1; the v4.35.0 / Mathlib 56a00585 line lives on
   PR #137 (pfp-batch-01). The host must bind one toolchain before P1; lean4/ReggeSchlafli.lean does not exist yet.'
