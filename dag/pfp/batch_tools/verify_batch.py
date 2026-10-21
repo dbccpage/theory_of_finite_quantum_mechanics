@@ -26,6 +26,9 @@ from common import Ctx, check_lean_version, lean_toolchain, load_json, load_modu
 from stages import AXIOM_REPORT, STANDARD_AXIOMS, Batch  # noqa: E402
 
 
+LATER_RUN_AREAS = ('dag/operads/', 'dag/results/')
+
+
 def axiom_reports(text, anchors):
     matches = [(n, a) for n, a in AXIOM_REPORT.findall(text) if n in set(anchors)]
     require(len(matches) == len(set(anchors)) and {n for n, _ in matches} == set(anchors), 'named kernel report coverage')
@@ -144,18 +147,26 @@ def verify(batch: Batch):
     manifest = batch.dir / 'manifest.json'
     require(manifest.is_file(), 'Batch is not sealed (manifest.json missing)')
     for pin in load_json(manifest)['files']:
+        if pin['path'] == 'dag/operads/index.json':
+            continue  # shared with every later batch; its rows are checked in verify_selection
         require(sha(ctx.root / pin['path']) == pin['sha256'], 'sealed artifact changed ' + pin['path'])
     selected = verify_selection(batch)
     nodes = [verify_node(batch, row['node_id'], i) for i, row in enumerate(batch.rows)]
     companions = verify_companions(batch)
     preservation = batch.dir / 'review/preservation.json'
-    kept = 0
+    kept, updated = 0, []
     if preservation.is_file():
         for entry in load_json(preservation)['files']:
-            require(sha(ctx.root / entry['path']) == entry['sha256'], 'prior artifact changed ' + entry['path'])
+            if sha(ctx.root / entry['path']) != entry['sha256']:
+                # Later batches and single-node runs legitimately extend operad collections and result folders. The recorded
+                # state must then still exist in Git history; any other prior file must be byte-identical.
+                later = entry['path'].startswith(LATER_RUN_AREAS) and subprocess.run(
+                    ['git', 'cat-file', '-e', entry['git_blob']], cwd=ctx.root, capture_output=True).returncode == 0
+                require(later, 'prior artifact changed ' + entry['path'])
+                updated.append(entry['path'])
             kept += 1
     drift = [p['path'] for p in batch.selection.get('tooling_pins', []) if (ctx.root / p['path']).is_file() and sha(ctx.root / p['path']) != p['sha256']]
-    return {'runs': selected, 'verified_nodes': nodes, 'companions_checked': companions, 'preserved_files_checked': kept,
+    return {'runs': selected, 'verified_nodes': nodes, 'companions_checked': companions, 'preserved_files_checked': kept, 'prior_files_updated_by_later_runs': updated,
             'tooling_files_changed_since_selection': drift,
             'scope': 'Read-only replay; saved native/kernel receipts checked, compilers not rerun.'}
 

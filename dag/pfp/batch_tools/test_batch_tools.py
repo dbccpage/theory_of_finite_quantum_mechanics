@@ -249,6 +249,13 @@ class EndToEnd(Dummy):
         self.assertEqual((report['runs'], report['verified_nodes'][0]['semantic_mutants']), (1, 1))
         self.assertGreater(report['companions_checked'], 3)
         self.assertGreater(report['preserved_files_checked'], 5)
+        # a later batch rewrites other rows of the shared index: the replay must still pass
+        index_copy = ctx.index_path.read_bytes()
+        shared = json.loads(index_copy)
+        shared['claim'] = 'later batches rewrite rows of this file'
+        ctx.index_path.write_bytes((json.dumps(shared, indent=2) + '\n').encode('utf-8'))
+        verify_batch.verify(batch)
+        ctx.index_path.write_bytes(index_copy)
         mutant = next((run / 'p4/mutants').glob('semantic_*.json'))
         original = mutant.read_bytes()
         mutant.write_bytes(original.replace(b'"-3"', b'"3"'))
