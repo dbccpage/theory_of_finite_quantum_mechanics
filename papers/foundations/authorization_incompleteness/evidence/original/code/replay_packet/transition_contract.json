@@ -1,0 +1,23 @@
+{
+  "schema_version": "coda.authorization_incompleteness.transition-contract.v1",
+  "contract_id": "finite-transition-adequacy-v1",
+  "authority_effect": "None",
+  "clean_terminal_rejects": [
+    "haltedMarked"
+  ],
+  "marked_cell_accepts": [
+    "runningMarked",
+    "haltedMarked"
+  ],
+  "reports": {
+    "full_report": "configuration",
+    "control_only_report": "transition_control"
+  },
+  "expected": {
+    "clean_terminal_preserved": true,
+    "required_marked_countertrace": "runningMarked",
+    "full_report_adequate": true,
+    "control_only_report_adequate": false,
+    "control_only_authorization": "open_due_to_inadequate_report"
+  }
+}
