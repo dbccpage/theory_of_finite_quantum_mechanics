@@ -17,8 +17,12 @@ ROOT = Path(__file__).resolve().parents[3]
 MODEL = 'claude-fable-5-1'
 FALLBACK = 'claude-opus-5-5'
 PRICE_IN, PRICE_OUT = 10.0 / 1e6, 50.0 / 1e6      # USD per token (dag/pfp/llm_ladder/config.py)
-MAX_TOKENS_PER_CALL = 64000
+MAX_TOKENS_PER_CALL = 128000   # the API maximum for claude-fable-5-1 (a larger value is rejected with 400)
 MAX_TURNS = 4
+WRITE_UP = ('Your previous call used its whole output budget on reasoning and wrote no answer. Your reasoning so far is '
+            'summarised below. Do not restart the analysis: reason only as much as needed to settle the remaining gaps, '
+            'then WRITE THE DELIVERABLE (argument, complete Lean files, WHAT IS PROVED). If something is unfinished, '
+            'deliver the largest honest piece and say exactly what is missing.\n\n## Your reasoning so far\n\n')
 SYSTEM = ('You are a research mathematician and Lean 4 expert collaborating on a finite, exact formalisation of quantum '
           'mechanics. Be exact and conservative: never claim more than the Lean proves. Follow the deliverable format.')
 CONTINUE = 'Continue exactly where you stopped. Do not repeat earlier text.'
@@ -57,8 +61,23 @@ def dump(content):
     return [b.model_dump(exclude_none=True) if hasattr(b, 'model_dump') else b for b in content]
 
 
+def prior_reasoning(node):
+    """Thinking summaries of earlier answerless _fable_api runs of this node, oldest first."""
+    runs = sorted((ROOT / 'dag' / 'results' / node / 'runs').glob('*_fable_api'))
+    parts = []
+    for run in runs:
+        for f in sorted(run.glob('turn_*_thinking_summary.md')):
+            text = f.read_text(encoding='utf-8').strip()
+            if text:
+                parts.append('### %s/%s\n\n%s' % (run.name, f.name, text))
+    return '\n\n'.join(parts)
+
+
+EFFORT = 'high'
+
+
 def call(client, messages, max_tokens, use_fallback):
-    extra_body = {'output_config': {'effort': 'max'}}
+    extra_body = {'output_config': {'effort': EFFORT}}
     headers = {}
     if use_fallback:
         extra_body['fallbacks'] = [{'model': FALLBACK}]
@@ -71,6 +90,10 @@ def call(client, messages, max_tokens, use_fallback):
 
 def run_packet(client, path, usd_cap, token_cap, confirm):
     node, user = read_packet(path)
+    seed = prior_reasoning(node)
+    if seed:
+        user += ('\n\n## Progress from your earlier attempt on this problem (your own reasoning summary; it wrote no '
+                 'answer)\n\nBuild on it rather than starting over.\n\n' + seed)
     messages = [{'role': 'user', 'content': user}]
     counted = client.messages.count_tokens(model=MODEL, system=SYSTEM, messages=messages).input_tokens
     print('%s: packet %d input tokens; caps USD %.2f, tokens %d' % (node, counted, usd_cap, token_cap), flush=True)
@@ -80,7 +103,7 @@ def run_packet(client, path, usd_cap, token_cap, confirm):
     run.mkdir(parents=True)
     (run / 'request.md').write_text(user, encoding='utf-8')
     spent = tokens = 0.0
-    turns, texts, use_fallback = [], [], True
+    turns, texts, use_fallback, thinking_log = [], [], True, []
     for turn in range(MAX_TURNS):
         counted = client.messages.count_tokens(model=MODEL, system=SYSTEM, messages=messages).input_tokens
         affordable = int((usd_cap - spent - counted * PRICE_IN) / PRICE_OUT)
@@ -113,7 +136,14 @@ def run_packet(client, path, usd_cap, token_cap, confirm):
         print('  turn %d: %s, out %d tok, $%.4f (total $%.4f)' % (turn, msg.stop_reason, u.output_tokens, cost, spent), flush=True)
         if msg.stop_reason != 'max_tokens':
             break
-        messages += [{'role': 'assistant', 'content': dump(msg.content)}, {'role': 'user', 'content': CONTINUE}]
+        if text.strip():
+            # the written answer was cut off: continue it
+            messages += [{'role': 'assistant', 'content': dump(msg.content)}, {'role': 'user', 'content': CONTINUE}]
+        else:
+            # thinking only: a continuation of a thinking-only turn is refused, so start a fresh write-up request
+            summaries = '\n\n'.join(t for t in thinking_log + [thinking] if t.strip())
+            messages = [{'role': 'user', 'content': user + '\n\n' + WRITE_UP + summaries}]
+        thinking_log.append(thinking)
     answer = '\n'.join(texts)
     (run / 'answer.md').write_text(answer, encoding='utf-8')
     lean_dir = run / 'lean'
