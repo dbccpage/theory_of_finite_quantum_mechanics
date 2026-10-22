@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 880 nodes in 34 stages. Evidence grades: E0 285, E1 219, E2 323, E3 53.
+The DAG has 880 nodes in 34 stages. Evidence grades: E0 284, E1 219, E2 323, E3 54.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,11 +24,11 @@ The DAG has 880 nodes in 34 stages. Evidence grades: E0 285, E1 219, E2 323, E3 
 
 Of the 261 `PROVED_LEAN` nodes, 42 reach grade E3 or E4 (16 percent); 219 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 53 nodes at E3, 39 have a qualifying review, 8 of those cite in-repo Rust or Python code that is not a test, and 4 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 54 nodes at E3, 39 have a qualifying review, 8 of those cite in-repo Rust or Python code that is not a test, and 4 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 992 distinct Lean declarations that lie in files of this checkout. 154 of them are in a file whose current sha256 matches a passing replay receipt; 838 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 992 Lean references; 231 (23 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1001 distinct Lean declarations that lie in files of this checkout. 163 of them are in a file whose current sha256 matches a passing replay receipt; 838 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 992 Lean references; 231 (23 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -39,12 +39,12 @@ The `lean` fields of nodes cite 992 distinct Lean declarations that lie in files
 | `COMPUTATIONALLY_CHECKED` | 41 | 56 | 55 | 0 | 0 | 152 |
 | `CONDITIONAL` | 15 | 1 | 16 | 2 | 0 | 34 |
 | `DEFINITION` | 42 | 16 | 27 | 6 | 0 | 91 |
-| `IMPORTED_ASSUMPTION` | 12 | 22 | 29 | 0 | 0 | 63 |
+| `IMPORTED_ASSUMPTION` | 11 | 22 | 29 | 1 | 0 | 63 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 2 | 1 | 0 | 3 |
 | `SOURCE_RECORD` | 53 | 26 | 0 | 0 | 0 | 79 |
 | `OPEN` | 58 | 93 | 15 | 2 | 0 | 168 |
 | `REFUTED` | 0 | 0 | 2 | 0 | 0 | 2 |
-| Total | 285 | 219 | 323 | 53 | 0 | 880 |
+| Total | 284 | 219 | 323 | 54 | 0 | 880 |
 
 ### Stage by evidence grade
 
@@ -78,7 +78,7 @@ The `lean` fields of nodes cite 992 distinct Lean declarations that lie in files
 | [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 8 | 26 | 0 | 0 | 0 | 34 | 0 | 7 |
 | [MAJORANA](stages/MAJORANA.md) | 0 | 8 | 38 | 0 | 0 | 46 | 5 | 5 |
 | [COMPUTATION](stages/COMPUTATION.md) | 0 | 14 | 68 | 0 | 0 | 82 | 43 | 47 |
-| [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 11 | 1 | 0 | 3 | 0 | 15 | 3 | 0 |
+| [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 10 | 1 | 0 | 4 | 0 | 15 | 3 | 0 |
 | [CAUSAL_QFT](stages/CAUSAL_QFT.md) | 7 | 0 | 3 | 4 | 0 | 14 | 6 | 2 |
 | [ADS_CFT](stages/ADS_CFT.md) | 9 | 1 | 0 | 3 | 0 | 13 | 3 | 0 |
 | [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 10 | 2 | 0 | 4 | 0 | 16 | 4 | 0 |
@@ -101,7 +101,7 @@ Counting rules:
 - Derivation papers written by the syncs, and the generated JSONL and Markdown views, are listed and not counted: they restate the DAG and do not bear on a claim.
 - A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 1. E3 additionally requires a declaration form or a listing in the receipt.
 - Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. They are recorded as `external_unresolved`: neither confirmed nor refuted here.
-- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 146 of the 154 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
+- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 155 of the 163 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
 - File sha256 values are over the file bytes for `.lean`, `.rs`, `.py` and `.toml` files (their line endings are pinned in `.gitattributes`) and over the LF-normalised text for other files.
 
 ## Verify it yourself

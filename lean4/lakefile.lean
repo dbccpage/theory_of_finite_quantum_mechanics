@@ -586,3 +586,11 @@ lean_lib FrontierTargets where
 
 lean_lib FableGleasonRun2 where
   roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
+
+-- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
+-- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
+lean_lib CampaignCtMediatorEntanglement where
+  roots := #[
+    `CampaignCtMediatorEntanglement
+  ]
+
