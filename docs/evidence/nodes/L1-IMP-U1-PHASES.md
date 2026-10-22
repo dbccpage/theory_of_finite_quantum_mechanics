@@ -1,0 +1,164 @@
+# L1-IMP-U1-PHASES
+
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> U(1) phases (unit complex numbers) act on sector amplitudes. QM_122 shows a sign carrier suffices for some finite tasks and that excluding it needs an extra non-exponent-two condition. The selector for C / U(1) belongs to QM_028 / QM_062 (another segment).
+
+## Grade
+
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 0
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+
+## Flags
+
+None. Status and evidence are consistent under the rules in the overview.
+
+## Imported structure
+
+- circle group U(1): assumption
+
+## Bottleneck
+
+See L1-U1-SELECTOR-OTHER-SEGMENT.
+
+## Source status
+
+QM_122 H011: circle selector boundary; sign group excluded only under 'not of exponent two'; circle stays imported
+
+## Review
+
+- PFP review: [dag/results/L1-IMP-U1-PHASES/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-U1-PHASES/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+  - narrowest claim: Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean.
+  - does not support: Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection.
+  - next test: Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+- counts toward the grade: yes
+
+### Lean: `lean4/H011Circle.lean`
+
+- file: [lean4/H011Circle.lean](../../../lean4/H011Circle.lean)
+- sha256 (`bytes`): `6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H011Circle`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `sign_excluded_circle_still_imported` | yes | yes | yes | - | `#print axioms sign_excluded_circle_still_imported` |
+- counts toward the grade: yes
+
+### Lean: `lean4/H011U1SelectorBoundary.lean`
+
+- file: [lean4/H011U1SelectorBoundary.lean](../../../lean4/H011U1SelectorBoundary.lean)
+- sha256 (`bytes`): `214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H011U1SelectorBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `selector_not_free` | yes | yes | yes | - | `#print axioms selector_not_free` |
+- counts toward the grade: yes
+
+### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`
+
+- file: `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
+
+- file: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+
+- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md`
+
+- file: [dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md](../../../dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md)
+- sha256 (`lf-normalised`): `9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5`
+- generated view: listed, not counted
+- cited in: record TFQ-0294 (shared)
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
+
+- file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
+- sha256 (`lf-normalised`): `3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b`
+- generated view: listed, not counted
+- cited in: record TFQ-0053 (shared)
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md`
+
+- file: [dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md](../../../dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md)
+- sha256 (`lf-normalised`): `8555f29d93d2a5613dab291139edc56748d7d471012998854a1a6f49e74f1cbb`
+- generated view: listed, not counted
+- cited in: record TFQ-0055 (shared)
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+## Absences recorded by the TFQ records
+
+- TFQ-0053 lean4: not located
+- TFQ-0053 python: not located
+- TFQ-0053 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+- TFQ-0055 lean4: not located
+- TFQ-0055 python: not located
+- TFQ-0055 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
+- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs
+- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+
+## Routes
+
+Incoming (1):
+
+- `L1-R-U1-GAP` `GAP_NO_DERIVATION`: [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL)
+
+Outgoing (6):
+
+- `L1-R-CIRCLE-BOUNDARY` `DERIVED_LEAN`: [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) (PROVED_LEAN)
+- `L1-R-HAAR-GAP` `GAP_NO_DERIVATION`: [L1-IMP-HAAR-INDEPENDENT-PHASES](L1-IMP-HAAR-INDEPENDENT-PHASES.md) (IMPORTED_ASSUMPTION)
+- `L1-R-PHASE-BLIND-INTERFERENCE` `DERIVED_LEAN`: [L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE](L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE.md) (PROVED_LEAN)
+- `L1-R-THM3` `DERIVED_LEAN`: [L1-QM020-THM3-ROW-SPARSITY](L1-QM020-THM3-ROW-SPARSITY.md) (PROVED_LEAN)
+- `L1-R-THM4` `DERIVED_LEAN`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_LEAN)
+- `X-R-IMPORTS-TO-DECLARED-INTERFACE` `CONDITIONAL_ON_IMPORT`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION)
