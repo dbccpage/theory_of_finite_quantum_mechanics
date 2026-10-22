@@ -957,11 +957,36 @@ class PartialAndSkipTests(LadderTests):
         dag['nodes'].append({'id': name, 'status': 'SOURCE_RECORD', 'lean': [], 'rust': [], 'source': ['external:arXiv:0000.00000']})
         dag_path.write_text(json.dumps(dag), encoding='utf-8')
 
+    def test_a_partial_escalates_and_a_later_full_accept_supersedes_it(self):
+        a = FakeProvider('free_a', [self.one_verified()])
+        b = FakeProvider('free_b', [self.good()])
+        h = FakeProvider('anthropic', [self.good()])
+        runner, _ = self.runner({'free_a': a, 'free_b': b, 'anthropic': h})
+        self.assertTrue(runner.policy['partial_escalates'])
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'accepted')
+        self.assertEqual([x['status'] for x in summary['attempts']], ['accepted_partial', 'accepted'])
+        self.assertEqual((summary['partial_attempt'], summary['accepted_attempt']), ('a0-1', 'a0-2'))
+        self.assertEqual(h.requests, [], 'the full accept at tier 0 ends the run')
+
+    def test_a_partial_is_the_fallback_when_nothing_better_comes(self):
+        a = FakeProvider('free_a', [self.one_verified()])
+        b = FakeProvider('free_b', [self.bad('ghost_b')])
+        h = FakeProvider('anthropic', [self.bad('ghost_h')])
+        runner, _ = self.runner({'free_a': a, 'free_b': b, 'anthropic': h})
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'accepted_partial')
+        self.assertIsNone(summary['accepted_attempt'])
+        self.assertEqual(summary['partial_attempt'], 'a0-1')
+        self.assertTrue(summary['stop_reason'].startswith('accepted_partial_after_ladder_exhausted'))
+        self.assertEqual(len(h.requests), 1, 'the stronger tier was tried before falling back')
+
     def test_one_verified_claim_and_no_refusal_is_accepted_partial_and_terminal(self):
         a = FakeProvider('free_a', [self.one_verified()])
         b = FakeProvider('free_b', [self.good()])
         h = FakeProvider('anthropic', [self.good()])
         runner, _ = self.runner({'free_a': a, 'free_b': b, 'anthropic': h})
+        runner.policy['partial_escalates'] = False  # the old behaviour, kept behind the flag
         summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
         self.assertEqual(summary['status'], 'accepted_partial')
         self.assertEqual(summary['stop_reason'], 'accepted_partial_at_tier_0')

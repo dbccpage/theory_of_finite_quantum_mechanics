@@ -174,7 +174,7 @@ class LadderRunner:
                     attempts.append(row)
                     stop_reason = 'budget_refused:' + refusal.code
                     return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason,
-                                        first_packet, run_cap_microusd, feedback)
+                                        first_packet, run_cap_microusd, feedback, partial=partial)
                 except ProviderError as error:
                     infra_failures += 1
                     row.update(status='infra_error', code=error.code, message=self.red.redact(error.message), backoff=error.backoff_events)
@@ -213,26 +213,32 @@ class LadderRunner:
                     accepted = aid
                     stop_reason = 'accepted_at_tier_%d' % tier['id']
                     return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason,
-                                        first_packet, run_cap_microusd, feedback)
+                                        first_packet, run_cap_microusd, feedback, partial=partial)
                 elif partial_now and fixed_attempts is not None:
                     partial = partial or aid
-                elif partial_now:
-                    # Terminal, but not an acceptance: it neither escalates nor counts as an abstention.
+                elif partial_now and not self.policy.get('partial_escalates', True):
+                    # Old behaviour: terminal, but not an acceptance; it neither escalates nor counts as an abstention.
                     return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, None,
                                         'accepted_partial_at_tier_%d' % tier['id'], first_packet, run_cap_microusd, feedback,
                                         partial=aid)
+                elif partial_now:
+                    # Keep the best partial as the fallback and keep climbing: a later full accept supersedes it.
+                    if partial is None or self._credited(report) > self._credited(texts[partial][3]):
+                        partial = aid
                 host_failures += 1
                 if abstained:
                     abstainers.add(cand['model'])
                 if self.policy.get('abstain_stop') and fixed_attempts is None and len(abstainers) >= self.policy['abstain_stop']:
                     stop_reason = 'blocked_abstained:%d_models_found_nothing_to_ground' % len(abstainers)
                     return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason,
-                                        first_packet, run_cap_microusd, feedback)
+                                        first_packet, run_cap_microusd, feedback, partial=partial)
             if fixed_attempts is not None:
                 stop_reason = 'fixed_attempts_completed'
                 break
+        if partial and not accepted and stop_reason == 'ladder_exhausted':
+            stop_reason = 'accepted_partial_after_ladder_exhausted:best_at_%s' % partial
         return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason, first_packet,
-                            run_cap_microusd, feedback)
+                            run_cap_microusd, feedback, partial=partial)
 
     def _check(self, result, packet: CompiledPacket):
         if result.refusal:
