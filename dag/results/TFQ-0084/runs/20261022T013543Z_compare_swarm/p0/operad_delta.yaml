@@ -1,0 +1,58 @@
+add_or_refine_generators:
+- id: EinsteinHilbertAction
+  ordered_inputs:
+  - geometry
+  output: action
+  arity: 1
+  carrier: Struct
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    declaration: EinsteinHilbertAction
+    line: 8
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: EinsteinHilbertAction
+    kind: struct
+    line: 8
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations:
+- id: action_matches_sum_of_deficits
+  equation_or_predicate: The computed action matches the sum of squared areas times deficits over simplices.
+  typing_conditions: ReggeCalculus data populated.
+  source_pins:
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    declaration: action_matches_sum_of_deficits
+    line: 46
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: action_matches_sum_of_deficits
+    kind: fn
+    line: 46
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Confirm that try_from_regge does not convert to EinsteinHilbertAction without additional terms.
+- Verify that l1_regge.py does not implement the Einstein-Hilbert action.
+- 'numeric area_deficit_sum unverified: expression not exactly evaluable'
+- 'lemma lemma_regge_sum_restates_target unverified: no Lean skeleton; statement consistent with sources
+  but not elaborated'
+- 'near_miss l1_regge_proxy unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

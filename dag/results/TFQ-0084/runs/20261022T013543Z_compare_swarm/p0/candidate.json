@@ -1,0 +1,163 @@
+{
+  "task_id": "TFQ-0084",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "9af5b37d80529130a056eba7957c9db7776750c0d10dedf78c8dcc5738a9d740",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "EinsteinHilbertAction",
+          "inputs": [
+            "geometry"
+          ],
+          "output": "action",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "action_matches_sum_of_deficits",
+          "equation_or_predicate": "The computed action matches the sum of squared areas times deficits over simplices.",
+          "typing_conditions": "ReggeCalculus data populated.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+              "declaration": "action_matches_sum_of_deficits",
+              "line": 46
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+            "decl": "action_matches_sum_of_deficits",
+            "kind": "fn",
+            "line": 46,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "nvidia/nemotron-3.5-lightning:free",
+            "provider": "openrouter",
+            "tier": 0
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Confirm that try_from_regge does not convert to EinsteinHilbertAction without additional terms.",
+        "Verify that l1_regge.py does not implement the Einstein-Hilbert action.",
+        "numeric area_deficit_sum unverified: expression not exactly evaluable",
+        "lemma lemma_regge_sum_restates_target unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+        "near_miss l1_regge_proxy unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "EinsteinHilbertAction",
+        "ordered_inputs": [
+          "geometry"
+        ],
+        "output": "action",
+        "arity": 1,
+        "carrier": "Struct",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+            "declaration": "EinsteinHilbertAction",
+            "line": 8
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+          "decl": "EinsteinHilbertAction",
+          "kind": "struct",
+          "line": 8,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "nvidia/nemotron-3.5-lightning:free",
+          "provider": "openrouter",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "action_matches_sum_of_deficits",
+        "equation_or_predicate": "The computed action matches the sum of squared areas times deficits over simplices.",
+        "typing_conditions": "ReggeCalculus data populated.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+            "declaration": "action_matches_sum_of_deficits",
+            "line": 46
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+          "decl": "action_matches_sum_of_deficits",
+          "kind": "fn",
+          "line": 46,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "nvidia/nemotron-3.5-lightning:free",
+          "provider": "openrouter",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Confirm that try_from_regge does not convert to EinsteinHilbertAction without additional terms.",
+      "Verify that l1_regge.py does not implement the Einstein-Hilbert action.",
+      "numeric area_deficit_sum unverified: expression not exactly evaluable",
+      "lemma lemma_regge_sum_restates_target unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+      "near_miss l1_regge_proxy unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

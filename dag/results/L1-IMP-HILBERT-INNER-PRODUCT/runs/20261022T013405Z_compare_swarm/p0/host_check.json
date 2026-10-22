@@ -1,0 +1,127 @@
+{
+  "task_id": "L1-IMP-HILBERT-INNER-PRODUCT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "0ae78aade1d397e9125c559eea68ae9855439da9fffaa37402d61e9b44c8236f",
+  "candidate_sha256": "4684a936bdbfac3fce19f06983bc39afc5d1fe743c1ed3139e4edd0103022702",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T01:34:08Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gramStd",
+        "ordered_inputs": [
+          "Vec Int Bool",
+          "Vec Int Bool"
+        ],
+        "output": "Int",
+        "arity": 2,
+        "carrier": "Int",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H005InnerProductAdmission.lean",
+            "declaration": "FableHilbertWalk20260819.H005.gramStd",
+            "line": 60
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.gramStd",
+          "kind": "def",
+          "line": 60,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "gram_not_unique",
+        "equation_or_predicate": "gramStd deltaTrueInt deltaTrueInt = 1 ∧ gramWeighted deltaTrueInt deltaTrueInt = 2 ∧ gramStd deltaTrueInt deltaTrueInt ≠ gramWeighted deltaTrueInt deltaTrueInt",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/H005InnerProductAdmission.lean",
+            "declaration": "FableHilbertWalk20260819.H005.gram_not_unique",
+            "line": 66
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.gram_not_unique",
+          "kind": "theorem",
+          "line": 66,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Uniqueness of the inner product is not established; need a proof of uniqueness for the admitted inner product.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "inner_product_admitted",
+        "statement": "A Hilbert inner product is admitted on the linearized carrier.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "inner_product_admission"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.inner_product_admission",
+          "status": "existing"
+        },
+        "host_evidence": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.inner_product_admission",
+          "kind": "theorem",
+          "line": 181,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

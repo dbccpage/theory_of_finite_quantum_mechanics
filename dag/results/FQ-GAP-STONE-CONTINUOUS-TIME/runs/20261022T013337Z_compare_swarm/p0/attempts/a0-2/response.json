@@ -1,0 +1,36 @@
+{
+  "compositions": [],
+  "generators": [],
+  "lemmas": [
+    {
+      "claims_proved": false,
+      "depends_on": [
+        "fq_gap_stone_aliasing_and_real_embedding_conjugate"
+      ],
+      "id": "L1",
+      "lean_skeleton": "import QuantumMechanics.DerivationDagQMClosure\n\ntheorem finite_order_constraint_of_aliasing : \n  (∃ N k : Nat, N > 0 ∧ k > 0 ∧ (k + N) % N = k % N) ∧\n  (1 * 1 - 2 * (1 * 1) = (-1 : Int)) ∧\n  (∀ U : Unit, True) := by\n  apply And.intro\n  apply And.intro\n  exact ⟨2, 1, by norm_num, by norm_num, by norm_num⟩\n  exact by norm_num\n  exact by norm_num",
+      "ref": {
+        "decl": "fq_gap_stone_aliasing_and_real_embedding_conjugate",
+        "path": "lean4/DerivationDagQMClosure.lean",
+        "status": "existing"
+      },
+      "relation_to_target": "auxiliary",
+      "statement": "Finite rotational orders are consistent with the real embedding of rational exponentials but do not eliminate the generator ambiguity characterizing the Stone gap."
+    }
+  ],
+  "near_misses": [
+    {
+      "claim": "Rational Z_4 roots of unity provide a strongly continuous one-parameter group on the discrete set {iso_00, iso_01, iso_02, iso_03}.",
+      "id": "NM1",
+      "rejecting_invariant": "The carrier is discrete and finite, while the target gap concerns the transition to continuous time and the selection of a unique generator on R. The existing declaration fq_gap_stone_aliasing_and_real_embedding_conjugate confirms finite-type aliasing is present but does not provide a continuous R-indexed action."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Strong continuity of the time evolution",
+    "Uniqueness of the generator in the Stone theorem",
+    "Embedding of the discrete causal order into an external Minkowski spacetime structure"
+  ],
+  "relations": [],
+  "status": "incomplete"
+}

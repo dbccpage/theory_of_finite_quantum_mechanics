@@ -1,0 +1,722 @@
+{
+  "task_id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a5-1",
+  "input_sha256": "6a76b3bf73cd5ad93d48151a06fbadcfb5401211135e1ee79b3e2dd5c63e2305",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "mat2_trace",
+          "inputs": [
+            "Mat2Int"
+          ],
+          "output": "Int",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "mat2_det",
+          "inputs": [
+            "Mat2Int"
+          ],
+          "output": "Int",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "vec2_dot",
+          "inputs": [
+            "Vec2",
+            "Vec2"
+          ],
+          "output": "Int",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "vec2_normSq",
+          "inputs": [
+            "Vec2"
+          ],
+          "output": "Int",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "frame_e1",
+          "inputs": [],
+          "output": "Vec2",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "frame_p1",
+          "inputs": [],
+          "output": "Vec2",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": [
+        {
+          "outer_operation": "vec2_dot",
+          "input_slot": 0,
+          "inner_operation": "frame_e1",
+          "colour_match": true,
+          "hypothesis_match": "not checked",
+          "licensing_relations": [
+            "rel_frames_orthogonal"
+          ],
+          "evidence_status": "colours_match_and_licensed_by_verified_relation"
+        },
+        {
+          "outer_operation": "vec2_dot",
+          "input_slot": 1,
+          "inner_operation": "frame_p1",
+          "colour_match": true,
+          "hypothesis_match": "not checked",
+          "licensing_relations": [
+            "rel_quadratic_frame_additivity"
+          ],
+          "evidence_status": "colours_match_and_licensed_by_verified_relation"
+        },
+        {
+          "outer_operation": "vec2_normSq",
+          "input_slot": 0,
+          "inner_operation": "frame_p1",
+          "colour_match": true,
+          "hypothesis_match": "not checked",
+          "licensing_relations": [
+            "rel_frames_equinorm"
+          ],
+          "evidence_status": "colours_match_and_licensed_by_verified_relation"
+        }
+      ]
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_frames_orthogonal",
+          "equation_or_predicate": "The standard frame (e1,e2) and the rotated frame (p1,p2) are each orthogonal under dot",
+          "typing_conditions": "none (closed integer computation)",
+          "source_pins": [
+            {
+              "path": "lean4/H013QuarticRivalSeparation.lean",
+              "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.frames_orthogonal",
+              "line": 34
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "decl": "FableHilbertWalk20260819.H013QuarticSeparation.frames_orthogonal",
+            "kind": "theorem",
+            "line": 34,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        },
+        {
+          "id": "rel_frames_equinorm",
+          "equation_or_predicate": "Vectors within each frame share the same normSq",
+          "typing_conditions": "none (closed integer computation)",
+          "source_pins": [
+            {
+              "path": "lean4/H013QuarticRivalSeparation.lean",
+              "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.frames_equinorm",
+              "line": 29
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "decl": "FableHilbertWalk20260819.H013QuarticSeparation.frames_equinorm",
+            "kind": "theorem",
+            "line": 29,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        },
+        {
+          "id": "rel_quadratic_frame_additivity",
+          "equation_or_predicate": "Squared overlaps of a fixed ray with an orthogonal frame sum to the normalisation constant (Born/quadratic form is frame additive)",
+          "typing_conditions": "finite rational frames e1,e2,p1,p2 only",
+          "source_pins": [
+            {
+              "path": "lean4/H013QuarticRivalSeparation.lean",
+              "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.quadratic_frame_additivity",
+              "line": 38
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "decl": "FableHilbertWalk20260819.H013QuarticSeparation.quadratic_frame_additivity",
+            "kind": "theorem",
+            "line": 38,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        },
+        {
+          "id": "rel_two_label_not_gleason",
+          "equation_or_predicate": "A two-label (Bool) host does not satisfy GleasonDimAtLeastThree",
+          "typing_conditions": "host carrier is Bool",
+          "source_pins": [
+            {
+              "path": "lean4/H017Gleason.lean",
+              "declaration": "FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension",
+              "line": 29
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H017Gleason.lean",
+            "decl": "FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension",
+            "kind": "theorem",
+            "line": 29,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        },
+        {
+          "id": "rel_enumBool_two",
+          "equation_or_predicate": "The enumeration of Bool has length 2, so the surrogate 3 <= |Q| fails",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/H017Gleason.lean",
+              "declaration": "FableHilbertWalk20260819.H017Gleason.enumBool_length_two",
+              "line": 24
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H017Gleason.lean",
+            "decl": "FableHilbertWalk20260819.H017Gleason.enumBool_length_two",
+            "kind": "theorem",
+            "line": 24,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-fable-5-1",
+            "provider": "anthropic",
+            "tier": 5
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Continuum Gleason frame additivity on S^{n-1} for n >= 3 is not mechanized; cited only as an assumption via gleason_pack_uniqueness_still_imported",
+        "Exact coordinate values of p1, p2 and the statement forms of quartic_frame_values / quartic_frame_deficit were not visible in @SRC signatures, so no Lean skeleton references them directly",
+        "No @SRC declaration for the Cabello 18-9 configuration was listed; the 18*2/9 = 4 count is combinatorial only",
+        "Resolution of the two disagreeing unit-effect contract pairings is not addressed by any listed declaration",
+        "lemma lem_quartic_rival_eliminated_d2 unverified: Lean elaboration disabled",
+        "lemma lem_quartic_rival_eliminated_d3 unverified: Lean elaboration disabled",
+        "lemma lem_bool_cardinality_surrogate_false unverified: Lean elaboration disabled",
+        "near_miss nm_gleason_d2 unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_bool_three_labels unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_finite_frames_suffice unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "mat2_trace",
+        "ordered_inputs": [
+          "Mat2Int"
+        ],
+        "output": "Int",
+        "arity": 1,
+        "carrier": "integer 2x2 matrices",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.Mat2Int.trace",
+            "line": 315
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.Mat2Int.trace",
+          "kind": "def",
+          "line": 315,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "mat2_det",
+        "ordered_inputs": [
+          "Mat2Int"
+        ],
+        "output": "Int",
+        "arity": 1,
+        "carrier": "integer 2x2 matrices",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.mat2Det",
+            "line": 531
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.mat2Det",
+          "kind": "def",
+          "line": 531,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "vec2_dot",
+        "ordered_inputs": [
+          "Vec2",
+          "Vec2"
+        ],
+        "output": "Int",
+        "arity": 2,
+        "carrier": "integer plane vectors",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.dot",
+            "line": 9
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.dot",
+          "kind": "def",
+          "line": 9,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "vec2_normSq",
+        "ordered_inputs": [
+          "Vec2"
+        ],
+        "output": "Int",
+        "arity": 1,
+        "carrier": "integer plane vectors",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.normSq",
+            "line": 12
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.normSq",
+          "kind": "def",
+          "line": 12,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "frame_e1",
+        "ordered_inputs": [],
+        "output": "Vec2",
+        "arity": 0,
+        "carrier": "integer plane vectors",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.e1",
+            "line": 21
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.e1",
+          "kind": "def",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "frame_p1",
+        "ordered_inputs": [],
+        "output": "Vec2",
+        "arity": 0,
+        "carrier": "integer plane vectors",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.p1",
+            "line": 24
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.p1",
+          "kind": "def",
+          "line": 24,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_frames_orthogonal",
+        "equation_or_predicate": "The standard frame (e1,e2) and the rotated frame (p1,p2) are each orthogonal under dot",
+        "typing_conditions": "none (closed integer computation)",
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.frames_orthogonal",
+            "line": 34
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.frames_orthogonal",
+          "kind": "theorem",
+          "line": 34,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "rel_frames_equinorm",
+        "equation_or_predicate": "Vectors within each frame share the same normSq",
+        "typing_conditions": "none (closed integer computation)",
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.frames_equinorm",
+            "line": 29
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.frames_equinorm",
+          "kind": "theorem",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "rel_quadratic_frame_additivity",
+        "equation_or_predicate": "Squared overlaps of a fixed ray with an orthogonal frame sum to the normalisation constant (Born/quadratic form is frame additive)",
+        "typing_conditions": "finite rational frames e1,e2,p1,p2 only",
+        "source_pins": [
+          {
+            "path": "lean4/H013QuarticRivalSeparation.lean",
+            "declaration": "FableHilbertWalk20260819.H013QuarticSeparation.quadratic_frame_additivity",
+            "line": 38
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H013QuarticRivalSeparation.lean",
+          "decl": "FableHilbertWalk20260819.H013QuarticSeparation.quadratic_frame_additivity",
+          "kind": "theorem",
+          "line": 38,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "rel_two_label_not_gleason",
+        "equation_or_predicate": "A two-label (Bool) host does not satisfy GleasonDimAtLeastThree",
+        "typing_conditions": "host carrier is Bool",
+        "source_pins": [
+          {
+            "path": "lean4/H017Gleason.lean",
+            "declaration": "FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension",
+            "line": 29
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H017Gleason.lean",
+          "decl": "FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension",
+          "kind": "theorem",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      },
+      {
+        "id": "rel_enumBool_two",
+        "equation_or_predicate": "The enumeration of Bool has length 2, so the surrogate 3 <= |Q| fails",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/H017Gleason.lean",
+            "declaration": "FableHilbertWalk20260819.H017Gleason.enumBool_length_two",
+            "line": 24
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H017Gleason.lean",
+          "decl": "FableHilbertWalk20260819.H017Gleason.enumBool_length_two",
+          "kind": "theorem",
+          "line": 24,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-fable-5-1",
+          "provider": "anthropic",
+          "tier": 5
+        }
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "vec2_dot",
+        "input_slot": 0,
+        "inner_operation": "frame_e1",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "rel_frames_orthogonal"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      },
+      {
+        "outer_operation": "vec2_dot",
+        "input_slot": 1,
+        "inner_operation": "frame_p1",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "rel_quadratic_frame_additivity"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      },
+      {
+        "outer_operation": "vec2_normSq",
+        "input_slot": 0,
+        "inner_operation": "frame_p1",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "rel_frames_equinorm"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      }
+    ],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-3BE7EA6EF018",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "rel_quartic_rival_fails: The quartic rival |<u,v>|^4 is not frame additive on the rotated frame [FableHilbertWalk20260819.H013QuarticSeparation.quartic_rival_fails_frame_additivity]",
+        "evidence": "numerals 4 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "FableHilbertWalk20260819.H013QuarticSeparation.quartic_rival_fails_frame_additivity",
+        "confidence": "heuristic",
+        "model": "claude-fable-5-1",
+        "provider": "anthropic",
+        "tier": 5,
+        "node_id": "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      }
+    ],
+    "open_obligations": [
+      "Continuum Gleason frame additivity on S^{n-1} for n >= 3 is not mechanized; cited only as an assumption via gleason_pack_uniqueness_still_imported",
+      "Exact coordinate values of p1, p2 and the statement forms of quartic_frame_values / quartic_frame_deficit were not visible in @SRC signatures, so no Lean skeleton references them directly",
+      "No @SRC declaration for the Cabello 18-9 configuration was listed; the 18*2/9 = 4 count is combinatorial only",
+      "Resolution of the two disagreeing unit-effect contract pairings is not addressed by any listed declaration",
+      "lemma lem_quartic_rival_eliminated_d2 unverified: Lean elaboration disabled",
+      "lemma lem_quartic_rival_eliminated_d3 unverified: Lean elaboration disabled",
+      "lemma lem_bool_cardinality_surrogate_false unverified: Lean elaboration disabled",
+      "near_miss nm_gleason_d2 unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_bool_three_labels unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_finite_frames_suffice unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_quartic_plane_sum",
+        "expr": "(1/2)^2 + (1/2)^2",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      },
+      {
+        "id": "nc_quartic_plane_deficit",
+        "expr": "1 - ((1/2)^2 + (1/2)^2)",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      },
+      {
+        "id": "nc_quartic_d3_sum",
+        "expr": "3*(1/3)^2",
+        "value": "1/3",
+        "host_evidence": {
+          "recomputed": "1/3"
+        }
+      },
+      {
+        "id": "nc_quadratic_d3_sum",
+        "expr": "3*(1/3)",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "nc_cabello_vectors_per_basis",
+        "expr": "18*2/9",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "lem_gleason_still_imported",
+        "statement": "Born uniqueness of the quadratic form for d >= 3 is an imported Gleason assumption, not derived in the pack",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "rel_two_label_not_gleason"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/H017Gleason.lean",
+          "decl": "FableHilbertWalk20260819.H017Gleason.gleason_pack_uniqueness_still_imported",
+          "status": "existing"
+        },
+        "host_evidence": {
+          "path": "lean4/H017Gleason.lean",
+          "decl": "FableHilbertWalk20260819.H017Gleason.gleason_pack_uniqueness_still_imported",
+          "kind": "theorem",
+          "line": 60,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "11 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 5 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,124 @@
+{
+  "task_id": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "449f528ad461268b77b75b14c4bb2641be07e99a7d6c96b8ecd71b2a8b90024c",
+  "candidate_sha256": "9fc1ec5e496778f15299b8d7fa13597e5b6cf1fa5de6d85a0df66f7596bc028d",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T01:34:55Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r1",
+        "equation_or_predicate": "toggleRev.inv = toggle",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/H003ReversibilityGate.lean",
+            "declaration": "FableHilbertWalk20260819.H003.reversibility_gate",
+            "line": 60
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.reversibility_gate",
+          "kind": "theorem",
+          "line": 60,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      },
+      {
+        "id": "r2",
+        "equation_or_predicate": "∀ (u v : Vec Int Bool), sesq intPack enumBool (permU intPack toggleRev u) (permU intPack toggleRev v) = sesq intPack enumBool u v",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/H006PermutationUnitary.lean",
+            "declaration": "FableHilbertWalk20260819.H006.permutation_isometry_envelope",
+            "line": 168
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permutation_isometry_envelope",
+          "kind": "theorem",
+          "line": 168,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-01E6C18505D6",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g1: (Bool) -> Bool [FableHilbertWalk20260819.H003.toggleRev]",
+        "evidence": "lean def toggleRev has 0 explicit binders (0 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "FableHilbertWalk20260819.H003.toggleRev",
+        "confidence": "exact",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+      }
+    ],
+    "open_obligations": [
+      "generator g2 unverified: no existing declaration cited",
+      "composition g1 . slot 0 <- g2 via r1 unverified: the outer and inner generators are not host-verified (proposed_new, unchecked or refused)",
+      "lemma lem1 unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc1",
+        "expr": "1 * 1 + 2 * 2",
+        "value": "5",
+        "host_evidence": {
+          "recomputed": "5"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

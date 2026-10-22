@@ -1,0 +1,89 @@
+{
+  "task_id": "FQ-GAP-STONE-CONTINUOUS-TIME",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "8c9e1e0d47e519ac3ca436e88f64cd092552183943df2eabd305a72ce614d5e1",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Strong continuity of the time evolution",
+        "Uniqueness of the generator in the Stone theorem",
+        "Embedding of the discrete causal order into an external Minkowski spacetime structure",
+        "near_miss NM1 unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Strong continuity of the time evolution",
+      "Uniqueness of the generator in the Stone theorem",
+      "Embedding of the discrete causal order into an external Minkowski spacetime structure",
+      "near_miss NM1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "claims_proved": false,
+        "depends_on": [
+          "fq_gap_stone_aliasing_and_real_embedding_conjugate"
+        ],
+        "id": "L1",
+        "lean_skeleton": "import QuantumMechanics.DerivationDagQMClosure\n\ntheorem finite_order_constraint_of_aliasing : \n  (∃ N k : Nat, N > 0 ∧ k > 0 ∧ (k + N) % N = k % N) ∧\n  (1 * 1 - 2 * (1 * 1) = (-1 : Int)) ∧\n  (∀ U : Unit, True) := by\n  apply And.intro\n  apply And.intro\n  exact ⟨2, 1, by norm_num, by norm_num, by norm_num⟩\n  exact by norm_num\n  exact by norm_num",
+        "ref": {
+          "decl": "fq_gap_stone_aliasing_and_real_embedding_conjugate",
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "status": "existing"
+        },
+        "relation_to_target": "auxiliary",
+        "statement": "Finite rotational orders are consistent with the real embedding of rational exponentials but do not eliminate the generator ambiguity characterizing the Stone gap.",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate",
+          "kind": "theorem",
+          "line": 624,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

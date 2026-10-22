@@ -1,0 +1,150 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "L1-IMP-HILBERT-INNER-PRODUCT",
+  "stage": "P0",
+  "run_id": "L1-IMP-HILBERT-INNER-PRODUCT/20261022T015601Z_ladder",
+  "finished_utc": "2026-10-22T01:56:44Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "accept_partial": true,
+    "partial_min_verified": 1,
+    "skip_ungroundable": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 5,
+      "name": "fable",
+      "attempts_before_escalation": 3,
+      "models": [
+        "claude-fable-5-1"
+      ]
+    }
+  ],
+  "run_cap_usd": 1.5,
+  "summary": {
+    "node_id": "L1-IMP-HILBERT-INNER-PRODUCT",
+    "run_id": "L1-IMP-HILBERT-INNER-PRODUCT/20261022T015601Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_5",
+    "accepted_attempt": "a5-1",
+    "partial_attempt": null,
+    "best_attempt": "a5-1",
+    "attempts": [
+      {
+        "attempt_id": "a5-1",
+        "tier": 5,
+        "provider": "anthropic",
+        "model": "claude-fable-5-1",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 0,
+        "known_pos_injected": 0,
+        "input_sha256": "0ae78aade1d397e9125c559eea68ae9855439da9fffaa37402d61e9b44c8236f",
+        "injected_neg_ids": [],
+        "status": "accepted",
+        "verified_total": 14,
+        "failures_total": 3,
+        "failure_rate": 0.1765,
+        "failures_by_class": {
+          "composition_type_mismatch": 2,
+          "wrong_signature": 1
+        },
+        "unverifiable": 5,
+        "input_tokens": 4992,
+        "output_tokens": 4100,
+        "cost_microusd": 254920,
+        "request_id": "req_011CgGSiY7yB8a6HcEX9MDHe",
+        "latency_s": 42.49,
+        "stop_reason": "end_turn",
+        "served_model": "claude-fable-5-1",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-6BBEC631222F",
+          "NEG-7012F9EAC2E4",
+          "NEG-7012F9EAC2E4"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "5": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 4992,
+        "output_tokens": 4100,
+        "cost_microusd": 254920,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 254920,
+    "spend_usd": 0.25492,
+    "hallucinations_by_class": {
+      "composition_type_mismatch": 2,
+      "wrong_signature": 1
+    },
+    "hallucinations_by_model": {
+      "claude-fable-5-1": {
+        "composition_type_mismatch": 2,
+        "wrong_signature": 1
+      }
+    },
+    "verified": {
+      "generators": 4,
+      "relations": 6,
+      "compositions": 0,
+      "lemmas": 1,
+      "numeric": 3
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a5-1:eca9935e",
+      "run_id": "L1-IMP-HILBERT-INNER-PRODUCT/20261022T015601Z_ladder",
+      "attempt_id": "a5-1",
+      "tier": 5,
+      "provider": "anthropic",
+      "model": "claude-fable-5-1",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 8000,
+      "started_utc": "2026-10-22T01:56:01Z",
+      "status": "ok",
+      "estimated_input_tokens": 4431,
+      "estimate_microusd": 444310,
+      "served_model": "claude-fable-5-1",
+      "input_tokens": 4992,
+      "output_tokens": 4100,
+      "cost_microusd": 254920,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGSiY7yB8a6HcEX9MDHe",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 42.49,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 12.331408,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.001402,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

@@ -1,0 +1,60 @@
+add_or_refine_generators:
+- id: qcd_beta0
+  ordered_inputs:
+  - n_c
+  - n_f
+  output: Q
+  arity: 2
+  carrier: python
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/python/src/qm/qcd_confinement.py
+    declaration: qcd_beta0
+    line: 224
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/python/src/qm/qcd_confinement.py
+    decl: qcd_beta0
+    kind: def
+    line: 224
+    lang: python
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations:
+- id: asymptotic_freedom_window_3_0
+  equation_or_predicate: 4 * suNCasimirAdjoint(3) + (-1/3) * suNCasimirAdjoint(3) = 11
+  typing_conditions: C_A = suNCasimirAdjoint(3)
+  source_pins:
+  - path: lean4/FiniteQM.lean
+    declaration: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    line: 614
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQM.lean
+    decl: FiniteQM.qcd_beta0_asymptotic_freedom_window
+    kind: theorem
+    line: 614
+    lang: lean
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Verify the exact rational value of qcdBeta0(3, 5) and confirm it equals 23/3 without floating point
+  rounding.
+- Confirm that the window values 7 (at n_f=6) and -1/3 (at n_f=16, 17) are reproducible from the Lean
+  definition of qcdBeta0.
+- Ground the composition of qcdBeta0 into the asymptotic_freedom_window relation without colour mismatch.
+- 'lemma window_values_at_nf unverified: Lean elaboration disabled'
+- 'near_miss failing_nf_3_calc unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []
