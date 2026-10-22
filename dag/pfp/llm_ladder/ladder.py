@@ -51,6 +51,7 @@ def parse_args(argv=None):
     parser.add_argument('--no-partial', action='store_true', help='turn off accepted_partial (1 verified claim, 0 refused): such answers go back to being rejected/abstained')
     parser.add_argument('--partial-min-verified', type=int, default=None, help='verified claims needed for accepted_partial (default 1)')
     parser.add_argument('--no-skip-ungroundable', action='store_true', help='send every node, including those with no @SRC, no candidates and no code anchor in the checkout')
+    parser.add_argument('--partial-terminal', action='store_true', help='end the run at the first accepted_partial instead of escalating (old behaviour)')
     parser.add_argument('--numeric-counts', action='store_true', help='credit correct numeric claims toward acceptance (off by default: they prove arithmetic, not relevance)')
     parser.add_argument('--no-lean', action='store_true', help='skip Lean elaboration of skeletons')
     parser.add_argument('--env-file', default=None, help='explicit .env path (default: this checkout, then the main checkout)')
@@ -77,6 +78,8 @@ def build_runner(args, *, providers=None):
         policy['skip_ungroundable'] = False
     if args.numeric_counts:
         policy['numeric_counts'] = True
+    if args.partial_terminal:
+        policy['partial_escalates'] = False
     if args.max_failure_rate is not None:
         policy['max_failure_rate'] = args.max_failure_rate
     providers = providers if providers is not None else build_providers(env)

@@ -100,6 +100,10 @@ DEFAULT_POLICY = {
     # skip_ungroundable: no provider call for a node with an empty @SRC, no operation/relation candidates and no code anchor
     # in the checkout. Recorded as `skipped_ungroundable` with the reason. False sends every node.
     'skip_ungroundable': True,
+    # partial_escalates: an accepted_partial attempt is kept as the run's fallback and the ladder keeps climbing; a later full
+    # accept supersedes it, otherwise the run ends accepted_partial with the best partial (most credited items). False
+    # restores the old behaviour (the first partial ends the run), which stopped cheap tiers before stronger ones were tried.
+    'partial_escalates': True,
     'abstain_stop': 0,            # >0: stop (blocked, no escalation) once this many distinct models answered validly with no claim to check and too few verified
     'feedback': True,             # inject negative and positive operad entries into the packet
     'max_neg_lines': 12, 'max_pos_lines': 8, 'max_source_candidates': 25, 'excerpt_chars': 1400,
