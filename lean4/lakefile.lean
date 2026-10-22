@@ -583,3 +583,11 @@ lean_lib FrontierTargets where
     `FrontierClassical6j,
     `FrontierPrAllowedRegion
   ]
+
+-- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
+-- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
+lean_lib CampaignCtMediatorEntanglement where
+  roots := #[
+    `CampaignCtMediatorEntanglement
+  ]
+
