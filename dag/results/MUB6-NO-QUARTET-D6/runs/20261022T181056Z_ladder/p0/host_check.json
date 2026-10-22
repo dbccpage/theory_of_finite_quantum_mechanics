@@ -1,0 +1,167 @@
+{
+  "task_id": "MUB6-NO-QUARTET-D6",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "dfa69b357d8bde971cb7d9df90c589d8c1d5cca7649b7c30b7c1dc518cd18116",
+  "candidate_sha256": "c96800208c3e2c9c8a1ef2a24a87ed0ab6aeabad96919326163340a1bddc7730",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 2,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "wrong_signature": 2
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:11:05Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_bounded_iff_quartet",
+        "equation_or_predicate": "A bounded real solution of the Szollosi quadratic system exists iff a quartet of mutually unbiased bases exists in C^6",
+        "typing_conditions": "stated box radii and equation set of the Szollosi parameterization",
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiQuadraticSystem.lean",
+            "declaration": "MUB.SzollosiQuadraticSystem.exists_bounded_solution_iff_quartet",
+            "line": 795
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiQuadraticSystem.lean",
+          "decl": "MUB.SzollosiQuadraticSystem.exists_bounded_solution_iff_quartet",
+          "kind": "theorem",
+          "line": 795,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "r_full_box_excludes",
+        "equation_or_predicate": "If the interval exclusion check succeeds on the full box then no parameter solution exists, hence no quartet",
+        "typing_conditions": "exclusionCheck fullBox = true",
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiIntervalExclusion.lean",
+            "declaration": "MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check",
+            "line": 116
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiIntervalExclusion.lean",
+          "decl": "MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check",
+          "kind": "theorem",
+          "line": 116,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-DF3359AAC343",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_bounded_quartet_solution: (ParameterSolution) -> QuartetWitness [MUB.SzollosiQuadraticSystem.exists_bounded_solution_iff_quartet]",
+        "evidence": "lean MUB.SzollosiQuadraticSystem.exists_bounded_solution_iff_quartet has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "MUB.SzollosiQuadraticSystem.exists_bounded_solution_iff_quartet",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-NO-QUARTET-D6"
+      },
+      {
+        "id": "NEG-F3B397B518DE",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_full_box_exclusion: (FullBoxCertificate) -> NoQuartetVerdict [MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check]",
+        "evidence": "lean MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-NO-QUARTET-D6"
+      }
+    ],
+    "open_obligations": [
+      "Full box check is recorded as unresolved in MUB.SzollosiIntervalExclusion.full_box_check_unresolved; a successful check is not established here",
+      "Six charts, 56 family cells, and three cusp collars are not covered by the corpus",
+      "Triples outside the Szollosi parameterization are not covered",
+      "No sorry-free proof of the target is supplied; the target remains OPEN",
+      "The 648- and 666-equation systems are not grounded here",
+      "near_miss nm_openai_n6_three unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_n6_le_five_decides unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_618_equations",
+        "expr": "618",
+        "value": "618",
+        "host_evidence": {
+          "recomputed": "618"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "l_reduce_to_full_box",
+        "statement": "Non-existence of a quartet follows from a successful full-box exclusion check combined with the bounded-solution equivalence",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_bounded_iff_quartet",
+          "r_full_box_excludes"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/SzollosiIntervalExclusion.lean",
+          "decl": "MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/SzollosiIntervalExclusion.lean",
+          "decl": "MUB.SzollosiIntervalExclusion.no_quartet_of_full_box_check",
+          "kind": "theorem",
+          "line": 116,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

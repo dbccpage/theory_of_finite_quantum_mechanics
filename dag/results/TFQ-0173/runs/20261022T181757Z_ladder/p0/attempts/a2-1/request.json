@@ -1,0 +1,323 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0173",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "0ad54725b1dff208dc93753d69bee3323b9b752310a8d39eed69edd3b93c83f5",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=TFQ-0173 stage=P0 attempt=a2-1 in=0ad54725 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] Curvature in omega_holonomy is a finite commutator and a plaquette defect, not a continuum Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity, and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does not supply the Einstein equation or a Regge deficit angle.\n@BOTTLENECK Keep discrete curvature as an exact plaquette defect and matrix commutator, without a float tolerance.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/holonomy/curvature.rs | curvature_commutator | fn | pub fn curvature_commutator<T: ExactScalar>( m1: &ExactMatrix<T>, m2: &ExactMatrix<T>, limits: &OperationLimits, ) -> Result<ExactMatrix<T>, HolonomyE\n code/rust/src/holonomy/curvature.rs | curvature_commutator_vanishes | fn | pub fn curvature_commutator_vanishes<T: ExactScalar>( m1: &ExactMatrix<T>, m2: &ExactMatrix<T>, limits: &OperationLimits, ) -> Result<bool, HolonomyEr\n code/rust/src/holonomy/curvature.rs | plaquette_curvature | fn | pub fn plaquette_curvature<T: ExactScalar>( connection: &DiscreteConnection<T>, boundary_vertices: &[String], ) -> Result<ExactMatrix<T>, HolonomyErro\n code/rust/src/holonomy/curvature.rs | verify_discrete_bianchi_identity | fn | pub fn verify_discrete_bianchi_identity<T: ExactScalar>( connection: &DiscreteConnection<T>, boundary_plaquettes: &[Vec<String>], ) -> Result<bool, Ho\n code/rust/src/holonomy/curvature.rs | admit_curvature_work | fn | fn admit_curvature_work( dimension: usize, requested: usize, limits: &OperationLimits, ) -> Result<usize, HolonomyError>\n code/rust/src/holonomy/curvature.rs | matrix_difference | fn | fn matrix_difference<T: ExactScalar>( left: &ExactMatrix<T>, right: &ExactMatrix<T>, limits: &OperationLimits, ) -> Result<ExactMatrix<T>, HolonomyErr\n code/rust/src/holonomy/curvature.rs | group_commutator | fn | pub fn group_commutator<T: ExactScalar>( m1: &ExactMatrix<T>, m2: &ExactMatrix<T>, ) -> Result<ExactMatrix<T>, HolonomyError>\n code/rust/src/holonomy/curvature.rs | CurvatureEngine | struct | pub struct CurvatureEngine<T: ExactScalar>\n code/rust/src/wdp/lib.rs | guarded_chain_transport | mod\n code/rust/src/wdp/lib.rs | wdp_kernel_check | mod\n code/rust/src/wdp/lib.rs | tolerance_retention | mod\n code/rust/src/wdp/lib.rs | genesis_transport_descent | mod\n code/rust/src/general_relativity/curvature_tensor.rs | DiscreteRiemannTensor4D | struct\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | ReggeDeficitReceipt | struct\n code/rust/src/general_relativity/curvature_tensor.rs | scalar_curvature_density | fn\n code/rust/src/general_relativity/curvature_tensor.rs | integrated_scalar_curvature | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | ReggeTurnRefusal | enum\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | ReggeTurnScope | enum\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | deficit_turns | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | DeclaredReggeTurnComplex | struct\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | validate_d2_matrix | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | replay_curvature_law | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | boundary_holonomy | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | curvature | fn\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | holonomy_turns | fn\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:plaquette_curvature (DiscreteConnection,BoundaryVertexList)->ExactMatrix src=code/rust/src/holonomy/curvature.rs | plaquette_curvature\n r:commutator_vanishes_iff_exact_zero curvature_commutator_vanishes(m1,m2) returns true exactly when the exact matrix M1 M2 minus M2 M1 is the zero  src=code/rust/src/holonomy/curvature.rs | curvature_commutator_vanishes\n g:path_holonomy (Cochain1,PairList)->Int src=lean4/CoboundaryHolonomy.lean | InterferenceNonL1Resource.path_holonomy\n g:vertex_path_holonomy (Cochain1,VertexList)->Int src=lean4/CoboundaryHolonomy.lean | InterferenceNonL1Resource.vertex_path_holonomy\n r:coboundary_triangle_zero path_holonomy of coboundary of a 0-cochain around a triangle cycle equals 0 src=lean4/CoboundaryHolonomy.lean | InterferenceNonL1Resource.coboundary_triangle_holonomy_zero\n@KNOWN- (host-refused earlier; do not repeat)\n [unparseable_reply]  -- Return one JSON object and nothing else.\n [schema_violation] {'source': 'coboundary_triangle_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/C -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'path_holonomy', 'inputs': ['Cochain1', 'List (Vertex × Vertex)'], 'output': 'Int', 'arity': 2, 'path -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'source': 'coboundary_square_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/Cob -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'CellComplex', 'inputs': [], 'output': 'struct', 'arity': 0, 'path': 'code/rust/src/holonomy/graph.rs -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'vertex_path_holonomy', 'inputs': ['Vertex', 'Vertex'], 'output': 'Int', 'arity': 2, 'path': 'lean4/C -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'telescoping_vertex_path', 'outer': 'vertex_path_holonomy', 'inner': 'path_holonomy', 'slot': 1, 'lic -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'genesis_gauge_result', 'path': 'code/rust/src/wdp/lib.rs', 'decl': 'genesis_gauge_result', 'status': -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'coboundary_closed_cycle_zero', 'relation_to_target': 'strengthens', 'path': 'lean4/CoboundaryHolonom -- Return exactly the schema; no extra or missing fields.\n [composition_type_mismatch] holonomy_loop . slot 0 <- vertex_path_holonomy via refuses_a_short_connection_and_a_broken_boundary -- Do not compose operations whose colours do not match.\n [wrong_signature] curvature_commutator -- Do not state that arity/signature for curvature_commutator.\n [wrong_signature] curvature_commutator -- Do not state that arity/signature for curvature_commutator.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 12,
+    "known_pos_injected": 5,
+    "neighbours": [
+      "TFQ-0172"
+    ],
+    "feedback": true,
+    "index_position": 298,
+    "neg_entry_ids": [
+      "NEG-0C43DA16A442",
+      "NEG-80FDE1EB737E",
+      "NEG-6DC6CE33DAFB",
+      "NEG-9ED8BDD8BFC7",
+      "NEG-71A23886A5C3",
+      "NEG-7624955E85F6",
+      "NEG-840AE65616C2",
+      "NEG-96A269687245",
+      "NEG-B93C9377131B",
+      "NEG-FFC331823012",
+      "NEG-428707EEDB70",
+      "NEG-F66958CBA930"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 2,
+    "src_strong": 12,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

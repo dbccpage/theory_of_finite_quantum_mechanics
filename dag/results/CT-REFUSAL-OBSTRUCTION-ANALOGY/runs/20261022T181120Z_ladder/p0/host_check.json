@@ -1,0 +1,141 @@
+{
+  "task_id": "CT-REFUSAL-OBSTRUCTION-ANALOGY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "76a5f7e404842330b9b0055c0d4e9bdaddaea5cbaf7f42b5b7c070c211d665ec",
+  "candidate_sha256": "58d155a6e9809fdc809c90f86ed054c054704a25a2dc0c1adbe4be07c68fdbb3",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:11:26Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "refused_iff_off_image",
+        "equation_or_predicate": "r y = inr () iff for all x, s x differs from y",
+        "typing_conditions": "SectionRetraction s r",
+        "source_pins": [
+          {
+            "path": "lean4/SnOffImageRefusal.lean",
+            "declaration": "SnOffImageRefusal.refused_iff_off_image",
+            "line": 45
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SnOffImageRefusal.lean",
+          "decl": "SnOffImageRefusal.refused_iff_off_image",
+          "kind": "theorem",
+          "line": 45,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "roundtrip_iff_in_image",
+        "equation_or_predicate": "a roundtrip through r succeeds at y iff y lies in the image of s",
+        "typing_conditions": "SectionRetraction s r",
+        "source_pins": [
+          {
+            "path": "lean4/SnOffImageRefusal.lean",
+            "declaration": "SnOffImageRefusal.roundtrip_iff_in_image",
+            "line": 58
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SnOffImageRefusal.lean",
+          "decl": "SnOffImageRefusal.roundtrip_iff_in_image",
+          "kind": "theorem",
+          "line": 58,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-93045E82ECA3",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "refuseOffImage: (Y) -> S_plus_Unit [SnOffImageRefusal.refuseOffImage]",
+        "evidence": "lean def refuseOffImage has 2 explicit binders (3 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "SnOffImageRefusal.refuseOffImage",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "CT-REFUSAL-OBSTRUCTION-ANALOGY"
+      }
+    ],
+    "open_obligations": [
+      "No model of constructors on the Genesis regime is available, so no bridge from the structural refusal predicates to the arbitrary-accuracy notion is grounded.",
+      "PG-GEN-ONGOING-OBSTRUCTION has no cited declaration in the supplied source list; the xrx-addition obstruction is ungrounded.",
+      "The analogy remains an analogy; no lemma establishes equivalence of the two refusal notions.",
+      "near_miss constructor_arbitrary_accuracy unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "off_image_refusal_restated",
+        "statement": "the S(n) off-image refusal is exactly the off-image condition for a section retraction",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "refused_iff_off_image"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/SnOffImageRefusal.lean",
+          "decl": "SnOffImageRefusal.refused_iff_off_image",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/SnOffImageRefusal.lean",
+          "decl": "SnOffImageRefusal.refused_iff_off_image",
+          "kind": "theorem",
+          "line": 45,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

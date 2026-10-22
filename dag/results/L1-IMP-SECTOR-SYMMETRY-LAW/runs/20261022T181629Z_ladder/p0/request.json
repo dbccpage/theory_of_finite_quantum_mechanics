@@ -1,0 +1,312 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "L1-IMP-SECTOR-SYMMETRY-LAW",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "06ff9cdf1f8c678b8324c156c5274bb25871fd73d682a57a88bf37c296f43d71",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=L1-IMP-SECTOR-SYMMETRY-LAW stage=P0 attempt=a2-1 in=06ff9cdf guided=yes\n@TARGET [IMPORTED_ASSUMPTION] Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutation in a set whose generated group acts transitively does not change the readout. This is the second law under which the inner product is selected up to scale; it is supplied, not derived from primitive difference, and sectors with distinguished labels would break it (then the diagonal is constant only on orbits).\n@BOTTLENECK No finite-theory primitive forces readout invariance under sector relabelling; H006 supplies the permutation envelope only. Deriving the law, or recording which sector labels are distinguished, is item 1 of the run next steps.\n@ASSUME transitive sector symmetry of the readout: assumption\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permU | def | def permU {K Q : Type} (_ : StarRingPack K) {τ : Q → Q} (R : Reversible τ) (v : Vec K Q) : Vec K Q\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_isometry | theorem | theorem permutation_isometry {K Q : Type} (P : StarRingPack K) [DecidableEq Q] (E : Enum Q) {τ : Q → Q} (R : Reversible τ) (u v : Vec K Q) : sesq P E \n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.Invariant | def | def Invariant (H : Matrix (Fin n) (Fin n) GaussRat) (σ : Equiv.Perm (Fin n)) : Prop\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.Generated | inductive | inductive Generated (S : Set (Equiv.Perm (Fin n))) : Equiv.Perm (Fin n) → Prop\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.Invariant | def | def Invariant (G : Matrix (Fin n) (Fin n) ℚ) (σ : Equiv.Perm (Fin n)) : Prop\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.TransitiveOn | def | def TransitiveOn (S : Set (Equiv.Perm (Fin n))) : Prop\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.diag_const_of_transitive | theorem | theorem diag_const_of_transitive {G : Matrix (Fin n) (Fin n) ℚ} {S : Set (Equiv.Perm (Fin n))} (hS : ∀ σ ∈ S, Invariant G σ) (hT : TransitiveOn S) (i \n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.Generated | inductive | inductive Generated (S : Set (Equiv.Perm (Fin n))) : Equiv.Perm (Fin n) → Prop\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.invariant_of_generated | theorem\n code/rust/src/qm/inner_product_uniqueness.rs | readout_of_sector_additive_form_is_diagonal_without_symmetry | fn\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.TransitiveOn | def\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.diag_re_const_of_transitive | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.invariant_of_generated | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.diag_eq_of_hermitian_transitive | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.eq_smul_one_generated | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.scale_pos | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.qf_diagonal | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.eq_smul_one_generated | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.qf_eq_scale_dot | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.pair_eq_scale_dot | theorem\n lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.scale_pos | theorem\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.DisjointSupport | def\n lean4/SectorFormHermitian.lean | InnerProductFable.HermitianSectorForm.SectorAdditive | def\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:rel_permutation_isometry permU preserves the sesquilinear form defined by a star‑ring pack and an enum of sectors. src=lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_isometry\n r:rel_diag_const_of_transitive If a matrix G is invariant under a transitive set of permutations S, then its diagonal entries are constant on src=lean4/SectorFormUniqueness.lean | InnerProductFable.SectorForm.diag_const_of_transitive\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] FableHilbertWalk20260819.H006.permU -- Do not state that arity/signature for FableHilbertWalk20260819.H006.permU.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "L1-IMP-HILBERT-INNER-PRODUCT"
+    ],
+    "feedback": true,
+    "index_position": 178,
+    "neg_entry_ids": [
+      "NEG-03533814A7EF"
+    ],
+    "operation_candidates": 9,
+    "anchors_present": 4,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

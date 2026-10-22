@@ -1,0 +1,317 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "ADS-HAPPY-2015-SOURCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "57bb841a847fcf15975ca65acc1dec5753c0a294a7acdc24dd437d09f0535242",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=ADS-HAPPY-2015-SOURCE stage=P0 attempt=a2-1 in=57bb841a guided=yes\n@TARGET [SOURCE_RECORD] Pastawski, Yoshida, Harlow and Preskill (2015, arXiv:1503.06237) define a 2n-leg perfect tensor (Section 2 Def. 2 p. 5: proportional to an isometric tensor for every bipartition into k <= n inputs and 2n - k outputs), construct the 6-qubit perfect stabilizer tensor from the [[5,1,3]] code of Laflamme et al. (1996, arXiv:quant-ph/9602019 Table I; HaPPY Appendix A.1 eqs. (A1)-(A7) pp. 24-25), and place it on the {5,4} hyperbolic pentagon tiling to obtain an isometric bulk-to-boundary code (Section 3 Thm. 1 p. 7) in which connected boundary regions of holographic states satisfy S_A = |gamma_A| log v (Section 4.1 Thm. 2 p. 8) and general regions satisfy the greedy-geodesic lower bound (Section 4.2 Thm. 3 eq. (4.10) p. 10). This node records the paper as published.\n@BOTTLENECK Record only. The abstract itself calls the codes toy models.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.logical_qubit_1_anticommutes | theorem | theorem logical_qubit_1_anticommutes : pauliPhase xl1X xl1Z zl1X zl1Z = -1\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.logical_qubit_2_anticommutes | theorem | theorem logical_qubit_2_anticommutes : pauliPhase xl2X xl2Z zl2X zl2Z = -1\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.Syndrome | structure | structure Syndrome\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.BitFlipError | inductive | inductive BitFlipError\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.syndromeOf | def | def syndromeOf : BitFlipError → Syndrome\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.syndromes_pairwise_distinct | theorem | theorem syndromes_pairwise_distinct : syndromeOf .errI ≠ syndromeOf .errX1 ∧ syndromeOf .errI ≠ syndromeOf .errX2 ∧ syndromeOf .errI ≠ syndromeOf .err\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.decodeSyndrome | def | def decodeSyndrome (s : Syndrome) : Option BitFlipError\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.dot_list | def | def dot_list (l1 l2 : List Int) : Int\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.list_sum | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.pauli_phase | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.z_zero | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.s1_z | def\n lean4/H044SurfaceCodeToricTopology.lean | FableHilbertWalk20260819.H044.list_sum | def\n lean4/H044SurfaceCodeToricTopology.lean | FableHilbertWalk20260819.H044.dot_list | def\n lean4/H044SurfaceCodeToricTopology.lean | FableHilbertWalk20260819.H044.star_00 | def\n lean4/H044SurfaceCodeToricTopology.lean | FableHilbertWalk20260819.H044.star_10 | def\n lean4/H044SurfaceCodeToricTopology.lean | FableHilbertWalk20260819.H044.star_01 | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.localStabilizerCount | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.fiveQubitStabilizer | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.PauliMask | structure\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.mulPauli | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.popCount | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.commutes | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.pauliWeight | def\n lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.g1_5 | def\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:toric_code_fusion_ring ()->fusion_ring_Z2xZ2 src=code/rust/src/fusion_categories/fusion_ring.rs | toric_code\n r:R_stabilizers_commute stabilizer generators of the CSS toric code commute pairwise src=lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.stabilizers_commute\n@KNOWN- (host-refused earlier; do not repeat)\n [nonexistent_declaration] toric_code_generator -- Do not cite toric_code_generator as an existing declaration.\n [statement_drift] anyon_loop_string_intersection -- Do not restate the source with numerals it does not contain.\n [vacuous_proof] perfect_tensor_min_weight: Every non-identity element of the 64-element stabilizer group of the Choi state has -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 3,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "ADS-ADH-2015-SOURCE",
+      "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
+      "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
+      "TFQ-0048"
+    ],
+    "feedback": true,
+    "index_position": 627,
+    "neg_entry_ids": [
+      "NEG-C9E7A5C85F9C",
+      "NEG-E50905B9A7D0",
+      "NEG-491492897C5B"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 4,
+    "src_strong": 17,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

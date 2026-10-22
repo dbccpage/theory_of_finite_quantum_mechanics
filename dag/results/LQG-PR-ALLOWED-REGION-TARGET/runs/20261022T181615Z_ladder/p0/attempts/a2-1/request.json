@@ -1,0 +1,324 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "LQG-PR-ALLOWED-REGION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "1d1569d869b6678aac0e9649ac8563879333a06a03b4e689e4198a3f4407978e",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=LQG-PR-ALLOWED-REGION-TARGET stage=P0 attempt=a2-1 in=1d1569d8 guided=yes\n@TARGET [PROVED_LEAN] Finite statement, checked in Lean 4 in the following narrowed form. For each admissible 6-tuple (a,b,c,d,e,f) of twice-spins at most 8 (all four triads (a,b,c), (a,e,f), (d,b,f), (d,e,c) admissible), take lengths l = j + 1/2 = (twice-spin + 1)/2. Lean computes 288 V^2 (scaled by 64, as the integer cayleyMengerScaled64) as the 3x3 Gram determinant of the squared edge lengths at the vertex where a, b, f meet, which equals the Cayley-Menger determinant. Across all 13,691 admissible 6-tuples: 10,884 have 288 V^2 > 0 (classically allowed region, a Euclidean tetrahedron exists), 2,807 have 288 V^2 < 0 (forbidden region), and none has 288 V^2 = 0. Exact values of 288 V^2 and of the squared 6j symbol are checked on three witnesses only: (2,2,2,2,2,2) with 729/16 and 1/36; (1,1,2,1,1,2) with -81/16 and 1/36; (2,2,4,2,2,4) with -4375/16 and 1/900. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.\n@BOTTLENECK Not proved in Lean: the exact squared 6j value for every tuple (three witnesses only, so the node does not give \"the exact value in each case\"); the identity between the 3x3 Gram form used by Lean and the bordered 5x5 Cayley-Menger determinant (an independent exact Python recomputation with the bordered 5x5 determinant reproduces the counts 13,691 / 10,884 / 2,807 and the three witness values); that 288 V^2 = 0 never occurs for any shifted-spin tuple (the module header claims it through a congruence mod 8; only the count 0 for twice-spins <= 8 is a Lean theorem). The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.cayleyMengerScaled64 | def | def cayleyMengerScaled64 (a b c d e f : Nat) : Int\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.volumeSq288Rat | def | def volumeSq288Rat (a b c d e f : Nat) : Frac\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.countAllowedLe8 | def | def countAllowedLe8 : Nat\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.countForbiddenLe8 | def | def countForbiddenLe8 : Nat\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.countFlatLe8 | def | def countFlatLe8 : Nat\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8 | theorem | theorem ponzano_regge_allowed_forbidden_classification_le8 : allAdmissibleLe8.length = 13691 ∧ countAllowedLe8 = 10884 ∧ countForbiddenLe8 = 2807 ∧ co\n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares | theorem | theorem allowed_and_forbidden_witnesses_with_6j_squares : Frac.eqv (volumeSq288Rat 2 2 2 2 2 2) ⟨729, 16⟩ = true ∧ Frac.eqv (sixJSquaredRat 2 2 2 2 2 \n lean4/FrontierPrAllowedRegion.lean | FrontierPrAllowedRegion.allAdmissibleLe8 | def | def allAdmissibleLe8 : List (Nat × Nat × Nat × Nat × Nat × Nat)\n lean4/ReggePachnerWdw.lean | ReggePachnerWdw.SimplicialVertex | structure\n lean4/ReggePachnerWdw.lean | ReggePachnerWdw.isFlatVertex | def\n lean4/ReggePachnerWdw.lean | ReggePachnerWdw.flat_vertex_wdw_closure | theorem\n code/rust/src/general_relativity/cayley_menger.rs | cayley_menger_determinant | fn\n code/rust/src/general_relativity/cayley_menger.rs | test_regular_tetrahedron_cayley_menger | fn [test]\n code/rust/src/general_relativity/cayley_menger.rs | cayley_menger_matrix | fn\n code/rust/src/general_relativity/cayley_menger.rs | simplex_volume_cayley_menger | fn\n code/rust/src/general_relativity/cayley_menger.rs | simplex_volume_derivative_wrt_squared_edge | fn\n code/rust/src/general_relativity/cayley_menger.rs | test_equilateral_triangle_cayley_menger | fn [test]\n code/rust/src/general_relativity/cayley_menger.rs | test_simplex_volume_derivative_wrt_squared_edge | fn [test]\n code/python/src/fsp/sign_sql/run_sign_sql.py | run_query | def\n code/python/src/majorana/numerical_dual_witness.py | DualWitnessCandidate | class\n code/python/src/majorana/numerical_dual_witness.py | CertifiedDualWitness | class\n code/python/src/mub/target_a4_gram_certifier.py | compute_gram_matrix_cyc | def\n code/python/src/mub/target_a4_gram_certifier.py | DualWitnessCyc | class\n code/python/src/mub/target_a4_gram_certifier.py | dual_witness_vector | def\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:G_tetra_sym_check (TwiceSpinTuple6)->Bool src=lean4/FrontierClassical6j.lean | FrontierClassical6j.checkSymmetryAt\n r:R_tetra_symmetry_all_3418 The Racah signed factor S is invariant under the four tetrahedral generators for all 3418 admissible 6-tuples  src=lean4/FrontierClassical6j.lean | FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6\n r:R_orthogonality_1928 Sum over x of (x+1)(y+1) {a b x;c d y}{a b x;c d y'} equals delta(y,y') in twice-spin labels for 1928 admissib src=lean4/FrontierClassical6j.lean | FrontierClassical6j.classical_6j_orthogonality_all_1928_le6\n r:R_biedenharn_elliott Biedenharn-Elliott pentagon identity for 814 admissible 9-tuples with twice-spins at most 3 and four explicit  src=lean4/FrontierClassical6j.lean | FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L_sq_rational: For twice-spins at most 6, sixj_squared is a rational given by Racah's single sum with exact in -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] cayley_menger_determinant -- Do not state that arity/signature for cayley_menger_determinant.\n [wrong_signature] cayley_menger_matrix -- Do not state that arity/signature for cayley_menger_matrix.\n [vacuous_proof] L_sixj_sq_racah: For twice-spins at most 6, the square of sixj equals the rational given by Racah's single sum -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_orth: Sum over x of (2x+1)(2y+1){a b x;c d y}{a b x;c d y'} = delta(y,y') for admissible y,y' -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_cm_det_rational . slot 0 <- g_sq_len via r_v2_from_cm -- Do not compose operations whose colours do not match.\n [vacuous_proof] L_sign_classification: For admissible 6-tuples of twice-spins at most 8, classify each tuple as allowed (CM>0) -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_tetra_sym_check: For all admissible 6-tuples of twice-spins at most 6, the Racah square is unchanged under e -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_target_open: For all admissible twice-spin 6-tuples <= 6, sixjSq is the Racah rational, invariant under 24 t -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] G_signedSqrt . slot 0 <- G_sixjSq via R_sixj_def -- Do not compose operations whose colours do not match.\n [composition_type_mismatch] G_signedSqrt . slot 1 <- G_racahSum via R_sixj_def -- Do not compose operations whose colours do not match.\n [wrong_signature] FrontierClassical6j.sixJSquaredRat -- Do not state that arity/signature for FrontierClassical6j.sixJSquaredRat.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 24,
+    "known_neg_injected": 12,
+    "known_pos_injected": 4,
+    "neighbours": [
+      "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+      "LQG-PR-ASYMPTOTICS-IMPORT"
+    ],
+    "feedback": true,
+    "index_position": 801,
+    "neg_entry_ids": [
+      "NEG-1442E8FC8AE8",
+      "NEG-0B94503ACD89",
+      "NEG-915E6B31E73D",
+      "NEG-81FB392F047F",
+      "NEG-B039F70B3A54",
+      "NEG-1E0861534F6D",
+      "NEG-3D1187BFC5DF",
+      "NEG-2056DEFADC87",
+      "NEG-0C8F65B4C68E",
+      "NEG-6960C4533E52",
+      "NEG-B2E84070C902",
+      "NEG-16C5BA43258A"
+    ],
+    "operation_candidates": 7,
+    "anchors_present": 2,
+    "src_strong": 11,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

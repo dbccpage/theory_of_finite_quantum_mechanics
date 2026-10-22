@@ -1,0 +1,87 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_lift",
+      "inputs": [
+        "Carrier"
+      ],
+      "output": "HilbertLiftSpace",
+      "arity": 1,
+      "carrier": "HilbertLiftSpace over R",
+      "ref": {
+        "path": "lean4/HilbertLiftIntrinsicUniformity.lean",
+        "decl": "HilbertLift.uniformContinuous_lift_real",
+        "status": "none"
+      }
+    },
+    {
+      "id": "g_liftOp",
+      "inputs": [
+        "HilbertLiftSpace"
+      ],
+      "output": "HilbertLiftSpace",
+      "arity": 1,
+      "carrier": "HilbertLiftSpace",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_lift_unifcont",
+      "statement": "The lift map from Carrier to the Hilbert lift space over R is uniformly continuous",
+      "hypotheses": "Carrier carries the intrinsic uniform structure",
+      "ref": {
+        "path": "lean4/HilbertLiftIntrinsicUniformity.lean",
+        "decl": "uniformContinuous_lift_real",
+        "status": "none"
+      }
+    },
+    {
+      "id": "r_liftOp_cont",
+      "statement": "The lifted bounded exact operator is continuous on the Hilbert lift space",
+      "hypotheses": "T is a BoundedExactOperator",
+      "ref": {
+        "path": "lean4/HilbertLiftOperators.lean",
+        "decl": "continuous_liftOp",
+        "status": "none"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_reeh_schlieder_import",
+      "statement": "Under spectrum condition, continuous translation group and a vacuum vector, the vacuum is cyclic for each local algebra (Reeh-Schlieder). Imported assumption, not proved here.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_finite_dim",
+      "claim": "Reeh-Schlieder cyclicity can be derived from the finite-dimensional tower alone",
+      "rejecting_invariant": "The proof needs continuous translations and a Stone generator with positive spectrum, which does not exist on finite-dimensional tensor-product carriers; no continuous extension of unbounded functionals exists (no_continuous_extension_coordSum)."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Stone theorem for continuous unitary translation groups on the Hilbert lift is open",
+    "Infinite-dimensional continuum Hilbert lift is open",
+    "Formalize the spectrum condition and analytic continuation of translations",
+    "Define the net of local algebras and the vacuum vector",
+    "Separating property for regions with spacelike complement needs further hypotheses (Haag duality or similar)",
+    "The generator refs carry the existing theorem names but their status fields are none, so they need host adjustment"
+  ]
+}

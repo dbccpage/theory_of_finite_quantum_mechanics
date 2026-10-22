@@ -1,0 +1,129 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_ordering_fraction",
+      "inputs": [
+        "CausalSet"
+      ],
+      "output": "Rat",
+      "arity": 1,
+      "carrier": "finite causal set to exact rational",
+      "ref": {
+        "path": "lean4/FrontierMyrheimMeyer.lean",
+        "decl": "FrontierMyrheimMeyer.orderingFraction",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_grid_ordering_fraction",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "Rat",
+      "arity": 1,
+      "carrier": "n x n grid poset ordering fraction",
+      "ref": {
+        "path": "lean4/FrontierMyrheimMeyer.lean",
+        "decl": "FrontierMyrheimMeyer.gridOrderingFraction",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_hasse_link_count",
+      "inputs": [
+        "FinitePoset"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "number of Hasse covering links",
+      "ref": {
+        "path": "lean4/FrontierMyrheimMeyer.lean",
+        "decl": "FrontierMyrheimMeyer.hasseLinkCount",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_grid_closed_form",
+      "statement": "For n >= 2, gridOrderingFraction n = (n+3)/(2(n+1))",
+      "hypotheses": "2 <= n",
+      "ref": {
+        "path": "lean4/FrontierMyrheimMeyer.lean",
+        "decl": "FrontierMyrheimMeyer.grid_ordering_fraction_closed_form",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_ordering_fraction_def",
+      "statement": "ordering_fraction(C) = 2*R/(n*(n-1)) for n>=2",
+      "hypotheses": "n >= 2",
+      "ref": {
+        "path": "code/python/src/general_relativity/causal_set.py",
+        "decl": "ordering_fraction",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_grid_minus_half",
+      "statement": "For n >= 2, gridOrderingFraction n - 1/2 = 1/(n+1)",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_grid_closed_form"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/FrontierMyrheimMeyer.lean",
+        "decl": "FrontierMyrheimMeyer.grid_ordering_fraction_minus_half",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_sprinkling_grid",
+      "claim": "The n x n grid ordering fraction equals the Myrheim-Meyer sprinkling expectation f(2)=1/2 for all n",
+      "rejecting_invariant": "Grid fraction tends to 1/2 only asymptotically and is a lattice observation, not the sprinkling theorem; f(d) table values are entered, not derived"
+    },
+    {
+      "id": "nm_relation_count_composition",
+      "claim": "Compose g_ordering_fraction with g_relation_count in slot 0",
+      "rejecting_invariant": "Colour mismatch: relation count outputs Nat, not CausalSet; previously host-refused"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "nc_r2",
+      "expr": "(2+3)/(2*(2+1))",
+      "value": "5/6"
+    },
+    {
+      "id": "nc_r3",
+      "expr": "(3+3)/(2*(3+1))",
+      "value": "3/4"
+    },
+    {
+      "id": "nc_f3",
+      "expr": "70/(70*0+35)*0+8/35",
+      "value": "8/35"
+    },
+    {
+      "id": "nc_grid_minus_half_n2",
+      "expr": "5/6-1/2",
+      "value": "1/3"
+    }
+  ],
+  "open_obligations": [
+    "Grid poset R(n) = (n(n+1)/2)^2 - n^2 not derived from a FiniteStrictPoset in Lean; entered as definition",
+    "Derivation of f(d) from Gamma formula not proved; Lean uses a table",
+    "Nearest-dimension selector correctness beyond six listed inputs not established",
+    "Hasse relation generating the order and being minimal not proved",
+    "Sorkin/Reid normalization of f(d) not verified against sources here",
+    "Lean skeletons not supplied; no new lemmas claimed beyond existing declarations"
+  ]
+}

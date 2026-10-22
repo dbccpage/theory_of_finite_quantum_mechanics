@@ -1,0 +1,93 @@
+{
+  "task_id": "AUTH-BLIND-DERIVATION-PROTOCOL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "bfc542ff7de89f5b4d1530bf7b58a5cb206ba441ab6213ecbe09fe18d38ff7c3",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_cut_endpoints\",\"inputs\":[\"CarrierCut\",\"Witness\"],\"output\":\"DistinctEndpoints\",\"arity\":2,\"carrier\":\"CarrierCut x Witness\",\"ref\":{\"path\":\"lean4/GenesisFspBridge.lean\",\"decl\":\"GenesisFspBridge.cut_endpoints_distinct\",\"status\":\"existing\"}},{\"id\":\"g_to_l2\",\"inputs\":[\"PreH\"],\"output\":\"L2\",\"arity\":1,\"carrier\":\"PreH\",\"ref\":{\"path\":\"lean4/HilbertLiftL2Model.lean\",\"decl\":\"HilbertLift.toL2\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_cut_distinct\",\"statement\":\"For a CarrierCut C on X, a witness C.r a b implies a ≠ b\",\"hypotheses\":\"C is a CarrierCut on X; C.r a b holds\",\"ref\":{\"path\":\"lean4/GenesisFspBridge.lean\",\"decl\":\"GenesisFspBridge.cut_endpoints_distinct\",\"status\":\"existing\"}},{\"id\":\"r_D2_irrefl\",\"statement\":\"The D2 relation on Bool is irreflexive and has witness false true\",\"hypotheses\":\"D2 is the relation on Bool used in the bridge\",\"ref\":{\"path\":\"lean4/GenesisFspBridge.lean\",\"decl\":\"GenesisFspBridge.D2_irrefl\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_protocol_separation\",\"statement\":\"Input, definition, theorem, example and open-assumption labels are assigned before any literature comparison; recovered material is excluded from the blind run until sealing.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"near_misses\":[{\"id\":\"nm_positive_witness_as_proof\",\"claim\":\"A lift step whose positive witness is a cut witness certifies the lift as valid.\",\"rejecting_invariant\":\"Isolation records provenance only; a positive witness must be paired with a failed-descent control, and the cut-distinctness relation alone does not establish lift validity.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No Genesis-to-computability lift has been formalized; no failed-descent control is grounded in the existing declarations.\",\"Run freeze record (prompt, model, tools, repository state, context, outputs) is not supplied, so sealing cannot be verified.\",\"No composition is licensed: g_cut_endpoints output DistinctEndpoints does not match any listed input colour of g_to_l2 (PreH).\",\"Literature comparison is deferred until after sealing and is not performed here.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_cut_endpoints",
+        "inputs": [
+          "CarrierCut",
+          "Witness"
+        ],
+        "output": "DistinctEndpoints",
+        "arity": 2,
+        "carrier": "CarrierCut x Witness",
+        "ref": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.cut_endpoints_distinct",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_to_l2",
+        "inputs": [
+          "PreH"
+        ],
+        "output": "L2",
+        "arity": 1,
+        "carrier": "PreH",
+        "ref": {
+          "path": "lean4/HilbertLiftL2Model.lean",
+          "decl": "HilbertLift.toL2",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_cut_distinct",
+        "statement": "For a CarrierCut C on X, a witness C.r a b implies a ≠ b",
+        "hypotheses": "C is a CarrierCut on X; C.r a b holds",
+        "ref": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.cut_endpoints_distinct",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_D2_irrefl",
+        "statement": "The D2 relation on Bool is irreflexive and has witness false true",
+        "hypotheses": "D2 is the relation on Bool used in the bridge",
+        "ref": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.D2_irrefl",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_protocol_separation",
+        "statement": "Input, definition, theorem, example and open-assumption labels are assigned before any literature comparison; recovered material is excluded from the blind run until sealing.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_positive_witness_as_proof",
+        "claim": "A lift step whose positive witness is a cut witness certifies the lift as valid.",
+        "rejecting_invariant": "Isolation records provenance only; a positive witness must be paired with a failed-descent control, and the cut-distinctness relation alone does not establish lift validity."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No Genesis-to-computability lift has been formalized; no failed-descent control is grounded in the existing declarations.",
+      "Run freeze record (prompt, model, tools, repository state, context, outputs) is not supplied, so sealing cannot be verified.",
+      "No composition is licensed: g_cut_endpoints output DistinctEndpoints does not match any listed input colour of g_to_l2 (PreH).",
+      "Literature comparison is deferred until after sealing and is not performed here."
+    ]
+  }
+}

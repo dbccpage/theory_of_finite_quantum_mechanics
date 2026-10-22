@@ -1,0 +1,104 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "fourier_count",
+      "inputs": [
+        "MUB6OrbitConfiguration"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6.RouteC.fourier_count_ge_five",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "pair_combinations",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6.RouteC.fourier_pairs_ge_ten",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "6 = n_D + n_T + n_S + n_H with n_T + n_S <= 1 and n_H <= 0 implies 5 <= n_D",
+      "hypotheses": "natural numbers n_D, n_T, n_S, n_H with 6 = n_D + n_T + n_S + n_H, n_T + n_S <= 1, n_H <= 0",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6.RouteC.fourier_count_ge_five",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "5 <= n_D implies 10 <= C(n_D,2) and 15 <= n_D + C(n_D,2)",
+      "hypotheses": "n_D >= 5 natural",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "pair_combinations",
+      "slot": 0,
+      "inner": "fourier_count",
+      "licensing_relation": "R2"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "For the stated counts, n_D >= 5, C(n_D,2) >= 10 and n_D + C(n_D,2) >= 15",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1",
+        "R2"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "The counts determine Fourier transition edges or matrices",
+      "rejecting_invariant": "MUB6OrbitConfiguration carries only label counts; no matrix or edge map exists in the source"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N1",
+      "expr": "5*4/2",
+      "value": "10"
+    },
+    {
+      "id": "N2",
+      "expr": "5 + 5*4/2",
+      "value": "15"
+    }
+  ],
+  "open_obligations": [
+    "No map from label counts to Fourier transition edges is available; the bottleneck remains open",
+    "Triad and avoidance declarations are not used because they are outside the target arithmetic"
+  ]
+}

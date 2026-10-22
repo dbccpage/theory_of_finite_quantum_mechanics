@@ -1,0 +1,64 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R_five_qubit_stabilizer_commute
+  equation_or_predicate: Stabilizer generators of the 5-qubit code pairwise commute.
+  typing_conditions: Laflamme et al. 1996 Table I; the code is the [[5,1,3]] stabilizer code
+  source_pins:
+  - path: lean4/FrontierFiveQubitPerfectTensor.lean
+    declaration: FrontierFiveQubitPerfectTensor.commutes
+    line: 39
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierFiveQubitPerfectTensor.lean
+    decl: FrontierFiveQubitPerfectTensor.commutes
+    kind: def
+    line: 39
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-78A9A5AF459C
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'stabilizer_projector_5qubit: (q, q, q, q, q) -> q [FrontierFiveQubitPerfectTensor.fiveQubitStabilizer]'
+  evidence: lean def fiveQubitStabilizer has 0 explicit binders (0 with conclusion arrows); the claim
+    says 5 (heuristic count)
+  decl_key: FrontierFiveQubitPerfectTensor.fiveQubitStabilizer
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: ADS-HAPPY-2015-SOURCE
+open_obligations:
+- No Lean formalization of the 2n-leg perfect tensor bipartition isometry property exists in @SRC.
+- Construction of the 6-qubit perfect stabilizer tensor from the [[5,1,3]] code is not grounded in any
+  listed declaration.
+- Placement on the {5,4} hyperbolic pentagon tiling and the isometric bulk-to-boundary property (Thm.
+  1) are not formalized.
+- Entanglement entropy S_A = |gamma_A| log v (Thm. 2) and greedy-geodesic bound (Thm. 3) are not grounded.
+- Numeric claim N_five_qubit_stabilizers is a placeholder arithmetic check, not a source quantity; it
+  earns no credit.
+- 'generator perfect_tensor_6leg unverified: no existing declaration cited'
+- 'relation R_perfect_bipartition unverified: no existing declaration cited'
+- 'lemma L_source_claim_record unverified: no Lean skeleton; statement consistent with sources but not
+  elaborated'
+- 'near_miss NM_toric_as_generator unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_perfect_tensor_min_weight_proof unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_six_leg_legs
+  expr: 2*3
+  value: '6'
+  host_evidence:
+    recomputed: '6'
+- id: N_five_qubit_stabilizers
+  expr: 5-1-1*4/4
+  value: '3'
+  host_evidence:
+    recomputed: '3'
+verified_lemma_statements: []

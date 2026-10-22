@@ -1,0 +1,105 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_covariant_difference",
+      "inputs": [
+        "VertexValue",
+        "VertexValue",
+        "EdgeScalar"
+      ],
+      "output": "VertexValue",
+      "arity": 3,
+      "carrier": "Gaussian rationals Q(i)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "g_vertex_gauge",
+      "inputs": [
+        "VertexValue",
+        "UnitScalar"
+      ],
+      "output": "VertexValue",
+      "arity": 2,
+      "carrier": "Gaussian rationals Q(i)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "g_closed_walk_holonomy",
+      "inputs": [
+        "EdgeScalar"
+      ],
+      "output": "UnitScalar",
+      "arity": 1,
+      "carrier": "Gaussian rationals Q(i)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_norm_sq",
+      "statement": "‖z‖² = z.re² + z.im² for complex z; supports the unit-modulus test of a Gaussian-rational edge scalar",
+      "hypotheses": "z : ℂ",
+      "ref": {
+        "path": "lean4/HilbertLiftComplexCarrier.lean",
+        "decl": "HilbertLift.norm_sq_apply_complex",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_norm_sq_restate",
+      "statement": "For z : ℂ, ‖z‖^2 = z.re^2 + z.im^2; used to check that a declared edge scalar has unit modulus",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "rel_norm_sq"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/HilbertLiftComplexCarrier.lean",
+        "decl": "HilbertLift.norm_sq_apply_complex",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_schrodinger",
+      "claim": "The U(1) graph covariant difference is a Schrodinger equation",
+      "rejecting_invariant": "The target states explicitly that u1_graph_connection.rs is not a Schrodinger equation; it has no time evolution or Hamiltonian."
+    },
+    {
+      "id": "nm_nonunit_scalar",
+      "claim": "An edge scalar with |z|^2 ≠ 1 is a valid U(1) transport",
+      "rejecting_invariant": "Unit modulus requires re^2 + im^2 = 1."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_pythag_unit",
+      "expr": "(3/5)^2 + (4/5)^2",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "No existing declaration for covariant difference, vertex gauge action, or closed-walk holonomy; the u1_graph_connection.rs path is not in @SRC",
+    "Pure-gauge decision, T-adjoint G T = G test, and spin lift obstruction are not grounded",
+    "Composition licensing needs a proposed gauge covariance relation",
+    "Python replay and Lean 4 declaration matching still to be written"
+  ]
+}

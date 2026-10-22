@@ -1,0 +1,316 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0193",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "926c4ad335904dfc41daad9c31036b814d3253b84cbd4d0198349e9bdee7a0e6",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=TFQ-0193 stage=P0 attempt=a2-1 in=926c4ad3 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] omega_lie_theory is an exact finite-group and rational Lie library, not a completed continuum symmetry derivation. src/lib.rs says every quantity is rational, cyclotomic, or quadratic, with no floating point and no tolerance, and it marks the crate Not PROVED. Declared modules include finite_group.rs, cayley.rs, su2.rs, rotation.rs, lorentz.rs, finite_order.rs, and lie_algebra.rs. Lorentz boosts in lorentz.rs are rational points of a hyperboloid. The obligation is to use these matrices as finite exact controls. They do not install a continuous Haar measure or a Hilbert representation.\n@BOTTLENECK Keep rational Lie and finite-group constructions exact, without a continuum Haar or Hilbert step.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/lie_theory/finite_order.rs | finite_order | fn | pub fn finite_order(m: &QMatrix) -> Result<Option<usize>, FiniteOrderError>\n code/rust/src/lie_theory/lib.rs | finite_group | mod | pub mod finite_group;\n code/rust/src/lie_theory/lib.rs | finite_order | mod | pub mod finite_order;\n code/rust/src/lie_theory/lib.rs | lie_algebra | mod | pub mod lie_algebra;\n code/rust/src/lie_theory/mod.rs | finite_group | mod | pub mod finite_group;\n code/rust/src/lie_theory/mod.rs | finite_order | mod | pub mod finite_order;\n code/rust/src/lie_theory/mod.rs | lie_algebra | mod | pub mod lie_algebra;\n code/rust/src/lie_theory/finite_order.rs | matrices_of_infinite_order_are_decided_without_a_bound | fn | fn matrices_of_infinite_order_are_decided_without_a_bound()\n code/rust/src/lie_theory/rotation.rs | MAX_ROTATION_GROUP_ORDER | const\n code/rust/src/lie_theory/finite_group.rs | group_order | fn\n code/rust/src/lie_theory/finite_order.rs | small_matrices_of_known_order | fn\n code/rust/src/lie_theory/lie_algebra.rs | LieAlgebraError | enum\n code/rust/src/lie_theory/lie_algebra.rs | LieAlgebra | trait\n code/rust/src/lie_theory/rotation.rs | rotation_group | fn\n code/rust/src/lie_theory/rotation.rs | cyclic_rotation_group | fn\n code/rust/src/lie_theory/rotation.rs | dihedral_rotation_group | fn\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.StarAlgebra | structure\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.StarAlgebra.bracket | def\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_isometry_general | theorem\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_isometry_so8 | theorem\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayleyMat2 | def\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayleyDenom | def\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_mat2_off_diagonal_zero | theorem\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat | theorem\n lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayleyMat8Numerator | def\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_finite_order (QMatrix)->OptionUsize src=code/rust/src/lie_theory/finite_order.rs | finite_order\n r:r_cayley_iso_2x2 Cayley transform on rational 2x2 matrices satisfies the isometry property exactly src=lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat\n r:r_cayley_iso_so8 Rational Cayley transform in 8x8 case is an isometry, exact src=lean4/H019RationalLieSpan.lean | FableHilbertWalk20260819.H019.cayley_isometry_so8_rat\n g:g_weyl_heisenberg ()->WeylHeisenbergOps src=code/rust/src/lie_theory/heisenberg.rs | WeylHeisenberg\n g:g_prime_char_ccr (Nat)->PrimeCharacteristicCcr src=code/rust/src/lie_theory/heisenberg.rs | prime_characteristic_ccr\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] group_order -- Do not state that arity/signature for group_order.\n [vacuous_proof] l_weyl_not_ccr: The finite Weyl relation does not imply a CCR on a completed real line; the two are distinct c -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_exact_control: Exact rational Cayley and finite-order computations serve as finite controls only; no continu -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] FableHilbertWalk20260819.H019.cayleyMat2 -- Do not state that arity/signature for FableHilbertWalk20260819.H019.cayleyMat2.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 4,
+    "known_pos_injected": 5,
+    "neighbours": [
+      "TFQ-0166",
+      "TFQ-0194"
+    ],
+    "feedback": true,
+    "index_position": 312,
+    "neg_entry_ids": [
+      "NEG-25B376AE11FA",
+      "NEG-28B587FA74E4",
+      "NEG-341901A9A348",
+      "NEG-D86155834819"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 9,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

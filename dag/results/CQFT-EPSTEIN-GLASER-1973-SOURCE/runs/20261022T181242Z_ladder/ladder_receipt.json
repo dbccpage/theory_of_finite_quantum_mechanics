@@ -1,0 +1,182 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "CQFT-EPSTEIN-GLASER-1973-SOURCE",
+  "stage": "P0",
+  "run_id": "CQFT-EPSTEIN-GLASER-1973-SOURCE/20261022T181242Z_ladder",
+  "finished_utc": "2026-10-22T18:12:47Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 1,
+  "free_calls": 0,
+  "paid_calls": 1,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "accept_partial": true,
+    "partial_min_verified": 1,
+    "skip_ungroundable": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "qwen/qwen3.8-27b",
+        "openai/gpt-oss-20b",
+        "minimax/minimax-m3.1-flash:free",
+        "nvidia/nemotron-3.5-lightning:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "cheap",
+      "attempts_before_escalation": 2,
+      "models": [
+        "openai/gpt-4o-mini"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "opus",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fable",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-fable-5-1"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.12,
+  "summary": {
+    "node_id": "CQFT-EPSTEIN-GLASER-1973-SOURCE",
+    "run_id": "CQFT-EPSTEIN-GLASER-1973-SOURCE/20261022T181242Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_2",
+    "accepted_attempt": "a2-1",
+    "partial_attempt": null,
+    "best_attempt": "a2-1",
+    "attempts": [
+      {
+        "attempt_id": "a2-1",
+        "tier": 2,
+        "provider": "anthropic",
+        "model": "claude-haiku-5-5",
+        "effort": "low",
+        "guided": true,
+        "known_neg_injected": 0,
+        "known_pos_injected": 2,
+        "input_sha256": "e9162358c99fc185eaa7b8f7afb145563716b31b3c10bb2362410d8398e4729f",
+        "injected_neg_ids": [],
+        "status": "accepted",
+        "verified_total": 2,
+        "credited_total": 2,
+        "failures_total": 0,
+        "failure_rate": 0.0,
+        "failures_by_class": {},
+        "unverifiable": 2,
+        "input_tokens": 4811,
+        "output_tokens": 695,
+        "cost_microusd": 829,
+        "request_id": "req_011CgHjCEuGG8qPSw2amkZ7x",
+        "latency_s": 4.118,
+        "stop_reason": "end_turn",
+        "served_model": "claude-haiku-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": []
+      }
+    ],
+    "totals_by_tier": {
+      "2": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 4811,
+        "output_tokens": 695,
+        "cost_microusd": 829,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 829,
+    "spend_usd": 0.000829,
+    "hallucinations_by_class": {},
+    "hallucinations_by_model": {},
+    "verified": {
+      "generators": 0,
+      "relations": 2,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a2-1:d6e43a6b",
+      "run_id": "CQFT-EPSTEIN-GLASER-1973-SOURCE/20261022T181242Z_ladder",
+      "attempt_id": "a2-1",
+      "tier": 2,
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "family": "anthropic",
+      "effort": "low",
+      "max_tokens": 4000,
+      "started_utc": "2026-10-22T18:12:43Z",
+      "status": "ok",
+      "estimated_input_tokens": 4236,
+      "estimate_microusd": 2424,
+      "served_model": "claude-haiku-5-5",
+      "input_tokens": 4811,
+      "output_tokens": 695,
+      "cost_microusd": 829,
+      "cost_source": "price_table",
+      "request_id": "req_011CgHjCEuGG8qPSw2amkZ7x",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 4.118,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 12.958181,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.001402,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

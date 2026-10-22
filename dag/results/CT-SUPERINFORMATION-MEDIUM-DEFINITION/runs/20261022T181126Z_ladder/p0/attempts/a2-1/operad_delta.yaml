@@ -1,0 +1,107 @@
+add_or_refine_generators:
+- id: g_cloneZ
+  ordered_inputs:
+  - qubit
+  output: qubit_pair
+  arity: 1
+  carrier: finite qubit channels (Z-basis clone map)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierNoCloning.lean
+    declaration: FrontierNoCloning.cloneZ
+    line: 174
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierNoCloning.lean
+    decl: FrontierNoCloning.cloneZ
+    kind: def
+    line: 174
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: g_cloneX
+  ordered_inputs:
+  - qubit
+  output: qubit_pair
+  arity: 1
+  carrier: finite qubit channels (X-basis clone map)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierNoCloning.lean
+    declaration: FrontierNoCloning.cloneX
+    line: 180
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierNoCloning.lean
+    decl: FrontierNoCloning.cloneX
+    kind: def
+    line: 180
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r_ZX_obstruction
+  equation_or_predicate: No additive map clones all of |0>,|1>,|+>,|-> simultaneously, so the union Z
+    union X of the two clonable bases is not an information observable under the finite cloning shadow.
+  typing_conditions: Restricted to the narrowed finite interface recorded in CT-QUBIT-NO-CLONING-FINITE-TARGET;
+    the superinformation definition is an imported assumption, not a primitive.
+  source_pins:
+  - path: lean4/FrontierNoCloning.lean
+    declaration: FrontierNoCloning.no_additive_cloner_for_Z_union_X
+    line: 235
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierNoCloning.lean
+    decl: FrontierNoCloning.no_additive_cloner_for_Z_union_X
+    kind: theorem
+    line: 235
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_Z_trace_preserving
+  equation_or_predicate: cloneZ is trace-preserving on the Z basis.
+  typing_conditions: Finite qubit Z-basis clone map.
+  source_pins:
+  - path: lean4/FrontierNoCloning.lean
+    declaration: FrontierNoCloning.cloneZ_trace_preserving
+    line: 195
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierNoCloning.lean
+    decl: FrontierNoCloning.cloneZ_trace_preserving
+    kind: theorem
+    line: 195
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Formal link from the imported superinformation definition (Deutsch-Marletto Section 7) to the repository's
+  finite interface is not established; it remains an assumption of this branch.
+- Fidelity argument and complete positivity for the finite cloning shadow are not formalised.
+- No lemma stating that Z union X is not an information observable has been proved from the repository
+  declarations; the existing no-additive-cloner result is only the narrowed form.
+- Repository does not claim its finite carriers satisfy Principles I-IX.
+- Disjointness condition (pairwise equal-or-orthogonal classification) for two information observables
+  is not yet grounded as a lemma.
+- 'near_miss nm_ZX_union_cloneable unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_fidelity_proof unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

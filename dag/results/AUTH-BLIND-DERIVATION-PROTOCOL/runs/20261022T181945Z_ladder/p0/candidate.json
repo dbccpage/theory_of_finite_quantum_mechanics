@@ -1,0 +1,231 @@
+{
+  "task_id": "AUTH-BLIND-DERIVATION-PROTOCOL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "bfc542ff7de89f5b4d1530bf7b58a5cb206ba441ab6213ecbe09fe18d38ff7c3",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_to_l2",
+          "inputs": [
+            "PreH"
+          ],
+          "output": "L2",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_cut_distinct",
+          "equation_or_predicate": "For a CarrierCut C on X, a witness C.r a b implies a ≠ b",
+          "typing_conditions": "C is a CarrierCut on X; C.r a b holds",
+          "source_pins": [
+            {
+              "path": "lean4/GenesisFspBridge.lean",
+              "declaration": "GenesisFspBridge.cut_endpoints_distinct",
+              "line": 13
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/GenesisFspBridge.lean",
+            "decl": "GenesisFspBridge.cut_endpoints_distinct",
+            "kind": "theorem",
+            "line": 13,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "r_D2_irrefl",
+          "equation_or_predicate": "The D2 relation on Bool is irreflexive and has witness false true",
+          "typing_conditions": "D2 is the relation on Bool used in the bridge",
+          "source_pins": [
+            {
+              "path": "lean4/GenesisFspBridge.lean",
+              "declaration": "GenesisFspBridge.D2_irrefl",
+              "line": 23
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/GenesisFspBridge.lean",
+            "decl": "GenesisFspBridge.D2_irrefl",
+            "kind": "theorem",
+            "line": 23,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No Genesis-to-computability lift has been formalized; no failed-descent control is grounded in the existing declarations.",
+        "Run freeze record (prompt, model, tools, repository state, context, outputs) is not supplied, so sealing cannot be verified.",
+        "No composition is licensed: g_cut_endpoints output DistinctEndpoints does not match any listed input colour of g_to_l2 (PreH).",
+        "Literature comparison is deferred until after sealing and is not performed here.",
+        "lemma l_protocol_separation unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+        "near_miss nm_positive_witness_as_proof unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_to_l2",
+        "ordered_inputs": [
+          "PreH"
+        ],
+        "output": "L2",
+        "arity": 1,
+        "carrier": "PreH",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/HilbertLiftL2Model.lean",
+            "declaration": "HilbertLift.toL2",
+            "line": 35
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/HilbertLiftL2Model.lean",
+          "decl": "HilbertLift.toL2",
+          "kind": "def",
+          "line": 35,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_cut_distinct",
+        "equation_or_predicate": "For a CarrierCut C on X, a witness C.r a b implies a ≠ b",
+        "typing_conditions": "C is a CarrierCut on X; C.r a b holds",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisFspBridge.lean",
+            "declaration": "GenesisFspBridge.cut_endpoints_distinct",
+            "line": 13
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.cut_endpoints_distinct",
+          "kind": "theorem",
+          "line": 13,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "r_D2_irrefl",
+        "equation_or_predicate": "The D2 relation on Bool is irreflexive and has witness false true",
+        "typing_conditions": "D2 is the relation on Bool used in the bridge",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisFspBridge.lean",
+            "declaration": "GenesisFspBridge.D2_irrefl",
+            "line": 23
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.D2_irrefl",
+          "kind": "theorem",
+          "line": 23,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-72189E80902F",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_cut_endpoints: (CarrierCut, Witness) -> DistinctEndpoints [GenesisFspBridge.cut_endpoints_distinct]",
+        "evidence": "lean GenesisFspBridge.cut_endpoints_distinct has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "GenesisFspBridge.cut_endpoints_distinct",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "AUTH-BLIND-DERIVATION-PROTOCOL"
+      }
+    ],
+    "open_obligations": [
+      "No Genesis-to-computability lift has been formalized; no failed-descent control is grounded in the existing declarations.",
+      "Run freeze record (prompt, model, tools, repository state, context, outputs) is not supplied, so sealing cannot be verified.",
+      "No composition is licensed: g_cut_endpoints output DistinctEndpoints does not match any listed input colour of g_to_l2 (PreH).",
+      "Literature comparison is deferred until after sealing and is not performed here.",
+      "lemma l_protocol_separation unverified: no Lean skeleton; statement consistent with sources but not elaborated",
+      "near_miss nm_positive_witness_as_proof unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

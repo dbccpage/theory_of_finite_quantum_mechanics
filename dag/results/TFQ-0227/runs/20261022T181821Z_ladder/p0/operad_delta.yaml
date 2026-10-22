@@ -1,0 +1,139 @@
+add_or_refine_generators:
+- id: g_continuation_evidence
+  ordered_inputs:
+  - Bytes
+  output: Evidence
+  arity: 1
+  carrier: ContinuationEvidence
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/prime_algos/prime_algorithm_2.rs
+    declaration: ContinuationEvidence
+    line: 1044
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/prime_algos/prime_algorithm_2.rs
+    decl: ContinuationEvidence
+    kind: struct
+    line: 1044
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: g_presented_carrier
+  ordered_inputs:
+  - X
+  - Q
+  output: PresentedCarrier
+  arity: 2
+  carrier: FableHilbertWalk20260819.H000.PresentedCarrier
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H000FinitePresentedCarrier.lean
+    declaration: FableHilbertWalk20260819.H000.PresentedCarrier
+    line: 20
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H000FinitePresentedCarrier.lean
+    decl: FableHilbertWalk20260819.H000.PresentedCarrier
+    kind: structure
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: g_boolean_valuation
+  ordered_inputs: []
+  output: BooleanValuation
+  arity: 0
+  carrier: BooleanValuation
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/finite_valuation.rs
+    declaration: BooleanValuation
+    line: 27
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/finite_valuation.rs
+    decl: BooleanValuation
+    kind: struct
+    line: 27
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r_presented_carrier_separates
+  equation_or_predicate: Presented carrier report separates two presentations on the bool fixture
+  typing_conditions: bool fixture presentations
+  source_pins:
+  - path: lean4/H000FinitePresentedCarrier.lean
+    declaration: FableHilbertWalk20260819.H000.presented_carrier_separates
+    line: 47
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H000FinitePresentedCarrier.lean
+    decl: FableHilbertWalk20260819.H000.presented_carrier_separates
+    kind: theorem
+    line: 47
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-FAA13251FB3D
+  class: wrong_signature
+  claim_kind: relation
+  claim: 'r_authority_none: Every evidence emission carries AuthorityEffect::None [AUTHORITY_EFFECT]'
+  evidence: 'rust AUTHORITY_EFFECT has kind const, which cannot be cited as a relation (allowed: abbrev,
+    def, fn, lemma, theorem)'
+  decl_key: AUTHORITY_EFFECT
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0227
+open_obligations:
+- No Lean skeleton for scheduling-preserves-statement was grounded; the vacuous l_schedule_no_authority
+  form is refused and not repeated.
+- No composition of g_continuation_evidence with g_presented_carrier is licensed by a listed relation
+  (colours Bytes and X,Q do not match).
+- Prime 002 carrier-step predicate has no grounded declaration in the source list.
+- 'near_miss nm_schedule_as_relation unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_host_mints_authority unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements:
+- id: L_evidence_carries_none
+  statement: Scheduling bytes through the continuation host yields evidence whose AuthorityEffect is None;
+    the finite statement is not altered.
+  relation_to_target: restates
+  depends_on:
+  - r_authority_none
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: code/rust/src/wdp/prime_algos/prime_algorithm_2.rs
+    decl: authority_effect_is_none
+    status: existing
+  credited: true
+  host_evidence:
+    path: code/rust/src/wdp/prime_algos/prime_algorithm_2.rs
+    decl: authority_effect_is_none
+    kind: fn
+    line: 2672
+    lang: rust
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

@@ -1,0 +1,315 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "d114cb00192a6d17e88872c0e086b0cd6f67c6f3152b71dbed6f799426f6c044",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET stage=P0 attempt=a2-1 in=d114cb00 guided=yes\n@TARGET [PROVED_LEAN] Finite statement, checked in Lean 4 in the following narrowed form. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction); Lean computes r(C1)=2/3 and r(C2)=5/6 from the relation tables of CausalOrder.lean. In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; in Lean these four values are entered as a table (70 f(d) = 70, 35, 16, 7) and not derived from the Gamma formula. (i) If the n x n grid with the componentwise product order has R(n) = (n(n+1)/2)^2 - n^2 strictly related pairs (a count entered as a definition in Lean, not derived from a poset), then 4 R(n) = n^2 (n-1)(n+3), the ordering fraction is r = (n+3)/(2(n+1)) for all n >= 2 with r(n) - 1/2 = 1/(n+1), the values for n=2..6 are 5/6, 3/4, 7/10, 2/3, 9/14, and r(2) = 5/6 equals the exactly computed r(C2) of the diamond. This is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact nearest-dimension selector over d in {1,2,3,4} with tie reporting is defined and checked on the six inputs 5/6, 3/4, 7/10, 1/2, 8/35, 1/10, giving [1], [1,2] (an exact tie), [2], [2], [3], [4]. (iii) The Hasse covering relation of any FiniteStrictPoset is contained in every subrelation E of the order such that every related pair is in E or has an intermediate element (one half of \"unique transitive reduction\"); C1 has 2 links and C2 has 4; the Mobius tables c1_mu and c2_mu of CausalOrder.lean satisfy the Mobius recursion and c2_mu(d0,d3)=1.\n@BOTTLENECK Not proved in Lean: that the n x n grid poset (a FiniteStrictPoset on n^2 points) has R(n) strictly related pairs, so (i) is arithmetic on a posited count cross-checked against the diamond only at n=2; the derivation of f(d) from the Gamma-function formula; correctness of the nearest-dimension selector beyond the six listed inputs; that the Hasse relation itself generates the order and is the minimal such relation. Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.relationCount | def | def relationCount {n : Nat} (P : FiniteStrictPoset n) : Nat\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.orderingFraction | def | def orderingFraction {n : Nat} (P : FiniteStrictPoset n) : Rat\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.gridWeak1D | def | def gridWeak1D (n : Nat) : Rat\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.gridStrictPairs | def | def gridStrictPairs (n : Nat) : Rat\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.gridOrderingFraction | def | def gridOrderingFraction (n : Nat) : Rat\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.gridStrictPairs_factorization | theorem | theorem gridStrictPairs_factorization (n : Nat) : 4 * gridStrictPairs n = (n : Rat) ^ 2 * ((n : Rat) - 1) * ((n : Rat) + 3)\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.grid_ordering_fraction_closed_form | theorem | theorem grid_ordering_fraction_closed_form (n : Nat) (hn : 2 ≤ n) : gridOrderingFraction n = ((n : Rat) + 3) / (2 * ((n : Rat) + 1))\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.grid_ordering_fraction_minus_half | theorem | theorem grid_ordering_fraction_minus_half (n : Nat) (hn : 2 ≤ n) : gridOrderingFraction n - 1 / 2 = 1 / ((n : Rat) + 1)\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement | theorem\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.myrheimMeyerScaled70 | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.intAbs | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.nearestMyrheimMeyerDims | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks | theorem\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.covers | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.hasseLinkCount | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.covers_subset_of_generating_subrelation | theorem\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.inClosedInterval | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.satisfiesMobiusRecursion | def\n lean4/FrontierMyrheimMeyer.lean | FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2 | theorem\n code/python/src/general_relativity/causal_set.py | ordering_fraction | def\n code/rust/src/general_relativity/causal_set.rs | ordering_fraction | fn\n lean4/CausalOrder.lean | CausalOrder.c1_mu | def\n lean4/CausalOrder.lean | CausalOrder.c2_mu | def\n lean4/CausalOrder.lean | CausalOrder.FiniteStrictPoset | structure\n lean4/CausalOrder.lean | CausalOrder.incomparability_not_transitive_c1 | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:r_ordering_fraction_def ordering_fraction(C) = 2*R/(n*(n-1)) for n>=2, and 0 for n<2 src=code/python/src/general_relativity/causal_set.py | ordering_fraction\n g:g_spacelike (FinitePoset,Element,Element)->Prop src=lean4/CausalOrder.lean | CausalOrder.isSpacelike\n g:g_c2_mu (Element,Element)->Rational src=lean4/CausalOrder.lean | CausalOrder.c2_mu\n r:r_spacelike_symm isSpacelike P x y iff isSpacelike P y x src=lean4/CausalOrder.lean | CausalOrder.spacelike_symm\n r:r_spacelike_irrefl not isSpacelike P x x src=lean4/CausalOrder.lean | CausalOrder.spacelike_irrefl\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] relation_count -- Do not state that arity/signature for relation_count.\n [composition_type_mismatch] g_ordering_fraction . slot 0 <- g_relation_count via r_ordering_fraction_def -- Do not compose operations whose colours do not match.\n [vacuous_proof] l_grid_fraction: For n>=2, the n x n grid has R = n^2(n+3)(n-1)/4... see obligations; ordering fraction equals -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] ordering_fraction -- Do not state that arity/signature for ordering_fraction.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 4,
+    "known_pos_injected": 5,
+    "neighbours": [
+      "CQFT-FINITE-CAUSET-IDENTIFICATION"
+    ],
+    "feedback": true,
+    "index_position": 795,
+    "neg_entry_ids": [
+      "NEG-62F83AF5B826",
+      "NEG-DA47CF91D0BA",
+      "NEG-E488E746CB4C",
+      "NEG-F2C5C1F5F1B0"
+    ],
+    "operation_candidates": 19,
+    "anchors_present": 3,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

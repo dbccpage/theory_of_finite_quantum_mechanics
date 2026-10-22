@@ -1,0 +1,193 @@
+{
+  "task_id": "CT-SUPERINFORMATION-MEDIUM-DEFINITION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-2",
+  "input_sha256": "6a8137300beaa86ec41bd0273b046557561dd409aa02336f39ceb0eccab6227a",
+  "candidate_sha256": "f8aedda28a4de75c31b830908028839a65f3c1ec4647b36176ad1fa482fa1b9d",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:11:39Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g:cloneZ",
+        "ordered_inputs": [
+          "qubit"
+        ],
+        "output": "qubit_pair",
+        "arity": 1,
+        "carrier": "qubit",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FrontierNoCloning.lean",
+            "declaration": "FrontierNoCloning.cloneZ",
+            "line": 174
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.cloneZ",
+          "kind": "def",
+          "line": 174,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g:cloneX",
+        "ordered_inputs": [
+          "qubit"
+        ],
+        "output": "qubit_pair",
+        "arity": 1,
+        "carrier": "qubit",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FrontierNoCloning.lean",
+            "declaration": "FrontierNoCloning.cloneX",
+            "line": 180
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.cloneX",
+          "kind": "def",
+          "line": 180,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r:Z_basis_trace_preserving",
+        "equation_or_predicate": "cloneZ is trace-preserving",
+        "typing_conditions": "finite qubit carrier; Z-basis clone map",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierNoCloning.lean",
+            "declaration": "FrontierNoCloning.cloneZ_trace_preserving",
+            "line": 195
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.cloneZ_trace_preserving",
+          "kind": "theorem",
+          "line": 195,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r:no_additive_cloner_Z_union_X",
+        "equation_or_predicate": "No additive map clones all of |0>,|1>,|+>,|->",
+        "typing_conditions": "additive (linear) map on the finite qubit carrier",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierNoCloning.lean",
+            "declaration": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+            "line": 235
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+          "kind": "theorem",
+          "line": 235,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The definition of information observable (double-complement closure under distinguishability) is not formalised",
+      "The superinformation medium definition is an imported assumption, not adopted as a primitive",
+      "Principles I-IX are not verified for finite carriers",
+      "Fidelity argument and complete positivity of cloning are not formalised",
+      "No composition is grounded, since the generators have qubit input and qubit_pair output and no listed relation licenses plugging them",
+      "The claim that Z union X is not an information observable is not grounded",
+      "near_miss nm:cloneability_of_union_from_parts unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "L_union_not_clonable_finite_shadow",
+        "statement": "Finite shadow of the Section 8 conclusion: the union of the Z and X attribute sets is not clonable by any additive map, though each of Z and X has an explicit clone map",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r:no_additive_cloner_Z_union_X",
+          "g:cloneZ",
+          "g:cloneX"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+          "status": "existing"
+        },
+        "credited": false,
+        "host_evidence": {
+          "path": "lean4/FrontierNoCloning.lean",
+          "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+          "kind": "theorem",
+          "line": 235,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

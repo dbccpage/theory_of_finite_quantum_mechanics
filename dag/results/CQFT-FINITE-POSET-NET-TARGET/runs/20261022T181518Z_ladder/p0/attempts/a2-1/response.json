@@ -1,0 +1,144 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "localized_op",
+      "inputs": [
+        "site"
+      ],
+      "output": "site_op",
+      "arity": 1,
+      "carrier": "Fin n -> M",
+      "ref": {
+        "path": "lean4/FrontierPosetNet.lean",
+        "decl": "LocalizedIn",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "site_product",
+      "inputs": [
+        "site_op",
+        "site_op"
+      ],
+      "output": "site_op",
+      "arity": 2,
+      "carrier": "Fin n -> M",
+      "ref": {
+        "path": "lean4/FrontierPosetNet.lean",
+        "decl": "mulSiteOp",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "spacelike_rel",
+      "inputs": [
+        "point",
+        "point"
+      ],
+      "output": "prop",
+      "arity": 2,
+      "carrier": "FiniteStrictPoset n",
+      "ref": {
+        "path": "lean4/CausalOrder.lean",
+        "decl": "CausalOrder.isSpacelike",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "isotony_rel",
+      "statement": "O1 subset O2 and LocalizedIn O1 A imply LocalizedIn O2 A",
+      "hypotheses": "O1 subset O2 as Finset (Fin n)",
+      "ref": {
+        "path": "lean4/FrontierPosetNet.lean",
+        "decl": "isotony",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "spacelike_symm_rel",
+      "statement": "isSpacelike P x y iff isSpacelike P y x",
+      "hypotheses": "P a FiniteStrictPoset n",
+      "ref": {
+        "path": "lean4/CausalOrder.lean",
+        "decl": "CausalOrder.spacelike_symm",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "spacelike_not_transitive_rel",
+      "statement": "spacelike is not transitive on the four-point N poset",
+      "hypotheses": "N poset with 0<2, 1<2, 1<3",
+      "ref": {
+        "path": "lean4/FrontierPosetNet.lean",
+        "decl": "FrontierPosetNet.spacelike_not_transitive_on_posetN",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "site_product",
+      "slot": 0,
+      "inner": "localized_op",
+      "licensing_relation": "isotony_rel"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "L_isotony_target",
+      "statement": "Isotony: O1 subset O2 and LocalizedIn O1 A imply LocalizedIn O2 A",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FrontierPosetNet.lean",
+        "decl": "FrontierPosetNet.isotony",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_spacelike_symm_target",
+      "statement": "spacelike relation of CausalOrder is symmetric",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/CausalOrder.lean",
+        "decl": "CausalOrder.spacelike_symm",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_full_matrix_algebra",
+      "claim": "Commutation extends by bilinearity to the full local matrix algebras A(O)",
+      "rejecting_invariant": "Only elementary tensor operators localized in O are modelled; the full matrix algebra and bilinear extension are not instantiated since M is generic"
+    },
+    {
+      "id": "nm_haag_kastler_locality",
+      "claim": "Locality here expresses Haag-Kastler commutation forced by causal dynamics",
+      "rejecting_invariant": "The net has no dynamics, so only kinematic sitewise commutation is present"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "nc_n_points",
+      "expr": "4 - 1",
+      "value": "3"
+    }
+  ],
+  "open_obligations": [
+    "Locality theorem locality_commute_of_spacelike is listed without a signature; its exact statement is not grounded",
+    "Full matrix algebra A(O) and bilinear extension of commutation are not formalized",
+    "Single-site monoid M is not instantiated at 2x2 matrices",
+    "Time-slice property and covariance are not modelled",
+    "Lemma skeletons left empty; no new lean proofs were supplied and no sorry-free proof is claimed",
+    "Disjoint_of_all_spacelike signature is truncated in the source list"
+  ]
+}

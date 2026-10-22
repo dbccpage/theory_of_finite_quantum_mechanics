@@ -1,0 +1,318 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "LQG-SPIN-NETWORK-STATES-IMPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "1d5130b168df164d0e07caf3e642064485dea47ad392fc683c96772934b309e1",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=LQG-SPIN-NETWORK-STATES-IMPORT stage=P0 attempt=a2-1 in=1d5130b1 guided=yes\n@TARGET [IMPORTED_ASSUMPTION] Imported structure: states are graphs whose edges carry SU(2) irreducible representations (spins) and whose vertices carry intertwiners, in a Hilbert space built with the Haar measure on SU(2) (Peter-Weyl). The repository has no compact Lie group and no Haar measure: its circle-group nodes are open, and its spin-foam shadow uses q-deformed labels in cyclotomic fields.\n@BOTTLENECK The compact-group completion that the structure needs is the SU(2) analogue of the open U(1) circle gap FQ-GAP-U1-CIRCLE.\n@ASSUME SU(2) Haar measure and Peter-Weyl decomposition (assumption); spin networks as a state basis (assumption)\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/general_relativity/spin_foam.rs | SpinFoamError | enum | pub enum SpinFoamError\n code/rust/src/general_relativity/spin_foam.rs | SpinFoam | struct | pub struct SpinFoam\n code/rust/src/number_theory/circle_haar.rs | CircleHaarError | enum | pub enum CircleHaarError\n lean4/HilbertLiftCompletion.lean | HilbertLift.instNormedAddCommGroupPreH | instance | noncomputable instance instNormedAddCommGroupPreH : NormedAddCommGroup (PreH 𝕜)\n lean4/HilbertLiftCompletion.lean | HilbertLift.instInnerProductSpacePreH | instance | noncomputable instance instInnerProductSpacePreH : InnerProductSpace 𝕜 (PreH 𝕜)\n lean4/HilbertLiftCompletion.lean | HilbertLift.HilbertLiftSpace | abbrev | abbrev HilbertLiftSpace : Type _\n lean4/HilbertLiftCompletion.lean | HilbertLift.hilbertLiftSpace_complete | theorem | theorem hilbertLiftSpace_complete : CompleteSpace (HilbertLiftSpace 𝕜)\n lean4/HilbertLiftCompletion.lean | HilbertLift.hilbertLiftSpace_innerProductSpace | theorem | theorem hilbertLiftSpace_innerProductSpace : Nonempty (InnerProductSpace 𝕜 (HilbertLiftSpace 𝕜))\n lean4/HilbertLiftCompletion.lean | HilbertLift.controlled_completion | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5 | structure\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.zero | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.one | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.ofRat | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.sqrt5 | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.add | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.sub | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.neg | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.mul | def\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.zero_a | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.zero_b | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.one_a | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.one_b | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.add_a | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.add_b | theorem\n lean4/U1CauchyCircleCompletion.lean | U1Fable.CauchyCircleCompletion.QuadSqrt5.sub_a | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_vertexAmplitude (TetSpins)->Cyclo12 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude\n r:r_inadmissible_vanishes Tetrahedral labels violating admissibility give zero vertex amplitude; a finite analogue of the trivalent admi src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes\n r:r_vacuum vertexAmplitude vacuumSpins = 1 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] g_area_sum . slot 0 <- g_spin_term via r_term_values -- Do not compose operations whose colours do not match.\n [vacuous_proof] l_equal_iff: Equal area iff equal squarefree-reduced coefficient vectors -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_squarefree_reduce . slot 0 <- g_area_sum via r_equal_iff_reduced -- Do not compose operations whose colours do not match.\n [vacuous_proof] l_min_level: Smallest nonzero level over at most four punctures with j<=3 is sqrt3/2, since every term is >= s -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_radical_sum . slot 0 <- g_spin_term via r_term_values -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 5,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "FQ-GAP-U1-CIRCLE",
+      "LQG-AREA-SPECTRUM-EXACT-TARGET",
+      "LQG-SPIN-NETWORK-KINEMATICS-SOURCE"
+    ],
+    "feedback": true,
+    "index_position": 632,
+    "neg_entry_ids": [
+      "NEG-85153189B460",
+      "NEG-0BB83083D4AC",
+      "NEG-F9A2D0E97FBE",
+      "NEG-F9B32565D458",
+      "NEG-C95686D8EC6A"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 0,
+    "src_strong": 0,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

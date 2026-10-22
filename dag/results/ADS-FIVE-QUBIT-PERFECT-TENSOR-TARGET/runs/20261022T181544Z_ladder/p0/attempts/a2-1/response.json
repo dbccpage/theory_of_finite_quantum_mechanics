@@ -1,0 +1,127 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "five_qubit_pauli_mask",
+      "inputs": [],
+      "output": "PauliMask",
+      "arity": 0,
+      "carrier": "five-qubit Pauli group modulo phase (GF(2) symplectic vectors)",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.PauliMask",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "choi_generators_commute_and_order_64",
+      "statement": "The six Choi generators pairwise commute and generate a group of 64 distinct elements",
+      "hypotheses": "Pauli operators modulo phase as GF(2) symplectic vectors on 6 qubits",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "choi_weight_distribution",
+      "statement": "The 64-element Choi stabilizer group has weight distribution 1 of weight 0, 45 of weight 4, 18 of weight 6, so every non-identity element has weight at least 4",
+      "hypotheses": "Choi stabilizer group of the six-qubit state",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "all_3_3_bipartitions_maximal_entropy",
+      "statement": "For all twenty 3|3 bipartitions the local stabilizer subgroup is trivial so entropy is 3 bits",
+      "hypotheses": "Choi stabilizer group; entropy via stabilizer formula S(A)=|A|-log2|G_A|",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "five_qubit_logical_min_weight_3",
+      "statement": "In the five-qubit code the 48 nontrivial logical operators modulo phase have minimum weight 3",
+      "hypotheses": "five-qubit stabilizer group of order 16 and its normalizer of order 64",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "target_restatement_choi_commute_order",
+      "statement": "Six Choi generators pairwise commute and generate 64 distinct elements",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "choi_generators_commute_and_order_64"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "target_restatement_weight_distribution",
+      "statement": "Weight distribution of the Choi stabilizer group is 1, 0, 0, 0, 45, 0, 18",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "choi_weight_distribution"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_no_pair_support",
+      "claim": "No pair of qubits supports a nontrivial logical operator in the five-qubit code",
+      "rejecting_invariant": "Host previously refused this statement as statement drift"
+    },
+    {
+      "id": "nm_perfect_tensor_vacuous",
+      "claim": "Every non-identity element of the Choi group has weight at least 4 stated as a sorry-backed proof",
+      "rejecting_invariant": "Vacuous proof refused; a sorry or tautology is not a proof"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "choi_group_order",
+      "expr": "2^6",
+      "value": "64"
+    },
+    {
+      "id": "choi_weight_sum",
+      "expr": "1 + 45 + 18",
+      "value": "64"
+    },
+    {
+      "id": "five_qubit_normalizer_minus_stabilizer",
+      "expr": "64 - 16",
+      "value": "48"
+    }
+  ],
+  "open_obligations": [
+    "Entropy reading via stabilizer formula is not formalised on density matrices",
+    "No generator or relation for the AdS/CFT interpretation is grounded",
+    "fiveQubitStabilizer signature not cited due to host refusal",
+    "Compositions between generators not established since only one generator is grounded"
+  ]
+}

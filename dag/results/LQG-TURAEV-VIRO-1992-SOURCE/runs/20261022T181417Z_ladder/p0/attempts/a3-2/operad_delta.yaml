@@ -1,0 +1,103 @@
+add_or_refine_generators:
+- id: G_quantum_dimension
+  ordered_inputs:
+  - Label
+  output: IsingScalar
+  arity: 1
+  carrier: IsingScalar
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/general_relativity/spin_foam.rs
+    declaration: quantum_dimension
+    line: 24
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/spin_foam.rs
+    decl: quantum_dimension
+    kind: fn
+    line: 24
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: G_vertexAmplitude
+  ordered_inputs:
+  - TetSpins
+  output: Cyclo12
+  arity: 1
+  carrier: Cyclo12
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude
+    line: 82
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude
+    kind: def
+    line: 82
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: R_inadmissible_vanishes
+  equation_or_predicate: Inadmissible tetrahedral labels give zero vertex amplitude
+  typing_conditions: Labels in the finite tetrahedral spin set; at least one triple fails admissibility
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes
+    line: 95
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes
+    kind: theorem
+    line: 95
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R_pentagon
+  equation_or_predicate: Finite pentagon coherence of recoupling amplitudes, an algebraic identity only
+  typing_conditions: Finite label set of the H023 recoupling model
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence
+    line: 167
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence
+    kind: theorem
+    line: 167
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact journal reference (Topology 31, 1992, pp. 865-902, title 'State sum invariants of 3-manifolds
+  and quantum 6j-symbols') is not held in the checkout and was not verified
+- No existing declaration for the Turaev-Viro state sum or its triangulation independence
+- Pachner move invariance (the 2-3 move via pentagon/Biedenharn-Elliott and the 1-4 move via orthogonality)
+  is not formalized
+- The quantum 6j symbols of U_q(sl_2) at a root of unity are not grounded in the finite cyclotomic model
+- 'lemma L_source_record unverified: no Lean skeleton; statement consistent with sources but not elaborated'
+- 'near_miss NM_finite_not_TV unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

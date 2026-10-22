@@ -1,0 +1,318 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "3fd105fc9e0e0bb74a918226afd01fd605dd12f5894aac57019d7dcfeafeff7e",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=AUTH-G5A-CLASS-RELATIVE-TRANSPORT stage=P0 attempt=a2-1 in=3fd105fc guided=yes\n@TARGET [PROVED_LEAN] If a map from a source predicate into proposal validity preserves the predicate exactly, and the allowed proposal deciders are closed under precomposition with that map, then a source predicate with no allowed total decider gives a proposal predicate with no allowed total decider.\n@BOTTLENECK Instantiate the allowed classes with ComputablePred on a code type, take the halting problem as the source predicate and prove closure under the reduction; the declaration supplies none of the three.\n@ASSUME decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.Decides | def | def Decides {Input : Type} (predicate : Input -> Prop) (decider : Input -> Bool) : Prop\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.NoTotalDecider | def | def NoTotalDecider {Input : Type} (allowed : (Input -> Bool) -> Prop) (predicate : Input -> Prop) : Prop\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction | structure | structure ValidityReduction {HardInput Proposal : Type} (hard : HardInput -> Prop) (valid : Proposal -> Prop)\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction | def | def ClosedUnderReduction {HardInput Proposal : Type} (allowedHard : (HardInput -> Bool) -> Prop) (allowedProposal : (Proposal -> Bool) -> Prop) {hard \n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider | theorem | theorem total_authorizer_yields_source_decider {HardInput Proposal : Type} {hard : HardInput -> Prop} {valid : Proposal -> Prop} {allowedHard : (HardI\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer | theorem | theorem no_source_decider_blocks_total_authorizer {HardInput Proposal : Type} {hard : HardInput -> Prop} {valid : Proposal -> Prop} {allowedHard : (Ha\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:r_reduction A ValidityReduction maps a source predicate into proposal validity, preserving the predicate exactly: hard x i src=papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction\n r:r_closed The allowed proposal deciders are closed under precomposition with the reduction map. src=papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction\n g:g_encodeMachine (Machine)->TokenList src=papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean | AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine\n g:g_decodeMachine (TokenList)->OptionMachine src=papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean | AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine\n r:r_machine_roundtrip decodeMachine (encodeMachine m) = some m src=papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean | AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine\n r:r_reduction A ValidityReduction maps a source predicate into proposal validity, preserving the predicate exactly src=papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction\n g:acceptanceBit (Terminalizer)->BoolPredicate src=papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean | AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptanceBit\n r:no_total_decider_blocks If the class has no total decider for valid and acceptanceBit terminalize lies in the class, then terminalize  src=papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean | AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] terminalize . slot 0 <- mark_unresolved via unresolved_default -- Do not compose operations whose colours do not match.\n [vacuous_proof] target_restatement: Under NoTotalDecider and class membership of acceptanceBit, no terminalizer is acceptance- -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_target: If hard has NoTotalDecider under allowedHard, the reduction preserves the predicate, and allowedProp -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction -- Do not state that arity/signature for AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 6,
+    "known_neg_injected": 4,
+    "known_pos_injected": 8,
+    "neighbours": [
+      "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "TFQ-0330"
+    ],
+    "feedback": true,
+    "index_position": 770,
+    "neg_entry_ids": [
+      "NEG-BB7BF1F721A2",
+      "NEG-755A7D888096",
+      "NEG-ABF55422430E",
+      "NEG-9E9949A2302B"
+    ],
+    "operation_candidates": 6,
+    "anchors_present": 1,
+    "src_strong": 6,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

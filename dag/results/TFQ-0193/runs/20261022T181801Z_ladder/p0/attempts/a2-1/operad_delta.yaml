@@ -1,0 +1,96 @@
+add_or_refine_generators:
+- id: g_finite_order
+  ordered_inputs:
+  - QMatrix
+  output: OptionUsize
+  arity: 1
+  carrier: rational matrices with finite-order decision
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_order.rs
+    declaration: finite_order
+    line: 80
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_order.rs
+    decl: finite_order
+    kind: fn
+    line: 80
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r_cayley_iso_2x2
+  equation_or_predicate: The rational Cayley transform on 2x2 matrices satisfies the isometry property
+    exactly.
+  typing_conditions: input is a rational 2x2 matrix in the Cayley domain
+  source_pins:
+  - path: lean4/H019RationalLieSpan.lean
+    declaration: FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat
+    line: 155
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H019RationalLieSpan.lean
+    decl: FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat
+    kind: theorem
+    line: 155
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-FA1AED9879B8
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_cayley_mat2: (Mat2Q) -> Mat2Q [FableHilbertWalk20260819.H019.cayleyMat2]'
+  evidence: lean def cayleyMat2 has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic
+    count)
+  decl_key: FableHilbertWalk20260819.H019.cayleyMat2
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0193
+open_obligations:
+- No continuous Haar measure or Hilbert representation is constructed; the Lie library remains a finite
+  exact control.
+- 'Lemma lean_skeleton left empty: no sorry-free proof of a formal statement was supplied.'
+- Generator for group_order omitted because its signature is refused.
+- Rotation and Lorentz boost constructions are not grounded by any @SRC or @KNOWN+ declaration.
+- g_cayley_mat2 input type Mat2Q is not grounded in a cited declaration; signature unverified.
+- 'near_miss nm_weyl_ccr unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_cayley_denom
+  expr: 1 + 1/2
+  value: 3/2
+  host_evidence:
+    recomputed: 3/2
+verified_lemma_statements:
+- id: l_cayley_iso_2x2_restate
+  statement: The rational Cayley transform on 2x2 matrices is an exact isometry.
+  relation_to_target: restates
+  depends_on:
+  - r_cayley_iso_2x2
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/H019RationalLieSpan.lean
+    decl: FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/H019RationalLieSpan.lean
+    decl: FableHilbertWalk20260819.H019.cayley_isometry_matrix2x2_rat
+    kind: theorem
+    line: 155
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

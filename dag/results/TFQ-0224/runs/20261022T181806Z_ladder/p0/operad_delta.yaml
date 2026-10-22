@@ -1,0 +1,79 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_continuum_needs_witness
+  equation_or_predicate: A continuum claim without a witness is oracle-needed; with a witness it is finite
+    replay only. Neither is a bridge theorem.
+  typing_conditions: A continuum claim is presented to the finite quantum shadow checker.
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: continuum_without_witness_is_oracle_needed
+    line: 613
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: continuum_without_witness_is_oracle_needed
+    kind: fn
+    line: 613
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_field_names_match
+  equation_or_predicate: Finite QM field name constants match the contract, including carrier, carrier_id
+    and continuum_debt.
+  typing_conditions: The finite QM field name constants are compared against the contract.
+  source_pins:
+  - path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    declaration: finite_qm_field_name_constants_match_contract
+    line: 725
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/coda/q/finite_shadow_exact.rs
+    decl: finite_qm_field_name_constants_match_contract
+    kind: fn
+    line: 725
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-8B466B2DCBDF
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_continuum_debt_field: () -> FieldName [FIELD_CONTINUUM_DEBT]'
+  evidence: 'rust FIELD_CONTINUUM_DEBT has kind const, which cannot be cited as a generator (allowed:
+    abbrev, class, def, fn, inductive, struct, structure)'
+  decl_key: FIELD_CONTINUUM_DEBT
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0224
+- id: NEG-96DEACFF373B
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_carrier_field: () -> FieldName [FIELD_CARRIER]'
+  evidence: 'rust FIELD_CARRIER has kind const, which cannot be cited as a generator (allowed: abbrev,
+    class, def, fn, inductive, struct, structure)'
+  decl_key: FIELD_CARRIER
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0224
+open_obligations:
+- No bridge theorem from finite QM to a circle, Haar measure, Pontryagin dual, or pi normalization is
+  grounded; F002.S001 has an empty books list and GAP-F002-S001-001 remains open.
+- named_adjoining.yaml content is not in @SRC or @KNOWN+ and is not cited.
+- No witness for continuum_debt is supplied; the bridge shelf remains empty.
+- 'near_miss nm_circle_name_as_carrier unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_witness_discharges_continuum unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

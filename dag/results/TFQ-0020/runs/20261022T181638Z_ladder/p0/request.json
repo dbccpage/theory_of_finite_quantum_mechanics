@@ -1,0 +1,317 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0020",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "0df2c9bef73a74f8e734f111502278830a9d18b28d86f82f42d4ecdd6a313c8f",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=TFQ-0020 stage=P0 attempt=a2-1 in=0df2c9be guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] On those weighted generators the same Rust report records the fundamental Casimir sum as (4/3) times the 3 by 3 identity and the adjoint action sum as 3 times each basis element. Lean FiniteQM.lean names the same rationals in su3_casimir_and_channel_identities: C_F(3)=4/3 and C_A(3)=3. The three diagonal slots of T_3 and T-tilde_8 are representation labels for a declared three-dimensional carrier. su_n.rs still treats the carrier dimension as an input. The obligation is to call these labels a finite representation shadow for three colors, not a completed color group.\n@BOTTLENECK Call the three diagonal slots representation labels, not a completed color group.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/lie_theory/lib.rs | su_n | mod | pub mod su_n;\n code/rust/src/lie_theory/mod.rs | su_n | mod | pub mod su_n;\n lean4/FiniteQM.lean | FiniteQM.su3_casimir_and_channel_identities | theorem | theorem su3_casimir_and_channel_identities : suNCasimirFundamental 3 = 4 / 3 ∧ suNCasimirAdjoint 3 = 3 ∧ suNSingletChannelCoeff 3 = -4 / 3 ∧ suNOctetC\n code/rust/src/lie_theory/su_n.rs | fundamental_casimir | fn | pub fn fundamental_casimir(&self) -> Result<GaussianMatrix, GellMannError>\n lean4/FiniteQM.lean | FiniteQM.suNCasimirFundamental | abbrev | abbrev suNCasimirFundamental (nc : Rat) : Rat\n lean4/FiniteQM.lean | FiniteQM.suNCasimirAdjoint | abbrev | abbrev suNCasimirAdjoint (nc : Rat) : Rat\n code/rust/src/lie_theory/su_n.rs | MAX_DIMENSION | const | pub const MAX_DIMENSION: usize = 8;\n code/rust/src/lie_theory/su_n.rs | GellMannBasis | struct | pub struct GellMannBasis\n code/rust/src/lie_theory/su_n.rs | dimension | fn\n code/rust/src/lie_theory/su_n.rs | generators | fn\n lean4/FiniteQM.lean | FiniteQM.degree4_unit_sphere_basis_identity | theorem\n lean4/FiniteQM.lean | FiniteQM.symDeg4FrameSum | abbrev\n lean4/FiniteQM.lean | FiniteQM.sym_deg4_frame_sum_on_unit_sphere | theorem\n lean4/FiniteQM.lean | FiniteQM.QZeta12.fundamental_unit_norm_identities | theorem\n lean4/FiniteQM.lean | FiniteQM.countermodel_m209_all_diagonal_commute | theorem\n lean4/FiniteQM.lean | FiniteQM.countermodel_matrix_diagonal_all_false | theorem\n lean4/FiniteQM.lean | FiniteQM.countermodel_matrix_off_diagonal_all_true | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:R1 The sum of the tensor product of fundamental generators equals the scalar 4/3 times the identity matrix. src=lean4/FiniteQM.lean | FiniteQM.su3_casimir_and_channel_identities\n r:R2 The adjoint action sum yields 3 times the identity on the adjoint representation. src=lean4/FiniteQM.lean | FiniteQM.su3_casimir_and_channel_identities\n g:WeightedSU3Gen1 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n g:WeightedSU3Gen2 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n g:WeightedSU3Gen3 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n g:WeightedSU3Gen4 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n g:WeightedSU3Gen5 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n g:WeightedSU3Gen6 ()->Mat3Qi src=code/python/src/qm/qcd_confinement.py | su3_weighted_generators\n@KNOWN- (host-refused earlier; do not repeat)\n [false_numeric_claim] N1: (4 * (3 - 1)) / (3 * 3) = 4/3 -- Do not assert that value; the exact recomputation differs.\n [wrong_signature] FiniteQM.suNSingletChannelCoeff -- Do not state that arity/signature for FiniteQM.suNSingletChannelCoeff.\n [wrong_signature] FiniteQM.suNAntitripletChannelCoeff -- Do not state that arity/signature for FiniteQM.suNAntitripletChannelCoeff.\n [wrong_signature] FiniteQM.suNOctetChannelCoeff -- Do not state that arity/signature for FiniteQM.suNOctetChannelCoeff.\n [wrong_signature] FiniteQM.suNSextetChannelCoeff -- Do not state that arity/signature for FiniteQM.suNSextetChannelCoeff.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 17,
+    "known_neg_injected": 5,
+    "known_pos_injected": 8,
+    "neighbours": [
+      "TFQ-0019",
+      "TFQ-0021"
+    ],
+    "feedback": true,
+    "index_position": 196,
+    "neg_entry_ids": [
+      "NEG-BECD529CB02D",
+      "NEG-04E96F64DDC6",
+      "NEG-1360716A26D2",
+      "NEG-5D77E7C6EA4B",
+      "NEG-AF9A95246D21"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 2,
+    "src_strong": 17,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

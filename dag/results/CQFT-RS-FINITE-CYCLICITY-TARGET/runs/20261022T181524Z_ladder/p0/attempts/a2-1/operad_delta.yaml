@@ -1,0 +1,202 @@
+add_or_refine_generators:
+- id: cyclic_test_fullrank
+  ordered_inputs:
+  - AmpMatrix
+  output: Bool
+  arity: 1
+  carrier: Fin dA -> Fin dB -> R with Semiring R
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.HasFullComplementaryRank
+    line: 63
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.HasFullComplementaryRank
+    kind: def
+    line: 63
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: matmul_amp
+  ordered_inputs:
+  - AmpMatrix
+  - PairMatrix
+  output: AmpMatrix
+  arity: 2
+  carrier: Fin m -> Fin n -> R composed via matMul
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.matMul
+    line: 30
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.matMul
+    kind: def
+    line: 30
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: full_rank_implies_cyclic
+  equation_or_predicate: HasFullComplementaryRank Omega implies CyclicForA Omega
+  typing_conditions: 'Omega : Fin dA -> Fin dB -> R, Semiring R'
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+    line: 73
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+    kind: theorem
+    line: 73
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: full_rank_implies_separating
+  equation_or_predicate: HasFullComplementaryRank Omega implies SeparatingForAc Omega
+  typing_conditions: 'Omega : Fin dA -> Fin dB -> R, Semiring R'
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.separating_of_fullComplementaryRank
+    line: 100
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.separating_of_fullComplementaryRank
+    kind: theorem
+    line: 100
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: cyclic_implies_fullrank_when_dB_le_dA
+  equation_or_predicate: 'CyclicForA Omega with injection emb : Fin dB -> Fin dA implies HasFullComplementaryRank
+    Omega'
+  typing_conditions: Function.Injective emb
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+    line: 83
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+    kind: theorem
+    line: 83
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: right_kernel_breaks_separating
+  equation_or_predicate: A nonzero right-kernel vector of Omega makes Omega not separating for End(H_Ac)
+  typing_conditions: Omega times nonzero vector equals zero
+  source_pins:
+  - path: lean4/FrontierRsCyclicity.lean
+    declaration: FrontierRsCyclicity.not_separating_of_right_kernel
+    line: 116
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.not_separating_of_right_kernel
+    kind: theorem
+    line: 116
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions:
+- outer_operation: matmul_amp
+  input_slot: 0
+  inner_operation: matmul_amp
+  colour_match: true
+  hypothesis_match: not checked
+  licensing_relations:
+  - full_rank_implies_cyclic
+  evidence_status: colours_match_and_licensed_by_verified_relation
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Prove separating implies full column rank for general n
+- Identify full column rank with full rank of reduced state on A^c
+- Formalise qubit subset bookkeeping for tensor factors
+- Prove not-cyclic for single-site cases via dimension counting beyond dB <= dA
+- State and prove zero column implies no left inverse implies not cyclic for |000> on pairs
+- Prove |000> cyclic for full algebra
+- Relate finite statement to continuum theorem (analogy only)
+- 'near_miss nm_separating_iff_fullrank unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_single_site_not_cyclic unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_000_pairs_not_cyclic unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_dim_pair
+  expr: 2^2
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+- id: nc_dim_single_complement
+  expr: 2^2 - 2^1
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements:
+- id: L_target_a
+  statement: Full complementary rank gives cyclicity and separating property for End(H_Ac)
+  relation_to_target: restates
+  depends_on:
+  - full_rank_implies_cyclic
+  - full_rank_implies_separating
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+    kind: theorem
+    line: 73
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked
+- id: L_target_b
+  statement: Cyclicity implies full column rank when dB <= dA via an injection Fin dB -> Fin dA
+  relation_to_target: restates
+  depends_on:
+  - cyclic_implies_fullrank_when_dB_le_dA
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/FrontierRsCyclicity.lean
+    decl: FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+    kind: theorem
+    line: 83
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

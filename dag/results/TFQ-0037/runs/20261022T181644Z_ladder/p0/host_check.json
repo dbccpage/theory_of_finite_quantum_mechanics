@@ -1,0 +1,159 @@
+{
+  "task_id": "TFQ-0037",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "c534f8d2314a16cd374e4814747a7dc3a31e818083e4250c3fe0a3443bff203a",
+  "candidate_sha256": "0a6c16f81142ead0eb0cfebc2d27d9b9d173e7e5a1be2ef379e47150739760e9",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 1,
+    "failure_rate": 0.1667,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:16:49Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_car_nilpotency",
+        "equation_or_predicate": "c_ann * c_ann = 0 for the Jordan-Wigner annihilation operator on the finite Fock space",
+        "typing_conditions": "none beyond the finite Fock space model in FiniteQM",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.car_clifford_nilpotency_and_occupation_projector",
+            "line": 1124
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.car_clifford_nilpotency_and_occupation_projector",
+          "kind": "theorem",
+          "line": 1124,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "rel_slater_swap",
+        "equation_or_predicate": "slater_same equals the negative of slater_same_swapped under exchange of the two rows",
+        "typing_conditions": "a,b,c,d : Rat",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry",
+            "line": 1108
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry",
+          "kind": "theorem",
+          "line": 1108,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-5584DA7001E2",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "gen_slater_det: (Rat, Rat, Rat, Rat) -> slater_same [FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry]",
+        "evidence": "lean FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "TFQ-0037"
+      }
+    ],
+    "open_obligations": [
+      "Shell capacity and noble-gas closure values 2,8,18,32 and 2,10,18,36,54,86,118 are cited only in the target text; no existing declaration with a verified signature is available for pauli_shell_capacities_and_madelung_noble_gas_closures, which was previously refused on wrong_signature",
+      "No lemma for the boson swap ratio +1 or the Hanbury Brown-Twiss ratio 2 is grounded in an existing declaration",
+      "CAR identity beyond nilpotency is not separately grounded because car_clifford_nilpotency_and_occupation_projector was previously refused on wrong_signature",
+      "No Lean skeleton was elaborated; lemma claims_proved is false",
+      "near_miss nm_qcd_cut unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_shell_capacity_n2",
+        "expr": "2*2^2/2",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      },
+      {
+        "id": "nc_hbt_boson",
+        "expr": "2 - 1",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "lem_slater_swap_restates",
+        "statement": "The same-orbital Slater combination is 0 and the fermion swap ratio is -1 on the two-row Rat model",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "rel_slater_swap"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry",
+          "kind": "theorem",
+          "line": 1108,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}
