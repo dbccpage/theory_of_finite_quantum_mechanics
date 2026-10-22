@@ -4010,7 +4010,7 @@ Obligation: Banach-space embedding, injectivity and the fibre statements are pro
 
 Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutation in a set whose generated group acts transitively does not change the readout. This is the second law under which the inner product is selected up to scale; it is supplied, not derived from primitive difference, and sectors with distinguished labels would break it (then the diagonal is constant only on orbits).
 
-Obligation: No finite-theory primitive forces readout invariance under sector relabelling; H006 supplies the permutation envelope only. Deriving the law, or recording which sector labels are distinguished, is item 1 of the run next steps.
+Obligation: Reduced: uniqueness of the inner product on the sector carrier reduces to sector additivity and transitive sector symmetry under permutation relabelling. When sector labels are distinguished, symmetry collapses to orbit-constant diagonal without enforcing global scalar uniqueness.
 
 ### TFQ-1002 l1-wdp-realification-j
 

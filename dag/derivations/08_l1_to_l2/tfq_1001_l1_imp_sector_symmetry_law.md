@@ -13,7 +13,7 @@
 Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutation in a set whose generated group acts transitively does not change the readout. This is the second law under which the inner product is selected up to scale; it is supplied, not derived from primitive difference, and sectors with distinguished labels would break it (then the diagonal is constant only on orbits).
 
 ### Governing Obligation
-No finite-theory primitive forces readout invariance under sector relabelling; H006 supplies the permutation envelope only. Deriving the law, or recording which sector labels are distinguished, is item 1 of the run next steps.
+Reduced: uniqueness of the inner product on the sector carrier reduces to sector additivity and transitive sector symmetry under permutation relabelling. When sector labels are distinguished, symmetry collapses to orbit-constant diagonal without enforcing global scalar uniqueness.
 
 ### Source Status
 Supplied law of the quadratic readout in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form: the readout is invariant under a set of sector permutations whose generated group acts transitively on sectors (SectorFormUniqueness.Invariant, TransitiveOn, Generated; invariance is closed under products and inverses, invariant_of_generated). The finite theory supplies the permutation isometry envelope (H006PermutationUnitary.permutation_isometry), not the statement that the readout must be invariant under it.
@@ -38,6 +38,18 @@ Supplied law of the quadratic readout in dag/results/L1-IMP-HILBERT-INNER-PRODUC
 - `lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Invariant`
 - `lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.Generated`
 - `lean4/H006PermutationUnitary.lean::FableHilbertWalk20260819.H006.permutation_isometry`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.Invariant`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.TransitiveOn`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.Generated`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.InSameOrbit`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.diag_const_on_orbit`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.diag_const_of_transitive_generated`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.diag_const_of_transitive`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.eq_smul_one_generated`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.eq_smul_one`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_2`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_3`
+- `lean4/CampaignL1SectorSymmetry.lean::CampaignL1SectorSymmetry.unif12_not_sectorAdditive`
 
 ### Rust Certifiers
 - `code/rust/src/qm/inner_product_uniqueness.rs::invariance_certificate`
@@ -57,3 +69,6 @@ Supplied law of the quadratic readout in dag/results/L1-IMP-HILBERT-INNER-PRODUC
   - `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
   - `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
   - `lean4/H006PermutationUnitary.lean`
+  - `dag/derivations/independent/l1-imp-sector-symmetry-law.md`
+  - `checks/independent/l1-imp-sector-symmetry-law.py`
+  - `dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json`

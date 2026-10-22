@@ -583,3 +583,10 @@ lean_lib FrontierTargets where
     `FrontierClassical6j,
     `FrontierPrAllowedRegion
   ]
+
+-- Campaign target 1: L1-IMP-SECTOR-SYMMETRY-LAW
+-- Not a default target: build with `lake build CampaignL1SectorSymmetry`
+lean_lib CampaignL1SectorSymmetry where
+  roots := #[
+    `CampaignL1SectorSymmetry
+  ]
