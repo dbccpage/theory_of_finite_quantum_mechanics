@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 2x2 amplitude matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
+Finite statement over Q(i), checked in Lean 4 for (a) to (c); (d) is not proved. For u in Q(i) (the Lean proofs of (a) and (b) do not use |u|=1), the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence, defined as 4|det M|^2, equals |u-1|^2/4 for M_u; for u=(3+4i)/5, where |u|=1, it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so det M = 0 implies det(A M B^T) = 0: local operations cannot raise a product vector to Schmidt rank 2; and diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
 
 ## Governing obligation
 
-Statements (a) to (d) are checked in Lean 4 over Q(i). The physical inference from such entanglement to a non-classical mediator is imported and carries no proof here.
+Statement (d), an exact separating functional on the 4x4 density matrix relative to the product family in the form of DS-QM071, is not proved. The Lean module defines schmidtWitnessExpectation(M) = |det M|^2, a quadratic function of the amplitude matrix that vanishes on product vectors and is positive on psi_u for u != 1; that is a restatement of (a), not a linear functional on density matrices, and it is not shown to vanish on mixtures of product states or tied to DS-QM071. The rank inequality rank(A M B^T) <= rank(M) for general rank is stated only through the 2x2 determinant identity (preservation of det M = 0). No physical claim is attached.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,12 @@ Checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierT
 
 ## What is open
 
-- Lean or exact Python statement of (a) to (d).
+- (d): a linear separating functional on the 4x4 density matrix relative to the product family (DS-QM071), including vanishing on mixtures of products.
+- The rank inequality rank(A M B^T) <= rank(M) beyond the preservation of det M = 0.
 
 ## Finite target (precise statement)
 
-For u in Q(i) with |u|=1: product iff u=1; C^2 = |u-1|^2/4 (C^2=1/5 at u=(3+4i)/5); rank(A M B^T)<=rank(M) for all 2x2 A, B over Q(i); the phase gate diag(1,1,1,u) maps the product vector (1,1,1,1)/2 to psi_u.
+For u in Q(i): psi_u is product iff u=1; C^2 = 4|det M_u|^2 = |u-1|^2/4 (C^2=1/5 at u=(3+4i)/5); det(A M B^T) = det(A) det(M) det(B) for all 2x2 A, B over Q(i), so local operations preserve det M = 0; the phase gate diag(1,1,1,u) maps the product vector (1,1,1,1)/2 to psi_u.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

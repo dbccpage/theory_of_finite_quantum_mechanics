@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}: (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii) the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.
+Finite statement, checked in Lean 4 in the formal radical basis. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term is c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2 and 2 sqrt(3) for j = 1/2, 1, 3/2, 2, 5/2, 3 (radicands 3, 2, 15, 6, 35, 3); Lean checks k(k+2) = m_k^2 d_k with d_k squarefree for the twice-spins k = 1..6, and holds each term as a vector in the formal Q-module on the basis (sqrt2, sqrt3, sqrt6, sqrt15, sqrt35)/2. On that module: (i) the 210 puncture multisets of size at most 4 (the empty one and 209 nonempty ones) have 209 distinct reduced vectors, the zero vector included (208 nonzero); (ii) the unique collision is one puncture of spin 3 with four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) for a single puncture the squared area j(j+1) = k(k+2)/4 is at least 3/4, strictly increasing in k, with minimum 3/4 at j = 1/2 (area sqrt(3)/2).
 
 ## Governing obligation
 
-Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear independence of squarefree square roots over R is encoded by working in the formal radical basis; the physical constant and Immirzi parameter are outside this target.
+Not proved in Lean: that the formal vector is the real area (no real square root occurs in the module) and that two multisets have equal real area if and only if their vectors agree, which needs the linear independence over Q of sqrt(2), sqrt(3), sqrt(6), sqrt(15), sqrt(35) (stated in the module header, not a Lean theorem); the agreement of the hand-entered punctureArea table with the m_k, d_k table beyond inspection; the minimum over multisets of several punctures (only single punctures). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible puncture lists are not part of the target.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,12 +27,12 @@ Checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTarg
 
 ## What is open
 
-- Exact table and degeneracy classification.
-- Linear independence of square roots as a Lean or Python lemma.
+- Linear independence of sqrt(2), sqrt(3), sqrt(6), sqrt(15), sqrt(35) over Q as a Lean lemma, and the resulting equivalence between equal real area and equal formal vector.
+- Minimum nonzero level over multisets of several punctures.
 
 ## Finite target (precise statement)
 
-For puncture multisets with at most 4 elements and spins in {1/2,...,3}: area levels as exact sums of squarefree radicals; equal areas iff equal reduced sums; the pair (one puncture of spin 3) and (four punctures of spin 1/2) coincide; min nonzero level sqrt(3)/2.
+Formal radical basis (sqrt2, sqrt3, sqrt6, sqrt15, sqrt35)/2: for puncture multisets with at most 4 elements and spins in {1/2,...,3} there are 209 distinct reduced vectors among 210 multisets; the unique collision is (one puncture of spin 3) = (four punctures of spin 1/2); the single-puncture squared area is at least 3/4 with minimum at j = 1/2.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

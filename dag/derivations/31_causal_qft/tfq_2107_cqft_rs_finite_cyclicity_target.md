@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space, A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M. Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c} on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
+Finite statement, checked in Lean 4 in the following narrowed form. Let Omega be a dA x dB matrix over a semiring R (the amplitude matrix of a vector in H_A tensor H_{A^c}; for qubits dA = 2^|A| and dB = 2^|A^c|, but the qubit tensor-factor bookkeeping is not formalised). Omega is cyclic for End(H_A) when every dA x dB matrix is X Omega for some X. (a) If Omega has a left inverse L with L Omega = I_dB (full column rank dB, which over a field is full rank of the reduced state on A^c) then Omega is cyclic and Omega is separating for End(H_{A^c}) (Omega Y = 0 implies Y = 0). (b) Conversely, cyclic implies a left inverse whenever dB <= dA (an injection Fin dB -> Fin dA is supplied). (c) A nonzero vector in the right kernel of Omega makes Omega not separating. (d) Exact 3-qubit instances over Z for the product vector |000>, GHZ = |000>+|111> and W = |100>+|010>+|001>: explicit nonzero right-kernel vectors for every single-site unfolding (2 x 4), explicit integer left inverses of every pair-of-sites unfolding (4 x 2) for GHZ and W, and a zero column in every pair-of-sites unfolding of |000>.
 
 ## Governing obligation
 
-Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has no continuous translation group or spectrum condition.
+Not proved in Lean: separating implies full column rank (so the three-way equivalence is not complete); the identification of full column rank with full rank of the reduced state; the qubit subset bookkeeping; the conclusion "not cyclic" for the single-site cases (cyclic implies left inverse is proved only for dB <= dA, and a single site has dA=2 < dB=4; the kernel vectors give non-separating only) and for |000> on pairs (a zero column is exhibited but "zero column implies no left inverse implies not cyclic" is not stated as a theorem); that |000> is cyclic for the full algebra. A Lean proof of the equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension has no translation group or spectrum condition.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Algebraic instances verified with exact Python arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,12 +27,13 @@ Checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTarge
 
 ## What is open
 
-- Lean proof of the equivalence.
+- Separating implies full column rank; identification with the reduced state of qubits.
+- Non-cyclicity of GHZ_3 and W_3 for single sites and of |000> for pairs as Lean statements; cyclicity of |000> for the full algebra.
 - Table of cyclic site sets for all stabilizer states on n<=4 qubits.
 
 ## Finite target (precise statement)
 
-For all n, A subset of [n], unit Omega over Q(i): A(A)Omega = H iff rank rho_{A^c}(Omega) = 2^{|A^c|} iff Omega separating for A(A^c). Instances: GHZ_3 and W_3 are cyclic for no single site and for every pair; any product vector is cyclic only for the full algebra.
+Over a semiring: a left inverse of the dA x dB amplitude matrix Omega implies Omega cyclic for End(H_A) and separating for End(H_{A^c}); cyclic implies a left inverse when dB <= dA; a nonzero right-kernel vector makes Omega non-separating. Instances: GHZ_3 and W_3 have an integer left inverse for every pair of sites (hence are cyclic) and non-separating single-site complements; |000> has a zero column in every pair unfolding.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n) = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n) - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.
+Finite statement, checked in Lean 4 in the following narrowed form. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction); Lean computes r(C1)=2/3 and r(C2)=5/6 from the relation tables of CausalOrder.lean. In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; in Lean these four values are entered as a table (70 f(d) = 70, 35, 16, 7) and not derived from the Gamma formula. (i) If the n x n grid with the componentwise product order has R(n) = (n(n+1)/2)^2 - n^2 strictly related pairs (a count entered as a definition in Lean, not derived from a poset), then 4 R(n) = n^2 (n-1)(n+3), the ordering fraction is r = (n+3)/(2(n+1)) for all n >= 2 with r(n) - 1/2 = 1/(n+1), the values for n=2..6 are 5/6, 3/4, 7/10, 2/3, 9/14, and r(2) = 5/6 equals the exactly computed r(C2) of the diamond. This is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact nearest-dimension selector over d in {1,2,3,4} with tie reporting is defined and checked on the six inputs 5/6, 3/4, 7/10, 1/2, 8/35, 1/10, giving [1], [1,2] (an exact tie), [2], [2], [3], [4]. (iii) The Hasse covering relation of any FiniteStrictPoset is contained in every subrelation E of the order such that every related pair is in E or has an intermediate element (one half of "unique transitive reduction"); C1 has 2 links and C2 has 4; the Mobius tables c1_mu and c2_mu of CausalOrder.lean satisfy the Mobius recursion and c2_mu(d0,d3)=1.
 
 ## Governing obligation
 
-Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.
+Not proved in Lean: that the n x n grid poset (a FiniteStrictPoset on n^2 points) has R(n) strictly related pairs, so (i) is arithmetic on a posited count cross-checked against the diamond only at n=2; the derivation of f(d) from the Gamma-function formula; correctness of the nearest-dimension selector beyond the six listed inputs; that the Hasse relation itself generates the order and is the minimal such relation. Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTarg
 
 ## What is open
 
-- Python implementation of the exact estimator and Lean statement of (i) and (iii).
+- Construct the n x n grid as a FiniteStrictPoset and prove its strict-pair count R(n); derive f(d) from the Gamma-function formula; prove the Hasse relation generates the order and is minimal.
 
 ## Finite target (precise statement)
 
-r(grid_n) = (n+3)/(2(n+1)) for all n>=2 (r(grid_2)=5/6); f(2)=1/2, f(3)=8/35, f(4)=1/10, f(1)=1; Hasse diagram of C1 has 2 links, of C2 has 4 links; Mobius table of C2 satisfies the recursion with mu(d0,d3)=1.
+r(C1)=2/3, r(C2)=5/6; given the posited grid count R(n) = (n(n+1)/2)^2 - n^2: r(grid_n) = (n+3)/(2(n+1)) for all n>=2 (r(grid_2)=5/6=r(C2)); table f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and a nearest-dimension selector checked on six inputs; Hasse links of C1 = 2 and C2 = 4; the Hasse relation lies in every generating subrelation; the Mobius tables of C1 and C2 satisfy the recursion with mu(d0,d3)=1 on C2.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

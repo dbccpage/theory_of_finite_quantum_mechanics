@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
+Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each of the three nontrivial logical classes (the cosets of the stabilizer by XXXXX, ZZZZZ and YYYYY, the product class), and no 2-qubit subset supports a representative of any of them. Equivalent statement also checked in Lean 4: all 105 non-identity Pauli errors of weight 1 or 2 anticommute with a stabilizer generator, so none lies in the normalizer and erasure of any two qubits is correctable (the Knill-Laflamme condition). All operators are Pauli operators modulo phase. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
 
 ## Governing obligation
 
-Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
+Checked in Lean 4 over the 16-element stabilizer, its three logical cosets, all 10 triples, all 10 pairs and all 105 low-weight Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs). Lean: checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library Fro
 
 ## What is open
 
-- Lean or exact Python check; Knill-Laflamme condition for two-qubit erasures.
+- The identification with bulk operator reconstruction is the picture of the source and is not part of the target.
 
 ## Finite target (precise statement)
 
-For each of the 10 triples T of {1..5} and each class in {X-bar, Y-bar, Z-bar} some representative has support inside T; for each of the 10 pairs none of the three classes has a representative inside the pair.
+For each of the 10 triples T of {1..5} and each class in {X-bar, Y-bar, Z-bar} some representative has support inside T; for each of the 10 pairs none of the three classes has a representative inside the pair; all 105 Paulis of weight 1 or 2 anticommute with a stabilizer generator.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

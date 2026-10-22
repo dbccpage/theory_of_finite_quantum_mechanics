@@ -3,18 +3,26 @@ node_id: LQG-AREA-SPECTRUM-EXACT-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Formalized finite statement. With the dimensionless area a = sum over punctures of
-    sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree
-    radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3)
-    for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}:
-    (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii)
-    the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal
-    to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.'
+  source_statement: 'Finite statement, checked in Lean 4 in the formal radical basis. With the dimensionless
+    area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term is
+    c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6),
+    sqrt(35)/2 and 2 sqrt(3) for j = 1/2, 1, 3/2, 2, 5/2, 3 (radicands 3, 2, 15, 6, 35, 3); Lean checks
+    k(k+2) = m_k^2 d_k with d_k squarefree for the twice-spins k = 1..6, and holds each term as a vector
+    in the formal Q-module on the basis (sqrt2, sqrt3, sqrt6, sqrt15, sqrt35)/2. On that module: (i) the
+    210 puncture multisets of size at most 4 (the empty one and 209 nonempty ones) have 209 distinct reduced
+    vectors, the zero vector included (208 nonzero); (ii) the unique collision is one puncture of spin
+    3 with four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) for a single puncture the squared
+    area j(j+1) = k(k+2)/4 is at least 3/4, strictly increasing in k, with minimum 3/4 at j = 1/2 (area
+    sqrt(3)/2).'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear
-    independence of squarefree square roots over R is encoded by working in the formal radical basis;
-    the physical constant and Immirzi parameter are outside this target.
+  source_bottleneck: 'Not proved in Lean: that the formal vector is the real area (no real square root
+    occurs in the module) and that two multisets have equal real area if and only if their vectors agree,
+    which needs the linear independence over Q of sqrt(2), sqrt(3), sqrt(6), sqrt(15), sqrt(35) (stated
+    in the module header, not a Lean theorem); the agreement of the hand-entered punctureArea table with
+    the m_k, d_k table beyond inspection; the minimum over multisets of several punctures (only single
+    punctures). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible
+    puncture lists are not part of the target.'
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md
   - external:arXiv:gr-qc/9411005
@@ -29,7 +37,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md
-    sha256: 405c31e26250226cb665c43b2e1f9cd22417ceedeb5e310541f91bc2feab640a
+    sha256: 3ccdf5dd253e15146ba95d23d3bb58ccbe329a9200250824078b7055d8c6f17a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Formalized finite statement. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant CM(l_e^2) = 288 V^2 exactly in the rationals. Checked in Lean 4 across all 10,825 admissible 6-tuples with twice-spins at most 8: 9,854 lie in the classically allowed region (CM > 0, where a Euclidean tetrahedron exists), 0 have CM = 0, and 971 lie in the classically forbidden region (CM < 0), together with exact rational values of the squared 6j symbol on allowed and forbidden witnesses. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
+  Finite statement, checked in Lean 4 in the following narrowed form. For each admissible 6-tuple (a,b,c,d,e,f) of twice-spins at most 8 (all four triads (a,b,c), (a,e,f), (d,b,f), (d,e,c) admissible), take lengths l = j + 1/2 = (twice-spin + 1)/2. Lean computes 288 V^2 (scaled by 64, as the integer cayleyMengerScaled64) as the 3x3 Gram determinant of the squared edge lengths at the vertex where a, b, f meet, which equals the Cayley-Menger determinant. Across all 13,691 admissible 6-tuples: 10,884 have 288 V^2 > 0 (classically allowed region, a Euclidean tetrahedron exists), 2,807 have 288 V^2 < 0 (forbidden region), and none has 288 V^2 = 0. Exact values of 288 V^2 and of the squared 6j symbol are checked on three witnesses only: (2,2,2,2,2,2) with 729/16 and 1/36; (1,1,2,1,1,2) with -81/16 and 1/36; (2,2,4,2,2,4) with -4375/16 and 1/900. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Checked in Lean 4 across all 10,825 admissible 6-tuples with 2j<=8. The asymptotic comparison with the Ponzano-Regge cosine/decay formulas is imported and outside this finite classification.
+  Not proved in Lean: the exact squared 6j value for every tuple (three witnesses only, so the node does not give "the exact value in each case"); the identity between the 3x3 Gram form used by Lean and the bordered 5x5 Cayley-Menger determinant (an independent exact Python recomputation with the bordered 5x5 determinant reproduces the counts 13,691 / 10,884 / 2,807 and the three witness values); that 288 V^2 = 0 never occurs for any shifted-spin tuple (the module header claims it through a congruence mod 8; only the count 0 for twice-spins <= 8 is a Lean theorem). The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.
 
   Open ../operads/lqg_pr_allowed_region_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

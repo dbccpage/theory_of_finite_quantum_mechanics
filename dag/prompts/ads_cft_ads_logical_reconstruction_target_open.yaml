@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
+  Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each of the three nontrivial logical classes (the cosets of the stabilizer by XXXXX, ZZZZZ and YYYYY, the product class), and no 2-qubit subset supports a representative of any of them. Equivalent statement also checked in Lean 4: all 105 non-identity Pauli errors of weight 1 or 2 anticommute with a stabilizer generator, so none lies in the normalizer and erasure of any two qubits is correctable (the Knill-Laflamme condition). All operators are Pauli operators modulo phase. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
+  Checked in Lean 4 over the 16-element stabilizer, its three logical cosets, all 10 triples, all 10 pairs and all 105 low-weight Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
 
   Open ../operads/ads_logical_reconstruction_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

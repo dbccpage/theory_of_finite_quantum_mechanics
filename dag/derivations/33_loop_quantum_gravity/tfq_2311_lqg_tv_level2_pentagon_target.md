@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum 6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott (pentagon) identity across all 3^9 = 19,683 label assignments. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the algebraic identity on those labels, not invariance of a state sum on a triangulated manifold.
+Finite statement, checked in Lean 4 for a transcribed table. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the normalized recoupling symbol isingF(a,b,c,d,e,f) is entered in Lean as an explicit case table over Q(sqrt 2) (values 0, +-1, +-sqrt(2)/2, transcribed from ising_f in code/rust/src/general_relativity/spin_foam.rs). On that table Lean checks in exact arithmetic over Q(sqrt 2): the quantum dimensions (1, sqrt 2, 1) with d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0 (truncation); exactly 36 nonzero entries among the 729 label 6-tuples; the orthogonality relation sum over f of isingF(a,b,c,d,e,f) isingF(a,b,c,d,e',f) = delta(e,e') for all admissible labels; and the pentagon identity sum over r of isingF(a,b,c,q,p,r) isingF(a,r,d,e,q,s) isingF(b,c,d,s,r,t) = isingF(p,c,d,e,q,t) isingF(a,b,t,e,p,s) across all 3^9 = 19,683 label assignments in {0,1,2}^9 (both sides zero unless the six boundary triads are admissible). The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the identity on those labels, not invariance of a state sum on a triangulated manifold.
 
 ## Governing obligation
 
-Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9. The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by TFQ-0105.
+Not proved in Lean: that the transcribed table equals the quantum 6j symbol at q = exp(i pi/4), neither derived from the q-Racah sum nor linked to the Rust function (the module imports H023 and H024 but uses nothing from them); the Z[zeta_12] data of H023 and H024; the dimension-weighted Turaev-Viro form of the identity (the checks are on the unitary-normalized F-symbols). The step from the local identity to invariance on a triangulation is not part of the target.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library Frontier
 
 ## What is open
 
-- Exact check of the identity on the admissible labels.
+- Derivation of the table from the quantum 6j (q-Racah) formula at q = exp(i pi/4) or a Lean link to spin_foam.rs, and the Z[zeta_12] data of H023 and H024.
 
 ## Finite target (precise statement)
 
-At q = exp(i pi/4), labels {0,1/2,1}: quantum Biedenharn-Elliott identity and orthogonality hold exactly for all admissible labels, in Q(sqrt 2).
+Transcribed level-2 F-symbol table over Q(sqrt 2) (q = exp(i pi/4), labels {0,1/2,1}): 36 nonzero entries; orthogonality for all admissible labels; the pentagon identity on all 3^9 = 19,683 label assignments.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

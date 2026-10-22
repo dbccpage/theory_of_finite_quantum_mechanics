@@ -15,7 +15,7 @@ Imported definition, audited and corrected against Deutsch and Marletto (2015, a
 
 ## Governing obligation
 
-The definition (Section 7 p. 20) is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite cloning shadow is the content of CT-QUBIT-NO-CLONING-FINITE-TARGET, which is open.
+The definition (Section 7 p. 20) is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite cloning shadow is the content of CT-QUBIT-NO-CLONING-FINITE-TARGET, which is checked in Lean only in the narrowed form recorded there (explicit clone maps, the Z-union-X obstruction for additive maps, the pairwise equal-or-orthogonal classification); the fidelity argument and complete positivity are not formalised.
 
 ## Source status
 

@@ -4,18 +4,19 @@ authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: 'Formalized finite statement. For a finite set X and a report map q from X to R, two
-    nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from
-    R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The
-    forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied
-    to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive
-    decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable
-    attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence
-    are not modelled.'
+    attributes A and B of X (nonemptiness is not needed) are separated by a deterministic task, meaning
+    a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B)
+    are disjoint. Checked in Lean 4 over Finset for arbitrary types X and R with decidable equality on
+    R: both directions and the biconditional; when q(A) and q(B) are disjoint the indicator of B on the
+    union of A and B is constant on the fibers of q (HistoryReport.FiberConstant, the form PG-HISTORY-REPORT-CRITERION
+    takes); and an exhaustive bitmask decision check over all (q, A, B) with nonempty attributes for 1<=|X|<=4
+    and 1<=|R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on
+    its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite
-    condition deserves the name "distinguishable attributes" in the source's sense depends on the imported
-    definition, which this repository does not adopt.
+  source_bottleneck: Checked in Lean 4 on Finset for all finite carriers and by the exhaustive check for
+    |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the
+    source's sense depends on the imported definition, which this repository does not adopt.
   source_refs:
   - dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md
   - lean4/FrontierDistinguishability.lean
@@ -28,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md
-    sha256: dd9dd6c563f2bd6f5ea13c22ede0d8bfd9666562824f105e84e25ee37943af66
+    sha256: f4f02250816f96a4f38a0fc794923450535d1c2283f0676d756ccc61aa059683
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

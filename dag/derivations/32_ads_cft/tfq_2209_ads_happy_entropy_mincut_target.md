@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions), the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.
+Finite statement, checked in Lean 4 for a hand-encoded model. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, which are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs, every bulk leg fixed in the logical zero state. In Lean the 20-qubit boundary stabilizer is given by 20 explicit generators (15 local to the five outer blocks and 5 pushed through the internal bonds from the central tensor): they pairwise commute and have full GF(2) rank 20. For all 380 proper contiguous boundary intervals A (20 starting positions, lengths 1 to 19), with S(A) = rank(G restricted to A) - |A| in bits and mincut(A) the minimal number of bonds cut separating A from its complement in the six-tensor star graph: S(A) <= mincut(A) on all 380 intervals, S(A) = mincut(A) on exactly 340 intervals, and S(A) = mincut(A) - 1 on exactly 40. The Ryu-Takayanagi equality therefore fails on this patch for 40 intervals; it is not a statement that holds for every region.
 
 ## Governing obligation
 
-Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all 380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum minimal-surface area is imported and not part of this target.
+Not proved in Lean: that the 20 explicit generators are the boundary stabilizer of the contracted six-tensor network with bulk legs fixed at logical zero (they are entered by hand from the pushing rules of the code generators); that mincut as computed (a minimum over side assignments of the six tensors) is the minimal curve cut in the planar dual; the list of the 40 intervals where equality fails (only the counts are stated). The correspondence to a continuum minimal-surface area is the imported formula and is not part of the target.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)). Lean: checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTarge
 
 ## What is open
 
-- The computation, with the list of intervals where equality fails.
+- Derivation of the boundary stabilizer from the tensor contraction; identification of the cut with the planar-dual minimal curve; the explicit list of the 40 failing intervals.
 
 ## Finite target (precise statement)
 
-For the stabilizer state of the six-tensor patch with bulk legs fixed at logical zero: S(A) in bits for each of the 20 x 19 contiguous intervals of the 20 boundary legs, equal to the stabilizer rank formula, compared with the minimal bond cut; report equality set and failures.
+For the stabilizer state of the six-tensor patch (hand-encoded generators) with bulk legs at logical zero: S(A) from the GF(2) rank formula and the star-graph minimal bond cut over the 20 x 19 contiguous intervals: S <= mincut on all 380, equality on exactly 340, S = mincut - 1 on exactly 40.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
