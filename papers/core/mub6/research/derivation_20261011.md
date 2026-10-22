@@ -32,7 +32,7 @@ The corrected manuscript now distinguishes:
   compatibility as different proof obligations.
 
 The new Lean theorems are in
-[`Conjecture2GeneralMechanization.lean`](../../../lean4/research_programs/mub6/Conjecture2GeneralMechanization.lean):
+[`Conjecture2GeneralMechanization.lean`](../../../../lean4/Conjecture2GeneralMechanization.lean):
 `balanced_mask_count`, `tao_all_balanced_masks`,
 `tao_balanced_mask_nonzero`, and `tao_distinct_positive_rows`.
 The last theorem directly quantifies over any three distinct positive row

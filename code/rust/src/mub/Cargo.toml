@@ -13,10 +13,23 @@ path = "lib.rs"
 default = []
 python = ["dep:pyo3"]
 extension-module = ["python", "pyo3/extension-module"]
+external-omega = [
+    "dep:omega_policy",
+    "dep:omega_kernel",
+    "dep:linear_algebra",
+    "dep:omega_types",
+    "dep:omega_contracts",
+    "dep:omega_pipelines",
+    "dep:omega_state",
+    "dep:omega_quantum_physics",
+    "dep:omega_solvers",
+    "dep:omega_certifiers",
+    "dep:omega_symbol_game_runtime",
+]
 
 [dependencies]
-omega_policy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy" }
-omega_kernel = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel" }
+omega_policy = { version = "0.1.0", optional = true }
+omega_kernel = { version = "0.1.0", optional = true }
 nalgebra = "0.33"
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
@@ -27,21 +40,21 @@ serde_json = { version = "1", features = ["raw_value"] }
 flate2 = "1"
 sha2 = "0.10"
 thiserror = "2"
-linear_algebra = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
-omega_functional = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional" }
-omega_wdp = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_wdp" }
-omega_types = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types" }
-omega_contracts = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_contracts" }
-omega_homotopy_type_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homotopy_type_theory" }
-omega_pipelines = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_pipelines" }
-omega_state = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_state" }
-omega_quantum_physics = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics" }
-omega_number_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_number_theory" }
-omega_solvers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_solvers" }
-omega_certifiers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_certifiers" }
+linear_algebra = { version = "0.1.0", optional = true }
+omega_functional = { package = "tfqm_functional", path = "../functional" }
+omega_wdp = { package = "tfqm_wdp", path = "../wdp" }
+omega_types = { version = "0.1.0", optional = true }
+omega_contracts = { version = "0.1.0", optional = true }
+omega_homotopy_type_theory = { package = "tfqm_homotopy_type_theory", path = "../homotopy_type_theory" }
+omega_pipelines = { version = "0.1.0", optional = true }
+omega_state = { version = "0.1.0", optional = true }
+omega_quantum_physics = { version = "0.1.0", optional = true }
+omega_number_theory = { package = "tfqm_number_theory", path = "../number_theory" }
+omega_solvers = { version = "0.1.0", optional = true }
+omega_certifiers = { version = "0.1.0", optional = true }
+omega_symbol_game_runtime = { version = "0.1.0", optional = true }
 pyo3 = { version = "0.29", optional = true }
 
 [dev-dependencies]
 syn = { version = "2", features = ["full", "visit"] }
 proc-macro2 = { version = "1", features = ["span-locations"] }
-omega_symbol_game_runtime = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime" }

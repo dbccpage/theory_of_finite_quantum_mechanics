@@ -84,7 +84,7 @@ date: 2026-09-05
 
 ## 2026-10-17 — Pre-Genesis to Finite-QM Derivation DAG Dual-Home Parity (Tranches 17–21, 112 Lean Theorems & 30 Rust Witness Families)
 
-- Dual-home Lean 4 mechanization (`lean/DerivationDagQMClosure.lean` mirrored byte-for-byte with `lean4/quantum_mechanics/DerivationDagQMClosure.lean`): added Section 21 (Tranche 17: `gs003_coordinate_l1_weighted_sum_and_orbit_collapse`, `gs001_maximal_symmetry_direction_independence_and_gauge_proportionality`, `wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation`, `l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure`), Section 22 (Tranche 18: `ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization`, `ds_qm072_bit_shadow_q1_q4_obstruction_and_p7_c10_bloch_refutation`, `ds_qm073_bare_table_separability_single_joint_bound_and_pr_box_obstruction`, `ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge`), Section 23 (Tranche 19: `ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`, `ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`, `ds_qm101_threshold_repair_image_monotonicity_and_nogo_suppression_corollary`, `ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`), Section 24 (Tranche 20: `ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action`, `ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy`, `ds_qm073_diagonal_exchange_suppression_and_bell_three_clause_obstruction`, `ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade`), and Section 25 (Tranche 21: `pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl`, `l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector`, `l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications`, `fq_embedding_relativity_and_entropy_baker_dichotomy_closure`), bringing the module to 112 kernel-checked theorems with zero `sorryAx` and promoting 23 derivation-DAG nodes (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`, `L1-GS000-EDGEWISE-L1`, `L1-GS001-GAUGE-L1`, `L1-WDP-CH08-C01-REPLICA-L1`, `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`, `L1-QM020-C10-BRANCH-LOCALIZATION`, `L1-U1-SELECTOR-OTHER-SEGMENT`, `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED`, `FQ-GAP-REAL-EMBEDDING-CHOICE`, `FQ-ENTROPY-DICHOTOMY-BAKER`, `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`, `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN`, `DS-QM062-U1-SELECTOR-LAYERS`, `DS-QM063-HOLONOMY-COHERENT-INTENSITY`, `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM073-FINITE-CHSH-AND-PR-BOX`, `DS-QM073-BELL-THEOREM-OBSTRUCTED`, `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY`, `DS-QM090-093-QM-UNIQUENESS-TIER3`, `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`, `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE`, `DS-QM206-BOUNDARY-SYNTHESIS`, `DS-QM207-211-FIVE-IMPORT-CASCADE`) to `PROVED_LEAN` (`125 PROVED_LEAN` nodes and `141 DERIVED_LEAN` routes across 177 nodes and 172 routes, clearing all `CONDITIONAL` nodes across 8 of the 10 stages).
+- Dual-home Lean 4 mechanization (`lean4/DerivationDagQMClosure.lean` mirrored byte-for-byte with `lean4/DerivationDagQMClosure.lean`): added Section 21 (Tranche 17: `gs003_coordinate_l1_weighted_sum_and_orbit_collapse`, `gs001_maximal_symmetry_direction_independence_and_gauge_proportionality`, `wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation`, `l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure`), Section 22 (Tranche 18: `ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization`, `ds_qm072_bit_shadow_q1_q4_obstruction_and_p7_c10_bloch_refutation`, `ds_qm073_bare_table_separability_single_joint_bound_and_pr_box_obstruction`, `ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge`), Section 23 (Tranche 19: `ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`, `ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`, `ds_qm101_threshold_repair_image_monotonicity_and_nogo_suppression_corollary`, `ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`), Section 24 (Tranche 20: `ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action`, `ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy`, `ds_qm073_diagonal_exchange_suppression_and_bell_three_clause_obstruction`, `ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade`), and Section 25 (Tranche 21: `pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl`, `l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector`, `l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications`, `fq_embedding_relativity_and_entropy_baker_dichotomy_closure`), bringing the module to 112 kernel-checked theorems with zero `sorryAx` and promoting 23 derivation-DAG nodes (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`, `L1-GS000-EDGEWISE-L1`, `L1-GS001-GAUGE-L1`, `L1-WDP-CH08-C01-REPLICA-L1`, `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`, `L1-QM020-C10-BRANCH-LOCALIZATION`, `L1-U1-SELECTOR-OTHER-SEGMENT`, `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED`, `FQ-GAP-REAL-EMBEDDING-CHOICE`, `FQ-ENTROPY-DICHOTOMY-BAKER`, `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`, `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN`, `DS-QM062-U1-SELECTOR-LAYERS`, `DS-QM063-HOLONOMY-COHERENT-INTENSITY`, `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM073-FINITE-CHSH-AND-PR-BOX`, `DS-QM073-BELL-THEOREM-OBSTRUCTED`, `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY`, `DS-QM090-093-QM-UNIQUENESS-TIER3`, `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`, `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE`, `DS-QM206-BOUNDARY-SYNTHESIS`, `DS-QM207-211-FIVE-IMPORT-CASCADE`) to `PROVED_LEAN` (`125 PROVED_LEAN` nodes and `141 DERIVED_LEAN` routes across 177 nodes and 172 routes, clearing all `CONDITIONAL` nodes across 8 of the 10 stages).
 - Dual-home Rust witness module (`native/src/derivation_dag_witnesses.rs` mirrored byte-for-byte with `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs` and `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`): added Family 26 (`verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`), Family 27 (`verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness`), Family 28 (`verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`), Family 29 (`verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`), and Family 30 (`verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`), bringing the master derivation-DAG receipt to 30 exact rational/integer witness families.
 - Manuscript, claim ledger, and E2E parity test: updated §13.8.8 (`Pre-genesis to finite-QM derivation DAG mechanization`) in `finite_quantum_mechanics.md`, updated `FQM-DAG1` in `finite_quantum_mechanics_claim_ledger.md`, and extended `tests/e2e/test_e2e_foundational_derivation_closure_control.py` to enforce byte-identical parity between `006_finite_qm` and the workspace Lean/Rust crates.
 
@@ -138,14 +138,14 @@ carries is the author's decision; this entry changes neither.
 - Smaller fixes: the C1000 campaign README, the prepared Zenodo errata note,
   the TeX header, the receipt replay entry point and a repointed consistency
   test.
-- Lean 4 and `QM-209` through `QM-231` finite-map extensions and review remediations: extended `lean4/quantum_mechanics/FiniteQM.lean`
-  (and the byte-identical paper mirror `006_finite_qm/lean/FiniteQM.lean`) to 61
+- Lean 4 and `QM-209` through `QM-231` finite-map extensions and review remediations: extended `lean4/FiniteQM.lean`
+  (and the byte-identical paper mirror `lean4/FiniteQM.lean`) to 61
   machine-checked theorems with zero `sorryAx`, added the standalone core-Lean
   module `lean4/quantum_mechanics/AtomicDiracLambHartreeFock.lean` (mirrored to
   `006_finite_qm/lean/AtomicDiracLambHartreeFock.lean`, 4 theorems, zero `sorryAx`),
-  added the standalone core-Lean module `lean4/quantum_mechanics/FiniteQFTAndGravity.lean`
-  (mirrored to `006_finite_qm/lean/FiniteQFTAndGravity.lean`, 64 theorems, zero `sorryAx`),
-  and extended `001_ravera_dfm_finite_to_continuum_dossier/lean4/RaveraDfmFiniteToContinuum.lean`
+  added the standalone core-Lean module `lean4/FiniteQFTAndGravity.lean`
+  (mirrored to `lean4/FiniteQFTAndGravity.lean`, 64 theorems, zero `sorryAx`),
+  and extended `lean4/RaveraDfmFiniteToContinuum.lean`
   to 16 theorems with zero `sorryAx`.
   Together these cover: (1) the `QM-209` $\mathbb{Q}(\zeta_{12})$ rational readout cone,
   explicit positive-definite unequal-weight counterexample $(A,B) = (1,1)$ with
@@ -936,7 +936,7 @@ Implemented and verified the extension of discrete Mutually Unbiased Bases from 
 3. Code and Verification Suite:
    - Python: Added `build_d4_mub_projectors`, `reconstruct_d4_state_from_mub_probabilities`, `simulate_d4_mub_tomography`, and `evaluate_d4_clifton_kent_deficit` to `advanced_targets.py` (re-exported in `foundations.py`). Added 4 unit tests in `test_targets_13_to_22.py`.
    - Rust: Added `MubD4System` in `apps/finite_qm/code_rs/src/mub.rs` over `Cyc24` with 2-qubit Pauli Kronecker products, verifying orthonormality, mutual unbiasedness, and purity obstruction. Added unit and integration tests.
-   - Lean 4: Created `apps/finite_qm/lean4/H051Mub4GaloisFieldContextuality.lean` (10 theorems, 0 sorry, 0 external axioms) verifying MUB overlap, trace preservation, and the Clifton-Kent purity obstruction in $d=4$.
+   - Lean 4: Created `lean4/H051Mub4GaloisFieldContextuality.lean` (10 theorems, 0 sorry, 0 external axioms) verifying MUB overlap, trace preservation, and the Clifton-Kent purity obstruction in $d=4$.
    - Pytest: 336/336 tests pass across 8 workers.
    - Cargo: 39/39 tests pass.
    - Lake: 80/80 jobs build cleanly with 0 errors and 0 warnings.
@@ -1032,7 +1032,7 @@ Completed Loop 12 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop12_superdense_coding.py` (5 tests).
    - Test suite pass count expanded from 272 to 277 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 69 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 69 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.19.0 (2026-09-05) — Loop 11: Discrete Quantum Teleportation Protocol over Bell Pairs
@@ -1066,7 +1066,7 @@ Completed Loop 11 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop11_quantum_teleportation.py` (2 tests).
    - Test suite pass count expanded from 270 to 272 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 68 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 68 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.18.0 (2026-09-05) — Loop 10: Steane [[7, 1, 3]] CSS Color Code on Fano Plane
@@ -1102,7 +1102,7 @@ Completed Loop 10 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop10_steane_code.py` (1 test).
    - Test suite pass count expanded from 269 to 270 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 67 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 67 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.17.0 (2026-09-05) — Loop 9: [[4, 2, 2]] CSS Surface Code and Distance-2 Error Detection
@@ -1141,7 +1141,7 @@ Completed Loop 9 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop9_css_surface_code.py` (1 test).
    - Test suite pass count expanded from 268 to 269 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 66 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 66 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.16.0 (2026-09-05) — Loop 8: 3-Qubit Quantum Error Correcting Code and Discrete Syndrome Recovery
@@ -1172,7 +1172,7 @@ Completed Loop 8 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop8_three_qubit_code.py` (1 test).
    - Test suite pass count expanded from 267 to 268 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 65 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 65 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.15.0 (2026-09-05) — Loop 7: Discrete Wigner Negativity & Magic State Resource on F_3 x F_3
@@ -1207,7 +1207,7 @@ Completed Loop 7 of the autonomous finite QM theory development campaign:
 4. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop7_discrete_wigner_negativity.py` (4 tests).
    - Test suite pass count expanded from 263 to 267 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 64 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 64 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.14.0 (2026-09-05) — Loop 6: Single-Qubit Clifford Group Normalizer & Non-Clifford T-Gate Orbit
@@ -1241,7 +1241,7 @@ Completed Loop 6 of the autonomous finite QM theory development campaign:
 4. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop6_clifford_and_t_gate.py` (2 tests).
    - Test suite pass count expanded from 261 to 263 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 63 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 63 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.13.0 (2026-09-05) — Loop 5: Pell-Pythagorean Triple Convergence to Tsirelson Bound
@@ -1276,7 +1276,7 @@ Completed Loop 5 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop5_pell_tsirelson_convergence.py` (1 test).
    - Test suite pass count expanded from 260 to 261 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 62 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 62 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.12.0 (2026-09-05) — Loop 4: Discrete Pythagorean Bell-CHSH Nonlocality Violation
@@ -1313,7 +1313,7 @@ Completed Loop 4 of the autonomous finite QM theory development campaign:
 3. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop4_pythagorean_bell_chsh.py` (3 tests).
    - Test suite pass count expanded from 258 to 260 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 61 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 61 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.11.0 (2026-09-05) — Loop 3: Octahedral Depolarizing Noise Threshold & Graph State Entanglement
@@ -1349,7 +1349,7 @@ Completed Loop 3 of the autonomous finite QM theory development campaign:
 4. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop3_depolarizing_and_entanglement.py` (4 tests).
    - Test suite pass count expanded from 254 to 258 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 60 jobs (all compiling cleanly with 0 sorry).
+   - `lean4/lakefile.lean` updated to 60 jobs (all compiling cleanly with 0 sorry).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.10.0 (2026-09-05) — Loop 2: Octahedral MUB Frame Polytope & Clifton-Kent Contextuality
@@ -1385,7 +1385,7 @@ Completed Loop 2 of the autonomous finite QM theory development campaign:
 4. Verification and CI:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop2_octahedral_mub_and_stabilizers.py` (3 tests).
    - Test suite pass count expanded from 251 to 254 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` updated to 59 jobs (all compiling cleanly).
+   - `lean4/lakefile.lean` updated to 59 jobs (all compiling cleanly).
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.9.0 (2026-09-05) — Loop 1: Polynomial Reduction for Arbitrary Degree 2k on S^1 and Simplicial 3-Complex Cayley Evolution
@@ -1428,7 +1428,7 @@ Completed Loop 1 of the autonomous finite QM theory development campaign:
 4. Testing and Integration:
    - Added unit test suite `apps/finite_qm/code/tests/unit/test_loop1_polynomial_and_3complex.py` (10 tests).
    - Test suite pass count expanded from 244 to 254 tests (100% green across 8 workers).
-   - `apps/finite_qm/lean4/lakefile.lean` registered `H028` and `H029`, with all 58 jobs compiling cleanly.
+   - `lean4/lakefile.lean` registered `H028` and `H029`, with all 58 jobs compiling cleanly.
    - `python code/consolidate_sources.py --check` verified 0 drift across retained sources.
 
 v0.8.0 (2026-09-05) — Phases 1–4: Separating Experiment, Tier 4 E2E Integration, Dual Certified Bridge, and Continuum Pricing
@@ -1493,7 +1493,7 @@ into the working copy while preserving the 8 existing foundational modules
 `BornNormalization.lean`, `Superposition.lean`, `Entanglement.lean`, `GleasonTheorem.lean`).
 The sources directory (`apps/finite_qm/sources/`) remains byte-identical.
 
-- Updated `apps/finite_qm/lean4/lakefile.lean` with all 53 working roots.
+- Updated `lean4/lakefile.lean` with all 53 working roots.
 - Verified `lake build` exits 0 across 55 jobs.
 - Executed comprehensive stub and axiom audit: 0 sorry, 0 admit, 0 trivial stubs;
   all declaration axioms fall strictly within standard `{Classical.choice, Quot.sound, propext}`.

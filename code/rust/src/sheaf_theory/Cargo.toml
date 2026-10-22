@@ -8,12 +8,16 @@ license = "Apache-2.0"
 name = "tfqm_sheaf_theory"
 path = "lib.rs"
 
+[features]
+default = []
+external-omega = ["dep:omega_homology", "dep:linear_algebra", "dep:omega_solvers"]
+
 [dependencies]
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
-omega_category_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_category_theory" }
-linear_algebra = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
-omega_solvers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_solvers" }
-omega_functional = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional" }
+omega_homology = { version = "0.1.0", optional = true }
+omega_category_theory = { package = "tfqm_category_theory", path = "../category_theory" }
+linear_algebra = { version = "0.1.0", optional = true }
+omega_solvers = { version = "0.1.0", optional = true }
+omega_functional = { package = "tfqm_functional", path = "../functional" }
 num-bigint = "0.4"
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"

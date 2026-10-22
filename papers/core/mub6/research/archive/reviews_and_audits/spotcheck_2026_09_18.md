@@ -37,11 +37,11 @@ Paths below are relative to the repository root.
 | `omega_engine/crates/mub_verify/cover.py` | Use relative volume/interiors on non-fixed coordinates; check overlaps beyond 200 leaves; reject wrong dimensions; retain counts when leaf storage is disabled. Success now explicitly concerns geometry, not the correctness of leaf labels. |
 | `omega_engine/crates_rs/omega_mub/src/bin/mub_tao_cover.rs` | Reject malformed/missing numeric values, empty/out-of-range/overflowing chunk ranges, and conflicting modes. Honor an explicit wide-cell depth. Return nonzero for incomplete covers. |
 | `omega_engine/crates_rs/omega_mub/src/omega_native/odd_prime_power_field_theorem_gate.rs` | A supplied failed schema now prevents acceptance. Remove unconditional claims that Lean theorems were checked; retain scope restrictions even in an accepted report. The Boolean theorem flags remain explicit declarations, not a kernel replay. |
-| `lean4/gluing/Gluing.lean` | Correct documentation that conflated vector and basis extension, and note that G3 is supplied by `g3_theorem` while G1/G2 remain hypotheses. The assembly logic was retained. |
-| `lean4/gluing/DeltoidCuspGluing.lean` | Replace a bare `Prop` membership field with evidence for a caller-supplied cusp relation. Correct documentation to distinguish recorded fraction arithmetic from the still-required analytic curvature bound. |
-| `lean4/gluing/AlgebraicCornerReconstruction.lean` | Replace addition of off-diagonal phase labels with a signed integer difference; rename the purported root-of-unity constraint as a remainder-bound theorem. Identify constructor case splits, label predicates, and orbit-map assumptions accurately. A concrete complex interpretation remains absent. |
-| `lean4/012_mutually_unbiased_bases/MUB/ComplexCoefficientScalars.lean` | No defect identified in this sample. The module explicitly limits itself to a complex scalar package, with coefficient-field construction still separate. Build and printed axiom checks passed. |
-| `lean4/012_mutually_unbiased_bases/MUB/HilbertPhaseNormalization.lean` | No defect identified in this sample. Read the normalization identities and their finite-field/nonzero hypotheses; build and printed axiom checks passed. |
+| `lean4/Gluing.lean` | Correct documentation that conflated vector and basis extension, and note that G3 is supplied by `g3_theorem` while G1/G2 remain hypotheses. The assembly logic was retained. |
+| `lean4/DeltoidCuspGluing.lean` | Replace a bare `Prop` membership field with evidence for a caller-supplied cusp relation. Correct documentation to distinguish recorded fraction arithmetic from the still-required analytic curvature bound. |
+| `lean4/AlgebraicCornerReconstruction.lean` | Replace addition of off-diagonal phase labels with a signed integer difference; rename the purported root-of-unity constraint as a remainder-bound theorem. Identify constructor case splits, label predicates, and orbit-map assumptions accurately. A concrete complex interpretation remains absent. |
+| `lean4/ComplexCoefficientScalars.lean` | No defect identified in this sample. The module explicitly limits itself to a complex scalar package, with coefficient-field construction still separate. Build and printed axiom checks passed. |
+| `lean4/HilbertPhaseNormalization.lean` | No defect identified in this sample. Read the normalization identities and their finite-field/nonzero hypotheses; build and printed axiom checks passed. |
 
 The corner API now exposes `crossRatioIndex` and `cross_ratio_residue_bounds`
 instead of `crossRatioPhase` / `cross_ratio_constrained_to_mu6`. The cusp witness
@@ -92,8 +92,8 @@ not regenerated or re-certified by this work.
 ## Remaining trust and semantic gaps
 
 The source scan found **18 existing custom axiom declarations** in
-[`G1_Orbits.lean`](../lean4/gluing/G1_Orbits.lean) (13) and
-[`GlobalGaugeChaining.lean`](../lean4/gluing/GlobalGaugeChaining.lean) (5).
+[`G1_Orbits.lean`](../../../../../../lean4/G1_Orbits.lean) (13) and
+[`GlobalGaugeChaining.lean`](../../../../../../lean4/GlobalGaugeChaining.lean) (5).
 The current build prints three nonstandard dependencies for
 `GlobalGaugeChaining.non_dita_count_le_one`: `at_most_one_szollosi_basis`,
 `at_most_one_tao_basis`, and `tao_szollosi_cross_empty`. The package therefore does

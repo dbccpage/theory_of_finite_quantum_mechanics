@@ -98,7 +98,7 @@ lake env lean --run MubBalancedExport.lean <fresh-output.jsonl>
 That export command is the checkpoint command. Root `main` was later removed
 from the exporter libraries, because Lean rejects `Mub6.lean` when two imported
 modules both declare it. The current wrapper is
-`cli/MubBalancedExport.lean`. The 320 bound pairs are the same two runs,
+`lean4/MubBalancedExport.lean`. The 320 bound pairs are the same two runs,
 written with `List.replicate`. `bounds_match` is still `decide +kernel` and
 was not replayed.
 

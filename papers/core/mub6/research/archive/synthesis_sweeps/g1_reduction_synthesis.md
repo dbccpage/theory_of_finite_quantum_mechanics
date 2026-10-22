@@ -8,7 +8,7 @@
 ## Claim Hygiene Summary
 
 1. **What this document supports**:
-   - The formal assembly and verification of the **Moduli Reduction Theorem** in Lean 4 (`lean4/gluing/ModuliReduction.lean`), proving `NoCompleteMUB6` conditioned on orbit catalog exhaustiveness and certified atlas coverage, completely sorry-free with zero user axioms beyond standard Lean logic (`propext, Classical.choice, Quot.sound`).
+   - The formal assembly and verification of the **Moduli Reduction Theorem** in Lean 4 (`lean4/ModuliReduction.lean`), proving `NoCompleteMUB6` conditioned on orbit catalog exhaustiveness and certified atlas coverage, completely sorry-free with zero user axioms beyond standard Lean logic (`propext, Classical.choice, Quot.sound`).
    - The rigorous synthesis connecting:
      - **Premise $G_1$** (Moduli Coverage conditioned on the known 6x6 complex Hadamard orbits: Dita $D_6(\alpha)$, Szollosi $B_6(\theta)$, and Tao $S_6$),
      - **Premise $G_2$** (ZeroRel algebraic variety $V_{\mathbb{R}}(\text{ZeroRel}_T)$, its Artin-Schreier sum-of-squares Nullstellensatz connection to curvature mass $\Psi^{\text{sq}}(T, U)$, and its strict invariance under unitary $U(6)$ transformations and Hadamard affine gauge equivalence),
@@ -43,7 +43,7 @@ Where:
 - **Premise $G_2$ (Lossless Wall Transport & ZeroRel Invariance)**: Every covered class in the certified atlas transports to a wall-certified lane where positive curvature mass $\Psi^{\text{sq}}(T, U) \ge \epsilon > 0$ certifies that the real ZeroRel variety is empty ($V_{\mathbb{R}}(\text{ZeroRel}_T) = \emptyset$), ruling out any fourth mutually unbiased basis.
 - **Premise $G_3$ (Combinatorial Basis Gluing)**: In any pairwise MU 7-basis configuration, every constituent triple can be extended by a fourth mutually unbiased basis belonging to the configuration.
 
-In Milestone M6 (Lane G1b), we synthesize the work of Campaign 1, Campaign 2, and Campaign 3 (Lanes SZO, ORB, ZER, V1c) into the unified **Moduli Reduction Theorem** in Lean 4 (`lean4/gluing/ModuliReduction.lean`).
+In Milestone M6 (Lane G1b), we synthesize the work of Campaign 1, Campaign 2, and Campaign 3 (Lanes SZO, ORB, ZER, V1c) into the unified **Moduli Reduction Theorem** in Lean 4 (`lean4/ModuliReduction.lean`).
 
 ---
 
@@ -174,7 +174,7 @@ Fixing $B_0 = I_6$ as the standard basis, two additional bases $B_1 = \frac{1}{\
 2. $H_2$ is a complex Hadamard matrix;
 3. The transition matrix $H_{12} = H_1^\dagger H_2$ is **also** a complex Hadamard matrix!
 
-In `lean4/gluing/G1_Orbits.lean`, this equivalence was proven sorry-free:
+In `lean4/G1_Orbits.lean`, this equivalence was proven sorry-free:
 ```lean
 theorem mu_triple_hadamard_transition
     (H1 H2 : Matrix (Fin 6) (Fin 6) ℂ)
@@ -263,13 +263,13 @@ The exact remaining obstruction is partitioned into three sharply scoped compone
 ## 7. Synthesis Conclusion & Milestone M6 Deliverable
 
 1. **Mission Completed**:
-   - `lean4/gluing/ModuliReduction.lean` is fully authored, integrated into `lakefile.toml`, and verified via `lake build` with **0 errors, 0 warnings, and 0 user axioms**.
+   - `lean4/ModuliReduction.lean` is fully authored, integrated into `lakefile.toml`, and verified via `lake build` with **0 errors, 0 warnings, and 0 user axioms**.
    - The master assembly theorem `moduli_reduction_grand_synthesis` reduces the entire MUB(6) problem to the verified premises $G_1, G_2, G_3$.
 2. **Firewall Preserved**:
    - Every artifact explicitly preserves `stated region only; mints no authority` and `AuthorityEffect: None`.
    - All claims are strictly scoped to their declared formal hypotheses.
 3. **Artifact Repository Location**:
-   - `lean4/gluing/ModuliReduction.lean`
+   - `lean4/ModuliReduction.lean`
    - `G1_REDUCTION_SYNTHESIS.md`
 
 `AuthorityEffect: None.`  

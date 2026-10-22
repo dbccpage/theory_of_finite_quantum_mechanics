@@ -31,8 +31,8 @@ paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/WeylCommutant.lean::clock_shift_commutant_scalar`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
+- `lean4/WeylCommutant.lean::clock_shift_commutant_scalar`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs::certify_schrodinger_irreducibility`

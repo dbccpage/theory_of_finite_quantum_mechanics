@@ -30,9 +30,9 @@ QM-219; paper s13.8.2 corrects the proposed five-import boundary: not proved ind
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/FiniteQM.lean::five_import_mutual_independence`
-- `lean4/quantum_mechanics/FiniteQM.lean::born_trace_vs_quartic_readout_and_three_ray_positivity_gap`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
+- `lean4/FiniteQM.lean::five_import_mutual_independence`
+- `lean4/FiniteQM.lean::born_trace_vs_quartic_readout_and_three_ray_positivity_gap`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs::evaluate_qm219_foundational_derivation_closure`

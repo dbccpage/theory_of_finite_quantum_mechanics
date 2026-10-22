@@ -49,7 +49,7 @@ the new binary.
 ## Next step B-0.1 and B-0.2
 
 - **Scope of `Quartet`.** The predicate is global, not tied to a family. It is
-  defined at `lean4/research_programs/mub6/SzollosiQuartetSystem.lean:33` as
+  defined at `lean4/SzollosiQuartetSystem.lean:33` as
   `def Quartet (B : Fin 4 → Candidate) : Prop :=`. The chain to the table is
   written in Lean source:
   - `exists_quartet_iff_balanced_polynomials` (`MubBalancedQuadraticPolynomials.lean:84`);

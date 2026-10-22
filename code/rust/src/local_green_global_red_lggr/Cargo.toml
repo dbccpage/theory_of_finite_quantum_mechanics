@@ -8,11 +8,22 @@ license = "Apache-2.0"
 name = "tfqm_local_green_global_red_lggr"
 path = "lib.rs"
 
+[features]
+default = []
+external-omega = [
+    "dep:omega_policy",
+    "dep:omega_homology",
+    "dep:omega_types",
+    "dep:omega_replay",
+    "dep:omega_linear_algebra",
+    "dep:omega_kernel",
+]
+
 [dependencies]
 blake3 = "1.8"
-omega_policy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy" }
-omega_holonomy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy" }
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+omega_policy = { version = "0.1.0", optional = true }
+omega_holonomy = { package = "tfqm_holonomy", path = "../holonomy" }
+omega_homology = { version = "0.1.0", optional = true }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -20,10 +31,8 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
 thiserror = "2"
-omega_types = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types" }
-omega_functional = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional" }
-omega_replay = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay" }
-omega_linear_algebra = { package = "linear_algebra", path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
-
-[dev-dependencies]
-omega_kernel = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel" }
+omega_types = { version = "0.1.0", optional = true }
+omega_functional = { package = "tfqm_functional", path = "../functional" }
+omega_replay = { version = "0.1.0", optional = true }
+omega_linear_algebra = { package = "linear_algebra", version = "0.1.0", optional = true }
+omega_kernel = { version = "0.1.0", optional = true }

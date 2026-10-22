@@ -77,9 +77,13 @@ theorem c1_not_spacelike_0_1 : ¬ isSpacelike C1 e0 e1 := by
 theorem c1_not_spacelike_0_2 : ¬ isSpacelike C1 e0 e2 := by
   decide
 
-theorem incomparability_not_transitive_c1 :
+theorem c1_spacelike_symm_irrefl :
     isSpacelike C1 e1 e2 ∧ isSpacelike C1 e2 e1 ∧ ¬ isSpacelike C1 e1 e1 := by
   decide
+
+@[deprecated c1_spacelike_symm_irrefl (since := "2026-10-22")] theorem incomparability_not_transitive_c1 :
+    isSpacelike C1 e1 e2 ∧ isSpacelike C1 e2 e1 ∧ ¬ isSpacelike C1 e1 e1 :=
+  c1_spacelike_symm_irrefl
 
 
 def c2_rel_bool (x y : Fin 4) : Bool :=
@@ -121,6 +125,42 @@ theorem c2_past_common : C2.rel d0 d1 ∧ C2.rel d0 d2 := by
 
 theorem c2_future_common : C2.rel d1 d3 ∧ C2.rel d2 d3 := by
   decide
+
+
+def n4_rel_bool (x y : Fin 4) : Bool :=
+  (x.val == 0 && y.val == 2) ||
+  (x.val == 1 && y.val == 2) ||
+  (x.val == 1 && y.val == 3)
+
+def n4_rel (x y : Fin 4) : Prop :=
+  n4_rel_bool x y = true
+
+instance : DecidableRel n4_rel := fun x y =>
+  inferInstanceAs (Decidable (n4_rel_bool x y = true))
+
+def N4 : FiniteStrictPoset 4 where
+  rel := n4_rel
+  decRel := inferInstance
+  irrefl := by
+    intro ⟨x, hx⟩
+    revert x hx
+    decide
+  trans := by
+    intro ⟨x, hx⟩ ⟨y, hy⟩ ⟨z, hz⟩
+    revert x hx y hy z hz
+    decide
+
+theorem n4_spacelike_not_transitive :
+    d0 ≠ d3 ∧ d3 ≠ d2 ∧ d0 ≠ d2 ∧
+    isSpacelike N4 d0 d3 ∧ isSpacelike N4 d3 d2 ∧ N4.rel d0 d2 ∧ ¬ isSpacelike N4 d0 d2 := by
+  decide
+
+theorem spacelike_not_transitive :
+    ¬ (∀ (n : Nat) (P : FiniteStrictPoset n) (x y z : Fin n),
+        x ≠ y → y ≠ z → x ≠ z → isSpacelike P x y → isSpacelike P y z → isSpacelike P x z) := by
+  intro h
+  have hn := n4_spacelike_not_transitive
+  exact hn.2.2.2.2.2.2 (h 4 N4 d0 d3 d2 hn.1 hn.2.1 hn.2.2.1 hn.2.2.2.1 hn.2.2.2.2.1)
 
 
 def c1_dual_rel_bool (x y : Fin 3) : Bool :=
@@ -184,7 +224,9 @@ theorem c2_mu_top_bottom : c2_mu d0 d3 = 1 := by
 
 #print axioms spacelike_symm
 #print axioms spacelike_irrefl
-#print axioms incomparability_not_transitive_c1
+#print axioms c1_spacelike_symm_irrefl
+#print axioms n4_spacelike_not_transitive
+#print axioms spacelike_not_transitive
 #print axioms order_independence_witness
 #print axioms c1_mu_diagonal
 #print axioms c1_mu_spacelike_vanishes

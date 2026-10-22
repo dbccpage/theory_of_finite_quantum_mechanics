@@ -80,20 +80,20 @@ alone are not acceptance evidence.
 The formal modules separate the literal calculation from the input's incorrect
 Hadamard identification:
 
-1. [`DeltoidCuspInputAudit.lean`](../../lean4/012_mutually_unbiased_bases/MUB/DeltoidCuspInputAudit.lean)
+1. [`DeltoidCuspInputAudit.lean`](../../../../../../../lean4/DeltoidCuspInputAudit.lean)
    defines the complete matrices in `Complex`, checks the failed Gram entry,
    and establishes `supplied_D6_not_IsCH6`.
-2. [`LiteralCuspCertificate.lean`](../../lean4/012_mutually_unbiased_bases/MUB/LiteralCuspCertificate.lean)
+2. [`LiteralCuspCertificate.lean`](../../../../../../../lean4/LiteralCuspCertificate.lean)
    contains every polynomial and integer-denominator-cleared multiplier.
    `MUB6.LiteralCuspCertificate.identity` is checked by `ring`, and
    `no_common_zero` derives the contradiction when every residue vanishes.
-3. [`DeltoidCuspLiteralSemantics.lean`](../../lean4/012_mutually_unbiased_bases/MUB/DeltoidCuspLiteralSemantics.lean)
+3. [`DeltoidCuspLiteralSemantics.lean`](../../../../../../../lean4/DeltoidCuspLiteralSemantics.lean)
    relates each of the seventeen source polynomials to the norm square of the
    corresponding coordinate or matrix row amplitude. It reconstructs any
    dephased complex vector through the invertible real coordinate change.
-4. [`DeltoidCuspPhaseReduction.lean`](../../lean4/012_mutually_unbiased_bases/MUB/DeltoidCuspPhaseReduction.lean)
+4. [`DeltoidCuspPhaseReduction.lean`](../../../../../../../lean4/DeltoidCuspPhaseReduction.lean)
    handles multiplication by a common unit phase and the `sqrt(6)` scaling.
-5. [`DeltoidCuspLiteralVector.lean`](../../lean4/012_mutually_unbiased_bases/MUB/DeltoidCuspLiteralVector.lean)
+5. [`DeltoidCuspLiteralVector.lean`](../../../../../../../lean4/DeltoidCuspLiteralVector.lean)
    assembles `no_literal_unit_entry_vector` and
    `no_literal_normalized_vector`, without a phase-gauge hypothesis.
 
@@ -109,7 +109,7 @@ From the repository root, using Python 3.11 or later:
 ```powershell
 PYTHONPATH=code python -m mub_verify.deltoid_cusp_input --verify-certificate research/deltoid_cusp_2026_09_23/literal_certificate.json
 python research/deltoid_cusp_2026_09_23/generate_certificate.py --output scratch/reconstructed_literal_certificate.json
-python research/deltoid_cusp_2026_09_23/generate_lean.py --output scratch/LiteralCuspCertificate.lean
+python research/deltoid_cusp_2026_09_23/generate_lean.py --output lean4/LiteralCuspCertificate.lean
 python research/deltoid_cusp_2026_09_23/independent_replay.py
 python -m pytest tests/mub_verify/test_deltoid_cusp_input.py -n 8 --basetemp=scratch/pytest_cusp_input -o cache_dir=scratch/pytest_cache_cusp_input
 ```

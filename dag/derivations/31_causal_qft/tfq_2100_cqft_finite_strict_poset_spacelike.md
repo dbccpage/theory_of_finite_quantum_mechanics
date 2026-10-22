@@ -11,11 +11,11 @@
 
 ## Statement
 
-lean4/CausalOrder.lean defines FiniteStrictPoset n (an irreflexive transitive relation on Fin n) and spacelike separation (x differs from y and neither precedes the other). It establishes spacelike_symm and spacelike_irrefl; on the named examples C1 (0<1, 0<2) and C2 (the four-element diamond) it establishes c1_spacelike_1_2, c2_causal_0_3, order_independence_witness (C1 and its dual differ) and the table entries c1_mu_spacelike_vanishes and c2_mu_top_bottom (value 1). Scope: three decided examples, no general causal-set theory. The theorem named incomparability_not_transitive_c1 states only that e1 and e2 are spacelike in both orders and that e1 is not spacelike to itself; it does not exhibit a failure of transitivity of spacelike separation. The table c2_mu is checked entry by entry; the Lean file does not state the Mobius recursion for it.
+lean4/CausalOrder.lean defines FiniteStrictPoset n (an irreflexive transitive relation on Fin n) and spacelike separation (x differs from y and neither precedes the other). It establishes spacelike_symm and spacelike_irrefl; on the named examples C1 (0<1, 0<2), C2 (the four-element diamond) and N4 (the four-element N poset with 0<2, 1<2, 1<3) it establishes c1_spacelike_1_2, c1_spacelike_symm_irrefl (with a deprecated alias incomparability_not_transitive_c1), c2_causal_0_3, n4_spacelike_not_transitive, spacelike_not_transitive (three distinct elements d0, d3, d2 on N4 with d0 spacelike to d3 and d3 spacelike to d2 while d0<d2), order_independence_witness (C1 and its dual differ) and the table entries c1_mu_spacelike_vanishes and c2_mu_top_bottom (value 1). Scope: four decided examples, no general causal-set theory. The table c2_mu is checked entry by entry; the Lean file does not state the Mobius recursion for it.
 
 ## Governing obligation
 
-The theorem name incomparability_not_transitive_c1 overstates its statement. A genuine non-transitive example (the four-element N poset) is part of the finite net target of this stage.
+The table c2_mu is checked entry by entry on C2; a general Mobius recursion over FiniteStrictPoset n is not formalized in CausalOrder.lean.
 
 ## Source status
 
@@ -50,11 +50,13 @@ See also: `DS-QM074-NO-SIGNALING-MARGINAL`.
 - `lean4/CausalOrder.lean::spacelike_symm`
 - `lean4/CausalOrder.lean::spacelike_irrefl`
 - `lean4/CausalOrder.lean::c1_spacelike_1_2`
+- `lean4/CausalOrder.lean::c1_spacelike_symm_irrefl`
 - `lean4/CausalOrder.lean::c2_causal_0_3`
+- `lean4/CausalOrder.lean::n4_spacelike_not_transitive`
+- `lean4/CausalOrder.lean::spacelike_not_transitive`
 - `lean4/CausalOrder.lean::order_independence_witness`
 - `lean4/CausalOrder.lean::c1_mu_spacelike_vanishes`
 - `lean4/CausalOrder.lean::c2_mu_top_bottom`
-- `lean4/CausalOrder.lean::incomparability_not_transitive_c1`
 
 ## Downstream derivations
 

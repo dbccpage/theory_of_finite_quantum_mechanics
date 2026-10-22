@@ -31,9 +31,9 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H014BilinearProduct.lean::bilinear_product_unique_on_bool_prod`
-- `lean4/quantum_mechanics/H014Interface.lean::dumpRight_not_tensor`
-- `lean4/quantum_mechanics/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
+- `lean4/H014BilinearProduct.lean::bilinear_product_unique_on_bool_prod`
+- `lean4/H014Interface.lean::dumpRight_not_tensor`
+- `lean4/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs::compose_density`

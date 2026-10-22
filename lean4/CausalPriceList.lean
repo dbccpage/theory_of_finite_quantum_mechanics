@@ -166,7 +166,9 @@ theorem campaign_terminal_correct :
 
 #print axioms CausalOrder.spacelike_symm
 #print axioms CausalOrder.spacelike_irrefl
-#print axioms CausalOrder.incomparability_not_transitive_c1
+#print axioms CausalOrder.c1_spacelike_symm_irrefl
+#print axioms CausalOrder.n4_spacelike_not_transitive
+#print axioms CausalOrder.spacelike_not_transitive
 #print axioms CausalOrder.c2_mu_top_bottom
 #print axioms CausalOrder.order_independence_witness
 

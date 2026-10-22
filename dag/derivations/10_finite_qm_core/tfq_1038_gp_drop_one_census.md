@@ -30,9 +30,9 @@ declared census at merge dba1434b; later finish table
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H017ExtrasDropone.lean::drop_one_count`
-- `lean4/quantum_mechanics/H017Finish.lean::remaining_import_list`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
+- `lean4/H017ExtrasDropone.lean::drop_one_count`
+- `lean4/H017Finish.lean::remaining_import_list`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

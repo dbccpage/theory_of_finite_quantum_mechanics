@@ -8,10 +8,14 @@ license = "Apache-2.0"
 name = "tfqm_holonomy"
 path = "lib.rs"
 
+[features]
+default = []
+external-omega = ["dep:omega_kernel", "dep:omega_homology", "dep:linear_algebra"]
+
 [dependencies]
-omega_kernel = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel" }
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
-linear_algebra = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
+omega_kernel = { version = "0.1.0", optional = true }
+omega_homology = { version = "0.1.0", optional = true }
+linear_algebra = { version = "0.1.0", optional = true }
 num-rational = { version = "0.4.2", features = ["serde"] }
 num-bigint = { version = "0.4.6", features = ["serde"] }
 num-traits = "0.2.19"

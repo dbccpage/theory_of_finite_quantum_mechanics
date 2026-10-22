@@ -30,10 +30,10 @@ Exact zero-duality-gap primal=dual certificates for K_{2,3} and 3-cycle mechaniz
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/DualWitness.lean::DualWitness`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap`
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
+- `lean4/DualWitness.lean::DualWitness`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`

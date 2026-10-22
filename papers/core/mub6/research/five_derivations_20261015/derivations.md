@@ -68,7 +68,7 @@ exists exactly when there are matrices U,V whose columns belong to V(H), with
 U^*U=V^*V=6I,\qquad |(U^*V)_{ij}|^2=6.
 \]
 
-[SzollosiCommonRays.lean](../../../../../../lean4/research_programs/mub6/SzollosiCommonRays.lean)
+[SzollosiCommonRays.lean](../../../../../lean4/SzollosiCommonRays.lean)
 establishes this equivalence using the existing concrete `RawHadamard`, `RawMU`
 and `HasRawQuartet` predicates. Its theorem
 `no_quartet_of_no_unbiased_ray_pair` then derives the stronger sufficient
@@ -234,7 +234,7 @@ preserves equality of the exponents and the opposite signs.
 
 `symbolic_receipt.json` records all 20 permutations against the actual block
 matrix. The independently written integer exponent formulas in
-[SzollosiLaurentPairing.lean](../../../../../../lean4/research_programs/mub6/SzollosiLaurentPairing.lean)
+[SzollosiLaurentPairing.lean](../../../../../lean4/SzollosiLaurentPairing.lean)
 check these pairings and the odd sign in the Lean kernel. This module verifies
 the finite exponent calculation; the passage from signed monomials to the
 complex Laurent identity is the argument just given.

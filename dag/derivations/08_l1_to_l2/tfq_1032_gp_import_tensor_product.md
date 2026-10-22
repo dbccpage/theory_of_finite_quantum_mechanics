@@ -33,9 +33,9 @@ imported; unique only on the named bilinear Kronecker interface
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H014BilinearProduct.lean::embed_eq_tensor`
-- `lean4/quantum_mechanics/H014Interface.lean::two_combinings_share_interface_and_disagree`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- `lean4/H014BilinearProduct.lean::embed_eq_tensor`
+- `lean4/H014Interface.lean::two_combinings_share_interface_and_disagree`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

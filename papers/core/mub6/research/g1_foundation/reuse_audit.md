@@ -77,7 +77,7 @@ This audit evaluates the public computer-assisted formalization repository by Ma
 ## 3. Mathematical Carrier and Equation Verification
 
 ### 3.1 Grounding in Actual Complex Numbers ($\mathbb{C}$)
-Unlike `MUB6/lean4/gluing/G1_Orbits.lean` (which wrapped natural numbers in `PhaseAngle` and lacked an inverse law), `upstream_hadamard6` imports Mathlib's standard complex number library:
+Unlike `lean4/G1_Orbits.lean` (which wrapped natural numbers in `PhaseAngle` and lacked an inverse law), `upstream_hadamard6` imports Mathlib's standard complex number library:
 ```lean
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Matrix.ColumnRowPartitioned
@@ -116,7 +116,7 @@ def Equivalent (H K : Mat6) : Prop :=
   - `equivalent_symm : ∀ {H K}, Equivalent H K → Equivalent K H` (using $\sigma^{-1}, \tau^{-1}$ and $\overline{r_i}, \overline{c_j}$)
   - `equivalent_trans : ∀ {H K L}, Equivalent H K → Equivalent K L → Equivalent H L`
   - `equivalent_equivalence : Equivalence Equivalent`
-- **Comparison**: In `MUB6/lean4/gluing/G1_Orbits.lean`, symmetry failed because phases were in $\mathbb{N}$. Here, symmetry is genuinely proved using complex conjugation `star z` and `star z * z = 1` for $|z|^2 = 1$.
+- **Comparison**: In `lean4/G1_Orbits.lean`, symmetry failed because phases were in $\mathbb{N}$. Here, symmetry is genuinely proved using complex conjugation `star z` and `star z * z = 1` for $|z|^2 = 1$.
 
 ### 3.4 Candidate-Fibre Definitions
 Prompt 02 requires verifying whether candidate fibres, nonemptiness, finiteness, invertibility, and block inclusion are propositions of the required meaning.
@@ -343,7 +343,7 @@ We consider two integration architectures:
   4. **License Ambiguity**: Upstream lacks an open-source license.
 
 ### Option B: Clean-Room Port of Foundational Lemmas (Recommended)
-- **Mechanism**: In Prompt 03, create a lean, self-contained module in MUB6 (`lean4/gluing/ConcreteSemantics.lean` or `lean4/012_mutually_unbiased_bases/MUB/ConcreteHadamard6.lean`).
+- **Mechanism**: In Prompt 03, create a lean, self-contained module in MUB6 (`lean4/ConcreteSemantics.lean` or `lean4/012_mutually_unbiased_bases/MUB/ConcreteHadamard6.lean`).
 - **Implementation**:
   - Define `IsCH6` and `Equivalent` directly on `Matrix (Fin 6) (Fin 6) ℂ`.
   - Adopt upstream's proven algebraic proof strategy for `equivalent_symm`, `equivalent_trans`, and `dephase` using Mathlib's `star_mul_self_of_normSq_one`.

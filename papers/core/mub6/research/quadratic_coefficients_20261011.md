@@ -85,7 +85,7 @@ lake env lean --run MubQuadraticLiftExport.lean OUTPUT.jsonl
 ```
 
 That command is the checkpoint command. The current wrapper is
-`cli/MubQuadraticLiftExport.lean`.
+`lean4/MubQuadraticLiftExport.lean`.
 
 From the repository root, regenerate a separate Lean source file with:
 

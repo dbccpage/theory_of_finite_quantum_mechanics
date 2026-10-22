@@ -20,19 +20,19 @@ This document provides the audited, kernel-checked Foundation Release Receipt fo
 ### 1.1 Foundation Deliverables Released in this Pass
 1. **Target & Premise Ledger (Prompt 01)**:
    - Complete audit of the legacy `lean4/gluing/` codebase (`target_audit.md`, `premise_ledger.json`, `catalog_crosswalk.md`).
-   - Exposed structural defects in `lean4/gluing/G1_Orbits.lean` (discrete `PhaseAngle` wrapper around `Nat`, non-invertible phase action, failed symmetry of `HadamardEquivalent`, uninhabited `IsHadamard` over `Rat`).
+   - Exposed structural defects in `lean4/G1_Orbits.lean` (discrete `PhaseAngle` wrapper around `Nat`, non-invertible phase action, failed symmetry of `HadamardEquivalent`, uninhabited `IsHadamard` over `Rat`).
    - Established the fundamental distinction between single-matrix complex Hadamard classification and 7-basis configuration landing (Proposition G1).
 2. **Upstream Reuse Audit (Prompt 02)**:
    - Mechanical audit of Cárdenes Wuttig–Tindall repository (`all_hadamard_matrices_in_dimension_six`, arXiv:2608.18053v2, commit `57b03025`).
    - Identified reusable algebraic dephasing mechanics and proved that upstream's finite-corner atlas theorem ($\mathcal{A}_6^{\text{fc}}$) leaves open the bijective mapping to literature families and does not settle MUB(6) Premise G1 (`reuse_audit.md`).
 3. **Concrete Matrix Semantics & Normalization (Prompt 03)**:
-   - Created `lean4/012_mutually_unbiased_bases/MUB/ConcreteSemantics.lean`.
+   - Created `lean4/ConcreteSemantics.lean`.
    - Fully formalized `IsCH6` over `Matrix (Fin 6) (Fin 6) ℂ`, unimodularity, standard Hadamard equivalence, equivalence relation laws (`refl`, `symm`, `trans`), preservation of Hadamardness, and constructive algebraic dephasing (`dephase_exists`) without transcendental functions.
 4. **Exact Polynomial Formulation & Bidirectional Encoding (Prompt 04)**:
-   - Created `lean4/012_mutually_unbiased_bases/MUB/PolynomialEncoding.lean` and `polynomial_manifest.json`.
+   - Created `lean4/PolynomialEncoding.lean` and `polynomial_manifest.json`.
    - Formalized 55 real polynomial equations in 50 real variables over `ℚ`, proved master `bidirectional_equivalence`, completeness, and real solution existence (`exists_real_solution_of_isCH6`). Validated 55/55 on Fourier matrix $F_6$ and verified high sensitivity on 1-entry corruptions.
 5. **Certificate Interface & Verified Pilot (Prompt 05)**:
-   - Created `lean4/012_mutually_unbiased_bases/MUB/CertificatePilot.lean` and `rejection_suite_receipt.json`.
+   - Created `lean4/CertificatePilot.lean` and `rejection_suite_receipt.json`.
    - Proved general evaluation soundness `general_evaluation_soundness`, pilot identity on $\mathbb{R}$, pilot branch elimination `x^2+y^2=1 ∧ x=1 → y=0`, implemented a computable, decidable `checkCertificate` with AST term reduction, and verified 4 negative rejection controls and 1 positive acceptance control.
 
 ### 1.2 Explicit Global Classification Status: OPEN
@@ -58,9 +58,9 @@ lake build MUB.ConcreteSemantics
 - **Jobs**: 1224 / 1224
 - **Compiler Axiom Output**:
   ```text
-  info: MUB/ConcreteSemantics.lean:281:0: 'MUB.ConcreteSemantics.dephase_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/ConcreteSemantics.lean:282:0: 'MUB.ConcreteSemantics.isCH6_of_equivalent' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/ConcreteSemantics.lean:283:0: 'MUB.ConcreteSemantics.hadamard_equiv_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/ConcreteSemantics.lean:281:0: 'MUB.ConcreteSemantics.dephase_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/ConcreteSemantics.lean:282:0: 'MUB.ConcreteSemantics.isCH6_of_equivalent' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/ConcreteSemantics.lean:283:0: 'MUB.ConcreteSemantics.hadamard_equiv_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
   Build completed successfully (1224 jobs).
   ```
 
@@ -73,16 +73,16 @@ lake build MUB.PolynomialEncoding
 - **Jobs**: 1273 / 1273
 - **Compiler Axiom Output**:
   ```text
-  info: MUB/PolynomialEncoding.lean:278:0: 'MUB.PolynomialEncoding.decode_isDephased' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:279:0: 'MUB.PolynomialEncoding.decode_encode' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:280:0: 'MUB.PolynomialEncoding.entrywiseUnit_decode_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:281:0: 'MUB.PolynomialEncoding.diagonal_gram_of_circle' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:282:0: 'MUB.PolynomialEncoding.mul_conjTranspose_eq_six_smul_one' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:283:0: 'MUB.PolynomialEncoding.isCH6_decode_of_satisfies55' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:284:0: 'MUB.PolynomialEncoding.satisfies55_of_isCH6_decode' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:285:0: 'MUB.PolynomialEncoding.bidirectional_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:286:0: 'MUB.PolynomialEncoding.completeness' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/PolynomialEncoding.lean:287:0: 'MUB.PolynomialEncoding.exists_real_solution_of_isCH6' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:278:0: 'MUB.PolynomialEncoding.decode_isDephased' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:279:0: 'MUB.PolynomialEncoding.decode_encode' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:280:0: 'MUB.PolynomialEncoding.entrywiseUnit_decode_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:281:0: 'MUB.PolynomialEncoding.diagonal_gram_of_circle' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:282:0: 'MUB.PolynomialEncoding.mul_conjTranspose_eq_six_smul_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:283:0: 'MUB.PolynomialEncoding.isCH6_decode_of_satisfies55' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:284:0: 'MUB.PolynomialEncoding.satisfies55_of_isCH6_decode' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:285:0: 'MUB.PolynomialEncoding.bidirectional_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:286:0: 'MUB.PolynomialEncoding.completeness' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/PolynomialEncoding.lean:287:0: 'MUB.PolynomialEncoding.exists_real_solution_of_isCH6' depends on axioms: [propext, Classical.choice, Quot.sound]
   Build completed successfully (1273 jobs).
   ```
 
@@ -95,17 +95,17 @@ lake build MUB.CertificatePilot
 - **Jobs**: 853 / 853
 - **Compiler Axiom & `#eval` Output**:
   ```text
-  info: MUB/CertificatePilot.lean:401:0: false
-  info: MUB/CertificatePilot.lean:402:0: false
-  info: MUB/CertificatePilot.lean:403:0: false
-  info: MUB/CertificatePilot.lean:404:0: false
-  info: MUB/CertificatePilot.lean:405:0: true
-  info: MUB/CertificatePilot.lean:407:0: 'MUB.CertificatePilot.general_evaluation_soundness' does not depend on any axioms
-  info: MUB/CertificatePilot.lean:408:0: 'MUB.CertificatePilot.pilot_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/CertificatePilot.lean:409:0: 'MUB.CertificatePilot.pilot_branch_elimination' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/CertificatePilot.lean:410:0: 'MUB.CertificatePilot.evalExpr_sumProdExpr' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/CertificatePilot.lean:411:0: 'MUB.CertificatePilot.validPilotCertificate_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
-  info: MUB/CertificatePilot.lean:412:0: 'MUB.CertificatePilot.check_certificate_soundness' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/CertificatePilot.lean:401:0: false
+  info: lean4/CertificatePilot.lean:402:0: false
+  info: lean4/CertificatePilot.lean:403:0: false
+  info: lean4/CertificatePilot.lean:404:0: false
+  info: lean4/CertificatePilot.lean:405:0: true
+  info: lean4/CertificatePilot.lean:407:0: 'MUB.CertificatePilot.general_evaluation_soundness' does not depend on any axioms
+  info: lean4/CertificatePilot.lean:408:0: 'MUB.CertificatePilot.pilot_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/CertificatePilot.lean:409:0: 'MUB.CertificatePilot.pilot_branch_elimination' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/CertificatePilot.lean:410:0: 'MUB.CertificatePilot.evalExpr_sumProdExpr' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/CertificatePilot.lean:411:0: 'MUB.CertificatePilot.validPilotCertificate_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+  info: lean4/CertificatePilot.lean:412:0: 'MUB.CertificatePilot.check_certificate_soundness' depends on axioms: [propext, Classical.choice, Quot.sound]
   Build completed successfully (853 jobs).
   ```
 
@@ -170,7 +170,7 @@ Every public theorem was mechanically audited against Lean's kernel environment.
   - `MUB.ConcreteSemantics`: Formulated entirely over Mathlib's complex number type `ℂ` (`Mathlib.Data.Complex.Basic`). Entry unimodularity uses `Complex.normSq z = 1` ($(\text{re } z)^2 + (\text{im } z)^2 = 1$). Orthogonality is defined by $H H^\dagger = (6 : \mathbb{C}) \cdot I_6$.
   - `MUB.PolynomialEncoding`: The state space `Point` consists of two functions $x, y : \text{Fin } 5 \to \text{Fin } 5 \to \mathbb{R}$. Coordinates are unrestricted real numbers $\mathbb{R}$.
   - `MUB.CertificatePilot`: The certificate AST `Expr` is defined over rational coefficients `ℚ` and evaluated over real valuations $v : \text{String} \to \mathbb{R}$.
-  - **Absence of Opaque / Nat Stand-ins**: Unlike legacy `lean4/gluing/G1_Orbits.lean` (where `PhaseAngle` was an unreduced wrapper around `Nat` and `is_complex_hadamard` was `opaque`), the new modules contain zero opaque constants, zero Nat phase wrappers, and zero artificial discrete approximations.
+  - **Absence of Opaque / Nat Stand-ins**: Unlike legacy `lean4/G1_Orbits.lean` (where `PhaseAngle` was an unreduced wrapper around `Nat` and `is_complex_hadamard` was `opaque`), the new modules contain zero opaque constants, zero Nat phase wrappers, and zero artificial discrete approximations.
 - **Dephasing Normalization**:
   - The transformation `dephase H` uses explicit algebraic factors:
     $$r_i = \overline{H_{i, 0}}, \quad c_j = \overline{H_{0, j}} \cdot H_{0, 0}$$
@@ -232,10 +232,10 @@ All digests computed independently via SHA-256 over exact file bytes:
 
 | File Path | SHA-256 Cryptographic Hash |
 |---|---|
-| `lean4/012_mutually_unbiased_bases/MUB/ConcreteSemantics.lean` | `9D14DAFB99692BD394D68262AFB9B274AE49A6C47436DC99FC6022741EE31A82` |
-| `lean4/012_mutually_unbiased_bases/MUB/PolynomialEncoding.lean` | `513782DB1825A41DE04AA29FB949BEF8B3A303B6BDAAF8FE355635BA45C65980` |
-| `lean4/012_mutually_unbiased_bases/MUB/CertificatePilot.lean` | `AC2AA9A27887C95376ABD15EFCF6FEB9E855010167E398761A27FB90C76AEB6C` |
-| `lean4/012_mutually_unbiased_bases/MUB.lean` | `29E89A466ED59B14A809CFB6C36E6D097566A49361C1D6FCC0A559F59CC181E9` |
+| `lean4/ConcreteSemantics.lean` | `9D14DAFB99692BD394D68262AFB9B274AE49A6C47436DC99FC6022741EE31A82` |
+| `lean4/PolynomialEncoding.lean` | `513782DB1825A41DE04AA29FB949BEF8B3A303B6BDAAF8FE355635BA45C65980` |
+| `lean4/CertificatePilot.lean` | `AC2AA9A27887C95376ABD15EFCF6FEB9E855010167E398761A27FB90C76AEB6C` |
+| `lean4/MUB.lean` | `29E89A466ED59B14A809CFB6C36E6D097566A49361C1D6FCC0A559F59CC181E9` |
 | `lean4/012_mutually_unbiased_bases/lakefile.toml` | `3A180EF78A4A258E32D409D318785193DE53D782EB3881BFB7009D56476C0A09` |
 | `lean4/012_mutually_unbiased_bases/lake-manifest.json` | `197FFE29D0350C69DA85E97B6517D9642FAD412FC2470B77ED9EEF688792F9A3` |
 | `lean4/012_mutually_unbiased_bases/lean-toolchain` | `A0ADA3782CD088719516BBFDF37B9E7032230E211BF424B85D952EE650C51091` |
@@ -254,7 +254,7 @@ All digests computed independently via SHA-256 over exact file bytes:
 ## 6. Comparison with A11 Dependency Chain in `lean4/gluing/`
 
 ### 6.1 The A11 Grand Synthesis Chain
-In `lean4/gluing/TargetA11OrbitExhaustiveness.lean`, the theorem `target_a11_canonical_grand_synthesis` attempts to prove `NoCompleteMUB6` via the following formal deduction chain:
+In `lean4/TargetA11OrbitExhaustiveness.lean`, the theorem `target_a11_canonical_grand_synthesis` attempts to prove `NoCompleteMUB6` via the following formal deduction chain:
 ```text
 ClassificationExhaustivenessPremise
   ∧ TransitionHadamardProperty

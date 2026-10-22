@@ -30,9 +30,9 @@ repository module GleasonRationalPlane.lean (gap register S000-004/010); older G
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/GleasonRationalPlane.lean::no_quadratic_representation`
-- `lean4/quantum_mechanics/GleasonRationalPlane.lean::binary_values`
-- `lean4/quantum_mechanics/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
+- `lean4/GleasonRationalPlane.lean::no_quadratic_representation`
+- `lean4/GleasonRationalPlane.lean::binary_values`
+- `lean4/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs::FrameSystem`
