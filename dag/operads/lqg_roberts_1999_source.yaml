@@ -3,14 +3,20 @@ node_id: LQG-ROBERTS-1999-SOURCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Roberts (1998, Geom. Topol. 1999) establishes, by geometric quantization, the asymptotic
-    formula conjectured by Ponzano and Regge, relating a 6j symbol with large representation dimensions
-    to the volume of the Euclidean tetrahedron whose edge lengths are those dimensions. This node records
-    the abstract.
+  source_statement: Roberts (1999, arXiv:math-ph/9812013, Section 1 Theorem 1 eq. (2) p. 22 and Section
+    6.1 eqs. (12)-(13) p. 61) establishes by geometric quantization of the 8-sphere and stationary phase
+    on the symplectic reduction that for an admissible 6-tuple of integers a, b, c, d, e, f (where a =
+    2j labels the (a+1)-dimensional irreducible representation of SU(2)) whose side lengths form a non-degenerate
+    Euclidean tetrahedron tau of positive volume V(tau) > 0 and exterior dihedral angles theta_r, the
+    rescaled 6j symbol {ka, kb, kc; kd, ke, kf} has the k -> infinity asymptotic expansion sqrt(2 / (3
+    pi V(tau) k^3)) cos(sum_{r=1}^6 (k a_r + 1) theta_r / 2 + pi/4) + O(k^{-5/2}). Since a tetrahedron
+    of side lengths j_r = a_r/2 has volume V_j = V(tau)/8, substituting 2 / (3 pi V(tau)) = 1 / (12 pi
+    V_j) and (a_r + 1)/2 = j_r + 1/2 recovers the Ponzano-Regge prefactor (12 pi V_j)^{-1/2}. This node
+    records the paper's theorem.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Record only. The proof is not reproduced and the precise hypotheses (generic tetrahedron)
-    are to be audited.
+  source_bottleneck: Record only. Audited against arXiv:math-ph/9812013 Theorem 1 eq. (2) p. 22 and Section
+    6.1 eqs. (12)-(13) p. 61 on 2026-10-22.
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2306_lqg_roberts_1999_source.md
   - external:arXiv:math-ph/9812013
@@ -22,7 +28,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2306_lqg_roberts_1999_source.md
-    sha256: a2593bac5a6553a0297a2cf3819a53dbb0178573523c20eb321bda32721fb0f4
+    sha256: abde4fe4149393cca44fe6075fff8c7067c4f8d43c8cd15af456fbde14dfe5a8
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

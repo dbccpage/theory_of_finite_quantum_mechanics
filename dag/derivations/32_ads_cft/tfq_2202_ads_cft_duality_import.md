@@ -19,7 +19,7 @@ The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the 
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 

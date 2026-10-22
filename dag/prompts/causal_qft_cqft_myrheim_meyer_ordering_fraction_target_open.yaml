@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)); n=2 gives 5/6, the value for the diamond C2 of CausalOrder.lean (5 related pairs of 6), and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.
+  Formalized finite statement. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n) = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n) - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.
+  Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.
 
   Open ../operads/cqft_myrheim_meyer_ordering_fraction_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

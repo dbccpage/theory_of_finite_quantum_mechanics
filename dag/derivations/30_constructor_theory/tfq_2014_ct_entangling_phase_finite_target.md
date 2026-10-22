@@ -1,6 +1,6 @@
 # [TFQ-2014] Finite target: a phase interaction entangles; local operations do not
 
-**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-0257](../12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md)  
 **DAG node:** `CT-ENTANGLING-PHASE-FINITE-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), rank(A M B^T) <= rank(M), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 4x4 density matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
+Formalized finite statement over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 2x2 amplitude matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
 
 ## Governing obligation
 
-Statements (a) to (c) are exact determinant and rank facts. Statement (d) needs the witness construction of DS-QM071 specialized to this family. No physical claim is attached.
+Statements (a) to (d) are checked in Lean 4 over Q(i). The physical inference from such entanglement to a non-classical mediator is imported and carries no proof here.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -33,12 +33,12 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 For u in Q(i) with |u|=1: product iff u=1; C^2 = |u-1|^2/4 (C^2=1/5 at u=(3+4i)/5); rank(A M B^T)<=rank(M) for all 2x2 A, B over Q(i); the phase gate diag(1,1,1,u) maps the product vector (1,1,1,1)/2 to psi_u.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CT-ENTANGLING-PHASE-FINITE-TARGET` (`GAP_NO_DERIVATION`) from `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`, `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT`: Partial real link: DS-QM071 supplies witness soundness. This target is open, so the route is a gap until the statements are formalized.
-- Authoring check (throwaway numeric evaluation, not a repository check): concurrence squared 0.2 at u=(3+4i)/5.
+- Route `FRO-R-CT-ENTANGLING-PHASE-FINITE-TARGET` (`DERIVED_LEAN`) from `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`, `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierEntanglingPhase.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed |u|^2 = (3/5)^2 + (4/5)^2 = 1 and C^2 = 4|det M_u|^2 = ((3/5 - 1)^2 + (4/5)^2)/4 = (20/25)/4 = 1/5 at u = (3+4i)/5.
 
 See also: `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`.
 
@@ -50,6 +50,20 @@ See also: `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`.
 
 - Repository: `lean4/Entanglement.lean`
 - Repository: `lean4/DualWitness.lean`
+- Repository: `lean4/FrontierEntanglingPhase.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det_M_u`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.productState2_det_zero`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.psi_u_isProduct_iff`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.concurrenceSq_M_u`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det2_local_action`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.local_op_cannot_raise_product_rank`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_vanishes_on_product`
+- `lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one`
 
 ## Downstream derivations
 

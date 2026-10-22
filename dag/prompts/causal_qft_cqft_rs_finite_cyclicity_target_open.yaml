@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. Let H be the n-qubit space, A a set of sites, A(A) the matrices on A, and Omega a unit vector over Q(i). Then A(A)Omega equals H if and only if the reduced state of Omega on the complement of A has full rank 2^|A^c|, if and only if Omega is separating for A(A^c). Reason: with Schmidt rank r across A and its complement, A(A)Omega equals H_A tensor the range of the complementary marginal, of dimension 2^|A| r. Exact instances: a product vector is cyclic only for A equal to all sites; the three-qubit GHZ vector is not cyclic for any single site and is cyclic for every pair of sites; the three-qubit W vector is not cyclic for any single site and is cyclic for every pair. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
+  Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space, A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M. Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c} on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Statement and instances are exact rank computations over Q(i). A Lean proof of the equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension has no translation group or spectrum condition.
+  Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has no continuous translation group or spectrum condition.
 
   Open ../operads/cqft_rs_finite_cyclicity_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

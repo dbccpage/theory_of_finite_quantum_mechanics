@@ -11,15 +11,15 @@
 
 ## Statement
 
-Harlow (2016) derives the Ryu-Takayanagi formula from the quantum error correction structure of the bulk-to-boundary map. This node records the paper by title and identifier.
+Harlow (2016, arXiv:1607.03901, Theorem 1.1 pp. 3-4 and Section 5 Theorem 5.1 pp. 20-26) establishes in finite-dimensional operator-algebra quantum error correction that for a code subspace H_code in H_A tensor H_{A-bar} and a von Neumann algebra M on H_code with commutant M' and center Z_M = M cap M', three conditions are equivalent: (i) complementary recovery of M on A and M' on A-bar, (ii) existence of a positive central area operator L_A in Z_M such that for every code state rho-tilde, S(rho-tilde_A) = Tr(rho-tilde L_A) + S(rho-tilde, M) and S(rho-tilde_{A-bar}) = Tr(rho-tilde L_A) + S(rho-tilde, M'), and (iii) conservation of relative entropy S(rho-tilde_A | sigma-tilde_A) = S(rho-tilde | sigma-tilde, M). This node records the paper as published.
 
 ## Governing obligation
 
-Record only; the argument is not audited.
+Record only. Audited against the full text of arXiv:1607.03901 (Theorem 1.1 and Theorem 5.1) on 2026-10-22; the theorem is not formalized in this repository.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:1607.03901 (Theorem 1.1 pp. 3-4, Section 5 Theorem 5.1 pp. 20-26) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

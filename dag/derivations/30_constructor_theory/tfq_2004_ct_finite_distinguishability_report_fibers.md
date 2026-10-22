@@ -1,6 +1,6 @@
 # [TFQ-2004] Finite target: distinguishable attributes and report fibers
 
-**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-0338](../05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md)  
 **DAG node:** `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Target: a Lean lemma over Finset and an exhaustive check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
+Formalized finite statement. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
 
 ## Governing obligation
 
-The finite lemma is routine. Whether it deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
+Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -28,18 +28,18 @@ Open target stated in this change; no computation of it is recorded in the repos
 ## What is open
 
 - Lean statement and proof of the biconditional.
-- Exhaustive finite check.
-- An audit of the source's definition of distinguishable attributes.
+- Exhaustive finite check for |X|<=4 and |R|<=3.
+- Source definition of distinguishable variable audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 (mapping each attribute x in X to a distinct attribute psi_x of an information variable with side-effects).
 
 ## Finite target (precise statement)
 
 For all finite X, R, q: X to R and nonempty A, B subsets of X: (exists f: R to {0,1}, f.q = 1_B on A union B) iff q(A) cap q(B) = empty. Exhaustive check for |X|<=4, |R|<=3 over all (q, A, B).
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` (`GAP_NO_DERIVATION`) from `PG-HISTORY-REPORT-CRITERION`, `CT-TASK-CONSTRUCTOR-POSSIBILITY`: Partial real link: the parent Lean criterion gives one direction. The link to the imported notion is a definitional reading, not a derivation, so the route stays a gap until the lemma and the reading are written.
+- Route `FRO-R-CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` (`DERIVED_LEAN`) from `PG-HISTORY-REPORT-CRITERION`, `CT-TASK-CONSTRUCTOR-POSSIBILITY`: Formalized and checked in Lean 4 (lean4/FrontierDistinguishability.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - PG-HISTORY-REPORT-CRITERION supplies the factoring direction; PG-COLLAPSE-BARRIER is the non-separation counterpart.
 
 See also: `PG-COLLAPSE-BARRIER`, `PG-PREGEN-CONSTRUCTIVE-SUMMARY`.
@@ -50,7 +50,15 @@ See also: `PG-COLLAPSE-BARRIER`, `PG-PREGEN-CONSTRUCTIVE-SUMMARY`.
 
 ## Sources
 
-- No external source and no repository file beyond the parent nodes named above.
+- Repository: `lean4/FrontierDistinguishability.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_imp_disjoint_image`
+- `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.disjoint_image_imp_separatedByTask`
+- `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_iff_disjoint_image`
+- `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image`
+- `lean4/FrontierDistinguishability.lean::FrontierDistinguishability.exhaustive_distinguishability_check_le4_le3`
 
 ## Downstream derivations
 

@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, ..., 3}, each term is an exact algebraic number: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, sqrt(12)=2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Square roots of distinct squarefree positive integers are linearly independent over Q, so two multisets of punctures have equal area if and only if the sums agree after reducing each root to squarefree form. Targets: (i) the table of exact levels for at most four punctures with j<=3; (ii) the degeneracies, which arise from non-squarefree radicands and from the equality criterion, for example one puncture of spin 3 has the same area as four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) the smallest nonzero level is sqrt(3)/2.
+  Formalized finite statement. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}: (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii) the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact arithmetic in Q(sqrt 2, sqrt 3, sqrt 5, sqrt 6, sqrt 7, ...). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible puncture lists are not part of the target.
+  Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear independence of squarefree square roots over R is encoded by working in the formal radical basis; the physical constant and Immirzi parameter are outside this target.
 
   Open ../operads/lqg_area_spectrum_exact_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

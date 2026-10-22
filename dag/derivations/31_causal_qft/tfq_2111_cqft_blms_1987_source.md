@@ -15,7 +15,7 @@ Bombelli, Lee, Meyer and Sorkin (1987) propose that spacetime at the smallest sc
 
 ## Governing obligation
 
-Record only. The checkout holds no copy of the paper.
+Record only. Sorkin (2003, arXiv:gr-qc/0309009 Section 3 p. 6) and Reid (2003, arXiv:gr-qc/0207103 Section II p. 2) were audited in full; the 1987 PRL print article is not held in the checkout.
 
 ## Source status
 

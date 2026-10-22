@@ -1,6 +1,6 @@
 # [TFQ-2110] Finite target: time-ordered products over linear extensions of a poset
 
-**Stage:** `CAUSAL_QFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CAUSAL_QFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2109](tfq_2109_cqft_causal_factorization_import.md)  
 **DAG node:** `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P) on a common finite space, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices; and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite counterpart of causal factorization. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
+Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P) in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
 
 ## Governing obligation
 
-The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser is an analogy.
+Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting and renormalization have no finite counterpart here.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -33,11 +33,11 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 If A_x A_y = A_y A_x for all spacelike pairs then the product over any linear extension is independent of the extension; for C2 with A_{d1}=X, A_{d2}=Z (anticommuting) and identity elsewhere the two linear extensions give products differing by the sign -1.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` (`GAP_NO_DERIVATION`) from `CQFT-CAUSAL-FACTORIZATION-IMPORT`, `CQFT-FINITE-STRICT-POSET-SPACELIKE`: Analogy plus a partial real link: the poset exists in Lean; the statement is not written. Gap until formalized.
+- Route `FRO-R-CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` (`DERIVED_LEAN`) from `CQFT-CAUSAL-FACTORIZATION-IMPORT`, `CQFT-FINITE-STRICT-POSET-SPACELIKE`: Formalized and checked in Lean 4 (lean4/FrontierLinearExtension.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 ## Non-claims
 
@@ -46,6 +46,16 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Sources
 
 - Repository: `lean4/CausalOrder.lean`
+- Repository: `lean4/FrontierLinearExtension.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_append`
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap`
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain`
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.linear_extensions_of_C2_and_N`
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_extensions_connected_by_swap`
+- `lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products`
 
 ## Downstream derivations
 

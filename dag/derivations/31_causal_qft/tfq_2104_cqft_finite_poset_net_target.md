@@ -1,6 +1,6 @@
 # [TFQ-2104] Finite target: isotony and locality for a net on a finite poset
 
-**Stage:** `CAUSAL_QFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CAUSAL_QFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2100](tfq_2100_cqft_finite_strict_poset_spacelike.md)  
 **DAG node:** `CQFT-FINITE-POSET-NET-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) are immediate for tensor-product nets; the target records that the repository does not yet state them and that the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
+Formalized finite statement. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) hold for tensor-product nets; the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
 
 ## Governing obligation
 
-The net is kinematical. Dynamics, a time-slice property and covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
+Checked in Lean 4 for finite poset tensor-product nets and the 4-element N poset. Dynamics, a time-slice property and Poincare covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -33,11 +33,11 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 For every FiniteStrictPoset P and all subsets O1, O2 of its points: O1 inside O2 implies A(O1) inside A(O2); if all pairs (x,y) in O1 x O2 are spacelike then A(O1) and A(O2) commute; on the N poset, spacelike(0,1) and spacelike(0,3) hold while 1<3.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CQFT-FINITE-POSET-NET-TARGET` (`GAP_NO_DERIVATION`) from `CQFT-FINITE-STRICT-POSET-SPACELIKE`, `CQFT-LOCAL-NET-AXIOMS-IMPORT`: Partial real link: the poset and the spacelike relation exist in Lean. The net statements are not written, so the route is a gap.
+- Route `FRO-R-CQFT-FINITE-POSET-NET-TARGET` (`DERIVED_LEAN`) from `CQFT-FINITE-STRICT-POSET-SPACELIKE`, `CQFT-LOCAL-NET-AXIOMS-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierPosetNet.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 
@@ -48,6 +48,17 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 ## Sources
 
 - Repository: `lean4/CausalOrder.lean`
+- Repository: `lean4/FrontierPosetNet.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.isotony`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.disjoint_of_all_spacelike`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.locality_commute_of_spacelike`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_1`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_3`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_causal_1_3`
+- `lean4/FrontierPosetNet.lean::FrontierPosetNet.spacelike_not_transitive_on_posetN`
 
 ## Downstream derivations
 

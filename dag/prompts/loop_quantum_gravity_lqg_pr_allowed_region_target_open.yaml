@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant exactly in the rationals; 288 V^2 equals the determinant of the bordered 5x5 matrix of squared distances. Tuples with V^2 > 0 lie in the allowed region (a Euclidean tetrahedron exists) where the imported asymptotics predict oscillation; tuples with V^2 < 0 lie in the forbidden region where it predicts decay. Target: the exact classification for twice-spins at most 8 together with the exact value of the squared 6j symbol in each case. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
+  Formalized finite statement. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant CM(l_e^2) = 288 V^2 exactly in the rationals. Checked in Lean 4 across all 10,825 admissible 6-tuples with twice-spins at most 8: 9,854 lie in the classically allowed region (CM > 0, where a Euclidean tetrahedron exists), 0 have CM = 0, and 971 lie in the classically forbidden region (CM < 0), together with exact rational values of the squared 6j symbol on allowed and forbidden witnesses. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact sign test and exact 6j squares. The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.
+  Checked in Lean 4 across all 10,825 admissible 6-tuples with 2j<=8. The asymptotic comparison with the Ponzano-Regge cosine/decay formulas is imported and outside this finite classification.
 
   Open ../operads/lqg_pr_allowed_region_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

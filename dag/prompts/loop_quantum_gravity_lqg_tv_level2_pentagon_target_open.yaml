@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum 6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner 2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target would discharge only the identity on those labels, not invariance of a state sum on a triangulated manifold.
+  Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum 6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott (pentagon) identity across all 3^9 = 19,683 label assignments. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the algebraic identity on those labels, not invariance of a state sum on a triangulated manifold.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity to invariance on a triangulation is not part of the target.
+  Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9. The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by TFQ-0105.
 
   Open ../operads/lqg_tv_level2_pentagon_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

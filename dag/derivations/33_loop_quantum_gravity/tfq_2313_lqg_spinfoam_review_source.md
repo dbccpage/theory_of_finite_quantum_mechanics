@@ -11,7 +11,7 @@
 
 ## Statement
 
-Perez (2012, Living Reviews in Relativity 2013) reviews the spin foam approach to quantum gravity. This node records the review by title and identifier as the survey for the Ponzano-Regge, Turaev-Viro and EPRL material of this stage.
+Perez (2013, arXiv:1205.2019, Living Rev. Relativity 16, 3) surveys canonical LQG and Plebanski BF constraints (Part II), 4D BF theory and the Riemannian/Lorentzian EPRL and FK spin-foam models with their large-spin semiclassical asymptotics (Part III, Sections 7-9), 3D Ponzano-Regge and Turaev-Viro state sums (Part IV, Section 10), and open problems on anomalies and discretization/continuum limits (Part V). This node records the review as published.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full LaTeX source of arXiv:1205.2019 (Parts I-V) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 
