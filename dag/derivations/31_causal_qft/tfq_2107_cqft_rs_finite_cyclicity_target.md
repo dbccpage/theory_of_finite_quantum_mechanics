@@ -27,7 +27,8 @@ Checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTarge
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierRsCyclicity.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean proof of the equivalence.
+- Table of cyclic site sets for all stabilizer states on n<=4 qubits.
 
 ## Finite target (precise statement)
 

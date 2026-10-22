@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library Frontier
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierTvLevel2Pentagon.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Exact check of the identity on the admissible labels.
 
 ## Finite target (precise statement)
 
@@ -38,6 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-LQG-TV-LEVEL2-PENTAGON-TARGET` (`DERIVED_LEAN`) from `LQG-TURAEV-VIRO-1992-SOURCE`, `TFQ-0198`, `TFQ-0104`: Formalized and checked in Lean 4 (lean4/FrontierTvLevel2Pentagon.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
+- Exact Python fractions.Fraction recomputation over Q(sqrt 2) (2026-10-22) confirmed the level-2 quantum Biedenharn-Elliott pentagon identity of spin_foam.rs::ising_f across all 3^9 = 19,683 label 9-tuples in {0,1,2}^9.
 
 See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 

@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library Fro
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierLogicalReconstruction.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean or exact Python check; Knill-Laflamme condition for two-qubit erasures.
 
 ## Finite target (precise statement)
 
@@ -38,7 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-ADS-LOGICAL-RECONSTRUCTION-TARGET` (`DERIVED_LEAN`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-ADH-2015-SOURCE`: Formalized and checked in Lean 4 (lean4/FrontierLogicalReconstruction.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
-- Authoring check (throwaway enumeration, not a repository check) found representatives of all three classes inside each of the ten triples and none inside any pair.
+- Exact Python recomputation (2026-10-22) confirmed that each of the 10 triples of {0..4} supports a unique representative of each of the three nontrivial logical cosets (X_L, Y_L, Z_L) and none of the 10 pairs supports any nontrivial logical operator.
 
 See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 

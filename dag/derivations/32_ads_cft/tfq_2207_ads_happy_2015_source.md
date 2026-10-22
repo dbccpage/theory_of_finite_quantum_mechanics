@@ -11,7 +11,7 @@
 
 ## Statement
 
-Pastawski, Yoshida, Harlow and Preskill (2015) build toy models of the bulk-to-boundary correspondence from tensor networks whose building block is a tensor with maximal entanglement along every bipartition, which yields an isometry from bulk to boundary. The abstract states that the Ryu-Takayanagi formula and the negativity of tripartite information hold exactly in many cases. This node records the abstract.
+Pastawski, Yoshida, Harlow and Preskill (2015, arXiv:1503.06237) define a 2n-leg perfect tensor (Section 2 Def. 2 p. 5: proportional to an isometric tensor for every bipartition into k <= n inputs and 2n - k outputs), construct the 6-qubit perfect stabilizer tensor from the [[5,1,3]] code of Laflamme et al. (1996, arXiv:quant-ph/9602019 Table I; HaPPY Appendix A.1 eqs. (A1)-(A7) pp. 24-25), and place it on the {5,4} hyperbolic pentagon tiling to obtain an isometric bulk-to-boundary code (Section 3 Thm. 1 p. 7) in which connected boundary regions of holographic states satisfy S_A = |gamma_A| log v (Section 4.1 Thm. 2 p. 8) and general regions satisfy the greedy-geodesic lower bound (Section 4.2 Thm. 3 eq. (4.10) p. 10). This node records the paper as published.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only. The abstract itself calls the codes toy models.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full texts of arXiv:1503.06237 (Section 2 Def. 2 p. 5, Section 3 Thm. 1 p. 7, Section 4 Thms. 2, 3, 6 pp. 8-14, Appendix A.1 pp. 24-25) and arXiv:quant-ph/9602019 (Table I p. 2) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

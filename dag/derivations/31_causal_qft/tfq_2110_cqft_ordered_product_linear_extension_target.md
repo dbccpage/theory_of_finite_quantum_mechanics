@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierT
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierLinearExtension.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean proof of the adjacent-swap lemma; exact table for C2 and N.
 
 ## Finite target (precise statement)
 

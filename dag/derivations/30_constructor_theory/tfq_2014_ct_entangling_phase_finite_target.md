@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierT
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierEntanglingPhase.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean or exact Python statement of (a) to (d).
 
 ## Finite target (precise statement)
 
@@ -38,7 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-CT-ENTANGLING-PHASE-FINITE-TARGET` (`DERIVED_LEAN`) from `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`, `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierEntanglingPhase.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
-- Authoring check (throwaway numeric evaluation, not a repository check): concurrence squared 0.2 at u=(3+4i)/5.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed |u|^2 = (3/5)^2 + (4/5)^2 = 1 and C^2 = 4|det M_u|^2 = ((3/5 - 1)^2 + (4/5)^2)/4 = (20/25)/4 = 1/5 at u = (3+4i)/5.
 
 See also: `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`.
 

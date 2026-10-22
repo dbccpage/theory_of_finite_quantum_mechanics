@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library Fr
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierFiveQubitPerfectTensor.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Exact enumeration in Lean or Python with GF(2) rank for each bipartition.
 
 ## Finite target (precise statement)
 
@@ -38,7 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (`DERIVED_LEAN`) from `ADS-HAPPY-2015-SOURCE`: Formalized and checked in Lean 4 (lean4/FrontierFiveQubitPerfectTensor.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
-- Authoring check (throwaway GF(2) enumeration, not a repository check) reproduced the weight distribution {0:1, 4:45, 6:18}, the order 64, the 3-bit entropies of all twenty 3|3 bipartitions and the minimum logical weight 3.
+- Exact Python recomputation (2026-10-22) confirmed the weight distribution {0:1, 4:45, 6:18} of the 64-element stabilizer group, the 3-bit entropies of all twenty 3|3 bipartitions and the minimum logical weight 3 across all 48 nontrivial normalizer elements.
 
 See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 

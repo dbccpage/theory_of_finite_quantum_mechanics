@@ -11,27 +11,28 @@
 
 ## Statement
 
-Imported definition, as the source describes it: a superinformation medium is an information medium with at least two information attributes whose union is not an information attribute, that is, the union cannot be cloned. The source states that quantum systems are superinformation media. The repository neither adopts the definition nor checks that its finite carriers satisfy it.
+Imported definition, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Section 6 pp. 14-18 and Section 7 p. 20): an information observable is an information variable X whose attributes satisfy double-complement closure x = u_x under distinguishability (Section 6, Principle VIII p. 16); a superinformation medium is an information medium with at least two information observables X and Y that contain only mutually disjoint attributes and whose union X union Y is not an information observable (Section 7 p. 20). Sections 8.1 and 8.3 (pp. 20-22) show under Principles III, IV, VI, VII, VIII and IX that X union Y is neither distinguishable nor clonable. The repository neither adopts this definition as a primitive nor claims that its finite carriers satisfy Principles I-IX.
 
 ## Governing obligation
 
-The definition is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite linear-algebra part is checked on the six Pauli eigenstates in CT-QUBIT-NO-CLONING-FINITE-TARGET.
+The definition (Section 7 p. 20) is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite cloning shadow is the content of CT-QUBIT-NO-CLONING-FINITE-TARGET, which is open.
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited and corrected against the full text of arXiv:1405.5563 (Section 6 pp. 14-18, Section 7 p. 20, Sections 8.1-8.3 pp. 20-22) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
-- Two cloneable information attributes whose union is not cloneable.
+- Information observable (information variable closed under double distinguishability complement, Section 6 Principle VIII p. 16).
+- Superinformation medium: an information medium with at least two mutually disjoint information observables X, Y whose union X union Y is not an information observable (Section 7 p. 20).
 
 Declared imported structure:
 - `superinformation medium (assumption)`
 
 ## What is open
 
-- Wording against the paper.
-- Verification of the property on the declared finite carrier (qubit target).
+- Definition audited against arXiv:1405.5563 Section 7 p. 20.
+- Verification of the finite cloning property on the declared finite carrier (CT-QUBIT-NO-CLONING-FINITE-TARGET).
 
 ## Connections to this repository
 

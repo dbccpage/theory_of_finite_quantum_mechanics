@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTarge
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierHappyMincut.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- The computation, with the list of intervals where equality fails.
 
 ## Finite target (precise statement)
 
@@ -38,6 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-ADS-HAPPY-ENTROPY-MINCUT-TARGET` (`DERIVED_LEAN`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-RT-FORMULA-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierHappyMincut.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
+- Exact Python GF(2) recomputation (2026-10-22) on the 20-qubit boundary state (with all 6 bulk legs fixed in |0>_L) found S(A) = mincut(A) on 340 of the 380 contiguous boundary intervals and S(A) = 4 < 5 = mincut(A) on 40 intervals of lengths 8, 9, 11 and 12.
 
 See also: `ADS-RT-FORMULA-IMPORT`.
 

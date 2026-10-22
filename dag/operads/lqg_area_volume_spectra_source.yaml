@@ -3,15 +3,25 @@ node_id: LQG-AREA-VOLUME-SPECTRA-SOURCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Rovelli and Smolin (1995, Nucl. Phys. B 442, 593) report that area and volume operators
-    of loop quantum gravity have discrete spectra; Ashtekar and Lewandowski (1997, Class. Quantum Grav.
-    14, A55) treat area operators. The area eigenvalues are commonly quoted as a sum over punctures of
-    a constant times the square root of j(j+1), the constant depending on conventions and on the Immirzi
-    parameter. This node records the papers; the exact constant is not asserted.
+  source_statement: Rovelli and Smolin (1995, arXiv:gr-qc/9411005, Section 1 eqs. (1)-(2) p. 4 and Section
+    4 eqs. (47)-(48) p. 28) and Ashtekar and Lewandowski (1997, arXiv:gr-qc/9602046, Section 3.3 eq. (3.20)
+    p. 16 and Section 4.1 eqs. (4.7)-(4.9), (4.12) pp. 18-19) compute discrete spectra for loop-quantum-gravity
+    area (and volume) operators. In the convention {A_a^i(x), E_j^b(y)} = G delta_a^b delta_j^i delta^3(x,y)
+    used in both papers, the general area eigenvalue is (l_P^2 / 2) sum_v sqrt(2 j_v^(d)(j_v^(d)+1) +
+    2 j_v^(u)(j_v^(u)+1) - j_v^(d+u)(j_v^(d+u)+1)) (eq. (4.9) of gr-qc/9602046), which for simple transverse
+    punctures without tangential edges (j^(d)=j^(u)=j_i, j^(d+u)=0) equals l_P^2 sum_i sqrt(j_i(j_i+1))
+    = (l_P^2 / 2) sum_i sqrt(p_i(p_i+2)) with p_i = 2 j_i (eq. (2) and eq. (47) of gr-qc/9411005; eq.
+    (4.12) of gr-qc/9602046); as Ashtekar and Lewandowski note in Section 3.3 footnote 6 (p. 16) and Engle
+    et al. write in arXiv:0711.0146 Section V eq. (36) (p. 11), restoring the 8 pi G gamma factor from
+    the gravitational action and Barbero-Immirzi parameter gamma multiplies this spectrum by 8 pi gamma,
+    giving 8 pi gamma l_P^2 sum_i sqrt(j_i(j_i+1)). (The nonzero trivalent volume formula in eq. (1) and
+    eq. (37) of gr-qc/9411005 was corrected in the erratum Nucl. Phys. B 456 (1995) 753, where trivalent
+    vertices have zero volume.) This node records both papers and their normalization conventions.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Record only. The constant and the treatment of the Immirzi parameter are to be audited
-    against the papers.
+  source_bottleneck: Record only. Both normalization conventions (l_P^2 vs 8 pi gamma l_P^2, per Ashtekar-Lewandowski
+    Section 3.3 footnote 6 p. 16) and the general vertex-puncture formula (eq. (4.9) p. 18) were audited
+    against the papers on 2026-10-22.
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2303_lqg_area_volume_spectra_source.md
   - external:arXiv:gr-qc/9411005
@@ -24,7 +34,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2303_lqg_area_volume_spectra_source.md
-    sha256: 251271a19ed50a1558f3056fc75c9ad93e755c9e6a575ce8d9c1ba6fdd54bb3a
+    sha256: e01790567327f0718426a758c88ce7678aef864de09784566f6af0be379fea6f
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

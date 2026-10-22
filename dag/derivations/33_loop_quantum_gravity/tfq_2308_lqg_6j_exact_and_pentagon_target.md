@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTarge
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierClassical6j.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Exact Python-Fraction implementation and the three checks.
 
 ## Finite target (precise statement)
 
-For all admissible 6-tuples with twice-spins <= 6: 6j^2 in Q via Racah's formula, 24-fold tetrahedral symmetry (3,418 tuples), and orthogonality (1,928 tuples); Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with twice-spins <= 3 plus explicit twice-spin <= 6 pentagon configurations.
+For all admissible 6-tuples with twice-spins <= 6: 6j^2 in Q via Racah's formula; 24-fold symmetry; orthogonality; Biedenharn-Elliott identity.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

@@ -11,15 +11,15 @@
 
 ## Statement
 
-Rovelli and Smolin (1995, Phys. Rev. D 52, 5743) introduce spin networks as a state basis in non-perturbative quantum gravity, labelled by graphs with edges coloured by SU(2) representations. This node records the paper by title and identifier.
+Rovelli and Smolin (1995, arXiv:gr-qc/9505006, Phys. Rev. D 52, 5743) construct an independent basis of states in both the loop representation (Section 3 pp. 12-16) and the SU(2) connection representation (Section 4 pp. 17-24) that solves the SU(2) Mandelstam identities (Section 2 eq. (21) and conditions i-ii p. 12), labelled by imbedded graphs whose edges carry SU(2) representations (twice-spins p_l) and whose higher-valence vertices carry virtual trivalent trees/intertwiners (Appendix A pp. 36-38), and show in Section 6 (pp. 26-29) that these spin-network states are orthonormal with respect to the Ashtekar-Lewandowski Haar measure. This node records the paper as published.
 
 ## Governing obligation
 
-Record only. The abstract is not reproduced.
+Record only. Audited against the full text of arXiv:gr-qc/9505006 on 2026-10-22.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full PDF of arXiv:gr-qc/9505006 (Sections 2-6 pp. 5-29, Appendix A pp. 36-38) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

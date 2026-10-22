@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTarg
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierMyrheimMeyer.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Python implementation of the exact estimator and Lean statement of (i) and (iii).
 
 ## Finite target (precise statement)
 
@@ -38,7 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (`DERIVED_LEAN`) from `CQFT-FINITE-CAUSET-IDENTIFICATION`: Formalized and checked in Lean 4 (lean4/FrontierMyrheimMeyer.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
-- Authoring check (throwaway enumeration, not a repository check) confirmed r(grid_n) for n=2..6: 5/6, 3/4, 7/10, 2/3, 9/14, and f(2), f(3), f(4) numerically.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed r(grid_n) = (n+3)/(2(n+1)) for n=2..7 (5/6, 3/4, 7/10, 2/3, 9/14, 5/8) and f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10.
 
 See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 

@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets 
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierPosetNet.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean statement and proof of (a), (b), (c) for general n.
 
 ## Finite target (precise statement)
 

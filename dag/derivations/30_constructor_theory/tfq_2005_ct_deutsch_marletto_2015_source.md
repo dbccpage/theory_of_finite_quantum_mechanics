@@ -11,15 +11,15 @@
 
 ## Statement
 
-Deutsch and Marletto (2015) propose a theory of information defined by which physical transformations are possible and which are not, avoiding the circularity of defining information and distinguishability through each other. The abstract states that one constructor-theoretic property underlies distinctly quantum phenomena: non-distinguishable states, the impossibility of cloning, incompatible variables and entanglement. This node records the claim as published.
+Deutsch and Marletto (2015, arXiv:1405.5563) formulate a constructor theory of information by defining computation variables (Section 3 p. 9), clonable variables and information media (Section 4 eq. (3) p. 10) prior to distinguishability (Section 5 eq. (4) p. 11), avoiding the circularity of Section 1 eq. (1) p. 3. Section 7 (p. 20) and Section 8 (pp. 20-24) define superinformation media and derive non-distinguishability, no-cloning of non-orthogonal states, complementarity and unpredictability from Principles I-IX. This node records the paper as published.
 
 ## Governing obligation
 
-Record only. The repository has not audited the paper's arguments.
+Record only. Full text of arXiv:1405.5563 audited on 2026-10-22; its postulates are not adopted as repository primitives.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:1405.5563 on 2026-10-22 (Abstract p. 1, Sections 3-8 pp. 9-24); recorded as an external source record.
 
 ## What is imported
 

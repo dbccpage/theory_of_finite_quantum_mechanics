@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Imported definition, as the source describes it: a superinformation medium is an information medium with at least two information attributes whose union is not an information attribute, that is, the union cannot be cloned. The source states that quantum systems are superinformation media. The repository neither adopts the definition nor checks that its finite carriers satisfy it.
+  Imported definition, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Section 6 pp. 14-18 and Section 7 p. 20): an information observable is an information variable X whose attributes satisfy double-complement closure x = u_x under distinguishability (Section 6, Principle VIII p. 16); a superinformation medium is an information medium with at least two information observables X and Y that contain only mutually disjoint attributes and whose union X union Y is not an information observable (Section 7 p. 20). Sections 8.1 and 8.3 (pp. 20-22) show under Principles III, IV, VI, VII, VIII and IX that X union Y is neither distinguishable nor clonable. The repository neither adopts this definition as a primitive nor claims that its finite carriers satisfy Principles I-IX.
 
   Declared assumptions:
   - superinformation medium (assumption)
 
   Source bottleneck:
-  The definition is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite linear-algebra part is checked on the six Pauli eigenstates in CT-QUBIT-NO-CLONING-FINITE-TARGET.
+  The definition (Section 7 p. 20) is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite cloning shadow is the content of CT-QUBIT-NO-CLONING-FINITE-TARGET, which is open.
 
   Open ../operads/ct_superinformation_medium_definition.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

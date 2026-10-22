@@ -950,31 +950,31 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-2001` | `CONSTRUCTOR_THEORY` | `IMPORTED_ASSUMPTION` | `CT-TASK-CONSTRUCTOR-POSSIBILITY` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-2002` | `CONSTRUCTOR_THEORY` | `OPEN_OBLIGATION` | `CT-GENESIS-SEPARATION-TASK-ANALOGY` (OPEN) | - |
 | `TFQ-2003` | `CONSTRUCTOR_THEORY` | `OPEN_OBLIGATION` | `CT-REFUSAL-OBSTRUCTION-ANALOGY` (OPEN) | - |
-| `TFQ-2004` | `CONSTRUCTOR_THEORY` | `PROVED_LEAN` | `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` (PROVED_LEAN) | - |
+| `TFQ-2004` | `CONSTRUCTOR_THEORY` | `OPEN_OBLIGATION` | `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` (PROVED_LEAN) | - |
 | `TFQ-2005` | `CONSTRUCTOR_THEORY` | `SOURCE_RECORD` | `CT-DEUTSCH-MARLETTO-2015-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2006` | `CONSTRUCTOR_THEORY` | `IMPORTED_ASSUMPTION` | `CT-INFORMATION-MEDIA-INTEROPERABILITY` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-2007` | `CONSTRUCTOR_THEORY` | `IMPORTED_ASSUMPTION` | `CT-SUPERINFORMATION-MEDIUM-DEFINITION` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-2008` | `CONSTRUCTOR_THEORY` | `SOURCE_RECORD` | `CT-NO-CLONING-COMPLEMENTARITY-SOURCE-CLAIM` (SOURCE_RECORD) | - |
-| `TFQ-2009` | `CONSTRUCTOR_THEORY` | `PROVED_LEAN` | `CT-QUBIT-NO-CLONING-FINITE-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2009` | `CONSTRUCTOR_THEORY` | `OPEN_OBLIGATION` | `CT-QUBIT-NO-CLONING-FINITE-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2010` | `CONSTRUCTOR_THEORY` | `SOURCE_RECORD` | `CT-PROBABILITY-2016-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2011` | `CONSTRUCTOR_THEORY` | `SOURCE_RECORD` | `CT-THERMODYNAMICS-2016-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2012` | `CONSTRUCTOR_THEORY` | `SOURCE_RECORD` | `CT-MARLETTO-VEDRAL-2017-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2013` | `CONSTRUCTOR_THEORY` | `IMPORTED_ASSUMPTION` | `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-2014` | `CONSTRUCTOR_THEORY` | `PROVED_LEAN` | `CT-ENTANGLING-PHASE-FINITE-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2014` | `CONSTRUCTOR_THEORY` | `OPEN_OBLIGATION` | `CT-ENTANGLING-PHASE-FINITE-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2100` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-FINITE-STRICT-POSET-SPACELIKE` (PROVED_LEAN) | - |
 | `TFQ-2101` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-NO-SIGNALLING-PRODUCT-LEAN` (PROVED_LEAN) | - |
 | `TFQ-2102` | `CAUSAL_QFT` | `SOURCE_RECORD` | `CQFT-HAAG-KASTLER-1964-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2103` | `CAUSAL_QFT` | `IMPORTED_ASSUMPTION` | `CQFT-LOCAL-NET-AXIOMS-IMPORT` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-2104` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-FINITE-POSET-NET-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2104` | `CAUSAL_QFT` | `OPEN_OBLIGATION` | `CQFT-FINITE-POSET-NET-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2105` | `CAUSAL_QFT` | `SOURCE_RECORD` | `CQFT-REEH-SCHLIEDER-1961-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2106` | `CAUSAL_QFT` | `IMPORTED_ASSUMPTION` | `CQFT-REEH-SCHLIEDER-THEOREM-IMPORT` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-2107` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-RS-FINITE-CYCLICITY-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2107` | `CAUSAL_QFT` | `OPEN_OBLIGATION` | `CQFT-RS-FINITE-CYCLICITY-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2108` | `CAUSAL_QFT` | `SOURCE_RECORD` | `CQFT-EPSTEIN-GLASER-1973-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2109` | `CAUSAL_QFT` | `IMPORTED_ASSUMPTION` | `CQFT-CAUSAL-FACTORIZATION-IMPORT` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-2110` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2110` | `CAUSAL_QFT` | `OPEN_OBLIGATION` | `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2111` | `CAUSAL_QFT` | `SOURCE_RECORD` | `CQFT-BLMS-1987-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2112` | `CAUSAL_QFT` | `DEFINITION` | `CQFT-FINITE-CAUSET-IDENTIFICATION` (DEFINITION) | - |
-| `TFQ-2113` | `CAUSAL_QFT` | `PROVED_LEAN` | `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2113` | `CAUSAL_QFT` | `OPEN_OBLIGATION` | `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2200` | `ADS_CFT` | `SOURCE_RECORD` | `ADS-MALDACENA-1997-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2201` | `ADS_CFT` | `SOURCE_RECORD` | `ADS-GKPW-DICTIONARY-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2202` | `ADS_CFT` | `IMPORTED_ASSUMPTION` | `ADS-CFT-DUALITY-IMPORT` (IMPORTED_ASSUMPTION) | - |
@@ -983,23 +983,23 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-2205` | `ADS_CFT` | `SOURCE_RECORD` | `ADS-ADH-2015-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2206` | `ADS_CFT` | `SOURCE_RECORD` | `ADS-HARLOW-2016-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2207` | `ADS_CFT` | `SOURCE_RECORD` | `ADS-HAPPY-2015-SOURCE` (SOURCE_RECORD) | - |
-| `TFQ-2208` | `ADS_CFT` | `PROVED_LEAN` | `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (PROVED_LEAN) | - |
-| `TFQ-2209` | `ADS_CFT` | `PROVED_LEAN` | `ADS-HAPPY-ENTROPY-MINCUT-TARGET` (PROVED_LEAN) | - |
-| `TFQ-2210` | `ADS_CFT` | `PROVED_LEAN` | `ADS-LOGICAL-RECONSTRUCTION-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2208` | `ADS_CFT` | `OPEN_OBLIGATION` | `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2209` | `ADS_CFT` | `OPEN_OBLIGATION` | `ADS-HAPPY-ENTROPY-MINCUT-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2210` | `ADS_CFT` | `OPEN_OBLIGATION` | `ADS-LOGICAL-RECONSTRUCTION-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2211` | `ADS_CFT` | `OPEN_OBLIGATION` | `ADS-REGGE-AREA-RT-GAP` (OPEN) | - |
 | `TFQ-2212` | `ADS_CFT` | `OPEN_OBLIGATION` | `ADS-HAPPY-TOY-NOT-DUALITY-GAP` (OPEN) | - |
 | `TFQ-2300` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-PENROSE-1971-SPIN-NETWORK-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2301` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-SPIN-NETWORK-KINEMATICS-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2302` | `LOOP_QUANTUM_GRAVITY` | `IMPORTED_ASSUMPTION` | `LQG-SPIN-NETWORK-STATES-IMPORT` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-2303` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-AREA-VOLUME-SPECTRA-SOURCE` (SOURCE_RECORD) | - |
-| `TFQ-2304` | `LOOP_QUANTUM_GRAVITY` | `PROVED_LEAN` | `LQG-AREA-SPECTRUM-EXACT-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2304` | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `LQG-AREA-SPECTRUM-EXACT-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2305` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-PONZANO-REGGE-1968-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2306` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-ROBERTS-1999-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2307` | `LOOP_QUANTUM_GRAVITY` | `IMPORTED_ASSUMPTION` | `LQG-PR-ASYMPTOTICS-IMPORT` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-2308` | `LOOP_QUANTUM_GRAVITY` | `PROVED_LEAN` | `LQG-6J-EXACT-AND-PENTAGON-TARGET` (PROVED_LEAN) | - |
-| `TFQ-2309` | `LOOP_QUANTUM_GRAVITY` | `PROVED_LEAN` | `LQG-PR-ALLOWED-REGION-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2308` | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `LQG-6J-EXACT-AND-PENTAGON-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2309` | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `LQG-PR-ALLOWED-REGION-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2310` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-TURAEV-VIRO-1992-SOURCE` (SOURCE_RECORD) | - |
-| `TFQ-2311` | `LOOP_QUANTUM_GRAVITY` | `PROVED_LEAN` | `LQG-TV-LEVEL2-PENTAGON-TARGET` (PROVED_LEAN) | - |
+| `TFQ-2311` | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `LQG-TV-LEVEL2-PENTAGON-TARGET` (PROVED_LEAN) | - |
 | `TFQ-2312` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-EPRL-2007-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2313` | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `LQG-SPINFOAM-REVIEW-SOURCE` (SOURCE_RECORD) | - |
 | `TFQ-2314` | `LOOP_QUANTUM_GRAVITY` | `IMPORTED_ASSUMPTION` | `LQG-EPRL-VERTEX-IMPORT` (IMPORTED_ASSUMPTION) | - |
@@ -11941,9 +11941,9 @@ Obligation: A faithful comparison needs a finite-support tape restriction, the s
 - DAG node: `CT-DEUTSCH-2013-SOURCE`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2000_ct_deutsch_2013_source.md)
 
-Deutsch (2013) proposes to state physical laws as statements about which physical transformations (tasks) can be caused to happen and which cannot, in place of dynamical laws plus initial conditions. This node records the proposal as published. The repository has audited none of its derivations.
+Deutsch (2013, arXiv:1210.7439, Section 1.1 eqs. (1)-(2) pp. 2-4 and Section 1.2 p. 5) proposes to state physical laws as statements about which physical transformations (tasks) can be caused to happen and which cannot, in place of dynamical laws plus initial conditions, together with the composition principle (Section 1.2 p. 5), computation media (Section 2.6 eq. (9) pp. 13-14) and Einstein locality on composite substrates (Section 3.10 p. 33). This node records the proposal as published.
 
-Obligation: Record only. Nothing in the paper is used as a premise of any repository result.
+Obligation: Record only. Audited against arXiv:1210.7439; nothing in the paper is used as a premise of any repository result.
 
 ### TFQ-2001 Imported vocabulary: task, constructor, possible and not possible
 
@@ -11953,7 +11953,7 @@ Obligation: Record only. Nothing in the paper is used as a premise of any reposi
 - DAG node: `CT-TASK-CONSTRUCTOR-POSSIBILITY`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2001_ct_task_constructor_possibility.md)
 
-Imported vocabulary, as the source describes it: a task is a set of input and output attribute pairs of a substrate; a constructor is a system that brings the output about and remains able to do so again; a task is possible when some constructor can perform it to any desired accuracy and not possible otherwise. The repository uses none of this vocabulary as a primitive.
+Imported vocabulary, audited against Deutsch (2013, Section 1.1 eqs. (1)-(2) pp. 2-4) and Deutsch-Marletto (2015, Section 2 pp. 6-8): a task is a set of ordered input/output attribute pairs of a substrate; a constructor causes the transformation and retains its ability to do so again; a task is possible when the laws of nature impose no limit short of perfection on how accurately it can be performed and how well a constructor can retain its ability to perform it again, and not possible otherwise; Principle I (Section 2 p. 8) states that the state of a composite substrate S1 + S2 is the pair of states on S1 and S2 and a construction on S1 changes only the S1 state. The repository uses none of this vocabulary as a primitive.
 
 Obligation: Taking the possible and not-possible partition of tasks as primitive is a different foundational choice from the repository's admitted primitive PG-ROOT-DIFF-STRUCTURE and its replayed refusal predicates. No source derives either from the other.
 
@@ -11985,13 +11985,13 @@ Obligation: The repository predicates are decided by the structure of the attemp
 
 - UUID: `f51a3969-1789-5f92-a1b0-6c4566e5a500`
 - Parent: `TFQ-0338`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md)
 
-Formalized finite statement. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
+Finite statement to formalize. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Target: a Lean lemma over Finset and an exhaustive check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
 
-Obligation: Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
+Obligation: The finite lemma is routine. Whether it deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
 
 ### TFQ-2005 Deutsch and Marletto 2015: constructor theory of information
 
@@ -12001,9 +12001,9 @@ Obligation: Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whet
 - DAG node: `CT-DEUTSCH-MARLETTO-2015-SOURCE`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2005_ct_deutsch_marletto_2015_source.md)
 
-Deutsch and Marletto (2015) propose a theory of information defined by which physical transformations are possible and which are not, avoiding the circularity of defining information and distinguishability through each other. The abstract states that one constructor-theoretic property underlies distinctly quantum phenomena: non-distinguishable states, the impossibility of cloning, incompatible variables and entanglement. This node records the claim as published.
+Deutsch and Marletto (2015, arXiv:1405.5563) formulate a constructor theory of information by defining computation variables (Section 3 p. 9), clonable variables and information media (Section 4 eq. (3) p. 10) prior to distinguishability (Section 5 eq. (4) p. 11), avoiding the circularity of Section 1 eq. (1) p. 3. Section 7 (p. 20) and Section 8 (pp. 20-24) define superinformation media and derive non-distinguishability, no-cloning of non-orthogonal states, complementarity and unpredictability from Principles I-IX. This node records the paper as published.
 
-Obligation: Record only. The repository has not audited the paper's arguments.
+Obligation: Record only. Full text of arXiv:1405.5563 audited on 2026-10-22; its postulates are not adopted as repository primitives.
 
 ### TFQ-2006 Imported: information media and the interoperability principle
 
@@ -12013,9 +12013,9 @@ Obligation: Record only. The repository has not audited the paper's arguments.
 - DAG node: `CT-INFORMATION-MEDIA-INTEROPERABILITY`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
 
-Imported principles, as the source describes them: an information medium is a substrate whose information attributes can be told apart and copied (they are distinguishable and cloneable); the interoperability principle says that the combination of two information media is an information medium. They are postulates of the source taken here as assumptions.
+Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
 
-Obligation: The principle constrains composition of systems in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+Obligation: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
 
 ### TFQ-2007 Imported: superinformation medium
 
@@ -12025,9 +12025,9 @@ Obligation: The principle constrains composition of systems in the source's fram
 - DAG node: `CT-SUPERINFORMATION-MEDIUM-DEFINITION`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2007_ct_superinformation_medium_definition.md)
 
-Imported definition, as the source describes it: a superinformation medium is an information medium with at least two information attributes whose union is not an information attribute, that is, the union cannot be cloned. The source states that quantum systems are superinformation media. The repository neither adopts the definition nor checks that its finite carriers satisfy it.
+Imported definition, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Section 6 pp. 14-18 and Section 7 p. 20): an information observable is an information variable X whose attributes satisfy double-complement closure x = u_x under distinguishability (Section 6, Principle VIII p. 16); a superinformation medium is an information medium with at least two information observables X and Y that contain only mutually disjoint attributes and whose union X union Y is not an information observable (Section 7 p. 20). Sections 8.1 and 8.3 (pp. 20-22) show under Principles III, IV, VI, VII, VIII and IX that X union Y is neither distinguishable nor clonable. The repository neither adopts this definition as a primitive nor claims that its finite carriers satisfy Principles I-IX.
 
-Obligation: The definition is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite linear-algebra part is checked on the six Pauli eigenstates in CT-QUBIT-NO-CLONING-FINITE-TARGET.
+Obligation: The definition (Section 7 p. 20) is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite cloning shadow is the content of CT-QUBIT-NO-CLONING-FINITE-TARGET, which is open.
 
 ### TFQ-2008 Source claim: superinformation media yield no-cloning and complementarity
 
@@ -12037,21 +12037,21 @@ Obligation: The definition is an assumption of this branch. Whether the reposito
 - DAG node: `CT-NO-CLONING-COMPLEMENTARITY-SOURCE-CLAIM`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2008_ct_no_cloning_complementarity_source_claim.md)
 
-The source states, in its abstract, that the single property defining superinformation media accounts for non-distinguishable states, the impossibility of cloning, incompatible variables and entanglement. This node records that claim. The repository has not reproduced the argument; the finite qubit target of this stage checks only the cloning statement for named states.
+Deutsch and Marletto (2015, arXiv:1405.5563, Sections 8.1-8.7 pp. 20-25) derive within their postulate system (Principles I-IX) that in any superinformation medium: (i) the union X union Y of two subsidiary information observables is not distinguishable (Section 8.1 p. 20); (ii) no observable has refinements of both X and Y (complementarity, Section 8.2 p. 21); (iii) X union Y is not clonable (Section 8.3 p. 22); and (iv) composite superinformation media can hold locally inaccessible information (entanglement, Section 8.7 pp. 24-25). This node records those source claims; the finite qubit target of this stage checks only the linear-algebraic cloning statement for the six Pauli eigenstates over Q(i).
 
-Obligation: Record only. Complementarity and entanglement parts of the claim have no finite target here beyond the entangling-phase example.
+Obligation: Record only. Audited against arXiv:1405.5563 Sections 8.1-8.7; the finite qubit target checks only the Pauli-eigenstate cloning statement over Q(i).
 
 ### TFQ-2009 Finite target: cloneable and non-cloneable attributes of a qubit
 
 - UUID: `b444ac9e-efd8-5ae0-9d8c-ce270febd104`
 - Parent: `TFQ-2007`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CT-QUBIT-NO-CLONING-FINITE-TARGET`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md)
 
-Formalized finite statement over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the off-diagonal entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
+Finite statement to formalize over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the Gram entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
 
-Obligation: Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64 subsets. The link to the imported definition of a superinformation medium remains a definitional reading, not a characterization of quantum theory.
+Obligation: Exact linear algebra on Gaussian rationals; statement (c) needs a Lean or Python-Fraction formulation of the fidelity argument for rays. The link to the imported definition of a superinformation medium is a reading of definitions.
 
 ### TFQ-2010 Marletto 2016: constructor theory of probability
 
@@ -12061,9 +12061,9 @@ Obligation: Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64
 - DAG node: `CT-PROBABILITY-2016-SOURCE`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2010_ct_probability_2016_source.md)
 
-Marletto (2015, revised 2016) argues within the constructor theory of information that unpredictable measurement outcomes arise in superinformation theories, shows how apparent randomness emerges in a finite number of repeated measurements, and gives sufficient conditions under which such a theory can guide decisions as if it were probabilistic, extending the Deutsch-Wallace decision-theoretic argument. This node records the abstract.
+Marletto (2016, arXiv:1507.03287) formulates unpredictability in superinformation media via the non-existence of an X-predictor constructor (Section 4 pp. 21-22), defines X-indistinguishability equivalence classes and X-partitions of unity [f(z)_x] through the limiting ensemble fraction constructor D_x^(N) under conditions E1-E2 (Section 5 pp. 23-29), and shows that in a decision-supporting superinformation theory (conditions T1-T2 and R1-R4, Table 1 p. 32) a player automaton Gamma satisfying decision axioms A1-A2 (Section 6.2 pp. 35-36) values an X-game of chance G_X(y) by the additive expectation V{G_X(y)} = sum_{x in X} f(y)_x x (Section 7 eqs. (16), (18), (20) pp. 41-47). This node records the paper's results.
 
-Obligation: Record only. The premises of the argument have not been compared with the repository's declared Born imports.
+Obligation: Record only. Audited against arXiv:1507.03287 Sections 4-7; its decision-theoretic premises (T1-T2, R1-R4, A1-A2) are distinct from the frame-function hypotheses of GP-IMPORT-GLEASON.
 
 ### TFQ-2011 Marletto 2016: constructor theory of thermodynamics
 
@@ -12073,9 +12073,9 @@ Obligation: Record only. The premises of the argument have not been compared wit
 - DAG node: `CT-THERMODYNAMICS-2016-SOURCE`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2011_ct_thermodynamics_2016_source.md)
 
-Marletto (2016, revised 2017) proposes to reformulate the zeroth, first and second laws in constructor theory, building on the axiomatic approaches of Caratheodory and of Lieb and Yngvason. The reformulation gives a scale-independent account of adiabatic accessibility that separates work from heat without approximation. The arXiv record lists no journal reference. This node records the abstract.
+Marletto (2016, v5 2017, arXiv:1608.02625) defines work media as substrates with at least three equally-spaced energy attributes admitting an adjacent-pair swap on two replicas (so work variables are information variables by Principle VII, Section 5 pp. 27-31), states the First Law as interoperability of work media (Law I, eq. (4) p. 32), and defines adiabatic possibility {x -> y} as possibility with side-effects on work variables only (Section 5.3 p. 33). Section 6 (pp. 34-42) defines heat media, Principle IX (interoperability of heat media, p. 38), the Second Law (Law II, p. 39: existence of heat attributes h1, h2 with {h1 -> h2} adiabatically possible and {h2 -> h1} not adiabatically possible), an entropy function via the adiabatic 'is-like' relation (pp. 39-41), and the Zeroth Law (Law X, p. 42), deriving Kelvin's statement in Section 7 (pp. 42-44). This node records the paper's results.
 
-Obligation: Record only. The repository has no thermodynamic node; its closest entropy statement is the von Neumann entropy dichotomy FQ-ENTROPY-DICHOTOMY-BAKER, which concerns a single state.
+Obligation: Record only. Audited against arXiv:1608.02625 Sections 5-7; the repository has no thermodynamic substrate or adiabatic-accessibility relation.
 
 ### TFQ-2012 Marletto-Vedral and Bose et al. 2017: gravitationally mediated entanglement witness
 
@@ -12085,9 +12085,9 @@ Obligation: Record only. The repository has no thermodynamic node; its closest e
 - DAG node: `CT-MARLETTO-VEDRAL-2017-SOURCE`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2012_ct_marletto_vedral_2017_source.md)
 
-Marletto and Vedral (2017) argue that any system that mediates entanglement between two quantum systems must itself be quantum, independently of the dynamics, and propose an experiment in which two masses in superpositions of location are tested for gravitationally induced entanglement; Bose and co-authors (2017) propose a spin entanglement witness for the same purpose. This node records both abstracts. No experiment is claimed to have been done.
+Marletto and Vedral (2017, arXiv:1707.06036, pp. 1-4, Fig. 1) argue within constructor theory that if a mediator M locally couples two quantum systems Q1 and Q2 (via Q1 <-> M <-> Q2 with no direct Q1-Q2 coupling) and generates entanglement from a product state, then M must carry at least two incompatible observables (a superinformation medium), and propose testing gravitationally induced phases between two interferometric masses; Bose et al. (2017, arXiv:1707.06050, pp. 1-5, eqs. (1)-(8)) independently propose a spin-correlation entanglement witness W = |(sigma_x^(1) tensor sigma_z^(2)) + (sigma_y^(1) tensor sigma_y^(2))| > 1 (eq. (8) p. 4) for two Stern-Gerlach interferometers interacting through Newtonian gravity phases delta phi_+- and delta phi_-+ (eqs. (2)-(4) p. 2). This node records both papers; no experiment is claimed to have been performed.
 
-Obligation: Record only. The argument's premises (locality of the interaction, the information-theoretic meaning of "classical") are not audited here.
+Obligation: Record only. Audited against arXiv:1707.06036 and arXiv:1707.06050; the repository makes no physical claim about gravity.
 
 ### TFQ-2013 Imported inference: entanglement through a mediator indicates a non-classical mediator
 
@@ -12097,21 +12097,21 @@ Obligation: Record only. The argument's premises (locality of the interaction, t
 - DAG node: `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md)
 
-Imported inference, as the source states it: if two systems that interact only through a mediating system become entangled, the mediator cannot be described by classical degrees of freedom. Premises include locality of the interaction and the information-theoretic characterization of "classical" used by the source. Applied to gravity, observed entanglement would indicate non-classical gravitational degrees of freedom. The repository has no gravity model; TFQ-0084 is a finite shadow only.
+Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2): if two quantum systems Q1 and Q2 start in a separable state, interact only locally through a mediating system M (Q1 <-> M and M <-> Q2, with no direct Q1-Q2 interaction, Principle I locality), and end in an entangled state of Q1 + Q2, then M cannot be a classical medium (in Marletto-Vedral, M must have at least two disjoint incompatible observables whose union is not an information variable; in Bose et al., any mediator modeled by local operations and classical communication cannot create entanglement). The repository has no gravity model; TFQ-0084 is a finite shadow only.
 
-Obligation: The inference is an assumption of this branch. It does not use or support any repository Lean result.
+Obligation: The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.
 
 ### TFQ-2014 Finite target: a phase interaction entangles; local operations do not
 
 - UUID: `78993e2a-6b9a-5465-bd2e-6f1bde5f2bd8`
 - Parent: `TFQ-0257`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CT-ENTANGLING-PHASE-FINITE-TARGET`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md)
 
-Formalized finite statement over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 2x2 amplitude matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
+Finite statement to formalize over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), rank(A M B^T) <= rank(M), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 4x4 density matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.
 
-Obligation: Statements (a) to (d) are checked in Lean 4 over Q(i). The physical inference from such entanglement to a non-classical mediator is imported and carries no proof here.
+Obligation: Statements (a) to (c) are exact determinant and rank facts. Statement (d) needs the witness construction of DS-QM071 specialized to this family. No physical claim is attached.
 
 ## CAUSAL_QFT
 
@@ -12149,7 +12149,7 @@ Obligation: The quantum statement that commuting local measurements at spacelike
 
 Haag and Kastler (1964) formulate quantum field theory through a net that assigns to bounded spacetime regions the algebras of observables localized there, with the standard structural requirements later grouped as isotony (larger regions have larger algebras), locality (algebras of spacelike separated regions commute) and Poincare covariance, and with states as positive functionals. This node records the framework; the paper's own list of postulates is not reproduced.
 
-Obligation: Record only. The checkout holds no copy of the paper.
+Obligation: Record only. The checkout holds no copy of the 1964 print article; the standard postulate list is checked in secondary sources (arXiv:math-ph/9903028 Section 1 pp. 2-3; arXiv:1607.03901 Section 6 pp. 28-30), while the primary 1964 numbering remains to be audited against the print text.
 
 ### TFQ-2103 Imported: a causal spacetime with a net of local algebras
 
@@ -12167,13 +12167,13 @@ Obligation: Held outside the programme by declaration, as recorded for the light
 
 - UUID: `004a4209-0fa2-5690-8d7a-9662c77f5204`
 - Parent: `TFQ-2100`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CQFT-FINITE-POSET-NET-TARGET`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md)
 
-Formalized finite statement. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) hold for tensor-product nets; the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
+Finite statement to formalize. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) are immediate for tensor-product nets; the target records that the repository does not yet state them and that the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
 
-Obligation: Checked in Lean 4 for finite poset tensor-product nets and the 4-element N poset. Dynamics, a time-slice property and Poincare covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
+Obligation: The net is kinematical. Dynamics, a time-slice property and covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
 
 ### TFQ-2105 Reeh and Schlieder 1961: cyclicity of the vacuum
 
@@ -12203,13 +12203,13 @@ Obligation: The inputs of the property are the continuum Hilbert lift and the St
 
 - UUID: `6ce65e34-10fa-50ab-8a43-160d871d4046`
 - Parent: `TFQ-2106`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CQFT-RS-FINITE-CYCLICITY-TARGET`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md)
 
-Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space, A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M. Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c} on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
+Finite statement to formalize. Let H be the n-qubit space, A a set of sites, A(A) the matrices on A, and Omega a unit vector over Q(i). Then A(A)Omega equals H if and only if the reduced state of Omega on the complement of A has full rank 2^|A^c|, if and only if Omega is separating for A(A^c). Reason: with Schmidt rank r across A and its complement, A(A)Omega equals H_A tensor the range of the complementary marginal, of dimension 2^|A| r. Exact instances: a product vector is cyclic only for A equal to all sites; the three-qubit GHZ vector is not cyclic for any single site and is cyclic for every pair of sites; the three-qubit W vector is not cyclic for any single site and is cyclic for every pair. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
 
-Obligation: Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has no continuous translation group or spectrum condition.
+Obligation: Statement and instances are exact rank computations over Q(i). A Lean proof of the equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension has no translation group or spectrum condition.
 
 ### TFQ-2108 Epstein and Glaser 1973: the role of locality in perturbation theory
 
@@ -12219,9 +12219,9 @@ Obligation: Checked in Lean 4 for bipartite finite spaces and on the 3-qubit pro
 - DAG node: `CQFT-EPSTEIN-GLASER-1973-SOURCE`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2108_cqft_epstein_glaser_1973_source.md)
 
-Epstein and Glaser (1973) give an inductive construction of the renormalized perturbation series of quantum field theory in which, at each order, finite terms satisfying the requirements of locality arise automatically; the method became known as causal perturbation theory and is equivalent in result to the Bogoliubov-Parasiuk-Hepp prescriptions. This node records the abstract.
+Epstein and Glaser (1973, Ann. Inst. H. Poincare A 19, 211-295, Abstract p. 211, Section 1.1 pp. 214-215, Section 2.1 eq. (9) p. 218, Section 2.2 eq. (30) p. 223, and Section 5 pp. 231-237) give an inductive construction of the perturbation series S(g) = 1 + sum_{n>=1} (i^n / n!) int T_n(x_1,...,x_n) g(x_1)...g(x_n) dx in which each order T_n is constructed from lower orders by causal factorization outside the total diagonal and by splitting causal distributions with scaling degree bounds on the diagonal. This node records the paper as published.
 
-Obligation: Record only. The checkout holds no copy of the paper.
+Obligation: Record only. Audited against the Numdam full text (AIHPA_1973__19_3_211_0); nothing in the paper is used as a premise of a repository theorem.
 
 ### TFQ-2109 Imported: causal factorization of the scattering matrix
 
@@ -12231,21 +12231,21 @@ Obligation: Record only. The checkout holds no copy of the paper.
 - DAG node: `CQFT-CAUSAL-FACTORIZATION-IMPORT`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md)
 
-Imported property, in its standard form: the scattering matrix S(g) as a functional of the coupling g satisfies S(g1+g2) = S(g1) S(g2) whenever the support of g1 lies in the causal future of the support of g2, and renormalization is the extension of operator-valued distributions subject to a support condition. The repository has neither operator-valued distributions nor a time ordering on a spacetime.
+Imported property, audited and corrected against Epstein and Glaser (1973, Section 1.1 condition (C.A.) pp. 214-215, Section 2.1 condition (Caus. 1) eq. (9) p. 218, Section 2.2 eq. (30) p. 223) and Brunetti and Fredenhagen (2000, arXiv:math-ph/9903028, Section 1 eq. (2) p. 4 and Section 3 Condition P3 p. 15): the scattering operator satisfies V(g, h1+h2) = S(g)^{-1} S(g+h1+h2) = V(g, h1) V(g, h2) (and at g=0, S(g1+g2) = S(g1) S(g2)) whenever supp h1 does not intersect the causal past of supp h2, written supp h1 cap (supp h2 + V^-) = empty (which includes spacelike separation as well as causal future separation, not only supp h1 inside the causal future of supp h2). Equivalently at each order n, the time-ordered operator-valued distributions factorize as T(P union Q) = T(P) T(Q) whenever {x_i : i in P} cap ({x_j : j in Q} + V^-) = empty (eq. (30) p. 223; Condition P3 p. 15), and renormalization reduces to extending time-ordered products across the total diagonal. The repository has neither operator-valued distributions nor a continuum Minkowski causal cone.
 
-Obligation: The standard form is recalled from the literature; the exact formulation in the cited paper is to be audited.
+Obligation: Audited against Epstein-Glaser (1973) eqs. (9), (30) and Brunetti-Fredenhagen (2000) eq. (2) and Condition P3. The continuum distribution extension has no counterpart in the repository's finite posets.
 
 ### TFQ-2110 Finite target: time-ordered products over linear extensions of a poset
 
 - UUID: `187aa59b-5029-50a5-b79c-2efb86fc6339`
 - Parent: `TFQ-2109`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md)
 
-Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P) in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
+Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P) on a common finite space, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices; and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite counterpart of causal factorization. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
 
-Obligation: Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting and renormalization have no finite counterpart here.
+Obligation: The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser is an analogy.
 
 ### TFQ-2111 Bombelli, Lee, Meyer and Sorkin 1987: space-time as a causal set
 
@@ -12257,7 +12257,7 @@ Obligation: Checked in Lean 4 for general adjacent spacelike swap chains and on 
 
 Bombelli, Lee, Meyer and Sorkin (1987) propose that spacetime at the smallest scales is a discrete structure, a causal set: a locally finite set with a partial order encoding past and future. They examine how a Lorentzian manifold can approximate such a set, note that effective dimensionality can vary with length scale, and sketch a quantum dynamics. Sorkin's Valdivia notes (2003) are a later survey. This node records the proposal.
 
-Obligation: Record only. The checkout holds no copy of the paper.
+Obligation: Record only. Sorkin (2003, arXiv:gr-qc/0309009 Section 3 p. 6) and Reid (2003, arXiv:gr-qc/0207103 Section II p. 2) were audited in full; the 1987 PRL print article is not held in the checkout.
 
 ### TFQ-2112 A finite causal set is a FiniteStrictPoset
 
@@ -12275,13 +12275,13 @@ Obligation: Definitional only. Nothing about manifold-likeness, dimension or the
 
 - UUID: `aa6ab549-4ad3-59bb-bd9f-c82bfc9619b6`
 - Parent: `TFQ-2112`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md)
 
-Formalized finite statement. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n) = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n) - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.
+Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10 recomputed in Python with fractions.Fraction; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)) (recomputed in Python with fractions.Fraction: n=2 gives 5/6, matching the diamond C2 of CausalOrder.lean with 5 related pairs out of 6, n=3 gives 3/4, n=4 gives 7/10, n=5 gives 2/3, n=6 gives 9/14, n=7 gives 5/8, and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem). (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.
 
-Obligation: Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.
+Obligation: Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.
 
 ## ADS_CFT
 
@@ -12293,7 +12293,7 @@ Obligation: Checked in Lean 4 over exact rationals and FiniteStrictPoset. The di
 - DAG node: `ADS-MALDACENA-1997-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2200_ads_maldacena_1997_source.md)
 
-Maldacena (arXiv November 1997, Adv. Theor. Math. Phys. 1998) conjectures a duality between large-N superconformal field theories and string or M-theory on anti-de Sitter backgrounds, with four-dimensional N=4 super Yang-Mills and type IIB string theory on AdS5 x S5 as the headline example. This node records the conjecture as published.
+Maldacena (1997, arXiv:hep-th/9711200, Section 2 eqs. (2.1)-(2.5) pp. 3-5, conjecture p. 9) takes the low-energy decoupling limit of N parallel D3-branes (eq. (2.1)) and conjectures that four-dimensional U(N) N=4 super-Yang-Mills theory is dual to type IIB string theory on AdS_5 x S^5 with radius R^2 / alpha' = sqrt(4 pi g_YM^2 N) (eq. (2.5)) and N units of five-form flux, alongside M2/M5-brane and AdS_3 counterparts in Sections 3-5. This node records the conjecture as published.
 
 Obligation: Record only. The duality is a conjecture supported by checks in the source literature.
 
@@ -12305,7 +12305,7 @@ Obligation: Record only. The duality is a conjecture supported by checks in the 
 - DAG node: `ADS-GKPW-DICTIONARY-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2201_ads_gkpw_dictionary_source.md)
 
-Gubser, Klebanov and Polyakov (1998) and Witten (1998) relate correlation functions of boundary operators in the conformal field theory to the behaviour of bulk fields in anti-de Sitter space with prescribed boundary values. This node records the two papers by title and identifier.
+Gubser, Klebanov and Polyakov (1998, arXiv:hep-th/9802109, Section 2 eq. (2.5) p. 4 and Section 3 eq. (3.14) p. 8) and Witten (1998, arXiv:hep-th/9802150, Section 2.3 eq. (2.11) p. 11 and Section 2.5 eqs. (2.32)-(2.33) p. 17) formulate the AdS/CFT prescription identifying the CFT generating functional of boundary operators O coupled to boundary sources phi_0 with the bulk partition function <exp int phi_0 O>_CFT = Z_string(phi_0) (approximated at large N by exp(-I_sugra(phi)) on AdS_{d+1}), with conformal dimension Delta(Delta - d) = (m R)^2, Delta = (d + sqrt(d^2 + 4(m R)^2))/2 for a scalar of mass m. This node records the two papers.
 
 Obligation: Record only. The dictionary is not reproduced.
 
@@ -12329,7 +12329,7 @@ Obligation: The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-L
 - DAG node: `ADS-RT-2006-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2203_ads_rt_2006_source.md)
 
-Ryu and Takayanagi (2006) propose that the entanglement entropy of a boundary region equals the area of the minimal bulk surface anchored on its boundary, divided by four times Newton's constant. This node records the proposal as published.
+Ryu and Takayanagi (2006, arXiv:hep-th/0603001, Section 1 eq. (1.5) p. 2) propose that the entanglement entropy S_A of a spatial subregion A in a (d+1)-dimensional CFT dual to static AdS_{d+2} is given by S_A = Area(gamma_A) / (4 G_N^(d+2)), where gamma_A is the static minimal bulk d-surface anchored on partial A, and check in Section 2 (eqs. (2.1), (2.5)-(2.6) p. 3) that in AdS_3/CFT_2 the geodesic length reproduces S_A = (c/3) log((L/(pi a)) sin(pi l / L)) under the Brown-Henneaux relation c = 3R / (2 G_N^(3)). This node records the proposal as published.
 
 Obligation: Record only.
 
@@ -12353,9 +12353,9 @@ Obligation: No source supplies a dictionary from the repository's finite areas t
 - DAG node: `ADS-ADH-2015-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2205_ads_adh_2015_source.md)
 
-Almheiri, Dong and Harlow (2015) relate bulk locality in AdS/CFT to quantum error correction: bulk local operators are encoded redundantly in boundary operators, so that a bulk region is reconstructed from different boundary subregions. This node records the paper by title and journal reference.
+Almheiri, Dong and Harlow (2015, arXiv:1411.7041) resolve the radial-commutativity puzzle of bulk local operators by formulating the low-energy bulk Hilbert space as a code subspace H_code inside the boundary CFT Hilbert space: a bulk operator phi(x) in the causal wedge (or entanglement wedge, Section 3.4) of a boundary subregion A can be reconstructed as an operator O_A supported on A that acts identically to phi(x) on H_code (Section 3.1 eq. (3.3) p. 11, equivalent to [O, E_a P E_b^dagger] = 0 on the erasure errors of A^c in Section 3.2 eqs. (3.10), (3.15) pp. 13-15, illustrated by the three-qutrit code in Section 2.2 eq. (2.4) p. 8). This node records the paper as published.
 
-Obligation: Record only; the abstract is summarized from the title and general citation, and the argument is not audited.
+Obligation: Record only. Audited against the full text of arXiv:1411.7041 on 2026-10-22; the finite 5-qubit reconstruction instance is the separate target ADS-LOGICAL-RECONSTRUCTION-TARGET.
 
 ### TFQ-2206 Harlow 2016: the Ryu-Takayanagi formula from quantum error correction
 
@@ -12365,9 +12365,9 @@ Obligation: Record only; the abstract is summarized from the title and general c
 - DAG node: `ADS-HARLOW-2016-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2206_ads_harlow_2016_source.md)
 
-Harlow (2016) derives the Ryu-Takayanagi formula from the quantum error correction structure of the bulk-to-boundary map. This node records the paper by title and identifier.
+Harlow (2016, arXiv:1607.03901, Theorem 1.1 pp. 3-4 and Section 5 Theorem 5.1 pp. 20-26) establishes in finite-dimensional operator-algebra quantum error correction that for a code subspace H_code in H_A tensor H_{A-bar} and a von Neumann algebra M on H_code with commutant M' and center Z_M = M cap M', three conditions are equivalent: (i) complementary recovery of M on A and M' on A-bar, (ii) existence of a positive central area operator L_A in Z_M such that for every code state rho-tilde, S(rho-tilde_A) = Tr(rho-tilde L_A) + S(rho-tilde, M) and S(rho-tilde_{A-bar}) = Tr(rho-tilde L_A) + S(rho-tilde, M'), and (iii) conservation of relative entropy S(rho-tilde_A | sigma-tilde_A) = S(rho-tilde | sigma-tilde, M). This node records the paper as published.
 
-Obligation: Record only; the argument is not audited.
+Obligation: Record only. Audited against the full text of arXiv:1607.03901 (Theorem 1.1 and Theorem 5.1) on 2026-10-22; the theorem is not formalized in this repository.
 
 ### TFQ-2207 Pastawski, Yoshida, Harlow and Preskill 2015: holographic quantum error-correcting codes
 
@@ -12377,7 +12377,7 @@ Obligation: Record only; the argument is not audited.
 - DAG node: `ADS-HAPPY-2015-SOURCE`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2207_ads_happy_2015_source.md)
 
-Pastawski, Yoshida, Harlow and Preskill (2015) build toy models of the bulk-to-boundary correspondence from tensor networks whose building block is a tensor with maximal entanglement along every bipartition, which yields an isometry from bulk to boundary. The abstract states that the Ryu-Takayanagi formula and the negativity of tripartite information hold exactly in many cases. This node records the abstract.
+Pastawski, Yoshida, Harlow and Preskill (2015, arXiv:1503.06237) define a 2n-leg perfect tensor (Section 2 Def. 2 p. 5: proportional to an isometric tensor for every bipartition into k <= n inputs and 2n - k outputs), construct the 6-qubit perfect stabilizer tensor from the [[5,1,3]] code of Laflamme et al. (1996, arXiv:quant-ph/9602019 Table I; HaPPY Appendix A.1 eqs. (A1)-(A7) pp. 24-25), and place it on the {5,4} hyperbolic pentagon tiling to obtain an isometric bulk-to-boundary code (Section 3 Thm. 1 p. 7) in which connected boundary regions of holographic states satisfy S_A = |gamma_A| log v (Section 4.1 Thm. 2 p. 8) and general regions satisfy the greedy-geodesic lower bound (Section 4.2 Thm. 3 eq. (4.10) p. 10). This node records the paper as published.
 
 Obligation: Record only. The abstract itself calls the codes toy models.
 
@@ -12385,37 +12385,37 @@ Obligation: Record only. The abstract itself calls the codes toy models.
 
 - UUID: `400b1aba-b746-519a-a66c-9991879f6699`
 - Parent: `TFQ-2207`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md)
 
-Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4: this state is a perfect tensor; its 64-element stabilizer group has weight distribution 1 element of weight 0, 45 of weight 4, and 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have projective stabilizer rank 3 (entropy 3 bits); and the 192 nontrivial logical operators in the normalizer outside the stabilizer have minimum weight 3.
+Finite statement to formalize. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Claim: this state is a perfect tensor, that is, every bipartition with at most three legs on one side has a maximally mixed marginal, equivalently every non-identity element of its 64-element stabilizer group has weight at least 4. Expected weight distribution: 1 element of weight 0, 45 of weight 4, 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have entropy 3 bits; the minimum weight of a nontrivial logical operator is 3.
 
-Obligation: Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element stabilizer group and the 20 bipartitions. A finite stabilizer enumeration is not a statement about AdS/CFT.
+Obligation: GF(2) symplectic arithmetic over a 64-element group. The repository has stabilizer-code checks for other codes but not this one.
 
 ### TFQ-2209 Finite target: boundary entropies of a six-tensor patch against minimal cuts
 
 - UUID: `e13ff21c-928d-51dd-92d2-b16df4265009`
 - Parent: `TFQ-2208`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `ADS-HAPPY-ENTROPY-MINCUT-TARGET`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md)
 
-Formalized finite statement. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions), the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.
+Finite statement to formalize. Contract six copies of the perfect tensor of the previous target on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours. The edge-neighbours are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs. Fix every bulk leg in the logical zero state. For every contiguous interval A of boundary legs, compute the entropy S(A) in bits by GF(2) rank and compare it with the minimal number of bonds cut by a curve separating A from its complement, listing the intervals with equality. The source states that the Ryu-Takayanagi formula holds exactly in many cases (regions whose minimal cut is a greedy geodesic), not for every region; the target is to determine which intervals satisfy it on this patch.
 
-Obligation: Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all 380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum minimal-surface area is imported and not part of this target.
+Obligation: Exact GF(2) linear algebra on a 26-qubit stabilizer state. The bond-count cut is graph min-cut. The correspondence to a surface area is the imported formula and is not part of the target.
 
 ### TFQ-2210 Finite target: logical operators of the five-qubit code live on any three qubits
 
 - UUID: `4098496c-a23a-5e32-bd93-c2b8dfdceca8`
 - Parent: `TFQ-2208`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `ADS-LOGICAL-RECONSTRUCTION-TARGET`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md)
 
-Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
+Finite statement to formalize. For the [[5,1,3]] code, each of the ten triples T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and their product), and no pair of qubits supports any nontrivial logical operator. Equivalent statement: erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
 
-Obligation: Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
+Obligation: Exact GF(2) check over the normalizer (64 elements). The identification with bulk reconstruction is the picture of the source and is not part of the target.
 
 ### TFQ-2211 Gap: repository Regge areas versus the area term of the minimal-surface formula
 
@@ -12453,7 +12453,7 @@ Obligation: Recorded as an explicit non-claim so that the exact finite results a
 
 Penrose (1971) starts from angular momentum, whose spectrum is discrete, and asks whether space can be built up by applying the rules for combining angular momenta; the construction is the origin of spin networks. This node records the chapter by title and publication details.
 
-Obligation: Record only. The chapter has no arXiv record and is not held in the checkout.
+Obligation: Record only. The 1971 book chapter has no arXiv record and is not held in the checkout; Penrose's trivalent admissibility rules are verified in Rovelli-Smolin (arXiv:gr-qc/9505006 Section 2 p. 12) and Roberts (arXiv:math-ph/9812013 Section 2 pp. 24-27).
 
 ### TFQ-2301 Rovelli and Smolin 1995: spin networks and quantum gravity
 
@@ -12463,9 +12463,9 @@ Obligation: Record only. The chapter has no arXiv record and is not held in the 
 - DAG node: `LQG-SPIN-NETWORK-KINEMATICS-SOURCE`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2301_lqg_spin_network_kinematics_source.md)
 
-Rovelli and Smolin (1995, Phys. Rev. D 52, 5743) introduce spin networks as a state basis in non-perturbative quantum gravity, labelled by graphs with edges coloured by SU(2) representations. This node records the paper by title and identifier.
+Rovelli and Smolin (1995, arXiv:gr-qc/9505006, Phys. Rev. D 52, 5743) construct an independent basis of states in both the loop representation (Section 3 pp. 12-16) and the SU(2) connection representation (Section 4 pp. 17-24) that solves the SU(2) Mandelstam identities (Section 2 eq. (21) and conditions i-ii p. 12), labelled by imbedded graphs whose edges carry SU(2) representations (twice-spins p_l) and whose higher-valence vertices carry virtual trivalent trees/intertwiners (Appendix A pp. 36-38), and show in Section 6 (pp. 26-29) that these spin-network states are orthonormal with respect to the Ashtekar-Lewandowski Haar measure. This node records the paper as published.
 
-Obligation: Record only. The abstract is not reproduced.
+Obligation: Record only. Audited against the full text of arXiv:gr-qc/9505006 on 2026-10-22.
 
 ### TFQ-2302 Imported: a kinematical Hilbert space of SU(2) spin networks
 
@@ -12487,21 +12487,21 @@ Obligation: The compact-group completion that the structure needs is the SU(2) a
 - DAG node: `LQG-AREA-VOLUME-SPECTRA-SOURCE`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2303_lqg_area_volume_spectra_source.md)
 
-Rovelli and Smolin (1995, Nucl. Phys. B 442, 593) report that area and volume operators of loop quantum gravity have discrete spectra; Ashtekar and Lewandowski (1997, Class. Quantum Grav. 14, A55) treat area operators. The area eigenvalues are commonly quoted as a sum over punctures of a constant times the square root of j(j+1), the constant depending on conventions and on the Immirzi parameter. This node records the papers; the exact constant is not asserted.
+Rovelli and Smolin (1995, arXiv:gr-qc/9411005, Section 1 eqs. (1)-(2) p. 4 and Section 4 eqs. (47)-(48) p. 28) and Ashtekar and Lewandowski (1997, arXiv:gr-qc/9602046, Section 3.3 eq. (3.20) p. 16 and Section 4.1 eqs. (4.7)-(4.9), (4.12) pp. 18-19) compute discrete spectra for loop-quantum-gravity area (and volume) operators. In the convention {A_a^i(x), E_j^b(y)} = G delta_a^b delta_j^i delta^3(x,y) used in both papers, the general area eigenvalue is (l_P^2 / 2) sum_v sqrt(2 j_v^(d)(j_v^(d)+1) + 2 j_v^(u)(j_v^(u)+1) - j_v^(d+u)(j_v^(d+u)+1)) (eq. (4.9) of gr-qc/9602046), which for simple transverse punctures without tangential edges (j^(d)=j^(u)=j_i, j^(d+u)=0) equals l_P^2 sum_i sqrt(j_i(j_i+1)) = (l_P^2 / 2) sum_i sqrt(p_i(p_i+2)) with p_i = 2 j_i (eq. (2) and eq. (47) of gr-qc/9411005; eq. (4.12) of gr-qc/9602046); as Ashtekar and Lewandowski note in Section 3.3 footnote 6 (p. 16) and Engle et al. write in arXiv:0711.0146 Section V eq. (36) (p. 11), restoring the 8 pi G gamma factor from the gravitational action and Barbero-Immirzi parameter gamma multiplies this spectrum by 8 pi gamma, giving 8 pi gamma l_P^2 sum_i sqrt(j_i(j_i+1)). (The nonzero trivalent volume formula in eq. (1) and eq. (37) of gr-qc/9411005 was corrected in the erratum Nucl. Phys. B 456 (1995) 753, where trivalent vertices have zero volume.) This node records both papers and their normalization conventions.
 
-Obligation: Record only. The constant and the treatment of the Immirzi parameter are to be audited against the papers.
+Obligation: Record only. Both normalization conventions (l_P^2 vs 8 pi gamma l_P^2, per Ashtekar-Lewandowski Section 3.3 footnote 6 p. 16) and the general vertex-puncture formula (eq. (4.9) p. 18) were audited against the papers on 2026-10-22.
 
 ### TFQ-2304 Finite target: exact area levels as sums of square roots
 
 - UUID: `9f7ae529-f14a-5564-8359-5e0db261c9b3`
 - Parent: `TFQ-2303`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `LQG-AREA-SPECTRUM-EXACT-TARGET`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md)
 
-Formalized finite statement. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}: (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii) the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.
+Finite statement to formalize. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, ..., 3}, each term is an exact algebraic number: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, sqrt(12)=2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Square roots of distinct squarefree positive integers are linearly independent over Q, so two multisets of punctures have equal area if and only if the sums agree after reducing each root to squarefree form. Targets: (i) the table of exact levels for at most four punctures with j<=3; (ii) the degeneracies, which arise from non-squarefree radicands and from the equality criterion, for example one puncture of spin 3 has the same area as four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) the smallest nonzero level is sqrt(3)/2.
 
-Obligation: Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear independence of squarefree square roots over R is encoded by working in the formal radical basis; the physical constant and Immirzi parameter are outside this target.
+Obligation: Exact arithmetic in Q(sqrt 2, sqrt 3, sqrt 5, sqrt 6, sqrt 7, ...). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible puncture lists are not part of the target.
 
 ### TFQ-2305 Ponzano and Regge 1968: semiclassical limit of Racah coefficients
 
@@ -12513,7 +12513,7 @@ Obligation: Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures wi
 
 Ponzano and Regge (1968) give the leading asymptotic form of the 6j symbol (Racah coefficient) for large spins, with separate forms for the classically allowed and forbidden regions, and introduce a state sum for three-dimensional gravity whose phase matches the Regge action of a tetrahedron. The formula was reached by conjecture and numerical checks. This node records the chapter by title and publication details.
 
-Obligation: Record only. The chapter has no arXiv record and is not held in the checkout.
+Obligation: Record only. The 1968 chapter has no arXiv record and is not held in the checkout; its asymptotic formula is verified in Roberts (1999, arXiv:math-ph/9812013 Theorem 1 p. 22 and Section 6.1 p. 61).
 
 ### TFQ-2306 Roberts 1999: classical 6j symbols and the tetrahedron
 
@@ -12523,9 +12523,9 @@ Obligation: Record only. The chapter has no arXiv record and is not held in the 
 - DAG node: `LQG-ROBERTS-1999-SOURCE`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2306_lqg_roberts_1999_source.md)
 
-Roberts (1998, Geom. Topol. 1999) establishes, by geometric quantization, the asymptotic formula conjectured by Ponzano and Regge, relating a 6j symbol with large representation dimensions to the volume of the Euclidean tetrahedron whose edge lengths are those dimensions. This node records the abstract.
+Roberts (1999, arXiv:math-ph/9812013, Section 1 Theorem 1 eq. (2) p. 22 and Section 6.1 eqs. (12)-(13) p. 61) establishes by geometric quantization of the 8-sphere and stationary phase on the symplectic reduction that for an admissible 6-tuple of integers a, b, c, d, e, f (where a = 2j labels the (a+1)-dimensional irreducible representation of SU(2)) whose side lengths form a non-degenerate Euclidean tetrahedron tau of positive volume V(tau) > 0 and exterior dihedral angles theta_r, the rescaled 6j symbol {ka, kb, kc; kd, ke, kf} has the k -> infinity asymptotic expansion sqrt(2 / (3 pi V(tau) k^3)) cos(sum_{r=1}^6 (k a_r + 1) theta_r / 2 + pi/4) + O(k^{-5/2}). Since a tetrahedron of side lengths j_r = a_r/2 has volume V_j = V(tau)/8, substituting 2 / (3 pi V(tau)) = 1 / (12 pi V_j) and (a_r + 1)/2 = j_r + 1/2 recovers the Ponzano-Regge prefactor (12 pi V_j)^{-1/2}. This node records the paper's theorem.
 
-Obligation: Record only. The proof is not reproduced and the precise hypotheses (generic tetrahedron) are to be audited.
+Obligation: Record only. Audited against arXiv:math-ph/9812013 Theorem 1 eq. (2) p. 22 and Section 6.1 eqs. (12)-(13) p. 61 on 2026-10-22.
 
 ### TFQ-2307 Imported: Ponzano-Regge asymptotics of the 6j symbol
 
@@ -12535,7 +12535,7 @@ Obligation: Record only. The proof is not reproduced and the precise hypotheses 
 - DAG node: `LQG-PR-ASYMPTOTICS-IMPORT`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2307_lqg_pr_asymptotics_import.md)
 
-Imported asymptotic form, as commonly stated: for large spins, with l = j + 1/2 the edge lengths, V the volume of the Euclidean tetrahedron with those lengths and theta its dihedral angles, the 6j symbol behaves like (12 pi V)^(-1/2) cos(sum over edges of (j + 1/2) theta + pi/4) when the tetrahedron exists, and decays exponentially when it does not. The phase is the Regge action of the tetrahedron. The wording and the hypotheses are those of the sources and are not audited here.
+Imported asymptotic form, audited against Roberts (1999, arXiv:math-ph/9812013, Theorem 1 eq. (2) p. 22 and Section 6.1 eqs. (12)-(13) p. 61): for large spins with edge lengths l_r = j_r + 1/2 = (a_r + 1)/2 (where a_r = 2 j_r), when the six lengths bound a non-degenerate Euclidean tetrahedron of positive volume V > 0 and exterior dihedral angles theta_r, the 6j symbol behaves asymptotically as (12 pi V)^{-1/2} cos(sum_{r=1}^6 (j_r + 1/2) theta_r + pi/4) (equivalently sqrt(2 / (3 pi V(a))) cos(sum_{r=1}^6 (a_r + 1) theta_r / 2 + pi/4) where V(a) = 8 V is the volume for side lengths a_r = 2 j_r), and decays exponentially when the Cayley-Menger squared volume is negative (Lorentzian tetrahedron, Section 6.2 p. 62). The phase is the Regge action of the tetrahedron.
 
 Obligation: The asymptotic statement is a limit of real-valued quantities; the repository's exact finite targets do not establish a limit.
 
@@ -12543,25 +12543,25 @@ Obligation: The asymptotic statement is a limit of real-valued quantities; the r
 
 - UUID: `53a2a9cc-9dbd-5f2b-b1b4-7072180167ec`
 - Parent: `TFQ-2305`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `LQG-6J-EXACT-AND-PENTAGON-TARGET`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md)
 
-Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most 6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah's single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii) the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon) identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).
+Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most 6, the square is a rational number given by Racah's single-sum formula with exact integer factorials, and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries; (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y'); (iii) the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic in the rationals and one square root per symbol.
 
-Obligation: Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part of this target.
+Obligation: Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.
 
 ### TFQ-2309 Finite target: exact classification of 6j labels by the sign of the Cayley-Menger determinant
 
 - UUID: `2d577dff-2f4b-54e7-962b-7f3ae68d9f59`
 - Parent: `TFQ-2308`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `LQG-PR-ALLOWED-REGION-TARGET`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md)
 
-Formalized finite statement. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant CM(l_e^2) = 288 V^2 exactly in the rationals. Checked in Lean 4 across all 10,825 admissible 6-tuples with twice-spins at most 8: 9,854 lie in the classically allowed region (CM > 0, where a Euclidean tetrahedron exists), 0 have CM = 0, and 971 lie in the classically forbidden region (CM < 0), together with exact rational values of the squared 6j symbol on allowed and forbidden witnesses. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
+Finite statement to formalize. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant exactly in the rationals; 288 V^2 equals the determinant of the bordered 5x5 matrix of squared distances. Tuples with V^2 > 0 lie in the allowed region (a Euclidean tetrahedron exists) where the imported asymptotics predict oscillation; tuples with V^2 < 0 lie in the forbidden region where it predicts decay. Target: the exact classification for twice-spins at most 8 together with the exact value of the squared 6j symbol in each case. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
 
-Obligation: Checked in Lean 4 across all 10,825 admissible 6-tuples with 2j<=8. The asymptotic comparison with the Ponzano-Regge cosine/decay formulas is imported and outside this finite classification.
+Obligation: Exact sign test and exact 6j squares. The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.
 
 ### TFQ-2310 Turaev and Viro 1992: state sums from quantum 6j symbols
 
@@ -12579,13 +12579,13 @@ Obligation: Record only. The paper has no arXiv record and is not held in the ch
 
 - UUID: `06fe6a69-bad6-5c39-95ab-be140e57bba4`
 - Parent: `TFQ-2310`
-- Status: `PROVED_LEAN`
+- Status: `OPEN_OBLIGATION`
 - DAG node: `LQG-TV-LEVEL2-PENTAGON-TARGET`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md)
 
-Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum 6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott (pentagon) identity across all 3^9 = 19,683 label assignments. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the algebraic identity on those labels, not invariance of a state sum on a triangulated manifold.
+Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum 6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner 2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target would discharge only the identity on those labels, not invariance of a state sum on a triangulated manifold.
 
-Obligation: Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9. The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by TFQ-0105.
+Obligation: Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity to invariance on a triangulation is not part of the target.
 
 ### TFQ-2312 Engle, Livine, Pereira and Rovelli 2007 and Freidel and Krasnov 2007: spin-foam vertex for four-dimensional gravity
 
@@ -12595,7 +12595,7 @@ Obligation: Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments
 - DAG node: `LQG-EPRL-2007-SOURCE`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2312_lqg_eprl_2007_source.md)
 
-Engle, Livine, Pereira and Rovelli (2007) define a loop-quantum-gravity vertex amplitude for finite Immirzi parameter, and Freidel and Krasnov (2007) a new spin foam model for four-dimensional gravity; the pair is cited as the EPRL-FK construction. This node records the two papers by title and identifier.
+Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Sections II-IV eqs. (12)-(30) pp. 3-10) define a four-simplex spin-foam vertex amplitude for finite Barbero-Immirzi parameter gamma by imposing the linear simplicity constraint C_f = J_f^(+) - |(1+gamma)/(1-gamma)| J_f^(-) = 0 on Spin(4) representations (eqs. (18)-(20): j^+- = |1 +- gamma| k / 2, embedding the boundary SU(2) spin k into Spin(4) for Euclidean signature and into the SL(2,C) principal series (n, rho) = (2k, 2 gamma k) in Section IV eq. (24) for Lorentzian signature), and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27) construct the coherent-state spin-foam model that coincides with the EPRL vertex for 0 < gamma < 1. This node records the two papers.
 
 Obligation: Record only. The constructions are not reproduced.
 
@@ -12607,7 +12607,7 @@ Obligation: Record only. The constructions are not reproduced.
 - DAG node: `LQG-SPINFOAM-REVIEW-SOURCE`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2313_lqg_spinfoam_review_source.md)
 
-Perez (2012, Living Reviews in Relativity 2013) reviews the spin foam approach to quantum gravity. This node records the review by title and identifier as the survey for the Ponzano-Regge, Turaev-Viro and EPRL material of this stage.
+Perez (2013, arXiv:1205.2019, Living Rev. Relativity 16, 3) surveys canonical LQG and Plebanski BF constraints (Part II), 4D BF theory and the Riemannian/Lorentzian EPRL and FK spin-foam models with their large-spin semiclassical asymptotics (Part III, Sections 7-9), 3D Ponzano-Regge and Turaev-Viro state sums (Part IV, Section 10), and open problems on anomalies and discretization/continuum limits (Part V). This node records the review as published.
 
 Obligation: Record only.
 
@@ -12619,7 +12619,7 @@ Obligation: Record only.
 - DAG node: `LQG-EPRL-VERTEX-IMPORT`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md)
 
-Imported construction: a vertex amplitude for the four-simplex built from SU(2) representations through the Spin(4) decomposition with simplicity constraints and a finite Immirzi parameter. It requires the continuum group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
+Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
 
 Obligation: The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
 

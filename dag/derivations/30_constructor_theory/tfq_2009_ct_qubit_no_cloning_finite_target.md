@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierNoCloning.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean or exact Python statement and check of (a), (b), (c).
 
 ## Finite target (precise statement)
 
@@ -38,7 +38,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-CT-QUBIT-NO-CLONING-FINITE-TARGET` (`DERIVED_LEAN`) from `CT-SUPERINFORMATION-MEDIUM-DEFINITION`, `FQ-DECLARED-QUANTUM-INTERFACE`: Formalized and checked in Lean 4 (lean4/FrontierNoCloning.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
-- Authoring check (a throwaway enumeration, not a repository check) confirmed the nonzero image sum with entries of absolute value 1/2.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed that (|0><0|^{\otimes 2} + |1><1|^{\otimes 2}) - (|+><+|^{\otimes 2} + |-><-|^{\otimes 2}) has off-diagonal entry -1/2 on |00><11| and |11><00|, and that among the 64 subsets of the 6 Pauli eigenstates exactly 13 subsets (1 empty, 6 singletons, 3 antipodal pairs) have pairwise overlaps in {0, 1}.
 
 See also: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`.
 

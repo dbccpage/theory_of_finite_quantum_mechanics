@@ -19,7 +19,7 @@ The repository predicates are decided by the structure of the attempted change; 
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open analogy node; audited against PG-GEN-ONGOING-OBSTRUCTION, PG-SN-OFF-IMAGE-REFUSAL and arXiv:1210.7439 Section 1.1 on 2026-10-22.
 
 ## What is imported
 

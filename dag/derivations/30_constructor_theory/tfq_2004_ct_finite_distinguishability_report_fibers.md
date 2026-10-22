@@ -27,7 +27,9 @@ Checked in Lean 4.35.0 via lake build FrontierDistinguishability (library Fronti
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierDistinguishability.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Lean statement and proof of the biconditional.
+- Exhaustive finite check for |X|<=4 and |R|<=3.
+- Source definition of distinguishable variable audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 (mapping each attribute x in X to a distinct attribute psi_x of an information variable with side-effects).
 
 ## Finite target (precise statement)
 

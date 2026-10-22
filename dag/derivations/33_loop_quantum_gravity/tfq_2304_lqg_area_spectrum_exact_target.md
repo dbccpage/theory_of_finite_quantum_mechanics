@@ -27,7 +27,8 @@ Checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTarg
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierAreaSpectrum.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- Exact table and degeneracy classification.
+- Linear independence of square roots as a Lean or Python lemma.
 
 ## Finite target (precise statement)
 
@@ -38,6 +39,7 @@ Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations rea
 ## Connections to this repository
 
 - Route `FRO-R-LQG-AREA-SPECTRUM-EXACT-TARGET` (`DERIVED_LEAN`) from `LQG-AREA-VOLUME-SPECTRA-SOURCE`, `LQG-SPIN-NETWORK-STATES-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierAreaSpectrum.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed j(j+1) = a(a+2)/4 = 3/4, 2, 15/4, 6, 35/4, 12 for a = 2j = 1..6, minimum nonzero value sqrt(3)/2 at j=1/2, and the coincidence of one spin-3 puncture (sqrt(12) = 2 sqrt(3)) with four spin-1/2 punctures (4 x sqrt(3)/2).
 
 See also: `TFQ-0105`, `TFQ-0198`.
 

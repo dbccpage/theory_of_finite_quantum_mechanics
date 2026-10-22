@@ -11,15 +11,15 @@
 
 ## Statement
 
-Imported property, in its standard form: the scattering matrix S(g) as a functional of the coupling g satisfies S(g1+g2) = S(g1) S(g2) whenever the support of g1 lies in the causal future of the support of g2, and renormalization is the extension of operator-valued distributions subject to a support condition. The repository has neither operator-valued distributions nor a time ordering on a spacetime.
+Imported property, audited and corrected against Epstein and Glaser (1973, Section 1.1 condition (C.A.) pp. 214-215, Section 2.1 condition (Caus. 1) eq. (9) p. 218, Section 2.2 eq. (30) p. 223) and Brunetti and Fredenhagen (2000, arXiv:math-ph/9903028, Section 1 eq. (2) p. 4 and Section 3 Condition P3 p. 15): the scattering operator satisfies V(g, h1+h2) = S(g)^{-1} S(g+h1+h2) = V(g, h1) V(g, h2) (and at g=0, S(g1+g2) = S(g1) S(g2)) whenever supp h1 does not intersect the causal past of supp h2, written supp h1 cap (supp h2 + V^-) = empty (which includes spacelike separation as well as causal future separation, not only supp h1 inside the causal future of supp h2). Equivalently at each order n, the time-ordered operator-valued distributions factorize as T(P union Q) = T(P) T(Q) whenever {x_i : i in P} cap ({x_j : j in Q} + V^-) = empty (eq. (30) p. 223; Condition P3 p. 15), and renormalization reduces to extending time-ordered products across the total diagonal. The repository has neither operator-valued distributions nor a continuum Minkowski causal cone.
 
 ## Governing obligation
 
-The standard form is recalled from the literature; the exact formulation in the cited paper is to be audited.
+Audited against Epstein-Glaser (1973) eqs. (9), (30) and Brunetti-Fredenhagen (2000) eq. (2) and Condition P3. The continuum distribution extension has no counterpart in the repository's finite posets.
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited and corrected against the full texts of Epstein and Glaser (1973, Section 1.1 pp. 214-215, Section 2.1 eq. (9) p. 218, Section 2.2 eq. (30) p. 223) and Brunetti and Fredenhagen (2000, arXiv:math-ph/9903028, Section 1 eq. (2) p. 4, Section 3 Condition P3 p. 15) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
@@ -32,7 +32,7 @@ Declared imported structure:
 
 ## What is open
 
-- Exact formulation as published.
+- Formulation audited and corrected against Epstein-Glaser (1973) Section 1.1 pp. 214-215, Section 2.1 eq. (9) p. 218, Section 2.2 eq. (30) p. 223 and Brunetti-Fredenhagen (2000) Section 1 eq. (2) p. 4 and Section 3 Condition P3 p. 15.
 
 ## Connections to this repository
 

@@ -11,7 +11,7 @@
 
 ## Statement
 
-Engle, Livine, Pereira and Rovelli (2007) define a loop-quantum-gravity vertex amplitude for finite Immirzi parameter, and Freidel and Krasnov (2007) a new spin foam model for four-dimensional gravity; the pair is cited as the EPRL-FK construction. This node records the two papers by title and identifier.
+Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Sections II-IV eqs. (12)-(30) pp. 3-10) define a four-simplex spin-foam vertex amplitude for finite Barbero-Immirzi parameter gamma by imposing the linear simplicity constraint C_f = J_f^(+) - |(1+gamma)/(1-gamma)| J_f^(-) = 0 on Spin(4) representations (eqs. (18)-(20): j^+- = |1 +- gamma| k / 2, embedding the boundary SU(2) spin k into Spin(4) for Euclidean signature and into the SL(2,C) principal series (n, rho) = (2k, 2 gamma k) in Section IV eq. (24) for Lorentzian signature), and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27) construct the coherent-state spin-foam model that coincides with the EPRL vertex for 0 < gamma < 1. This node records the two papers.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only. The constructions are not reproduced.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full texts of arXiv:0711.0146 (Sections II-IV eqs. (12)-(30) pp. 3-10) and arXiv:0708.1595 (Section II.C Lemmas 2.1-2.4 pp. 10-12, Section V eqs. (80)-(91) pp. 24-27) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

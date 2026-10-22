@@ -27,7 +27,7 @@ Checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierT
 
 ## What is open
 
-- The finite target is checked in Lean 4 (`lean4/FrontierPrAllowedRegion.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
+- The classification table.
 
 ## Finite target (precise statement)
 
