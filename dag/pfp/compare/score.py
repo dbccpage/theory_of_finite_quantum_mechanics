@@ -349,10 +349,16 @@ def attempt_delta(run: Path, aid: str) -> dict:
     return {}
 
 
+# Amendment A1 (AMENDMENT_A1.md): --exclude-numeric drops numeric claims from the O count; the as-registered score is the default.
+EXCLUDED_KINDS: set = set()
+
+
 def delta_entries(delta: dict) -> list:
     rows = []
     for key, kind in (('add_or_refine_generators', 'generator'), ('add_or_refine_relations', 'relation'), ('checked_compositions', 'composition'),
                       ('verified_numeric_claims', 'numeric'), ('verified_lemma_statements', 'lemma')):
+        if kind in EXCLUDED_KINDS:
+            continue
         for entry in delta.get(key) or []:
             ident = entry.get('id') or '%s>%s' % (entry.get('outer_operation'), entry.get('inner_operation')) if isinstance(entry, dict) else str(entry)
             rows.append({'kind': kind, 'id': ident})
@@ -651,6 +657,7 @@ def parse_args(argv=None):
     parser.add_argument('--run-verifiers', action='store_true', help='run Lean 4.35.0, pytest and cargo as subprocesses')
     parser.add_argument('--reverify-o', action='store_true', help='re-check operad entries of the scored attempts against a rebuilt clean room (no network, no Lean)')
     parser.add_argument('--unblind', action='store_true')
+    parser.add_argument('--exclude-numeric', action='store_true', help='Amendment A1: numeric claims earn no O units (see AMENDMENT_A1.md)')
     parser.add_argument('--cost-overrides', default=None, help='JSON {node_id: {"usd": 12.3, "basis": "console session cost"}} for Arm F reuse runs with unrecorded cost')
     parser.add_argument('--lean-project', default=str(REPO / 'lean4'), help='lean4/ folder whose lake environment has the Mathlib v4.35.0 build')
     parser.add_argument('--lake', default=None)
@@ -668,6 +675,8 @@ def parse_args(argv=None):
 
 def main(argv=None) -> int:
     args = parse_args(argv)
+    if args.exclude_numeric:
+        EXCLUDED_KINDS.add('numeric')
     try:
         cohort = load_cohort(args.cohort) if args.cohort else load_cohort()
         protocol_sha = cohort['protocol']['sha256']
@@ -731,12 +740,14 @@ def main(argv=None) -> int:
             f_cost2 = (f_known / max(1, sum(1 for _, _s, f in outcome_pairs if f))) if f_known is not None and any(f for _, _s, f in outcome_pairs) else None
             decisions.append(decide(cls, outcome_pairs, s_cost2, f_cost2, 'mixed: recorded where available, LOWER_BOUND otherwise', comp['complete'], 'C2 outcome (Fable agentic sessions, reuse)'))
         result = {'schema_id': 'omega.pfp.compare.score.v1', 'authority_effect': 'None', 'protocol_sha256': protocol_sha, 'cohort_base_commit': cohort['built_from']['base_commit'],
-                  'flags': {k: getattr(args, k) for k in ('run_verifiers', 'reverify_o', 'skip_lean', 'skip_python', 'skip_cargo', 'strata', 'only', 'unblind')},
+                  'flags': {k: getattr(args, k) for k in ('run_verifiers', 'reverify_o', 'skip_lean', 'skip_python', 'skip_cargo', 'strata', 'only', 'unblind',
+                                                           'exclude_numeric')},
+                  'amendments': ['A1 exclude_numeric'] if args.exclude_numeric else [],
                   'completeness': comp, 'unblinded': args.unblind, 'rows': rows, 'aggregates': aggregates, 'cost_notes': cost_notes, 'decisions': decisions, 'notes': notes,
                   'verifier_log': verifiers.log, 'harness_commit': git('rev-parse', 'HEAD').strip()}
         # ---- write
         stamp = time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())
-        out_dir = Path(args.out) if args.out else HERE / 'scores' / stamp
+        out_dir = Path(args.out) if args.out else HERE / 'scores' / (stamp + ('_A1_no_numeric' if args.exclude_numeric else ''))
         out_dir.mkdir(parents=True, exist_ok=True)
         blinded = render_blinded(rows, protocol_sha)
         (out_dir / 'blinded_table.md').write_bytes(blinded.encode('utf-8'))
