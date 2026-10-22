@@ -15,10 +15,10 @@ Reviews are the most useful contribution at present. A reviewer who finds a stat
 ## Setup
 
 - Python 3.11 or later. Install the libraries the tools use: `pip install pyyaml sympy`. Add `pytest` to run the test suites and `anthropic` only if you will use the Anthropic tiers of the ladder.
-- Run every repository script as `python -I -X utf8 <script>` from the repository root. The `-I` flag keeps stray files in the working directory from being imported.
+- Run every repository script as `python -I -X utf8 path/to/script.py` from the repository root. The `-I` flag keeps stray files in the working directory from being imported.
 - Lean 4.35.0 (through [elan](https://github.com/leanprover/elan)) and Mathlib `v4.35.0` are needed **only** for Lean work. The pins are in [`lean4/lean-toolchain`](lean4/lean-toolchain) and [`lean4/lake-manifest.json`](lean4/lake-manifest.json). A full Lean build is large; download the Mathlib cache with `lake exe cache get`.
 - Rust (stable, with Cargo) is needed only to run the Rust certifiers in [`code/rust/`](code/rust).
-- Orientation: read the [README](README.md), then [`dag/derivation_dag_reading_note.md`](dag/derivation_dag_reading_note.md). The current counts and recent changes are on the status page, [`docs/status/README.md`](docs/status/README.md). The per-node evidence pages are being built; see [the evidence map (in progress)](docs/evidence/README.md).
+- Orientation: read the [README](README.md), then [`dag/derivation_dag_reading_note.md`](dag/derivation_dag_reading_note.md). The current counts and recent changes are on the generated status page, <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/>, which the daily workflow publishes once GitHub Pages is enabled; you can build the same pages locally with `python -I -X utf8 scripts/build_status.py --write` (they are not committed). Per-node evidence pages are proposed in [pull request #181](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/181) and are not on `main` yet.
 
 ## 1. Run an example prompt
 
@@ -30,27 +30,32 @@ What a run does, and what it does not do:
 - **The reply is an untrusted proposal.** The host program checks every claim it can: that a cited declaration exists at the cited place, that a number recomputes exactly, that a Lean skeleton elaborates when Lean is available. Refused claims are kept as negative entries so that later calls do not repeat them.
 - `accepted` means that enough claims passed these host checks. It does **not** mean that the mathematics is right or that the node's status should change. Prompt-result pull requests never change a node's status.
 
-Steps:
+Steps. The commands below use the node `DFM-BPHZ-SECTOR-KERNEL` as the worked example; **replace it with the id of the node you chose, and `alice` with your GitHub handle**. Do not type angle brackets into a shell: `<` is redirection.
 
-1. Fork the repository and create a branch, for example `community/<your-handle>/<node-id-lowercase>`.
+1. Fork the repository and create a branch, for example `git switch -c community/alice/dfm-bphz-sector-kernel`.
 2. Preview the packet and the cost. This needs no key and makes no call:
    ```
-   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node <NODE-ID> --stage P0 --max-cost-usd 0.10 --max-tier 1 --dry-run
+   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node DFM-BPHZ-SECTOR-KERNEL --stage P0 --max-cost-usd 0.10 --max-tier 1 --dry-run
    ```
 3. Provide your own key for the provider you want to use, in the environment or in a git-ignored `.env` file. The tool reads `GROQ_API_KEY` and `OPENROUTER_API_KEY` (free models are available on both) and `ANTHROPIC_API_KEY` (paid). Never print, commit or paste a key.
-4. Run it. Keep the budget ledger out of your pull request by pointing it at a file outside the repository:
+4. Run it. Point the budget ledger at a file outside the repository, here the parent directory:
    ```
-   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node <NODE-ID> --stage P0 --max-cost-usd 0.10 --max-tier 1 --ledger <path-outside-the-repo>/ledger.json
+   python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node DFM-BPHZ-SECTOR-KERNEL --stage P0 --max-cost-usd 0.10 --max-tier 1 --ledger ../tfqm-ledger.json
    ```
    `--max-cost-usd` is a hard cap on all paid calls in the run. `--max-tier 0 --max-cost-usd 0` uses free models only. The command prints a JSON summary and exits with 0 for `accepted`, 3 for `accepted_partial`, 4 for `skipped_ungroundable` and 1 for anything else.
-5. You may instead do it by hand: paste `system_prompt` and `user_prompt` from the node's file in [`dag/prompts/`](dag/prompts) into any model. The example page shows how to record such a reply.
-6. Check the result yourself (the example page has a node-specific SymPy check), then open a pull request. Use the pull request template. State the outcome class **Prompt result**, and say plainly what the run did not establish.
-
+5. You may instead do it by hand: paste `system_prompt` and `user_prompt` from the node's file in [`dag/prompts/`](dag/prompts) into any model, and record the reply as a run folder (the example page shows how).
+6. **Submit only your own run folder.** A ladder run edits two shared files as a side effect, the negative-entry index `dag/operads/_hallucination_index.json` and, unless you used `--ledger`, the budget ledger `dag/pfp/llm_ladder/budget_ledger.json`. Do not commit them; the maintainer integrates them after review:
+   ```
+   git restore dag/operads/_hallucination_index.json dag/pfp/llm_ladder/budget_ledger.json
+   git status
+   ```
+   `git status` should list only the new folder under `dag/results/DFM-BPHZ-SECTOR-KERNEL/runs/`.
+7. Check the result yourself (the example page has a node-specific SymPy check), then open a pull request. Use the pull request template. State the outcome class **Prompt result**, and say plainly what the run did not establish.
 An unsuccessful run is a result. Submit it if it taught you something: a wrong claim that the host caught, or a node that has nothing to ground.
 
 ## 2. Attempt a campaign target
 
-The derivation campaign ranks the open and conditional nodes that have never had a non-ladder run, and gives a per-target protocol: [`dag/pfp/campaign/README.md`](dag/pfp/campaign/README.md) (added by pull request [#180](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/180); if the link does not resolve yet, that pull request is not merged). In outline:
+The derivation campaign ranks the open and conditional nodes that have never had a non-ladder run, and gives a per-target protocol: [`dag/pfp/campaign/README.md`](dag/pfp/campaign/README.md) (pull request [#180](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/180)). In outline:
 
 - One target, one pull request. Take targets in rank order, or tell the maintainer which one you are taking by opening an issue, so that two people do not do the same work.
 - Every outcome that is proved is a result: **Derived** (the full statement is proved from the admitted primitives), **Reduced** (it is proved from a strictly weaker named assumption), **Refuted** (a countermodel shows the import is needed) or **Narrowed** (a precisely stated special case is proved).
@@ -85,8 +90,9 @@ These apply to every contribution. They are the reason the project keeps its lab
    python -I -X utf8 scripts/build_readme_facts.py --check
    python -I -X utf8 scripts/build_status.py --check
    ```
+   The last one rebuilds the generated status pages in memory, compares them with any copy on disk, and fails if a generated file is committed (it needs the full git history, not a shallow clone).
    A change to the DAG also runs the sync scripts in the order given in the reading note and the campaign protocol.
-2. **Scope check.** Does the pull request change only what it says? A prompt-result pull request touches only the run folder under `dag/results/<NODE>/runs/` and the shared hallucination index `dag/operads/_hallucination_index.json`, and no node status.
+2. **Scope check.** Does the pull request change only what it says? A prompt-result pull request adds only one run folder under `dag/results/<node id>/runs/`. It does not touch the shared index `dag/operads/_hallucination_index.json`, the budget ledger or any node status; the maintainer integrates those after review.
 3. **Statement-versus-theorem table.** The maintainer reads it against the Lean declarations. This is the step that decides whether a status may change.
 4. **Independent review.** For anything that changes a node, the maintainer asks a reviewer (see [`REVIEWING.md`](REVIEWING.md)) to read the statement, proof and prose. The outcome is recorded.
 5. **Merge.** The maintainer merges. Review is by one person on a best-effort basis; there is no service-level promise. A pull request that overstates its result is asked to narrow it, not rejected.

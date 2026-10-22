@@ -13,7 +13,7 @@ for r in dag['routes']:
 runs = subprocess.run(['git', 'ls-tree', '-d', '--name-only', '-r', 'HEAD', '--', 'dag/results'],
                       capture_output=True, text=True).stdout.split()
 attempted = {p.split('/')[2] for p in runs if len(p.split('/')) == 5 and p.split('/')[3] == 'runs'
-             and not p.split('/')[4].endswith('_ladder')}
+             and not re.search(r'_ladder(_\d+)?$|_byhand_', p.split('/')[4])}   # unverified by-hand replies are not attempts
 EXCLUDED_STAGES = {'ENGINE_CUSTODY', 'AUTHORIZATION', 'FINITE_OBSTRUCTION', 'IMPLEMENTATION', 'COMPUTATION'}
 RECORD_SHAPE = re.compile(r'^(F\d{3}|Shelf|Chapter|Ledger row|The S000|qm_\d+|Rung|Continuation attempt|Challenge \d)', re.I)
 TRUNK = {'PREGENESIS', 'GENESIS', 'MSSN_SN', 'WDP', 'L1_EMERGENCE', 'L1_TO_L2', 'FINITE_QM_CORE', 'FINITE_QM_DYNAMICS',

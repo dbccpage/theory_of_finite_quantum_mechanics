@@ -49,7 +49,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 152) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6444 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 6461 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 6935 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 8657, all_passed = false | `python -I -X utf8 scripts/contract_scores.py check` |
 
@@ -195,7 +195,7 @@ Anyone can help, and the most useful help is a critical reading. There are three
 - **Attempt a campaign target.** Open nodes ranked by how much depends on them, with a per-target protocol.
 - **Review.** Mathematicians and physicists who can read one node, its Lean file and its derivation note critically are asked to do so. The process, the rubric, the credit and a dated call for reviewers are in [`REVIEWING.md`](REVIEWING.md); reviewers are listed in [`docs/reviewers.md`](docs/reviewers.md).
 
-Where the project stands, with node counts by status and stage, the most recent changes and a digest per day, is on the generated status page, [`docs/status/README.md`](docs/status/README.md), and in [`docs/status/daily/`](docs/status/daily/index.md). The same pages are published as a site from [`docs/index.md`](docs/index.md) once GitHub Pages is enabled. The per-node evidence pages are being built: [`docs/evidence/README.md`](docs/evidence/README.md) (in progress).
+Where the project stands, with node counts by status and stage, the most recent changes and a digest per day, is on the generated status page, <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/>, with a digest per day at <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/daily/>. These pages are built by the daily workflow from the git history and are not committed; the site starts from [`docs/index.md`](docs/index.md) and exists once the maintainer enables GitHub Pages. To build them locally, run `python -I -X utf8 scripts/build_status.py --write`. Per-node evidence pages are proposed in [pull request #181](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/181) and are not on `main` yet.
 
 ## Contributing and support
 

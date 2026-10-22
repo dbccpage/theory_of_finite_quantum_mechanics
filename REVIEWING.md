@@ -44,16 +44,16 @@ A verdict of A on proof correctness for a Lean node means "the declaration prove
 
 Pick a node (issues carrying the label `review-needed` and the [example prompts](docs/contribute/example_prompts.md) are starting points, and the call below lists areas). Then read, in this order:
 
-1. **The node.** Print it from the DAG:
+1. **The node.** Print it from the DAG. The command below uses the node L1-IMP-HILBERT-INNER-PRODUCT; **replace that id with the node you chose** (do not type angle brackets into a shell, where < is redirection):
    ```
-   python -I -X utf8 -c "import json,sys; n={x['id']:x for x in json.load(open('dag/derivation_dag.json',encoding='utf-8'))['nodes']}[sys.argv[1]]; print(json.dumps(n,indent=1,ensure_ascii=False))" <NODE-ID>
+   python -I -X utf8 -c "import json,sys; n={x['id']:x for x in json.load(open('dag/derivation_dag.json',encoding='utf-8'))['nodes']}[sys.argv[1]]; print(json.dumps(n,indent=1,ensure_ascii=False))" L1-IMP-HILBERT-INNER-PRODUCT
    ```
    Note `status`, `statement`, `bottleneck`, `lean`, `rust`, `source` and `pfp_review` (the latter holds the narrowest claim from the earlier host review, if there is one). Status labels are defined in `status_legend` in the same file.
-2. **The evidence page**, `docs/evidence/nodes/<NODE-ID>.md`. These per-node pages are being built; see [the evidence map (in progress)](docs/evidence/README.md). Until your node has a page, use steps 3 to 6 directly.
+2. **The evidence page** for the node. Per-node evidence pages are proposed in [pull request #181](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/181) (planned location `docs/evidence/nodes/`, one file per node id) and are not on `main` yet. Until your node has a page, use steps 3 to 6 directly.
 3. **The Lean file.** The `lean` field names `path::declaration` pairs. Open the declaration and read its statement and the lines that follow it. Then compare it with the node statement, claim by claim. You can do this on GitHub without building. If you want to elaborate it, see the Lean setup in [`CONTRIBUTING.md`](CONTRIBUTING.md); the `#print axioms` lines at the end of a campaign module show what it depends on. A node with no `lean` entry has no Lean proof, and that is part of its label.
-4. **The independent check**, if there is one. Campaign targets carry `checks/independent/<node-id-lowercase>.py`, a SymPy or plain-Python script that recomputes the claim without importing repository code. Run it with `python -I -X utf8 checks/independent/<file>.py`. Other nodes may have a Rust or Python certifier under `code/`, named in the `rust` field.
-5. **The derivation note.** Every node has a paper under `dag/derivations/` (its path is the first `source` entry of most nodes). Campaign targets also have `dag/derivations/independent/<node-id-lowercase>.md`, whose first line says whether a human has reviewed it. Only a named human reviewer may change that line; an AI-drafted note stays marked as such until one does.
-6. **The history.** `git log --follow -- <file>` and the earlier review records under `dag/results/<NODE-ID>/reviews/` show what was already narrowed and why.
+4. **The independent check**, if there is one. Under the [campaign protocol](dag/pfp/campaign/README.md) each attempted target gets a script `checks/independent/<node id in lower case>.py`, a SymPy or plain-Python script that recomputes the claim without importing repository code; run it with `python -I -X utf8` and the script path. None exists on `main` yet. Nodes may have a Rust or Python certifier under `code/`, named in the `rust` field.
+5. **The derivation note.** Every node has a paper under `dag/derivations/` (its path is the first `source` entry of most nodes). Attempted campaign targets also have `dag/derivations/independent/<node id in lower case>.md`, whose first line says whether a human has reviewed it. Only a named human reviewer may change that line; an AI-drafted note stays marked as such until one does.
+6. **The history.** `git log --follow` on the file, and the earlier review records under `dag/results/<node id>/reviews/`, show what was already narrowed and why.
 
 Then open a [*Derivation review* issue](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml). Give the node id, the commit you reviewed (`git rev-parse HEAD`), your background in one line, your verdict for each item, and your specific issues. Be specific: a line, a declaration name, a quantifier. A review that says "looks fine" is welcome if it says what you looked at.
 
@@ -74,7 +74,7 @@ A recorded review is the opinion of one reader on stated files at a stated commi
 
 I am looking for professional mathematicians and physicists who are willing to read one part of this project critically and tell me where it is wrong or overstated. I would rather hear it from a specialist now than later.
 
-**What the project is.** A public derivation graph (the node counts are on [the status page](docs/status/README.md)) that asks how much of quantum mechanics follows from a finite, exact substrate, starting from a single inert mark, and records which steps are derived, conditional, imported, refuted or open. It does not claim to derive quantum mechanics. Many of its nodes are small finite statements checked in Lean 4 against Mathlib. Several are conditional on structure that is supplied, and that is stated in each node.
+**What the project is.** A public derivation graph (node counts are on the generated status page, <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/>) that asks how much of quantum mechanics follows from a finite, exact substrate, starting from a single inert mark, and records which steps are derived, conditional, imported, refuted or open. It does not claim to derive quantum mechanics. Many of its nodes are small finite statements checked in Lean 4 against Mathlib. Several are conditional on structure that is supplied, and that is stated in each node.
 
 **What I would like checked.** Whether the statements say what their proofs prove; whether the proofs are valid; whether the derivation notes can be followed by a specialist; whether the labels are honest. Corrections of mathematics, of terminology and of attribution are all in scope.
 
@@ -97,6 +97,6 @@ The frontier nodes (constructor theory, causal QFT, AdS/CFT, loop quantum gravit
 
 **Credit.** You are named in [`docs/reviewers.md`](docs/reviewers.md) with the nodes you reviewed, the commit, the date and a link to your review, using the name and affiliation you choose, or none. Where a review changes the repository, the pull request says so. If the work is written up, reviewers who wish to be acknowledged will be. There is no payment: the project is independently funded and has no budget for it. Authorship is not offered in exchange for a review.
 
-**How to start.** Open a [*Derivation review* issue](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml), or, if you want to ask a question first, open a blank issue titled "Reviewer question: <area>". The statement of what the project claims and does not claim is in the [README](README.md) and in [the status page](docs/status/README.md).
+**How to start.** Open a [*Derivation review* issue](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml), or, if you want to ask a question first, open a blank issue titled "Reviewer question: <area>". The statement of what the project claims and does not claim is in the [README](README.md) and on the generated status page, <https://dbccpage.github.io/theory_of_finite_quantum_mechanics/status/> (published by the daily workflow once Pages is enabled).
 
 **What I will not do.** I will not argue a node's label upward in response to a review, quote a review as an endorsement of the project, or treat silence as agreement.

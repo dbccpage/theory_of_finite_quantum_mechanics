@@ -14,7 +14,7 @@ A status label is only as strong as its evidence. `PROVED_LEAN` means a named Le
 
 ## Verify it yourself
 
-- **The evidence map (in progress):** [one page per node](evidence/README.md) with its statement, its Lean declaration, its independent check and its derivation note.
+- **The evidence map (in progress):** per-node pages with the statement, the Lean declaration, the independent check and the derivation note are proposed in [pull request #181](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/181) and will be linked here when it is merged.
 - **Reproduce the checks.** The commands for the DAG validator, the three-language parity checks and the Lean build are in [Reproduce it](https://github.com/dbccpage/theory_of_finite_quantum_mechanics#reproduce-it). The shortest check is `python -I -X utf8 dag/validate_derivation_dag.py --no-files`, which must report `failures=0`.
 - **Read the method.** [`dag/derivation_dag_reading_note.md`](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/dag/derivation_dag_reading_note.md) explains how the graph is built and what the validator does and does not check.
 

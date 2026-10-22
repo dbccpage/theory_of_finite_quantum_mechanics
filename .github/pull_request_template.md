@@ -46,8 +46,8 @@ Paste the last lines of each command you ran. Delete the ones that do not apply 
 python -I -X utf8 dag/validate_derivation_dag.py --no-files
 python -I -X utf8 scripts/build_readme_facts.py --check
 python -I -X utf8 scripts/build_status.py --check
-python -I -X utf8 checks/independent/<file>.py      # independent check, if any
-lake build <Module>                                 # Lean, if any
+python -I -X utf8 checks/independent/your_check.py   # your independent check, if any
+lake build YourModule                               # Lean, if any
 ```
 
 ```
