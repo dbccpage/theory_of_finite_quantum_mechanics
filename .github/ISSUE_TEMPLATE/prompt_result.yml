@@ -1,0 +1,68 @@
+name: Prompt result
+description: Report the result of running an example prompt, including a result that did not work.
+title: "Prompt result: <node id>"
+labels: ["good-first-prompt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this if you ran a prompt from [docs/contribute/example_prompts.md](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/docs/contribute/example_prompts.md) and prefer an issue to a pull request. A reply from a model is an untrusted proposal. Say what you checked yourself. A negative result is useful.
+        Never paste a key or the contents of a .env file.
+  - type: input
+    id: node
+    attributes:
+      label: Node id
+      description: For example DFM-BPHZ-SECTOR-KERNEL.
+    validations:
+      required: true
+  - type: dropdown
+    id: route
+    attributes:
+      label: How you ran it
+      options:
+        - LLM ladder (ladder.py)
+        - By hand with a model (prompt file pasted)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or settings
+      description: The exact command line (without keys), or the model name, version and settings used by hand.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: Summary status and exit code
+      description: For the ladder, the status in the printed JSON (accepted, accepted_partial, not_accepted, skipped_ungroundable) and the exit code. For a hand run, write "not host-checked".
+    validations:
+      required: true
+  - type: input
+    id: cost
+    attributes:
+      label: Models that answered and rated cost
+      description: As in ladder_receipt.json, or your provider's dashboard.
+  - type: textarea
+    id: result
+    attributes:
+      label: What came back
+      description: Attach or link the run folder (dag/results/<node id>/runs/...) or the unmodified reply. Summarise it in two or three sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: checked
+    attributes:
+      label: What you checked yourself
+      description: For example the SymPy check on the example page, and what it returned. Say which entries you read against the cited source.
+    validations:
+      required: true
+  - type: textarea
+    id: notestablished
+    attributes:
+      label: What this does not establish
+      description: Which claims are unverified or were refused, and anything you think the host check missed.
+    validations:
+      required: true

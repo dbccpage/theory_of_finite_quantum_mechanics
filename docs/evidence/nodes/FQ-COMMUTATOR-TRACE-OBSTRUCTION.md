@@ -1,0 +1,138 @@
+# FQ-COMMUTATOR-TRACE-OBSTRUCTION
+
+Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> In nonzero finite dimension, trace cyclicity gives tr\[A,B\] = 0 while tr(lambda I) = n lambda, so \[A,B\] = lambda I forces lambda = 0: canonical \[X,P\] = i hbar I has no finite-dimensional representation. Lean covers 2x2 integer matrices; Rust covers d=3 over Q(zeta_24).
+
+## Grade
+
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 0
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+
+## Flags
+
+- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+
+## Imported structure
+
+- finite dimension (assumption)
+
+## Bottleneck
+
+General n is prose; Lean is 2x2 (integer/rational entries).
+
+## Source status
+
+paper s11/13; Wintner-Wielandt style; H056, H068
+
+## Review
+
+- PFP review: [dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+  - narrowest claim: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary n\>0 over Q.
+  - does not support: Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses. The supplied finite matrix carrier is an assumption.
+  - next test: Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses. The supplied finite matrix carrier is an assumption.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/FiniteQM.lean`
+
+- file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
+- sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build FiniteQM`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `weyl_heisenberg_finite_trace_obstruction` | yes | yes | yes | - | `#print axioms weyl_heisenberg_finite_trace_obstruction` |
+- counts toward the grade: yes
+
+### Lean: `lean4/H056ContinuumLiftBoundary.lean`
+
+- file: [lean4/H056ContinuumLiftBoundary.lean](../../../lean4/H056ContinuumLiftBoundary.lean)
+- sha256 (`bytes`): `a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H056ContinuumLiftBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `wintner_wielandt_dim2_obstruction` | yes | yes | yes | - | `#print axioms wintner_wielandt_dim2_obstruction` |
+- counts toward the grade: yes
+
+### Lean: `lean4/H068WeylCcrResidual.lean`
+
+- file: [lean4/H068WeylCcrResidual.lean](../../../lean4/H068WeylCcrResidual.lean)
+- sha256 (`bytes`): `1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H068WeylCcrResidual`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `tr_comm2_vanishes` | yes | yes | yes | - | `#print axioms tr_comm2_vanishes` |
+- counts toward the grade: yes
+
+### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`
+
+- file: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs`
+
+- file: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md`
+
+- file: [dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md](../../../dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md)
+- sha256 (`lf-normalised`): `e173adbbe0f1421f43e86a2cc92be90e64e94f727f4fff508248b945ba840e1a`
+- generated view: listed, not counted
+- cited in: record TFQ-0067 (shared)
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+## Absences recorded by the TFQ records
+
+- TFQ-0067 lean4: not located
+- TFQ-0067 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py
+- TFQ-0067 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/algebraic_bound_state_spectra.rs
+
+## Routes
+
+Incoming (1):
+
+- `FQ-R-COMMUTATOR` `DERIVED_LEAN`: [FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY](FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY.md) (PROVED_LEAN)
+
+Outgoing (2):
+
+- `FQ-R-GAP-CONTINUUM` `CONDITIONAL_ON_IMPORT`: [FQ-GAP-CONTINUUM-HILBERT-LIFT](FQ-GAP-CONTINUUM-HILBERT-LIFT.md) (CONDITIONAL)
+- `FQ-R-GAP-STONE` `CONDITIONAL_ON_IMPORT`: [FQ-GAP-STONE-CONTINUOUS-TIME](FQ-GAP-STONE-CONTINUOUS-TIME.md) (CONDITIONAL)
