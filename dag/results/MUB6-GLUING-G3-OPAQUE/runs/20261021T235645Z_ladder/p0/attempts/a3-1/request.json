@@ -1,0 +1,310 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "MUB6-GLUING-G3-OPAQUE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "776407705ed78d0d55dde652b58631024dc9a718e2e3a6a517d8e512929d49fa",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=MUB6-GLUING-G3-OPAQUE stage=P0 attempt=a3-1 in=77640770 guided=yes\n@TARGET [PROVED_LEAN] For opaque Basis and MU predicates, every constituent triple of a pairwise MU seven-basis family has a fourth MU basis in the family, and if no MU triple has a fourth MU basis then no MU four-basis family exists.\n@BOTTLENECK Combinatorial facts over uninterpreted predicates; a concrete interpretation in complex matrices is needed before they apply to C^6.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/Gluing.lean | MUB6.Gluing.PairwiseMU | def | def PairwiseMU {n : Nat} (B : Fin n → Basis) : Prop\n lean4/Gluing.lean | MUB6.Gluing.FourMUB6 | def | def FourMUB6 : Prop\n lean4/Gluing.lean | MUB6.Gluing.NoFourMUB6 | def | def NoFourMUB6 : Prop\n lean4/Gluing.lean | MUB6.Gluing.MUTriple | structure | structure MUTriple\n lean4/Gluing.lean | MUB6.Gluing.HasFourthBasis | def | def HasFourthBasis (T : MUTriple) : Prop\n lean4/Gluing.lean | MUB6.Gluing.InConfig | def | def InConfig (T : MUTriple) (B : Fin 7 → Basis) : Prop\n lean4/Gluing.lean | MUB6.Gluing.G1 | def | def G1 : Prop\n lean4/Gluing.lean | MUB6.Gluing.G2 | def | def G2 : Prop\n lean4/Gluing.lean | MUB6.Gluing.G3 | def\n lean4/Gluing.lean | MUB6.Gluing.g3_theorem | theorem\n lean4/Gluing.lean | MUB6.Gluing.no_four_mub6_of_no_triple_extension | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_verify_gate (BasisGluingInputs)->BasisGluingGateReport src=code/rust/src/mub/omega_native/basis_gluing_gate.rs | verify_basis_gluing_gate\n r:r_cert_gives_no_extension A Cert for a tuple e implies no unitary U makes all overlaps have squared norm 1/d (no unbiased fourth basis). src=lean4/FixedTuplePsiCertificate.lean | MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6\n r:R1 FourierTripleLandingPremise implies NoCompleteMUB6 src=lean4/RouteCFourierLandingBypass.lean | MUB6.RouteC.no_complete_mub6_of_fourier_triple_landing\n r:R2 A landing map CompleteMUB6 -> RouteCCompleteMUBFamily implies NoCompleteMUB6 src=lean4/RouteCFourierLandingBypass.lean | MUB6.RouteC.no_complete_mub6_via_route_c\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] l_psi_contraction: Psi is a strict contraction on dephased 6x6 complex Hadamard matrices with deficient fixed  -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] MUB.FixedTuplePsiCertificate.psi_basis_pos_of_pointwise_pos -- Do not state that arity/signature for MUB.FixedTuplePsiCertificate.psi_basis_pos_of_pointwise_pos.\n [wrong_signature] MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6 -- Do not state that arity/signature for MUB.FixedTuplePsiCertificate.no_fourth_basis_of_cert_d6.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 11,
+    "known_neg_injected": 3,
+    "known_pos_injected": 4,
+    "neighbours": [
+      "MUB6-GLOBAL-OBLIGATIONS",
+      "MUB6-PSI-GLUING-CLAIM",
+      "MUB6-ROUTE-C-CONDITIONAL"
+    ],
+    "feedback": true,
+    "index_position": 681,
+    "neg_entry_ids": [
+      "NEG-49A684DF3EEE",
+      "NEG-83B2E3A4888F",
+      "NEG-9909ADE59BB4"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

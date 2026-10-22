@@ -1,0 +1,134 @@
+{
+  "task_id": "MUB-EXACT-PROJECTORS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "bb43692e5d8a3cecec0d2c4abdef233cd438021fccb2e6504d4a1a0daf36021c",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_muPolynomial\",\"inputs\":[\"Triple\",\"Fin3\",\"Fin6\",\"Fin6\"],\"output\":\"Poly\",\"arity\":4,\"carrier\":\"Fin 6 complex coordinates, concrete d=6 polynomial system\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.muPolynomial\",\"status\":\"existing\"}},{\"id\":\"g_overlapRe\",\"inputs\":[\"Triple\",\"Fin3\",\"Fin6\",\"Fin6\"],\"output\":\"Poly\",\"arity\":4,\"carrier\":\"Fin 6 complex coordinates, concrete d=6 polynomial system\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.overlapRe\",\"status\":\"existing\"}},{\"id\":\"g_coordinates\",\"inputs\":[\"Candidate\"],\"output\":\"CoordVector\",\"arity\":1,\"carrier\":\"candidate to coordinate vector\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.coordinates\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r:R_selfadjoint\",\"statement\":\"conjTranspose of P_{b,l} equals P_{b,l}\",\"hypotheses\":\"concrete finite complex MUB family\",\"ref\":{\"path\":\"lean4/ConcreteMubProjectors.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint\",\"status\":\"existing\"}},{\"id\":\"r:R_complete\",\"statement\":\"sum over l of P_{b,l} = 1\",\"hypotheses\":\"concrete finite complex MUB family\",\"ref\":{\"path\":\"lean4/ConcreteMubProjectors.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.concreteProjector_complete\",\"status\":\"existing\"}},{\"id\":\"r:R_rank_one\",\"statement\":\"rank P_{b,l} = 1\",\"hypotheses\":\"concrete finite complex MUB family\",\"ref\":{\"path\":\"lean4/ConcreteMubProjectors.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.concreteProjector_rank_one\",\"status\":\"existing\"}},{\"id\":\"r:R_cross_trace\",\"statement\":\"for b != c, trace(P_{b,l} P_{c,k}) = 1/|iota|\",\"hypotheses\":\"concrete finite complex MUB family, b != c\",\"ref\":{\"path\":\"lean4/ConcreteMubProjectors.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[],\"near_misses\":[{\"id\":\"nm_rank_deficient\",\"claim\":\"A candidate basis that is rank deficient or empty is accepted as an extending MUB basis\",\"rejecting_invariant\":\"rank-one resolution and completeness: rank and sum of projectors = 1 must hold\"},{\"id\":\"nm_same_basis_trace\",\"claim\":\"Trace pairing 1/d holds for projectors within the same basis\",\"rejecting_invariant\":\"within one basis P_{b,l}P_{b,k} = delta_{lk}P_{b,l}, so trace is 0 for l != k and 1 for l = k\"}],\"numeric_claims\":[{\"id\":\"n_d6_cross\",\"expr\":\"1/6\",\"value\":\"1/6\"},{\"id\":\"n_sum_trace\",\"expr\":\"6*(1/6)\",\"value\":\"1\"}],\"open_obligations\":[\"No Lean skeletons given; lemma array left empty to avoid vacuous proofs\",\"Scalar extension (cyclotomic or field adjoining roots of unity) not grounded in a cited declaration\",\"No generator for the projector construction itself is listed in SRC/KNOWN+ as an operation\",\"Arbitrary finite-dimensional Hilbert carrier generalization beyond the concrete family is ungrounded\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_muPolynomial",
+        "inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "Fin 6 complex coordinates, concrete d=6 polynomial system",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.muPolynomial",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_overlapRe",
+        "inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "Fin 6 complex coordinates, concrete d=6 polynomial system",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.overlapRe",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_coordinates",
+        "inputs": [
+          "Candidate"
+        ],
+        "output": "CoordVector",
+        "arity": 1,
+        "carrier": "candidate to coordinate vector",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.coordinates",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r:R_selfadjoint",
+        "statement": "conjTranspose of P_{b,l} equals P_{b,l}",
+        "hypotheses": "concrete finite complex MUB family",
+        "ref": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r:R_complete",
+        "statement": "sum over l of P_{b,l} = 1",
+        "hypotheses": "concrete finite complex MUB family",
+        "ref": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_complete",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r:R_rank_one",
+        "statement": "rank P_{b,l} = 1",
+        "hypotheses": "concrete finite complex MUB family",
+        "ref": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_rank_one",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r:R_cross_trace",
+        "statement": "for b != c, trace(P_{b,l} P_{c,k}) = 1/|iota|",
+        "hypotheses": "concrete finite complex MUB family, b != c",
+        "ref": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [],
+    "near_misses": [
+      {
+        "id": "nm_rank_deficient",
+        "claim": "A candidate basis that is rank deficient or empty is accepted as an extending MUB basis",
+        "rejecting_invariant": "rank-one resolution and completeness: rank and sum of projectors = 1 must hold"
+      },
+      {
+        "id": "nm_same_basis_trace",
+        "claim": "Trace pairing 1/d holds for projectors within the same basis",
+        "rejecting_invariant": "within one basis P_{b,l}P_{b,k} = delta_{lk}P_{b,l}, so trace is 0 for l != k and 1 for l = k"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_d6_cross",
+        "expr": "1/6",
+        "value": "1/6"
+      },
+      {
+        "id": "n_sum_trace",
+        "expr": "6*(1/6)",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "No Lean skeletons given; lemma array left empty to avoid vacuous proofs",
+      "Scalar extension (cyclotomic or field adjoining roots of unity) not grounded in a cited declaration",
+      "No generator for the projector construction itself is listed in SRC/KNOWN+ as an operation",
+      "Arbitrary finite-dimensional Hilbert carrier generalization beyond the concrete family is ungrounded"
+    ]
+  }
+}

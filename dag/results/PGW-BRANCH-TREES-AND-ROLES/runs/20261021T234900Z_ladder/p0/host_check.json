@@ -1,0 +1,135 @@
+{
+  "task_id": "PGW-BRANCH-TREES-AND-ROLES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "85523478400a52394afd11beda478a05c95d09ead78eac5b83357f8d74d8d725",
+  "candidate_sha256": "367f2cde4d7ab40a41359b1a1924d0ad81392b39ea01156c7813d916b0862d7b",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 6,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:08Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R-COLDIST-IDENT",
+        "equation_or_predicate": "For any system r, columnDistance r i j = 72 - 12 * Re(W r 2 i j)",
+        "typing_conditions": "System r",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticTransitionSeparation.lean",
+            "declaration": "MUB.QuadraticTransitionSeparation.columnDistance_identity",
+            "line": 20
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticTransitionSeparation.lean",
+          "decl": "MUB.QuadraticTransitionSeparation.columnDistance_identity",
+          "kind": "theorem",
+          "line": 20,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R-COLDIST-LOWER",
+        "equation_or_predicate": "For any system r, separationLower <= columnDistance r i j",
+        "typing_conditions": "System r",
+        "source_pins": [
+          {
+            "path": "lean4/MubQuadraticTransitionSeparation.lean",
+            "declaration": "MUB.QuadraticTransitionSeparation.columnDistance_lower",
+            "line": 48
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubQuadraticTransitionSeparation.lean",
+          "decl": "MUB.QuadraticTransitionSeparation.columnDistance_lower",
+          "kind": "theorem",
+          "line": 48,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No SRC declaration covers branch DAG export, orbit policy, or role classification; generators cannot be grounded.",
+      "CL-TREE-MU2-COMPLETE is unproved, so the 963 and 1847 node counts remain conditional.",
+      "Node counts and frontier sizes come from the export and are not recomputed here.",
+      "Behaviour past the exported depths is unresolved.",
+      "The edge-count sums are role totals and are not independently checked against the exported edge counts.",
+      "lemma L-SEP-POS unverified: Lean elaboration disabled",
+      "near_miss NM-DEPTH-NOT-UNBOUNDED unverified: semantic near miss; P4 host check decides",
+      "near_miss NM-MU1-COMPLETE unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N-L-MU1-EDGES",
+        "expr": "195+1047+8",
+        "value": "1250",
+        "host_evidence": {
+          "recomputed": "1250"
+        }
+      },
+      {
+        "id": "N-L-MU2-EDGES",
+        "expr": "111+858+53",
+        "value": "1022",
+        "host_evidence": {
+          "recomputed": "1022"
+        }
+      },
+      {
+        "id": "N-F-MU1-EDGES",
+        "expr": "233+1001+10",
+        "value": "1244",
+        "host_evidence": {
+          "recomputed": "1244"
+        }
+      },
+      {
+        "id": "N-F-MU2-EDGES",
+        "expr": "413+1458+83+6",
+        "value": "1960",
+        "host_evidence": {
+          "recomputed": "1960"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 4 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

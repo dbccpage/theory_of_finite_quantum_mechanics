@@ -1,0 +1,312 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-ALPHA-LICENSE-BINDING-M1-M8",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "64490df30e4b7bde0705656b659f6a0ea9280bff02d3f1c32b2b0c2a6a8a68f8",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-ALPHA-LICENSE-BINDING-M1-M8 stage=P0 attempt=a3-1 in=64490df3 guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] The Alpha reference slice is READY_WITHIN_DECLARED_SCOPE: after one repair pass (commit b698cf7f) the eight mandatory conditions hold within the §7 trust boundary. M1 authorized admission executes only a member freshly recomputed from the sealed kernel; M2 a parent Node whose history does not replay to its regime is refused; M3 a License is bound to the source history digest, the target, the measure and the bounds, and reuse with any field changed is refused; M4 uniqueness is not authorization; M5 every retained class receives one disposition (explored, pruned or open); M6 proposal and evaluation are inert and OPEN, bound or guard outcomes are typed stops, never admitted successes; M7 the slice replays offline with no model provider; M8 one local command (python verify.py) passed nine of nine steps with 0 skipped checks, including 169 tests and the sealed kernel's 66. The audit reproduced B1, B2 and B3 through the real path, and each repair fired and recovered under live injection.\n@BOTTLENECK Within the declared scope only: a License is checked for consistency with the call, not for provenance, so the host's call is the authorization; the refinement to Lean is NOT_PROVED, demand generation is OPEN and consumer bridges are OPEN.\n@ASSUME Trust boundary of closeout §7: trusted sealed runtime modules, harness code and host; excluded process compromise, kernel or harness tampering, SHA-256 collisions, concurrent use and any authentication (assumption); The one-command receipt is a local receipt in dbccpage/19L57G1, not hosted CI and not re-run in this checkout (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/python/governance/20_execution/tests_omega_quantum_physics_interpretations_typed_authority_boundary_suite_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n code/python/governance/20_execution/tests_omega_replay_t3_exact_admission_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n code/python/governance/20_execution/tests_omega_wdp_derivation_controls_plan_odm_reuse_open_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n code/python/governance/20_execution/tests_omega_wdp_test_native_history_guard_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n code/python/governance/20_execution/tests_omega_wdp_test_proposal_admission_bridge_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n code/python/governance/50_os/omega_local_green_global_red_lggr_matrix_path_kernel_contract.py | ContractModel | class | class ContractModel(BaseModel): model_config = ConfigDict(extra=\"allow\", populate_by_name=True) schema_version: str = \"omega.contract.v1\" contract_id:\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:r_packet_no_repair A terminal packet with no rule remains terminal; it is not repaired. src=lean4/PrimitiveTerminalPacket.lean | OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired\n r:r_self_pass_no_effect A source self-pass flag has no effect on replay verification. src=code/python/tests/test_auth_incompleteness_replay_packet.py | test_case_02_source_self_pass_flag_has_no_effect\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] OmegaCore.PrimitiveTerminalPacket.packetFor -- Do not state that arity/signature for OmegaCore.PrimitiveTerminalPacket.packetFor.\n [vacuous_proof] l_attach_preserves_terminal: For any terminal packet p and receipt r, the terminal of attach(p,r) equals the t -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] run_replay_receipts -- Do not state that arity/signature for run_replay_receipts.\n [composition_type_mismatch] g_attach_packet . slot 0 <- g_terminal_packet via r_packet_no_repair -- Do not compose operations whose colours do not match.\n [composition_type_mismatch] g_attach_packet . slot 1 <- g_run_replay_receipts via r_attach_no_authority -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 6,
+    "known_neg_injected": 5,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "PGW-CANDIDATE-EXTENSION-GENERATOR",
+      "TFQ-0331",
+      "TFQ-0506"
+    ],
+    "feedback": true,
+    "index_position": 431,
+    "neg_entry_ids": [
+      "NEG-0FD0C034A5BD",
+      "NEG-20A3A8896DDF",
+      "NEG-4C6C4B07D751",
+      "NEG-C04E6C8F0C87",
+      "NEG-DECFB0D3D253"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

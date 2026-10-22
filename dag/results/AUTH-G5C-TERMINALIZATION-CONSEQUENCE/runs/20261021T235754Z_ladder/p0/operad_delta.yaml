@@ -1,0 +1,97 @@
+add_or_refine_generators:
+- id: acceptanceBit
+  ordered_inputs:
+  - Terminalizer
+  output: BoolPredicate
+  arity: 1
+  carrier: Proposal -> Bool
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptanceBit
+    line: 45
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptanceBit
+    kind: def
+    line: 45
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: no_total_decider_blocks
+  equation_or_predicate: If the class has no total decider for valid and acceptanceBit terminalize lies
+    in the class, then terminalize is not both acceptance-sound and acceptance-complete.
+  typing_conditions: NoTotalDecider premise for allowed class; allowed (acceptanceBit terminalize)
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
+    line: 99
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_sound_complete_authorization
+    kind: theorem
+    line: 99
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: closed_two_sided
+  equation_or_predicate: A closed terminalizer that is acceptance-sound and rejection-sound is acceptance-complete;
+    under no total decider and class membership no such terminalizer exists.
+  typing_conditions: TerminalClosed; AcceptanceSound; RejectionSound; NoTotalDecider; class membership
+    of acceptance bit
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
+    line: 132
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization
+    kind: theorem
+    line: 132
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-755A7D888096
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'target_restatement: Under NoTotalDecider and class membership of acceptanceBit, no terminalizer
+    is acceptance-sound and acceptance-complete; none is acceptance-sound, rejection-sound and never unresolved.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTH-G5C-TERMINALIZATION-CONSEQUENCE
+counterexamples: []
+open_obligations:
+- NoTotalDecider premise not supplied by any program carrier
+- class membership of the acceptance bit not supplied
+- three terminal values versus five in TFQ-0330
+- exact statements of the cited theorems are truncated in the source, so signatures were not checked
+- no generator for terminalize grounded, since only the acceptanceBit def is listed as an operation
+- 'near_miss all_unresolved unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: terminal_values_gap
+  expr: 5 - 3
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []

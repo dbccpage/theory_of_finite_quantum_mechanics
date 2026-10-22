@@ -1,0 +1,100 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_run_append
+  equation_or_predicate: P.run (left ++ right) x = P.run right (P.run left x)
+  typing_conditions: P a Presentation; left, right lists of signature symbols; x a carrier element
+  source_pins:
+  - path: lean4/RetainedProfileCecBridge.lean
+    declaration: RetainedProfileCECBridge.Presentation.run_append
+    line: 82
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RetainedProfileCecBridge.lean
+    decl: RetainedProfileCECBridge.Presentation.run_append
+    kind: theorem
+    line: 82
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_cut_distinct
+  equation_or_predicate: 'A carrier cut witness separates endpoints: C.r a b implies a ≠ b'
+  typing_conditions: 'C a CarrierCut on X with witness hwit : C.r a b'
+  source_pins:
+  - path: lean4/GenesisFspBridge.lean
+    declaration: GenesisFspBridge.cut_endpoints_distinct
+    line: 13
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisFspBridge.lean
+    decl: GenesisFspBridge.cut_endpoints_distinct
+    kind: theorem
+    line: 13
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_nonunique_equalcost
+  equation_or_predicate: Two equal-cost extensions yield profiles that each differ between source and
+    target, so the extension is not unique
+  typing_conditions: refinementA and refinementB as defined in the Lean file
+  source_pins:
+  - path: lean4/RetainedProfileCecBridge.lean
+    declaration: RetainedProfileCECBridge.nonunique_equalCost_extension_countermodel
+    line: 397
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RetainedProfileCecBridge.lean
+    decl: RetainedProfileCECBridge.nonunique_equalCost_extension_countermodel
+    kind: theorem
+    line: 397
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-2EC90CDFFF29
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_s6_tied_not_tower: S(6) row: equal-cost extensions are non-unique, so tied responses form
+    a branching set rather than a linear tower'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-GENESIS-TO-SN-CROSSWALK
+counterexamples:
+- id: NEG-BA829F983520
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_run: (Presentation, SigList, Carrier) -> Carrier [RetainedProfileCECBridge.Presentation.run]'
+  evidence: lean def run has 0 explicit binders (0 with conclusion arrows); the claim says 3 (heuristic
+    count)
+  decl_key: RetainedProfileCECBridge.Presentation.run
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-GENESIS-TO-SN-CROSSWALK
+open_obligations:
+- No generator grounded for S(0)-S(2) or S(5) rows; no operation names are available in the sources
+- Compositions left empty because no slot-colour match is licensed
+- S(6) typed-map preservation lemma should cite ConservativeExtensionCertificate, but its statement is
+  not shown and is not proved
+- Lean skeletons are not host-elaborated
+- 'lemma l_s3_cut_separation unverified: Lean elaboration disabled'
+- 'near_miss nm_glyph_semantics unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_saturation_endogenous unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_index_conflation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

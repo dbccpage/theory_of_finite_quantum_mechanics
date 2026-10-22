@@ -1,0 +1,80 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: plaquette_rephasing_invariance
+  equation_or_predicate: plaquette(rephase(V,u,d),a,b,j,k) = plaquette(V,a,b,j,k)
+  typing_conditions: u_i, d_j have normSq = 1 in Q(i); conj taken as Gaussian-rational conjugation
+  source_pins:
+  - path: lean4/RaveraDfmFiniteToContinuum.lean
+    declaration: RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance
+    line: 178
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RaveraDfmFiniteToContinuum.lean
+    decl: RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance
+    kind: theorem
+    line: 178
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: edge_count
+  equation_or_predicate: K_{n,n} has n^2 edges; vertex-coboundary phase count 2n-1 effective; n^2-(2n-1)=(n-1)^2
+  typing_conditions: n rational (natural n for graphs)
+  source_pins:
+  - path: lean4/RaveraDfmFiniteToContinuum.lean
+    declaration: RaveraDfmFiniteToContinuum.ckm_bipartite_dfm_parameter_count
+    line: 166
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RaveraDfmFiniteToContinuum.lean
+    decl: RaveraDfmFiniteToContinuum.ckm_bipartite_dfm_parameter_count
+    kind: theorem
+    line: 166
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-F51D46DD6426
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_plaq_invariant: For unit-norm Gaussian rationals u_a,u_b,d_j,d_k the plaquette of the rephased
+    matrix equals the plaquette of V: phases u_a conj(u_a)=1 etc cancel pairwise.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-CKM-BIPARTITE-REPHASING
+counterexamples: []
+open_obligations:
+- No Lean def for U(1) vertex coboundary on K_{N,N} grounded; proposed_new
+- Plaquette definition not in KNOWN+; invariance cited via Jarlskog quartet lemma, argument order mapping
+  unverified
+- 'Field choice: Q(i) unit-norm vs larger field not declared'
+- L_plaq_invariant skeleton is placeholder, not a proof
+- Shared rephasing 1 dimension (overall phase) justification of 2N-1 not formalized
+- 'generator rephase unverified: no existing declaration cited'
+- 'generator plaquette unverified: no existing declaration cited'
+- 'lemma L_param_count unverified: Lean elaboration disabled'
+- 'near_miss nm_real_phase unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_row_only unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n3
+  expr: 3^2 - (2*3 - 1)
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+- id: n2
+  expr: 2^2 - (2*2 - 1)
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

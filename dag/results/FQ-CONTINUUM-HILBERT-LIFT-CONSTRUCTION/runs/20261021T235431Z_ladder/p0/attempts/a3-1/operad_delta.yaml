@@ -1,0 +1,138 @@
+add_or_refine_generators:
+- id: g_lift
+  ordered_inputs:
+  - Carrier
+  output: HilbertLiftSpace
+  arity: 1
+  carrier: Q-vectors N ->0 Q into the Hausdorff completion of N ->0 k
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/HilbertLiftCompletion.lean
+    declaration: HilbertLift.lift
+    line: 170
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/HilbertLiftCompletion.lean
+    decl: HilbertLift.lift
+    kind: def
+    line: 170
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_castSeq
+  ordered_inputs:
+  - Carrier
+  output: PreH
+  arity: 1
+  carrier: exact vectors cast into the pre-Hilbert space N ->0 k
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/HilbertLiftCompletion.lean
+    declaration: HilbertLift.castSeq
+    line: 128
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/HilbertLiftCompletion.lean
+    decl: HilbertLift.castSeq
+    kind: def
+    line: 128
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_ofFin
+  ordered_inputs:
+  - FinCarrier
+  output: Carrier
+  arity: 1
+  carrier: zero-padding of Fin n -> Q into N ->0 Q
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/HilbertLiftFiniteTower.lean
+    declaration: HilbertLift.ofFin
+    line: 183
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/HilbertLiftFiniteTower.lean
+    decl: HilbertLift.ofFin
+    kind: def
+    line: 183
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_controlled
+  equation_or_predicate: lift preserves inner product, is injective, and has dense range over R
+  typing_conditions: scalar field R; l2 uniformity supplied as hypothesis
+  source_pins:
+  - path: lean4/HilbertLiftCompletion.lean
+    declaration: HilbertLift.controlled_completion
+    line: 385
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/HilbertLiftCompletion.lean
+    decl: HilbertLift.controlled_completion
+    kind: theorem
+    line: 385
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_exhaustion
+  equation_or_predicate: the directed union N ->0 Q is exhausted by the zero-padded finite stages
+  typing_conditions: none beyond the definitions
+  source_pins:
+  - path: lean4/HilbertLiftFiniteTower.lean
+    declaration: HilbertLift.exhaustion
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/HilbertLiftFiniteTower.lean
+    decl: HilbertLift.exhaustion
+    kind: theorem
+    line: 259
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions:
+- outer_operation: g_lift
+  input_slot: 0
+  inner_operation: g_ofFin
+  colour_match: true
+  hypothesis_match: not checked
+  licensing_relations:
+  - r_exhaustion
+  evidence_status: colours_match_and_licensed_by_verified_relation
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact signatures of the existing declarations are not given in the source, so the lemma skeletons are
+  unchecked
+- liftFin has no listed declaration
+- Cauchy-iff-rational-l2-Cauchy and convergence are not grounded
+- The operator lift bound sqrt(C) and shift isometry are not grounded
+- The liftPair arity was refused earlier and is not restated
+- 'relation r_ofFin_lift unverified: no existing declaration cited'
+- 'lemma l_controlled unverified: Lean elaboration disabled'
+- 'lemma l_complex unverified: Lean elaboration disabled'
+- 'lemma l_nocont unverified: Lean elaboration disabled'
+- 'near_miss nm_l1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

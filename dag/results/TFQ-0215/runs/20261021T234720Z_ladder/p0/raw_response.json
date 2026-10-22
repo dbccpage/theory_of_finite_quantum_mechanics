@@ -1,0 +1,78 @@
+{
+  "task_id": "TFQ-0215",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "5fc1cb9a755f23bfb95227894ce6b01c2d190aeb8ff66af3ac59b90cdbc7ce36",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"Transport with a loss ledger whose carrier does not match the target carrier is refused.\",\"hypotheses\":\"Ledger carrier differs from the carrier of the transport target.\",\"ref\":{\"path\":\"code/rust/src/wdp/prime_algos/prime_algorithm_1.rs\",\"decl\":\"transport_with_mismatched_ledger_carrier_refuses\",\"status\":\"existing\"}},{\"id\":\"R2\",\"statement\":\"An empty loss ledger is an explicit claim of no loss and not an absence of a ledger.\",\"hypotheses\":\"A LossLedger value with zero entries is present.\",\"ref\":{\"path\":\"code/rust/src/wdp/prime_algos/prime_algorithm_1.rs\",\"decl\":\"an_empty_ledger_is_a_claim_not_an_absence\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"For a quantum derivation, custody binding is the triple of shelf paths F001.S000 and F000.S000 plus the F003 prime packet carrier, and a chapter title in F001 does not fill the F003 carrier field.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R1\",\"R2\"],\"lean_skeleton\":\"theorem custody_binding_quantum (f1 f0 f3 : String) (h : f3 ≠ \\\"\\\") : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"Citing only F001.S000 (chapter title) suffices as the F003 carrier.\",\"rejecting_invariant\":\"A chapter title in F001 does not fill the F003 carrier field; carrier mismatch is refused (R1).\"},{\"id\":\"N2\",\"claim\":\"A missing ledger is equivalent to an empty ledger.\",\"rejecting_invariant\":\"An empty ledger is a claim, not an absence (R2).\"}],\"numeric_claims\":[{\"id\":\"C1\",\"expr\":\"2 + 1\",\"value\":\"3\"}],\"open_obligations\":[\"No generators grounded: no @SRC declaration is a typed operation with colours.\",\"Shelf paths F001.S000, F000.S000 and F003 runtime have no listed declarations to cite.\",\"Finite state space, density matrix, CPTP and trace-norm declarations are not in @SRC.\",\"Lean skeleton for L1 is a placeholder and needs a real formal statement.\",\"Compositions need generators and licensing relations.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "Transport with a loss ledger whose carrier does not match the target carrier is refused.",
+        "hypotheses": "Ledger carrier differs from the carrier of the transport target.",
+        "ref": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_1.rs",
+          "decl": "transport_with_mismatched_ledger_carrier_refuses",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R2",
+        "statement": "An empty loss ledger is an explicit claim of no loss and not an absence of a ledger.",
+        "hypotheses": "A LossLedger value with zero entries is present.",
+        "ref": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_1.rs",
+          "decl": "an_empty_ledger_is_a_claim_not_an_absence",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "For a quantum derivation, custody binding is the triple of shelf paths F001.S000 and F000.S000 plus the F003 prime packet carrier, and a chapter title in F001 does not fill the F003 carrier field.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1",
+          "R2"
+        ],
+        "lean_skeleton": "theorem custody_binding_quantum (f1 f0 f3 : String) (h : f3 ≠ \"\") : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "Citing only F001.S000 (chapter title) suffices as the F003 carrier.",
+        "rejecting_invariant": "A chapter title in F001 does not fill the F003 carrier field; carrier mismatch is refused (R1)."
+      },
+      {
+        "id": "N2",
+        "claim": "A missing ledger is equivalent to an empty ledger.",
+        "rejecting_invariant": "An empty ledger is a claim, not an absence (R2)."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "C1",
+        "expr": "2 + 1",
+        "value": "3"
+      }
+    ],
+    "open_obligations": [
+      "No generators grounded: no @SRC declaration is a typed operation with colours.",
+      "Shelf paths F001.S000, F000.S000 and F003 runtime have no listed declarations to cite.",
+      "Finite state space, density matrix, CPTP and trace-norm declarations are not in @SRC.",
+      "Lean skeleton for L1 is a placeholder and needs a real formal statement.",
+      "Compositions need generators and licensing relations."
+    ]
+  }
+}

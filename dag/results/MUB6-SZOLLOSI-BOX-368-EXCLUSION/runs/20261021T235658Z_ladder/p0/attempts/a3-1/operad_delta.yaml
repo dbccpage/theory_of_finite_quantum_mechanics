@@ -1,0 +1,102 @@
+add_or_refine_generators:
+- id: g_native_lower
+  ordered_inputs:
+  - Variable
+  output: Rat
+  arity: 1
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/SzollosiGaugedReflection.lean
+    declaration: MUB.SzollosiGaugedReflection.nativeLower
+    line: 543
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedReflection.lean
+    decl: MUB.SzollosiGaugedReflection.nativeLower
+    kind: def
+    line: 543
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_native_upper
+  ordered_inputs:
+  - Variable
+  output: Rat
+  arity: 1
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/SzollosiGaugedReflection.lean
+    declaration: MUB.SzollosiGaugedReflection.nativeUpper
+    line: 544
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedReflection.lean
+    decl: MUB.SzollosiGaugedReflection.nativeUpper
+    kind: def
+    line: 544
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_box_exclusion
+  equation_or_predicate: If r lies in the native box and all 666 expressions vanish at r, then False
+  typing_conditions: AllExpressionsZero r and InNativeBox r
+  source_pins:
+  - path: lean4/SzollosiGaugedReflection.lean
+    declaration: MUB.SzollosiGaugedReflection.native_box_exclusion
+    line: 574
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedReflection.lean
+    decl: MUB.SzollosiGaugedReflection.native_box_exclusion
+    kind: theorem
+    line: 574
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_box_phase_point
+  equation_or_predicate: The native box contains a point whose parameter polynomials all evaluate to zero
+    (admissible phase point)
+  typing_conditions: none
+  source_pins:
+  - path: lean4/SzollosiGaugedReflection.lean
+    declaration: MUB.SzollosiGaugedReflection.native_box_has_admissible_phase_point
+    line: 609
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedReflection.lean
+    decl: MUB.SzollosiGaugedReflection.native_box_has_admissible_phase_point
+    kind: theorem
+    line: 609
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Coordinate 368 balance equation bound [7/2,17/2] not tied to an existing declaration
+- No grounded generator for the 666-expression system or parameters map
+- Compositions not licensed by listed declarations
+- 'lemma l_exclusion unverified: Lean elaboration disabled'
+- 'lemma l_phase_point unverified: Lean elaboration disabled'
+- 'near_miss nm_global unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

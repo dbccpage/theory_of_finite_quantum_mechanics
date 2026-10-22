@@ -1,0 +1,103 @@
+{
+  "task_id": "FSP-CAR-EXTERIOR-FOCK",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "73910dbf275b5611849899894023dbf9601f9a364fd8ed7730e6973402a44fd4",
+  "candidate_sha256": "98e1612e3a175bd4534d925d956c8a69185d032cff871f15c663970150f55b71",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:06Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "car_ccdag",
+        "equation_or_predicate": "{c_i,c_j^dagger}=delta_ij * id",
+        "typing_conditions": "orthonormal basis e_i; inner product gives delta_ij",
+        "source_pins": [
+          {
+            "path": "lean4/H005InnerProductAdmission.lean",
+            "declaration": "FableHilbertWalk20260819.H005.delta_orthonormal",
+            "line": 20
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.delta_orthonormal",
+          "kind": "theorem",
+          "line": 20,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-B4620B17919D",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "car_main: For all i,j: c_i c_j + c_j c_i = 0 and c_i c_j^dagger + c_j^dagger c_i = delta_ij id on Lambda(V); in particular c_i^2=0",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "FSP-CAR-EXTERIOR-FOCK"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No exterior algebra, wedge, or interior product declarations exist in SRC; all must be proposed_new",
+      "Lean definition of Lambda(V) and proof of CAR not written",
+      "Compositions omitted: no listed relation licenses a typed plug",
+      "Spin-statistics identification outside finite setting",
+      "generator creation unverified: no existing declaration cited",
+      "generator annihilation unverified: no existing declaration cited",
+      "relation car_cc unverified: no existing declaration cited",
+      "near_miss symmetric_algebra unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "dim_ext",
+        "expr": "2^3",
+        "value": "8",
+        "host_evidence": {
+          "recomputed": "8"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,102 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: For admissible parameters p, quartet existence is equivalent to a bounded solution
+    of the augmented system (original, gauge and balance equations) with those parameters.
+  typing_conditions: p satisfies parameterPolynomial vanishing
+  source_pins:
+  - path: lean4/SzollosiGaugedExecutable.lean
+    declaration: MUB.SzollosiGaugedExecutable.augmented_exists_with_parameters_iff
+    line: 99
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedExecutable.lean
+    decl: MUB.SzollosiGaugedExecutable.augmented_exists_with_parameters_iff
+    kind: theorem
+    line: 99
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R2
+  equation_or_predicate: Every solution of the augmented system lies in at least one of the six charts.
+  typing_conditions: AllExpressionsZero r
+  source_pins:
+  - path: lean4/SzollosiGaugedCover.lean
+    declaration: MUB.SzollosiGaugedCover.augmented_solution_chart_cover
+    line: 31
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedCover.lean
+    decl: MUB.SzollosiGaugedCover.augmented_solution_chart_cover
+    kind: theorem
+    line: 31
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R3
+  equation_or_predicate: Quartet existence is equivalent to a solution in a native chart.
+  typing_conditions: admissible parameters
+  source_pins:
+  - path: lean4/SzollosiGaugedReflection.lean
+    declaration: MUB.SzollosiGaugedReflection.native_chart_quartet_iff
+    line: 659
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiGaugedReflection.lean
+    decl: MUB.SzollosiGaugedReflection.native_chart_quartet_iff
+    kind: theorem
+    line: 659
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-0B6501E57F5F
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1: At admissible parameters, quartet existence iff a solution of the 666-equation system in
+    440 coordinates exists.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-SZOLLOSI-GAUGED-666
+- id: NEG-8BFC760E6706
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L2: Quartet existence iff a solution lies in one of the six overlapping native charts.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-SZOLLOSI-GAUGED-666
+counterexamples: []
+open_obligations:
+- Exact signatures of the augmented_exists_with_parameters_iff and native_chart_quartet_iff theorems were
+  not listed, so the matches to R1 and R3 are unverified.
+- The 440-coordinate count is not derived here.
+- The 618 original count is not derived here.
+- All six charts remain UNRESOLVED_BOX; none is excluded.
+- 'No generators were grounded: no typed operation was identified in the sources.'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N1
+  expr: 618 + 24 + 24
+  value: '666'
+  host_evidence:
+    recomputed: '666'
+verified_lemma_statements: []

@@ -1,0 +1,54 @@
+add_or_refine_generators:
+- id: flat_einstein_hilbert
+  ordered_inputs: []
+  output: RationalRegge
+  arity: 0
+  carrier: BigRational
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/general_relativity/exact_regge/action.rs
+    declaration: flat_einstein_hilbert
+    line: 90
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/exact_regge/action.rs
+    decl: flat_einstein_hilbert
+    kind: fn
+    line: 90
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-EF1C72F7B011
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1_proxy_only: The finite gravity face admits only the rational Regge proxy (area-squared times
+    kappa) via the flat decision flat_einstein_hilbert; the arccosine deficit angle is not admitted and
+    no float cutoff is used.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0197
+counterexamples: []
+open_obligations:
+- Cite or define a relation for the rational proxy area-squared times kappa; no existing declaration listed
+  for it.
+- Squared lengths, Cayley-Menger volume squares, Barrett-Crane simplicity, SO(4,Q) transitions, and hinge
+  holonomy products have no listed declarations, so they are not made generators.
+- Lean statement for the proxy-only lemma is a placeholder and needs a real formalization.
+- No compositions are given because there is only one generator and no licensing relation is grounded.
+- 'near_miss NM1_arccos_deficit unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM2_float_cutoff unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM3_full_GR unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

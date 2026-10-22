@@ -1,0 +1,170 @@
+{
+  "task_id": "AUTHF-DTM0-HALT-IFF-STATE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "0260fa2fcd208e8789b08c35e02da5c0c2cd8a67fee2346876eec215f6bebe6a",
+  "candidate_sha256": "9c502465371fe16cdd8a8030f15c803af0a1fca808f9ea2423e621d8ae9d5878",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:06Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_step",
+        "ordered_inputs": [
+          "Machine",
+          "Configuration"
+        ],
+        "output": "StepResult",
+        "arity": 2,
+        "carrier": "DTM0 step function",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.step",
+            "line": 120
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/DirectTM.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.step",
+          "kind": "def",
+          "line": 120,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_execute",
+        "ordered_inputs": [
+          "Nat",
+          "Machine",
+          "Configuration"
+        ],
+        "output": "StepResult",
+        "arity": 3,
+        "carrier": "DTM0 fuel-bounded execution; argument order unverified",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+            "line": 130
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/DirectTM.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+          "kind": "def",
+          "line": 130,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_step_halt_iff",
+        "equation_or_predicate": "step machine configuration = StepResult.halted iff configuration.state = machine.haltState",
+        "typing_conditions": "none; field names such as haltState are unverified",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+            "line": 206
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/DirectTM.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+          "kind": "theorem",
+          "line": 206,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_exec_halt",
+        "equation_or_predicate": "if the configuration is at the declared halt state then execute returns halted at every fuel budget",
+        "typing_conditions": "DeclaredHalt machine configuration",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/DirectTM.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+            "line": 218
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/DirectTM.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+          "kind": "theorem",
+          "line": 218,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The exact signatures of step, execute, DeclaredHalt and the theorems were not shown, so the skeletons are unchecked.",
+      "The halt-state field name and the order of execute arguments are unverified.",
+      "The target's exact result constructors, such as StepResult.halted, are unverified.",
+      "I did not check whether isDeclaredHalt is a Bool test or a Prop.",
+      "No lemma is proved.",
+      "lemma l_step_iff unverified: Lean elaboration disabled",
+      "lemma l_exec unverified: Lean elaboration disabled",
+      "near_miss nm_halt_run unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

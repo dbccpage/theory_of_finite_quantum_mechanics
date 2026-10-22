@@ -1,0 +1,141 @@
+{
+  "task_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "4c0e5df5e7ee25620a555a029bd388b037e24b97be66c8b211988bfcd435b1a8",
+  "candidate_sha256": "60c0d5bc97209d01aa098717c8961b642da69c86692627b0e62a6638ba81bddd",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 2,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:50:50Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_dress",
+        "ordered_inputs": [
+          "EdgeLabelling",
+          "VertexGauge",
+          "Edge"
+        ],
+        "output": "GroupElement",
+        "arity": 3,
+        "carrier": "finite graph gauge group element",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "declaration": "FiniteGraphDressing.dress",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_dress_one_iff",
+        "equation_or_predicate": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+        "typing_conditions": "finite graph dressing setting of FiniteGraphDressing",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "declaration": "FiniteGraphDressing.dress_eq_one_iff",
+            "line": 29
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress_eq_one_iff",
+          "kind": "theorem",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-28D19BE97E67",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_ward_contraction_M4: In M_4(Q(i)) at explicit rational loop momenta, the contraction of the one-loop vertex integrand with q equals the difference of the self-energy integrands I_Sigma(p) - I_Sigma(p+q)",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "DFM-Z1-Z2-COUNTERTERM-FENCE"
+      },
+      {
+        "id": "NEG-4CFF9F3E962B",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_Z1_eq_Z2_conditional: Under a gauge-invariant BPHZ subtraction scheme, the Ward identity implies Z_1/Z_2 = 1",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "DFM-Z1-Z2-COUNTERTERM-FENCE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Explicit M_4(Q(i)) gamma-matrix representation and loop momenta not given; contraction not computed",
+      "No existing declaration for the Ward contraction or counterterm relation",
+      "Lean statements are placeholders; real formalization needed",
+      "Z_1=Z_2 remains conditional on the gauge-invariant BPHZ scheme",
+      "relation R_ward_contraction unverified: no existing declaration cited",
+      "near_miss NM_unconditional_Z unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_dress_is_Ward unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

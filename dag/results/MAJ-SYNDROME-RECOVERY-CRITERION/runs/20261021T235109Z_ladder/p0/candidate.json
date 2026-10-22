@@ -1,0 +1,191 @@
+{
+  "task_id": "MAJ-SYNDROME-RECOVERY-CRITERION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d217fe7dfcd622299ff1982ecf8a1e278c616478af85b565f2b68800a6bf70fd",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "bitflip_syndrome",
+          "inputs": [
+            "BitFlipError"
+          ],
+          "output": "Syndrome",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "bitflip_decode_exact",
+          "equation_or_predicate": "decodeSyndrome (syndromeOf e) = some e for each bit-flip error",
+          "typing_conditions": "e in the four-element single-bit-flip set",
+          "source_pins": [
+            {
+              "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+              "declaration": "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+              "line": 38
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+            "decl": "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+            "kind": "theorem",
+            "line": 38,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Sumset E+E versus difference set E-E: in characteristic 2 they coincide; otherwise E must be symmetric or the statement uses E-E; unresolved",
+        "No existing Lean declaration for the general chain-complex criterion",
+        "Sorry-free proofs of necessity and sufficiency still needed",
+        "Link between H036 bit-flip example and general criterion not formalized",
+        "generator syndrome_map unverified: no existing declaration cited",
+        "generator decoder unverified: no existing declaration cited",
+        "relation success_def unverified: no existing declaration cited",
+        "relation criterion unverified: no existing declaration cited",
+        "lemma necessity unverified: Lean elaboration disabled",
+        "lemma sufficiency unverified: Lean elaboration disabled",
+        "near_miss nm_nondeterministic unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_ker_not_B unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "bitflip_syndrome",
+        "ordered_inputs": [
+          "BitFlipError"
+        ],
+        "output": "Syndrome",
+        "arity": 1,
+        "carrier": "three-qubit bit-flip error to syndrome",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+            "declaration": "FableHilbertWalk20260819.H036.syndromeOf",
+            "line": 17
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+          "decl": "FableHilbertWalk20260819.H036.syndromeOf",
+          "kind": "def",
+          "line": 17,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "bitflip_decode_exact",
+        "equation_or_predicate": "decodeSyndrome (syndromeOf e) = some e for each bit-flip error",
+        "typing_conditions": "e in the four-element single-bit-flip set",
+        "source_pins": [
+          {
+            "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+            "declaration": "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+            "line": 38
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+          "decl": "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+          "kind": "theorem",
+          "line": 38,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-350780604C8B",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "decoder . slot 0 <- syndrome_map via success_def",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-SYNDROME-RECOVERY-CRITERION"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Sumset E+E versus difference set E-E: in characteristic 2 they coincide; otherwise E must be symmetric or the statement uses E-E; unresolved",
+      "No existing Lean declaration for the general chain-complex criterion",
+      "Sorry-free proofs of necessity and sufficiency still needed",
+      "Link between H036 bit-flip example and general criterion not formalized",
+      "generator syndrome_map unverified: no existing declaration cited",
+      "generator decoder unverified: no existing declaration cited",
+      "relation success_def unverified: no existing declaration cited",
+      "relation criterion unverified: no existing declaration cited",
+      "lemma necessity unverified: Lean elaboration disabled",
+      "lemma sufficiency unverified: Lean elaboration disabled",
+      "near_miss nm_nondeterministic unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_ker_not_B unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

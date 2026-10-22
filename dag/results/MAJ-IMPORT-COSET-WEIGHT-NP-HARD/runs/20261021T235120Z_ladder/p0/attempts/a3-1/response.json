@@ -1,0 +1,41 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_target_import",
+      "statement": "Imported assumption (Berlekamp-McEliece-van Tilborg 1978): the decision problem 'given a binary parity-check matrix H, a syndrome s, and an integer w, does there exist e with H e = s and Hamming weight(e) <= w' is NP-hard under polynomial-time many-one reductions.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "axiom coset_weight_np_hard : True -- placeholder: no complexity-theory framework cited; the statement is not formalized",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_unique_decoding",
+      "claim": "Decoding is NP-hard even when the error weight is below half the minimum distance (bounded-distance decoding), taken as the same result.",
+      "rejecting_invariant": "The 1978 result concerns general coset-weight/maximum-likelihood decoding with unrestricted weight bound; hardness of bounded-distance decoding is a different statement and is not part of this target."
+    },
+    {
+      "id": "NM_fixed_code",
+      "claim": "Hardness holds for a fixed code family with preprocessing allowed.",
+      "rejecting_invariant": "The target takes the matrix as input; the preprocessing/fixed-code variant is a different problem."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No @SRC or @KNOWN+ declarations were provided, so no existing citations are possible.",
+    "No reduction (e.g., from 3-dimensional matching) is formalized; the target is an imported literature assumption.",
+    "No Lean framework for NP-hardness or the coset-weight problem was identified, so the lemma skeleton is only a placeholder.",
+    "No generators, relations, or compositions were grounded; the operad structure is left empty.",
+    "Host must verify the exact problem formulation (decision vs. search, weight-bound parameter) against the original 1978 paper."
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_restrict",
+      "inputs": [
+        "Matrix6"
+      ],
+      "output": "Matrix5",
+      "arity": 1,
+      "carrier": "Matrix (Fin 6) (Fin 6) R to Matrix (Fin 5) (Fin 5) R",
+      "ref": {
+        "path": "lean4/MubBalancedCompletion.lean",
+        "decl": "MUB.BalancedCompletion.restrict",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_complete",
+      "inputs": [
+        "Matrix5"
+      ],
+      "output": "Matrix6",
+      "arity": 1,
+      "carrier": "Matrix (Fin 5) (Fin 5) R to Matrix (Fin 6) (Fin 6) R",
+      "ref": {
+        "path": "lean4/MubBalancedCompletion.lean",
+        "decl": "MUB.BalancedCompletion.complete",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_restrict_complete",
+      "statement": "restrict (complete A) = A",
+      "hypotheses": "A : Matrix (Fin 5) (Fin 5) R",
+      "ref": {
+        "path": "lean4/MubBalancedCompletion.lean",
+        "decl": "MUB.BalancedCompletion.restrict_complete",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_complete_restrict",
+      "statement": "complete (restrict A) = A",
+      "hypotheses": "all row sums and all column sums of A equal 6",
+      "ref": {
+        "path": "lean4/MubBalancedCompletion.lean",
+        "decl": "MUB.BalancedCompletion.complete_restrict",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "g_complete",
+      "slot": 0,
+      "inner": "g_restrict",
+      "licensing_relation": "r_complete_restrict"
+    },
+    {
+      "outer": "g_restrict",
+      "slot": 0,
+      "inner": "g_complete",
+      "licensing_relation": "r_restrict_complete"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_target",
+      "statement": "Quartet existence in C^6 is equivalent to a solution in the stated box of the 648 rational polynomial equations of degree at most two in 320 coordinates, via affine completion of the balanced transition matrices.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_restrict_complete",
+        "r_complete_restrict"
+      ],
+      "lean_skeleton": "theorem target_restate : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/MubBalancedQuadraticPolynomials.lean",
+        "decl": "MUB.BalancedQuadraticPolynomials.exists_quartet_iff_balanced_polynomials",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_degree",
+      "statement": "Each equation polynomial has total degree at most two.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem degree_le_two : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/MubBalancedQuadraticPolynomials.lean",
+        "decl": "MUB.BalancedQuadraticPolynomials.equation_degree",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_box",
+      "claim": "The box bounds hold for arbitrary points of the polynomial system, not just solutions.",
+      "rejecting_invariant": "The box holds on solutions only, so it cannot be treated as a global constraint."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_coords",
+      "expr": "170 + 150",
+      "value": "320"
+    }
+  ],
+  "open_obligations": [
+    "Exact statement and hypotheses of exists_quartet_iff_balanced_polynomials not visible; Lean skeleton is a placeholder.",
+    "Equation count 648 not derived here.",
+    "MubBalancedTable is not cited.",
+    "Infeasibility of the system is open."
+  ]
+}

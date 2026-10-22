@@ -1,0 +1,57 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: On a pairwise separated regime, distinct marks i≠j below r.data are not collapsed
+    (separated marks are not one internal class).
+  typing_conditions: PairwiseSeparated r; i<r.data; j<r.data; i≠j
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.separated_marks_not_collapsed
+    line: 250
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.separated_marks_not_collapsed
+    kind: theorem
+    line: 250
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R2
+  equation_or_predicate: The identity convention is a declared two-valued choice (opaqueConv or exactInscription),
+    not derived from the other hypotheses.
+  typing_conditions: Convention declared as an input
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.IdentityConvention
+    line: 243
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.IdentityConvention
+    kind: inductive
+    line: 243
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Check the exact statement of the IdentityConvention docstring and the Regime fields; the SRC listing
+  is truncated.
+- 'The Lean skeleton may not elaborate: the namespace of Regime and the Collapsed signature are unverified.'
+- 'No generators grounded: no typed operations are listed in the SRC.'
+- Formal statement that blank, state and end marks are admitted as separated marks is not grounded.
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

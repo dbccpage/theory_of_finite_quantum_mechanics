@@ -1,0 +1,43 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-5B50190FDD61
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'gamma1_refused: gamma_1 maps even to odd sector, so [gamma_1,P]≠0 and its restriction to a sector
+    is refused.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-PARITY-SECTOR-SPLIT-EXACT
+counterexamples: []
+open_obligations:
+- Definition of gamma_1 is not given; need exact matrix and confirmation it is parity-odd.
+- No existing source declarations; all refs are proposed_new.
+- Paper's ParityAlgebraModel exact version must be built; the floating-point check is not replaced yet.
+- Carrier truncation assumption (occupation 0/1 per mode, fermionic-style) is assumed, not declared.
+- Lean skeletons are unelaborated sorry placeholders.
+- 'generator parity_restrict unverified: no existing declaration cited'
+- 'generator parity_operator unverified: no existing declaration cited'
+- 'relation sector_dims unverified: no existing declaration cited'
+- 'relation restrict_requires_invariance unverified: no existing declaration cited'
+- 'lemma parity_sector_split unverified: Lean elaboration disabled'
+- 'near_miss nm_even_gamma unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_full_dim unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_total_dim
+  expr: 2 + 2
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+- id: n_trace_parity
+  expr: 2 - 2
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+verified_lemma_statements: []

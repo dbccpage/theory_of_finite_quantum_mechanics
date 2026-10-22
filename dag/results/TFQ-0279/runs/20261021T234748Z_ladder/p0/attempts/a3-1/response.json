@@ -1,0 +1,98 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_weight_datum",
+      "inputs": [
+        "SectorIndex",
+        "NonnegWeights"
+      ],
+      "output": "WeightDatum",
+      "arity": 2,
+      "carrier": "finite sector index with nonnegative rational weights, positive total, no amplitudes",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "g_normalize",
+      "inputs": [
+        "WeightDatum"
+      ],
+      "output": "ProbabilityLaw",
+      "arity": 1,
+      "carrier": "w_i / sum_j w_j on finite index",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_normalized_sum_one",
+      "statement": "For w_i >= 0 with S = sum w_i > 0, the normalized p_i = w_i/S satisfies p_i >= 0 and sum p_i = 1.",
+      "hypotheses": "finite index, nonnegative weights, positive total",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "r_scale_invariance",
+      "statement": "normalize(c*w) = normalize(w) for every c > 0, so the scale of the representative is discarded.",
+      "hypotheses": "c > 0, positive total",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_normalize_law",
+      "statement": "Given nonnegative finite weights with positive total, w_i/S is a probability vector; no square root, complex scalar or inner product is used.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_normalized_sum_one"
+      ],
+      "lean_skeleton": "theorem normalize_law {n : Nat} (w : Fin n → ℚ) (h0 : ∀ i, 0 ≤ w i) (hS : 0 < ∑ i, w i) : (∀ i, 0 ≤ w i / ∑ j, w j) ∧ ∑ i, w i / ∑ j, w j = 1 := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_zero_total",
+      "claim": "Normalization is defined when all weights are zero.",
+      "rejecting_invariant": "The total must be positive; a zero total leaves w_i/S undefined."
+    },
+    {
+      "id": "nm_amplitude_recovery",
+      "claim": "Normalized weights determine amplitudes, including signs and phases.",
+      "rejecting_invariant": "Absolute values plus normalization discard scale, signs and orientation (qm_003), and this node attaches no amplitudes."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_example",
+      "expr": "1/6 + 2/6 + 3/6",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "No existing declaration in @SRC covers the generic normalization of nonnegative weights; the ResidualSectorWeights and HilbertLift entries concern other objects, so all refs are proposed_new.",
+    "The Lean skeleton is unelaborated and uses sorry.",
+    "The qm_020 and qm_003 notes are not in @SRC and are not cited."
+  ]
+}

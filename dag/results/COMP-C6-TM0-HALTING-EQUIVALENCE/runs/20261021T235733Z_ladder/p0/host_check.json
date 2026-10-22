@@ -1,0 +1,149 @@
+{
+  "task_id": "COMP-C6-TM0-HALTING-EQUIVALENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "bbfa0c91824a9712d3ea18e3dda754335233cc401488fc1d94504a9b6d767217",
+  "candidate_sha256": "cd31736bea270804a4a11f174cfd11170b2cfa55b37c0957b80f78f0cdf80bed",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:57:41Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_initCfg0",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "TM0Cfg",
+        "arity": 1,
+        "carrier": "TM0 configurations of M0",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.initCfg0",
+            "line": 140
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.initCfg0",
+          "kind": "def",
+          "line": 140,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_halts_iff_dom",
+        "equation_or_predicate": "M0 halts from initCfg0 x iff the TM0 evaluation from initCfg0 x has defined domain",
+        "typing_conditions": "M0 is the fixed machine TM1to0.tr (TM2to1.tr PartrecToTM2.tr); uses TM2to1.tr_respects, TM1to0.tr_respects, StateTransition.tr_eval_dom",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.halts_iff_dom",
+            "line": 169
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.halts_iff_dom",
+          "kind": "theorem",
+          "line": 169,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_halts_iff_eval_dom",
+        "equation_or_predicate": "M0 halts from initCfg0 (pair (encode c) n) iff (Code.eval c n).Dom",
+        "typing_conditions": "same fixed M0 and initial configuration encoding",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisCompUniv.lean",
+            "declaration": "GenesisComputation.Universal.halts_iff_eval_dom",
+            "line": 182
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisCompUniv.lean",
+          "decl": "GenesisComputation.Universal.halts_iff_eval_dom",
+          "kind": "theorem",
+          "line": 182,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-44FDBE50C779",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_target: For the fixed M0, M0 halts from initCfg0 (pair (encode c) n) iff Code.eval c n is defined",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "COMP-C6-TM0-HALTING-EQUIVALENCE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exact Lean statement signatures of halts_iff_dom and halts_iff_eval_dom not shown, so skeleton is a placeholder",
+      "TM0 output form (COMP-C6e) open",
+      "Composition of generators not grounded since only one generator is known",
+      "near_miss nm_output_form unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

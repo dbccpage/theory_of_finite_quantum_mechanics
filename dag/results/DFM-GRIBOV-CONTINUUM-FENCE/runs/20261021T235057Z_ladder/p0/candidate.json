@@ -1,0 +1,225 @@
+{
+  "task_id": "DFM-GRIBOV-CONTINUUM-FENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "36de03119ebd61e86c926d0883ad94bae0cd04c60ade4ac08663f169875a1860",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_dress",
+          "inputs": [
+            "EdgeLabelling",
+            "VertexGauge",
+            "Edge"
+          ],
+          "output": "GroupElement",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_dress_one_iff",
+          "equation_or_predicate": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+          "typing_conditions": "finite graph, edge e, labelling U, vertex gauge u",
+          "source_pins": [
+            {
+              "path": "lean4/FiniteGraphDressing.lean",
+              "declaration": "FiniteGraphDressing.dress_eq_one_iff",
+              "line": 29
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "decl": "FiniteGraphDressing.dress_eq_one_iff",
+            "kind": "theorem",
+            "line": 29,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_neutralizable_closed_walks",
+          "equation_or_predicate": "A vertex gauge neutralizing all edges exists iff transport along every closed walk based at the root is trivial",
+          "typing_conditions": "finite connected graph with root, finite-group labelling",
+          "source_pins": [
+            {
+              "path": "lean4/FiniteGraphDressing.lean",
+              "declaration": "FiniteGraphDressing.neutralizable_iff_closed_walks",
+              "line": 54
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "decl": "FiniteGraphDressing.neutralizable_iff_closed_walks",
+            "kind": "theorem",
+            "line": 54,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Refinement family of lattices with compatible gauge-group data",
+        "Full Faddeev-Popov operator spectrum on each lattice and its limit",
+        "Limit theorem transporting finite comparison to the continuum",
+        "Formal definition of the Gribov horizon in the continuum",
+        "Mass gap statement is untouched and remains open",
+        "lemma L_fence_finite_only unverified: Lean elaboration disabled",
+        "near_miss NM_finite_to_continuum unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_test_as_mass_gap unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_dress",
+        "ordered_inputs": [
+          "EdgeLabelling",
+          "VertexGauge",
+          "Edge"
+        ],
+        "output": "GroupElement",
+        "arity": 3,
+        "carrier": "finite graph with finite group labels",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "declaration": "FiniteGraphDressing.dress",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_dress_one_iff",
+        "equation_or_predicate": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+        "typing_conditions": "finite graph, edge e, labelling U, vertex gauge u",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "declaration": "FiniteGraphDressing.dress_eq_one_iff",
+            "line": 29
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress_eq_one_iff",
+          "kind": "theorem",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_neutralizable_closed_walks",
+        "equation_or_predicate": "A vertex gauge neutralizing all edges exists iff transport along every closed walk based at the root is trivial",
+        "typing_conditions": "finite connected graph with root, finite-group labelling",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteGraphDressing.lean",
+            "declaration": "FiniteGraphDressing.neutralizable_iff_closed_walks",
+            "line": 54
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.neutralizable_iff_closed_walks",
+          "kind": "theorem",
+          "line": 54,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Refinement family of lattices with compatible gauge-group data",
+      "Full Faddeev-Popov operator spectrum on each lattice and its limit",
+      "Limit theorem transporting finite comparison to the continuum",
+      "Formal definition of the Gribov horizon in the continuum",
+      "Mass gap statement is untouched and remains open",
+      "lemma L_fence_finite_only unverified: Lean elaboration disabled",
+      "near_miss NM_finite_to_continuum unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_test_as_mass_gap unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

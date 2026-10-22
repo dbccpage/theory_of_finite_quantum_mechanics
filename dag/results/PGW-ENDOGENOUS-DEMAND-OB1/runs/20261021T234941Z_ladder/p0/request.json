@@ -1,0 +1,306 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-ENDOGENOUS-DEMAND-OB1",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "79fbb5c0c9c28602829ca750d3906fc18926bb8da4103b5e02ed1ece7c91125c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-ENDOGENOUS-DEMAND-OB1 stage=P0 attempt=a3-1 in=79fbb5c0 guided=yes\n@TARGET [OPEN] No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.\n@BOTTLENECK Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/wdp/fixtures/model.py | n_data | def | def n_data(self) -> int: return len(self.data) EMPTY = Regime((), (), frozenset(), frozenset(), frozenset()) @dataclass(frozen=True)\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.wdpPairDefect | def | def wdpPairDefect {n : Nat} (w : FiniteGenesisWindow n) (u v : Fin n) : Bool\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.pairInList | def | def pairInList (p : Nat × Nat) : List (Nat × Nat) → Bool | [] => false | q :: qs => decide (p = q) || pairInList p qs\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.pairInList_cons_preserved | theorem | theorem pairInList_cons_preserved (p q : Nat × Nat) (qs : List (Nat × Nat)) (h : pairInList p qs = true) : pairInList p (q :: qs) = true\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.fq_u1_transport_n_torsion_and_sign_separation | theorem | theorem fq_u1_transport_n_torsion_and_sign_separation (w01 w12 w20 f0 f1 f2 N : Int) : ((w01 + (f1 - f0)) + (w12 + (f2 - f1)) + (w20 + (f0 - f2))) % N\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds | theorem | theorem ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds (c : Nat) (a b : Int) (pi : Nat → Nat) (h_idem : ∀ x, pi (pi x) = pi x) (P : Nat\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate | theorem | theorem pg_six_operations_and_primdiff_admission_gate (op : PreGenOp) (n : Nat) : (applyPreGenOp op n ≠ n ↔ op = .admit) ∧ (∀ x y : Fin 4, (x ≠ y ∧ 0 \n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation | theorem | theorem ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation (x0 y0 x1 y1 : Int) : (2 * (x0 * y1 + y0 * (-x1) + x1 * y0 + y1 * (-x0)\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.c500BlockUnboundedTargetHold | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm072_and_c10_hadamard_coherence_separation_vs_pinched_mixture | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications | theorem\n code/python/src/qm/derivation_closure.py | FoundationalDerivationClosureReport | class\n code/python/src/qm/derivation_closure.py | evaluate_foundational_derivation_closure_control | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.PrimGenEvent | inductive\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ObligationMonoid | structure\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.zero | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.add | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.totalCost | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.eventObligation | def\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "COMP-C4-UNBOUNDED-SUPPLY-IMPORT",
+      "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+      "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
+    ],
+    "feedback": true,
+    "index_position": 430,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

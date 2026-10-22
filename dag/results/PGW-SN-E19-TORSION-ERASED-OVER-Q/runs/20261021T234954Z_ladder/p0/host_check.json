@@ -1,0 +1,68 @@
+{
+  "task_id": "PGW-SN-E19-TORSION-ERASED-OVER-Q",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f1edd298a22be3fff302b99573aac5fdf4a60b198b0b330a3f4526305a3ccf0a",
+  "candidate_sha256": "7ffb90ec558d4bb55482938c03963bb36460d46178194eec813eb1cdb4733377",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:50:03Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declaration formalizes chain complexes or integral homology, so every entry is proposed_new",
+      "compute_integral_homology has no recorded run on this complex",
+      "Mapping the existing PrimitiveRepairWitness declarations onto this example is not grounded",
+      "Compositions left empty because no licensing relation was verified",
+      "generator g_boundary_d2 unverified: no existing declaration cited",
+      "generator g_adjoin_f unverified: no existing declaration cited",
+      "relation r_no_integral_primitive unverified: no existing declaration cited",
+      "relation r_rational_primitive unverified: no existing declaration cited",
+      "lemma l_torsion_erased_over_Q unverified: Lean elaboration disabled",
+      "near_miss nm_rational_as_integral unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_cost_integral",
+        "expr": "1 - 0",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "n_primitive",
+        "expr": "2 * 1/2",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

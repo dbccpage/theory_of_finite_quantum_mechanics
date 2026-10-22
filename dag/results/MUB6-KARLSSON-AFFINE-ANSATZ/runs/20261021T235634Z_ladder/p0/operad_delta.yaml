@@ -1,0 +1,40 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-2B01A5FABF1C
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_karlssonMatrix: (UnitPhase, UnitPhase) -> Mat6C [MUB.MasterClassification.karlssonMatrix]'
+  evidence: lean def karlssonMatrix has 1 explicit binders (1 with conclusion arrows); the claim says
+    2 (heuristic count)
+  decl_key: MUB.MasterClassification.karlssonMatrix
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-KARLSSON-AFFINE-ANSATZ
+- id: NEG-8070B2667B8C
+  class: statement_drift
+  claim_kind: relation
+  claim: 'r_isCH6: karlssonMatrix(x,y) has unit-modulus entries and H H* = 6I, i.e. it is a complex Hadamard
+    matrix of order 6 [MUB.MasterClassification.karlssonMatrix_isCH6]'
+  evidence: numerals 6 appear in the claim but in none of the checked sources (heuristic)
+  decl_key: MUB.MasterClassification.karlssonMatrix_isCH6
+  confidence: heuristic
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-KARLSSON-AFFINE-ANSATZ
+open_obligations:
+- Exact signature and hypotheses of karlssonMatrix_isCH6 are not shown in @SRC, so the match to the target
+  must be verified by the host
+- No equivalence to the full three-parameter Karlsson family is given
+- The claim that CHM(6) moduli space has real dimension at most 4 with a finite chart cover is open
+- No compositions grounded because only one generator is cited
+- 'lemma l_target unverified: no Lean skeleton; statement consistent with sources but not elaborated'
+- 'near_miss nm_nonunit unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

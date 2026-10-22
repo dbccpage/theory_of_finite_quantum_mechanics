@@ -1,0 +1,70 @@
+{
+  "task_id": "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "94ffe6a357fa2e68e9b66fc73ed3df16b285d84e814b0d8db542065123a1c09f",
+  "candidate_sha256": "1eb07e74d31ea2271ac414eaa904216dff7728653b1724fcf1cdc31e88b5fc21",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 5,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:23Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A83D961E8E00",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_detect_radius: A distinction between two states that is detectable by an observable supported on region Y within time t, and that originates in region X, requires d(X,Y) <= v t + xi log(C/epsilon) up to error epsilon.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-OPEN-LIEB-ROBINSON-LOCALITY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No source declarations are available to cite, so all references are proposed_new.",
+      "The constants C, v and xi are unspecified.",
+      "A formal definition of detect, preserve and repair within time t is missing.",
+      "A repair model (such as error correction with local recovery) must be tied to the bound.",
+      "The conditional statement on quantum computing viability is not derived.",
+      "The generators carry no composition licensing relation, so the compositions array is empty.",
+      "generator g_evolve unverified: no existing declaration cited",
+      "generator g_restrict unverified: no existing declaration cited",
+      "relation r_lr_bound unverified: no existing declaration cited",
+      "near_miss nm_global unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_longrange unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

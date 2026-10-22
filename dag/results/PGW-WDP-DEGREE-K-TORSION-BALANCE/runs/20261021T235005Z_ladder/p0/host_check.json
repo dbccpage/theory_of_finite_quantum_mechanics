@@ -1,0 +1,143 @@
+{
+  "task_id": "PGW-WDP-DEGREE-K-TORSION-BALANCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b9567364d8a2cb66d02bf0282fe00da034ec57b1daa6966890b9b9464aecdc13",
+  "candidate_sha256": "790406862bccd33778e54abb24690eb0989b6a065782e7e8d92f1fc585a0e94e",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 1,
+    "failure_rate": 0.2,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 8,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:50:17Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "kappa_descends",
+        "equation_or_predicate": "A map kappa on Q1 with kappa(mk h)=d1 h exists iff d1 ∘ d0 = 0",
+        "typing_conditions": "K-linear maps d0: C0->C1, d1: C1->C2",
+        "source_pins": [
+          {
+            "path": "lean4/WdpDegree1Window.lean",
+            "declaration": "WdpDegree1Window.kappa_descends_iff",
+            "line": 44
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WdpDegree1Window.lean",
+          "decl": "WdpDegree1Window.kappa_descends_iff",
+          "kind": "theorem",
+          "line": 44,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "kappa_fails_identity",
+        "equation_or_predicate": "For d0 = id on Q, no kappa descends along id with d1 = id, since d1∘d0 ≠ 0",
+        "typing_conditions": "C0=C1=C2=Q",
+        "source_pins": [
+          {
+            "path": "lean4/WdpDegree1Window.lean",
+            "declaration": "WdpDegree1Window.kappa_not_defined_instance",
+            "line": 89
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WdpDegree1Window.lean",
+          "decl": "WdpDegree1Window.kappa_not_defined_instance",
+          "kind": "theorem",
+          "line": 89,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A33BDFDE2AF3",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "kappa_quotient . slot 0 <- coboundary_d0 via kappa_descends",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-WDP-DEGREE-K-TORSION-BALANCE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No Lean declarations for the general degree-k delta^2=0",
+      "RP2 ranks over Q and F2 not formalized",
+      "Gamma_{k+1} <= ||delta^k|| Phi_k bound not grounded",
+      "Exactness of 0->H^k->Q^k->im delta^k->0 not formalized",
+      "Sum_v (d0*x)(v)=0 not formalized",
+      "Single-triangle indicator exactness over Q not formalized",
+      "generator coboundary_d0 unverified: no existing declaration cited",
+      "generator coboundary_d1 unverified: no existing declaration cited",
+      "generator kappa_quotient unverified: no existing declaration cited",
+      "relation delta_squared_zero unverified: no existing declaration cited",
+      "lemma kappa_well_defined_degree1 unverified: Lean elaboration disabled",
+      "lemma delta_sq_zero_general_k unverified: Lean elaboration disabled",
+      "near_miss nm_sum_rho unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_kappa_without_cocycle unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "rp2_rank_diff",
+        "expr": "10 - 9",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "rp2_euler",
+        "expr": "6 - 15 + 10",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

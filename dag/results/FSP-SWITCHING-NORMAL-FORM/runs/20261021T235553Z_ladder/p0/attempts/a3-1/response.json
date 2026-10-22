@@ -1,0 +1,164 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_switch",
+      "inputs": [
+        "Cochain",
+        "Potential"
+      ],
+      "output": "Cochain",
+      "arity": 2,
+      "carrier": "Graph G: Bool-valued edge cochains",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.switch",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_potential",
+      "inputs": [
+        "Cochain"
+      ],
+      "output": "Potential",
+      "arity": 1,
+      "carrier": "Forest T over Graph G: vertex Bool potential",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.potential",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_normal",
+      "inputs": [
+        "Cochain"
+      ],
+      "output": "Cochain",
+      "arity": 1,
+      "carrier": "Forest T over Graph G: tree-zero canonical cochain",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.normal",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_sound",
+      "statement": "normal s is in the same switching class as s",
+      "hypotheses": "fixed Graph G and Forest T",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.normal_sound",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_same_class",
+      "statement": "SameClass s t iff normal s = normal t",
+      "hypotheses": "fixed Graph G and Forest T",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.same_class_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_numchord",
+      "statement": "numChord = |E| - |V| + c via numRoot",
+      "hypotheses": "fixed Graph G and Forest T",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.numChord_identity",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_nf_enum",
+      "statement": "normalForms is duplicate-free with length 2^numChord",
+      "hypotheses": "fixed Graph G and Forest T",
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.normalForms_nodup",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "g_switch",
+      "slot": 1,
+      "inner": "g_potential",
+      "licensing_relation": "r_sound"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_sound",
+      "statement": "normal s is switching-equivalent to s",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_sound"
+      ],
+      "lean_skeleton": "example : True := trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.normal_sound",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_complete",
+      "statement": "SameClass s t iff normal s = normal t",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "r_same_class"
+      ],
+      "lean_skeleton": "example : True := trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.same_class_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_length",
+      "statement": "normalForms has length 2^numChord",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "r_nf_enum",
+        "r_numchord"
+      ],
+      "lean_skeleton": "example : True := trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/SwitchingNormalForm.lean",
+        "decl": "SwitchingNormalForm.normalForms_length",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_arbitrary_basis",
+      "claim": "The canonicalizer is a normal form under arbitrary many-body basis transformations",
+      "rejecting_invariant": "Only fixed labels and vertex sign switching equivalence are retained"
+    },
+    {
+      "id": "nm_forest_free",
+      "claim": "The normal form is independent of the supplied spanning forest",
+      "rejecting_invariant": "normal is defined relative to a given Forest T; the tree-zero condition depends on T"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of potential, normal, normalForms not shown in the SRC listing",
+    "Lean skeletons are placeholders, not elaborated against the real statements",
+    "The composition g_switch slot1 <- g_potential typing and licensing are unverified"
+  ]
+}

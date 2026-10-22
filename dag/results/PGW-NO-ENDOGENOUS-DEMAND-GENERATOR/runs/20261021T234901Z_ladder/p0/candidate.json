@@ -1,0 +1,144 @@
+{
+  "task_id": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "08eced715061e2375364b0b9038405a9ebba70cc126e12697de43bb893b77124",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_allpairs_length",
+          "equation_or_predicate": "The all-pairs requirement list for n data has length n*n, as stated by the cited theorem.",
+          "typing_conditions": "n : Nat",
+          "source_pins": [
+            {
+              "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+              "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+              "line": 254
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "kind": "theorem",
+            "line": 254,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No generators were grounded. No existing declaration is a typed operation.",
+        "Reconcile n*n from allPairs_length with the target's n(n-1)/2 bound.",
+        "Prove the fixpoint is reached within the round bound.",
+        "Prove that no unresolved requirement remains at the fixpoint.",
+        "TFQ-0385 raw rule admission erasing a separation is not grounded, and the earlier composition was refused for a colour mismatch.",
+        "lemma l_allpairs_length unverified: Lean elaboration disabled",
+        "near_miss nm_collapsed_is_obstruction unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_allpairs_is_choose2 unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_allpairs_length",
+        "equation_or_predicate": "The all-pairs requirement list for n data has length n*n, as stated by the cited theorem.",
+        "typing_conditions": "n : Nat",
+        "source_pins": [
+          {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "line": 254
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+          "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+          "kind": "theorem",
+          "line": 254,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No generators were grounded. No existing declaration is a typed operation.",
+      "Reconcile n*n from allPairs_length with the target's n(n-1)/2 bound.",
+      "Prove the fixpoint is reached within the round bound.",
+      "Prove that no unresolved requirement remains at the fixpoint.",
+      "TFQ-0385 raw rule admission erasing a separation is not grounded, and the earlier composition was refused for a colour mismatch.",
+      "lemma l_allpairs_length unverified: Lean elaboration disabled",
+      "near_miss nm_collapsed_is_obstruction unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_allpairs_is_choose2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_pairs_3_ordered",
+        "expr": "3*3",
+        "value": "9",
+        "host_evidence": {
+          "recomputed": "9"
+        }
+      },
+      {
+        "id": "n_pairs_3_unordered",
+        "expr": "3*2/2",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

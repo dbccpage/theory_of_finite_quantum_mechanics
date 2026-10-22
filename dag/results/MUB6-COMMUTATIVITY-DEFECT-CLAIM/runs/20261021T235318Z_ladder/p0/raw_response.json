@@ -1,0 +1,153 @@
+{
+  "task_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d2f5d94a950b999d5d1d66c6a76450cfc9063c464af3c2febd7f3d895e053b48",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"word_concat\",\"inputs\":[\"Word\",\"Word\"],\"output\":\"Word\",\"arity\":2,\"carrier\":\"Word\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.Word.concat\",\"status\":\"existing\"}},{\"id\":\"word_inv\",\"inputs\":[\"Word\"],\"output\":\"Word\",\"arity\":1,\"carrier\":\"Word\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.Word.inv\",\"status\":\"existing\"}},{\"id\":\"exactrat_add\",\"inputs\":[\"ExactRat\",\"ExactRat\"],\"output\":\"ExactRat\",\"arity\":2,\"carrier\":\"ExactRat\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.ExactRat.add\",\"status\":\"existing\"}},{\"id\":\"exactrat_mul\",\"inputs\":[\"ExactRat\",\"ExactRat\"],\"output\":\"ExactRat\",\"arity\":2,\"carrier\":\"ExactRat\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.ExactRat.mul\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"add_nonneg_closed\",\"statement\":\"nonneg a and nonneg b imply nonneg (add a b)\",\"hypotheses\":\"a b : ExactRat nonneg\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.ExactRat.add_nonneg\",\"status\":\"existing\"}},{\"id\":\"mul_nonneg_closed\",\"statement\":\"nonneg a and nonneg b imply nonneg (mul a b)\",\"hypotheses\":\"a b : ExactRat nonneg\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.ExactRat.mul_nonneg\",\"status\":\"existing\"}},{\"id\":\"physical_moment_positive\",\"statement\":\"a physical projector realization yields a moment-positive pseudo-expectation\",\"hypotheses\":\"R : PhysicalProjectorRealization, E : PseudoExpectation\",\"ref\":{\"path\":\"lean4/MomentPositivityObligation.lean\",\"decl\":\"MUB6.SDP.MomentPositivity.physical_realization_is_moment_positive\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"exactrat_add\",\"slot\":0,\"inner\":\"exactrat_mul\",\"licensing_relation\":\"mul_nonneg_closed\"},{\"outer\":\"exactrat_mul\",\"slot\":0,\"inner\":\"exactrat_add\",\"licensing_relation\":\"add_nonneg_closed\"}],\"lemmas\":[{\"id\":\"physical_no_positive_defect\",\"statement\":\"For a physical projector realization satisfying normalization, positivity and actual rank equality, the descended shift operators commute, so the commutativity defect is zero, not strictly positive; the target claim is not supported under these premises.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"physical_moment_positive\"],\"lean_skeleton\":\"theorem physical_no_positive_defect : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_defect_positive\",\"claim\":\"The shift operators have strictly positive commutativity defect in a physical realization\",\"rejecting_invariant\":\"operators_commute under normalization, positivity and actual rank equality gives defect zero\"},{\"id\":\"nm_no_extension\",\"claim\":\"Positive defect prevents extending the hierarchy to higher degree while keeping positivity\",\"rejecting_invariant\":\"physical_realization_is_moment_positive gives moment positivity at every degree for physical realizations\"}],\"numeric_claims\":[],\"open_obligations\":[\"operators_commute is named in the bottleneck but not listed in SRC, so it is not cited\",\"No definition of commutativity defect is available in SRC\",\"Must identify which premise (normalization, positivity, rank equality) fails in any pseudo-expectation with a defect\",\"Lean skeleton for physical_no_positive_defect is a placeholder only\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "word_concat",
+        "inputs": [
+          "Word",
+          "Word"
+        ],
+        "output": "Word",
+        "arity": 2,
+        "carrier": "Word",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.Word.concat",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "word_inv",
+        "inputs": [
+          "Word"
+        ],
+        "output": "Word",
+        "arity": 1,
+        "carrier": "Word",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.Word.inv",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "exactrat_add",
+        "inputs": [
+          "ExactRat",
+          "ExactRat"
+        ],
+        "output": "ExactRat",
+        "arity": 2,
+        "carrier": "ExactRat",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.add",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "exactrat_mul",
+        "inputs": [
+          "ExactRat",
+          "ExactRat"
+        ],
+        "output": "ExactRat",
+        "arity": 2,
+        "carrier": "ExactRat",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.mul",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "add_nonneg_closed",
+        "statement": "nonneg a and nonneg b imply nonneg (add a b)",
+        "hypotheses": "a b : ExactRat nonneg",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.add_nonneg",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "mul_nonneg_closed",
+        "statement": "nonneg a and nonneg b imply nonneg (mul a b)",
+        "hypotheses": "a b : ExactRat nonneg",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.ExactRat.mul_nonneg",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "physical_moment_positive",
+        "statement": "a physical projector realization yields a moment-positive pseudo-expectation",
+        "hypotheses": "R : PhysicalProjectorRealization, E : PseudoExpectation",
+        "ref": {
+          "path": "lean4/MomentPositivityObligation.lean",
+          "decl": "MUB6.SDP.MomentPositivity.physical_realization_is_moment_positive",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "exactrat_add",
+        "slot": 0,
+        "inner": "exactrat_mul",
+        "licensing_relation": "mul_nonneg_closed"
+      },
+      {
+        "outer": "exactrat_mul",
+        "slot": 0,
+        "inner": "exactrat_add",
+        "licensing_relation": "add_nonneg_closed"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "physical_no_positive_defect",
+        "statement": "For a physical projector realization satisfying normalization, positivity and actual rank equality, the descended shift operators commute, so the commutativity defect is zero, not strictly positive; the target claim is not supported under these premises.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "physical_moment_positive"
+        ],
+        "lean_skeleton": "theorem physical_no_positive_defect : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_defect_positive",
+        "claim": "The shift operators have strictly positive commutativity defect in a physical realization",
+        "rejecting_invariant": "operators_commute under normalization, positivity and actual rank equality gives defect zero"
+      },
+      {
+        "id": "nm_no_extension",
+        "claim": "Positive defect prevents extending the hierarchy to higher degree while keeping positivity",
+        "rejecting_invariant": "physical_realization_is_moment_positive gives moment positivity at every degree for physical realizations"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "operators_commute is named in the bottleneck but not listed in SRC, so it is not cited",
+      "No definition of commutativity defect is available in SRC",
+      "Must identify which premise (normalization, positivity, rank equality) fails in any pseudo-expectation with a defect",
+      "Lean skeleton for physical_no_positive_defect is a placeholder only"
+    ]
+  }
+}

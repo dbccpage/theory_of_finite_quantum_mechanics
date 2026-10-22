@@ -1,0 +1,154 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_maskSign",
+      "inputs": [
+        "Fin64",
+        "Fin6"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "sign of mask m at row r",
+      "ref": {
+        "path": "lean4/SzollosiLaurentPairing.lean",
+        "decl": "MUB.SzollosiLaurentPairing.maskSign",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_positiveCount",
+      "inputs": [
+        "Fin64"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "number of positive signs in mask",
+      "ref": {
+        "path": "lean4/SzollosiLaurentPairing.lean",
+        "decl": "MUB.SzollosiLaurentPairing.positiveCount",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_entryExponent",
+      "inputs": [
+        "Fin6",
+        "Fin6",
+        "Fin6"
+      ],
+      "output": "Int",
+      "arity": 3,
+      "carrier": "Laurent exponent of entry (r,c,k)",
+      "ref": {
+        "path": "lean4/SzollosiLaurentPairing.lean",
+        "decl": "MUB.SzollosiLaurentPairing.entryExponent",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_mask_count",
+      "statement": "Exactly 20 of the 64 sign masks have positiveCount = 3",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/SzollosiLaurentPairing.lean",
+        "decl": "MUB.SzollosiLaurentPairing.balanced_mask_count",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_quartet_table",
+      "statement": "A Szollosi quartet exists iff there is a table solution with a coded box",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/MubBalancedTable.lean",
+        "decl": "MUB.BalancedTable.exists_quartet_iff_table",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_tao_balanced",
+      "statement": "For balanced masks (positiveCount = 3), the squared norm of the Laurent expression equals 9",
+      "hypotheses": "maskPositiveCount mask = 3",
+      "ref": {
+        "path": "lean4/MubTaoLaurent.lean",
+        "decl": "MUB.TaoLaurent.tao_all_balanced_laurent",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_balanced_count",
+      "statement": "The number of balanced masks among 64 is 20",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_mask_count"
+      ],
+      "lean_skeleton": "theorem l_balanced_count : ((List.finRange 64).filter fun m => MUB.SzollosiLaurentPairing.positiveCount m = 3).length = 20 := MUB.SzollosiLaurentPairing.balanced_mask_count",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/SzollosiLaurentPairing.lean",
+        "decl": "MUB.SzollosiLaurentPairing.balanced_mask_count",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_quartet_table",
+      "statement": "Existence of a quartet is equivalent to a coded table solution, which reduces Conjecture 3 to a table question",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_quartet_table"
+      ],
+      "lean_skeleton": "theorem l_quartet_table : (∃ Q, MUB.SzollosiQuartetSystem.Quartet Q) ↔ ∃ x, MUB.BalancedTable.TableSolution x ∧ MUB.BalancedTable.CodedBox x := MUB.BalancedTable.exists_quartet_iff_table",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/MubBalancedTable.lean",
+        "decl": "MUB.BalancedTable.exists_quartet_iff_table",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_prop42",
+      "statement": "Conjecture 2 and Conjecture 3 together imply at most three MUBs in C^6 (Proposition 4.2)",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem l_prop42 (C2 C3 : Prop) (h2 : C2) (h3 : C3) : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_tao_not_conj2",
+      "claim": "The proven Tao balanced Laurent norm identity gives Conjecture 2 on actual MUB triples",
+      "rejecting_invariant": "The Tao identity is for formal Laurent expressions on masks with norm squared 9, not vanishing on actual MUB triples."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_balanced",
+      "expr": "20",
+      "value": "20"
+    },
+    {
+      "id": "n_masks",
+      "expr": "2*2*2*2*2*2",
+      "value": "64"
+    }
+  ],
+  "open_obligations": [
+    "Conjecture 2 is open and unformalized",
+    "Conjecture 3 is open and unformalized",
+    "Proposition 4.2 is not formalized as a Lean theorem with the real hypotheses",
+    "No generator composition can be licensed by an existing relation",
+    "Row-count table compatibility is a field, not a proven fact"
+  ]
+}

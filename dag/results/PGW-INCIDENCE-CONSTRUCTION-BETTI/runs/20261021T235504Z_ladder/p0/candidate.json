@@ -1,0 +1,177 @@
+{
+  "task_id": "PGW-INCIDENCE-CONSTRUCTION-BETTI",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6e8c639efb71bb075cc070beb585cc0276a14cd17e616eaa690b55c9a4b35df9",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_triangle_d1_d0",
+          "equation_or_predicate": "WDP window: d1(d0 f) = 0 on the triangle",
+          "typing_conditions": "Triangle cochain complex of the worked three-vertex window; scope limited to the triangle",
+          "source_pins": [
+            {
+              "path": "lean4/CochainObstruction.lean",
+              "declaration": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+              "line": 159
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/CochainObstruction.lean",
+            "decl": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+            "kind": "theorem",
+            "line": 159,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Cannot cite the education Lean declarations cycle_rational_betti, filled_rational_betti, cycle_incidence_eq, filled_incidence_eq, as they are not listed in @SRC or @KNOWN+.",
+        "No generators grounded: the Rust @SRC entries are lean-extension controls, not the WDP supply/admit operations.",
+        "Lemma skeletons are placeholders and are not proved.",
+        "General face-closed family K result is a written argument only.",
+        "No compositions listed as no licensing relation links grounded generators.",
+        "near_miss nm_unfilled_triangle_acyclic unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_edges_only_without_vertices unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_triangle_d1_d0",
+        "equation_or_predicate": "WDP window: d1(d0 f) = 0 on the triangle",
+        "typing_conditions": "Triangle cochain complex of the worked three-vertex window; scope limited to the triangle",
+        "source_pins": [
+          {
+            "path": "lean4/CochainObstruction.lean",
+            "declaration": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+            "line": 159
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CochainObstruction.lean",
+          "decl": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+          "kind": "theorem",
+          "line": 159,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-81AC0ECFC034",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_cycle_betti: Under the declared incidence interpretation, the cycle (vertices 0,1,2 with edges 01,12,02) has rational Betti numbers (1,1).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-INCIDENCE-CONSTRUCTION-BETTI"
+      },
+      {
+        "id": "NEG-08A1085C3640",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_filled_betti: Admitting the single instance 012 gives rational Betti numbers (1,0,0).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-INCIDENCE-CONSTRUCTION-BETTI"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Cannot cite the education Lean declarations cycle_rational_betti, filled_rational_betti, cycle_incidence_eq, filled_incidence_eq, as they are not listed in @SRC or @KNOWN+.",
+      "No generators grounded: the Rust @SRC entries are lean-extension controls, not the WDP supply/admit operations.",
+      "Lemma skeletons are placeholders and are not proved.",
+      "General face-closed family K result is a written argument only.",
+      "No compositions listed as no licensing relation links grounded generators.",
+      "near_miss nm_unfilled_triangle_acyclic unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_edges_only_without_vertices unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_euler_cycle",
+        "expr": "3 - 3",
+        "value": "0",
+        "host_evidence": {
+          "recomputed": "0"
+        }
+      },
+      {
+        "id": "n_euler_filled",
+        "expr": "3 - 3 + 1",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "n_betti_alt_cycle",
+        "expr": "1 - 1",
+        "value": "0",
+        "host_evidence": {
+          "recomputed": "0"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

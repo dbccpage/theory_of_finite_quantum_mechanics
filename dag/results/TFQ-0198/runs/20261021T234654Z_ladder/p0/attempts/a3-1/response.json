@@ -1,0 +1,110 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_vertexAmplitude",
+      "inputs": [
+        "TetSpins"
+      ],
+      "output": "Cyclo12",
+      "arity": 1,
+      "carrier": "Z[zeta_12] tetrahedral vertex amplitude at SU(2)_2",
+      "ref": {
+        "path": "lean4/H023DiscreteSpinfoamAmplitudes.lean",
+        "decl": "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_tetrahedral_amplitude",
+      "inputs": [
+        "TetSpins"
+      ],
+      "output": "Cyclo12",
+      "arity": 1,
+      "carrier": "Rust shadow amplitude in Q(sqrt2) at q=exp(i pi/4)",
+      "ref": {
+        "path": "code/rust/src/general_relativity/spin_foam.rs",
+        "decl": "tetrahedral_amplitude",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_vacuum",
+      "statement": "vertexAmplitude vacuumSpins = 1",
+      "hypotheses": "vacuum spins all 0",
+      "ref": {
+        "path": "lean4/H023DiscreteSpinfoamAmplitudes.lean",
+        "decl": "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_inadmissible_vanishes",
+      "statement": "inadmissible tetrahedral labels give zero amplitude",
+      "hypotheses": "tetAdmissible s = false",
+      "ref": {
+        "path": "lean4/H023DiscreteSpinfoamAmplitudes.lean",
+        "decl": "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_pentagon",
+      "statement": "finite pentagon coherence of recoupling amplitudes, a finite algebraic identity only",
+      "hypotheses": "PentagonAmplitudes structure",
+      "ref": {
+        "path": "lean4/H023DiscreteSpinfoamAmplitudes.lean",
+        "decl": "FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_no_continuum",
+      "statement": "The finite cyclotomic amplitudes (Z[zeta_12], labels 0,1,2) carry no continuum SU(2)/SL(2,C), no Haar measure, and no triangulation-invariance claim; they must not be cited as continuum spin foam.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_vacuum",
+        "R_inadmissible_vanishes",
+        "R_pentagon"
+      ],
+      "lean_skeleton": "theorem no_continuum_admission : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_continuum",
+      "claim": "The SU(2)_2 tetrahedral amplitude is a continuum gravity spin foam.",
+      "rejecting_invariant": "Finite labels 0,1,2 at root of unity q=exp(i pi/4), cyclotomic carrier, no continuous group or Haar measure."
+    },
+    {
+      "id": "NM_triang_inv",
+      "claim": "The 10j four-simplex amplitude in Z[zeta_12] is triangulation invariant.",
+      "rejecting_invariant": "Only the vertex amplitude and pentagon coherence are checked; no Pachner-move invariance is proved."
+    },
+    {
+      "id": "NM_all_one",
+      "claim": "All-one spins form an admissible tetrahedron.",
+      "rejecting_invariant": "tetrahedral_all_one_inadmissible"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of tetrahedral_amplitude in Rust not given; the output colour is assumed.",
+    "No composition is grounded.",
+    "Lean skeleton for L_no_continuum is a placeholder and not a real proof.",
+    "No Pachner invariance statement is grounded.",
+    "H024 10j vertex amplitude declaration not listed, only Simplex4Spins and vacuum4Spins."
+  ]
+}

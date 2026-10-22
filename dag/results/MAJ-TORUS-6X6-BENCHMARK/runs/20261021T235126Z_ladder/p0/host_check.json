@@ -1,0 +1,158 @@
+{
+  "task_id": "MAJ-TORUS-6X6-BENCHMARK",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "0c3b6017159260625a726558b4a60c3830315a031f8c24729d0bc8c1e15fe144",
+  "candidate_sha256": "ce1c516781b56a46728d57188adfff1c37b461acb1812c2d9b10065e1c0f2767",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 8,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:37Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gaussian_elimination_ops",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "gaussian_elimination_ops",
+            "line": 119
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "gaussian_elimination_ops",
+          "kind": "def",
+          "line": 119,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_ops_def",
+        "equation_or_predicate": "gaussian_elimination_ops n is a Nat-valued op-count function; the existing cubic bound is only a reflexivity-style bound.",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "gaussian_elimination_cubic_bound",
+            "line": 121
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "gaussian_elimination_cubic_bound",
+          "kind": "theorem",
+          "line": 121,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "OpenObstruction classification of a weight-one residual is not formalized or grounded in SRC",
+      "The 100 ms bound in Rust and Python is an empirical test and is not recorded in this checkout",
+      "The 17 ms figure is not recorded",
+      "The syndrome-step exit and the untimed elimination step remain unaddressed",
+      "No existing declaration for torus homology, d0 rank, or the search budget",
+      "lemma lem_cubic_bound_instance unverified: Lean elaboration disabled",
+      "near_miss nm_timing_as_theorem unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_elim_timed unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_vertices",
+        "expr": "6*6",
+        "value": "36",
+        "host_evidence": {
+          "recomputed": "36"
+        }
+      },
+      {
+        "id": "n_edges",
+        "expr": "2*6*6",
+        "value": "72",
+        "host_evidence": {
+          "recomputed": "72"
+        }
+      },
+      {
+        "id": "n_rank_d0",
+        "expr": "6*6 - 1",
+        "value": "35",
+        "host_evidence": {
+          "recomputed": "35"
+        }
+      },
+      {
+        "id": "n_h1",
+        "expr": "72 - 35 - 35",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "n_cubic_35",
+        "expr": "35*35*35",
+        "value": "42875",
+        "host_evidence": {
+          "recomputed": "42875"
+        }
+      },
+      {
+        "id": "n_coset_vs_budget",
+        "expr": "2^35 - 2^20",
+        "value": "34358689792",
+        "host_evidence": {
+          "recomputed": "34358689792"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 6 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

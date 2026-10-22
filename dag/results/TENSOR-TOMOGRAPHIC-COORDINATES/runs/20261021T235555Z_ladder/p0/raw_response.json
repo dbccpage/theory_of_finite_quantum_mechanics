@@ -1,0 +1,169 @@
+{
+  "task_id": "TENSOR-TOMOGRAPHIC-COORDINATES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f7ae05b7c4428a2b4e8f76125cb747c687b1a4c8525b22df4ee98a0dbdd42bf8",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"prepare\",\"inputs\":[\"Herm_n\",\"Herm_m\"],\"output\":\"V\",\"arity\":2,\"carrier\":\"operational state space V\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"tomographicEquiv\",\"inputs\":[\"V\"],\"output\":\"Herm_nm\",\"arity\":1,\"carrier\":\"real linear equivalence V to Herm(n x m)\",\"ref\":{\"path\":\"lean4/TensorCoordinates.lean\",\"decl\":\"TensorTomography.tomographicEquiv\",\"status\":\"existing\"}},{\"id\":\"representation\",\"inputs\":[\"V\"],\"output\":\"Herm_nm\",\"arity\":1,\"carrier\":\"real linear equivalence V to Herm(Fin n x Fin m)\",\"ref\":{\"path\":\"lean4/TensorComposition.lean\",\"decl\":\"TensorComposition.representation\",\"status\":\"existing\"}},{\"id\":\"product\",\"inputs\":[\"Herm_n\",\"Herm_m\"],\"output\":\"Herm_nm\",\"arity\":2,\"carrier\":\"Hermitian Kronecker product\",\"ref\":{\"path\":\"lean4/TensorTomography.lean\",\"decl\":\"TensorTomography.product\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"R_prepare_product\",\"statement\":\"tomographicEquiv(prepare A B) = product A B\",\"hypotheses\":\"TomographicData: bilinear preparations and tests, trace-factorized product probabilities, local tomography\",\"ref\":{\"path\":\"lean4/TensorCoordinates.lean\",\"decl\":\"TensorTomography.tomographicEquiv_prepare\",\"status\":\"existing\"}},{\"id\":\"R_test_pairing\",\"statement\":\"pairing(product E F, tomographicEquiv x) = test E F x\",\"hypotheses\":\"same tomographic data\",\"ref\":{\"path\":\"lean4/TensorCoordinates.lean\",\"decl\":\"TensorTomography.tomographicEquiv_test\",\"status\":\"existing\"}},{\"id\":\"R_unit_trace\",\"statement\":\"test 1 1 x = trace of representation x\",\"hypotheses\":\"same tomographic data\",\"ref\":{\"path\":\"lean4/TensorComposition.lean\",\"decl\":\"TensorComposition.unit_test_is_trace\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"tomographicEquiv\",\"slot\":0,\"inner\":\"prepare\",\"licensing_relation\":\"R_prepare_product\"}],\"lemmas\":[{\"id\":\"L_unique\",\"statement\":\"The equivalence preserving product preparations and product tests is unique.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R_prepare_product\",\"R_test_pairing\"],\"lean_skeleton\":\"-- cite existing TensorTomography.tomographicEquiv_unique; statement not given in @SRC\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/TensorCoordinates.lean\",\"decl\":\"TensorTomography.tomographicEquiv_unique\",\"status\":\"existing\"}},{\"id\":\"L_span\",\"statement\":\"Products of Hermitian matrices span Herm(n x m).\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"-- cite existing TensorTomography.product_span; statement not given in @SRC\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/TensorTomography.lean\",\"decl\":\"TensorTomography.product_span\",\"status\":\"existing\"}},{\"id\":\"L_nondeg\",\"statement\":\"The trace pairing on Hermitian matrices is nondegenerate.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"-- cite existing TensorTomography.pairing_nondegenerate; statement not given in @SRC\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/TensorTomography.lean\",\"decl\":\"TensorTomography.pairing_nondegenerate\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"NM_cone\",\"claim\":\"The joint state cone is assumed positive semidefinite.\",\"rejecting_invariant\":\"The target states the joint cone is not assumed; the equivalence is only linear.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Exact signatures of tomographicEquiv_unique, product_calibration, finite_frame_calibration not shown in @SRC; skeletons not elaborated.\",\"The Lean skeletons are comments only; no checkable Lean was written.\",\"Generator prepare has no cited ref; its relation to TomographicData.prepare needs verification.\",\"Duplicate roles of representation and tomographicEquiv need checking.\",\"Composition licensing assumes the Herm_nm colour is the output of product, not of V.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "prepare",
+        "inputs": [
+          "Herm_n",
+          "Herm_m"
+        ],
+        "output": "V",
+        "arity": 2,
+        "carrier": "operational state space V",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "tomographicEquiv",
+        "inputs": [
+          "V"
+        ],
+        "output": "Herm_nm",
+        "arity": 1,
+        "carrier": "real linear equivalence V to Herm(n x m)",
+        "ref": {
+          "path": "lean4/TensorCoordinates.lean",
+          "decl": "TensorTomography.tomographicEquiv",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "representation",
+        "inputs": [
+          "V"
+        ],
+        "output": "Herm_nm",
+        "arity": 1,
+        "carrier": "real linear equivalence V to Herm(Fin n x Fin m)",
+        "ref": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.representation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "product",
+        "inputs": [
+          "Herm_n",
+          "Herm_m"
+        ],
+        "output": "Herm_nm",
+        "arity": 2,
+        "carrier": "Hermitian Kronecker product",
+        "ref": {
+          "path": "lean4/TensorTomography.lean",
+          "decl": "TensorTomography.product",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_prepare_product",
+        "statement": "tomographicEquiv(prepare A B) = product A B",
+        "hypotheses": "TomographicData: bilinear preparations and tests, trace-factorized product probabilities, local tomography",
+        "ref": {
+          "path": "lean4/TensorCoordinates.lean",
+          "decl": "TensorTomography.tomographicEquiv_prepare",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_test_pairing",
+        "statement": "pairing(product E F, tomographicEquiv x) = test E F x",
+        "hypotheses": "same tomographic data",
+        "ref": {
+          "path": "lean4/TensorCoordinates.lean",
+          "decl": "TensorTomography.tomographicEquiv_test",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_unit_trace",
+        "statement": "test 1 1 x = trace of representation x",
+        "hypotheses": "same tomographic data",
+        "ref": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.unit_test_is_trace",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "tomographicEquiv",
+        "slot": 0,
+        "inner": "prepare",
+        "licensing_relation": "R_prepare_product"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_unique",
+        "statement": "The equivalence preserving product preparations and product tests is unique.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_prepare_product",
+          "R_test_pairing"
+        ],
+        "lean_skeleton": "-- cite existing TensorTomography.tomographicEquiv_unique; statement not given in @SRC",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/TensorCoordinates.lean",
+          "decl": "TensorTomography.tomographicEquiv_unique",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L_span",
+        "statement": "Products of Hermitian matrices span Herm(n x m).",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "-- cite existing TensorTomography.product_span; statement not given in @SRC",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/TensorTomography.lean",
+          "decl": "TensorTomography.product_span",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L_nondeg",
+        "statement": "The trace pairing on Hermitian matrices is nondegenerate.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "-- cite existing TensorTomography.pairing_nondegenerate; statement not given in @SRC",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/TensorTomography.lean",
+          "decl": "TensorTomography.pairing_nondegenerate",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_cone",
+        "claim": "The joint state cone is assumed positive semidefinite.",
+        "rejecting_invariant": "The target states the joint cone is not assumed; the equivalence is only linear."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Exact signatures of tomographicEquiv_unique, product_calibration, finite_frame_calibration not shown in @SRC; skeletons not elaborated.",
+      "The Lean skeletons are comments only; no checkable Lean was written.",
+      "Generator prepare has no cited ref; its relation to TomographicData.prepare needs verification.",
+      "Duplicate roles of representation and tomographicEquiv need checking.",
+      "Composition licensing assumes the Herm_nm colour is the output of product, not of V."
+    ]
+  }
+}

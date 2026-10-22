@@ -1,0 +1,63 @@
+add_or_refine_generators:
+- id: g_is_exact_involution_partner
+  ordered_inputs:
+  - SignedWeight
+  - SignedWeight
+  output: Bool
+  arity: 2
+  carrier: SignedWeight pairs to Bool
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.is_exact_involution_partner
+    line: 24
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.is_exact_involution_partner
+    kind: def
+    line: 24
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_pair_cancel
+  equation_or_predicate: 'For w : Nat and s1 s2 : Int with s1 + s2 = 0, (w:Int)*s1 + (w:Int)*s2 = 0'
+  typing_conditions: s1 + s2 = 0
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.involution_pair_cancels_sign
+    line: 28
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.involution_pair_cancels_sign
+    kind: theorem
+    line: 28
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Global involution on a configuration space not constructed.
+- Exact semantics of is_exact_involution_partner not linked to the sign relation in a lemma.
+- 'lemma l_pair_cancel unverified: Lean elaboration disabled'
+- 'near_miss nm_no_global_involution unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_sign_hypothesis_dropped unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_example
+  expr: 3*1 + 3*(-1)
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+verified_lemma_statements: []

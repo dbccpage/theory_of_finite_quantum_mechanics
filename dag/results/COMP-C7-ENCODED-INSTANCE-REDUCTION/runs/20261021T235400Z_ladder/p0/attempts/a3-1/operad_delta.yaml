@@ -1,0 +1,120 @@
+add_or_refine_generators:
+- id: g_init1
+  ordered_inputs:
+  - ℕ
+  output: TM1.Cfg G1 L1 (Option Γ')
+  arity: 1
+  carrier: TM1 configurations
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.init1
+    line: 134
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.init1
+    kind: def
+    line: 134
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_initCfg0
+  ordered_inputs:
+  - ℕ
+  output: TM0 configuration
+  arity: 1
+  carrier: TM0 configurations over G1 and TM1to0.Λ' M1
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.initCfg0
+    line: 140
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.initCfg0
+    kind: def
+    line: 140
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_startWord
+  ordered_inputs:
+  - ℕ
+  output: word
+  arity: 1
+  carrier: words of the fixed regime
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.startWord
+    line: 197
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.startWord
+    kind: def
+    line: 197
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_reach_undecidable
+  equation_or_predicate: The reachability predicate on startWord inputs is not computable
+  typing_conditions: Primcodable on mark type and Computable startWord
+  source_pins:
+  - path: lean4/GenesisCompUniv.lean
+    declaration: GenesisComputation.Universal.reach_problem_not_computable
+    line: 329
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompUniv.lean
+    decl: GenesisComputation.Universal.reach_problem_not_computable
+    kind: theorem
+    line: 329
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-74832191875E
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_initL: (List Γ'') -> ListBlank (∀ _ : K'', Option Γ'') [GenesisComputation.Universal.initL]'
+  evidence: lean def initL has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic
+    count)
+  decl_key: GenesisComputation.Universal.initL
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: COMP-C7-ENCODED-INSTANCE-REDUCTION
+open_obligations:
+- Construct the Primcodable instance on the mark type containing the infinite state type
+- Prove startWord_computable via the paired-input encoding
+- Exact signatures of startWord and reach_problem_not_computable not given, so skeletons are approximate
+- 'No compositions: slot colour matches and licensing relations are not grounded'
+- 'relation r_startWord_computable unverified: no existing declaration cited'
+- 'lemma l_startWord_computable unverified: Lean elaboration disabled'
+- 'lemma l_target unverified: Lean elaboration disabled'
+- 'near_miss nm_integral unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

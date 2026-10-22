@@ -1,0 +1,430 @@
+{
+  "task_id": "MUB-EXACT-PROJECTORS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "bb43692e5d8a3cecec0d2c4abdef233cd438021fccb2e6504d4a1a0daf36021c",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_muPolynomial",
+          "inputs": [
+            "Triple",
+            "Fin3",
+            "Fin6",
+            "Fin6"
+          ],
+          "output": "Poly",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_overlapRe",
+          "inputs": [
+            "Triple",
+            "Fin3",
+            "Fin6",
+            "Fin6"
+          ],
+          "output": "Poly",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_coordinates",
+          "inputs": [
+            "Candidate"
+          ],
+          "output": "CoordVector",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r:R_selfadjoint",
+          "equation_or_predicate": "conjTranspose of P_{b,l} equals P_{b,l}",
+          "typing_conditions": "concrete finite complex MUB family",
+          "source_pins": [
+            {
+              "path": "lean4/ConcreteMubProjectors.lean",
+              "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint",
+              "line": 26
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "decl": "MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint",
+            "kind": "theorem",
+            "line": 26,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r:R_complete",
+          "equation_or_predicate": "sum over l of P_{b,l} = 1",
+          "typing_conditions": "concrete finite complex MUB family",
+          "source_pins": [
+            {
+              "path": "lean4/ConcreteMubProjectors.lean",
+              "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_complete",
+              "line": 44
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "decl": "MUB.FiniteComplexMubFamily.concreteProjector_complete",
+            "kind": "theorem",
+            "line": 44,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r:R_rank_one",
+          "equation_or_predicate": "rank P_{b,l} = 1",
+          "typing_conditions": "concrete finite complex MUB family",
+          "source_pins": [
+            {
+              "path": "lean4/ConcreteMubProjectors.lean",
+              "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_rank_one",
+              "line": 69
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "decl": "MUB.FiniteComplexMubFamily.concreteProjector_rank_one",
+            "kind": "theorem",
+            "line": 69,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r:R_cross_trace",
+          "equation_or_predicate": "for b != c, trace(P_{b,l} P_{c,k}) = 1/|iota|",
+          "typing_conditions": "concrete finite complex MUB family, b != c",
+          "source_pins": [
+            {
+              "path": "lean4/ConcreteMubProjectors.lean",
+              "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace",
+              "line": 87
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "decl": "MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace",
+            "kind": "theorem",
+            "line": 87,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No Lean skeletons given; lemma array left empty to avoid vacuous proofs",
+        "Scalar extension (cyclotomic or field adjoining roots of unity) not grounded in a cited declaration",
+        "No generator for the projector construction itself is listed in SRC/KNOWN+ as an operation",
+        "Arbitrary finite-dimensional Hilbert carrier generalization beyond the concrete family is ungrounded",
+        "near_miss nm_rank_deficient unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_same_basis_trace unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_muPolynomial",
+        "ordered_inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "Fin 6 complex coordinates, concrete d=6 polynomial system",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubPolynomials.lean",
+            "declaration": "MUB.ConcreteMubPolynomialSystem.muPolynomial",
+            "line": 53
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.muPolynomial",
+          "kind": "def",
+          "line": 53,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_overlapRe",
+        "ordered_inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "Fin 6 complex coordinates, concrete d=6 polynomial system",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubPolynomials.lean",
+            "declaration": "MUB.ConcreteMubPolynomialSystem.overlapRe",
+            "line": 48
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.overlapRe",
+          "kind": "def",
+          "line": 48,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_coordinates",
+        "ordered_inputs": [
+          "Candidate"
+        ],
+        "output": "CoordVector",
+        "arity": 1,
+        "carrier": "candidate to coordinate vector",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubPolynomials.lean",
+            "declaration": "MUB.ConcreteMubPolynomialSystem.coordinates",
+            "line": 34
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.coordinates",
+          "kind": "def",
+          "line": 34,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r:R_selfadjoint",
+        "equation_or_predicate": "conjTranspose of P_{b,l} equals P_{b,l}",
+        "typing_conditions": "concrete finite complex MUB family",
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint",
+            "line": 26
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_self_adjoint",
+          "kind": "theorem",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r:R_complete",
+        "equation_or_predicate": "sum over l of P_{b,l} = 1",
+        "typing_conditions": "concrete finite complex MUB family",
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_complete",
+            "line": 44
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_complete",
+          "kind": "theorem",
+          "line": 44,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r:R_rank_one",
+        "equation_or_predicate": "rank P_{b,l} = 1",
+        "typing_conditions": "concrete finite complex MUB family",
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_rank_one",
+            "line": 69
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_rank_one",
+          "kind": "theorem",
+          "line": 69,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r:R_cross_trace",
+        "equation_or_predicate": "for b != c, trace(P_{b,l} P_{c,k}) = 1/|iota|",
+        "typing_conditions": "concrete finite complex MUB family, b != c",
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubProjectors.lean",
+            "declaration": "MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace",
+            "line": 87
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubProjectors.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concreteProjector_cross_basis_trace",
+          "kind": "theorem",
+          "line": 87,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No Lean skeletons given; lemma array left empty to avoid vacuous proofs",
+      "Scalar extension (cyclotomic or field adjoining roots of unity) not grounded in a cited declaration",
+      "No generator for the projector construction itself is listed in SRC/KNOWN+ as an operation",
+      "Arbitrary finite-dimensional Hilbert carrier generalization beyond the concrete family is ungrounded",
+      "near_miss nm_rank_deficient unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_same_basis_trace unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_d6_cross",
+        "expr": "1/6",
+        "value": "1/6",
+        "host_evidence": {
+          "recomputed": "1/6"
+        }
+      },
+      {
+        "id": "n_sum_trace",
+        "expr": "6*(1/6)",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "7 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

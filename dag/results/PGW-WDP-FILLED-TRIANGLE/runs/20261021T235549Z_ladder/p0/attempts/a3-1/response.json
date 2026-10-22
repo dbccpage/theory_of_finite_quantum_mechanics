@@ -1,0 +1,125 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "d0",
+      "inputs": [
+        "C0"
+      ],
+      "output": "C1",
+      "arity": 1,
+      "carrier": "Q^3 -> Q^3, f -> (f1-f0, f2-f1, f2-f0)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "d1",
+      "inputs": [
+        "C1"
+      ],
+      "output": "C2",
+      "arity": 1,
+      "carrier": "Q^3 -> Q, x -> x01+x12-x02",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "d1d0_zero",
+      "statement": "d1(d0 f) = (f1-f0)+(f2-f1)-(f2-f0) = 0 for all f",
+      "hypotheses": "filled triangle, edges ordered 01,12,02, over Q",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "phi1_class_lower_bound",
+      "statement": "every residual r in the class of c has |hol c| <= l1 r, and the bound is attained",
+      "hypotheses": "abstract holonomy setting of ResidualSectorWeights; instantiation to the triangle is not yet established",
+      "ref": {
+        "path": "lean4/ResidualSectorWeights.lean",
+        "decl": "ResidualSectorWeights.phi1_attained_and_lower_bound",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "d1",
+      "slot": 0,
+      "inner": "d0",
+      "licensing_relation": "d1d0_zero"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "filled_triangle_signature",
+      "statement": "Over Q with unit weights, delta=(1,1,0) has d1 d0=0, Phi1=2 attained at f=(0,1,0) with residual (0,2,0), certificate y=(1,1,-1), Gamma2=2, ||d1||_{1->1}=1, R_cl=1, ActiveClosureFailure",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "d1d0_zero",
+        "phi1_class_lower_bound"
+      ],
+      "lean_skeleton": "theorem filled_triangle_signature : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "hollow_closed_residual",
+      "statement": "Without the 2-simplex, the cyclic field (1,1,1) has Phi1=3 with certificate y=(1,1,1) and Gamma2=0 (ClosedResidual); filling the triangle leaves Phi1 unchanged",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem hollow_closed_residual : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "projection_not_repair",
+      "claim": "Orthogonal projection of delta onto ker d1 (subtracting (2/3,2/3,-2/3)) is a repair that lowers Phi1",
+      "rejecting_invariant": "The subtracted vector lies in im d1* and meets im d0 only in 0, so it is not a coboundary and Phi1 of the original class stays 2"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "gamma2",
+      "expr": "1 + 1 - 0",
+      "value": "2"
+    },
+    {
+      "id": "proj_coeff",
+      "expr": "2/3",
+      "value": "2/3"
+    },
+    {
+      "id": "hollow_phi1",
+      "expr": "1 + 1 + 1",
+      "value": "3"
+    }
+  ],
+  "open_obligations": [
+    "No existing Lean declaration for the filled-triangle numbers; filled_triangle_signature is proposed_new and unproved",
+    "Hollow comparison and projection remark are prose and Python checks only",
+    "Instantiating phi1_attained_and_lower_bound to this complex is not shown",
+    "Certificate fixes the value Phi1=2, not a single repair",
+    "ActiveClosureFailure classification not grounded in a cited declaration"
+  ]
+}

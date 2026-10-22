@@ -1,0 +1,108 @@
+add_or_refine_generators:
+- id: g_finite_valuation_module
+  ordered_inputs: []
+  output: FiniteValuation
+  arity: 0
+  carrier: Rational
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/mod.rs
+    declaration: finite_valuation
+    line: 16
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/mod.rs
+    decl: finite_valuation
+    kind: mod
+    line: 16
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_presented_carrier
+  ordered_inputs:
+  - X
+  - Q
+  output: PresentedCarrier
+  arity: 2
+  carrier: Type
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H000FinitePresentedCarrier.lean
+    declaration: FableHilbertWalk20260819.H000.PresentedCarrier
+    line: 20
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H000FinitePresentedCarrier.lean
+    decl: FableHilbertWalk20260819.H000.PresentedCarrier
+    kind: structure
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_presented_carrier_separates
+  equation_or_predicate: Presented carrier report separates two presentations on the bool fixture
+  typing_conditions: boolFixture and the stated report pairs
+  source_pins:
+  - path: lean4/H000FinitePresentedCarrier.lean
+    declaration: FableHilbertWalk20260819.H000.presented_carrier_separates
+    line: 47
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H000FinitePresentedCarrier.lean
+    decl: FableHilbertWalk20260819.H000.presented_carrier_separates
+    kind: theorem
+    line: 47
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-274BC17E8D00
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_nonneg_mass_rejected: A valuation with a negative rational mass is rejected by validation'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0226
+- id: NEG-B1478C9C8425
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_empty_event_zero: A nonzero mass on the empty event is rejected; an empty carrier is representable
+    in the unnormalized layer but not as a probability carrier'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0226
+counterexamples: []
+open_obligations:
+- Locate the exact Rust declarations in finite_valuation.rs for the rational type and validation, not
+  grounded in SRC
+- Ground ExactOperator and kernel Exact type, not listed in SRC
+- Formalize the empty-event and negative-mass rejection in Lean
+- Compositions not licensed by a grounded relation yet
+- 'generator g_store_valuation_beside_statement unverified: no existing declaration cited'
+- 'relation r_valuation_exact_no_float unverified: no existing declaration cited'
+- 'near_miss nm_numpy_probability unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_float_normalize unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

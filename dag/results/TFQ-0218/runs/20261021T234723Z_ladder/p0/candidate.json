@@ -1,0 +1,178 @@
+{
+  "task_id": "TFQ-0218",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "2a939904bc5c8a23707e75f3f15c203a9a45c31a084121a153825c06c763b3d0",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_primitive_difference_qm",
+          "inputs": [
+            "Real",
+            "Real"
+          ],
+          "output": "Real",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_primitive_difference_wdp",
+          "inputs": [
+            "Str",
+            "Str"
+          ],
+          "output": "DifferenceOutcome",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Signatures of the Python validate_prime000 and the Lean declarationOrder are not in the sources; no existing citation is made.",
+        "No composition is licensed: the Real and Str generator colours do not connect.",
+        "Lean declarationOrder and the Python validate_prime000 file paths were not ground-truthed.",
+        "relation r_prime000_order unverified: no existing declaration cited",
+        "near_miss nm_reordered unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_authority unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_primitive_difference_qm",
+        "ordered_inputs": [
+          "Real",
+          "Real"
+        ],
+        "output": "Real",
+        "arity": 2,
+        "carrier": "float",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/qm/rungs.py",
+            "declaration": "primitive_difference",
+            "line": 50
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/qm/rungs.py",
+          "decl": "primitive_difference",
+          "kind": "def",
+          "line": 50,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_primitive_difference_wdp",
+        "ordered_inputs": [
+          "Str",
+          "Str"
+        ],
+        "output": "DifferenceOutcome",
+        "arity": 2,
+        "carrier": "str",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/difference.rs",
+            "declaration": "primitive_difference",
+            "line": 45
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/difference.rs",
+          "decl": "primitive_difference",
+          "kind": "fn",
+          "line": 45,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-AF50FDBCC0A4",
+        "class": "statement_drift",
+        "claim_kind": "lemma",
+        "claim": "l_declaration_order_length: The declaration-order list has length 7.",
+        "evidence": "numerals 7 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": null,
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0218"
+      }
+    ],
+    "open_obligations": [
+      "Signatures of the Python validate_prime000 and the Lean declarationOrder are not in the sources; no existing citation is made.",
+      "No composition is licensed: the Real and Str generator colours do not connect.",
+      "Lean declarationOrder and the Python validate_prime000 file paths were not ground-truthed.",
+      "relation r_prime000_order unverified: no existing declaration cited",
+      "near_miss nm_reordered unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_authority unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_fields",
+        "expr": "7",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

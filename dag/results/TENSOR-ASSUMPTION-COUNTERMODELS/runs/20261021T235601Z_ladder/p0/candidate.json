@@ -1,0 +1,295 @@
+{
+  "task_id": "TENSOR-ASSUMPTION-COUNTERMODELS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "0d4bf40a44a8b60a8c2f65bbea42c6fb88269b6f914537fd0797ad291e07f3d3",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_bp_dual_sep",
+          "equation_or_predicate": "BlockPositive H iff pairing E H >= 0 for all E in sep",
+          "typing_conditions": "finite complex Hermitian carrier on n x m with real trace pairing",
+          "source_pins": [
+            {
+              "path": "lean4/TensorCountermodelCones.lean",
+              "declaration": "TensorCountermodelCones.blockPositive_iff_dual_sep",
+              "line": 58
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "decl": "TensorCountermodelCones.blockPositive_iff_dual_sep",
+            "kind": "theorem",
+            "line": 58,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_sep_local",
+          "equation_or_predicate": "sep is preserved by local conjugation conjMap (U tensor W)",
+          "typing_conditions": "U and W are matrices on n and m; H in sep",
+          "source_pins": [
+            {
+              "path": "lean4/TensorCountermodelCones.lean",
+              "declaration": "TensorCountermodelCones.sep_local",
+              "line": 116
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "decl": "TensorCountermodelCones.sep_local",
+            "kind": "theorem",
+            "line": 116,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_bp_local",
+          "equation_or_predicate": "BlockPositive is preserved by local conjugation conjMap (U tensor W)",
+          "typing_conditions": "U and W are matrices on n and m; H is BlockPositive",
+          "source_pins": [
+            {
+              "path": "lean4/TensorCountermodelCones.lean",
+              "declaration": "TensorCountermodelCones.bp_local",
+              "line": 139
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "decl": "TensorCountermodelCones.bp_local",
+            "kind": "theorem",
+            "line": 139,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_twisted_self_dual",
+          "equation_or_predicate": "twisted cone is self-dual under the trace pairing",
+          "typing_conditions": "finite Hermitian carrier on n x m",
+          "source_pins": [
+            {
+              "path": "lean4/TensorCountermodelCones.lean",
+              "declaration": "TensorCountermodelCones.twisted_self_dual",
+              "line": 104
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "decl": "TensorCountermodelCones.twisted_self_dual",
+            "kind": "theorem",
+            "line": 104,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Generator signatures for existing declarations are not given in SRC and are not cited as generators",
+        "Statements of binary_product_statistics_separate and the controlled-shift witnesses were not visible",
+        "Composition licensing not grounded",
+        "Lean skeletons not elaborated",
+        "generator g_local_conj unverified: no existing declaration cited",
+        "lemma l_cone_dual unverified: Lean elaboration disabled",
+        "near_miss nm_dual_not_psd unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_bp_dual_sep",
+        "equation_or_predicate": "BlockPositive H iff pairing E H >= 0 for all E in sep",
+        "typing_conditions": "finite complex Hermitian carrier on n x m with real trace pairing",
+        "source_pins": [
+          {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "declaration": "TensorCountermodelCones.blockPositive_iff_dual_sep",
+            "line": 58
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorCountermodelCones.lean",
+          "decl": "TensorCountermodelCones.blockPositive_iff_dual_sep",
+          "kind": "theorem",
+          "line": 58,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_sep_local",
+        "equation_or_predicate": "sep is preserved by local conjugation conjMap (U tensor W)",
+        "typing_conditions": "U and W are matrices on n and m; H in sep",
+        "source_pins": [
+          {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "declaration": "TensorCountermodelCones.sep_local",
+            "line": 116
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorCountermodelCones.lean",
+          "decl": "TensorCountermodelCones.sep_local",
+          "kind": "theorem",
+          "line": 116,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_bp_local",
+        "equation_or_predicate": "BlockPositive is preserved by local conjugation conjMap (U tensor W)",
+        "typing_conditions": "U and W are matrices on n and m; H is BlockPositive",
+        "source_pins": [
+          {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "declaration": "TensorCountermodelCones.bp_local",
+            "line": 139
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorCountermodelCones.lean",
+          "decl": "TensorCountermodelCones.bp_local",
+          "kind": "theorem",
+          "line": 139,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_twisted_self_dual",
+        "equation_or_predicate": "twisted cone is self-dual under the trace pairing",
+        "typing_conditions": "finite Hermitian carrier on n x m",
+        "source_pins": [
+          {
+            "path": "lean4/TensorCountermodelCones.lean",
+            "declaration": "TensorCountermodelCones.twisted_self_dual",
+            "line": 104
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorCountermodelCones.lean",
+          "decl": "TensorCountermodelCones.twisted_self_dual",
+          "kind": "theorem",
+          "line": 104,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-3FD108E577F7",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_cone_separations: Exact cone separations embed into all dimensions n,m>=2",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TENSOR-ASSUMPTION-COUNTERMODELS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Generator signatures for existing declarations are not given in SRC and are not cited as generators",
+      "Statements of binary_product_statistics_separate and the controlled-shift witnesses were not visible",
+      "Composition licensing not grounded",
+      "Lean skeletons not elaborated",
+      "generator g_local_conj unverified: no existing declaration cited",
+      "lemma l_cone_dual unverified: Lean elaboration disabled",
+      "near_miss nm_dual_not_psd unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

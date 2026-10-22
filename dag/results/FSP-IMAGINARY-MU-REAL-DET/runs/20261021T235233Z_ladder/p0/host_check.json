@@ -1,0 +1,61 @@
+{
+  "task_id": "FSP-IMAGINARY-MU-REAL-DET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6674141978d51d369c32e9c173222e06167aea3ad062d05326c3383285b529c7",
+  "candidate_sha256": "3a1452d125a87f456a9619ed5b0deb90eefd0ae7756c7d966193ca85b38922e5",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:46Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations in checkout; all refs are proposed_new.",
+      "Lean formalization of gamma5-hermiticity for a concrete lattice Dirac operator is not grounded.",
+      "Roberge-Weiss periodicity is imported from literature and not formalized.",
+      "Staggered m + K nonnegativity and two-flavor |det|^2 >= 0 not formalized.",
+      "Analytic continuation to real mu is not established.",
+      "relation R1_gamma5_hermiticity_imag_mu unverified: no existing declaration cited",
+      "relation R2_det_real unverified: no existing declaration cited",
+      "relation R3_rw_periodicity unverified: no existing declaration cited",
+      "lemma L1_det_real unverified: Lean elaboration disabled",
+      "near_miss NM1_real_implies_nonneg unverified: semantic near miss; P4 host check decides",
+      "near_miss NM2_continuation_sign_free unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N1_rw_period_coefficient",
+        "expr": "2/3",
+        "value": "2/3",
+        "host_evidence": {
+          "recomputed": "2/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

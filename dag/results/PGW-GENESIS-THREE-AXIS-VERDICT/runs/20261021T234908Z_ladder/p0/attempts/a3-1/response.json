@@ -1,0 +1,93 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_delta_events",
+      "inputs": [
+        "PrimitiveDelta"
+      ],
+      "output": "PrimitiveEventList",
+      "arity": 1,
+      "carrier": "Result<Vec<PrimitiveEvent>, PrimitiveExecutionError>",
+      "ref": {
+        "path": "code/rust/src/wdp/genesis_primitive_execution.rs",
+        "decl": "delta_events",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_newdatum_dedup_noop",
+      "statement": "With sole admitted token w1 and datum count naming the fresh datum w1, a NewDatum item yields AdmitDatum(w1) and deduplication leaves the state unchanged.",
+      "hypotheses": "Admitted set is exactly {w1}; fresh name derived from current datum count; deduplication on admitted datum.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "r_three_axis_independence",
+      "statement": "The three recorded axis verdicts (research_phase, alpha_reference, original_seed_completion_gate) are independent recorded values; no one implies another.",
+      "hypotheses": "Author-approved verdicts for frozen snapshot 90ab34a0 dated 2026-09-28.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_dedup_defect",
+      "statement": "Replay of delta_events on a NewDatum item with sole admitted token w1 emits AdmitDatum(w1), and the resulting state equals the prior state.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_newdatum_dedup_noop"
+      ],
+      "lean_skeleton": "theorem dedup_defect : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "l_axes_independent",
+      "statement": "CLOSED_WITH_OPEN_OBSTRUCTIONS for research_phase does not entail READY or SATISFIED on the other axes.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_three_axis_independence"
+      ],
+      "lean_skeleton": "theorem axes_independent : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_closed_implies_ready",
+      "claim": "A closed research phase implies the alpha reference or seed gate is satisfied.",
+      "rejecting_invariant": "Axes are independent; seed gate is UNSATISFIED while research phase is closed."
+    },
+    {
+      "id": "nm_agreement_is_refinement",
+      "claim": "Agreement on 1,436 regimes and 1,439 tuples proves Rust/Python/Lean refinement for all code.",
+      "rejecting_invariant": "Finite agreement is not a compiler-verified refinement proof."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing Lean or Rust declaration grounds the axis verdicts; they are recorded verdicts.",
+    "Dedup defect relation and lemmas need proposed_new declarations with real Lean statements.",
+    "Census 2,475, 1,436 regimes and 1,439 tuples are recorded counts, not recomputable here.",
+    "Axiom footprint claims (propext, Quot.sound, Classical.choice) are not grounded in listed declarations."
+  ]
+}

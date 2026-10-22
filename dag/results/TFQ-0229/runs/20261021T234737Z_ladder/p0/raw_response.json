@@ -1,0 +1,123 @@
+{
+  "task_id": "TFQ-0229",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f93e4a76d3a84765a3a776335319232bc74ecf01bcec9caaf4e3e0467c9f5718",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"obligation_zero\",\"inputs\":[],\"output\":\"ObligationMonoid\",\"arity\":0,\"carrier\":\"ObligationMonoid\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.zero\",\"status\":\"existing\"}},{\"id\":\"obligation_add\",\"inputs\":[\"ObligationMonoid\",\"ObligationMonoid\"],\"output\":\"ObligationMonoid\",\"arity\":2,\"carrier\":\"ObligationMonoid\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.add\",\"status\":\"existing\"}},{\"id\":\"trace_obligation\",\"inputs\":[\"Trace\"],\"output\":\"ObligationMonoid\",\"arity\":1,\"carrier\":\"ObligationMonoid\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.traceObligation\",\"status\":\"existing\"}},{\"id\":\"event_obligation\",\"inputs\":[\"Event\"],\"output\":\"ObligationMonoid\",\"arity\":1,\"carrier\":\"ObligationMonoid\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.eventObligation\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"trace_append_hom\",\"statement\":\"traceObligation of an appended trace equals the monoid sum of the traceObligations\",\"hypotheses\":\"none beyond the types in the cited theorem; exact statement not shown in @SRC\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.traceObligation_append\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"custody_no_derived_status\",\"statement\":\"A clean structure check on the derivation graph assigns no derived status to the custody chain; only OPEN_OBLIGATION, SOURCE_RECORD, or GAP are used\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem custody_no_derived_status : True := by trivial\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"finite_quotient_vs_continuum_gap\",\"statement\":\"The finite-quotient selection leaves a continuum gap unfinished\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem finite_gap_aux : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_checker_decides\",\"claim\":\"A passing validate_derivation_dag.py run shows that a statement holds\",\"rejecting_invariant\":\"The checker header says it does not decide that any statement holds, and the reading note says the graph promotes no status\"}],\"numeric_claims\":[],\"open_obligations\":[\"The language triple is unfinished\",\"The continuum gap is unfinished\",\"The exact statements of traceObligation_append and eventObligation are not visible in @SRC, so the input colours Trace and Event are guessed\",\"No compositions are listed because no licensing relation is grounded\",\"The custody chain status needs host review\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "obligation_zero",
+        "inputs": [],
+        "output": "ObligationMonoid",
+        "arity": 0,
+        "carrier": "ObligationMonoid",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.zero",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "obligation_add",
+        "inputs": [
+          "ObligationMonoid",
+          "ObligationMonoid"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 2,
+        "carrier": "ObligationMonoid",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.add",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "trace_obligation",
+        "inputs": [
+          "Trace"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 1,
+        "carrier": "ObligationMonoid",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.traceObligation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "event_obligation",
+        "inputs": [
+          "Event"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 1,
+        "carrier": "ObligationMonoid",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.eventObligation",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "trace_append_hom",
+        "statement": "traceObligation of an appended trace equals the monoid sum of the traceObligations",
+        "hypotheses": "none beyond the types in the cited theorem; exact statement not shown in @SRC",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.traceObligation_append",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "custody_no_derived_status",
+        "statement": "A clean structure check on the derivation graph assigns no derived status to the custody chain; only OPEN_OBLIGATION, SOURCE_RECORD, or GAP are used",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem custody_no_derived_status : True := by trivial",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "finite_quotient_vs_continuum_gap",
+        "statement": "The finite-quotient selection leaves a continuum gap unfinished",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem finite_gap_aux : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_checker_decides",
+        "claim": "A passing validate_derivation_dag.py run shows that a statement holds",
+        "rejecting_invariant": "The checker header says it does not decide that any statement holds, and the reading note says the graph promotes no status"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "The language triple is unfinished",
+      "The continuum gap is unfinished",
+      "The exact statements of traceObligation_append and eventObligation are not visible in @SRC, so the input colours Trace and Event are guessed",
+      "No compositions are listed because no licensing relation is grounded",
+      "The custody chain status needs host review"
+    ]
+  }
+}

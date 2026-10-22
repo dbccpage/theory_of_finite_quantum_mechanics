@@ -1,0 +1,136 @@
+{
+  "task_id": "DFM-JARLSKOG-PYTHAGOREAN-WITNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ff9e970b7679a14f7a50a29b68cee559655b9f99d335e07db46f659583afd0c5",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"ckm_std_param\",\"inputs\":[\"Rat\",\"Rat\",\"Rat\",\"Rat\",\"Rat\",\"Rat\",\"GaussUnit\"],\"output\":\"Mat3GaussRat\",\"arity\":7,\"carrier\":\"3x3 matrices over Q(i)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"plaquette_im\",\"inputs\":[\"Mat3GaussRat\"],\"output\":\"Rat\",\"arity\":1,\"carrier\":\"Q\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"row_unit_norm\",\"statement\":\"For c=3/5, s=4/5, each row of ckm_std_param has squared norm 1\",\"hypotheses\":\"c_i^2+s_i^2=1 for each i; e^{i delta} has modulus 1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"rows12_orthogonal\",\"statement\":\"Rows 1 and 2 have vanishing Hermitian inner product at delta=pi/2 (e^{i delta}=i)\",\"hypotheses\":\"c=3/5, s=4/5, e^{i delta}=i\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"jarlskog_formula\",\"statement\":\"Every plaquette imaginary part equals +-J with J=c12*c13^2*c23*s12*s13*s23*sin(delta)\",\"hypotheses\":\"unitarity of the standard parametrization\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"jarlskog_pythagorean_value\",\"statement\":\"J = (3/5)^4*(4/5)^3 = 5184/78125, nonzero, so the plaquette imaginary parts are +-5184/78125\",\"relation_to_target\":\"implies\",\"depends_on\":[\"jarlskog_formula\"],\"lean_skeleton\":\"example : (3/5:ℚ)^4*(4/5)^3 = 5184/78125 := by norm_num\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"row1_unit_norm_rational\",\"statement\":\"Row 1 squared norm: (9/25)(9/25)+(16/25)(9/25)+16/25 = 1\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"row_unit_norm\"],\"lean_skeleton\":\"example : (9/25:ℚ)*(9/25)+(16/25)*(9/25)+16/25 = 1 := by norm_num\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_delta_real\",\"claim\":\"Taking e^{i delta}=1 gives the same nonzero plaquette imaginary parts\",\"rejecting_invariant\":\"sin(delta)=0 forces J=0, so the plaquette imaginary parts vanish\"}],\"numeric_claims\":[{\"id\":\"J_value\",\"expr\":\"81/625*64/125\",\"value\":\"5184/78125\"},{\"id\":\"row1_norm\",\"expr\":\"9/25*9/25 + 16/25*9/25 + 16/25\",\"value\":\"1\"}],\"open_obligations\":[\"Full 3x3 unitarity is not checked in Lean or Python\",\"Orthogonality of rows 1 and 2 not proved in Lean\",\"No existing SRC declaration grounds the matrix generators; gaussian_norm.rs items concern norm realization, not this matrix\",\"Plaquette sign convention and the explicit matrix entries need host confirmation\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "ckm_std_param",
+        "inputs": [
+          "Rat",
+          "Rat",
+          "Rat",
+          "Rat",
+          "Rat",
+          "Rat",
+          "GaussUnit"
+        ],
+        "output": "Mat3GaussRat",
+        "arity": 7,
+        "carrier": "3x3 matrices over Q(i)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "plaquette_im",
+        "inputs": [
+          "Mat3GaussRat"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Q",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "row_unit_norm",
+        "statement": "For c=3/5, s=4/5, each row of ckm_std_param has squared norm 1",
+        "hypotheses": "c_i^2+s_i^2=1 for each i; e^{i delta} has modulus 1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "rows12_orthogonal",
+        "statement": "Rows 1 and 2 have vanishing Hermitian inner product at delta=pi/2 (e^{i delta}=i)",
+        "hypotheses": "c=3/5, s=4/5, e^{i delta}=i",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "jarlskog_formula",
+        "statement": "Every plaquette imaginary part equals +-J with J=c12*c13^2*c23*s12*s13*s23*sin(delta)",
+        "hypotheses": "unitarity of the standard parametrization",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "jarlskog_pythagorean_value",
+        "statement": "J = (3/5)^4*(4/5)^3 = 5184/78125, nonzero, so the plaquette imaginary parts are +-5184/78125",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "jarlskog_formula"
+        ],
+        "lean_skeleton": "example : (3/5:ℚ)^4*(4/5)^3 = 5184/78125 := by norm_num",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "row1_unit_norm_rational",
+        "statement": "Row 1 squared norm: (9/25)(9/25)+(16/25)(9/25)+16/25 = 1",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "row_unit_norm"
+        ],
+        "lean_skeleton": "example : (9/25:ℚ)*(9/25)+(16/25)*(9/25)+16/25 = 1 := by norm_num",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_delta_real",
+        "claim": "Taking e^{i delta}=1 gives the same nonzero plaquette imaginary parts",
+        "rejecting_invariant": "sin(delta)=0 forces J=0, so the plaquette imaginary parts vanish"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "J_value",
+        "expr": "81/625*64/125",
+        "value": "5184/78125"
+      },
+      {
+        "id": "row1_norm",
+        "expr": "9/25*9/25 + 16/25*9/25 + 16/25",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "Full 3x3 unitarity is not checked in Lean or Python",
+      "Orthogonality of rows 1 and 2 not proved in Lean",
+      "No existing SRC declaration grounds the matrix generators; gaussian_norm.rs items concern norm realization, not this matrix",
+      "Plaquette sign convention and the explicit matrix entries need host confirmation"
+    ]
+  }
+}

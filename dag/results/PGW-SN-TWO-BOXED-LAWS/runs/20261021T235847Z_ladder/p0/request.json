@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-SN-TWO-BOXED-LAWS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a52f268cf277c5e1dcfac442b2aa0fae5fda611df80f2fbadb0baadbc5ff93a4",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-SN-TWO-BOXED-LAWS stage=P0 attempt=a3-1 in=a52f268c guided=yes\n@TARGET [DEFINITION] The S(n) strand states two boxed laws: S(n+1) may contain only structure forced by an unresolved Genesis obstruction at S(n), and a mathematical realization R(S(n)) has no authority to extend S(n). sn.md section 1 reads them as design requirements on later work, not as independent theorems that force the next event, and accepts an external continuation request and a chosen response grammar as recorded inputs. A property shown in a model returns to Genesis only through an explicitly proved reflection bridge. No checker enforces the two laws; they mark which arguments are not allowed.\n@BOTTLENECK Design rules with no checker, not theorems: the archived 000_sn ledger row SN-C01 labelled the realization law a proved law, but that archive is superseded and this record does not adopt the label; evaluate_two_boxed_laws_gate in the MSS-N Rust crate tests supplied flags and does not enforce either law.\n@ASSUME The S(n) stage labels and the two boxed laws, declared by the 002_oesn strand and not by 19L57G1 (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/GenesisFspBridge.lean | GenesisFspBridge.TroyerWieseFspComplexityObstruction | def | def TroyerWieseFspComplexityObstruction (V_4 : Nat) : Prop\n lean4/GenesisFspBridge.lean | GenesisFspBridge.troyer_wiese_obstruction_sound | theorem | theorem troyer_wiese_obstruction_sound (V_4 : Nat) : TroyerWieseFspComplexityObstruction V_4\n lean4/GenesisFspBridge.lean | GenesisFspBridge.open_sign_obstruction_when_defect_positive | theorem | theorem open_sign_obstruction_when_defect_positive (Phi_1 : Nat) (h_pos : Phi_1 > 0) : Phi_1 ≠ 0\n lean4/GenesisFspBridge.lean | GenesisFspBridge.CarrierCut | structure | structure CarrierCut (X : Type u)\n lean4/GenesisFspBridge.lean | GenesisFspBridge.cut_endpoints_distinct | theorem | theorem cut_endpoints_distinct {X : Type u} (C : CarrierCut X) {a b : X} (hwit : C.r a b) : a ≠ b\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2 | def | def D2 : Bool → Bool → Prop | false, true => True | _, _ => False instance (x y : Bool) : Decidable (D2 x y)\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_irrefl | theorem | theorem D2_irrefl (x : Bool) : ¬ D2 x x\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_witness | theorem | theorem D2_witness : D2 false true\n lean4/GenesisFspBridge.lean | GenesisFspBridge.swap | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.swap_involutive | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_rev | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.S2 | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.S2_symmetric | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.S2_swap_invariant | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.IsSwapInvariant | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.swap_invariant_blind | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.Chain1 | inductive\n lean4/GenesisFspBridge.lean | GenesisFspBridge.boundary1 | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.Simplex2 | structure\n lean4/GenesisFspBridge.lean | GenesisFspBridge.boundary2 | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.discrete_stokes_cancellation | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.DirectSumWdwCochain | structure\n lean4/GenesisFspBridge.lean | GenesisFspBridge.d_joint_eval | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.wdw_scalar_defect_unscreenable | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.CausalFoliation | structure\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_carrierCard (Nat)->Nat src=lean4/SnCarrierPfp.lean | SnCarrierPfp.carrierCard\n r:r_ground_card_zero carrierCard 0 = 0, by the first defining equation of carrierCard src=lean4/SnCarrierPfp.lean | SnCarrierPfp.carrierCard\n r:r_ground_carrier_empty Carrier 0 has no inhabitant src=lean4/SnCarrierPfp.lean | SnCarrierPfp.ground_carrier_empty\n@KNOWN- (host-refused earlier; do not repeat)\n [statement_drift] l_ground_presentation_vs_carrier: carrierCard 0 = 0 while the wire form <> has 2 ASCII bytes and one presentat -- Do not restate the source with numerals it does not contain.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "PGW-DECLARED-CHALLENGE-IMPORT-PER-LEVEL",
+      "PGW-GENESIS-TO-SN-CROSSWALK",
+      "PGW-SN0-GROUND-INERTIA",
+      "TFQ-0368"
+    ],
+    "feedback": true,
+    "index_position": 766,
+    "neg_entry_ids": [
+      "NEG-4E480E340CB4"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

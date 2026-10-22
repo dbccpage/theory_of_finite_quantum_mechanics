@@ -1,0 +1,71 @@
+{
+  "task_id": "PGW-RESPONSES-COSTS-MU1-MU2",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b2858e0267ee5a4e391972d75cf0ea45887778d63c734391997278c63261c0a8",
+  "candidate_sha256": "b05413f752a00860f2cd5fec8d14615599a833e691313d8625ad2a2eab586585",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 9,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:39Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declaration formalizes the response grammar, mu1 or mu2; all are proposed_new.",
+      "Persistence of earlier Separate requirements under a response is not proved.",
+      "Canonical item order versus multiset equivalence is not formalized.",
+      "Link from the collapse-barrier refine results to responses is not established.",
+      "generator NewDatum unverified: no existing declaration cited",
+      "generator NewForm unverified: no existing declaration cited",
+      "generator NewInst unverified: no existing declaration cited",
+      "relation R_mu1_length unverified: no existing declaration cited",
+      "relation R_mu2_lex unverified: no existing declaration cited",
+      "relation R_order_wellformed unverified: no existing declaration cited",
+      "lemma L_mu2_example unverified: Lean elaboration disabled",
+      "near_miss NM_inst_before_form unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_merge_equal_arity unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_mu2_two_unary",
+        "expr": "1+1",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "N_mu1_example",
+        "expr": "2+1",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

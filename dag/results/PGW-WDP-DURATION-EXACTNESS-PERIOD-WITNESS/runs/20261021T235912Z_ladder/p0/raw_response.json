@@ -1,0 +1,81 @@
+{
+  "task_id": "PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "494eea2fb93f4246e653cbd448dea2fc87fdf38637bf34426087697de38d1c2d",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R-append-additivity\",\"statement\":\"D_lambda(pq) = D_lambda(p) + D_lambda(q) whenever pq is defined (WDP-CH07-P01)\",\"hypotheses\":\"path system with edge valuation lambda into a commutative monoid M; pq defined\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R-exact-path-independence\",\"statement\":\"If lambda = d0 t then every directed path a to b has duration t(b) - t(a) (WDP-CH07-P02)\",\"hypotheses\":\"M is an abelian group, t a vertex potential with d0 t = lambda\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R-period-witness\",\"statement\":\"The difference of two path sums with common endpoints is a period witness; a nonzero period refutes exactness\",\"hypotheses\":\"M is an abelian group; two directed paths with common endpoints\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L-exact-implies-period-zero\",\"statement\":\"If lambda = d0 t, then any two directed paths with the same endpoints have equal duration, so their period difference is 0\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R-exact-path-independence\"],\"lean_skeleton\":\"theorem exact_period_zero {V M : Type} [AddCommGroup M] (t : V -> M) (a b : V) (D1 D2 : M) (h1 : D1 = t b - t a) (h2 : D2 = t b - t a) : D1 - D2 = 0 := by rw [h1, h2]; simp\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM-weak-connectedness-converse\",\"claim\":\"Weak connectedness plus closedness alone implies exactness of lambda\",\"rejecting_invariant\":\"Converse needs a base vertex reaching all vertices with path-independent sums, or vanishing periods under signed walks; a nonzero period refutes exactness.\"},{\"id\":\"NM-python-Q-positive-as-D01\",\"claim\":\"The Python duration_sum with M = Q and strict positivity captures D01\",\"rejecting_invariant\":\"D01 only needs a commutative monoid; positivity, Archimedean structure and units are extra hypotheses.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No @SRC declaration covers the duration gauge. The Lean names duration_append and exact_duration_path_independent are mentioned only in the bottleneck text, not listed in @SRC, so they are not cited as existing.\",\"No generators are grounded, so none are listed.\",\"The four-status classification (exact, closed nonexact, active closure failure, undetermined) has no ledger row.\",\"The d1 closure operator and the 2-cell structure are undeclared.\",\"The lean_skeleton is unchecked and may fail to elaborate, so claims_proved is false.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R-append-additivity",
+        "statement": "D_lambda(pq) = D_lambda(p) + D_lambda(q) whenever pq is defined (WDP-CH07-P01)",
+        "hypotheses": "path system with edge valuation lambda into a commutative monoid M; pq defined",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R-exact-path-independence",
+        "statement": "If lambda = d0 t then every directed path a to b has duration t(b) - t(a) (WDP-CH07-P02)",
+        "hypotheses": "M is an abelian group, t a vertex potential with d0 t = lambda",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R-period-witness",
+        "statement": "The difference of two path sums with common endpoints is a period witness; a nonzero period refutes exactness",
+        "hypotheses": "M is an abelian group; two directed paths with common endpoints",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L-exact-implies-period-zero",
+        "statement": "If lambda = d0 t, then any two directed paths with the same endpoints have equal duration, so their period difference is 0",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R-exact-path-independence"
+        ],
+        "lean_skeleton": "theorem exact_period_zero {V M : Type} [AddCommGroup M] (t : V -> M) (a b : V) (D1 D2 : M) (h1 : D1 = t b - t a) (h2 : D2 = t b - t a) : D1 - D2 = 0 := by rw [h1, h2]; simp",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM-weak-connectedness-converse",
+        "claim": "Weak connectedness plus closedness alone implies exactness of lambda",
+        "rejecting_invariant": "Converse needs a base vertex reaching all vertices with path-independent sums, or vanishing periods under signed walks; a nonzero period refutes exactness."
+      },
+      {
+        "id": "NM-python-Q-positive-as-D01",
+        "claim": "The Python duration_sum with M = Q and strict positivity captures D01",
+        "rejecting_invariant": "D01 only needs a commutative monoid; positivity, Archimedean structure and units are extra hypotheses."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No @SRC declaration covers the duration gauge. The Lean names duration_append and exact_duration_path_independent are mentioned only in the bottleneck text, not listed in @SRC, so they are not cited as existing.",
+      "No generators are grounded, so none are listed.",
+      "The four-status classification (exact, closed nonexact, active closure failure, undetermined) has no ledger row.",
+      "The d1 closure operator and the 2-cell structure are undeclared.",
+      "The lean_skeleton is unchecked and may fail to elaborate, so claims_proved is false."
+    ]
+  }
+}

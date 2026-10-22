@@ -1,0 +1,102 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "exchange_quasiholes",
+      "inputs": [
+        "QuasiholePositions",
+        "LaughlinState"
+      ],
+      "output": "StatPhase",
+      "arity": 2,
+      "carrier": "Berry phase of adiabatic half-braid of two quasiholes in the nu=1/m Laughlin state",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "berry_phase_loop",
+      "inputs": [
+        "QuasiholePositions",
+        "LaughlinState"
+      ],
+      "output": "BerryPhase",
+      "arity": 2,
+      "carrier": "Berry phase around closed quasihole loop",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_full_loop_enclosed_charge",
+      "statement": "Berry phase for one quasihole encircling another is 2*pi/m (the Aharonov-Bohm term from the enclosed fractional charge 1/m cancels out of the background-flux contribution)",
+      "hypotheses": "Laughlin nu=1/m wavefunction, plasma screening assumption, adiabatic transport, background flux term subtracted",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_exchange_half_loop",
+      "statement": "Exchange phase theta equals half of the full-encirclement phase: theta = (1/2)*(2*pi/m) = pi/m",
+      "hypotheses": "Abelian anyons, 2D, exchange is half-braid with path-independence of the phase",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_exchange_phase",
+      "statement": "For the Laughlin nu=1/m state, the adiabatic exchange of two quasiholes yields statistical phase pi/m",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_full_loop_enclosed_charge",
+        "R_exchange_half_loop"
+      ],
+      "lean_skeleton": "theorem exchange_phase (m : ℕ) (hm : 0 < m) : (1:ℚ)/2 * (2/m) = 1/m := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_no_subtraction",
+      "claim": "Using the raw Berry phase without subtracting the Aharonov-Bohm background-flux contribution gives the statistical phase",
+      "rejecting_invariant": "Statistical phase is the part of the Berry phase proportional to enclosed quasihole charge deficit, not the magnetic flux term"
+    },
+    {
+      "id": "NM_full_loop_equals_exchange",
+      "claim": "The full encirclement phase 2*pi/m equals the exchange phase",
+      "rejecting_invariant": "Exchange is a half-braid; the full braid is the square of exchange, so theta_full = 2*theta"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N_half",
+      "expr": "1/2 * 2/3",
+      "value": "1/3"
+    }
+  ],
+  "open_obligations": [
+    "No Berry-phase or torus computation in checkout; the derivation is literature-imported and ungrounded",
+    "Plasma-analogy screening assumption not formalized",
+    "No existing declarations cited; all refs proposed_new",
+    "Local module fixes m=3 only; general m not verified",
+    "Units: phase expressed as a fraction of pi (1/3 for m=3), not pi/m radians directly"
+  ]
+}

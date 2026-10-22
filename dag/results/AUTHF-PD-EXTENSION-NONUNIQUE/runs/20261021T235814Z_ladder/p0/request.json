@@ -1,0 +1,307 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "AUTHF-PD-EXTENSION-NONUNIQUE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "700cd57683daf53bf7328529f5f37e06e51d8652129bf1b7238ff6246c4f21c2",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=AUTHF-PD-EXTENSION-NONUNIQUE stage=P0 attempt=a3-1 in=700cd576 guided=yes\n@TARGET [PROVED_LEAN] Over the minimal Bool analogue of a primitive difference with two unequal marks, identityExtension and rejectingExtension give different validity and terminal values at the same carrier point.\n@BOTTLENECK The analogue is not the J011 interface and no naturality statement about all primitive differences follows.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive | def | def boolPrimitive : RawPrimitiveDifference where Carrier\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity | theorem | theorem same_primitive_extensions_split_validity : identityExtension.valid true = true /\\ rejectingExtension.valid true = false\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy | theorem | theorem same_primitive_extensions_split_policy : identityExtension.terminal true = true /\\ rejectingExtension.terminal true = false\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions | theorem | theorem primitive_interface_has_distinct_authorization_extensions : (true : boolPrimitive.Carrier) != false /\\ boolPrimitive.mark true false = true /\\\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.identityExtension | def | def identityExtension : AuthorizationExtension boolPrimitive where valid\n lean4/AuthIncompleteness/PDModels.lean | AuthorizationIncompleteness.PrimitiveDifferenceModels.rejectingExtension | def | def rejectingExtension : AuthorizationExtension boolPrimitive where valid\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant | def | def boolAllZeroNonconstant : PrimitiveDifference Bool Bool where δ\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_not_deltaCongruent | theorem | theorem boolAllZeroNonconstant_not_deltaCongruent : ¬ boolAllZeroNonconstant.DeltaCongruent\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_no_factorization | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_classifier_not_invariantCongruent | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_no_invariant_factorization | theorem\n lean4/PrimitiveDifference.lean | PrimitiveDifference.isSame | def\n lean4/PrimitiveDifference.lean | PrimitiveDifference.same_iff_eq | theorem\n code/rust/src/qm/domain/primitive_difference.rs | PrimitiveDifference | struct\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference | structure\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.ZeroRel | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_refl | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_symm | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_trans | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_equivalence | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroSetoid | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.ResidualQuotient | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.classOf | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.classOf_eq_of_zero | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.classOf_eq_iff_zeroRel | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:G_contextLocal (Phi,Context_Alpha)->Gamma src=lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.contextLocal\n r:R_pair_obstruction If phi is invariant-congruent and psi is not, a pair of points exists where phi agrees but psi differs, so no  src=lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction\n r:R_context_obstruction_witness Given a witness pair x,y with phi x = phi y and psi x != psi y, no context-level factorization exists src=lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_context_obstruction_of_witness\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L_boundary_supplied: The report-erasure factorization at the Paper 0 boundary is supplied as a hypothesis and  -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] OmegaCore.PrimitiveDifference.classOf -- Do not state that arity/signature for OmegaCore.PrimitiveDifference.classOf.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 2,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "TFQ-0332"
+    ],
+    "feedback": true,
+    "index_position": 744,
+    "neg_entry_ids": [
+      "NEG-DD2ADADBFE1F",
+      "NEG-0983C97B5685"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

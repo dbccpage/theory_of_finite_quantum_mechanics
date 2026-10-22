@@ -1,0 +1,80 @@
+{
+  "task_id": "MAJ-HARDWARE-NARRATIVE-QUARANTINE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c309510330b573f5f4425851957e7127269be5f6203521d25f6761ea62ff5e94",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g:measurement_projection\",\"inputs\":[\"State\"],\"output\":\"Readout\",\"arity\":1,\"carrier\":\"MeasurementProjection State Readout (project field)\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"MeasurementProjection\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r:detector_kernel_inadequacy\",\"statement\":\"If a measurement projection sends two distinct states to the same readout, the detector is inadequate, so the readout cannot certify the state.\",\"hypotheses\":\"M : MeasurementProjection S R, s1 ≠ s2, M.project s1 = M.project s2\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"detector_inadequate_when_kernel_nontrivial\",\"status\":\"existing\"}},{\"id\":\"r:observer_authority_separation\",\"statement\":\"Observer packets (device baths, BdG spectra, conductance peaks, gap protocols, C_Q shifts) are not authority packets absent a validated realization map; checked by a non-authority test.\",\"hypotheses\":\"No realization map supplied\",\"ref\":{\"path\":\"code/rust/src/wdp/authority_gap.rs\",\"decl\":\"test_self_critique_non_authority_violation\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l:quarantine_from_kernel\",\"statement\":\"For any measurement projection with a nontrivial kernel, the readout does not determine the state, so the observer projection cannot populate F2 receipts without a realization map.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r:detector_kernel_inadequacy\"],\"lean_skeleton\":\"theorem quarantine_from_kernel {S R : Type} (M : MeasurementProjection S R) (s1 s2 : S) (h : s1 ≠ s2) (he : M.project s1 = M.project s2) : detector_inadequate M := detector_inadequate_when_kernel_nontrivial M s1 s2 h he\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm:peak_implies_mzm\",\"claim\":\"A 2e^2/h conductance peak certifies a Majorana zero mode.\",\"rejecting_invariant\":\"The measurement projection can have a nontrivial kernel, so the readout does not determine the state (detector_inadequate), and no realization map is supplied.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Validated realization map from device and bath data to F2 receipts is not supplied.\",\"Exact field names and signature of MeasurementProjection and detector_inadequate were not visible, so the Lean skeleton is unelaborated.\",\"Fields of ObserverPacket and AuthorityPacket not visible, so no generators were grounded on them.\",\"No numeric content in the target.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g:measurement_projection",
+        "inputs": [
+          "State"
+        ],
+        "output": "Readout",
+        "arity": 1,
+        "carrier": "MeasurementProjection State Readout (project field)",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "MeasurementProjection",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r:detector_kernel_inadequacy",
+        "statement": "If a measurement projection sends two distinct states to the same readout, the detector is inadequate, so the readout cannot certify the state.",
+        "hypotheses": "M : MeasurementProjection S R, s1 ≠ s2, M.project s1 = M.project s2",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "detector_inadequate_when_kernel_nontrivial",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r:observer_authority_separation",
+        "statement": "Observer packets (device baths, BdG spectra, conductance peaks, gap protocols, C_Q shifts) are not authority packets absent a validated realization map; checked by a non-authority test.",
+        "hypotheses": "No realization map supplied",
+        "ref": {
+          "path": "code/rust/src/wdp/authority_gap.rs",
+          "decl": "test_self_critique_non_authority_violation",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l:quarantine_from_kernel",
+        "statement": "For any measurement projection with a nontrivial kernel, the readout does not determine the state, so the observer projection cannot populate F2 receipts without a realization map.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r:detector_kernel_inadequacy"
+        ],
+        "lean_skeleton": "theorem quarantine_from_kernel {S R : Type} (M : MeasurementProjection S R) (s1 s2 : S) (h : s1 ≠ s2) (he : M.project s1 = M.project s2) : detector_inadequate M := detector_inadequate_when_kernel_nontrivial M s1 s2 h he",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm:peak_implies_mzm",
+        "claim": "A 2e^2/h conductance peak certifies a Majorana zero mode.",
+        "rejecting_invariant": "The measurement projection can have a nontrivial kernel, so the readout does not determine the state (detector_inadequate), and no realization map is supplied."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Validated realization map from device and bath data to F2 receipts is not supplied.",
+      "Exact field names and signature of MeasurementProjection and detector_inadequate were not visible, so the Lean skeleton is unelaborated.",
+      "Fields of ObserverPacket and AuthorityPacket not visible, so no generators were grounded on them.",
+      "No numeric content in the target."
+    ]
+  }
+}

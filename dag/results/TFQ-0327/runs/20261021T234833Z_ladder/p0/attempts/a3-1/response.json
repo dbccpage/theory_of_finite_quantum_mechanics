@@ -1,0 +1,69 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R-refused-iff-policy",
+      "statement": "repairBoundaryDecision input = refused iff input.policyAllowed = false",
+      "hypotheses": "input : RepairBoundaryInput",
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.repairBoundary_refused_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-refused-not-repaired",
+      "statement": "RepairBoundaryStatus.refused is distinct from RepairBoundaryStatus.repaired",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.refused_not_repaired",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-zerorel-equivalence",
+      "statement": "ZeroRel of a PrimitiveDifference is an equivalence relation on the carrier",
+      "hypotheses": "P : PrimitiveDifference α β",
+      "ref": {
+        "path": "lean4/PrimitiveDifference.lean",
+        "decl": "OmegaCore.PrimitiveDifference.zeroRel_equivalence",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L-policy-failure-refused",
+      "statement": "If policyAllowed = false then repairBoundaryDecision input = refused. This grounds the refused terminal only; it does not address the other named terminals or the Genesis-to-PD bridge.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R-refused-iff-policy"
+      ],
+      "lean_skeleton": "theorem policy_failure_routes_refused (input : RepairBoundaryInput) (hPolicy : input.policyAllowed = false) : repairBoundaryDecision input = RepairBoundaryStatus.refused := sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.policy_failure_routes_refused",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM-refused-is-repaired",
+      "claim": "A refused repair boundary status may be treated as repaired",
+      "rejecting_invariant": "refused_not_repaired: RepairBoundaryStatus.refused ≠ RepairBoundaryStatus.repaired"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No generator is grounded: signatures of existing declarations were not listed in @SRC, and classOf signature is host-refused.",
+    "Proposal-space and reporting-alphabet generators for chapter 01 are not grounded in any existing declaration.",
+    "Bridge S001-GAP-GENESIS-TO-PD remains unjoined and is deliberately not claimed.",
+    "Terminal set authorized/rejected/unresolved/refused/not admitted has only refused grounded.",
+    "Compositions need licensing relations that are not yet established."
+  ]
+}

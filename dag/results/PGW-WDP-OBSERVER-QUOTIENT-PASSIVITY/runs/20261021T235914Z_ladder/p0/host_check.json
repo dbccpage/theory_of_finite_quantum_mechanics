@@ -1,0 +1,74 @@
+{
+  "task_id": "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ec7dfa99d382ed835dc44af557d4cafe230577db321a816c3869a4ac946d47d5",
+  "candidate_sha256": "368e3aba711e0f8079015f854bc55d72bb5d8ae6279277e4877c8a54f8760049",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 10,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:59:25Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-E9A5FB11476F",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "induced_cost . slot 0 <- report_map via passivity",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were provided in the sources, so all refs are proposed_new",
+      "Core-identification clause is not formalized",
+      "Typed adapters between the four layers are not specified",
+      "Descent of partial operations along sort maps is not modeled",
+      "Report_map output colour Fk must be matched explicitly to any decoder input colour before composing",
+      "generator report_map unverified: no existing declaration cited",
+      "generator induced_cost unverified: no existing declaration cited",
+      "generator terminalizer unverified: no existing declaration cited",
+      "relation passivity unverified: no existing declaration cited",
+      "relation kernel_order unverified: no existing declaration cited",
+      "relation grammar_pigeonhole unverified: no existing declaration cited",
+      "lemma observer_passivity_fibre_bound unverified: Lean elaboration disabled",
+      "lemma grammar_collision unverified: Lean elaboration disabled",
+      "near_miss nm_nonzero_on_exact unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_policy_authority unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,91 @@
+add_or_refine_generators:
+- id: G_declare_carrier
+  ordered_inputs: []
+  output: FiniteCarrier
+  arity: 0
+  carrier: finite carrier X
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/policy_observer_adapter.rs
+    declaration: PolicyCarrier
+    line: 31
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/policy_observer_adapter.rs
+    decl: PolicyCarrier
+    kind: struct
+    line: 31
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: G_declare_comparison
+  ordered_inputs:
+  - FiniteCarrier
+  output: ComparisonRegime
+  arity: 1
+  carrier: local comparison regime on X
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/policy_observer_adapter.rs
+    declaration: PolicyComparisonDomain
+    line: 38
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/policy_observer_adapter.rs
+    decl: PolicyComparisonDomain
+    kind: struct
+    line: 38
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: G_declare_gauge
+  ordered_inputs:
+  - FiniteCarrier
+  output: ObserverGauge
+  arity: 1
+  carrier: observer gauge action on X
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/policy_observer_adapter.rs
+    declaration: PolicyGaugeAction
+    line: 86
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/policy_observer_adapter.rs
+    decl: PolicyGaugeAction
+    kind: struct
+    line: 86
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Ground the raw-distinction generator and relation in a real declaration; none exists in @SRC.
+- Chapter 07 obstruction signature (Phi1, Gamma2, R_cl) is deferred and not modeled.
+- The B001_raw_distinction.lean file is not in @SRC; the semantic derivation from the sealed Genesis tag
+  is not established.
+- 'Compositions omitted: no relation licenses plugging generators, since the declare generators take FiniteCarrier
+  and raw distinction is a separate colour.'
+- 'generator G_raw_distinction unverified: no existing declaration cited'
+- 'relation R_distinction_not_quotient unverified: no existing declaration cited'
+- 'lemma L_raw_distinction_witness unverified: Lean elaboration disabled'
+- 'near_miss NM_distinction_as_quotient unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_distinction_as_gauge unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

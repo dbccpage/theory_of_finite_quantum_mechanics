@@ -1,0 +1,103 @@
+add_or_refine_generators:
+- id: g_sign_gap_packet
+  ordered_inputs: []
+  output: SignGapPacket
+  arity: 0
+  carrier: finite exact meron cancellation fixture
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FermionSignCore.lean
+    declaration: FermionSignTower.exactMeronCancellationPacket
+    line: 77
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FermionSignCore.lean
+    decl: FermionSignTower.exactMeronCancellationPacket
+    kind: def
+    line: 77
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_package_scope
+  equation_or_predicate: Package results are conditional algebraic lemmas and finite fixtures; physical
+    bridges need separate proof.
+  typing_conditions: none beyond the package
+  source_pins:
+  - path: lean4/FermionSignAll.lean
+    declaration: FermionSignAll.package_mechanization_total
+    line: 32
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FermionSignAll.lean
+    decl: FermionSignAll.package_mechanization_total
+    kind: theorem
+    line: 32
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_swap_blind
+  equation_or_predicate: Swap-invariant predicates cannot distinguish the two D2 endpoints.
+  typing_conditions: IsSwapInvariant predicate
+  source_pins:
+  - path: lean4/FermionSignCore.lean
+    declaration: FermionSignTower.swap_invariant_blind
+    line: 50
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FermionSignCore.lean
+    decl: FermionSignTower.swap_invariant_blind
+    kind: theorem
+    line: 50
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-2224396FBFA3
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_finite_cancellation_not_efficiency: A finite exact cancellation fixture does not imply a polynomial-time
+    sampler with bounded variance.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-EFFICIENT-SAMPLING-OBLIGATIONS
+counterexamples:
+- id: NEG-F612EC245A9B
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_evaluate_determinant: (FermionModelInstance) -> DeterminantWeight [evaluate_determinant]'
+  evidence: python def evaluate_determinant takes 0 parameters; the claim says 1
+  decl_key: evaluate_determinant
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-EFFICIENT-SAMPLING-OBLIGATIONS
+open_obligations:
+- Define input size and model family
+- Define transformation cost
+- Define estimator variance and normalization bounds
+- Define mixing or sampling bounds
+- Ground the packet's generator arity and colors
+- No existing composition is licensed
+- 'relation r_cost_variance_bound unverified: no existing declaration cited'
+- 'near_miss nm_cancellation_is_sampler unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_nonneg_det_is_efficient unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,73 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_is_exact_involution_partner",
+      "inputs": [
+        "SignedWeight",
+        "SignedWeight"
+      ],
+      "output": "Bool",
+      "arity": 2,
+      "carrier": "SignedWeight pairs to Bool",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+        "decl": "MajoranaGinCore.is_exact_involution_partner",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_pair_cancel",
+      "statement": "For w : Nat and s1 s2 : Int with s1 + s2 = 0, (w:Int)*s1 + (w:Int)*s2 = 0",
+      "hypotheses": "s1 + s2 = 0",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+        "decl": "MajoranaGinCore.involution_pair_cancels_sign",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_pair_cancel",
+      "statement": "For natural w and integers s1 s2 with s1 + s2 = 0, w*s1 + w*s2 = 0 in Int.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_pair_cancel"
+      ],
+      "lean_skeleton": "theorem pair_cancel (w : Nat) (s1 s2 : Int) (h : s1 + s2 = 0) : (w : Int) * s1 + (w : Int) * s2 = 0 := by rw [← Int.mul_add, h, Int.mul_zero]",
+      "claims_proved": true,
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+        "decl": "MajoranaGinCore.involution_pair_cancels_sign",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_no_global_involution",
+      "claim": "A single cancelling pair yields a global sign-reversing involution on a configuration space.",
+      "rejecting_invariant": "Only one pair is treated; no involution on a configuration space is constructed (BOTTLENECK)."
+    },
+    {
+      "id": "nm_sign_hypothesis_dropped",
+      "claim": "w*s1 + w*s2 = 0 holds for any signs when w>0.",
+      "rejecting_invariant": "Requires s1 + s2 = 0; with s1=s2=1, w=1 the sum is 2."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_example",
+      "expr": "3*1 + 3*(-1)",
+      "value": "0"
+    }
+  ],
+  "open_obligations": [
+    "Global involution on a configuration space not constructed.",
+    "Exact semantics of is_exact_involution_partner not linked to the sign relation in a lemma."
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "task_id": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e600f959af45cf2763f6ede79f463234700e76839d04d673f5230dcee240ab1d",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R-IDENTITY-NOT-PROFILE\",\"statement\":\"Internal identity of a datum is its index; the profile is a derived observation. Distinct indices may share identical profiles (e.g. data 0 and 2 in reading F with one unary form marking datum 1).\",\"hypotheses\":\"Reading F, first-round mu2 minimum admits a single unary form with instance marking datum 1; profile of a datum = the set of contexts (the form with one hole) it satisfies.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L-PROFILE-NOT-INJECTIVE\",\"statement\":\"In reading F there exist distinct indices i != j (data 0 and 2) with equal empty profiles, so the map index -> profile is not injective; hence identity is not the profile.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R-IDENTITY-NOT-PROFILE\"],\"lean_skeleton\":\"theorem profile_not_injective : ∃ (profile : Fin 3 → Bool), ¬ Function.Injective profile := ⟨fun i => decide (i = 1), by intro h; have := @h 0 2 (by decide); exact absurd this (by decide)⟩\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L-DATUM1-SEPARATED\",\"statement\":\"Datum 1 is separated from data 0 and 2 by the unary form marking datum 1, while 0 and 2 are not separated by any context.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R-IDENTITY-NOT-PROFILE\"],\"lean_skeleton\":\"theorem datum1_separated : (fun i : Fin 3 => decide (i = 1)) 1 ≠ (fun i : Fin 3 => decide (i = 1)) 0 := by decide\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM-IDENTITY-EQ-PROFILE\",\"claim\":\"From Challenge 3 round 1 onward each datum's internal identity is exactly its profile.\",\"rejecting_invariant\":\"Data 0 and 2 have distinct indices but identical empty profiles, so profile does not determine identity; the claim was withdrawn on 2026-09-08.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No generators grounded: the only SRC item (ContractModel) is unrelated to the finite quantum model.\",\"No existing declarations found for profile, index, or reading F; all refs are proposed_new.\",\"Lean skeletons are unchecked and use sorry-free but unverified terms; claims_proved set to false.\",\"Formal definition of profile, contexts, and mu2 minimum still to be specified.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R-IDENTITY-NOT-PROFILE",
+        "statement": "Internal identity of a datum is its index; the profile is a derived observation. Distinct indices may share identical profiles (e.g. data 0 and 2 in reading F with one unary form marking datum 1).",
+        "hypotheses": "Reading F, first-round mu2 minimum admits a single unary form with instance marking datum 1; profile of a datum = the set of contexts (the form with one hole) it satisfies.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L-PROFILE-NOT-INJECTIVE",
+        "statement": "In reading F there exist distinct indices i != j (data 0 and 2) with equal empty profiles, so the map index -> profile is not injective; hence identity is not the profile.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R-IDENTITY-NOT-PROFILE"
+        ],
+        "lean_skeleton": "theorem profile_not_injective : ∃ (profile : Fin 3 → Bool), ¬ Function.Injective profile := ⟨fun i => decide (i = 1), by intro h; have := @h 0 2 (by decide); exact absurd this (by decide)⟩",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L-DATUM1-SEPARATED",
+        "statement": "Datum 1 is separated from data 0 and 2 by the unary form marking datum 1, while 0 and 2 are not separated by any context.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R-IDENTITY-NOT-PROFILE"
+        ],
+        "lean_skeleton": "theorem datum1_separated : (fun i : Fin 3 => decide (i = 1)) 1 ≠ (fun i : Fin 3 => decide (i = 1)) 0 := by decide",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM-IDENTITY-EQ-PROFILE",
+        "claim": "From Challenge 3 round 1 onward each datum's internal identity is exactly its profile.",
+        "rejecting_invariant": "Data 0 and 2 have distinct indices but identical empty profiles, so profile does not determine identity; the claim was withdrawn on 2026-09-08."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No generators grounded: the only SRC item (ContractModel) is unrelated to the finite quantum model.",
+      "No existing declarations found for profile, index, or reading F; all refs are proposed_new.",
+      "Lean skeletons are unchecked and use sorry-free but unverified terms; claims_proved set to false.",
+      "Formal definition of profile, contexts, and mu2 minimum still to be specified."
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-6343D1FFCB8D
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_questions . slot 0 <- g_new_presentation via r_questions_select_nothing
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-FIVE-PRESENTATION-QUESTIONS
+counterexamples:
+- id: NEG-F09FB35CA381
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_questions: (Presentation) -> QuestionSet [questions]'
+  evidence: rust fn questions takes 0 parameters; the claim says 1
+  decl_key: questions
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-FIVE-PRESENTATION-QUESTIONS
+- id: NEG-AD01D9466820
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_new_presentation: () -> Presentation [new]'
+  evidence: rust fn new takes 3 parameters; the claim says 0
+  decl_key: new
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-FIVE-PRESENTATION-QUESTIONS
+open_obligations:
+- Confirm the signature and return type of questions and new in genesis_questions.rs; the host listing
+  gives no types
+- Formalize the preservation obligations of a selection decision
+- Link the quotient-retention and round-trip results to the preservation question
+- Ground the QuestionSet colour in a declared type
+- 'relation r_questions_select_nothing unverified: no existing declaration cited'
+- 'lemma l_questions_five unverified: Lean elaboration disabled'
+- 'near_miss nm_selection_from_questions unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_question_count
+  expr: 1+1+1+1+1
+  value: '5'
+  host_evidence:
+    recomputed: '5'
+verified_lemma_statements: []

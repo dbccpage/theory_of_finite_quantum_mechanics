@@ -1,0 +1,94 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_dirac",
+      "inputs": [
+        "SimplicialComplex"
+      ],
+      "output": "DiracOperator",
+      "arity": 1,
+      "carrier": "finite-dimensional Hilbert space on a declared simplicial pair",
+      "ref": {
+        "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+        "decl": "SimplicialDiracOperator",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_Hperp",
+      "inputs": [
+        "FiniteStateSpace"
+      ],
+      "output": "ConstraintOperator",
+      "arity": 1,
+      "carrier": "finite-dimensional Hilbert space of diffeomorphism-invariant states on a declared triangulation",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_dirac_hermitian",
+      "statement": "The discrete Dirac operator on the simplicial pair equals its adjoint (checked by a test).",
+      "hypotheses": "Declared simplicial pair; the test covers only that specific instance.",
+      "ref": {
+        "path": "code/rust/src/general_relativity/dirac_operator_discrete.rs",
+        "decl": "test_discrete_dirac_operator_hermiticity_on_simplicial_pair",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_Hperp_proj",
+      "statement": "H_perp is self-adjoint, nonnegative, and idempotent on the invariant subspace, so its spectrum is contained in {0,1}.",
+      "hypotheses": "H_perp must be constructed on a finite state space; none is constructed here.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_spec01",
+      "statement": "A self-adjoint idempotent operator on a finite-dimensional Hilbert space has spectrum in {0,1}, hence is nonnegative.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_Hperp_proj"
+      ],
+      "lean_skeleton": "theorem spec01 {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E] (P : E →ₗ[ℂ] E) (hs : LinearMap.IsSymmetric P) (hi : P ∘ₗ P = P) : ∀ x, 0 ≤ (inner ℂ x (P x)).re := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_dirac_vs_Hperp",
+      "claim": "Hermiticity of the discrete Dirac operator implies H_perp is nonnegative.",
+      "rejecting_invariant": "Hermiticity gives a real spectrum, not a sign. The Dirac operator has spectrum of both signs, and the DeWitt supermetric is indefinite."
+    },
+    {
+      "id": "NM_thermal",
+      "claim": "A thermal Hamiltonian's nonnegativity gives nonnegativity of the constraint H_perp.",
+      "rejecting_invariant": "The manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5)."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Declare the finite state space and the triangulation.",
+    "Construct H_perp explicitly, with no existing code for it.",
+    "Prove nonnegativity and the projection property, or find a counterexample.",
+    "Resolve the indefinite DeWitt supermetric.",
+    "Relate H_perp to SimplicialDiracOperator, if at all.",
+    "Define the diffeomorphism-invariant subspace."
+  ]
+}

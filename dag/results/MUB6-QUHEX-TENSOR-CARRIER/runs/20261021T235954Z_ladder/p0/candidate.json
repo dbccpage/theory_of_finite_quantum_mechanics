@@ -1,0 +1,126 @@
+{
+  "task_id": "MUB6-QUHEX-TENSOR-CARRIER",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "5021df06c621a87a45f1f9c1e7f5357824da979d850dcc9fb76ea01262e99f96",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_build_tensor",
+          "inputs": [
+            "Mat2",
+            "Mat3"
+          ],
+          "output": "Mat6",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No Lean declaration for the tensor identification is among the known declarations; it must be proposed.",
+        "The Pauli and Gell-Mann decomposition of every 6x6 operator is not checked.",
+        "The SU(2) and SU(3) reading is not checked.",
+        "The Lean skeleton uses sorry and is unproved.",
+        "relation r_index_convention unverified: no existing declaration cited",
+        "lemma l_index_bijection unverified: Lean elaboration disabled",
+        "near_miss nm_factor_selects_mub unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_index_swap unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_build_tensor",
+        "ordered_inputs": [
+          "Mat2",
+          "Mat3"
+        ],
+        "output": "Mat6",
+        "arity": 2,
+        "carrier": "C^2 tensor C^3 = C^6, product basis |j,k>, row index r = 3j+k",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+            "declaration": "build_tensor",
+            "line": 54
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+          "decl": "build_tensor",
+          "kind": "def",
+          "line": 54,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No Lean declaration for the tensor identification is among the known declarations; it must be proposed.",
+      "The Pauli and Gell-Mann decomposition of every 6x6 operator is not checked.",
+      "The SU(2) and SU(3) reading is not checked.",
+      "The Lean skeleton uses sorry and is unproved.",
+      "relation r_index_convention unverified: no existing declaration cited",
+      "lemma l_index_bijection unverified: Lean elaboration disabled",
+      "near_miss nm_factor_selects_mub unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_index_swap unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_dim",
+        "expr": "2*3",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,42 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r:R_tree_dressing_iff
+  equation_or_predicate: With forest transport T, dressing by (T v)^-1 neutralizes every edge iff U e
+    * T(src e) = T(dst e) for every edge
+  typing_conditions: rooted spanning forest, group G
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.tree_dressing_iff
+    line: 97
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.tree_dressing_iff
+    kind: theorem
+    line: 97
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No existing Lean declaration for the group-labelled multigraph structure is in the sources; the structure
+  must be newly proposed
+- Fix and state the multiplication order convention explicitly
+- The primitive difference sources do not ground the definition itself
+- The target is a definition so no existing theorem is claimed to prove it
+- 'generator g:edge_label unverified: no existing declaration cited'
+- 'generator g:reverse_label unverified: no existing declaration cited'
+- 'generator g:walk_holonomy unverified: no existing declaration cited'
+- 'relation r:inverse_edge unverified: no existing declaration cited'
+- 'relation r:holonomy_concat unverified: no existing declaration cited'
+- 'lemma l:reverse_involutive unverified: Lean elaboration disabled'
+- 'near_miss n:order_swap unverified: semantic near miss; P4 host check decides'
+- 'near_miss n:no_inverse unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

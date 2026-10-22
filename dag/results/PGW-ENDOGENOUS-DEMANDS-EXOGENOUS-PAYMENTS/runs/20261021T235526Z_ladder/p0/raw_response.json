@@ -1,0 +1,122 @@
+{
+  "task_id": "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d502c1167517200e4351a0fb89434f0cd29359868d6b96e3384892b6334304ec",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_mark2_toDatum\",\"inputs\":[\"Mark2\"],\"output\":\"Datum\",\"arity\":1,\"carrier\":\"Fin firstSeparationRegime.data\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.Mark2.toDatum\",\"status\":\"existing\"}},{\"id\":\"g_wdp_pair_defect\",\"inputs\":[\"FiniteGenesisWindow\",\"Fin n\",\"Fin n\"],\"output\":\"Bool\",\"arity\":3,\"carrier\":\"Bool\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.wdpPairDefect\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_toDatum_bijective\",\"statement\":\"Mark2.toDatum is a bijection from the two marks onto the two data of the first separation regime\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.Mark2.toDatum_bijective\",\"status\":\"existing\"}},{\"id\":\"r_allpairs_length\",\"statement\":\"The all-pairs requirement list for n data has length n*n\",\"hypotheses\":\"as in the cited theorem\",\"ref\":{\"path\":\"lean4/WorldObserverDirectedColimitNoGo.lean\",\"decl\":\"OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length\",\"status\":\"existing\"}},{\"id\":\"r_admit_gate\",\"statement\":\"Only the admit operation changes n among the six pre-generation operations\",\"hypotheses\":\"as in the cited theorem\",\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_round_bound_arith\",\"statement\":\"Auxiliary arithmetic: sum of 1..(n-1) equals n(n-1)/2, matching the bound 2*rounds ≤ n*(n-1) for the declared round shape, where each round consumes a fresh pair and there are at most n(n-1)/2 unordered pairs\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_allpairs_length\"],\"lean_skeleton\":\"theorem l_round_bound_arith (n : Nat) : 2 * (Finset.range n).sum id = n * (n - 1) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_class_exclusion_general\",\"claim\":\"No strategy of any kind clears the reflective chain\",\"rejecting_invariant\":\"The clearing members perPairFreshMark and valued lie outside the finite declaration; the exclusion is class-relative and clears_does_not_imply_not_fires\"},{\"id\":\"nm_unary_forever\",\"claim\":\"Innovation edges are unary at every depth\",\"rejecting_invariant\":\"The count of 0 binary forms is a finite computation to 15 steps, not a theorem about longer runs\"}],\"numeric_claims\":[{\"id\":\"n_bound_n4\",\"expr\":\"4*(4-1)/2\",\"value\":\"6\"},{\"id\":\"n_edges_sum_L_F\",\"expr\":\"53 + 83\",\"value\":\"136\"}],\"open_obligations\":[\"Grounding of closedRun_round_bound_from_empty, Generator.generation_never_dries, G1Class.g1_class_exclusion: no path in SRC or KNOWN+, not cited\",\"Compositions not licensed: no relation matches colours\",\"Arithmetic lemma is a sorry skeleton, unproved\",\"Mu2 tree counts 53 and 83 not recomputed here, only stated as given\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_mark2_toDatum",
+        "inputs": [
+          "Mark2"
+        ],
+        "output": "Datum",
+        "arity": 1,
+        "carrier": "Fin firstSeparationRegime.data",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_wdp_pair_defect",
+        "inputs": [
+          "FiniteGenesisWindow",
+          "Fin n",
+          "Fin n"
+        ],
+        "output": "Bool",
+        "arity": 3,
+        "carrier": "Bool",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.wdpPairDefect",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_toDatum_bijective",
+        "statement": "Mark2.toDatum is a bijection from the two marks onto the two data of the first separation regime",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum_bijective",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_allpairs_length",
+        "statement": "The all-pairs requirement list for n data has length n*n",
+        "hypotheses": "as in the cited theorem",
+        "ref": {
+          "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+          "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_admit_gate",
+        "statement": "Only the admit operation changes n among the six pre-generation operations",
+        "hypotheses": "as in the cited theorem",
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_round_bound_arith",
+        "statement": "Auxiliary arithmetic: sum of 1..(n-1) equals n(n-1)/2, matching the bound 2*rounds ≤ n*(n-1) for the declared round shape, where each round consumes a fresh pair and there are at most n(n-1)/2 unordered pairs",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_allpairs_length"
+        ],
+        "lean_skeleton": "theorem l_round_bound_arith (n : Nat) : 2 * (Finset.range n).sum id = n * (n - 1) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_class_exclusion_general",
+        "claim": "No strategy of any kind clears the reflective chain",
+        "rejecting_invariant": "The clearing members perPairFreshMark and valued lie outside the finite declaration; the exclusion is class-relative and clears_does_not_imply_not_fires"
+      },
+      {
+        "id": "nm_unary_forever",
+        "claim": "Innovation edges are unary at every depth",
+        "rejecting_invariant": "The count of 0 binary forms is a finite computation to 15 steps, not a theorem about longer runs"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_bound_n4",
+        "expr": "4*(4-1)/2",
+        "value": "6"
+      },
+      {
+        "id": "n_edges_sum_L_F",
+        "expr": "53 + 83",
+        "value": "136"
+      }
+    ],
+    "open_obligations": [
+      "Grounding of closedRun_round_bound_from_empty, Generator.generation_never_dries, G1Class.g1_class_exclusion: no path in SRC or KNOWN+, not cited",
+      "Compositions not licensed: no relation matches colours",
+      "Arithmetic lemma is a sorry skeleton, unproved",
+      "Mu2 tree counts 53 and 83 not recomputed here, only stated as given"
+    ]
+  }
+}

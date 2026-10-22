@@ -1,0 +1,76 @@
+{
+  "task_id": "PGW-D2-INITIAL-POINTED",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "aa9b0558041aa896abcdb178661a8bd0561cbd6f9f693539ec1af2e3b543e65e",
+  "candidate_sha256": "72c5136d9b0a3786a2039e56167dae1e539a52a785f99a19ea1b8fad5ea32eb0",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 5,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:09Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_irrefl_witness_ne",
+        "equation_or_predicate": "For an irreflexive relation r and witness r a b, a ≠ b.",
+        "typing_conditions": "r irreflexive: ∀ x, ¬ r x x; hab : r a b",
+        "source_pins": [
+          {
+            "path": "lean4/Mub6L1SnTower.lean",
+            "declaration": "MUB6.Gluing.L1.irrefl_witness_ne",
+            "line": 23
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/Mub6L1SnTower.lean",
+          "decl": "MUB6.Gluing.L1.irrefl_witness_ne",
+          "kind": "theorem",
+          "line": 23,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Lean proofs of D2_initial_pointed and D2_map_injective are not yet written (skeletons use sorry).",
+      "No existing generators are grounded in SRC or KNOWN+ for this target, so generators and compositions are empty.",
+      "D2 carrier type formalization (Bool vs Fin 2) and edge structure are undecided.",
+      "relation r_d2_initial_pointed unverified: no existing declaration cited",
+      "lemma l_d2_initial_pointed unverified: Lean elaboration disabled",
+      "lemma l_injective_irrefl unverified: Lean elaboration disabled",
+      "near_miss nm_all_edges unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_irrefl_forced unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

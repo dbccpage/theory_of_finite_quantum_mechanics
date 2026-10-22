@@ -1,0 +1,82 @@
+{
+  "task_id": "PGW-DRIVER-B-SEVENTH-EVENT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "598874c82deeba546bbc4b70b169420d139060ec50ef1d0908841d202de3bab2",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"append_sealed_event\",\"inputs\":[\"SealedLog\",\"Event\"],\"output\":\"SealedLog\",\"arity\":2,\"carrier\":\"Alpha harness sealed event log\",\"ref\":{\"path\":\"\",\"decl\":\"append_sealed_event\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"seal_refuses_seventh\",\"statement\":\"append_sealed_event applied to an Event whose constructor is outside the six sealed kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose) raises SeventhEventError\",\"hypotheses\":\"the Alpha harness seal is unamended; the Event is not one of the six kinds\",\"ref\":{\"path\":\"\",\"decl\":\"SeventhEventError\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"guard_not_theorem\",\"statement\":\"The refusal of a seventh constructor is a harness guard; it does not imply that no lift needing a new Event kind exists, so Driver B stays OPEN\",\"relation_to_target\":\"restates\",\"depends_on\":[\"seal_refuses_seventh\"],\"lean_skeleton\":\"theorem guard_not_theorem : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"near_misses\":[{\"id\":\"six_suffice\",\"claim\":\"Because append_sealed_event refuses a seventh constructor, six Event kinds suffice for every lift\",\"rejecting_invariant\":\"The refusal is a harness guard, not a theorem; sufficiency of six kinds is unproved and amending the seal is the author's act\"},{\"id\":\"admit_via_slice\",\"claim\":\"A lift needing a new Event kind can be admitted through the slice\",\"rejecting_invariant\":\"The sealed slice has exactly six kinds and refuses a seventh with SeventhEventError\"}],\"numeric_claims\":[{\"id\":\"sealed_kind_count\",\"expr\":\"1+1+1+1+1+1\",\"value\":\"6\"}],\"open_obligations\":[\"No existing declarations were provided by the host; all references are proposed_new and the paths are unknown\",\"Whether a lift genuinely needing a seventh Event kind exists is open (successor research S3)\",\"Amending the seal is the author's act and is not performed here\",\"The Lean skeleton is a placeholder with no formal content\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "append_sealed_event",
+        "inputs": [
+          "SealedLog",
+          "Event"
+        ],
+        "output": "SealedLog",
+        "arity": 2,
+        "carrier": "Alpha harness sealed event log",
+        "ref": {
+          "path": "",
+          "decl": "append_sealed_event",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "seal_refuses_seventh",
+        "statement": "append_sealed_event applied to an Event whose constructor is outside the six sealed kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose) raises SeventhEventError",
+        "hypotheses": "the Alpha harness seal is unamended; the Event is not one of the six kinds",
+        "ref": {
+          "path": "",
+          "decl": "SeventhEventError",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "guard_not_theorem",
+        "statement": "The refusal of a seventh constructor is a harness guard; it does not imply that no lift needing a new Event kind exists, so Driver B stays OPEN",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "seal_refuses_seventh"
+        ],
+        "lean_skeleton": "theorem guard_not_theorem : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "six_suffice",
+        "claim": "Because append_sealed_event refuses a seventh constructor, six Event kinds suffice for every lift",
+        "rejecting_invariant": "The refusal is a harness guard, not a theorem; sufficiency of six kinds is unproved and amending the seal is the author's act"
+      },
+      {
+        "id": "admit_via_slice",
+        "claim": "A lift needing a new Event kind can be admitted through the slice",
+        "rejecting_invariant": "The sealed slice has exactly six kinds and refuses a seventh with SeventhEventError"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "sealed_kind_count",
+        "expr": "1+1+1+1+1+1",
+        "value": "6"
+      }
+    ],
+    "open_obligations": [
+      "No existing declarations were provided by the host; all references are proposed_new and the paths are unknown",
+      "Whether a lift genuinely needing a seventh Event kind exists is open (successor research S3)",
+      "Amending the seal is the author's act and is not performed here",
+      "The Lean skeleton is a placeholder with no formal content"
+    ]
+  }
+}

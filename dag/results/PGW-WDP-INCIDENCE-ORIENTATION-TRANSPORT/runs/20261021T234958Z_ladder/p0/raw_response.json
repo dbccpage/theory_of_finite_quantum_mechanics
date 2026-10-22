@@ -1,0 +1,122 @@
+{
+  "task_id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c82793f4b35609a75376008333a4afeb2558904ca3b1e32240a8e5bc179def8d",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_boundary_incidence\",\"inputs\":[\"IncidenceEdgeChain_01_02_12\"],\"output\":\"IncidenceVertexChain\",\"arity\":1,\"carrier\":\"Int-valued chains on vertices 0,1,2\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_transport_edges\",\"inputs\":[\"IncidenceEdgeChain_01_02_12\"],\"output\":\"WdpEdgeChain_01_12_02\",\"arity\":1,\"carrier\":\"Int^3 coordinate permutation (01,02,12)->(01,12,02)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_wdp_d1\",\"inputs\":[\"WdpEdgeCochain_01_12_02\"],\"output\":\"WdpFaceCochain\",\"arity\":1,\"carrier\":\"Int, d1 x = x01 + x12 - x02\",\"ref\":{\"path\":\"lean4/CochainObstruction.lean\",\"decl\":\"triangleD1\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_triangle_d1_d0\",\"statement\":\"WDP window: d1(d0 f) = 0 on the triangle\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/CochainObstruction.lean\",\"decl\":\"MUB.CochainObstruction.triangle_d1_comp_d0_zero\",\"status\":\"existing\"}},{\"id\":\"r_transport_intertwines\",\"statement\":\"Transport T of edge coordinates (with sign for reversed edges) intertwines Genesis boundary and WDP coboundary under transpose: d1 composed with T equals the face-evaluation pairing with column (1,-1,1)\",\"hypotheses\":\"edge order (01,02,12) to (01,12,02), no sign change for 02 since both orient 0->2; face column (1,-1,1) corresponds to WDP row (1,1,-1) after the permutation\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_transport_window\",\"statement\":\"Under the declared edge permutation transport, boundary_boundary_filled in the incidence order is equivalent to d1 d0 = 0 in the WDP order\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_transport_intertwines\",\"r_triangle_d1_d0\"],\"lean_skeleton\":\"theorem transport_window : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_cyclic_no_transport\",\"claim\":\"The cyclic order (01,12,20) coordinate vector is the same as the simplicial order (01,12,02) cochain\",\"rejecting_invariant\":\"edge 20 is the reverse of 02, so the third component is negated\"},{\"id\":\"nm_column_equals_row\",\"claim\":\"The incidence face column (1,-1,1) in order (01,02,12) equals the WDP d1 row (1,1,-1) without permutation\",\"rejecting_invariant\":\"the coordinates 02 and 12 are swapped between orders, so permutation is needed\"}],\"numeric_claims\":[{\"id\":\"n_face_boundary_sum\",\"expr\":\"1 - 1 + 1\",\"value\":\"1\"}],\"open_obligations\":[\"Genesis incidence declarations not in SRC, so cited none as existing\",\"Transport map and intertwining lemma are not declared anywhere\",\"Sign convention: the face column (1,-1,1) vs WDP (1,1,-1) in the permuted order needs host verification\",\"Lean skeleton is a placeholder, not a real statement\",\"Chain-to-cochain dualisation (transpose) not formalised\",\"triangleD1 is not listed in SRC, so it is proposed_new with a path hint only\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_boundary_incidence",
+        "inputs": [
+          "IncidenceEdgeChain_01_02_12"
+        ],
+        "output": "IncidenceVertexChain",
+        "arity": 1,
+        "carrier": "Int-valued chains on vertices 0,1,2",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_transport_edges",
+        "inputs": [
+          "IncidenceEdgeChain_01_02_12"
+        ],
+        "output": "WdpEdgeChain_01_12_02",
+        "arity": 1,
+        "carrier": "Int^3 coordinate permutation (01,02,12)->(01,12,02)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_wdp_d1",
+        "inputs": [
+          "WdpEdgeCochain_01_12_02"
+        ],
+        "output": "WdpFaceCochain",
+        "arity": 1,
+        "carrier": "Int, d1 x = x01 + x12 - x02",
+        "ref": {
+          "path": "lean4/CochainObstruction.lean",
+          "decl": "triangleD1",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_triangle_d1_d0",
+        "statement": "WDP window: d1(d0 f) = 0 on the triangle",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/CochainObstruction.lean",
+          "decl": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_transport_intertwines",
+        "statement": "Transport T of edge coordinates (with sign for reversed edges) intertwines Genesis boundary and WDP coboundary under transpose: d1 composed with T equals the face-evaluation pairing with column (1,-1,1)",
+        "hypotheses": "edge order (01,02,12) to (01,12,02), no sign change for 02 since both orient 0->2; face column (1,-1,1) corresponds to WDP row (1,1,-1) after the permutation",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_transport_window",
+        "statement": "Under the declared edge permutation transport, boundary_boundary_filled in the incidence order is equivalent to d1 d0 = 0 in the WDP order",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_transport_intertwines",
+          "r_triangle_d1_d0"
+        ],
+        "lean_skeleton": "theorem transport_window : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_cyclic_no_transport",
+        "claim": "The cyclic order (01,12,20) coordinate vector is the same as the simplicial order (01,12,02) cochain",
+        "rejecting_invariant": "edge 20 is the reverse of 02, so the third component is negated"
+      },
+      {
+        "id": "nm_column_equals_row",
+        "claim": "The incidence face column (1,-1,1) in order (01,02,12) equals the WDP d1 row (1,1,-1) without permutation",
+        "rejecting_invariant": "the coordinates 02 and 12 are swapped between orders, so permutation is needed"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_face_boundary_sum",
+        "expr": "1 - 1 + 1",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "Genesis incidence declarations not in SRC, so cited none as existing",
+      "Transport map and intertwining lemma are not declared anywhere",
+      "Sign convention: the face column (1,-1,1) vs WDP (1,1,-1) in the permuted order needs host verification",
+      "Lean skeleton is a placeholder, not a real statement",
+      "Chain-to-cochain dualisation (transpose) not formalised",
+      "triangleD1 is not listed in SRC, so it is proposed_new with a path hint only"
+    ]
+  }
+}

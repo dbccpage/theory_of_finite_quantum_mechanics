@@ -1,0 +1,102 @@
+{
+  "task_id": "TFQ-0314",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "7a0ce4a8a9b7763bd7e0baa3ab99e3025d833c72ff2fe71f1123a43121ab771c",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No @SRC or @KNOWN+ declarations were provided, so no existing citations are possible.",
+        "Generators are empty because no typed operations were grounded.",
+        "Counterexamples showing the functor is not full or faithful need explicit finite data.",
+        "The Lean skeletons are placeholders and need a formal model of the functor and the import ledger.",
+        "Exact wording of the ledger entries was not visible.",
+        "relation R1_non_claim_fence unverified: no existing declaration cited",
+        "relation R2_import_ledger unverified: no existing declaration cited",
+        "near_miss NM1_equivalence_claim unverified: semantic near miss; P4 host check decides",
+        "near_miss NM2_born_derivation unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-61316E3CC6A5",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L1_not_full_not_faithful: The descent functor D is not full and not faithful on finite cochain data.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0314"
+      },
+      {
+        "id": "NEG-1E6785C54216",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L2_born_import_only: Born rule uniqueness is not a consequence of D and enters only as an imported interface.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0314"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No @SRC or @KNOWN+ declarations were provided, so no existing citations are possible.",
+      "Generators are empty because no typed operations were grounded.",
+      "Counterexamples showing the functor is not full or faithful need explicit finite data.",
+      "The Lean skeletons are placeholders and need a formal model of the functor and the import ledger.",
+      "Exact wording of the ledger entries was not visible.",
+      "relation R1_non_claim_fence unverified: no existing declaration cited",
+      "relation R2_import_ledger unverified: no existing declaration cited",
+      "near_miss NM1_equivalence_claim unverified: semantic near miss; P4 host check decides",
+      "near_miss NM2_born_derivation unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

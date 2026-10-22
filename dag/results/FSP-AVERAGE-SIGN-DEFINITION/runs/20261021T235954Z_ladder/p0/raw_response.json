@@ -1,0 +1,161 @@
+{
+  "task_id": "FSP-AVERAGE-SIGN-DEFINITION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f9c76edca12a183da7fb8e08d8f3b24e556195b2f81083debeb9b0f909f7e619",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"G-sign-weighted-sum\",\"inputs\":[\"PathConfigs\",\"SignFn\",\"WeightFn\"],\"output\":\"Real\",\"arity\":3,\"carrier\":\"finite set of paths c with sigma(c) in {+1,-1} and real weights W(c)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G-abs-partition-sum\",\"inputs\":[\"PathConfigs\",\"WeightFn\"],\"output\":\"Real\",\"arity\":2,\"carrier\":\"finite set of paths c with real weights W(c)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G-average-sign\",\"inputs\":[\"Real\",\"Real\"],\"output\":\"Real\",\"arity\":2,\"carrier\":\"reals; Z over Z_abs, requires Z_abs > 0\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R-avg-sign-def\",\"statement\":\"<Sign> = Z / Z_abs with Z = sum sigma(c)|W(c)| and Z_abs = sum |W(c)|\",\"hypotheses\":\"finite path set, Z_abs > 0\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R-free-energy-gap-def\",\"statement\":\"Delta f := -(1/(beta N)) log <Sign>; if Z>0 then <Sign> = exp(-beta N Delta f) by definition\",\"hypotheses\":\"beta>0, N>0, Z>0, Z_abs>0\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R-sign-bound\",\"statement\":\"|Z| <= Z_abs, so <Sign> lies in [-1,1]; when Z>0 it lies in (0,1] and Delta f >= 0\",\"hypotheses\":\"sigma(c) in {+1,-1}\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"G-average-sign\",\"slot\":0,\"inner\":\"G-sign-weighted-sum\",\"licensing_relation\":\"R-avg-sign-def\"},{\"outer\":\"G-average-sign\",\"slot\":1,\"inner\":\"G-abs-partition-sum\",\"licensing_relation\":\"R-avg-sign-def\"}],\"lemmas\":[{\"id\":\"L-avgsign-le-one\",\"statement\":\"With sigma(c) in {+1,-1}, Z <= Z_abs, hence <Sign> <= 1 and Delta f >= 0 when Z>0\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R-sign-bound\"],\"lean_skeleton\":\"theorem avgsign_le_one {ι : Type} [Fintype ι] (σ W : ι → ℝ) (hσ : ∀ i, σ i = 1 ∨ σ i = -1) : ∑ i, σ i * |W i| ≤ ∑ i, |W i| := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L-exp-def\",\"statement\":\"If Z>0, Z_abs>0, beta N>0 and Delta f = -(1/(beta N)) log(Z/Z_abs), then Z/Z_abs = exp(-beta N Delta f)\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R-free-energy-gap-def\"],\"lean_skeleton\":\"theorem exp_def (Z Zabs b : ℝ) (hZ : 0 < Z) (hA : 0 < Zabs) (hb : 0 < b) : Z / Zabs = Real.exp (-b * (-(1/b) * Real.log (Z / Zabs))) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM-decay-theorem\",\"claim\":\"<Sign> decays exponentially in beta N as a theorem\",\"rejecting_invariant\":\"Requires hypothesis Delta f >= c > 0 uniformly in N and beta; not implied by the definition\"},{\"id\":\"NM-Zabs-physical\",\"claim\":\"Z_abs is the partition function of a physical bosonic system\",\"rejecting_invariant\":\"Z_abs is only an operational absolute-weight ensemble, not generally a physical bosonic system\"},{\"id\":\"NM-unsigned-average\",\"claim\":\"<Sign> = Z/Z_abs with Z = sum sigma(c) W(c) without absolute values\",\"rejecting_invariant\":\"Weights must be |W(c)| in both sums; signs belong to sigma only\"}],\"numeric_claims\":[],\"open_obligations\":[\"No existing library declarations found; all refs are proposed_new and need Lean formalization\",\"Declared path representation (basis and operator expansion) not specified\",\"Lean skeletons use sorry; none proved\",\"Positivity Z>0 and Z_abs>0 hypotheses must be made explicit\",\"Uniform lower bound on Delta f is a hypothesis, not proved\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "G-sign-weighted-sum",
+        "inputs": [
+          "PathConfigs",
+          "SignFn",
+          "WeightFn"
+        ],
+        "output": "Real",
+        "arity": 3,
+        "carrier": "finite set of paths c with sigma(c) in {+1,-1} and real weights W(c)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G-abs-partition-sum",
+        "inputs": [
+          "PathConfigs",
+          "WeightFn"
+        ],
+        "output": "Real",
+        "arity": 2,
+        "carrier": "finite set of paths c with real weights W(c)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G-average-sign",
+        "inputs": [
+          "Real",
+          "Real"
+        ],
+        "output": "Real",
+        "arity": 2,
+        "carrier": "reals; Z over Z_abs, requires Z_abs > 0",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R-avg-sign-def",
+        "statement": "<Sign> = Z / Z_abs with Z = sum sigma(c)|W(c)| and Z_abs = sum |W(c)|",
+        "hypotheses": "finite path set, Z_abs > 0",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R-free-energy-gap-def",
+        "statement": "Delta f := -(1/(beta N)) log <Sign>; if Z>0 then <Sign> = exp(-beta N Delta f) by definition",
+        "hypotheses": "beta>0, N>0, Z>0, Z_abs>0",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R-sign-bound",
+        "statement": "|Z| <= Z_abs, so <Sign> lies in [-1,1]; when Z>0 it lies in (0,1] and Delta f >= 0",
+        "hypotheses": "sigma(c) in {+1,-1}",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "G-average-sign",
+        "slot": 0,
+        "inner": "G-sign-weighted-sum",
+        "licensing_relation": "R-avg-sign-def"
+      },
+      {
+        "outer": "G-average-sign",
+        "slot": 1,
+        "inner": "G-abs-partition-sum",
+        "licensing_relation": "R-avg-sign-def"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L-avgsign-le-one",
+        "statement": "With sigma(c) in {+1,-1}, Z <= Z_abs, hence <Sign> <= 1 and Delta f >= 0 when Z>0",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R-sign-bound"
+        ],
+        "lean_skeleton": "theorem avgsign_le_one {ι : Type} [Fintype ι] (σ W : ι → ℝ) (hσ : ∀ i, σ i = 1 ∨ σ i = -1) : ∑ i, σ i * |W i| ≤ ∑ i, |W i| := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L-exp-def",
+        "statement": "If Z>0, Z_abs>0, beta N>0 and Delta f = -(1/(beta N)) log(Z/Z_abs), then Z/Z_abs = exp(-beta N Delta f)",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R-free-energy-gap-def"
+        ],
+        "lean_skeleton": "theorem exp_def (Z Zabs b : ℝ) (hZ : 0 < Z) (hA : 0 < Zabs) (hb : 0 < b) : Z / Zabs = Real.exp (-b * (-(1/b) * Real.log (Z / Zabs))) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM-decay-theorem",
+        "claim": "<Sign> decays exponentially in beta N as a theorem",
+        "rejecting_invariant": "Requires hypothesis Delta f >= c > 0 uniformly in N and beta; not implied by the definition"
+      },
+      {
+        "id": "NM-Zabs-physical",
+        "claim": "Z_abs is the partition function of a physical bosonic system",
+        "rejecting_invariant": "Z_abs is only an operational absolute-weight ensemble, not generally a physical bosonic system"
+      },
+      {
+        "id": "NM-unsigned-average",
+        "claim": "<Sign> = Z/Z_abs with Z = sum sigma(c) W(c) without absolute values",
+        "rejecting_invariant": "Weights must be |W(c)| in both sums; signs belong to sigma only"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No existing library declarations found; all refs are proposed_new and need Lean formalization",
+      "Declared path representation (basis and operator expansion) not specified",
+      "Lean skeletons use sorry; none proved",
+      "Positivity Z>0 and Z_abs>0 hypotheses must be made explicit",
+      "Uniform lower bound on Delta f is a hypothesis, not proved"
+    ]
+  }
+}

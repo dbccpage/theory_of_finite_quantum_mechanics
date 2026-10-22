@@ -1,0 +1,121 @@
+{
+  "task_id": "FSP-INVOLUTION-PAIR-CANCELLATION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "df3faef9f09f0b226d86d6e8c7e0de9b3f6809fbc07e2f67431866d96f50e536",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_toInt\",\"inputs\":[\"JwSign\"],\"output\":\"Int\",\"arity\":1,\"carrier\":\"JwSign\",\"ref\":{\"path\":\"papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean\",\"decl\":\"FrustratedSpectrumObstruction.toInt\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"R_pair_cancel\",\"statement\":\"For a weight-preserving sign-reversing involution, each pair satisfies w(c)*sign(c) + w(tau c)*sign(tau c) = 0\",\"hypotheses\":\"BipartiteInvolution T\",\"ref\":{\"path\":\"papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean\",\"decl\":\"FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation\",\"status\":\"existing\"}},{\"id\":\"R_three_term\",\"statement\":\"Zero signed sum does not require a pairing: [2,-1,-1] sums to 0\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"papers/core/fsp/lean4/MeronCharacter.lean\",\"decl\":\"MeronCharacter.unequal_three_term_cancellation\",\"status\":\"existing\"}},{\"id\":\"R_doublet\",\"statement\":\"A cancelling doublet can carry a nonzero observable numerator: 1+(-1)=0 and 1*1+(-1)*(-1)=2\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"papers/core/fsp/lean4/MeronCharacter.lean\",\"decl\":\"MeronCharacter.observable_doublet_counterexample\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_pair\",\"statement\":\"For each path p, weight(p)*toInt(sign p) + weight(tau p)*toInt(sign(tau p)) = 0\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R_pair_cancel\"],\"lean_skeleton\":\"example {P : Type u} {T : FrustratedSpectrumObstruction.TrotterPath P} (inv : FrustratedSpectrumObstruction.BipartiteInvolution T) (p : P) := FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation inv p\",\"claims_proved\":false,\"ref\":{\"path\":\"papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean\",\"decl\":\"FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation\",\"status\":\"existing\"}},{\"id\":\"L_nonnecessity\",\"statement\":\"Involution is sufficient but not necessary for zero signed sum\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R_three_term\"],\"lean_skeleton\":\"example : ([2, -1, -1] : List Int).sum = 0 := MeronCharacter.unequal_three_term_cancellation\",\"claims_proved\":false,\"ref\":{\"path\":\"papers/core/fsp/lean4/MeronCharacter.lean\",\"decl\":\"MeronCharacter.unequal_three_term_cancellation\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"NM_three_term\",\"claim\":\"Zero signed sum implies an involution pairing exists\",\"rejecting_invariant\":\"(+2,-1,-1) sums to 0 but has odd size, so no fixed-point-free involution exists\"},{\"id\":\"NM_numerator\",\"claim\":\"A cancelling pair gives zero observable numerator\",\"rejecting_invariant\":\"Requires A o tau = A; for the doublet with A = sign, the numerator is 2\"}],\"numeric_claims\":[{\"id\":\"N1\",\"expr\":\"2 - 1 - 1\",\"value\":\"0\"},{\"id\":\"N2\",\"expr\":\"1*1 + (-1)*(-1)\",\"value\":\"2\"}],\"open_obligations\":[\"Orbit-partition sum over finite set (Section 4.2) not mechanized\",\"No fixed point proof not cited beyond the host declarations; check MeronClusterInvolution.fixed_point_contradiction signature\",\"Observable numerator with A o tau = A not grounded\",\"Lean skeletons not elaborated\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_toInt",
+        "inputs": [
+          "JwSign"
+        ],
+        "output": "Int",
+        "arity": 1,
+        "carrier": "JwSign",
+        "ref": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.toInt",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_pair_cancel",
+        "statement": "For a weight-preserving sign-reversing involution, each pair satisfies w(c)*sign(c) + w(tau c)*sign(tau c) = 0",
+        "hypotheses": "BipartiteInvolution T",
+        "ref": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_three_term",
+        "statement": "Zero signed sum does not require a pairing: [2,-1,-1] sums to 0",
+        "hypotheses": "none",
+        "ref": {
+          "path": "papers/core/fsp/lean4/MeronCharacter.lean",
+          "decl": "MeronCharacter.unequal_three_term_cancellation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_doublet",
+        "statement": "A cancelling doublet can carry a nonzero observable numerator: 1+(-1)=0 and 1*1+(-1)*(-1)=2",
+        "hypotheses": "none",
+        "ref": {
+          "path": "papers/core/fsp/lean4/MeronCharacter.lean",
+          "decl": "MeronCharacter.observable_doublet_counterexample",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_pair",
+        "statement": "For each path p, weight(p)*toInt(sign p) + weight(tau p)*toInt(sign(tau p)) = 0",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R_pair_cancel"
+        ],
+        "lean_skeleton": "example {P : Type u} {T : FrustratedSpectrumObstruction.TrotterPath P} (inv : FrustratedSpectrumObstruction.BipartiteInvolution T) (p : P) := FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation inv p",
+        "claims_proved": false,
+        "ref": {
+          "path": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+          "decl": "FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L_nonnecessity",
+        "statement": "Involution is sufficient but not necessary for zero signed sum",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R_three_term"
+        ],
+        "lean_skeleton": "example : ([2, -1, -1] : List Int).sum = 0 := MeronCharacter.unequal_three_term_cancellation",
+        "claims_proved": false,
+        "ref": {
+          "path": "papers/core/fsp/lean4/MeronCharacter.lean",
+          "decl": "MeronCharacter.unequal_three_term_cancellation",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_three_term",
+        "claim": "Zero signed sum implies an involution pairing exists",
+        "rejecting_invariant": "(+2,-1,-1) sums to 0 but has odd size, so no fixed-point-free involution exists"
+      },
+      {
+        "id": "NM_numerator",
+        "claim": "A cancelling pair gives zero observable numerator",
+        "rejecting_invariant": "Requires A o tau = A; for the doublet with A = sign, the numerator is 2"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N1",
+        "expr": "2 - 1 - 1",
+        "value": "0"
+      },
+      {
+        "id": "N2",
+        "expr": "1*1 + (-1)*(-1)",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "Orbit-partition sum over finite set (Section 4.2) not mechanized",
+      "No fixed point proof not cited beyond the host declarations; check MeronClusterInvolution.fixed_point_contradiction signature",
+      "Observable numerator with A o tau = A not grounded",
+      "Lean skeletons not elaborated"
+    ]
+  }
+}

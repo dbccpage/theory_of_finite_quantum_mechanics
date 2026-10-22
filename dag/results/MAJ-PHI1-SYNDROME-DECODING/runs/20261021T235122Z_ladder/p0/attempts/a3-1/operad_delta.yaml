@@ -1,0 +1,132 @@
+add_or_refine_generators:
+- id: g_add
+  ordered_inputs:
+  - F2Vec n1
+  - F2Vec n1
+  output: F2Vec n1
+  arity: 2
+  carrier: F2Vec n1
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: F2Vec.add
+    line: 21
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: F2Vec.add
+    kind: def
+    line: 21
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_weight
+  ordered_inputs:
+  - F2Vec n1
+  output: Nat
+  arity: 1
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: F2Vec.weight
+    line: 24
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: F2Vec.weight
+    kind: def
+    line: 24
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_coset_ub
+  ordered_inputs:
+  - F2CochainComplex n0 n1 n2
+  - F2Vec n1
+  - F2Vec n0
+  output: Nat
+  arity: 3
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: coset_weight_upper_bound
+    line: 285
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: coset_weight_upper_bound
+    kind: def
+    line: 285
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_ub
+  equation_or_predicate: The coset_weight_upper_bound value is an upper bound on the true coset-leader
+    weight (gauge candidate bound).
+  typing_conditions: C is an F2CochainComplex; w and alpha are as in the definition
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: candidate_gauge_is_upper_bound
+    line: 288
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: candidate_gauge_is_upper_bound
+    kind: theorem
+    line: 288
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-DE3B6A0F7E6C
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_phi1_coset: Phi1([r]) equals the minimum F2Vec.weight over the coset r + im d0 (definitional
+    identification).'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-PHI1-SYNDROME-DECODING
+- id: NEG-161F53E8F6C5
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_hard: Exact Phi1 over arbitrary binary d0 is NP-hard, conditional on the imported MAJ-IMPORT-BMVT.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-PHI1-SYNDROME-DECODING
+counterexamples: []
+open_obligations:
+- Formalize the coset-leader minimum (exact Phi1) in Lean; only an upper bound is currently cited.
+- NP-hardness import MAJ-IMPORT-BMVT is not grounded in the sources.
+- Analysis of graph-incidence d0 for planar/toric cell complexes is absent.
+- No compositions listed, since no licensing relation was grounded for the types.
+- 'near_miss nm_planar unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

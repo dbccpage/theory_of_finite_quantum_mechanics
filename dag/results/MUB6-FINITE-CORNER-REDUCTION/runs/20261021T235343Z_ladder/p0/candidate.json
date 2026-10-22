@@ -1,0 +1,314 @@
+{
+  "task_id": "MUB6-FINITE-CORNER-REDUCTION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "729e8450b58777cd82fb8796ecf6b598de251937d4d46ec2a5dbcb087eec66f0",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_canonical_corner3",
+          "inputs": [],
+          "output": "Corner3",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_cross_ratio_phase",
+          "inputs": [
+            "ComplexMatrix6",
+            "Submatrix2"
+          ],
+          "output": "PhaseAngle",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_partition_lengths",
+          "inputs": [
+            "VanishingPolygonType"
+          ],
+          "output": "ListNat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_partition_sum",
+          "equation_or_predicate": "For every vanishing polygon type t, the sum of partitionLengths t equals 6.",
+          "typing_conditions": "t : VanishingPolygonType",
+          "source_pins": [
+            {
+              "path": "lean4/AlgebraicCornerReconstruction.lean",
+              "declaration": "MUB6.Gluing.CornerReconstruction.partition_sum_six",
+              "line": 115
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "decl": "MUB6.Gluing.CornerReconstruction.partition_sum_six",
+            "kind": "theorem",
+            "line": 115,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_mcj_trichotomy",
+          "equation_or_predicate": "Every vanishing polygon type is two_two_two, three_three, or six.",
+          "typing_conditions": "t : VanishingPolygonType",
+          "source_pins": [
+            {
+              "path": "lean4/AlgebraicCornerReconstruction.lean",
+              "declaration": "MUB6.Gluing.CornerReconstruction.mann_conway_jones_partition_trichotomy",
+              "line": 122
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "decl": "MUB6.Gluing.CornerReconstruction.mann_conway_jones_partition_trichotomy",
+            "kind": "theorem",
+            "line": 122,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "MubFiniteCornerReduction.lean is not in this checkout, so the target equivalence is unproved.",
+        "Exclusion over every retained reconstruction is open.",
+        "No operad composition is grounded.",
+        "The meaning of Retained and RawQuartetCompletion has not been grounded in the sources.",
+        "relation r_finite_corner_reduction unverified: no existing declaration cited",
+        "lemma l_target unverified: Lean elaboration disabled",
+        "near_miss nm_finite_list unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_canonical_corner3",
+        "ordered_inputs": [],
+        "output": "Corner3",
+        "arity": 0,
+        "carrier": "Corner3",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "declaration": "MUB6.Gluing.CornerReconstruction.canonicalCorner3",
+            "line": 77
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AlgebraicCornerReconstruction.lean",
+          "decl": "MUB6.Gluing.CornerReconstruction.canonicalCorner3",
+          "kind": "def",
+          "line": 77,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_cross_ratio_phase",
+        "ordered_inputs": [
+          "ComplexMatrix6",
+          "Submatrix2"
+        ],
+        "output": "PhaseAngle",
+        "arity": 2,
+        "carrier": "PhaseAngle",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "declaration": "MUB6.Gluing.CornerReconstruction.crossRatioPhase",
+            "line": 136
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AlgebraicCornerReconstruction.lean",
+          "decl": "MUB6.Gluing.CornerReconstruction.crossRatioPhase",
+          "kind": "def",
+          "line": 136,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_partition_lengths",
+        "ordered_inputs": [
+          "VanishingPolygonType"
+        ],
+        "output": "ListNat",
+        "arity": 1,
+        "carrier": "List Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "declaration": "MUB6.Gluing.CornerReconstruction.partitionLengths",
+            "line": 108
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AlgebraicCornerReconstruction.lean",
+          "decl": "MUB6.Gluing.CornerReconstruction.partitionLengths",
+          "kind": "def",
+          "line": 108,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_partition_sum",
+        "equation_or_predicate": "For every vanishing polygon type t, the sum of partitionLengths t equals 6.",
+        "typing_conditions": "t : VanishingPolygonType",
+        "source_pins": [
+          {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "declaration": "MUB6.Gluing.CornerReconstruction.partition_sum_six",
+            "line": 115
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AlgebraicCornerReconstruction.lean",
+          "decl": "MUB6.Gluing.CornerReconstruction.partition_sum_six",
+          "kind": "theorem",
+          "line": 115,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_mcj_trichotomy",
+        "equation_or_predicate": "Every vanishing polygon type is two_two_two, three_three, or six.",
+        "typing_conditions": "t : VanishingPolygonType",
+        "source_pins": [
+          {
+            "path": "lean4/AlgebraicCornerReconstruction.lean",
+            "declaration": "MUB6.Gluing.CornerReconstruction.mann_conway_jones_partition_trichotomy",
+            "line": 122
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AlgebraicCornerReconstruction.lean",
+          "decl": "MUB6.Gluing.CornerReconstruction.mann_conway_jones_partition_trichotomy",
+          "kind": "theorem",
+          "line": 122,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "MubFiniteCornerReduction.lean is not in this checkout, so the target equivalence is unproved.",
+      "Exclusion over every retained reconstruction is open.",
+      "No operad composition is grounded.",
+      "The meaning of Retained and RawQuartetCompletion has not been grounded in the sources.",
+      "relation r_finite_corner_reduction unverified: no existing declaration cited",
+      "lemma l_target unverified: Lean elaboration disabled",
+      "near_miss nm_finite_list unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_partition_total",
+        "expr": "2+2+2",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      },
+      {
+        "id": "n_partition_33",
+        "expr": "3+3",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

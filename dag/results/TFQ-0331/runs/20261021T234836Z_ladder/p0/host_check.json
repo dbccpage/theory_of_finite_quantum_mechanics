@@ -1,0 +1,177 @@
+{
+  "task_id": "TFQ-0331",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "7f64a3825a3dc2dac2380edf1e41688d104a3614c38a96ef89042fcbf4efcc0b",
+  "candidate_sha256": "6d3ce8468d464c531558ccdb12d400ff6f2671733c37da4d05afd910ceb3546e",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 5,
+    "failure_rate": 0.7143,
+    "failures_by_class": {
+      "composition_type_mismatch": 2,
+      "vacuous_proof": 1,
+      "wrong_signature": 2
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:48:47Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_packet_no_repair",
+        "equation_or_predicate": "A terminal packet with no rule remains terminal; it is not repaired.",
+        "typing_conditions": "PacketTerminal packet and no rule applies (exact hypotheses not visible in the truncated source)",
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveTerminalPacket.lean",
+            "declaration": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+            "line": 109
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveTerminalPacket.lean",
+          "decl": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+          "kind": "theorem",
+          "line": 109,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_self_pass_no_effect",
+        "equation_or_predicate": "A source self-pass flag has no effect on replay verification.",
+        "typing_conditions": "fixture proposal with the flag altered",
+        "source_pins": [
+          {
+            "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+            "declaration": "test_case_02_source_self_pass_flag_has_no_effect",
+            "line": 88
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+          "decl": "test_case_02_source_self_pass_flag_has_no_effect",
+          "kind": "def",
+          "line": 88,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C04E6C8F0C87",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_attach_packet . slot 0 <- g_terminal_packet via r_packet_no_repair",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0331"
+      },
+      {
+        "id": "NEG-DECFB0D3D253",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_attach_packet . slot 1 <- g_run_replay_receipts via r_attach_no_authority",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0331"
+      },
+      {
+        "id": "NEG-20A3A8896DDF",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_attach_preserves_terminal: For any terminal packet p and receipt r, the terminal of attach(p,r) equals the terminal of p, and the status stays open.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0331"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-0FD0C034A5BD",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_terminal_packet: (Classifier, Question) -> TerminalPacket [OmegaCore.PrimitiveTerminalPacket.packetFor]",
+        "evidence": "lean def packetFor has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "OmegaCore.PrimitiveTerminalPacket.packetFor",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0331"
+      },
+      {
+        "id": "NEG-4C6C4B07D751",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_run_replay_receipts: (RepoRoot) -> ReplayReceipt [run_replay_receipts]",
+        "evidence": "rust fn run_replay_receipts takes 0 parameters; the claim says 1",
+        "decl_key": "run_replay_receipts",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0331"
+      }
+    ],
+    "open_obligations": [
+      "Packet attachment generator and no-authority relation are not grounded in existing declarations.",
+      "Full statement of packet_noRule_terminal_not_repaired is truncated.",
+      "The Lean skeleton for l_attach_preserves_terminal is only a placeholder.",
+      "Cited test declarations are checkers, used only inside relations.",
+      "Open AIT gaps are not modeled.",
+      "generator g_attach_packet unverified: no existing declaration cited",
+      "relation r_attach_no_authority unverified: no existing declaration cited",
+      "near_miss nm_green_equals_authority unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_receipt_is_ch04_rule unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

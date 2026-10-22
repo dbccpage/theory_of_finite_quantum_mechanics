@@ -1,0 +1,121 @@
+add_or_refine_generators:
+- id: g_f2_add
+  ordered_inputs:
+  - Bool
+  - Bool
+  output: Bool
+  arity: 2
+  carrier: F2 (Bool)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: f2_add
+    line: 14
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: f2_add
+    kind: def
+    line: 14
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_F2Vec_add
+  ordered_inputs:
+  - F2Vec n
+  - F2Vec n
+  output: F2Vec n
+  arity: 2
+  carrier: F2Vec n
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: F2Vec.add
+    line: 21
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: F2Vec.add
+    kind: def
+    line: 21
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_closed_residual_exact
+  equation_or_predicate: For a cochain complex C with H1 = 0, every closed residual w (a cocycle) is exact.
+  typing_conditions: dim H1(C) = 0, i.e. every cocycle in F2Vec n1 is a coboundary; the legacy measurement
+    at T=1..4 is only a recorded assumption, not verified in this checkout
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: legacy_carrier_obstruction
+    line: 260
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: legacy_carrier_obstruction
+    kind: theorem
+    line: 260
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_closed_residual_def
+  equation_or_predicate: is_closed_residual characterizes residuals that are closed; is_cocycle and is_exact
+    are the checkers involved
+  typing_conditions: Exact definition body not shown in SRC; only the declaration name is listed
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: is_closed_residual
+    line: 58
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: is_closed_residual
+    kind: def
+    line: 58
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-88AB7D01F608
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_F2Vec_zero: () -> F2Vec n [F2Vec.zero]'
+  evidence: lean def F2Vec.zero has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic
+    count)
+  decl_key: F2Vec.zero
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-LEGACY-CARRIER-RETRACTION
+open_obligations:
+- Legacy tetron_carrier.py and its dim H1 computation are not in this checkout, so the measurement cannot
+  be recomputed.
+- Definitions of is_closed_residual and the statement of legacy_carrier_obstruction are not shown, so
+  relation refs are by name only.
+- The tetron-array family is not grounded in the provided declarations, so the supersession claim lacks
+  a citation.
+- The lemma skeleton only restates the hypothesis as the conclusion and is not a real proof of the target.
+- 'lemma l_legacy_retraction unverified: Lean elaboration disabled'
+- 'near_miss nm_unconditional unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_all_T unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

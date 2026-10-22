@@ -1,0 +1,287 @@
+{
+  "task_id": "PGW-CHALLENGE3-CURRENT-REGIME-FAILS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "733aa536c85ce2a07629d7ed118eb5ea6baff924b82f0b392effceb783f0fb87",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "refine",
+          "inputs": [
+            "Quotient_p",
+            "Tag_T"
+          ],
+          "output": "RefinedQuotient",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "fibre_constant_of_factors",
+          "equation_or_predicate": "If s factors through p, then p x = p x' implies s x = s x'",
+          "typing_conditions": "Factors p s",
+          "source_pins": [
+            {
+              "path": "lean4/CollapseBarrier.lean",
+              "declaration": "CollapseBarrier.fibre_constant_of_factors",
+              "line": 43
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/CollapseBarrier.lean",
+            "decl": "CollapseBarrier.fibre_constant_of_factors",
+            "kind": "theorem",
+            "line": 43,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "factors_of_fibre_constant",
+          "equation_or_predicate": "If s is constant on p-fibres then s factors through p",
+          "typing_conditions": "Nonempty Z, DecidableEq Y",
+          "source_pins": [
+            {
+              "path": "lean4/CollapseBarrier.lean",
+              "declaration": "CollapseBarrier.factors_of_fibre_constant",
+              "line": 50
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/CollapseBarrier.lean",
+            "decl": "CollapseBarrier.factors_of_fibre_constant",
+            "kind": "theorem",
+            "line": 50,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "refine_separates",
+          "equation_or_predicate": "The refined map separates points identified by the collapse, given enough tag values",
+          "typing_conditions": "tag alphabet large enough",
+          "source_pins": [
+            {
+              "path": "lean4/CollapseBarrier.lean",
+              "declaration": "CollapseBarrier.refine_separates",
+              "line": 109
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/CollapseBarrier.lean",
+            "decl": "CollapseBarrier.refine_separates",
+            "kind": "theorem",
+            "line": 109,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "R2L_collapsed, R2F_collapsed, quotient_barrier, quot_barrier and barrier_R2L are not listed in SRC, so they are not cited",
+        "Positive-derivability definition and the witness-context nonexistence proof are ungrounded",
+        "Cost results TFQ-0381 are not cited",
+        "No generator composition is licensed by a listed relation",
+        "The two_point_needs_tag skeleton is a placeholder",
+        "lemma barrier_restated unverified: Lean elaboration disabled",
+        "near_miss nm_empty unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "refine",
+        "ordered_inputs": [
+          "Quotient_p",
+          "Tag_T"
+        ],
+        "output": "RefinedQuotient",
+        "arity": 2,
+        "carrier": "finite sets X, Y with projection p : X -> Y, tag alphabet T",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/CollapseBarrier.lean",
+            "declaration": "CollapseBarrier.refine",
+            "line": 104
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/CollapseBarrier.lean",
+          "decl": "CollapseBarrier.refine",
+          "kind": "def",
+          "line": 104,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "fibre_constant_of_factors",
+        "equation_or_predicate": "If s factors through p, then p x = p x' implies s x = s x'",
+        "typing_conditions": "Factors p s",
+        "source_pins": [
+          {
+            "path": "lean4/CollapseBarrier.lean",
+            "declaration": "CollapseBarrier.fibre_constant_of_factors",
+            "line": 43
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CollapseBarrier.lean",
+          "decl": "CollapseBarrier.fibre_constant_of_factors",
+          "kind": "theorem",
+          "line": 43,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "factors_of_fibre_constant",
+        "equation_or_predicate": "If s is constant on p-fibres then s factors through p",
+        "typing_conditions": "Nonempty Z, DecidableEq Y",
+        "source_pins": [
+          {
+            "path": "lean4/CollapseBarrier.lean",
+            "declaration": "CollapseBarrier.factors_of_fibre_constant",
+            "line": 50
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CollapseBarrier.lean",
+          "decl": "CollapseBarrier.factors_of_fibre_constant",
+          "kind": "theorem",
+          "line": 50,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "refine_separates",
+        "equation_or_predicate": "The refined map separates points identified by the collapse, given enough tag values",
+        "typing_conditions": "tag alphabet large enough",
+        "source_pins": [
+          {
+            "path": "lean4/CollapseBarrier.lean",
+            "declaration": "CollapseBarrier.refine_separates",
+            "line": 109
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CollapseBarrier.lean",
+          "decl": "CollapseBarrier.refine_separates",
+          "kind": "theorem",
+          "line": 109,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A029C5A71CE9",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "two_point_needs_tag: A collapsed two-point class needs at least two tag values to be separated, so the regime must be augmented",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CHALLENGE3-CURRENT-REGIME-FAILS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "R2L_collapsed, R2F_collapsed, quotient_barrier, quot_barrier and barrier_R2L are not listed in SRC, so they are not cited",
+      "Positive-derivability definition and the witness-context nonexistence proof are ungrounded",
+      "Cost results TFQ-0381 are not cited",
+      "No generator composition is licensed by a listed relation",
+      "The two_point_needs_tag skeleton is a placeholder",
+      "lemma barrier_restated unverified: Lean elaboration disabled",
+      "near_miss nm_empty unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

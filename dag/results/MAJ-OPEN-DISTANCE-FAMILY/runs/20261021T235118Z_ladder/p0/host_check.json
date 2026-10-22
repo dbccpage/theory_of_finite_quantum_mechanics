@@ -1,0 +1,79 @@
+{
+  "task_id": "MAJ-OPEN-DISTANCE-FAMILY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "80c242ef9aee86b08f7ef18d8d54fbf6c05eafd31dece5a0d3e56921801fd821",
+  "candidate_sha256": "6e1c23659ef4cebe4d83ebc0a9e68443ce08ad6bd9e08f23acbe562660cbd4bc",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 2,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:25Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9079609E21C8",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_target_restate: For all rows, cols >= 1: torus distance = min(rows, cols), cylinder distance = rows + 1, diagonal class weight = rows + cols. Restates the open target without changing any number.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-OPEN-DISTANCE-FAMILY"
+      },
+      {
+        "id": "NEG-03859D097ADC",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_cut_lower_bound: Auxiliary: a cut argument on the dual grid gives a lower bound on the weight of any nontrivial logical operator, matching each claimed distance formula.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-OPEN-DISTANCE-FAMILY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No source declarations were found, so no generators, relations or compositions are grounded.",
+      "The code and logical-operator definitions needed to state the distance formulas formally are not available.",
+      "The upper bound requires an explicit representative of each distance and a weight computation; neither is provided.",
+      "The lower bound needs a dual-grid cut argument, which is not yet formalized.",
+      "The cylinder distance rows + 1 needs checking against boundary conventions, since it is independent of cols.",
+      "The diagonal class weight rows + cols needs a definition of the diagonal class.",
+      "The Lean skeletons are placeholders with a True conclusion and do not encode the real statements.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

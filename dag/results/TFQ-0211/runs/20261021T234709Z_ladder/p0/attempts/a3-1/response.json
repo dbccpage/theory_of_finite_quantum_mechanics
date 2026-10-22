@@ -1,0 +1,130 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_density",
+      "inputs": [],
+      "output": "FiniteDensity2",
+      "arity": 0,
+      "carrier": "finite 2x2 density with Nat numerators over a common denominator",
+      "ref": {
+        "path": "lean4/FiniteDensity.lean",
+        "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.FiniteDensity2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_effect",
+      "inputs": [],
+      "output": "ProjectiveEffect",
+      "arity": 0,
+      "carrier": "finite projective effect",
+      "ref": {
+        "path": "lean4/FiniteDensity.lean",
+        "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.ProjectiveEffect",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_born_num",
+      "inputs": [
+        "FiniteDensity2",
+        "ProjectiveEffect"
+      ],
+      "output": "Nat",
+      "arity": 2,
+      "carrier": "Born expected numerator as Nat",
+      "ref": {
+        "path": "lean4/FiniteDensity.lean",
+        "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_expected_numerator",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_trace",
+      "inputs": [
+        "FiniteDensity2"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "trace numerator as Nat",
+      "ref": {
+        "path": "lean4/FiniteDensity.lean",
+        "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.trace",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_unit_trace",
+      "statement": "trace d = d.denominator",
+      "hypotheses": "d : FiniteDensity2",
+      "ref": {
+        "path": "lean4/FiniteDensity.lean",
+        "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.density_is_positive_unit_trace",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_authority_none",
+      "statement": "authority_is_none holds for the Rust prime face, i.e. AuthorityEffect None",
+      "hypotheses": "Rust prime algorithm object",
+      "ref": {
+        "path": "code/rust/src/wdp/prime_algos/prime_algorithm_0.rs",
+        "decl": "authority_is_none",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_triple_name",
+      "statement": "Python, Rust and Lean name the same carrier text, relation and AuthorityEffect None",
+      "hypotheses": "a three-way name check in F003 which does not exist yet",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_triple_agreement",
+      "statement": "For one finite statement S, the Python packet, the Rust face and the Lean declaration all carry the same carrier text, relation and AuthorityEffect None.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_unit_trace",
+        "r_authority_none",
+        "r_triple_name"
+      ],
+      "lean_skeleton": "theorem triple_agreement : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_rust_only",
+      "claim": "Rust authority_is_none alone closes the gate",
+      "rejecting_invariant": "All three languages must name the same carrier text and relation, not just AuthorityEffect None"
+    },
+    {
+      "id": "nm_lean_only",
+      "claim": "Lean unit-trace theorem alone closes the gate",
+      "rejecting_invariant": "No Python or Rust name of the same statement is checked"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No file performs the three-way name check; F003 acceptance is open.",
+    "Python packet declaration not listed in SRC; cannot be cited.",
+    "No composition is licensed since no relation connects output colours to inputs.",
+    "Cannot ground F000.S000 or F001.S000 text.",
+    "Lean skeleton is a placeholder and not a real statement."
+  ]
+}

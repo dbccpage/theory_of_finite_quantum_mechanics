@@ -1,0 +1,87 @@
+{
+  "task_id": "PGW-MSSN-MANY-READINGS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8cfa630f161d43f457ccc4f3e9cdaca17860df87800d438768c9a31a702270e9",
+  "candidate_sha256": "592ba61f8427353898344732a6e4d42863e716c9202d99a0546c5ed14d1c4f16",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 6,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:59:02Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-1ACBAA9154B0",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "no_union_start: Parsing is a function of the pair (start, string); there is no start-independent acceptance predicate.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-MSSN-MANY-READINGS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No source declarations were found; all generator, relation and lemma refs are proposed_new with no path.",
+      "The full list of 22 starts is not given, so only four are named.",
+      "The 39 cases over 22 starts are not decomposed per start.",
+      "Semantic adapters (WDP-P001-014) are not grounded.",
+      "The Lean skeleton is a placeholder and is not a formal statement.",
+      "generator parse_with_start unverified: no existing declaration cited",
+      "relation explicit_start_required unverified: no existing declaration cited",
+      "relation start_dependent_acceptance unverified: no existing declaration cited",
+      "near_miss nm_28_evaluators unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_default_start unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_a0_adjacent unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "starts",
+        "expr": "22",
+        "value": "22",
+        "host_evidence": {
+          "recomputed": "22"
+        }
+      },
+      {
+        "id": "cases",
+        "expr": "39",
+        "value": "39",
+        "host_evidence": {
+          "recomputed": "39"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,168 @@
+add_or_refine_generators:
+- id: acceptHalted
+  ordered_inputs: []
+  output: DirectTMTerminalPolicy
+  arity: 0
+  carrier: DirectTM policy
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/DirectTM.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.acceptHalted
+    line: 147
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/DirectTM.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.acceptHalted
+    kind: def
+    line: 147
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: leaveAllOpen
+  ordered_inputs: []
+  output: DirectTMTerminalPolicy
+  arity: 0
+  carrier: DirectTM policy
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/DirectTM.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.leaveAllOpen
+    line: 154
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/DirectTM.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.leaveAllOpen
+    kind: def
+    line: 154
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: acceptHalt
+  ordered_inputs: []
+  output: TapeControlTerminalPolicy
+  arity: 0
+  carrier: TapeControl policy
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.acceptHalt
+    line: 120
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.acceptHalt
+    kind: def
+    line: 120
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rejectAll
+  ordered_inputs: []
+  output: TapeControlTerminalPolicy
+  arity: 0
+  carrier: TapeControl policy
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.rejectAll
+    line: 128
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.rejectAll
+    kind: def
+    line: 128
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: direct_halt_not_policy
+  equation_or_predicate: acceptHalted.decide halted = true and leaveAllOpen.decide halted differs (as
+    stated in the cited theorem)
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/DirectTM.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy
+    line: 261
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/DirectTM.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy
+    kind: theorem
+    line: 261
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: tape_halt_not_policy
+  equation_or_predicate: acceptHalt and rejectAll give different terminal values on a halt outcome
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeControl.lean
+    declaration: AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy
+    line: 159
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeControl.lean
+    decl: AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy
+    kind: theorem
+    line: 159
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: replay_verified_not_policy
+  equation_or_predicate: 'verification does not select a terminal policy: authorizeOnVerified and leaveVerifiedOpen
+    differ on a verified outcome'
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Replay.lean
+    declaration: AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification
+    line: 281
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Replay.lean
+    decl: AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification
+    kind: theorem
+    line: 281
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Replay policies authorizeOnVerified and leaveVerifiedOpen are not listed in SRC as declarations, so
+  not cited as generators.
+- Exact statements of the Replay and TapeControl theorems are truncated or missing.
+- Terminal values per policy not confirmed.
+- No compositions grounded.
+- 'lemma direct_lemma unverified: Lean elaboration disabled'
+- 'lemma tape_lemma unverified: Lean elaboration disabled'
+- 'near_miss nm_select unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

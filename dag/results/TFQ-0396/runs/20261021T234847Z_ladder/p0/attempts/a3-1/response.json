@@ -1,0 +1,103 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_residual_quotient",
+      "inputs": [
+        "PrimitiveDifference"
+      ],
+      "output": "ResidualQuotientType",
+      "arity": 1,
+      "carrier": "Type u",
+      "ref": {
+        "path": "lean4/PrimitiveDifference.lean",
+        "decl": "OmegaCore.PrimitiveDifference.ResidualQuotient",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_quotient_map_setoid_imp",
+      "inputs": [
+        "Setoid",
+        "Setoid",
+        "SetoidImplication"
+      ],
+      "output": "QuotientMap",
+      "arity": 3,
+      "carrier": "Quotient S -> Quotient T",
+      "ref": {
+        "path": "lean4/PrimitiveDifference.lean",
+        "decl": "OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_raw_carrier_from_raw",
+      "inputs": [
+        "RawData"
+      ],
+      "output": "RawClassCarrier",
+      "arity": 1,
+      "carrier": "RawClassCarrier",
+      "ref": {
+        "path": "lean4/PrimitiveLiftCandidate.lean",
+        "decl": "OmegaCore.PrimitiveLiftCandidate.rawCarrierFromRaw",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_quotient_map_mk",
+      "statement": "quotientMapOfSetoidImp S T hST (Quotient.mk S a) = Quotient.mk T a",
+      "hypotheses": "hST: forall a b, S.r a b -> T.r a b",
+      "ref": {
+        "path": "lean4/PrimitiveDifference.lean",
+        "decl": "OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp_mk",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_raw_carrier_status",
+      "statement": "packet status of raw carrier matches the obstruction classifier status on the pointed residual quotient",
+      "hypotheses": "P pointed primitive difference, C obstruction classifier on PointedResidualQuotient P",
+      "ref": {
+        "path": "lean4/PrimitiveLiftCandidate.lean",
+        "decl": "OmegaCore.PrimitiveLiftCandidate.rawCarrier_packet_status_matches",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_term_map_gap",
+      "statement": "A certified term map from tag sealed-derivation-v1 at 3100c4e into the PrimitiveDifference carrier is not supplied; no sorry-free statement is made, row S000-GAP-GENESIS-TO-PD stays proposed.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_raw_carrier_status"
+      ],
+      "lean_skeleton": "theorem term_map_gap : True := by trivial",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_tag_as_verdict",
+      "claim": "The sealed-derivation-v1 tag at 3100c4e certifies a term map into PrimitiveDifference",
+      "rejecting_invariant": "Chapter 1 states the tag is a mechanical receipt, not a mathematical verdict, and the sealed derivation does not form cochains."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Supply a certified term map from tag sealed-derivation-v1 at 3100c4e into PrimitiveDifference or a Lean mirror, or explicitly decide to leave S000-GAP-GENESIS-TO-PD proposed.",
+    "Source terms of the sealed derivation are not listed in @SRC, so no generator for them is grounded.",
+    "No compositions were licensed, since no type-matching inner output was established.",
+    "Host decision needed on whether finite_obstruction.py quotient certificates can serve as the source side."
+  ]
+}

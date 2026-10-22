@@ -1,0 +1,167 @@
+{
+  "task_id": "MUB6-SZOLLOSI-COMMON-RAYS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e406df11cf2803bc8bc09dff0455b9a21213231db97aaf7a9414ce90e6719253",
+  "candidate_sha256": "76309d655fbb6c25fbba4c284e1788784b76fe58a7adf08987fd8994be7f37c7",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:57:15Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_overlap",
+        "ordered_inputs": [
+          "Vec",
+          "Vec"
+        ],
+        "output": "Complex",
+        "arity": 2,
+        "carrier": "Vec = Fin 6 -> Complex",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiCommonRays.lean",
+            "declaration": "MUB.SzollosiCommonRays.overlap",
+            "line": 23
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.overlap",
+          "kind": "def",
+          "line": 23,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_column",
+        "ordered_inputs": [
+          "SixMatrix",
+          "Fin6"
+        ],
+        "output": "Vec",
+        "arity": 2,
+        "carrier": "SixMatrix = Matrix (Fin 6) (Fin 6) Complex",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiCommonRays.lean",
+            "declaration": "MUB.SzollosiCommonRays.column",
+            "line": 24
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.column",
+          "kind": "def",
+          "line": 24,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_quartet_iff_ray_bases",
+        "equation_or_predicate": "HasRawQuartet H iff there exist U V with RayBasis H U, RayBasis H V and RawMU U V",
+        "typing_conditions": "RawHadamard H",
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiCommonRays.lean",
+            "declaration": "MUB.SzollosiCommonRays.quartet_iff_ray_bases",
+            "line": 91
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.quartet_iff_ray_bases",
+          "kind": "theorem",
+          "line": 91,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_no_pair_implies_no_quartet",
+        "equation_or_predicate": "If no two common rays z,w of H have normSq(overlap z w) = 6 then H has no raw quartet",
+        "typing_conditions": "none beyond the pair condition",
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiCommonRays.lean",
+            "declaration": "MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair",
+            "line": 103
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiCommonRays.lean",
+          "decl": "MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair",
+          "kind": "theorem",
+          "line": 103,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Full common-ray set for general H is not computed; exclusion beyond MUB6-C41 is open",
+      "Skeleton type names RawHadamard and HasRawQuartet and RawMU not confirmed in SRC namespace, so elaboration is unverified",
+      "No compositions grounded",
+      "lemma l_iff unverified: Lean elaboration disabled",
+      "lemma l_no_pair unverified: Lean elaboration disabled",
+      "near_miss nm_gap_vacuous unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

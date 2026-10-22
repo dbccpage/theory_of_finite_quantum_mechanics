@@ -1,0 +1,125 @@
+{
+  "task_id": "MAJ-GIN-TERMINAL-ROUTING",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cf7302e498bd84e955d951caeaff9bd59568a7d0ac02468dc886464d90938ede",
+  "raw_text": "{\"status\":\"ready_for_host_review\",\"generators\":[{\"id\":\"g_evaluate_gin_fermion_recovery\",\"inputs\":[\"Bool\",\"Nat\"],\"output\":\"TerminalRoute\",\"arity\":2,\"carrier\":\"TerminalRoute\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.evaluate_gin_fermion_recovery\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_invalid_closure_failure\",\"statement\":\"evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure\",\"hypotheses\":\"mass : Nat\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.invalid_gin_routes_to_closure_failure\",\"status\":\"existing\"}},{\"id\":\"r_zero_mass_repair\",\"statement\":\"evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.exact_gin_cancellation_routes_to_repair\",\"status\":\"existing\"}},{\"id\":\"r_positive_mass_refusal\",\"statement\":\"evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal\",\"hypotheses\":\"mass : Nat, mass > 0\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.residual_sign_routes_to_refusal\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_invalid\",\"statement\":\"Invalid index routes to ClosureFailure for any mass.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_invalid_closure_failure\"],\"lean_skeleton\":\"theorem l_invalid (mass : Nat) : evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure := invalid_gin_routes_to_closure_failure mass\",\"claims_proved\":false,\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.invalid_gin_routes_to_closure_failure\",\"status\":\"existing\"}},{\"id\":\"l_repair\",\"statement\":\"Valid index with zero mass routes to Repair.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_zero_mass_repair\"],\"lean_skeleton\":\"theorem l_repair : evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair := exact_gin_cancellation_routes_to_repair\",\"claims_proved\":false,\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.exact_gin_cancellation_routes_to_repair\",\"status\":\"existing\"}},{\"id\":\"l_refusal\",\"statement\":\"Valid index with positive mass routes to SplitBrainRefusal.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_positive_mass_refusal\"],\"lean_skeleton\":\"theorem l_refusal (mass : Nat) (h : mass > 0) : evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal := residual_sign_routes_to_refusal mass h\",\"claims_proved\":false,\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaGinCore.lean\",\"decl\":\"MajoranaGinCore.residual_sign_routes_to_refusal\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_repair_is_solution\",\"claim\":\"Repair routing means the fermion sign problem is solved.\",\"rejecting_invariant\":\"Repair is only a routing tag for zero uncancelled sign mass on a valid index; no sign-problem solution is claimed.\"},{\"id\":\"nm_invalid_zero_mass_repair\",\"claim\":\"An invalid index with zero mass routes to Repair.\",\"rejecting_invariant\":\"Invalid index routes to ClosureFailure regardless of mass.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Lemma skeletons are not elaborated and are marked unproved.\",\"Unclear whether the Lean skeletons need namespace qualification.\",\"No compositions: the only generator returns TerminalRoute, so nothing can be plugged into its Bool/Nat inputs.\"]}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "g_evaluate_gin_fermion_recovery",
+        "inputs": [
+          "Bool",
+          "Nat"
+        ],
+        "output": "TerminalRoute",
+        "arity": 2,
+        "carrier": "TerminalRoute",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.evaluate_gin_fermion_recovery",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_invalid_closure_failure",
+        "statement": "evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure",
+        "hypotheses": "mass : Nat",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.invalid_gin_routes_to_closure_failure",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_zero_mass_repair",
+        "statement": "evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair",
+        "hypotheses": "none",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.exact_gin_cancellation_routes_to_repair",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_positive_mass_refusal",
+        "statement": "evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal",
+        "hypotheses": "mass : Nat, mass > 0",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.residual_sign_routes_to_refusal",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_invalid",
+        "statement": "Invalid index routes to ClosureFailure for any mass.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_invalid_closure_failure"
+        ],
+        "lean_skeleton": "theorem l_invalid (mass : Nat) : evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure := invalid_gin_routes_to_closure_failure mass",
+        "claims_proved": false,
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.invalid_gin_routes_to_closure_failure",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "l_repair",
+        "statement": "Valid index with zero mass routes to Repair.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_zero_mass_repair"
+        ],
+        "lean_skeleton": "theorem l_repair : evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair := exact_gin_cancellation_routes_to_repair",
+        "claims_proved": false,
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.exact_gin_cancellation_routes_to_repair",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "l_refusal",
+        "statement": "Valid index with positive mass routes to SplitBrainRefusal.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_positive_mass_refusal"
+        ],
+        "lean_skeleton": "theorem l_refusal (mass : Nat) (h : mass > 0) : evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal := residual_sign_routes_to_refusal mass h",
+        "claims_proved": false,
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.residual_sign_routes_to_refusal",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_repair_is_solution",
+        "claim": "Repair routing means the fermion sign problem is solved.",
+        "rejecting_invariant": "Repair is only a routing tag for zero uncancelled sign mass on a valid index; no sign-problem solution is claimed."
+      },
+      {
+        "id": "nm_invalid_zero_mass_repair",
+        "claim": "An invalid index with zero mass routes to Repair.",
+        "rejecting_invariant": "Invalid index routes to ClosureFailure regardless of mass."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Lemma skeletons are not elaborated and are marked unproved.",
+      "Unclear whether the Lean skeletons need namespace qualification.",
+      "No compositions: the only generator returns TerminalRoute, so nothing can be plugged into its Bool/Nat inputs."
+    ]
+  }
+}

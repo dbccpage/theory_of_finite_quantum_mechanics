@@ -1,0 +1,57 @@
+{
+  "task_id": "MAJ-BINDING-NONCLAIMS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a9546d722786b3e6def0a58a250e0e610f5efba4c84b45461f172d8566c51fec",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R_scope_nonclaims\",\"statement\":\"Scope rule: the source asserts no physical MZM detection, vendor endorsement, FOC terminal identity, generic FSP solution, complete topological gate set from Ising braiding, l1-vs-l2 separation over F2, unbounded exact syndrome decoding, physical tetron hardware, or falsity of external measurements.\",\"hypotheses\":\"Scope rule only; not a theorem. No formal declaration encodes it.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_magic_not_stabilizer_gate_set\",\"statement\":\"Auxiliary model-internal fact: in the Lean sector model the magic state has positive Wigner negativity, so Ising braiding (Clifford) preserves only the stabilizer sector. This does not prove the non-claim; it only illustrates that no complete gate set is formalized.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem magic_state_wigner_negative_aux : IsingMajoranaBraiding.wignerNegativityScaled IsingMajoranaBraiding.QuantumStateSector.MagicTState = 207 := by rfl\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/IsingMajoranaBraiding.lean\",\"decl\":\"IsingMajoranaBraiding.magic_state_wigner_negative\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"NM_audit_as_detection\",\"claim\":\"A passing audit_majorana_braiding receipt is evidence of physical MZM detection.\",\"rejecting_invariant\":\"The audit evaluates a model; it makes no claim of physical MZM detection or tetron hardware.\"},{\"id\":\"NM_ising_universal\",\"claim\":\"Ising braiding yields a complete topological gate set.\",\"rejecting_invariant\":\"Braiding is Clifford and preserves the stabilizer sector; the magic T-state has nonzero Wigner negativity, so the non-claim stands.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Non-claims are scope rules with no formal declaration; no generators can be grounded.\",\"No cited source for FOC terminal identity, FSP generic solution, l1-vs-l2 over F2, or syndrome decoding.\",\"The relation and Lean skeleton are illustrative only and not proved.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R_scope_nonclaims",
+        "statement": "Scope rule: the source asserts no physical MZM detection, vendor endorsement, FOC terminal identity, generic FSP solution, complete topological gate set from Ising braiding, l1-vs-l2 separation over F2, unbounded exact syndrome decoding, physical tetron hardware, or falsity of external measurements.",
+        "hypotheses": "Scope rule only; not a theorem. No formal declaration encodes it.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_magic_not_stabilizer_gate_set",
+        "statement": "Auxiliary model-internal fact: in the Lean sector model the magic state has positive Wigner negativity, so Ising braiding (Clifford) preserves only the stabilizer sector. This does not prove the non-claim; it only illustrates that no complete gate set is formalized.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem magic_state_wigner_negative_aux : IsingMajoranaBraiding.wignerNegativityScaled IsingMajoranaBraiding.QuantumStateSector.MagicTState = 207 := by rfl",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/IsingMajoranaBraiding.lean",
+          "decl": "IsingMajoranaBraiding.magic_state_wigner_negative",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_audit_as_detection",
+        "claim": "A passing audit_majorana_braiding receipt is evidence of physical MZM detection.",
+        "rejecting_invariant": "The audit evaluates a model; it makes no claim of physical MZM detection or tetron hardware."
+      },
+      {
+        "id": "NM_ising_universal",
+        "claim": "Ising braiding yields a complete topological gate set.",
+        "rejecting_invariant": "Braiding is Clifford and preserves the stabilizer sector; the magic T-state has nonzero Wigner negativity, so the non-claim stands."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Non-claims are scope rules with no formal declaration; no generators can be grounded.",
+      "No cited source for FOC terminal identity, FSP generic solution, l1-vs-l2 over F2, or syndrome decoding.",
+      "The relation and Lean skeleton are illustrative only and not proved."
+    ]
+  }
+}

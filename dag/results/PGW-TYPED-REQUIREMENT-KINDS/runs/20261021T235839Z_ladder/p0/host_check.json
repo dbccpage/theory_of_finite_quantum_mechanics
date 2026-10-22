@@ -1,0 +1,120 @@
+{
+  "task_id": "PGW-TYPED-REQUIREMENT-KINDS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "fd8f9e63dcc1e4ac39c596d9d087ffca0d03ad71429ebd6c522fabc2c0ee8545",
+  "candidate_sha256": "986e839c3be789832658a8efe078c958033a4f5e86ccb805ee366674e86f1d4c",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:48Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_allpairs_length_as_cited",
+        "equation_or_predicate": "allPairs n has length n*n in the sealed Lean (not n(n-1)/2); the target's unordered-pair count n(n-1)/2 is not what this declaration states",
+        "typing_conditions": "n : Nat",
+        "source_pins": [
+          {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "line": 254
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+          "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+          "kind": "theorem",
+          "line": 254,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_orbit_class_eq_iff",
+        "equation_or_predicate": "demandOrbitClass x = demandOrbitClass y iff DemandOrbitRel x y",
+        "typing_conditions": "Presentation and DemandFamily fixed",
+        "source_pins": [
+          {
+            "path": "lean4/RetainedProfileCecBridge.lean",
+            "declaration": "RetainedProfileCECBridge.demandOrbitClass_eq_iff",
+            "line": 318
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/RetainedProfileCecBridge.lean",
+          "decl": "RetainedProfileCECBridge.demandOrbitClass_eq_iff",
+          "kind": "theorem",
+          "line": 318,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Stake invariance for E3, E4 and E6 is OPEN at target-regime transport replay",
+      "No Lean statement about any menu rule; G-3 requires the other five rules and E6 invariance",
+      "No requirement-kind grammar derived; the stake is a declared input",
+      "Requirement-kind generators could not be grounded in the cited declarations, so none are listed",
+      "Reconcile n(n-1)/2 in target with allPairs_length n*n",
+      "The Lean skeleton for the unordered pair count is unproved",
+      "lemma l_pair_count_unordered unverified: Lean elaboration disabled",
+      "near_miss nm_allpairs_n_squared unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_desc_kinddesc_as_requirement_kinds unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_pairs_8",
+        "expr": "8*7/2",
+        "value": "28",
+        "host_evidence": {
+          "recomputed": "28"
+        }
+      },
+      {
+        "id": "n_ordered_8",
+        "expr": "8*8",
+        "value": "64",
+        "host_evidence": {
+          "recomputed": "64"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

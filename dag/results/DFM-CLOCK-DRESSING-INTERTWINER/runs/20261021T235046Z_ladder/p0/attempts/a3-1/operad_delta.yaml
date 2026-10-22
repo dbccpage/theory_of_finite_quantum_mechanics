@@ -1,0 +1,41 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-E4BB43C6415F
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_history: Under unitarity, D^dagger maps the history state to (sum_t |t>) tensor psi_0'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-CLOCK-DRESSING-INTERTWINER
+counterexamples: []
+open_obligations:
+- W definition and shift convention are not in the target; the proof is unchecked
+- No existing declarations cited; the Lean witness is missing
+- Verify the N=4,d=2 example by explicit computation
+- Show U_S^4 = I for the rotation matrix
+- ker(I - W) membership of the history state is not shown
+- 'generator D unverified: no existing declaration cited'
+- 'generator W unverified: no existing declaration cited'
+- 'relation R_intertwine unverified: no existing declaration cited'
+- 'relation R_history unverified: no existing declaration cited'
+- 'near_miss NM_nonperiodic unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_nonunitary unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_norm
+  expr: (3/5)^2 + (4/5)^2
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+- id: N_order
+  expr: 4 * 1
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements: []

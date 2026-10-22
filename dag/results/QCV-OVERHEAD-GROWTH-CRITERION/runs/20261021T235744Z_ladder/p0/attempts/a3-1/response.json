@@ -1,0 +1,118 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_amp",
+      "inputs": [
+        "c_seq"
+      ],
+      "output": "amp_seq",
+      "arity": 1,
+      "carrier": "ℕ → ℚ",
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.amp",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_concv",
+      "inputs": [
+        "c_seq",
+        "p0"
+      ],
+      "output": "p_seq",
+      "arity": 2,
+      "carrier": "ℕ → ℚ",
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.concv",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_concv_amp",
+      "statement": "concv c p k = p^(2^k) * amp c k",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.concv_eq_amp",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_threshold_iff",
+      "statement": "Some p0>0 has concv c p0 going to zero iff AmpBounded c",
+      "hypotheses": "forall k, 0 <= c k",
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.threshold_region_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_region_empty",
+      "statement": "No p>0 has concv c p going to zero iff not AmpBounded c",
+      "hypotheses": "forall k, 0 <= c k",
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.region_empty_iff",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "g_concv",
+      "slot": 0,
+      "inner": "g_amp",
+      "licensing_relation": "r_concv_amp"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_criterion",
+      "statement": "For c k >= 0, ThresholdRegionNonempty c iff AmpBounded c",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_threshold_iff"
+      ],
+      "lean_skeleton": "theorem l_criterion {c : ℕ → ℚ} (hc : ∀ k, 0 ≤ c k) : QcSelfObstruction.ThresholdRegionNonempty c ↔ QcSelfObstruction.AmpBounded c := QcSelfObstruction.threshold_region_iff hc",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.threshold_region_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_empty",
+      "statement": "For c k >= 0, no positive p0 goes to zero iff not AmpBounded c",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "r_region_empty"
+      ],
+      "lean_skeleton": "theorem l_empty {c : ℕ → ℚ} (hc : ∀ k, 0 ≤ c k) : (∀ p : ℚ, 0 < p → ¬ QcSelfObstruction.GoesToZero (QcSelfObstruction.concv c p)) ↔ ¬ QcSelfObstruction.AmpBounded c := QcSelfObstruction.region_empty_iff hc",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/QcConcatenation.lean",
+        "decl": "QcSelfObstruction.region_empty_iff",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_dexp",
+      "claim": "c(k)=a*b^(2^k) with b>1 admits a threshold",
+      "rejecting_invariant": "amp grows doubly exponentially faster than M^(2^k), so AmpBounded fails"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Ground statements of ampBounded_of_bounded, ampBounded_of_geom, ampBounded_poly, ampBounded_of_sizes, sizes_not_ampBounded, dexp_not_ampBounded (signatures not listed in SRC) before use as relations",
+    "Family-specific lemmas not stated with exact Lean signatures"
+  ]
+}

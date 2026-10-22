@@ -1,0 +1,98 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_empty_regime",
+      "inputs": [],
+      "output": "Regime",
+      "arity": 0,
+      "carrier": "Regime",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.emptyRegime",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_replay",
+      "inputs": [
+        "Regime",
+        "EventList"
+      ],
+      "output": "State",
+      "arity": 2,
+      "carrier": "State",
+      "ref": {
+        "path": "lean4/GenesisComputation.lean",
+        "decl": "GenesisComputation.GenesisCopy.replayE",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_split_declared",
+      "statement": "Token equality, order, concatenation and multiplicity are metatheory-level notions; the object-language state exposes only datum indices, not tokens.",
+      "hypotheses": "Declared two-level split of genesis_source.txt section 2 (assumption, not a theorem).",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "r_token_blind",
+      "statement": "Replay of an event list through a regime is invariant under injective renaming of tokens, up to renaming of the metatheoretic presentation only.",
+      "hypotheses": "Token-aware model of events; the Lean model has no tokens, so this is structural there and tested by renaming in Python and Rust.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "g_replay",
+      "slot": 0,
+      "inner": "g_empty_regime",
+      "licensing_relation": "r_split_declared"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "l_token_rename_invariance",
+      "statement": "For an injective token renaming sigma, the object-level state from replay of the renamed event list equals the state from replay of the original, up to datum-index identity.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_token_blind"
+      ],
+      "lean_skeleton": "-- needs a token-aware event model, not present in the Lean model\ntheorem l_token_rename_invariance : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_token_equality_internal",
+      "claim": "Token equality of two presentations is identical to internal identity of their data.",
+      "rejecting_invariant": "Internal identity is the datum index; token equality is metatheory only unless an admitted judgment internalizes it."
+    },
+    {
+      "id": "nm_semantic_interpretation",
+      "claim": "Token glyphs carry a semantic interpretation at the object level.",
+      "rejecting_invariant": "No semantic interpretation is ever assigned."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing Lean declaration formalizes the token layer; token-blindness is checked only by Python and Rust renaming tests.",
+    "r_token_blind and the renaming lemma need a token-aware model; no proof is claimed.",
+    "Admission order visible to the metatheory and erased at the object level has no grounded declaration.",
+    "The earlier refused l_second_token_required is not repeated."
+  ]
+}

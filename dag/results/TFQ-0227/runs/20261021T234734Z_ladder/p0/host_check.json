@@ -1,0 +1,152 @@
+{
+  "task_id": "TFQ-0227",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b705598becd68b2c779cba785017ce435bdd3f78d5149b74ba3e2f390ef7a86c",
+  "candidate_sha256": "9dfb89064681fbbd89e90b42c8dc7ccf53bda7224ef3ae5ee388fdb46f72a202",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:47:43Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_continuation_evidence",
+        "ordered_inputs": [
+          "Bytes"
+        ],
+        "output": "Evidence",
+        "arity": 1,
+        "carrier": "pipeline host bytes",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "ContinuationEvidence",
+            "line": 1044
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "ContinuationEvidence",
+          "kind": "struct",
+          "line": 1044,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_authority_none",
+        "equation_or_predicate": "Every evidence emission carries AuthorityEffect::None",
+        "typing_conditions": "none declared",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "AUTHORITY_EFFECT",
+            "line": 1539
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "AUTHORITY_EFFECT",
+          "kind": "const",
+          "line": 1539,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_authority_none_test",
+        "equation_or_predicate": "authority_effect_is_none checks that the effect is None",
+        "typing_conditions": "none declared",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "authority_effect_is_none",
+            "line": 2672
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "authority_effect_is_none",
+          "kind": "fn",
+          "line": 2672,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7ACF00EBE1ED",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_schedule_no_authority: Scheduling a finite derivation through the host leaves the finite statement unchanged and emits only AuthorityEffect None",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0227"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No generator grounded for quantum-level operations; no @SRC declaration gives typed finite QM generators beyond TensorEffectOrder predicates",
+      "Lean skeleton is a placeholder with sorry, not tied to the finite statement",
+      "Language triple statement not named in the record",
+      "Compositions omitted: no licensing relation between generators identified",
+      "Producer/evaluator identity separation and content hash domain separation (EVIDENCE_DOMAIN) not formalized",
+      "near_miss nm_completion_is_seal unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_schedule_new_relation unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,30 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-E562C4CA5F80
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1: Under the WDP-P000-009 hypotheses, for all m rounds of a closed run from requirement set
+    Q, 2*(count(Q)+m) <= n*(n-1).'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0383
+counterexamples: []
+open_obligations:
+- closedRun_round_bound and closedRun_round_bound_from_empty in Derivation/Rounds.lean are not listed
+  in @SRC or @KNOWN+, so they cannot be cited as existing; the host must verify them.
+- Formal Lean hypotheses (fresh well-formed targets, no new-datum response items, duplicate-free) are
+  not encoded in the skeleton.
+- No generators grounded; @SRC only lists the ledger builder script.
+- Genesis paper.md section 8 not grounded as a declaration.
+- 'relation R1 unverified: no existing declaration cited'
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

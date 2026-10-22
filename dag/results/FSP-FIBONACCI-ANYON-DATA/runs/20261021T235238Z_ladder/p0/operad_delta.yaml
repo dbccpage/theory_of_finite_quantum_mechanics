@@ -1,0 +1,150 @@
+add_or_refine_generators:
+- id: fusion_allowed
+  ordered_inputs:
+  - Label
+  - Label
+  - Label
+  output: Bool
+  arity: 3
+  carrier: Fibonacci labels {1,tau}
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    declaration: fusion_allowed
+    line: 164
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    decl: fusion_allowed
+    kind: def
+    line: 164
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: compute_quantum_dimensions
+  ordered_inputs: []
+  output: DimensionTable
+  arity: 0
+  carrier: real algebraic numbers Q(sqrt5)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    declaration: compute_quantum_dimensions
+    line: 106
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    decl: compute_quantum_dimensions
+    kind: def
+    line: 106
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: commutatorHolonomy
+  ordered_inputs:
+  - BraidGroup2
+  output: Group
+  arity: 1
+  carrier: group G
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FibonacciAnyonBraiding.lean
+    declaration: FibonacciAnyonBraiding.commutatorHolonomy
+    line: 21
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FibonacciAnyonBraiding.lean
+    decl: FibonacciAnyonBraiding.commutatorHolonomy
+    kind: def
+    line: 21
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: pentagon_check
+  equation_or_predicate: Pentagon equation holds for the F-matrix data
+  typing_conditions: Fibonacci F-matrix
+  source_pins:
+  - path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    declaration: verify_pentagon_equation
+    line: 156
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/src/fsp/fibonacci_anyon_braiding.py
+    decl: verify_pentagon_equation
+    kind: def
+    line: 156
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: noncommuting_holonomy
+  equation_or_predicate: Non-commuting braid generators give a nontrivial commutator
+  typing_conditions: generators do not commute
+  source_pins:
+  - path: lean4/FibonacciAnyonBraiding.lean
+    declaration: FibonacciAnyonBraiding.commutator_nontrivial_of_non_commuting
+    line: 28
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FibonacciAnyonBraiding.lean
+    decl: FibonacciAnyonBraiding.commutator_nontrivial_of_non_commuting
+    kind: theorem
+    line: 28
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-744042BE13A6
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'density_import: Braids of three Fibonacci anyons generate a dense subgroup of SU(2) (Freedman-Larsen-Wang),
+    imported assumption'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-FIBONACCI-ANYON-DATA
+counterexamples: []
+open_obligations:
+- Exact F and R matrices and hexagon not grounded; the trunk pins them in TFQ-0050
+- The Freedman-Larsen-Wang density theorem is imported, not proved
+- No Lean proof of the irrationality of sqrt5 supplied
+- 'Compositions left empty: no relation licenses a typed plug'
+- 'relation fusion_rule unverified: no existing declaration cited'
+- 'lemma d_golden unverified: Lean elaboration disabled'
+- 'near_miss rational_d unverified: semantic near miss; P4 host check decides'
+- 'near_miss abelian_braid unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: disc
+  expr: 1 + 4*1
+  value: '5'
+  host_evidence:
+    recomputed: '5'
+- id: total_dim_sq_check
+  expr: 1 + 1 + 1
+  value: '3'
+  host_evidence:
+    recomputed: '3'
+verified_lemma_statements: []

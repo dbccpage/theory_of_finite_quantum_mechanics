@@ -1,0 +1,35 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: 'Two-generation orthogonality of rows: v11*conj(v21) + v12*conj(v22) = 0 implies
+    the quartet v11*v22*conj(v12)*conj(v21) has imaginary part 0 and real part -|v12|^2*|v22|^2'
+  typing_conditions: 'v11 v12 v21 v22 are GaussRat; horth: add (mul v11 (conj v21)) (mul v12 (conj v22))
+    = 0'
+  source_pins:
+  - path: lean4/RaveraDfmFiniteToContinuum.lean
+    declaration: RaveraDfmFiniteToContinuum.two_gen_cabibbo_artificial_cp_phase_zero
+    line: 199
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/RaveraDfmFiniteToContinuum.lean
+    decl: RaveraDfmFiniteToContinuum.two_gen_cabibbo_artificial_cp_phase_zero
+    kind: theorem
+    line: 199
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'No generators grounded: SRC lists only a structure and a theorem, no operation declarations.'
+- Physical reading needs full unitary 2x2 hypothesis set and rephasing quotient, not in SRC.
+- Exact signature tail of the cited theorem is truncated; host should confirm the conclusion form.
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

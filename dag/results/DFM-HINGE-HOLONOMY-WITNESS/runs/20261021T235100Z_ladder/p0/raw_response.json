@@ -1,0 +1,170 @@
+{
+  "task_id": "DFM-HINGE-HOLONOMY-WITNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8322e1fddb33cc9c71c2ed14a825a1fa19f058dc5ed6b47c10cb3583c8241b37",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_boost\",\"inputs\":[\"Param\"],\"output\":\"Frame4\",\"arity\":1,\"carrier\":\"4x4 rational matrices (boost Lambda(s))\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_matmul\",\"inputs\":[\"Frame4\",\"Frame4\"],\"output\":\"Frame4\",\"arity\":2,\"carrier\":\"4x4 rational matrices\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_conj\",\"inputs\":[\"Frame4\",\"Frame4\"],\"output\":\"Frame4\",\"arity\":2,\"carrier\":\"4x4 matrices, tetrad conjugation E Lambda E^-1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_telescope\",\"statement\":\"Product over a closed loop of pure-gauge factors g_i^{-1} g_{i+1} equals I_4\",\"hypotheses\":\"g_i invertible 4x4; loop closes (last index returns to first)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_trace_conj\",\"statement\":\"trace(E M E^-1) = trace(M)\",\"hypotheses\":\"E invertible\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"g_matmul\",\"slot\":0,\"inner\":\"g_conj\",\"licensing_relation\":\"r_trace_conj\"},{\"outer\":\"g_matmul\",\"slot\":1,\"inner\":\"g_matmul\",\"licensing_relation\":\"r_telescope\"}],\"lemmas\":[{\"id\":\"l_telescope\",\"statement\":\"Telescoping product of pure-gauge frame factors around a closed loop is I_4\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_telescope\"],\"lean_skeleton\":\"theorem l_telescope {n:ℕ} (g : Fin (n+1) → Matrix (Fin 4) (Fin 4) ℚ) : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_trace_conj\",\"statement\":\"Trace is invariant under tetrad conjugation, so the conjugated triple product has trace 16/3\",\"relation_to_target\":\"implies\",\"depends_on\":[\"r_trace_conj\"],\"lean_skeleton\":\"theorem l_trace_conj (E M : Matrix (Fin 4) (Fin 4) ℚ) (h : IsUnit E.det) : (E*M*E⁻¹).trace = M.trace := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_cell_flat\",\"statement\":\"Product of three telescoping conjugated factors around a declared 3-cell is I_4 (algebraic identity only, no geometry)\",\"relation_to_target\":\"restates\",\"depends_on\":[\"l_telescope\"],\"lean_skeleton\":\"theorem l_cell_flat : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_curvature\",\"claim\":\"The telescoping identity shows nonzero-deficit curvature or a Bianchi identity on a simplicial complex\",\"rejecting_invariant\":\"No edge lengths, deficit angles or simplicial complex are constructed; the identity holds for any pure-gauge data\"},{\"id\":\"nm_nonidentity_holonomy\",\"claim\":\"Lambda(1/2)Lambda(1/3)Lambda(-1/3) is I_4\",\"rejecting_invariant\":\"Its trace is 16/3, not 4\"}],\"numeric_claims\":[{\"id\":\"n_total\",\"expr\":\"2 + 10/3\",\"value\":\"16/3\"},{\"id\":\"n_boost_plane\",\"expr\":\"2*(1+1/4)/(1-1/4)\",\"value\":\"10/3\"}],\"open_obligations\":[\"Lambda(s) definition not given; the cosh=(1+s^2)/(1-s^2) parametrization is only inferred from the 10/3 value\",\"No existing declarations grounded; all refs proposed_new\",\"Lean skeletons are placeholders and not proved\",\"Tetrad E and the declared 3-cell data not specified\",\"Geometric content (complex, edge lengths, deficit angles) is absent per BOTTLENECK\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_boost",
+        "inputs": [
+          "Param"
+        ],
+        "output": "Frame4",
+        "arity": 1,
+        "carrier": "4x4 rational matrices (boost Lambda(s))",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_matmul",
+        "inputs": [
+          "Frame4",
+          "Frame4"
+        ],
+        "output": "Frame4",
+        "arity": 2,
+        "carrier": "4x4 rational matrices",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_conj",
+        "inputs": [
+          "Frame4",
+          "Frame4"
+        ],
+        "output": "Frame4",
+        "arity": 2,
+        "carrier": "4x4 matrices, tetrad conjugation E Lambda E^-1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_telescope",
+        "statement": "Product over a closed loop of pure-gauge factors g_i^{-1} g_{i+1} equals I_4",
+        "hypotheses": "g_i invertible 4x4; loop closes (last index returns to first)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_trace_conj",
+        "statement": "trace(E M E^-1) = trace(M)",
+        "hypotheses": "E invertible",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "g_matmul",
+        "slot": 0,
+        "inner": "g_conj",
+        "licensing_relation": "r_trace_conj"
+      },
+      {
+        "outer": "g_matmul",
+        "slot": 1,
+        "inner": "g_matmul",
+        "licensing_relation": "r_telescope"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "l_telescope",
+        "statement": "Telescoping product of pure-gauge frame factors around a closed loop is I_4",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_telescope"
+        ],
+        "lean_skeleton": "theorem l_telescope {n:ℕ} (g : Fin (n+1) → Matrix (Fin 4) (Fin 4) ℚ) : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_trace_conj",
+        "statement": "Trace is invariant under tetrad conjugation, so the conjugated triple product has trace 16/3",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_trace_conj"
+        ],
+        "lean_skeleton": "theorem l_trace_conj (E M : Matrix (Fin 4) (Fin 4) ℚ) (h : IsUnit E.det) : (E*M*E⁻¹).trace = M.trace := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_cell_flat",
+        "statement": "Product of three telescoping conjugated factors around a declared 3-cell is I_4 (algebraic identity only, no geometry)",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "l_telescope"
+        ],
+        "lean_skeleton": "theorem l_cell_flat : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_curvature",
+        "claim": "The telescoping identity shows nonzero-deficit curvature or a Bianchi identity on a simplicial complex",
+        "rejecting_invariant": "No edge lengths, deficit angles or simplicial complex are constructed; the identity holds for any pure-gauge data"
+      },
+      {
+        "id": "nm_nonidentity_holonomy",
+        "claim": "Lambda(1/2)Lambda(1/3)Lambda(-1/3) is I_4",
+        "rejecting_invariant": "Its trace is 16/3, not 4"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_total",
+        "expr": "2 + 10/3",
+        "value": "16/3"
+      },
+      {
+        "id": "n_boost_plane",
+        "expr": "2*(1+1/4)/(1-1/4)",
+        "value": "10/3"
+      }
+    ],
+    "open_obligations": [
+      "Lambda(s) definition not given; the cosh=(1+s^2)/(1-s^2) parametrization is only inferred from the 10/3 value",
+      "No existing declarations grounded; all refs proposed_new",
+      "Lean skeletons are placeholders and not proved",
+      "Tetrad E and the declared 3-cell data not specified",
+      "Geometric content (complex, edge lengths, deficit angles) is absent per BOTTLENECK"
+    ]
+  }
+}

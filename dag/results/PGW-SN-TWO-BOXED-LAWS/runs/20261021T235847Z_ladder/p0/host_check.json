@@ -1,0 +1,102 @@
+{
+  "task_id": "PGW-SN-TWO-BOXED-LAWS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a52f268cf277c5e1dcfac442b2aa0fae5fda611df80f2fbadb0baadbc5ff93a4",
+  "candidate_sha256": "18c7ffcca81470d8bcbfbc183a84427c2802a6902cca937cf5d5bdc48549d601",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:55Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_open_obstruction_positive_defect",
+        "equation_or_predicate": "A positive defect Phi_1 > 0 yields Phi_1 ≠ 0, a minimal formal instance of an obstruction that stays open.",
+        "typing_conditions": "Phi_1 : Nat, h_pos : Phi_1 > 0",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisFspBridge.lean",
+            "declaration": "GenesisFspBridge.open_sign_obstruction_when_defect_positive",
+            "line": 156
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisFspBridge.lean",
+          "decl": "GenesisFspBridge.open_sign_obstruction_when_defect_positive",
+          "kind": "theorem",
+          "line": 156,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_ground_carrier_empty",
+        "equation_or_predicate": "Carrier 0 has no inhabitant.",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/SnCarrierPfp.lean",
+            "declaration": "SnCarrierPfp.ground_carrier_empty",
+            "line": 176
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SnCarrierPfp.lean",
+          "decl": "SnCarrierPfp.ground_carrier_empty",
+          "kind": "theorem",
+          "line": 176,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declaration formalizes S(n+1) containing only structure forced by an unresolved Genesis obstruction.",
+      "No existing declaration formalizes R(S(n)) lacking authority to extend S(n).",
+      "The reflection bridge from a model property back to Genesis has no cited declaration.",
+      "No generators are grounded, because the source declarations are checkers or definitions and not typed operations for this target.",
+      "lemma l_boxed_laws_not_checked unverified: Lean elaboration disabled",
+      "near_miss nm_realization_law_proved unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_gate_enforces_laws unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_laws_force_next_event unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

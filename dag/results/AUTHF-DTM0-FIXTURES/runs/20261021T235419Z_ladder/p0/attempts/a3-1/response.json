@@ -1,0 +1,110 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G-applyRule",
+      "inputs": [
+        "Rule",
+        "Configuration"
+      ],
+      "output": "Configuration",
+      "arity": 2,
+      "carrier": "Configuration",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.applyRule",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G-initialConfiguration",
+      "inputs": [
+        "Machine"
+      ],
+      "output": "Configuration",
+      "arity": 1,
+      "carrier": "Configuration",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.initialConfiguration",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R-write-and-halt-writes-mark",
+      "statement": "The single transition of writeAndHaltMachine from its initial configuration writes a mark.",
+      "hypotheses": "fixture writeAndHaltMachine only",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-write-and-halt-halts",
+      "statement": "The single transition of writeAndHaltMachine reaches a declared halt state.",
+      "hypotheses": "fixture writeAndHaltMachine only",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-empty-stuck",
+      "statement": "The empty-rule fixture is stuck at its first step.",
+      "hypotheses": "empty rule list",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-loop-fuel",
+      "statement": "The one-row self-loop fixture returns fuelExhausted with the looped configuration after one unit of fuel.",
+      "hypotheses": "fuel = 1, one-row self-loop",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L-fixtures-target",
+      "statement": "Conjunction of the three fixture results: writeAndHalt writes a mark and halts in one transition, empty-rule is stuck, and the self-loop exhausts one unit of fuel.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R-write-and-halt-writes-mark",
+        "R-write-and-halt-halts",
+        "R-empty-stuck",
+        "R-loop-fuel"
+      ],
+      "lean_skeleton": "theorem fixtures_target : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM-loop-never-halts",
+      "claim": "The self-loop machine never halts.",
+      "rejecting_invariant": "Only exhaustion of one unit of fuel is established. No non-halting theorem exists."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact statements of the cited theorems were not visible, so the lemma skeleton is a placeholder.",
+    "No composition is licensed by a listed relation because the colour typing of the generators is unverified.",
+    "Non-halting of the self-loop is not grounded."
+  ]
+}

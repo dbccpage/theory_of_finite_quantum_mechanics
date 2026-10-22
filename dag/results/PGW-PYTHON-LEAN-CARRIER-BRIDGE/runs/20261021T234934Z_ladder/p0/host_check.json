@@ -1,0 +1,203 @@
+{
+  "task_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "292cc3dcc1a51a15e34ce48a6ae754a946aaf7174bd7fe28a052dbe49120fa04",
+  "candidate_sha256": "7e6299f37d8b17a13e3e2c6168d60c90ff4b14cdd7efa9d958e04bf8edb1c634",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:44Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_insertNew",
+        "ordered_inputs": [
+          "List",
+          "Alpha"
+        ],
+        "output": "List",
+        "arity": 2,
+        "carrier": "List α with DecidableEq α",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.GenesisCopy.insertNew",
+            "line": 68
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.insertNew",
+          "kind": "def",
+          "line": 68,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_stepE",
+        "ordered_inputs": [
+          "Regime",
+          "Event"
+        ],
+        "output": "Regime",
+        "arity": 2,
+        "carrier": "GenesisCopy.Regime",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.GenesisCopy.stepE",
+            "line": 88
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.stepE",
+          "kind": "def",
+          "line": 88,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_replayE",
+        "ordered_inputs": [
+          "Regime",
+          "EventList"
+        ],
+        "output": "Regime",
+        "arity": 2,
+        "carrier": "GenesisCopy.Regime",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.GenesisCopy.replayE",
+            "line": 107
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.replayE",
+          "kind": "def",
+          "line": 107,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_first_sep_replay",
+        "equation_or_predicate": "replaying firstSeparationHistory from emptyRegime yields firstSeparationRegime",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.first_separation_replay",
+            "line": 168
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.first_separation_replay",
+          "kind": "theorem",
+          "line": 168,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_first_sep_pairwise",
+        "equation_or_predicate": "firstSeparationRegime is pairwise separated",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.first_separation_pairwise",
+            "line": 172
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.first_separation_pairwise",
+          "kind": "theorem",
+          "line": 172,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formal Python semantics or a model of the driver in Lean is absent",
+      "Token-erasure map and its correctness are not proved",
+      "Proof that each Python edge is a Lean history is not provided",
+      "L-1 bridging needs a seal amendment by the author",
+      "R2L/R2F reading regimes versus sealed genesis histories are unreconciled",
+      "Signatures of Event, stepE, replayE are not shown, so colour names are guessed",
+      "relation r_python_refines_lean unverified: no existing declaration cited",
+      "lemma l_canonical_pairwise unverified: Lean elaboration disabled",
+      "near_miss nm_executable_checks unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

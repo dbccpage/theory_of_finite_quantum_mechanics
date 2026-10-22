@@ -1,0 +1,242 @@
+{
+  "task_id": "AUTHF-CLASS-RELATIVE-TRANSPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "09cb4b0cda1b45187ec46dcb0ce3e149c5027ec488a52d3df4cf812547f0c92d",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g:reduction_map",
+          "inputs": [
+            "HardInput"
+          ],
+          "output": "Proposal",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel:validity_preserved",
+          "equation_or_predicate": "For all x, hard x <-> valid (f x), where f is the reduction map",
+          "typing_conditions": "A ValidityReduction structure instance supplies f and this iff",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+              "declaration": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+              "line": 47
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+            "kind": "structure",
+            "line": 47,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "rel:closure",
+          "equation_or_predicate": "If d is an allowed proposal decider then d composed with f is an allowed hard decider",
+          "typing_conditions": "ClosedUnderReduction holds for the allowed classes and the reduction",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+              "declaration": "AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+              "line": 54
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+            "kind": "def",
+            "line": 54,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Exact argument order and hypotheses of no_source_decider_blocks_total_authorizer not visible; skeleton is a placeholder",
+        "No concrete computability class instantiated; halting instance (r:halting_no_decider) not used",
+        "No compositions listed: only one generator",
+        "near_miss nm:no_closure unverified: semantic near miss; P4 host check decides",
+        "near_miss nm:one_direction unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g:reduction_map",
+        "ordered_inputs": [
+          "HardInput"
+        ],
+        "output": "Proposal",
+        "arity": 1,
+        "carrier": "HardInput -> Proposal",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "declaration": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+            "line": 47
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+          "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+          "kind": "structure",
+          "line": 47,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "rel:validity_preserved",
+        "equation_or_predicate": "For all x, hard x <-> valid (f x), where f is the reduction map",
+        "typing_conditions": "A ValidityReduction structure instance supplies f and this iff",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "declaration": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+            "line": 47
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+          "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+          "kind": "structure",
+          "line": 47,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "rel:closure",
+        "equation_or_predicate": "If d is an allowed proposal decider then d composed with f is an allowed hard decider",
+        "typing_conditions": "ClosedUnderReduction holds for the allowed classes and the reduction",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+            "declaration": "AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+            "line": 54
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/GlobalLift.lean",
+          "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+          "kind": "def",
+          "line": 54,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-66367884C627",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l:target: Given a ValidityReduction from hard to valid, ClosedUnderReduction of the allowed classes, and NoTotalDecider allowedHard hard, we get NoTotalDecider allowedProposal valid",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      },
+      {
+        "id": "NEG-0551EFBCCC02",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l:decider_pullback: An allowed total proposal decider that decides valid yields, via precomposition with f, an allowed total decider for hard",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTHF-CLASS-RELATIVE-TRANSPORT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exact argument order and hypotheses of no_source_decider_blocks_total_authorizer not visible; skeleton is a placeholder",
+      "No concrete computability class instantiated; halting instance (r:halting_no_decider) not used",
+      "No compositions listed: only one generator",
+      "near_miss nm:no_closure unverified: semantic near miss; P4 host check decides",
+      "near_miss nm:one_direction unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

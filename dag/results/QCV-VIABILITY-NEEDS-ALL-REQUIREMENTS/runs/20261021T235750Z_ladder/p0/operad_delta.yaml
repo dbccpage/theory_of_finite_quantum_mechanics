@@ -1,0 +1,104 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_model_viable_iff
+  equation_or_predicate: 'For g<1, kappa>0, c(k)>=0, q0>=0: backlog bounded and some positive physical
+    rate has p(k)->0 iff r >= lam/((1-g)*kappa) and some M>0 has amp(k) <= M^(2^k)'
+  typing_conditions: 0<=q0, g<1, 0<kappa, forall k 0<=c k
+  source_pins:
+  - path: lean4/QcSelfObstruction.lean
+    declaration: QcSelfObstruction.model_viable_iff
+    line: 114
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcSelfObstruction.lean
+    decl: QcSelfObstruction.model_viable_iff
+    kind: theorem
+    line: 114
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_no_supply
+  equation_or_predicate: With no supply and g<1, kappa>0, lam>0, the backlog is unbounded
+  typing_conditions: 0<=q0, g<1, 0<kappa, 0<lam
+  source_pins:
+  - path: lean4/QcSelfObstruction.lean
+    declaration: QcSelfObstruction.not_viable_without_supply
+    line: 121
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcSelfObstruction.lean
+    decl: QcSelfObstruction.not_viable_without_supply
+    kind: theorem
+    line: 121
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_unit_gain
+  equation_or_predicate: With g>=1 and lam>0 the backlog is unbounded for every supply with 0<=kappa*r
+  typing_conditions: 0<=q0, 0<lam, 1<=g, 0<=kappa*r
+  source_pins:
+  - path: lean4/QcSelfObstruction.lean
+    declaration: QcSelfObstruction.not_viable_unit_gain
+    line: 129
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcSelfObstruction.lean
+    decl: QcSelfObstruction.not_viable_unit_gain
+    kind: theorem
+    line: 129
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rel_dexp_profile
+  equation_or_predicate: A tight profile p(k+1)>=c(k)p(k)^2 with c(k)>=a*b^(2^k), b>1, a>0, p(0)>0 does
+    not tend to zero
+  typing_conditions: 0<a, 1<b, p 0>0, recurrence
+  source_pins:
+  - path: lean4/QcSelfObstruction.lean
+    declaration: QcSelfObstruction.not_viable_dexp_profile
+    line: 136
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcSelfObstruction.lean
+    decl: QcSelfObstruction.not_viable_dexp_profile
+    kind: theorem
+    line: 136
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-556EACB70838
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_conjunction: Full target as conjunction of the four cited theorems'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS
+counterexamples: []
+open_obligations:
+- 'No generators grounded: all SRC entries are theorems, not typed operations'
+- Exact statements of the cited theorems are truncated; hypotheses and conclusions not fully verified
+- Full conjunction Lean statement not written
+- 'lemma L_main_iff unverified: Lean elaboration disabled'
+- 'near_miss nm_g_ge_1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_b_eq_1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

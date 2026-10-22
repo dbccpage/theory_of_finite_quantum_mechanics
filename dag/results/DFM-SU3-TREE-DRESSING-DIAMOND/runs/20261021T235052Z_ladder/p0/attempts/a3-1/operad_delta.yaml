@@ -1,0 +1,82 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: dress_eq_one_iff
+  equation_or_predicate: dress U u e = 1 iff U e = (u (dst e))^-1 * u (src e)
+  typing_conditions: G a group; finite graph with src,dst maps
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.dress_eq_one_iff
+    line: 29
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.dress_eq_one_iff
+    kind: theorem
+    line: 29
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: tree_dressing_iff
+  equation_or_predicate: all edges dressed to 1 iff U e * T(src e) = T(dst e) for all e
+  typing_conditions: G a group; T a vertex-valued gauge
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.tree_dressing_iff
+    line: 97
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.tree_dressing_iff
+    kind: theorem
+    line: 97
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-614723C058E9
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'diamond_tree_dressing: For each of the 8 spanning trees of the diamond graph, tree-link dressing
+    yields I_3 on tree links, and the dressed configuration is invariant under the anchored vertex gauge.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-SU3-TREE-DRESSING-DIAMOND
+counterexamples:
+- id: NEG-8A41C5C612B2
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'dress_edge: (EdgeLink, VertexGauge) -> DressedLink [FiniteGraphDressing.dress]'
+  evidence: lean def dress has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic
+    count)
+  decl_key: FiniteGraphDressing.dress
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-SU3-TREE-DRESSING-DIAMOND
+open_obligations:
+- Explicit Lean encoding of the diamond graph and SU(3,Q(i)) Pythagorean links not grounded in the listed
+  sources
+- Enumeration proof of 8 spanning trees not grounded
+- Gauge invariance after dressing of root-fixing residuals (TFQ-0398/0399) not cited as existing declarations
+- No licensed composition found among listed generators
+- 'near_miss nm_commutative unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: spanning_tree_count
+  expr: '8'
+  value: '8'
+  host_evidence:
+    recomputed: '8'
+verified_lemma_statements: []

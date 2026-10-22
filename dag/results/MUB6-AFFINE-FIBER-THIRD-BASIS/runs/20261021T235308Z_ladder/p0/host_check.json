@@ -1,0 +1,110 @@
+{
+  "task_id": "MUB6-AFFINE-FIBER-THIRD-BASIS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ebc3911b529fa7a0be8737fb72cb03940dde78439e026c3756ae44d593d817aa",
+  "candidate_sha256": "ffdf830d032db181b42fb08ad65774253b67cc964b20d94e8cf33d0bfb3b65fb",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:16Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "kron_2_3",
+        "ordered_inputs": [
+          "Mat2",
+          "Mat3"
+        ],
+        "output": "Mat6",
+        "arity": 2,
+        "carrier": "sympy Matrix over exact algebraic numbers; Kronecker product of a 2x2 and a 3x3 matrix",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+            "declaration": "build_tensor",
+            "line": 54
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+          "decl": "build_tensor",
+          "kind": "def",
+          "line": 54,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-11652B6946C5",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "third_basis_exists: The affine family through F_2 tensor F_3 contains a third basis unbiased to both I_6 and F_2 tensor F_3 / sqrt 6, namely A_2 tensor C_2, so the refuted claim fails.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-AFFINE-FIBER-THIRD-BASIS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Definitions of A_2 and C_2 are not in the sources, so they cannot be formalized.",
+      "The exact check at MUB6-DERIV-063 is not available here and must be re-run by the host.",
+      "The row-phase equivalence of A_2 tensor C_2 with F_2 tensor F_3 is not formalized.",
+      "Affine-fiber stratification of CHM(6) is not formalized.",
+      "Lean statements are placeholders and nothing is proved.",
+      "No existing declaration is cited for the unbiasedness relation.",
+      "relation unbiased_triple_product unverified: no existing declaration cited",
+      "near_miss nm_no_third_basis unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "unbiased_modulus_squared",
+        "expr": "1/6",
+        "value": "1/6",
+        "host_evidence": {
+          "recomputed": "1/6"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

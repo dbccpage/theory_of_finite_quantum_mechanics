@@ -1,0 +1,113 @@
+{
+  "task_id": "FSP-NICOLAI-MAP-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3450fa31b23455393272be9603395b7d84a7c24f378cebdb9084bc7011395dcd",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"nicolai_map\",\"inputs\":[\"Field\"],\"output\":\"Field\",\"arity\":1,\"carrier\":\"lattice field configurations phi in R^N; xi = -partial^2 phi + W'(phi)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"fermion_matrix\",\"inputs\":[\"Field\"],\"output\":\"Matrix\",\"arity\":1,\"carrier\":\"N x N real matrices D_F(phi) = -partial^2 + W''(phi)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"jacobian_eq_fermion_det\",\"statement\":\"det(d xi/d phi) = det D_F(phi) for the lattice model with xi_i = -(partial^2 phi)_i + W'(phi_i), because d xi/d phi = -partial^2 + diag(W''(phi_i))\",\"hypotheses\":\"Site-local W, linear lattice Laplacian, fermion matrix chosen as D_F = -partial^2 + diag W''; this is a model choice, not derived from a supersymmetry assumption here\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"gaussian_reduction\",\"statement\":\"Z = int dphi det D_F exp(-1/2 |xi(phi)|^2) = sum over preimages of sign(det D_F) times Gaussian integral\",\"hypotheses\":\"xi proper and smooth; change of variables holds only with sign(det) and preimage multiplicity counted; equals a no-sign-problem Gaussian only if det D_F > 0 and xi is injective\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"jacobian_lemma\",\"statement\":\"For xi(phi) = A phi + W'(phi) with A = -partial^2, the Jacobian matrix is A + diag(W''(phi)), so det equals det D_F\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem jac_lemma (N : Nat) : True := by trivial\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"sign_multiplicity_lemma\",\"statement\":\"If xi is a proper smooth map with degree d, the integral of det D_F f(xi(phi)) equals d times the integral of f; degree is not automatically 1 and det D_F may change sign\",\"relation_to_target\":\"weakens\",\"depends_on\":[\"jacobian_lemma\"],\"lean_skeleton\":\"theorem sign_mult : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_global_gaussian\",\"claim\":\"Z is always a sign-free Gaussian once the Jacobian equals det D_F\",\"rejecting_invariant\":\"Without positivity of det D_F or injectivity of xi, the change of variables yields signed sums over preimages; the degree of xi can cancel contributions\"},{\"id\":\"nm_cite_evaluate_det\",\"claim\":\"evaluate_determinant constructs the Nicolai map\",\"rejecting_invariant\":\"Earlier host refusal on its signature, and the existing sign-evaluator code does not contain the map\"}],\"numeric_claims\":[],\"open_obligations\":[\"Specify concrete lattice model including boundary conditions and the W choice, for example a polynomial W giving a supersymmetric action\",\"Prove the Jacobian identity in Lean\",\"Determine the sign of det D_F, for example from W'' bounds, and the degree of xi (for example W' monotone gives injectivity)\",\"Show the action equals 1/2 xi^2 up to a total derivative, which needs the supersymmetry structure\",\"No existing declaration in the checkout grounds the map or determinant identity; all refs are proposed_new\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "nicolai_map",
+        "inputs": [
+          "Field"
+        ],
+        "output": "Field",
+        "arity": 1,
+        "carrier": "lattice field configurations phi in R^N; xi = -partial^2 phi + W'(phi)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "fermion_matrix",
+        "inputs": [
+          "Field"
+        ],
+        "output": "Matrix",
+        "arity": 1,
+        "carrier": "N x N real matrices D_F(phi) = -partial^2 + W''(phi)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "jacobian_eq_fermion_det",
+        "statement": "det(d xi/d phi) = det D_F(phi) for the lattice model with xi_i = -(partial^2 phi)_i + W'(phi_i), because d xi/d phi = -partial^2 + diag(W''(phi_i))",
+        "hypotheses": "Site-local W, linear lattice Laplacian, fermion matrix chosen as D_F = -partial^2 + diag W''; this is a model choice, not derived from a supersymmetry assumption here",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "gaussian_reduction",
+        "statement": "Z = int dphi det D_F exp(-1/2 |xi(phi)|^2) = sum over preimages of sign(det D_F) times Gaussian integral",
+        "hypotheses": "xi proper and smooth; change of variables holds only with sign(det) and preimage multiplicity counted; equals a no-sign-problem Gaussian only if det D_F > 0 and xi is injective",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "jacobian_lemma",
+        "statement": "For xi(phi) = A phi + W'(phi) with A = -partial^2, the Jacobian matrix is A + diag(W''(phi)), so det equals det D_F",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem jac_lemma (N : Nat) : True := by trivial",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "sign_multiplicity_lemma",
+        "statement": "If xi is a proper smooth map with degree d, the integral of det D_F f(xi(phi)) equals d times the integral of f; degree is not automatically 1 and det D_F may change sign",
+        "relation_to_target": "weakens",
+        "depends_on": [
+          "jacobian_lemma"
+        ],
+        "lean_skeleton": "theorem sign_mult : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_global_gaussian",
+        "claim": "Z is always a sign-free Gaussian once the Jacobian equals det D_F",
+        "rejecting_invariant": "Without positivity of det D_F or injectivity of xi, the change of variables yields signed sums over preimages; the degree of xi can cancel contributions"
+      },
+      {
+        "id": "nm_cite_evaluate_det",
+        "claim": "evaluate_determinant constructs the Nicolai map",
+        "rejecting_invariant": "Earlier host refusal on its signature, and the existing sign-evaluator code does not contain the map"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Specify concrete lattice model including boundary conditions and the W choice, for example a polynomial W giving a supersymmetric action",
+      "Prove the Jacobian identity in Lean",
+      "Determine the sign of det D_F, for example from W'' bounds, and the degree of xi (for example W' monotone gives injectivity)",
+      "Show the action equals 1/2 xi^2 up to a total derivative, which needs the supersymmetry structure",
+      "No existing declaration in the checkout grounds the map or determinant identity; all refs are proposed_new"
+    ]
+  }
+}

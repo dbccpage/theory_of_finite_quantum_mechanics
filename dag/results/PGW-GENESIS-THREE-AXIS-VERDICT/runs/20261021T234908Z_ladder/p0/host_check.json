@@ -1,0 +1,113 @@
+{
+  "task_id": "PGW-GENESIS-THREE-AXIS-VERDICT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c08f275926df939dc6d9014a76762ceaf968aec1628562cb19cdf29629a89d8d",
+  "candidate_sha256": "de91f257e308704001aa0d8e62e15ba25a8890721b0d7defd0427bc28977525f",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 2,
+    "failure_rate": 0.6667,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:18Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_delta_events",
+        "ordered_inputs": [
+          "PrimitiveDelta"
+        ],
+        "output": "PrimitiveEventList",
+        "arity": 1,
+        "carrier": "Result<Vec<PrimitiveEvent>, PrimitiveExecutionError>",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/genesis_primitive_execution.rs",
+            "declaration": "delta_events",
+            "line": 264
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/genesis_primitive_execution.rs",
+          "decl": "delta_events",
+          "kind": "fn",
+          "line": 264,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A479F1BDA023",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_dedup_defect: Replay of delta_events on a NewDatum item with sole admitted token w1 emits AdmitDatum(w1), and the resulting state equals the prior state.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GENESIS-THREE-AXIS-VERDICT"
+      },
+      {
+        "id": "NEG-F462A913760F",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_axes_independent: CLOSED_WITH_OPEN_OBSTRUCTIONS for research_phase does not entail READY or SATISFIED on the other axes.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GENESIS-THREE-AXIS-VERDICT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing Lean or Rust declaration grounds the axis verdicts; they are recorded verdicts.",
+      "Dedup defect relation and lemmas need proposed_new declarations with real Lean statements.",
+      "Census 2,475, 1,436 regimes and 1,439 tuples are recorded counts, not recomputable here.",
+      "Axiom footprint claims (propext, Quot.sound, Classical.choice) are not grounded in listed declarations.",
+      "relation r_newdatum_dedup_noop unverified: no existing declaration cited",
+      "relation r_three_axis_independence unverified: no existing declaration cited",
+      "near_miss nm_closed_implies_ready unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_agreement_is_refinement unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

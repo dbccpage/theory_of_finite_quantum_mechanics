@@ -1,0 +1,108 @@
+{
+  "task_id": "COMP-C8-MINIMALITY-FENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b4c244cd847c7e953ca472b1c945628321ee5f515538b086675afddcbc53e922",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"encode_symbol\",\"inputs\":[\"Symbol\"],\"output\":\"MarkWord\",\"arity\":1,\"carrier\":\"fixed-length words over two marks coding a finite alphabet\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"simulate_machine\",\"inputs\":[\"TM_coded_alphabet\",\"MarkWord\"],\"output\":\"TM_two_marks_blank\",\"arity\":2,\"carrier\":\"Turing machines over two marks plus blank\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"encode_injective\",\"statement\":\"encode_symbol is injective and prefix-free as fixed-length coding, so decoding is a left inverse on coded tapes\",\"hypotheses\":\"finite alphabet, code length k with 2^k >= alphabet size\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"step_simulation\",\"statement\":\"One step of the coded machine is simulated by finitely many steps of the two-mark machine, with the decoded tape equal to the coded machine tape\",\"hypotheses\":\"encode_injective; blank maps to a fixed code word of blanks\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"simulate_machine\",\"slot\":1,\"inner\":\"encode_symbol\",\"licensing_relation\":\"encode_injective\"}],\"lemmas\":[{\"id\":\"sim_correct\",\"statement\":\"For every machine over a finite alphabet, the simulating machine over two marks and a blank halts on the encoded input iff the original halts, and its output decodes to the original output\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"encode_injective\",\"step_simulation\"],\"lean_skeleton\":\"theorem sim_correct : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_minimal\",\"claim\":\"The composite machine M0 is a minimal universal machine\",\"rejecting_invariant\":\"Target states M0 is not minimal and no smallest general-purpose machine is claimed\"},{\"id\":\"nm_two_symbols_only\",\"claim\":\"Two marks alone suffice without a blank\",\"rejecting_invariant\":\"The blank is a third symbol in the target\"}],\"numeric_claims\":[],\"open_obligations\":[\"No existing declarations were available; all references are proposed_new\",\"Formalize Turing machine definitions and the coding in Lean\",\"Prove step_simulation and sim_correct sorry-free\",\"Minimality is outside scope; small-machine records are literature only\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "encode_symbol",
+        "inputs": [
+          "Symbol"
+        ],
+        "output": "MarkWord",
+        "arity": 1,
+        "carrier": "fixed-length words over two marks coding a finite alphabet",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "simulate_machine",
+        "inputs": [
+          "TM_coded_alphabet",
+          "MarkWord"
+        ],
+        "output": "TM_two_marks_blank",
+        "arity": 2,
+        "carrier": "Turing machines over two marks plus blank",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "encode_injective",
+        "statement": "encode_symbol is injective and prefix-free as fixed-length coding, so decoding is a left inverse on coded tapes",
+        "hypotheses": "finite alphabet, code length k with 2^k >= alphabet size",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "step_simulation",
+        "statement": "One step of the coded machine is simulated by finitely many steps of the two-mark machine, with the decoded tape equal to the coded machine tape",
+        "hypotheses": "encode_injective; blank maps to a fixed code word of blanks",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "simulate_machine",
+        "slot": 1,
+        "inner": "encode_symbol",
+        "licensing_relation": "encode_injective"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "sim_correct",
+        "statement": "For every machine over a finite alphabet, the simulating machine over two marks and a blank halts on the encoded input iff the original halts, and its output decodes to the original output",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "encode_injective",
+          "step_simulation"
+        ],
+        "lean_skeleton": "theorem sim_correct : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_minimal",
+        "claim": "The composite machine M0 is a minimal universal machine",
+        "rejecting_invariant": "Target states M0 is not minimal and no smallest general-purpose machine is claimed"
+      },
+      {
+        "id": "nm_two_symbols_only",
+        "claim": "Two marks alone suffice without a blank",
+        "rejecting_invariant": "The blank is a third symbol in the target"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No existing declarations were available; all references are proposed_new",
+      "Formalize Turing machine definitions and the coding in Lean",
+      "Prove step_simulation and sim_correct sorry-free",
+      "Minimality is outside scope; small-machine records are literature only"
+    ]
+  }
+}

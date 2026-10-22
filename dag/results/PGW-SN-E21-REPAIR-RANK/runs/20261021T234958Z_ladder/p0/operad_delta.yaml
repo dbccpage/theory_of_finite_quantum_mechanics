@@ -1,0 +1,83 @@
+add_or_refine_generators:
+- id: dim_selector
+  ordered_inputs:
+  - Nat
+  - Nat
+  - Nat
+  - Nat
+  output: Except Failure Nat
+  arity: 4
+  carrier: chain degree dimension (a,b,c,index)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/quality/category_homology/proofs/DegreeRepair.lean
+    declaration: TFQM.DegreeRepair.dimension
+    line: 32
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/quality/category_homology/proofs/DegreeRepair.lean
+    decl: TFQM.DegreeRepair.dimension
+    kind: def
+    line: 32
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: dimension_degree_two
+  equation_or_predicate: dimension a b c 2 = ok c
+  typing_conditions: none
+  source_pins:
+  - path: code/rust/quality/category_homology/proofs/DegreeRepair.lean
+    declaration: TFQM.DegreeRepair.dimension_two
+    line: 41
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/quality/category_homology/proofs/DegreeRepair.lean
+    decl: TFQM.DegreeRepair.dimension_two
+    kind: theorem
+    line: 41
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Matrix rank of d1 = 3 not mechanized
+- d1 d2 = 0 not mechanized
+- No existing declaration for chain complexes or homology
+- Sign transport lemma not grounded
+- Does not establish 4D Regge gravity or a Bianchi identity
+- 'generator boundary_d1 unverified: no existing declaration cited'
+- 'generator boundary_d2 unverified: no existing declaration cited'
+- 'relation d1_d2_zero unverified: no existing declaration cited'
+- 'relation orientation_flip unverified: no existing declaration cited'
+- 'lemma rank_count unverified: Lean elaboration disabled'
+- 'lemma dim_two_cite unverified: Lean elaboration disabled'
+- 'near_miss duplicate_as_copies unverified: semantic near miss; P4 host check decides'
+- 'near_miss wrong_sign unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: cycle_dim
+  expr: 5 - 3
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+- id: h1_faces
+  expr: 2 - 2
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+- id: h1_dup
+  expr: 2 - 1
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

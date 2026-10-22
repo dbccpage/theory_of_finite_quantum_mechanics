@@ -1,0 +1,272 @@
+{
+  "task_id": "AUTHF-REPLAY-PACKET-PYTHON",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3e52ef18b05fa3bbd4dde73e2eea15ddd25bac51e3dbcba78ccaa0888fa4e89d",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_validate_contract_manifest_gate",
+          "inputs": [],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_validate_contract_custody_manifest",
+          "inputs": [],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_self_pass_no_effect",
+          "equation_or_predicate": "A source self-pass flag has no effect on replay verification.",
+          "typing_conditions": "replay verification run under the Python port",
+          "source_pins": [
+            {
+              "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+              "declaration": "test_case_02_source_self_pass_flag_has_no_effect",
+              "line": 88
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+            "decl": "test_case_02_source_self_pass_flag_has_no_effect",
+            "kind": "def",
+            "line": 88,
+            "lang": "python"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_packet_no_repair",
+          "equation_or_predicate": "A terminal packet with no rule remains terminal; it is not repaired.",
+          "typing_conditions": "packet has no rule",
+          "source_pins": [
+            {
+              "path": "lean4/PrimitiveTerminalPacket.lean",
+              "declaration": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+              "line": 109
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/PrimitiveTerminalPacket.lean",
+            "decl": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+            "kind": "theorem",
+            "line": 109,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Python evaluator correspondence to the Lean model",
+        "SHA-256 collision resistance, runtime integrity and custody",
+        "Generators for the manifest verifier, tamper mutation refusal (21 mutations) and transition proposal not grounded in the SRC",
+        "Lean version difference v4.35.0 vs v4.32.2 and PowerShell runtime pin",
+        "Compositions omitted because no licensing relation matches colours",
+        "Lemma l_shared_stay_inadequate needs a host-checked proposed_new location",
+        "lemma l_shared_stay_inadequate unverified: Lean elaboration disabled",
+        "near_miss nm_self_pass unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_terminal_repair unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_validate_contract_manifest_gate",
+        "ordered_inputs": [],
+        "output": "Bool",
+        "arity": 0,
+        "carrier": "Python bool; contract validation for manifest gate",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/governance/00_constitution/omega_policy_bin_omega_policy_manifest_gate_contract.py",
+            "declaration": "validate_contract",
+            "line": 35
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/governance/00_constitution/omega_policy_bin_omega_policy_manifest_gate_contract.py",
+          "decl": "validate_contract",
+          "kind": "def",
+          "line": 35,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_validate_contract_custody_manifest",
+        "ordered_inputs": [],
+        "output": "Bool",
+        "arity": 0,
+        "carrier": "Python bool; contract validation for custody manifest",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/governance/00_constitution/omega_policy_custody_manifest_contract.py",
+            "declaration": "validate_contract",
+            "line": 35
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/governance/00_constitution/omega_policy_custody_manifest_contract.py",
+          "decl": "validate_contract",
+          "kind": "def",
+          "line": 35,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_self_pass_no_effect",
+        "equation_or_predicate": "A source self-pass flag has no effect on replay verification.",
+        "typing_conditions": "replay verification run under the Python port",
+        "source_pins": [
+          {
+            "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+            "declaration": "test_case_02_source_self_pass_flag_has_no_effect",
+            "line": 88
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/python/tests/test_auth_incompleteness_replay_packet.py",
+          "decl": "test_case_02_source_self_pass_flag_has_no_effect",
+          "kind": "def",
+          "line": 88,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_packet_no_repair",
+        "equation_or_predicate": "A terminal packet with no rule remains terminal; it is not repaired.",
+        "typing_conditions": "packet has no rule",
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveTerminalPacket.lean",
+            "declaration": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+            "line": 109
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveTerminalPacket.lean",
+          "decl": "OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired",
+          "kind": "theorem",
+          "line": 109,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Python evaluator correspondence to the Lean model",
+      "SHA-256 collision resistance, runtime integrity and custody",
+      "Generators for the manifest verifier, tamper mutation refusal (21 mutations) and transition proposal not grounded in the SRC",
+      "Lean version difference v4.35.0 vs v4.32.2 and PowerShell runtime pin",
+      "Compositions omitted because no licensing relation matches colours",
+      "Lemma l_shared_stay_inadequate needs a host-checked proposed_new location",
+      "lemma l_shared_stay_inadequate unverified: Lean elaboration disabled",
+      "near_miss nm_self_pass unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_terminal_repair unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_violations",
+        "expr": "2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "n_artifacts_minus_rows",
+        "expr": "8 - 4",
+        "value": "4",
+        "host_evidence": {
+          "recomputed": "4"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

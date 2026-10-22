@@ -1,0 +1,307 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c2a41f8ecdb59be456d343681ab34e633b6722eafb816a1f022017be0b5571db",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=MUB6-FLAT-EXTENSION-FAILURE-CLAIM stage=P0 attempt=a3-1 in=c2a41f8e guided=yes\n@TARGET [OPEN] Claim: the flat-extension rank condition rank M_2 = rank M_1 fails for every admissible moment vector, so no measure supported on fourth-basis solutions exists.\n@BOTTLENECK By fourth_basis_iff_positive_flat_moments (MUB6-C36) this is equivalent to absence of a fourth basis for the fixed triple, which is open.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.wordMoment_same_basis_cross | theorem | theorem wordMoment_same_basis_cross (L : List (B × ι) → ℂ) (b : B) (l k : ι) (hne : l ≠ k) (hrel : ContextualSameBasis L b) : (selector (wordShift (b,\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.concrete_moment_basis_inputs | theorem | theorem concrete_moment_basis_inputs (family : MUB.FiniteComplexMubFamily ι B ι) (b₀ b₁ : B) (l₀ : ι) (hne : b₁ ≠ b₀) : let L\n code/rust/src/mub/src/omega_native/mub6_flat_extension_certifier.rs | FlatExtensionRankReport | struct | pub struct FlatExtensionRankReport\n code/rust/src/mub/src/omega_native/mub6_flat_extension_certifier.rs | evaluate_flat_extension_rank | fn | pub fn evaluate_flat_extension_rank( candidate_id: &str, m1: &[Vec<BigRational>], m2: &[Vec<BigRational>], ) -> FlatExtensionRankReport\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.Psi_basis_zero_iff_fourth_basis | theorem | theorem Psi_basis_zero_iff_fourth_basis {N d : ℕ} (e : Fin N → (Fin d → ℂ)) : (Psi_basis e).phi = 0 ↔ ∃ U : Matrix.unitaryGroup (Fin d) ℂ, ∀ j i, ‖ove\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.Psi_basis_pos_iff_no_fourth_basis | theorem | theorem Psi_basis_pos_iff_no_fourth_basis {N d : ℕ} (e : Fin N → (Fin d → ℂ)) : 0 < (Psi_basis e).phi ↔ ¬ ∃ U : Matrix.unitaryGroup (Fin d) ℂ, ∀ j i, \n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.psi_basis_zero_iff_fourth_basis_d6 | theorem | theorem psi_basis_zero_iff_fourth_basis_d6 (e : Fin 18 → (Fin 6 → ℂ)) : (Psi_basis e).phi = 0 ↔ ∃ U : Matrix.unitaryGroup (Fin 6) ℂ, ∀ j i, ‖overlap e\n lean4/ConcreteMubFlatExtension.lean | MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat | theorem | theorem fourth_basis_of_positive_flat (T : Triple) (Λ : Poly →ₗ[ℝ] ℝ) (hnorm : Λ 1 = 1) (hflat : (momentTwo Λ).rank = (momentOne Λ).rank) (hrel : Fini\n lean4/ConcreteMubFlatExtension.lean | MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments | theorem\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.ContextualSameBasis | def\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.contextual_same_basis_projection | theorem\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.wordMoment_complete | theorem\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.extract_word_basis | theorem\n lean4/FlatMomentBasisRelations.lean | MUB.FlatGramExtraction.concrete_contextual_same_basis | theorem\n code/rust/src/mub/src/omega_native/mub6_flat_extension_certifier.rs | test_flat_extension_evaluation | fn [test]\n code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs | FlatMomentExtractionReceipt | struct\n code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs | verify_flat_moment_extraction | fn\n code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs | test_flat_moment_extraction | fn [test]\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.unitaryGroup_compactSpace | instance\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.overlap | def\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.basisDeviation | def\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.basisDeviation_nonneg | theorem\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.continuous_basisDeviation | theorem\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.Psi_basis | def\n lean4/BasisExtensionObstruction.lean | MUB.BasisExtensionObstruction.basisDeviation_eq_zero_iff | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "MUB6-COMMUTATIVITY-DEFECT-CLAIM",
+      "MUB6-GLOBAL-OBLIGATIONS",
+      "MUB6-INTERFACE-COUNTERMODEL",
+      "MUB6-MOMENT-EVALUATION-FLAT"
+    ],
+    "feedback": true,
+    "index_position": 550,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

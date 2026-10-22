@@ -1,0 +1,112 @@
+{
+  "task_id": "PGW-WDP-GRAPH-COCHAIN-HOST",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b08987681c8eb4a8451d6f27bd8912ee68ced934b96949c9b785c9b097d732c7",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No existing declarations ground the graph d0 or Q1; the ContextualityObstruction.d0 operates on a different Cochain0 n m setting and was not cited.",
+        "Lean skeletons are unelaborated and use ad hoc statements.",
+        "Derivation of graph, orientation and coefficients from Genesis admission (TFQ-0344) is not grounded.",
+        "No next differential d1, measurement cover or empirical model is supplied.",
+        "generator d0_graph unverified: no existing declaration cited",
+        "generator quotient_class unverified: no existing declaration cited",
+        "relation R_exact_iff_zero_class unverified: no existing declaration cited",
+        "relation R_cycle_sum unverified: no existing declaration cited",
+        "lemma L_path_exact unverified: Lean elaboration disabled",
+        "lemma L_triangle_obstruction unverified: Lean elaboration disabled",
+        "near_miss NM_Q1_is_H1 unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_triangle_contextual unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-80375D1915D1",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "quotient_class . slot 0 <- d0_graph via R_exact_iff_zero_class",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-WDP-GRAPH-COCHAIN-HOST"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations ground the graph d0 or Q1; the ContextualityObstruction.d0 operates on a different Cochain0 n m setting and was not cited.",
+      "Lean skeletons are unelaborated and use ad hoc statements.",
+      "Derivation of graph, orientation and coefficients from Genesis admission (TFQ-0344) is not grounded.",
+      "No next differential d1, measurement cover or empirical model is supplied.",
+      "generator d0_graph unverified: no existing declaration cited",
+      "generator quotient_class unverified: no existing declaration cited",
+      "relation R_exact_iff_zero_class unverified: no existing declaration cited",
+      "relation R_cycle_sum unverified: no existing declaration cited",
+      "lemma L_path_exact unverified: Lean elaboration disabled",
+      "lemma L_triangle_obstruction unverified: Lean elaboration disabled",
+      "near_miss NM_Q1_is_H1 unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_triangle_contextual unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_path",
+        "expr": "2 + 3",
+        "value": "5",
+        "host_evidence": {
+          "recomputed": "5"
+        }
+      },
+      {
+        "id": "N_triangle_sum",
+        "expr": "1 + 1 + 1",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

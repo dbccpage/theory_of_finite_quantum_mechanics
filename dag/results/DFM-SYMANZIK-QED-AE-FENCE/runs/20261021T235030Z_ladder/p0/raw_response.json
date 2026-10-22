@@ -1,0 +1,71 @@
+{
+  "task_id": "DFM-SYMANZIK-QED-AE-FENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "24619630b61613b3f10bee5119415374329f6f1ee8c8f3885128aa88dfacc1c2",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g:dress\",\"inputs\":[\"EdgeLabelling\",\"VertexGauge\",\"Edge\"],\"output\":\"GroupElement\",\"arity\":3,\"carrier\":\"finite graph edge labellings valued in a group\",\"ref\":{\"path\":\"lean4/FiniteGraphDressing.lean\",\"decl\":\"FiniteGraphDressing.dress\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r:R_dress_one_iff\",\"statement\":\"dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)\",\"hypotheses\":\"finite graph, group-valued labelling and vertex gauge\",\"ref\":{\"path\":\"lean4/FiniteGraphDressing.lean\",\"decl\":\"FiniteGraphDressing.dress_eq_one_iff\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_interval_bracket_replay\",\"statement\":\"For declared graph polynomials U_G, with the loop coefficients and alpha as imported rational inputs, the exact rational interval sum of the 1-to-4-loop a_e series contains the imported reference value to 12 decimal places. This is a finite statement with the continuum Feynman-parameter integrals excluded.\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem interval_bracket_replay : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm:gauge_dressing_not_ae\",\"claim\":\"The finite graph dressing neutralizability result gives interval bracketing of a_e.\",\"rejecting_invariant\":\"Dressing concerns group-valued edge holonomy and says nothing about the U_G polynomial values, the loop coefficients, or the alpha series.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No existing declaration in the replay module checks the interval bracket; the check must be supplied.\",\"Graph polynomials U_G for each loop order are not declared.\",\"The imported 1-to-4-loop coefficients and the alpha value are not given, so no numeric claim can be made.\",\"The lemma skeleton is only a placeholder; the real statement must be formalized with exact rational intervals.\",\"The continuum Feynman-parameter integrals remain outside the finite statement.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g:dress",
+        "inputs": [
+          "EdgeLabelling",
+          "VertexGauge",
+          "Edge"
+        ],
+        "output": "GroupElement",
+        "arity": 3,
+        "carrier": "finite graph edge labellings valued in a group",
+        "ref": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r:R_dress_one_iff",
+        "statement": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+        "hypotheses": "finite graph, group-valued labelling and vertex gauge",
+        "ref": {
+          "path": "lean4/FiniteGraphDressing.lean",
+          "decl": "FiniteGraphDressing.dress_eq_one_iff",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_interval_bracket_replay",
+        "statement": "For declared graph polynomials U_G, with the loop coefficients and alpha as imported rational inputs, the exact rational interval sum of the 1-to-4-loop a_e series contains the imported reference value to 12 decimal places. This is a finite statement with the continuum Feynman-parameter integrals excluded.",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem interval_bracket_replay : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm:gauge_dressing_not_ae",
+        "claim": "The finite graph dressing neutralizability result gives interval bracketing of a_e.",
+        "rejecting_invariant": "Dressing concerns group-valued edge holonomy and says nothing about the U_G polynomial values, the loop coefficients, or the alpha series."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No existing declaration in the replay module checks the interval bracket; the check must be supplied.",
+      "Graph polynomials U_G for each loop order are not declared.",
+      "The imported 1-to-4-loop coefficients and the alpha value are not given, so no numeric claim can be made.",
+      "The lemma skeleton is only a placeholder; the real statement must be formalized with exact rational intervals.",
+      "The continuum Feynman-parameter integrals remain outside the finite statement."
+    ]
+  }
+}

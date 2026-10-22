@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "FSP-KITAEV-HONEYCOMB-SOLUTION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "486aa37e61aa65e4d1cfb903e306fdb48b44c5c843a4ccbf8b5b2c9fa7437800",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=FSP-KITAEV-HONEYCOMB-SOLUTION stage=P0 attempt=a3-1 in=486aa37e guided=yes\n@TARGET [IMPORTED_ASSUMPTION] Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).\n@BOTTLENECK A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.\n@ASSUME Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.plaquette_flux_gauge_invariant | theorem | theorem plaquette_flux_gauge_invariant (w : Int) (w_next : Int) (h_inv : w_next = w) : w_next - w = 0\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.link_gauge_operators_commute | theorem | theorem link_gauge_operators_commute (u1 u2 : Int) : u1 * u2 = u2 * u1\n code/python/src/fsp/kitaev_honeycomb_evaluator.py | KitaevHoneycombModel | class | class KitaevHoneycombModel: \"\"\" Simulates a 2D Honeycomb Kitaev Spin Liquid on a periodic torus or cluster. \"\"\"\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.is_valid_gauge_link | def | def is_valid_gauge_link (u : Int) : Prop\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.gauge_link_square | theorem | theorem gauge_link_square (u : Int) (h : is_valid_gauge_link u) : u * u = 1\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.torus_flux_parity_even | theorem | theorem torus_flux_parity_even (total_vortices : Nat) (h_even : total_vortices % 2 = 0) : total_vortices % 2 = 0\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.odd_flux_anomaly_routes_to_refusal | theorem | theorem odd_flux_anomaly_routes_to_refusal (k : Nat) : route_honeycomb_state (2 * k + 1) false true = TerminalRoute.SplitBrainRefusal\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.gauge_defect_routes_to_closure_failure | theorem | theorem gauge_defect_routes_to_closure_failure (v : Nat) (p : Bool) : route_honeycomb_state v p false = TerminalRoute.ClosureFailure\n code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py | KitaevHoneycombReceipt | class\n code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py | KitaevHoneycombBisimulationBridge | class\n code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py | audit_plaquette_fluxes | def\n code/python/src/fsp/kitaev_honeycomb_evaluator.py | HoneycombPlaquette | class\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.Sublattice | inductive\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.BondDir | inductive\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.TerminalRoute | inductive\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.is_vortex | def\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.is_vortex_free | def\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.fermion_parity_conserved | theorem\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.ising_mutual_braiding_angle_units | def\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.ising_braiding_phase_distinction | theorem\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.route_honeycomb_state | def\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.ground_state_routes_to_repair | theorem\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.valid_vortex_pair_routes_to_repair | theorem\n lean4/KitaevHoneycombCore.lean | KitaevHoneycombCore.parity_defect_routes_to_refusal | theorem\n code/python/governance/10_math/quantum/math_exact_majorana_fock_kitaev_v0_1_0_contract.py | ContractModel | class\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L_parity_square: P is self-adjoint with P^2 = 1, and P anticommutes with every gamma_a. -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_two_gen: Single-mode case N=1: gamma_1, gamma_2 are self-adjoint, anticommute, square to 1, and -i gamma_1 g -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 2,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "FSP-LAUGHLIN-EXCHANGE-PHASE",
+      "FSP-MAJORANA-CLIFFORD-PARITY",
+      "FSP-WITTEN-INDEX-INVARIANCE"
+    ],
+    "feedback": true,
+    "index_position": 527,
+    "neg_entry_ids": [
+      "NEG-14E8F58E0CC4",
+      "NEG-34799888A1DF"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

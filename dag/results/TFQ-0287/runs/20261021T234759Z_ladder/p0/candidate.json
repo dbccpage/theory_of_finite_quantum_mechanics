@@ -1,0 +1,191 @@
+{
+  "task_id": "TFQ-0287",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b7f3b2a6a9cf202fb5c9887be830065183fab5107fd57b9ee9d6d8921e061354",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "castPair",
+          "inputs": [
+            "Carrier",
+            "Carrier"
+          ],
+          "output": "PreH_C",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "castPair_re_im",
+          "equation_or_predicate": "Real and imaginary parts of castPair a b at index i are a i and b i respectively",
+          "typing_conditions": "a b : Carrier",
+          "source_pins": [
+            {
+              "path": "lean4/HilbertLiftComplexCarrier.lean",
+              "declaration": "HilbertLift.castPair_apply",
+              "line": 28
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/HilbertLiftComplexCarrier.lean",
+            "decl": "HilbertLift.castPair_apply",
+            "kind": "theorem",
+            "line": 28,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Lean discharge of image-in-kernel for the concrete cochain is open and unproved",
+        "Concrete cochain declaration and differential d are not grounded in a source declaration",
+        "Born pairing, POVMs, channels, and phase data are imported and not grounded here",
+        "Does not derive quantum mechanics, Hilbert space, or Born uniqueness",
+        "Signature of liftPair not stated because of an earlier refusal",
+        "generator cochain_d unverified: no existing declaration cited",
+        "relation d_squared_zero unverified: no existing declaration cited",
+        "lemma image_in_kernel unverified: Lean elaboration disabled",
+        "lemma norm_sq_castPair unverified: Lean elaboration disabled",
+        "near_miss exactness_overclaim unverified: semantic near miss; P4 host check decides",
+        "near_miss liftPair_surjective unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "castPair",
+        "ordered_inputs": [
+          "Carrier",
+          "Carrier"
+        ],
+        "output": "PreH_C",
+        "arity": 2,
+        "carrier": "PreH ℂ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/HilbertLiftComplexCarrier.lean",
+            "declaration": "HilbertLift.castPair",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/HilbertLiftComplexCarrier.lean",
+          "decl": "HilbertLift.castPair",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "castPair_re_im",
+        "equation_or_predicate": "Real and imaginary parts of castPair a b at index i are a i and b i respectively",
+        "typing_conditions": "a b : Carrier",
+        "source_pins": [
+          {
+            "path": "lean4/HilbertLiftComplexCarrier.lean",
+            "declaration": "HilbertLift.castPair_apply",
+            "line": 28
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/HilbertLiftComplexCarrier.lean",
+          "decl": "HilbertLift.castPair_apply",
+          "kind": "theorem",
+          "line": 28,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-2C8F90DFD1EC",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "cochain_d . slot 0 <- cochain_d via d_squared_zero",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0287"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Lean discharge of image-in-kernel for the concrete cochain is open and unproved",
+      "Concrete cochain declaration and differential d are not grounded in a source declaration",
+      "Born pairing, POVMs, channels, and phase data are imported and not grounded here",
+      "Does not derive quantum mechanics, Hilbert space, or Born uniqueness",
+      "Signature of liftPair not stated because of an earlier refusal",
+      "generator cochain_d unverified: no existing declaration cited",
+      "relation d_squared_zero unverified: no existing declaration cited",
+      "lemma image_in_kernel unverified: Lean elaboration disabled",
+      "lemma norm_sq_castPair unverified: Lean elaboration disabled",
+      "near_miss exactness_overclaim unverified: semantic near miss; P4 host check decides",
+      "near_miss liftPair_surjective unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

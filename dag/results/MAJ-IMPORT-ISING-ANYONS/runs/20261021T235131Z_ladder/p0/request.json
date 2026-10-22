@@ -1,0 +1,307 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "MAJ-IMPORT-ISING-ANYONS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cdf47ccd14bb710f39e718f231e197736a76c1dd357616b1b593540c4e8912f2",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=MAJ-IMPORT-ISING-ANYONS stage=P0 attempt=a3-1 in=cdf47ccd guided=yes\n@TARGET [IMPORTED_ASSUMPTION] The Ising model {1, sigma, psi} with sigma x sigma = 1 + psi, sigma x psi = sigma, psi x psi = 1 and the R, F data R = e^{-i pi/8} diag(1, i), F = (1/sqrt2)[[1,1],[1,-1]] on the four-sigma fusion space are imported; Ising braiding alone yields only Clifford operations, classically simulable by Gottesman-Knill, so magic-state inputs are required for a complete gate set.\n@BOTTLENECK No claim of physical anyon braiding is made; the braid-matrix identities are the open check MAJ-ISING-BRAID-CHECK.\n@ASSUME Ising anyon fusion, F and R data (Nayak et al. 2008); Clifford-only braiding and Gottesman-Knill simulability\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n papers/core/majorana/lean4/MajoranaCore.lean | IsingAnyon | inductive | inductive IsingAnyon\n papers/core/majorana/lean4/MajoranaCore.lean | ising_quantum_dim_sq | def | def ising_quantum_dim_sq (a : IsingAnyon) : Nat\n papers/core/majorana/lean4/MajoranaCore.lean | ising_quantum_dim_squared | theorem | theorem ising_quantum_dim_squared : ising_quantum_dim_sq IsingAnyon.Sigma = ising_quantum_dim_sq IsingAnyon.One + ising_quantum_dim_sq IsingAnyon.Psi\n lean4/IsingMajoranaBraiding.lean | IsingMajoranaBraiding.magic_state_punctures_octahedron | theorem | theorem magic_state_punctures_octahedron : blochL1NormScaled QuantumStateSector.MagicTState > 1000\n lean4/IsingMajoranaBraiding.lean | IsingMajoranaBraiding.magic_state_wigner_negative | theorem | theorem magic_state_wigner_negative : wignerNegativityScaled QuantumStateSector.MagicTState > 0\n lean4/IsingMajoranaBraiding.lean | IsingMajoranaBraiding.magic_state_curvature_positive | theorem | theorem magic_state_curvature_positive : nonStabilizerCurvatureScaled QuantumStateSector.MagicTState > 0\n lean4/IsingMajoranaBraiding.lean | IsingMajoranaBraiding.totalMagicDefectMass | def | def totalMagicDefectMass : QuantumStateSector → Nat | s => wignerNegativityScaled s + nonStabilizerCurvatureScaled s\n lean4/IsingMajoranaBraiding.lean | IsingMajoranaBraiding.magic_defect_mass_positive | theorem | theorem magic_defect_mass_positive : totalMagicDefectMass QuantumStateSector.MagicTState > 0\n code/python/src/fsp/ising_majorana_braiding.py | IsingMajoranaModel | class\n code/python/src/fsp/ising_majorana_braiding.py | IsingMajoranaBraidingEngine | class\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.fusionMatrix | def\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.advance | def\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.advance_matrix | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.matrix_word_product | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.empty_word | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.word_concatenation | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.total_mass | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.mass_bound | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.power_growth_bound | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.coefficient_square_bound | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.rank_row_bound | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.mixed_radix_digit | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.integer_charpoly_embedding | theorem\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.charge | def\n code/rust/quality/category_homology/proofs/FusionRingModel.lean | TFQM.FusionRingModel.charge_monotone | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:toric_code_generator ()->ribbon_fusion_category src=code/rust/src/fusion_categories/catalog.rs | toric_code\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "MAJ-HARDWARE-NARRATIVE-QUARANTINE",
+      "MAJ-ISING-BRAID-EXACT-OPEN",
+      "MAJ-MAJORANA-BRAID-YB-EXACT",
+      "TFQ-0043"
+    ],
+    "feedback": true,
+    "index_position": 496,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

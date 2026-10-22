@@ -1,0 +1,81 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: halting_no_decider
+  equation_or_predicate: No computable total Boolean decider exists for the halting predicate fun c =>
+    (Code.eval c n).Dom.
+  typing_conditions: 'n : Nat'
+  source_pins:
+  - path: lean4/AuthIncompleteness/MathlibBridge.lean
+    declaration: AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+    line: 32
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/MathlibBridge.lean
+    decl: AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+    kind: theorem
+    line: 32
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: computable_reduction_transport
+  equation_or_predicate: If a computable reduction maps a hard predicate to a valid predicate and the
+    hard predicate has no computable decider, then valid has no computable authorizer.
+  typing_conditions: Primcodable H, Primcodable P, computable reduction from hard to valid, hard has no
+    computable decider
+  source_pins:
+  - path: lean4/AuthIncompleteness/MathlibBridge.lean
+    declaration: AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+    line: 51
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/MathlibBridge.lean
+    decl: AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+    kind: theorem
+    line: 51
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-5D3FF7959E84
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'rice_instance: For a nontrivial extensional property P of Code, no computable decider exists,
+    obtained via ComputablePred.rice and then transported along a computable reduction from the DTM0 carrier.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-RICE-GODEL-OPEN
+counterexamples:
+- id: NEG-8453FA230993
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'haltingIdentityReduction: (Nat) -> ValidityReduction(HaltDom,HaltDom) [AuthorizationIncompleteness.MathlibBridge.haltingIdentityReduction]'
+  evidence: lean def haltingIdentityReduction has 5 explicit binders (5 with conclusion arrows); the claim
+    says 1 (heuristic count)
+  decl_key: AuthorizationIncompleteness.MathlibBridge.haltingIdentityReduction
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-RICE-GODEL-OPEN
+open_obligations:
+- Instantiate the transport with Mathlib ComputablePred.rice for a nontrivial extensional property.
+- Construct the computable reduction from the DTM0 carrier to Code.
+- State Goedel's second incompleteness theorem; no cited declaration supports it.
+- State the LLM corollary; nothing in the sources grounds it.
+- Verify the exact signatures of the truncated theorem statements.
+- 'near_miss halting_is_not_rice unverified: semantic near miss; P4 host check decides'
+- 'near_miss transport_is_godel unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

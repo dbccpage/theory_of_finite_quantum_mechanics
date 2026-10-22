@@ -1,0 +1,126 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "depol",
+      "inputs": [
+        "Matrix"
+      ],
+      "output": "Matrix",
+      "arity": 1,
+      "carrier": "Matrix n n C, rate p fixed as parameter",
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.depol",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "noisyStep",
+      "inputs": [
+        "Matrix"
+      ],
+      "output": "Matrix",
+      "arity": 1,
+      "carrier": "Matrix n n C, parameters p and unitary V",
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.noisyStep",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_depol_dist",
+      "statement": "tn(depol p rho - depol p sigma) = (1-p)*tn(rho - sigma)",
+      "hypotheses": "Nonempty n, p <= 1, trace rho = trace sigma",
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.depol_dist",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_tn_conj",
+      "statement": "tn(V*X*star V) = tn X",
+      "hypotheses": "V unitary",
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.tn_conj",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_tn_smul",
+      "statement": "tn(a*X) = a*tn X",
+      "hypotheses": "0 <= a",
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.tn_smul",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_run_dist",
+      "statement": "Along an admissible history with rates p(i) in [0,1], tn(run rho - run sigma) = (prod (1-p(i))) * tn(rho - sigma) for equal-trace rho, sigma.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_depol_dist",
+        "R_tn_conj"
+      ],
+      "lean_skeleton": "-- existing theorem QcSelfObstruction.run_dist; statement signature not shown in @SRC, so not re-elaborated here",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.run_dist",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_decay_inv",
+      "statement": "(1-p)^t <= 1/(1+p*t) for p in [0,1]",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "-- existing theorem QcSelfObstruction.decay_le_inv; signature not shown in @SRC",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/QcEntropySink.lean",
+        "decl": "QcSelfObstruction.decay_le_inv",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_unequal_trace",
+      "claim": "depol_dist holds without equal traces",
+      "rejecting_invariant": "Depolarizing scales the traceless part by (1-p) but fixes the trace part; with unequal traces tn(rho-sigma) need not scale."
+    },
+    {
+      "id": "NM_p_gt_1",
+      "claim": "Contraction (1-p) factor holds for p>1",
+      "rejecting_invariant": "For p>1 the factor 1-p is negative, and tn scales by |1-p|, not 1-p."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N1",
+      "expr": "(1-1/2)^2",
+      "value": "1/4"
+    },
+    {
+      "id": "N2",
+      "expr": "1/(1+1/2*2)",
+      "value": "1/2"
+    }
+  ],
+  "open_obligations": [
+    "Signatures of noisyStep_dist, run, Admissible, run_dist, run_dist_le, decay_le_inv, decay_below are truncated in @SRC; skeletons not elaborated.",
+    "No generator composition licensed since the Matrix-to-Matrix steps are only linked via the unlisted run definition.",
+    "Ky Fan equality of variational and Schatten-1 norm is cited, not proved."
+  ]
+}

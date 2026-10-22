@@ -1,0 +1,82 @@
+add_or_refine_generators:
+- id: g:dress
+  ordered_inputs:
+  - EdgeLabelling
+  - VertexGauge
+  - Edge
+  output: GroupElement
+  arity: 3
+  carrier: finite graph with group-valued edge labels and vertex gauge
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.dress
+    line: 26
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.dress
+    kind: def
+    line: 26
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r:R_dress_one_iff
+  equation_or_predicate: dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)
+  typing_conditions: finite graph, group-valued labelling U, vertex gauge u, edge e
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.dress_eq_one_iff
+    line: 29
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.dress_eq_one_iff
+    kind: theorem
+    line: 29
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r:R_neutralizable_closed_walks
+  equation_or_predicate: A vertex gauge neutralizing all edges exists iff transport along every closed
+    walk based at the root is trivial
+  typing_conditions: finite graph, root vertex, group-valued edge labelling
+  source_pins:
+  - path: lean4/FiniteGraphDressing.lean
+    declaration: FiniteGraphDressing.neutralizable_iff_closed_walks
+    line: 54
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteGraphDressing.lean
+    decl: FiniteGraphDressing.neutralizable_iff_closed_walks
+    kind: theorem
+    line: 54
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No host-verified source for the relational-time or Wheeler-DeWitt reading; the target remains open and
+  imported.
+- The clock-dressed history generator and its intertwining identity are not in KNOWN+, so they are not
+  cited.
+- Continuous time, Stone generator and gravitational Hamiltonian constraint are assumptions, not derived.
+- 'lemma L_fence_scope unverified: Lean elaboration disabled'
+- 'near_miss nm:finite_clock_is_Stone unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm:neutralizable_is_constraint unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,64 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r_reduction",
+      "statement": "A ValidityReduction maps a source predicate into proposal validity, preserving the predicate exactly: hard x iff valid (f x).",
+      "hypotheses": "f : HardInput -> Proposal with hard x <-> valid (f x)",
+      "ref": {
+        "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean",
+        "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_closed",
+      "statement": "The allowed proposal deciders are closed under precomposition with the reduction map.",
+      "hypotheses": "allowedProposal d implies allowedHard (d composed with f)",
+      "ref": {
+        "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean",
+        "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_target",
+      "statement": "If hard has NoTotalDecider under allowedHard, the reduction preserves the predicate, and allowedProposal is closed under reduction, then valid has NoTotalDecider under allowedProposal.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_reduction",
+        "r_closed"
+      ],
+      "lean_skeleton": "theorem target {HardInput Proposal : Type} {hard : HardInput -> Prop} {valid : Proposal -> Prop} {allowedHard : (HardInput -> Bool) -> Prop} {allowedProposal : (Proposal -> Bool) -> Prop} : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean",
+        "decl": "AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_no_closure",
+      "claim": "Dropping closure under precomposition still yields no proposal decider.",
+      "rejecting_invariant": "Without closure, a proposal decider need not yield an allowed source decider, so the transfer fails."
+    },
+    {
+      "id": "nm_one_direction",
+      "claim": "A one-way implication hard x -> valid (f x) suffices for transport.",
+      "rejecting_invariant": "Exact preservation (iff) is required so that a decider for valid composed with f decides hard."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No generators grounded: the SRC declarations are predicates, structures and theorems, not typed operations.",
+    "The Lean skeleton is a placeholder and does not state the real target; the exact signatures of ClosedUnderReduction and the theorems are truncated in SRC.",
+    "The ComputablePred instantiation, the halting-problem source and the closure proof under reduction are not supplied by the declaration.",
+    "No compositions are listed because no generators are grounded."
+  ]
+}

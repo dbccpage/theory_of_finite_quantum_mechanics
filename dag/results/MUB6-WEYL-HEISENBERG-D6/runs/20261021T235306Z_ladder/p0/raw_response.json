@@ -1,0 +1,157 @@
+{
+  "task_id": "MUB6-WEYL-HEISENBERG-D6",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "21ba7bf5145560c90a88eca6a4905306637cf38e520c5bc2dcef5095a85a32a9",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"shift_X\",\"inputs\":[],\"output\":\"Op6\",\"arity\":0,\"carrier\":\"M_6(C), X|j>=|j+1 mod 6>\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"clock_Z\",\"inputs\":[],\"output\":\"Op6\",\"arity\":0,\"carrier\":\"M_6(C), Z|j>=w^j|j>, w=exp(2 pi i/6)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"op_mul\",\"inputs\":[\"Op6\",\"Op6\"],\"output\":\"Op6\",\"arity\":2,\"carrier\":\"M_6(C) matrix product\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"hs_pair\",\"inputs\":[\"Op6\",\"Op6\"],\"output\":\"Scalar\",\"arity\":2,\"carrier\":\"C, (A,B) -> tr(A* B)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"ZX_commutation\",\"statement\":\"Z X = w X Z\",\"hypotheses\":\"d=6, w=exp(2 pi i/6), X and Z as in target; checked on basis: ZX|j>=w^(j+1)|j+1>, XZ|j>=w^j|j+1>\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"HS_orthogonality\",\"statement\":\"tr((X^p Z^q)* (X^r Z^s)) = 6 if (p,q)=(r,s) mod 6, else 0\",\"hypotheses\":\"p,q,r,s in Z/6; uses ZX_commutation, X^6=Z^6=I; off-diagonal vanishing from sum of w^(qj) over j or tr of a shifted X power being 0\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"op_mul\",\"slot\":0,\"inner\":\"op_mul\",\"licensing_relation\":\"ZX_commutation\"},{\"outer\":\"hs_pair\",\"slot\":1,\"inner\":\"op_mul\",\"licensing_relation\":\"HS_orthogonality\"}],\"lemmas\":[{\"id\":\"L_comm\",\"statement\":\"Z X = w X Z for d=6\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem comm6 : Z * X = w * (X * Z) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L_orth\",\"statement\":\"The 36 operators X^p Z^q are pairwise HS-orthogonal, each with norm squared 6\",\"relation_to_target\":\"restates\",\"depends_on\":[\"L_comm\"],\"lean_skeleton\":\"theorem orth6 (p q r s : ZMod 6) : (p,q) ≠ (r,s) -> tr (adjoint (X^p.val * Z^q.val) * (X^r.val * Z^s.val)) = 0 := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_source_convention\",\"claim\":\"X Z = w Z X with Z|j>=w^j|j>\",\"rejecting_invariant\":\"Basis check: XZ|j>=w^j|j+1> but w ZX|j>=w^(j+2)|j+1>... actually ZX=wXZ, so XZ=w^-1 ZX; the source form holds only with w replaced by w^-1 (opposite clock convention)\"}],\"numeric_claims\":[{\"id\":\"n_ops\",\"expr\":\"6*6\",\"value\":\"36\"},{\"id\":\"n_norm\",\"expr\":\"6\",\"value\":\"6\"}],\"open_obligations\":[\"No existing declarations found; all refs proposed_new\",\"Lean proofs of ZX=wXZ and HS orthogonality not written\",\"Choice of Mathlib matrix encoding for X, Z over Fin 6 undecided\",\"No MUB count derived; out of scope\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "shift_X",
+        "inputs": [],
+        "output": "Op6",
+        "arity": 0,
+        "carrier": "M_6(C), X|j>=|j+1 mod 6>",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "clock_Z",
+        "inputs": [],
+        "output": "Op6",
+        "arity": 0,
+        "carrier": "M_6(C), Z|j>=w^j|j>, w=exp(2 pi i/6)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "op_mul",
+        "inputs": [
+          "Op6",
+          "Op6"
+        ],
+        "output": "Op6",
+        "arity": 2,
+        "carrier": "M_6(C) matrix product",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "hs_pair",
+        "inputs": [
+          "Op6",
+          "Op6"
+        ],
+        "output": "Scalar",
+        "arity": 2,
+        "carrier": "C, (A,B) -> tr(A* B)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "ZX_commutation",
+        "statement": "Z X = w X Z",
+        "hypotheses": "d=6, w=exp(2 pi i/6), X and Z as in target; checked on basis: ZX|j>=w^(j+1)|j+1>, XZ|j>=w^j|j+1>",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "HS_orthogonality",
+        "statement": "tr((X^p Z^q)* (X^r Z^s)) = 6 if (p,q)=(r,s) mod 6, else 0",
+        "hypotheses": "p,q,r,s in Z/6; uses ZX_commutation, X^6=Z^6=I; off-diagonal vanishing from sum of w^(qj) over j or tr of a shifted X power being 0",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "op_mul",
+        "slot": 0,
+        "inner": "op_mul",
+        "licensing_relation": "ZX_commutation"
+      },
+      {
+        "outer": "hs_pair",
+        "slot": 1,
+        "inner": "op_mul",
+        "licensing_relation": "HS_orthogonality"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_comm",
+        "statement": "Z X = w X Z for d=6",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem comm6 : Z * X = w * (X * Z) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L_orth",
+        "statement": "The 36 operators X^p Z^q are pairwise HS-orthogonal, each with norm squared 6",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "L_comm"
+        ],
+        "lean_skeleton": "theorem orth6 (p q r s : ZMod 6) : (p,q) ≠ (r,s) -> tr (adjoint (X^p.val * Z^q.val) * (X^r.val * Z^s.val)) = 0 := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_source_convention",
+        "claim": "X Z = w Z X with Z|j>=w^j|j>",
+        "rejecting_invariant": "Basis check: XZ|j>=w^j|j+1> but w ZX|j>=w^(j+2)|j+1>... actually ZX=wXZ, so XZ=w^-1 ZX; the source form holds only with w replaced by w^-1 (opposite clock convention)"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_ops",
+        "expr": "6*6",
+        "value": "36"
+      },
+      {
+        "id": "n_norm",
+        "expr": "6",
+        "value": "6"
+      }
+    ],
+    "open_obligations": [
+      "No existing declarations found; all refs proposed_new",
+      "Lean proofs of ZX=wXZ and HS orthogonality not written",
+      "Choice of Mathlib matrix encoding for X, Z over Fin 6 undecided",
+      "No MUB count derived; out of scope"
+    ]
+  }
+}

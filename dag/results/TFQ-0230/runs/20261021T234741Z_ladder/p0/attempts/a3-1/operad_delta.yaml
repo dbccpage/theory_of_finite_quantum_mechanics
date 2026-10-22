@@ -1,0 +1,61 @@
+add_or_refine_generators:
+- id: G_AuthorityPacket
+  ordered_inputs: []
+  output: AuthorityPacket
+  arity: 0
+  carrier: authority packet record
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/wdp/authority_gap.rs
+    declaration: AuthorityPacket
+    line: 218
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/wdp/authority_gap.rs
+    decl: AuthorityPacket
+    kind: struct
+    line: 218
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: R_exit_zero_not_evidence
+  equation_or_predicate: A zero exit code cannot replace executed test evidence; a mapped test is limited
+    to a finite fixture.
+  typing_conditions: Verifier stub with a report lacking executed testcases.
+  source_pins:
+  - path: code/python/tests/test_deposit_verifier_evidence.py
+    declaration: test_exit_zero_cannot_replace_executed_test_evidence
+    line: 58
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/tests/test_deposit_verifier_evidence.py
+    decl: test_exit_zero_cannot_replace_executed_test_evidence
+    kind: def
+    line: 58
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No existing declaration found for source-locus custody; the generator and relation are proposed_new.
+- Compositions are not grounded and are left empty.
+- The Lean lemma is a placeholder over an abstract cite function and needs host elaboration.
+- No evidence was found for the F001.S000 and F004 relation beyond the target text.
+- 'generator G_cite_corpus_path unverified: no existing declaration cited'
+- 'relation R_path_store_not_discharge unverified: no existing declaration cited'
+- 'lemma L_cite_without_discharge unverified: Lean elaboration disabled'
+- 'near_miss NM_path_implies_rows unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_exit_zero_green unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

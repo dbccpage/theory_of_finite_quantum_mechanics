@@ -1,0 +1,79 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "haltingIdentityReduction",
+      "inputs": [
+        "Nat"
+      ],
+      "output": "ValidityReduction(HaltDom,HaltDom)",
+      "arity": 1,
+      "carrier": "Code with Primcodable instance; predicate fun c => (Code.eval c n).Dom",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/MathlibBridge.lean",
+        "decl": "AuthorizationIncompleteness.MathlibBridge.haltingIdentityReduction",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "halting_no_decider",
+      "statement": "No computable total Boolean decider exists for the halting predicate fun c => (Code.eval c n).Dom.",
+      "hypotheses": "n : Nat",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/MathlibBridge.lean",
+        "decl": "AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "computable_reduction_transport",
+      "statement": "If a computable reduction maps a hard predicate to a valid predicate and the hard predicate has no computable decider, then valid has no computable authorizer.",
+      "hypotheses": "Primcodable H, Primcodable P, computable reduction from hard to valid, hard has no computable decider",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/MathlibBridge.lean",
+        "decl": "AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "rice_instance",
+      "statement": "For a nontrivial extensional property P of Code, no computable decider exists, obtained via ComputablePred.rice and then transported along a computable reduction from the DTM0 carrier.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "computable_reduction_transport"
+      ],
+      "lean_skeleton": "theorem rice_transport_instance : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "halting_is_not_rice",
+      "claim": "The existing halting_transport_instance already gives Rice's theorem.",
+      "rejecting_invariant": "It covers only the halting predicate for fixed n, not arbitrary nontrivial extensional properties of programs."
+    },
+    {
+      "id": "transport_is_godel",
+      "claim": "The class-relative transport gives Goedel's second incompleteness theorem.",
+      "rejecting_invariant": "No consistency-statement formalization or provability predicate appears in the cited declarations."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Instantiate the transport with Mathlib ComputablePred.rice for a nontrivial extensional property.",
+    "Construct the computable reduction from the DTM0 carrier to Code.",
+    "State Goedel's second incompleteness theorem; no cited declaration supports it.",
+    "State the LLM corollary; nothing in the sources grounds it.",
+    "Verify the exact signatures of the truncated theorem statements."
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "task_id": "PGW-PRUNING-LEMMAS-COST-TWO",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "43d77b14a96890f964be3ac41ee354aa1ca49b60bb7e5f48af40db4201b3a933",
+  "candidate_sha256": "39c18f2b05f9b352938dc9b2ad5fdd4b9f079a9040e8501c15ffc60d1b785bf9",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 3,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 3
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:03Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0587DD8E56B3",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L-SEPARABLE-SUBRULES: Shrinking the final rule set preserves every separation (separable_of_subrules).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-PRUNING-LEMMAS-COST-TWO"
+      },
+      {
+        "id": "NEG-8AE9BE2C6FE6",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L-RULE-ITEM-NEVER-MINIMAL: A delta containing a uniform-rule item is never minimal: dropping its rule items leaves a valid strictly shorter delta with the same new-form arity sum.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-PRUNING-LEMMAS-COST-TWO"
+      },
+      {
+        "id": "NEG-1B64E1EF8976",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L-COLLAPSED-APPEND-UNMENTIONING: collapsed_append_unmentioning: appended unmentioning instances do not change a pair's collapse.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-PRUNING-LEMMAS-COST-TWO"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No host-verified source declarations exist for these lemmas, so all are proposed_new with empty paths.",
+      "Exact Lean statements and types for the lemmas are not available.",
+      "The generator typing was not grounded, so generators and compositions are empty.",
+      "CL-PRUNE-STRUCTURAL remains computational evidence only.",
+      "The KNOWN+ column-distance relations were not used because they are unrelated to the pruning lemmas.",
+      "relation R-SEP-SUBRULES unverified: no existing declaration cited",
+      "relation R-APPLYDELTA-DROPRULES unverified: no existing declaration cited",
+      "relation R-COLLAPSE-UNMENTIONING unverified: no existing declaration cited",
+      "near_miss NM-PRUNE-ENUM unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

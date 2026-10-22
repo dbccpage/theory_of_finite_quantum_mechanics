@@ -1,0 +1,30 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-286473336D2F
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'build_dirac_matrix: (CdtFermionSignEvaluator) -> ComplexMatrix [build_dirac_matrix]'
+  evidence: python def build_dirac_matrix takes 0 parameters; the claim says 1
+  decl_key: build_dirac_matrix
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-CDT-FOLIATION-POSITIVITY
+open_obligations:
+- No declared CDT action or finite model in the checkout; the transfer matrix must be defined.
+- The Wick rotation must be derived for the declared action.
+- The fermionic sign of det D in CdtFermionSignEvaluator is not shown to be nonnegative.
+- De Sitter phase is external numerical literature and stays unproved.
+- Removal of Lorentzian cancellations is unformalized.
+- 'generator transfer_matrix_from_action unverified: no existing declaration cited'
+- 'relation wick_positive_kernel unverified: no existing declaration cited'
+- 'lemma finite_transfer_positive unverified: Lean elaboration disabled'
+- 'near_miss fermion_sign_not_foliation unverified: semantic near miss; P4 host check decides'
+- 'near_miss numerics_as_proof unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

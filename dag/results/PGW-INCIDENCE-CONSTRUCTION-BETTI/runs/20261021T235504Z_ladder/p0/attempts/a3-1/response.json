@@ -1,0 +1,85 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r_triangle_d1_d0",
+      "statement": "WDP window: d1(d0 f) = 0 on the triangle",
+      "hypotheses": "Triangle cochain complex of the worked three-vertex window; scope limited to the triangle",
+      "ref": {
+        "path": "lean4/CochainObstruction.lean",
+        "decl": "MUB.CochainObstruction.triangle_d1_comp_d0_zero",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_cycle_betti",
+      "statement": "Under the declared incidence interpretation, the cycle (vertices 0,1,2 with edges 01,12,02) has rational Betti numbers (1,1).",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_triangle_d1_d0"
+      ],
+      "lean_skeleton": "theorem cycle_betti_stmt : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "l_filled_betti",
+      "statement": "Admitting the single instance 012 gives rational Betti numbers (1,0,0).",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "l_cycle_betti"
+      ],
+      "lean_skeleton": "theorem filled_betti_stmt : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_unfilled_triangle_acyclic",
+      "claim": "The 3-cycle without instance 012 has Betti numbers (1,0), i.e. is acyclic.",
+      "rejecting_invariant": "b1 = 1: the 1-cycle e01+e12-e02 is not a boundary, since there are no 2-simplices."
+    },
+    {
+      "id": "nm_edges_only_without_vertices",
+      "claim": "Edges 01,12,02 may be admitted without their vertex instances.",
+      "rejecting_invariant": "Face-closure: every vertex and face needs its own instance."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_euler_cycle",
+      "expr": "3 - 3",
+      "value": "0"
+    },
+    {
+      "id": "n_euler_filled",
+      "expr": "3 - 3 + 1",
+      "value": "1"
+    },
+    {
+      "id": "n_betti_alt_cycle",
+      "expr": "1 - 1",
+      "value": "0"
+    }
+  ],
+  "open_obligations": [
+    "Cannot cite the education Lean declarations cycle_rational_betti, filled_rational_betti, cycle_incidence_eq, filled_incidence_eq, as they are not listed in @SRC or @KNOWN+.",
+    "No generators grounded: the Rust @SRC entries are lean-extension controls, not the WDP supply/admit operations.",
+    "Lemma skeletons are placeholders and are not proved.",
+    "General face-closed family K result is a written argument only.",
+    "No compositions listed as no licensing relation links grounded generators."
+  ]
+}

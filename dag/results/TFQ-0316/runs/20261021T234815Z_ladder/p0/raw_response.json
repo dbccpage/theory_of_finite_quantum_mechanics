@@ -1,0 +1,126 @@
+{
+  "task_id": "TFQ-0316",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8ca3faf0ce690c721a88bea53bc8100ccd414160a2d87257572eca038ea5400f",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_born_numerator\",\"inputs\":[\"FiniteDensity2\",\"ProjectiveEffect\"],\"output\":\"Nat\",\"arity\":2,\"carrier\":\"Nat\",\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_expected_numerator\",\"status\":\"existing\"}},{\"id\":\"g_trace\",\"inputs\":[\"FiniteDensity2\"],\"output\":\"Nat\",\"arity\":1,\"carrier\":\"Nat\",\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.trace\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_born_unit_interval\",\"statement\":\"born_expected_numerator d e ≤ d.denominator\",\"hypotheses\":\"d : FiniteDensity2, e : ProjectiveEffect\",\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval\",\"status\":\"existing\"}},{\"id\":\"r_trace_unit\",\"statement\":\"trace d = d.denominator\",\"hypotheses\":\"d : FiniteDensity2\",\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.density_is_positive_unit_trace\",\"status\":\"existing\"}},{\"id\":\"r_lift_needs_carrier\",\"statement\":\"A licensed lift candidate has a new carrier, so a missing new carrier blocks the lift\",\"hypotheses\":\"L : LiftCandidate, IsLicensedLiftCandidate L\",\"ref\":{\"path\":\"lean4/PrimitiveLiftCandidate.lean\",\"decl\":\"OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_new_carrier\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_floor_born_bound\",\"statement\":\"Finite Born numerator of any finite density and projective effect is bounded by the density denominator (finite floor only, no continuum Hilbert claim)\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_born_unit_interval\"],\"lean_skeleton\":\"theorem l_floor_born_bound (d : FiniteDensity2) (e : ProjectiveEffect) : born_expected_numerator d e ≤ d.denominator := born_probability_in_unit_interval d e\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval\",\"status\":\"existing\"}},{\"id\":\"l_lift_blocked_without_carrier\",\"statement\":\"Without a new carrier, the conditional lift is not licensed, so the continuum Hilbert step stays open\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_lift_needs_carrier\"],\"lean_skeleton\":\"theorem l_lift_blocked (L : LiftCandidate) (h : L.hasNewCarrier = false) : ¬ IsLicensedLiftCandidate L := missing_new_carrier_blocks_lift L h\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/PrimitiveLiftCandidate.lean\",\"decl\":\"OmegaCore.PrimitiveLiftCandidate.missing_new_carrier_blocks_lift\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_gauss_is_complex\",\"claim\":\"A finite Gauss-integer matrix algebra is ordinary matrix algebra over the complex numbers\",\"rejecting_invariant\":\"README states the finite Gauss-integer algebra is not ordinary complex matrix algebra\"},{\"id\":\"nm_derives_qm\",\"claim\":\"The book derives quantum mechanics from primitive difference\",\"rejecting_invariant\":\"README says it does not; the lift is conditional and the Hilbert step is an open bridge\"}],\"numeric_claims\":[],\"open_obligations\":[\"Continuum Hilbert lift step remains an open bridge\",\"F001.S000 coordination not grounded in a listed declaration\",\"Chapter 2 consolidation record has no cited declaration\",\"README step classification (formal, source claim, mirror, interface, open) not formalized\",\"Compositions not licensed: no relation connects the generator outputs and inputs\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_born_numerator",
+        "inputs": [
+          "FiniteDensity2",
+          "ProjectiveEffect"
+        ],
+        "output": "Nat",
+        "arity": 2,
+        "carrier": "Nat",
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_expected_numerator",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_trace",
+        "inputs": [
+          "FiniteDensity2"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "Nat",
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.trace",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_born_unit_interval",
+        "statement": "born_expected_numerator d e ≤ d.denominator",
+        "hypotheses": "d : FiniteDensity2, e : ProjectiveEffect",
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_trace_unit",
+        "statement": "trace d = d.denominator",
+        "hypotheses": "d : FiniteDensity2",
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.density_is_positive_unit_trace",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_lift_needs_carrier",
+        "statement": "A licensed lift candidate has a new carrier, so a missing new carrier blocks the lift",
+        "hypotheses": "L : LiftCandidate, IsLicensedLiftCandidate L",
+        "ref": {
+          "path": "lean4/PrimitiveLiftCandidate.lean",
+          "decl": "OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_new_carrier",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_floor_born_bound",
+        "statement": "Finite Born numerator of any finite density and projective effect is bounded by the density denominator (finite floor only, no continuum Hilbert claim)",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_born_unit_interval"
+        ],
+        "lean_skeleton": "theorem l_floor_born_bound (d : FiniteDensity2) (e : ProjectiveEffect) : born_expected_numerator d e ≤ d.denominator := born_probability_in_unit_interval d e",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "l_lift_blocked_without_carrier",
+        "statement": "Without a new carrier, the conditional lift is not licensed, so the continuum Hilbert step stays open",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_lift_needs_carrier"
+        ],
+        "lean_skeleton": "theorem l_lift_blocked (L : LiftCandidate) (h : L.hasNewCarrier = false) : ¬ IsLicensedLiftCandidate L := missing_new_carrier_blocks_lift L h",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/PrimitiveLiftCandidate.lean",
+          "decl": "OmegaCore.PrimitiveLiftCandidate.missing_new_carrier_blocks_lift",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_gauss_is_complex",
+        "claim": "A finite Gauss-integer matrix algebra is ordinary matrix algebra over the complex numbers",
+        "rejecting_invariant": "README states the finite Gauss-integer algebra is not ordinary complex matrix algebra"
+      },
+      {
+        "id": "nm_derives_qm",
+        "claim": "The book derives quantum mechanics from primitive difference",
+        "rejecting_invariant": "README says it does not; the lift is conditional and the Hilbert step is an open bridge"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Continuum Hilbert lift step remains an open bridge",
+      "F001.S000 coordination not grounded in a listed declaration",
+      "Chapter 2 consolidation record has no cited declaration",
+      "README step classification (formal, source claim, mirror, interface, open) not formalized",
+      "Compositions not licensed: no relation connects the generator outputs and inputs"
+    ]
+  }
+}

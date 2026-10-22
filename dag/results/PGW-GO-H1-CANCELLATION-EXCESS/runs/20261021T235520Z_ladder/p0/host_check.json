@@ -1,0 +1,83 @@
+{
+  "task_id": "PGW-GO-H1-CANCELLATION-EXCESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d1cdea4d0a6dcbc2519ebebec43406e247b7d3900ef9fe9d3360262a1b79fa77",
+  "candidate_sha256": "f91211930270602a37d5fd9ecb8c56e16111fdb7ae3bc84546f3ae5476c9ffcf",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 2,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 7,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:33Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9FEA303CAA5D",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "excess_invariant: Paired addition changes e(x,y) by 0 on the pair and preserves term count modulo the generated sameness; excess and count are invariants of the sameness",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-H1-CANCELLATION-EXCESS"
+      },
+      {
+        "id": "NEG-2B6BBB1146F6",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "gen_iff_same: The generated sameness holds iff the same_iff_excess criterion holds",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-GO-H1-CANCELLATION-EXCESS"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were provided, so all refs are proposed_new",
+      "Exact definition of excess e and rewriting not given, so lemmas are unproved skeletons",
+      "Counts 673, 29, 1081 not recomputed; no numeric claims made",
+      "Proof of plain_reduced and fewest_changes lower bound Phi(G) pending",
+      "generator add_pair unverified: no existing declaration cited",
+      "generator excess unverified: no existing declaration cited",
+      "generator plain_state unverified: no existing declaration cited",
+      "relation same_iff_excess unverified: no existing declaration cited",
+      "relation plain_reduced unverified: no existing declaration cited",
+      "relation fewest_changes unverified: no existing declaration cited",
+      "near_miss nm_return unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

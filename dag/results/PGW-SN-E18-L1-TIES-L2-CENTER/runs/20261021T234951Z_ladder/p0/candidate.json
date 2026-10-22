@@ -1,0 +1,300 @@
+{
+  "task_id": "PGW-SN-E18-L1-TIES-L2-CENTER",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "1a1dd12e815712d0d10f23eaed1571fbbbbc1d215ce74b3bd49724cbdbba4288",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_d0",
+          "inputs": [
+            "Q3"
+          ],
+          "output": "Q3",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_coordinateSum",
+          "inputs": [
+            "Q3"
+          ],
+          "output": "Rat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_l1Norm",
+          "inputs": [
+            "Q3"
+          ],
+          "output": "Rat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": [
+        {
+          "outer_operation": "g_coordinateSum",
+          "input_slot": 0,
+          "inner_operation": "g_d0",
+          "colour_match": true,
+          "hypothesis_match": "not checked",
+          "licensing_relations": [
+            "r_d0_sum_zero"
+          ],
+          "evidence_status": "colours_match_and_licensed_by_verified_relation"
+        }
+      ]
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_d0_sum_zero",
+          "equation_or_predicate": "coordinateSum (d0 a) = 0",
+          "typing_conditions": "a : Q3",
+          "source_pins": [
+            {
+              "path": "lean4/FiniteN3ResidualDual.lean",
+              "declaration": "PontryaginResidualDualProgramme.FiniteN3.d0_image_coordinate_sum_zero",
+              "line": 22
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "decl": "PontryaginResidualDualProgramme.FiniteN3.d0_image_coordinate_sum_zero",
+            "kind": "theorem",
+            "line": 22,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The definition of d0 and the sign convention in the source file are not shown, so g=(0,2/3,1/3) giving x-h=d0 g is unchecked.",
+        "No existing Lean declaration matches E18 (I=1, x=(1,0,0)); the cited fixture has bound 3.",
+        "The l1 tie (1/2,1/2,0) and the dual certificate y=(1,1,1) are not Lean-grounded for E18.",
+        "The signature of pairing is not shown, so it is not used as a generator.",
+        "The uniqueness proof of the l2 minimizer is not written.",
+        "The lemma l_l2_shift has no sorry-free proof.",
+        "lemma l_l2_shift unverified: Lean elaboration disabled",
+        "near_miss nm_fixture_bound_three unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_adjoin_face unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_d0",
+        "ordered_inputs": [
+          "Q3"
+        ],
+        "output": "Q3",
+        "arity": 1,
+        "carrier": "Q3",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "declaration": "PontryaginResidualDualProgramme.FiniteN3.d0",
+            "line": 14
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteN3ResidualDual.lean",
+          "decl": "PontryaginResidualDualProgramme.FiniteN3.d0",
+          "kind": "def",
+          "line": 14,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_coordinateSum",
+        "ordered_inputs": [
+          "Q3"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Q3",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "declaration": "PontryaginResidualDualProgramme.FiniteN3.coordinateSum",
+            "line": 19
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteN3ResidualDual.lean",
+          "decl": "PontryaginResidualDualProgramme.FiniteN3.coordinateSum",
+          "kind": "def",
+          "line": 19,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_l1Norm",
+        "ordered_inputs": [
+          "Q3"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Q3",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "declaration": "PontryaginResidualDualProgramme.FiniteN3.l1Norm",
+            "line": 54
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteN3ResidualDual.lean",
+          "decl": "PontryaginResidualDualProgramme.FiniteN3.l1Norm",
+          "kind": "def",
+          "line": 54,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_d0_sum_zero",
+        "equation_or_predicate": "coordinateSum (d0 a) = 0",
+        "typing_conditions": "a : Q3",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "declaration": "PontryaginResidualDualProgramme.FiniteN3.d0_image_coordinate_sum_zero",
+            "line": 22
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteN3ResidualDual.lean",
+          "decl": "PontryaginResidualDualProgramme.FiniteN3.d0_image_coordinate_sum_zero",
+          "kind": "theorem",
+          "line": 22,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "g_coordinateSum",
+        "input_slot": 0,
+        "inner_operation": "g_d0",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "r_d0_sum_zero"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      }
+    ],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The definition of d0 and the sign convention in the source file are not shown, so g=(0,2/3,1/3) giving x-h=d0 g is unchecked.",
+      "No existing Lean declaration matches E18 (I=1, x=(1,0,0)); the cited fixture has bound 3.",
+      "The l1 tie (1/2,1/2,0) and the dual certificate y=(1,1,1) are not Lean-grounded for E18.",
+      "The signature of pairing is not shown, so it is not used as a generator.",
+      "The uniqueness proof of the l2 minimizer is not written.",
+      "The lemma l_l2_shift has no sorry-free proof.",
+      "lemma l_l2_shift unverified: Lean elaboration disabled",
+      "near_miss nm_fixture_bound_three unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_adjoin_face unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_h_sqnorm",
+        "expr": "3*(1/3)^2",
+        "value": "1/3",
+        "host_evidence": {
+          "recomputed": "1/3"
+        }
+      },
+      {
+        "id": "n_tie_l1",
+        "expr": "1/2+1/2+0",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "n_dual_pair",
+        "expr": "1*1+0*1+0*1",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

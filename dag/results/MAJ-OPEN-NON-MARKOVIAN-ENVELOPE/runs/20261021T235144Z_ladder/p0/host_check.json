@@ -1,0 +1,111 @@
+{
+  "task_id": "MAJ-OPEN-NON-MARKOVIAN-ENVELOPE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e2ae2bc44de8b9b953a277890ddbe3d3b0587a2c9b2e21a7401dc0f3b635bd60",
+  "candidate_sha256": "c3e670f628da2ed3f6b8710f8c4ce67d3ae2f1d25c1d5203f855cc225fb7c157",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:57Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_pareto_denominator",
+        "equation_or_predicate": "p + 2 > 0 for natural p > 0, so the root exponent 1/(p+2) is well defined",
+        "typing_conditions": "p > 0",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "pareto_denominator_pos",
+            "line": 341
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "pareto_denominator_pos",
+          "kind": "theorem",
+          "line": 341,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7042341AC302",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_min_T_star: For C,A,p,Delta,hbar>0 the function f(T)=C(hbar/(Delta T))^2 + A T^p on T>0 has a unique critical point T*=(2C hbar^2/(p A Delta^2))^(1/(p+2)), which is the global minimum, with f(T*)>0 (also f>0 everywhere).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-OPEN-NON-MARKOVIAN-ENVELOPE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Derive A_s and p(s) from J(w)=2 pi alpha w_c^(1-s) w^s e^(-w/w_c) (dephasing integral); not grounded in SRC",
+      "Lean proof of global minimum with real rpow is unwritten",
+      "Link NonMarkovianTransferBound structure fields to A_s T^p is not verified",
+      "No generators identified from SRC; all declarations are structure or theorem",
+      "relation R_stationarity unverified: no existing declaration cited",
+      "lemma L_beta unverified: Lean elaboration disabled",
+      "near_miss NM_ohmic_bath_term unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_sign unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_beta_p2",
+        "expr": "2/(2+2)",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      },
+      {
+        "id": "N_beta_p4",
+        "expr": "2/(4+2)",
+        "value": "1/3",
+        "host_evidence": {
+          "recomputed": "1/3"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

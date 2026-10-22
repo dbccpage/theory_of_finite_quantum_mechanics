@@ -1,0 +1,42 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "Jarlskog quartet Q(vij,vkl,vil,vkj) is unchanged under rephasing by unit-norm Gaussian rationals ui, dj (dressing invariance) when normSq ui = 1 and normSq dj = 1",
+      "hypotheses": "ui dj : GaussRat with GaussRat.normSq ui = 1 and GaussRat.normSq dj = 1",
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Quartet Q is invariant under rephasing of its two row-i entries by ui, with normSq ui = 1 (and column phase dj with normSq dj = 1), as in the existing theorem.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "example (vij vkl vil vkj ui dj : RaveraDfmFiniteToContinuum.GaussRat) (hui : RaveraDfmFiniteToContinuum.GaussRat.normSq ui = 1) (hdj : RaveraDfmFiniteToContinuum.GaussRat.normSq dj = 1) : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+        "decl": "RaveraDfmFiniteToContinuum.jarlskog_quartet_rephasing_dressing_invariance",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Generators not grounded: only GaussRat structure and the quartet theorem are in SRC, no typed operations listed.",
+    "Full U(1)^Ng x U(1)^Ng rephasing by composing single-vertex steps is not in Lean.",
+    "Row-rephasing of v_ij conj(v_il) and column-rephasing of v_ij conj(v_kj) have no cited declarations.",
+    "Lemma skeleton L1 is a placeholder, not the real statement; the exact theorem signature was truncated in SRC."
+  ]
+}

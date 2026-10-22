@@ -1,0 +1,105 @@
+{
+  "task_id": "PGW-CHALLENGE0-INERTIA-SECOND-TOKEN",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "db977576302ddfea81de0b4c2f5dcdf104b98935717668880f35d7fce640d17a",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_empty_regime\",\"inputs\":[],\"output\":\"Regime\",\"arity\":0,\"carrier\":\"GenesisCopy.Regime\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.emptyRegime\",\"status\":\"existing\"}},{\"id\":\"g_replay\",\"inputs\":[\"Regime\",\"EventList\"],\"output\":\"State\",\"arity\":2,\"carrier\":\"GenesisCopy.Regime x List Event -> state\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.GenesisCopy.replayE\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_genesis_underivable\",\"statement\":\"Nothing is derivable at genesis in the token-erased model\",\"hypotheses\":\"token-erased model; Challenge 0 regime\",\"ref\":{\"path\":\"\",\"decl\":\"genesis_underivable\",\"status\":\"proposed_new\"}},{\"id\":\"r_single_token_bound\",\"statement\":\"A history whose datum admissions all carry one token leaves at most one admitted datum\",\"hypotheses\":\"token-aware model; all datum admissions carry the same token\",\"ref\":{\"path\":\"\",\"decl\":\"single_token_carrier_bound\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_second_token_required\",\"statement\":\"A state with two data requires admission of a second, different token\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_single_token_bound\"],\"lean_skeleton\":\"theorem second_token_required : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"second_token_required\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_forced_successor\",\"claim\":\"No successor is internally forced is a theorem about a forcing predicate\",\"rejecting_invariant\":\"No forcing predicate is defined; the claim is a model-scoped property of the declared grammar, not a theorem\"}],\"numeric_claims\":[{\"id\":\"n_contexts\",\"expr\":\"0\",\"value\":\"0\"},{\"id\":\"n_derivable\",\"expr\":\"0\",\"value\":\"0\"}],\"open_obligations\":[\"genesis_underivable, underivable_of_empty, single_token_carrier_bound, second_token_required are not in SRC so none cited as existing\",\"No forcing predicate defined\",\"Token-aware model declarations not listed in SRC\",\"supply_no_op recorded under TFQ-0379, not grounded here\",\"Compositions need a licensing relation grounded in existing declarations\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_empty_regime",
+        "inputs": [],
+        "output": "Regime",
+        "arity": 0,
+        "carrier": "GenesisCopy.Regime",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.emptyRegime",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_replay",
+        "inputs": [
+          "Regime",
+          "EventList"
+        ],
+        "output": "State",
+        "arity": 2,
+        "carrier": "GenesisCopy.Regime x List Event -> state",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.replayE",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_genesis_underivable",
+        "statement": "Nothing is derivable at genesis in the token-erased model",
+        "hypotheses": "token-erased model; Challenge 0 regime",
+        "ref": {
+          "path": "",
+          "decl": "genesis_underivable",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_single_token_bound",
+        "statement": "A history whose datum admissions all carry one token leaves at most one admitted datum",
+        "hypotheses": "token-aware model; all datum admissions carry the same token",
+        "ref": {
+          "path": "",
+          "decl": "single_token_carrier_bound",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_second_token_required",
+        "statement": "A state with two data requires admission of a second, different token",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_single_token_bound"
+        ],
+        "lean_skeleton": "theorem second_token_required : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "second_token_required",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_forced_successor",
+        "claim": "No successor is internally forced is a theorem about a forcing predicate",
+        "rejecting_invariant": "No forcing predicate is defined; the claim is a model-scoped property of the declared grammar, not a theorem"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_contexts",
+        "expr": "0",
+        "value": "0"
+      },
+      {
+        "id": "n_derivable",
+        "expr": "0",
+        "value": "0"
+      }
+    ],
+    "open_obligations": [
+      "genesis_underivable, underivable_of_empty, single_token_carrier_bound, second_token_required are not in SRC so none cited as existing",
+      "No forcing predicate defined",
+      "Token-aware model declarations not listed in SRC",
+      "supply_no_op recorded under TFQ-0379, not grounded here",
+      "Compositions need a licensing relation grounded in existing declarations"
+    ]
+  }
+}

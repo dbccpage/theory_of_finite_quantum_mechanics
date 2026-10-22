@@ -1,0 +1,109 @@
+{
+  "task_id": "MAJ-TRICHOTOMY-ELIMINATION-DECISION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3432b66ef71dc9af492886ec3b1008a1ecca5d2cb68433298dd05d556fea5e4e",
+  "candidate_sha256": "31a6c91e1d6b5bf4120bb057dfd50698f1bb05b65c79e28d519a8d3a5fd7553c",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 2,
+    "failure_rate": 0.6667,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 6,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:14Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_ops_def",
+        "equation_or_predicate": "gaussian_elimination_ops n is a Nat-valued op-count function; the existing cubic bound is only a reflexivity about this definition and says nothing about the algorithm",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "gaussian_elimination_ops",
+            "line": 119
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "gaussian_elimination_ops",
+          "kind": "def",
+          "line": 119,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9C14073A43D2",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "lem_trichotomy_correct: The decision procedure outputs the verdict specified by rel_decide_spec",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-TRICHOTOMY-ELIMINATION-DECISION"
+      },
+      {
+        "id": "NEG-C3827DC77FBA",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "lem_op_count: A Lean-modelled algorithm with explicit bit-operation counter uses at most C*E*(V+F)^2 bit operations",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-TRICHOTOMY-ELIMINATION-DECISION"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formalize F2 matrices and the Gaussian elimination algorithm in Lean",
+      "Define the bit-operation cost model and prove the O(E(V+F)^2) bound",
+      "Prove soundness and completeness of the trichotomy verdicts",
+      "Ground the generators and relations in existing declarations; none are available beyond the op-count def",
+      "generator gen_obstruction_syndrome unverified: no existing declaration cited",
+      "generator gen_gauss_solve_d0 unverified: no existing declaration cited",
+      "generator gen_trichotomy_decide unverified: no existing declaration cited",
+      "relation rel_solver_sound unverified: no existing declaration cited",
+      "relation rel_decide_spec unverified: no existing declaration cited",
+      "near_miss nm_cubic_refl unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

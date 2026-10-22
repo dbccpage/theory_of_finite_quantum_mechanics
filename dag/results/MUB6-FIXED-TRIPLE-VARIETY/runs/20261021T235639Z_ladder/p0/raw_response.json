@@ -1,0 +1,139 @@
+{
+  "task_id": "MUB6-FIXED-TRIPLE-VARIETY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cc90500a0098fd6b63e062a55867d4d066c73e8739b238279db4d7cdc3a88138",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_muPolynomial\",\"inputs\":[\"Triple\",\"Fin3\",\"Fin6\",\"Fin6\"],\"output\":\"Poly\",\"arity\":4,\"carrier\":\"real polynomials in 72 coordinates\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.muPolynomial\",\"status\":\"existing\"}},{\"id\":\"g_overlapRe\",\"inputs\":[\"Triple\",\"Fin3\",\"Fin6\",\"Fin6\"],\"output\":\"Poly\",\"arity\":4,\"carrier\":\"real polynomials in 72 coordinates\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.overlapRe\",\"status\":\"existing\"}},{\"id\":\"g_coordinates\",\"inputs\":[\"Candidate\"],\"output\":\"CoordVector\",\"arity\":1,\"carrier\":\"Coord -> Real\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.coordinates\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_mu_trace\",\"statement\":\"eval of muPolynomial T a i j at coordinates of U equals tr(P_{T_a,i} P_{U,j}) - 1/6\",\"hypotheses\":\"T triple of complex 6x6 matrices, U candidate\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace\",\"status\":\"existing\"}},{\"id\":\"r_variety_empty_iff\",\"statement\":\"polynomialVariety T is empty iff no candidate U satisfies the unitarity and MU overlap conditions\",\"hypotheses\":\"fixed triple T\",\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_target_trace\",\"statement\":\"Each MU residual evaluates to tr(P_{T_a,i} P_{U,j}) - 1/6\",\"relation_to_target\":\"implies\",\"depends_on\":[\"r_mu_trace\"],\"lean_skeleton\":\"example := @MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace\",\"status\":\"existing\"}},{\"id\":\"l_target_empty\",\"statement\":\"Real zero set of the 180 residuals is empty iff no U has U*U=I and overlaps 1/6\",\"relation_to_target\":\"implies\",\"depends_on\":[\"r_variety_empty_iff\"],\"lean_skeleton\":\"example := @MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/ConcreteMubPolynomials.lean\",\"decl\":\"MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_family\",\"claim\":\"Emptiness of the variety for a triple holds for any MU triple\",\"rejecting_invariant\":\"family_triple_variety_nonempty: a complete seven-basis family makes the variety of its first three bases nonempty\"}],\"numeric_claims\":[{\"id\":\"n_residuals\",\"expr\":\"108 + 72\",\"value\":\"180\"},{\"id\":\"n_mu\",\"expr\":\"3*6*6\",\"value\":\"108\"}],\"open_obligations\":[\"Exact statements of existing declarations not seen, so the lemma skeletons are unelaborated\",\"Emptiness for any specific triple not established\",\"Orthonormality residual count 72 is taken from the target and not rederived\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_muPolynomial",
+        "inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "real polynomials in 72 coordinates",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.muPolynomial",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_overlapRe",
+        "inputs": [
+          "Triple",
+          "Fin3",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Poly",
+        "arity": 4,
+        "carrier": "real polynomials in 72 coordinates",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.overlapRe",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_coordinates",
+        "inputs": [
+          "Candidate"
+        ],
+        "output": "CoordVector",
+        "arity": 1,
+        "carrier": "Coord -> Real",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.coordinates",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_mu_trace",
+        "statement": "eval of muPolynomial T a i j at coordinates of U equals tr(P_{T_a,i} P_{U,j}) - 1/6",
+        "hypotheses": "T triple of complex 6x6 matrices, U candidate",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_variety_empty_iff",
+        "statement": "polynomialVariety T is empty iff no candidate U satisfies the unitarity and MU overlap conditions",
+        "hypotheses": "fixed triple T",
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_target_trace",
+        "statement": "Each MU residual evaluates to tr(P_{T_a,i} P_{U,j}) - 1/6",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_mu_trace"
+        ],
+        "lean_skeleton": "example := @MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "l_target_empty",
+        "statement": "Real zero set of the 180 residuals is empty iff no U has U*U=I and overlaps 1/6",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r_variety_empty_iff"
+        ],
+        "lean_skeleton": "example := @MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/ConcreteMubPolynomials.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.polynomialVariety_eq_empty_iff",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_family",
+        "claim": "Emptiness of the variety for a triple holds for any MU triple",
+        "rejecting_invariant": "family_triple_variety_nonempty: a complete seven-basis family makes the variety of its first three bases nonempty"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_residuals",
+        "expr": "108 + 72",
+        "value": "180"
+      },
+      {
+        "id": "n_mu",
+        "expr": "3*6*6",
+        "value": "108"
+      }
+    ],
+    "open_obligations": [
+      "Exact statements of existing declarations not seen, so the lemma skeletons are unelaborated",
+      "Emptiness for any specific triple not established",
+      "Orthonormality residual count 72 is taken from the target and not rederived"
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_sound
+  equation_or_predicate: normal s is in the same switching class as s
+  typing_conditions: fixed Graph G and Forest T
+  source_pins:
+  - path: lean4/SwitchingNormalForm.lean
+    declaration: SwitchingNormalForm.normal_sound
+    line: 315
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SwitchingNormalForm.lean
+    decl: SwitchingNormalForm.normal_sound
+    kind: theorem
+    line: 315
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_same_class
+  equation_or_predicate: SameClass s t iff normal s = normal t
+  typing_conditions: fixed Graph G and Forest T
+  source_pins:
+  - path: lean4/SwitchingNormalForm.lean
+    declaration: SwitchingNormalForm.same_class_iff
+    line: 349
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SwitchingNormalForm.lean
+    decl: SwitchingNormalForm.same_class_iff
+    kind: theorem
+    line: 349
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_numchord
+  equation_or_predicate: numChord = |E| - |V| + c via numRoot
+  typing_conditions: fixed Graph G and Forest T
+  source_pins:
+  - path: lean4/SwitchingNormalForm.lean
+    declaration: SwitchingNormalForm.numChord_identity
+    line: 903
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SwitchingNormalForm.lean
+    decl: SwitchingNormalForm.numChord_identity
+    kind: theorem
+    line: 903
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_nf_enum
+  equation_or_predicate: normalForms is duplicate-free with length 2^numChord
+  typing_conditions: fixed Graph G and Forest T
+  source_pins:
+  - path: lean4/SwitchingNormalForm.lean
+    declaration: SwitchingNormalForm.normalForms_nodup
+    line: 1053
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SwitchingNormalForm.lean
+    decl: SwitchingNormalForm.normalForms_nodup
+    kind: theorem
+    line: 1053
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-A72CC8E64C7D
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_switch . slot 1 <- g_potential via r_sound
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+- id: NEG-7E97134AED4A
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_sound: normal s is switching-equivalent to s'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+- id: NEG-197AA727B065
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_complete: SameClass s t iff normal s = normal t'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+- id: NEG-04B9D737987E
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_length: normalForms has length 2^numChord'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+counterexamples:
+- id: NEG-9D470EDD2C0D
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_switch: (Cochain, Potential) -> Cochain [SwitchingNormalForm.switch]'
+  evidence: lean def switch has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic
+    count)
+  decl_key: SwitchingNormalForm.switch
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+- id: NEG-71A8CCA227A2
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_potential: (Cochain) -> Potential [SwitchingNormalForm.potential]'
+  evidence: lean def potential has 3 explicit binders (3 with conclusion arrows); the claim says 1 (heuristic
+    count)
+  decl_key: SwitchingNormalForm.potential
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+- id: NEG-5444D8E6F555
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_normal: (Cochain) -> Cochain [SwitchingNormalForm.normal]'
+  evidence: lean def normal has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic
+    count)
+  decl_key: SwitchingNormalForm.normal
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-SWITCHING-NORMAL-FORM
+open_obligations:
+- Exact signatures of potential, normal, normalForms not shown in the SRC listing
+- Lean skeletons are placeholders, not elaborated against the real statements
+- The composition g_switch slot1 <- g_potential typing and licensing are unverified
+- 'near_miss nm_arbitrary_basis unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_forest_free unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,72 @@
+{
+  "task_id": "PGW-CONTEXT-FIDELITY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "48774b2493d1f18a4332123db3b9bdb79a9b2cdf85da821e9538753e735d85f8",
+  "candidate_sha256": "ad4692507a7bcb35e62760a4fc37425710981e4ea4ded9e435feb5b34686b400",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 1,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 9,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:49:07Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-290584DB6398",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "AcceptBinding . slot 0 <- BindContext via R_accept_iff_replay",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CONTEXT-FIDELITY"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "ValidTrace semantics undefined in sources; no existing declaration grounds it",
+      "Existing replay certifiers (ContractModel/validate_contract) check Genesis regime against event history and were not cited since they do not define Replay or ValidTrace",
+      "Lean skeleton for the counterexample needs a concrete model of steps",
+      "Mapping of Trial 2 Result 15 and Prompt 12/17 data to a concrete model not provided",
+      "generator Replay unverified: no existing declaration cited",
+      "generator BindContext unverified: no existing declaration cited",
+      "generator AcceptBinding unverified: no existing declaration cited",
+      "relation R_accept_iff_replay unverified: no existing declaration cited",
+      "relation R_valid_trace_context_dependence unverified: no existing declaration cited",
+      "lemma L_stale_counterexample unverified: Lean elaboration disabled",
+      "lemma L_sound_binding unverified: Lean elaboration disabled",
+      "near_miss NM_truncated_window unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_internal_consistency unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

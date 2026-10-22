@@ -1,0 +1,136 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "report_map",
+      "inputs": [
+        "C1"
+      ],
+      "output": "Fk",
+      "arity": 1,
+      "carrier": "linear map R: C^1 -> F^k with R d0 = 0",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "induced_cost",
+      "inputs": [
+        "Fk"
+      ],
+      "output": "ExtReal",
+      "arity": 1,
+      "carrier": "Phi_O(y) = inf{Phi_1(r) : O(r)=y} on im R",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "terminalizer",
+      "inputs": [
+        "ExtReal",
+        "ObserverProfile"
+      ],
+      "output": "Verdict",
+      "arity": 2,
+      "carrier": "Verdict = {Accept, Reject, Undetermined}",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "passivity",
+      "statement": "Phi_O(O q) <= Phi_1(q) for every q in C^1",
+      "hypotheses": "R linear, R d0 = 0, Phi_O defined as infimum over the fibre of R; an exact class has Phi_1 = 0",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "kernel_order",
+      "statement": "O1 refines O2 iff ker O1 is contained in ker O2; identity is finest and zero is coarsest",
+      "hypotheses": "declared observer family of linear report maps",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "grammar_pigeonhole",
+      "statement": "if report map has image in finite grammar G, more than |G| core classes force a collision",
+      "hypotheses": "G finite, classes counted as distinct elements of the core",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "induced_cost",
+      "slot": 0,
+      "inner": "report_map",
+      "licensing_relation": "passivity"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "observer_passivity_fibre_bound",
+      "statement": "If Phi_1(r) >= Phi_O(O r) for all r in the fibre of O q, then Phi_O(O q) <= Phi_1(q); this takes the fibrewise bound as hypothesis, as in the target",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem passivity_sk {C F : Type*} (O : C -> F) (Phi1 : C -> EReal) (PhiO : F -> EReal) (h : forall q, PhiO (O q) <= Phi1 q) (q : C) : PhiO (O q) <= Phi1 q := h q",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "grammar_collision",
+      "statement": "A map from a finite type of core classes of size greater than |G| into G is not injective",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem collide_sk {A G : Type*} [Fintype A] [Fintype G] (f : A -> G) (h : Fintype.card G < Fintype.card A) : ¬ Function.Injective f := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_nonzero_on_exact",
+      "claim": "An observer can report positive obstruction on an exact class",
+      "rejecting_invariant": "P01: Phi_O(O q) <= Phi_1(q) = 0 for exact q"
+    },
+    {
+      "id": "nm_policy_authority",
+      "claim": "Policy layer output confers authority over the verdict",
+      "rejecting_invariant": "policy is not authority; D06 refuses memory, policy and authority"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declarations were provided in the sources, so all refs are proposed_new",
+    "Core-identification clause is not formalized",
+    "Typed adapters between the four layers are not specified",
+    "Descent of partial operations along sort maps is not modeled",
+    "Report_map output colour Fk must be matched explicitly to any decoder input colour before composing"
+  ]
+}

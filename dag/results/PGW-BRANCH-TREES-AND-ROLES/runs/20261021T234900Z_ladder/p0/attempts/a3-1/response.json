@@ -1,0 +1,85 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R-COLDIST-IDENT",
+      "statement": "For any system r, columnDistance r i j = 72 - 12 * Re(W r 2 i j)",
+      "hypotheses": "System r",
+      "ref": {
+        "path": "lean4/MubQuadraticTransitionSeparation.lean",
+        "decl": "MUB.QuadraticTransitionSeparation.columnDistance_identity",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R-COLDIST-LOWER",
+      "statement": "For any system r, separationLower <= columnDistance r i j",
+      "hypotheses": "System r",
+      "ref": {
+        "path": "lean4/MubQuadraticTransitionSeparation.lean",
+        "decl": "MUB.QuadraticTransitionSeparation.columnDistance_lower",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L-SEP-POS",
+      "statement": "The separation lower bound is positive, so close columns are excluded; this is only an auxiliary fact in the source and does not establish the branch-tree counts.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R-COLDIST-LOWER"
+      ],
+      "lean_skeleton": "theorem aux : (0:ℝ) < (MUB.QuadraticTransitionSeparation.separationLower : ℝ) := MUB.QuadraticTransitionSeparation.separationLower_pos",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/MubQuadraticTransitionSeparation.lean",
+        "decl": "MUB.QuadraticTransitionSeparation.separationLower_pos",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM-DEPTH-NOT-UNBOUNDED",
+      "claim": "Reaching 15 transition steps under mu2 implies unboundedness of the branch tree",
+      "rejecting_invariant": "The tree is finite and fully enumerated; the target states that no unboundedness claim is made."
+    },
+    {
+      "id": "NM-MU1-COMPLETE",
+      "claim": "The mu1 trees are fully enumerated to depth 15",
+      "rejecting_invariant": "The 1200-node guard cuts at depth 6 (L) and 5 (F), leaving guard-cut frontiers of 927 and 886 nodes."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N-L-MU1-EDGES",
+      "expr": "195+1047+8",
+      "value": "1250"
+    },
+    {
+      "id": "N-L-MU2-EDGES",
+      "expr": "111+858+53",
+      "value": "1022"
+    },
+    {
+      "id": "N-F-MU1-EDGES",
+      "expr": "233+1001+10",
+      "value": "1244"
+    },
+    {
+      "id": "N-F-MU2-EDGES",
+      "expr": "413+1458+83+6",
+      "value": "1960"
+    }
+  ],
+  "open_obligations": [
+    "No SRC declaration covers branch DAG export, orbit policy, or role classification; generators cannot be grounded.",
+    "CL-TREE-MU2-COMPLETE is unproved, so the 963 and 1847 node counts remain conditional.",
+    "Node counts and frontier sizes come from the export and are not recomputed here.",
+    "Behaviour past the exported depths is unresolved.",
+    "The edge-count sums are role totals and are not independently checked against the exported edge counts."
+  ]
+}

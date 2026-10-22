@@ -1,0 +1,214 @@
+{
+  "task_id": "MUB6-COMMUTATIVE-FLAT-REAL-POINT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "5600536c16d9af0ffbde910b2eb02f629f921dd61475cd57b269504aea3cff22",
+  "candidate_sha256": "ba0b7e4d76c82bd8db7fa90e82ebcacb176dc15f42f23951ab63e4744898b6f0",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 1,
+    "failure_rate": 0.1667,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:57:18Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_evaluationFunctional",
+        "ordered_inputs": [
+          "RealPoint"
+        ],
+        "output": "LinearFunctional",
+        "arity": 1,
+        "carrier": "MvPolynomial σ ℝ →ₗ[ℝ] ℝ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/CommutativeFlatMoments.lean",
+            "declaration": "MUB.CommutativeFlatMoments.evaluationFunctional",
+            "line": 486
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/CommutativeFlatMoments.lean",
+          "decl": "MUB.CommutativeFlatMoments.evaluationFunctional",
+          "kind": "def",
+          "line": 486,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_momentTwo",
+        "ordered_inputs": [
+          "LinearFunctional"
+        ],
+        "output": "MomentMatrixTwo",
+        "arity": 1,
+        "carrier": "Matrix (Two σ) (Two σ) ℝ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/CommutativeFlatMoments.lean",
+            "declaration": "MUB.CommutativeFlatMoments.momentTwo",
+            "line": 264
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/CommutativeFlatMoments.lean",
+          "decl": "MUB.CommutativeFlatMoments.momentTwo",
+          "kind": "def",
+          "line": 264,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_momentOne",
+        "ordered_inputs": [
+          "LinearFunctional"
+        ],
+        "output": "MomentMatrixOne",
+        "arity": 1,
+        "carrier": "Matrix (One σ) (One σ) ℝ",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/CommutativeFlatMoments.lean",
+            "declaration": "MUB.CommutativeFlatMoments.momentOne",
+            "line": 267
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/CommutativeFlatMoments.lean",
+          "decl": "MUB.CommutativeFlatMoments.momentOne",
+          "kind": "def",
+          "line": 267,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_eval_moment_positive_flat",
+        "equation_or_predicate": "For all x, evaluationFunctional x 1 = 1, momentTwo (evaluationFunctional x) is PosSemidef, and rank momentTwo equals rank momentOne",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/CommutativeFlatMoments.lean",
+            "declaration": "MUB.CommutativeFlatMoments.evaluation_moment_positive_flat",
+            "line": 519
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CommutativeFlatMoments.lean",
+          "decl": "MUB.CommutativeFlatMoments.evaluation_moment_positive_flat",
+          "kind": "theorem",
+          "line": 519,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_real_point_of_positive_flat",
+        "equation_or_predicate": "For normalized L with momentTwo L PosSemidef and rank momentTwo = rank momentOne, there is a real point x at which every p in quadraticSpan with L(p^2)=0 vanishes",
+        "typing_conditions": "L 1 = 1, PosSemidef momentTwo L, rank equality",
+        "source_pins": [
+          {
+            "path": "lean4/CommutativeFlatMoments.lean",
+            "declaration": "MUB.CommutativeFlatMoments.real_point_of_positive_flat",
+            "line": 410
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CommutativeFlatMoments.lean",
+          "decl": "MUB.CommutativeFlatMoments.real_point_of_positive_flat",
+          "kind": "theorem",
+          "line": 410,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-B661169EE622",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_target: Target: normalized real L with PSD degree-two moment matrix of rank equal to the degree-one matrix has a real point vanishing all quadratic-span p with L(p^2)=0",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-COMMUTATIVE-FLAT-REAL-POINT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exact statement of real_point_of_positive_flat not visible; hypotheses are paraphrased from the target",
+      "Lean skeleton for the target not elaborated",
+      "No composition grounded: the only licensing relation concerns the evaluation functional, not extraction",
+      "near_miss nm_no_flat unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_mub6_exists unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

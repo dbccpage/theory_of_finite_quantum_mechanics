@@ -1,0 +1,61 @@
+add_or_refine_generators:
+- id: g_boundary_triple
+  ordered_inputs:
+  - CompositeBoundaryWitness
+  output: MUTriple
+  arity: 1
+  carrier: MUB6.Gluing.TargetA8 composite boundary witness
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/TargetA8CollarBoundary.lean
+    declaration: MUB6.Gluing.TargetA8.CompositeBoundaryWitness.triple
+    line: 360
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/TargetA8CollarBoundary.lean
+    decl: MUB6.Gluing.TargetA8.CompositeBoundaryWitness.triple
+    kind: def
+    line: 360
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_gap_pos
+  equation_or_predicate: 'The A8 boundary curvature gap is strictly positive: 0 < epsilon_interface_frac.num.'
+  typing_conditions: None beyond the cited theorem.
+  source_pins:
+  - path: lean4/TargetA8CollarBoundary.lean
+    declaration: MUB6.Gluing.TargetA8.boundary_gluing_curvature_gap
+    line: 167
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TargetA8CollarBoundary.lean
+    decl: MUB6.Gluing.TargetA8.boundary_gluing_curvature_gap
+    kind: theorem
+    line: 167
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No @SRC declaration for mathematical_claim.rs, certificate_boundary.rs or F003.S001; cannot cite them
+  as existing.
+- Formalize CertifierRow, IndexEntry, index and State in Lean.
+- Composition licensing needs a relation tying the A8 triple to index rows; none grounded.
+- 'generator g_index_certifier_row unverified: no existing declaration cited'
+- 'relation r_index_not_discharge unverified: no existing declaration cited'
+- 'lemma l_index_preserves_triple unverified: Lean elaboration disabled'
+- 'near_miss nm_catalog_as_theorem unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_boundary_as_promotion unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,96 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "gamma_transport",
+      "inputs": [
+        "Tetrad",
+        "Lorentz",
+        "Tetrad"
+      ],
+      "output": "Affine",
+      "arity": 3,
+      "carrier": "4x4 rational matrices; Gamma = e_sigma^{-1} * Omega * e_sigma'",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "tetrad_frame_change",
+      "inputs": [
+        "Tetrad",
+        "Lorentz"
+      ],
+      "output": "Tetrad",
+      "arity": 2,
+      "carrier": "invertible 4x4 rational matrices; e -> e*L",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "gamma_frame_invariance",
+      "statement": "Gamma(e_sigma L, Omega, e_sigma' L') = Gamma(e_sigma, Omega, e_sigma') under the convention that Omega is the same Lorentz element and the frame changes are absorbed; precise convention (left or right action, and whether Omega is conjugated) to be fixed",
+      "hypotheses": "e_sigma, e_sigma' invertible; Omega in SO+(1,3;Q); L_sigma, L_sigma' in Lorentz group",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "gamma_metric_pullback",
+      "statement": "Gamma^T g_sigma Gamma = g_sigma' where g_sigma = e_sigma^T eta e_sigma",
+      "hypotheses": "Omega^T eta Omega = eta; e_sigma, e_sigma' invertible",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "gamma_metric_lemma",
+      "statement": "If Omega^T eta Omega = eta and g_s = e_s^T eta e_s, then Gamma = e_s^{-1} Omega e_s' satisfies Gamma^T g_s Gamma = g_s'. Under that definition, a direct computation gives e_s'^T Omega^T e_s^{-T} e_s^T eta e_s e_s^{-1} Omega e_s' = e_s'^T Omega^T eta Omega e_s' = e_s'^T eta e_s' = g_s'.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "gamma_metric_pullback"
+      ],
+      "lean_skeleton": "theorem gamma_metric {R} [Field R] (eta e e' Om : Matrix (Fin 4) (Fin 4) R) (he : IsUnit e.det) (hO : Om.transpose * eta * Om = eta) : (e⁻¹ * Om * e').transpose * (e.transpose * eta * e) * (e⁻¹ * Om * e') = e'.transpose * eta * e' := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_drop_invertibility",
+      "claim": "Gamma is defined for singular tetrads",
+      "rejecting_invariant": "e_sigma^{-1} requires det e_sigma != 0"
+    },
+    {
+      "id": "nm_drop_lorentz",
+      "claim": "Metric pullback holds for any invertible Omega",
+      "rejecting_invariant": "Omega^T eta Omega = eta is needed"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Precise frame-change convention: as stated Gamma is unchanged under independent changes only if the transformed tetrads and Omega transform compatibly; Gamma literally changes under e -> e L unless Omega is transformed too",
+    "No existing declarations found; all refs proposed_new",
+    "Lean witness for dimension 4 with SO+ orthochronous and det conditions",
+    "Numeric claims for Lambda(1/2) and beta = 1/3, 1/2 not derived here; the boost matrices are not given",
+    "Compositions not stated since no licensed relation"
+  ]
+}

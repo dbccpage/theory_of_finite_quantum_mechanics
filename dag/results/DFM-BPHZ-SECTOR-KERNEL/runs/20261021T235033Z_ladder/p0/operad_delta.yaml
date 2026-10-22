@@ -1,0 +1,65 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-1318987307D1
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: kval_sub . slot 0 <- K_eval via R_diff
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-BPHZ-SECTOR-KERNEL
+- id: NEG-1318987307D1
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: kval_sub . slot 1 <- K_eval via R_diff
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-BPHZ-SECTOR-KERNEL
+- id: NEG-9A463C150112
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: kval_mul . slot 0 <- kval_sub via R_distrib
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-BPHZ-SECTOR-KERNEL
+counterexamples: []
+open_obligations:
+- Host must supply the 9 rational (lambda_1,lambda_2) pairs; none were listed so none are checked.
+- No existing declaration grounded; lambda_1 in wdp_appw_uniform_volume.rs appears unrelated and was not
+  cited.
+- L_diff Lean proof is a sorry; needs field_simp proof.
+- 'generator K_eval unverified: no existing declaration cited'
+- 'generator kval_sub unverified: no existing declaration cited'
+- 'generator kval_mul unverified: no existing declaration cited'
+- 'relation R_diff unverified: no existing declaration cited'
+- 'relation R_distrib unverified: no existing declaration cited'
+- 'lemma L_diff unverified: Lean elaboration disabled'
+- 'lemma L_four_term unverified: Lean elaboration disabled'
+- 'near_miss NM_forest unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_zero unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_formal
+  expr: 3/5*3/5
+  value: 9/25
+  host_evidence:
+    recomputed: 9/25
+- id: N_l1
+  expr: 9/25/4
+  value: 9/100
+  host_evidence:
+    recomputed: 9/100
+verified_lemma_statements: []
