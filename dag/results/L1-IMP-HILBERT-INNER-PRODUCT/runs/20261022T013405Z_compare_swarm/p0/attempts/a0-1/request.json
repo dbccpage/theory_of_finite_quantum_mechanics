@@ -1,0 +1,316 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "L1-IMP-HILBERT-INNER-PRODUCT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "cmp",
+  "input_sha256": "0ae78aade1d397e9125c559eea68ae9855439da9fffaa37402d61e9b44c8236f",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=L1-IMP-HILBERT-INNER-PRODUCT stage=P0 attempt=cmp in=0ae78aad guided=yes\n@TARGET [IMPORTED_ASSUMPTION] A Hilbert inner product on the linearized carrier is admitted, not derived. H005 exhibits more than one admissible Gram form on the same carrier.\n@BOTTLENECK Uniqueness of the inner product is not available.\n@ASSUME inner product: assumption; free linearization coefficient pack: assumption\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels | theorem | theorem l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels : ((1 * 1 + 2 * 2 = 5) ∧ (5 ≠ 1)) ∧ ((1 * 1 - 1 * 1 = (0 : \n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.sesq | def | def sesq {K Q : Type} (P : StarRingPack K) (E : Enum Q) (u v : Vec K Q) : K\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.gramStd | def | def gramStd (u v : Vec Int Bool) : Int\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.gramWeighted | def | def gramWeighted (u v : Vec Int Bool) : Int\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.gram_not_unique | theorem | theorem gram_not_unique : gramStd deltaTrueInt deltaTrueInt = 1 ∧ gramWeighted deltaTrueInt deltaTrueInt = 2 ∧ gramStd deltaTrueInt deltaTrueInt ≠ gra\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.oneOneF2 | def | def oneOneF2 : Vec Bool Bool\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.inner_product_admission | theorem | theorem inner_product_admission : (sesq intPack enumBool deltaTrueInt deltaTrueInt = 1) ∧ gramWeighted deltaTrueInt deltaTrueInt = 2 ∧ (sesq f2Pack en\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.gramStd_pos_def | theorem | theorem gramStd_pos_def (v : Vec Int Bool) (hv : ¬(∀ q : Bool, v q = 0)) : 0 < gramStd v v\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.gramWeighted_pos_def | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.qm020_thm4_hilbert_lift_redundancy | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.trivalentSpinAdmissible | def\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_qm_uniqueness_tier3_gpt_dimension_and_pr_box_exclusion | theorem\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.delta_orthonormal | theorem\n lean4/H005InnerProductAdmission.lean | FableHilbertWalk20260819.H005.f2_isotropic | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.inner_castPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.inner_liftPair | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair | def\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_apply | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_re | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_im | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.support_castPair_subset | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_sub | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_zero_right | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "FQ-DECLARED-QUANTUM-INTERFACE",
+      "L1-IMP-COMPLEX-FIELD",
+      "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
+      "L1-IMP-ORTHOGONAL-ADDITIVITY",
+      "L1-QM020-THM5-PHASE-AVERAGED-SHADOW",
+      "L1-QM020-THM6-P2-GLEASON",
+      "L1-QM122-LEFTOVER-MNC-NOT-RECOVERED"
+    ],
+    "feedback": true,
+    "index_position": 130,
+    "neg_entry_ids": [],
+    "operation_candidates": 7,
+    "anchors_present": 2,
+    "src_strong": 16,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

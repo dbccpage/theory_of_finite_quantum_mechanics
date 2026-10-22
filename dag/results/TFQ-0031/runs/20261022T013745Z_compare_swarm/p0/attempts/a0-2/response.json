@@ -1,0 +1,57 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+      "inputs": [
+        "plaquette",
+        "wilson_creutz"
+      ],
+      "output": "confinement_indicator",
+      "arity": 2,
+      "carrier": "existing",
+      "ref": {
+        "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py::test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "decl": "def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio",
+      "inputs": [
+        "beta0",
+        "gross_wilczek",
+        "politzer",
+        "banks_zaks"
+      ],
+      "output": "ratio",
+      "arity": 4,
+      "carrier": "existing",
+      "ref": {
+        "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py::test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio",
+        "decl": "def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_part_c_check",
+      "statement": "The finite control test for part C checks the plaquette reduction and Wilson/Creutz confinement rows of the fixture",
+      "hypotheses": "from test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+      "ref": {
+        "path": "code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py::test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement",
+        "decl": "r:R_part_c_check",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "bridge theorem missing for confinement beyond strong-coupling formulae",
+    "Pontryagin inventory not a bridge theorem per GAP-F002-S001-001"
+  ]
+}

@@ -1,0 +1,50 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-6AE0E35082C6
+  class: nonexistent_declaration
+  claim_kind: relation
+  claim: 'R_part_c_check: The finite control test for part C checks the plaquette reduction and Wilson/Creutz
+    confinement rows of the fixture [r:R_part_c_check]'
+  evidence: code/python/tests/test_e2e_qcd_beta0_wilson_confinement_control.py has no declaration R_part_c_check
+    and none exists in the indexed sources
+  decl_key: R_part_c_check
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0031
+counterexamples:
+- id: NEG-E7E2AE3DAA25
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement: (plaquette, wilson_creutz)
+    -> confinement_indicator [def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement]'
+  evidence: python def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement takes 0 parameters;
+    the claim says 2
+  decl_key: test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0031
+- id: NEG-8391AF3673B9
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio: (beta0, gross_wilczek, politzer,
+    banks_zaks) -> ratio [def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio]'
+  evidence: python def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio takes 0 parameters;
+    the claim says 4
+  decl_key: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0031
+open_obligations:
+- bridge theorem missing for confinement beyond strong-coupling formulae
+- Pontryagin inventory not a bridge theorem per GAP-F002-S001-001
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,40 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-06E09A3F7EA5
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement: (lattice_3x3, wilson_creutz_rows)
+    -> confinement_row_reduction [def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement()
+    -> None:]'
+  evidence: python def test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement takes 0 parameters;
+    the claim says 2
+  decl_key: test_part_c_dfm_plaquette_reduction_and_wilson_creutz_confinement
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0031
+- id: NEG-25D6DF47142C
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio: (gluon_paramagnetism_ratio) ->
+    beta0_check [def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio() -> None:]'
+  evidence: python def test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio takes 0 parameters;
+    the claim says 1
+  decl_key: test_part_b_gross_wilczek_politzer_beta0_and_banks_zaks_ratio
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0031
+open_obligations:
+- Ground finite certificate to continuum mass gap claim (withheld by qcd_beta0_wilson_confinement_finite_map.md)
+- Ground finite certificate to weak-coupling non-perturbative behavior as spacing → 0 (withheld by same
+  map)
+- 'near_miss gap_bridge_missing unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

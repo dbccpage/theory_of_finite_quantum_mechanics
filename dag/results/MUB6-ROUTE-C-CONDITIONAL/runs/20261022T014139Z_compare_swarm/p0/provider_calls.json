@@ -1,0 +1,58 @@
+{
+  "calls": [
+    {
+      "call_id": "a0-1:c05e1565",
+      "run_id": "MUB6-ROUTE-C-CONDITIONAL/20261022T014139Z_ladder",
+      "attempt_id": "a0-1",
+      "tier": 0,
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-22T01:41:40Z",
+      "status": "error",
+      "estimated_input_tokens": 3271,
+      "estimate_microusd": 0,
+      "error_code": "rate_limited",
+      "error": "provider rate limit; suggested wait 839.0s",
+      "http_status": 429,
+      "backoff_events": [
+        {
+          "status": 429,
+          "wait_s": 839.0
+        }
+      ],
+      "retry_after": 839.0
+    },
+    {
+      "call_id": "a0-2:49eb4ed9",
+      "run_id": "MUB6-ROUTE-C-CONDITIONAL/20261022T014139Z_ladder",
+      "attempt_id": "a0-2",
+      "tier": 0,
+      "provider": "openrouter",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "family": "free",
+      "effort": null,
+      "max_tokens": 3500,
+      "started_utc": "2026-10-22T01:41:40Z",
+      "status": "ok",
+      "estimated_input_tokens": 3271,
+      "estimate_microusd": 0,
+      "served_model": "nvidia/nemotron-3.5-lightning:free",
+      "input_tokens": 1945,
+      "output_tokens": 793,
+      "cost_microusd": 0,
+      "cost_source": "provider_receipt",
+      "request_id": "gen-1792633300-jBg4zYDOqUei9Ux9qYLc",
+      "stop_reason": "stop",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 7.273,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": 200,
+      "backoff_events": []
+    }
+  ]
+}

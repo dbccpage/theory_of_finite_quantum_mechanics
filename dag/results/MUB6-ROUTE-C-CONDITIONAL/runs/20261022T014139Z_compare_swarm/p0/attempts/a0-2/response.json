@@ -1,0 +1,112 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "MUB6OrbitConfiguration",
+      "inputs": [
+        "Basis",
+        "MUB_pair"
+      ],
+      "output": "MUB_orbit",
+      "arity": 2,
+      "carrier": "MUB6OrbitConfiguration",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "MUB6OrbitConfiguration",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "InFourierDitaChart",
+      "inputs": [],
+      "output": "Prop",
+      "arity": 0,
+      "carrier": "InFourierDitaChart",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "InFourierDitaChart",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "FourierTripleLandingPremise",
+      "inputs": [],
+      "output": "Prop",
+      "arity": 0,
+      "carrier": "FourierTripleLandingPremise",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "FourierTripleLandingPremise",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "RouteCCompleteMUBFamily",
+      "inputs": [],
+      "output": "structure",
+      "arity": 0,
+      "carrier": "RouteCCompleteMUBFamily",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "RouteCCompleteMUBFamily",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "InFourierDitaChart implies existence of a mutually unbiased triple within any seven-basis family in the Chart",
+      "hypotheses": "h_landing : FourierTripleLandingPremise",
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "no_complete_mub6_of_fourier_triple_landing",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "MUB6OrbitConfiguration",
+      "slot": 0,
+      "inner": "InFourierDitaChart",
+      "licensing_relation": "R1"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "The premise FourierTripleLandingPremise combined with InFourierDitaChart implies NoCompleteMUB6",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "theorem L1 (h_landing : FourierTripleLandingPremise) (h_chart : InFourierDitaChart) : NoCompleteMUB6 := by\n  exact no_complete_mub6_of_fourier_triple_landing h_landing\n  exact no_complete_mub6_via_route_c (MUB6.RouteC.route_c_complete_mub_family_impossible _ _)\n",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/RouteCFourierLandingBypass.lean",
+        "decl": "no_complete_mub6_of_fourier_triple_landing",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "Assuming a landing map CompleteMUB6 → RouteCCompleteMUBFamily directly yields a contradiction without the Fourier triple premise",
+      "rejecting_invariant": "The landing map requires a pre-existing Fourier triple to trigger the NoCompleteMUB6 conclusion; the route C impossibility is not automatically implied by the landing condition alone."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "NC1",
+      "expr": "11 - 2/3*5",
+      "value": "23/3"
+    }
+  ],
+  "open_obligations": [
+    "Concrete interpretation of Basis and is_mutually_unbiased predicates to validate the MUB6OrbitConfiguration carrier against the opaque interface types.",
+    "Verification that InFourierDitaChart membership is preserved under the concrete carrier interpretation.",
+    "Formalizing the landing premise implication chain within the opaque Basis interface constraints."
+  ]
+}
