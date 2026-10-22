@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Formalized finite statement. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions), the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.
+  Finite statement, checked in Lean 4 for a hand-encoded model. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, which are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs, every bulk leg fixed in the logical zero state. In Lean the 20-qubit boundary stabilizer is given by 20 explicit generators (15 local to the five outer blocks and 5 pushed through the internal bonds from the central tensor): they pairwise commute and have full GF(2) rank 20. For all 380 proper contiguous boundary intervals A (20 starting positions, lengths 1 to 19), with S(A) = rank(G restricted to A) - |A| in bits and mincut(A) the minimal number of bonds cut separating A from its complement in the six-tensor star graph: S(A) <= mincut(A) on all 380 intervals, S(A) = mincut(A) on exactly 340 intervals, and S(A) = mincut(A) - 1 on exactly 40. The Ryu-Takayanagi equality therefore fails on this patch for 40 intervals; it is not a statement that holds for every region.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all 380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum minimal-surface area is imported and not part of this target.
+  Not proved in Lean: that the 20 explicit generators are the boundary stabilizer of the contracted six-tensor network with bulk legs fixed at logical zero (they are entered by hand from the pushing rules of the code generators); that mincut as computed (a minimum over side assignments of the six tensors) is the minimal curve cut in the planar dual; the list of the 40 intervals where equality fails (only the counts are stated). The correspondence to a continuum minimal-surface area is the imported formula and is not part of the target.
 
   Open ../operads/ads_happy_entropy_mincut_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

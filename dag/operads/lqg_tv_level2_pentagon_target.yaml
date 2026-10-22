@@ -3,18 +3,25 @@ node_id: LQG-TV-LEVEL2-PENTAGON-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin
-    0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked
-    in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum
-    6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott
-    (pentagon) identity across all 3^9 = 19,683 label assignments. The repository''s fence (TFQ-0105)
-    refuses an admission of triangulation invariance; this target discharges only the algebraic identity
-    on those labels, not invariance of a state sum on a triangulated manifold.'
+  source_statement: 'Finite statement, checked in Lean 4 for a transcribed table. At q = exp(i pi/4) with
+    spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the normalized recoupling symbol isingF(a,b,c,d,e,f) is
+    entered in Lean as an explicit case table over Q(sqrt 2) (values 0, +-1, +-sqrt(2)/2, transcribed
+    from ising_f in code/rust/src/general_relativity/spin_foam.rs). On that table Lean checks in exact
+    arithmetic over Q(sqrt 2): the quantum dimensions (1, sqrt 2, 1) with d_1^2 - d_0 = d_2 and d_1 d_2
+    - d_1 = 0 (truncation); exactly 36 nonzero entries among the 729 label 6-tuples; the orthogonality
+    relation sum over f of isingF(a,b,c,d,e,f) isingF(a,b,c,d,e'',f) = delta(e,e'') for all admissible
+    labels; and the pentagon identity sum over r of isingF(a,b,c,q,p,r) isingF(a,r,d,e,q,s) isingF(b,c,d,s,r,t)
+    = isingF(p,c,d,e,q,t) isingF(a,b,t,e,p,s) across all 3^9 = 19,683 label assignments in {0,1,2}^9 (both
+    sides zero unless the six boundary triads are admissible). The repository''s fence (TFQ-0105) refuses
+    an admission of triangulation invariance; this target discharges only the identity on those labels,
+    not invariance of a state sum on a triangulated manifold.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9.
-    The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by
-    TFQ-0105.
+  source_bottleneck: 'Not proved in Lean: that the transcribed table equals the quantum 6j symbol at q
+    = exp(i pi/4), neither derived from the q-Racah sum nor linked to the Rust function (the module imports
+    H023 and H024 but uses nothing from them); the Z[zeta_12] data of H023 and H024; the dimension-weighted
+    Turaev-Viro form of the identity (the checks are on the unitary-normalized F-symbols). The step from
+    the local identity to invariance on a triangulation is not part of the target.'
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
   - external:doi:10.1016/0040-9383(92)90015-A
@@ -32,7 +39,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
-    sha256: 476e67948b5706a1a245fa0b5126731f2570ea7e4d950600e58129f33c6573a6
+    sha256: 939ee83bf8ced1d552b69c4183840f285c12f49048b2923cdd70fff9ac3015b5
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

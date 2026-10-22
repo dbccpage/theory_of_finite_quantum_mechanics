@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the off-diagonal entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
+Finite statement over Q(i), checked in Lean 4 in the following narrowed form. Take the qubit with the six Pauli eigenstates as rays. (a) The explicit measure-and-prepare maps cloneZ, cloneX and cloneY (rho to the mixture of the two basis clones with weights Tr(P rho)) send each of |0>,|1>; |+>,|->; |+i>,|-i> to its own clone rho tensor rho; cloneZ is shown trace-preserving. (b) The exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the difference of the two clone sums has entry -1/2 on |00><11| and |11><00|, so no additive map (hence no linear map) clones all four of |0>,|1>,|+>,|->. (c) The exact squared overlaps of the six states are 1 (equal), 0 (antipodal) or 1/2 (otherwise); for a rational x in [0,1], x <= x^2 forces x in {0,1}; and an exhaustive count over the 64 subsets of the six states shows that exactly 10 subsets are pairwise equal-or-orthogonal (the empty set, 6 singletons and 3 antipodal pairs) and that the maximal such subsets are the three antipodal pairs. In Lean "cloneable subset" in (c) is defined as pairwise equal-or-orthogonal.
 
 ## Governing obligation
 
-Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64 subsets. The link to the imported definition of a superinformation medium remains a definitional reading, not a characterization of quantum theory.
+Not proved in Lean: complete positivity of cloneZ, cloneX and cloneY, and trace preservation of cloneX and cloneY (only cloneZ is shown trace-preserving); that completely positive trace-preserving maps cannot decrease fidelity (x <= x^2 is a hypothesis of the arithmetic lemma, not derived); and the equivalence of the semantic notion "some CPTP map clones every state of the subset" with "pairwise equal or orthogonal" in either direction (the Lean classification takes the latter as the definition of cloneable). The link to the imported definition of a superinformation medium is a reading of definitions.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,12 @@ Checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets
 
 ## What is open
 
-- Lean or exact Python statement and check of (a), (b), (c).
+- Complete positivity of the three clone maps and trace preservation of cloneX and cloneY.
+- Fidelity monotonicity of CPTP maps (the premise x <= x^2), and the equivalence of "a CPTP map clones every state of the subset" with "pairwise equal or orthogonal".
 
 ## Finite target (precise statement)
 
-Over Q(i): for the six Pauli eigenstate rays, exactly the subsets whose members are pairwise equal or orthogonal are cloneable; the 64 subsets split into those and the rest; the maximal cloneable subsets are the three antipodal pairs; Phi(rho)=rho tensor rho on {|0>,|1>,|+>,|->} is inconsistent with linearity because |0><0|+|1><1|-|+><+|-|-><-| = 0 while the images sum to a nonzero matrix.
+Over Q(i), six Pauli eigenstate rays: explicit copy-in-basis maps clone each of Z, X, Y (trace preservation proved for Z only); no additive map clones {|0>,|1>,|+>,|->} because |0><0|+|1><1| = |+><+|+|-><-| while the clone images differ by a matrix with entry -1/2 on |00><11| and |11><00|; x <= x^2 forces overlap 0 or 1; exactly 10 of the 64 subsets are pairwise equal-or-orthogonal and the maximal ones are the three antipodal pairs.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most 6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah's single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii) the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon) identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).
+Finite statement, checked in Lean 4 in the following narrowed form. The Wigner 6j symbol with twice-spins at most 6 is S sqrt(P), where S is Racah's single-sum factor, computed with exact integer factorials, and P is the product of four rational triangle factors; Lean defines the rational square W^2 = S^2 P (sixJSquaredRat) in this way. Checks: (i) the signed Racah factor S is invariant under the four generators of the 24 tetrahedral symmetries (the column swaps 12 and 23 and the double row flips on columns 12 and 23) for all 3,418 admissible 6-tuples with twice-spins at most 6 (the invariance of P under the symmetries is evident, since they permute its four triangle factors, but is not part of the Lean check); (ii) the orthogonality relation sum over x of (x+1)(y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') in twice-spin labels, for the 1,928 admissible tuples (a,b,c,d,y,y') whose labels and whose intermediate twice-spin x all lie at or below 6; (iii) the Biedenharn-Elliott (pentagon) identity for all 814 admissible 9-tuples with twice-spins at most 3, and for four explicit instances with twice-spins up to 6 (all labels 2; labels 3 with p=q=r=2; (a,b,c,d,e,f,p,q,r) = (4,2,3,3,2,4,3,3,2); and (6,0,6,0,6,0,6,6,6)). Exact arithmetic in the rationals with one square root per symbol.
 
 ## Governing obligation
 
-Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part of this target.
+Not proved in Lean: the Biedenharn-Elliott identity exhaustively for twice-spins 4 to 6 (four instances only); orthogonality for tuples whose intermediate range exceeds twice-spin 6; invariance of P, W^2 and the signed symbol under the symmetry generators, and invariance under the whole group (the closure of the tuple set under the generators is not stated). Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTarge
 
 ## What is open
 
-- Exact Python-Fraction implementation and the three checks.
+- Biedenharn-Elliott identity for all admissible labels with twice-spins up to 6; orthogonality beyond the x <= 6 range; symmetry of P and of the full group action.
 
 ## Finite target (precise statement)
 
-For all admissible 6-tuples with twice-spins <= 6: 6j^2 in Q via Racah's formula; 24-fold symmetry; orthogonality; Biedenharn-Elliott identity.
+Racah single-sum S sqrt(P) with exact integers: S invariant under the generators of the 24 tetrahedral symmetries on all 3,418 admissible tuples with twice-spins <= 6; orthogonality on 1,928 tuples whose labels and intermediate x are <= 6; Biedenharn-Elliott identity on all 814 admissible 9-tuples with twice-spins <= 3 plus four explicit instances up to 6.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

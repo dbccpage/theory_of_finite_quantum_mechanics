@@ -3,17 +3,25 @@ node_id: ADS-HAPPY-ENTROPY-MINCUT-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Formalized finite statement. Contract six copies of the six-leg perfect tensor on
-    the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary
-    legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the
-    induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across
-    all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions),
-    the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.'
+  source_statement: 'Finite statement, checked in Lean 4 for a hand-encoded model. Contract six copies
+    of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours,
+    which are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor)
+    and 6 bulk legs, every bulk leg fixed in the logical zero state. In Lean the 20-qubit boundary stabilizer
+    is given by 20 explicit generators (15 local to the five outer blocks and 5 pushed through the internal
+    bonds from the central tensor): they pairwise commute and have full GF(2) rank 20. For all 380 proper
+    contiguous boundary intervals A (20 starting positions, lengths 1 to 19), with S(A) = rank(G restricted
+    to A) - |A| in bits and mincut(A) the minimal number of bonds cut separating A from its complement
+    in the six-tensor star graph: S(A) <= mincut(A) on all 380 intervals, S(A) = mincut(A) on exactly
+    340 intervals, and S(A) = mincut(A) - 1 on exactly 40. The Ryu-Takayanagi equality therefore fails
+    on this patch for 40 intervals; it is not a statement that holds for every region.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all
-    380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum
-    minimal-surface area is imported and not part of this target.
+  source_bottleneck: 'Not proved in Lean: that the 20 explicit generators are the boundary stabilizer
+    of the contracted six-tensor network with bulk legs fixed at logical zero (they are entered by hand
+    from the pushing rules of the code generators); that mincut as computed (a minimum over side assignments
+    of the six tensors) is the minimal curve cut in the planar dual; the list of the 40 intervals where
+    equality fails (only the counts are stated). The correspondence to a continuum minimal-surface area
+    is the imported formula and is not part of the target.'
   source_refs:
   - dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md
   - external:arXiv:1503.06237
@@ -27,7 +35,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md
-    sha256: f1d8a51f6a0b91007cf3d42367bbfbc6b994a52ce55580bce543c239cbcc0c0a
+    sha256: dbba6930bf5794144d7e3021228db7df63b19b073c22b37f1e97c8b86e7e8207
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

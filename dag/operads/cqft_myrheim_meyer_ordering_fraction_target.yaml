@@ -3,19 +3,34 @@ node_id: CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Formalized finite statement. The ordering fraction of a finite causal set is the
-    exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering
-    fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!,
-    with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in
-    Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n)
-    = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n)
-    - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse
-    covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and
-    C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.'
+  source_statement: Finite statement, checked in Lean 4 in the following narrowed form. The ordering fraction
+    of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related
+    pairs (CausalSet.ordering_fraction); Lean computes r(C1)=2/3 and r(C2)=5/6 from the relation tables
+    of CausalOrder.lean. In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering
+    fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2)
+    is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2))
+    (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2)
+    gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2,
+    f(3)=8/35 and f(4)=1/10; in Lean these four values are entered as a table (70 f(d) = 70, 35, 16, 7)
+    and not derived from the Gamma formula. (i) If the n x n grid with the componentwise product order
+    has R(n) = (n(n+1)/2)^2 - n^2 strictly related pairs (a count entered as a definition in Lean, not
+    derived from a poset), then 4 R(n) = n^2 (n-1)(n+3), the ordering fraction is r = (n+3)/(2(n+1)) for
+    all n >= 2 with r(n) - 1/2 = 1/(n+1), the values for n=2..6 are 5/6, 3/4, 7/10, 2/3, 9/14, and r(2)
+    = 5/6 equals the exactly computed r(C2) of the diamond. This is an observation about a lattice, not
+    an instance of the sprinkling theorem. (ii) An exact nearest-dimension selector over d in {1,2,3,4}
+    with tie reporting is defined and checked on the six inputs 5/6, 3/4, 7/10, 1/2, 8/35, 1/10, giving
+    [1], [1,2] (an exact tie), [2], [2], [3], [4]. (iii) The Hasse covering relation of any FiniteStrictPoset
+    is contained in every subrelation E of the order such that every related pair is in E or has an intermediate
+    element (one half of "unique transitive reduction"); C1 has 2 links and C2 has 4; the Mobius tables
+    c1_mu and c2_mu of CausalOrder.lean satisfy the Mobius recursion and c2_mu(d0,d3)=1.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator
-    is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.
+  source_bottleneck: 'Not proved in Lean: that the n x n grid poset (a FiniteStrictPoset on n^2 points)
+    has R(n) strictly related pairs, so (i) is arithmetic on a posited count cross-checked against the
+    diamond only at n=2; the derivation of f(d) from the Gamma-function formula; correctness of the nearest-dimension
+    selector beyond the six listed inputs; that the Hasse relation itself generates the order and is the
+    minimal such relation. Everything is rational arithmetic on named finite posets. The dimension estimator
+    is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.'
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md
   - external:arXiv:gr-qc/0207103
@@ -32,7 +47,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md
-    sha256: a590adc43eefa8af1746696463e1b9951965d7cdc52eaf321e627d62519ebc1e
+    sha256: e6e460c1befb7a6cf5e3211883c1a3648363ea24faeac87f059c8b8f2bed802e
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

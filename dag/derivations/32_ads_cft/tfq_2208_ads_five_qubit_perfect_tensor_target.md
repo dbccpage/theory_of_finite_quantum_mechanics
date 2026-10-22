@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4: this state is a perfect tensor; its 64-element stabilizer group has weight distribution 1 element of weight 0, 45 of weight 4, and 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have projective stabilizer rank 3 (entropy 3 bits); and the 192 nontrivial logical operators in the normalizer outside the stabilizer have minimum weight 3.
+Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4 on Pauli operators modulo phase (GF(2) symplectic vectors): the six generators pairwise commute and generate a group of 64 distinct elements, with weight distribution 1 element of weight 0, 45 of weight 4 and 18 of weight 6 (the hexacode six-qubit state), so every non-identity element has weight at least 4, which is the perfect-tensor condition (every bipartition with at most three legs on one side has a maximally mixed marginal); for all twenty 3|3 bipartitions the stabilizer subgroup supported on one side is trivial, so the entropy is 3 bits by the stabilizer formula S(A) = |A| - log2 |G_A|; and in the five-qubit code the normalizer of the 16-element stabilizer has order 64 and its 48 elements outside the stabilizer (the nontrivial logical operators, modulo phase) have minimum weight 3. The reading of weights and local stabilizer subgroups as marginals and entropies is the standard stabilizer-formalism dictionary and is not formalised on density matrices.
 
 ## Governing obligation
 
-Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element stabilizer group and the 20 bipartitions. A finite stabilizer enumeration is not a statement about AdS/CFT.
+Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element stabilizer group, the 20 bipartitions and the 1024-element five-qubit Pauli group. A finite stabilizer enumeration is not a statement about AdS/CFT.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library Fr
 
 ## What is open
 
-- Exact enumeration in Lean or Python with GF(2) rank for each bipartition.
+- Hilbert-space formulation of the marginals and entropies (the stabilizer dictionary is used, not formalised).
 
 ## Finite target (precise statement)
 
-Stabilizer group of the Choi state: weight enumerator 1 + 45 z^4 + 18 z^6; every 3|3 bipartition has stabilizer rank giving entropy 3 bits (twenty bipartitions); normalizer minus stabilizer has minimum weight 3.
+Stabilizer group of the Choi state: weight enumerator 1 + 45 z^4 + 18 z^6; every 3|3 bipartition has trivial supported stabilizer subgroup giving entropy 3 bits (twenty bipartitions); normalizer minus stabilizer (48 elements modulo phase) has minimum weight 3.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

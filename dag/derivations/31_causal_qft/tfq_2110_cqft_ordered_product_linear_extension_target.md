@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P) in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
+Finite statement, checked in Lean 4 in the following narrowed form. For a FiniteStrictPoset P and elements A_x (x in P) of a monoid with A_x A_y = A_y A_x for all spacelike pairs x,y: the ordered product along a listing of P is unchanged by one adjacent swap of spacelike elements, hence by any chain of adjacent spacelike swaps. Exact checks: the diamond C2 has exactly 2 linear extensions among the 24 permutations of its four points, [0,1,2,3] and [0,2,1,3], connected by one adjacent spacelike swap of 1 and 2; the N poset has exactly 5 linear extensions; with integer 2x2 Pauli matrices on C2 the two ordered products agree when the spacelike points 1 and 2 carry the commuting matrices Z and Z, and differ by the sign -1 (and are unequal) when they carry the anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
 
 ## Governing obligation
 
-Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting and renormalization have no finite counterpart here.
+Not proved in Lean: that any two linear extensions of an arbitrary finite strict poset are connected by a chain of adjacent spacelike swaps, which is the step that turns swap invariance into independence from the choice of linear extension. Connectivity is exhibited for the two extensions of C2 only; for the N poset the five extensions are counted but their connectivity, and hence the equality of their ordered products, is not stated. The relation to Epstein-Glaser is an analogy.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierT
 
 ## What is open
 
-- Lean proof of the adjacent-swap lemma; exact table for C2 and N.
+- Connectivity of the linear extensions of an arbitrary finite strict poset under adjacent spacelike swaps (hence independence of the product from the extension), and the equality of the five N-poset products.
 
 ## Finite target (precise statement)
 
-If A_x A_y = A_y A_x for all spacelike pairs then the product over any linear extension is independent of the extension; for C2 with A_{d1}=X, A_{d2}=Z (anticommuting) and identity elsewhere the two linear extensions give products differing by the sign -1.
+If A_x A_y = A_y A_x for all spacelike pairs then the ordered product is invariant under any chain of adjacent spacelike swaps; C2 has exactly two linear extensions, joined by one adjacent spacelike swap, and with A_{d1}=X, A_{d2}=Z the two products differ by the sign -1; the N poset has exactly five linear extensions.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 

@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) hold for tensor-product nets; the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
+Finite statement, checked in Lean 4 for site-factorized operators. For a FiniteStrictPoset P on n points put one qubit (a single-site monoid M) at each point; an operator A : Fin n -> M is localized in a subset O of P when it is the identity outside O, so the Lean "algebra" of O is the set of elementary tensor operators localized in O, not the full matrix algebra on the qubits in O. (a) Isotony: O1 inside O2 and A localized in O1 imply A localized in O2. (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and operators localized in O1 and in O2 commute under the sitewise product. (c) The spacelike relation of CausalOrder.lean is symmetric (spacelike_symm) and irreflexive (spacelike_irrefl) and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 1 and 0 are spacelike, 0 and 3 are spacelike, and 1<3 are related. The content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.
 
 ## Governing obligation
 
-Checked in Lean 4 for finite poset tensor-product nets and the 4-element N poset. Dynamics, a time-slice property and Poincare covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
+Not proved in Lean: the statements for the full local matrix algebras A(O) (linear spans of elementary tensors, for example 2^|O| x 2^|O| matrices): that commutation of elementary tensors extends by bilinearity to the algebras and that A(O1) is a subalgebra of A(O2) as matrix algebras; the single-site monoid M is generic and is not instantiated at 2x2 matrices. The net is kinematical: dynamics, a time-slice property and covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Verified against lean4/CausalOrder.lean on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,11 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets 
 
 ## What is open
 
-- Lean statement and proof of (a), (b), (c) for general n.
+- The same statements for the full local matrix algebras A(O), not only elementary tensor operators, with M instantiated at 2x2 matrices.
 
 ## Finite target (precise statement)
 
-For every FiniteStrictPoset P and all subsets O1, O2 of its points: O1 inside O2 implies A(O1) inside A(O2); if all pairs (x,y) in O1 x O2 are spacelike then A(O1) and A(O2) commute; on the N poset, spacelike(0,1) and spacelike(0,3) hold while 1<3.
+For every FiniteStrictPoset P and subsets O1, O2: operators localized in O1 are localized in any O2 containing O1; if all pairs (x,y) in O1 x O2 are spacelike then O1, O2 are disjoint and operators localized in O1 and O2 commute under the sitewise product (elementary tensors); spacelike is symmetric and irreflexive; on the N poset, spacelike(1,0) and spacelike(0,3) hold while 1<3.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
@@ -59,6 +59,8 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 - `lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_3`
 - `lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_causal_1_3`
 - `lean4/FrontierPosetNet.lean::FrontierPosetNet.spacelike_not_transitive_on_posetN`
+- `lean4/CausalOrder.lean::spacelike_symm`
+- `lean4/CausalOrder.lean::spacelike_irrefl`
 
 ## Downstream derivations
 

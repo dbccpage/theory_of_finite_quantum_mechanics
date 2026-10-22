@@ -11,15 +11,15 @@
 
 ## Statement
 
-Formalized finite statement. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
+Formalized finite statement. For a finite set X and a report map q from X to R, two attributes A and B of X (nonemptiness is not needed) are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. Checked in Lean 4 over Finset for arbitrary types X and R with decidable equality on R: both directions and the biconditional; when q(A) and q(B) are disjoint the indicator of B on the union of A and B is constant on the fibers of q (HistoryReport.FiberConstant, the form PG-HISTORY-REPORT-CRITERION takes); and an exhaustive bitmask decision check over all (q, A, B) with nonempty attributes for 1<=|X|<=4 and 1<=|R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
 
 ## Governing obligation
 
-Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
+Checked in Lean 4 on Finset for all finite carriers and by the exhaustive check for |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
 
 ## Source status
 
-Checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
+Source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22. Lean: checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean) in the form recorded in the statement; replay receipt in dag/research/frontier_targets_lean_replay.json; per-node review in dag/research/frontier_targets_lean_review.md.
 
 ## What is imported
 
@@ -27,13 +27,11 @@ Checked in Lean 4.35.0 via lake build FrontierDistinguishability (library Fronti
 
 ## What is open
 
-- Lean statement and proof of the biconditional.
-- Exhaustive finite check for |X|<=4 and |R|<=3.
-- Source definition of distinguishable variable audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 (mapping each attribute x in X to a distinct attribute psi_x of an information variable with side-effects).
+- Source definition of distinguishable variable (arXiv:1405.5563 Section 5 eq. (4) p. 11, mapping each attribute x in X to a distinct attribute psi_x of an information variable with side-effects) is audited but not adopted; accuracy, repeatability and constructor existence are not modelled.
 
 ## Finite target (precise statement)
 
-For all finite X, R, q: X to R and nonempty A, B subsets of X: (exists f: R to {0,1}, f.q = 1_B on A union B) iff q(A) cap q(B) = empty. Exhaustive check for |X|<=4, |R|<=3 over all (q, A, B).
+For all finite X, R, q: X to R and A, B subsets of X: (exists f: R to {0,1}, f(q(a))=0 on A and f(q(b))=1 on B) iff q(A) cap q(B) = empty. Exhaustive check for |X|<=4, |R|<=3 over all (q, A, B) with A, B nonempty.
 
 Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
