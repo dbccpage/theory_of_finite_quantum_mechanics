@@ -27,7 +27,9 @@ from common import Ctx, check_lean_version, lean_toolchain, load_json, load_modu
 from stages import AXIOM_REPORT, STANDARD_AXIOMS, Batch  # noqa: E402
 
 
-LATER_RUN_AREAS = ('dag/operads/', 'dag/results/')
+# Areas later runs and prompt regeneration legitimately rewrite (new nodes add prompts and audit rows); the recorded
+# bytes must still exist in Git history.
+LATER_RUN_AREAS = ('dag/operads/', 'dag/results/', 'dag/prompts/', 'dag/pfp/prompt_audit_extension.json')
 # Workspace manifests that later committed work legitimately extends (a new crate, a dev-dependency, lock entries).
 SHARED_BUILD_FILES = ('Cargo.toml', 'Cargo.lock')
 
@@ -40,6 +42,27 @@ def historical_version(root, path, digest):
         if blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest() == digest:
             return True
     return False
+
+
+def repo_relative(root, pinned):
+    """Map a receipt's absolute source pin (recorded in whatever checkout ran the batch) to the same file in this checkout:
+    the shortest suffix that starts at a top-level entry of `root` and exists there. Falls back to the pinned path."""
+    parts = Path(pinned).parts
+    top = {p.name for p in Path(root).iterdir()} - {'.claude', '.git'}
+    for i, part in enumerate(parts):
+        if part in top and Path(root).joinpath(*parts[i:]).exists():
+            return Path(*parts[i:]).as_posix()
+    return None
+
+
+def check_source_pin(root, pin):
+    rel = repo_relative(root, pin['path'])
+    path = Path(root) / rel if rel else Path(pin['path'])
+    if sha(path) == pin['sha256']:
+        return
+    # Later committed work extends the shared workspace manifests; the pinned version must still be in history.
+    require(rel is not None and rel.endswith(SHARED_BUILD_FILES) and historical_version(root, rel, pin['sha256']),
+            'accepted native working bytes drift ' + (rel or pin['path']))
 
 
 def axiom_reports(text, anchors):
@@ -94,7 +117,7 @@ def verify_node(batch: Batch, task, index):
         receipt = load_json(receipt_path)
         require(receipt['sources_unchanged'] and receipt['exit_code'] == 0, 'accepted native receipt ' + receipt_path.name)
         for pin in receipt['source_pins']:
-            require(sha(Path(pin['path'])) == pin['sha256'], 'accepted native working bytes drift ' + pin['path'])
+            check_source_pin(ctx.root, pin)
     checks = profile.get('p2_checks', {})
     if (host_dir / 'native/lean_version.stdout.log').is_file():
         reported = (host_dir / 'native/lean_version.stdout.log').read_text(encoding='utf-8', errors='replace')
