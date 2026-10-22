@@ -1,0 +1,2471 @@
+{
+  "schema_version": "pfp_batch01_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-21",
+  "source_base": "042ec032daf3e96087b5856d09886d99babcb8df",
+  "result": "All 26 Lean modules of PFP batch 01 (positions 152-177) compile under Lean 4.35.0 with the pinned Mathlib, built through lake from the PfpBatch01 library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
+  "proof_boundary": "This receipt records that the sealed sources type-check and which axioms their #print axioms lines report. It does not change any DAG node status: the nodes keep the scoped claims recorded in their sealed PFP reviews. No sealed source was edited and no compatibility port was needed.",
+  "sealed_batches": [
+    "20261021T132245Z_prompts_152_164",
+    "20261021T175809Z_prompts_165_177"
+  ],
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "f0ade16888948402756331e33ff982583f8101abeada059406390c9731a4fa57",
+    "library": "PfpBatch01 (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, in batch position order)",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "PhaseBlindFiber",
+        "dag_node": "L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE",
+        "position": 152,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/PhaseBlindFiber.lean",
+        "sha256": "302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d",
+        "sha256_after_build": "302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 39.76,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "PhaseBlindFiber.w_I_mul",
+          "PhaseBlindFiber.readout_total",
+          "PhaseBlindFiber.readout_interference",
+          "PhaseBlindFiber.fiber_changes_readout",
+          "PhaseBlindFiber.w_eq_zero",
+          "PhaseBlindFiber.descends_when_second_zero",
+          "PhaseBlindFiber.no_descent",
+          "PhaseBlindFiber.descends_when_zero_sector",
+          "PhaseBlindFiber.witness_readouts",
+          "PhaseBlindFiber.phase_blind_fiber_interference"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "PhaseBlindFiber.w_I_mul": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.readout_total": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.readout_interference": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.fiber_changes_readout": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.no_descent": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.descends_when_zero_sector": [
+            "propext"
+          ],
+          "PhaseBlindFiber.descends_when_second_zero": [
+            "propext"
+          ],
+          "PhaseBlindFiber.w_eq_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PhaseBlindFiber.witness_readouts": [],
+          "PhaseBlindFiber.phase_blind_fiber_interference": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [984/984] Built PhaseBlindFiber (35s)\nwarning: PhaseBlindFiber.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PhaseBlindFiber.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PhaseBlindFiber.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PhaseBlindFiber.lean: imports `Mathlib.Tactic.Positivity` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PhaseBlindFiber.lean:142:19: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: PhaseBlindFiber.lean:142:23: Unused tactic linter: `ring` does nothing.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: PhaseBlindFiber.lean:142:23: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ninfo: PhaseBlindFiber.lean:168:0: 'PhaseBlindFiber.w_I_mul' depends on axioms: [propext, Quot.sound]\ninfo: PhaseBlindFiber.lean:169:0: 'PhaseBlindFiber.readout_total' depends on axioms: [propext, Quot.sound]\ninfo: PhaseBlindFiber.lean:170:0: 'PhaseBlindFiber.readout_interference' depends on axioms: [propext, Quot.sound]\ninfo: PhaseBlindFiber.lean:171:0: 'PhaseBlindFiber.fiber_changes_readout' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PhaseBlindFiber.lean:172:0: 'PhaseBlindFiber.no_descent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PhaseBlindFiber.lean:173:0: 'PhaseBlindFiber.descends_when_zero_sector' depends on axioms: [propext]\ninfo: PhaseBlindFiber.lean:174:0: 'PhaseBlindFiber.descends_when_second_zero' depends on axioms: [propext]\ninfo: PhaseBlindFiber.lean:175:0: 'PhaseBlindFiber.w_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PhaseBlindFiber.lean:176:0: 'PhaseBlindFiber.witness_readouts' does not depend on any axioms\ninfo: PhaseBlindFiber.lean:177:0: 'PhaseBlindFiber.phase_blind_fiber_interference' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (984 jobs).\n"
+      },
+      {
+        "module": "ResidualSectorWeights",
+        "dag_node": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
+        "position": 153,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/ResidualSectorWeights.lean",
+        "sha256": "0409bb9a215f19e3c5a8d30091e4ad25ec7a4e256721b21ae49a1ddc6e3c6dab",
+        "sha256_after_build": "0409bb9a215f19e3c5a8d30091e4ad25ec7a4e256721b21ae49a1ddc6e3c6dab",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 26.46,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "ResidualSectorWeights.hol_d0",
+          "ResidualSectorWeights.exists_d0_of_hol_zero",
+          "ResidualSectorWeights.class_iff",
+          "ResidualSectorWeights.phi1_attained_and_lower_bound",
+          "ResidualSectorWeights.minimizer_iff",
+          "ResidualSectorWeights.minimizers_not_unique",
+          "ResidualSectorWeights.sector_weights_sum_to_phi1",
+          "ResidualSectorWeights.sector_weights_not_determined",
+          "ResidualSectorWeights.minimizer_unique_of_hol_zero",
+          "ResidualSectorWeights.minimizer_unique_of_one_edge",
+          "ResidualSectorWeights.symmetric_integral_iff",
+          "ResidualSectorWeights.symmetric_selector",
+          "ResidualSectorWeights.c4_instance_two_minimizers",
+          "ResidualSectorWeights.c4_orbit_sum_not_minimizer"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "ResidualSectorWeights.hol_d0": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.exists_d0_of_hol_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.class_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.phi1_attained_and_lower_bound": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.minimizer_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.minimizers_not_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.sector_weights_sum_to_phi1": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.sector_weights_not_determined": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.minimizer_unique_of_hol_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.minimizer_unique_of_one_edge": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.symmetric_integral_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.symmetric_selector": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.c4_instance_two_minimizers": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ResidualSectorWeights.c4_orbit_sum_not_minimizer": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1051/1051] Built ResidualSectorWeights (21s)\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Algebra.Order.Ring.Abs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Logic.Equiv.Fin.Rotate` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Data.Fin.VecNotation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Algebra.Order.Field.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ResidualSectorWeights.lean:71:0: automatically included section variable(s) unused in theorem `ResidualSectorWeights.hol_d0`:\n  [LinearOrder α]\n  [IsStrictOrderedRing α]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [LinearOrder α] [IsStrictOrderedRing α] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: ResidualSectorWeights.lean:103:12: `dif_pos` has been deprecated: Use `dite_eq_left` instead\n\nHint: Replace the deprecated name:\n  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: ResidualSectorWeights.lean:108:0: automatically included section variable(s) unused in theorem `ResidualSectorWeights.hol_sub`:\n  [LinearOrder α]\n  [IsStrictOrderedRing α]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [LinearOrder α] [IsStrictOrderedRing α] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: ResidualSectorWeights.lean:130:0: automatically included section variable(s) unused in theorem `ResidualSectorWeights.hol_single`:\n  [LinearOrder α]\n  [IsStrictOrderedRing α]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [LinearOrder α] [IsStrictOrderedRing α] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: ResidualSectorWeights.lean:139:12: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hk]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:213:14: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:216:14: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:222:10: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hij] at this\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:226:10: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hij] at this\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:248:14: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:251:14: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:259:14: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [hk]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:266:10: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [this]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ResidualSectorWeights.lean:297:0: automatically included section variable(s) unused in theorem `ResidualSectorWeights.inv_const`:\n  [CommRing α]\n  [LinearOrder α]\n  [IsStrictOrderedRing α]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [CommRing α] [LinearOrder α] [IsStrictOrderedRing α] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\ninfo: ResidualSectorWeights.lean:405:0: 'ResidualSectorWeights.hol_d0' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:406:0: 'ResidualSectorWeights.exists_d0_of_hol_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:407:0: 'ResidualSectorWeights.class_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:408:0: 'ResidualSectorWeights.phi1_attained_and_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:409:0: 'ResidualSectorWeights.minimizer_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:410:0: 'ResidualSectorWeights.minimizers_not_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:411:0: 'ResidualSectorWeights.sector_weights_sum_to_phi1' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:412:0: 'ResidualSectorWeights.sector_weights_not_determined' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:413:0: 'ResidualSectorWeights.minimizer_unique_of_hol_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:414:0: 'ResidualSectorWeights.minimizer_unique_of_one_edge' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:415:0: 'ResidualSectorWeights.symmetric_integral_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:416:0: 'ResidualSectorWeights.symmetric_selector' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:417:0: 'ResidualSectorWeights.c4_instance_two_minimizers' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ResidualSectorWeights.lean:418:0: 'ResidualSectorWeights.c4_orbit_sum_not_minimizer' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1051 jobs).\n"
+      },
+      {
+        "module": "U1SelectorSegment",
+        "dag_node": "L1-U1-SELECTOR-OTHER-SEGMENT",
+        "position": 154,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/U1SelectorSegment.lean",
+        "sha256": "49c0f0ad772ea4cf19e56b26c1e16629428ef7676d275bfa89f91315b0d86b4c",
+        "sha256_after_build": "49c0f0ad772ea4cf19e56b26c1e16629428ef7676d275bfa89f91315b0d86b4c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 35.58,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "U1SelectorSegment.re_rec",
+          "U1SelectorSegment.Wseq_cast",
+          "U1SelectorSegment.Wseq_mod",
+          "U1SelectorSegment.not_torsion_of_den",
+          "U1SelectorSegment.no_point_with_x_half",
+          "U1SelectorSegment.circle_integral_case",
+          "U1SelectorSegment.circle_torsion",
+          "U1SelectorSegment.circle_torsion_iff",
+          "U1SelectorSegment.torsion_exponent_divides_four",
+          "U1SelectorSegment.cube_root_trivial",
+          "U1SelectorSegment.u345_infinite_order",
+          "U1SelectorSegment.cayley_on_circle",
+          "U1SelectorSegment.every_point_is_cayley",
+          "U1SelectorSegment.cayley_reaches_south_pole"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "U1SelectorSegment.re_rec": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.Wseq_cast": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.Wseq_mod": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.not_torsion_of_den": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.no_point_with_x_half": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.circle_integral_case": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.circle_torsion": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.circle_torsion_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.torsion_exponent_divides_four": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.cube_root_trivial": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.u345_infinite_order": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.cayley_on_circle": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.every_point_is_cayley": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "U1SelectorSegment.cayley_reaches_south_pole": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1261/1261] Built U1SelectorSegment (30s)\nwarning: U1SelectorSegment.lean: imports `Mathlib.Data.ZMod.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Algebra.Field.ZMod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Data.Rat.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Data.Nat.Prime.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean: imports `Mathlib.Tactic.IntervalCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: U1SelectorSegment.lean:106:2: Try this: \n  haveI̵\n\nThe goal is a proposition, so `have` is preferred over `haveI`.\nThe difference between `have` and `haveI` is that `haveI` inlines the value.\nBut this is not relevant for proofs because of proof irrelevance.\n\nNote: This linter can be disabled with `set_option linter.style.haveILetI false`\ninfo: U1SelectorSegment.lean:262:0: 'U1SelectorSegment.re_rec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:263:0: 'U1SelectorSegment.Wseq_cast' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:264:0: 'U1SelectorSegment.Wseq_mod' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:265:0: 'U1SelectorSegment.not_torsion_of_den' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:266:0: 'U1SelectorSegment.no_point_with_x_half' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:267:0: 'U1SelectorSegment.circle_integral_case' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:268:0: 'U1SelectorSegment.circle_torsion' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:269:0: 'U1SelectorSegment.circle_torsion_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:270:0: 'U1SelectorSegment.torsion_exponent_divides_four' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:271:0: 'U1SelectorSegment.cube_root_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:272:0: 'U1SelectorSegment.u345_infinite_order' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:273:0: 'U1SelectorSegment.cayley_on_circle' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:274:0: 'U1SelectorSegment.every_point_is_cayley' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: U1SelectorSegment.lean:275:0: 'U1SelectorSegment.cayley_reaches_south_pole' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1261 jobs).\n"
+      },
+      {
+        "module": "RealificationJ",
+        "dag_node": "L1-WDP-REALIFICATION-J",
+        "position": 155,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/RealificationJ.lean",
+        "sha256": "9c4af34f323541434cab7cb2134f4c4c311f6e8e9653bf31603611cd0c52c336",
+        "sha256_after_build": "9c4af34f323541434cab7cb2134f4c4c311f6e8e9653bf31603611cd0c52c336",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 28.42,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "RealificationJ.R_add",
+          "RealificationJ.R_smul",
+          "RealificationJ.R_mul",
+          "RealificationJ.R_one",
+          "RealificationJ.R_injective",
+          "RealificationJ.J_sq",
+          "RealificationJ.J_R_comm",
+          "RealificationJ.R_imul",
+          "RealificationJ.R_star",
+          "RealificationJ.hermitian_iff_symmetric",
+          "RealificationJ.trace_R",
+          "RealificationJ.trace_not_twice_complex_trace",
+          "RealificationJ.image_iff",
+          "RealificationJ.commutes_conj",
+          "RealificationJ.other_square_root_instance",
+          "RealificationJ.other_root_not_in_image"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "RealificationJ.R_add": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_smul": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_mul": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_injective": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.J_sq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.J_R_comm": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_imul": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.R_star": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.hermitian_iff_symmetric": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.trace_R": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.trace_not_twice_complex_trace": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.image_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.commutes_conj": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.other_square_root_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RealificationJ.other_root_not_in_image": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1278/1278] Built RealificationJ (23s)\nwarning: RealificationJ.lean: imports `Mathlib.Data.Matrix.Block` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean: imports `Mathlib.LinearAlgebra.Matrix.Notation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean: imports `Mathlib.Tactic.FinCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RealificationJ.lean:78:0: automatically included section variable(s) unused in theorem `RealificationJ.R_add`:\n  [Fintype m]\n  [Fintype n]\n  [DecidableEq m]\n  [DecidableEq n]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:80:10: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: RealificationJ.lean:80:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nwarning: RealificationJ.lean:82:0: automatically included section variable(s) unused in theorem `RealificationJ.R_smul`:\n  [Fintype m]\n  [Fintype n]\n  [DecidableEq m]\n  [DecidableEq n]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:84:10: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: RealificationJ.lean:84:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nwarning: RealificationJ.lean:86:0: automatically included section variable(s) unused in theorem `RealificationJ.R_mul`:\n  [Fintype m]\n  [Fintype k]\n  [DecidableEq m]\n  [DecidableEq n]\n  [DecidableEq k]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] [Fintype k] [DecidableEq m] [DecidableEq n] [DecidableEq k] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:90:0: automatically included section variable(s) unused in theorem `RealificationJ.R_one`:\n  [Fintype m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:93:0: automatically included section variable(s) unused in theorem `RealificationJ.R_injective`:\n  [Fintype m]\n  [Fintype n]\n  [DecidableEq m]\n  [DecidableEq n]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:113:0: automatically included section variable(s) unused in theorem `RealificationJ.R_imul`:\n  [Fintype n]\n  [DecidableEq n]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype n] [DecidableEq n] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:117:0: automatically included section variable(s) unused in theorem `RealificationJ.R_star`:\n  [Fintype m]\n  [Fintype n]\n  [DecidableEq m]\n  [DecidableEq n]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\nwarning: RealificationJ.lean:119:10: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: RealificationJ.lean:119:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nwarning: RealificationJ.lean:126:0: automatically included section variable(s) unused in theorem `RealificationJ.trace_fromBlocks'`:\n  [DecidableEq m]\nconsider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:\n  omit [DecidableEq m] in theorem ...\n\nNote: This linter can be disabled with `set_option linter.unusedSectionVars false`\ninfo: RealificationJ.lean:244:0: 'RealificationJ.R_add' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:245:0: 'RealificationJ.R_smul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:246:0: 'RealificationJ.R_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:247:0: 'RealificationJ.R_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:248:0: 'RealificationJ.R_injective' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:249:0: 'RealificationJ.J_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:250:0: 'RealificationJ.J_R_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:251:0: 'RealificationJ.R_imul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:252:0: 'RealificationJ.R_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:253:0: 'RealificationJ.hermitian_iff_symmetric' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:254:0: 'RealificationJ.trace_R' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:255:0: 'RealificationJ.trace_not_twice_complex_trace' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:256:0: 'RealificationJ.image_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:257:0: 'RealificationJ.commutes_conj' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:258:0: 'RealificationJ.other_square_root_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RealificationJ.lean:259:0: 'RealificationJ.other_root_not_in_image' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1278 jobs).\n"
+      },
+      {
+        "module": "ObligationMonoid",
+        "dag_node": "PG-OBLIGATION-MONOID",
+        "position": 156,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/ObligationMonoid.lean",
+        "sha256": "b5afec8bddd5021a809a91368fa00e26538962fce7a27f1e1acd08f3e79ac1c5",
+        "sha256_after_build": "b5afec8bddd5021a809a91368fa00e26538962fce7a27f1e1acd08f3e79ac1c5",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 33.06,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "ObligationMonoid.combine_assoc",
+          "ObligationMonoid.combine_comm",
+          "ObligationMonoid.combine_empty",
+          "ObligationMonoid.combine_cancel",
+          "ObligationMonoid.no_inverse",
+          "ObligationMonoid.lift_single",
+          "ObligationMonoid.lift_unique",
+          "ObligationMonoid.trace_append",
+          "ObligationMonoid.trace_total",
+          "ObligationMonoid.trace_terms",
+          "ObligationMonoid.trace_assertions",
+          "ObligationMonoid.trace_destructive",
+          "ObligationMonoid.cost_floor",
+          "ObligationMonoid.valid_fresh_order_blind",
+          "ObligationMonoid.trace_swap",
+          "ObligationMonoid.event_table_not_injective",
+          "ObligationMonoid.combineB_assoc",
+          "ObligationMonoid.discharge_valid",
+          "ObligationMonoid.discharge_ok_iff",
+          "ObligationMonoid.discharge_never_generated",
+          "ObligationMonoid.over_discharge_needs_generated",
+          "ObligationMonoid.run_valid",
+          "ObligationMonoid.run_from_empty_valid",
+          "ObligationMonoid.genB_valid",
+          "ObligationMonoid.genB_none_iff",
+          "ObligationMonoid.overdischarge_instance"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "ObligationMonoid.combine_assoc": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.combine_comm": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.combine_empty": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.combine_cancel": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.no_inverse": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.lift_single": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.lift_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.trace_append": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.trace_total": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.trace_terms": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.trace_assertions": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.trace_destructive": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.cost_floor": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.valid_fresh_order_blind": [
+            "propext"
+          ],
+          "ObligationMonoid.trace_swap": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.event_table_not_injective": [
+            "propext"
+          ],
+          "ObligationMonoid.combineB_assoc": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.discharge_valid": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.discharge_ok_iff": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.discharge_never_generated": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.over_discharge_needs_generated": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.run_valid": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.run_from_empty_valid": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.genB_valid": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.genB_none_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ObligationMonoid.overdischarge_instance": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [903/903] Built ObligationMonoid (27s)\nwarning: ObligationMonoid.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ObligationMonoid.lean: imports `Mathlib.Algebra.BigOperators.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ObligationMonoid.lean:114:64: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: ObligationMonoid.lean:114:64: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nwarning: ObligationMonoid.lean:119:64: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: ObligationMonoid.lean:119:64: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\nwarning: ObligationMonoid.lean:163:27: `if_true` has been deprecated: Use `ite_true` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲\nwarning: ObligationMonoid.lean:163:36: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\nwarning: ObligationMonoid.lean:162:22: This simp argument is unused:\n  combine_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [h1, h2]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:163:27: This simp argument is unused:\n  if_true\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [h1, h2, if_false, Option.bind_some, combine_apply]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:163:46: This simp argument is unused:\n  Option.bind_some\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [h1, h2, if_true, if_false, combine_apply]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:163:64: This simp argument is unused:\n  combine_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [h1, h2, if_true, if_false, Option.bind_some]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:175:26: This simp argument is unused:\n  combine_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [h1, h2, h3]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:203:19: `if_true` has been deprecated: Use `ite_true` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲\nwarning: ObligationMonoid.lean:208:31: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\nwarning: ObligationMonoid.lean:214:16: This simp argument is unused:\n  Ledger.Valid\n\nHint: Omit it from the simp argument list.\n  [apply] simp [single]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:217:24: This simp argument is unused:\n  Pi.single_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [single, hj]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:229:20: This simp argument is unused:\n  this\n\nHint: Omit it from the simp argument list.\n  [apply] simp [h0, h1]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: ObligationMonoid.lean:248:31: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\nwarning: ObligationMonoid.lean:248:41: `if_true` has been deprecated: Use `ite_true` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲\nwarning: ObligationMonoid.lean:240:55: Variable name `hv` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hv\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nwarning: ObligationMonoid.lean:314:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: ObligationMonoid.lean:321:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: ObligationMonoid.lean:328:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: ObligationMonoid.lean:333:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\ninfo: ObligationMonoid.lean:345:0: 'ObligationMonoid.combine_assoc' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:346:0: 'ObligationMonoid.combine_comm' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:347:0: 'ObligationMonoid.combine_empty' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:348:0: 'ObligationMonoid.combine_cancel' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:349:0: 'ObligationMonoid.no_inverse' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:350:0: 'ObligationMonoid.lift_single' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ObligationMonoid.lean:351:0: 'ObligationMonoid.lift_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ObligationMonoid.lean:352:0: 'ObligationMonoid.trace_append' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:353:0: 'ObligationMonoid.trace_total' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:354:0: 'ObligationMonoid.trace_terms' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:355:0: 'ObligationMonoid.trace_assertions' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:356:0: 'ObligationMonoid.trace_destructive' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:357:0: 'ObligationMonoid.cost_floor' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:358:0: 'ObligationMonoid.valid_fresh_order_blind' depends on axioms: [propext]\ninfo: ObligationMonoid.lean:359:0: 'ObligationMonoid.trace_swap' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ObligationMonoid.lean:360:0: 'ObligationMonoid.event_table_not_injective' depends on axioms: [propext]\ninfo: ObligationMonoid.lean:361:0: 'ObligationMonoid.combineB_assoc' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:362:0: 'ObligationMonoid.discharge_valid' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:363:0: 'ObligationMonoid.discharge_ok_iff' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:364:0: 'ObligationMonoid.discharge_never_generated' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:365:0: 'ObligationMonoid.over_discharge_needs_generated' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:366:0: 'ObligationMonoid.run_valid' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:367:0: 'ObligationMonoid.run_from_empty_valid' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:368:0: 'ObligationMonoid.genB_valid' depends on axioms: [propext, Quot.sound]\ninfo: ObligationMonoid.lean:369:0: 'ObligationMonoid.genB_none_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ObligationMonoid.lean:370:0: 'ObligationMonoid.overdischarge_instance' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (903 jobs).\n"
+      },
+      {
+        "module": "SnCarrierPfp",
+        "dag_node": "PG-SN-CARRIER",
+        "position": 157,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/SnCarrierPfp.lean",
+        "sha256": "f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f",
+        "sha256_after_build": "f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 30.2,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "SnCarrierPfp.old_image_base",
+          "SnCarrierPfp.sectionLift_injective",
+          "SnCarrierPfp.unrestricted_lift_not_injective",
+          "SnCarrierPfp.no_recovery_for_unrestricted_lift",
+          "SnCarrierPfp.refusal_token_round_trip_changes_input",
+          "SnCarrierPfp.ground_carrier_empty",
+          "SnCarrierPfp.card_base",
+          "SnCarrierPfp.card_image_sectionLift",
+          "SnCarrierPfp.table_ne_base_stage_zero",
+          "SnCarrierPfp.table_ne_base_stage_two",
+          "SnCarrierPfp.table_ne_base_stage_three",
+          "SnCarrierPfp.table_eq_base_stage_one_iff",
+          "SnCarrierPfp.no_alphabet_matches_stages_one_two",
+          "SnCarrierPfp.baseCard_36"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "SnCarrierPfp.old_image_base": [
+            "propext"
+          ],
+          "SnCarrierPfp.sectionLift_injective": [
+            "propext"
+          ],
+          "SnCarrierPfp.unrestricted_lift_not_injective": [
+            "propext"
+          ],
+          "SnCarrierPfp.no_recovery_for_unrestricted_lift": [
+            "propext"
+          ],
+          "SnCarrierPfp.refusal_token_round_trip_changes_input": [
+            "propext"
+          ],
+          "SnCarrierPfp.ground_carrier_empty": [],
+          "SnCarrierPfp.card_base": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.card_image_sectionLift": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.table_ne_base_stage_zero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.table_ne_base_stage_two": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.table_ne_base_stage_three": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.table_eq_base_stage_one_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.no_alphabet_matches_stages_one_two": [
+            "Quot.sound",
+            "propext"
+          ],
+          "SnCarrierPfp.baseCard_36": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [957/957] Built SnCarrierPfp (23s)\nwarning: SnCarrierPfp.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnCarrierPfp.lean: imports `Mathlib.Data.Fintype.Sum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnCarrierPfp.lean: imports `Mathlib.Data.Fintype.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnCarrierPfp.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnCarrierPfp.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: SnCarrierPfp.lean:254:0: 'SnCarrierPfp.old_image_base' depends on axioms: [propext]\ninfo: SnCarrierPfp.lean:255:0: 'SnCarrierPfp.sectionLift_injective' depends on axioms: [propext]\ninfo: SnCarrierPfp.lean:256:0: 'SnCarrierPfp.unrestricted_lift_not_injective' depends on axioms: [propext]\ninfo: SnCarrierPfp.lean:257:0: 'SnCarrierPfp.no_recovery_for_unrestricted_lift' depends on axioms: [propext]\ninfo: SnCarrierPfp.lean:258:0: 'SnCarrierPfp.refusal_token_round_trip_changes_input' depends on axioms: [propext]\ninfo: SnCarrierPfp.lean:259:0: 'SnCarrierPfp.ground_carrier_empty' does not depend on any axioms\ninfo: SnCarrierPfp.lean:260:0: 'SnCarrierPfp.card_base' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SnCarrierPfp.lean:261:0: 'SnCarrierPfp.card_image_sectionLift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SnCarrierPfp.lean:262:0: 'SnCarrierPfp.table_ne_base_stage_zero' depends on axioms: [propext, Quot.sound]\ninfo: SnCarrierPfp.lean:263:0: 'SnCarrierPfp.table_ne_base_stage_two' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SnCarrierPfp.lean:264:0: 'SnCarrierPfp.table_ne_base_stage_three' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SnCarrierPfp.lean:265:0: 'SnCarrierPfp.table_eq_base_stage_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SnCarrierPfp.lean:266:0: 'SnCarrierPfp.no_alphabet_matches_stages_one_two' depends on axioms: [propext, Quot.sound]\ninfo: SnCarrierPfp.lean:267:0: 'SnCarrierPfp.baseCard_36' depends on axioms: [propext]\nBuild completed successfully (957 jobs).\n"
+      },
+      {
+        "module": "AdmissionFloor",
+        "dag_node": "PG-ADMISSION-FLOOR",
+        "position": 158,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/AdmissionFloor.lean",
+        "sha256": "6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717",
+        "sha256_after_build": "6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 19.2,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "AdmissionFloor.endpoints_apart",
+          "AdmissionFloor.no_cut_on_subsingleton",
+          "AdmissionFloor.identification_breaks_law",
+          "AdmissionFloor.cut_exists_iff_nontrivial",
+          "AdmissionFloor.exists_law_target_iff",
+          "AdmissionFloor.instance_without_law",
+          "AdmissionFloor.law_without_instance",
+          "AdmissionFloor.law_not_derived_from_distinctness",
+          "AdmissionFloor.pointed_relation_independence",
+          "AdmissionFloor.two_point_cut_count",
+          "AdmissionFloor.one_point_cut_count"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "AdmissionFloor.endpoints_apart": [],
+          "AdmissionFloor.no_cut_on_subsingleton": [],
+          "AdmissionFloor.identification_breaks_law": [],
+          "AdmissionFloor.cut_exists_iff_nontrivial": [],
+          "AdmissionFloor.exists_law_target_iff": [],
+          "AdmissionFloor.instance_without_law": [],
+          "AdmissionFloor.law_without_instance": [],
+          "AdmissionFloor.law_not_derived_from_distinctness": [],
+          "AdmissionFloor.pointed_relation_independence": [],
+          "AdmissionFloor.two_point_cut_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "AdmissionFloor.one_point_cut_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [736/736] Built AdmissionFloor (14s)\nwarning: AdmissionFloor.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: AdmissionFloor.lean: imports `Mathlib.Data.Fintype.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: AdmissionFloor.lean: imports `Mathlib.Data.Fintype.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: AdmissionFloor.lean:115:0: 'AdmissionFloor.endpoints_apart' does not depend on any axioms\ninfo: AdmissionFloor.lean:116:0: 'AdmissionFloor.no_cut_on_subsingleton' does not depend on any axioms\ninfo: AdmissionFloor.lean:117:0: 'AdmissionFloor.identification_breaks_law' does not depend on any axioms\ninfo: AdmissionFloor.lean:118:0: 'AdmissionFloor.cut_exists_iff_nontrivial' does not depend on any axioms\ninfo: AdmissionFloor.lean:119:0: 'AdmissionFloor.exists_law_target_iff' does not depend on any axioms\ninfo: AdmissionFloor.lean:120:0: 'AdmissionFloor.instance_without_law' does not depend on any axioms\ninfo: AdmissionFloor.lean:121:0: 'AdmissionFloor.law_without_instance' does not depend on any axioms\ninfo: AdmissionFloor.lean:122:0: 'AdmissionFloor.law_not_derived_from_distinctness' does not depend on any axioms\ninfo: AdmissionFloor.lean:123:0: 'AdmissionFloor.pointed_relation_independence' does not depend on any axioms\ninfo: AdmissionFloor.lean:124:0: 'AdmissionFloor.two_point_cut_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: AdmissionFloor.lean:125:0: 'AdmissionFloor.one_point_cut_count' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (736 jobs).\n"
+      },
+      {
+        "module": "ChainRetraction",
+        "dag_node": "PG-CHAIN-RETRACTION",
+        "position": 159,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/ChainRetraction.lean",
+        "sha256": "94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26",
+        "sha256_after_build": "94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 36.89,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "ChainRetraction.cannot_kill",
+          "ChainRetraction.Hmap_injective",
+          "ChainRetraction.kernel_trivial",
+          "ChainRetraction.no_retraction_of_killed",
+          "ChainRetraction.TwoPoints.cls_ne_zero",
+          "ChainRetraction.TwoPoints.cls_killed",
+          "ChainRetraction.TwoPoints.no_chain_retraction",
+          "ChainRetraction.Triangle.square_zero",
+          "ChainRetraction.Triangle.cls_ne_zero",
+          "ChainRetraction.Triangle.cls_killed",
+          "ChainRetraction.Triangle.no_chain_retraction",
+          "ChainRetraction.TimesTwo.converse_fails_over_int"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "ChainRetraction.cannot_kill": [],
+          "ChainRetraction.Hmap_injective": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.kernel_trivial": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.no_retraction_of_killed": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.TwoPoints.cls_ne_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.TwoPoints.cls_killed": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.TwoPoints.no_chain_retraction": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.Triangle.square_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.Triangle.cls_ne_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.Triangle.cls_killed": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.Triangle.no_chain_retraction": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ChainRetraction.TimesTwo.converse_fails_over_int": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1218/1218] Built ChainRetraction (31s)\nwarning: ChainRetraction.lean: imports `Mathlib.LinearAlgebra.Quotient.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ChainRetraction.lean: imports `Mathlib.LinearAlgebra.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ChainRetraction.lean: imports `Mathlib.Algebra.Module.Submodule.Range` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: ChainRetraction.lean: imports `Mathlib.Algebra.Ring.Int.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: ChainRetraction.lean:260:0: 'ChainRetraction.cannot_kill' does not depend on any axioms\ninfo: ChainRetraction.lean:261:0: 'ChainRetraction.Hmap_injective' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:262:0: 'ChainRetraction.kernel_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:263:0: 'ChainRetraction.no_retraction_of_killed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:264:0: 'ChainRetraction.TwoPoints.cls_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:265:0: 'ChainRetraction.TwoPoints.cls_killed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:266:0: 'ChainRetraction.TwoPoints.no_chain_retraction' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:267:0: 'ChainRetraction.Triangle.square_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:268:0: 'ChainRetraction.Triangle.cls_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:269:0: 'ChainRetraction.Triangle.cls_killed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:270:0: 'ChainRetraction.Triangle.no_chain_retraction' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ChainRetraction.lean:271:0: 'ChainRetraction.TimesTwo.converse_fails_over_int' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1218 jobs).\n"
+      },
+      {
+        "module": "CollapseBarrier",
+        "dag_node": "PG-COLLAPSE-BARRIER",
+        "position": 160,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/CollapseBarrier.lean",
+        "sha256": "2e19515baccbf10fe7fb8b82c5c58490ba6808cd877924acdef7eb56606e7561",
+        "sha256_after_build": "2e19515baccbf10fe7fb8b82c5c58490ba6808cd877924acdef7eb56606e7561",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 21.21,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "CollapseBarrier.barrier",
+          "CollapseBarrier.factors_iff_of_nonempty",
+          "CollapseBarrier.factors_iff_exact",
+          "CollapseBarrier.factors_iff_fails_without_nonempty",
+          "CollapseBarrier.factorsImage_iff",
+          "CollapseBarrier.refine_separates",
+          "CollapseBarrier.tag_separates",
+          "CollapseBarrier.tag_card_lower_bound",
+          "CollapseBarrier.tag_exists",
+          "CollapseBarrier.tag_alphabet_iff",
+          "CollapseBarrier.two_point_one_bit",
+          "CollapseBarrier.two_point_no_factor"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "CollapseBarrier.barrier": [],
+          "CollapseBarrier.factors_iff_of_nonempty": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.factors_iff_exact": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.factors_iff_fails_without_nonempty": [],
+          "CollapseBarrier.factorsImage_iff": [
+            "Classical.choice"
+          ],
+          "CollapseBarrier.refine_separates": [],
+          "CollapseBarrier.tag_separates": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.tag_card_lower_bound": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.tag_exists": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.tag_alphabet_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CollapseBarrier.two_point_one_bit": [],
+          "CollapseBarrier.two_point_no_factor": []
+        },
+        "output": "⚠ [668/668] Built CollapseBarrier (16s)\nwarning: CollapseBarrier.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CollapseBarrier.lean: imports `Mathlib.Data.Fintype.EquivFin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CollapseBarrier.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CollapseBarrier.lean:198:0: 'CollapseBarrier.barrier' does not depend on any axioms\ninfo: CollapseBarrier.lean:199:0: 'CollapseBarrier.factors_iff_of_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:200:0: 'CollapseBarrier.factors_iff_exact' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:201:0: 'CollapseBarrier.factors_iff_fails_without_nonempty' does not depend on any axioms\ninfo: CollapseBarrier.lean:202:0: 'CollapseBarrier.factorsImage_iff' depends on axioms: [Classical.choice]\ninfo: CollapseBarrier.lean:203:0: 'CollapseBarrier.refine_separates' does not depend on any axioms\ninfo: CollapseBarrier.lean:204:0: 'CollapseBarrier.tag_separates' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:205:0: 'CollapseBarrier.tag_card_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:206:0: 'CollapseBarrier.tag_exists' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:207:0: 'CollapseBarrier.tag_alphabet_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CollapseBarrier.lean:208:0: 'CollapseBarrier.two_point_one_bit' does not depend on any axioms\ninfo: CollapseBarrier.lean:209:0: 'CollapseBarrier.two_point_no_factor' does not depend on any axioms\nBuild completed successfully (668 jobs).\n"
+      },
+      {
+        "module": "DemandAccounting",
+        "dag_node": "PG-DEMAND-ACCOUNTING",
+        "position": 161,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/DemandAccounting.lean",
+        "sha256": "caa7cae003a1790f98cbc16d56af7ee2d50116c8d2b56b3c5d734da5185ec14c",
+        "sha256_after_build": "caa7cae003a1790f98cbc16d56af7ee2d50116c8d2b56b3c5d734da5185ec14c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 23.1,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "DemandAccounting.demand_accounting",
+          "DemandAccounting.card_next_exact",
+          "DemandAccounting.formula_iff",
+          "DemandAccounting.fails_without_subset",
+          "DemandAccounting.fails_without_disjoint",
+          "DemandAccounting.holds_accidentally_without_hypotheses",
+          "DemandAccounting.fails_of_excess_without_overlap",
+          "DemandAccounting.single_violation_fails",
+          "DemandAccounting.list_register_nodup_iff",
+          "DemandAccounting.nat_truncation_masks_subset_violation",
+          "DemandAccounting.every_step_is_an_accounting",
+          "DemandAccounting.split_not_determined",
+          "DemandAccounting.list_length_no_disjointness",
+          "DemandAccounting.list_overlap_not_nodup"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "DemandAccounting.demand_accounting": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.card_next_exact": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.formula_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.fails_without_subset": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.fails_without_disjoint": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.holds_accidentally_without_hypotheses": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.fails_of_excess_without_overlap": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.single_violation_fails": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.list_register_nodup_iff": [
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.nat_truncation_masks_subset_violation": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.every_step_is_an_accounting": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.split_not_determined": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.list_length_no_disjointness": [
+            "Quot.sound",
+            "propext"
+          ],
+          "DemandAccounting.list_overlap_not_nodup": []
+        },
+        "output": "⚠ [974/974] Built DemandAccounting (18s)\nwarning: DemandAccounting.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: DemandAccounting.lean: imports `Mathlib.Order.Interval.Finset.Nat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: DemandAccounting.lean: imports `Mathlib.Algebra.Order.Group.Nat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: DemandAccounting.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: DemandAccounting.lean:203:0: 'DemandAccounting.demand_accounting' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:204:0: 'DemandAccounting.card_next_exact' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:205:0: 'DemandAccounting.formula_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:206:0: 'DemandAccounting.fails_without_subset' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:207:0: 'DemandAccounting.fails_without_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:208:0: 'DemandAccounting.holds_accidentally_without_hypotheses' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:209:0: 'DemandAccounting.fails_of_excess_without_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:210:0: 'DemandAccounting.single_violation_fails' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:211:0: 'DemandAccounting.list_register_nodup_iff' depends on axioms: [propext, Quot.sound]\ninfo: DemandAccounting.lean:212:0: 'DemandAccounting.nat_truncation_masks_subset_violation' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:213:0: 'DemandAccounting.every_step_is_an_accounting' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:214:0: 'DemandAccounting.split_not_determined' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: DemandAccounting.lean:215:0: 'DemandAccounting.list_length_no_disjointness' depends on axioms: [propext, Quot.sound]\ninfo: DemandAccounting.lean:216:0: 'DemandAccounting.list_overlap_not_nodup' does not depend on any axioms\nBuild completed successfully (974 jobs).\n"
+      },
+      {
+        "module": "FreeMonoidNoniso",
+        "dag_node": "PG-FREE-MONOID-NONISO",
+        "position": 162,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/FreeMonoidNoniso.lean",
+        "sha256": "97453073da4c402585e900368fd9f71837da6621bc43bd43d9cd409b67027990",
+        "sha256_after_build": "97453073da4c402585e900368fd9f71837da6621bc43bd43d9cd409b67027990",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 30.85,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FreeMonoidNoniso.isAtom_iff",
+          "FreeMonoidNoniso.isAtom_map_iff",
+          "FreeMonoidNoniso.alphabetEquiv",
+          "FreeMonoidNoniso.no_free_monoid_iso",
+          "FreeMonoidNoniso.freeMonoid_iso_iff_equiv",
+          "FreeMonoidNoniso.discrete_equivalence_card",
+          "FreeMonoidNoniso.no_discrete_equivalence",
+          "FreeMonoidNoniso.discrete_equivalence_iff",
+          "FreeMonoidNoniso.set_bijection_exists",
+          "FreeMonoidNoniso.bijection_but_not_isomorphic",
+          "FreeMonoidNoniso.free_monoid_zero_subsingleton",
+          "FreeMonoidNoniso.card_words_of_length",
+          "FreeMonoidNoniso.card_atoms",
+          "FreeMonoidNoniso.unequal_finite_alphabets_not_wordiso"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FreeMonoidNoniso.isAtom_iff": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.isAtom_map_iff": [
+            "Quot.sound"
+          ],
+          "FreeMonoidNoniso.alphabetEquiv": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.no_free_monoid_iso": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.freeMonoid_iso_iff_equiv": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.discrete_equivalence_card": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.no_discrete_equivalence": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.discrete_equivalence_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.set_bijection_exists": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.bijection_but_not_isomorphic": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.free_monoid_zero_subsingleton": [
+            "Quot.sound"
+          ],
+          "FreeMonoidNoniso.card_words_of_length": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.card_atoms": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FreeMonoidNoniso.unequal_finite_alphabets_not_wordiso": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1507/1507] Built FreeMonoidNoniso (25s)\nwarning: FreeMonoidNoniso.lean: imports `Mathlib.SetTheory.Cardinal.Free` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FreeMonoidNoniso.lean: imports `Mathlib.CategoryTheory.Equivalence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FreeMonoidNoniso.lean: imports `Mathlib.CategoryTheory.Discrete.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FreeMonoidNoniso.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FreeMonoidNoniso.lean: imports `Mathlib.SetTheory.Cardinal.Finite` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FreeMonoidNoniso.lean:204:0: 'FreeMonoidNoniso.isAtom_iff' depends on axioms: [propext, Quot.sound]\ninfo: FreeMonoidNoniso.lean:205:0: 'FreeMonoidNoniso.isAtom_map_iff' depends on axioms: [Quot.sound]\ninfo: FreeMonoidNoniso.lean:206:0: 'FreeMonoidNoniso.alphabetEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:207:0: 'FreeMonoidNoniso.no_free_monoid_iso' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:208:0: 'FreeMonoidNoniso.freeMonoid_iso_iff_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:209:0: 'FreeMonoidNoniso.discrete_equivalence_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:210:0: 'FreeMonoidNoniso.no_discrete_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:211:0: 'FreeMonoidNoniso.discrete_equivalence_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:212:0: 'FreeMonoidNoniso.set_bijection_exists' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:213:0: 'FreeMonoidNoniso.bijection_but_not_isomorphic' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:214:0: 'FreeMonoidNoniso.free_monoid_zero_subsingleton' depends on axioms: [Quot.sound]\ninfo: FreeMonoidNoniso.lean:215:0: 'FreeMonoidNoniso.card_words_of_length' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:216:0: 'FreeMonoidNoniso.card_atoms' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FreeMonoidNoniso.lean:217:0: 'FreeMonoidNoniso.unequal_finite_alphabets_not_wordiso' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1507 jobs).\n"
+      },
+      {
+        "module": "HistoryReport",
+        "dag_node": "PG-HISTORY-REPORT-CRITERION",
+        "position": 163,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/HistoryReport.lean",
+        "sha256": "420e89ea7590479d90d1a16e9cea9b70f634e5dfc18d283397143f8c06773c0f",
+        "sha256_after_build": "420e89ea7590479d90d1a16e9cea9b70f634e5dfc18d283397143f8c06773c0f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 7.1,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "HistoryReport.fiberConstant_of_factors",
+          "HistoryReport.factors_of_fiberConstant_of_selector",
+          "HistoryReport.selector_exists",
+          "HistoryReport.history_report_criterion",
+          "HistoryReport.factor_unique_on_image",
+          "HistoryReport.not_factors_of_split",
+          "HistoryReport.off_image_not_unique",
+          "HistoryReport.extension_unique_of_surjective",
+          "HistoryReport.instance_split"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "HistoryReport.fiberConstant_of_factors": [],
+          "HistoryReport.factors_of_fiberConstant_of_selector": [],
+          "HistoryReport.selector_exists": [
+            "Classical.choice"
+          ],
+          "HistoryReport.history_report_criterion": [
+            "Classical.choice"
+          ],
+          "HistoryReport.factor_unique_on_image": [
+            "Quot.sound"
+          ],
+          "HistoryReport.not_factors_of_split": [],
+          "HistoryReport.off_image_not_unique": [],
+          "HistoryReport.extension_unique_of_surjective": [
+            "Quot.sound"
+          ],
+          "HistoryReport.instance_split": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [127/127] Built HistoryReport (3.6s)\nwarning: HistoryReport.lean: imports `Mathlib.Logic.Function.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: HistoryReport.lean:117:0: 'HistoryReport.fiberConstant_of_factors' does not depend on any axioms\ninfo: HistoryReport.lean:118:0: 'HistoryReport.factors_of_fiberConstant_of_selector' does not depend on any axioms\ninfo: HistoryReport.lean:119:0: 'HistoryReport.selector_exists' depends on axioms: [Classical.choice]\ninfo: HistoryReport.lean:120:0: 'HistoryReport.history_report_criterion' depends on axioms: [Classical.choice]\ninfo: HistoryReport.lean:121:0: 'HistoryReport.factor_unique_on_image' depends on axioms: [Quot.sound]\ninfo: HistoryReport.lean:122:0: 'HistoryReport.not_factors_of_split' does not depend on any axioms\ninfo: HistoryReport.lean:123:0: 'HistoryReport.off_image_not_unique' does not depend on any axioms\ninfo: HistoryReport.lean:124:0: 'HistoryReport.extension_unique_of_surjective' depends on axioms: [Quot.sound]\ninfo: HistoryReport.lean:125:0: 'HistoryReport.instance_split' depends on axioms: [propext]\nBuild completed successfully (127 jobs).\n"
+      },
+      {
+        "module": "InertDiamond",
+        "dag_node": "PG-INERT-DIAMOND",
+        "position": 164,
+        "batch": "20261021T132245Z_prompts_152_164",
+        "source": "lean4/InertDiamond.lean",
+        "sha256": "3981d4df4b464251865c5b3553c96467f64024927f11710f0769f1bef4880dd7",
+        "sha256_after_build": "3981d4df4b464251865c5b3553c96467f64024927f11710f0769f1bef4880dd7",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 9.01,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "InertDiamond.replay_filter_supply",
+          "InertDiamond.replay_eq_of_same_admissions",
+          "InertDiamond.mention_count_irrelevant",
+          "InertDiamond.step_changes_only_by_admission",
+          "InertDiamond.admit_changes_state",
+          "InertDiamond.supply_then_admit_root",
+          "InertDiamond.rooted_refuses_without_root",
+          "InertDiamond.rooted_root_supply_is_precondition",
+          "InertDiamond.rooted_later_supply_inert",
+          "InertDiamond.no_coproduct_of_single_token",
+          "InertDiamond.root_only_no_coproduct",
+          "InertDiamond.rooted_with_coproduct",
+          "InertDiamond.coproduct_without_inscription",
+          "InertDiamond.inscription_without_coproduct",
+          "InertDiamond.inscription_does_not_determine_coproduct",
+          "InertDiamond.rival_supply_not_inert"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "InertDiamond.replay_filter_supply": [
+            "propext"
+          ],
+          "InertDiamond.replay_eq_of_same_admissions": [
+            "propext"
+          ],
+          "InertDiamond.mention_count_irrelevant": [
+            "propext"
+          ],
+          "InertDiamond.step_changes_only_by_admission": [
+            "propext"
+          ],
+          "InertDiamond.admit_changes_state": [
+            "Quot.sound",
+            "propext"
+          ],
+          "InertDiamond.supply_then_admit_root": [
+            "propext"
+          ],
+          "InertDiamond.rooted_refuses_without_root": [
+            "propext"
+          ],
+          "InertDiamond.rooted_root_supply_is_precondition": [
+            "propext"
+          ],
+          "InertDiamond.rooted_later_supply_inert": [
+            "propext"
+          ],
+          "InertDiamond.no_coproduct_of_single_token": [],
+          "InertDiamond.root_only_no_coproduct": [
+            "propext"
+          ],
+          "InertDiamond.rooted_with_coproduct": [
+            "propext"
+          ],
+          "InertDiamond.coproduct_without_inscription": [
+            "propext"
+          ],
+          "InertDiamond.inscription_without_coproduct": [
+            "propext"
+          ],
+          "InertDiamond.inscription_does_not_determine_coproduct": [
+            "propext"
+          ],
+          "InertDiamond.rival_supply_not_inert": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [127/127] Built InertDiamond (3.7s)\nwarning: InertDiamond.lean: imports `Mathlib.Logic.Function.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: InertDiamond.lean:328:0: 'InertDiamond.replay_filter_supply' depends on axioms: [propext]\ninfo: InertDiamond.lean:329:0: 'InertDiamond.replay_eq_of_same_admissions' depends on axioms: [propext]\ninfo: InertDiamond.lean:330:0: 'InertDiamond.mention_count_irrelevant' depends on axioms: [propext]\ninfo: InertDiamond.lean:331:0: 'InertDiamond.step_changes_only_by_admission' depends on axioms: [propext]\ninfo: InertDiamond.lean:332:0: 'InertDiamond.admit_changes_state' depends on axioms: [propext, Quot.sound]\ninfo: InertDiamond.lean:333:0: 'InertDiamond.supply_then_admit_root' depends on axioms: [propext]\ninfo: InertDiamond.lean:334:0: 'InertDiamond.rooted_refuses_without_root' depends on axioms: [propext]\ninfo: InertDiamond.lean:335:0: 'InertDiamond.rooted_root_supply_is_precondition' depends on axioms: [propext]\ninfo: InertDiamond.lean:336:0: 'InertDiamond.rooted_later_supply_inert' depends on axioms: [propext]\ninfo: InertDiamond.lean:337:0: 'InertDiamond.no_coproduct_of_single_token' does not depend on any axioms\ninfo: InertDiamond.lean:338:0: 'InertDiamond.root_only_no_coproduct' depends on axioms: [propext]\ninfo: InertDiamond.lean:339:0: 'InertDiamond.rooted_with_coproduct' depends on axioms: [propext]\ninfo: InertDiamond.lean:340:0: 'InertDiamond.coproduct_without_inscription' depends on axioms: [propext]\ninfo: InertDiamond.lean:341:0: 'InertDiamond.inscription_without_coproduct' depends on axioms: [propext]\ninfo: InertDiamond.lean:342:0: 'InertDiamond.inscription_does_not_determine_coproduct' depends on axioms: [propext]\ninfo: InertDiamond.lean:343:0: 'InertDiamond.rival_supply_not_inert' depends on axioms: [propext]\nBuild completed successfully (127 jobs).\n"
+      },
+      {
+        "module": "OldImageInjective",
+        "dag_node": "PG-OLD-IMAGE-INJECTIVE",
+        "position": 165,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/OldImageInjective.lean",
+        "sha256": "4f260c7c94cddf35ac4a372fabdfe8f07565dcd50672b382e6d2a3666ff8625d",
+        "sha256_after_build": "4f260c7c94cddf35ac4a372fabdfe8f07565dcd50672b382e6d2a3666ff8625d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 26.31,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "OldImageInjective.old_image_injective",
+          "OldImageInjective.injective_iff_exists_law",
+          "OldImageInjective.law_freedom_off_image",
+          "OldImageInjective.off_image_not_implied_general",
+          "OldImageInjective.off_image_not_implied_instance",
+          "OldImageInjective.observation_not_implied_general",
+          "OldImageInjective.observation_preserved_possible",
+          "OldImageInjective.observation_not_implied_instance",
+          "OldImageInjective.repair_not_implied_general",
+          "OldImageInjective.repair_not_implied_instance",
+          "OldImageInjective.law_card_le",
+          "OldImageInjective.law_card"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "OldImageInjective.old_image_injective": [],
+          "OldImageInjective.injective_iff_exists_law": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "OldImageInjective.law_freedom_off_image": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "OldImageInjective.off_image_not_implied_general": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "OldImageInjective.off_image_not_implied_instance": [
+            "propext"
+          ],
+          "OldImageInjective.observation_not_implied_general": [],
+          "OldImageInjective.observation_preserved_possible": [],
+          "OldImageInjective.observation_not_implied_instance": [],
+          "OldImageInjective.repair_not_implied_general": [],
+          "OldImageInjective.repair_not_implied_instance": [
+            "propext"
+          ],
+          "OldImageInjective.law_card_le": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "OldImageInjective.law_card": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [983/983] Built OldImageInjective (20s)\nwarning: OldImageInjective.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OldImageInjective.lean: imports `Mathlib.Data.Fintype.Sum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OldImageInjective.lean: imports `Mathlib.Data.Fintype.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OldImageInjective.lean: imports `Mathlib.SetTheory.Cardinal.Finite` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OldImageInjective.lean:52:15: `dif_pos` has been deprecated: Use `dite_eq_left` instead\n\nHint: Replace the deprecated name:\n  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: OldImageInjective.lean:55:15: `dif_neg` has been deprecated: Use `dite_eq_right` instead\n\nHint: Replace the deprecated name:\n  d̵i̵f̵_̵n̵e̵g̵d̲i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\ninfo: OldImageInjective.lean:160:0: 'OldImageInjective.old_image_injective' does not depend on any axioms\ninfo: OldImageInjective.lean:161:0: 'OldImageInjective.injective_iff_exists_law' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OldImageInjective.lean:162:0: 'OldImageInjective.law_freedom_off_image' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OldImageInjective.lean:163:0: 'OldImageInjective.off_image_not_implied_general' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OldImageInjective.lean:164:0: 'OldImageInjective.off_image_not_implied_instance' depends on axioms: [propext]\ninfo: OldImageInjective.lean:165:0: 'OldImageInjective.observation_not_implied_general' does not depend on any axioms\ninfo: OldImageInjective.lean:166:0: 'OldImageInjective.observation_preserved_possible' does not depend on any axioms\ninfo: OldImageInjective.lean:167:0: 'OldImageInjective.observation_not_implied_instance' does not depend on any axioms\ninfo: OldImageInjective.lean:168:0: 'OldImageInjective.repair_not_implied_general' does not depend on any axioms\ninfo: OldImageInjective.lean:169:0: 'OldImageInjective.repair_not_implied_instance' depends on axioms: [propext]\ninfo: OldImageInjective.lean:170:0: 'OldImageInjective.law_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OldImageInjective.lean:171:0: 'OldImageInjective.law_card' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (983 jobs).\n"
+      },
+      {
+        "module": "PregenConstructive",
+        "dag_node": "PG-PREGEN-CONSTRUCTIVE-SUMMARY",
+        "position": 166,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/PregenConstructive.lean",
+        "sha256": "6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9",
+        "sha256_after_build": "6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 6.94,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "PregenConstructive.recon_of_fiberConstant",
+          "PregenConstructive.fiberConstantOn_of_recon",
+          "PregenConstructive.listed_history_report_criterion",
+          "PregenConstructive.recon_eq_none_iff",
+          "PregenConstructive.recon_unique",
+          "PregenConstructive.recon_wrong_off_list",
+          "PregenConstructive.listed_factor_exists",
+          "PregenConstructive.listed_history_report_criterion_classical",
+          "PregenConstructive.instance_reconstructs",
+          "PregenConstructive.instance_wrong_off_list"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "PregenConstructive.recon_of_fiberConstant": [],
+          "PregenConstructive.fiberConstantOn_of_recon": [],
+          "PregenConstructive.listed_history_report_criterion": [],
+          "PregenConstructive.recon_eq_none_iff": [],
+          "PregenConstructive.recon_unique": [],
+          "PregenConstructive.recon_wrong_off_list": [],
+          "PregenConstructive.listed_factor_exists": [],
+          "PregenConstructive.listed_history_report_criterion_classical": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PregenConstructive.instance_reconstructs": [],
+          "PregenConstructive.instance_not_fiberConstant": [
+            "propext"
+          ],
+          "PregenConstructive.instance_wrong_off_list": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [127/127] Built PregenConstructive (3.4s)\nwarning: PregenConstructive.lean: imports `Mathlib.Logic.Function.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: PregenConstructive.lean:184:0: 'PregenConstructive.recon_of_fiberConstant' does not depend on any axioms\ninfo: PregenConstructive.lean:185:0: 'PregenConstructive.fiberConstantOn_of_recon' does not depend on any axioms\ninfo: PregenConstructive.lean:186:0: 'PregenConstructive.listed_history_report_criterion' does not depend on any axioms\ninfo: PregenConstructive.lean:187:0: 'PregenConstructive.recon_eq_none_iff' does not depend on any axioms\ninfo: PregenConstructive.lean:188:0: 'PregenConstructive.recon_unique' does not depend on any axioms\ninfo: PregenConstructive.lean:189:0: 'PregenConstructive.recon_wrong_off_list' does not depend on any axioms\ninfo: PregenConstructive.lean:190:0: 'PregenConstructive.listed_factor_exists' does not depend on any axioms\ninfo: PregenConstructive.lean:191:0: 'PregenConstructive.listed_history_report_criterion_classical' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: PregenConstructive.lean:192:0: 'PregenConstructive.instance_reconstructs' does not depend on any axioms\ninfo: PregenConstructive.lean:193:0: 'PregenConstructive.instance_not_fiberConstant' depends on axioms: [propext]\ninfo: PregenConstructive.lean:194:0: 'PregenConstructive.instance_wrong_off_list' depends on axioms: [propext]\nBuild completed successfully (127 jobs).\n"
+      },
+      {
+        "module": "PrimdiffAxioms",
+        "dag_node": "PG-PRIMDIFF-AXIOMS",
+        "position": 167,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/PrimdiffAxioms.lean",
+        "sha256": "f41974512bd2143da41aa286cf55a45b2169c2e6690996bc01945cbea4ad8e16",
+        "sha256_after_build": "f41974512bd2143da41aa286cf55a45b2169c2e6690996bc01945cbea4ad8e16",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 23.26,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "PrimdiffAxioms.admit_error_a1",
+          "PrimdiffAxioms.admit_ok_iff",
+          "PrimdiffAxioms.admit_token_irrelevant",
+          "PrimdiffAxioms.admit_preserves_inv",
+          "PrimdiffAxioms.duplicates_stored",
+          "PrimdiffAxioms.reverse_orientation_accepted",
+          "PrimdiffAxioms.rtc_preorder",
+          "PrimdiffAxioms.rtc_least",
+          "PrimdiffAxioms.d1_d0",
+          "PrimdiffAxioms.face_nilpotent_iff",
+          "PrimdiffAxioms.descends_iff",
+          "PrimdiffAxioms.defect_gauge_invariant",
+          "PrimdiffAxioms.exact_closed",
+          "PrimdiffAxioms.exact_not_closed",
+          "PrimdiffAxioms.trichotomy",
+          "PrimdiffAxioms.rcl_eq_none_iff",
+          "PrimdiffAxioms.rcl_defined_of_nilpotent",
+          "PrimdiffAxioms.rcl_refuses_zero_one",
+          "PrimdiffAxioms.a1_a4_a5_independent_on_three_vertices",
+          "PrimdiffAxioms.empty_structure_is_a_model"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "PrimdiffAxioms.admit_error_a1": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.admit_ok_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.admit_token_irrelevant": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.admit_preserves_inv": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.duplicates_stored": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.reverse_orientation_accepted": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.rtc_preorder": [],
+          "PrimdiffAxioms.rtc_least": [],
+          "PrimdiffAxioms.d1_d0": [
+            "propext"
+          ],
+          "PrimdiffAxioms.face_nilpotent_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.descends_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.defect_gauge_invariant": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.exact_closed": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.exact_not_closed": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.trichotomy": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.rcl_eq_none_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.rcl_defined_of_nilpotent": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.rcl_refuses_zero_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.a5_iff_nilpotent": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "PrimdiffAxioms.a1_a4_a5_independent_on_three_vertices": [
+            "propext"
+          ],
+          "PrimdiffAxioms.empty_structure_is_a_model": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [986/986] Built PrimdiffAxioms (18s)\nwarning: PrimdiffAxioms.lean: imports `Mathlib.GroupTheory.QuotientGroup.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Data.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Logic.Relation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Tactic.Abel` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Order.Lattice.Nat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: PrimdiffAxioms.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: PrimdiffAxioms.lean:262:0: 'PrimdiffAxioms.admit_error_a1' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:263:0: 'PrimdiffAxioms.admit_ok_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:264:0: 'PrimdiffAxioms.admit_token_irrelevant' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:265:0: 'PrimdiffAxioms.admit_preserves_inv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:266:0: 'PrimdiffAxioms.duplicates_stored' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:267:0: 'PrimdiffAxioms.reverse_orientation_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:268:0: 'PrimdiffAxioms.rtc_preorder' does not depend on any axioms\ninfo: PrimdiffAxioms.lean:269:0: 'PrimdiffAxioms.rtc_least' does not depend on any axioms\ninfo: PrimdiffAxioms.lean:270:0: 'PrimdiffAxioms.d1_d0' depends on axioms: [propext]\ninfo: PrimdiffAxioms.lean:271:0: 'PrimdiffAxioms.face_nilpotent_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:272:0: 'PrimdiffAxioms.descends_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:273:0: 'PrimdiffAxioms.defect_gauge_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:274:0: 'PrimdiffAxioms.exact_closed' depends on axioms: [propext, Quot.sound]\ninfo: PrimdiffAxioms.lean:275:0: 'PrimdiffAxioms.exact_not_closed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:276:0: 'PrimdiffAxioms.trichotomy' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:277:0: 'PrimdiffAxioms.rcl_eq_none_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:278:0: 'PrimdiffAxioms.rcl_defined_of_nilpotent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:279:0: 'PrimdiffAxioms.rcl_refuses_zero_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:280:0: 'PrimdiffAxioms.a5_iff_nilpotent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: PrimdiffAxioms.lean:281:0: 'PrimdiffAxioms.a1_a4_a5_independent_on_three_vertices' depends on axioms: [propext]\ninfo: PrimdiffAxioms.lean:282:0: 'PrimdiffAxioms.empty_structure_is_a_model' depends on axioms: [propext]\nBuild completed successfully (986 jobs).\n"
+      },
+      {
+        "module": "RefineSeparates",
+        "dag_node": "PG-REFINE-SEPARATES",
+        "position": 168,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/RefineSeparates.lean",
+        "sha256": "27eb996394f29091540847f284ccfb33e220f0e6d25974810e9888ff4223a5ea",
+        "sha256_after_build": "27eb996394f29091540847f284ccfb33e220f0e6d25974810e9888ff4223a5ea",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 23.21,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "RefineSeparates.refine_retains",
+          "RefineSeparates.refine_separates",
+          "RefineSeparates.refine_separates_iff",
+          "RefineSeparates.refine_keeps_old_separation",
+          "RefineSeparates.resolves_iff_proper",
+          "RefineSeparates.proper_union",
+          "RefineSeparates.bits_iff_colours",
+          "RefineSeparates.no_one_bit_of_odd_cycle",
+          "RefineSeparates.triangle_no_one_bit",
+          "RefineSeparates.fibre_bits_iff",
+          "RefineSeparates.fibre_one_bit_iff",
+          "RefineSeparates.fibre_report_bits_iff",
+          "RefineSeparates.refine_separates_many"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "RefineSeparates.refine_retains": [],
+          "RefineSeparates.refine_separates": [],
+          "RefineSeparates.refine_separates_iff": [
+            "propext"
+          ],
+          "RefineSeparates.refine_keeps_old_separation": [],
+          "RefineSeparates.resolves_iff_proper": [
+            "propext"
+          ],
+          "RefineSeparates.proper_union": [],
+          "RefineSeparates.card_bits": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.bits_iff_colours": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.no_one_bit_of_odd_cycle": [
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.triangle_no_one_bit": [
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.fibre_bits_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.fibre_one_bit_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.fibre_report_bits_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RefineSeparates.refine_separates_many": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [799/799] Built RefineSeparates (18s)\nwarning: RefineSeparates.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RefineSeparates.lean: imports `Mathlib.Data.Fintype.EquivFin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RefineSeparates.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: RefineSeparates.lean:194:0: 'RefineSeparates.refine_retains' does not depend on any axioms\ninfo: RefineSeparates.lean:195:0: 'RefineSeparates.refine_separates' does not depend on any axioms\ninfo: RefineSeparates.lean:196:0: 'RefineSeparates.refine_separates_iff' depends on axioms: [propext]\ninfo: RefineSeparates.lean:197:0: 'RefineSeparates.refine_keeps_old_separation' does not depend on any axioms\ninfo: RefineSeparates.lean:198:0: 'RefineSeparates.resolves_iff_proper' depends on axioms: [propext]\ninfo: RefineSeparates.lean:199:0: 'RefineSeparates.proper_union' does not depend on any axioms\ninfo: RefineSeparates.lean:200:0: 'RefineSeparates.card_bits' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RefineSeparates.lean:201:0: 'RefineSeparates.bits_iff_colours' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RefineSeparates.lean:202:0: 'RefineSeparates.no_one_bit_of_odd_cycle' depends on axioms: [propext, Quot.sound]\ninfo: RefineSeparates.lean:203:0: 'RefineSeparates.triangle_no_one_bit' depends on axioms: [propext, Quot.sound]\ninfo: RefineSeparates.lean:204:0: 'RefineSeparates.fibre_bits_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RefineSeparates.lean:205:0: 'RefineSeparates.fibre_one_bit_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RefineSeparates.lean:206:0: 'RefineSeparates.fibre_report_bits_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RefineSeparates.lean:207:0: 'RefineSeparates.refine_separates_many' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (799 jobs).\n"
+      },
+      {
+        "module": "RootDiffStructure",
+        "dag_node": "PG-ROOT-DIFF-STRUCTURE",
+        "position": 169,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/RootDiffStructure.lean",
+        "sha256": "63a62b1dcd98373ab6a5019b54e567ad7d55894f6eca73a95a19e6f5af305084",
+        "sha256_after_build": "63a62b1dcd98373ab6a5019b54e567ad7d55894f6eca73a95a19e6f5af305084",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 21.55,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "RootDiffStructure.pd_injective",
+          "RootDiffStructure.st_injective",
+          "RootDiffStructure.pd_ne_st",
+          "RootDiffStructure.exhaustive",
+          "RootDiffStructure.no_identification",
+          "RootDiffStructure.universal",
+          "RootDiffStructure.card_real0",
+          "RootDiffStructure.card_maps_out",
+          "RootDiffStructure.card_maps_out_pow",
+          "RootDiffStructure.retracts_to_pd_iff",
+          "RootDiffStructure.retracts_to_s_iff",
+          "RootDiffStructure.no_reduction_to_pd",
+          "RootDiffStructure.no_reduction_to_s",
+          "RootDiffStructure.retractions_both_ways_of_nonempty",
+          "RootDiffStructure.nonempty_real0_iff",
+          "RootDiffStructure.real0_empty_of_both_empty",
+          "RootDiffStructure.posits_independent"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "RootDiffStructure.pd_injective": [],
+          "RootDiffStructure.st_injective": [],
+          "RootDiffStructure.pd_ne_st": [],
+          "RootDiffStructure.exhaustive": [],
+          "RootDiffStructure.no_identification": [],
+          "RootDiffStructure.universal": [
+            "Quot.sound"
+          ],
+          "RootDiffStructure.card_real0": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.card_maps_out": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.card_maps_out_pow": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.retracts_to_pd_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.retracts_to_s_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.no_reduction_to_pd": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.no_reduction_to_s": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.retractions_both_ways_of_nonempty": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "RootDiffStructure.nonempty_real0_iff": [
+            "Classical.choice"
+          ],
+          "RootDiffStructure.real0_empty_of_both_empty": [],
+          "RootDiffStructure.posits_independent": []
+        },
+        "output": "⚠ [799/799] Built RootDiffStructure (15s)\nwarning: RootDiffStructure.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RootDiffStructure.lean: imports `Mathlib.Data.Fintype.Sum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RootDiffStructure.lean: imports `Mathlib.Data.Fintype.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: RootDiffStructure.lean: imports `Mathlib.Logic.Equiv.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: RootDiffStructure.lean:190:0: 'RootDiffStructure.pd_injective' does not depend on any axioms\ninfo: RootDiffStructure.lean:191:0: 'RootDiffStructure.st_injective' does not depend on any axioms\ninfo: RootDiffStructure.lean:192:0: 'RootDiffStructure.pd_ne_st' does not depend on any axioms\ninfo: RootDiffStructure.lean:193:0: 'RootDiffStructure.exhaustive' does not depend on any axioms\ninfo: RootDiffStructure.lean:194:0: 'RootDiffStructure.no_identification' does not depend on any axioms\ninfo: RootDiffStructure.lean:195:0: 'RootDiffStructure.universal' depends on axioms: [Quot.sound]\ninfo: RootDiffStructure.lean:196:0: 'RootDiffStructure.card_real0' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:197:0: 'RootDiffStructure.card_maps_out' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:198:0: 'RootDiffStructure.card_maps_out_pow' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:199:0: 'RootDiffStructure.retracts_to_pd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:200:0: 'RootDiffStructure.retracts_to_s_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:201:0: 'RootDiffStructure.no_reduction_to_pd' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:202:0: 'RootDiffStructure.no_reduction_to_s' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:203:0: 'RootDiffStructure.retractions_both_ways_of_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: RootDiffStructure.lean:204:0: 'RootDiffStructure.nonempty_real0_iff' depends on axioms: [Classical.choice]\ninfo: RootDiffStructure.lean:205:0: 'RootDiffStructure.real0_empty_of_both_empty' does not depend on any axioms\ninfo: RootDiffStructure.lean:206:0: 'RootDiffStructure.posits_independent' does not depend on any axioms\nBuild completed successfully (799 jobs).\n"
+      },
+      {
+        "module": "SixOperations",
+        "dag_node": "PG-SIX-OPERATIONS",
+        "position": 170,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/SixOperations.lean",
+        "sha256": "a05c568c76bd1e1a4b574171bf80fb2980e661d7f5d1f42d4f9ea826c1a849a1",
+        "sha256_after_build": "a05c568c76bd1e1a4b574171bf80fb2980e661d7f5d1f42d4f9ea826c1a849a1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 19.22,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "SixOperations.supply_keeps_admitted",
+          "SixOperations.step_admitted_of_ne_admit",
+          "SixOperations.step_changes_admitted_iff",
+          "SixOperations.run_admitted",
+          "SixOperations.run_changes_admitted_iff",
+          "SixOperations.run_without_admit",
+          "SixOperations.six_results_pairwise_distinct",
+          "SixOperations.readings_separated_six_ops",
+          "SixOperations.readings_collapse_when_supply_admits",
+          "SixOperations.supply_admits_conflation_separates",
+          "SixOperations.designate_retains_conflation_separates",
+          "SixOperations.designation_is_overwritten",
+          "SixOperations.repeated_admit_does_not_grow_set"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "SixOperations.supply_keeps_admitted": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.step_admitted_of_ne_admit": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.step_changes_admitted_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.run_admitted": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.run_changes_admitted_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.run_without_admit": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.six_results_pairwise_distinct": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.readings_separated_six_ops": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.readings_collapse_when_supply_admits": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.supply_admits_conflation_separates": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.designate_retains_conflation_separates": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.designation_is_overwritten": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "SixOperations.repeated_admit_does_not_grow_set": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [717/717] Built SixOperations (16s)\nwarning: SixOperations.lean: imports `Mathlib.Data.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SixOperations.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SixOperations.lean: imports `Mathlib.Data.Finset.Union` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SixOperations.lean: imports `Mathlib.Data.Fintype.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: SixOperations.lean:248:0: 'SixOperations.supply_keeps_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:249:0: 'SixOperations.step_admitted_of_ne_admit' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:250:0: 'SixOperations.step_changes_admitted_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:251:0: 'SixOperations.run_admitted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:252:0: 'SixOperations.run_changes_admitted_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:253:0: 'SixOperations.run_without_admit' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:254:0: 'SixOperations.six_results_pairwise_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:255:0: 'SixOperations.readings_separated_six_ops' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:256:0: 'SixOperations.readings_collapse_when_supply_admits' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:257:0: 'SixOperations.supply_admits_conflation_separates' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:258:0: 'SixOperations.designate_retains_conflation_separates' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:259:0: 'SixOperations.designation_is_overwritten' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SixOperations.lean:260:0: 'SixOperations.repeated_admit_does_not_grow_set' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (717 jobs).\n"
+      },
+      {
+        "module": "SnOffImageRefusal",
+        "dag_node": "PG-SN-OFF-IMAGE-REFUSAL",
+        "position": 171,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/SnOffImageRefusal.lean",
+        "sha256": "fd9d0acd0e1a3985cc23bc94ceff041a7e80a5ae6c1845c3d6ff9a252629d972",
+        "sha256_after_build": "fd9d0acd0e1a3985cc23bc94ceff041a7e80a5ae6c1845c3d6ff9a252629d972",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 18.48,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "SnOffImageRefusal.SectionRetraction.injective",
+          "SnOffImageRefusal.sn_is_section_retraction",
+          "SnOffImageRefusal.sn_refused_iff_off_image",
+          "SnOffImageRefusal.sectionLift_injective",
+          "SnOffImageRefusal.refused_iff_off_image",
+          "SnOffImageRefusal.roundtrip_iff_in_image",
+          "SnOffImageRefusal.roundtrip_fails_off_image",
+          "SnOffImageRefusal.refuseOffImage_isSectionRetraction",
+          "SnOffImageRefusal.toy_refused_iff_odd",
+          "SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image",
+          "SnOffImageRefusal.old_image_base",
+          "SnOffImageRefusal.accepted_only_from_section",
+          "SnOffImageRefusal.accepted_iff",
+          "SnOffImageRefusal.nonDescent_iff_off_image",
+          "SnOffImageRefusal.retraction_stage_strict",
+          "SnOffImageRefusal.inImage_iff",
+          "SnOffImageRefusal.lax_breaks_refusal_characterisation",
+          "SnOffImageRefusal.instance_refusals"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "SnOffImageRefusal.SectionRetraction.injective": [],
+          "SnOffImageRefusal.refused_iff_off_image": [],
+          "SnOffImageRefusal.roundtrip_iff_in_image": [],
+          "SnOffImageRefusal.roundtrip_fails_off_image": [],
+          "SnOffImageRefusal.refuseOffImage_isSectionRetraction": [
+            "propext"
+          ],
+          "SnOffImageRefusal.toy_refused_iff_odd": [
+            "Quot.sound",
+            "propext"
+          ],
+          "SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image": [
+            "propext"
+          ],
+          "SnOffImageRefusal.sn_is_section_retraction": [
+            "propext"
+          ],
+          "SnOffImageRefusal.sn_refused_iff_off_image": [
+            "propext"
+          ],
+          "SnOffImageRefusal.sectionLift_injective": [
+            "propext"
+          ],
+          "SnOffImageRefusal.old_image_base": [
+            "propext"
+          ],
+          "SnOffImageRefusal.accepted_only_from_section": [
+            "propext"
+          ],
+          "SnOffImageRefusal.accepted_iff": [
+            "propext"
+          ],
+          "SnOffImageRefusal.nonDescent_iff_off_image": [
+            "propext"
+          ],
+          "SnOffImageRefusal.retraction_stage_strict": [
+            "propext"
+          ],
+          "SnOffImageRefusal.inImage_iff": [
+            "propext"
+          ],
+          "SnOffImageRefusal.lax_breaks_refusal_characterisation": [
+            "propext"
+          ],
+          "SnOffImageRefusal.instance_refusals": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [693/693] Built SnOffImageRefusal (15s)\nwarning: SnOffImageRefusal.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnOffImageRefusal.lean: imports `Mathlib.Data.Fintype.Sum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: SnOffImageRefusal.lean:65:35: Variable name `h` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _h\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nwarning: SnOffImageRefusal.lean:88:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: SnOffImageRefusal.lean:91:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\ninfo: SnOffImageRefusal.lean:378:0: 'SnOffImageRefusal.SectionRetraction.injective' does not depend on any axioms\ninfo: SnOffImageRefusal.lean:379:0: 'SnOffImageRefusal.refused_iff_off_image' does not depend on any axioms\ninfo: SnOffImageRefusal.lean:380:0: 'SnOffImageRefusal.roundtrip_iff_in_image' does not depend on any axioms\ninfo: SnOffImageRefusal.lean:381:0: 'SnOffImageRefusal.roundtrip_fails_off_image' does not depend on any axioms\ninfo: SnOffImageRefusal.lean:382:0: 'SnOffImageRefusal.refuseOffImage_isSectionRetraction' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:383:0: 'SnOffImageRefusal.toy_refused_iff_odd' depends on axioms: [propext, Quot.sound]\ninfo: SnOffImageRefusal.lean:384:0: 'SnOffImageRefusal.lax_retraction_obeys_law_but_accepts_off_image' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:385:0: 'SnOffImageRefusal.sn_is_section_retraction' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:386:0: 'SnOffImageRefusal.sn_refused_iff_off_image' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:387:0: 'SnOffImageRefusal.sectionLift_injective' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:388:0: 'SnOffImageRefusal.old_image_base' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:389:0: 'SnOffImageRefusal.accepted_only_from_section' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:390:0: 'SnOffImageRefusal.accepted_iff' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:391:0: 'SnOffImageRefusal.nonDescent_iff_off_image' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:392:0: 'SnOffImageRefusal.retraction_stage_strict' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:393:0: 'SnOffImageRefusal.inImage_iff' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:394:0: 'SnOffImageRefusal.lax_breaks_refusal_characterisation' depends on axioms: [propext]\ninfo: SnOffImageRefusal.lean:395:0: 'SnOffImageRefusal.instance_refusals' depends on axioms: [propext]\nBuild completed successfully (693 jobs).\n"
+      },
+      {
+        "module": "WdpDegree1Window",
+        "dag_node": "PG-WDP-DEGREE1-WINDOW",
+        "position": 172,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpDegree1Window.lean",
+        "sha256": "9da1d559e69e39b4235df28e9739536481b06944e90981b4b975683ddef5db42",
+        "sha256_after_build": "9da1d559e69e39b4235df28e9739536481b06944e90981b4b975683ddef5db42",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 25.5,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpDegree1Window.kappa_descends_iff",
+          "WdpDegree1Window.ker_kappa_eq_map",
+          "WdpDegree1Window.kappa_eq_zero_iff",
+          "WdpDegree1Window.kappa_not_defined_instance",
+          "WdpDegree1Window.isPhi_shift",
+          "WdpDegree1Window.isPhi_zero_iff",
+          "WdpDegree1Window.isPhi_nonneg",
+          "WdpDegree1Window.diag_unique",
+          "WdpDegree1Window.ne_zero_iff_pos",
+          "WdpDegree1Window.ratio_class",
+          "WdpDegree1Window.weak_duality",
+          "WdpDegree1Window.isPhi_of_certificate",
+          "WdpDegree1Window.cost_eq",
+          "WdpDegree1Window.isPhi_graph_iff",
+          "WdpDegree1Window.wl1_definite",
+          "WdpDegree1Window.graph_phi_zero_iff",
+          "WdpDegree1Window.tri_phi",
+          "WdpDegree1Window.tri_gamma2"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpDegree1Window.kappa_descends_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.ker_kappa_eq_map": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.kappa_eq_zero_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.kappa_not_defined_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.isPhi_shift": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.isPhi_zero_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.diag_unique": [
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.ratio_class": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.weak_duality": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.isPhi_of_certificate": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.isPhi_nonneg": [
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.ne_zero_iff_pos": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.cost_eq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.isPhi_graph_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.wl1_definite": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.graph_phi_zero_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.tri_phi": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDegree1Window.tri_gamma2": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1273/1273] Built WdpDegree1Window (22s)\nwarning: WdpDegree1Window.lean: imports `Mathlib.LinearAlgebra.Quotient.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Algebra.BigOperators.Ring.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Data.Fin.VecNotation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDegree1Window.lean: imports `Mathlib.Tactic.Abel` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpDegree1Window.lean:372:0: 'WdpDegree1Window.kappa_descends_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:373:0: 'WdpDegree1Window.ker_kappa_eq_map' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:374:0: 'WdpDegree1Window.kappa_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:375:0: 'WdpDegree1Window.kappa_not_defined_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:376:0: 'WdpDegree1Window.isPhi_shift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:377:0: 'WdpDegree1Window.isPhi_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:378:0: 'WdpDegree1Window.diag_unique' depends on axioms: [propext, Quot.sound]\ninfo: WdpDegree1Window.lean:379:0: 'WdpDegree1Window.ratio_class' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:380:0: 'WdpDegree1Window.weak_duality' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:381:0: 'WdpDegree1Window.isPhi_of_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:382:0: 'WdpDegree1Window.isPhi_nonneg' depends on axioms: [propext, Quot.sound]\ninfo: WdpDegree1Window.lean:383:0: 'WdpDegree1Window.ne_zero_iff_pos' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:384:0: 'WdpDegree1Window.cost_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:385:0: 'WdpDegree1Window.isPhi_graph_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:386:0: 'WdpDegree1Window.wl1_definite' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:387:0: 'WdpDegree1Window.graph_phi_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:388:0: 'WdpDegree1Window.tri_phi' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDegree1Window.lean:389:0: 'WdpDegree1Window.tri_gamma2' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1273 jobs).\n"
+      },
+      {
+        "module": "WdpDiagnosticRouting",
+        "dag_node": "PG-WDP-DIAGNOSTIC-NOT-ROUTING",
+        "position": 173,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpDiagnosticRouting.lean",
+        "sha256": "36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0",
+        "sha256_after_build": "36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 40.92,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpDiagnosticRouting.card_axes",
+          "WdpDiagnosticRouting.policy_values_independent",
+          "WdpDiagnosticRouting.no_value_forced",
+          "WdpDiagnosticRouting.card_policies",
+          "WdpDiagnosticRouting.no_surjective_policy",
+          "WdpDiagnosticRouting.no_injective_from_routing",
+          "WdpDiagnosticRouting.card_injective_policies",
+          "WdpDiagnosticRouting.diagRoute_values",
+          "WdpDiagnosticRouting.diagRoute_injective_where_defined",
+          "WdpDiagnosticRouting.routeStatus_surjective",
+          "WdpDiagnosticRouting.routePfp_not_surjective",
+          "WdpDiagnosticRouting.routePfp_misses_repair_and_norule",
+          "WdpDiagnosticRouting.residual_not_determine_route",
+          "WdpDiagnosticRouting.route_not_determine_residual",
+          "WdpDiagnosticRouting.auth_not_determine_route",
+          "WdpDiagnosticRouting.authTag_factors_through_route",
+          "WdpDiagnosticRouting.certified_needs_witness",
+          "WdpDiagnosticRouting.certified_only_for_authority_terminals",
+          "WdpDiagnosticRouting.diag_cannot_set_authority",
+          "WdpDiagnosticRouting.diag_cannot_set_terminal",
+          "WdpDiagnosticRouting.exactClass_not_authority",
+          "WdpDiagnosticRouting.certEligible_iff",
+          "WdpDiagnosticRouting.sealed_only_exact",
+          "WdpDiagnosticRouting.sealed_needs_witness",
+          "WdpDiagnosticRouting.sealed_exact_with_witness",
+          "WdpDiagnosticRouting.closed_tension",
+          "WdpDiagnosticRouting.fiber_route_in",
+          "WdpDiagnosticRouting.fiber_never_lift_budget_refused",
+          "WdpDiagnosticRouting.fiber_reaches_four",
+          "WdpDiagnosticRouting.outside_profile_ne_refuted",
+          "WdpDiagnosticRouting.relRoute_outside",
+          "WdpDiagnosticRouting.refuted_requires_profile",
+          "WdpDiagnosticRouting.relRoute_surjective"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpDiagnosticRouting.card_axes": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.policy_values_independent": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.no_value_forced": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.card_policies": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.no_surjective_policy": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.no_injective_from_routing": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.card_injective_policies": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.diagRoute_values": [],
+          "WdpDiagnosticRouting.diagRoute_injective_where_defined": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpDiagnosticRouting.routeStatus_surjective": [],
+          "WdpDiagnosticRouting.routePfp_not_surjective": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.routePfp_misses_repair_and_norule": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.residual_not_determine_route": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.route_not_determine_residual": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.auth_not_determine_route": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.authTag_factors_through_route": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.certified_needs_witness": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.certified_only_for_authority_terminals": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.diag_cannot_set_authority": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.diag_cannot_set_terminal": [],
+          "WdpDiagnosticRouting.exactClass_not_authority": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.certEligible_iff": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.sealed_only_exact": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.sealed_needs_witness": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.sealed_exact_with_witness": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.closed_tension": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.fiber_route_in": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.fiber_never_lift_budget_refused": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.fiber_reaches_four": [],
+          "WdpDiagnosticRouting.outside_profile_ne_refuted": [],
+          "WdpDiagnosticRouting.relRoute_outside": [],
+          "WdpDiagnosticRouting.refuted_requires_profile": [
+            "propext"
+          ],
+          "WdpDiagnosticRouting.relRoute_surjective": []
+        },
+        "output": "⚠ [808/808] Built WdpDiagnosticRouting (37s)\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.Perm` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpDiagnosticRouting.lean: imports `Mathlib.Data.Fintype.CardEmbedding` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpDiagnosticRouting.lean:408:0: 'WdpDiagnosticRouting.card_axes' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:409:0: 'WdpDiagnosticRouting.policy_values_independent' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:410:0: 'WdpDiagnosticRouting.no_value_forced' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:411:0: 'WdpDiagnosticRouting.card_policies' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:412:0: 'WdpDiagnosticRouting.no_surjective_policy' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:413:0: 'WdpDiagnosticRouting.no_injective_from_routing' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:414:0: 'WdpDiagnosticRouting.card_injective_policies' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:415:0: 'WdpDiagnosticRouting.diagRoute_values' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:416:0: 'WdpDiagnosticRouting.diagRoute_injective_where_defined' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpDiagnosticRouting.lean:417:0: 'WdpDiagnosticRouting.routeStatus_surjective' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:418:0: 'WdpDiagnosticRouting.routePfp_not_surjective' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:419:0: 'WdpDiagnosticRouting.routePfp_misses_repair_and_norule' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:420:0: 'WdpDiagnosticRouting.residual_not_determine_route' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:421:0: 'WdpDiagnosticRouting.route_not_determine_residual' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:422:0: 'WdpDiagnosticRouting.auth_not_determine_route' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:423:0: 'WdpDiagnosticRouting.authTag_factors_through_route' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:424:0: 'WdpDiagnosticRouting.certified_needs_witness' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:425:0: 'WdpDiagnosticRouting.certified_only_for_authority_terminals' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:426:0: 'WdpDiagnosticRouting.diag_cannot_set_authority' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:427:0: 'WdpDiagnosticRouting.diag_cannot_set_terminal' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:428:0: 'WdpDiagnosticRouting.exactClass_not_authority' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:429:0: 'WdpDiagnosticRouting.certEligible_iff' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:430:0: 'WdpDiagnosticRouting.sealed_only_exact' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:431:0: 'WdpDiagnosticRouting.sealed_needs_witness' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:432:0: 'WdpDiagnosticRouting.sealed_exact_with_witness' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:433:0: 'WdpDiagnosticRouting.closed_tension' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:434:0: 'WdpDiagnosticRouting.fiber_route_in' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:435:0: 'WdpDiagnosticRouting.fiber_never_lift_budget_refused' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:436:0: 'WdpDiagnosticRouting.fiber_reaches_four' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:437:0: 'WdpDiagnosticRouting.outside_profile_ne_refuted' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:438:0: 'WdpDiagnosticRouting.relRoute_outside' does not depend on any axioms\ninfo: WdpDiagnosticRouting.lean:439:0: 'WdpDiagnosticRouting.refuted_requires_profile' depends on axioms: [propext]\ninfo: WdpDiagnosticRouting.lean:440:0: 'WdpDiagnosticRouting.relRoute_surjective' does not depend on any axioms\nBuild completed successfully (808 jobs).\n"
+      },
+      {
+        "module": "WdpBridgeObligations",
+        "dag_node": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+        "position": 174,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpBridgeObligations.lean",
+        "sha256": "7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5",
+        "sha256_after_build": "7993025b4054eac17f890e5f07649f18ef8adbf9826d86015667d4f10dcbfbc5",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 23.66,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpBridgeObligations.endToEnd_iff_count",
+          "WdpBridgeObligations.endToEnd_five",
+          "WdpBridgeObligations.control_only_not_discharged",
+          "WdpBridgeObligations.endToEnd_iff_controls_and_no_control",
+          "WdpBridgeObligations.not_endToEnd_of_not_discharged",
+          "WdpBridgeObligations.update_sharp",
+          "WdpBridgeObligations.raise_completes",
+          "WdpBridgeObligations.endToEnd_mono",
+          "WdpBridgeObligations.le_raise",
+          "WdpBridgeObligations.raise_preserves_endToEnd",
+          "WdpBridgeObligations.prefixOrder_of_endToEnd",
+          "WdpBridgeObligations.prefixOrder_violation",
+          "WdpBridgeObligations.card_vectors",
+          "WdpBridgeObligations.endToEnd_unique",
+          "WdpBridgeObligations.bool_and_iff",
+          "WdpBridgeObligations.pairDefect_preserves_and_reflects",
+          "WdpBridgeObligations.pairDefect_forgets_orientation",
+          "WdpBridgeObligations.no_sq_eq_two_sq"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpBridgeObligations.endToEnd_iff_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.endToEnd_five": [
+            "propext"
+          ],
+          "WdpBridgeObligations.control_only_not_discharged": [
+            "propext"
+          ],
+          "WdpBridgeObligations.endToEnd_iff_controls_and_no_control": [
+            "propext"
+          ],
+          "WdpBridgeObligations.not_endToEnd_of_not_discharged": [],
+          "WdpBridgeObligations.update_sharp": [
+            "propext"
+          ],
+          "WdpBridgeObligations.endToEnd_mono": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.le_raise": [
+            "propext"
+          ],
+          "WdpBridgeObligations.raise_preserves_endToEnd": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.raise_completes": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.prefixOrder_of_endToEnd": [],
+          "WdpBridgeObligations.prefixOrder_violation": [
+            "propext"
+          ],
+          "WdpBridgeObligations.card_vectors": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.endToEnd_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpBridgeObligations.bool_and_iff": [
+            "propext"
+          ],
+          "WdpBridgeObligations.pairDefect_preserves_and_reflects": [
+            "propext"
+          ],
+          "WdpBridgeObligations.pairDefect_forgets_orientation": [
+            "propext"
+          ],
+          "WdpBridgeObligations.no_sq_eq_two_sq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1073/1073] Built WdpBridgeObligations (20s)\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Data.Fintype.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.SetTheory.Cardinal.Finite` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Algebra.Order.Group.Nat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpBridgeObligations.lean: imports `Mathlib.Data.Nat.Prime.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpBridgeObligations.lean:223:0: 'WdpBridgeObligations.endToEnd_iff_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:224:0: 'WdpBridgeObligations.endToEnd_five' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:225:0: 'WdpBridgeObligations.control_only_not_discharged' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:226:0: 'WdpBridgeObligations.endToEnd_iff_controls_and_no_control' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:227:0: 'WdpBridgeObligations.not_endToEnd_of_not_discharged' does not depend on any axioms\ninfo: WdpBridgeObligations.lean:228:0: 'WdpBridgeObligations.update_sharp' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:229:0: 'WdpBridgeObligations.endToEnd_mono' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:230:0: 'WdpBridgeObligations.le_raise' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:231:0: 'WdpBridgeObligations.raise_preserves_endToEnd' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:232:0: 'WdpBridgeObligations.raise_completes' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:233:0: 'WdpBridgeObligations.prefixOrder_of_endToEnd' does not depend on any axioms\ninfo: WdpBridgeObligations.lean:234:0: 'WdpBridgeObligations.prefixOrder_violation' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:235:0: 'WdpBridgeObligations.card_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:236:0: 'WdpBridgeObligations.endToEnd_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpBridgeObligations.lean:237:0: 'WdpBridgeObligations.bool_and_iff' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:238:0: 'WdpBridgeObligations.pairDefect_preserves_and_reflects' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:239:0: 'WdpBridgeObligations.pairDefect_forgets_orientation' depends on axioms: [propext]\ninfo: WdpBridgeObligations.lean:240:0: 'WdpBridgeObligations.no_sq_eq_two_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1073 jobs).\n"
+      },
+      {
+        "module": "WdpGrowthNoRepair",
+        "dag_node": "PG-WDP-GROWTH-NO-REPAIR",
+        "position": 175,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpGrowthNoRepair.lean",
+        "sha256": "e63dabeb12267072f7e483d15139c675d71441cef9e4cd006a8f3407c31910e1",
+        "sha256_after_build": "e63dabeb12267072f7e483d15139c675d71441cef9e4cd006a8f3407c31910e1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 25.17,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpGrowthNoRepair.phi_restrict_le",
+          "WdpGrowthNoRepair.phi_growth_not_lower",
+          "WdpGrowthNoRepair.phi_le_unrepaired",
+          "WdpGrowthNoRepair.phi_attach_iff",
+          "WdpGrowthNoRepair.gamma2_attach",
+          "WdpGrowthNoRepair.gamma2_attach_ge",
+          "WdpGrowthNoRepair.closed_attach",
+          "WdpGrowthNoRepair.gamma2_repair",
+          "WdpGrowthNoRepair.triangle_row_closed",
+          "WdpGrowthNoRepair.incompatible_d0_instance",
+          "WdpGrowthNoRepair.rescaled_weights_instance",
+          "WdpGrowthNoRepair.nonmonotone_norm_instance"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpGrowthNoRepair.phi_restrict_le": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.phi_growth_not_lower": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.phi_le_unrepaired": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.phi_attach_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.gamma2_attach": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.gamma2_attach_ge": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.closed_attach": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.gamma2_repair": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.triangle_row_closed": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.incompatible_d0_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.rescaled_weights_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpGrowthNoRepair.nonmonotone_norm_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1038/1038] Built WdpGrowthNoRepair (21s)\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Data.Fin.VecNotation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Algebra.Order.Ring.Abs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpGrowthNoRepair.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpGrowthNoRepair.lean:262:0: 'WdpGrowthNoRepair.phi_restrict_le' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:263:0: 'WdpGrowthNoRepair.phi_growth_not_lower' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:264:0: 'WdpGrowthNoRepair.phi_le_unrepaired' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:265:0: 'WdpGrowthNoRepair.phi_attach_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:266:0: 'WdpGrowthNoRepair.gamma2_attach' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:267:0: 'WdpGrowthNoRepair.gamma2_attach_ge' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:268:0: 'WdpGrowthNoRepair.closed_attach' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:269:0: 'WdpGrowthNoRepair.gamma2_repair' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:270:0: 'WdpGrowthNoRepair.triangle_row_closed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:271:0: 'WdpGrowthNoRepair.incompatible_d0_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:272:0: 'WdpGrowthNoRepair.rescaled_weights_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpGrowthNoRepair.lean:273:0: 'WdpGrowthNoRepair.nonmonotone_norm_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1038 jobs).\n"
+      },
+      {
+        "module": "WdpProtectedQuestions",
+        "dag_node": "PG-WDP-PROTECTED-QUESTIONS",
+        "position": 176,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpProtectedQuestions.lean",
+        "sha256": "a7d5d6803298dea34d336f5502e0ce9826646983a4d8a0731f54cfdbe2296937",
+        "sha256_after_build": "a7d5d6803298dea34d336f5502e0ce9826646983a4d8a0731f54cfdbe2296937",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 18.85,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpProtectedQuestions.no_fully_invariant_point",
+          "WdpProtectedQuestions.no_fully_invariant_point_card",
+          "WdpProtectedQuestions.invariantUnder_iff",
+          "WdpProtectedQuestions.selecting_iff",
+          "WdpProtectedQuestions.selecting_iff_nonempty",
+          "WdpProtectedQuestions.minimalSelecting_iff_singleton",
+          "WdpProtectedQuestions.frontierEquiv",
+          "WdpProtectedQuestions.frontier_card",
+          "WdpProtectedQuestions.one_point_empty_selects",
+          "WdpProtectedQuestions.empty_carrier_no_selection",
+          "WdpProtectedQuestions.bool_instance"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpProtectedQuestions.no_fully_invariant_point": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.no_fully_invariant_point_card": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.invariantUnder_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.selecting_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.selecting_iff_nonempty": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.minimalSelecting_iff_singleton": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.frontierEquiv": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.frontier_card": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.one_point_empty_selects": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpProtectedQuestions.empty_carrier_no_selection": [
+            "Quot.sound"
+          ],
+          "WdpProtectedQuestions.bool_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [987/987] Built WdpProtectedQuestions (15s)\nwarning: WdpProtectedQuestions.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpProtectedQuestions.lean: imports `Mathlib.Logic.Equiv.Fintype` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpProtectedQuestions.lean: imports `Mathlib.Data.Set.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpProtectedQuestions.lean:159:0: 'WdpProtectedQuestions.no_fully_invariant_point' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:160:0: 'WdpProtectedQuestions.no_fully_invariant_point_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:161:0: 'WdpProtectedQuestions.invariantUnder_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:162:0: 'WdpProtectedQuestions.selecting_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:163:0: 'WdpProtectedQuestions.selecting_iff_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:164:0: 'WdpProtectedQuestions.minimalSelecting_iff_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:165:0: 'WdpProtectedQuestions.frontierEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:166:0: 'WdpProtectedQuestions.frontier_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:167:0: 'WdpProtectedQuestions.one_point_empty_selects' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpProtectedQuestions.lean:168:0: 'WdpProtectedQuestions.empty_carrier_no_selection' depends on axioms: [Quot.sound]\ninfo: WdpProtectedQuestions.lean:169:0: 'WdpProtectedQuestions.bool_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (987 jobs).\n"
+      },
+      {
+        "module": "WdpQuotientSequence",
+        "dag_node": "PG-WDP-QUOTIENT-EXACT-SEQUENCE",
+        "position": 177,
+        "batch": "20261021T175809Z_prompts_165_177",
+        "source": "lean4/WdpQuotientSequence.lean",
+        "sha256": "2ee150c2744e6b60bf7d2db1c630bd44d1a62fd76aae37e510d24788a46db866",
+        "sha256_after_build": "2ee150c2744e6b60bf7d2db1c630bd44d1a62fd76aae37e510d24788a46db866",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 36.1,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "WdpQuotientSequence.exact_sequence",
+          "WdpQuotientSequence.finrank_sequence",
+          "WdpQuotientSequence.no_natural_section",
+          "WdpQuotientSequence.section_unique_of_subsingleton",
+          "WdpQuotientSequence.exists_unique_invariant_section_of_trivial",
+          "WdpQuotientSequence.window_instance_no_natural_section",
+          "WdpQuotientSequence.diag_unique",
+          "WdpQuotientSequence.isPhi_zero_iff",
+          "WdpQuotientSequence.seminorm_instance",
+          "WdpQuotientSequence.opbound_of_columns",
+          "WdpQuotientSequence.columns_of_opbound",
+          "WdpQuotientSequence.gamma2_repair",
+          "WdpQuotientSequence.gamma2_nonneg",
+          "WdpQuotientSequence.gamma_le_opnorm_phi",
+          "WdpQuotientSequence.gamma_at_minimiser_le",
+          "WdpQuotientSequence.gamma_bound_fails_instance"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "WdpQuotientSequence.exact_sequence": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.finrank_sequence": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.no_natural_section": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.section_unique_of_subsingleton": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.exists_unique_invariant_section_of_trivial": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.gamma2_repair": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.gamma_at_minimiser_le": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.gamma2_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.window_instance_no_natural_section": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.diag_unique": [
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.isPhi_zero_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.seminorm_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.opbound_of_columns": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.columns_of_opbound": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.gamma_le_opnorm_phi": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WdpQuotientSequence.gamma_bound_fails_instance": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1709/1709] Built WdpQuotientSequence (31s)\nwarning: WdpQuotientSequence.lean: imports `Mathlib.LinearAlgebra.Quotient.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.LinearAlgebra.Dual.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.LinearAlgebra.FiniteDimensional.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Data.Fin.VecNotation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: WdpQuotientSequence.lean: imports `Mathlib.Tactic.Abel` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: WdpQuotientSequence.lean:403:0: 'WdpQuotientSequence.exact_sequence' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:404:0: 'WdpQuotientSequence.finrank_sequence' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:405:0: 'WdpQuotientSequence.no_natural_section' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:406:0: 'WdpQuotientSequence.section_unique_of_subsingleton' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:407:0: 'WdpQuotientSequence.exists_unique_invariant_section_of_trivial' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: WdpQuotientSequence.lean:408:0: 'WdpQuotientSequence.gamma2_repair' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:409:0: 'WdpQuotientSequence.gamma_at_minimiser_le' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:410:0: 'WdpQuotientSequence.gamma2_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:411:0: 'WdpQuotientSequence.window_instance_no_natural_section' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:412:0: 'WdpQuotientSequence.diag_unique' depends on axioms: [propext, Quot.sound]\ninfo: WdpQuotientSequence.lean:413:0: 'WdpQuotientSequence.isPhi_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:414:0: 'WdpQuotientSequence.seminorm_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:415:0: 'WdpQuotientSequence.opbound_of_columns' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:416:0: 'WdpQuotientSequence.columns_of_opbound' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:417:0: 'WdpQuotientSequence.gamma_le_opnorm_phi' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: WdpQuotientSequence.lean:418:0: 'WdpQuotientSequence.gamma_bound_fails_instance' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1709 jobs).\n"
+      }
+    ]
+  },
+  "reproduction": "With Lean 4.35.0 and the Mathlib packages at the recorded revision available under lean4/.lake/packages, run `lake build <Module>` from lean4 for each recorded module. The #print axioms lines at the end of each source must report only propext, Classical.choice and Quot.sound, or no axioms.",
+  "limits": [
+    "Lake prints warnings (Mathlib module-system import notices and some linters); none is an error and none was silenced, the full output of every module is recorded above.",
+    "The batch P2 host gates had already compiled each module with a standalone lean invocation (see each node's p2/native/lean_receipt.json); this receipt is the first build through lake and the registered library."
+  ]
+}
