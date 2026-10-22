@@ -1,5 +1,5 @@
 """Origin: scripts/test_overclaim_scan.py
-Claim: each rule of scripts/overclaim_scan.py fires on a small synthetic input and stays quiet on its honest twin, the findings are deterministic with line-free keys, --strict compares against a baseline, and the committed report is current
+Claim: each rule of scripts/overclaim_scan.py fires on a small synthetic input and stays quiet on its honest twin, the findings are deterministic with line-free keys, --strict compares against a baseline, and the committed baseline covers the HIGH findings of a fresh scan
 AuthorityEffect: None
 Scope Fence: this file does not test that a finding is a real overclaim; it tests the mechanical rules only
 Level: L5
@@ -65,25 +65,41 @@ def test_r1_flags_atlas_only_and_missing_symbol(tmp_path):
 # ---- R2 ------------------------------------------------------------------------------------
 
 
-def test_r2_true_typed_closed_and_decide_only(tmp_path):
+def test_r2_true_typed_or_universal_statement_over_only_closed_theorems(tmp_path):
     lean = (
         "theorem trivial_one : True := trivial\n"
         "theorem closed_eq : 2 + 2 = 4 := by decide\n"
         "theorem general (n : Nat) : n + 0 = n := by simp\n"
         "theorem quantified : ∀ n : Nat, n + 0 = n := by intro n; simp\n"
+        "def helper : Nat := 3\n"
     )
     root = make_repo(tmp_path, [
         node("N-TRUE", "PROVED_LEAN", lean=["lean4/A.lean::trivial_one"]),
         node("N-CLOSED", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::closed_eq"]),
+        node("N-CLOSED-DEF", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::closed_eq", "lean4/A.lean::helper"]),
         node("N-GENERAL", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::general"]),
         node("N-FORALL", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::quantified"]),
+        node("N-ONE-GENERAL", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::closed_eq", "lean4/A.lean::general"]),
         node("N-MIXED", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::general", "lean4/A.lean::trivial_one"]),
+        # A closed decide theorem behind a statement with no universal wording is a finite claim, not an R2 finding.
+        node("N-BOOKKEEPING", "PROVED_LEAN", "The partition has 10 stages and 172 routes.", lean=["lean4/A.lean::closed_eq"]),
+        # A cited symbol the reader cannot place: do not claim that every cited declaration is closed.
+        node("N-UNPLACED", "PROVED_LEAN", "Holds for every n.", lean=["lean4/A.lean::closed_eq", "lean4/A.lean::not_there"]),
     ], {"lean4/A.lean": lean})
     got = {f.subject: f for f in rules(oc.scan(root), "R2")}
-    assert set(got) == {"N-TRUE", "N-CLOSED", "N-MIXED"}
+    assert set(got) == {"N-TRUE", "N-CLOSED", "N-CLOSED-DEF", "N-MIXED"}
     assert got["N-TRUE"].severity == "MEDIUM"
     assert "type True" in got["N-TRUE"].evidence
-    assert "universal wording" in got["N-CLOSED"].evidence and "decide" in got["N-CLOSED"].evidence
+    assert "every cited theorem is closed" in got["N-CLOSED"].evidence
+    assert "every cited theorem is closed" not in got["N-MIXED"].evidence
+
+
+def test_lean_files_are_parsed_once(tmp_path):
+    root = make_repo(tmp_path, [], {"lean4/A.lean": GOOD_LEAN})
+    repo = oc.Repo(root)
+    assert repo.decls("lean4/A.lean") is repo.decls("lean4/A.lean")
+    assert repo.stripped("lean4/A.lean") is repo.stripped("lean4/A.lean")
+    assert repo.decls("lean4/missing.lean") is None
 
 
 # ---- R3 ------------------------------------------------------------------------------------
@@ -179,6 +195,31 @@ def test_r5_unrecomputed_number(tmp_path):
     assert set(got) == {"N-LACKS"}
     assert "13691" in got["N-LACKS"].evidence and "3418" not in got["N-LACKS"].evidence.split("numbers in no cited file:")[1]
     assert got["N-LACKS"].severity == "LOW"
+
+
+def r5_subjects(tmp_path, statement: str, lean: str) -> dict:
+    root = make_repo(tmp_path, [node("N", "PROVED_LEAN", statement, lean=["lean4/A.lean::t"])], {"lean4/A.lean": lean})
+    return {f.subject: f for f in rules(oc.scan(root), "R5")}
+
+
+def test_r5_fraction_needs_the_exact_signed_numeral(tmp_path):
+    sign = r5_subjects(tmp_path / "a", "The entry is 1/2.", "theorem t : (-1/2 : Rat) = -1/2 := rfl\n")
+    assert set(sign) == {"N"} and "1/2" in sign["N"].evidence
+    apart = r5_subjects(tmp_path / "b", "The entry is 1/2.", "theorem t : 1 + 2 = 3 := rfl\n")
+    assert set(apart) == {"N"}
+    exact = r5_subjects(tmp_path / "c", "The entry is -1/2.", "theorem t : (-1/2 : Rat) = -1/2 := rfl\n")
+    assert exact == {}
+    unsigned = r5_subjects(tmp_path / "d", "The entry is 1/2.", "theorem t : (1/2 : Rat) = 1/2 := rfl\n")
+    assert unsigned == {}
+    wrong_sign = r5_subjects(tmp_path / "e", "The entry is -1/2 (minus sign U+2212: −1/2).", "theorem t : (1/2 : Rat) = 1/2 := rfl\n")
+    assert set(wrong_sign) == {"N"} and "-1/2" in wrong_sign["N"].evidence
+    subtraction = r5_subjects(tmp_path / "f", "The count is n-1/2.", "theorem t : (1/2 : Rat) = 1/2 := rfl\n")
+    assert subtraction == {}  # a minus after a word character is subtraction, not a sign
+
+
+def test_r5_integers_stay_exact_token_equality(tmp_path):
+    assert r5_subjects(tmp_path / "a", "There are 3,418 tuples.", "theorem t : 3_418 = 3418 := rfl\n") == {}
+    assert set(r5_subjects(tmp_path / "b", "There are 3,418 tuples.", "theorem t : 13418 = 13418 := rfl\n")) == {"N"}
 
 
 def test_r5_derivation_note_and_readme(tmp_path):
@@ -292,7 +333,55 @@ def test_r9_status_rise_needs_lean_ref_and_receipt(tmp_path):
     found = rules(oc.scan(root, diff), "R9")
     assert {f.subject for f in found} == {"N-NONE", "N-LEANONLY", "N-BRAND-NEW"}
     assert all(f.severity == "HIGH" for f in found)
-    assert "no replay receipt" in [f for f in found if f.subject == "N-LEANONLY"][0].evidence
+    assert "no new replay-receipt row" in [f for f in found if f.subject == "N-LEANONLY"][0].evidence
+
+
+@pytest.mark.skipif(GIT is None, reason="git not available")
+def test_r9_touching_an_old_receipt_is_not_a_new_receipt(tmp_path):
+    """Status rise + one new Lean ref + a whitespace-only edit to an old receipt must still be HIGH."""
+    sha_a = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
+    old_entry = {"module": "A", "dag_node": "N-OLD", "source": "lean4/A.lean", "sha256": sha_a, "axioms": {}}
+    receipt_path = Path("dag") / "research" / "old_lean_replay.json"
+    files = {"lean4/A.lean": GOOD_LEAN, "lean4/B.lean": GOOD_LEAN, receipt_path.as_posix(): json.dumps({"lean_replay": {"results": [old_entry]}})}
+    root = make_repo(tmp_path, [node("N-OLD", "PROVED_LEAN", lean=["lean4/A.lean::good"]), node("N-RISE")], files)
+    run_git(root, "init", "-q", "-b", "main")
+    run_git(root, "add", "-A")
+    run_git(root, "commit", "-q", "-m", "base")
+    make_repo(root, [node("N-OLD", "PROVED_LEAN", lean=["lean4/A.lean::good"]), node("N-RISE", "PROVED_LEAN", lean=["lean4/B.lean::good"])])
+    (root / receipt_path).write_text(json.dumps({"lean_replay": {"results": [old_entry]}}, indent=2) + "\n", encoding="utf-8")  # whitespace only
+    diff = oc.load_diff(root, "main")
+    assert receipt_path.as_posix() in diff.changed_files
+    got = rules(oc.scan(root, diff), "R9")
+    assert [f.subject for f in got] == ["N-RISE"] and got[0].severity == "HIGH"
+    # A row for N-RISE whose source is the new ref's module, absent from the base, DOES count.
+    new_row = {"module": "B", "dag_node": "N-RISE", "source": "lean4/B.lean", "sha256": sha_a, "axioms": {}}
+    (root / receipt_path).write_text(json.dumps({"lean_replay": {"results": [old_entry, new_row]}}), encoding="utf-8")
+    assert rules(oc.scan(root, oc.load_diff(root, "main")), "R9") == []
+    # A row for N-RISE whose source is some other module does not.
+    other_row = {**new_row, "source": "lean4/A.lean"}
+    (root / receipt_path).write_text(json.dumps({"lean_replay": {"results": [old_entry, other_row]}}), encoding="utf-8")
+    assert [f.subject for f in rules(oc.scan(root, oc.load_diff(root, "main")), "R9")] == ["N-RISE"]
+
+
+@pytest.mark.skipif(GIT is None, reason="git not available")
+def test_r9_a_row_already_in_the_base_is_not_new(tmp_path):
+    sha_b = hashlib.sha256(GOOD_LEAN.encode()).hexdigest()
+    row = {"module": "B", "dag_node": "N-RISE", "source": "lean4/B.lean", "sha256": sha_b, "axioms": {}}
+    receipt_path = Path("dag") / "research" / "early_lean_replay.json"
+    files = {"lean4/B.lean": GOOD_LEAN, receipt_path.as_posix(): json.dumps({"lean_replay": {"results": [row]}})}
+    root = make_repo(tmp_path, [node("N-RISE")], files)
+    run_git(root, "init", "-q", "-b", "main")
+    run_git(root, "add", "-A")
+    run_git(root, "commit", "-q", "-m", "base: receipt row exists, node still OPEN")
+    make_repo(root, [node("N-RISE", "PROVED_LEAN", lean=["lean4/B.lean::good"])])
+    (root / receipt_path).write_text(json.dumps({"lean_replay": {"results": [row]}}, indent=1) + "\n", encoding="utf-8")
+    got = rules(oc.scan(root, oc.load_diff(root, "main")), "R9")
+    assert [f.subject for f in got] == ["N-RISE"]
+    # Re-recording the row (new sha256) makes it a new row.
+    (root / "lean4" / "B.lean").write_text(GOOD_LEAN + "-- edit\n", encoding="utf-8")
+    new_sha = hashlib.sha256((GOOD_LEAN + "-- edit\n").encode()).hexdigest()
+    (root / receipt_path).write_text(json.dumps({"lean_replay": {"results": [{**row, "sha256": new_sha}]}}), encoding="utf-8")
+    assert rules(oc.scan(root, oc.load_diff(root, "main")), "R9") == []
 
 
 @pytest.mark.skipif(GIT is None, reason="git not available")
@@ -351,6 +440,9 @@ def test_strip_lean_keeps_line_numbers():
     assert out.count("\n") == src.count("\n") and "x" not in out and "d" not in out.split("\n")[2]
 
 
-def test_committed_report_is_current_and_baseline_covers_high_findings():
-    """The report on disk is what the scanner makes of this checkout (regenerate with --write), and no HIGH finding is outside the baseline."""
-    assert oc.main(["--repo-root", str(REAL_ROOT), "--check", "--strict"]) == 0
+def test_committed_baseline_is_consistent_with_a_fresh_scan():
+    """Every HIGH finding of a fresh scan of this checkout is in docs/overclaim/baseline.json (the committed gate)."""
+    known = oc.load_baseline(REAL_ROOT / oc.SELF_BASELINE)
+    assert known, "docs/overclaim/baseline.json is missing or empty"
+    fresh = {f.key for f in oc.scan(REAL_ROOT) if f.severity == "HIGH"}
+    assert fresh <= known, "new HIGH findings not in the baseline: " + ", ".join(sorted(fresh - known)[:5])

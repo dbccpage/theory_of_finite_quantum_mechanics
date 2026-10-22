@@ -34,7 +34,7 @@ python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict
 
 (`gh pr checkout <n>` inside the scratch worktree also works. Run git commands one at a time.) Remove the worktree afterwards. `--changed-since` adds rule R9 (a status that rose without a new resolving Lean reference and replay receipt in the diff). `--strict` fails only on a HIGH finding not in `docs/overclaim/baseline.json`.
 
-Findings: `docs/overclaim/report.md` (summary) and `report.json` (all, with keys). Rules R1 to R10 are defined in the scanner and listed with triage advice in [rubric.md](rubric.md).
+Findings: the `--write` run leaves a **local view**, `docs/overclaim/report.md` (summary) and `report.json` (all, with keys); both are gitignored, so run `--write` yourself and never commit them. The committed gate is `docs/overclaim/baseline.json`. Rules R1 to R10 are defined in the scanner and listed with triage advice in [rubric.md](rubric.md).
 
 ## Step 2. Statement-vs-theorem review
 
@@ -62,7 +62,7 @@ List every number in the PR body, the changed derivation notes (`dag/derivations
 
 - Review file `docs/overclaim/reviews/<YYYY-MM-DD>_<scope>.md` (scope: `pr-<n>`, `campaign-batch-<k>`, `weekly`). Sections, as in the rubric: Scope, Method, Result (`N FULL, N NARROWED, N OVERCLAIM`), Corrections to the PR's own text, Per-node table, Numbers recomputed, What the scanner could not decide.
 - For a PR, also a comment: `gh pr comment <n> --body-file docs/overclaim/reviews/<file>.md`. Do not approve, merge or push to the PR branch.
-- If the review proposes corrections, open them as a **separate, clearly titled PR** from `origin/main`, narrowing only, with the review file in it. If the weekly scan changes the report, regenerate it (`--write`) in that PR; add a baseline entry only with a stated reason.
+- If the review proposes corrections, open them as a **separate, clearly titled PR** from `origin/main`, narrowing only, with the review file in it. Add a baseline entry (`--write-baseline`) only with a stated reason; removing entries for findings that are fixed is always fine.
 
 ## Output to the user
 

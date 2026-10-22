@@ -34,6 +34,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      # The repository's root pytest config only collects code/python/tests, so run the scanner's own tests explicitly.
+      - name: Test the scanner
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest scripts/test_overclaim_scan.py -q -p no:cacheprovider
+
       - name: Scan the pull request (changes since origin/main)
         if: github.event_name == 'pull_request'
         run: python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict --summary "$GITHUB_STEP_SUMMARY"

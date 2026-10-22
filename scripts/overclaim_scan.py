@@ -9,11 +9,11 @@ dag/research/*lean_replay*.json, dag/derivations/**.md, README.md, docs/**, pape
 
 Usage (from the repository root):
     python -I -X utf8 scripts/overclaim_scan.py                      # print the summary
-    python -I -X utf8 scripts/overclaim_scan.py --write              # write docs/overclaim/report.{md,json}
-    python -I -X utf8 scripts/overclaim_scan.py --check              # exit 1 if the committed report is stale
-    python -I -X utf8 scripts/overclaim_scan.py --write-baseline     # write docs/overclaim/baseline.json
+    python -I -X utf8 scripts/overclaim_scan.py --write              # write the local view docs/overclaim/report.{md,json} (gitignored)
+    python -I -X utf8 scripts/overclaim_scan.py --check              # exit 1 if the local view is missing or stale
+    python -I -X utf8 scripts/overclaim_scan.py --write-baseline     # write docs/overclaim/baseline.json (committed: the gate)
     python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict
-Exit status: 0 ok; 1 stale report (--check) or a new HIGH finding (--strict); 2 usage or environment error.
+Exit status: 0 ok; 1 stale local view (--check) or a new HIGH finding (--strict); 2 usage or environment error.
 """
 
 from __future__ import annotations
@@ -31,6 +31,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_ROOT = HERE.parent
+if str(HERE) not in sys.path:  # python -I does not put the script directory on sys.path
+    sys.path.insert(0, str(HERE))
+from overclaim_lean import Decl, find_decl, parse_decls, strip_lean  # noqa: E402
 
 # --------------------------------------------------------------------------------------------
 # Constants (edit here, not in the rules).
@@ -108,7 +111,7 @@ SKIP_DIRS = ("docs/overclaim/", ".lake/", "node_modules/", ".git/")
 
 RULES = {
     "R1": ("HIGH", "PROVED_LEAN node without a Lean reference that resolves in this checkout"),
-    "R2": ("MEDIUM", "PROVED_LEAN node whose Lean declarations look like an instance, not the stated generality"),
+    "R2": ("MEDIUM", "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"),
     "R3": ("HIGH", "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"),
     "R4": ("HIGH", "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"),
     "R5": ("LOW", "number in a node statement, derivation note or README found in none of the node's cited files"),
@@ -199,6 +202,8 @@ class Repo:
         self.v = load_validator(self.root)
         self._text: dict[str, str | None] = {}
         self._tokens: dict[str, frozenset[str]] = {}
+        self._stripped: dict[str, str | None] = {}
+        self._decls: dict[str, list[Decl] | None] = {}
         dag_path = self.root / "dag" / "derivation_dag.json"
         self.dag: dict = json.loads(dag_path.read_text(encoding="utf-8")) if dag_path.is_file() else {}
         self.nodes: dict[str, dict] = {n["id"]: n for n in self.dag.get("nodes", []) if isinstance(n, dict) and "id" in n}
@@ -214,6 +219,20 @@ class Repo:
                 data = None
             self._text[rel] = None if data is None else data.replace(b"\r\n", b"\n").decode("utf-8", errors="replace")
         return self._text[rel]
+
+    def stripped(self, rel: str) -> str | None:
+        """Lean source with comments and strings blanked; each file is read and stripped once."""
+        if rel not in self._stripped:
+            text = self.text(rel)
+            self._stripped[rel] = None if text is None else strip_lean(text)
+        return self._stripped[rel]
+
+    def decls(self, rel: str) -> list[Decl] | None:
+        """Declarations of a Lean file, parsed once."""
+        if rel not in self._decls:
+            src = self.stripped(rel)
+            self._decls[rel] = None if src is None else parse_decls(src)
+        return self._decls[rel]
 
     def raw_sha(self, rel: str) -> tuple[str, str] | None:
         path = self.root / rel
@@ -251,177 +270,6 @@ class Repo:
             else:
                 good.append(ref)
         return good, bad
-
-
-# --------------------------------------------------------------------------------------------
-# Lean text handling.
-
-
-def strip_lean(src: str) -> str:
-    """Blank comments, string literals and character literals, keeping every newline (so line numbers hold)."""
-    out: list[str] = []
-    i, n, depth = 0, len(src), 0
-    while i < n:
-        c = src[i]
-        if depth > 0:
-            if src.startswith("/-", i):
-                depth += 1
-                out.append("  ")
-                i += 2
-            elif src.startswith("-/", i):
-                depth -= 1
-                out.append("  ")
-                i += 2
-            else:
-                out.append("\n" if c == "\n" else " ")
-                i += 1
-            continue
-        if src.startswith("/-", i):
-            depth = 1
-            out.append("  ")
-            i += 2
-            continue
-        if src.startswith("--", i):
-            j = src.find("\n", i)
-            j = n if j < 0 else j
-            out.append(" " * (j - i))
-            i = j
-            continue
-        if c == "'" and (i == 0 or not (src[i - 1].isalnum() or src[i - 1] in "_'.")):
-            m = re.match(r"'(\\.|[^\\'\n])'", src[i : i + 4])
-            if m:
-                out.append(" " * len(m.group(0)))
-                i += len(m.group(0))
-                continue
-        if c == '"':
-            j = i + 1
-            while j < n and src[j] != '"':
-                j += 2 if src[j] == "\\" else 1
-            seg = src[i + 1 : j]
-            out.append('"' + "".join("\n" if ch == "\n" else " " for ch in seg) + '"')
-            i = j + 1
-            continue
-        out.append(c)
-        i += 1
-    return "".join(out)
-
-
-DECL_START = re.compile(
-    r"^(?:@\[[^\]\n]*\]\s*)*(?:(?:private|protected|noncomputable|partial|unsafe|nonrec)\s+)*"
-    r"(theorem|lemma|def|abbrev|instance|example|structure|inductive|class|opaque|axiom)\b[ \t]*([^\s:({\[⦃]*)"
-)
-BOUNDARY = re.compile(
-    r"^(?:@\[|theorem\b|lemma\b|def\b|abbrev\b|instance\b|example\b|structure\b|inductive\b|class\b|opaque\b|axiom\b|namespace\b|"
-    r"end\b|section\b|open\b|variable\b|universe\b|#|private\b|protected\b|noncomputable\b|partial\b|unsafe\b|set_option\b|"
-    r"attribute\b|import\b|macro\b|syntax\b|notation\b|local\b|scoped\b|mutual\b|deriving\b)"
-)
-NAMESPACE = re.compile(r"^namespace\s+(\S+)")
-SECTION = re.compile(r"^section\b")
-END = re.compile(r"^end\b(?:\s+(\S+))?")
-TRIVIAL_TACTIC = re.compile(
-    r"^(decide(\s*\+\w+)?|decide!|rfl|exact rfl|exact by decide|exact decide|norm_num(\s*\[[^\]]*\])?|simp|native_decide|trivial)$"
-)
-
-
-@dataclass
-class Decl:
-    kind: str
-    name: str  # as written
-    full: str  # with namespaces
-    line: int
-    header: str  # between the name and ':=' (binders and type)
-    body: str  # after ':='
-
-    def binders_and_type(self) -> tuple[str, str]:
-        depth = 0
-        for index, ch in enumerate(self.header):
-            if ch in "([{⟨⦃":
-                depth += 1
-            elif ch in ")]}⟩⦄":
-                depth -= 1
-            elif ch == ":" and depth == 0:
-                return self.header[:index], self.header[index + 1 :]
-        return self.header, ""
-
-    def is_general(self) -> bool:
-        binders, typ = self.binders_and_type()
-        return bool(re.search(r"[\(\{\[⦃]", binders)) or bool(re.search(r"∀|Π|\bforall\b", typ))
-
-    def type_is_true(self) -> bool:
-        return self.binders_and_type()[1].strip() == "True"
-
-    def trivial_closed(self) -> bool:
-        if self.is_general() or not self.body.strip():
-            return False
-        body = self.body.strip()
-        if body.startswith("by"):
-            body = body[2:]
-        parts = [p.strip() for p in re.split(r"[\n;]|<;>", body) if p.strip()]
-        return bool(parts) and all(TRIVIAL_TACTIC.match(p) for p in parts)
-
-
-def parse_decls(stripped: str) -> list[Decl]:
-    lines = stripped.split("\n")
-    ns: list[str] = []
-    stack: list[str | None] = []
-    decls: list[Decl] = []
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        m = NAMESPACE.match(line)
-        if m:
-            ns.extend(m.group(1).split("."))
-            stack.append(m.group(1))
-        elif SECTION.match(line):
-            stack.append(None)
-        else:
-            m = END.match(line)
-            if m and stack:
-                top = stack.pop()
-                if top is not None:
-                    del ns[len(ns) - len(top.split(".")) :]
-        d = DECL_START.match(line)
-        if d:
-            j = i + 1
-            while j < len(lines) and not BOUNDARY.match(lines[j]):
-                j += 1
-            block = "\n".join(lines[i:j])
-            head_end = d.end()
-            rest = block[head_end:]
-            cut = _top_level_assign(rest)
-            header, body = (rest[:cut], rest[cut + 2 :]) if cut >= 0 else (rest, "")
-            name = d.group(2)
-            full = name[len("_root_.") :] if name.startswith("_root_.") else ".".join([*ns, name] if name else ns)
-            decls.append(Decl(d.group(1), name, full, i + 1, header, body))
-            i = j
-            continue
-        i += 1
-    return decls
-
-
-def _top_level_assign(text: str) -> int:
-    depth = 0
-    for index, ch in enumerate(text):
-        if ch in "([{⟨⦃":
-            depth += 1
-        elif ch in ")]}⟩⦄":
-            depth -= 1
-        elif ch == ":" and depth == 0 and text[index : index + 2] == ":=":
-            return index
-    return -1
-
-
-def find_decl(decls: list[Decl], symbol: str) -> Decl | None:
-    leaf = symbol.split(".")[-1]
-    for pred in (
-        lambda d: d.full == symbol,
-        lambda d: d.full.endswith("." + symbol) or d.name == symbol,
-        lambda d: d.full.split(".")[-1] == leaf,
-    ):
-        for d in decls:
-            if pred(d):
-                return d
-    return None
 
 
 # --------------------------------------------------------------------------------------------
@@ -483,37 +331,34 @@ def rule_r2(repo: Repo) -> list[Finding]:
         if node.get("status") != "PROVED_LEAN":
             continue
         universal = bool(UNIVERSAL_WORDING.search(str(node.get("statement", ""))))
-        found: list[Decl] = []
+        theorems: list[Decl] = []
         by_ref: dict[str, str] = {}
+        unknown = False  # a cited symbol the lexical reader could not place: do not claim "every cited declaration"
         for ref in repo.refs(node, "lean"):
             path, _, symbol = ref.partition("::")
             if not symbol or repo.v.is_external(ref):
                 continue
-            text = repo.text(path)
-            if text is None:
-                continue
-            decl = find_decl(parse_decls(strip_lean(text)), symbol)
-            if decl and decl.kind in ("theorem", "lemma", "example"):
-                found.append(decl)
+            decls = repo.decls(path)
+            decl = find_decl(decls, symbol) if decls is not None else None
+            if decl is None:
+                unknown = True
+            elif decl.kind in ("theorem", "lemma", "example"):
+                theorems.append(decl)
                 by_ref[decl.full] = f"{path}:{decl.line}"
-        if not found:
+        if not theorems:
             continue
-        true_typed = [d for d in found if d.type_is_true()]
-        trivial = [d for d in found if d.trivial_closed()]
-        all_closed = all(not d.is_general() for d in found)
+        true_typed = [d for d in theorems if d.type_is_true()]
+        every_closed = not unknown and all(not d.is_general() for d in theorems)
         reasons: list[str] = []
         if true_typed:
             reasons.append("type True: " + ", ".join(d.name for d in true_typed[:3]))
-        if universal and all_closed:
-            reasons.append("statement uses universal wording but every cited theorem is closed (no binder, no forall)")
-        if trivial:
-            reasons.append("proof is only decide/rfl/norm_num on a closed instance: " + ", ".join(d.name for d in trivial[:3]))
+        if universal and every_closed:
+            reasons.append("statement says every/all/unique/iff but every cited theorem is closed (no binder, no forall): " + ", ".join(d.name for d in theorems[:3]))
         if not reasons:
             continue
-        where = by_ref.get((true_typed or trivial or found)[0].full, "")
+        where = by_ref.get((true_typed or theorems)[0].full, "")
         paths = tuple(sorted({v.split(":")[0] for v in by_ref.values()}))
-        out.append(make("R2", node_id, "; ".join(reasons) + f" [{where}]" + (" [universal wording: yes]" if universal else " [universal wording: no]"),
-                        digest("|".join(reasons)), nodes=(node_id,), files=paths))
+        out.append(make("R2", node_id, "; ".join(reasons) + f" [{where}]", digest("|".join(reasons)), nodes=(node_id,), files=paths))
     return out
 
 
@@ -528,9 +373,9 @@ def rule_r3(repo: Repo) -> list[Finding]:
     out: list[Finding] = []
     for path in sorted(cited):
         text = repo.text(path)
-        if text is None:
+        stripped = repo.stripped(path)
+        if text is None or stripped is None:
             continue
-        stripped = strip_lean(text)
         seen: set[tuple[str, int]] = set()
         patterns = [(tok, re.compile(r"(?<![\w.])" + tok + r"(?![\w'])")) for tok in LEAN_ADMISSION_TOKENS]
         patterns.append(("axiom", re.compile(r"^(?:@\[[^\]\n]*\]\s*)*(?:(?:private|protected|noncomputable)\s+)*axiom\b", re.MULTILINE)))
@@ -582,8 +427,18 @@ def rule_r4(repo: Repo, receipts: list[Receipt]) -> list[Finding]:
 
 # ---- R5: numbers -------------------------------------------------------------------------
 
-NUM_RE = re.compile(r"(?<![\w./-])(?<![A-Za-z]-)(\d+/\d+|\d+(?:,\d{3})*(?:\.\d+)?)(?![\w/])")
+# A fraction keeps its sign (a minus directly before the numerator and not after a word character or closing bracket);
+# an integer or decimal is compared by its unsigned digits.
+FRACTION_RE = r"(?<![\w./])(?:(?<![\w)\].])-)?\d+/\d+(?![\w/])"
+NUM_RE = re.compile(FRACTION_RE + r"|(?<![\w./-])(?<![A-Za-z]-)\d+(?:,\d{3})*(?:\.\d+)?(?![\w/])")
 TOKEN_RE = re.compile(r"\d+(?:_\d+)*(?:\.\d+)?")
+FRACTION_TOKEN_RE = re.compile(FRACTION_RE)
+
+
+def text_tokens(text: str) -> frozenset[str]:
+    """Integer/decimal tokens (Lean `_` separators folded) and signed fraction numerals of a text."""
+    text = text.replace("−", "-")
+    return frozenset(t.replace("_", "") for t in TOKEN_RE.findall(text)) | frozenset(FRACTION_TOKEN_RE.findall(text))
 NOISE_RES = (
     re.compile(r"https?://\S+"),
     re.compile(r"\]\([^)]*\)"),
@@ -600,21 +455,16 @@ def prose_numbers(text: str) -> list[str]:
     for pat in NOISE_RES:
         text = pat.sub(" ", text)
     seen: dict[str, None] = {}
-    for m in NUM_RE.finditer(text):
-        raw = m.group(1)
-        norm = raw.replace(",", "")
-        if "/" in norm:
-            if len(norm.replace("/", "")) >= 2 and not re.fullmatch(r"\d/\d", norm):
-                seen[norm] = None
-        elif len(norm.replace(".", "")) >= 2:
+    for m in NUM_RE.finditer(text.replace("−", "-")):
+        norm = m.group(0).replace(",", "")
+        if "/" in norm or len(norm.replace(".", "")) >= 2:
             seen[norm] = None
     return list(seen)
 
 
 def file_tokens(repo: Repo, rel: str) -> frozenset[str]:
     if rel not in repo._tokens:
-        text = repo.text(rel) or ""
-        repo._tokens[rel] = frozenset(t.replace("_", "") for t in TOKEN_RE.findall(text))
+        repo._tokens[rel] = text_tokens(repo.text(rel) or "")
     return repo._tokens[rel]
 
 
@@ -644,7 +494,7 @@ def receipt_tokens(receipts: list[Receipt], node_id: str, files: set[str]) -> fr
         for entry in rc.entries:
             if entry.get("dag_node") == node_id or entry.get("source") in files:
                 body = {k: v for k, v in entry.items() if k != "output"}
-                toks.update(t.replace("_", "") for t in TOKEN_RE.findall(json.dumps(body)))
+                toks |= text_tokens(json.dumps(body))
     return frozenset(toks)
 
 
@@ -663,16 +513,8 @@ def missing_numbers(repo: Repo, receipts: list[Receipt], record_map: dict[str, l
         for f in files:
             toks |= file_tokens(repo, f)
         toks |= receipt_tokens(receipts, nid, set(files))
-    out = []
-    for n in numbers:
-        if "/" in n:
-            a, b = n.split("/")
-            if a in toks and b in toks:
-                continue
-        elif n in toks:
-            continue
-        out.append(n)
-    return out
+    # Exact numeral, sign included, for a fraction as for an integer: `1/2` is not found in `-1/2`, nor in a file with `1` and `2` apart.
+    return [n for n in numbers if n not in toks]
 
 
 def rule_r5(repo: Repo, receipts: list[Receipt]) -> list[Finding]:
@@ -815,6 +657,23 @@ class Diff:
     base: str
     changed_files: set[str]
     base_nodes: dict[str, dict]
+    root: Path | None = None
+
+    def base_receipt_keys(self, rel: str) -> set[tuple[str, str, str]]:
+        """(dag_node, source, sha256) of every entry of a receipt as it stands at the base; empty if the file is new."""
+        if self.root is None:
+            return set()
+        try:
+            data = json.loads(git(self.root, "show", f"{self.base}:{rel}"))
+        except (RuntimeError, json.JSONDecodeError):
+            return set()
+        replay = data.get("lean_replay") if isinstance(data, dict) else None
+        results = (replay.get("results") if isinstance(replay, dict) else None) or (data.get("results") if isinstance(data, dict) else None) or []
+        return {entry_key(e) for e in results if isinstance(e, dict)}
+
+
+def entry_key(entry: dict) -> tuple[str, str, str]:
+    return (str(entry.get("dag_node", "")), str(entry.get("source", "")), str(entry.get("sha256", "")))
 
 
 def load_diff(root: Path, ref: str) -> Diff:
@@ -830,12 +689,19 @@ def load_diff(root: Path, ref: str) -> Diff:
         base_nodes = {n["id"]: n for n in json.loads(raw).get("nodes", []) if isinstance(n, dict) and "id" in n}
     except (RuntimeError, json.JSONDecodeError):
         base_nodes = {}
-    return Diff(base, changed, base_nodes)
+    return Diff(base, changed, base_nodes, root)
 
 
 def rule_r9(repo: Repo, receipts: list[Receipt], diff: Diff) -> list[Finding]:
     rank = repo.v.PFP_STATUS_RANK
     changed_receipts = [rc for rc in receipts if rc.path in diff.changed_files]
+    base_cache: dict[str, set[tuple[str, str, str]]] = {}
+
+    def base_keys(path: str) -> set[tuple[str, str, str]]:
+        if path not in base_cache:
+            base_cache[path] = diff.base_receipt_keys(path)
+        return base_cache[path]
+
     out: list[Finding] = []
     for node_id, node in sorted(repo.nodes.items()):
         cur = str(node.get("status"))
@@ -851,8 +717,13 @@ def rule_r9(repo: Repo, receipts: list[Receipt], diff: Diff) -> list[Finding]:
         old_lean = set(repo.refs(before, "lean")) if before else set()
         good, _ = repo.lean_resolution(node)
         new_lean = [g for g in good if g not in old_lean]
-        mods = {g.partition("::")[0] for g in good}
-        has_receipt = any(e.get("dag_node") == node_id or e.get("source") in mods for rc in changed_receipts for e in rc.entries)
+        new_sources = {g.partition("::")[0] for g in new_lean}
+        # A receipt counts only as a row for THIS node, whose source is one of the NEW refs, that the base version of the file lacks:
+        # touching an old receipt (whitespace, re-sorting) is not a new receipt.
+        has_receipt = any(
+            e.get("dag_node") == node_id and e.get("source") in new_sources and entry_key(e) not in base_keys(rc.path)
+            for rc in changed_receipts for e in rc.entries
+        )
         has_check = f"checks/independent/{node_id.lower()}.py" in diff.changed_files and cur == "COMPUTATIONALLY_CHECKED"
         if (new_lean and has_receipt) or has_check:
             continue
@@ -860,7 +731,7 @@ def rule_r9(repo: Repo, receipts: list[Receipt], diff: Diff) -> list[Finding]:
         if not new_lean:
             lacks.append("no new resolving Lean reference")
         if not has_receipt:
-            lacks.append("no replay receipt for it in the diff")
+            lacks.append("no new replay-receipt row for this node and a new ref's module in the diff")
         out.append(make("R9", node_id, f"status {prev} -> {cur}; " + " and ".join(lacks), f"{prev}->{cur}", nodes=(node_id,)))
     return out
 
@@ -938,7 +809,7 @@ def render_md(findings: list[Finding], *, scope: str = "whole checkout") -> str:
         "",
         "**AuthorityEffect:** None.",
         "",
-        "Generated by `python -I -X utf8 scripts/overclaim_scan.py --write`. Do not edit by hand. Offline and deterministic: no network, no model call, no Lean build.",
+        "Local view written by `python -I -X utf8 scripts/overclaim_scan.py --write`; gitignored, not committed. Offline and deterministic: no network, no model call, no Lean build.",
         "A finding is a prompt for a statement-vs-theorem review (`.claude/skills/overclaim-hunter/SKILL.md`), not a verdict. An empty cell is not evidence that nothing is overclaimed: the scanner cannot read what a Lean statement means.",
         "",
         f"Scope: {scope}. HIGH {totals['HIGH']}, MEDIUM {totals['MEDIUM']}, LOW {totals['LOW']}.",
@@ -1021,8 +892,8 @@ def summary_md(findings: list[Finding], new_high: list[Finding], scope: str) -> 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0] if __doc__ else None)
     ap.add_argument("--repo-root", type=Path, default=DEFAULT_ROOT)
-    ap.add_argument("--write", action="store_true", help="write docs/overclaim/report.md and report.json")
-    ap.add_argument("--check", action="store_true", help="exit 1 if the committed report is stale")
+    ap.add_argument("--write", action="store_true", help="write the local view docs/overclaim/report.md and report.json (gitignored)")
+    ap.add_argument("--check", action="store_true", help="exit 1 if the local view is missing or stale")
     ap.add_argument("--write-baseline", action="store_true", help="write docs/overclaim/baseline.json from the current HIGH findings")
     ap.add_argument("--changed-since", metavar="REF", help="restrict to nodes and files changed since REF (merge base) and add rule R9")
     ap.add_argument("--strict", action="store_true", help="exit 1 if a HIGH finding is not in docs/overclaim/baseline.json")
