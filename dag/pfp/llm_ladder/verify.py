@@ -432,8 +432,8 @@ def check_arity(index: DeclIndex, relpath: str, decl: dict, claimed):
 GROUP_NAME = re.compile(r'\b(?:PSU|PSL|PGL|SU|SO|Sp|SL|GL|Spin|U|O)\(\d+\)')
 
 
-def numerals(text: str) -> set:
-    return set(NUMERAL.findall(GROUP_NAME.sub(' ', text or '')))
+def numerals(text: str, *, skip_group_names: bool = False) -> set:
+    return set(NUMERAL.findall(GROUP_NAME.sub(' ', text or '') if skip_group_names else (text or '')))
 
 
 def statement_drift(claim: str, *sources: str):
@@ -441,7 +441,8 @@ def statement_drift(claim: str, *sources: str):
     allowed = {'0', '1'}
     for source in sources:
         allowed |= numerals(source)
-    foreign = sorted(n for n in numerals(claim) if n not in allowed)
+    # The digit of a group name in the CLAIM (SU(2), SO(3)) is not a quantity that can drift; sources keep all their numerals.
+    foreign = sorted(n for n in numerals(claim, skip_group_names=True) if n not in allowed)
     if foreign:
         return 'numerals %s appear in the claim but in none of the checked sources (heuristic)' % ', '.join(foreign)
     return None
@@ -703,6 +704,7 @@ class Verifier:
         report.schema_errors = errors[:20]
         known = target_statement
         valid_ids = {'generators': {}, 'relations': {}}
+        missing_arrays = []
         declared_generators = {g['id'] for g in (response.get('generators') if isinstance(response.get('generators'), list) else [])
                                if isinstance(g, dict) and isinstance(g.get('id'), str)}
         item_schemas = {k: schema['properties'][k]['items'] for k in
@@ -712,7 +714,7 @@ class Verifier:
             raw = response.get(key)
             if raw is None and key not in response:
                 # An absent slot is an empty slot (the prompt says empty arrays are allowed). One notice, not one failure per key.
-                report.notices.append('missing top-level array %s read as []' % key)
+                missing_arrays.append(key)
                 return []
             if not isinstance(raw, list):
                 report.failures.append(Failure('schema_violation', key, key, '%s is not an array' % key, 'expected array'))
@@ -906,6 +908,8 @@ class Verifier:
                 lean_unavailable(lem, info, 'Lean elaboration disabled')
         for miss in items('near_misses'):
             report.unverifiable.append({'id': miss['id'], 'kind': 'near_miss', 'reason': 'semantic near miss; P4 host check decides'})
+        if missing_arrays:
+            report.notices.append('missing top-level arrays read as []: ' + ', '.join(missing_arrays))
         return report
 
 

@@ -152,7 +152,7 @@ FILE_NAME = re.compile(r'(?<![\w/.-])((?:[\w.-]+/)*[\w.-]+\.(?:lean|rs|py))\b')
 IDENTIFIER = re.compile(r'[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+|[a-z]+[A-Z][A-Za-z0-9]*')
 # A word that occurs in the stem of more than this many source files ("test", "omega", "contract", "genesis"...) says nothing
 # about which file a statement is about.
-STEM_DOC_FREQUENCY_LIMIT = 40
+STEM_DOC_FREQUENCY_LIMIT = 300   # in this repo: drops contract, omega, test(s), math, wdp, mub, quantum, theory, physics; keeps primitive, boundary, genesis
 MAX_FILE_CANDIDATES = 4        # a bare file name that resolves to more files than this is too ambiguous to offer
 NAMED_FILE_DECLS = 10
 
@@ -251,24 +251,48 @@ def source_candidates(root, node_id, collection, index: DeclIndex, statement: st
             for decl in (entry['table'] if entry else []):
                 hit = len(_tokens(decl['full']) & distinct_tokens)
                 if hit >= 1:
-                    offer(10 + overlap + hit, path, decl)
+                    offer(min(10 + overlap + hit, STRONG_SCORE - 1), path, decl)   # stays below every strong tier
     ranked = sorted(chosen.values(), key=lambda row: (-row[0], row[1], row[2]['line']))
     return ranked[:limit]
 
 
-def groundability(root, node_id, collection, index: DeclIndex, statement: str, bottleneck: str, src_offered: int) -> dict:
+# Statuses whose subject is an external publication or an imported theorem: when the host found nothing but fuzzy
+# file-name matches for them, there is no code the claim could be grounded on.
+EXTERNAL_SUBJECT_STATUSES = ('SOURCE_RECORD', 'IMPORTED_ASSUMPTION')
+FINITE_TARGET_MARK = 'Finite statement to formalize'
+STRONG_SCORE = 20      # operad lead, quoted identifier, named file or node anchor; below it is a fuzzy file-name match
+
+
+def groundability(root, node_id, collection, index: DeclIndex, statement: str, bottleneck: str, src_offered: int,
+                  src_strong: int = None, known_pos: int = 0) -> dict:
     """Facts for the pre-dispatch skip: operation/relation candidates, code files the node names or anchors that exist in this
-    checkout, and the reason when there is nothing to ground a claim on."""
+    checkout, and the reason when there is nothing to ground a claim on.
+
+    Ungroundable = no operation/relation candidates, no code anchor or named file present in the checkout, and either no `@SRC`
+    at all, or (for SOURCE_RECORD / IMPORTED_ASSUMPTION nodes only) nothing but fuzzy file-name matches. A finite target
+    ("Finite statement to formalize") is never skipped: its job is to state an exact finite claim, which the numeric and lemma
+    slots can address before any code exists."""
     node = dag_node(root, node_id) or {}
     candidates = len(collection.get('operation_candidates') or []) + len(collection.get('relation_candidates') or [])
     anchors = [anchor_path(a) for a in (node.get('lean') or []) + (node.get('rust') or []) if a]
     present = [p for p in dict.fromkeys(anchors) if (Path(root) / p).is_file()]
     present += [p for p in named_files(index, '%s\n%s\n%s' % (statement or '', bottleneck or '', node_code_text(node)), preferred=set(anchors))
                 if p not in present]
-    ungroundable = src_offered == 0 and candidates == 0 and not present
-    return {'operation_candidates': candidates, 'anchors_present': len(present), 'ungroundable': ungroundable,
-            'ungroundable_reason': ('no @SRC declaration found, no operation or relation candidates, and no code file named by the '
-                                    'statement or anchored by the node exists in this checkout') if ungroundable else None}
+    strong = src_offered if src_strong is None else src_strong
+    status = node.get('status')
+    finite_target = FINITE_TARGET_MARK in ((node.get('statement') or '') + (statement or ''))
+    no_sources = src_offered == 0
+    only_fuzzy = strong == 0 and status in EXTERNAL_SUBJECT_STATUSES
+    # @KNOWN+ lines (host-verified entries of this node's DAG neighbours) are citable too: 23 of the 98 Sonnet runs of round 2 that
+    # had an empty @SRC were accepted with 2 or more verified citations, all of them through @KNOWN+.
+    ungroundable = candidates == 0 and not present and not known_pos and (no_sources or only_fuzzy) and not finite_target
+    reason = None
+    if ungroundable:
+        reason = ('no operation or relation candidates, no code file named by the statement or anchored by the node exists in '
+                  'this checkout, and ' + ('no @SRC declaration was found' if no_sources else
+                                           'the only @SRC offered are fuzzy file-name matches for a %s node' % status))
+    return {'operation_candidates': candidates, 'anchors_present': len(present), 'src_strong': strong,
+            'finite_target': finite_target, 'ungroundable': ungroundable, 'ungroundable_reason': reason}
 
 
 def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = None, feedback=True,
@@ -323,7 +347,8 @@ def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = N
     meta = {'src_offered': len(src_lines), 'known_neg_injected': len(negatives), 'known_pos_injected': len(positives),
             'neighbours': neighbours[:12], 'feedback': feedback, 'index_position': position,
             'neg_entry_ids': [e['id'] for e in negatives]}
-    meta.update(groundability(root, node_id, collection, index, statement, bottleneck_text, len(src_lines)))
+    meta.update(groundability(root, node_id, collection, index, statement, bottleneck_text, len(src_lines),
+                              sum(1 for score, _, _ in candidates if score >= STRONG_SCORE), len(positives)))
     return CompiledPacket(node_id, 'P0', attempt_id, SYSTEM_P0, '\n'.join(lines) + '\n', P0_SCHEMA, digest, meta, statement)
 
 
