@@ -1,0 +1,42 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-9079609E21C8
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_target_restate: For all rows, cols >= 1: torus distance = min(rows, cols), cylinder distance
+    = rows + 1, diagonal class weight = rows + cols. Restates the open target without changing any number.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-OPEN-DISTANCE-FAMILY
+- id: NEG-03859D097ADC
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_cut_lower_bound: Auxiliary: a cut argument on the dual grid gives a lower bound on the weight
+    of any nontrivial logical operator, matching each claimed distance formula.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-OPEN-DISTANCE-FAMILY
+counterexamples: []
+open_obligations:
+- No source declarations were found, so no generators, relations or compositions are grounded.
+- The code and logical-operator definitions needed to state the distance formulas formally are not available.
+- The upper bound requires an explicit representative of each distance and a weight computation; neither
+  is provided.
+- The lower bound needs a dual-grid cut argument, which is not yet formalized.
+- The cylinder distance rows + 1 needs checking against boundary conventions, since it is independent
+  of cols.
+- The diagonal class weight rows + cols needs a definition of the diagonal class.
+- The Lean skeletons are placeholders with a True conclusion and do not encode the real statements.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

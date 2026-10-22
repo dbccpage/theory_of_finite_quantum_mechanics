@@ -1,0 +1,116 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_step",
+      "inputs": [
+        "Machine",
+        "Configuration"
+      ],
+      "output": "StepResult",
+      "arity": 2,
+      "carrier": "DTM0 single-step evaluator",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.step",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_execute",
+      "inputs": [
+        "Nat",
+        "Machine",
+        "Configuration"
+      ],
+      "output": "StepResult",
+      "arity": 3,
+      "carrier": "fuel-bounded DTM0 evaluator",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_applyRule",
+      "inputs": [
+        "Rule",
+        "Configuration"
+      ],
+      "output": "Configuration",
+      "arity": 2,
+      "carrier": "rule application",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.applyRule",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_step_halt_iff",
+      "statement": "step machine configuration = StepResult.halted iff configuration.state = machine.haltState",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_loop_fuel",
+      "statement": "The one-row self-loop fixture returns fuelExhausted with the looped configuration after one unit of fuel",
+      "hypotheses": "fixture machine, fuel 1",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_empty_stuck",
+      "statement": "The empty-rule fixture is stuck at its first step",
+      "hypotheses": "empty rule list",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/DirectTM.lean",
+        "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_step_halt_iff",
+      "statement": "step returns halted exactly when the configuration state equals the machine halt state",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_step_halt_iff"
+      ],
+      "lean_skeleton": "theorem l_step_halt_iff (m : Machine) (c : Configuration) : step m c = StepResult.halted ↔ c.state = m.haltState := step_halted_iff_declared_halt m c",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_fuel_not_nonhalting",
+      "claim": "fuelExhausted implies the machine never halts",
+      "rejecting_invariant": "fuel is an external bound; the loop fixture exhausts fuel 1 but a larger fuel on another machine may halt, so fuelExhausted is a bounded-evaluator result only"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "no input encoding",
+    "no unbounded-run semantics or halting predicate",
+    "no comparison with Mathlib Turing.TM0",
+    "exact signature of step_halted_iff_declared_halt arguments unverified",
+    "left-biased row lookup order lemma not grounded"
+  ]
+}

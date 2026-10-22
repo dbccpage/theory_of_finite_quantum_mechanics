@@ -11,8 +11,8 @@ Markdown index (top-level key index_document). The two files rendered here are v
 
 Never edit the views by hand: edit derivation_dag.json (or the fragment a sync script owns) and run
 the syncs, which call this renderer. Run order: sync_pfp_results.py, sync_unified_dag.py,
-sync_application_branches.py, sync_pregenesis_to_wdp.py; each of them writes derivation_dag.json and
-then the views. Run this script alone after a hand edit of derivation_dag.json.
+sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py; each of them writes
+derivation_dag.json and then the views. Run this script alone after a hand edit of derivation_dag.json.
 
     python -I -X utf8 dag/render_dag_views.py --check   # exit 1 when a view on disk differs
     python -I -X utf8 dag/render_dag_views.py --write   # rewrite the views that differ
@@ -41,6 +41,10 @@ XWALK_END = '<!-- unified-dag:crosswalk:end -->'
 PLAIN_STAGES = ('PREGENESIS', 'GENESIS', 'AUTHORIZATION', 'MSSN_SN', 'WDP')
 UNIFIED_SLICE = 'unified_dag'
 APP_SLICE = 'application_branches'
+FRONTIER_SLICE = 'frontier_branches'
+FRONTIER_MARKER = '<!-- frontier-branches: generated from fragments/frontier_branches.json -->'
+# Records of these slices are listed after APP_MARKER, one section per application stage.
+APP_SLICES = (APP_SLICE, FRONTIER_SLICE)
 PGW_SLICE = 'pregenesis_to_wdp'
 DOMAIN_TAG = 'source-corpus'
 
@@ -145,7 +149,7 @@ def _crosswalk(dag: dict, records: list[dict]) -> str:
 
 
 def _trunk_section(stage: str, records: list[dict], nodes: dict) -> str:
-    mine = [r for r in records if r['stage'] == stage and r['source_slice'] != APP_SLICE]
+    mine = [r for r in records if r['stage'] == stage and r['source_slice'] not in APP_SLICES]
     if stage in PLAIN_STAGES:
         return f'## {stage}\n\n' + '\n'.join(_plain_block(r) for r in mine)
     plain = [r for r in mine if r['source_slice'] != UNIFIED_SLICE]
@@ -169,7 +173,7 @@ def render_md(dag: dict) -> str:
     unplaced = sorted({r['id'] for r in records if r['stage'] not in sectioned})
     if unplaced:
         raise ValueError('records whose stage has no section in index_document: ' + ', '.join(unplaced[:12]))
-    misplaced = sorted(r['id'] for r in records if (r['source_slice'] == APP_SLICE) != (r['stage'] in app))
+    misplaced = sorted(r['id'] for r in records if (r['source_slice'] in APP_SLICES) != (r['stage'] in app))
     if misplaced:
         raise ValueError('application records outside an application stage, or the reverse: ' + ', '.join(misplaced[:12]))
     count = {s: sum(1 for r in records if r['stage'] == s) for s in [*trunk, *app]}

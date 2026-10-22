@@ -1,0 +1,32 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-2E589A74E9E0
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L-RESPONDER-MIN: Proposed only: the sealed responder is a minimum over a candidate list of at
+    most two items under cost mu1 or mu2, with ties unresolved. This is not stated in Lean in the packages,
+    and no existing declaration is cited.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-RESPONDER-IN-LEAN
+counterexamples: []
+open_obligations:
+- 'S-3: no Lean statement exists about the minimum, cost or tie of the responder; the carrier, cost mu1/mu2
+  and the tie rule need to be defined.'
+- 'S-1: the responder''s domain excludes ruled regimes (those holding a uniform rule); this needs to be
+  formalized as a precondition.'
+- 'S-2: the other demand kind, a same pair that is separable, is not read; this needs to be added.'
+- 'S-4: the distance bound of two is not known to be the grammar''s; this needs to be established or refuted.'
+- No generators, relations or compositions were grounded, because no @SRC or @KNOWN+ declarations were
+  provided.
+- Attempt one's G-4 and attempt two's H-1 depend on this responder.
+- 'near_miss NM-CL3 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

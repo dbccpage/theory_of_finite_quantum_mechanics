@@ -1,0 +1,110 @@
+{
+  "task_id": "DFM-ELECTROWEAK-DOUBLET-DRESSING",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9ad56b06b136fc3a6131e2b85f7a86f21103a49ac4463a3c6486ddf9ce59897f",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_ewDressingMat\",\"inputs\":[\"Rat\",\"Rat\",\"Rat\"],\"output\":\"Mat2Rat\",\"arity\":3,\"carrier\":\"Mat2Rat\",\"ref\":{\"path\":\"lean4/RaveraDfmFiniteToContinuum.lean\",\"decl\":\"RaveraDfmFiniteToContinuum.ewDressingMat\",\"status\":\"existing\"}},{\"id\":\"g_ewDressedDoublet\",\"inputs\":[\"Rat\",\"Rat\",\"Rat\"],\"output\":\"RatPair\",\"arity\":3,\"carrier\":\"RatPair\",\"ref\":{\"path\":\"lean4/RaveraDfmFiniteToContinuum.lean\",\"decl\":\"RaveraDfmFiniteToContinuum.ewDressedDoublet\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"R_goldstone_sphere\",\"statement\":\"On phi_+^2+phi_0^2=r^2 with r!=0 the dressing matrix has det 1, is orthogonal, and maps the doublet to (0,r)\",\"hypotheses\":\"rational phi_+, phi_0, r with r != 0 and phi_+^2+phi_0^2=r^2\",\"ref\":{\"path\":\"lean4/RaveraDfmFiniteToContinuum.lean\",\"decl\":\"RaveraDfmFiniteToContinuum.ew_dfm_goldstone_elimination_on_sphere\",\"status\":\"existing\"}},{\"id\":\"R_goldstone_4d\",\"statement\":\"For rational a,b,c,d,r with r!=0 and a^2+b^2+c^2+d^2=r^2 the four real component identities of u(Phi)^dagger P hold\",\"hypotheses\":\"r != 0, sum of four squares equals r^2\",\"ref\":{\"path\":\"lean4/RaveraDfmFiniteToContinuum.lean\",\"decl\":\"RaveraDfmFiniteToContinuum.ew_gaussian_4d_goldstone_elimination\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_dressed_doublet_value\",\"statement\":\"The dressed doublet is the dressing matrix applied to the doublet, and on the sphere it equals (0,r)\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_goldstone_sphere\"],\"lean_skeleton\":\"-- proposed: follows from ew_dfm_goldstone_elimination_on_sphere by unfolding ewDressedDoublet; not stated here as proved\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_hypercharge\",\"claim\":\"Using Q = T_3 + Y with dossier Y values in a Q = T_3 + Y/2 documentation convention\",\"rejecting_invariant\":\"Hypercharge normalization differs by a factor 2; charges of the doublet components would mismatch\"},{\"id\":\"NM_v_zero\",\"claim\":\"Dressing u(Phi) with v = 0\",\"rejecting_invariant\":\"1/v undefined; v must be rational and nonzero\"}],\"numeric_claims\":[{\"id\":\"N_mass_trace_unit\",\"expr\":\"1/4*(1+1)\",\"value\":\"1/2\"}],\"open_obligations\":[\"Rational Q(i) version of u(Phi) with conj entries is not in KNOWN+; only real and 4d component forms are\",\"Neutral mass matrix generator not grounded\",\"Projectors P_gamma, P_Z and the rho=1 identity need non-vacuous proofs (previously refused)\",\"Hypercharge normalization statement Q=T3+Y vs Q=T3+Y/2 still to be stated formally\",\"Compositions not licensed: no matching colour chains among the existing generators\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_ewDressingMat",
+        "inputs": [
+          "Rat",
+          "Rat",
+          "Rat"
+        ],
+        "output": "Mat2Rat",
+        "arity": 3,
+        "carrier": "Mat2Rat",
+        "ref": {
+          "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+          "decl": "RaveraDfmFiniteToContinuum.ewDressingMat",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_ewDressedDoublet",
+        "inputs": [
+          "Rat",
+          "Rat",
+          "Rat"
+        ],
+        "output": "RatPair",
+        "arity": 3,
+        "carrier": "RatPair",
+        "ref": {
+          "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+          "decl": "RaveraDfmFiniteToContinuum.ewDressedDoublet",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_goldstone_sphere",
+        "statement": "On phi_+^2+phi_0^2=r^2 with r!=0 the dressing matrix has det 1, is orthogonal, and maps the doublet to (0,r)",
+        "hypotheses": "rational phi_+, phi_0, r with r != 0 and phi_+^2+phi_0^2=r^2",
+        "ref": {
+          "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+          "decl": "RaveraDfmFiniteToContinuum.ew_dfm_goldstone_elimination_on_sphere",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_goldstone_4d",
+        "statement": "For rational a,b,c,d,r with r!=0 and a^2+b^2+c^2+d^2=r^2 the four real component identities of u(Phi)^dagger P hold",
+        "hypotheses": "r != 0, sum of four squares equals r^2",
+        "ref": {
+          "path": "lean4/RaveraDfmFiniteToContinuum.lean",
+          "decl": "RaveraDfmFiniteToContinuum.ew_gaussian_4d_goldstone_elimination",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_dressed_doublet_value",
+        "statement": "The dressed doublet is the dressing matrix applied to the doublet, and on the sphere it equals (0,r)",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_goldstone_sphere"
+        ],
+        "lean_skeleton": "-- proposed: follows from ew_dfm_goldstone_elimination_on_sphere by unfolding ewDressedDoublet; not stated here as proved",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_hypercharge",
+        "claim": "Using Q = T_3 + Y with dossier Y values in a Q = T_3 + Y/2 documentation convention",
+        "rejecting_invariant": "Hypercharge normalization differs by a factor 2; charges of the doublet components would mismatch"
+      },
+      {
+        "id": "NM_v_zero",
+        "claim": "Dressing u(Phi) with v = 0",
+        "rejecting_invariant": "1/v undefined; v must be rational and nonzero"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_mass_trace_unit",
+        "expr": "1/4*(1+1)",
+        "value": "1/2"
+      }
+    ],
+    "open_obligations": [
+      "Rational Q(i) version of u(Phi) with conj entries is not in KNOWN+; only real and 4d component forms are",
+      "Neutral mass matrix generator not grounded",
+      "Projectors P_gamma, P_Z and the rho=1 identity need non-vacuous proofs (previously refused)",
+      "Hypercharge normalization statement Q=T3+Y vs Q=T3+Y/2 still to be stated formally",
+      "Compositions not licensed: no matching colour chains among the existing generators"
+    ]
+  }
+}

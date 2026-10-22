@@ -1,0 +1,81 @@
+{
+  "task_id": "PGW-COLLAPSE-WITHOUT-INSTANCES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "062aec16d333e190ec475018bfa31d6b5603034e52ac503c8120729180369453",
+  "candidate_sha256": "65b3b30a2844cfc26802732eebb826da3be96f36645fcd5e0e43fe8ff60dacd4",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 2,
+    "failure_rate": 1.0,
+    "failures_by_class": {
+      "vacuous_proof": 2
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:54:48Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-CE05C746C66D",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L1: If there are no admitted instances, then for all data a and b, a and b are observationally collapsed.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-COLLAPSE-WITHOUT-INSTANCES"
+      },
+      {
+        "id": "NEG-43B254E62500",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L2: Adding uniform rules to an instance-free regime preserves collapse of all data pairs.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-COLLAPSE-WITHOUT-INSTANCES"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No source declarations were found, so no existing citations can be made.",
+      "The Lean types for data, contexts, forms, instances, and derivability must be fixed before elaborating any skeleton.",
+      "The exact formulation of uniform rules is not grounded.",
+      "The interaction with TFQ-0385 is not formalized.",
+      "No generators were identified, so compositions are empty.",
+      "relation R1 unverified: no existing declaration cited",
+      "relation R2 unverified: no existing declaration cited",
+      "near_miss N1 unverified: semantic near miss; P4 host check decides",
+      "near_miss N2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

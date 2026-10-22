@@ -139,10 +139,12 @@ class RunWriter:
         self._json('ladder_receipt.json', receipt)
 
 
-def host_check_record(report: VerifyReport, *, accepted: bool, aid: str, model: str) -> dict:
+def host_check_record(report: VerifyReport, *, accepted: bool, aid: str, model: str, partial: bool = False) -> dict:
     codes = sorted({G_CODES.get(f.cls, 'G3_WITNESS') for f in report.failures})
     if accepted:
         status = 'reviewed_for_next_step_pending_host_semantic_review'
+    elif partial:
+        status = 'partial_reviewed_pending_host_semantic_review'
     elif report.failures:
         status = 'repairable_candidate_defect'
     else:

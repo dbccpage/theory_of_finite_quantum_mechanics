@@ -1,0 +1,85 @@
+add_or_refine_generators:
+- id: path_holonomy
+  ordered_inputs:
+  - Cochain1
+  - PairList
+  output: Int
+  arity: 2
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/CoboundaryHolonomy.lean
+    declaration: InterferenceNonL1Resource.path_holonomy
+    line: 20
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/CoboundaryHolonomy.lean
+    decl: InterferenceNonL1Resource.path_holonomy
+    kind: def
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: vertex_path_holonomy
+  ordered_inputs:
+  - Cochain1
+  - VertexList
+  output: Int
+  arity: 2
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/CoboundaryHolonomy.lean
+    declaration: InterferenceNonL1Resource.vertex_path_holonomy
+    line: 40
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/CoboundaryHolonomy.lean
+    decl: InterferenceNonL1Resource.vertex_path_holonomy
+    kind: def
+    line: 40
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: coboundary_triangle_zero
+  equation_or_predicate: path_holonomy of coboundary of a 0-cochain around a triangle cycle equals 0
+  typing_conditions: 'phi : Cochain0; a b c : Vertex'
+  source_pins:
+  - path: lean4/CoboundaryHolonomy.lean
+    declaration: InterferenceNonL1Resource.coboundary_triangle_holonomy_zero
+    line: 30
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CoboundaryHolonomy.lean
+    decl: InterferenceNonL1Resource.coboundary_triangle_holonomy_zero
+    kind: theorem
+    line: 30
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'Exact ordered product evaluation on the Rust CellComplex is not grounded: no Rust operation declaration
+  is citable as a generator beyond the struct CellComplex, which is a struct not an operation'
+- No continuum connection or U(1) Hilbert phase claim is made; AuthorityEffect None
+- Composition of vertex_path_holonomy into path_holonomy and a licensing lemma are not grounded in the
+  listed declarations, so none are emitted
+- Rust test refuses_a_short_connection_and_a_broken_boundary is a checker and is not cited as a generator
+- 'near_miss nm_wilson_trace_as_holonomy unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

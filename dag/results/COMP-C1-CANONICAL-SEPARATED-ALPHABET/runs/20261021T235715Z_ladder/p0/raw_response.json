@@ -1,0 +1,90 @@
+{
+  "task_id": "COMP-C1-CANONICAL-SEPARATED-ALPHABET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e662e9b8b221d991cbc6b0db37f4abcfc0130da4758f14110c54ff54c7ab2f04",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_canonicalRegime\",\"inputs\":[\"Nat\"],\"output\":\"Regime\",\"arity\":1,\"carrier\":\"Nat -> Regime\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.canonicalRegime\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_canonical_pairwise\",\"statement\":\"For all n, PairwiseSeparated (canonicalRegime n)\",\"hypotheses\":\"none beyond n : Nat; separation is the UnarySep mirror, not the external Genesis separable\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.canonicalRegime_pairwise\",\"status\":\"existing\"}},{\"id\":\"r_pairwise_iff\",\"statement\":\"PairwiseSeparated r iff for all distinct i,j in range r.data, UnarySep r i j\",\"hypotheses\":\"r : Regime\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.pairwiseSeparated_iff\",\"status\":\"existing\"}},{\"id\":\"r_two_marks_collapsed\",\"statement\":\"Two admitted marks with no form are Collapsed\",\"hypotheses\":\"regime has no forms\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.two_marks_without_forms_collapsed\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_canonical_pairwise\",\"statement\":\"For every n, PairwiseSeparated (canonicalRegime n) holds under UnarySep.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_canonical_pairwise\",\"r_pairwise_iff\"],\"lean_skeleton\":\"theorem l_canonical_pairwise (n : Nat) : GenesisComputation.PairwiseSeparated (GenesisComputation.canonicalRegime n) := GenesisComputation.canonicalRegime_pairwise n\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_external_separable\",\"claim\":\"UnarySep equals the full external Genesis separable in all contexts including uniform rules\",\"rejecting_invariant\":\"UnarySep mirrors only the hole-only unary case; the lift is not done\"}],\"numeric_claims\":[],\"open_obligations\":[\"Lift UnarySep to the external Genesis separable for all contexts including uniform rules\",\"Check the exact signature of canonicalRegime_pairwise and two_marks_without_forms_collapsed, which were not shown in the SRC listing\",\"Confirm the regime has n data, n-1 forms and instances (i,[i])\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_canonicalRegime",
+        "inputs": [
+          "Nat"
+        ],
+        "output": "Regime",
+        "arity": 1,
+        "carrier": "Nat -> Regime",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.canonicalRegime",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_canonical_pairwise",
+        "statement": "For all n, PairwiseSeparated (canonicalRegime n)",
+        "hypotheses": "none beyond n : Nat; separation is the UnarySep mirror, not the external Genesis separable",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.canonicalRegime_pairwise",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_pairwise_iff",
+        "statement": "PairwiseSeparated r iff for all distinct i,j in range r.data, UnarySep r i j",
+        "hypotheses": "r : Regime",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.pairwiseSeparated_iff",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_two_marks_collapsed",
+        "statement": "Two admitted marks with no form are Collapsed",
+        "hypotheses": "regime has no forms",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.two_marks_without_forms_collapsed",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_canonical_pairwise",
+        "statement": "For every n, PairwiseSeparated (canonicalRegime n) holds under UnarySep.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_canonical_pairwise",
+          "r_pairwise_iff"
+        ],
+        "lean_skeleton": "theorem l_canonical_pairwise (n : Nat) : GenesisComputation.PairwiseSeparated (GenesisComputation.canonicalRegime n) := GenesisComputation.canonicalRegime_pairwise n",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_external_separable",
+        "claim": "UnarySep equals the full external Genesis separable in all contexts including uniform rules",
+        "rejecting_invariant": "UnarySep mirrors only the hole-only unary case; the lift is not done"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Lift UnarySep to the external Genesis separable for all contexts including uniform rules",
+      "Check the exact signature of canonicalRegime_pairwise and two_marks_without_forms_collapsed, which were not shown in the SRC listing",
+      "Confirm the regime has n data, n-1 forms and instances (i,[i])"
+    ]
+  }
+}

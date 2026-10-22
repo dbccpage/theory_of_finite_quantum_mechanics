@@ -1,0 +1,313 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "MUB6-SZOLLOSI-TWO-CIRCULANT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3e6556daec870bd04599ad421a62d0825d100c404428da4222bfc29aaec78e0f",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=MUB6-SZOLLOSI-TWO-CIRCULANT stage=P0 attempt=a3-1 in=3e6556da guided=yes\n@TARGET [PROVED_LEAN] For unit phase triples a, b with a0 a2* + a1 a0* + a2 a1* + b0 b2* + b1 b0* + b2 b1* = 0, the block matrix [[A, B], [B*, -A*]] of circulants has H H* = 6I and H/sqrt 6 is unitary with squared entry moduli 1/6; alpha is in both phase-sum images x + y + conj(xy) and -alpha iff some real solution of the six parameter equations has first phase sum alpha.\n@BOTTLENECK Transport to a dephased representative, classification of arbitrary CHM(6), the source cusp rank-degeneration claim, and Conjecture 3 (no quartet contains a family member) are not established.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/MasterClassification.lean | MUB.MasterClassification.szollosiMatrix_isCH6 | theorem | theorem szollosiMatrix_isCH6 (p : SzollosiParam) (hp : SzollosiDomain p) : IsCH6 (szollosiMatrix p)\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.PhaseTriple | abbrev | abbrev PhaseTriple\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.BlockIndex | abbrev | abbrev BlockIndex\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.rowCirculant | def | noncomputable def rowCirculant (a : PhaseTriple) : Matrix (Fin 3) (Fin 3) ℂ\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.compatibility | def | noncomputable def compatibility (a b : PhaseTriple) : ℂ\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.UnitPhases | def | def UnitPhases (a : PhaseTriple) : Prop\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.rawBlock | def | noncomputable def rawBlock (a b : PhaseTriple) : Matrix BlockIndex BlockIndex ℂ\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.rawSix | def | noncomputable def rawSix (a b : PhaseTriple) : Matrix (Fin 6) (Fin 6) ℂ\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.rawSix_gram | theorem\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.normalizer | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.normalized | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.normalized_unitary | theorem\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.normalized_entry_modulus | theorem\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.phaseSum | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.ParameterCoord | abbrev\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.ParameterPoly | abbrev\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.ParameterEquation | abbrev\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.decodeParameters | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.parameterPolynomial | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.DeltoidIntersection | def\n lean4/SzollosiTwoCirculant.lean | MUB.SzollosiTwoCirculant.parameter_covers_intersection | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_cover (Nat,Rat,Nat)->SzollosiDeltoidCoverReport src=code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs | solve_szollosi_deltoid_cover\n r:r_min_pos The overall minimum rational over the deltoid boxes is positive src=lean4/KernelReflectionSzollosiDeltoid.lean | MUB.KernelReflectionSzollosiDeltoid.deltoid_overall_min_rat_pos\n g:g_canonical_candidate_box ()->BasisBox src=code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs | canonical_candidate_basis_box\n g:g_certify_excludes_fourth (BasisBox)->Option<NoBasisBox> src=code/rust/src/mub/omega_native/mub6_basis_cover.rs | certify_basis_box_excludes_fourth\n g:g_overlap (Vec,Vec)->Complex src=lean4/SzollosiCommonRays.lean | MUB.SzollosiCommonRays.overlap\n g:g_column (SixMatrix,Fin6)->Vec src=lean4/SzollosiCommonRays.lean | MUB.SzollosiCommonRays.column\n r:r_no_pair_implies_no_quartet If no two common rays have |overlap|^2 = 6 then no quartet exists src=lean4/SzollosiCommonRays.lean | MUB.SzollosiCommonRays.no_quartet_of_no_unbiased_ray_pair\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] l_cusp_puiseux: At each of the three cusps of the Szollosi deltoid, the Puiseux expansion of the overlap resid -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_gap: At the Szollosi point (1,-1,1,i), all 7140 pairs among the 120 represented rays satisfy ||<z,w>|^2 - 6| -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 21,
+    "known_neg_injected": 2,
+    "known_pos_injected": 7,
+    "neighbours": [
+      "MUB6-COVER56-CURVATURE-PREMISE",
+      "MUB6-CUSP-PUISEUX-CLAIM",
+      "MUB6-DELTOID-COVER-BOX-DEFECT",
+      "MUB6-QUARTET-RAW-HADAMARD-TRANSPORT",
+      "MUB6-RESIDUAL-FENCE-CLAIM",
+      "MUB6-SZOLLOSI-618-SYSTEM",
+      "MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS"
+    ],
+    "feedback": true,
+    "index_position": 673,
+    "neg_entry_ids": [
+      "NEG-9DD83E970A58",
+      "NEG-E45F4A52A73B"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

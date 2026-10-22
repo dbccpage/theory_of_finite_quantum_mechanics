@@ -1,0 +1,124 @@
+{
+  "task_id": "TFQ-0125",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "553c8c962a77a34066773034843888832a7231e45e13a1ead3ed602aa2bec125",
+  "candidate_sha256": "0920aefb4b38e7f79740877f4a7f25d46f0c5002a5966e59eda656892de99637",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "qwen/qwen3.8-27b",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:42:42Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "matrix_carrier_to_pfp_witness_binder",
+        "ordered_inputs": [
+          "matrix_carrier"
+        ],
+        "output": "pfp_witness",
+        "arity": 1,
+        "carrier": "exact_arith",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/qm/campaigns/mod.rs",
+            "declaration": "engine_bridge",
+            "line": 37
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/qm/campaigns/mod.rs",
+          "decl": "engine_bridge",
+          "kind": "mod",
+          "line": 37,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "pfp_carrier_exact_arith_morph",
+        "equation_or_predicate": "An exact-arithmetic quantum-reasoning DAG witness transports deterministically into a matrix carrier state, with the vector space projection preserving effect equivalence (Kraus-free form).",
+        "typing_conditions": "E : Matrix (Fin n) (Fin n) ℚ",
+        "source_pins": [
+          {
+            "path": "code/rust/src/qm/campaigns/mod.rs",
+            "declaration": "engine_bridge",
+            "line": 37
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/qm/campaigns/mod.rs",
+          "decl": "engine_bridge",
+          "kind": "mod",
+          "line": 37,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-F36721B096CC",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "matrix_carrier_witness_chain_sound: The exact arithmetic derivation DAG witness binds soundly to the finite quantum-mechanical matrix carrier definition, conserving integer and rational family identities.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0125"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exact correspondence between specific derivation DAG integer/rational receipts (host-grepped recomputation fails without structural formulas) and the three-way carrier split (report, Bell, third) basis.",
+      "Reconciling the specific PFP number 553c8c96 with the currently traced 33-family master DAG receipt.",
+      "generator qem_dag_to_matrix_carrier unverified: no existing declaration cited",
+      "generator carrier_split_classifier unverified: no existing declaration cited",
+      "relation pfp_three_way_split_exhaustive unverified: no existing declaration cited",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

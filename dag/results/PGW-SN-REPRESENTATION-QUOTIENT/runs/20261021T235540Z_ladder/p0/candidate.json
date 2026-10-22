@@ -1,0 +1,147 @@
+{
+  "task_id": "PGW-SN-REPRESENTATION-QUOTIENT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "98ffea95d8f7403f6cf481a32510611f8e7d6571fd04d81b4c84c17968c99a85",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "lemma L_balance_after_section_doubling skeleton is a placeholder and must be rewritten as a real Lean statement of T*T^t = 2*I2",
+        "no existing declaration for section u or for the integer relations; all proposed_new",
+        "correspondence of Rust balance_map_with_limits to this T not verified by reading source",
+        "realification supplement assumption unverified",
+        "generator section_u unverified: no existing declaration cited",
+        "relation r_u_identity_doubled unverified: no existing declaration cited",
+        "relation kernel_test unverified: no existing declaration cited",
+        "relation projector_doubled_idempotent unverified: no existing declaration cited",
+        "lemma L_balance_after_section_doubling unverified: Lean elaboration disabled",
+        "lemma L_kernel_vector unverified: Lean elaboration disabled",
+        "near_miss nm_P_is_identity unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_native_Sn_obstruction unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-A7B70235DD19",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "balance_map_T . slot 0 <- section_u via r_u_identity_doubled",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN-REPRESENTATION-QUOTIENT"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-9E8661100E9C",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "balance_map_T: (TensorCoeff4) -> BalanceCoeff2 [balance_map_with_limits]",
+        "evidence": "rust fn balance_map_with_limits takes 3 parameters; the claim says 1",
+        "decl_key": "balance_map_with_limits",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN-REPRESENTATION-QUOTIENT"
+      },
+      {
+        "id": "NEG-11CD715178F0",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "balance_projector_P: (TensorCoeff4) -> TensorCoeff4 [balance_projector_with_limits]",
+        "evidence": "rust fn balance_projector_with_limits takes 3 parameters; the claim says 1",
+        "decl_key": "balance_projector_with_limits",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN-REPRESENTATION-QUOTIENT"
+      }
+    ],
+    "open_obligations": [
+      "lemma L_balance_after_section_doubling skeleton is a placeholder and must be rewritten as a real Lean statement of T*T^t = 2*I2",
+      "no existing declaration for section u or for the integer relations; all proposed_new",
+      "correspondence of Rust balance_map_with_limits to this T not verified by reading source",
+      "realification supplement assumption unverified",
+      "generator section_u unverified: no existing declaration cited",
+      "relation r_u_identity_doubled unverified: no existing declaration cited",
+      "relation kernel_test unverified: no existing declaration cited",
+      "relation projector_doubled_idempotent unverified: no existing declaration cited",
+      "lemma L_balance_after_section_doubling unverified: Lean elaboration disabled",
+      "lemma L_kernel_vector unverified: Lean elaboration disabled",
+      "near_miss nm_P_is_identity unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_native_Sn_obstruction unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "rank_T",
+        "expr": "2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "trace_P",
+        "expr": "4/2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "kernel_dim",
+        "expr": "4 - 2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

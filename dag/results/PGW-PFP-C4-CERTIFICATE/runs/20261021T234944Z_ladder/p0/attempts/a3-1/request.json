@@ -1,0 +1,304 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-PFP-C4-CERTIFICATE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "fb80544ae34d2462709c61c28d995662ff97d8b3c726521e134024477903d647",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-PFP-C4-CERTIFICATE stage=P0 attempt=a3-1 in=fb80544a guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] On the supplied oriented 4-cycle with vertices 0 to 3, edges 01, 12, 23, 03 in that order, one declared face 01+12+23−03 and c = (2, −3, 5, 7), the potential a = (0, 2, −1, 4) gives d₀a = (2, −3, 5, 4) and residual r = (0, 0, 0, 3) with L1 norm 3, an upper bound. The dual w = (−1, −1, −1, 1) is feasible (max |wᵢ| = 1 and d₀ᵀw = 0 at all four vertices) with w·c = 3, so every potential leaves L1 cost at least 3 and φ₁ = 3. The face row d₁ = (1, 1, 1, −1) satisfies d₁d₀ = 0 and d₁c = −3, so γ₂ = 3. The fixture c4_public_input.json carries this complex, and test_native_certificate_positive_and_decisive_mutations checks the certificate through the native Rust checker, rejects a +1 change to each answer field and accepts a constant shift of the potential; it passed in the recorded receipt of 2026-10-19 (2 passed, 0 failed).\n@BOTTLENECK A finite certificate for one supplied complex: φ₁ = γ₂ here does not hold on all complexes or norms, and neither the certificate nor a schema check supplies a Hilbert space, a Born rule or an authorization.\n@ASSUME Supplied oriented C4 complex, L1 edge norm and rational coefficients, as declared in c4_work_unit.json (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.every_primal_competitor_at_least_three | theorem | theorem every_primal_competitor_at_least_three (a : Q3) : 3 ≤ l1Norm (residual a)\n code/python/tests/test_dual_face_majorana_mub_fsp.py | test_mub_dual_face | def [test] | def test_mub_dual_face(): \"\"\"Verify MUB crate exports and invariant check matching Rust.\"\"\" assert verify_mub_crate_invariants() assert mub_authority_\n code/python/tests/test_dual_face_majorana_mub_fsp.py | test_dual_face_lattice_scaling_benchmarks | def [test] | def test_dual_face_lattice_scaling_benchmarks(): \"\"\"Verify Fock, Hubbard, Tetron, MultiQubitBraid, SparseKitaev, ClassifyResidual, and PauliNoise fini\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.l1Norm | def | def l1Norm (v : Q3) : Rat\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixtureAlpha | def | def fixtureAlpha : Q3\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixtureOmega | def | def fixtureOmega : Q3\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixtureResidual | def | def fixtureResidual : Q3\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.dualInfinityFeasible | def | def dualInfinityFeasible (y : Q3) : Prop\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixture_residual_eq_beta | theorem\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible | theorem\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.dual_unit_pairs_every_residual_to_three | theorem\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixturePrimalValue | def\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixtureDualValue | def\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixtureDualityGap | def\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixture_primal_value_eq_three | theorem\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixture_dual_value_eq_three | theorem\n lean4/FiniteN3ResidualDual.lean | PontryaginResidualDualProgramme.FiniteN3.fixture_duality_gap_eq_zero | theorem\n code/python/tests/test_dual_face_majorana_mub_fsp.py | test_packet_wall_and_dual_observer | def [test]\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.K | def\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.dimension_formula | theorem\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.Multiplicative | def\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.complex_dimension | theorem\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.complex_multiplicative | theorem\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.zero_multiplicative | theorem\n lean4/ComplexFieldSelection.lean | ComplexFieldSelection.two_pair_selects | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "TFQ-0508"
+    ],
+    "feedback": true,
+    "index_position": 432,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

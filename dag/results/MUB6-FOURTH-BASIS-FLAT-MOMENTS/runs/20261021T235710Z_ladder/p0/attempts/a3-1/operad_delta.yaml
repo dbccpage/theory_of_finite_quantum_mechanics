@@ -1,0 +1,129 @@
+add_or_refine_generators:
+- id: g_coordinates
+  ordered_inputs:
+  - Candidate
+  output: CoordVector
+  arity: 1
+  carrier: Candidate to CoordVector
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/ConcreteMubPolynomials.lean
+    declaration: MUB.ConcreteMubPolynomialSystem.coordinates
+    line: 34
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/ConcreteMubPolynomials.lean
+    decl: MUB.ConcreteMubPolynomialSystem.coordinates
+    kind: def
+    line: 34
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_muPolynomial
+  ordered_inputs:
+  - Triple
+  - Fin3
+  - Fin6
+  - Fin6
+  output: Poly
+  arity: 4
+  carrier: Poly
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/ConcreteMubPolynomials.lean
+    declaration: MUB.ConcreteMubPolynomialSystem.muPolynomial
+    line: 53
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/ConcreteMubPolynomials.lean
+    decl: MUB.ConcreteMubPolynomialSystem.muPolynomial
+    kind: def
+    line: 53
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_iff_flat
+  equation_or_predicate: For a triple T, (exists U, FourthBasis T U) iff exists linear Lambda on Poly
+    with Lambda 1 = 1, momentTwo Lambda PosSemidef, ranks of momentTwo and momentOne equal, and FiniteRelationCompatibility
+    T Lambda.
+  typing_conditions: T a Triple
+  source_pins:
+  - path: lean4/ConcreteMubFlatExtension.lean
+    declaration: MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments
+    line: 127
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/ConcreteMubFlatExtension.lean
+    decl: MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments
+    kind: theorem
+    line: 127
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_flat_to_basis
+  equation_or_predicate: Normalized Lambda with equal ranks of momentTwo and momentOne, plus finite relation
+    compatibility, yields a fourth basis (positivity hypothesis presumably also needed).
+  typing_conditions: Lambda 1 = 1, rank equality, FiniteRelationCompatibility T Lambda; further hypotheses
+    truncated in source listing
+  source_pins:
+  - path: lean4/ConcreteMubFlatExtension.lean
+    declaration: MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat
+    line: 104
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/ConcreteMubFlatExtension.lean
+    decl: MUB.ConcreteMubPolynomialSystem.fourth_basis_of_positive_flat
+    kind: theorem
+    line: 104
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_mu_trace
+  equation_or_predicate: Evaluating muPolynomial T a i j at the coordinates of U equals tr(P_{T_a,i} P_{U,j})
+    - 1/6.
+  typing_conditions: U a Candidate
+  source_pins:
+  - path: lean4/ConcreteMubPolynomials.lean
+    declaration: MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace
+    line: 108
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/ConcreteMubPolynomials.lean
+    decl: MUB.ConcreteMubPolynomialSystem.muPolynomial_eval_projector_trace
+    kind: theorem
+    line: 108
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- The source listing is truncated, so the exact form of the rank-equality conjunct in the iff theorem
+  is unconfirmed.
+- Role of the 180 residuals inside FiniteRelationCompatibility not grounded in the listing.
+- Generators beyond the coordinate and muPolynomial maps not identified.
+- No compositions licensed.
+- 'lemma l_target unverified: Lean elaboration disabled'
+- 'near_miss nm_nonflat unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

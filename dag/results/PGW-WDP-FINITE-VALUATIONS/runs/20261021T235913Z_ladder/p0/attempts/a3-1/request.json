@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-WDP-FINITE-VALUATIONS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "2a556e4811fe22b45d4d76ccb959617829fd9924cef9a58b6189f23b39154123",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-WDP-FINITE-VALUATIONS stage=P0 attempt=a3-1 in=2a556e48 guided=yes\n@TARGET [DEFINITION] WDP-CH08-D01: finite families A and B are congruent relative to a comparison family K when a matching preserving K is exhibited, a bijective correspondence with no primitive number object that still presupposes the exhibited families, so plurality itself is not derived from one cut. With a declared mass m: W → ℝ≥0, μ(A) = Σ_{w∈A} m(w) is finitely additive by construction, and on a declared finite partition with μ(W) > 0 the values p(A_i) = μ(A_i)/μ(W) are nonnegative and sum to 1 (WDP-CH08-P01). WDP-CH08-O01: a nonnegative additive valuation on a finite Boolean algebra has unique atom masses and pushforwards, and witness-level masses extending it are unique exactly when every nonsingleton atom has mass zero. WDP-CH08-C01 (conditional): an aggregator with a continuous associative composition law with identity 0, singleton values ct with c > 0 and replica extensivity has composition x + y and value c Σ_e a_e. WDP-CH09-P01: |z_i|^q / Σ_j |z_j|^q is a probability vector for every q > 0, and distinct exponents give distinct vectors when two nonzero magnitudes differ, so normalization does not select q = 2.\n@BOTTLENECK A normalized finite valuation is not a frequency, propensity, degree of belief or countably additive measure; Lean Probability.sum_normalizedMultiplicity covers natural multiplicities only, and the monograph's C01 argument uses no Aczél representation theorem, superseding the education page's import reading.\n@ASSUME Declared mass on a finite witness family and a declared finite partition with positive total mass (assumption); For C01: continuity, associativity and replica extensivity of the aggregation law (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.RepairsToZero | def | def RepairsToZero (P : PointedPrimitiveDifference α β) (_C : ObstructionClassifier (PointedResidualQuotient P)) (r : RepairMap P) (q : PointedResidual\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.repairWitness_implies_repaired_zero | theorem | theorem repairWitness_implies_repaired_zero (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQuotient P)) (r : RepairMa\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.repairMap_repairs_to_zero_gives_witness | theorem | theorem repairMap_repairs_to_zero_gives_witness (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQuotient P)) (r : Repa\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.boolZeroClassifier | def | def boolZeroClassifier : ObstructionClassifier (PointedResidualQuotient boolSeparatedPointed) where Phi\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.boolTrueClass_ne_zeroClass | theorem | theorem boolTrueClass_ne_zeroClass : boolTrueClass ≠ boolSeparatedPointed.zeroClass\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.RepairMap | abbrev | abbrev RepairMap (P : PointedPrimitiveDifference α β)\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.RepairWitness | structure | structure RepairWitness (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQuotient P)) (r : RepairMap P) (q : PointedRes\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.ExactRepairStatusOnly | def | def ExactRepairStatusOnly (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQuotient P)) (q : PointedResidualQuotient P)\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.ExactRepairHasWitness | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.WitnessedExactRepair | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.witnessedExactRepair_implies_exact | theorem\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.exactRepair_status_without_witness_is_only_classifier | theorem\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.identityRepairMap | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.boolSeparatedPointed | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.boolTrueClass | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.bool_exact_without_identity_repair_witness | theorem\n code/rust/src/wdp/derivation_controls/wdp_o12_xlm_comparison.rs | mixed_partial_log_x_at_zero | fn\n code/rust/src/wdp/derivation_controls/wdp_o12_xlm_comparison.rs | rescaled_row_sum | fn\n code/rust/src/wdp/derivation_controls/wdp_o12_xlm_comparison.rs | Witness | struct\n code/rust/src/wdp/derivation_controls/wdp_o12_xlm_comparison.rs | witness | fn\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 20,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "PGW-WDP-RETENTION-PACKET",
+      "PGW-WDP-SYNTHESIS-TRUNK-TIERS"
+    ],
+    "feedback": true,
+    "index_position": 783,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

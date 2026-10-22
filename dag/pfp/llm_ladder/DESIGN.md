@@ -179,8 +179,12 @@ existing pipeline: `prepare_stage.py` still requires a *host review* before any 
 | `schema_violation`, `unparseable_reply`, `model_refusal` | reply outside the grammar / refusal | failed_composition |
 
 Lean: `lake env lean` in `lean4/` runs only when `lean --version` names the version in `lean4/lean-toolchain`
-(the toolkit's own check). On this machine Lean is 4.35.0 against the pinned 4.33.1, so elaboration is *skipped
-with that reason recorded* and lemmas with skeletons stay `unverifiable`, never verified.
+(the toolkit's own check). The ladder names no version in code: `LeanRunner.availability` reads `lean4/lean-toolchain`,
+which is `leanprover/lean4:v4.35.0` since the repository moved to Lean 4.35.0 (at the time of the pilot it named 4.33.1 while
+4.35.0 was installed, so elaboration was skipped). When the installed Lean differs from the file, elaboration is *skipped with
+that reason recorded*. Without Lean (also with `--no-lean`), a lemma that cites a verified existing declaration counts as
+`ref-verified, not Lean-checked`, at the evidence level of a relation; a lemma with no citation stays `unverifiable`.
+Round 2 ran with `--no-lean`; nothing was elaborated.
 
 ## 9. Records
 

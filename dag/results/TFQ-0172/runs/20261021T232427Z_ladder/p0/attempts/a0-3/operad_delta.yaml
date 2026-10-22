@@ -1,0 +1,46 @@
+add_or_refine_generators:
+- id: gen_holonomy_loop
+  ordered_inputs:
+  - List Vertex
+  - Vertex
+  output: Vertex
+  arity: 2
+  carrier: graph.rs
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/holonomy/graph.rs
+    declaration: CellComplex
+    line: 36
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/holonomy/graph.rs
+    decl: CellComplex
+    kind: struct
+    line: 36
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-FFC331823012
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: holonomy_loop . slot 0 <- vertex_path_holonomy via refuses_a_short_connection_and_a_broken_boundary
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0172
+counterexamples: []
+open_obligations:
+- Verify cell complex finite vertex set and closure of vertex list in graph.rs
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

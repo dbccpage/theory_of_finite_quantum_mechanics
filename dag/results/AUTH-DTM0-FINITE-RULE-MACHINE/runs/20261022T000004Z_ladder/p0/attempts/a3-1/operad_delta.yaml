@@ -1,0 +1,145 @@
+add_or_refine_generators:
+- id: g_step
+  ordered_inputs:
+  - Machine
+  - Configuration
+  output: StepResult
+  arity: 2
+  carrier: DirectTuringMachineModels
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.step
+    line: 113
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.step
+    kind: def
+    line: 113
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_execute
+  ordered_inputs:
+  - Machine
+  - Nat
+  - Configuration
+  output: ExecutionResult
+  arity: 3
+  carrier: DirectTuringMachineModels
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.execute
+    line: 123
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.execute
+    kind: def
+    line: 123
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_applyRule
+  ordered_inputs:
+  - Rule
+  - Configuration
+  output: Configuration
+  arity: 2
+  carrier: DirectTuringMachineModels
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.applyRule
+    line: 99
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.applyRule
+    kind: def
+    line: 99
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_step_halted_iff
+  equation_or_predicate: step machine configuration is halted iff the configuration state is the declared
+    halt state
+  typing_conditions: none beyond the machine and configuration
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt
+    line: 199
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt
+    kind: theorem
+    line: 199
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_exec_halted
+  equation_or_predicate: execute returns halted when the starting configuration is in the declared halt
+    state
+  typing_conditions: declared halt of the starting configuration
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt
+    line: 211
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt
+    kind: theorem
+    line: 211
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-1F872643045B
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_tm0_step_sim: For each machine and finite-support configuration, a non-halting step corresponds
+    to a bounded step sequence in the Mathlib Turing.TM0 translation'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTH-DTM0-FINITE-RULE-MACHINE
+counterexamples: []
+open_obligations:
+- Mathlib Turing.TM0 definitions are not in the source list, so they cannot be cited as existing
+- Translation from Machine to TM0 and the finite-support predicate are not yet defined
+- Step simulation theorem is not proved
+- The lean skeleton is a placeholder using sorry and does not state the real simulation
+- Colour names for the generator signatures are not checked against the source declarations
+- 'relation r_tm0_step_sim unverified: no existing declaration cited'
+- 'near_miss nm_infinite_support unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_halt_stuck_merge unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

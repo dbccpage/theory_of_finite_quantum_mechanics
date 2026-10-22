@@ -1,0 +1,112 @@
+{
+  "generators": [
+    {
+      "name": "char_two_mub_generator",
+      "input_colours": ["binary_vector_space"],
+      "output_colour": "pauli_operator_basis",
+      "arity": 1,
+      "relation_to_cite": "independent_binary_generators",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "projector_lift_generator",
+      "input_colours": ["pauli_operator_basis", "incidence_data"],
+      "output_colour": "projector_matrix",
+      "arity": 2,
+      "relation_to_cite": "operator_lift_separates_incidence",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "hilbert_transport_generator",
+      "input_colours": ["projector_matrix"],
+      "output_colour": "pauli_projector_transported",
+      "arity": 1,
+      "relation_to_cite": "pauli_projector_transport",
+      "status": "proposed_new",
+      "path": ""
+    }
+  ],
+  "relations": [
+    {
+      "name": "independent_binary_generators",
+      "arity": 2,
+      "source": "binary_vector_space",
+      "target": "pauli_operator_basis",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "operator_lift_separates_incidence",
+      "arity": 3,
+      "source": "incidence_data",
+      "target": "projector_matrix",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "pauli_projector_transport",
+      "arity": 2,
+      "source": "projector_matrix",
+      "target": "pauli_projector_transported",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "name": "generator_dimension_check",
+      "arity": 2,
+      "source": "number_of_generators",
+      "target": "hilbert_dimension",
+      "status": "proposed_new",
+      "path": ""
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "char_two_mub_generator",
+      "inner": "projector_lift_generator",
+      "slot": 0,
+      "relation": "generator_dimension_check",
+      "status": "proposed_new",
+      "path": ""
+    },
+    {
+      "outer": "projector_lift_generator",
+      "inner": "hilbert_transport_generator",
+      "slot": 0,
+      "relation": "pauli_projector_transport",
+      "status": "proposed_new",
+      "path": ""
+    }
+  ],
+  "lemmas": [
+    {
+      "relation_to_target": "generator_dimension_matches_hilbert_space",
+      "kind": "implies",
+      "claims_proved": false,
+      "status": "proposed_new",
+      "path": "",
+      "lean_skeleton": "theorem generator_dimension_matches_hilbert_space (n : ℕ) : |{g : Generator // independent g ∧ count g = n}| = 2^n := sorry"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "expr": "2^4",
+      "value": "16",
+      "description": "Dimension of Hilbert space for 4-qubit characteristic-two MUB construction"
+    },
+    {
+      "expr": "2*4",
+      "value": "8",
+      "description": "Number of independent binary generators matching Hilbert dimension"
+    }
+  ],
+  "open_obligations": [
+    "Cite exact matrix entries for char_two.rs without division by two",
+    "Define incidence split between mub/char_two.rs and mub/finite_projector_control.rs",
+    "Provide Lean 4 declaration matching generator-dimension check",
+    "Ground numeric claim for 2^4 without assuming qubit decomposition"
+  ],
+  "status": "proposed_new"
+}

@@ -1,0 +1,86 @@
+{
+  "task_id": "TFQ-0325",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "4b51bbfcaac17fb7f361638d8d9b0f0517073f1919d9a14deafae9c00a2bb436",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_fiberResidual\",\"inputs\":[\"X\",\"M_projection\"],\"output\":\"Realization_X_XxX\",\"arity\":2,\"carrier\":\"Realization X (X × X) with δ x y given by fiber residual of p : X → M\",\"ref\":{\"path\":\"lean4/E003_projection_fiber_primitive_difference.lean\",\"decl\":\"GrokPdNight20260814.E003.fiberResidual\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_package_evaluator_check\",\"statement\":\"The package evaluator test passes on the public projection-obstruction paper library; this is a checker only, not an operation.\",\"hypotheses\":\"The lib_path contains Python modules other than __init__.py and generate_figures.py.\",\"ref\":{\"path\":\"code/python/src/majorana/test_projection_obstruction_public_paper.py\",\"decl\":\"test_package_evaluator_passes\",\"status\":\"existing\"}},{\"id\":\"r_gap_pd_not_p0\",\"statement\":\"S000-GAP-PD-TO-P0-NOT-IMPORTED: no theorem here states that the Primitive Difference walk is Paper 0, and AuthorizationBoundary is not imported into the S000 mirror.\",\"hypotheses\":\"Proposed gap only; the walk is not claimed complete; Paper 0 is not rewritten.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_gap_not_theorem\",\"statement\":\"The file contains no theorem identifying the Primitive Difference walk with Paper 0; the gap stays proposed.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_gap_pd_not_p0\"],\"lean_skeleton\":\"-- no formal statement: this is a negative boundary claim, nothing to elaborate\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"near_misses\":[{\"id\":\"nm_walk_is_paper0\",\"claim\":\"The Primitive Difference walk is Paper 0.\",\"rejecting_invariant\":\"The gap S000-GAP-PD-TO-P0-NOT-IMPORTED remains proposed and the BOTTLENECK forbids treating the walk as Paper 0.\"},{\"id\":\"nm_import_authboundary\",\"claim\":\"AuthorizationBoundary can be imported into the S000 mirror in this pass.\",\"rejecting_invariant\":\"BOTTLENECK forbids that import in this pass.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No declaration for AuthorizationBoundary is listed in SRC, so it is not cited.\",\"Declarations for E008_projection_escape_residual.lean and test_authorization_boundary.py are not in SRC; no path or decl cited.\",\"No relation licensing compositions was grounded, so compositions is empty.\",\"The gap relation and lemma need a host-approved formal statement.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_fiberResidual",
+        "inputs": [
+          "X",
+          "M_projection"
+        ],
+        "output": "Realization_X_XxX",
+        "arity": 2,
+        "carrier": "Realization X (X × X) with δ x y given by fiber residual of p : X → M",
+        "ref": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiberResidual",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_package_evaluator_check",
+        "statement": "The package evaluator test passes on the public projection-obstruction paper library; this is a checker only, not an operation.",
+        "hypotheses": "The lib_path contains Python modules other than __init__.py and generate_figures.py.",
+        "ref": {
+          "path": "code/python/src/majorana/test_projection_obstruction_public_paper.py",
+          "decl": "test_package_evaluator_passes",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_gap_pd_not_p0",
+        "statement": "S000-GAP-PD-TO-P0-NOT-IMPORTED: no theorem here states that the Primitive Difference walk is Paper 0, and AuthorizationBoundary is not imported into the S000 mirror.",
+        "hypotheses": "Proposed gap only; the walk is not claimed complete; Paper 0 is not rewritten.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_gap_not_theorem",
+        "statement": "The file contains no theorem identifying the Primitive Difference walk with Paper 0; the gap stays proposed.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_gap_pd_not_p0"
+        ],
+        "lean_skeleton": "-- no formal statement: this is a negative boundary claim, nothing to elaborate",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_walk_is_paper0",
+        "claim": "The Primitive Difference walk is Paper 0.",
+        "rejecting_invariant": "The gap S000-GAP-PD-TO-P0-NOT-IMPORTED remains proposed and the BOTTLENECK forbids treating the walk as Paper 0."
+      },
+      {
+        "id": "nm_import_authboundary",
+        "claim": "AuthorizationBoundary can be imported into the S000 mirror in this pass.",
+        "rejecting_invariant": "BOTTLENECK forbids that import in this pass."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No declaration for AuthorizationBoundary is listed in SRC, so it is not cited.",
+      "Declarations for E008_projection_escape_residual.lean and test_authorization_boundary.py are not in SRC; no path or decl cited.",
+      "No relation licensing compositions was grounded, so compositions is empty.",
+      "The gap relation and lemma need a host-approved formal statement."
+    ]
+  }
+}

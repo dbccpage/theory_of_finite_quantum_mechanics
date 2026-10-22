@@ -1,0 +1,56 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1_licensed_requires_replay
+  equation_or_predicate: IsLicensedLiftCandidate L implies L.hasReplay = true
+  typing_conditions: 'L : LiftCandidate'
+  source_pins:
+  - path: lean4/PrimitiveLiftCandidate.lean
+    declaration: OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_replay
+    line: 82
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveLiftCandidate.lean
+    decl: OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_replay
+    kind: theorem
+    line: 82
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R2_licensed_iff_all_fields
+  equation_or_predicate: IsLicensedLiftCandidate L holds iff all required evidence fields of L are true
+  typing_conditions: 'L : LiftCandidate'
+  source_pins:
+  - path: lean4/PrimitiveLiftCandidate.lean
+    declaration: OmegaCore.PrimitiveLiftCandidate.licensed_lift_iff_all_fields_true
+    line: 62
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveLiftCandidate.lean
+    decl: OmegaCore.PrimitiveLiftCandidate.licensed_lift_iff_all_fields_true
+    kind: theorem
+    line: 62
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'No generators grounded: no non-test operation with a known signature is listed.'
+- Compositions need a licensing relation between typed generators.
+- Exhausted repairs, minimized extension and retraction are not matched to specific Lean fields.
+- Declared successor to candidate lift to licensed lift promotion map is not in the sources.
+- No Lean skeleton has been elaborated.
+- 'lemma L1_licensed_needs_replay unverified: Lean elaboration disabled'
+- 'lemma L2_licensed_needs_source_obstruction unverified: Lean elaboration disabled'
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

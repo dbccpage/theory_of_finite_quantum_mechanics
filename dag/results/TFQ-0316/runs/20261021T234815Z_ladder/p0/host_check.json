@@ -1,0 +1,195 @@
+{
+  "task_id": "TFQ-0316",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8ca3faf0ce690c721a88bea53bc8100ccd414160a2d87257572eca038ea5400f",
+  "candidate_sha256": "ba607f897fa3967925b94e8ddd29001beb6244c18a8a565e4b894e3653dfbfaf",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:48:26Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_born_numerator",
+        "ordered_inputs": [
+          "FiniteDensity2",
+          "ProjectiveEffect"
+        ],
+        "output": "Nat",
+        "arity": 2,
+        "carrier": "Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteDensity.lean",
+            "declaration": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_expected_numerator",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_expected_numerator",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_trace",
+        "ordered_inputs": [
+          "FiniteDensity2"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteDensity.lean",
+            "declaration": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.trace",
+            "line": 12
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.trace",
+          "kind": "def",
+          "line": 12,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_born_unit_interval",
+        "equation_or_predicate": "born_expected_numerator d e ≤ d.denominator",
+        "typing_conditions": "d : FiniteDensity2, e : ProjectiveEffect",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteDensity.lean",
+            "declaration": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval",
+            "line": 29
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.born_probability_in_unit_interval",
+          "kind": "theorem",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_trace_unit",
+        "equation_or_predicate": "trace d = d.denominator",
+        "typing_conditions": "d : FiniteDensity2",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteDensity.lean",
+            "declaration": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.density_is_positive_unit_trace",
+            "line": 15
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FromPrimitiveDifferenceToQuantumMechanics.FiniteDensity.density_is_positive_unit_trace",
+          "kind": "theorem",
+          "line": 15,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_lift_needs_carrier",
+        "equation_or_predicate": "A licensed lift candidate has a new carrier, so a missing new carrier blocks the lift",
+        "typing_conditions": "L : LiftCandidate, IsLicensedLiftCandidate L",
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveLiftCandidate.lean",
+            "declaration": "OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_new_carrier",
+            "line": 77
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveLiftCandidate.lean",
+          "decl": "OmegaCore.PrimitiveLiftCandidate.licensed_lift_requires_new_carrier",
+          "kind": "theorem",
+          "line": 77,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Continuum Hilbert lift step remains an open bridge",
+      "F001.S000 coordination not grounded in a listed declaration",
+      "Chapter 2 consolidation record has no cited declaration",
+      "README step classification (formal, source claim, mirror, interface, open) not formalized",
+      "Compositions not licensed: no relation connects the generator outputs and inputs",
+      "lemma l_floor_born_bound unverified: Lean elaboration disabled",
+      "lemma l_lift_blocked_without_carrier unverified: Lean elaboration disabled",
+      "near_miss nm_gauss_is_complex unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_derives_qm unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "task_id": "PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "494eea2fb93f4246e653cbd448dea2fc87fdf38637bf34426087697de38d1c2d",
+  "candidate_sha256": "c0516dd855554f049f02658d4a8ddcc10a658bf03105d1863024487b83144f87",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:59:21Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No @SRC declaration covers the duration gauge. The Lean names duration_append and exact_duration_path_independent are mentioned only in the bottleneck text, not listed in @SRC, so they are not cited as existing.",
+      "No generators are grounded, so none are listed.",
+      "The four-status classification (exact, closed nonexact, active closure failure, undetermined) has no ledger row.",
+      "The d1 closure operator and the 2-cell structure are undeclared.",
+      "The lean_skeleton is unchecked and may fail to elaborate, so claims_proved is false.",
+      "relation R-append-additivity unverified: no existing declaration cited",
+      "relation R-exact-path-independence unverified: no existing declaration cited",
+      "relation R-period-witness unverified: no existing declaration cited",
+      "lemma L-exact-implies-period-zero unverified: Lean elaboration disabled",
+      "near_miss NM-weak-connectedness-converse unverified: semantic near miss; P4 host check decides",
+      "near_miss NM-python-Q-positive-as-D01 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

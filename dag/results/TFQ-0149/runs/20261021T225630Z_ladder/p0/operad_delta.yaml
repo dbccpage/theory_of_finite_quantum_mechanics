@@ -1,0 +1,256 @@
+add_or_refine_generators:
+- id: boundary_area
+  ordered_inputs:
+  - N
+  - M_int
+  output: Int
+  arity: 2
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H022SimplicialAreaLawPageCurve.lean
+    declaration: FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area
+    line: 11
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H022SimplicialAreaLawPageCurve.lean
+    decl: FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area
+    kind: def
+    line: 11
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: page_entropy_4x
+  ordered_inputs:
+  - A_B
+  - A_R
+  output: Nat
+  arity: 2
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H022SimplicialAreaLawPageCurve.lean
+    declaration: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x
+    line: 71
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H022SimplicialAreaLawPageCurve.lean
+    decl: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x
+    kind: def
+    line: 71
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: page_entropy_half_total
+  equation_or_predicate: 2 * page_entropy_4x A_B A_R <= A_0 when A_B + A_R = A_0
+  typing_conditions: A_B + A_R = A_0
+  source_pins:
+  - path: lean4/H022SimplicialAreaLawPageCurve.lean
+    declaration: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_le_half_total
+    line: 104
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H022SimplicialAreaLawPageCurve.lean
+    decl: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_le_half_total
+    kind: theorem
+    line: 104
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: page_curve_symmetry
+  equation_or_predicate: page_entropy_4x A_B A_R = page_entropy_4x A_R A_B
+  typing_conditions: none
+  source_pins:
+  - path: lean4/H022SimplicialAreaLawPageCurve.lean
+    declaration: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_curve_subsystem_symmetry
+    line: 74
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H022SimplicialAreaLawPageCurve.lean
+    decl: FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_curve_subsystem_symmetry
+    kind: theorem
+    line: 74
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-67C5F896844D
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area'',
+    ''kind'': ''def'', ''inputs'': [''N'', ''M'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-075FA8B77D34
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x'',
+    ''kind'': ''def'', ''inputs'': ['
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-E37A0028E890
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_le_half_total'',
+    ''kind'': ''theore'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-DC4DE8372DA9
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''outer'': ''FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_entropy_4x'', ''slot'':
+    0, ''inner'': ''FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_'
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected licenses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-1390DE99D0AC
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''2 * (page_entropy_4x A_B A_R) ≤ A_0'', ''value'': ''(2 * N) / A_0 ≤ 1/2''}'
+  evidence: 'numeric_claims[0]: missing id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-07CB6C5E9A0C
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk20260819.H022.CombinatorialPageCurve.page_curve_subsystem_symmetry'',
+    ''relation_to'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-12F836EF4F88
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk20260819.H022.SimplicialAreaLaw.boundary_area_even'',
+    ''relation_to_target'': ''auxil'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-8FC08AA12DC4
+  class: schema_violation
+  claim_kind: near_misses
+  claim: '{''reason'': ''simplicial_entropy_schedule.rs::area_count_and_page_schedule_match_the_declared_arithmetic
+    lacks direct mutual information generator mapping''}'
+  evidence: 'near_misses[0]: missing id; near_misses[0]: missing claim; near_misses[0]: missing rejecting_invariant'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-A851E1A8E15C
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''N'', ''M_int''], ''output'': ''Int'', ''arity'': 2, ''name'': ''boundary_area'',
+    ''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWalk2'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-59911D4EEF26
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''A_B'', ''A_R''], ''output'': ''Nat'', ''arity'': 2, ''name'': ''page_entropy_4x'',
+    ''path'': ''lean4/H022SimplicialAreaLawPageCurve.lean'', ''decl'': ''FableHilbertWal'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-DFF84AB093D1
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''(2 * page_entropy_4x A_B A_R) / A_0'', ''value'': ''1/2''}'
+  evidence: 'numeric_claims[0]: missing id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0149
+counterexamples: []
+open_obligations:
+- 'Mutual information, conditional entropy, and coherent information from quantum_mutual_information.rs
+  are not grounded: no Lean or source declaration for them was listed in @SRC.'
+- Quantum entropy cone monogamy flag from quantum_entropy_cone.rs is not grounded in @SRC.
+- Uhlmann-Jozsa fidelity (fidelity.rs) and ancilla extension-purity bounds (ancilla_capacity.rs) are not
+  listed in @SRC.
+- Only area_count_and_page_schedule_match_the_declared_arithmetic in simplicial_entropy_schedule.rs is
+  listed; it is a [test]-style checker and cannot be a generator, and no existing citation was made for
+  it because its signature details are not confirmed.
+- Lean page_curve_initial_zero, page_curve_terminal_unitarity, early_phase_bound, late_phase_bound, page_peak_achieved
+  lack confirmed statements in @SRC, so they are not cited.
+- No composition is licensed by the listed relations because page_entropy_4x outputs Nat and boundary_area
+  outputs Int, so the colours do not match.
+- 'near_miss nm_mutual_information_monogamy unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_half_bound_ratio
+  expr: (2 * 1) / 4
+  value: 1/2
+  host_evidence:
+    recomputed: 1/2
+verified_lemma_statements: []

@@ -1,0 +1,116 @@
+{
+  "task_id": "TFQ-0191",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b556ce5323c8a2372f8ae97f1dcb0bfe81fcaf7aa493d505128c93836e6ac86a",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_evidence_ceiling\",\"inputs\":[\"BoundEpkMeasurement\",\"Index\"],\"output\":\"EvidenceCeiling\",\"arity\":2,\"carrier\":\"bound EPK measurement evidence\",\"ref\":{\"path\":\"code/rust/src/local_green_global_red_lggr/bound_measurement.rs\",\"decl\":\"evidence_ceiling\",\"status\":\"existing\"}},{\"id\":\"g_continuation_evidence\",\"inputs\":[\"BoundEpkMeasurement\",\"VerifiedDescentReceipt\"],\"output\":\"ContinuationEvidence\",\"arity\":2,\"carrier\":\"bound EPK measurement evidence\",\"ref\":{\"path\":\"code/rust/src/local_green_global_red_lggr/bound_measurement.rs\",\"decl\":\"continuation_evidence\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_interval_pending\",\"statement\":\"An Interval measurement value never yields a deciding scalar without an explicit policy decision; it is refused with IntervalRequiresPolicy\",\"hypotheses\":\"interval bounds are present; no policy supplied\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_f64_no_authority\",\"statement\":\"A BigDecimal built via from_f64_unchecked carries no exactness authority and cannot authorize a bound\",\"hypotheses\":\"decimal built from f64 at fixed scale\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_interval_requires_policy\",\"statement\":\"Deciding on an Interval value without policy returns an error rather than a scalar\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_interval_pending\"],\"lean_skeleton\":\"theorem interval_requires_policy : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_f64_decimal_not_bound\",\"statement\":\"A bound constructed from f64 cannot be used as authorizing evidence\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_f64_no_authority\"],\"lean_skeleton\":\"theorem f64_decimal_not_bound : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_midpoint\",\"claim\":\"Collapse an interval to its midpoint scalar to decide\",\"rejecting_invariant\":\"Interval evidence is a third kind and stays pending a policy decision\"},{\"id\":\"nm_f64_exact\",\"claim\":\"A decimal from from_f64_unchecked is an exact rational bound\",\"rejecting_invariant\":\"Fixed-scale f64 conversion is not exact and must not authorize\"}],\"numeric_claims\":[],\"open_obligations\":[\"Source for MeasurementValue::Interval, MeasurementError::IntervalRequiresPolicy and BigDecimal::from_f64_unchecked is not listed, so none are cited\",\"Formalize the policy-decision type in Lean\",\"Audit affine_calibration.rs, finite_response.rs and finite_chain_clock.rs for interval clocks\",\"No composition licensed yet\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_evidence_ceiling",
+        "inputs": [
+          "BoundEpkMeasurement",
+          "Index"
+        ],
+        "output": "EvidenceCeiling",
+        "arity": 2,
+        "carrier": "bound EPK measurement evidence",
+        "ref": {
+          "path": "code/rust/src/local_green_global_red_lggr/bound_measurement.rs",
+          "decl": "evidence_ceiling",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_continuation_evidence",
+        "inputs": [
+          "BoundEpkMeasurement",
+          "VerifiedDescentReceipt"
+        ],
+        "output": "ContinuationEvidence",
+        "arity": 2,
+        "carrier": "bound EPK measurement evidence",
+        "ref": {
+          "path": "code/rust/src/local_green_global_red_lggr/bound_measurement.rs",
+          "decl": "continuation_evidence",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_interval_pending",
+        "statement": "An Interval measurement value never yields a deciding scalar without an explicit policy decision; it is refused with IntervalRequiresPolicy",
+        "hypotheses": "interval bounds are present; no policy supplied",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_f64_no_authority",
+        "statement": "A BigDecimal built via from_f64_unchecked carries no exactness authority and cannot authorize a bound",
+        "hypotheses": "decimal built from f64 at fixed scale",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_interval_requires_policy",
+        "statement": "Deciding on an Interval value without policy returns an error rather than a scalar",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_interval_pending"
+        ],
+        "lean_skeleton": "theorem interval_requires_policy : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_f64_decimal_not_bound",
+        "statement": "A bound constructed from f64 cannot be used as authorizing evidence",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_f64_no_authority"
+        ],
+        "lean_skeleton": "theorem f64_decimal_not_bound : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_midpoint",
+        "claim": "Collapse an interval to its midpoint scalar to decide",
+        "rejecting_invariant": "Interval evidence is a third kind and stays pending a policy decision"
+      },
+      {
+        "id": "nm_f64_exact",
+        "claim": "A decimal from from_f64_unchecked is an exact rational bound",
+        "rejecting_invariant": "Fixed-scale f64 conversion is not exact and must not authorize"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Source for MeasurementValue::Interval, MeasurementError::IntervalRequiresPolicy and BigDecimal::from_f64_unchecked is not listed, so none are cited",
+      "Formalize the policy-decision type in Lean",
+      "Audit affine_calibration.rs, finite_response.rs and finite_chain_clock.rs for interval clocks",
+      "No composition licensed yet"
+    ]
+  }
+}

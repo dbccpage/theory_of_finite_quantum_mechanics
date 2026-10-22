@@ -1,0 +1,66 @@
+{
+  "task_id": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d34fd15f97a6acedb7a1e4d0e80cecb5d52144b0bf3dc590cabe95f061fce8f4",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R_convention_relative\",\"statement\":\"The count of syntactic states of the regime, and whether <a> after <> is a new state, is a function of a declared identity convention: opaque gives <> ~ <a> when O is empty (no new state), exact-inscription gives <> != <a> (one more state). Without a declared convention the effect is undecidable.\",\"hypotheses\":\"A declared identity convention (opaque or exact-inscription) chosen by the host; O empty for the opaque branch.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_two_branch\",\"statement\":\"For a regime with empty observation set O, the state count under exact-inscription equals the state count under opaque plus one when <a> is supplied after <>; the new-state claim holds iff the exact-inscription convention is declared.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R_convention_relative\"],\"lean_skeleton\":\"theorem two_branch (opaqueCount exactCount : Nat) (h : exactCount = opaqueCount + 1) : exactCount != opaqueCount := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_trials_as_evidence\",\"claim\":\"Trials 1 and 2 (opaque) versus the full replay (exact-inscription) are evidence for one convention over the other.\",\"rejecting_invariant\":\"All three replies are behaviour of one unrecorded model under undeclared conventions; they show relativity to convention, not which convention is correct.\"},{\"id\":\"NM_choose_opaque_silently\",\"claim\":\"With O empty, <> and <a> are not told apart, so <a> is simply not a new state.\",\"rejecting_invariant\":\"This holds only under the opaque convention; exact-inscription makes the strings differ and adds a state.\"}],\"numeric_claims\":[{\"id\":\"N_extra_state\",\"expr\":\"1\",\"value\":\"1\"}],\"open_obligations\":[\"Host must declare identity convention (opaque or exact-inscription).\",\"No existing SRC declaration models identity conventions or syntactic state counting; relation and lemma are proposed_new.\",\"Formalize the regime, the O-indistinguishability quotient, and the inscription-level state set in Lean.\",\"Base state count of the regime is not given, so only the +1 difference is claimed.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R_convention_relative",
+        "statement": "The count of syntactic states of the regime, and whether <a> after <> is a new state, is a function of a declared identity convention: opaque gives <> ~ <a> when O is empty (no new state), exact-inscription gives <> != <a> (one more state). Without a declared convention the effect is undecidable.",
+        "hypotheses": "A declared identity convention (opaque or exact-inscription) chosen by the host; O empty for the opaque branch.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_two_branch",
+        "statement": "For a regime with empty observation set O, the state count under exact-inscription equals the state count under opaque plus one when <a> is supplied after <>; the new-state claim holds iff the exact-inscription convention is declared.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_convention_relative"
+        ],
+        "lean_skeleton": "theorem two_branch (opaqueCount exactCount : Nat) (h : exactCount = opaqueCount + 1) : exactCount != opaqueCount := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_trials_as_evidence",
+        "claim": "Trials 1 and 2 (opaque) versus the full replay (exact-inscription) are evidence for one convention over the other.",
+        "rejecting_invariant": "All three replies are behaviour of one unrecorded model under undeclared conventions; they show relativity to convention, not which convention is correct."
+      },
+      {
+        "id": "NM_choose_opaque_silently",
+        "claim": "With O empty, <> and <a> are not told apart, so <a> is simply not a new state.",
+        "rejecting_invariant": "This holds only under the opaque convention; exact-inscription makes the strings differ and adds a state."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_extra_state",
+        "expr": "1",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "Host must declare identity convention (opaque or exact-inscription).",
+      "No existing SRC declaration models identity conventions or syntactic state counting; relation and lemma are proposed_new.",
+      "Formalize the regime, the O-indistinguishability quotient, and the inscription-level state set in Lean.",
+      "Base state count of the regime is not given, so only the +1 difference is claimed."
+    ]
+  }
+}

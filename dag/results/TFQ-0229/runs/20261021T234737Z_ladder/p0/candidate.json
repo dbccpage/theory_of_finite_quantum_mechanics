@@ -1,0 +1,310 @@
+{
+  "task_id": "TFQ-0229",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f93e4a76d3a84765a3a776335319232bc74ecf01bcec9caaf4e3e0467c9f5718",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "obligation_zero",
+          "inputs": [],
+          "output": "ObligationMonoid",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "obligation_add",
+          "inputs": [
+            "ObligationMonoid",
+            "ObligationMonoid"
+          ],
+          "output": "ObligationMonoid",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "trace_obligation",
+          "inputs": [
+            "Trace"
+          ],
+          "output": "ObligationMonoid",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "event_obligation",
+          "inputs": [
+            "Event"
+          ],
+          "output": "ObligationMonoid",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "trace_append_hom",
+          "equation_or_predicate": "traceObligation of an appended trace equals the monoid sum of the traceObligations",
+          "typing_conditions": "none beyond the types in the cited theorem; exact statement not shown in @SRC",
+          "source_pins": [
+            {
+              "path": "lean4/DerivationDagQMClosure.lean",
+              "declaration": "QuantumMechanics.DerivationDagQMClosure.traceObligation_append",
+              "line": 39
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "decl": "QuantumMechanics.DerivationDagQMClosure.traceObligation_append",
+            "kind": "theorem",
+            "line": 39,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The language triple is unfinished",
+        "The continuum gap is unfinished",
+        "The exact statements of traceObligation_append and eventObligation are not visible in @SRC, so the input colours Trace and Event are guessed",
+        "No compositions are listed because no licensing relation is grounded",
+        "The custody chain status needs host review",
+        "near_miss nm_checker_decides unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "obligation_zero",
+        "ordered_inputs": [],
+        "output": "ObligationMonoid",
+        "arity": 0,
+        "carrier": "ObligationMonoid",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.zero",
+            "line": 19
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.zero",
+          "kind": "def",
+          "line": 19,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "obligation_add",
+        "ordered_inputs": [
+          "ObligationMonoid",
+          "ObligationMonoid"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 2,
+        "carrier": "ObligationMonoid",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.add",
+            "line": 21
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.ObligationMonoid.add",
+          "kind": "def",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "trace_obligation",
+        "ordered_inputs": [
+          "Trace"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 1,
+        "carrier": "ObligationMonoid",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.traceObligation",
+            "line": 35
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.traceObligation",
+          "kind": "def",
+          "line": 35,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "event_obligation",
+        "ordered_inputs": [
+          "Event"
+        ],
+        "output": "ObligationMonoid",
+        "arity": 1,
+        "carrier": "ObligationMonoid",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.eventObligation",
+            "line": 29
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.eventObligation",
+          "kind": "def",
+          "line": 29,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "trace_append_hom",
+        "equation_or_predicate": "traceObligation of an appended trace equals the monoid sum of the traceObligations",
+        "typing_conditions": "none beyond the types in the cited theorem; exact statement not shown in @SRC",
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.traceObligation_append",
+            "line": 39
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.traceObligation_append",
+          "kind": "theorem",
+          "line": 39,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-F4C886DDD9E7",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "custody_no_derived_status: A clean structure check on the derivation graph assigns no derived status to the custody chain; only OPEN_OBLIGATION, SOURCE_RECORD, or GAP are used",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0229"
+      },
+      {
+        "id": "NEG-8FCE5752C280",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "finite_quotient_vs_continuum_gap: The finite-quotient selection leaves a continuum gap unfinished",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0229"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "The language triple is unfinished",
+      "The continuum gap is unfinished",
+      "The exact statements of traceObligation_append and eventObligation are not visible in @SRC, so the input colours Trace and Event are guessed",
+      "No compositions are listed because no licensing relation is grounded",
+      "The custody chain status needs host review",
+      "near_miss nm_checker_decides unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

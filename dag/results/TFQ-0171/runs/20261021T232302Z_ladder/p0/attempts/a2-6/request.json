@@ -1,0 +1,316 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0171",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-6",
+  "input_sha256": "c2fccd436331fed73b5905e71b0b746daf26eebec450f784191e9a3576513a4c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0171 stage=P0 attempt=a2-6 in=c2fccd43 guided=yes\n@TARGET [OPEN] Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.\n@BOTTLENECK Do not collapse unnormalized finite valuations into the normalized rational probability simplex.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/finite_probability/lib.rs | finite_valuation | mod | pub mod finite_valuation;\n code/rust/src/finite_probability/lib.rs | local_deterministic | mod | pub mod local_deterministic;\n code/rust/src/finite_probability/lib.rs | marginal_compatibility | mod | pub mod marginal_compatibility;\n code/rust/src/finite_probability/lib.rs | signed_representation | mod | pub mod signed_representation; use num_rational::Ratio; use num_traits::Zero;\n code/rust/src/finite_probability/mod.rs | finite_valuation | mod | pub mod finite_valuation;\n code/rust/src/finite_probability/mod.rs | local_deterministic | mod | pub mod local_deterministic;\n code/rust/src/finite_probability/mod.rs | marginal_compatibility | mod | pub mod marginal_compatibility;\n code/rust/src/finite_probability/mod.rs | signed_representation | mod | pub mod signed_representation; use num_rational::Ratio; use num_traits::Zero;\n code/rust/src/finite_probability/finite_valuation.rs | BooleanValuation | struct\n code/rust/src/finite_probability/local_deterministic.rs | vertex_carrier_refuses_bad_contexts_and_budget_before_work | fn\n code/rust/src/finite_probability/signed_representation.rs | SignedRepresentationError | enum\n code/rust/src/finite_probability/signed_representation.rs | SignedValuation | struct\n lean4/H001ProbabilitySimplex.lean | FableHilbertWalk20260819.H001.signed_mass_one | theorem\n lean4/H001ProbabilitySimplex.lean | FableHilbertWalk20260819.H001.probability_simplex | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [schema_violation] {'expr': '5*5', 'value': '25'} -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'code/rust/src/finite_probability/signed_representation.rs', 'decl': 'SignedValuation', 'inputs': ['S -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'lean4/H001ProbabilitySimplex.lean', 'decl': 'probability_simplex', 'licenses_rejection': True, 'stat -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'code/rust/src/finite_probability/finite_valuation.rs', 'decl': 'BooleanValuation', 'inputs': ['Unnor -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'lean4/H001ProbabilitySimplex.lean', 'decl': 'signed_mass_one', 'relation_to_target': 'restates', 'st -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'decl1': 'BooleanValuation', 'decl2': 'probability_simplex', 'reason_path': 'code/rust/src/finite_valuation.r -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'lean4/H001ProbabilitySimplex.lean', 'decl': 'probability_simplex', 'relation_to_target': 'restsates' -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'code/rust/src/finite_probability/local_deterministic.rs', 'decl': 'vertex_carrier_refuses_bad_contex -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'lean4/H001ProbabilitySimplex.lean', 'decl': 'signed_mass_one', 'kind': 'lemma', 'relation_to_target' -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'code/rust/src/finite_probability/finite_valuation.rs', 'decl': 'BooleanValuation', 'kind': 'generato -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'path': 'lean4/H001ProbabilitySimplex.lean', 'decl': 'probability_simplex', 'kind': 'relation', 'licenses': [ -- Return exactly the schema; no extra or missing fields.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 14,
+    "known_neg_injected": 11,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "L1-WDP-WITNESS-MASS"
+    ],
+    "feedback": true,
+    "index_position": 296,
+    "neg_entry_ids": [
+      "NEG-0D106CB3B912",
+      "NEG-068A4A67A501",
+      "NEG-453F09D97CDD",
+      "NEG-4B212D5C8FD6",
+      "NEG-5CB041E140B4",
+      "NEG-5D9FEEEE5D2D",
+      "NEG-6BF0C255CEBA",
+      "NEG-85EEF9A238EF",
+      "NEG-9005924BF21D",
+      "NEG-B30C4C9AD0D4",
+      "NEG-BD470E56A3B9"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

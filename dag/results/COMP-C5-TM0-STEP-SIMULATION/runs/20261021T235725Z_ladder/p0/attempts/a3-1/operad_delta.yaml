@@ -1,0 +1,139 @@
+add_or_refine_generators:
+- id: g_cfgWord
+  ordered_inputs:
+  - ListGamma
+  - Lambda
+  - Gamma
+  - ListGamma
+  output: WordSym
+  arity: 4
+  carrier: List (Sym Γ Λ)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.cfgWord
+    line: 73
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.cfgWord
+    kind: def
+    line: 73
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_rep_unique
+  equation_or_predicate: If Rep c w and Rep c' w then c = c' (a word represents at most one configuration)
+  typing_conditions: TM0 configurations c, c' and word w
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.rep_unique
+    line: 165
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.rep_unique
+    kind: theorem
+    line: 165
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_rep_exists
+  equation_or_predicate: Every TM0 configuration has some word representing it
+  typing_conditions: any TM0.Cfg c
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.rep_exists
+    line: 159
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.rep_exists
+    kind: theorem
+    line: 159
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_split_st
+  equation_or_predicate: 'If A ++ st q0 :: B = P ++ st q :: S with P and S free of state symbols, then
+    A = P, q0 = q and B = S'
+  typing_conditions: NoSt P and NoSt S
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.split_st
+    line: 119
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.split_st
+    kind: theorem
+    line: 119
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_step_fwd
+  equation_or_predicate: A machine step from a represented configuration is matched by a Rules rewrite
+    to a word representing the next configuration
+  typing_conditions: Rep c w, TM0.step M c = some c'
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.step_fwd
+    line: 213
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.step_fwd
+    kind: theorem
+    line: 213
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_step_bwd
+  equation_or_predicate: Every Rules rewrite step of a represented word corresponds to the machine step
+  typing_conditions: Rep c w, Rules M w w'
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.step_bwd
+    line: 271
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.step_bwd
+    kind: theorem
+    line: 271
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact signatures of step_fwd and step_bwd are truncated in SRC, so the hypotheses are not grounded
+- Lean skeletons not elaborated against the real file
+- 'No composition is licensed: cfgWord is the only generator and it has no WordSym-typed input slot'
+- Rep definition body not visible, so the padding rule is unconfirmed
+- 'lemma l_rep_unique unverified: Lean elaboration disabled'
+- 'near_miss nm_unique_word unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

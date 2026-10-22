@@ -1,0 +1,79 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: quotient_well_defined
+  equation_or_predicate: The quotient map is well defined for a MubCochainObstructionContract.
+  typing_conditions: 'contract : MubCochainObstructionContract'
+  source_pins:
+  - path: lean4/CochainObstruction.lean
+    declaration: MUB.CochainObstruction.quotient_well_defined
+    line: 225
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CochainObstruction.lean
+    decl: MUB.CochainObstruction.quotient_well_defined
+    kind: theorem
+    line: 225
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: no_full_authority_without_c3
+  equation_or_predicate: Without C3 atlas coherence the contract gives no full MUB6 authority.
+  typing_conditions: 'contract : MubCochainObstructionContract; hNoC3 : Not contract.c3AtlasCoherence'
+  source_pins:
+  - path: lean4/CochainObstruction.lean
+    declaration: MUB.CochainObstruction.mub6_no_full_authority_without_c3_atlas_coherence
+    line: 265
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CochainObstruction.lean
+    decl: MUB.CochainObstruction.mub6_no_full_authority_without_c3_atlas_coherence
+    kind: theorem
+    line: 265
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-4E481C14D039
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1_extra_data_declared: The obstruction-signature bound is stated only after a finite 2-truncated
+    cochain, a quotient, and an observer gauge are declared as extra data; carrier, comparison, residual,
+    and observer gauge are not supplied by the two marks.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0322
+- id: NEG-9625158E97D2
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L2_no_census_closure: The unfiled holding k_hosts_that_are_not_a_difference does not close the
+    k-host census.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0322
+counterexamples: []
+open_obligations:
+- Ground carrier, comparison, residual and observer gauge generators with existing declarations; signatures
+  of ObserverGauge and gauge_quotient items were not given.
+- The k_hosts_that_are_not_a_difference holding is not in SRC and cannot be cited.
+- k-host census remains open.
+- triangleD0 signature, arity and carrier were not stated in SRC, so the generator is only proposed.
+- 'generator triangleD0 unverified: no existing declaration cited'
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

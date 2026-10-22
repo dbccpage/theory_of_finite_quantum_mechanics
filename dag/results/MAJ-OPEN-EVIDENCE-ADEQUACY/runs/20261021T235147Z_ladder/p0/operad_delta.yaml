@@ -1,0 +1,40 @@
+add_or_refine_generators:
+- id: bound_measurement_record
+  ordered_inputs: []
+  output: BoundMeasurement
+  arity: 0
+  carrier: BoundEpkMeasurement record
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/local_green_global_red_lggr/bound_measurement.rs
+    declaration: BoundEpkMeasurement
+    line: 136
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/local_green_global_red_lggr/bound_measurement.rs
+    decl: BoundEpkMeasurement
+    kind: struct
+    line: 136
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Declared device model is absent
+- Declared measurement map M is absent
+- States rho_topo and rho_ABS are not specified
+- No grounded existing declaration encodes the kernel-separation relation
+- Role of BoundMeasurementError and the schema constant in this target is not established
+- 'relation kernel_separation unverified: no existing declaration cited'
+- 'lemma separation_iff_distinct_outputs unverified: Lean elaboration disabled'
+- 'near_miss nm_schema_not_separation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

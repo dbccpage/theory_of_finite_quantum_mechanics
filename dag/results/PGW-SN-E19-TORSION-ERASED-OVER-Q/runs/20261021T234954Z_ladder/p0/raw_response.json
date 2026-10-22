@@ -1,0 +1,106 @@
+{
+  "task_id": "PGW-SN-E19-TORSION-ERASED-OVER-Q",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f1edd298a22be3fff302b99573aac5fdf4a60b198b0b330a3f4526305a3ccf0a",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_boundary_d2\",\"inputs\":[\"Z\"],\"output\":\"Z\",\"arity\":1,\"carrier\":\"integer free module, multiplication by 2 (m in general)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_adjoin_f\",\"inputs\":[\"Z\"],\"output\":\"Z\",\"arity\":1,\"carrier\":\"integer chain complex extended by one generator f with d2 f = 1\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_no_integral_primitive\",\"statement\":\"No integer c satisfies 2c = 1, so z = 1 is nonzero in H1 = Z/2; generally Z/m for m >= 2\",\"hypotheses\":\"m >= 2, d1 = 0, d2(1) = m\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_rational_primitive\",\"statement\":\"After tensoring with Q, d2(1/2) = 1 so H1(C;Q) = 0; 1/m is a rational, not integral, primitive\",\"hypotheses\":\"coefficient change Z to Q\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_torsion_erased_over_Q\",\"statement\":\"For d2 = multiplication by m >= 2 on Z and d1 = 0: H1 over Z is Z/m and H1 over Q is 0; rational primitive 1/m is not an integral repair witness\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_no_integral_primitive\",\"r_rational_primitive\"],\"lean_skeleton\":\"theorem torsion_erased (m : Nat) (hm : 2 <= m) : (¬ ∃ c : Int, (m:Int) * c = 1) ∧ (∃ q : Rat, (m:Rat) * q = 1) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_rational_as_integral\",\"claim\":\"The rational primitive 1/2 serves as an integral repair receipt\",\"rejecting_invariant\":\"An integral repair witness must be an integer chain; 2c = 1 has no integer solution, and the existing repair-witness declarations require a witness, not only classifier status\"}],\"numeric_claims\":[{\"id\":\"n_cost_integral\",\"expr\":\"1 - 0\",\"value\":\"1\"},{\"id\":\"n_primitive\",\"expr\":\"2 * 1/2\",\"value\":\"1\"}],\"open_obligations\":[\"No existing declaration formalizes chain complexes or integral homology, so every entry is proposed_new\",\"compute_integral_homology has no recorded run on this complex\",\"Mapping the existing PrimitiveRepairWitness declarations onto this example is not grounded\",\"Compositions left empty because no licensing relation was verified\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_boundary_d2",
+        "inputs": [
+          "Z"
+        ],
+        "output": "Z",
+        "arity": 1,
+        "carrier": "integer free module, multiplication by 2 (m in general)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_adjoin_f",
+        "inputs": [
+          "Z"
+        ],
+        "output": "Z",
+        "arity": 1,
+        "carrier": "integer chain complex extended by one generator f with d2 f = 1",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_no_integral_primitive",
+        "statement": "No integer c satisfies 2c = 1, so z = 1 is nonzero in H1 = Z/2; generally Z/m for m >= 2",
+        "hypotheses": "m >= 2, d1 = 0, d2(1) = m",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_rational_primitive",
+        "statement": "After tensoring with Q, d2(1/2) = 1 so H1(C;Q) = 0; 1/m is a rational, not integral, primitive",
+        "hypotheses": "coefficient change Z to Q",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_torsion_erased_over_Q",
+        "statement": "For d2 = multiplication by m >= 2 on Z and d1 = 0: H1 over Z is Z/m and H1 over Q is 0; rational primitive 1/m is not an integral repair witness",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_no_integral_primitive",
+          "r_rational_primitive"
+        ],
+        "lean_skeleton": "theorem torsion_erased (m : Nat) (hm : 2 <= m) : (¬ ∃ c : Int, (m:Int) * c = 1) ∧ (∃ q : Rat, (m:Rat) * q = 1) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_rational_as_integral",
+        "claim": "The rational primitive 1/2 serves as an integral repair receipt",
+        "rejecting_invariant": "An integral repair witness must be an integer chain; 2c = 1 has no integer solution, and the existing repair-witness declarations require a witness, not only classifier status"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_cost_integral",
+        "expr": "1 - 0",
+        "value": "1"
+      },
+      {
+        "id": "n_primitive",
+        "expr": "2 * 1/2",
+        "value": "1"
+      }
+    ],
+    "open_obligations": [
+      "No existing declaration formalizes chain complexes or integral homology, so every entry is proposed_new",
+      "compute_integral_homology has no recorded run on this complex",
+      "Mapping the existing PrimitiveRepairWitness declarations onto this example is not grounded",
+      "Compositions left empty because no licensing relation was verified"
+    ]
+  }
+}

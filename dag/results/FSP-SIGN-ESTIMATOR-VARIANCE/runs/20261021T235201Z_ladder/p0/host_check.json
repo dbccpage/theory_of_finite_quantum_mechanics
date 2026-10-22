@@ -1,0 +1,74 @@
+{
+  "task_id": "FSP-SIGN-ESTIMATOR-VARIANCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c7eadfbaff2ddcc52165388f1a032ecb723daf0782fc461023a079bdd57e0c33",
+  "candidate_sha256": "70b37a04bbe9bcab9140890f1dcf49558349676a34a7e855441843eeb000127b",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 11,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:17Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations found; all references are proposed_new",
+      "The sign_mean generator is not a true binary operation; the M_s-fold arity must be modeled properly",
+      "Lean skeletons are placeholders with sorry; real proofs must be written",
+      "Omega asymptotics need an explicit quantifier setup in epsilon and bND",
+      "Observables numerators, Markov-chain correlation and the extensive-gap hypothesis are not treated",
+      "generator sign_sample unverified: no existing declaration cited",
+      "generator sign_mean unverified: no existing declaration cited",
+      "relation sign_second_moment unverified: no existing declaration cited",
+      "relation iid_mean_variance unverified: no existing declaration cited",
+      "relation relative_error_sample_bound unverified: no existing declaration cited",
+      "lemma sign_variance unverified: Lean elaboration disabled",
+      "lemma sample_bound unverified: Lean elaboration disabled",
+      "lemma exp_scaling unverified: Lean elaboration disabled",
+      "near_miss markov_chain_correlated unverified: semantic near miss; P4 host check decides",
+      "near_miss all_estimators unverified: semantic near miss; P4 host check decides",
+      "near_miss sign_mean_zero unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "ex_m_half",
+        "expr": "(1 - (1/2)^2)/((1/10)^2*(1/2)^2)",
+        "value": "300",
+        "host_evidence": {
+          "recomputed": "300"
+        }
+      },
+      {
+        "id": "ex_m_tenth",
+        "expr": "(1 - (1/10)^2)/((1/10)^2*(1/10)^2)",
+        "value": "9900",
+        "host_evidence": {
+          "recomputed": "9900"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

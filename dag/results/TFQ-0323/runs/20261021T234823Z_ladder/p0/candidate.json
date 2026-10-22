@@ -1,0 +1,277 @@
+{
+  "task_id": "TFQ-0323",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a64aa1ba1e613b7f3a10290e094d1ed5a1056c65a4fd4ff48ec0217d1e60f118",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "G_presentationDifference",
+          "inputs": [
+            "QuestionFamily"
+          ],
+          "output": "PrimitiveDifference",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R_fiber_zeroRel_iff",
+          "equation_or_predicate": "zeroRel (fiberResidual p) x y ↔ p x = p y",
+          "typing_conditions": "p : X → M, x y : X",
+          "source_pins": [
+            {
+              "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+              "declaration": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+              "line": 48
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+            "decl": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+            "kind": "theorem",
+            "line": 48,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_fiberPD_zeroRel_iff",
+          "equation_or_predicate": "ZeroRel (fiberPD p) x y ↔ p x = p y",
+          "typing_conditions": "p : X → M, x y : X",
+          "source_pins": [
+            {
+              "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+              "declaration": "GrokPdNight20260814.E003.fiberPD_zeroRel_iff",
+              "line": 78
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+            "decl": "GrokPdNight20260814.E003.fiberPD_zeroRel_iff",
+            "kind": "theorem",
+            "line": 78,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "R_familyMisses_iff_zeroRel",
+          "equation_or_predicate": "FamilyMisses questions x y ↔ (presentationDifference questions).ZeroRel x y",
+          "typing_conditions": "questions : List (α → γ), x y : α",
+          "source_pins": [
+            {
+              "path": "lean4/PrimitiveDifferenceBridge.lean",
+              "declaration": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+              "line": 31
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/PrimitiveDifferenceBridge.lean",
+            "decl": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+            "kind": "theorem",
+            "line": 31,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "E004_split_retraction.lean and E006_induced_idempotent.lean are not in SRC, so no declarations from them could be cited.",
+        "No section or retraction generator is grounded.",
+        "Compositions need a licensing relation and typed colours, which are not grounded.",
+        "The fiber residual generator needs a declaration name from E003, which is not in SRC.",
+        "Python tests_unit files are not in SRC and were not cited.",
+        "generator G_fiber_residual unverified: no existing declaration cited",
+        "lemma L_fiber_zero_iff unverified: Lean elaboration disabled",
+        "lemma L_unit_quotient_subsingleton unverified: Lean elaboration disabled",
+        "near_miss NM_quotient_vs_section unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_bridge unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "G_presentationDifference",
+        "ordered_inputs": [
+          "QuestionFamily"
+        ],
+        "output": "PrimitiveDifference",
+        "arity": 1,
+        "carrier": "α with questions List (α → γ)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveDifferenceBridge.lean",
+            "declaration": "OmegaCore.FablePrimitiveDifferenceBridge.presentationDifference",
+            "line": 23
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveDifferenceBridge.lean",
+          "decl": "OmegaCore.FablePrimitiveDifferenceBridge.presentationDifference",
+          "kind": "def",
+          "line": 23,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_fiber_zeroRel_iff",
+        "equation_or_predicate": "zeroRel (fiberResidual p) x y ↔ p x = p y",
+        "typing_conditions": "p : X → M, x y : X",
+        "source_pins": [
+          {
+            "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+            "declaration": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+            "line": 48
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+          "kind": "theorem",
+          "line": 48,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_fiberPD_zeroRel_iff",
+        "equation_or_predicate": "ZeroRel (fiberPD p) x y ↔ p x = p y",
+        "typing_conditions": "p : X → M, x y : X",
+        "source_pins": [
+          {
+            "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+            "declaration": "GrokPdNight20260814.E003.fiberPD_zeroRel_iff",
+            "line": 78
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiberPD_zeroRel_iff",
+          "kind": "theorem",
+          "line": 78,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_familyMisses_iff_zeroRel",
+        "equation_or_predicate": "FamilyMisses questions x y ↔ (presentationDifference questions).ZeroRel x y",
+        "typing_conditions": "questions : List (α → γ), x y : α",
+        "source_pins": [
+          {
+            "path": "lean4/PrimitiveDifferenceBridge.lean",
+            "declaration": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+            "line": 31
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/PrimitiveDifferenceBridge.lean",
+          "decl": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+          "kind": "theorem",
+          "line": 31,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "E004_split_retraction.lean and E006_induced_idempotent.lean are not in SRC, so no declarations from them could be cited.",
+      "No section or retraction generator is grounded.",
+      "Compositions need a licensing relation and typed colours, which are not grounded.",
+      "The fiber residual generator needs a declaration name from E003, which is not in SRC.",
+      "Python tests_unit files are not in SRC and were not cited.",
+      "generator G_fiber_residual unverified: no existing declaration cited",
+      "lemma L_fiber_zero_iff unverified: Lean elaboration disabled",
+      "lemma L_unit_quotient_subsingleton unverified: Lean elaboration disabled",
+      "near_miss NM_quotient_vs_section unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_bridge unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

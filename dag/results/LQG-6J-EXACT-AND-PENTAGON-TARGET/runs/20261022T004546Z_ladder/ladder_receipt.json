@@ -1,0 +1,288 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+  "stage": "P0",
+  "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T004546Z_ladder",
+  "finished_utc": "2026-10-22T00:46:37Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 2,
+  "free_calls": 0,
+  "paid_calls": 2,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 0,
+      "name": "free",
+      "attempts_before_escalation": 3,
+      "models": [
+        "openai/gpt-oss-120b",
+        "qwen/qwen3.8-27b",
+        "openai/gpt-oss-20b",
+        "nvidia/nemotron-3.5-lightning:free",
+        "minimax/minimax-m3.1-flash:free",
+        "poolside/laguna-s-2.1:free",
+        "gpt-oss-120b",
+        "nvidia/nemotron-3-super-120b-a12b"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "cheap",
+      "attempts_before_escalation": 2,
+      "models": [
+        "openai/gpt-4o-mini"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "haiku",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-haiku-5-5"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "opus",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-opus-5-5"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fable",
+      "attempts_before_escalation": 1,
+      "models": [
+        "claude-fable-5-1"
+      ]
+    }
+  ],
+  "run_cap_usd": 3.0,
+  "summary": {
+    "node_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+    "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T004546Z_ladder",
+    "stage": "P0",
+    "status": "accepted",
+    "stop_reason": "accepted_at_tier_4",
+    "accepted_attempt": "a4-2",
+    "best_attempt": "a4-2",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 9,
+        "known_pos_injected": 4,
+        "input_sha256": "55214a0e4afded5180c8a85ee7348a42b66d17749d9fffe3d8f00faae6c20318",
+        "injected_neg_ids": [
+          "NEG-0689548DABB6",
+          "NEG-67462B6AB8D9",
+          "NEG-1442E8FC8AE8",
+          "NEG-0B94503ACD89",
+          "NEG-915E6B31E73D",
+          "NEG-81FB392F047F",
+          "NEG-B039F70B3A54",
+          "NEG-1E0861534F6D",
+          "NEG-3D1187BFC5DF"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 1,
+        "failure_rate": 1.0,
+        "failures_by_class": {
+          "vacuous_proof": 1
+        },
+        "unverifiable": 6,
+        "input_tokens": 3913,
+        "output_tokens": 1007,
+        "cost_microusd": 17896,
+        "request_id": "req_011CgGMN6ELQ5dgYhi4Hzfx7",
+        "latency_s": 9.071,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-2056DEFADC87"
+        ]
+      },
+      {
+        "attempt_id": "a4-2",
+        "tier": 4,
+        "provider": "anthropic",
+        "model": "claude-opus-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 10,
+        "known_pos_injected": 4,
+        "input_sha256": "8889ec70ff8768dbc9aa05ff3c67b22564f34ccdce1f4d94109b2b208982ab3c",
+        "injected_neg_ids": [
+          "NEG-0689548DABB6",
+          "NEG-67462B6AB8D9",
+          "NEG-1442E8FC8AE8",
+          "NEG-0B94503ACD89",
+          "NEG-915E6B31E73D",
+          "NEG-81FB392F047F",
+          "NEG-B039F70B3A54",
+          "NEG-1E0861534F6D",
+          "NEG-3D1187BFC5DF",
+          "NEG-2056DEFADC87"
+        ],
+        "status": "accepted",
+        "verified_total": 4,
+        "failures_total": 3,
+        "failure_rate": 0.4286,
+        "failures_by_class": {
+          "composition_type_mismatch": 2,
+          "vacuous_proof": 1
+        },
+        "unverifiable": 12,
+        "input_tokens": 3993,
+        "output_tokens": 4077,
+        "cost_microusd": 97512,
+        "request_id": "req_011CgGMNyQqnMzt8VFCHMNs9",
+        "latency_s": 35.648,
+        "stop_reason": "end_turn",
+        "served_model": "claude-opus-5-5",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-6960C4533E52",
+          "NEG-B2E84070C902",
+          "NEG-0C8F65B4C68E"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 3913,
+        "output_tokens": 1007,
+        "cost_microusd": 17896,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      },
+      "4": {
+        "calls": 1,
+        "sent": 1,
+        "input_tokens": 3993,
+        "output_tokens": 4077,
+        "cost_microusd": 97512,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 115408,
+    "spend_usd": 0.115408,
+    "hallucinations_by_class": {
+      "composition_type_mismatch": 2,
+      "vacuous_proof": 2
+    },
+    "hallucinations_by_model": {
+      "claude-sonnet-5-5": {
+        "vacuous_proof": 1
+      },
+      "claude-opus-5-5": {
+        "composition_type_mismatch": 2,
+        "vacuous_proof": 1
+      }
+    },
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 4
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:2abaa940",
+      "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T004546Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-22T00:45:47Z",
+      "status": "ok",
+      "estimated_input_tokens": 3266,
+      "estimate_microusd": 56532,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 3913,
+      "output_tokens": 1007,
+      "cost_microusd": 17896,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGMN6ELQ5dgYhi4Hzfx7",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 9.071,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a4-2:576f6a9a",
+      "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T004546Z_ladder",
+      "attempt_id": "a4-2",
+      "tier": 4,
+      "provider": "anthropic",
+      "model": "claude-opus-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 6000,
+      "started_utc": "2026-10-22T00:46:02Z",
+      "status": "ok",
+      "estimated_input_tokens": 3352,
+      "estimate_microusd": 133408,
+      "served_model": "claude-opus-5-5",
+      "input_tokens": 3993,
+      "output_tokens": 4077,
+      "cost_microusd": 97512,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGMNyQqnMzt8VFCHMNs9",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 35.648,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 11.104726,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}

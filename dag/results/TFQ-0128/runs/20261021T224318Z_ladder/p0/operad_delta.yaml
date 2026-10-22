@@ -1,0 +1,91 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: rel_norm_sq
+  equation_or_predicate: ‖z‖² = z.re² + z.im²
+  typing_conditions: 'z : ℂ'
+  source_pins:
+  - path: lean4/HilbertLiftComplexCarrier.lean
+    declaration: HilbertLift.norm_sq_apply_complex
+    line: 80
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/HilbertLiftComplexCarrier.lean
+    decl: HilbertLift.norm_sq_apply_complex
+    kind: theorem
+    line: 80
+    lang: lean
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+- id: rel_inner_liftpair
+  equation_or_predicate: 'inner ℂ (liftPair a b) (liftPair c d) = (qinner a c + qinner b d) : ℂ'
+  typing_conditions: 'a b c d : Carrier'
+  source_pins:
+  - path: lean4/HilbertLiftComplexCarrier.lean
+    declaration: HilbertLift.inner_liftPair
+    line: 148
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/HilbertLiftComplexCarrier.lean
+    decl: HilbertLift.inner_liftPair
+    kind: theorem
+    line: 148
+    lang: lean
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+- id: rel_liftpair_apply
+  equation_or_predicate: 'castPair a b i = (a i : ℂ) + Complex.I * (b i : ℂ)'
+  typing_conditions: 'a b : Carrier, i : ℕ'
+  source_pins:
+  - path: lean4/HilbertLiftComplexCarrier.lean
+    declaration: HilbertLift.castPair_apply
+    line: 28
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/HilbertLiftComplexCarrier.lean
+    decl: HilbertLift.castPair_apply
+    kind: theorem
+    line: 28
+    lang: lean
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-66F81014BE47
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'liftPair: (Carrier, Carrier) -> PreH ℂ [HilbertLift.liftPair]'
+  evidence: lean def liftPair has 1 explicit binders (1 with conclusion arrows); the claim says 2 (heuristic
+    count)
+  decl_key: HilbertLift.liftPair
+  confidence: exact
+  model: qwen/qwen3.8-27b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0128
+open_obligations:
+- Lean declaration and Python replay are not present in @SRC
+- Carrier/Gaussian type signature for the unit edge scalar declared in u1_graph_connection.rs needs alignment
+  with PreH ℂ
+- Definitions for `qinner`, `closed_walk`, and `covariant_difference` are not in @SRC to close the P0
+  algebraic glue
+- No Lean file shown for the finite 2-complex spin obstruction (liftPair_not_surjective is in @SRC but
+  the spin structure theorem is not)
+- 'numeric observed_pi unverified: expression not exactly evaluable'
+- 'numeric pi_edges_count unverified: expression not exactly evaluable'
+- 'numeric pi_walk_len unverified: expression not exactly evaluable'
+- 'lemma lift_pair_inner_rat_to_c unverified: Lean elaboration disabled'
+- 'lemma cast_pair_norm_sq_decomp unverified: Lean elaboration disabled'
+- 'lemma lift_pair_real_eq_re unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

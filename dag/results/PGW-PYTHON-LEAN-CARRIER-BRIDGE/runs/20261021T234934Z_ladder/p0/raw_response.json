@@ -1,0 +1,121 @@
+{
+  "task_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "292cc3dcc1a51a15e34ce48a6ae754a946aaf7174bd7fe28a052dbe49120fa04",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_insertNew\",\"inputs\":[\"List\",\"Alpha\"],\"output\":\"List\",\"arity\":2,\"carrier\":\"List α with DecidableEq α\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.GenesisCopy.insertNew\",\"status\":\"existing\"}},{\"id\":\"g_stepE\",\"inputs\":[\"Regime\",\"Event\"],\"output\":\"Regime\",\"arity\":2,\"carrier\":\"GenesisCopy.Regime\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.GenesisCopy.stepE\",\"status\":\"existing\"}},{\"id\":\"g_replayE\",\"inputs\":[\"Regime\",\"EventList\"],\"output\":\"Regime\",\"arity\":2,\"carrier\":\"GenesisCopy.Regime\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.GenesisCopy.replayE\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_first_sep_replay\",\"statement\":\"replaying firstSeparationHistory from emptyRegime yields firstSeparationRegime\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.first_separation_replay\",\"status\":\"existing\"}},{\"id\":\"r_first_sep_pairwise\",\"statement\":\"firstSeparationRegime is pairwise separated\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.first_separation_pairwise\",\"status\":\"existing\"}},{\"id\":\"r_python_refines_lean\",\"statement\":\"each Python run edge computes the same Regime as replayE on the corresponding Lean event history\",\"hypotheses\":\"Python driver semantics formalized; token erasure map fixed; not proved\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_canonical_pairwise\",\"statement\":\"canonicalRegime n is pairwise separated for all n\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem x (n : Nat) : GenesisComputation.PairwiseSeparated (GenesisComputation.canonicalRegime n) := GenesisComputation.canonicalRegime_pairwise n\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/GenesisComputation.lean\",\"decl\":\"GenesisComputation.canonicalRegime_pairwise\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_executable_checks\",\"claim\":\"Executable agreement checks on tested inputs constitute a refinement proof\",\"rejecting_invariant\":\"Refinement requires a universally quantified statement over all Python runs; checks cover only finitely many inputs\"}],\"numeric_claims\":[],\"open_obligations\":[\"Formal Python semantics or a model of the driver in Lean is absent\",\"Token-erasure map and its correctness are not proved\",\"Proof that each Python edge is a Lean history is not provided\",\"L-1 bridging needs a seal amendment by the author\",\"R2L/R2F reading regimes versus sealed genesis histories are unreconciled\",\"Signatures of Event, stepE, replayE are not shown, so colour names are guessed\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_insertNew",
+        "inputs": [
+          "List",
+          "Alpha"
+        ],
+        "output": "List",
+        "arity": 2,
+        "carrier": "List α with DecidableEq α",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.insertNew",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_stepE",
+        "inputs": [
+          "Regime",
+          "Event"
+        ],
+        "output": "Regime",
+        "arity": 2,
+        "carrier": "GenesisCopy.Regime",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.stepE",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_replayE",
+        "inputs": [
+          "Regime",
+          "EventList"
+        ],
+        "output": "Regime",
+        "arity": 2,
+        "carrier": "GenesisCopy.Regime",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.GenesisCopy.replayE",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_first_sep_replay",
+        "statement": "replaying firstSeparationHistory from emptyRegime yields firstSeparationRegime",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.first_separation_replay",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_first_sep_pairwise",
+        "statement": "firstSeparationRegime is pairwise separated",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.first_separation_pairwise",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_python_refines_lean",
+        "statement": "each Python run edge computes the same Regime as replayE on the corresponding Lean event history",
+        "hypotheses": "Python driver semantics formalized; token erasure map fixed; not proved",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_canonical_pairwise",
+        "statement": "canonicalRegime n is pairwise separated for all n",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem x (n : Nat) : GenesisComputation.PairwiseSeparated (GenesisComputation.canonicalRegime n) := GenesisComputation.canonicalRegime_pairwise n",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.canonicalRegime_pairwise",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_executable_checks",
+        "claim": "Executable agreement checks on tested inputs constitute a refinement proof",
+        "rejecting_invariant": "Refinement requires a universally quantified statement over all Python runs; checks cover only finitely many inputs"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Formal Python semantics or a model of the driver in Lean is absent",
+      "Token-erasure map and its correctness are not proved",
+      "Proof that each Python edge is a Lean history is not provided",
+      "L-1 bridging needs a seal amendment by the author",
+      "R2L/R2F reading regimes versus sealed genesis histories are unreconciled",
+      "Signatures of Event, stepE, replayE are not shown, so colour names are guessed"
+    ]
+  }
+}

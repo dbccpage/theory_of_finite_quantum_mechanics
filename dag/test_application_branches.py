@@ -26,8 +26,9 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     ids = {r['id'] for r in records}
     pregenesis_to_wdp = json.loads((ROOT / 'dag/fragments/pregenesis_to_wdp.json').read_text(encoding='utf-8'))
     unified = json.loads((ROOT / 'dag/fragments/unified_dag.json').read_text(encoding='utf-8'))
+    frontier = json.loads((ROOT / 'dag/fragments/frontier_branches.json').read_text(encoding='utf-8'))
     assert len(ids) == len(records) == (397 + len(unified['node_records']) + len(pregenesis_to_wdp['records'])
-                                        + len(f["records"]))
+                                        + len(f["records"]) + len(frontier['records']))
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids = ['TFQ-' + re.match(r'tfq_(\d{4})_', p.name)[1] for p in papers]
     assert len(paper_ids) == len(set(paper_ids)) == len(records)

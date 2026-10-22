@@ -1,0 +1,102 @@
+{
+  "task_id": "MAJ-MAJORANA-BRAID-YB-EXACT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "39f098774eb5b0c7597f7fdb680ac45c7c9affd7b5247e02548da2bdd625b1e3",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No existing declarations were found in the source, so all references are proposed_new",
+        "The Lean formalisation of the signed permutation action and the decide-based verification for n = 3..10 are not written",
+        "The sign convention for b_i and the order of its inverse are not fixed",
+        "The Lean skeleton is a placeholder and does not yet state the real claim",
+        "generator braid_exchange unverified: no existing declaration cited",
+        "generator braid_exchange_inv unverified: no existing declaration cited",
+        "relation yang_baxter unverified: no existing declaration cited",
+        "relation far_commute unverified: no existing declaration cited",
+        "relation inverse_cancel unverified: no existing declaration cited",
+        "near_miss unsigned_perm unverified: semantic near miss; P4 host check decides",
+        "near_miss ising_2x2 unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-EDC3FEB2D4E8",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "yb_all_n: For each n in 3..10 and each valid i, the signed-permutation exchange satisfies the braid relation, far commutativity and inverse cancellation",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-MAJORANA-BRAID-YB-EXACT"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were found in the source, so all references are proposed_new",
+      "The Lean formalisation of the signed permutation action and the decide-based verification for n = 3..10 are not written",
+      "The sign convention for b_i and the order of its inverse are not fixed",
+      "The Lean skeleton is a placeholder and does not yet state the real claim",
+      "generator braid_exchange unverified: no existing declaration cited",
+      "generator braid_exchange_inv unverified: no existing declaration cited",
+      "relation yang_baxter unverified: no existing declaration cited",
+      "relation far_commute unverified: no existing declaration cited",
+      "relation inverse_cancel unverified: no existing declaration cited",
+      "near_miss unsigned_perm unverified: semantic near miss; P4 host check decides",
+      "near_miss ising_2x2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "count_range",
+        "expr": "10 - 3 + 1",
+        "value": "8",
+        "host_evidence": {
+          "recomputed": "8"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

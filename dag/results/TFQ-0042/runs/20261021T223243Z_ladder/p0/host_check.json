@@ -1,0 +1,105 @@
+{
+  "task_id": "TFQ-0042",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "4bd6bc86b262a4d6cb5a4aa2c3efb24188ff35196048db36cd326e30c045944e",
+  "candidate_sha256": "9536b3e0bd85a982155f7599ce1427c4636f46941f8a10ccaf1f145a60937d04",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 1,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:32:46Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_su3_diag_klein_four",
+        "equation_or_predicate": "The copy count for su3 diagonal Klein‑four copies equals 4^3 = 64.",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+            "line": 773
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+          "kind": "theorem",
+          "line": 773,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      },
+      {
+        "id": "rel_spanning_tree_elim",
+        "equation_or_predicate": "The spanning tree DFM eliminates Gribov copies for rational link variables.",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+            "line": 791
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+          "kind": "theorem",
+          "line": 791,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Provide a Python replay of the Rust function test_su3_spanning_tree_vs_landau_gribov_control",
+      "lemma lem_target_restates unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_copy_count",
+        "expr": "4^3",
+        "value": "64",
+        "host_evidence": {
+          "recomputed": "64"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

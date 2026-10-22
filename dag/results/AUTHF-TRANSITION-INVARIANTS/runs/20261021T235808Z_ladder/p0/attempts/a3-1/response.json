@@ -1,0 +1,107 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "nextConfiguration",
+      "inputs": [
+        "Configuration"
+      ],
+      "output": "Configuration",
+      "arity": 1,
+      "carrier": "Configuration",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.nextConfiguration",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "transition",
+      "inputs": [
+        "Configuration"
+      ],
+      "output": "TransitionResult",
+      "arity": 1,
+      "carrier": "TransitionResult",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "preserves_def",
+      "statement": "Preserves contract means: for every configuration c, contract.accepts c implies contract.accepts (nextConfiguration c)",
+      "hypotheses": "contract : ConfigurationContract",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.Preserves",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "clean_output_accepted",
+      "statement": "For every configuration c, cleanTerminalContract accepts the next configuration of c",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "clean_preserved",
+      "statement": "Preserves cleanTerminalContract holds for the transition table",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "clean_output_accepted"
+      ],
+      "lean_skeleton": "theorem x : Preserves cleanTerminalContract := transition_preserves_clean_terminal_contract",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "marked_not_preserved",
+      "statement": "Not Preserves markedCellContract: runningMarked accepted, successor runningBlank not accepted",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "preserves_def"
+      ],
+      "lean_skeleton": "theorem y : ¬ Preserves markedCellContract := transition_does_not_preserve_marked_cell_contract",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/AuthIncompleteness/TapeTransition.lean",
+        "decl": "AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "marked_preserved_claim",
+      "claim": "markedCellContract is preserved by the transition table",
+      "rejecting_invariant": "runningMarked is accepted but nextConfiguration runningMarked = runningBlank is rejected (marked_contract_countertrace)"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "config_count",
+      "expr": "4",
+      "value": "4"
+    }
+  ],
+  "open_obligations": [
+    "Exact constructor names and accepts definitions not shown in SRC; verify against file",
+    "Host should confirm the existing theorems are sorry-free; claims_proved left false",
+    "No composition grounded: single-sort unary generators with no listed licensing relation"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "task_id": "TFQ-0045",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "820fb10a706195772a0138af5e3773c82a405695a20ac92381cd6819678e2718",
+  "candidate_sha256": "d06457562a6a26003934335e2c7dd3a9264b67ea2321bb320705623d86dc6136",
+  "status": "incomplete",
+  "model": "qwen/qwen3.8-27b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:33:33Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_exact_invertible_exchange",
+        "ordered_inputs": [
+          "fusion_matrix",
+          "braid_limits"
+        ],
+        "output": "admitted_exchange",
+        "arity": 2,
+        "carrier": "identity_map",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/quality/l4a_six/scalar_port/linear_algebra/elimination.rs",
+            "declaration": "inverse_with_limits",
+            "line": 345
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/quality/l4a_six/scalar_port/linear_algebra/elimination.rs",
+          "decl": "inverse_with_limits",
+          "kind": "fn",
+          "line": 345,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Bottleneck requires r_matrix.rs try_new to verify exact inverse under DEFAULT_BRAID_LIMITS before admission, but r_matrix.rs try_new is not present in @SRC.",
+      "The fusion space dimension may not be a square; verification of the tensor product structure vs fusion space dimensionality is not fully specified in the provided source signatures.",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

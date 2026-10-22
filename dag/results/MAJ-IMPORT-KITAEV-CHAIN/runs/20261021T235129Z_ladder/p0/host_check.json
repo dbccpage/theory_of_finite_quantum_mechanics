@@ -1,0 +1,167 @@
+{
+  "task_id": "MAJ-IMPORT-KITAEV-CHAIN",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ddae0ca046290502a6a87e7c3b8ba72bdee95ce49493d5af066e6238f4e6cee8",
+  "candidate_sha256": "f68dd8d647de8e93b57d57819670f6e815da5052fac13daae7791d6ffda242cc",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:51:43Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_sweet_spot_chain",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "KitaevSweetSpotChain",
+        "arity": 1,
+        "carrier": "structure over L sites",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "KitaevSweetSpotChain",
+            "line": 147
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "KitaevSweetSpotChain",
+          "kind": "structure",
+          "line": 147,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_chain_exact",
+        "ordered_inputs": [
+          "Nat"
+        ],
+        "output": "KitaevChainExact",
+        "arity": 1,
+        "carrier": "open wire with exact coefficients (Python class)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/python/src/majorana/kitaev_chain_exact.py",
+            "declaration": "KitaevChainExact",
+            "line": 70
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/python/src/majorana/kitaev_chain_exact.py",
+          "decl": "KitaevChainExact",
+          "kind": "class",
+          "line": 70,
+          "lang": "python"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_boundary_decoupling",
+        "equation_or_predicate": "In a sweet-spot chain, bulk pairs contain neither the left nor the right boundary Majorana mode, so the edge modes are decoupled from the bulk pairing.",
+        "typing_conditions": "K : KitaevSweetSpotChain L",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "mzm_boundary_decoupling",
+            "line": 155
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "mzm_boundary_decoupling",
+          "kind": "theorem",
+          "line": 155,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_sign_square",
+        "equation_or_predicate": "For sign = 1 or sign = -1, sign*sign = 1.",
+        "typing_conditions": "sign = 1 or sign = -1",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "disjoint_majorana_pair_commute",
+            "line": 161
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "disjoint_majorana_pair_commute",
+          "kind": "theorem",
+          "line": 161,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "BdG spectrum and the phase region |mu|<2t, Delta nonzero are not grounded in any listed declaration",
+      "Hamiltonian-level statement that H = -i t sum gamma_{2j} gamma_{2j+1} is the sweet-spot form has no citation",
+      "No composition licensed by a listed relation",
+      "Right-edge conjunct of mzm_boundary_decoupling is truncated in the source listing",
+      "Lean skeleton for the lemma is unchecked",
+      "lemma l_edge_modes_free unverified: Lean elaboration disabled",
+      "near_miss nm_physical_wire unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_delta_zero unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

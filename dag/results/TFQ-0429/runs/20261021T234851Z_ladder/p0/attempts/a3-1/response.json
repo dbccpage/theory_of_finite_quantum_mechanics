@@ -1,0 +1,89 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "A lift candidate that is licensed requires replay availability, reduction and closure; a missing new carrier blocks licensing.",
+      "hypotheses": "L is a PrimitiveLiftCandidate.LiftCandidate; for the blocking part, L.hasNewCarrier = false",
+      "ref": {
+        "path": "lean4/PrimitiveSpineSummary.lean",
+        "decl": "OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "A licensed lift candidate requires replay, reduction and closure evidence.",
+      "hypotheses": "PrimitiveLiftCandidate.IsLicensedLiftCandidate L",
+      "ref": {
+        "path": "lean4/PrimitiveSpineSummary.lean",
+        "decl": "OmegaCore.PrimitiveSpineSummary.spine_lift_requires_replay_reduction_closure",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R3",
+      "statement": "An extension is one-step iff it adds exactly one primitive capability beyond the six-operation spine; extensions adding several (branching, matching, rewriting) are refused as one-step.",
+      "hypotheses": "A capability count for each extension is declared; the spine arrows mention, supply, designation, admission, retention, internal operation are left as given, with undefined arrows undefined.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "For each of the four extensions (declarative distinctness, conditional deletion, insertion, substitution), the capability count is greater than 1, so none is one-step.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R3"
+      ],
+      "lean_skeleton": "theorem four_ext_not_one_step (caps : Fin 4 → Nat) (h : ∀ i, 2 ≤ caps i) : ∀ i, caps i ≠ 1 := by intro i; have := h i; omega",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L2",
+      "statement": "A lift candidate without a new carrier is not licensed.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "-- reuse spine_lift_missing_new_carrier_blocks",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/PrimitiveSpineSummary.lean",
+        "decl": "OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "Any of the four extensions is a one-step extension because it adds no new glyphs and no counting.",
+      "rejecting_invariant": "One-step means exactly one primitive capability; each extension needs several undeclared capabilities (branching, matching, rewriting)."
+    },
+    {
+      "id": "N2",
+      "claim": "A single act (datum, form or instance) separates from the empty state in the two-flag admission model.",
+      "rejecting_invariant": "Only form then instance separates from the empty state in the declared two-flag model."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declaration was found for the two-flag admission model of Paper000.lean in SRC, so it is not cited.",
+    "The capability count per extension is not grounded in a cited declaration.",
+    "The undefined spine arrows are deliberately left undefined.",
+    "Generators for the six-operation spine are not grounded in SRC and are omitted.",
+    "L1 skeleton is a placeholder over hypothetical counts."
+  ]
+}

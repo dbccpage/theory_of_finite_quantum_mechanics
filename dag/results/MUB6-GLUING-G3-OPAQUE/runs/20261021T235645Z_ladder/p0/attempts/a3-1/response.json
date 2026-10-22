@@ -1,0 +1,63 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R_G3",
+      "statement": "G3 holds: every constituent MU triple of a pairwise MU seven-basis family has a fourth MU basis in the family, and absence of fourth bases for all MU triples excludes a four-basis MU family.",
+      "hypotheses": "Opaque Basis and MU predicates; no interpretation in complex matrices assumed.",
+      "ref": {
+        "path": "lean4/Gluing.lean",
+        "decl": "MUB6.Gluing.G3",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_g3_theorem",
+      "statement": "Target restated: g3_theorem proves G3 for opaque Basis and MU.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_G3"
+      ],
+      "lean_skeleton": "theorem g3_target : MUB6.Gluing.G3 := MUB6.Gluing.g3_theorem",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/Gluing.lean",
+        "decl": "MUB6.Gluing.g3_theorem",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_no_four",
+      "statement": "If no MU triple has a fourth MU basis, then there is no four-basis MU family (NoFourMUB6).",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_G3"
+      ],
+      "lean_skeleton": "theorem no_four_aux (h : ∀ T : MUB6.Gluing.MUTriple, ¬ MUB6.Gluing.HasFourthBasis T) : MUB6.Gluing.NoFourMUB6 := sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/Gluing.lean",
+        "decl": "MUB6.Gluing.no_four_mub6_of_no_triple_extension",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "Combinatorial G3 transfers directly to C^6 mutually unbiased bases without an interpretation of Basis and MU as complex-matrix notions.",
+      "rejecting_invariant": "Opaque predicates carry no unitary or overlap structure; the bottleneck requires a concrete interpretation."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of g3_theorem and no_four_mub6_of_no_triple_extension are not listed; the Lean skeletons are unverified.",
+    "No generators grounded: all SRC items are definitions, structures or theorems, not typed operations.",
+    "Interpretation of Basis and MU in complex matrices for C^6 is not provided.",
+    "Hypothesis form of the no-extension lemma is a guess."
+  ]
+}

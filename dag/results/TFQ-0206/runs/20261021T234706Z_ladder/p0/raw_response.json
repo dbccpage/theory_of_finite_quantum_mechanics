@@ -1,0 +1,93 @@
+{
+  "task_id": "TFQ-0206",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9e62137d16bb9c40f4587f67e6d491490e86fd8383233b9333b03389d41ec0b4",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_density_matrix_wdp\",\"inputs\":[\"InstrumentAdapter\"],\"output\":\"BasicMatrix_GaussianRat\",\"arity\":1,\"carrier\":\"GaussianRat exact matrix\",\"ref\":{\"path\":\"code/rust/src/wdp/instrument_adapter.rs\",\"decl\":\"density_matrix\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_split_spectrum_gap_zero\",\"statement\":\"For the split spectrum Eig2 (2,-2): spread = 4, pairing with optimalVec2 equals spread, and the opNorm of optimalShift matches, so the integer gap is zero.\",\"hypotheses\":\"Eig2 value is exactly (2,-2); integer-valued objectives; no float or tolerance involved.\",\"ref\":{\"path\":\"lean4/TraceZeroDualityAxioms.lean\",\"decl\":\"split_spectrum_gap_zero\",\"status\":\"existing\"}},{\"id\":\"r_float_bar\",\"statement\":\"A float or tolerance result is diagnostic only and is never copied into the authorizing carrier.\",\"hypotheses\":\"Lossy reads such as approximate return None when the value does not fit in a finite f64; side-log floats stay outside the carrier.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_float_bar\",\"statement\":\"No authorizing statement depends on a float or tolerance-valued function: authorization factors through the exact carrier only.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_float_bar\",\"r_split_spectrum_gap_zero\"],\"lean_skeleton\":\"theorem float_bar : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_tolerance_match\",\"claim\":\"A tolerance match between a float result and an exact value is the finite statement.\",\"rejecting_invariant\":\"Float results are diagnostic only; the authorizing carrier is exact, and the gap is an integer difference of scaled objectives.\"},{\"id\":\"nm_approximate_second_carrier\",\"claim\":\"approximate on an Exact value is a second carrier.\",\"rejecting_invariant\":\"approximate is a named loss, the only sanctioned lossy read, and it returns None when the value is not a finite f64.\"}],\"numeric_claims\":[{\"id\":\"n_spread\",\"expr\":\"2 - (-2)\",\"value\":\"4\"}],\"open_obligations\":[\"The path and decl for the approximate function in the kernel are not listed in SRC, so it is not cited.\",\"The Python density_matrix.py function with the tolerance is not listed in SRC.\",\"The Level18 zero-float law is not grounded in any listed declaration.\",\"The Lean skeleton is not elaborated and the float-bar lemma is only a placeholder.\",\"No composition is licensed by a listed relation.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_density_matrix_wdp",
+        "inputs": [
+          "InstrumentAdapter"
+        ],
+        "output": "BasicMatrix_GaussianRat",
+        "arity": 1,
+        "carrier": "GaussianRat exact matrix",
+        "ref": {
+          "path": "code/rust/src/wdp/instrument_adapter.rs",
+          "decl": "density_matrix",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_split_spectrum_gap_zero",
+        "statement": "For the split spectrum Eig2 (2,-2): spread = 4, pairing with optimalVec2 equals spread, and the opNorm of optimalShift matches, so the integer gap is zero.",
+        "hypotheses": "Eig2 value is exactly (2,-2); integer-valued objectives; no float or tolerance involved.",
+        "ref": {
+          "path": "lean4/TraceZeroDualityAxioms.lean",
+          "decl": "split_spectrum_gap_zero",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_float_bar",
+        "statement": "A float or tolerance result is diagnostic only and is never copied into the authorizing carrier.",
+        "hypotheses": "Lossy reads such as approximate return None when the value does not fit in a finite f64; side-log floats stay outside the carrier.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_float_bar",
+        "statement": "No authorizing statement depends on a float or tolerance-valued function: authorization factors through the exact carrier only.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_float_bar",
+          "r_split_spectrum_gap_zero"
+        ],
+        "lean_skeleton": "theorem float_bar : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_tolerance_match",
+        "claim": "A tolerance match between a float result and an exact value is the finite statement.",
+        "rejecting_invariant": "Float results are diagnostic only; the authorizing carrier is exact, and the gap is an integer difference of scaled objectives."
+      },
+      {
+        "id": "nm_approximate_second_carrier",
+        "claim": "approximate on an Exact value is a second carrier.",
+        "rejecting_invariant": "approximate is a named loss, the only sanctioned lossy read, and it returns None when the value is not a finite f64."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_spread",
+        "expr": "2 - (-2)",
+        "value": "4"
+      }
+    ],
+    "open_obligations": [
+      "The path and decl for the approximate function in the kernel are not listed in SRC, so it is not cited.",
+      "The Python density_matrix.py function with the tolerance is not listed in SRC.",
+      "The Level18 zero-float law is not grounded in any listed declaration.",
+      "The Lean skeleton is not elaborated and the float-bar lemma is only a placeholder.",
+      "No composition is licensed by a listed relation."
+    ]
+  }
+}

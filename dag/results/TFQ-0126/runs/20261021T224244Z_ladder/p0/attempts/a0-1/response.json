@@ -1,0 +1,68 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "gen_torsionPhase",
+      "inputs": [
+        "ℕ",
+        "ℤ"
+      ],
+      "output": "ℚ",
+      "arity": 2,
+      "carrier": "U1Fable.CyclotomicTorsionTower",
+      "ref": {
+        "path": "lean4/U1CyclotomicTorsionTower.lean",
+        "decl": "U1Fable.CyclotomicTorsionTower.torsionPhase",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_directed",
+      "statement": "∀ (m1 m2 : Nat) (h1 : m1 ≥ 1) (h2 : m2 ≥ 1), ∃ n : Nat, n ≥ 1 ∧ m1 ∣ n ∧ m2 ∣ n",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/H052CyclotomicTowerDirected.lean",
+        "decl": "FableHilbertWalk20260819.H052.cyclotomic_tower_is_directed",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_embedding",
+      "statement": "(0 < evalAtS 9 witnessW5_diag0 ∧ 0 < evalAtS 9 witnessW5_diag1) ∧ (evalAtS (-9) witnessW5_diag0 < 0)",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/H060EmbeddingRelativity.lean",
+        "decl": "FableHilbertWalk20260819.H060.witnessW5_embedding_relative",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem_pos_embedding",
+      "statement": "From the embedding relativity theorem we obtain positivity of the evaluated witnesses.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "rel_embedding"
+      ],
+      "lean_skeleton": "theorem lem_pos_embedding : (0 < evalAtS 9 witnessW5_diag0 ∧ 0 < evalAtS 9 witnessW5_diag1) ∧ (evalAtS (-9) witnessW5_diag0 < 0) := by\n  exact witnessW5_embedding_relative",
+      "claims_proved": true,
+      "ref": {
+        "path": "lean4/H060EmbeddingRelativity.lean",
+        "decl": "FableHilbertWalk20260819.H060.witnessW5_embedding_relative",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Match bounded QM_122 configurations",
+    "Realize Q(i) complex structure within the finite geometry carrier",
+    "Verify cyclotomic tower criterion Q(ζ₆)=Q(ζ₃)",
+    "Establish embedding-dependent positivity for the target"
+  ]
+}

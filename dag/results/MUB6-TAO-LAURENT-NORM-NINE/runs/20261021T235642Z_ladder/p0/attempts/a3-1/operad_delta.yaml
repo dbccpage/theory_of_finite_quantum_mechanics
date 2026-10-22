@@ -1,0 +1,138 @@
+add_or_refine_generators:
+- id: g_maskSign
+  ordered_inputs:
+  - Fin64
+  - Fin6
+  output: Int
+  arity: 2
+  carrier: Int sign of mask bit
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/SzollosiLaurentPairing.lean
+    declaration: MUB.SzollosiLaurentPairing.maskSign
+    line: 10
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/SzollosiLaurentPairing.lean
+    decl: MUB.SzollosiLaurentPairing.maskSign
+    kind: def
+    line: 10
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_signedColumnExponent
+  ordered_inputs:
+  - SignVector
+  - Fin6
+  output: Int
+  arity: 2
+  carrier: Int exponent mod 3 of Eisenstein column
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/Conjecture2GeneralMechanization.lean
+    declaration: MUB.Conjecture2GeneralMechanization.signedColumnExponent
+    line: 90
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/Conjecture2GeneralMechanization.lean
+    decl: MUB.Conjecture2GeneralMechanization.signedColumnExponent
+    kind: def
+    line: 90
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_mask_count
+  equation_or_predicate: Exactly 20 of the 64 sign masks have positiveCount = 3
+  typing_conditions: none
+  source_pins:
+  - path: lean4/SzollosiLaurentPairing.lean
+    declaration: MUB.SzollosiLaurentPairing.balanced_mask_count
+    line: 96
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SzollosiLaurentPairing.lean
+    decl: MUB.SzollosiLaurentPairing.balanced_mask_count
+    kind: theorem
+    line: 96
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_tao_balanced
+  equation_or_predicate: For balanced masks (positiveCount = 3), the squared norm of the Laurent expression
+    equals 9
+  typing_conditions: positiveCount mask = 3
+  source_pins:
+  - path: lean4/MubTaoLaurent.lean
+    declaration: MUB.TaoLaurent.tao_all_balanced_laurent
+    line: 150
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/MubTaoLaurent.lean
+    decl: MUB.TaoLaurent.tao_all_balanced_laurent
+    kind: theorem
+    line: 150
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-1723D7819F91
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_tao_norm_nine_complex: For each of the 20 balanced sign vectors g, |sum_j prod_r S_rj^{g_r}|^2
+    = 9 over C with w = -1/2 + i sqrt 3/2.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-TAO-LAURENT-NORM-NINE
+- id: NEG-9D028E192FBE
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_tao_norm_nine_integer: The integer Eisenstein table evaluation of the norm square equals 9
+    for all 20 balanced masks.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MUB6-TAO-LAURENT-NORM-NINE
+counterexamples: []
+open_obligations:
+- Unverified whether the cited theorems' exact statements match the sorry skeleton types; skeletons are
+  placeholders.
+- Integer Eisenstein table versus complex statement equivalence not grounded in a listed declaration.
+- No bridge to Conjecture 2 for arbitrary MU triples.
+- 'near_miss nm_l1_norm unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_all_masks unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_balanced_count
+  expr: 6*5*4/(3*2*1)
+  value: '20'
+  host_evidence:
+    recomputed: '20'
+- id: n_norm_sq
+  expr: 3^2
+  value: '9'
+  host_evidence:
+    recomputed: '9'
+verified_lemma_statements: []

@@ -1,0 +1,37 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "rel_shadow_embeds_in_su2",
+      "statement": "The quaternion group Q8 embeds into SU(2) via the su2_matrix construction.",
+      "hypotheses": "",
+      "ref": {
+        "path": "code/rust/src/lie_theory/lib.rs",
+        "decl": "su2_matrix",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lemma_from_operation_group_axioms",
+      "statement": "If `FiniteGroup.from_operation` is applied to a set of elements together with an associative multiplication `mul`, then the resulting object satisfies closure, possesses a two‑sided identity, and each element has an inverse.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "rel_shadow_embeds_in_su2"
+      ],
+      "lean_skeleton": "theorem lemma_from_operation_group_axioms {E K M F} (elements : Vec<E>) (mul : M) (key : F) (h_assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c)) :\n  ∃ (G : FiniteGroup E), (\n    ∀ x y, G.mul x y ∈ G.elems ∧\n    ∃ e, ∀ x, G.mul e x = x ∧ G.mul x e = x ∧\n    ∀ x, ∃ y, G.mul x y = e ∧ G.mul y x = e) :=\nby\n  -- use the existing `from_operation` function\n  have h := FiniteGroup.from_operation elements mul key\n  cases h with\n  | ok G =>\n    -- closure follows from the type of `mul`\n    -- identity and inverses are provided by the `Group` instance inside `FiniteGroup`\n    exact ⟨G, sorry⟩\n  | err e =>\n    exact False.elim (by cases e)\n",
+      "claims_proved": false,
+      "ref": {
+        "path": "code/rust/src/lie_theory/finite_group.rs",
+        "decl": "from_operation",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": []
+}

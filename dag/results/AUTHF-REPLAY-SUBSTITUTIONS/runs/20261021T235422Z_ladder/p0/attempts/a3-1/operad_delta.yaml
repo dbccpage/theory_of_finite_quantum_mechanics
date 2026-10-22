@@ -1,0 +1,131 @@
+add_or_refine_generators:
+- id: g_verify
+  ordered_inputs:
+  - TrustRoot
+  - Submission
+  output: Verification
+  arity: 2
+  carrier: Verification
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/Replay.lean
+    declaration: AuthorizationIncompleteness.ReplayPacketBindingModels.verify
+    line: 113
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Replay.lean
+    decl: AuthorizationIncompleteness.ReplayPacketBindingModels.verify
+    kind: def
+    line: 113
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_self_pass
+  equation_or_predicate: verify authorizeTrueRoot invalidSelfPassingSubmission = contractRejected
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Replay.lean
+    declaration: AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content
+    line: 244
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Replay.lean
+    decl: AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content
+    kind: theorem
+    line: 244
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_checker_sub
+  equation_or_predicate: checker substitution gives bindingRejected under authorizeTrueRoot
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Replay.lean
+    declaration: AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected
+    line: 248
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Replay.lean
+    decl: AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected
+    kind: theorem
+    line: 248
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_replay_payload
+  equation_or_predicate: replay rejects the invalid payload as a substitution
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Replay.lean
+    declaration: AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution
+    line: 265
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Replay.lean
+    decl: AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution
+    kind: theorem
+    line: 265
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-1EB80CE567F6
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_all_substitutions: For every submission differing from the authorized one in checker, contract
+    version or schema version, verify authorizeTrueRoot returns bindingRejected, given contractValid holds'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-REPLAY-SUBSTITUTIONS
+counterexamples:
+- id: NEG-340E9BA80637
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_replay: (TrustRoot, ReplayReceipt, Submission) -> Verification [AuthorizationIncompleteness.ReplayPacketBindingModels.replay]'
+  evidence: lean def replay has 2 explicit binders (2 with conclusion arrows); the claim says 3 (heuristic
+    count)
+  decl_key: AuthorizationIncompleteness.ReplayPacketBindingModels.replay
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTHF-REPLAY-SUBSTITUTIONS
+open_obligations:
+- Exact statements of the existing theorems not visible; verify citations by grep
+- Generalized all-substitutions lemma not stated
+- Receipt issuance (issued_receipt_replays_exact_submission) not composed because no issue generator is
+  listed
+- No composition grounded
+- 'near_miss nm_selfpass unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_facts
+  expr: '6'
+  value: '6'
+  host_evidence:
+    recomputed: '6'
+- id: n_subs
+  expr: '5'
+  value: '5'
+  host_evidence:
+    recomputed: '5'
+verified_lemma_statements: []

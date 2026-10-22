@@ -1,0 +1,52 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-1E0861534F6D
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_cm_det_rational . slot 0 <- g_sq_len via r_v2_from_cm
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: LQG-PR-ALLOWED-REGION-TARGET
+- id: NEG-3D1187BFC5DF
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_sign_classification: For admissible 6-tuples of twice-spins at most 8, classify each tuple
+    as allowed (CM>0), forbidden (CM<0) or degenerate (CM=0) by exact rational evaluation'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: LQG-PR-ALLOWED-REGION-TARGET
+counterexamples: []
+open_obligations:
+- Exact Racah single-sum for sixj squared not grounded; earlier attempts refused as vacuous
+- Enumeration count of admissible tuples with twice-spins at most 8 not computed
+- Explicit CM sign convention from TFQ-0084 not available
+- No existing exact-rational Cayley-Menger declaration; existing ones are f64
+- Orthogonality and Racah lemmas need real proofs
+- 'generator g_cm_det_rational unverified: no existing declaration cited'
+- 'generator g_sq_len unverified: no existing declaration cited'
+- 'relation r_v2_from_cm unverified: no existing declaration cited'
+- 'near_miss nm_float_sign unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_spin_as_length unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_len_sq_j0
+  expr: (1/2)^2
+  value: 1/4
+  host_evidence:
+    recomputed: 1/4
+- id: n_len_sq_j4
+  expr: (4+1/2)^2
+  value: 81/4
+  host_evidence:
+    recomputed: 81/4
+verified_lemma_statements: []

@@ -1,0 +1,139 @@
+{
+  "task_id": "AUTHF-REPLAY-BOUND-SUBMISSION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f40ffc84504c688fdd4064543f919e062b3e78b714396de5e13f425b109de9e0",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_replayed_bound",
+          "equation_or_predicate": "If replay of a receipt on an observed submission returns replayed with some outcome, then the observed submission equals the submission bound in the receipt.",
+          "typing_conditions": "replay receipt observed = replayed outcome for some outcome",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/Replay.lean",
+              "declaration": "AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+              "line": 270
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/Replay.lean",
+            "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+            "kind": "theorem",
+            "line": 270,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Confirm the exact signature of replay (it was previously refused as a wrong signature) and the ReplayReceipt field names.",
+        "Confirm the exact statement of replayed_status_requires_bound_submission before restating it in Lean.",
+        "Compositions and generator typing are not grounded: issueReceipt's input and output colours are not known, so its generator entry has empty inputs and output and arity 0 as placeholders.",
+        "Produce a sorry-free Lean proof once the signatures are known.",
+        "lemma l_target_restate unverified: Lean elaboration disabled",
+        "near_miss nm_digest_equality unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_verifier_sound unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_replayed_bound",
+        "equation_or_predicate": "If replay of a receipt on an observed submission returns replayed with some outcome, then the observed submission equals the submission bound in the receipt.",
+        "typing_conditions": "replay receipt observed = replayed outcome for some outcome",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Replay.lean",
+            "declaration": "AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+            "line": 270
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission",
+          "kind": "theorem",
+          "line": 270,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-481AE9CCD973",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_issueReceipt: () ->  [AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt]",
+        "evidence": "lean def issueReceipt has 2 explicit binders (2 with conclusion arrows); the claim says 0 (heuristic count)",
+        "decl_key": "AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTHF-REPLAY-BOUND-SUBMISSION"
+      }
+    ],
+    "open_obligations": [
+      "Confirm the exact signature of replay (it was previously refused as a wrong signature) and the ReplayReceipt field names.",
+      "Confirm the exact statement of replayed_status_requires_bound_submission before restating it in Lean.",
+      "Compositions and generator typing are not grounded: issueReceipt's input and output colours are not known, so its generator entry has empty inputs and output and arity 0 as placeholders.",
+      "Produce a sorry-free Lean proof once the signatures are known.",
+      "lemma l_target_restate unverified: Lean elaboration disabled",
+      "near_miss nm_digest_equality unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_verifier_sound unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

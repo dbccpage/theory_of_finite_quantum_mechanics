@@ -1,0 +1,100 @@
+add_or_refine_generators:
+- id: g_evaluate_gin_fermion_recovery
+  ordered_inputs:
+  - Bool
+  - Nat
+  output: TerminalRoute
+  arity: 2
+  carrier: TerminalRoute
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.evaluate_gin_fermion_recovery
+    line: 79
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.evaluate_gin_fermion_recovery
+    kind: def
+    line: 79
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_invalid_closure_failure
+  equation_or_predicate: evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure
+  typing_conditions: 'mass : Nat'
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.invalid_gin_routes_to_closure_failure
+    line: 103
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.invalid_gin_routes_to_closure_failure
+    kind: theorem
+    line: 103
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_zero_mass_repair
+  equation_or_predicate: evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair
+  typing_conditions: none
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.exact_gin_cancellation_routes_to_repair
+    line: 90
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.exact_gin_cancellation_routes_to_repair
+    kind: theorem
+    line: 90
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_positive_mass_refusal
+  equation_or_predicate: evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal
+  typing_conditions: 'mass : Nat, mass > 0'
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    declaration: MajoranaGinCore.residual_sign_routes_to_refusal
+    line: 95
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaGinCore.lean
+    decl: MajoranaGinCore.residual_sign_routes_to_refusal
+    kind: theorem
+    line: 95
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Lemma skeletons are not elaborated and are marked unproved.
+- Unclear whether the Lean skeletons need namespace qualification.
+- 'No compositions: the only generator returns TerminalRoute, so nothing can be plugged into its Bool/Nat
+  inputs.'
+- 'lemma l_invalid unverified: Lean elaboration disabled'
+- 'lemma l_repair unverified: Lean elaboration disabled'
+- 'lemma l_refusal unverified: Lean elaboration disabled'
+- 'near_miss nm_repair_is_solution unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_invalid_zero_mass_repair unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

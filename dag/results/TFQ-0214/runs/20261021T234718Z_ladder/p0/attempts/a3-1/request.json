@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0214",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b7c4a05ba774e721e74dfe0784bbec18f92ac6015602722d5f6080b1ad44bf66",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0214 stage=P0 attempt=a3-1 in=b7c4a05b guided=yes\n@TARGET [OPEN] Each ledger row a derivation cites must keep its ceiling beside the identifier. On the quantum book, QM-000 is marked candidate_mirror, QM-020-UNIQ is marked continuum_interface, and several rows are source_claim. Where the map uses the label formal_finite_result, the row still has to name a source locus, a hash, assumptions, and replay status. The certifier catalog stores an author-supplied status string while authority_effect on the record remains None. The runtime copies ceiling, assumptions, and replay status with the row. Dropping the ceiling and keeping only the title is a failed binding.\n@BOTTLENECK Copy ceiling, assumptions, and replay status with every cited claim identifier.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/python/src/majorana/test_contracts_no_authority_firewall.py | authority_effect | def [test] | def authority_effect(*args: Any, **kwargs: Any) -> Any: raise RustPortPending( \"Semantic Python port required for tests/no_authority_firewall.rs::auth\n code/python/src/majorana/test_omega_contracts_converted.py | authority_effect | def [test] | def authority_effect(self) -> AuthorityEffect: return self.effect\n code/python/src/mub/__init__.py | authority_effect | def | def authority_effect() -> str: \"\"\"Always 'None' — this surface mints no authority.\"\"\" return AUTHORITY_EFFECT\n code/rust/quality/l4a_six/scalar_port/qm/obstruction_calc.rs | authority_effect | fn | pub fn authority_effect(&self) -> ReportAuthorityTag\n code/rust/src/functional/aggregation.rs | authority_effect | fn | pub fn authority_effect(&self) -> AggregationAuthorityEffect\n code/rust/src/functional/distinguishability.rs | authority_effect | fn | pub fn authority_effect(&self) -> DistinguishabilityAuthorityEffect\n code/rust/src/functional/quantum_gaps.rs | authority_effect | fn | pub fn authority_effect(&self) -> SpectrumAuthorityEffect\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | authority_effect | fn | pub fn authority_effect(&self) -> GaugeDiagnosticAuthority\n code/rust/src/holonomy/gauge_quotient.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/adequacy.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/bound_measurement.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/ledger.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/lggr_overlay.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/prime_seam.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/verdict.rs | authority_effect | fn\n code/rust/src/local_green_global_red_lggr/verified_continuation_context_v2.rs | authority_effect | fn\n code/rust/src/mub/python.rs | authority_effect | fn\n code/rust/src/mub/runtime_adapter.rs | authority_effect | fn\n code/rust/src/operad_theory/kernel/model.rs | authority_effect | fn\n code/rust/src/operad_theory/kernel/observer.rs | authority_effect | fn\n code/rust/src/operad_theory/lib.rs | authority_effect | fn\n code/rust/src/operad_theory/mod.rs | authority_effect | fn\n code/rust/src/operad_theory/python.rs | authority_effect | fn\n code/rust/src/qm/obstruction_calc.rs | authority_effect | fn\n code/rust/src/sheaf_theory/epistemic_observer.rs | authority_effect | fn\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "TFQ-0213",
+      "TFQ-0215"
+    ],
+    "feedback": true,
+    "index_position": 332,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

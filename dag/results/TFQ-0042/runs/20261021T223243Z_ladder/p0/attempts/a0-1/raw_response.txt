@@ -1,0 +1,56 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "rel_su3_diag_klein_four",
+      "statement": "The copy count for su3 diagonal Klein‑four copies equals 4^3 = 64.",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "rel_spanning_tree_elim",
+      "statement": "The spanning tree DFM eliminates Gribov copies for rational link variables.",
+      "hypotheses": "",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "lem_target_restates",
+      "statement": "The target evaluation of su3 spanning tree versus Landau‑Gribov control follows from the diagonal Klein‑four copy count and the spanning‑tree elimination theorem.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "rel_su3_diag_klein_four",
+        "rel_spanning_tree_elim"
+      ],
+      "lean_skeleton": "theorem target_restatement :\n  let copies : ℚ := 4 ^ 3 := (by norm_num)\n  have h1 := FiniteQM.su3_diagonal_klein_four_landau_gribov_copies\n  have h2 := FiniteQM.spanning_tree_dfm_eliminates_gribov_copies\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "id": "nc_copy_count",
+      "expr": "4^3",
+      "value": "64"
+    }
+  ],
+  "open_obligations": [
+    "Provide a Python replay of the Rust function test_su3_spanning_tree_vs_landau_gribov_control"
+  ]
+}

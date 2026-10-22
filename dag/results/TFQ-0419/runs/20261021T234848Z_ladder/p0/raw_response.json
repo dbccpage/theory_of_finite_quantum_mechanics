@@ -1,0 +1,115 @@
+{
+  "task_id": "TFQ-0419",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "775e34803a9e2f53913730e88443023a4b14b83830fe5bd22fec28f4119a6262",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_primitive_difference\",\"inputs\":[],\"output\":\"PrimitiveDifference\",\"arity\":0,\"carrier\":\"PrimitiveDifference α β\",\"ref\":{\"path\":\"lean4/PrimitiveDifference.lean\",\"decl\":\"OmegaCore.PrimitiveDifference\",\"status\":\"existing\"}},{\"id\":\"g_residual_quotient\",\"inputs\":[\"PrimitiveDifference\"],\"output\":\"ResidualQuotient\",\"arity\":1,\"carrier\":\"P.ResidualQuotient\",\"ref\":{\"path\":\"lean4/PrimitiveDifference.lean\",\"decl\":\"OmegaCore.PrimitiveDifference.ResidualQuotient\",\"status\":\"existing\"}},{\"id\":\"g_admissible_repair_system\",\"inputs\":[],\"output\":\"AdmissibleRepairSystem\",\"arity\":0,\"carrier\":\"AdmissibleRepairSystem Q\",\"ref\":{\"path\":\"lean4/PrimitiveAdmissibleRepair.lean\",\"decl\":\"OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_adm_witness_implies_exact\",\"statement\":\"An admissible witnessed exact repair implies exact repair.\",\"hypotheses\":\"C : ObstructionClassifier Q, S : AdmissibleRepairSystem Q, zeroClass q : Q, AdmissibleWitnessedExactRepair C S zeroClass q\",\"ref\":{\"path\":\"lean4/PrimitiveAdmissibleRepair.lean\",\"decl\":\"OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_exact\",\"status\":\"existing\"}},{\"id\":\"r_two_continuations_distinct_assumptions\",\"statement\":\"Quiescent reply and repetition reply to Prompt 11 are two distinct admissible continuations under different assumptions, so |Adm(P_1)| >= 2 as a record of the prompt, not as two successors of one transition system.\",\"hypotheses\":\"Trial 1 assumption (quiescence allowed) and Trial 2 assumption (repetition rule added) are both declared; no operations or selection rule declared\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_nonuniqueness_record\",\"statement\":\"Primitive Difference plus Prompt 11 does not determine a unique S_1: at least two admissible continuations (quiescent, repeated <>) are recorded under different assumptions, and no canonical S_1 is selected until operations and a selection rule are declared.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_two_continuations_distinct_assumptions\"],\"lean_skeleton\":\"theorem nonuniqueness_record {Cont : Type} (adm : Cont → Prop) (a b : Cont) (ha : adm a) (hb : adm b) (hne : a ≠ b) : ∃ x y, adm x ∧ adm y ∧ x ≠ y := ⟨a, b, ha, hb, hne⟩\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_two_successors\",\"claim\":\"One fixed transition system has two successors of <>.\",\"rejecting_invariant\":\"The two replies rest on different assumptions, so they are two systems, not two branches of one.\"},{\"id\":\"nm_canonical_s1\",\"claim\":\"Quiescence is the canonical S_1 because it is minimal.\",\"rejecting_invariant\":\"No minimality order, cost functional or tie-breaker is declared, so no selection is licensed.\"}],\"numeric_claims\":[{\"id\":\"n_adm_lower_bound\",\"expr\":\"1 + 1\",\"value\":\"2\"}],\"open_obligations\":[\"Declare the allowed operations on Prompt 11 states.\",\"Declare a selection rule: minimality order, cost functional, deterministic tie-breaker or retention of all tied minimal branches.\",\"Link the quiescent and repetition replies to AdmissibleRepairSystem and RepairCost, if appropriate.\",\"Formalize Adm(P_1) as a proposed declaration, since none exists in the sources.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_primitive_difference",
+        "inputs": [],
+        "output": "PrimitiveDifference",
+        "arity": 0,
+        "carrier": "PrimitiveDifference α β",
+        "ref": {
+          "path": "lean4/PrimitiveDifference.lean",
+          "decl": "OmegaCore.PrimitiveDifference",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_residual_quotient",
+        "inputs": [
+          "PrimitiveDifference"
+        ],
+        "output": "ResidualQuotient",
+        "arity": 1,
+        "carrier": "P.ResidualQuotient",
+        "ref": {
+          "path": "lean4/PrimitiveDifference.lean",
+          "decl": "OmegaCore.PrimitiveDifference.ResidualQuotient",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_admissible_repair_system",
+        "inputs": [],
+        "output": "AdmissibleRepairSystem",
+        "arity": 0,
+        "carrier": "AdmissibleRepairSystem Q",
+        "ref": {
+          "path": "lean4/PrimitiveAdmissibleRepair.lean",
+          "decl": "OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_adm_witness_implies_exact",
+        "statement": "An admissible witnessed exact repair implies exact repair.",
+        "hypotheses": "C : ObstructionClassifier Q, S : AdmissibleRepairSystem Q, zeroClass q : Q, AdmissibleWitnessedExactRepair C S zeroClass q",
+        "ref": {
+          "path": "lean4/PrimitiveAdmissibleRepair.lean",
+          "decl": "OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_exact",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_two_continuations_distinct_assumptions",
+        "statement": "Quiescent reply and repetition reply to Prompt 11 are two distinct admissible continuations under different assumptions, so |Adm(P_1)| >= 2 as a record of the prompt, not as two successors of one transition system.",
+        "hypotheses": "Trial 1 assumption (quiescence allowed) and Trial 2 assumption (repetition rule added) are both declared; no operations or selection rule declared",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_nonuniqueness_record",
+        "statement": "Primitive Difference plus Prompt 11 does not determine a unique S_1: at least two admissible continuations (quiescent, repeated <>) are recorded under different assumptions, and no canonical S_1 is selected until operations and a selection rule are declared.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_two_continuations_distinct_assumptions"
+        ],
+        "lean_skeleton": "theorem nonuniqueness_record {Cont : Type} (adm : Cont → Prop) (a b : Cont) (ha : adm a) (hb : adm b) (hne : a ≠ b) : ∃ x y, adm x ∧ adm y ∧ x ≠ y := ⟨a, b, ha, hb, hne⟩",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_two_successors",
+        "claim": "One fixed transition system has two successors of <>.",
+        "rejecting_invariant": "The two replies rest on different assumptions, so they are two systems, not two branches of one."
+      },
+      {
+        "id": "nm_canonical_s1",
+        "claim": "Quiescence is the canonical S_1 because it is minimal.",
+        "rejecting_invariant": "No minimality order, cost functional or tie-breaker is declared, so no selection is licensed."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_adm_lower_bound",
+        "expr": "1 + 1",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "Declare the allowed operations on Prompt 11 states.",
+      "Declare a selection rule: minimality order, cost functional, deterministic tie-breaker or retention of all tied minimal branches.",
+      "Link the quiescent and repetition replies to AdmissibleRepairSystem and RepairCost, if appropriate.",
+      "Formalize Adm(P_1) as a proposed declaration, since none exists in the sources."
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-3CE8DDC19DD9
+  class: nonexistent_declaration
+  claim_kind: relation
+  claim: 'rel_symplectic_comm: (-1)^{\omega(P, P'')} I [rel_symplectic_comm]'
+  evidence: code/python/tests/test_e2e_pauli_spin_statistics_graph_control.py has no declaration rel_symplectic_comm
+    and none exists in the indexed sources
+  decl_key: rel_symplectic_comm
+  confidence: exact
+  model: openai/gpt-oss-120b
+  provider: groq
+  tier: 0
+  node_id: TFQ-0135
+- id: NEG-EB18C9DEA457
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: numeric_claims is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0135
+- id: NEG-5C4CBA76A883
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''id'': ''lem_cabello_ray_structure'', ''statement'': ''The Cabello 18-ray generators satisfy
+    the Z2 cochain complex boundary condition, ensuring the product scenario'
+  evidence: 'lemmas[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0135
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0135
+counterexamples: []
+open_obligations:
+- The Z2 cochain obstruction from contextuality_obstruction.rs and the Cabello 18-ray witness have not
+  been matched to any declared generator in @SRC or @KNOWN+. No declarations are currently available to
+  compose or prove lemmas about the required scenario whose class vanishes.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

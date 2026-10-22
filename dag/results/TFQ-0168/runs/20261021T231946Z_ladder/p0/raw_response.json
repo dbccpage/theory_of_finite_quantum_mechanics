@@ -1,0 +1,118 @@
+{
+  "task_id": "TFQ-0168",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "384000c8f8a361b9396064e1550c885d264b5049b0370bde5febc74320fcf256",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_local_box_has_verified_hidden_variable_table\",\n      \"inputs\": [\"one_classical_box\"],\n      \"output\": \"hidden_var_table\",\n      \"arity\": 1\n   ,\n      \"carrier\": \"existing\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/classical_instrument.rs\",\n        \"decl\": \"local_box_has_a_verified_hidden_variable_table\"\n      ,\n      \"status\": \"existing\"\n    }\n  },\n  {\n      \"id\": \"gen_JointTable\",\n      \"inputs\": [\"one_finite_control\"],\n      \"output\": \"joint_table_struct\",\n      \"arity\": 1,\n      \"carrier\": \"existing\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/joint_table.rs\",\n        \"decl\": \"JointTable\"\n      ,\n      \"status\": \"existing\"\n    }\n  },\n  {\n      \"id\": \"gen_FrechetBounds\",\n      \"inputs\": [\"one_joint_table\"],\n      \"output\": \"frechet_bounds_obj\",\n      \"arity\": 1,\n      \"carrier\": \"existing\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/joint_table.rs\",\n        \"decl\": \"FrechetBounds\"\n      ,\n      \"status\": \"existing\"\n    }\n  }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"rel_conditionals_return_kernel\",\n      \"statement\": \"conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel\",\n      \"hypotheses\": \"Built from a prior and a kernel\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/joint_table.rs\",\n        \"decl\": \"conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel\"\n      ,\n      \"status\": \"existing\"\n    }\n  },\n    {\n      \"id\": \"rel_every_joint_respects_frechet\",\n      \"statement\": \"every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained\",\n      \"hypotheses\": \"Every joint table on Fin n\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/joint_table.rs\",\n        \"decl\": \"every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained\"\n      ,\n      \"status\": \"existing\"\n    }\n  },\n    {\n      \"id\": \"rel_local_box_has_hidden_var\",\n      \"statement\": \"local_box_has_a_verified_hidden_variable_table\",\n      \"hypotheses\": \"A classical box equipped with a verified hidden variable table\",\n      \"ref\": {\n        \"path\": \"code/rust/src/finite_probability/classical_instrument.rs\",\n        \"decl\": \"local_box_has_a_verified_hidden_variable_table\"\n      ,\n      \"status\": \"existing\"\n    }\n  }\n  ],\n  \"compositions\": [\n    {\n      \"outer\": \"gen_JointTable\",\n      \"slot\": 0,\n      \"inner\": \"gen_local_box_has_verified_hidden_variable_table\",\n      \"licensing_relation\": \"rel_local_box_has_hidden_var\"\n    }\n  ],\n  \"lemmas\": [\n    {\n      \"id\": \"lemma_preserves_separation_joint_vs_instrument\",\n      \"statement\": \"relation_to_target implies that a joint table on Fin n is a finite control and no-signalling / Born pairing is not imported\",\n      \"relation_to_target\": \"auxiliary\",\n      \"depends_on\": [\"rel_every_joint_respects_frechet\", \"rel_local_box_has_hidden_var\"]\n    ,\n      \"lean_skeleton\": \"\\nlemma preserves_separation_joint_vs_instrument : \\n  (forall (n : Fin u), JointTable n -> FrechetBounds n) -> \\n  -- the joint table stays inside the exact-rational crate\\n  sorry\\n\",\n      \"claims_proved\": false\n    , \"ref\": {\n        \"path\": \"\",\n        \"decl\": \"none\"\n      ,\n      \"status\": \"proposed_new\"\n    }\n  }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": [\n    \"Prove lemma preserves_separation_joint_vs_instrument without sorry (currently sorry-blocked)\",\n    \"Confirm that no existing relation licenses a composition from frechet_bounds into every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained\"\n  ]\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_local_box_has_verified_hidden_variable_table",
+        "inputs": [
+          "one_classical_box"
+        ],
+        "output": "hidden_var_table",
+        "arity": 1,
+        "carrier": "existing",
+        "ref": {
+          "path": "code/rust/src/finite_probability/classical_instrument.rs",
+          "decl": "local_box_has_a_verified_hidden_variable_table",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "gen_JointTable",
+        "inputs": [
+          "one_finite_control"
+        ],
+        "output": "joint_table_struct",
+        "arity": 1,
+        "carrier": "existing",
+        "ref": {
+          "path": "code/rust/src/finite_probability/joint_table.rs",
+          "decl": "JointTable",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "gen_FrechetBounds",
+        "inputs": [
+          "one_joint_table"
+        ],
+        "output": "frechet_bounds_obj",
+        "arity": 1,
+        "carrier": "existing",
+        "ref": {
+          "path": "code/rust/src/finite_probability/joint_table.rs",
+          "decl": "FrechetBounds",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_conditionals_return_kernel",
+        "statement": "conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel",
+        "hypotheses": "Built from a prior and a kernel",
+        "ref": {
+          "path": "code/rust/src/finite_probability/joint_table.rs",
+          "decl": "conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rel_every_joint_respects_frechet",
+        "statement": "every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained",
+        "hypotheses": "Every joint table on Fin n",
+        "ref": {
+          "path": "code/rust/src/finite_probability/joint_table.rs",
+          "decl": "every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rel_local_box_has_hidden_var",
+        "statement": "local_box_has_a_verified_hidden_variable_table",
+        "hypotheses": "A classical box equipped with a verified hidden variable table",
+        "ref": {
+          "path": "code/rust/src/finite_probability/classical_instrument.rs",
+          "decl": "local_box_has_a_verified_hidden_variable_table",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "gen_JointTable",
+        "slot": 0,
+        "inner": "gen_local_box_has_verified_hidden_variable_table",
+        "licensing_relation": "rel_local_box_has_hidden_var"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "lemma_preserves_separation_joint_vs_instrument",
+        "statement": "relation_to_target implies that a joint table on Fin n is a finite control and no-signalling / Born pairing is not imported",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "rel_every_joint_respects_frechet",
+          "rel_local_box_has_hidden_var"
+        ],
+        "lean_skeleton": "\nlemma preserves_separation_joint_vs_instrument : \n  (forall (n : Fin u), JointTable n -> FrechetBounds n) -> \n  -- the joint table stays inside the exact-rational crate\n  sorry\n",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "none",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Prove lemma preserves_separation_joint_vs_instrument without sorry (currently sorry-blocked)",
+      "Confirm that no existing relation licenses a composition from frechet_bounds into every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained"
+    ]
+  }
+}

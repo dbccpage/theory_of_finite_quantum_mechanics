@@ -1,0 +1,69 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-C822EB454535
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_weight . slot 0 <- g_det_up via r_ham_rep
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-HUBBARD-PROTECTED-REPRESENTATIONS
+- id: NEG-EF79E410219C
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_weight . slot 1 <- g_det_down via r_pair_attractive
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-HUBBARD-PROTECTED-REPRESENTATIONS
+- id: NEG-773125803A27
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_positive_protected: Under r_pair_half_bipartite or r_pair_attractive hypotheses, the weight
+    is nonnegative for every auxiliary field configuration.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-HUBBARD-PROTECTED-REPRESENTATIONS
+- id: NEG-C32E827551AB
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_negative_witness: Outside the protected hypotheses, there exist a model and field configuration
+    with negative weight; this witness is distinct from the protected case.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: FSP-HUBBARD-PROTECTED-REPRESENTATIONS
+counterexamples: []
+open_obligations:
+- No existing declarations found; all references are proposed_new and need Lean definitions.
+- Prove the determinant pairing for each model, including boundary conditions.
+- Prove the Hamiltonian-to-representation equality, including the Trotter or discretization details.
+- Construct explicit exact negative-field witnesses outside the protections.
+- Lean skeletons are placeholders and need real statements.
+- 'generator g_det_up unverified: no existing declaration cited'
+- 'generator g_det_down unverified: no existing declaration cited'
+- 'generator g_weight unverified: no existing declaration cited'
+- 'relation r_pair_half_bipartite unverified: no existing declaration cited'
+- 'relation r_pair_attractive unverified: no existing declaration cited'
+- 'relation r_ham_rep unverified: no existing declaration cited'
+- 'near_miss nm_doped_repulsive unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_nonbipartite unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_spin_imbalanced unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

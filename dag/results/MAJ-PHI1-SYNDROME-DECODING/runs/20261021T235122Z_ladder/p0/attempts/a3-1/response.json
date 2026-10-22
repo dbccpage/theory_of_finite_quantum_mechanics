@@ -1,0 +1,109 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_add",
+      "inputs": [
+        "F2Vec n1",
+        "F2Vec n1"
+      ],
+      "output": "F2Vec n1",
+      "arity": 2,
+      "carrier": "F2Vec n1",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "F2Vec.add",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_weight",
+      "inputs": [
+        "F2Vec n1"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "F2Vec.weight",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_coset_ub",
+      "inputs": [
+        "F2CochainComplex n0 n1 n2",
+        "F2Vec n1",
+        "F2Vec n0"
+      ],
+      "output": "Nat",
+      "arity": 3,
+      "carrier": "Nat",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "coset_weight_upper_bound",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_ub",
+      "statement": "The coset_weight_upper_bound value is an upper bound on the true coset-leader weight (gauge candidate bound).",
+      "hypotheses": "C is an F2CochainComplex; w and alpha are as in the definition",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "candidate_gauge_is_upper_bound",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_phi1_coset",
+      "statement": "Phi1([r]) equals the minimum F2Vec.weight over the coset r + im d0 (definitional identification).",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_ub"
+      ],
+      "lean_skeleton": "theorem phi1_eq_coset_leader : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "l_hard",
+      "statement": "Exact Phi1 over arbitrary binary d0 is NP-hard, conditional on the imported MAJ-IMPORT-BMVT.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "l_phi1_coset"
+      ],
+      "lean_skeleton": "theorem phi1_np_hard : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_planar",
+      "claim": "Phi1 is polynomial-time for every d0 (or NP-hard for planar/toric incidence d0).",
+      "rejecting_invariant": "Neither is established: hardness holds only via the import for arbitrary matrices, and the polynomial claim for restricted families is only a possibility, not analysed."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Formalize the coset-leader minimum (exact Phi1) in Lean; only an upper bound is currently cited.",
+    "NP-hardness import MAJ-IMPORT-BMVT is not grounded in the sources.",
+    "Analysis of graph-incidence d0 for planar/toric cell complexes is absent.",
+    "No compositions listed, since no licensing relation was grounded for the types."
+  ]
+}

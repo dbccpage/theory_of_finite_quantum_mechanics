@@ -1,0 +1,37 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: flavor_vs_color_independence
+  equation_or_predicate: The flavor GMO identity (relating M_N, M_Xi, M_Lambda, M_Sigma) holds purely
+    within the flavor su(3) algebra and does not depend on the color su(3) Casimir coefficients (C2f=4/3,
+    C2a=3).
+  typing_conditions: Assumes the decoupling of the su(3) flavor mass operator M0 + M1*Y + M2*(I(I+1)-Y^2/4)
+    from the color Casimir identities cited in @KNOWN+.
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.gmo_octet
+    line: 275
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.gmo_octet
+    kind: theorem
+    line: 275
+    lang: lean
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- The target requires decoupling the flavor GMO identity (Lean `gmo_octet`) from the PDG decimal residual,
+  but the source does not contain a `pdg_baryon_masses` or `residual` declaration to formalize the separation
+  rigorously.
+- No Lean `Mat` or `Vec` declarations are defined for the color-channel module in the finite su(3) context
+  to express the zero vector properties of the color Casimir control.
+- 'lemma gmo_decuplet_relation unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

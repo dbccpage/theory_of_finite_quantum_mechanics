@@ -64,7 +64,21 @@ P0_SCHEMA = _obj(
         'open_obligations': {'type': 'array', 'items': _S},
     })
 
-SYSTEM_P0 = (
+def schema_example(schema, name='value'):
+    """A literal skeleton of a schema: strings become <key>, enums list their values with |, integers 0, booleans false, and
+    every array holds one example item. Put in the system text so that a provider that ignores `response_format` still shows
+    the model the exact keys."""
+    kind = schema.get('type')
+    if kind == 'object':
+        return {key: schema_example(sub, key) for key, sub in schema.get('properties', {}).items()}
+    if kind == 'array':
+        return [schema_example(schema.get('items', {}), name)]
+    if 'enum' in schema:
+        return '|'.join(str(v) for v in schema['enum'])
+    return {'integer': 0, 'boolean': False}.get(kind, '<%s>' % name)
+
+
+_SYSTEM_P0_RULES = (
     'You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches '
     'the response schema. No prose, no code fences.\n'
     'Rules:\n'
@@ -77,11 +91,15 @@ SYSTEM_P0 = (
     '- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output '
     'colour must equal that input colour and a relation you listed must license the step.\n'
     '- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of '
-    'the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n'
+    'the target. Set lean_skeleton to "" when you have no formal statement: never write a placeholder such as `: True`. '
+    'A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and '
+    'cites the existing declaration that proves it is a good lemma.\n'
     '- numeric_claims: exact rational arithmetic only, e.g. expr "11 - 2/3*5", value "23/3".\n'
-    '- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. '
-    'List what you could not ground in open_obligations. AuthorityEffect: None.'
+    '- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. '
+    'List what you could not ground in open_obligations. AuthorityEffect: None.\n'
 )
+SYSTEM_P0 = (_SYSTEM_P0_RULES + 'Reply shape (angle brackets mark where your value goes; a | lists the allowed values):\n'
+             + json.dumps(schema_example(P0_SCHEMA), separators=(',', ':'), ensure_ascii=False))
 
 
 @dataclass
@@ -129,9 +147,59 @@ def load_row(root, node_id):
     raise KeyError('node %s is not in dag/operads/index.json' % node_id)
 
 
-def source_candidates(root, node_id, collection, index: DeclIndex, statement: str, limit: int):
-    """[(score, path, decl dict)] best first: operad-record leads, names quoted in the statement, the node's own
-    anchors, then declarations of source files whose file name shares words with the statement."""
+GENERIC_FILE_NAMES = {'mod.rs', 'lib.rs', 'main.rs', '__init__.py', 'conftest.py'}
+FILE_NAME = re.compile(r'(?<![\w/.-])((?:[\w.-]+/)*[\w.-]+\.(?:lean|rs|py))\b')
+IDENTIFIER = re.compile(r'[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+|[a-z]+[A-Z][A-Za-z0-9]*')
+# A word that occurs in the stem of more than this many source files ("test", "omega", "contract", "genesis"...) says nothing
+# about which file a statement is about.
+STEM_DOC_FREQUENCY_LIMIT = 300   # in this repo: drops contract, omega, test(s), math, wdp, mub, quantum, theory, physics; keeps primitive, boundary, genesis
+MAX_FILE_CANDIDATES = 4        # a bare file name that resolves to more files than this is too ambiguous to offer
+NAMED_FILE_DECLS = 10
+
+
+def anchor_path(anchor: str) -> str:
+    """`path:12-40` / `path#L3` -> `path`, with POSIX separators."""
+    return re.split(r'[:#]', str(anchor).strip().replace('\\', '/'))[0]
+
+
+def _distinctive(index: DeclIndex, tokens: set) -> set:
+    frequency = getattr(index, '_stem_frequency', None)
+    if frequency is None:
+        frequency = {}
+        for path in index.source_paths():
+            for token in _tokens(Path(path).stem):
+                frequency[token] = frequency.get(token, 0) + 1
+        index._stem_frequency = frequency
+    return {t for t in tokens if frequency.get(t, 0) <= STEM_DOC_FREQUENCY_LIMIT}
+
+
+def named_files(index: DeclIndex, text: str, preferred=()) -> list:
+    """Repository paths of the source files that `text` names (`obstruction.rs`, `lean4/Foo.lean`, `a/b/c.py`). A bare name
+    that resolves to more than MAX_FILE_CANDIDATES files is kept only where it matches one of the `preferred` paths."""
+    found = []
+    for name in dict.fromkeys(FILE_NAME.findall(text or '')):
+        base = name.rsplit('/', 1)[-1]
+        if base in GENERIC_FILE_NAMES:
+            continue
+        paths = index.paths_by_basename().get(base, [])
+        if '/' in name:
+            paths = [p for p in paths if p == name or p.endswith('/' + name)] or paths
+        if len(paths) > MAX_FILE_CANDIDATES:
+            paths = [p for p in paths if p in preferred]
+        found += paths
+    return list(dict.fromkeys(found))
+
+
+def node_code_text(node: dict) -> str:
+    """The node's own anchors and source pointers as one string, for file-name resolution."""
+    parts = [a for key in ('lean', 'rust', 'python', 'source') for a in (node.get(key) or []) if isinstance(a, str)]
+    return '\n'.join(anchor_path(a) for a in parts)
+
+
+def source_candidates(root, node_id, collection, index: DeclIndex, statement: str, limit: int, bottleneck: str = ''):
+    """[(score, path, decl dict)] best first: operad-record leads; names (files and identifiers) quoted in the statement or the
+    bottleneck; the node's own anchors; then declarations of source files whose file name shares DISTINCTIVE words with the
+    statement. Nothing below a relevance floor is offered: an empty list is a result ("@SRC none")."""
     chosen: dict = {}
 
     def offer(score, path, decl):
@@ -139,6 +207,7 @@ def source_candidates(root, node_id, collection, index: DeclIndex, statement: st
         if key not in chosen or chosen[key][0] < score:
             chosen[key] = (score, path, decl)
 
+    text = '%s\n%s' % (statement or '', bottleneck or '')
     for item in (collection.get('operation_candidates') or []) + (collection.get('relation_candidates') or []):
         path = item.get('source')
         entry = index.file_entry(path) if path else None
@@ -146,35 +215,84 @@ def source_candidates(root, node_id, collection, index: DeclIndex, statement: st
             for decl in index.match_in_table(entry['table'], item['name']):
                 offer(100, path, decl)
     node = dag_node(root, node_id) or {}
-    statement_tokens = _tokens(statement)
-    for name in set(re.findall(r'[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+|[a-z]+[A-Z][A-Za-z0-9]*', statement)):
+    statement_tokens = _tokens(text)
+    distinct_tokens = _distinctive(index, statement_tokens)
+    for name in set(IDENTIFIER.findall(text)):
         for path, decl in index.find_anywhere(name):
             if decl['full'].split('.')[-1] == name:
                 offer(90, path, decl)
-    anchors = [a for a in (node.get('lean') or []) + (node.get('rust') or []) if a]
+    anchors = [anchor_path(a) for a in (node.get('lean') or []) + (node.get('rust') or []) if a]
+
+    def offer_file(path, scores):
+        """Declarations of one file, those sharing words with the statement first; `scores` = (>=2 shared, 1 shared, none)."""
+        entry = index.file_entry(path)
+        table = entry['table'] if entry else []
+        ranked = sorted(((len(_tokens(d['full']) & statement_tokens), d) for d in table), key=lambda row: (-row[0], row[1]['line']))
+        shared = [(n, d) for n, d in ranked if n >= 1][:NAMED_FILE_DECLS]
+        for n, d in shared or ranked[:5]:
+            offer(scores[0] + min(n, 5) if n >= 2 else (scores[1] if n == 1 else scores[2]), path, d)
+
+    named = named_files(index, text + '\n' + node_code_text(node), preferred=set(anchors))
+    for path in named:
+        offer_file(path, (85, 80, 70))
     for anchor in anchors:
-        entry = index.file_entry(anchor)
-        if entry:
-            for decl in entry['table']:
-                overlap = len(_tokens(decl['full']) & statement_tokens)
-                if overlap >= 2:
-                    offer(40 + overlap, anchor, decl)
+        if index.file_entry(anchor):
+            offer_file(anchor, (40, 30, 20))
     if len(chosen) < limit:
         by_file = []
         for path in index.source_paths():
-            stem_tokens = _tokens(Path(path).stem)
-            overlap = len(stem_tokens & statement_tokens)
+            stem_tokens = _distinctive(index, _tokens(Path(path).stem))
+            overlap = len(stem_tokens & distinct_tokens)
             is_test = '/tests/' in path or Path(path).name.startswith('test_')
-            if overlap >= (3 if is_test else 2) and path not in anchors:
+            if overlap >= (3 if is_test else 2) and path not in anchors and path not in named:
                 by_file.append((overlap - (1 if is_test else 0), path))
         for overlap, path in sorted(by_file, reverse=True)[:6]:
             entry = index.file_entry(path)
             for decl in (entry['table'] if entry else []):
-                hit = len(_tokens(decl['full']) & statement_tokens)
+                hit = len(_tokens(decl['full']) & distinct_tokens)
                 if hit >= 1:
-                    offer(10 + overlap + hit, path, decl)
+                    offer(min(10 + overlap + hit, STRONG_SCORE - 1), path, decl)   # stays below every strong tier
     ranked = sorted(chosen.values(), key=lambda row: (-row[0], row[1], row[2]['line']))
     return ranked[:limit]
+
+
+# Statuses whose subject is an external publication or an imported theorem: when the host found nothing but fuzzy
+# file-name matches for them, there is no code the claim could be grounded on.
+EXTERNAL_SUBJECT_STATUSES = ('SOURCE_RECORD', 'IMPORTED_ASSUMPTION')
+FINITE_TARGET_MARK = 'Finite statement to formalize'
+STRONG_SCORE = 20      # operad lead, quoted identifier, named file or node anchor; below it is a fuzzy file-name match
+
+
+def groundability(root, node_id, collection, index: DeclIndex, statement: str, bottleneck: str, src_offered: int,
+                  src_strong: int = None, known_pos: int = 0) -> dict:
+    """Facts for the pre-dispatch skip: operation/relation candidates, code files the node names or anchors that exist in this
+    checkout, and the reason when there is nothing to ground a claim on.
+
+    Ungroundable = no operation/relation candidates, no code anchor or named file present in the checkout, and either no `@SRC`
+    at all, or (for SOURCE_RECORD / IMPORTED_ASSUMPTION nodes only) nothing but fuzzy file-name matches. A finite target
+    ("Finite statement to formalize") is never skipped: its job is to state an exact finite claim, which the numeric and lemma
+    slots can address before any code exists."""
+    node = dag_node(root, node_id) or {}
+    candidates = len(collection.get('operation_candidates') or []) + len(collection.get('relation_candidates') or [])
+    anchors = [anchor_path(a) for a in (node.get('lean') or []) + (node.get('rust') or []) if a]
+    present = [p for p in dict.fromkeys(anchors) if (Path(root) / p).is_file()]
+    present += [p for p in named_files(index, '%s\n%s\n%s' % (statement or '', bottleneck or '', node_code_text(node)), preferred=set(anchors))
+                if p not in present]
+    strong = src_offered if src_strong is None else src_strong
+    status = node.get('status')
+    finite_target = FINITE_TARGET_MARK in ((node.get('statement') or '') + (statement or ''))
+    no_sources = src_offered == 0
+    only_fuzzy = strong == 0 and status in EXTERNAL_SUBJECT_STATUSES
+    # @KNOWN+ lines (host-verified entries of this node's DAG neighbours) are citable too: 23 of the 98 Sonnet runs of round 2 that
+    # had an empty @SRC were accepted with 2 or more verified citations, all of them through @KNOWN+.
+    ungroundable = candidates == 0 and not present and not known_pos and (no_sources or only_fuzzy) and not finite_target
+    reason = None
+    if ungroundable:
+        reason = ('no operation or relation candidates, no code file named by the statement or anchored by the node exists in '
+                  'this checkout, and ' + ('no @SRC declaration was found' if no_sources else
+                                           'the only @SRC offered are fuzzy file-name matches for a %s node' % status))
+    return {'operation_candidates': candidates, 'anchors_present': len(present), 'src_strong': strong,
+            'finite_target': finite_target, 'ungroundable': ungroundable, 'ungroundable_reason': reason}
 
 
 def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = None, feedback=True,
@@ -189,8 +307,9 @@ def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = N
     assumptions = target.get('declared_assumptions') or []
     neighbours = dag_neighbours(root, node_id)
     related = [node_id] + neighbours
-    candidates = source_candidates(root, node_id, collection, index, statement, policy['max_source_candidates'])
-    hall = hallucinations or HallucinationIndex(index_path(root))
+    bottleneck_text = target.get('source_bottleneck', '') or ''
+    candidates = source_candidates(root, node_id, collection, index, statement, policy['max_source_candidates'], bottleneck_text)
+    hall =hallucinations or HallucinationIndex(index_path(root))
     negatives, positives = [], []
     if feedback:
         hints = {p + '::' + d['full'] for _, p, d in candidates} | {d['full'] for _, _, d in candidates}
@@ -216,7 +335,7 @@ def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = N
     if public['bottleneck']:
         lines.append('@BOTTLENECK ' + re.sub(r'\s+', ' ', public['bottleneck']).strip())
     lines.append('@ASSUME ' + ('; '.join(assumptions) if assumptions else 'none declared'))
-    lines.append('@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)' if src_lines else '@SRC none found by the host; cite nothing as existing')
+    lines.append('@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)' if src_lines else '@SRC none found by the host; cite nothing as existing')
     lines += src_lines
     if public['known_pos']:
         lines.append('@KNOWN+ (host-verified earlier; reusable inside their scope)')
@@ -228,6 +347,8 @@ def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = N
     meta = {'src_offered': len(src_lines), 'known_neg_injected': len(negatives), 'known_pos_injected': len(positives),
             'neighbours': neighbours[:12], 'feedback': feedback, 'index_position': position,
             'neg_entry_ids': [e['id'] for e in negatives]}
+    meta.update(groundability(root, node_id, collection, index, statement, bottleneck_text, len(src_lines),
+                              sum(1 for score, _, _ in candidates if score >= STRONG_SCORE), len(positives)))
     return CompiledPacket(node_id, 'P0', attempt_id, SYSTEM_P0, '\n'.join(lines) + '\n', P0_SCHEMA, digest, meta, statement)
 
 

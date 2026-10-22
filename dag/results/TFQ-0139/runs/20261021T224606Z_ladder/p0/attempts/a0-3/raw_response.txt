@@ -1,0 +1,47 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "gen_hs_unitary",
+      "inputs": ["clock", "system"],
+      "output": "system",
+      "arity": 2,
+      "carrier": "HistoryShift",
+      "ref": {
+        "path": "code/python/tests/test_e2e_page_wootters_tsirelson_wigner_control.py",
+        "decl": "test_unit_part_a_page_wootters_clock_dressing_and_static_constraint",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gen_projector",
+      "inputs": ["H"],
+      "output": "P",
+      "arity": 1,
+      "carrier": "IdempotentHermitianConstraint",
+      "ref": {
+        "path": "code/python/tests/test_e2e_page_wootters_tsirelson_wigner_control.py",
+        "decl": "test_unit_part_a_page_wootters_clock_dressing_and_static_constraint",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [],
+  "compositions": [
+    {
+      "outer": "gen_hs_unitary",
+      "slot": 0,
+      "inner": "gen_projector",
+      "licensing_relation": "projector_licenses_clock_dressing"
+    }
+  ],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Lean 4 declaration for history_shift unitary of order 4 missing in FiniteQM.lean",
+    "Lean 4 declaration for idempotent Hermitian constraint projector missing in FiniteQM.lean",
+    "Cyclotomic_rings.rs matrix arithmetic mapping not yet wired into FiniteQM.lean signature",
+    "Python replay integration points for clock-dressing flags mismatch"
+  ]
+}

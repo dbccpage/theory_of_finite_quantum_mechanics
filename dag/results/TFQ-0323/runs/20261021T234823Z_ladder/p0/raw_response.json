@@ -1,0 +1,123 @@
+{
+  "task_id": "TFQ-0323",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a64aa1ba1e613b7f3a10290e094d1ed5a1056c65a4fd4ff48ec0217d1e60f118",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"G_fiber_residual\",\"inputs\":[\"Map\"],\"output\":\"Relation\",\"arity\":1,\"carrier\":\"X (domain of p : X → M)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"G_presentationDifference\",\"inputs\":[\"QuestionFamily\"],\"output\":\"PrimitiveDifference\",\"arity\":1,\"carrier\":\"α with questions List (α → γ)\",\"ref\":{\"path\":\"lean4/PrimitiveDifferenceBridge.lean\",\"decl\":\"OmegaCore.FablePrimitiveDifferenceBridge.presentationDifference\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"R_fiber_zeroRel_iff\",\"statement\":\"zeroRel (fiberResidual p) x y ↔ p x = p y\",\"hypotheses\":\"p : X → M, x y : X\",\"ref\":{\"path\":\"lean4/E003_projection_fiber_primitive_difference.lean\",\"decl\":\"GrokPdNight20260814.E003.fiber_zeroRel_iff\",\"status\":\"existing\"}},{\"id\":\"R_fiberPD_zeroRel_iff\",\"statement\":\"ZeroRel (fiberPD p) x y ↔ p x = p y\",\"hypotheses\":\"p : X → M, x y : X\",\"ref\":{\"path\":\"lean4/E003_projection_fiber_primitive_difference.lean\",\"decl\":\"GrokPdNight20260814.E003.fiberPD_zeroRel_iff\",\"status\":\"existing\"}},{\"id\":\"R_familyMisses_iff_zeroRel\",\"statement\":\"FamilyMisses questions x y ↔ (presentationDifference questions).ZeroRel x y\",\"hypotheses\":\"questions : List (α → γ), x y : α\",\"ref\":{\"path\":\"lean4/PrimitiveDifferenceBridge.lean\",\"decl\":\"OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_fiber_zero_iff\",\"statement\":\"The declared zero relation of the fiber residual of a report p coincides with equality of p-values, so fibers are carried independently of any quotient presentation.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R_fiber_zeroRel_iff\"],\"lean_skeleton\":\"theorem L {X M : Type} (p : X → M) (x y : X) : zeroRel (fiberResidual p) x y ↔ p x = p y := fiber_zeroRel_iff p x y\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/E003_projection_fiber_primitive_difference.lean\",\"decl\":\"GrokPdNight20260814.E003.fiber_zeroRel_iff\",\"status\":\"existing\"}},{\"id\":\"L_unit_quotient_subsingleton\",\"statement\":\"For the constant report constFalse, the residual quotient of its fiber setoid is a subsingleton.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem L (q1 q2 : ResidualQuotient (fiberSetoid constFalse)) : q1 = q2 := sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/E005_fiber_quotient_equivalence.lean\",\"decl\":\"GrokPdNight20260814.E005.unit_fiber_quotient_subsingleton\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"NM_quotient_vs_section\",\"claim\":\"A quotient presentation determines a section of the report.\",\"rejecting_invariant\":\"A section is separate data; the unit quotient is a subsingleton, which does not fix a choice of section.\"},{\"id\":\"NM_bridge\",\"claim\":\"The Lean typechecking build gives a bridge into finite obstruction calculus.\",\"rejecting_invariant\":\"The package README denies any such bridge; the Lake build only typechecks.\"}],\"numeric_claims\":[],\"open_obligations\":[\"E004_split_retraction.lean and E006_induced_idempotent.lean are not in SRC, so no declarations from them could be cited.\",\"No section or retraction generator is grounded.\",\"Compositions need a licensing relation and typed colours, which are not grounded.\",\"The fiber residual generator needs a declaration name from E003, which is not in SRC.\",\"Python tests_unit files are not in SRC and were not cited.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "G_fiber_residual",
+        "inputs": [
+          "Map"
+        ],
+        "output": "Relation",
+        "arity": 1,
+        "carrier": "X (domain of p : X → M)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "G_presentationDifference",
+        "inputs": [
+          "QuestionFamily"
+        ],
+        "output": "PrimitiveDifference",
+        "arity": 1,
+        "carrier": "α with questions List (α → γ)",
+        "ref": {
+          "path": "lean4/PrimitiveDifferenceBridge.lean",
+          "decl": "OmegaCore.FablePrimitiveDifferenceBridge.presentationDifference",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_fiber_zeroRel_iff",
+        "statement": "zeroRel (fiberResidual p) x y ↔ p x = p y",
+        "hypotheses": "p : X → M, x y : X",
+        "ref": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_fiberPD_zeroRel_iff",
+        "statement": "ZeroRel (fiberPD p) x y ↔ p x = p y",
+        "hypotheses": "p : X → M, x y : X",
+        "ref": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiberPD_zeroRel_iff",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_familyMisses_iff_zeroRel",
+        "statement": "FamilyMisses questions x y ↔ (presentationDifference questions).ZeroRel x y",
+        "hypotheses": "questions : List (α → γ), x y : α",
+        "ref": {
+          "path": "lean4/PrimitiveDifferenceBridge.lean",
+          "decl": "OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_fiber_zero_iff",
+        "statement": "The declared zero relation of the fiber residual of a report p coincides with equality of p-values, so fibers are carried independently of any quotient presentation.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R_fiber_zeroRel_iff"
+        ],
+        "lean_skeleton": "theorem L {X M : Type} (p : X → M) (x y : X) : zeroRel (fiberResidual p) x y ↔ p x = p y := fiber_zeroRel_iff p x y",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/E003_projection_fiber_primitive_difference.lean",
+          "decl": "GrokPdNight20260814.E003.fiber_zeroRel_iff",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "L_unit_quotient_subsingleton",
+        "statement": "For the constant report constFalse, the residual quotient of its fiber setoid is a subsingleton.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem L (q1 q2 : ResidualQuotient (fiberSetoid constFalse)) : q1 = q2 := sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/E005_fiber_quotient_equivalence.lean",
+          "decl": "GrokPdNight20260814.E005.unit_fiber_quotient_subsingleton",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_quotient_vs_section",
+        "claim": "A quotient presentation determines a section of the report.",
+        "rejecting_invariant": "A section is separate data; the unit quotient is a subsingleton, which does not fix a choice of section."
+      },
+      {
+        "id": "NM_bridge",
+        "claim": "The Lean typechecking build gives a bridge into finite obstruction calculus.",
+        "rejecting_invariant": "The package README denies any such bridge; the Lake build only typechecks."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "E004_split_retraction.lean and E006_induced_idempotent.lean are not in SRC, so no declarations from them could be cited.",
+      "No section or retraction generator is grounded.",
+      "Compositions need a licensing relation and typed colours, which are not grounded.",
+      "The fiber residual generator needs a declaration name from E003, which is not in SRC.",
+      "Python tests_unit files are not in SRC and were not cited."
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+add_or_refine_generators:
+- id: gen_JointTable
+  ordered_inputs:
+  - one_finite_control
+  output: joint_table_struct
+  arity: 1
+  carrier: existing
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/joint_table.rs
+    declaration: JointTable
+    line: 69
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/joint_table.rs
+    decl: JointTable
+    kind: struct
+    line: 69
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: gen_FrechetBounds
+  ordered_inputs:
+  - one_joint_table
+  output: frechet_bounds_obj
+  arity: 1
+  carrier: existing
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/finite_probability/joint_table.rs
+    declaration: FrechetBounds
+    line: 76
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/joint_table.rs
+    decl: FrechetBounds
+    kind: struct
+    line: 76
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+add_or_refine_relations:
+- id: rel_conditionals_return_kernel
+  equation_or_predicate: conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel
+  typing_conditions: Built from a prior and a kernel
+  source_pins:
+  - path: code/rust/src/finite_probability/joint_table.rs
+    declaration: conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel
+    line: 730
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/joint_table.rs
+    decl: conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel
+    kind: fn
+    line: 730
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: rel_every_joint_respects_frechet
+  equation_or_predicate: every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained
+  typing_conditions: Every joint table on Fin n
+  source_pins:
+  - path: code/rust/src/finite_probability/joint_table.rs
+    declaration: every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained
+    line: 1129
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/joint_table.rs
+    decl: every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained
+    kind: fn
+    line: 1129
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+- id: rel_local_box_has_hidden_var
+  equation_or_predicate: local_box_has_a_verified_hidden_variable_table
+  typing_conditions: A classical box equipped with a verified hidden variable table
+  source_pins:
+  - path: code/rust/src/finite_probability/classical_instrument.rs
+    declaration: local_box_has_a_verified_hidden_variable_table
+    line: 676
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/finite_probability/classical_instrument.rs
+    decl: local_box_has_a_verified_hidden_variable_table
+    kind: fn
+    line: 676
+    lang: rust
+  proposed_by:
+    model: nvidia/nemotron-3.5-lightning:free
+    provider: openrouter
+    tier: 0
+checked_compositions: []
+failed_compositions:
+- id: NEG-AB5851243C58
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_JointTable . slot 0 <- gen_local_box_has_verified_hidden_variable_table via rel_local_box_has_hidden_var
+  evidence: the inner generator is not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-730EC5426FC9
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''frechet_bounds'', ''arity'': 1, ''inputs'': [''joint''], ''output'': ''frechet''}'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-0474AEDB6197
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''conditionals_of_a_joint_built_from_a_prior_and_a_kernel_return_that_kernel'', ''arity'':
+    2, ''inputs'': [''prior'', ''kernel''], ''output'': ''kernel''}'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-87908299AF63
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''a_table_that_factors_has_its_marginals_as_factors_and_reassembles_from_them'',
+    ''arity'': 1, ''inputs'': [''factored_joint''], ''output'': ''marginals''}'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-CD44E269B80F
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''relation'': ''respects_frechet_bounds'', ''from'': [''joint''], ''to'': [''frechet''], ''source'':
+    ''every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attaine'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-9F819F5EF449
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''relation'': ''factors_reassemble_from_marginals'', ''from'': [''factored_joint''], ''to'':
+    [''marginals''], ''source'': ''a_table_that_factors_has_its_marginals_as_factors_'
+  evidence: 'relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-F0554325F715
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''inner'': ''frechet_bounds'', ''outer'': ''every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained'',
+    ''slot'': 0}'
+  evidence: 'compositions[0]: missing licensing_relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-0D106CB3B912
+  class: schema_violation
+  claim_kind: numeric_claims
+  claim: '{''expr'': ''1 - 0'', ''value'': ''1''}'
+  evidence: 'numeric_claims[0]: missing id'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-EE637323DEDC
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained'', ''relation_to_target'':
+    ''restates'', ''proof'': ''sorry'', ''claims_proved'': False}'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-55BF94325C53
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''a_table_that_factors_has_its_marginals_as_factors_and_reassembles_from_them'',
+    ''relation_to_target'': ''implies'', ''proof'': ''sorry'', ''claims_proved'': Fals'
+  evidence: 'lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+- id: NEG-9C00FCC2C3A6
+  class: schema_violation
+  claim_kind: near_misses
+  claim: near_misses is not an array
+  evidence: expected array
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+counterexamples:
+- id: NEG-3CCCA823A4FD
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'gen_local_box_has_verified_hidden_variable_table: (one_classical_box) -> hidden_var_table [local_box_has_a_verified_hidden_variable_table]'
+  evidence: rust fn local_box_has_a_verified_hidden_variable_table takes 0 parameters; the claim says
+    1
+  decl_key: local_box_has_a_verified_hidden_variable_table
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0168
+open_obligations:
+- Prove lemma preserves_separation_joint_vs_instrument without sorry (currently sorry-blocked)
+- Confirm that no existing relation licenses a composition from frechet_bounds into every_joint_table_respects_the_frechet_bounds_and_each_bound_is_attained
+- 'lemma lemma_preserves_separation_joint_vs_instrument unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

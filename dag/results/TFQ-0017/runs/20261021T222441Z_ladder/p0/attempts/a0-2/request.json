@@ -1,0 +1,307 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0017",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-2",
+  "input_sha256": "0925073f432f9a54381ad86290f179d9069f8cb329c9de30d23e1c74e7b9b2b2",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0017 stage=P0 attempt=a0-2 in=0925073f guided=yes\n@TARGET [OPEN] quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut.\n@BOTTLENECK Do not promote the SU(2) quaternion shadow to su(3)_c.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes | theorem | theorem adjoint_flux_tube_curvature_vanishes (N_c : Nat) : fluxTubeCurvature N_c ColorRepresentation.Adjoint = 0\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.Su2FluxSector | inductive | inductive Su2FluxSector : Type | Sector0 : Su2FluxSector | Sector1 : Su2FluxSector deriving DecidableEq, Repr\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.ColorRepresentation | inductive | inductive ColorRepresentation : Type | Fundamental : ColorRepresentation | Adjoint : ColorRepresentation deriving DecidableEq, Repr\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.fluxTubeCurvature | def | def fluxTubeCurvature (N_c : Nat) (rep : ColorRepresentation) : Nat\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.adjoint_matter_zero_n_ality | theorem | theorem adjoint_matter_zero_n_ality (N_c : Nat) : n_ality N_c ColorRepresentation.Adjoint = 0\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.fundamental_flux_tube_curvature_nonzero | theorem | theorem fundamental_flux_tube_curvature_nonzero (N_c : Nat) (h_nc : N_c ≥ 2) : fluxTubeCurvature N_c ColorRepresentation.Fundamental > 0\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_sign | def | def su2_sign : Su2FluxSector → Int | Su2FluxSector.Sector0 => 1 | Su2FluxSector.Sector1 => -1\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_action_gap_forces_weight_inequality | theorem | theorem su2_action_gap_forces_weight_inequality (w0 delta_S : Nat) (h_gap : delta_S > 0) : w0 ≠ w0 + delta_S\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.su2_disjoint_weights_nonzero_residual | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.HadronTopology | inductive\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.hadronCochainCurvature | def\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.meson_cochain_is_closed | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.baryon_cochain_is_open | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.PolyakovCenterSector | inductive\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.polyakov_deconfinement_action_gap | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.polyakov_sector_weights_distinct | theorem\n lean4/NonAbelianGaugeSigns.lean | NonAbelianGaugeSigns.n_ality | def\n code/python/src/fsp/su_nc_adjoint_flux.py | audit_adjoint_flux_tube | def\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.BraidingAlgebra | structure\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.borromean3LoopCommutator | def\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.abelian_3loop_is_identity | theorem\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.NonAbelianObstruction | def\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.non_abelian_obstruction_of_non_commuting | theorem\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.quantumDoubleTraceNorm | def\n lean4/NonAbelianBfBraiding.lean | NonAbelianBfBraiding.quantum_double_trace_nonnegative | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:ref_gauge_quotient_curvature The curvature is defined as an incidence combination on the extended diamond poset. src=code/rust/src/holonomy/gauge_quotient.rs | curvature\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] NonAbelianGaugeSigns.fluxTubeCurvature -- Do not state that arity/signature for NonAbelianGaugeSigns.fluxTubeCurvature.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "TFQ-0016",
+      "TFQ-0018"
+    ],
+    "feedback": true,
+    "index_position": 193,
+    "neg_entry_ids": [
+      "NEG-5F75AA85F5F9"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

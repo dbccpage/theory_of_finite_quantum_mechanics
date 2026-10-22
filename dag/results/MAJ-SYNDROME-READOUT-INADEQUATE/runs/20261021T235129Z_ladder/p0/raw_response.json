@@ -1,0 +1,96 @@
+{
+  "task_id": "MAJ-SYNDROME-READOUT-INADEQUATE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "25d2668e46814413065b45f54c37ea8c0a1a9ec97d7ba85f20d71f484699e3b7",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"d1\",\"inputs\":[\"C1\"],\"output\":\"C2\",\"arity\":1,\"carrier\":\"F2-linear coboundary map on the 2x2 tetron torus\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"readout_M\",\"inputs\":[\"C1\"],\"output\":\"C2\",\"arity\":1,\"carrier\":\"syndrome readout M(w)=d1 w\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R1\",\"statement\":\"M(w)=d1 w for every cochain w\",\"hypotheses\":\"definition of readout on the fixed 2x2 torus instance\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R2\",\"statement\":\"For logical representatives wc (column) and wr (row): wc != wr and d1 wc = 0 = d1 wr\",\"hypotheses\":\"explicit cochain data of the 2x2 tetron torus, checked by finite computation\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_inadequate\",\"statement\":\"There exist wc != wr with M(wc)=M(wr)=0, so M is not injective on these classes and is DETECTOR_INADEQUATE for them\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R1\",\"R2\"],\"lean_skeleton\":\"theorem inadequate (M : C1 -> C2) (wc wr : C1) (hne : wc ≠ wr) (hc : M wc = 0) (hr : M wr = 0) : M wc = M wr ∧ wc ≠ wr := ⟨hc.trans hr.symm, hne⟩\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM1\",\"claim\":\"Syndrome d1 w alone distinguishes the column and row logical classes\",\"rejecting_invariant\":\"both have d1 w = 0 yet they are distinct cochains\"}],\"numeric_claims\":[],\"open_obligations\":[\"Explicit cochain vectors and d1 matrix for the 2x2 tetron torus not grounded\",\"Distinctness of column and row representatives must be computed on the host\",\"Not shown that the two are cohomologically distinct (non-trivial classes) rather than just distinct cochains\",\"No existing declarations cited; Lean skeleton is abstract, not instance-specific\",\"Adequacy of a syndrome-plus-class readout is not computed\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "d1",
+        "inputs": [
+          "C1"
+        ],
+        "output": "C2",
+        "arity": 1,
+        "carrier": "F2-linear coboundary map on the 2x2 tetron torus",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "readout_M",
+        "inputs": [
+          "C1"
+        ],
+        "output": "C2",
+        "arity": 1,
+        "carrier": "syndrome readout M(w)=d1 w",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "M(w)=d1 w for every cochain w",
+        "hypotheses": "definition of readout on the fixed 2x2 torus instance",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R2",
+        "statement": "For logical representatives wc (column) and wr (row): wc != wr and d1 wc = 0 = d1 wr",
+        "hypotheses": "explicit cochain data of the 2x2 tetron torus, checked by finite computation",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_inadequate",
+        "statement": "There exist wc != wr with M(wc)=M(wr)=0, so M is not injective on these classes and is DETECTOR_INADEQUATE for them",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1",
+          "R2"
+        ],
+        "lean_skeleton": "theorem inadequate (M : C1 -> C2) (wc wr : C1) (hne : wc ≠ wr) (hc : M wc = 0) (hr : M wr = 0) : M wc = M wr ∧ wc ≠ wr := ⟨hc.trans hr.symm, hne⟩",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM1",
+        "claim": "Syndrome d1 w alone distinguishes the column and row logical classes",
+        "rejecting_invariant": "both have d1 w = 0 yet they are distinct cochains"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Explicit cochain vectors and d1 matrix for the 2x2 tetron torus not grounded",
+      "Distinctness of column and row representatives must be computed on the host",
+      "Not shown that the two are cohomologically distinct (non-trivial classes) rather than just distinct cochains",
+      "No existing declarations cited; Lean skeleton is abstract, not instance-specific",
+      "Adequacy of a syndrome-plus-class readout is not computed"
+    ]
+  }
+}

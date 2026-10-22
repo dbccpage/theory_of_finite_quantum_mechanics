@@ -1,0 +1,145 @@
+{
+  "task_id": "PGW-CONTEXT-COUNT-FORMULA",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c2e343fbfadfb9b026a6c0919a6d05b2f9f3b816a9aa5f5816c2987af6f38e5e",
+  "candidate_sha256": "7186f6f612a2e0ffa39b6cad58e4fd00f94056201be5589177b31d0b7b519e12",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 1,
+    "failure_rate": 0.2,
+    "failures_by_class": {
+      "statement_drift": 1
+    },
+    "unverifiable": 5,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:54:53Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_holes",
+        "ordered_inputs": [
+          "Ctx"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "Ctx -> Nat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.holes",
+            "line": 368
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.holes",
+          "kind": "def",
+          "line": 368,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_count_n2_a3",
+        "equation_or_predicate": "Number of contexts in allCtxs [0,1] 3 with holes > 0 equals 19 = 3^3 - 2^3",
+        "typing_conditions": "n=2, a=3",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.genesis_context_count_n2_a3",
+            "line": 446
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.genesis_context_count_n2_a3",
+          "kind": "theorem",
+          "line": 446,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-4C76C8955519",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "r_onehole_n2_a3: Number of contexts in allCtxs [0,1] 3 with holes = 1 equals 12 = 3*2^2 [GenesisComputation.genesis_one_hole_count_n2_a3]",
+        "evidence": "numerals 2 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "GenesisComputation.genesis_one_hole_count_n2_a3",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CONTEXT-COUNT-FORMULA"
+      }
+    ],
+    "open_obligations": [
+      "General per-form count theorem not grounded in KNOWN+; contextWords_length, contextWords_mem and contextWords_nodup are not listed so not cited",
+      "Sum over forms corollary has no compiled source theorem",
+      "Disjointness of form identifiers needs a formal statement",
+      "Cross-check of 35 Python cases not reproduced",
+      "relation r_ctx_count_general unverified: no existing declaration cited",
+      "lemma l_count_per_form unverified: Lean elaboration disabled",
+      "lemma l_sum_over_forms unverified: Lean elaboration disabled",
+      "near_miss nm_hole_free_included unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_one_hole_only unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_n2_a3",
+        "expr": "3^3 - 2^3",
+        "value": "19",
+        "host_evidence": {
+          "recomputed": "19"
+        }
+      },
+      {
+        "id": "n_onehole",
+        "expr": "3*2^2",
+        "value": "12",
+        "host_evidence": {
+          "recomputed": "12"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

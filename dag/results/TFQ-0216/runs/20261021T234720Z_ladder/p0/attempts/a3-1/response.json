@@ -1,0 +1,120 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_authority_none",
+      "inputs": [],
+      "output": "AuthorityEffect",
+      "arity": 0,
+      "carrier": "string constant \"None\"",
+      "ref": {
+        "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+        "decl": "AUTHORITY_EFFECT_NONE",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_replay_hash",
+      "inputs": [
+        "AcceptedBytes"
+      ],
+      "output": "ReplayHash",
+      "arity": 1,
+      "carrier": "hash digest of accepted bytes",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "G_seal_run_folder",
+      "inputs": [
+        "AcceptedBytes",
+        "ReplayHash",
+        "AuthorityEffect"
+      ],
+      "output": "SealedFolder",
+      "arity": 3,
+      "carrier": "sealed run folder record",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_receipt_authority_none",
+      "statement": "A receipt is accepted only if its authority effect equals the constant \"None\".",
+      "hypotheses": "receipt carries an authority effect field",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_hash_matches_bytes",
+      "statement": "The ReplayHash stored in a sealed folder equals replay_hash of the accepted bytes, so a reader reopening the bytes recomputes the same hash.",
+      "hypotheses": "hash function is deterministic; bytes unchanged since acceptance",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "G_seal_run_folder",
+      "slot": 1,
+      "inner": "G_replay_hash",
+      "licensing_relation": "R_hash_matches_bytes"
+    },
+    {
+      "outer": "G_seal_run_folder",
+      "slot": 2,
+      "inner": "G_authority_none",
+      "licensing_relation": "R_receipt_authority_none"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "L_seal_custody",
+      "statement": "A sealed folder built by G_seal_run_folder from accepted bytes b records replay_hash b and authority effect None.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_hash_matches_bytes",
+        "R_receipt_authority_none"
+      ],
+      "lean_skeleton": "theorem seal_custody (b : List UInt8) (h : List UInt8 → Nat) : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_hash_is_authorization",
+      "claim": "A ReplayFiber hash of proposal bytes certifies or authorizes the proposal.",
+      "rejecting_invariant": "The docstring says the helper is not certification or authorization; authority effect stays None."
+    },
+    {
+      "id": "NM_rewrite_in_place",
+      "claim": "Naming a trace by its hash may rewrite the trace in place.",
+      "rejecting_invariant": "The append log sits beside the seal so traces are named without in-place rewrite."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declaration found for ReplayHash, run-folder sealing, or issue_finite_receipt in @SRC, so those generators are proposed_new.",
+    "Several AUTHORITY_EFFECT_NONE constants exist in @SRC; the omega_replay one was not listed, so the finite_shadow_exact.rs citation is a stand-in.",
+    "Lean skeleton is a placeholder and does not yet encode the statement.",
+    "Append log and ReplayFiber were not modelled."
+  ]
+}

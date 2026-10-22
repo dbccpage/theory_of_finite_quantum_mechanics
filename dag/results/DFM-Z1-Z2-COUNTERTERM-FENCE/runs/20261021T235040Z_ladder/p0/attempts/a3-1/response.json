@@ -1,0 +1,95 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_dress",
+      "inputs": [
+        "EdgeLabelling",
+        "VertexGauge",
+        "Edge"
+      ],
+      "output": "GroupElement",
+      "arity": 3,
+      "carrier": "finite graph gauge group element",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_dress_one_iff",
+      "statement": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+      "hypotheses": "finite graph dressing setting of FiniteGraphDressing",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress_eq_one_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_ward_contraction",
+      "statement": "q_mu I_Lambda^mu(p,p+q) = I_Sigma(p) - I_Sigma(p+q) at integrand level, using q-slash = S^-1(p+q) - S^-1(p)",
+      "hypotheses": "stated loop momenta; shifted-integration invariance of continuum loop integral; gauge-invariant BPHZ scheme",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_ward_contraction_M4",
+      "statement": "In M_4(Q(i)) at explicit rational loop momenta, the contraction of the one-loop vertex integrand with q equals the difference of the self-energy integrands I_Sigma(p) - I_Sigma(p+q)",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_ward_contraction"
+      ],
+      "lean_skeleton": "theorem ward_contraction_M4 : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_Z1_eq_Z2_conditional",
+      "statement": "Under a gauge-invariant BPHZ subtraction scheme, the Ward identity implies Z_1/Z_2 = 1",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "L_ward_contraction_M4"
+      ],
+      "lean_skeleton": "theorem Z1_eq_Z2 : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_unconditional_Z",
+      "claim": "Z_1 = Z_2 holds in any subtraction scheme",
+      "rejecting_invariant": "Ward identity preserved only by gauge-invariant regularization and subtraction; a non-invariant scheme breaks it by finite counterterms"
+    },
+    {
+      "id": "NM_dress_is_Ward",
+      "claim": "The finite-graph dress_eq_one_iff relation proves the QED Ward contraction",
+      "rejecting_invariant": "Dressing concerns group-valued edge labellings on finite graphs and says nothing about loop integrands or counterterms"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Explicit M_4(Q(i)) gamma-matrix representation and loop momenta not given; contraction not computed",
+    "No existing declaration for the Ward contraction or counterterm relation",
+    "Lean statements are placeholders; real formalization needed",
+    "Z_1=Z_2 remains conditional on the gauge-invariant BPHZ scheme"
+  ]
+}

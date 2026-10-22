@@ -1,0 +1,91 @@
+{
+  "task_id": "TFQ-0322",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a239a4d143eae3a7e6d0521bdead82b4ce94b1069e713c67956aba1df49fbcb0",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"triangleD0\",\"inputs\":[],\"output\":\"cochain\",\"arity\":0,\"carrier\":\"unspecified\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"quotient_well_defined\",\"statement\":\"The quotient map is well defined for a MubCochainObstructionContract.\",\"hypotheses\":\"contract : MubCochainObstructionContract\",\"ref\":{\"path\":\"lean4/CochainObstruction.lean\",\"decl\":\"MUB.CochainObstruction.quotient_well_defined\",\"status\":\"existing\"}},{\"id\":\"no_full_authority_without_c3\",\"statement\":\"Without C3 atlas coherence the contract gives no full MUB6 authority.\",\"hypotheses\":\"contract : MubCochainObstructionContract; hNoC3 : Not contract.c3AtlasCoherence\",\"ref\":{\"path\":\"lean4/CochainObstruction.lean\",\"decl\":\"MUB.CochainObstruction.mub6_no_full_authority_without_c3_atlas_coherence\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1_extra_data_declared\",\"statement\":\"The obstruction-signature bound is stated only after a finite 2-truncated cochain, a quotient, and an observer gauge are declared as extra data; carrier, comparison, residual, and observer gauge are not supplied by the two marks.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"quotient_well_defined\"],\"lean_skeleton\":\"theorem extra_data_declared : True := by trivial\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L2_no_census_closure\",\"statement\":\"The unfiled holding k_hosts_that_are_not_a_difference does not close the k-host census.\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem no_census_closure : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM1\",\"claim\":\"The k=3 and k=5 leftovers computed in the unfiled holding close the k-host census.\",\"rejecting_invariant\":\"Two computed cases do not cover all k at least 3; the holding is unfiled and AuthorityEffect is None.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Ground carrier, comparison, residual and observer gauge generators with existing declarations; signatures of ObserverGauge and gauge_quotient items were not given.\",\"The k_hosts_that_are_not_a_difference holding is not in SRC and cannot be cited.\",\"k-host census remains open.\",\"triangleD0 signature, arity and carrier were not stated in SRC, so the generator is only proposed.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "triangleD0",
+        "inputs": [],
+        "output": "cochain",
+        "arity": 0,
+        "carrier": "unspecified",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "quotient_well_defined",
+        "statement": "The quotient map is well defined for a MubCochainObstructionContract.",
+        "hypotheses": "contract : MubCochainObstructionContract",
+        "ref": {
+          "path": "lean4/CochainObstruction.lean",
+          "decl": "MUB.CochainObstruction.quotient_well_defined",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "no_full_authority_without_c3",
+        "statement": "Without C3 atlas coherence the contract gives no full MUB6 authority.",
+        "hypotheses": "contract : MubCochainObstructionContract; hNoC3 : Not contract.c3AtlasCoherence",
+        "ref": {
+          "path": "lean4/CochainObstruction.lean",
+          "decl": "MUB.CochainObstruction.mub6_no_full_authority_without_c3_atlas_coherence",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1_extra_data_declared",
+        "statement": "The obstruction-signature bound is stated only after a finite 2-truncated cochain, a quotient, and an observer gauge are declared as extra data; carrier, comparison, residual, and observer gauge are not supplied by the two marks.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "quotient_well_defined"
+        ],
+        "lean_skeleton": "theorem extra_data_declared : True := by trivial",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L2_no_census_closure",
+        "statement": "The unfiled holding k_hosts_that_are_not_a_difference does not close the k-host census.",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem no_census_closure : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM1",
+        "claim": "The k=3 and k=5 leftovers computed in the unfiled holding close the k-host census.",
+        "rejecting_invariant": "Two computed cases do not cover all k at least 3; the holding is unfiled and AuthorityEffect is None."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Ground carrier, comparison, residual and observer gauge generators with existing declarations; signatures of ObserverGauge and gauge_quotient items were not given.",
+      "The k_hosts_that_are_not_a_difference holding is not in SRC and cannot be cited.",
+      "k-host census remains open.",
+      "triangleD0 signature, arity and carrier were not stated in SRC, so the generator is only proposed."
+    ]
+  }
+}

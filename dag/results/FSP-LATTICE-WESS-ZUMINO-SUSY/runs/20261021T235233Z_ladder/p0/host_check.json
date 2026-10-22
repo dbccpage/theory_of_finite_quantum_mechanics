@@ -1,0 +1,79 @@
+{
+  "task_id": "FSP-LATTICE-WESS-ZUMINO-SUSY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a09a3002834ff79627664d54f42f59483b95e5c53e86bb7515ac20380c5e911d",
+  "candidate_sha256": "f450be316da6a8b83e4c07e39c89e1d13e8b6b901e4c2f847a63fe2077ea2283",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:47Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_car",
+        "equation_or_predicate": "{c_i, c_j^dagger} = delta_ij * id",
+        "typing_conditions": "fermionic Fock space, finite sites",
+        "source_pins": [
+          {
+            "path": "lean4/H005InnerProductAdmission.lean",
+            "declaration": "FableHilbertWalk20260819.H005.delta_orthonormal",
+            "line": 20
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H005InnerProductAdmission.lean",
+          "decl": "FableHilbertWalk20260819.H005.delta_orthonormal",
+          "kind": "theorem",
+          "line": 20,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Specify lattice model: sites, bosonic truncation, superpotential W",
+      "Define Q explicitly and prove {Q_a,Q_b}=2 delta_ab H for both supercharges, or declare only one exact",
+      "Define fermion parity (-1)^F and prove anticommutation with Q",
+      "Prove pairing of nonzero levels via Q and (-1)^F",
+      "No existing declarations are available for these; all are proposed_new",
+      "generator g_fermion_annihilation unverified: no existing declaration cited",
+      "generator g_supercharge_Q unverified: no existing declaration cited",
+      "relation r_Hdef unverified: no existing declaration cited",
+      "lemma l_H_nonneg unverified: Lean elaboration disabled",
+      "near_miss nm_subalgebra unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_pairing_free unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

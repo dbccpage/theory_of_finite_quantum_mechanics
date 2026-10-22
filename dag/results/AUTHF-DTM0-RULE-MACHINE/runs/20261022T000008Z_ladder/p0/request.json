@@ -1,0 +1,319 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "AUTHF-DTM0-RULE-MACHINE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e0649e270f08b485c728e60626d2584c3df1a8d429e5aa9e2a7e73e840d84c14",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=AUTHF-DTM0-RULE-MACHINE stage=P0 attempt=a3-1 in=e0649e27 guided=yes\n@TARGET [DEFINITION] A DTM0 machine is a designated halt state with a finite, left-biased list of rows (state, scanned symbol, next state, written symbol, move) over the two-symbol alphabet blank and marked; a configuration is a state, an integer head and a total tape Int to symbol; execute runs at most the stated fuel and returns halted, stuck or fuelExhausted.\n@BOTTLENECK The definition carries no input encoding, no unbounded-run semantics, no halting predicate and no comparison with Mathlib Turing.TM0; fuel exhaustion is a bounded-evaluator result and not non-halting.\n@ASSUME two-symbol alphabet fixed; rule-list order as the operational semantics; fuel as an externally supplied bound\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.Rule | structure | structure Rule\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.Configuration | structure | structure Configuration\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.Machine | structure | structure Machine\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.StepResult | inductive | inductive StepResult\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.lookup | def | def lookup (machine : Machine) (configuration : Configuration) : Option Rule\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.isDeclaredHalt | def | def isDeclaredHalt (machine : Machine) (configuration : Configuration) : Bool\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.step | def | def step (machine : Machine) (configuration : Configuration) : StepResult\n lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.execute | def | def execute (machine : Machine) : Nat -> Configuration -> StepResult | 0, configuration => match isDeclaredHalt machine configuration with | true => .\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:G-applyRule (Rule,Configuration)->Configuration src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.applyRule\n r:R-write-and-halt-writes-mark The single transition of writeAndHaltMachine from its initial configuration writes a mark. src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark\n r:R-write-and-halt-halts The single transition of writeAndHaltMachine reaches a declared halt state. src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt\n r:R-empty-stuck The empty-rule fixture is stuck at its first step. src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck\n r:R-loop-fuel The one-row self-loop fixture returns fuelExhausted with the looped configuration after one unit of fuel. src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel\n g:g_step (Machine,Configuration)->StepResult src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.step\n g:g_execute (Nat,Machine,Configuration)->StepResult src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.execute\n r:r_step_halt_iff step machine configuration = StepResult.halted iff configuration.state = machine.haltState src=lean4/AuthIncompleteness/DirectTM.lean | AuthorizationIncompleteness.DirectTuringMachineModels.step_halted_iff_declared_halt\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L-fixtures-target: Conjunction of the three fixture results: writeAndHalt writes a mark and halts in one trans -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] AuthorizationIncompleteness.DirectTuringMachineModels.initialConfiguration -- Do not state that arity/signature for AuthorizationIncompleteness.DirectTuringMachineModels.initialConfiguration.\n [vacuous_proof] L-halts-iff-fuel: For a DTM0 machine m and configuration c, m halts from c iff there exists a fuel n such that -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_no_control_decider: No function of controlReport equals contentContract on every presentation. -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_no_report_decider: No function of the always-unread report equals contentContract on every presentation. -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] l_adapters_split: The two adapters give opposite verdicts on read token blank. -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 8,
+    "known_neg_injected": 6,
+    "known_pos_injected": 8,
+    "neighbours": [
+      "AUTHF-DTM0-FIXTURES",
+      "AUTHF-DTM0-HALT-IFF-STATE",
+      "AUTHF-DTM0-SIMULATION-OPEN",
+      "AUTHF-DTM1-TOKEN-GRAMMAR",
+      "AUTHF-HALT-NOT-POLICY",
+      "AUTHF-TAPE-CONTROL-REPORTS",
+      "AUTHF-TRANSITION-INVARIANTS",
+      "PG-GEN-REWRITING-COMMUTATION",
+      "PGW-CONTEXTS-PLUGGING-PROFILES"
+    ],
+    "feedback": true,
+    "index_position": 819,
+    "neg_entry_ids": [
+      "NEG-36A4F3FB9B68",
+      "NEG-C4D2BAADB185",
+      "NEG-D835E55A78CF",
+      "NEG-3651DC264DD1",
+      "NEG-DE884DABB213",
+      "NEG-E2BA2F596878"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

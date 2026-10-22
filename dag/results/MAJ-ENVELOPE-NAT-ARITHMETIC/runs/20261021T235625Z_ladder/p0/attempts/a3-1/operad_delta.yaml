@@ -1,0 +1,85 @@
+add_or_refine_generators:
+- id: g:open_system_transfer_bound
+  ordered_inputs:
+  - GammaQp
+  - BraidTime
+  output: OpenSystemTransferBound
+  arity: 2
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: OpenSystemTransferBound
+    line: 296
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: OpenSystemTransferBound
+    kind: structure
+    line: 296
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r:poisoning_lower_bound_pos
+  equation_or_predicate: For an OpenSystemTransferBound B, gamma_qp * braid_time > 0.
+  typing_conditions: 'B : OpenSystemTransferBound'
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: transfer_defect_lower_bound_pos
+    line: 305
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: transfer_defect_lower_bound_pos
+    kind: theorem
+    line: 305
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r:pareto_denominator_pos
+  equation_or_predicate: p > 0 implies p + 2 > 0 over Nat.
+  typing_conditions: 'p : Nat, p > 0'
+  source_pins:
+  - path: papers/core/majorana/lean4/MajoranaCore.lean
+    declaration: pareto_denominator_pos
+    line: 341
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/core/majorana/lean4/MajoranaCore.lean
+    decl: pareto_denominator_pos
+    kind: theorem
+    line: 341
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- M >= 4 implies M*(M-1)/2 > 0 lemma not written or grounded
+- No physical envelope content; MAJ-C18..C20 remain open
+- New lemmas need host elaboration; omega/Nat.mul_pos proofs not verified
+- 'lemma l:product_pos unverified: Lean elaboration disabled'
+- 'lemma l:denominator_pos unverified: Lean elaboration disabled'
+- 'lemma l:sub_pos unverified: Lean elaboration disabled'
+- 'lemma l:shift_strict unverified: Lean elaboration disabled'
+- 'near_miss n:nat_sub_truncation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n:pairs_M4
+  expr: 4*3/2
+  value: '6'
+  host_evidence:
+    recomputed: '6'
+verified_lemma_statements: []

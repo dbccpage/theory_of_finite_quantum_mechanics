@@ -1,0 +1,118 @@
+{
+  "task_id": "AUTHF-REPLAY-SUBSTITUTIONS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c80cb81f476460e84b76af765f0963b6f1a50a9d1e8baa1d7112fa14937a0485",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_verify\",\"inputs\":[\"TrustRoot\",\"Submission\"],\"output\":\"Verification\",\"arity\":2,\"carrier\":\"Verification\",\"ref\":{\"path\":\"lean4/AuthIncompleteness/Replay.lean\",\"decl\":\"AuthorizationIncompleteness.ReplayPacketBindingModels.verify\",\"status\":\"existing\"}},{\"id\":\"g_replay\",\"inputs\":[\"TrustRoot\",\"ReplayReceipt\",\"Submission\"],\"output\":\"Verification\",\"arity\":3,\"carrier\":\"Verification\",\"ref\":{\"path\":\"lean4/AuthIncompleteness/Replay.lean\",\"decl\":\"AuthorizationIncompleteness.ReplayPacketBindingModels.replay\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_self_pass\",\"statement\":\"verify authorizeTrueRoot invalidSelfPassingSubmission = contractRejected\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/AuthIncompleteness/Replay.lean\",\"decl\":\"AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content\",\"status\":\"existing\"}},{\"id\":\"r_checker_sub\",\"statement\":\"checker substitution gives bindingRejected under authorizeTrueRoot\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/AuthIncompleteness/Replay.lean\",\"decl\":\"AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected\",\"status\":\"existing\"}},{\"id\":\"r_replay_payload\",\"statement\":\"replay rejects the invalid payload as a substitution\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/AuthIncompleteness/Replay.lean\",\"decl\":\"AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_all_substitutions\",\"statement\":\"For every submission differing from the authorized one in checker, contract version or schema version, verify authorizeTrueRoot returns bindingRejected, given contractValid holds\",\"relation_to_target\":\"strengthens\",\"depends_on\":[\"r_checker_sub\"],\"lean_skeleton\":\"theorem all_subst : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_selfpass\",\"claim\":\"selfPass=true authorizes content\",\"rejecting_invariant\":\"contractValid rejects the self-pass submission so verify gives contractRejected\"}],\"numeric_claims\":[{\"id\":\"n_facts\",\"expr\":\"6\",\"value\":\"6\"},{\"id\":\"n_subs\",\"expr\":\"5\",\"value\":\"5\"}],\"open_obligations\":[\"Exact statements of the existing theorems not visible; verify citations by grep\",\"Generalized all-substitutions lemma not stated\",\"Receipt issuance (issued_receipt_replays_exact_submission) not composed because no issue generator is listed\",\"No composition grounded\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_verify",
+        "inputs": [
+          "TrustRoot",
+          "Submission"
+        ],
+        "output": "Verification",
+        "arity": 2,
+        "carrier": "Verification",
+        "ref": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.verify",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_replay",
+        "inputs": [
+          "TrustRoot",
+          "ReplayReceipt",
+          "Submission"
+        ],
+        "output": "Verification",
+        "arity": 3,
+        "carrier": "Verification",
+        "ref": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.replay",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_self_pass",
+        "statement": "verify authorizeTrueRoot invalidSelfPassingSubmission = contractRejected",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_checker_sub",
+        "statement": "checker substitution gives bindingRejected under authorizeTrueRoot",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.checker_substitution_is_binding_rejected",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_replay_payload",
+        "statement": "replay rejects the invalid payload as a substitution",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/AuthIncompleteness/Replay.lean",
+          "decl": "AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_all_substitutions",
+        "statement": "For every submission differing from the authorized one in checker, contract version or schema version, verify authorizeTrueRoot returns bindingRejected, given contractValid holds",
+        "relation_to_target": "strengthens",
+        "depends_on": [
+          "r_checker_sub"
+        ],
+        "lean_skeleton": "theorem all_subst : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_selfpass",
+        "claim": "selfPass=true authorizes content",
+        "rejecting_invariant": "contractValid rejects the self-pass submission so verify gives contractRejected"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_facts",
+        "expr": "6",
+        "value": "6"
+      },
+      {
+        "id": "n_subs",
+        "expr": "5",
+        "value": "5"
+      }
+    ],
+    "open_obligations": [
+      "Exact statements of the existing theorems not visible; verify citations by grep",
+      "Generalized all-substitutions lemma not stated",
+      "Receipt issuance (issued_receipt_replays_exact_submission) not composed because no issue generator is listed",
+      "No composition grounded"
+    ]
+  }
+}

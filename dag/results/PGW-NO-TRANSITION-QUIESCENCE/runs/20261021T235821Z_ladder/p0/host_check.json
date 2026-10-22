@@ -1,0 +1,47 @@
+{
+  "task_id": "PGW-NO-TRANSITION-QUIESCENCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "af15cd9f939cc0726e1f67dc592fa82827c14a1afc49c527795b5fd7956ec8fb",
+  "candidate_sha256": "27f058c9dbefa2b2deeae1e8bc492b716acb83a49d89690213b50df1bff0cb32",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:27Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing source found; the relation and lemma are proposed_new.",
+      "The claim that a move from <> to <a> must come from outside (caller or added rule) is not formalized.",
+      "No generator grounded: the known generators concern primitive differences and repair, not transition relations.",
+      "relation r_empty_no_successor unverified: no existing declaration cited",
+      "lemma l_empty_quiescent unverified: Lean elaboration disabled",
+      "near_miss nm_behaviour_as_evidence unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

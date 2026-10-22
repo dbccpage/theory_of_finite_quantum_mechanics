@@ -1,0 +1,50 @@
+{
+  "task_id": "PGW-WDP-ASYMMETRY-INJECTION-LEDGER",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b50a73365caaddb3714c44f39991d57bfdcc2dd37f0fc385d6bf7cc2f1036707",
+  "candidate_sha256": "8fc7b594cc2eb27e668c89c9dad3f9c291b229d857497d273820468d50ee5924",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:59:11Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No generator is grounded: the existing citations are checkers, ledgers, or stochastic-package items, and none is confirmed as a typed operation of this definition.",
+      "The exact signatures of the cited stochastic_package.rs functions are not given, so none is used as a generator.",
+      "The swap-exchanged class (the declare-then-assert case, CH03-P03) is not formalized; it takes no Lean credit.",
+      "The frontier definition and the declared implementation class and dependency preorder need host-side declarations.",
+      "The Lean skeleton for the antichain lemma is not elaborated or checked by the host.",
+      "relation R-frontier-def unverified: no existing declaration cited",
+      "lemma L-frontier-antichain unverified: Lean elaboration disabled",
+      "near_miss NM-unique-min unverified: semantic near miss; P4 host check decides",
+      "near_miss NM-scalar-price unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

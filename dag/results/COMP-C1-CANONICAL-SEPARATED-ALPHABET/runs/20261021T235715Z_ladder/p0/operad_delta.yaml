@@ -1,0 +1,97 @@
+add_or_refine_generators:
+- id: g_canonicalRegime
+  ordered_inputs:
+  - Nat
+  output: Regime
+  arity: 1
+  carrier: Nat -> Regime
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.canonicalRegime
+    line: 211
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.canonicalRegime
+    kind: def
+    line: 211
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_canonical_pairwise
+  equation_or_predicate: For all n, PairwiseSeparated (canonicalRegime n)
+  typing_conditions: 'none beyond n : Nat; separation is the UnarySep mirror, not the external Genesis
+    separable'
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.canonicalRegime_pairwise
+    line: 214
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.canonicalRegime_pairwise
+    kind: theorem
+    line: 214
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_pairwise_iff
+  equation_or_predicate: PairwiseSeparated r iff for all distinct i,j in range r.data, UnarySep r i j
+  typing_conditions: 'r : Regime'
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.pairwiseSeparated_iff
+    line: 147
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.pairwiseSeparated_iff
+    kind: theorem
+    line: 147
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_two_marks_collapsed
+  equation_or_predicate: Two admitted marks with no form are Collapsed
+  typing_conditions: regime has no forms
+  source_pins:
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisComputation.two_marks_without_forms_collapsed
+    line: 237
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisComputation.lean
+    decl: GenesisComputation.two_marks_without_forms_collapsed
+    kind: theorem
+    line: 237
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Lift UnarySep to the external Genesis separable for all contexts including uniform rules
+- Check the exact signature of canonicalRegime_pairwise and two_marks_without_forms_collapsed, which were
+  not shown in the SRC listing
+- Confirm the regime has n data, n-1 forms and instances (i,[i])
+- 'lemma l_canonical_pairwise unverified: Lean elaboration disabled'
+- 'near_miss nm_external_separable unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

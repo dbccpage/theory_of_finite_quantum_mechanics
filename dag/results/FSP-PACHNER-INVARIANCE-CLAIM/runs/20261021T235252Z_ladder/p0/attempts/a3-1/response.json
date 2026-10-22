@@ -1,0 +1,87 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "sum_deficits",
+      "inputs": [
+        "List Nat"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "lean4/ReggePachnerWdw.lean",
+        "decl": "ReggePachnerWdw.sumDeficits",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "evaluate_H_wdw",
+      "inputs": [
+        "SimplicialVertex"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Nat",
+      "ref": {
+        "path": "lean4/ReggePachnerWdw.lean",
+        "decl": "ReggePachnerWdw.evaluateH_Wdw",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "regge_action_not_pachner_invariant",
+      "statement": "The Regge action is not invariant under Pachner moves, so it cannot serve as a topological partition function.",
+      "hypotheses": "Curved triangulation; Pachner move induces a positive defect.",
+      "ref": {
+        "path": "lean4/ReggePachnerWdw.lean",
+        "decl": "ReggePachnerWdw.curved_pachner_induces_positive_defect",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "state_sum_pachner_invariance",
+      "statement": "For a fixed state-sum model Z (e.g. Crane-Yetter type), Z is unchanged under 1-5, 2-4 and 3-3 Pachner moves on 4D triangulations.",
+      "hypotheses": "A specific state-sum model must be chosen; none is named by the source.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "pachner_invariance_for_chosen_model",
+      "statement": "For a chosen state-sum model Z, Z(T)=Z(T') whenever T and T' are related by a 1-5, 2-4 or 3-3 Pachner move.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "state_sum_pachner_invariance"
+      ],
+      "lean_skeleton": "theorem pachner_inv {Tri : Type} (Z : Tri → Nat) (move : Tri → Tri → Prop) (h : ∀ a b, move a b → Z a = Z b) : ∀ a b, move a b → Z a = Z b := h",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "regge_action_as_invariant",
+      "claim": "The Regge action is a Pachner-invariant partition function.",
+      "rejecting_invariant": "Deficit angles and defects change under Pachner moves on curved triangulations (curved_pachner_induces_positive_defect)."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No state-sum model is named in the source; one must be fixed (e.g. Crane-Yetter) before invariance can be stated precisely.",
+    "The invariance proof for 1-5, 2-4 and 3-3 moves is not grounded in any listed declaration.",
+    "No existing declaration serves as a partition function generator.",
+    "The lemma skeleton is a placeholder and is not a real proof."
+  ]
+}

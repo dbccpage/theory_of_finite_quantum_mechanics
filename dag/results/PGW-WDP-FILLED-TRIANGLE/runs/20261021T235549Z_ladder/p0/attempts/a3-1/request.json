@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-WDP-FILLED-TRIANGLE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "308b625ee472439006d14e126d43935359b40827907f0f5ffcd50216dec33298",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-WDP-FILLED-TRIANGLE stage=P0 attempt=a3-1 in=308b625e guided=yes\n@TARGET [PROVED_LEAN] WDP-CH04-P08: on vertices {0, 1, 2}, edges (01, 12, 02) and one 2-simplex, with d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂, the field δ = (1, 1, 0) over ℚ with unit weights has d₁d₀ = 0, Φ₁ = 2 attained at f = (0, 1, 0) (residual (0, 2, 0)) and certified by the circulation y = (1, 1, −1), Γ₂ = |1 + 1 − 0| = 2, ‖d₁‖_{1→1} = 1 and R_cl = 1, which saturates the closure-ratio bound; the class is ActiveClosureFailure. Without the 2-simplex, C² = 0 and the cyclic field (1, 1, 1) has Φ₁ = 3 (certificate y = (1, 1, 1)) and Γ₂ = 0, a ClosedResidual; filling the triangle converts that closed residual into closure charge without changing Φ₁. Orthogonal projection of δ onto ker d₁ subtracts (2/3, 2/3, −2/3) ∈ im d₁*, which meets im d₀ only in 0, so it is not a repair and Φ₁ of the original class stays 2.\n@BOTTLENECK Lean filled_triangle_signature covers the filled-triangle numbers over ℚ, including that 1 is the least operator constant; the hollow comparison and the projection remark are prose with Python checks, and the certificate fixes the value Φ₁ = 2, not one repair.\n@ASSUME Unit weights on the declared filled triangle over Q (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/ResidualSectorWeights.lean | ResidualSectorWeights.phi1_attained_and_lower_bound | theorem | theorem phi1_attained_and_lower_bound {n : ℕ} (c : Fin n → α) : (∀ r, InClass c r → |hol c| ≤ l1 r) ∧ ∃ r, InClass c r ∧ l1 r = |hol c|\n lean4/WdpGrowthNoRepair.lean | WdpGrowthNoRepair.triangle_row_closed | theorem | theorem triangle_row_closed {E V : Type*} [Fintype E] [DecidableEq E] [DecidableEq V] (s t : E → V) (ab bc ac : E) (a b c : V) (h1 : s ab = a ∧ t ab =\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.ExactStatusOnly | def | def ExactStatusOnly (C : ObstructionClassifier Q) (q : Q) : Prop\n lean4/ResidualSectorWeights.lean | ResidualSectorWeights.InClass | def | def InClass {n : ℕ} (c r : Fin n → α) : Prop\n lean4/ResidualSectorWeights.lean | ResidualSectorWeights.class_iff | theorem | theorem class_iff {n : ℕ} (c r : Fin n → α) : InClass c r ↔ hol r = hol c\n lean4/ResidualSectorWeights.lean | ResidualSectorWeights.lower_bound | theorem | theorem lower_bound {n : ℕ} (c r : Fin n → α) (h : InClass c r) : |hol c| ≤ l1 r\n lean4/WdpGrowthNoRepair.lean | WdpGrowthNoRepair.Win.closed | def | def Win.closed (W : Win E V R) : Prop\n lean4/WdpGrowthNoRepair.lean | WdpGrowthNoRepair.closed_attach | theorem | theorem closed_attach (W : Win E V R) (row : E → ℚ) (hW : W.closed) (hrow : ∀ v, ∑ e, row e * W.D0 e v = 0) : (W.attach row).closed\n lean4/WdpGrowthNoRepair.lean | WdpGrowthNoRepair.rescaled_weights_instance | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.RepairCertificate | structure\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.HasRepairCertificate | def\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.CertificateHasAdmissibleRepair | def\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.CertificateRepairsToZero | def\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.CertificateMatchesClassifier | def\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificateEmptyRepairSystem | def\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_exact | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_admissible_witness | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_admissible_witnessed_exact | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_repair_to_zero | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_has_admissible_repair | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_repairs_to_zero | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_matches_classifier | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.hasCertificate_implies_exact | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_ordinary_witnessed_exact | theorem\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_from_admissible_witnessed_exact | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "PG-WDP-QUOTIENT-EXACT-SEQUENCE",
+      "PGW-WDP-SYNTHESIS-TRUNK-TIERS"
+    ],
+    "feedback": true,
+    "index_position": 644,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

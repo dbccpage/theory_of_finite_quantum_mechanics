@@ -1,0 +1,186 @@
+add_or_refine_generators:
+- id: g_decodeTapeSymbol
+  ordered_inputs:
+  - Nat
+  output: Option TapeSymbol
+  arity: 1
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol
+    line: 46
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol
+    kind: def
+    line: 46
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_decodeMove
+  ordered_inputs:
+  - Nat
+  output: Option Move
+  arity: 1
+  carrier: Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove
+    line: 58
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove
+    kind: def
+    line: 58
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_decodeRules
+  ordered_inputs:
+  - List Nat
+  output: Option (List Rule)
+  arity: 1
+  carrier: List Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules
+    line: 76
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules
+    kind: def
+    line: 76
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: g_decodeMachine
+  ordered_inputs:
+  - List Nat
+  output: Option Machine
+  arity: 1
+  carrier: List Nat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine
+    line: 100
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine
+    kind: def
+    line: 100
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_empty
+  equation_or_predicate: decodeMachine [] = none
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected
+    line: 138
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.empty_machine_code_is_rejected
+    kind: theorem
+    line: 138
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_truncated
+  equation_or_predicate: decodeMachine [0,0,0,1] = none
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected
+    line: 143
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected
+    kind: theorem
+    line: 143
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_symbol
+  equation_or_predicate: decodeMachine [0,0,2,1,0,0] = none
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected
+    line: 148
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected
+    kind: theorem
+    line: 148
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_move
+  equation_or_predicate: decodeMachine [0,0,0,1,0,3] = none
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TokenCode.lean
+    declaration: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected
+    line: 153
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TokenCode.lean
+    decl: AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected
+    kind: theorem
+    line: 153
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No theorem characterizing the full domain of decodeMachine (bottleneck).
+- Composition licensing relations (decodeRules into decodeMachine) not stated in sources; no compositions
+  listed.
+- Lean skeleton not elaborated by me.
+- 'lemma l_four unverified: Lean elaboration disabled'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,106 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_cfgWord",
+      "inputs": [
+        "ListGamma",
+        "Lambda",
+        "Gamma",
+        "ListGamma"
+      ],
+      "output": "WordSym",
+      "arity": 4,
+      "carrier": "List (Sym Γ Λ)",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.cfgWord",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_rep_unique",
+      "statement": "If Rep c w and Rep c' w then c = c' (a word represents at most one configuration)",
+      "hypotheses": "TM0 configurations c, c' and word w",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.rep_unique",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_rep_exists",
+      "statement": "Every TM0 configuration has some word representing it",
+      "hypotheses": "any TM0.Cfg c",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.rep_exists",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_split_st",
+      "statement": "If A ++ st q0 :: B = P ++ st q :: S with P and S free of state symbols, then A = P, q0 = q and B = S",
+      "hypotheses": "NoSt P and NoSt S",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.split_st",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_step_fwd",
+      "statement": "A machine step from a represented configuration is matched by a Rules rewrite to a word representing the next configuration",
+      "hypotheses": "Rep c w, TM0.step M c = some c'",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.step_fwd",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_step_bwd",
+      "statement": "Every Rules rewrite step of a represented word corresponds to the machine step",
+      "hypotheses": "Rep c w, Rules M w w'",
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.step_bwd",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_rep_unique",
+      "statement": "A word represents at most one configuration",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "r_rep_unique"
+      ],
+      "lean_skeleton": "theorem l_rep_unique {c c' : TM0.Cfg Γ Λ} {w : List (Sym Γ Λ)} (h : Rep c w) (h' : Rep c' w) : c = c' := rep_unique h h'",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/GenesisCompTM.lean",
+        "decl": "GenesisComputation.TMEncoding.rep_unique",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_unique_word",
+      "claim": "Each configuration has a unique representing word",
+      "rejecting_invariant": "Representations allow blank padding at the far ends, so a configuration has many words; only the converse (word determines config) holds"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of step_fwd and step_bwd are truncated in SRC, so the hypotheses are not grounded",
+    "Lean skeletons not elaborated against the real file",
+    "No composition is licensed: cfgWord is the only generator and it has no WordSym-typed input slot",
+    "Rep definition body not visible, so the padding rule is unconfirmed"
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "task_id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "82901eff51ab163948010f17c54715441ad988e870353fad835172aec2915e14",
+  "candidate_sha256": "b9b425f2a44485323a4ce9ddc2b2ba9e2cbd6c7fa0007afb258faba600ed2b93",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 7,
+    "failed_total": 3,
+    "failure_rate": 0.3,
+    "failures_by_class": {
+      "composition_type_mismatch": 1,
+      "vacuous_proof": 1,
+      "wrong_signature": 1
+    },
+    "unverifiable": 2,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:56:12Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "G_representation",
+        "ordered_inputs": [
+          "V"
+        ],
+        "output": "HermNM",
+        "arity": 1,
+        "carrier": "tomographic linear equivalence V to Herm(Fin n x Fin m)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/TensorComposition.lean",
+            "declaration": "TensorComposition.representation",
+            "line": 13
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.representation",
+          "kind": "def",
+          "line": 13,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "G_hermRankOne",
+        "ordered_inputs": [
+          "CVec_nm"
+        ],
+        "output": "HermNM",
+        "arity": 1,
+        "carrier": "rank-one Hermitian projector of a complex vector on Fin n x Fin m",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/TensorComposition.lean",
+            "declaration": "TensorComposition.hermRankOne",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.hermRankOne",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "G_conjugate",
+        "ordered_inputs": [
+          "UnitaryNM",
+          "MatrixNM"
+        ],
+        "output": "MatrixNM",
+        "arity": 2,
+        "carrier": "U A U-dagger conjugation",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/TensorOperationalCone.lean",
+            "declaration": "TensorOperationalCone.conjugate",
+            "line": 10
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/TensorOperationalCone.lean",
+          "decl": "TensorOperationalCone.conjugate",
+          "kind": "def",
+          "line": 10,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R_cone_PSD",
+        "equation_or_predicate": "Under the stated closure and preservation hypotheses, the represented state cone K equals the PSD cone on Fin n x Fin m",
+        "typing_conditions": "n<=m, NeZero m, 0 in K, additive closure, scaling closure, local-unitary preservation, controlled-shift preservation, tomographic data D",
+        "source_pins": [
+          {
+            "path": "lean4/TensorComposition.lean",
+            "declaration": "TensorComposition.quantum_state_cone",
+            "line": 58
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.quantum_state_cone",
+          "kind": "theorem",
+          "line": 58,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_trace",
+        "equation_or_predicate": "The unit product test equals the trace of the represented Hermitian matrix",
+        "typing_conditions": "tomographic data D",
+        "source_pins": [
+          {
+            "path": "lean4/TensorComposition.lean",
+            "declaration": "TensorComposition.unit_test_is_trace",
+            "line": 95
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorComposition.lean",
+          "decl": "TensorComposition.unit_test_is_trace",
+          "kind": "theorem",
+          "line": 95,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_schmidt",
+        "equation_or_predicate": "Every n x m complex matrix with n<=m has a Schmidt decomposition with unitary factors",
+        "typing_conditions": "n<=m",
+        "source_pins": [
+          {
+            "path": "lean4/TensorReachability.lean",
+            "declaration": "TensorReachability.exists_schmidt_coefficients",
+            "line": 23
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorReachability.lean",
+          "decl": "TensorReachability.exists_schmidt_coefficients",
+          "kind": "theorem",
+          "line": 23,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_shift_selects_positive",
+        "equation_or_predicate": "A cone of matrices preserved by controlled shift and local unitaries and closed under sums and scaling selects the positive cone",
+        "typing_conditions": "n<=m, NeZero m, 0 in K, closure hypotheses",
+        "source_pins": [
+          {
+            "path": "lean4/TensorOperationalCone.lean",
+            "declaration": "TensorOperationalCone.controlled_shift_selects_positive",
+            "line": 27
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/TensorOperationalCone.lean",
+          "decl": "TensorOperationalCone.controlled_shift_selects_positive",
+          "kind": "theorem",
+          "line": 27,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-1D02FF098BFD",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "G_conjugate . slot 0 <- G_controlledShift via R_shift_selects_positive",
+        "evidence": "the inner generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      },
+      {
+        "id": "NEG-EAF90DB1907C",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_cone_equality: The represented state cone equals PSD(nm) under the target hypotheses",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-28DDE694B8A3",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "G_controlledShift: () -> UnitaryNM [TensorReachability.controlledShift]",
+        "evidence": "lean def controlledShift has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic count)",
+        "decl_key": "TensorReachability.controlledShift",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION"
+      }
+    ],
+    "open_obligations": [
+      "Exact signature text of quantum_state_cone is truncated in SRC and the Lean skeleton is not elaborated",
+      "Calibration and operational preservation of the controlled shift remain supplied hypotheses",
+      "Effect and finite-test saturation premises (TFQ-0414 to TFQ-0416) not citable from the listed sources",
+      "Only the Lean-side declarations are cited; Rust trace closure is not used",
+      "near_miss NM_n_gt_m unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_no_shift unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "7 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0332",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8dea80c9ba309b824076ee2375ca20100396f25fb045709066409cff8beb15b5",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0332 stage=P0 attempt=a3-1 in=8dea80c9 guided=yes\n@TARGET [OPEN] Chapter 06 is report-erasure and the Paper 0 boundary. S001-GAP-PD-TO-P0-NOT-IMPORTED repeats the S000 gap from the authorization side: there is no theorem that the Primitive Difference walk is Paper 0, and AIT-PD1 is only a statement-level specialization with a supplied valid bit. The gap cites the S000 projection_obstruction_walk_assessment.md and says AIT-PD1 is not a Paper 0 import. ReportFactorization.lean is the local Lean file named for this boundary. The book does not rewrite projection_obstruction.md. AuthorityEffect is None.\n@BOTTLENECK Hold the Paper 0 report-erasure boundary as a supplied factorization, and leave S001-GAP-PD-TO-P0-NOT-IMPORTED unclosed.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction | theorem | theorem localGreenGlobalRed_pair_obstruction (P : PrimitiveDifference α β) (φ : α → γ) (ψ : α → η) (hφ : P.InvariantCongruent φ) (hψ : ¬ P.InvariantCo\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness | theorem | theorem localGreenGlobalRed_pair_obstruction_of_witness (P : PrimitiveDifference α β) (φ : α → γ) (ψ : α → η) (hφ : P.InvariantCongruent φ) {x y : α} \n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_witness_and_obstruction | theorem | theorem localGreenGlobalRed_pair_witness_and_obstruction (P : PrimitiveDifference α β) (φ : α → γ) (ψ : α → η) (hφ : P.InvariantCongruent φ) {x y : α}\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_context_obstruction_of_witness | theorem | theorem localGreenGlobalRed_context_obstruction_of_witness (φ : α → γ) (ψ : α → η) {x y : α} (c₀ c₁ : κ) (hφxy : φ x = φ y) (hne : ψ x ≠ ψ y) : (∃ F :\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_mod_obstruction | theorem | theorem localGreenGlobalRed_pair_mod_obstruction (P : PrimitiveDifference α β) (φ : α → γ) (ψ : α → η) (S : Setoid γ) (T : Setoid η) (hφ : P.Invariant\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_mod_obstruction_of_witness | theorem | theorem localGreenGlobalRed_pair_mod_obstruction_of_witness (P : PrimitiveDifference α β) (φ : α → γ) (ψ : α → η) (S : Setoid γ) (T : Setoid η) (hφ : \n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_no_factorization | theorem | theorem boolAllZeroNonconstant_no_factorization : ¬ (∃ F : boolAllZeroNonconstant.ResidualQuotient → boolAllZeroNonconstant.ResidualQuotient → Bool, ∀\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.contextLocal | def | def contextLocal (φ : α → γ) (x : κ × α) : γ\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.boolAllZeroNonconstant_no_invariant_factorization | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.authorityNonPromotionPrimitiveDifference | def\n lean4/PrimitiveDifferenceBridge.lean | OmegaCore.FablePrimitiveDifferenceBridge.ActiveObstruction | def\n lean4/PrimitiveDifferenceBridge.lean | OmegaCore.FablePrimitiveDifferenceBridge.obstruction_persists_without_split | theorem\n code/rust/src/wdp/po000_projection_obstruction.rs | AUTHORITY_EFFECT_TEXT | const\n code/rust/src/wdp/po000_projection_obstruction.rs | ProjectionObstructionReceipt | struct\n lean4/E003_projection_fiber_primitive_difference.lean | GrokPdNight20260814.E003.presentation_is_supplied | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference | structure\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.ZeroRel | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_refl | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_symm | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_trans | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroRel_equivalence | theorem\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.zeroSetoid | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.ResidualQuotient | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.classOf | def\n lean4/PrimitiveDifference.lean | OmegaCore.PrimitiveDifference.classOf_eq_of_zero | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] OmegaCore.PrimitiveDifference.classOf -- Do not state that arity/signature for OmegaCore.PrimitiveDifference.classOf.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "AUTHF-PD-EXTENSION-NONUNIQUE",
+      "AUTHF-PD-QUOTIENT-BRIDGE",
+      "TFQ-0331"
+    ],
+    "feedback": true,
+    "index_position": 385,
+    "neg_entry_ids": [
+      "NEG-0983C97B5685"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

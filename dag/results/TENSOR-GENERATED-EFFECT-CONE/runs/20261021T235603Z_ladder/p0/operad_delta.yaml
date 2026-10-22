@@ -1,0 +1,102 @@
+add_or_refine_generators:
+- id: g_effectCone
+  ordered_inputs:
+  - AvailableEffectSet
+  output: EffectCone
+  arity: 1
+  carrier: PointedCone ℝ (Matrix (Fin n × Fin m) (Fin n × Fin m) ℂ)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/TensorEffectCone.lean
+    declaration: TensorEffectCone.effectCone
+    line: 14
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/TensorEffectCone.lean
+    decl: TensorEffectCone.effectCone
+    kind: def
+    line: 14
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_effect_cone_eq_positive
+  equation_or_predicate: For n<=m, m nonzero, available set of valid (positive) effects with local binary
+    product tests and pullback closure, effectCone available equals the PSD cone
+  typing_conditions: 'hnm : n ≤ m; NeZero m; every available E is Positive; local binary product availability;
+    PullbackClosed for calibrated local unitaries and controlled shifts'
+  source_pins:
+  - path: lean4/TensorEffectCone.lean
+    declaration: TensorEffectCone.effect_cone_eq_positive
+    line: 48
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorEffectCone.lean
+    decl: TensorEffectCone.effect_cone_eq_positive
+    kind: theorem
+    line: 48
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_positive_iff_pairing
+  equation_or_predicate: E is Positive iff pairing with every Positive A is nonnegative
+  typing_conditions: E Hermitian on finite index type
+  source_pins:
+  - path: lean4/TensorEffectOrder.lean
+    declaration: TensorEffectOrder.positive_iff_pairing
+    line: 33
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorEffectOrder.lean
+    decl: TensorEffectOrder.positive_iff_pairing
+    kind: theorem
+    line: 33
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-60DC1ECA2A33
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'l_target: effectCone of available effects equals PSD for arbitrary finite n<=m, m nonzero, under
+    soundness, local binary product availability and pullback closure premises'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TENSOR-GENERATED-EFFECT-CONE
+counterexamples:
+- id: NEG-DCA6681BF26D
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_positive_ray_binary: (PSDHermitian) -> BinaryEffectRay [TensorEffectOrder.positive_ray_binary]'
+  evidence: lean theorem positive_ray_binary has 4 explicit binders (4 with conclusion arrows); the claim
+    says 1 (heuristic count)
+  decl_key: TensorEffectOrder.positive_ray_binary
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TENSOR-GENERATED-EFFECT-CONE
+open_obligations:
+- Exact statement of effect_cone_eq_positive hypotheses truncated in SRC; need full signature
+- Lean skeleton is a placeholder, not the real statement
+- Hypotheses for local binary product availability and PullbackClosed instantiation unspecified
+- No compositions grounded since colour typing of declarations unclear
+- 'near_miss nm_saturation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

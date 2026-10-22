@@ -1,0 +1,105 @@
+{
+  "task_id": "TFQ-0123",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-4",
+  "input_sha256": "7f6dddf9a2783728044301a7c6d9d1a13af125f0b8392ac373c5f5efc4b87ab7",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"ledger_add\",\"inputs\":[\"LossLedger\",\"LossLedger\"],\"output\":\"LossLedger\",\"arity\":2,\"carrier\":\"natural numbers ledger addition (TransportCell.lean, proposed)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"float_ledger_add\",\"inputs\":[\"FloatLedger\",\"FloatLedger\"],\"output\":\"FloatLedger\",\"arity\":2,\"carrier\":\"floating point ledger addition (atlas Python twin, not Lean)\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"relations\":[{\"id\":\"nat_add_assoc\",\"statement\":\"For natural-number ledgers a,b,c: (a+b)+c = a+(b+c)\",\"hypotheses\":\"a b c : Nat\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L_nat_assoc_only\",\"statement\":\"The natural-number ledger addition is associative; this is a carrier-local fact and does not witness the float arm.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"nat_add_assoc\"],\"lean_skeleton\":\"theorem ledger_add_assoc_nat (a b c : Nat) : (a + b) + c = a + (b + c) := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM1\",\"claim\":\"The float Python instance witnesses associativity of the Lean natural-number ledger.\",\"rejecting_invariant\":\"Different carriers; GAP-F002-S000-002 states neither arm witnesses the other.\"},{\"id\":\"NM2\",\"claim\":\"The ledger equals the Einstein equation or gives a continuum-limit transport.\",\"rejecting_invariant\":\"Transport into a smooth frame and continuum limit are not discharged; the ledger is not the Einstein equation.\"},{\"id\":\"NM3\",\"claim\":\"An 11-dimensional supergravity triangulation is constructed here.\",\"rejecting_invariant\":\"GAP-F002-S000-001 leaves it unbuilt.\"}],\"numeric_claims\":[{\"id\":\"N1\",\"expr\":\"1 + 2\",\"value\":\"3\"}],\"open_obligations\":[\"GAP-F002-S000-002: carrier mismatch between Lean natural-number ledger and Python floating twin remains open.\",\"GAP-F002-S000-001: 11-dimensional supergravity triangulation remains unbuilt.\",\"Transport of the ledger into a smooth frame is not discharged.\",\"Continuum limit is not discharged.\",\"No Lean declaration for the natural-number ledger addition is listed in @SRC; ledger_add and nat_add_assoc are proposed_new and unverified.\",\"The float ledger has no Lean citation; float_ledger_add carries status none.\",\"lemma L_nat_assoc_only skeleton uses sorry and is not claimed proved.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "ledger_add",
+        "inputs": [
+          "LossLedger",
+          "LossLedger"
+        ],
+        "output": "LossLedger",
+        "arity": 2,
+        "carrier": "natural numbers ledger addition (TransportCell.lean, proposed)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "float_ledger_add",
+        "inputs": [
+          "FloatLedger",
+          "FloatLedger"
+        ],
+        "output": "FloatLedger",
+        "arity": 2,
+        "carrier": "floating point ledger addition (atlas Python twin, not Lean)",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "nat_add_assoc",
+        "statement": "For natural-number ledgers a,b,c: (a+b)+c = a+(b+c)",
+        "hypotheses": "a b c : Nat",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L_nat_assoc_only",
+        "statement": "The natural-number ledger addition is associative; this is a carrier-local fact and does not witness the float arm.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "nat_add_assoc"
+        ],
+        "lean_skeleton": "theorem ledger_add_assoc_nat (a b c : Nat) : (a + b) + c = a + (b + c) := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM1",
+        "claim": "The float Python instance witnesses associativity of the Lean natural-number ledger.",
+        "rejecting_invariant": "Different carriers; GAP-F002-S000-002 states neither arm witnesses the other."
+      },
+      {
+        "id": "NM2",
+        "claim": "The ledger equals the Einstein equation or gives a continuum-limit transport.",
+        "rejecting_invariant": "Transport into a smooth frame and continuum limit are not discharged; the ledger is not the Einstein equation."
+      },
+      {
+        "id": "NM3",
+        "claim": "An 11-dimensional supergravity triangulation is constructed here.",
+        "rejecting_invariant": "GAP-F002-S000-001 leaves it unbuilt."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N1",
+        "expr": "1 + 2",
+        "value": "3"
+      }
+    ],
+    "open_obligations": [
+      "GAP-F002-S000-002: carrier mismatch between Lean natural-number ledger and Python floating twin remains open.",
+      "GAP-F002-S000-001: 11-dimensional supergravity triangulation remains unbuilt.",
+      "Transport of the ledger into a smooth frame is not discharged.",
+      "Continuum limit is not discharged.",
+      "No Lean declaration for the natural-number ledger addition is listed in @SRC; ledger_add and nat_add_assoc are proposed_new and unverified.",
+      "The float ledger has no Lean citation; float_ledger_add carries status none.",
+      "lemma L_nat_assoc_only skeleton uses sorry and is not claimed proved."
+    ]
+  }
+}

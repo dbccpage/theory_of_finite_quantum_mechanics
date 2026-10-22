@@ -1,0 +1,34 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-59B3BA468427
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L2: Class-relative transport: if a total computable analyzer is sound and complete for an extensional
+    nontrivial property P of programs in a language L, with a computable code translation to and from
+    Nat.Partrec.Code preserving the semantics, then the induced predicate on codes is computable and ext'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: AUTH-RICE-THEOREM-IMPORT
+counterexamples: []
+open_obligations:
+- No existing declarations were verified; the exact Mathlib names ComputablePred.rice and rice₂ and their
+  signatures must be checked by the host before citing.
+- Lean skeleton for L1 needs the statement of rice₂ in terms of Set (Nat →. Nat), and the bridge from
+  codes to partial functions via Nat.Partrec.Code.eval.
+- L2 transport requires a formal definition of the language, the translation and class-relative soundness,
+  not yet stated.
+- Named nontriviality witnesses (a concrete code in C and one not in C) not instantiated.
+- 'relation R1 unverified: no existing declaration cited'
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N3 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

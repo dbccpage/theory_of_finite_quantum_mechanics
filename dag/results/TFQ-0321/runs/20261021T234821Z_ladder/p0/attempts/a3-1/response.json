@@ -1,0 +1,132 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_primitive_difference_qm",
+      "inputs": [
+        "Real",
+        "Real"
+      ],
+      "output": "Real",
+      "arity": 2,
+      "carrier": "float (qm cochain D(x,y) = y - x)",
+      "ref": {
+        "path": "code/python/src/qm/cochain.py",
+        "decl": "primitive_difference",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_primitive_difference_d0",
+      "inputs": [
+        "C0Vector"
+      ],
+      "output": "C1Vector",
+      "arity": 1,
+      "carrier": "Fraction vectors via d0 matrix-vector product",
+      "ref": {
+        "path": "code/python/src/majorana/finite_cochain_complex.py",
+        "decl": "primitive_difference",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "G_repair_boundary_decision",
+      "inputs": [
+        "RepairBoundaryInput"
+      ],
+      "output": "RepairBoundaryStatus",
+      "arity": 1,
+      "carrier": "inductive status type",
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_repaired_iff",
+      "statement": "repairBoundaryDecision returns repaired iff policy, rule, budget and witness conditions all hold",
+      "hypotheses": "a RepairBoundaryInput",
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.repairBoundary_repaired_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_refused_not_repaired",
+      "statement": "a refused status is never repaired",
+      "hypotheses": "status is refused",
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.refused_not_repaired",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_zero_law_independence",
+      "statement": "a declared zero law is independent of the raw mark; the raw mark does not determine the zero law",
+      "hypotheses": "candidate B005 mirror, not imported and not verified here",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_repaired_needs_all_conditions",
+      "statement": "repaired status requires policy, rule, budget and witness",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_repaired_iff"
+      ],
+      "lean_skeleton": "-- cite existing theorem OmegaCore.PrimitiveRepairBoundary.repaired_requires_policy_rule_budget_and_witness",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/PrimitiveRepairBoundary.lean",
+        "decl": "OmegaCore.PrimitiveRepairBoundary.repaired_requires_policy_rule_budget_and_witness",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_zero_law_independent_of_mark",
+      "statement": "Declared zero laws are independent of the raw mark",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_zero_law_independence"
+      ],
+      "lean_skeleton": "theorem zero_law_indep : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_shared_kernel_as_map",
+      "claim": "The presence of shared_kernel bytes implies a Genesis map or that Atlas B001 imports PrimitiveDifference",
+      "rejecting_invariant": "S000-GAP-SHARED-KERNEL-NOT-CORRESPONDENCE says B001 does not import PrimitiveDifference; compilation is not an estate theorem"
+    },
+    {
+      "id": "NM_raw_mark_fixes_zero",
+      "claim": "The raw mark 0 determines the declared zero law",
+      "rejecting_invariant": "zero-law independence from the raw mark"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "B005/B006 files and shared_kernel/primitive_difference.lean are not in SRC, so they cannot be cited",
+    "No composition grounded: no relation licenses a colour-matching plug",
+    "Zero-law independence relation and lemma need a Lean statement",
+    "The factorization boundary import is not established"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r:effect_zero_licensed",
+      "statement": "The zero effect is an effect in the ordered effect unit.",
+      "hypotheses": "BornFable.OrderedQUnit",
+      "ref": {
+        "path": "lean4/BornEffectValuation.lean",
+        "decl": "effect_zero",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r:effect_u_licensed",
+      "statement": "The unit of the ordered effect unit is an effect.",
+      "hypotheses": "BornFable.OrderedQUnit",
+      "ref": {
+        "path": "lean4/BornEffectValuation.lean",
+        "decl": "effect_u",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "relation_to_target",
+      "statement": "effect_zero and effect_u form the boundary of the ordered effect unit used to license the Kraus diagonal bounds in ExactKrausChannel.",
+      "hypotheses": "",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "composition_exact_kraus",
+      "statement": "Compose diagnostic f64 channel with exact Kraus admission using zero and unit effects.",
+      "hypotheses": "BornFable.OrderedQUnit",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "numeric_claim_f64_vs_exact",
+      "statement": "floating-point parameters in quantum_channel.rs cannot admit a channel; exact admission requires ExactKrausChannel with rational Kraus operators.",
+      "hypotheses": "",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "open_obligations",
+      "statement": "Ground the exact channel admission for one weighted Kraus operator Q(i) in the split between diagnostic and exact faces.",
+      "hypotheses": "",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "ExactKrausChannel admission for weighted single-qubit channel Q(i) with rational Kraus operators"
+  ]
+}

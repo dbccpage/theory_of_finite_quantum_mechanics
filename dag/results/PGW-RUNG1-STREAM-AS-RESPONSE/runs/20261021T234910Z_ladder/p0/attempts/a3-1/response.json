@@ -1,0 +1,75 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "On the measured rectangle (five stakes, two measures, at most three items, arity two, fifteen rounds, guard 250 nodes), none of the 1680 retained V1 minimum response edges carries a datum. This is a finite result on the measured V1 tree only and does not decide Challenge 1.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem l1_no_datum_on_rectangle : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L2",
+      "statement": "Auxiliary bookkeeping: of the 1974 frontier nodes, 1039 stopped at the guard, so 935 did not. This is not a coverage claim, because targets after a node's first refusal were not searched.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "L1"
+      ],
+      "lean_skeleton": "theorem l2_frontier_split : (1974:Nat) - 1039 = 935 := by decide",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "Since no datum appears on the 1680 retained edges, the stream is not a response.",
+      "rejecting_invariant": "The search is bounded: 1039 frontier nodes were stopped at the guard, targets after a node's first refusal were not searched, and the four-item prediction R1-X was not computed. Absence of evidence on a finite tree is not impossibility, so Challenge 1 stays OPEN."
+    },
+    {
+      "id": "NM2",
+      "claim": "At two items a fresh datum is valid, so the stream is a response at two items.",
+      "rejecting_invariant": "The datum is priced out in 219 rows, and no response edge carries a datum at two items. Validity alone does not make it a response."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N1",
+      "expr": "1974 - 1039",
+      "value": "935"
+    },
+    {
+      "id": "N2",
+      "expr": "219 - 58",
+      "value": "161"
+    },
+    {
+      "id": "N3",
+      "expr": "1680 - 32",
+      "value": "1648"
+    }
+  ],
+  "open_obligations": [
+    "No @SRC or @KNOWN+ declarations were given, so there are no existing citations and every reference is proposed_new.",
+    "Generators were not grounded: the supply, admission and response operations have no cited declarations.",
+    "No relations or compositions were proposed, because none can be licensed without grounded generators.",
+    "Lean formalisation of the V1 tree, the response-edge predicate and the datum-carrying predicate is not done.",
+    "The four-item prediction R1-X was not computed.",
+    "Targets after a node's first refusal were not searched.",
+    "Frontier nodes stopped at the guard (1039 across six runs) were not explored.",
+    "A rule is needed to decide whether the stream is a response, since the measured tree cannot settle it."
+  ]
+}

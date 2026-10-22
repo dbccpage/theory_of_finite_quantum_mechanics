@@ -1,0 +1,99 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_all_x_detected
+  equation_or_predicate: All single-qubit X errors on the Shor nine-qubit code are detected (nontrivial
+    syndrome).
+  typing_conditions: Single-qubit X error model on nine qubits.
+  source_pins:
+  - path: lean4/H042ShorNineQubitCode.lean
+    declaration: FableHilbertWalk20260819.H042.all_x_errors_detected
+    line: 118
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H042ShorNineQubitCode.lean
+    decl: FableHilbertWalk20260819.H042.all_x_errors_detected
+    kind: theorem
+    line: 118
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_all_z_detected
+  equation_or_predicate: All single-qubit Z errors on the Shor nine-qubit code are detected.
+  typing_conditions: Single-qubit Z error model on nine qubits.
+  source_pins:
+  - path: lean4/H042ShorNineQubitCode.lean
+    declaration: FableHilbertWalk20260819.H042.all_z_errors_detected
+    line: 129
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H042ShorNineQubitCode.lean
+    decl: FableHilbertWalk20260819.H042.all_z_errors_detected
+    kind: theorem
+    line: 129
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_all_y_detected
+  equation_or_predicate: All single-qubit Y errors on the Shor nine-qubit code are detected.
+  typing_conditions: Single-qubit Y error model on nine qubits.
+  source_pins:
+  - path: lean4/H042ShorNineQubitCode.lean
+    declaration: FableHilbertWalk20260819.H042.all_y_errors_detected
+    line: 140
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H042ShorNineQubitCode.lean
+    decl: FableHilbertWalk20260819.H042.all_y_errors_detected
+    kind: theorem
+    line: 140
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-BAAF18BB73F4
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_shor_syndrome_H042: (pauli9) -> Syndrome8 [FableHilbertWalk20260819.H042.evalSyndrome]'
+  evidence: lean def evalSyndrome has 2 explicit binders (2 with conclusion arrows); the claim says 1
+    (heuristic count)
+  decl_key: FableHilbertWalk20260819.H042.evalSyndrome
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0152
+open_obligations:
+- Syndrome8 full syndrome table (8 bits, 256 patterns) not grounded; statement drift previously refused,
+  so no restatement with numerals.
+- Recovery map of the 27 single-qubit Pauli errors not grounded to an existing declaration.
+- 'Stabilizer distance, toric code, cochain repair, and repair capacity claims not composed: toric_code
+  signature refused, repair_capacity schema refused.'
+- Python replay and Lean 4 match of the nine-qubit syndrome table still required.
+- No lemma claims_proved; no Lean skeleton elaborated.
+- 'AuthorityEffect: None.'
+- 'near_miss nm_decode_recovery unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_shor_factoring unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_shor_qubits
+  expr: 3*3
+  value: '9'
+  host_evidence:
+    recomputed: '9'
+- id: nc_shor_errors
+  expr: 3*9
+  value: '27'
+  host_evidence:
+    recomputed: '27'
+verified_lemma_statements: []

@@ -1,0 +1,80 @@
+{
+  "task_id": "PGW-MSSN-CIRCULATION-OBSTRUCTION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f92a556e3f0d1b24250f82f3f17f0145e3c6a4124de1b9ad62cb5025dc885be7",
+  "candidate_sha256": "4ee3e4a758425fc1f5c09e78cc03c6e407f1d0970b74c0b2d5afc62e917e02c2",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 1,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 8,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:51Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-DB3BC41A7DA5",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "cycle_circulation . slot 0 <- d0 via coboundary_circulation_zero",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-MSSN-CIRCULATION-OBSTRUCTION"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "MssnObstructionDetector.lean declarations not listed in SRC so none cited as existing",
+      "SRC entries are about frame potential and lift candidate, not grounded for circulation",
+      "Lean skeletons are unelaborated",
+      "circulation relative to d0 over Z only",
+      "generator obstP unverified: no existing declaration cited",
+      "generator cycle_circulation unverified: no existing declaration cited",
+      "generator d0 unverified: no existing declaration cited",
+      "relation obstP_factors unverified: no existing declaration cited",
+      "relation coboundary_circulation_zero unverified: no existing declaration cited",
+      "relation unit_flux_circulation unverified: no existing declaration cited",
+      "lemma no_scalar_potential unverified: Lean elaboration disabled",
+      "near_miss nm_lift_authorized unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "circ_unit",
+        "expr": "1 + 0 + 0",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

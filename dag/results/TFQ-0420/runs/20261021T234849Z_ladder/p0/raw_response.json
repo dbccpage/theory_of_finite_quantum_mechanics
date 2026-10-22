@@ -1,0 +1,128 @@
+{
+  "task_id": "TFQ-0420",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a18b15d3fba3dea4da88f99a1128abe7df83ad350971caec4b1dac7cac83edf0",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"id_empty\",\"inputs\":[\"Empty\"],\"output\":\"Empty\",\"arity\":1,\"carrier\":\"self-loop on the empty inscription <>; presupposes declared positions, identity criterion, persistence rule and stable alphabet\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"persist\",\"inputs\":[\"Inscription\"],\"output\":\"Inscription\",\"arity\":1,\"carrier\":\"persistence rule carrying an inscription from one position to the next while retaining identity\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"copy\",\"inputs\":[\"Inscription\"],\"output\":\"Inscription\",\"arity\":1,\"carrier\":\"reproduction: produces a second occurrence at a later position\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R_identity_criterion\",\"statement\":\"A cross-position identity criterion is an equivalence on occurrences, distinguishing 'same inscription remains' from 'second occurrence produced'\",\"hypotheses\":\"At least two declared positions and a stable alphabet\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_loop_is_structure\",\"statement\":\"id_empty is persist specialised to the empty inscription, so the step <> -> <> is derived structure, not a free primitive\",\"hypotheses\":\"Positions, identity criterion and persistence rule are declared\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"persist\",\"slot\":0,\"inner\":\"copy\",\"licensing_relation\":\"R_identity_criterion\"}],\"lemmas\":[{\"id\":\"L_repeat_presupposes\",\"statement\":\"Any proposed repetition of <> requires declared positions (at least two), a cross-position identity criterion, a persistence rule and a stable alphabet; a self-loop records added structure\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R_identity_criterion\",\"R_loop_is_structure\"],\"lean_skeleton\":\"theorem repeat_presupposes : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_free_step\",\"claim\":\"The step <> -> <> is a free primitive with no presupposed structure\",\"rejecting_invariant\":\"Distinguishing persistence from a second occurrence requires positions and an identity criterion, so the self-loop id_<> carries structure\"},{\"id\":\"NM_payload_first\",\"claim\":\"The first generated operation must introduce a new payload such as <a>\",\"rejecting_invariant\":\"Identity, persistence or reproduction may be the first operation; the source does not require a payload\"}],\"numeric_claims\":[{\"id\":\"N_min_positions\",\"expr\":\"1 + 1\",\"value\":\"2\"}],\"open_obligations\":[\"No existing declarations found by host; all refs proposed_new\",\"Formalise the carriers Empty and Inscription and positions in Lean\",\"Specify the identity criterion and persistence rule formally\",\"The source is an analysis of presuppositions, not a proof; the lemma is only a skeleton\",\"Composition persist∘copy needs a checked licensing relation\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "id_empty",
+        "inputs": [
+          "Empty"
+        ],
+        "output": "Empty",
+        "arity": 1,
+        "carrier": "self-loop on the empty inscription <>; presupposes declared positions, identity criterion, persistence rule and stable alphabet",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "persist",
+        "inputs": [
+          "Inscription"
+        ],
+        "output": "Inscription",
+        "arity": 1,
+        "carrier": "persistence rule carrying an inscription from one position to the next while retaining identity",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "copy",
+        "inputs": [
+          "Inscription"
+        ],
+        "output": "Inscription",
+        "arity": 1,
+        "carrier": "reproduction: produces a second occurrence at a later position",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_identity_criterion",
+        "statement": "A cross-position identity criterion is an equivalence on occurrences, distinguishing 'same inscription remains' from 'second occurrence produced'",
+        "hypotheses": "At least two declared positions and a stable alphabet",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_loop_is_structure",
+        "statement": "id_empty is persist specialised to the empty inscription, so the step <> -> <> is derived structure, not a free primitive",
+        "hypotheses": "Positions, identity criterion and persistence rule are declared",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "persist",
+        "slot": 0,
+        "inner": "copy",
+        "licensing_relation": "R_identity_criterion"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_repeat_presupposes",
+        "statement": "Any proposed repetition of <> requires declared positions (at least two), a cross-position identity criterion, a persistence rule and a stable alphabet; a self-loop records added structure",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_identity_criterion",
+          "R_loop_is_structure"
+        ],
+        "lean_skeleton": "theorem repeat_presupposes : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_free_step",
+        "claim": "The step <> -> <> is a free primitive with no presupposed structure",
+        "rejecting_invariant": "Distinguishing persistence from a second occurrence requires positions and an identity criterion, so the self-loop id_<> carries structure"
+      },
+      {
+        "id": "NM_payload_first",
+        "claim": "The first generated operation must introduce a new payload such as <a>",
+        "rejecting_invariant": "Identity, persistence or reproduction may be the first operation; the source does not require a payload"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N_min_positions",
+        "expr": "1 + 1",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "No existing declarations found by host; all refs proposed_new",
+      "Formalise the carriers Empty and Inscription and positions in Lean",
+      "Specify the identity criterion and persistence rule formally",
+      "The source is an analysis of presuppositions, not a proof; the lemma is only a skeleton",
+      "Composition persist∘copy needs a checked licensing relation"
+    ]
+  }
+}

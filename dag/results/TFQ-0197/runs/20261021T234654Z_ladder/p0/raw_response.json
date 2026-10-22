@@ -1,0 +1,65 @@
+{
+  "task_id": "TFQ-0197",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "95161f555a9b43c4e5006196d8f702b921d4d1af18f6b959da903346a22d4259",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"flat_einstein_hilbert\",\"inputs\":[],\"output\":\"RationalRegge\",\"arity\":0,\"carrier\":\"BigRational\",\"ref\":{\"path\":\"code/rust/src/general_relativity/exact_regge/action.rs\",\"decl\":\"flat_einstein_hilbert\",\"status\":\"existing\"}}],\"relations\":[],\"compositions\":[],\"lemmas\":[{\"id\":\"L1_proxy_only\",\"statement\":\"The finite gravity face admits only the rational Regge proxy (area-squared times kappa) via the flat decision flat_einstein_hilbert; the arccosine deficit angle is not admitted and no float cutoff is used.\",\"relation_to_target\":\"restates\",\"depends_on\":[],\"lean_skeleton\":\"theorem proxy_only : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM1_arccos_deficit\",\"claim\":\"Classical Regge sum with arccosine deficit angles is evaluated exactly over Q.\",\"rejecting_invariant\":\"The deficit angle is an arccosine and is not an element of Q, so the classical Regge sum is not evaluated in the exact rational face.\"},{\"id\":\"NM2_float_cutoff\",\"claim\":\"flat_einstein_hilbert is decided by a floating-point cutoff.\",\"rejecting_invariant\":\"Decisions must be exact BigRational, never a float cutoff.\"},{\"id\":\"NM3_full_GR\",\"claim\":\"The exact Regge face is a full continuum general-relativity derivation.\",\"rejecting_invariant\":\"The crate is not continuum GR, per src/lib.rs.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Cite or define a relation for the rational proxy area-squared times kappa; no existing declaration listed for it.\",\"Squared lengths, Cayley-Menger volume squares, Barrett-Crane simplicity, SO(4,Q) transitions, and hinge holonomy products have no listed declarations, so they are not made generators.\",\"Lean statement for the proxy-only lemma is a placeholder and needs a real formalization.\",\"No compositions are given because there is only one generator and no licensing relation is grounded.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "flat_einstein_hilbert",
+        "inputs": [],
+        "output": "RationalRegge",
+        "arity": 0,
+        "carrier": "BigRational",
+        "ref": {
+          "path": "code/rust/src/general_relativity/exact_regge/action.rs",
+          "decl": "flat_einstein_hilbert",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1_proxy_only",
+        "statement": "The finite gravity face admits only the rational Regge proxy (area-squared times kappa) via the flat decision flat_einstein_hilbert; the arccosine deficit angle is not admitted and no float cutoff is used.",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "theorem proxy_only : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM1_arccos_deficit",
+        "claim": "Classical Regge sum with arccosine deficit angles is evaluated exactly over Q.",
+        "rejecting_invariant": "The deficit angle is an arccosine and is not an element of Q, so the classical Regge sum is not evaluated in the exact rational face."
+      },
+      {
+        "id": "NM2_float_cutoff",
+        "claim": "flat_einstein_hilbert is decided by a floating-point cutoff.",
+        "rejecting_invariant": "Decisions must be exact BigRational, never a float cutoff."
+      },
+      {
+        "id": "NM3_full_GR",
+        "claim": "The exact Regge face is a full continuum general-relativity derivation.",
+        "rejecting_invariant": "The crate is not continuum GR, per src/lib.rs."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Cite or define a relation for the rational proxy area-squared times kappa; no existing declaration listed for it.",
+      "Squared lengths, Cayley-Menger volume squares, Barrett-Crane simplicity, SO(4,Q) transitions, and hinge holonomy products have no listed declarations, so they are not made generators.",
+      "Lean statement for the proxy-only lemma is a placeholder and needs a real formalization.",
+      "No compositions are given because there is only one generator and no licensing relation is grounded."
+    ]
+  }
+}

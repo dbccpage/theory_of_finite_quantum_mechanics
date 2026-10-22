@@ -1,0 +1,197 @@
+{
+  "task_id": "TFQ-0212",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "089a89d8150e3a91ee6bf766e72017a9c318ed90681f3b4b855ce4488503fbff",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_stage_record",
+          "inputs": [
+            "PacketId",
+            "Stage",
+            "Actor",
+            "Status",
+            "WitnessOrRefusal",
+            "PrevHash"
+          ],
+          "output": "PrimeStageRecord",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_stage_hash",
+          "inputs": [
+            "Seq",
+            "Stage",
+            "PacketId",
+            "Actor",
+            "Status",
+            "WitnessOrRefusal",
+            "PrevHash"
+          ],
+          "output": "Hash",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No Python or Lean declarations were listed, so none can be cited.",
+        "The side-by-side ledger generator and relations are not grounded in existing code.",
+        "The Lean skeleton is a placeholder; a real statement is needed.",
+        "The Rust enum for FixtureDrivenStructuralDemo vs VerifierProduced is not in @SRC.",
+        "No compositions were licensed by listed relations.",
+        "generator g_side_by_side unverified: no existing declaration cited",
+        "relation r_no_test_count_selection unverified: no existing declaration cited",
+        "relation r_close_iff_same_sentence unverified: no existing declaration cited",
+        "near_miss nm_test_count unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_structural_as_computed unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_candidate_is_triple unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_stage_record",
+        "ordered_inputs": [
+          "PacketId",
+          "Stage",
+          "Actor",
+          "Status",
+          "WitnessOrRefusal",
+          "PrevHash"
+        ],
+        "output": "PrimeStageRecord",
+        "arity": 6,
+        "carrier": "PrimeStageRecordV1",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_candidate.rs",
+            "declaration": "PrimeStageRecordV1",
+            "line": 87
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_candidate.rs",
+          "decl": "PrimeStageRecordV1",
+          "kind": "struct",
+          "line": 87,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_stage_hash",
+        "ordered_inputs": [
+          "Seq",
+          "Stage",
+          "PacketId",
+          "Actor",
+          "Status",
+          "WitnessOrRefusal",
+          "PrevHash"
+        ],
+        "output": "Hash",
+        "arity": 7,
+        "carrier": "String",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_candidate.rs",
+            "declaration": "compute_prime_stage_hash",
+            "line": 100
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_candidate.rs",
+          "decl": "compute_prime_stage_hash",
+          "kind": "fn",
+          "line": 100,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-AF0A0EC599D9",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_open_when_distinct: If the three sentences are not all equal, the ledger status is open.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0212"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No Python or Lean declarations were listed, so none can be cited.",
+      "The side-by-side ledger generator and relations are not grounded in existing code.",
+      "The Lean skeleton is a placeholder; a real statement is needed.",
+      "The Rust enum for FixtureDrivenStructuralDemo vs VerifierProduced is not in @SRC.",
+      "No compositions were licensed by listed relations.",
+      "generator g_side_by_side unverified: no existing declaration cited",
+      "relation r_no_test_count_selection unverified: no existing declaration cited",
+      "relation r_close_iff_same_sentence unverified: no existing declaration cited",
+      "near_miss nm_test_count unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_structural_as_computed unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_candidate_is_triple unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

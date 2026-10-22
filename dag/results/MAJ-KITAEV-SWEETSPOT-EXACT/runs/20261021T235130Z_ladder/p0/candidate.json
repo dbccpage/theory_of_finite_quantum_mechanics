@@ -1,0 +1,213 @@
+{
+  "task_id": "MAJ-KITAEV-SWEETSPOT-EXACT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8755edd5971e2a6f5812425fafbe5adcc59ec1ecf1e19eb58100bf639941b10f",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "gauss_vnorm",
+          "inputs": [
+            "GaussVec"
+          ],
+          "output": "Rat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "hermitian_form",
+          "inputs": [
+            "GaussMatrix",
+            "GaussVec"
+          ],
+          "output": "Rat",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "hf_additive",
+          "equation_or_predicate": "hf (A + B) x = hf A x + hf B x",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/BornHermitianCarrier.lean",
+              "declaration": "BornFable.HermitianCarrier.hf_add",
+              "line": 85
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/BornHermitianCarrier.lean",
+            "decl": "BornFable.HermitianCarrier.hf_add",
+            "kind": "theorem",
+            "line": 85,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Define the 2-mode Fock carrier, Hamiltonian, parity, and gamma_1, gamma_4 matrices",
+        "Define the bulk invariant and prove it equals -1",
+        "No existing SRC declaration covers Kitaev; everything specific is proposed_new",
+        "General L and BdG spectrum remain imported",
+        "generator kitaev_L2_hamiltonian unverified: no existing declaration cited",
+        "relation kitaev_properties unverified: no existing declaration cited",
+        "lemma kitaev_hermitian unverified: Lean elaboration disabled",
+        "lemma kitaev_commutes unverified: Lean elaboration disabled",
+        "near_miss nm_mu_nonzero unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gauss_vnorm",
+        "ordered_inputs": [
+          "GaussVec"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Fin n -> GaussRat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/BornHermitianCarrier.lean",
+            "declaration": "BornFable.HermitianCarrier.vnorm",
+            "line": 51
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/BornHermitianCarrier.lean",
+          "decl": "BornFable.HermitianCarrier.vnorm",
+          "kind": "def",
+          "line": 51,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "hermitian_form",
+        "ordered_inputs": [
+          "GaussMatrix",
+          "GaussVec"
+        ],
+        "output": "Rat",
+        "arity": 2,
+        "carrier": "Matrix (Fin n) (Fin n) GaussRat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/BornHermitianCarrier.lean",
+            "declaration": "BornFable.HermitianCarrier.hf",
+            "line": 82
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/BornHermitianCarrier.lean",
+          "decl": "BornFable.HermitianCarrier.hf",
+          "kind": "def",
+          "line": 82,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "hf_additive",
+        "equation_or_predicate": "hf (A + B) x = hf A x + hf B x",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/BornHermitianCarrier.lean",
+            "declaration": "BornFable.HermitianCarrier.hf_add",
+            "line": 85
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/BornHermitianCarrier.lean",
+          "decl": "BornFable.HermitianCarrier.hf_add",
+          "kind": "theorem",
+          "line": 85,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Define the 2-mode Fock carrier, Hamiltonian, parity, and gamma_1, gamma_4 matrices",
+      "Define the bulk invariant and prove it equals -1",
+      "No existing SRC declaration covers Kitaev; everything specific is proposed_new",
+      "General L and BdG spectrum remain imported",
+      "generator kitaev_L2_hamiltonian unverified: no existing declaration cited",
+      "relation kitaev_properties unverified: no existing declaration cited",
+      "lemma kitaev_hermitian unverified: Lean elaboration disabled",
+      "lemma kitaev_commutes unverified: Lean elaboration disabled",
+      "near_miss nm_mu_nonzero unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

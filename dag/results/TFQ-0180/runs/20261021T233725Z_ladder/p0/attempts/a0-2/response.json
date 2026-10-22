@@ -1,0 +1,78 @@
+{
+  "generators": [
+    {
+      "inputs": [
+        "prob_mixed",
+        "basis_index",
+        "state_index"
+      ],
+      "output": "reconstructed_overlap_scaled",
+      "arity": 3,
+      "name": "mixed_state_inversion_all_bases",
+      "path": "lean4/H050MubTomographyInversion.lean",
+      "decl": "FableHilbertWalk20260819.H050.mixed_state_inversion_all_bases",
+      "status": "existing"
+    },
+    {
+      "inputs": [],
+      "output": "mub5_d4_partition",
+      "arity": 0,
+      "name": "five_mub_isotropic_lines_partition",
+      "path": "lean4/H051Mub4GaloisFieldContextuality.lean",
+      "decl": "FableHilbertWalk20260819.H051.five_mub_isotropic_lines_partition",
+      "status": "existing"
+    },
+    {
+      "inputs": [
+        "d1",
+        "d2"
+      ],
+      "output": "Nat",
+      "arity": 2,
+      "name": "product_mub_count_d6",
+      "path": "lean4/H062CompositionTensorMub.lean",
+      "decl": "FableHilbertWalk20260819.H062.product_mub_count_d6",
+      "status": "existing"
+    }
+  ],
+  "relations": [],
+  "compositions": [
+    {
+      "outer": "mixed_state_inversion_all_bases",
+      "slot": 0,
+      "inner": "product_mub_count_d6",
+      "relation": "product_mub_count_is_three",
+      "status": "proposed_new"
+    }
+  ],
+  "lemmas": [
+    {
+      "relation_to_target": "restates",
+      "lean_skeleton": "theorem reconstruct_d3_inversion : reconstructed_overlap_scaled prob_mixed 0 0 = 1 ∧ reconstructed_overlap_scaled prob_mixed 1 0 = 1",
+      "name": "reconstruct_d3_inversion",
+      "status": "existing"
+    },
+    {
+      "relation_to_target": "auxiliary",
+      "lean_skeleton": "theorem d4_purity_deficit_obstruction : valuation_purity_d4 - max_physical_purity = 3",
+      "claims_proved": true,
+      "name": "d4_purity_deficit_obstruction",
+      "status": "existing"
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [
+    {
+      "expr": "valuation_purity_d4 - max_physical_purity",
+      "value": "3"
+    },
+    {
+      "expr": "product_mub_count_d6",
+      "value": "3"
+    }
+  ],
+  "open_obligations": [
+    "Exhaustive d=6 MUB existence theorem not established in H062",
+    "Product-MUB count of 3 for d=6 does not imply existence of 4 MUBs"
+  ]
+}

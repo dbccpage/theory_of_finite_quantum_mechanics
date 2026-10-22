@@ -1,0 +1,94 @@
+{
+  "task_id": "MUB6-CONCRETE-MOMENT-FLATNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "6a2f63fb274d0f34fc4096cbdce2531ce7d6c954088c23a5982ce5a473448cd6",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"degreeOneWords\",\"inputs\":[\"Option(B x iota)\"],\"output\":\"List(B x iota)\",\"arity\":1,\"carrier\":\"word lists over B x iota\",\"ref\":{\"path\":\"lean4/ConcreteMubMoments.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.degreeOneWords\",\"status\":\"existing\"}},{\"id\":\"degreeTwoWords\",\"inputs\":[\"Option((B x iota) + ((B x iota) x (B x iota)))\"],\"output\":\"List(B x iota)\",\"arity\":1,\"carrier\":\"word lists over B x iota\",\"ref\":{\"path\":\"lean4/ConcreteMubMoments.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.degreeTwoWords\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"moment_eq_gram\",\"statement\":\"complexMomentMatrix family psi words equals a Gram matrix\",\"hypotheses\":\"family : FiniteComplexMubFamily, psi, words : J -> List (B x iota), J Fintype\",\"ref\":{\"path\":\"lean4/ConcreteMubMoments.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.complexMomentMatrix_eq_gram\",\"status\":\"existing\"}},{\"id\":\"moment_posSemidef\",\"statement\":\"complexMomentMatrix family psi words is positive semidefinite\",\"hypotheses\":\"J Fintype and DecidableEq\",\"ref\":{\"path\":\"lean4/ConcreteMubMoments.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.complexMomentMatrix_posSemidef\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"target_flatness\",\"statement\":\"For a supplied family, b0, b1, l0 with b1 != b0, the degree one and degree two complex word-moment matrices of the state are Gram, PSD and have equal rank\",\"relation_to_target\":\"restates\",\"depends_on\":[\"moment_eq_gram\",\"moment_posSemidef\"],\"lean_skeleton\":\"example := @MUB.FiniteComplexMubFamily.concrete_mub_moment_flatness\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/ConcreteMubMoments.lean\",\"decl\":\"MUB.FiniteComplexMubFamily.concrete_mub_moment_flatness\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"reverse_extraction\",\"claim\":\"Any PSD flat moment data of degrees one and two arises from a MUB family\",\"rejecting_invariant\":\"Bottleneck excludes reverse extraction; the theorem is forward only, from a supplied family\"}],\"numeric_claims\":[],\"open_obligations\":[\"Exact statement of concrete_mub_moment_flatness is truncated in the source listing; the state argument and rank equality form are unverified\",\"Whether degreeOneWords and degreeTwoWords are legitimate generators, versus index maps, is unconfirmed\",\"No composition is licensed by a listed relation\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "degreeOneWords",
+        "inputs": [
+          "Option(B x iota)"
+        ],
+        "output": "List(B x iota)",
+        "arity": 1,
+        "carrier": "word lists over B x iota",
+        "ref": {
+          "path": "lean4/ConcreteMubMoments.lean",
+          "decl": "MUB.FiniteComplexMubFamily.degreeOneWords",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "degreeTwoWords",
+        "inputs": [
+          "Option((B x iota) + ((B x iota) x (B x iota)))"
+        ],
+        "output": "List(B x iota)",
+        "arity": 1,
+        "carrier": "word lists over B x iota",
+        "ref": {
+          "path": "lean4/ConcreteMubMoments.lean",
+          "decl": "MUB.FiniteComplexMubFamily.degreeTwoWords",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "moment_eq_gram",
+        "statement": "complexMomentMatrix family psi words equals a Gram matrix",
+        "hypotheses": "family : FiniteComplexMubFamily, psi, words : J -> List (B x iota), J Fintype",
+        "ref": {
+          "path": "lean4/ConcreteMubMoments.lean",
+          "decl": "MUB.FiniteComplexMubFamily.complexMomentMatrix_eq_gram",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "moment_posSemidef",
+        "statement": "complexMomentMatrix family psi words is positive semidefinite",
+        "hypotheses": "J Fintype and DecidableEq",
+        "ref": {
+          "path": "lean4/ConcreteMubMoments.lean",
+          "decl": "MUB.FiniteComplexMubFamily.complexMomentMatrix_posSemidef",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "target_flatness",
+        "statement": "For a supplied family, b0, b1, l0 with b1 != b0, the degree one and degree two complex word-moment matrices of the state are Gram, PSD and have equal rank",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "moment_eq_gram",
+          "moment_posSemidef"
+        ],
+        "lean_skeleton": "example := @MUB.FiniteComplexMubFamily.concrete_mub_moment_flatness",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/ConcreteMubMoments.lean",
+          "decl": "MUB.FiniteComplexMubFamily.concrete_mub_moment_flatness",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "reverse_extraction",
+        "claim": "Any PSD flat moment data of degrees one and two arises from a MUB family",
+        "rejecting_invariant": "Bottleneck excludes reverse extraction; the theorem is forward only, from a supplied family"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Exact statement of concrete_mub_moment_flatness is truncated in the source listing; the state argument and rank equality form are unverified",
+      "Whether degreeOneWords and degreeTwoWords are legitimate generators, versus index maps, is unconfirmed",
+      "No composition is licensed by a listed relation"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "task_id": "MUB6-SZOLLOSI-GAUGED-666",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "51950a27e5d6ed2931c47d10f3c9a737e4342494a8f55936be96bdac49ff087a",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"For admissible parameters p, quartet existence is equivalent to a bounded solution of the augmented system (original, gauge and balance equations) with those parameters.\",\"hypotheses\":\"p satisfies parameterPolynomial vanishing\",\"ref\":{\"path\":\"lean4/SzollosiGaugedExecutable.lean\",\"decl\":\"MUB.SzollosiGaugedExecutable.augmented_exists_with_parameters_iff\",\"status\":\"existing\"}},{\"id\":\"R2\",\"statement\":\"Every solution of the augmented system lies in at least one of the six charts.\",\"hypotheses\":\"AllExpressionsZero r\",\"ref\":{\"path\":\"lean4/SzollosiGaugedCover.lean\",\"decl\":\"MUB.SzollosiGaugedCover.augmented_solution_chart_cover\",\"status\":\"existing\"}},{\"id\":\"R3\",\"statement\":\"Quartet existence is equivalent to a solution in a native chart.\",\"hypotheses\":\"admissible parameters\",\"ref\":{\"path\":\"lean4/SzollosiGaugedReflection.lean\",\"decl\":\"MUB.SzollosiGaugedReflection.native_chart_quartet_iff\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"At admissible parameters, quartet existence iff a solution of the 666-equation system in 440 coordinates exists.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R1\"],\"lean_skeleton\":\"theorem l1 : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"L2\",\"statement\":\"Quartet existence iff a solution lies in one of the six overlapping native charts.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"R2\",\"R3\"],\"lean_skeleton\":\"theorem l2 : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"Excluding a chart because the native run returned UNRESOLVED_BOX.\",\"rejecting_invariant\":\"UNRESOLVED_BOX is not an infeasibility certificate; no chart is excluded.\"}],\"numeric_claims\":[{\"id\":\"N1\",\"expr\":\"618 + 24 + 24\",\"value\":\"666\"}],\"open_obligations\":[\"Exact signatures of the augmented_exists_with_parameters_iff and native_chart_quartet_iff theorems were not listed, so the matches to R1 and R3 are unverified.\",\"The 440-coordinate count is not derived here.\",\"The 618 original count is not derived here.\",\"All six charts remain UNRESOLVED_BOX; none is excluded.\",\"No generators were grounded: no typed operation was identified in the sources.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "For admissible parameters p, quartet existence is equivalent to a bounded solution of the augmented system (original, gauge and balance equations) with those parameters.",
+        "hypotheses": "p satisfies parameterPolynomial vanishing",
+        "ref": {
+          "path": "lean4/SzollosiGaugedExecutable.lean",
+          "decl": "MUB.SzollosiGaugedExecutable.augmented_exists_with_parameters_iff",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R2",
+        "statement": "Every solution of the augmented system lies in at least one of the six charts.",
+        "hypotheses": "AllExpressionsZero r",
+        "ref": {
+          "path": "lean4/SzollosiGaugedCover.lean",
+          "decl": "MUB.SzollosiGaugedCover.augmented_solution_chart_cover",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R3",
+        "statement": "Quartet existence is equivalent to a solution in a native chart.",
+        "hypotheses": "admissible parameters",
+        "ref": {
+          "path": "lean4/SzollosiGaugedReflection.lean",
+          "decl": "MUB.SzollosiGaugedReflection.native_chart_quartet_iff",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "At admissible parameters, quartet existence iff a solution of the 666-equation system in 440 coordinates exists.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R1"
+        ],
+        "lean_skeleton": "theorem l1 : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "L2",
+        "statement": "Quartet existence iff a solution lies in one of the six overlapping native charts.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "R2",
+          "R3"
+        ],
+        "lean_skeleton": "theorem l2 : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "Excluding a chart because the native run returned UNRESOLVED_BOX.",
+        "rejecting_invariant": "UNRESOLVED_BOX is not an infeasibility certificate; no chart is excluded."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "N1",
+        "expr": "618 + 24 + 24",
+        "value": "666"
+      }
+    ],
+    "open_obligations": [
+      "Exact signatures of the augmented_exists_with_parameters_iff and native_chart_quartet_iff theorems were not listed, so the matches to R1 and R3 are unverified.",
+      "The 440-coordinate count is not derived here.",
+      "The 618 original count is not derived here.",
+      "All six charts remain UNRESOLVED_BOX; none is excluded.",
+      "No generators were grounded: no typed operation was identified in the sources."
+    ]
+  }
+}

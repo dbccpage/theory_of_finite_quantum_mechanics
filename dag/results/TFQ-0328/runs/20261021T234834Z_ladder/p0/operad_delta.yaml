@@ -1,0 +1,62 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: authority_effect_none
+  equation_or_predicate: AuthorityEffect is None for evaluate and supply_validity_bit
+  typing_conditions: shelf header declares AuthorityEffect None
+  source_pins:
+  - path: code/python/governance/40_packets/omega_types_authority_effect_label_contract.py
+    declaration: validate_contract
+    line: 35
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/governance/40_packets/omega_types_authority_effect_label_contract.py
+    decl: validate_contract
+    kind: def
+    line: 35
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-0B4B55E514A9
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: supply_validity_bit . slot 0 <- evaluate via eval_separate_from_propose
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0328
+- id: NEG-B7E13DFC76C3
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'eval_not_authorization: Evaluation output carries no authorization; a validity bit alone does
+    not yield a terminal'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0328
+counterexamples: []
+open_obligations:
+- No source declaration grounds propose, evaluate, or validity bit; all generators are proposed_new
+- Terminal generator and replay packet generator not specified
+- Lean skeletons not elaborated or proved
+- Existing citations are contract validators only; their contents were not inspected
+- 'generator propose unverified: no existing declaration cited'
+- 'generator evaluate unverified: no existing declaration cited'
+- 'generator supply_validity_bit unverified: no existing declaration cited'
+- 'relation eval_separate_from_propose unverified: no existing declaration cited'
+- 'relation validity_bit_not_terminal unverified: no existing declaration cited'
+- 'near_miss bit_is_terminal unverified: semantic near miss; P4 host check decides'
+- 'near_miss eval_is_authorization unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

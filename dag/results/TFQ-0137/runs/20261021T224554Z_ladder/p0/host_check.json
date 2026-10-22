@@ -1,0 +1,74 @@
+{
+  "task_id": "TFQ-0137",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "a39787a0c4f9a85a94a02caea42608b298261ebc1879b2c9b81469469ec438a8",
+  "candidate_sha256": "946c02d63b0489739d8d63d4089a31e40d377698f719c8cb35d33778f16fb3ad",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:45:58Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r:offdiag_im_sub_im",
+        "equation_or_predicate": "For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j i).im - (H i j).im = 0",
+        "typing_conditions": "H is SectorAdditive ∧ i ≠ j",
+        "source_pins": [
+          {
+            "path": "lean4/SectorFormHermitian.lean",
+            "declaration": "InnerProductFable.HermitianSectorForm.offdiag_im_sub_im",
+            "line": 82
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SectorFormHermitian.lean",
+          "decl": "InnerProductFable.HermitianSectorForm.offdiag_im_sub_im",
+          "kind": "theorem",
+          "line": 82,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Provide a concrete proof of the adjoint identity U† ∘ U = I for the finite face.",
+      "Derive the exact finite‑step Schrödinger transport formula and connect it to the Rayleigh‑Schrödinger series.",
+      "generator gen_U_adj_id unverified: no existing declaration cited",
+      "generator gen_finite_step_schrodinger unverified: no existing declaration cited",
+      "lemma lem_adj_id_implies_U_adj_U_eq_I unverified: Lean elaboration disabled",
+      "lemma lem_finite_step_correctness unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

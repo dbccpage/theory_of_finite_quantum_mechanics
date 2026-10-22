@@ -1,0 +1,157 @@
+{
+  "task_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "7980aefbdc65d1e69cad72496b9b329125580a5c7abd207728753ca14a7a950e",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "R1",
+          "equation_or_predicate": "For the finite N3 fixture, the dual unit y satisfies d0^T y = 0 and the infinity-dual feasibility bounds.",
+          "typing_conditions": "Fixture Q3 data in FiniteN3ResidualDual; not the general E08 statement.",
+          "source_pins": [
+            {
+              "path": "lean4/FiniteN3ResidualDual.lean",
+              "declaration": "PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible",
+              "line": 78
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "decl": "PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible",
+            "kind": "theorem",
+            "line": 78,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "General finite LP strong duality over Q is only assumed; no general Lean proof is cited.",
+        "No existing generator is grounded, so generators and compositions are empty.",
+        "Weak duality lemma L1 is an unproved proposal.",
+        "Categorical adjunction is not constructed: objects, functors, naturality, triangle identities are missing.",
+        "Fixture values come from FiniteN3 only; the general E08 statement is not covered.",
+        "lemma L1 unverified: Lean elaboration disabled",
+        "near_miss N1 unverified: semantic near miss; P4 host check decides",
+        "near_miss N2 unverified: semantic near miss; P4 host check decides",
+        "near_miss N3 unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R1",
+        "equation_or_predicate": "For the finite N3 fixture, the dual unit y satisfies d0^T y = 0 and the infinity-dual feasibility bounds.",
+        "typing_conditions": "Fixture Q3 data in FiniteN3ResidualDual; not the general E08 statement.",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteN3ResidualDual.lean",
+            "declaration": "PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible",
+            "line": 78
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteN3ResidualDual.lean",
+          "decl": "PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible",
+          "kind": "theorem",
+          "line": 78,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7C3EE90CE492",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L2: The fixture primal value is 3 and the dual unit certifies it, giving optimality in the fixture.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-612B0F3B3952",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R2: Fixture duality gap equals zero: primal value 3 matches the dual value 3. [PontryaginResidualDualProgramme.FiniteN3.fixture_duality_gap_eq_zero]",
+        "evidence": "numerals 3 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "PontryaginResidualDualProgramme.FiniteN3.fixture_duality_gap_eq_zero",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY"
+      }
+    ],
+    "open_obligations": [
+      "General finite LP strong duality over Q is only assumed; no general Lean proof is cited.",
+      "No existing generator is grounded, so generators and compositions are empty.",
+      "Weak duality lemma L1 is an unproved proposal.",
+      "Categorical adjunction is not constructed: objects, functors, naturality, triangle identities are missing.",
+      "Fixture values come from FiniteN3 only; the general E08 statement is not covered.",
+      "lemma L1 unverified: Lean elaboration disabled",
+      "near_miss N1 unverified: semantic near miss; P4 host check decides",
+      "near_miss N2 unverified: semantic near miss; P4 host check decides",
+      "near_miss N3 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

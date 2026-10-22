@@ -1,0 +1,126 @@
+add_or_refine_generators:
+- id: Q1_quotient
+  ordered_inputs:
+  - C1
+  output: Q1
+  arity: 1
+  carrier: Q1 d0 = C1 / im d0 (Submodule quotient)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/WdpDegree1Window.lean
+    declaration: WdpDegree1Window.Q1
+    line: 41
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/WdpDegree1Window.lean
+    decl: WdpDegree1Window.Q1
+    kind: abbrev
+    line: 41
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: kappa_descend
+  ordered_inputs:
+  - C0_to_C1
+  - C1_to_C2
+  - Cert
+  output: Q1_to_C2
+  arity: 3
+  carrier: linear map Q1 d0 →ₗ C2 induced by d1 given d1∘d0=0
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/WdpDegree1Window.lean
+    declaration: WdpDegree1Window.kappa
+    line: 57
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/WdpDegree1Window.lean
+    decl: WdpDegree1Window.kappa
+    kind: def
+    line: 57
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: R_descends_iff
+  equation_or_predicate: A linear kappa on Q1 with kappa(mk h)=d1 h exists iff d1 ∘ d0 = 0
+  typing_conditions: 'd0: C0 →ₗ C1, d1: C1 →ₗ C2 over field K'
+  source_pins:
+  - path: lean4/WdpDegree1Window.lean
+    declaration: WdpDegree1Window.kappa_descends_iff
+    line: 44
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/WdpDegree1Window.lean
+    decl: WdpDegree1Window.kappa_descends_iff
+    kind: theorem
+    line: 44
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R_ker_kappa
+  equation_or_predicate: With d1∘d0=0, ker kappa equals the image under the quotient map of ker d1
+  typing_conditions: d1 ∘ₗ d0 = 0
+  source_pins:
+  - path: lean4/WdpDegree1Window.lean
+    declaration: WdpDegree1Window.ker_kappa_eq_map
+    line: 75
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/WdpDegree1Window.lean
+    decl: WdpDegree1Window.ker_kappa_eq_map
+    kind: theorem
+    line: 75
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-849F8CEF21E8
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_descent_norm: For a norm J2 on C2, Gamma(delta)=J2(d1 delta) is well defined on Q1 iff d1
+    d0 = 0; for a seminorm iff im(d1 d0) is contained in ker J2'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-WDP-CLOSURE-NEEDS-DEGREE
+- id: NEG-FAA153BCF106
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_linear_descent: Linear descent of d1 to Q1 is equivalent to d1∘d0=0'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-WDP-CLOSURE-NEEDS-DEGREE
+counterexamples: []
+open_obligations:
+- Lean statement for Gamma = J2∘d1 descending, including the seminorm case, is not in SRC
+- No existing declaration for the CERTIFICATE_MISMATCH refusal in degree_one_window was identified
+- Composition licensing and the generator for exact matrix multiplication of d1 d0 are ungrounded
+- Simplicial nerve automatic certificate not grounded
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

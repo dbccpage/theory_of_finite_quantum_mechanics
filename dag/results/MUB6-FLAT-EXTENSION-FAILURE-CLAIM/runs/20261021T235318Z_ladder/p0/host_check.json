@@ -1,0 +1,177 @@
+{
+  "task_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c2a41f8ecdb59be456d343681ab34e633b6722eafb816a1f022017be0b5571db",
+  "candidate_sha256": "fe4000bdc58dd1109d39b4ba9a72bfa18c0f6e3835bb4a0b6a5438e7e2cc41c7",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 3,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "vacuous_proof": 2,
+      "wrong_signature": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:30Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_verify_flat_moment_extraction",
+        "ordered_inputs": [],
+        "output": "FlatMomentExtractionReceipt",
+        "arity": 0,
+        "carrier": "receipt",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs",
+            "declaration": "verify_flat_moment_extraction",
+            "line": 13
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/mub/src/omega_native/mub6_flat_moment_extractor.rs",
+          "decl": "verify_flat_moment_extraction",
+          "kind": "fn",
+          "line": 13,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_fourth_basis_iff_flat",
+        "equation_or_predicate": "A fourth basis for the fixed triple exists iff a normalized positive moment functional with rank M2 = rank M1 exists (MUB6-C36).",
+        "typing_conditions": "Triple T, linear functional Lambda with Lambda 1 = 1, positivity.",
+        "source_pins": [
+          {
+            "path": "lean4/ConcreteMubFlatExtension.lean",
+            "declaration": "MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments",
+            "line": 127
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/ConcreteMubFlatExtension.lean",
+          "decl": "MUB.ConcreteMubPolynomialSystem.fourth_basis_iff_positive_flat_moments",
+          "kind": "theorem",
+          "line": 127,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_psi_pos_iff_no_fourth",
+        "equation_or_predicate": "Psi_basis phi > 0 iff there is no unitary realizing the fourth basis overlaps.",
+        "typing_conditions": "e : Fin N -> C^d",
+        "source_pins": [
+          {
+            "path": "lean4/BasisExtensionObstruction.lean",
+            "declaration": "MUB.BasisExtensionObstruction.Psi_basis_pos_iff_no_fourth_basis",
+            "line": 135
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/BasisExtensionObstruction.lean",
+          "decl": "MUB.BasisExtensionObstruction.Psi_basis_pos_iff_no_fourth_basis",
+          "kind": "theorem",
+          "line": 135,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-4178991627D0",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_target_equiv: The target claim (rank M2 = rank M1 fails for all admissible moment vectors) is equivalent to nonexistence of a fourth basis for the fixed triple.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM"
+      },
+      {
+        "id": "NEG-8D2B7ED8C871",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_positive_flat_gives_basis: A positive flat moment functional yields a fourth basis, so the contrapositive gives the failure direction of the claim.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-A03AEBDD4B6F",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_evaluate_flat_extension_rank: (RationalMomentMatrix_M1, RationalMomentMatrix_M2) -> FlatExtensionRankReport [evaluate_flat_extension_rank]",
+        "evidence": "rust fn evaluate_flat_extension_rank takes 3 parameters; the claim says 2",
+        "decl_key": "evaluate_flat_extension_rank",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM"
+      }
+    ],
+    "open_obligations": [
+      "Whether a fourth basis exists for the fixed triple is open; the target is equivalent to its nonexistence.",
+      "No existing declaration proves universal rank failure.",
+      "The test fn test_flat_extension_evaluation is a checker and is not used as a generator.",
+      "Compositions were not grounded: no relation licenses a plug between listed generators.",
+      "near_miss nm_numeric_rank_failure unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

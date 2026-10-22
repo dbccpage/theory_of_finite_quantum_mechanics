@@ -1,0 +1,119 @@
+add_or_refine_generators:
+- id: g_effectRepresentation
+  ordered_inputs:
+  - DualFunctional
+  output: HermMatrix
+  arity: 1
+  carrier: Herm (Fin n × Fin m) via TomographicData D
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/TensorMeasurements.lean
+    declaration: TensorMeasurements.effectRepresentation
+    line: 13
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/TensorMeasurements.lean
+    decl: TensorMeasurements.effectRepresentation
+    kind: def
+    line: 13
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_unit
+  equation_or_predicate: effectRepresentation D (unitEffect D) = 1
+  typing_conditions: TomographicData D
+  source_pins:
+  - path: lean4/TensorMeasurements.lean
+    declaration: TensorMeasurements.effectRepresentation_unit
+    line: 28
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorMeasurements.lean
+    decl: TensorMeasurements.effectRepresentation_unit
+    kind: theorem
+    line: 28
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_interval
+  equation_or_predicate: Binary E iff 0 ≤ E.val ∧ E.val ≤ 1
+  typing_conditions: E Hermitian
+  source_pins:
+  - path: lean4/TensorEffectOrder.lean
+    declaration: TensorEffectOrder.binary_iff_interval
+    line: 67
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorEffectOrder.lean
+    decl: TensorEffectOrder.binary_iff_interval
+    kind: theorem
+    line: 67
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_normalized
+  equation_or_predicate: Binary E iff 0 ≤ pairing E A ≤ 1 for all PSD A with trace 1
+  typing_conditions: E Hermitian
+  source_pins:
+  - path: lean4/TensorEffectOrder.lean
+    declaration: TensorEffectOrder.binary_iff_normalized
+    line: 74
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/TensorEffectOrder.lean
+    decl: TensorEffectOrder.binary_iff_normalized
+    kind: theorem
+    line: 74
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-2AFE8B603AA2
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: g_effectRepresentation . slot 0 <- g_unitEffect via r_unit
+  evidence: the inner generator is not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TENSOR-BINARY-EFFECT-INTERVAL
+counterexamples:
+- id: NEG-463CA55D6442
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_unitEffect: () -> DualFunctional [TensorMeasurements.unitEffect]'
+  evidence: lean def unitEffect has 1 explicit binders (1 with conclusion arrows); the claim says 0 (heuristic
+    count)
+  decl_key: TensorMeasurements.unitEffect
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TENSOR-BINARY-EFFECT-INTERVAL
+open_obligations:
+- Signatures of ValidEffect, EffectSaturated, validEffect_iff_binary, available_effects_eq_interval not
+  given; not used as generators.
+- Final theorem composition under EffectSaturated not elaborated.
+- Lean skeleton unchecked against actual imports/namespaces.
+- 'lemma l_bounds_interval unverified: Lean elaboration disabled'
+- 'near_miss nm_no_saturation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

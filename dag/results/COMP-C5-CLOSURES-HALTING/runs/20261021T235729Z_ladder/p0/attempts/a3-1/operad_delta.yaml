@@ -1,0 +1,105 @@
+add_or_refine_generators:
+- id: g_cfgWord
+  ordered_inputs:
+  - ListGamma
+  - Lambda
+  - Gamma
+  - ListGamma
+  output: WordSym
+  arity: 4
+  carrier: List (Sym Γ Λ)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.cfgWord
+    line: 73
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.cfgWord
+    kind: def
+    line: 73
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r_reaches_fwd
+  equation_or_predicate: If TM0.Reaches M c c' and Rep c w then there exists w' with Rep c' w' and Reach
+    (Rules M) w w'.
+  typing_conditions: M a TM0 machine, c c' configurations, Rep c w
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.reaches_fwd
+    line: 390
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.reaches_fwd
+    kind: theorem
+    line: 390
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_reach_bwd
+  equation_or_predicate: If Rep c w and Reach (Rules M) w w' then there exists c' with Rep c' w' and TM0.Reaches
+    M c c'.
+  typing_conditions: M a TM0 machine, Rep c w
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.reach_bwd
+    line: 400
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.reach_bwd
+    kind: theorem
+    line: 400
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: r_halts_iff
+  equation_or_predicate: Halts M c iff there exist w and w' with Rep c w, Reach (Rules M) w w', and Irreducible
+    (Rules M) w'. Exact form of the existing declaration is unverified, as its signature is truncated
+    in @SRC.
+  typing_conditions: M a TM0 machine, c a configuration
+  source_pins:
+  - path: lean4/GenesisCompTM.lean
+    declaration: GenesisComputation.TMEncoding.halts_iff
+    line: 418
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/GenesisCompTM.lean
+    decl: GenesisComputation.TMEncoding.halts_iff
+    kind: theorem
+    line: 418
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- The full signature of halts_iff is truncated in @SRC, so the exact statement and its hypotheses must
+  be checked by the host.
+- The Lean skeleton for l_halts_iff_target is unelaborated and uses sorry.
+- The Halts definition body and the Irreducible definition body are not shown, so the exact unfolding
+  is unverified.
+- No compositions are listed, since there are no generator chains with a licensed colour match.
+- 'lemma l_halts_iff_target unverified: Lean elaboration disabled'
+- 'near_miss nm_universal_word unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,334 @@
+{
+  "task_id": "TFQ-0175",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "211fbf16c3c43ffdf29fd09faad029a4f5db21e90c1db6e5bb5c40059a611427",
+  "candidate_sha256": "de3674f6b4f212b114c184fa147cf0ab51a521bb030f0dbd6dedf761c39ee8b4",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:32:15Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "triangle_coboundary_holonomy_zero",
+        "equation_or_predicate": "path_holonomy of coboundary of a 0-cochain around a triangle cycle equals 0 (integer cochain identity, not an ExactMatrix loop product)",
+        "typing_conditions": "phi : Cochain0, a b c : Vertex",
+        "source_pins": [
+          {
+            "path": "lean4/CoboundaryHolonomy.lean",
+            "declaration": "InterferenceNonL1Resource.coboundary_triangle_holonomy_zero",
+            "line": 30
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CoboundaryHolonomy.lean",
+          "decl": "InterferenceNonL1Resource.coboundary_triangle_holonomy_zero",
+          "kind": "theorem",
+          "line": 30,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9767904219C1",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'vertex_path_holonomy', 'inputs': ['Cochain1', 'List Vertex'], 'output': 'Int', 'arity': 2, 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'Interfere",
+        "evidence": "generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-6DC6CE33DAFB",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'path_holonomy', 'inputs': ['Cochain1', 'List (Vertex × Vertex)'], 'output': 'Int', 'arity': 2, 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'Inter",
+        "evidence": "generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-B0738E3CBF30",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'plaquette_single_edge_flux', 'inputs': [], 'output': 'Int', 'arity': 0, 'path': 'code/rust/src/majorana/holonomy.rs', 'decl': 'plaquette_single_edge_f",
+        "evidence": "generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-80FDE1EB737E",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'coboundary_triangle_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'InterferenceNonL",
+        "evidence": "relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-9ED8BDD8BFC7",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'coboundary_square_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'InterferenceNonL1R",
+        "evidence": "relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-A82DB6BDCDC2",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'coboundary_vertex_path_telescoping', 'target': 'vertex_path_holonomy', 'type': 'implies', 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'Interfer",
+        "evidence": "relations[2]: missing id; relations[2]: missing statement; relations[2]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-447771DC27C0",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "{'expr': '0', 'value': '0', 'cited_from': 'lean4/CoboundaryHolonomy.lean | InterferenceNonL1Resource.coboundary_triangle_holonomy_zero'}",
+        "evidence": "numeric_claims[0]: missing id; numeric_claims[0]: unexpected cited_from",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-3CD17DE4A071",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "{'expr': '0', 'value': '0', 'cited_from': 'lean4/CoboundaryHolonomy.lean | InterferenceNonL1Resource.coboundary_square_holonomy_zero'}",
+        "evidence": "numeric_claims[1]: missing id; numeric_claims[1]: unexpected cited_from",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-5696412EAAE8",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'source': 'coboundary_vertex_path_telescoping', 'target': 'vertex_path_holonomy', 'type': 'auxiliary', 'path': 'lean4/CoboundaryHolonomy.lean', 'decl': 'Interf",
+        "evidence": "lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing relation_to_target",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-E030C9427552",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "plaquette_single_edge_flux is a Rust fn citing ExactMatrix loop flux; not composable with integer coboundary cochains",
+        "evidence": "near_misses[0]: expected object",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-E8ACD12779D7",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'path_holonomy', 'inputs': ['Cochain1', 'PairList'], 'output': 'Int', 'arity': 2, 'path': 'lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.path",
+        "evidence": "generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-20A1E2BBA02A",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'vertex_path_holonomy', 'inputs': ['Cochain1', 'List Vertex'], 'output': 'Int', 'arity': 2, 'path': 'lean4/CoboundaryHolonomy.lean|InterferenceNonL1Res",
+        "evidence": "generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-C7E85C502613",
+        "class": "schema_violation",
+        "claim_kind": "generators",
+        "claim": "{'name': 'coboundary', 'inputs': ['Cochain0'], 'output': 'Cochain1', 'arity': 1, 'path': 'lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.coboundary'}",
+        "evidence": "generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-53365B845662",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'coboundary_triangle_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.c",
+        "evidence": "relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-37AD66A3AE2D",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "{'source': 'coboundary_square_holonomy_zero', 'target': 'path_holonomy', 'type': 'implies', 'path': 'lean4/CoboundaryHolonomy.lean|InterferenceNonL1Resource.cob",
+        "evidence": "relations[1]: missing id; relations[1]: missing statement; relations[1]: missing hypotheses",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-26502165EE37",
+        "class": "schema_violation",
+        "claim_kind": "compositions",
+        "claim": "{'name': 'coboundary_vertex_path_telescoping_comp', 'outer': 'vertex_path_holonomy', 'inner': 'coboundary', 'slot': 0, 'licence': 'r:coboundary_triangle_zero pa",
+        "evidence": "compositions[0]: missing licensing_relation; compositions[0]: unexpected name; compositions[0]: unexpected licence",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-50BA120AA80E",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "{'source': 'd1_add_coboundary', 'target': 'd1', 'type': 'auxiliary', 'path': 'lean4/FiniteCochain.lean|FiniteCochain.d1_add_coboundary', 'claims_proved': False,",
+        "evidence": "lemmas[1]: missing id; lemmas[1]: missing statement; lemmas[1]: missing relation_to_target",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0175"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-479C9F5FD843",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "coboundary: (Cochain0) -> Cochain1 [InterferenceNonL1Resource.coboundary_triangle_holonomy_zero]",
+        "evidence": "lean theorem coboundary_triangle_holonomy_zero has 4 explicit binders (4 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "InterferenceNonL1Resource.coboundary_triangle_holonomy_zero",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "TFQ-0175"
+      }
+    ],
+    "open_obligations": [
+      "No Lean declaration in the supplied sources links integer coboundary holonomy to omega_holonomy ExactMatrix loop products; this separation remains a stated obligation, not a proof.",
+      "Plaquette curvature and Wilson trace evaluation are not grounded by the cited integer cochain declarations.",
+      "code/rust/src/majorana/holonomy.rs plaquette_single_edge_flux was listed but not used since its semantics were not verified.",
+      "lemma L1_integer_coboundary_not_matrix_holonomy unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n1",
+        "expr": "0",
+        "value": "0",
+        "host_evidence": {
+          "recomputed": "0"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

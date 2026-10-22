@@ -1,0 +1,263 @@
+{
+  "task_id": "MUB6-CONJECTURE2-PREMISE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "61bf851c9ce03b7abd8f0900317f224ecfd31295e90b6f23713db7ca71309ec0",
+  "candidate_sha256": "991f728d4ba8800b620d71d4fa1684275164d387a91efaee117118f4a56033ce",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 8,
+    "failed_total": 1,
+    "failure_rate": 0.1111,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:45Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_maskSign",
+        "ordered_inputs": [
+          "Fin64",
+          "Fin6"
+        ],
+        "output": "Int",
+        "arity": 2,
+        "carrier": "sign of mask m at row r",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiLaurentPairing.lean",
+            "declaration": "MUB.SzollosiLaurentPairing.maskSign",
+            "line": 10
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiLaurentPairing.lean",
+          "decl": "MUB.SzollosiLaurentPairing.maskSign",
+          "kind": "def",
+          "line": 10,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_positiveCount",
+        "ordered_inputs": [
+          "Fin64"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "number of positive signs in mask",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiLaurentPairing.lean",
+            "declaration": "MUB.SzollosiLaurentPairing.positiveCount",
+            "line": 13
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiLaurentPairing.lean",
+          "decl": "MUB.SzollosiLaurentPairing.positiveCount",
+          "kind": "def",
+          "line": 13,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_entryExponent",
+        "ordered_inputs": [
+          "Fin6",
+          "Fin6",
+          "Fin6"
+        ],
+        "output": "Int",
+        "arity": 3,
+        "carrier": "Laurent exponent of entry (r,c,k)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiLaurentPairing.lean",
+            "declaration": "MUB.SzollosiLaurentPairing.entryExponent",
+            "line": 16
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiLaurentPairing.lean",
+          "decl": "MUB.SzollosiLaurentPairing.entryExponent",
+          "kind": "def",
+          "line": 16,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_mask_count",
+        "equation_or_predicate": "Exactly 20 of the 64 sign masks have positiveCount = 3",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/SzollosiLaurentPairing.lean",
+            "declaration": "MUB.SzollosiLaurentPairing.balanced_mask_count",
+            "line": 96
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SzollosiLaurentPairing.lean",
+          "decl": "MUB.SzollosiLaurentPairing.balanced_mask_count",
+          "kind": "theorem",
+          "line": 96,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_quartet_table",
+        "equation_or_predicate": "A Szollosi quartet exists iff there is a table solution with a coded box",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/MubBalancedTable.lean",
+            "declaration": "MUB.BalancedTable.exists_quartet_iff_table",
+            "line": 917
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubBalancedTable.lean",
+          "decl": "MUB.BalancedTable.exists_quartet_iff_table",
+          "kind": "theorem",
+          "line": 917,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_tao_balanced",
+        "equation_or_predicate": "For balanced masks (positiveCount = 3), the squared norm of the Laurent expression equals 9",
+        "typing_conditions": "maskPositiveCount mask = 3",
+        "source_pins": [
+          {
+            "path": "lean4/MubTaoLaurent.lean",
+            "declaration": "MUB.TaoLaurent.tao_all_balanced_laurent",
+            "line": 150
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/MubTaoLaurent.lean",
+          "decl": "MUB.TaoLaurent.tao_all_balanced_laurent",
+          "kind": "theorem",
+          "line": 150,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-8C4BE0A43282",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_prop42: Conjecture 2 and Conjecture 3 together imply at most three MUBs in C^6 (Proposition 4.2)",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-CONJECTURE2-PREMISE"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Conjecture 2 is open and unformalized",
+      "Conjecture 3 is open and unformalized",
+      "Proposition 4.2 is not formalized as a Lean theorem with the real hypotheses",
+      "No generator composition can be licensed by an existing relation",
+      "Row-count table compatibility is a field, not a proven fact",
+      "lemma l_balanced_count unverified: Lean elaboration disabled",
+      "lemma l_quartet_table unverified: Lean elaboration disabled",
+      "near_miss nm_tao_not_conj2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_balanced",
+        "expr": "20",
+        "value": "20",
+        "host_evidence": {
+          "recomputed": "20"
+        }
+      },
+      {
+        "id": "n_masks",
+        "expr": "2*2*2*2*2*2",
+        "value": "64",
+        "host_evidence": {
+          "recomputed": "64"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "6 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "task_id": "TFQ-0329",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "49607a5e7fd3543a5aef657e5067cb7db9fc31c856b3bff339a38433a9531298",
+  "candidate_sha256": "e24360447ca947cfb42cd2a589457efefdcfc8274656e3dca651f8391cd1d04d",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 1,
+    "failure_rate": 0.1667,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:48:45Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_authority_packet",
+        "ordered_inputs": [],
+        "output": "AuthorityPacket",
+        "arity": 0,
+        "carrier": "AuthorityPacket struct in authority_gap.rs",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/authority_gap.rs",
+            "declaration": "AuthorityPacket",
+            "line": 218
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/authority_gap.rs",
+          "decl": "AuthorityPacket",
+          "kind": "struct",
+          "line": 218,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_observer_packet",
+        "ordered_inputs": [],
+        "output": "ObserverPacket",
+        "arity": 0,
+        "carrier": "ObserverPacket struct in authority_gap.rs",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/authority_gap.rs",
+            "declaration": "ObserverPacket",
+            "line": 165
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/authority_gap.rs",
+          "decl": "ObserverPacket",
+          "kind": "struct",
+          "line": 165,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_section_fixation_not_descent",
+        "equation_or_predicate": "Fixing a section is not descent: section_fixation_not_descent separates fixed-point behaviour from descent for the Bool split.",
+        "typing_conditions": "as stated in E018 theorem; the statement is truncated in @SRC",
+        "source_pins": [
+          {
+            "path": "lean4/E018_descent_failure_without_escape.lean",
+            "declaration": "GrokPdNight20260814.E018.section_fixation_not_descent",
+            "line": 147
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/E018_descent_failure_without_escape.lean",
+          "decl": "GrokPdNight20260814.E018.section_fixation_not_descent",
+          "kind": "theorem",
+          "line": 147,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-412B04E7DD40",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_conj_not_authorization: There exist boolean assignments of the seven flags with all true, yet no external-host authorization or 5-field descent packet is derivable from the flags alone; the conjunction is not an authorization theorem.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0329"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Locate DescentAuthority.lean and HaltGuards declarations; not in @SRC so not cited.",
+      "halt_guards.py is not in @SRC; S001-GAP-ATLAS-AND-NOT-FDA remains proposed.",
+      "Truncated statement of section_fixation_not_descent needs checking.",
+      "Lean skeletons are placeholders and must be given real statements.",
+      "No compositions grounded, since no licensing relation was verified.",
+      "generator g_halt_guards_conj unverified: no existing declaration cited",
+      "relation r_conj_not_fda unverified: no existing declaration cited",
+      "near_miss nm_conj_as_fda unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_authorization_needs_host unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_flag_count",
+        "expr": "7",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      },
+      {
+        "id": "n_packet_fields",
+        "expr": "5",
+        "value": "5",
+        "host_evidence": {
+          "recomputed": "5"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

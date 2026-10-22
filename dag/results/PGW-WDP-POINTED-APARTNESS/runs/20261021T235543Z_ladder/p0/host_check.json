@@ -1,0 +1,85 @@
+{
+  "task_id": "PGW-WDP-POINTED-APARTNESS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "5deecfb02da6d2af91659f7230bab5aa98f86e9773ecb25781826c10b40f3125",
+  "candidate_sha256": "418ef81f344fa83d5a3837f8fd7f52e28561d723196fded5d6b532c9beed1a61",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:57Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Python census script not cited; counts only recomputed by formula",
+      "Relation and irreflexivity law not derived from <>",
+      "Census limited to carrier sizes 1 to 3",
+      "No existing generators grounded in SRC; Rust declarations are unrelated carrier controls",
+      "Lean names pointed_relation_independence_fin and PrimDiff.lean not in SRC so not cited",
+      "relation R_irrefl_ne unverified: no existing declaration cited",
+      "relation R_countermodels unverified: no existing declaration cited",
+      "lemma L_irrefl_ne unverified: Lean elaboration disabled",
+      "lemma L_two_points unverified: Lean elaboration disabled",
+      "near_miss NM1 unverified: semantic near miss; P4 host check decides",
+      "near_miss NM2 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_total",
+        "expr": "2*1+16*4+512*9",
+        "value": "4674",
+        "host_evidence": {
+          "recomputed": "4674"
+        }
+      },
+      {
+        "id": "N_related",
+        "expr": "(2*1+16*4+512*9)/2",
+        "value": "2337",
+        "host_evidence": {
+          "recomputed": "2337"
+        }
+      },
+      {
+        "id": "N_irrefl_related",
+        "expr": "0*1+4*1+192",
+        "value": "196",
+        "host_evidence": {
+          "recomputed": "196"
+        }
+      },
+      {
+        "id": "N_neq",
+        "expr": "0+16*2+512*6",
+        "value": "3104",
+        "host_evidence": {
+          "recomputed": "3104"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 4 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

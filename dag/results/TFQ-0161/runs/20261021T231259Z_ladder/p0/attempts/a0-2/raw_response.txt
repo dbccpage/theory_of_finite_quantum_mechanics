@@ -1,0 +1,42 @@
+{
+  "status": {
+    "target": "TFQ-0161",
+    "stage": "P0",
+    "attempt": "a0-2",
+    "in": "d68a3f23",
+    "guided": true
+  },
+  "generators": [],
+  "relation": [],
+  "composition": [],
+  "lemma": [
+    {
+      "name": "weyl_heisenberg_finite_trace_obstruction",
+      "relation_to_target": "auxiliary",
+      "claims_proved": false,
+      "path": "lean4/FiniteQM.lean",
+      "skeleton": "theorem weyl_heisenberg_finite_trace_obstruction (x p : Mat2Rat) : let comm := x * p - p * x; let tr := Matrix.trace comm; tr = 0"
+    },
+    {
+      "name": "lorentz_boost_non_unitary_in_finite_dim",
+      "relation_to_target": "auxiliary",
+      "claims_proved": false,
+      "path": "lean4/FiniteQM.lean",
+      "skeleton": "theorem lorentz_boost_non_unitary_in_finite_dim (beta : Rat) (hb : beta ≠ 0) (hd : 1 - beta ^ 2 ≠ 0) : let lb := Matrix.scalar (1 - beta ^ 2); ¬IsUnitary lb"
+    },
+    {
+      "name": "finite_clock_poincare_recurrence_vs_kraus_decoherence",
+      "relation_to_target": "auxiliary",
+      "claims_proved": false,
+      "path": "lean4/FiniteQM.lean",
+      "skeleton": "theorem finite_clock_poincare_recurrence_vs_kraus_decoherence : let rho_s : Mat2Rat; ∃ K, K * rho_s * Kᴴ = rho_s ∧ ¬IsUnitary K"
+    }
+  ],
+  "numeric_claim": [],
+  "open_obligation": [
+    {
+      "description": "Reconcile three Rat identities in FiniteQM.lean Part VIII with the Rust replay and a Lean 4 declaration; no overlap yet confirmed.",
+      "status": "pending"
+    }
+  ]
+}

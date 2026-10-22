@@ -1,0 +1,104 @@
+{
+  "task_id": "TFQ-0035",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "8eff295eff1c090751138fe171e7bb76af26f895eae686e156956c9a6279603b",
+  "candidate_sha256": "7ec74ad69e45ed68284cbdf3dda20664f651ca7def3c6b3a655a67283c73109b",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:30:49Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "abjFactor",
+        "ordered_inputs": [
+          "nc"
+        ],
+        "output": "Rat",
+        "arity": 1,
+        "carrier": "Rat",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQFTAndGravity.lean",
+            "declaration": "FiniteQFTAndGravity.abjFactor",
+            "line": 260
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.abjFactor",
+          "kind": "abbrev",
+          "line": 260,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "abj_factor_closed",
+        "equation_or_predicate": "abjFactor nc = nc / 3",
+        "typing_conditions": "",
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQFTAndGravity.lean",
+            "declaration": "FiniteQFTAndGravity.abj_factor_closed",
+            "line": 262
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQFTAndGravity.lean",
+          "decl": "FiniteQFTAndGravity.abj_factor_closed",
+          "kind": "theorem",
+          "line": 262,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "tier": 0
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "eV_rate_band_not_included",
+      "numeric abj_rate_ratio_numeric unverified: expression not exactly evaluable",
+      "lemma quote_color_factor unverified: Lean elaboration disabled",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

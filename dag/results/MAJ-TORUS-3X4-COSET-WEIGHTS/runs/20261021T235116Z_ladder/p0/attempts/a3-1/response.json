@@ -1,0 +1,104 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "toric_distance",
+      "inputs": [
+        "Nat",
+        "Nat"
+      ],
+      "output": "Nat",
+      "arity": 2,
+      "carrier": "Nat",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "toric_distance",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_dist_3x4",
+      "statement": "toric_distance 3 4 = 3",
+      "hypotheses": "none",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "toric_distance_3x4",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_additive_weight_3x4",
+      "statement": "3 + 4 = 7 (column Phi1 plus row Phi1 equals sum-class Phi1)",
+      "hypotheses": "none",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "torus_3x4_additive_weight",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_dist_3x4",
+      "statement": "toric_distance 3 4 = 3, i.e. min(3,4)=3 matches the minimum of the column Phi1=3 and row Phi1=4",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "R_dist_3x4"
+      ],
+      "lean_skeleton": "theorem L_dist_3x4 : toric_distance 3 4 = 3 := toric_distance_3x4",
+      "claims_proved": true,
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "toric_distance_3x4",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "L_additive_3x4",
+      "statement": "3 + 4 = 7 for the Phi1 values of column and row classes",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_additive_weight_3x4"
+      ],
+      "lean_skeleton": "theorem L_additive_3x4 : (3 : Nat) + 4 = 7 := torus_3x4_additive_weight",
+      "claims_proved": true,
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "torus_3x4_additive_weight",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_family_distance",
+      "claim": "d = min(rows, cols) and additivity of Phi1 hold for all torus sizes",
+      "rejecting_invariant": "Only the fixed 3x4 instance is checked; the family claim is MAJ-CLAIM-DISTANCE-FAMILY"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N_sum",
+      "expr": "3 + 4",
+      "value": "7"
+    },
+    {
+      "id": "N_min",
+      "expr": "3 - 0",
+      "value": "3"
+    },
+    {
+      "id": "N_channels",
+      "expr": "2*3*4",
+      "value": "24"
+    }
+  ],
+  "open_obligations": [
+    "Exhaustive Gray-code coset search and ClosedResidual status have no cited declaration",
+    "Site, channel and island counts (12,24,12) not grounded in cited declarations",
+    "Family-wide additivity and d=min(rows,cols) left to MAJ-CLAIM-DISTANCE-FAMILY"
+  ]
+}

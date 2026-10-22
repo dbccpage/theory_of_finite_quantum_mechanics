@@ -1,0 +1,53 @@
+{
+  "task": "TFQ-0176",
+  "generators": [
+    {
+      "name": "mub_reconstruction_bookkeeping",
+      "inputs": [],
+      "output": "omega_mub",
+      "arity": 0,
+      "path": "code/rust/src/mub/lib.rs",
+      "decl": "omega_native",
+      "kind": "mod",
+      "status": "existing"
+    },
+    {
+      "name": "omega_mub",
+      "inputs": [],
+      "output": "omega_mub",
+      "arity": 0,
+      "path": "code/rust/src/mub/python.rs",
+      "decl": "omega_mub",
+      "kind": "fn",
+      "status": "existing"
+    }
+  ],
+  "relations": [
+    {
+      "name": "reconstruction_is_bookkeeping",
+      "kind": "relation",
+      "inputs": [
+        "omega_mub"
+      ],
+      "output": "omega_mub",
+      "path": "",
+      "decl": "",
+      "status": "proposed_new",
+      "description": "The reconstruction in omega_mub is bookkeeping and does not constitute a completed MUB derivation"
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    {
+      "description": "Demonstrate a completed MUB existence derivation, including exact finite MUB constructions and projector-algebra verifier from omega_quantum_physics::mub",
+      "status": "open"
+    },
+    {
+      "description": "Establish the exact number of mutually unbiased bases in dimension 6",
+      "status": "open"
+    }
+  ]
+}

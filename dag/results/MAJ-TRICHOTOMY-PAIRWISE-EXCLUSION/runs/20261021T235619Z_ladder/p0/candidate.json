@@ -1,0 +1,421 @@
+{
+  "task_id": "MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "204f3d138b1f485e9a817382a9bcf922baf7df8c41bc16be858ea77ef018ae05",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_f2_add",
+          "inputs": [
+            "Bool",
+            "Bool"
+          ],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_F2Vec_add",
+          "inputs": [
+            "F2Vec n",
+            "F2Vec n"
+          ],
+          "output": "F2Vec n",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_exact_is_cocycle",
+          "equation_or_predicate": "For every F2CochainComplex C and residual w, is_exact C w implies is_cocycle C w (using d1 d0 = 0).",
+          "typing_conditions": "C : F2CochainComplex n0 n1 n2; w : F2Vec n1",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "coboundary_is_cocycle",
+              "line": 65
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "coboundary_is_cocycle",
+            "kind": "theorem",
+            "line": 65,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_pairwise_disjoint",
+          "equation_or_predicate": "No residual satisfies two of is_exact, is_closed_residual, is_open_obstruction.",
+          "typing_conditions": "C : F2CochainComplex n0 n1 n2; w : F2Vec n1",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "trichotomy_pairwise_disjoint",
+              "line": 104
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "trichotomy_pairwise_disjoint",
+            "kind": "theorem",
+            "line": 104,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_exact_not_open",
+          "equation_or_predicate": "is_exact C w implies not is_open_obstruction C w.",
+          "typing_conditions": "C, w as above",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "exact_not_open",
+              "line": 86
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "exact_not_open",
+            "kind": "theorem",
+            "line": 86,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_exact_not_closed",
+          "equation_or_predicate": "is_exact C w implies not is_closed_residual C w.",
+          "typing_conditions": "C, w as above",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "exact_not_closed_residual",
+              "line": 93
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "exact_not_closed_residual",
+            "kind": "theorem",
+            "line": 93,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_closed_not_open",
+          "equation_or_predicate": "is_closed_residual C w implies not is_open_obstruction C w.",
+          "typing_conditions": "C, w as above",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "closed_residual_not_open",
+              "line": 98
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "closed_residual_not_open",
+            "kind": "theorem",
+            "line": 98,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Verify exact signatures of coboundary_is_cocycle, exact_not_open, exact_not_closed_residual, closed_residual_not_open, trichotomy_pairwise_disjoint (no signatures given in SRC).",
+        "Exhaustiveness is not in Lean.",
+        "Precise hypotheses and whether is_closed_residual and is_open_obstruction take C and w, unverified.",
+        "coboundary_is_cocycle may be stated for coboundaries rather than is_exact; confirm it matches Exact residuals.",
+        "Compositions not grounded; none listed.",
+        "F2Vec.zero not used as generator due to prior refusal.",
+        "lemma l_target_conj unverified: Lean elaboration disabled",
+        "near_miss nm_exhaustive unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_f2_add",
+        "ordered_inputs": [
+          "Bool",
+          "Bool"
+        ],
+        "output": "Bool",
+        "arity": 2,
+        "carrier": "Bool",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "f2_add",
+            "line": 14
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "f2_add",
+          "kind": "def",
+          "line": 14,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_F2Vec_add",
+        "ordered_inputs": [
+          "F2Vec n",
+          "F2Vec n"
+        ],
+        "output": "F2Vec n",
+        "arity": 2,
+        "carrier": "F2Vec n",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "F2Vec.add",
+            "line": 21
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.add",
+          "kind": "def",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_exact_is_cocycle",
+        "equation_or_predicate": "For every F2CochainComplex C and residual w, is_exact C w implies is_cocycle C w (using d1 d0 = 0).",
+        "typing_conditions": "C : F2CochainComplex n0 n1 n2; w : F2Vec n1",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "coboundary_is_cocycle",
+            "line": 65
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "coboundary_is_cocycle",
+          "kind": "theorem",
+          "line": 65,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_pairwise_disjoint",
+        "equation_or_predicate": "No residual satisfies two of is_exact, is_closed_residual, is_open_obstruction.",
+        "typing_conditions": "C : F2CochainComplex n0 n1 n2; w : F2Vec n1",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "trichotomy_pairwise_disjoint",
+            "line": 104
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "trichotomy_pairwise_disjoint",
+          "kind": "theorem",
+          "line": 104,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_exact_not_open",
+        "equation_or_predicate": "is_exact C w implies not is_open_obstruction C w.",
+        "typing_conditions": "C, w as above",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "exact_not_open",
+            "line": 86
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "exact_not_open",
+          "kind": "theorem",
+          "line": 86,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_exact_not_closed",
+        "equation_or_predicate": "is_exact C w implies not is_closed_residual C w.",
+        "typing_conditions": "C, w as above",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "exact_not_closed_residual",
+            "line": 93
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "exact_not_closed_residual",
+          "kind": "theorem",
+          "line": 93,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_closed_not_open",
+        "equation_or_predicate": "is_closed_residual C w implies not is_open_obstruction C w.",
+        "typing_conditions": "C, w as above",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "closed_residual_not_open",
+            "line": 98
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "closed_residual_not_open",
+          "kind": "theorem",
+          "line": 98,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Verify exact signatures of coboundary_is_cocycle, exact_not_open, exact_not_closed_residual, closed_residual_not_open, trichotomy_pairwise_disjoint (no signatures given in SRC).",
+      "Exhaustiveness is not in Lean.",
+      "Precise hypotheses and whether is_closed_residual and is_open_obstruction take C and w, unverified.",
+      "coboundary_is_cocycle may be stated for coboundaries rather than is_exact; confirm it matches Exact residuals.",
+      "Compositions not grounded; none listed.",
+      "F2Vec.zero not used as generator due to prior refusal.",
+      "lemma l_target_conj unverified: Lean elaboration disabled",
+      "near_miss nm_exhaustive unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "7 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,81 @@
+{
+  "task_id": "TFQ-0088",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "fb2398e3e2a506523ae44642af8516e360dcf9f4a11aea6f90c92d7d03656ba5",
+  "candidate_sha256": "605c0c6aecbbaf4a320fa79c7108fa3c2be293be36dd74b9e33c4e1f7c94fcd0",
+  "status": "incomplete",
+  "model": "openai/gpt-oss-120b",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 0,
+    "failed_total": 0,
+    "failure_rate": 1.0,
+    "failures_by_class": {},
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T22:36:24Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-0767985DBE41",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "le39_6f2f5ca3: Heath decomposition is an exact join identity on a finite relvar.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0088"
+      },
+      {
+        "id": "NEG-318E3CE70F77",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "le20_3a5fef1e: The live reading is a superkey, so minimality is not the live claim.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0088"
+      },
+      {
+        "id": "NEG-1D1FFD1A3722",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "le72_8a142ee1: A database normal form is not the Einstein equation.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0088"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

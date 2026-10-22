@@ -1,0 +1,119 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "g_f2_add",
+      "inputs": [
+        "Bool",
+        "Bool"
+      ],
+      "output": "Bool",
+      "arity": 2,
+      "carrier": "Bool (F2)",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "f2_add",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_F2Vec_add",
+      "inputs": [
+        "F2Vec n",
+        "F2Vec n"
+      ],
+      "output": "F2Vec n",
+      "arity": 2,
+      "carrier": "F2Vec n",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "F2Vec.add",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_exact_is_cocycle",
+      "statement": "is_exact C w implies is_cocycle C w (d1 d0 = 0)",
+      "hypotheses": "C : F2CochainComplex n0 n1 n2, w : F2Vec n1",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "coboundary_is_cocycle",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_pairwise_disjoint",
+      "statement": "No residual satisfies two of is_exact, is_closed_residual, is_open_obstruction",
+      "hypotheses": "C : F2CochainComplex n0 n1 n2, w : F2Vec n1",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "trichotomy_pairwise_disjoint",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_exact_not_open",
+      "statement": "is_exact C w implies not is_open_obstruction C w",
+      "hypotheses": "C : F2CochainComplex n0 n1 n2, w : F2Vec n1",
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "exact_not_open",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_exact_not_closed",
+      "statement": "is_exact C w implies not is_closed_residual C w",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_pairwise_disjoint"
+      ],
+      "lean_skeleton": "theorem l_exact_not_closed {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) : is_exact C w → ¬ is_closed_residual C w := exact_not_closed_residual C w",
+      "claims_proved": false,
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "exact_not_closed_residual",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_closed_not_open",
+      "statement": "is_closed_residual C w implies not is_open_obstruction C w",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_pairwise_disjoint"
+      ],
+      "lean_skeleton": "theorem l_closed_not_open {n0 n1 n2 : Nat} (C : F2CochainComplex n0 n1 n2) (w : F2Vec n1) : is_closed_residual C w → ¬ is_open_obstruction C w := closed_residual_not_open C w",
+      "claims_proved": false,
+      "ref": {
+        "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+        "decl": "closed_residual_not_open",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_closed_equals_cocycle",
+      "claim": "Every cocycle (d1 w = 0) is a ClosedResidual",
+      "rejecting_invariant": "ClosedResidual requires w not Exact; exact residuals are cocycles but not closed residuals"
+    },
+    {
+      "id": "nm_trichotomy_exhaustive_foc",
+      "claim": "The three classes correspond to FOC terminals",
+      "rejecting_invariant": "Classes are diagnostic schedule classes only; FOC relation is fenced by TFQ-0181"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exhaustiveness (every w is exact, closed residual, or open obstruction) is not cited in KNOWN+; needs a lemma",
+    "Exact definition arguments of is_exact (d0 a for some a) not checked against the Lean def",
+    "Lean skeletons use argument explicitness guesses for existing theorems",
+    "No generators grounded for the classification itself"
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "task_id": "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "d502c1167517200e4351a0fb89434f0cd29359868d6b96e3384892b6334304ec",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_mark2_toDatum",
+          "inputs": [
+            "Mark2"
+          ],
+          "output": "Datum",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_wdp_pair_defect",
+          "inputs": [
+            "FiniteGenesisWindow",
+            "Fin n",
+            "Fin n"
+          ],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_toDatum_bijective",
+          "equation_or_predicate": "Mark2.toDatum is a bijection from the two marks onto the two data of the first separation regime",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/GenesisComputation.lean",
+              "declaration": "GenesisComputation.Mark2.toDatum_bijective",
+              "line": 197
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/GenesisComputation.lean",
+            "decl": "GenesisComputation.Mark2.toDatum_bijective",
+            "kind": "theorem",
+            "line": 197,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_allpairs_length",
+          "equation_or_predicate": "The all-pairs requirement list for n data has length n*n",
+          "typing_conditions": "as in the cited theorem",
+          "source_pins": [
+            {
+              "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+              "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+              "line": 254
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "kind": "theorem",
+            "line": 254,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_admit_gate",
+          "equation_or_predicate": "Only the admit operation changes n among the six pre-generation operations",
+          "typing_conditions": "as in the cited theorem",
+          "source_pins": [
+            {
+              "path": "lean4/DerivationDagQMClosure.lean",
+              "declaration": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+              "line": 764
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "decl": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+            "kind": "theorem",
+            "line": 764,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Grounding of closedRun_round_bound_from_empty, Generator.generation_never_dries, G1Class.g1_class_exclusion: no path in SRC or KNOWN+, not cited",
+        "Compositions not licensed: no relation matches colours",
+        "Arithmetic lemma is a sorry skeleton, unproved",
+        "Mu2 tree counts 53 and 83 not recomputed here, only stated as given",
+        "lemma l_round_bound_arith unverified: Lean elaboration disabled",
+        "near_miss nm_class_exclusion_general unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_unary_forever unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_mark2_toDatum",
+        "ordered_inputs": [
+          "Mark2"
+        ],
+        "output": "Datum",
+        "arity": 1,
+        "carrier": "Fin firstSeparationRegime.data",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.Mark2.toDatum",
+            "line": 193
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum",
+          "kind": "def",
+          "line": 193,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_wdp_pair_defect",
+        "ordered_inputs": [
+          "FiniteGenesisWindow",
+          "Fin n",
+          "Fin n"
+        ],
+        "output": "Bool",
+        "arity": 3,
+        "carrier": "Bool",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.wdpPairDefect",
+            "line": 65
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.wdpPairDefect",
+          "kind": "def",
+          "line": 65,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_toDatum_bijective",
+        "equation_or_predicate": "Mark2.toDatum is a bijection from the two marks onto the two data of the first separation regime",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.Mark2.toDatum_bijective",
+            "line": 197
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum_bijective",
+          "kind": "theorem",
+          "line": 197,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_allpairs_length",
+        "equation_or_predicate": "The all-pairs requirement list for n data has length n*n",
+        "typing_conditions": "as in the cited theorem",
+        "source_pins": [
+          {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "line": 254
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+          "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+          "kind": "theorem",
+          "line": 254,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_admit_gate",
+        "equation_or_predicate": "Only the admit operation changes n among the six pre-generation operations",
+        "typing_conditions": "as in the cited theorem",
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+            "line": 764
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+          "kind": "theorem",
+          "line": 764,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Grounding of closedRun_round_bound_from_empty, Generator.generation_never_dries, G1Class.g1_class_exclusion: no path in SRC or KNOWN+, not cited",
+      "Compositions not licensed: no relation matches colours",
+      "Arithmetic lemma is a sorry skeleton, unproved",
+      "Mu2 tree counts 53 and 83 not recomputed here, only stated as given",
+      "lemma l_round_bound_arith unverified: Lean elaboration disabled",
+      "near_miss nm_class_exclusion_general unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_unary_forever unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_bound_n4",
+        "expr": "4*(4-1)/2",
+        "value": "6",
+        "host_evidence": {
+          "recomputed": "6"
+        }
+      },
+      {
+        "id": "n_edges_sum_L_F",
+        "expr": "53 + 83",
+        "value": "136",
+        "host_evidence": {
+          "recomputed": "136"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

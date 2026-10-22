@@ -1,0 +1,49 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-642E8ABDFDF7
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_F2: F^2 = I over Q(zeta16)'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-ISING-BRAID-EXACT-OPEN
+- id: NEG-A17339DC21CD
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_YBE: B1 B2 B1 = B2 B1 B2 for B1=R, B2=FRF'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: MAJ-ISING-BRAID-EXACT-OPEN
+counterexamples: []
+open_obligations:
+- Exact R and F matrices are not given in the target; they must be fixed (Ising R^{sigma sigma}_1=zeta16^-1
+  style phases, F=(1/sqrt2)[[1,1],[1,-1]]) before any identity can be checked
+- 'No @SRC declarations: all entries are proposed_new'
+- Hexagon conventions and the precise equations are unspecified
+- Lean skeletons are placeholders; need Q(zeta16) as a cyclotomic field with explicit matrices
+- Exact computation of YBE and hexagon in cyclotomic arithmetic not yet run by me
+- 'generator R unverified: no existing declaration cited'
+- 'generator F unverified: no existing declaration cited'
+- 'relation F_invol unverified: no existing declaration cited'
+- 'relation YBE unverified: no existing declaration cited'
+- 'relation hexagon unverified: no existing declaration cited'
+- 'near_miss NM_float unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_F_not_invol unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_half
+  expr: 1/2 + 1/2
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

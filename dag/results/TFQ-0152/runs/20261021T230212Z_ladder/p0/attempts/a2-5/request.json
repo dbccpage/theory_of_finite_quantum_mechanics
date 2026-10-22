@@ -1,0 +1,315 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0152",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-5",
+  "input_sha256": "f385bd7d421b84002fdaa40dd72f7cd1d430b12ca4a6fec8042e901cf9ca94c6",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0152 stage=P0 attempt=a2-5 in=f385bd7d guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] Covers shor.rs, stabilizer_code_distance.rs, toric_code.rs, cochain_repair_code.rs, repair_capacity.rs, and threshold_repair_certificate.rs. shor.rs is the Shor nine-qubit code in exact binary Pauli algebra, with syndrome extraction and recovery of the 27 single-qubit Pauli errors. It is a code control, not a factoring procedure. The other files compute stabilizer distance, a rectangular toric CSS code with no asserted gap, and conditional repair bounds. A Python replay and a Lean 4 declaration would still have to match the nine-qubit syndrome table.\n@BOTTLENECK Match the nine-qubit stabilizer syndrome table and recovery of the 27 single-qubit Pauli errors.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/python/src/fusion_categories/fusion_ring.py | toric_code | def | def toric_code(cls) -> FusionRing: group = AbelianGroup((2, 2)) return cls(FusionTable.from_3d(_group_tensor(group), (\"1\", \"e\", \"m\", \"epsilon\"))) @cla\n code/python/src/majorana/majorana_gf2_diagnostic.py | repair_capacity | def | def repair_capacity( *, distance: int | None = None, cycles: Sequence[Sequence[int]] | None = None, ) -> int | None: \"\"\"Native repair radius, or the n\n code/rust/src/fusion_categories/catalog.rs | toric_code | fn | pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\n code/rust/src/fusion_categories/fusion_ring.rs | toric_code | fn | pub fn toric_code() -> Result<Self, FusionError>\n code/rust/src/majorana/lib.rs | repair_capacity | mod | pub mod repair_capacity;\n code/rust/src/majorana/mod.rs | repair_capacity | mod | pub mod repair_capacity;\n code/rust/src/majorana/repair_capacity.rs | repair_capacity_from_distance | fn | pub fn repair_capacity_from_distance(d: u32) -> Result<u32, String>\n code/rust/src/majorana/repair_capacity.rs | repair_capacity_matches_a_hand_table | fn | fn repair_capacity_matches_a_hand_table()\n code/rust/src/majorana/repair_capacity.rs | assert_repair_capacity_invariant | fn\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.Syndrome | structure\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.syndromeOf | def\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.decodeSyndrome | def\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.syndrome_decoding_exact | theorem\n lean4/H036ThreeQubitCodeSyndromeRecovery.lean | FableHilbertWalk20260819.H036.bit_flip_error_recovery_involution | theorem\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.single_x_errors_detected | theorem\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.single_z_errors_detected | theorem\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.pauli_phase | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.Syndrome8 | structure\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.trivialSyndrome | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.evalSyndrome | def\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.all_x_errors_detected | theorem\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.all_z_errors_detected | theorem\n lean4/H042ShorNineQubitCode.lean | FableHilbertWalk20260819.H042.all_y_errors_detected | theorem\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.pauliPhase | def\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.logical_qubit_1_anticommutes | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:grover_step_gen (v)->v src=lean4/H045DiscreteGroverSearch.lean | FableHilbertWalk20260819.H045.grover_step\n g:S_rec_step0_gen ()->S_rec 0 src=lean4/H045DiscreteGroverSearch.lean | FableHilbertWalk20260819.H045.S_rec_step0\n@KNOWN- (host-refused earlier; do not repeat)\n [unparseable_reply]  -- Return one JSON object and nothing else.\n [composition_type_mismatch] grover_step_gen . slot 0 <- v_uniform via grover_one_step_exact -- Do not compose operations whose colours do not match.\n [statement_drift] FableHilbertWalk20260819.H045.S_rec_step3 -- Do not restate the source with numerals it does not contain.\n [statement_drift] FableHilbertWalk20260819.H045.grover_periodicity_six -- Do not restate the source with numerals it does not contain.\n [statement_drift] FableHilbertWalk20260819.H042.Syndrome8 -- Do not restate the source with numerals it does not contain.\n [wrong_source_location] FableHilbertWalk20260819.H042.decodeSyndrome -- Do not cite FableHilbertWalk20260819.H042.decodeSyndrome at that path; see the evidence for where it lives.\n [composition_type_mismatch] g_9q_recovery_gen . slot 0 <- g_9q_syndrome_gen via r_9q_syndrome_wellformed -- Do not compose operations whose colours do not match.\n [schema_violation] {'name': 'repair_capacity', 'path': 'code/rust/src/majorana/repair_capacity.rs', 'decl': 'repair_capacity', 'i -- Return exactly the schema; no extra or missing fields.\n [schema_violation] {'name': 'toric_code', 'path': 'code/rust/src/fusion_categories/fusion_ring.rs', 'decl': 'toric_code', 'inputs -- Return exactly the schema; no extra or missing fields.\n [wrong_signature] toric_code -- Do not state that arity/signature for toric_code.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 10,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "TFQ-0151"
+    ],
+    "feedback": true,
+    "index_position": 278,
+    "neg_entry_ids": [
+      "NEG-0C43DA16A442",
+      "NEG-4E507774FA77",
+      "NEG-7C323F792A13",
+      "NEG-8E814F2218D7",
+      "NEG-18F1FCA08685",
+      "NEG-628969972A58",
+      "NEG-ABDD6A41416F",
+      "NEG-513C59B46FCA",
+      "NEG-5F952DCF9409",
+      "NEG-E347BF787493"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

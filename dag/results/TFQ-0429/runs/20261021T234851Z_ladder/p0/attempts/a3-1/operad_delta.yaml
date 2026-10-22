@@ -1,0 +1,60 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: A lift candidate that is licensed requires replay availability, reduction and
+    closure; a missing new carrier blocks licensing.
+  typing_conditions: L is a PrimitiveLiftCandidate.LiftCandidate; for the blocking part, L.hasNewCarrier
+    = false
+  source_pins:
+  - path: lean4/PrimitiveSpineSummary.lean
+    declaration: OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks
+    line: 150
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveSpineSummary.lean
+    decl: OmegaCore.PrimitiveSpineSummary.spine_lift_missing_new_carrier_blocks
+    kind: theorem
+    line: 150
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R2
+  equation_or_predicate: A licensed lift candidate requires replay, reduction and closure evidence.
+  typing_conditions: PrimitiveLiftCandidate.IsLicensedLiftCandidate L
+  source_pins:
+  - path: lean4/PrimitiveSpineSummary.lean
+    declaration: OmegaCore.PrimitiveSpineSummary.spine_lift_requires_replay_reduction_closure
+    line: 130
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveSpineSummary.lean
+    decl: OmegaCore.PrimitiveSpineSummary.spine_lift_requires_replay_reduction_closure
+    kind: theorem
+    line: 130
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No existing declaration was found for the two-flag admission model of Paper000.lean in SRC, so it is
+  not cited.
+- The capability count per extension is not grounded in a cited declaration.
+- The undefined spine arrows are deliberately left undefined.
+- Generators for the six-operation spine are not grounded in SRC and are omitted.
+- L1 skeleton is a placeholder over hypothetical counts.
+- 'relation R3 unverified: no existing declaration cited'
+- 'lemma L1 unverified: Lean elaboration disabled'
+- 'lemma L2 unverified: Lean elaboration disabled'
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,98 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: CQFT-FINITE-CAUSET-IDENTIFICATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Reading of definitions. A causal set in the sense of the source is a locally finite
+    partially ordered set; in the strict-order form its relation is irreflexive and transitive, and local
+    finiteness is automatic on a finite set. This is the structure FiniteStrictPoset n of lean4/CausalOrder.lean.
+    The Python class CausalSet in code/python/src/general_relativity/causal_set.py builds a poset from
+    relations, takes the transitive closure and refuses cycles. The identification involves no sprinkling,
+    no embedding in a Lorentzian manifold and no dynamics.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Definitional only. Nothing about manifold-likeness, dimension or the continuum limit
+    is asserted.
+  source_refs:
+  - dag/derivations/31_causal_qft/tfq_2112_cqft_finite_causet_identification.md
+  - external:doi:10.1103/PhysRevLett.59.521
+  - lean4/CausalOrder.lean
+  - code/python/src/general_relativity/causal_set.py
+  paper_refs:
+  - dag/derivations/31_causal_qft/tfq_2112_cqft_finite_causet_identification.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/31_causal_qft/tfq_2112_cqft_finite_causet_identification.md
+    sha256: b130b7d8b3f4fb16702cd8eee7a817e728142209ae717869386d0df16e8e37e3
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/causal_qft_cqft_finite_causet_identification_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: FiniteStrictPoset
+  line: 5
+  signature_excerpt: 'structure FiniteStrictPoset (n : Nat)'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+relation_candidates: []
+source_bindings:
+- original_ref: lean4/CausalOrder.lean::FiniteStrictPoset
+  availability: local
+  symbol: FiniteStrictPoset
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 5
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

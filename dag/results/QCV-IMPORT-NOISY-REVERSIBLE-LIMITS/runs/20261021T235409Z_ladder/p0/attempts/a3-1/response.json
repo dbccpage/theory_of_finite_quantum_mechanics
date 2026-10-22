@@ -1,0 +1,54 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R_ABIN_imported",
+      "statement": "Imported assumption (ABIN 1996): for noisy reversible or quantum computation with no supply of fresh low-entropy bits, the output becomes (nearly) independent of the input beyond a short depth. The exact statement and noise model are in the cited paper and are not reproduced here.",
+      "hypotheses": "Noise model, depth bound and error tolerance as stated in ABIN 1996; no fresh low-entropy ancillas.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_ABIN_cited_only",
+      "statement": "Cited, not re-proved: ABIN 1996 limitation theorem for noisy reversible computation without fresh low-entropy bits. It is recorded as an assumption only, with no proof claimed and no numbers added.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_ABIN_imported"
+      ],
+      "lean_skeleton": "theorem abin_1996_imported : True := by trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_global_depolarizing_only",
+      "claim": "The finite exact analogue QCV-Q4 for global depolarizing noise implies the ABIN theorem for general noise models.",
+      "rejecting_invariant": "QCV-Q4 covers only global depolarizing noise, while ABIN's noise model is the one in the cited paper, so the analogue does not subsume it."
+    },
+    {
+      "id": "NM_fresh_bits_allowed",
+      "claim": "The ABIN limitation still holds when a supply of fresh low-entropy ancilla bits is available.",
+      "rejecting_invariant": "The hypothesis of no fresh low-entropy bits is essential, and fresh bits allow entropy removal as in fault-tolerant schemes."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "The exact ABIN 1996 theorem statement, noise model and depth bound are not available in the sources, so they must be checked against the paper.",
+    "No existing declarations were found by the host, so every reference is proposed_new or none.",
+    "The formal Lean statement of the imported assumption is not written, and the skeleton is a placeholder.",
+    "The relationship between QCV-Q4 and the ABIN noise model is not formalized.",
+    "No generators or compositions are grounded."
+  ]
+}

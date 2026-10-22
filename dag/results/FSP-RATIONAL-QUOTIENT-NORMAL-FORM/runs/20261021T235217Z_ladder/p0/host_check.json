@@ -1,0 +1,213 @@
+{
+  "task_id": "FSP-RATIONAL-QUOTIENT-NORMAL-FORM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a56a4a5960be44c7e34e207981c27e7a394c53ca1ea62eff7d949b61b4d45ea7",
+  "candidate_sha256": "d867e01dcb138e838b53d8bf93aa0a94632e6d459581c8bd4ec3800ba11a2fbe",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 7,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:52:29Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "integralGauge",
+        "ordered_inputs": [
+          "Int",
+          "IntegralCochain"
+        ],
+        "output": "IntegralCochain",
+        "arity": 2,
+        "carrier": "IntegralCochain (Z^2)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+            "declaration": "NormalFormLaws.integralGauge",
+            "line": 17
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+          "decl": "NormalFormLaws.integralGauge",
+          "kind": "def",
+          "line": 17,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "integralNormal",
+        "ordered_inputs": [
+          "IntegralCochain"
+        ],
+        "output": "IntegralCochain",
+        "arity": 1,
+        "carrier": "IntegralCochain (Z^2)",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+            "declaration": "NormalFormLaws.integralNormal",
+            "line": 20
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+          "decl": "NormalFormLaws.integralNormal",
+          "kind": "def",
+          "line": 20,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "sound",
+        "equation_or_predicate": "c is equivalent to integralNormal c",
+        "typing_conditions": "fixed integral image span(1,2) in Z^2",
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+            "declaration": "NormalFormLaws.integral_sound",
+            "line": 26
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+          "decl": "NormalFormLaws.integral_sound",
+          "kind": "theorem",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "idempotent",
+        "equation_or_predicate": "integralNormal (integralNormal c) = integralNormal c",
+        "typing_conditions": "fixed integral image span(1,2) in Z^2",
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+            "declaration": "NormalFormLaws.integral_idempotent",
+            "line": 34
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+          "decl": "NormalFormLaws.integral_idempotent",
+          "kind": "theorem",
+          "line": 34,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "complete",
+        "equation_or_predicate": "integralNormal c = integralNormal d iff integralEquivalent c d",
+        "typing_conditions": "fixed integral image span(1,2) in Z^2",
+        "source_pins": [
+          {
+            "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+            "declaration": "NormalFormLaws.integral_complete",
+            "line": 38
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/fsp/lean4/NormalFormLaws.lean",
+          "decl": "NormalFormLaws.integral_complete",
+          "kind": "theorem",
+          "line": 38,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "integralNormal",
+        "input_slot": 0,
+        "inner_operation": "integralGauge",
+        "colour_match": true,
+        "hypothesis_match": "not checked",
+        "licensing_relations": [
+          "complete"
+        ],
+        "evidence_status": "colours_match_and_licensed_by_verified_relation"
+      }
+    ],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Rational RREF general-d0 normal form (pivot formula) not in @SRC; no Lean citation",
+      "Independence of generating matrix not grounded",
+      "Quotient l1 norm LP with refusal budget NF-003 not grounded",
+      "Confirm integralGauge relation to the composition; no gauge-invariance theorem listed in @SRC",
+      "lemma integral_three_laws unverified: Lean elaboration disabled",
+      "near_miss l1_minimizer unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "l1_normal_form_norm",
+        "expr": "1 + 1",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "5 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

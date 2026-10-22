@@ -1,0 +1,115 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "ordered_product",
+      "inputs": [
+        "PosetListing",
+        "MatrixFamily"
+      ],
+      "output": "Matrix",
+      "arity": 2,
+      "carrier": "finite square matrices over a common finite-dimensional space",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "adjacent_swap",
+      "inputs": [
+        "PosetListing",
+        "Index"
+      ],
+      "output": "PosetListing",
+      "arity": 2,
+      "carrier": "lists of P that are linear extensions",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "swap_commute",
+      "statement": "If x and y are incomparable (spacelike) and A_x A_y = A_y A_x, then the product of a list with x,y adjacent equals the product with them swapped.",
+      "hypotheses": "x and y incomparable; A_x and A_y commute",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "linext_connected",
+      "statement": "Any two linear extensions of a finite strict poset are connected by a finite sequence of swaps of adjacent incomparable elements.",
+      "hypotheses": "finite strict poset P",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "swap_lemma",
+      "statement": "For lists l1 l2 and incomparable x y with A_x A_y = A_y A_x, prod(l1 ++ [x,y] ++ l2) = prod(l1 ++ [y,x] ++ l2).",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem swap_lemma {n : Type} (A : n -> Matrix (Fin 2) (Fin 2) ℚ) (l1 l2 : List n) (x y : n) (h : A x * A y = A y * A x) : (l1 ++ [x,y] ++ l2).map A |>.prod = (l1 ++ [y,x] ++ l2).map A |>.prod := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "linext_independence_target",
+      "statement": "For a finite strict poset with matrices commuting on all incomparable pairs, the ordered product is the same for all linear extensions.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "swap_lemma",
+        "linext_connected"
+      ],
+      "lean_skeleton": "theorem linext_indep : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "anticommuting_pair",
+      "claim": "Two spacelike elements carrying anticommuting Paulis (e.g. X and Z) give the same product in both orders.",
+      "rejecting_invariant": "XZ = -ZX, so the two orderings differ by a sign -1; commutation is required."
+    },
+    {
+      "id": "comparable_swap",
+      "claim": "Swapping comparable elements preserves the product.",
+      "rejecting_invariant": "A swap of comparable elements does not yield a linear extension, and the commutation hypothesis only covers incomparable pairs."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "diamond_extensions",
+      "expr": "2",
+      "value": "2"
+    }
+  ],
+  "open_obligations": [
+    "General-n Lean proof of linext_connected (bubble-sort / adjacent transposition argument) is not done.",
+    "No existing SRC declaration is relevant; BornLinearExtension.lean concerns Born-rule linear extension, not ordered products.",
+    "Exact Pauli checks for the diamond and N poset are not computed.",
+    "The Epstein-Glaser relation is only an analogy.",
+    "The linext_independence_target skeleton is a placeholder and must be replaced by a real statement with FiniteStrictPoset."
+  ]
+}

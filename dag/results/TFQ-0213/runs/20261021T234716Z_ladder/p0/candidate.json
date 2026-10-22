@@ -1,0 +1,261 @@
+{
+  "task_id": "TFQ-0213",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c514c359ad5ccd0fab06593224b4923cc34de40978e44624596ba9d54bdabe56",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_row1_prod",
+          "inputs": [
+            "MagicSquareAssignment"
+          ],
+          "output": "SignVal",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_row2_prod",
+          "inputs": [
+            "MagicSquareAssignment"
+          ],
+          "output": "SignVal",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_total_row_prod",
+          "inputs": [
+            "MagicSquareAssignment"
+          ],
+          "output": "SignVal",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_total_row_eq_col",
+          "equation_or_predicate": "total_row_prod s = total_col_prod s for every MagicSquareAssignment s",
+          "typing_conditions": "s : MagicSquareAssignment",
+          "source_pins": [
+            {
+              "path": "lean4/DualWitness.lean",
+              "declaration": "DualWitness.total_row_eq_total_col",
+              "line": 70
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/DualWitness.lean",
+            "decl": "DualWitness.total_row_eq_total_col",
+            "kind": "theorem",
+            "line": 70,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Name the finite statement the F003 triple must bind alongside the row id",
+        "No existing ledger or MathematicalClaim declaration is in SRC, so the index-vs-proof relation is proposed_new",
+        "The Lean skeleton is a placeholder and must be replaced with a faithful formalization",
+        "Compositions not grounded: the generators share the same input colour and no output feeds an input",
+        "relation r_ledger_row_is_index unverified: no existing declaration cited",
+        "near_miss nm_row_as_proof unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_test_as_proof unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_row1_prod",
+        "ordered_inputs": [
+          "MagicSquareAssignment"
+        ],
+        "output": "SignVal",
+        "arity": 1,
+        "carrier": "SignVal",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DualWitness.lean",
+            "declaration": "DualWitness.row1_prod",
+            "line": 56
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DualWitness.lean",
+          "decl": "DualWitness.row1_prod",
+          "kind": "def",
+          "line": 56,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_row2_prod",
+        "ordered_inputs": [
+          "MagicSquareAssignment"
+        ],
+        "output": "SignVal",
+        "arity": 1,
+        "carrier": "SignVal",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DualWitness.lean",
+            "declaration": "DualWitness.row2_prod",
+            "line": 57
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DualWitness.lean",
+          "decl": "DualWitness.row2_prod",
+          "kind": "def",
+          "line": 57,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_total_row_prod",
+        "ordered_inputs": [
+          "MagicSquareAssignment"
+        ],
+        "output": "SignVal",
+        "arity": 1,
+        "carrier": "SignVal",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/DualWitness.lean",
+            "declaration": "DualWitness.total_row_prod",
+            "line": 64
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/DualWitness.lean",
+          "decl": "DualWitness.total_row_prod",
+          "kind": "def",
+          "line": 64,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_total_row_eq_col",
+        "equation_or_predicate": "total_row_prod s = total_col_prod s for every MagicSquareAssignment s",
+        "typing_conditions": "s : MagicSquareAssignment",
+        "source_pins": [
+          {
+            "path": "lean4/DualWitness.lean",
+            "declaration": "DualWitness.total_row_eq_total_col",
+            "line": 70
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/DualWitness.lean",
+          "decl": "DualWitness.total_row_eq_total_col",
+          "kind": "theorem",
+          "line": 70,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-7DC67D587179",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_row_index_not_proof: For a ledger row r with witness field w = id(r), validity of the finite statement S does not follow from the presence of r; a separate proof of S is required.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0213"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Name the finite statement the F003 triple must bind alongside the row id",
+      "No existing ledger or MathematicalClaim declaration is in SRC, so the index-vs-proof relation is proposed_new",
+      "The Lean skeleton is a placeholder and must be replaced with a faithful formalization",
+      "Compositions not grounded: the generators share the same input colour and no output feeds an input",
+      "relation r_ledger_row_is_index unverified: no existing declaration cited",
+      "near_miss nm_row_as_proof unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_test_as_proof unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

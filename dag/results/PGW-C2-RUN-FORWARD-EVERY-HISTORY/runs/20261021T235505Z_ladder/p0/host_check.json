@@ -1,0 +1,59 @@
+{
+  "task_id": "PGW-C2-RUN-FORWARD-EVERY-HISTORY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "4c648d15673d3a75208002947e6dfb1feccc79faea0a534d40b2f210498dc032",
+  "candidate_sha256": "a254c30995c6e64b154aaeee48d613f8c39cc62ec0fc7dee5ef5f310df380ea4",
+  "status": "incomplete",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:55:18Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations were provided in SRC or KNOWN+, so nothing is cited as existing.",
+      "All lemma skeletons contain sorry and are not proved.",
+      "Generators and relations not grounded; the type names EState, EEvent, ereplay, regime and elems are unverified.",
+      "not_separable_through not formalized.",
+      "The counts 25,932 nodes, 69,490 edges, 43,846 merges and 772 refused demands are not recomputed.",
+      "lemma L_ereplay_elems_le unverified: Lean elaboration disabled",
+      "lemma L_no_return unverified: Lean elaboration disabled",
+      "lemma L_cycle_regime_const unverified: Lean elaboration disabled",
+      "near_miss NM_python_runs_are_histories unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_runs",
+        "expr": "144*2",
+        "value": "288",
+        "host_evidence": {
+          "recomputed": "288"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

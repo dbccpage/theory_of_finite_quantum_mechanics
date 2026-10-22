@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0037",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "9b1a97ce50dfd2d2ab1c05aaf679fab28631e7f4200e589e67292303f87b4107",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0037 stage=P0 attempt=a0-1 in=9b1a97ce guided=yes\n@TARGET [COMPUTATIONALLY_CHECKED] The same QM-223 certificate sets the same-orbital Slater combination to 0, the fermion swap ratio to -1, the boson swap ratio to +1, and the Hanbury Brown-Twiss coincidence ratio to 2. It records Jordan-Wigner nilpotency and the CAR identity on a finite Fock space. Shell capacities 1..4 are 2, 8, 18, 32, and the closures are 2, 10, 18, 36, 54, 86, 118. Lean slater_determinant_pauli_exclusion_and_swap_antisymmetry covers the two-row identities over Rat. These are identical-particle controls on graphs and exterior algebra. They do not assign flavor or color to a three-quark state.\n@BOTTLENECK Keep Slater, CAR, and shell capacities on the identical-particle side of the QCD cut.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/FiniteQM.lean | FiniteQM.slater_determinant_pauli_exclusion_and_swap_antisymmetry | theorem | theorem slater_determinant_pauli_exclusion_and_swap_antisymmetry (a b c d : Rat) : let slater_same : Rat\n lean4/FiniteQM.lean | FiniteQM.pauli_shell_capacities_and_madelung_noble_gas_closures | theorem | theorem pauli_shell_capacities_and_madelung_noble_gas_closures : let orb_n1 : Int\n lean4/FiniteQM.lean | FiniteQM.car_clifford_nilpotency_and_occupation_projector | theorem | theorem car_clifford_nilpotency_and_occupation_projector : let c_ann : Mat2Rat\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.cornerDeterminantPoly | def | def cornerDeterminantPoly (a b c d : R.Carrier) : R.Carrier\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.mul_swap_middle | theorem | theorem mul_swap_middle (w x y z : R.Carrier) : R.mul (R.mul w x) (R.mul y z) = R.mul (R.mul w y) (R.mul x z)\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.cross_ratio_row_phase_invariance | theorem | theorem cross_ratio_row_phase_invariance (a b c d u0 u1 : R.Carrier) (hu0 : CommStarRing.isUnitModulus R u0) (hu1 : CommStarRing.isUnitModulus R u1) :\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.cross_ratio_eq_row_factors | theorem | theorem cross_ratio_eq_row_factors (a b c d : R.Carrier) : crossRatio R a b c d = R.mul (R.mul a (R.conj b)) (R.mul d (R.conj c))\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.RowOrthogonal | def | def RowOrthogonal (a b c d : R.Carrier) : Prop\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.row_orthogonality_iff_cross_ratio_neg_one | theorem\n code/python/src/fsp/fermion_boson_germ.py | swap_action_on_pair | def\n code/python/src/majorana/majorana_fock_algebra.py | FockCarrier | class\n code/rust/src/majorana/majorana_fock_algebra.rs | FockCarrier | struct\n code/rust/src/majorana/majorana_fock_algebra.rs | one_mode_majoranas_are_pauli_x_and_y | fn\n code/rust/src/majorana/majorana_fock_algebra.rs | test_parity_operator_algebra | fn [test]\n code/rust/src/operad_theory/realization/algebra_over_operad.rs | OperadAlgebra | struct\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.Matrix2 | def\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.idx0_2 | abbrev\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.idx1_2 | abbrev\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.det3 | def\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3 | def\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3_entry_00 | theorem\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3_entry_01 | theorem\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3_entry_02 | theorem\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3_entry_10 | theorem\n lean4/CornerDeterminantCrossRatio.lean | MUB6.Gluing.CornerCrossRatio.dephasedCorner3_entry_11 | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:k5_complex_properties The 2-dimensional complex of K5 (4-cliques as vertices, etc.) has 15 squares and is computed by analyze_conf2_ src=code/python/src/qm/pauli_spin_stat.py | analyze_conf2_graph\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 1,
+    "neighbours": [
+      "TFQ-0036",
+      "TFQ-0038"
+    ],
+    "feedback": true,
+    "index_position": 213,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,175 @@
+{
+  "task_id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "0e836467e1dc70154d9b97efef174271124137f8ffcbf8e0c81d83f82cbeddec",
+  "candidate_sha256": "46d1a9f4a174e8365ff38323c03894db325517f74a34a984967a0dc79b4e1f18",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 2,
+    "failure_rate": 0.2857,
+    "failures_by_class": {
+      "wrong_signature": 2
+    },
+    "unverifiable": 4,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:57:54Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_depol_dist",
+        "equation_or_predicate": "tn(depol p rho - depol p sigma) = (1-p)*tn(rho - sigma)",
+        "typing_conditions": "Nonempty n, p <= 1, trace rho = trace sigma",
+        "source_pins": [
+          {
+            "path": "lean4/QcEntropySink.lean",
+            "declaration": "QcSelfObstruction.depol_dist",
+            "line": 150
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/QcEntropySink.lean",
+          "decl": "QcSelfObstruction.depol_dist",
+          "kind": "theorem",
+          "line": 150,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_tn_conj",
+        "equation_or_predicate": "tn(V*X*star V) = tn X",
+        "typing_conditions": "V unitary",
+        "source_pins": [
+          {
+            "path": "lean4/QcEntropySink.lean",
+            "declaration": "QcSelfObstruction.tn_conj",
+            "line": 93
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/QcEntropySink.lean",
+          "decl": "QcSelfObstruction.tn_conj",
+          "kind": "theorem",
+          "line": 93,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "R_tn_smul",
+        "equation_or_predicate": "tn(a*X) = a*tn X",
+        "typing_conditions": "0 <= a",
+        "source_pins": [
+          {
+            "path": "lean4/QcEntropySink.lean",
+            "declaration": "QcSelfObstruction.tn_smul",
+            "line": 77
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/QcEntropySink.lean",
+          "decl": "QcSelfObstruction.tn_smul",
+          "kind": "theorem",
+          "line": 77,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-09A21E2F0B3B",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "depol: (Matrix) -> Matrix [QcSelfObstruction.depol]",
+        "evidence": "lean def depol has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "QcSelfObstruction.depol",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      },
+      {
+        "id": "NEG-D69436DF8482",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "noisyStep: (Matrix) -> Matrix [QcSelfObstruction.noisyStep]",
+        "evidence": "lean def noisyStep has 3 explicit binders (3 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "QcSelfObstruction.noisyStep",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
+      }
+    ],
+    "open_obligations": [
+      "Signatures of noisyStep_dist, run, Admissible, run_dist, run_dist_le, decay_le_inv, decay_below are truncated in @SRC; skeletons not elaborated.",
+      "No generator composition licensed since the Matrix-to-Matrix steps are only linked via the unlisted run definition.",
+      "Ky Fan equality of variational and Schatten-1 norm is cited, not proved.",
+      "lemma L_run_dist unverified: Lean elaboration disabled",
+      "lemma L_decay_inv unverified: Lean elaboration disabled",
+      "near_miss NM_unequal_trace unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_p_gt_1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N1",
+        "expr": "(1-1/2)^2",
+        "value": "1/4",
+        "host_evidence": {
+          "recomputed": "1/4"
+        }
+      },
+      {
+        "id": "N2",
+        "expr": "1/(1+1/2*2)",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

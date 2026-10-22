@@ -1,0 +1,98 @@
+{
+  "task_id": "TFQ-0046",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "2c990a613acc4bd620e3d357d87b3a6c1b287c56b578be2695275d4e0cf19708",
+  "status": "incomplete",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9D9A2BAAA2A4",
+        "class": "wrong_source_location",
+        "claim_kind": "lemma",
+        "claim": "lem_zero_residual_is_identity: Zero residual implies the identity holds.",
+        "evidence": "code/rust/src/fusion_categories/yang_baxter.rs has no declaration yang_baxter; it exists at code/rust/src/fusion_categories/lib.rs",
+        "decl_key": "yang_baxter",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0046"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-A0735378CBC9",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "gen_spectral_braid_defect: (family, x, y) -> residual_matrix [spectral_braid_form_defect]",
+        "evidence": "rust fn spectral_braid_form_defect takes 1 parameters; the claim says 3",
+        "decl_key": "spectral_braid_form_defect",
+        "confidence": "exact",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0046"
+      },
+      {
+        "id": "NEG-86EFCD3B4303",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R_zero_residual: If spectral_braid_form_defect(family, x, y, z) = 0, then the 3-colored braid matrix satisfies the relation. [spectral_braid_form_defect]",
+        "evidence": "numerals 3 appear in the claim but in none of the checked sources (heuristic)",
+        "decl_key": "spectral_braid_form_defect",
+        "confidence": "heuristic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "tier": 0,
+        "node_id": "TFQ-0046"
+      }
+    ],
+    "open_obligations": [
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

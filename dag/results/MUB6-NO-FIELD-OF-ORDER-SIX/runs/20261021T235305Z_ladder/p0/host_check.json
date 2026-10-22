@@ -1,0 +1,65 @@
+{
+  "task_id": "MUB6-NO-FIELD-OF-ORDER-SIX",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "843813ebe6c8e26ce6249a0987e08a10b39f52018f2ba5c285574c27d995d060",
+  "candidate_sha256": "745ec197bcb7baad06d3511a5b8288fed1292dfc7393ceb8a3df0151b610e705",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 3,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:53:11Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations found; the prime-power-order theorem for finite fields must be imported or proved.",
+      "Lean proof of 6 not a prime power and the field-order theorem is missing.",
+      "No generators grounded: the Weyl-character construction is not available as a cited declaration.",
+      "The step from a field of order d to d+1 MUBs is not formalized.",
+      "relation R1 unverified: no existing declaration cited",
+      "lemma L1 unverified: Lean elaboration disabled",
+      "near_miss N1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "C1",
+        "expr": "6 - 2*3",
+        "value": "0",
+        "host_evidence": {
+          "recomputed": "0"
+        }
+      },
+      {
+        "id": "C2",
+        "expr": "6 + 1",
+        "value": "7",
+        "host_evidence": {
+          "recomputed": "7"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

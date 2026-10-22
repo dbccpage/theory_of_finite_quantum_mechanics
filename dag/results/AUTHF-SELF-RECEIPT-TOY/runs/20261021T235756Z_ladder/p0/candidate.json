@@ -1,0 +1,364 @@
+{
+  "task_id": "AUTHF-SELF-RECEIPT-TOY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "3502f1a8182647c10a83fac44b8a0dd93a68971487595d09000bd71b1a339f8b",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "selfReceipt",
+          "inputs": [
+            "Packet"
+          ],
+          "output": "Unit",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "toyValid",
+          "inputs": [
+            "Packet"
+          ],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "completeReceipt",
+          "inputs": [
+            "Packet"
+          ],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "split_fibre",
+          "equation_or_predicate": "There exist packets left, right with selfReceipt left = selfReceipt right and toyValid left ≠ toyValid right",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/Core.lean",
+              "declaration": "AuthorizationIncompleteness.self_receipt_splits_validity",
+              "line": 78
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "decl": "AuthorizationIncompleteness.self_receipt_splits_validity",
+            "kind": "theorem",
+            "line": 78,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "factors_through_self",
+          "equation_or_predicate": "FactorsThrough selfReceipt toyValid authorize is unsatisfiable for authorize : Unit -> Bool",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/Core.lean",
+              "declaration": "AuthorizationIncompleteness.self_receipt_blocks_authorization",
+              "line": 86
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "decl": "AuthorizationIncompleteness.self_receipt_blocks_authorization",
+            "kind": "theorem",
+            "line": 86,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "complete_factors",
+          "equation_or_predicate": "FactorsThrough completeReceipt toyValid id holds",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "lean4/AuthIncompleteness/Core.lean",
+              "declaration": "AuthorizationIncompleteness.complete_receipt_decides_toy_contract",
+              "line": 97
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "decl": "AuthorizationIncompleteness.complete_receipt_decides_toy_contract",
+            "kind": "theorem",
+            "line": 97,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Packet field name and exact definition of completeReceipt not visible in the source listing; the target phrase identity report is matched through the existing theorem only",
+        "Lean skeletons not elaborated by me",
+        "lemma blocks unverified: Lean elaboration disabled",
+        "lemma complete_ok unverified: Lean elaboration disabled",
+        "near_miss constant_authorizer unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "selfReceipt",
+        "ordered_inputs": [
+          "Packet"
+        ],
+        "output": "Unit",
+        "arity": 1,
+        "carrier": "Packet -> Unit",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.selfReceipt",
+            "line": 72
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.selfReceipt",
+          "kind": "def",
+          "line": 72,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "toyValid",
+        "ordered_inputs": [
+          "Packet"
+        ],
+        "output": "Bool",
+        "arity": 1,
+        "carrier": "Packet -> Bool",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.toyValid",
+            "line": 75
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.toyValid",
+          "kind": "def",
+          "line": 75,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "completeReceipt",
+        "ordered_inputs": [
+          "Packet"
+        ],
+        "output": "Bool",
+        "arity": 1,
+        "carrier": "Packet -> Bool",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.completeReceipt",
+            "line": 95
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.completeReceipt",
+          "kind": "def",
+          "line": 95,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "split_fibre",
+        "equation_or_predicate": "There exist packets left, right with selfReceipt left = selfReceipt right and toyValid left ≠ toyValid right",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.self_receipt_splits_validity",
+            "line": 78
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.self_receipt_splits_validity",
+          "kind": "theorem",
+          "line": 78,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "factors_through_self",
+        "equation_or_predicate": "FactorsThrough selfReceipt toyValid authorize is unsatisfiable for authorize : Unit -> Bool",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.self_receipt_blocks_authorization",
+            "line": 86
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.self_receipt_blocks_authorization",
+          "kind": "theorem",
+          "line": 86,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "complete_factors",
+        "equation_or_predicate": "FactorsThrough completeReceipt toyValid id holds",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "lean4/AuthIncompleteness/Core.lean",
+            "declaration": "AuthorizationIncompleteness.complete_receipt_decides_toy_contract",
+            "line": 97
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/AuthIncompleteness/Core.lean",
+          "decl": "AuthorizationIncompleteness.complete_receipt_decides_toy_contract",
+          "kind": "theorem",
+          "line": 97,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Packet field name and exact definition of completeReceipt not visible in the source listing; the target phrase identity report is matched through the existing theorem only",
+      "Lean skeletons not elaborated by me",
+      "lemma blocks unverified: Lean elaboration disabled",
+      "lemma complete_ok unverified: Lean elaboration disabled",
+      "near_miss constant_authorizer unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "unit_cardinality",
+        "expr": "1",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      },
+      {
+        "id": "bit_cardinality",
+        "expr": "2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "6 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

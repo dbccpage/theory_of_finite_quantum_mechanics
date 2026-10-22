@@ -1,0 +1,56 @@
+{
+  "task_id": "FSP-GIN-EQUAL-WEIGHT-PAIRING",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "63d1a1cdea20008256b563efa05b8aefc1f17eb02df20de691f72e6cca6d130c",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"For weight w and signs s1,s2 with s1+s2=0, w*s1 + w*s2 = 0, so a matched pair of equal-weight opposite-sign paths cancels.\",\"hypotheses\":\"w : Nat, s1 s2 : Int, s1 + s2 = 0\",\"ref\":{\"path\":\"papers/core/fsp/lean4/FermionGinCore.lean\",\"decl\":\"FermionGinCore.involution_pair_cancels_sign\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"Pair cancellation: each negative Euler-transfer path matched to a positive path of equal weight in the same fiber contributes zero net signed weight. This covers only the cancellation step, not the enumeration or matching of the 32 paths.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"R1\"],\"lean_skeleton\":\"theorem pair_cancel (w : Nat) (s1 s2 : Int) (h : s1 + s2 = 0) : (w:Int)*s1 + (w:Int)*s2 = 0 := FermionGinCore.involution_pair_cancels_sign w s1 s2 h\",\"claims_proved\":true,\"ref\":{\"path\":\"papers/core/fsp/lean4/FermionGinCore.lean\",\"decl\":\"FermionGinCore.involution_pair_cancels_sign\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"The pairing is a spectator-preserving symmetry that preserves general observables.\",\"rejecting_invariant\":\"INV-GIN-PARITY: pairing is on exact weight fibers of enumerated paths only.\"}],\"numeric_claims\":[],\"open_obligations\":[\"No generators are grounded in @SRC; the posting-list operations are not cited.\",\"The existence of the explicit matching of all 32 negative paths to disjoint positive paths with equal rational weight (four-site ring, U=0, two spin-up, beta=3/2, four slices) is not grounded.\",\"The claim that a k-mode posting-list query uses k posting-list operations is not grounded.\",\"No evidence for CT-AUX stability for multi-orbital models.\",\"Path enumeration grows exponentially.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "For weight w and signs s1,s2 with s1+s2=0, w*s1 + w*s2 = 0, so a matched pair of equal-weight opposite-sign paths cancels.",
+        "hypotheses": "w : Nat, s1 s2 : Int, s1 + s2 = 0",
+        "ref": {
+          "path": "papers/core/fsp/lean4/FermionGinCore.lean",
+          "decl": "FermionGinCore.involution_pair_cancels_sign",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "Pair cancellation: each negative Euler-transfer path matched to a positive path of equal weight in the same fiber contributes zero net signed weight. This covers only the cancellation step, not the enumeration or matching of the 32 paths.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R1"
+        ],
+        "lean_skeleton": "theorem pair_cancel (w : Nat) (s1 s2 : Int) (h : s1 + s2 = 0) : (w:Int)*s1 + (w:Int)*s2 = 0 := FermionGinCore.involution_pair_cancels_sign w s1 s2 h",
+        "claims_proved": true,
+        "ref": {
+          "path": "papers/core/fsp/lean4/FermionGinCore.lean",
+          "decl": "FermionGinCore.involution_pair_cancels_sign",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "The pairing is a spectator-preserving symmetry that preserves general observables.",
+        "rejecting_invariant": "INV-GIN-PARITY: pairing is on exact weight fibers of enumerated paths only."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No generators are grounded in @SRC; the posting-list operations are not cited.",
+      "The existence of the explicit matching of all 32 negative paths to disjoint positive paths with equal rational weight (four-site ring, U=0, two spin-up, beta=3/2, four slices) is not grounded.",
+      "The claim that a k-mode posting-list query uses k posting-list operations is not grounded.",
+      "No evidence for CT-AUX stability for multi-orbital models.",
+      "Path enumeration grows exponentially."
+    ]
+  }
+}

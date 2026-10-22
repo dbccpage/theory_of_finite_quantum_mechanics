@@ -1,0 +1,147 @@
+add_or_refine_generators:
+- id: g:path_holonomy
+  ordered_inputs:
+  - Cochain1
+  - PairList
+  output: Int
+  arity: 2
+  carrier: Int
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/CoboundaryHolonomy.lean
+    declaration: InterferenceNonL1Resource.path_holonomy
+    line: 20
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/CoboundaryHolonomy.lean
+    decl: InterferenceNonL1Resource.path_holonomy
+    kind: def
+    line: 20
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r:coboundary_triangle_zero
+  equation_or_predicate: path_holonomy of the coboundary of a 0-cochain around a triangle cycle equals
+    0
+  typing_conditions: triangle cycle in the finite complex; cochain is a 0-cochain
+  source_pins:
+  - path: lean4/CoboundaryHolonomy.lean
+    declaration: InterferenceNonL1Resource.coboundary_triangle_holonomy_zero
+    line: 30
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CoboundaryHolonomy.lean
+    decl: InterferenceNonL1Resource.coboundary_triangle_holonomy_zero
+    kind: theorem
+    line: 30
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-6E99C8B5D9E3
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''Cochain1''], ''output'': ''Matrix Rationals'', ''arity'': 1, ''name'': ''compute_connection_laplacian'',
+    ''path'': ''code/rust/src/holonomy/laplacian.rs'', ''decl'''
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+- id: NEG-9265F8088ACD
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''Cochain1''], ''output'': ''GaugeData'', ''arity'': 1, ''name'': ''from_discrete_connection'',
+    ''path'': ''code/rust/src/holonomy/gauge_fixing.rs'', ''decl'': ''from_'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+- id: NEG-A1E555831EEE
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''inputs'': [''GaugeTransportReceipt''], ''output'': ''QuotientModule'', ''arity'': 1, ''name'':
+    ''RationalGaugeQuotient'', ''path'': ''code/rust/src/holonomy/gauge_quotient.rs'
+  evidence: 'generators[2]: missing id; generators[2]: missing carrier; generators[2]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+- id: NEG-A2886C86E1A8
+  class: schema_violation
+  claim_kind: compositions
+  claim: '{''outer'': ''compute_connection_laplacian'', ''slot'': 0, ''inner'': ''from_discrete_connection'',
+    ''name'': ''compose_laplacian_gauge'', ''license_relation'': ''coboundary_tri'
+  evidence: 'compositions[0]: missing licensing_relation; compositions[0]: unexpected name; compositions[0]:
+    unexpected license_relation'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+- id: NEG-34AEB7AD226D
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''relation_to_target'': ''implies'', ''claims_proved'': True, ''name'': ''coboundary_triangle_holonomy_zero'',
+    ''path'': ''lean4/CoboundaryHolonomy.lean'', ''decl'': ''cobounda'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+- id: NEG-0C43DA16A442
+  class: unparseable_reply
+  claim_kind: reply
+  claim: ''
+  evidence: empty_reply (truncated at max_tokens)
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+counterexamples:
+- id: NEG-B77F733FAD70
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'gen_laplacian_fn: (ConnectionLaplacian) -> ConnectionLaplacian [compute_connection_laplacian]'
+  evidence: rust fn compute_connection_laplacian takes 4 parameters; the claim says 1
+  decl_key: compute_connection_laplacian
+  confidence: exact
+  model: nvidia/nemotron-3.5-lightning:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0174
+open_obligations:
+- No existing declaration in the @SRC list covers the connection Laplacian as an exact matrix operation;
+  compute_connection_laplacian and ConnectionLaplacian are listed in @SRC but were refused as generators
+  in prior attempts and are not cited here.
+- Gauge fixing (from_discrete_connection, to_discrete_connection, connection_laplacian) and gauge quotient
+  (RationalGaugeQuotient, GaugeTransportReceipt) need an exactness lemma tying them to rational matrix
+  data before any generator or lemma can be stated.
+- Spectrum of Delta_U over the exact field has not been grounded; no relation was formed.
+- Prior host refusals for schema, parse, and composition type mismatch were not reproduced; no composition
+  is proposed because no inner-outer colour match was grounded.
+- 'near_miss nm:float_laplacian_diagonal unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

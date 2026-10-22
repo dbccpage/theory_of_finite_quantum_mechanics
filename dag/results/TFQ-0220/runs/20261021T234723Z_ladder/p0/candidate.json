@@ -1,0 +1,275 @@
+{
+  "task_id": "TFQ-0220",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9a7f519c69b36ef5a147528d25095aff3600819aa4d03806718a1110b8d6bcf1",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_can_continue",
+          "inputs": [
+            "PrimeContinuationInputs"
+          ],
+          "output": "CanContinueResult",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_next_carrier",
+          "inputs": [],
+          "output": "Carrier",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_authority_none",
+          "equation_or_predicate": "AUTHORITY_EFFECT is None for prime_algorithm_2",
+          "typing_conditions": "none",
+          "source_pins": [
+            {
+              "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+              "declaration": "authority_effect_is_none",
+              "line": 2672
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "decl": "authority_effect_is_none",
+            "kind": "fn",
+            "line": 2672,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_refusal_no_budget",
+          "equation_or_predicate": "A refused continuation does not spend budget",
+          "typing_conditions": "refusal path taken",
+          "source_pins": [
+            {
+              "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+              "declaration": "a_refused_continuation_does_not_spend_budget",
+              "line": 2528
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "decl": "a_refused_continuation_does_not_spend_budget",
+            "kind": "fn",
+            "line": 2528,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Lean continuationAllowed declaration and Python can_continue are not in SRC, so not cited",
+        "Distinct runner/authorizer id condition not grounded",
+        "Composition licensing not established; no compositions listed",
+        "Generator colours (Carrier, Bool) are guessed type names",
+        "Lean skeletons use guessed structure names",
+        "relation r_unauthorized_refuses unverified: no existing declaration cited",
+        "lemma l_unauth_blocks unverified: Lean elaboration disabled",
+        "lemma l_refused_flag unverified: Lean elaboration disabled",
+        "near_miss nm_adequacy_other_residual unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_lift_admission_authorizes unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_can_continue",
+        "ordered_inputs": [
+          "PrimeContinuationInputs"
+        ],
+        "output": "CanContinueResult",
+        "arity": 1,
+        "carrier": "prime_seam",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/local_green_global_red_lggr/prime_seam.rs",
+            "declaration": "can_continue",
+            "line": 631
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/local_green_global_red_lggr/prime_seam.rs",
+          "decl": "can_continue",
+          "kind": "fn",
+          "line": 631,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_next_carrier",
+        "ordered_inputs": [],
+        "output": "Carrier",
+        "arity": 0,
+        "carrier": "prime_algorithm_2",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "next_carrier",
+            "line": 1057
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "next_carrier",
+          "kind": "fn",
+          "line": 1057,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_authority_none",
+        "equation_or_predicate": "AUTHORITY_EFFECT is None for prime_algorithm_2",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "authority_effect_is_none",
+            "line": 2672
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "authority_effect_is_none",
+          "kind": "fn",
+          "line": 2672,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_refusal_no_budget",
+        "equation_or_predicate": "A refused continuation does not spend budget",
+        "typing_conditions": "refusal path taken",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+            "declaration": "a_refused_continuation_does_not_spend_budget",
+            "line": 2528
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+          "decl": "a_refused_continuation_does_not_spend_budget",
+          "kind": "fn",
+          "line": 2528,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-02583702D27B",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_can_continue_n: () -> Bool [can_continue_n]",
+        "evidence": "rust fn can_continue_n takes 4 parameters; the claim says 0",
+        "decl_key": "can_continue_n",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "TFQ-0220"
+      }
+    ],
+    "open_obligations": [
+      "Lean continuationAllowed declaration and Python can_continue are not in SRC, so not cited",
+      "Distinct runner/authorizer id condition not grounded",
+      "Composition licensing not established; no compositions listed",
+      "Generator colours (Carrier, Bool) are guessed type names",
+      "Lean skeletons use guessed structure names",
+      "relation r_unauthorized_refuses unverified: no existing declaration cited",
+      "lemma l_unauth_blocks unverified: Lean elaboration disabled",
+      "lemma l_refused_flag unverified: Lean elaboration disabled",
+      "near_miss nm_adequacy_other_residual unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_lift_admission_authorizes unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,68 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "unit_gauge_pair",
+      "inputs": [
+        "Obj"
+      ],
+      "output": "Gauge",
+      "arity": 1,
+      "carrier": "fusion category data over K at simple object b",
+      "ref": {
+        "path": "code/rust/src/fusion_categories/fusion_category.rs",
+        "decl": "unit_gauge_pair",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "mf_gate",
+      "statement": "A fusion ring is multiplicity-free before its category data is used for unit normalization",
+      "hypotheses": "ring passes require_multiplicity_free",
+      "ref": {
+        "path": "code/rust/src/fusion_categories/fusion_category.rs",
+        "decl": "require_multiplicity_free",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "unit_repair_scope",
+      "statement": "The unit-law check and canonical gauge repair are a computational replay on multiplicity-free pointed data and do not establish categorification for N greater than 1",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "mf_gate"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "code/rust/src/fusion_categories/fusion_category.rs",
+        "decl": "unit_laws_are_checked_and_repaired_by_the_canonical_gauge",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_frobenius_color",
+      "claim": "The Frobenius replay on Q(i) matrices supplies the missing color Hopf gauge algebra",
+      "rejecting_invariant": "A special commutative Frobenius algebra underlies a topological lattice anyon model and is not the color Hopf algebra; the dimension cap is a code bound, not a QCD statement"
+    },
+    {
+      "id": "nm_toric_mf",
+      "claim": "The toric code fusion ring is shown multiplicity-free by a checked lemma here",
+      "rejecting_invariant": "Host has refused prior toric code multiplicity and unit-law proofs as vacuous; no grounded citation is available in this attempt"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Frobenius replay on Q(i) matrices with dimension 1 to 16 is not cited: no existing declaration for it was supplied in @SRC or @KNOWN+",
+    "No categorification for N greater than 1 is provided by the cited fusion_category declarations",
+    "No Hopf gauge algebra for color is available; the Frobenius side must stay on the topological cut",
+    "Toric code fusion ring citation g:toric_code_fusion_ring was not verified as a declaration usable in a lemma here"
+  ]
+}

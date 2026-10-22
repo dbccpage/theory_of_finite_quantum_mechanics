@@ -1,0 +1,115 @@
+add_or_refine_generators:
+- id: boolTerminalize
+  ordered_inputs:
+  - Bool
+  output: AuthorizationTerminal
+  arity: 1
+  carrier: Bool -> AuthorizationTerminal
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/Terminal.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize
+    line: 160
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Terminal.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize
+    kind: def
+    line: 160
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: acceptance_sound
+  equation_or_predicate: AcceptanceSound boolValidity boolTerminalize
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Terminal.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceSound
+    line: 57
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Terminal.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceSound
+    kind: def
+    line: 57
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: acceptance_complete
+  equation_or_predicate: AcceptanceComplete boolValidity boolTerminalize
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Terminal.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceComplete
+    line: 62
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Terminal.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.AcceptanceComplete
+    kind: def
+    line: 62
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: rejection_sound
+  equation_or_predicate: RejectionSound boolValidity boolTerminalize
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Terminal.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.RejectionSound
+    line: 68
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Terminal.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.RejectionSound
+    kind: def
+    line: 68
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: terminal_closed
+  equation_or_predicate: TerminalClosed boolTerminalize
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/Terminal.lean
+    declaration: AuthorizationIncompleteness.TerminalAuthorizationBoundary.TerminalClosed
+    line: 75
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/Terminal.lean
+    decl: AuthorizationIncompleteness.TerminalAuthorizationBoundary.TerminalClosed
+    kind: def
+    line: 75
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- The @SRC theorem statement is truncated; the exact conjunct list (rejection-sound, closed) is unconfirmed
+- The definition of boolValidity body is not shown
+- The definition bodies of TerminalClosed and the soundness predicates are not shown
+- Lean skeleton uses sorry and is unelaborated
+- 'lemma bool_fixture_closed_terminalizer unverified: Lean elaboration disabled'
+- 'near_miss constant_authorized unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

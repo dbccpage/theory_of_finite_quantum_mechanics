@@ -1,0 +1,157 @@
+{
+  "task_id": "FSP-CAR-DYNAMICS-NONUNIQUE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9e0a0a1a70a516a31fa57758437213069d4e9ed58cecf177631fd3ca76194141",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_hop\",\"inputs\":[\"Real\",\"Graph\"],\"output\":\"Hamiltonian\",\"arity\":2,\"carrier\":\"CAR Fock space, 2 sites x spin\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_hubbard_int\",\"inputs\":[\"Real\",\"Graph\"],\"output\":\"Hamiltonian\",\"arity\":2,\"carrier\":\"CAR Fock space, on-site n_up n_down\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_add\",\"inputs\":[\"Hamiltonian\",\"Hamiltonian\"],\"output\":\"Hamiltonian\",\"arity\":2,\"carrier\":\"operators on Fock space\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_herm_add\",\"statement\":\"If A and B are Hermitian then A+B is Hermitian; likewise number conservation is preserved under addition\",\"hypotheses\":\"A=A^dagger, B=B^dagger, [A,N]=0, [B,N]=0\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_car_indep\",\"statement\":\"The CAR fix only {c_i,c_j^dagger}=delta_ij and {c_i,c_j}=0; they do not determine H\",\"hypotheses\":\"Fock representation of the CAR\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"g_add\",\"slot\":0,\"inner\":\"g_hop\",\"licensing_relation\":\"r_herm_add\"},{\"outer\":\"g_add\",\"slot\":1,\"inner\":\"g_hubbard_int\",\"licensing_relation\":\"r_herm_add\"}],\"lemmas\":[{\"id\":\"l_nonunique\",\"statement\":\"On the CAR Fock space of 2 sites with spin, H=0, H_hop and H_hop+U*D (Hubbard) are pairwise distinct Hermitian operators commuting with N, for t≠0 and U≠0\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_car_indep\",\"r_herm_add\"],\"lean_skeleton\":\"theorem l_nonunique : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_hubbard_matrix\",\"statement\":\"In the N=2, Sz=0 sector (basis |up,down at site 1>, |up1 down2>, |down1 up2>, |up,down at site 2>) the hopping and interaction pieces are explicit matrices, and H(t,U) differs from H(t,0) by U on the doubly occupied states\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"l_nonunique\"],\"lean_skeleton\":\"theorem l_hubbard_matrix : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_car_fixes_H\",\"claim\":\"The CAR determine the Hamiltonian uniquely\",\"rejecting_invariant\":\"H=0, hopping and Hubbard satisfy the same CAR yet are different operators\"},{\"id\":\"nm_number_cons_fixes_H\",\"claim\":\"Hermiticity plus number conservation determine H\",\"rejecting_invariant\":\"Both hopping and Hubbard are Hermitian and commute with N but differ\"}],\"numeric_claims\":[{\"id\":\"n_dim\",\"expr\":\"2^4\",\"value\":\"16\"},{\"id\":\"n_sector\",\"expr\":\"4\",\"value\":\"4\"}],\"open_obligations\":[\"No existing declarations were found, so all refs are proposed_new\",\"Lean skeletons are placeholders and must be formalized\",\"Explicit 4x4 Hubbard matrix with sign conventions not written out\",\"Distinctness proof requires nonzero t and U\",\"Locality graph, truncation, and real t are admissions\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_hop",
+        "inputs": [
+          "Real",
+          "Graph"
+        ],
+        "output": "Hamiltonian",
+        "arity": 2,
+        "carrier": "CAR Fock space, 2 sites x spin",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_hubbard_int",
+        "inputs": [
+          "Real",
+          "Graph"
+        ],
+        "output": "Hamiltonian",
+        "arity": 2,
+        "carrier": "CAR Fock space, on-site n_up n_down",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_add",
+        "inputs": [
+          "Hamiltonian",
+          "Hamiltonian"
+        ],
+        "output": "Hamiltonian",
+        "arity": 2,
+        "carrier": "operators on Fock space",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_herm_add",
+        "statement": "If A and B are Hermitian then A+B is Hermitian; likewise number conservation is preserved under addition",
+        "hypotheses": "A=A^dagger, B=B^dagger, [A,N]=0, [B,N]=0",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_car_indep",
+        "statement": "The CAR fix only {c_i,c_j^dagger}=delta_ij and {c_i,c_j}=0; they do not determine H",
+        "hypotheses": "Fock representation of the CAR",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "g_add",
+        "slot": 0,
+        "inner": "g_hop",
+        "licensing_relation": "r_herm_add"
+      },
+      {
+        "outer": "g_add",
+        "slot": 1,
+        "inner": "g_hubbard_int",
+        "licensing_relation": "r_herm_add"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "l_nonunique",
+        "statement": "On the CAR Fock space of 2 sites with spin, H=0, H_hop and H_hop+U*D (Hubbard) are pairwise distinct Hermitian operators commuting with N, for t≠0 and U≠0",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_car_indep",
+          "r_herm_add"
+        ],
+        "lean_skeleton": "theorem l_nonunique : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_hubbard_matrix",
+        "statement": "In the N=2, Sz=0 sector (basis |up,down at site 1>, |up1 down2>, |down1 up2>, |up,down at site 2>) the hopping and interaction pieces are explicit matrices, and H(t,U) differs from H(t,0) by U on the doubly occupied states",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "l_nonunique"
+        ],
+        "lean_skeleton": "theorem l_hubbard_matrix : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_car_fixes_H",
+        "claim": "The CAR determine the Hamiltonian uniquely",
+        "rejecting_invariant": "H=0, hopping and Hubbard satisfy the same CAR yet are different operators"
+      },
+      {
+        "id": "nm_number_cons_fixes_H",
+        "claim": "Hermiticity plus number conservation determine H",
+        "rejecting_invariant": "Both hopping and Hubbard are Hermitian and commute with N but differ"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_dim",
+        "expr": "2^4",
+        "value": "16"
+      },
+      {
+        "id": "n_sector",
+        "expr": "4",
+        "value": "4"
+      }
+    ],
+    "open_obligations": [
+      "No existing declarations were found, so all refs are proposed_new",
+      "Lean skeletons are placeholders and must be formalized",
+      "Explicit 4x4 Hubbard matrix with sign conventions not written out",
+      "Distinctness proof requires nonzero t and U",
+      "Locality graph, truncation, and real t are admissions"
+    ]
+  }
+}

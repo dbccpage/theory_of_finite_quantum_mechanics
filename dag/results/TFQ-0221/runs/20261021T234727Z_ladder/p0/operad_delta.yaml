@@ -1,0 +1,45 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: no_authorized_terminal
+  equation_or_predicate: The image of land_terminal is contained in {evidence_only, unresolved, refused,
+    not_admitted}; no authorized terminal exists.
+  typing_conditions: Python TerminalStatus and Lean constructors are the same four-element list, and the
+    ceiling stays None.
+  source_pins:
+  - path: code/python/governance/40_packets/omega_types_terminal_status_contract.py
+    declaration: validate_contract
+    line: 35
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/governance/40_packets/omega_types_terminal_status_contract.py
+    decl: validate_contract
+    kind: def
+    line: 35
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Verify that the Lean constructors match the Python TerminalStatus list, since the source declarations
+  were not inspected.
+- Define the FinishedPrimeCycle and FailedGate colours formally.
+- Ground the firewall chapter and its identity/scope separation, which has no listed declaration.
+- Cite the existing Lean declaration for TerminalStatus once its path is known.
+- 'generator land_terminal unverified: no existing declaration cited'
+- 'generator classify_refusal unverified: no existing declaration cited'
+- 'lemma terminal_four_exhaustive unverified: Lean elaboration disabled'
+- 'near_miss authorized_terminal unverified: semantic near miss; P4 host check decides'
+- 'near_miss firewall_mints_effect unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: terminal_count
+  expr: '4'
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements: []

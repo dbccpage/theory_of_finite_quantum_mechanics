@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "AUTH-G5A-CLASS-RELATIVE-TRANSPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f3f4f3d9ddc890447ccb7bb424261ffd2e479c4d57b4feccea28e618889d617e",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=AUTH-G5A-CLASS-RELATIVE-TRANSPORT stage=P0 attempt=a3-1 in=f3f4f3d9 guided=yes\n@TARGET [PROVED_LEAN] If a map from a source predicate into proposal validity preserves the predicate exactly, and the allowed proposal deciders are closed under precomposition with that map, then a source predicate with no allowed total decider gives a proposal predicate with no allowed total decider.\n@BOTTLENECK Instantiate the allowed classes with ComputablePred on a code type, take the halting problem as the source predicate and prove closure under the reduction; the declaration supplies none of the three.\n@ASSUME decision classes allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.Decides | def | def Decides {Input : Type} (predicate : Input -> Prop) (decider : Input -> Bool) : Prop\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.NoTotalDecider | def | def NoTotalDecider {Input : Type} (allowed : (Input -> Bool) -> Prop) (predicate : Input -> Prop) : Prop\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction | structure | structure ValidityReduction {HardInput Proposal : Type} (hard : HardInput -> Prop) (valid : Proposal -> Prop)\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction | def | def ClosedUnderReduction {HardInput Proposal : Type} (allowedHard : (HardInput -> Bool) -> Prop) (allowedProposal : (Proposal -> Bool) -> Prop) {hard \n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.total_authorizer_yields_source_decider | theorem | theorem total_authorizer_yields_source_decider {HardInput Proposal : Type} {hard : HardInput -> Prop} {valid : Proposal -> Prop} {allowedHard : (HardI\n papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean | AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer | theorem | theorem no_source_decider_blocks_total_authorizer {HardInput Proposal : Type} {hard : HardInput -> Prop} {valid : Proposal -> Prop} {allowedHard : (Ha\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] terminalize . slot 0 <- mark_unresolved via unresolved_default -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 6,
+    "known_neg_injected": 1,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "AUTH-G5-GLOBAL-COMPUTABILITY-LIFT",
+      "AUTH-G5B-CARRIER-ADMISSION-GATE",
+      "AUTH-G5C-TERMINALIZATION-CONSEQUENCE",
+      "TFQ-0330"
+    ],
+    "feedback": true,
+    "index_position": 728,
+    "neg_entry_ids": [
+      "NEG-BB7BF1F721A2"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

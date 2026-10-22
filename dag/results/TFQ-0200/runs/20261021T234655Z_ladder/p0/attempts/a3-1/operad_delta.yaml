@@ -1,0 +1,83 @@
+add_or_refine_generators:
+- id: seal_vbox_certificate
+  ordered_inputs:
+  - EnclosedTriple
+  - VectorBox
+  - ArtifactJson
+  - Float
+  - Bool
+  output: Certificate
+  arity: 5
+  carrier: exact enclosure triple with float and planted flag as non-authorizing diagnostics
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    declaration: seal_vbox_certificate
+    line: 53
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    decl: seal_vbox_certificate
+    kind: fn
+    line: 53
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: float_cannot_authorize
+  equation_or_predicate: A float estimate or planted-solution flag never changes whether a certificate
+    is produced; only the exact enclosure determines it.
+  typing_conditions: exact certificate absent implies refusal regardless of float value
+  source_pins:
+  - path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    declaration: a_huge_float_cannot_invent_an_exact_certificate
+    line: 89
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    decl: a_huge_float_cannot_invent_an_exact_certificate
+    kind: fn
+    line: 89
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: planted_flag_cannot_mint
+  equation_or_predicate: A planted flag, artifact and float together cannot mint a global claim.
+  typing_conditions: no exact certificate
+  source_pins:
+  - path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    declaration: planted_flag_artifact_and_float_cannot_mint_a_global_claim
+    line: 95
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/mub/omega_native/mub6_claim_gate.rs
+    decl: planted_flag_artifact_and_float_cannot_mint_a_global_claim
+    kind: fn
+    line: 95
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Python implementation reference not grounded (build_ledger has no listed signature)
+- Lean 4 counterpart of the gate not found in SRC
+- Rust types EnclosedTriple, VectorBox and return type not fully visible
+- Cross-language refusal equivalence not formalized
+- certificate_from_exact_only is host-refused as a signature, so it is not cited as a generator
+- 'lemma three_language_same_statement unverified: Lean elaboration disabled'
+- 'near_miss float_authorizes unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

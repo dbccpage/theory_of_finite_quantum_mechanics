@@ -1,0 +1,311 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-2",
+  "input_sha256": "d7dbb4dbb92c57027cbd4dec765b050739a294a7acdd0b88b095063aea918866",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET stage=P0 attempt=a4-2 in=d7dbb4db guided=yes\n@TARGET [OPEN] Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P) on a common finite space, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices; and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite counterpart of causal factorization. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.\n@BOTTLENECK The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser is an analogy.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.linear_extension | theorem | theorem linear_extension (hU : S.IsOrderUnit) (W : EffectValuation S) : ∃! L : V →ₗ[ℚ] ℚ, ∀ a, S.Effect a → L a = W.v a\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.Bounded | def | def Bounded (a : V) (t : ℚ) : Prop\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.IsOrderUnit | def | def IsOrderUnit : Prop\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bounded_mono | theorem | theorem bounded_mono {a : V} {s t : ℚ} (hst : s ≤ t) (h : S.Bounded a s) : S.Bounded a t\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bounded_add | theorem | theorem bounded_add {a b : V} {s t : ℚ} (ha : S.Bounded a s) (hb : S.Bounded b t) : S.Bounded (a + b) (s + t)\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bounded_of_effect | theorem | theorem bounded_of_effect {a : V} (ha : S.Effect a) : S.Bounded a 1\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.midpoint | def | def midpoint (a : V) (t : ℚ) : V\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.midpoint_effect | theorem | theorem midpoint_effect {a : V} {t : ℚ} (ht : 0 < t) (h : S.Bounded a t) : S.Effect (S.midpoint a t)\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extAt | def\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extAt_add | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extAt_mono | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extAt_eq | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bound | def\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bound_pos | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.bounded_bound | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend | def\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend_eq_extAt | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend_add | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend_effect | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend_nonneg | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extend_u | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extendHom | def\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extendₗ | def\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extendₗ_apply | theorem\n lean4/BornLinearExtension.lean | BornFable.OrderedQUnit.extendₗ_effect | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] linext_independence: The ordered product along a linear extension is independent of the extension when A_x,A_y -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] linext_independence_general: For a finite strict poset P and matrices A_x with A_x A_y = A_y A_x for all incom -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] linext_independence_target: For a finite strict poset with matrices commuting on all incomparable pairs, the o -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] linext_independence_fixed: For a finite strict poset P and matrices A_x commuting on all incomparable pairs, t -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] ordered_product . slot 2 <- adjacent_swap via swap_commute -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 5,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "CQFT-CAUSAL-FACTORIZATION-IMPORT",
+      "CQFT-FINITE-STRICT-POSET-SPACELIKE"
+    ],
+    "feedback": true,
+    "index_position": 624,
+    "neg_entry_ids": [
+      "NEG-CCB9D4F10ED2",
+      "NEG-B2F900B46BF2",
+      "NEG-D6A4CE3F6190",
+      "NEG-B14BB27102DD",
+      "NEG-DDA17ADA9FB8"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

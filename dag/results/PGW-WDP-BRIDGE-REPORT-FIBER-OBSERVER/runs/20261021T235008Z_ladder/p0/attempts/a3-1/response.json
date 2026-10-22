@@ -1,0 +1,140 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "report_map",
+      "inputs": [
+        "Cases"
+      ],
+      "output": "Reports",
+      "arity": 1,
+      "carrier": "declared evaluation report E: X -> Reports on actual cases",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "protected_decision",
+      "inputs": [
+        "Cases"
+      ],
+      "output": "Decisions",
+      "arity": 1,
+      "carrier": "protected admission or permission decision A: X -> Decisions",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "decoder_on_image",
+      "inputs": [
+        "Reports"
+      ],
+      "output": "Decisions",
+      "arity": 1,
+      "carrier": "function on the actual image of E",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "fibre_constancy",
+      "statement": "For all x,y in X: E(x)=E(y) implies A(x)=A(y)",
+      "hypotheses": "E and A declared on the same actual cases X",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "decoder_factorization",
+      "statement": "decoder_on_image composed with report_map equals protected_decision on X",
+      "hypotheses": "decoder defined on the image of E",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "decoder_on_image",
+      "slot": 0,
+      "inner": "report_map",
+      "licensing_relation": "decoder_factorization"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "gen_wdp_03_fibre_criterion",
+      "statement": "A decoder on Set.range E with decoder(E x)=A x exists iff E x = E y implies A x = A y",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "fibre_constancy",
+        "decoder_factorization"
+      ],
+      "lean_skeleton": "theorem fibre_criterion {X R D : Type*} (E : X → R) (A : X → D) : (∃ f : Set.range E → D, ∀ x, f ⟨E x, x, rfl⟩ = A x) ↔ (∀ x y, E x = E y → A x = A y) := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "no_postprocessor_counterexample",
+      "statement": "If E x = E y and A x ≠ A y then no decoder or report-only postprocessor exists",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "gen_wdp_03_fibre_criterion"
+      ],
+      "lean_skeleton": "theorem no_decoder {X R D : Type*} (E : X → R) (A : X → D) (x y : X) (h : E x = E y) (hA : A x ≠ A y) : ¬ ∃ g : R → D, ∀ z, g (E z) = A z := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_multiset_loses_state",
+      "claim": "An event multiset report determines the final state",
+      "rejecting_invariant": "Different final states can share the same event multiset, so fibres are not constant on final state (GEN-WDP-06)"
+    },
+    {
+      "id": "nm_state_loses_counts",
+      "claim": "A final state report determines occurrence counts",
+      "rejecting_invariant": "Different occurrence counts can give the same final state, so the fibre criterion fails for count questions"
+    },
+    {
+      "id": "nm_fresh_hash_receipt",
+      "claim": "A fresh hash binds a true receipt",
+      "rejecting_invariant": "A fresh hash can bind a false receipt, so freshness is not constant on the truth fibre"
+    },
+    {
+      "id": "nm_success_authorizes",
+      "claim": "A successful evaluation determines authorization",
+      "rejecting_invariant": "GEN-WDP-04: the criterion derives no evaluator, grantor or permission"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing source declaration covers the fibre criterion or decoder factorization; all entries are proposed_new",
+    "Lean skeletons are unelaborated and not proved",
+    "Concrete witnesses for GEN-WDP-06 near misses not constructed",
+    "Declared report map from the S(n)/MSS-N image to the WDP presentation is an assumption",
+    "TFQ-0338 and TFQ-0553 hand-off links not grounded in any listed declaration"
+  ]
+}

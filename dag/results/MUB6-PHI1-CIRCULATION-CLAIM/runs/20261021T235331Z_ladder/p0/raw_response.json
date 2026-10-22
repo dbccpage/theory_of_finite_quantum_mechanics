@@ -1,0 +1,151 @@
+{
+  "task_id": "MUB6-PHI1-CIRCULATION-CLAIM",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "49569a298f5d694de8f84c74075137b12e2ba6cd0a84ce4d5c637f319d180e03",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_phase_cochain\",\"inputs\":[\"FiniteNerve\",\"PhaseAssignment\"],\"output\":\"Cochain1\",\"arity\":2,\"carrier\":\"R/2piZ valued 1-cochain on edges of a supplied finite nerve\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_circulation\",\"inputs\":[\"Cochain1\",\"ClosedThreeBasisCycle\"],\"output\":\"Angle\",\"arity\":2,\"carrier\":\"R/2piZ, sum of cochain values around a closed 3-cycle\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"g_rephase\",\"inputs\":[\"Cochain1\",\"VertexPhase0Cochain\"],\"output\":\"Cochain1\",\"arity\":2,\"carrier\":\"R/2piZ, add coboundary of a 0-cochain\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_rephase_invariance\",\"statement\":\"Circulation over a closed cycle is invariant under g_rephase, since the coboundary of a 0-cochain sums to zero around a closed cycle (mod 2pi).\",\"hypotheses\":\"Cycle is closed in the supplied finite nerve; phases take values in R/2piZ.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_nerve_supplied\",\"statement\":\"Exactness of circulation holds only relative to the supplied nerve, not derived from complex charts.\",\"hypotheses\":\"Gap G4: nerve is a fixture; no derivation from charts.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"none\"}}],\"compositions\":[{\"outer\":\"g_circulation\",\"slot\":0,\"inner\":\"g_rephase\",\"licensing_relation\":\"r_rephase_invariance\"},{\"outer\":\"g_circulation\",\"slot\":0,\"inner\":\"g_phase_cochain\",\"licensing_relation\":\"r_nerve_supplied\"}],\"lemmas\":[{\"id\":\"l_rephase_invariant\",\"statement\":\"For a closed cycle c and a 0-cochain b, circulation(a + d b, c) = circulation(a, c) mod 2pi.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_rephase_invariance\"],\"lean_skeleton\":\"theorem rephase_inv (a : ℝ) (b : ℝ) : (a + b - b) = a := by ring\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"l_lower_bound\",\"statement\":\"Phi_1 >= 0.0812 rad for all closed three-basis cycles of the nerve; requires actual data not fixtures.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"l_rephase_invariant\"],\"lean_skeleton\":\"theorem phi1_ge (Phi : ℝ) : (812/10000 : ℝ) ≤ Phi := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_gauge_dependent_edge\",\"claim\":\"A single edge phase of size at least 0.0812 is nonremovable.\",\"rejecting_invariant\":\"Edge values change under re-phasing by coboundary; only closed-cycle sums are gauge invariant.\"},{\"id\":\"nm_mod_2pi_zero\",\"claim\":\"Nonzero circulation implies circulation at least 0.0812 rad.\",\"rejecting_invariant\":\"Nonzero is not a quantitative bound; the value must be verified against the threshold, and is defined only mod 2pi.\"}],\"numeric_claims\":[{\"id\":\"n_threshold\",\"expr\":\"812/10000\",\"value\":\"203/2500\"}],\"open_obligations\":[\"No existing source declarations; all refs proposed_new.\",\"Native Phi_1 values are fixtures (G4); lower bound 0.0812 not established.\",\"Nerve not derived from complex charts.\",\"Need computation of Phi_1 over every closed three-basis cycle and the minimum, with exact or rigorously bounded values.\",\"Representative choice mod 2pi (principal value in (-pi,pi]) must be fixed for the inequality to be meaningful.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_phase_cochain",
+        "inputs": [
+          "FiniteNerve",
+          "PhaseAssignment"
+        ],
+        "output": "Cochain1",
+        "arity": 2,
+        "carrier": "R/2piZ valued 1-cochain on edges of a supplied finite nerve",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_circulation",
+        "inputs": [
+          "Cochain1",
+          "ClosedThreeBasisCycle"
+        ],
+        "output": "Angle",
+        "arity": 2,
+        "carrier": "R/2piZ, sum of cochain values around a closed 3-cycle",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "g_rephase",
+        "inputs": [
+          "Cochain1",
+          "VertexPhase0Cochain"
+        ],
+        "output": "Cochain1",
+        "arity": 2,
+        "carrier": "R/2piZ, add coboundary of a 0-cochain",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_rephase_invariance",
+        "statement": "Circulation over a closed cycle is invariant under g_rephase, since the coboundary of a 0-cochain sums to zero around a closed cycle (mod 2pi).",
+        "hypotheses": "Cycle is closed in the supplied finite nerve; phases take values in R/2piZ.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_nerve_supplied",
+        "statement": "Exactness of circulation holds only relative to the supplied nerve, not derived from complex charts.",
+        "hypotheses": "Gap G4: nerve is a fixture; no derivation from charts.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "none"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "g_circulation",
+        "slot": 0,
+        "inner": "g_rephase",
+        "licensing_relation": "r_rephase_invariance"
+      },
+      {
+        "outer": "g_circulation",
+        "slot": 0,
+        "inner": "g_phase_cochain",
+        "licensing_relation": "r_nerve_supplied"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "l_rephase_invariant",
+        "statement": "For a closed cycle c and a 0-cochain b, circulation(a + d b, c) = circulation(a, c) mod 2pi.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_rephase_invariance"
+        ],
+        "lean_skeleton": "theorem rephase_inv (a : ℝ) (b : ℝ) : (a + b - b) = a := by ring",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "l_lower_bound",
+        "statement": "Phi_1 >= 0.0812 rad for all closed three-basis cycles of the nerve; requires actual data not fixtures.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "l_rephase_invariant"
+        ],
+        "lean_skeleton": "theorem phi1_ge (Phi : ℝ) : (812/10000 : ℝ) ≤ Phi := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_gauge_dependent_edge",
+        "claim": "A single edge phase of size at least 0.0812 is nonremovable.",
+        "rejecting_invariant": "Edge values change under re-phasing by coboundary; only closed-cycle sums are gauge invariant."
+      },
+      {
+        "id": "nm_mod_2pi_zero",
+        "claim": "Nonzero circulation implies circulation at least 0.0812 rad.",
+        "rejecting_invariant": "Nonzero is not a quantitative bound; the value must be verified against the threshold, and is defined only mod 2pi."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_threshold",
+        "expr": "812/10000",
+        "value": "203/2500"
+      }
+    ],
+    "open_obligations": [
+      "No existing source declarations; all refs proposed_new.",
+      "Native Phi_1 values are fixtures (G4); lower bound 0.0812 not established.",
+      "Nerve not derived from complex charts.",
+      "Need computation of Phi_1 over every closed three-basis cycle and the minimum, with exact or rigorously bounded values.",
+      "Representative choice mod 2pi (principal value in (-pi,pi]) must be fixed for the inequality to be meaningful."
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_repair_functional",
+      "inputs": [
+        "C1"
+      ],
+      "output": "Real",
+      "arity": 1,
+      "carrier": "repair distance of x in C1 to range d0 (d0 fixed, finite-dimensional range)",
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.repairFunctional",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_phi1_quotient_norm",
+      "statement": "repairFunctional d0 x equals the quotient norm of the class of x in C1 modulo range d0",
+      "hypotheses": "d0 linear map C0 to C1 over 𝕜; C1 normed",
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.phi1_eq_submodule_quotient_norm",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_infdist_closure",
+      "statement": "infDist from x to the closure of range d0 equals repairFunctional d0 x",
+      "hypotheses": "d0 linear map C0 to C1",
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.repair_infDist_closure",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_zero_iff_exact",
+      "statement": "quotient norm of the class of x is zero iff x lies in range d0 (exact repair)",
+      "hypotheses": "range d0 finite-dimensional",
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.submodule_quotient_norm_eq_zero_iff_exact_repair",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_distance_identity",
+      "statement": "On a finite-dimensional repair image, infDist x (range d0) = quotient norm of the class of x",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_phi1_quotient_norm",
+        "r_infdist_closure"
+      ],
+      "lean_skeleton": "example : True := trivial -- combine repair_infDist_closure with phi1_eq_submodule_quotient_norm",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.phi1_eq_submodule_quotient_norm",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "l_separation",
+      "statement": "Zero repair distance implies the residual lies in range d0",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_zero_iff_exact"
+      ],
+      "lean_skeleton": "example : True := trivial -- from submodule_quotient_norm_eq_zero_iff_exact_repair",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/CofiberBanachQuotient.lean",
+        "decl": "QuantumMechanics.BanachQuotient.submodule_quotient_norm_eq_zero_iff_exact_repair",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_abs_descends",
+      "claim": "Coordinatewise absolute values descend to the quotient class",
+      "rejecting_invariant": "One class can contain two orthogonal diagonal diagnostics with different absolute values, so the map is not constant on classes"
+    },
+    {
+      "id": "nm_zero_without_finite_dim",
+      "claim": "Zero distance implies exact repair for any range",
+      "rejecting_invariant": "Without finite-dimensionality (closedness) of the range, zero distance only gives membership in the closure"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Concrete orthogonal diagonal diagnostic example in one class is not formalized; no existing declaration cited",
+    "Lean skeletons are placeholders; real proofs need host elaboration",
+    "Density or Hilbert encoding deliberately kept separate and not grounded"
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "task_id": "TFQ-0161",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-3",
+  "input_sha256": "05e05bfdab30b2450a120a1f33e60b650b828ab1943d17beceb7b58f0e6968b3",
+  "candidate_sha256": "ccccbcc2fc3f1cde6afc006d3d5be24f2d488b817031398021402dc1d7035963",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "nvidia/nemotron-3.5-lightning:free",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 2,
+    "failed_total": 1,
+    "failure_rate": 0.3333,
+    "failures_by_class": {
+      "nonexistent_declaration": 1
+    },
+    "unverifiable": 0,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:13:17Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "gen_weyl_obstruction",
+        "ordered_inputs": [
+          "x",
+          "p"
+        ],
+        "output": "comm_relation",
+        "arity": 2,
+        "carrier": "FiniteQM.weyl_heisenberg_finite_trace_obstruction",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.weyl_heisenberg_finite_trace_obstruction",
+            "line": 861
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.weyl_heisenberg_finite_trace_obstruction",
+          "kind": "theorem",
+          "line": 861,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "nvidia/nemotron-3.5-lightning:free",
+          "provider": "openrouter",
+          "tier": 0
+        }
+      },
+      {
+        "id": "gen_lorentz_boost",
+        "ordered_inputs": [
+          "beta",
+          "hb",
+          "hd"
+        ],
+        "output": "lb_relation",
+        "arity": 3,
+        "carrier": "FiniteQM.lorentz_boost_non_unitary_in_finite_dim",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FiniteQM.lean",
+            "declaration": "FiniteQM.lorentz_boost_non_unitary_in_finite_dim",
+            "line": 875
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FiniteQM.lean",
+          "decl": "FiniteQM.lorentz_boost_non_unitary_in_finite_dim",
+          "kind": "theorem",
+          "line": 875,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "nvidia/nemotron-3.5-lightning:free",
+          "provider": "openrouter",
+          "tier": 0
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-269020A89AE5",
+        "class": "nonexistent_declaration",
+        "claim_kind": "generator",
+        "claim": "gen_clock_kraus: (rho_s) -> kraus_dec_relation [FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence]",
+        "evidence": "lean4/FiniteQM.lean has no declaration FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence and none exists in the indexed sources",
+        "decl_key": "FiniteQM.finite_clock_poincare_recurrence_vrbs_kraus_decoherence",
+        "confidence": "exact",
+        "model": "nvidia/nemotron-3.5-lightning:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      },
+      {
+        "id": "NEG-452E93396795",
+        "class": "schema_violation",
+        "claim_kind": "relations",
+        "claim": "relations is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      },
+      {
+        "id": "NEG-CAFAE85E2E4F",
+        "class": "schema_violation",
+        "claim_kind": "compositions",
+        "claim": "compositions is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      },
+      {
+        "id": "NEG-EB18C9DEA457",
+        "class": "schema_violation",
+        "claim_kind": "numeric_claims",
+        "claim": "numeric_claims is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      },
+      {
+        "id": "NEG-B4702F316C4F",
+        "class": "schema_violation",
+        "claim_kind": "lemmas",
+        "claim": "lemmas is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      },
+      {
+        "id": "NEG-9C00FCC2C3A6",
+        "class": "schema_violation",
+        "claim_kind": "near_misses",
+        "claim": "near_misses is not an array",
+        "evidence": "expected array",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "tier": 0,
+        "node_id": "TFQ-0161"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Match three confirmed Rat identities from FiniteQM.lean Part VIII to expressibility control",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

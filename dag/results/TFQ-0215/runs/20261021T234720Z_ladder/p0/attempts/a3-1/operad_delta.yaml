@@ -1,0 +1,73 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R1
+  equation_or_predicate: Transport with a loss ledger whose carrier does not match the target carrier
+    is refused.
+  typing_conditions: Ledger carrier differs from the carrier of the transport target.
+  source_pins:
+  - path: code/rust/src/wdp/prime_algos/prime_algorithm_1.rs
+    declaration: transport_with_mismatched_ledger_carrier_refuses
+    line: 239
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/prime_algos/prime_algorithm_1.rs
+    decl: transport_with_mismatched_ledger_carrier_refuses
+    kind: fn
+    line: 239
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R2
+  equation_or_predicate: An empty loss ledger is an explicit claim of no loss and not an absence of a
+    ledger.
+  typing_conditions: A LossLedger value with zero entries is present.
+  source_pins:
+  - path: code/rust/src/wdp/prime_algos/prime_algorithm_1.rs
+    declaration: an_empty_ledger_is_a_claim_not_an_absence
+    line: 252
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/wdp/prime_algos/prime_algorithm_1.rs
+    decl: an_empty_ledger_is_a_claim_not_an_absence
+    kind: fn
+    line: 252
+    lang: rust
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions:
+- id: NEG-BDF853F0E1AA
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L1: For a quantum derivation, custody binding is the triple of shelf paths F001.S000 and F000.S000
+    plus the F003 prime packet carrier, and a chapter title in F001 does not fill the F003 carrier field.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0215
+counterexamples: []
+open_obligations:
+- 'No generators grounded: no @SRC declaration is a typed operation with colours.'
+- Shelf paths F001.S000, F000.S000 and F003 runtime have no listed declarations to cite.
+- Finite state space, density matrix, CPTP and trace-norm declarations are not in @SRC.
+- Lean skeleton for L1 is a placeholder and needs a real formal statement.
+- Compositions need generators and licensing relations.
+- 'near_miss N1 unverified: semantic near miss; P4 host check decides'
+- 'near_miss N2 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: C1
+  expr: 2 + 1
+  value: '3'
+  host_evidence:
+    recomputed: '3'
+verified_lemma_statements: []

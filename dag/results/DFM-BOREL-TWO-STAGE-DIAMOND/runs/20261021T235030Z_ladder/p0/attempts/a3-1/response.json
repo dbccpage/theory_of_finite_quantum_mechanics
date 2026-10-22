@@ -1,0 +1,109 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_dress",
+      "inputs": [
+        "EdgeLabel",
+        "VertexGauge",
+        "Edge"
+      ],
+      "output": "G",
+      "arity": 3,
+      "carrier": "group G, edge set E, vertex set V",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_dress_one_iff_pure",
+      "statement": "dress U u e = 1 iff U e = (u(dst e))^-1 * u(src e)",
+      "hypotheses": "G a group; U edge labels; u vertex gauge",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress_eq_one_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_tree_dressing_iff",
+      "statement": "dressing by (T v)^-1 is identity on all edges iff U e * T(src e) = T(dst e) for all e",
+      "hypotheses": "G a group; T a vertex map into G",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.tree_dressing_iff",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_pure_gauge_diamond",
+      "statement": "On the diamond graph (4 vertices, 5 edges), a pure-gauge connection U e = (u(dst e))^-1 * u(src e) built from one rational vertex map u into B_2(Q) is dressed to the identity on all 5 edges.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r_dress_one_iff_pure"
+      ],
+      "lean_skeleton": "example {E V G : Type _} [Group G] (src dst : E → V) (U : E → G) (u : V → G) (h : ∀ e, U e = (u (dst e))⁻¹ * u (src e)) : ∀ e, FiniteGraphDressing.dress src dst U u e = 1 := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "l_chord_nonidentity",
+      "statement": "If one chord of the pure-gauge connection is multiplied by [[2,1],[0,3]], the tree edges still dress to the identity and that chord dresses to a non-identity element. This is a direct matrix computation on the diamond.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_dress_one_iff_pure",
+        "r_tree_dressing_iff"
+      ],
+      "lean_skeleton": "example : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_two_stage_general",
+      "claim": "The general two-stage theorem (dress in N iff the quotient dressing is 1) holds for every graph and normal subgroup N.",
+      "rejecting_invariant": "It was host-refused earlier as a vacuous proof; the general theorem is not checked and stays open under TFQ-0400."
+    },
+    {
+      "id": "nm_chord_identity",
+      "claim": "Multiplying a chord by [[2,1],[0,3]] leaves its dressing at the identity.",
+      "rejecting_invariant": "By dress_eq_one_iff, the dressing is 1 only if the chord equals the pure-gauge value. The matrix [[2,1],[0,3]] is not the identity, so the dressing is non-identity."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_det",
+      "expr": "2*3 - 1*0",
+      "value": "6"
+    },
+    {
+      "id": "n_edges",
+      "expr": "4 + 1",
+      "value": "5"
+    }
+  ],
+  "open_obligations": [
+    "General two-stage theorem for normal N with quotient map (TFQ-0400)",
+    "Iff criterion for every graph (TFQ-0400)",
+    "Bianchi identity preserved on the 2-plaquette prism (TFQ-0016)",
+    "Explicit diamond instance: concrete vertex map u, the tree choice and the Lean elaboration over Mat2Rat",
+    "Stage-1 fields in N and diagonal stage-1 tree links are not grounded",
+    "Connection of the existing Mat2Rat factorization theorem to the diamond example is not verified"
+  ]
+}

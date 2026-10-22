@@ -1,0 +1,50 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_package_evaluator_check
+  equation_or_predicate: The package evaluator test passes on the public projection-obstruction paper
+    library; this is a checker only, not an operation.
+  typing_conditions: The lib_path contains Python modules other than __init__.py and generate_figures.py.
+  source_pins:
+  - path: code/python/src/majorana/test_projection_obstruction_public_paper.py
+    declaration: test_package_evaluator_passes
+    line: 14
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/python/src/majorana/test_projection_obstruction_public_paper.py
+    decl: test_package_evaluator_passes
+    kind: def
+    line: 14
+    lang: python
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-6C25BA69F482
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'g_fiberResidual: (X, M_projection) -> Realization_X_XxX [GrokPdNight20260814.E003.fiberResidual]'
+  evidence: lean def fiberResidual has 1 explicit binders (1 with conclusion arrows); the claim says 2
+    (heuristic count)
+  decl_key: GrokPdNight20260814.E003.fiberResidual
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: TFQ-0325
+open_obligations:
+- No declaration for AuthorizationBoundary is listed in SRC, so it is not cited.
+- Declarations for E008_projection_escape_residual.lean and test_authorization_boundary.py are not in
+  SRC; no path or decl cited.
+- No relation licensing compositions was grounded, so compositions is empty.
+- The gap relation and lemma need a host-approved formal statement.
+- 'relation r_gap_pd_not_p0 unverified: no existing declaration cited'
+- 'lemma l_gap_not_theorem unverified: Lean elaboration disabled'
+- 'near_miss nm_walk_is_paper0 unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_import_authboundary unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

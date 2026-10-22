@@ -1,0 +1,58 @@
+{
+  "compositions": [],
+  "generators": [
+    {
+      "arity": 2,
+      "carrier": "CochainComplex",
+      "id": "op_cochain_complex_initialise",
+      "inputs": [
+        "index_natural",
+        "coefficient_ring"
+      ],
+      "output": "cochain_complex",
+      "ref": {
+        "decl": "CochainComplex",
+        "path": "code/rust/src/homology/cochain_complex.rs",
+        "status": "existing"
+      }
+    },
+    {
+      "arity": 2,
+      "carrier": "AdmittedCarrier | Error",
+      "id": "op_odm_observer_admission",
+      "inputs": [
+        "observer_candidate",
+        "promote_flag"
+      ],
+      "output": "admission_result",
+      "ref": {
+        "decl": "evaluate_plan_odm_observer_open",
+        "path": "code/rust/src/wdp/derivation_controls/plan_odm_observer_open.rs",
+        "status": "existing"
+      }
+    }
+  ],
+  "lemmas": [
+    {
+      "claims_proved": false,
+      "depends_on": [],
+      "id": "lem_inventory_not_limit",
+      "lean_skeleton": "theorem lem_inventory_not_limit (F002 : FloorRecord) :",
+      "ref": {
+        "decl": "ExhibitedCut",
+        "path": "lean4/AdmissionFloor.lean",
+        "status": "existing"
+      },
+      "relation_to_target": "restates",
+      "statement": "The floor text for F002 represents an interface inventory and does not discharge the continuum limit."
+    }
+  ],
+  "near_misses": [],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No Lean declaration exists for the F002 floor inventory to formalize the 'inventory not derivation' distinction.",
+    "Continuum limit GAP remains open as no derivation exists."
+  ],
+  "relations": [],
+  "status": "incomplete"
+}

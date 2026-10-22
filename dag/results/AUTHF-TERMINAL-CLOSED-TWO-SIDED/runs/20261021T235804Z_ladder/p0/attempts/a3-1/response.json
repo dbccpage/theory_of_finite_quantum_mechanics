@@ -1,0 +1,88 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "terminalize",
+      "inputs": [
+        "Proposal"
+      ],
+      "output": "AuthorizationTerminal",
+      "arity": 1,
+      "carrier": "Proposal -> AuthorizationTerminal",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "acceptanceBit",
+      "inputs": [
+        "Proposal"
+      ],
+      "output": "Bool",
+      "arity": 1,
+      "carrier": "Proposal -> Bool derived from terminalize",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.acceptanceBit",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "closed_implies_acceptance_complete",
+      "statement": "A terminalizer that is closed (never unresolved) and rejection-sound is acceptance-complete: every valid proposal is accepted.",
+      "hypotheses": "TerminalClosed terminalize, RejectionSound valid terminalize",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.closed_two_sided_terminalization_is_acceptance_complete",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "no_total_decider_blocks",
+      "statement": "If the acceptance bit is allowed and no allowed total decider exists for validity, then acceptance-soundness, rejection-soundness and closure cannot all hold.",
+      "hypotheses": "allowed (acceptanceBit terminalize) and no allowed total decider for valid",
+      "ref": {
+        "path": "lean4/AuthIncompleteness/Terminal.lean",
+        "decl": "AuthorizationIncompleteness.TerminalAuthorizationBoundary.no_total_decider_blocks_closed_two_sided_terminalization",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "target_restatement",
+      "statement": "Closed two-sided terminalization implies acceptance-completeness, and with an allowed acceptance bit and no allowed total decider, the triple AcceptanceSound, RejectionSound, TerminalClosed is impossible.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "closed_implies_acceptance_complete",
+        "no_total_decider_blocks"
+      ],
+      "lean_skeleton": "example : True := trivial",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "drop_closure",
+      "claim": "Acceptance-soundness and rejection-soundness can both hold without closure, by allowing unresolved outcomes.",
+      "rejecting_invariant": "The impossibility needs TerminalClosed; without it the terminalizer may return unresolved on undecided proposals."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Exact signatures of the two existing theorems are truncated in @SRC, so hypotheses are inferred and unchecked.",
+    "No predicate was found for which one of the three options is forced; the bottleneck stays open.",
+    "The lemma skeleton is a placeholder and does not state the theorem in Lean.",
+    "The terminalize generator has no existing declaration; it is a function parameter, not a named operation."
+  ]
+}

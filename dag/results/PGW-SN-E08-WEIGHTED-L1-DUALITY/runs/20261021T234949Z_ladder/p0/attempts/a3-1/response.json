@@ -1,0 +1,83 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "For the finite N3 fixture, the dual unit y satisfies d0^T y = 0 and the infinity-dual feasibility bounds.",
+      "hypotheses": "Fixture Q3 data in FiniteN3ResidualDual; not the general E08 statement.",
+      "ref": {
+        "path": "lean4/FiniteN3ResidualDual.lean",
+        "decl": "PontryaginResidualDualProgramme.FiniteN3.dual_unit_is_infinity_feasible",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "Fixture duality gap equals zero: primal value 3 matches the dual value 3.",
+      "hypotheses": "Fixture only; general strong LP duality over Q is assumed, not proved.",
+      "ref": {
+        "path": "lean4/FiniteN3ResidualDual.lean",
+        "decl": "PontryaginResidualDualProgramme.FiniteN3.fixture_duality_gap_eq_zero",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Weak duality: for any g and any dual-feasible y (d0^T y = 0, |y_e| <= w_e), c^T y <= sum_e w_e |c_e - (d0 g)_e|. Hence matching primal and dual feasible values certify optimality.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem weak_duality {n m : ℕ} (d0 : Matrix (Fin n) (Fin m) ℚ) (w : Fin n → ℚ) (c y : Fin n → ℚ) (g : Fin m → ℚ) (hy : d0.transpose.mulVec y = 0) (hb : ∀ e, |y e| ≤ w e) : c ⬝ᵥ y ≤ ∑ e, w e * |c e - (d0.mulVec g) e| := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L2",
+      "statement": "The fixture primal value is 3 and the dual unit certifies it, giving optimality in the fixture.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R1",
+        "R2"
+      ],
+      "lean_skeleton": "theorem fixture_optimal : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FiniteN3ResidualDual.lean",
+        "decl": "PontryaginResidualDualProgramme.FiniteN3.fixture_primal_value_eq_three",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "The l1 minimizer is unique.",
+      "rejecting_invariant": "ResidualSectorWeights.minimizers_not_unique"
+    },
+    {
+      "id": "N2",
+      "claim": "The l1 minimizer equals the l2 harmonic residual (e.g. the C4 orbit sum).",
+      "rejecting_invariant": "ResidualSectorWeights.c4_orbit_sum_not_minimizer"
+    },
+    {
+      "id": "N3",
+      "claim": "The matrix pair d0, d0^T is a categorical adjunction.",
+      "rejecting_invariant": "No objects, functors, unit/counit or triangle laws are supplied; AdjunctionCochain implements only x to (x,0) and first-coordinate projection."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "General finite LP strong duality over Q is only assumed; no general Lean proof is cited.",
+    "No existing generator is grounded, so generators and compositions are empty.",
+    "Weak duality lemma L1 is an unproved proposal.",
+    "Categorical adjunction is not constructed: objects, functors, naturality, triangle identities are missing.",
+    "Fixture values come from FiniteN3 only; the general E08 statement is not covered."
+  ]
+}

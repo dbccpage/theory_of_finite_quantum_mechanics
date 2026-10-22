@@ -1,0 +1,90 @@
+{
+  "task_id": "TFQ-0137",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a0-1",
+  "input_sha256": "a39787a0c4f9a85a94a02caea42608b298261ebc1879b2c9b81469469ec438a8",
+  "raw_text": "{\n  \"status\": \"ready_for_host_review\",\n  \"generators\": [\n    {\n      \"id\": \"gen_U_adj_id\",\n      \"inputs\": [\"State\"],\n      \"output\": \"State\",\n      \"arity\": 1,\n      \"carrier\": \"FiniteQuantum\",\n      \"ref\": {\n        \"decl\": \"UnitaryOperator.adjoint_id\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"gen_finite_step_schrodinger\",\n      \"inputs\": [\"State\", \"Hamiltonian\"],\n      \"output\": \"State\",\n      \"arity\": 2,\n      \"carrier\": \"FiniteQuantum\",\n      \"ref\": {\n        \"decl\": \"SchrodingerStep.finite\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"relations\": [\n    {\n      \"id\": \"r:offdiag_im_sub_im\",\n      \"statement\": \"For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j i).im - (H i j).im = 0\",\n      \"hypotheses\": \"H is SectorAdditive ∧ i ≠ j\",\n      \"ref\": {\n        \"decl\": \"InnerProductFable.HermitianSectorForm.offdiag_im_sub_im\",\n        \"path\": \"lean4/SectorFormHermitian.lean\",\n        \"status\": \"existing\"\n      }\n    }\n  ],\n  \"compositions\": [],\n  \"lemmas\": [\n    {\n      \"id\": \"lem_adj_id_implies_U_adj_U_eq_I\",\n      \"statement\": \"If U : Operator State is unitary then U† ∘ U = id\",\n      \"relation_to_target\": \"implies\",\n      \"depends_on\": [\"r:offdiag_im_sub_im\"],\n      \"lean_skeleton\": \"lemma adjoint_id (U : Operator State) [unitary U] : U† ∘ U = 𝟙 := by\\n  -- proof uses matrix adjoint properties and sector additive off‑diagonal lemma\\n  sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"decl\": \"UnitaryOperator.adjoint_mul_self\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    },\n    {\n      \"id\": \"lem_finite_step_correctness\",\n      \"statement\": \"The finite‑step Schrodinger transport implements the exact solution of the Schrödinger equation for a Hermitian Hamiltonian on a finite lattice.\",\n      \"relation_to_target\": \"restates\",\n      \"depends_on\": [],\n      \"lean_skeleton\": \"lemma finite_step_correct (ψ : State) (H : Hamiltonian) [hermitian H] :\\n  finite_step_schrodinger ψ H = expMap (-(Complex.I) * H) ψ := by\\n  -- detailed series expansion and Rayleigh‑Schrödinger argument\\n  sorry\",\n      \"claims_proved\": false,\n      \"ref\": {\n        \"decl\": \"SchrodingerStep.correctness\",\n        \"path\": \"\",\n        \"status\": \"proposed_new\"\n      }\n    }\n  ],\n  \"near_misses\": [],\n  \"numeric_claims\": [],\n  \"open_obligations\": [\n    \"Provide a concrete proof of the adjoint identity U† ∘ U = I for the finite face.\",\n    \"Derive the exact finite‑step Schrödinger transport formula and connect it to the Rayleigh‑Schrödinger series.\"\n  ]\n}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "gen_U_adj_id",
+        "inputs": [
+          "State"
+        ],
+        "output": "State",
+        "arity": 1,
+        "carrier": "FiniteQuantum",
+        "ref": {
+          "decl": "UnitaryOperator.adjoint_id",
+          "path": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "gen_finite_step_schrodinger",
+        "inputs": [
+          "State",
+          "Hamiltonian"
+        ],
+        "output": "State",
+        "arity": 2,
+        "carrier": "FiniteQuantum",
+        "ref": {
+          "decl": "SchrodingerStep.finite",
+          "path": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r:offdiag_im_sub_im",
+        "statement": "For any matrix H : Matrix (Fin n) (Fin n) GaussRat, if H is SectorAdditive then for distinct i j we have (H j i).im - (H i j).im = 0",
+        "hypotheses": "H is SectorAdditive ∧ i ≠ j",
+        "ref": {
+          "decl": "InnerProductFable.HermitianSectorForm.offdiag_im_sub_im",
+          "path": "lean4/SectorFormHermitian.lean",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem_adj_id_implies_U_adj_U_eq_I",
+        "statement": "If U : Operator State is unitary then U† ∘ U = id",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "r:offdiag_im_sub_im"
+        ],
+        "lean_skeleton": "lemma adjoint_id (U : Operator State) [unitary U] : U† ∘ U = 𝟙 := by\n  -- proof uses matrix adjoint properties and sector additive off‑diagonal lemma\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "decl": "UnitaryOperator.adjoint_mul_self",
+          "path": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "lem_finite_step_correctness",
+        "statement": "The finite‑step Schrodinger transport implements the exact solution of the Schrödinger equation for a Hermitian Hamiltonian on a finite lattice.",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "lemma finite_step_correct (ψ : State) (H : Hamiltonian) [hermitian H] :\n  finite_step_schrodinger ψ H = expMap (-(Complex.I) * H) ψ := by\n  -- detailed series expansion and Rayleigh‑Schrödinger argument\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "decl": "SchrodingerStep.correctness",
+          "path": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Provide a concrete proof of the adjoint identity U† ∘ U = I for the finite face.",
+      "Derive the exact finite‑step Schrödinger transport formula and connect it to the Rayleigh‑Schrödinger series."
+    ]
+  }
+}

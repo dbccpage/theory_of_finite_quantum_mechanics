@@ -1,0 +1,111 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: omega_mub_is_bookkeeping_not_derivation
+  equation_or_predicate: The omega_mub Python-binding function is reconstruction bookkeeping and does
+    not by itself establish the existence of a completed mutually-unbiased-basis derivation.
+  typing_conditions: 'Taken from the TFQ-0176 target text: the finite MUB constructions and projector-algebra
+    verifier live in omega_quantum_physics::mub, and this crate only cites them.'
+  source_pins:
+  - path: code/rust/src/mub/python.rs
+    declaration: omega_mub
+    line: 188
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/mub/python.rs
+    decl: omega_mub
+    kind: fn
+    line: 188
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-365B1A869FC8
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''mub_reconstruction_bookkeeping'', ''inputs'': [], ''output'': ''omega_mub'', ''arity'':
+    0, ''path'': ''code/rust/src/mub/lib.rs'', ''decl'': ''omega_native'', ''kind'': '
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+- id: NEG-6BDF6DDC9C78
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''omega_mub'', ''inputs'': [], ''output'': ''omega_mub'', ''arity'': 0, ''path'':
+    ''code/rust/src/mub/python.rs'', ''decl'': ''omega_mub'', ''kind'': ''fn'', ''status'': ''exis'
+  evidence: 'generators[1]: missing id; generators[1]: missing carrier; generators[1]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+- id: NEG-4763F96119B9
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''reconstruction_is_bookkeeping'', ''kind'': ''relation'', ''inputs'': [''omega_mub''],
+    ''output'': ''omega_mub'', ''path'': '''', ''decl'': '''', ''status'': ''proposed_new'', '
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+- id: NEG-F5DE514D3358
+  class: schema_violation
+  claim_kind: generators
+  claim: '{''name'': ''omega_mub'', ''inputs'': [], ''output'': ''omega_mub'', ''arity'': 0, ''path'':
+    ''code/rust/src/mub/python.rs'', ''decl'': ''fn omega_mub'', ''kind'': ''fn'', ''status'': ''e'
+  evidence: 'generators[0]: missing id; generators[0]: missing carrier; generators[0]: missing ref'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+- id: NEG-FB862FE9F9A6
+  class: schema_violation
+  claim_kind: relations
+  claim: '{''name'': ''mub_reconstruction_bookkeeping'', ''inputs'': [''omega_mub''], ''output'': ''omega_mub'',
+    ''kind'': ''relation'', ''status'': ''proposed_new''}'
+  evidence: 'relations[0]: missing id; relations[0]: missing statement; relations[0]: missing hypotheses'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+- id: NEG-D101410183F5
+  class: schema_violation
+  claim_kind: lemmas
+  claim: '{''name'': ''omega_mub_stated_region_checks'', ''relation_to_target'': ''implies'', ''lean_skeleton'':
+    ''theorem omega_mub_stated_region_checks : mub_reconstruction_bookke'
+  evidence: 'lemmas[0]: missing id; lemmas[0]: missing statement; lemmas[0]: missing depends_on'
+  decl_key: null
+  confidence: exact
+  model: poolside/laguna-s-2.1:free
+  provider: openrouter
+  tier: 0
+  node_id: TFQ-0176
+counterexamples: []
+open_obligations:
+- 'No generator was grounded: omega_mub takes a Python module argument, so it is not a colour-typed arity-0
+  operation, and no other existing declaration is listed under @SRC for the finite MUB carriers.'
+- The finite MUB constructions and projector-algebra verifier in omega_quantum_physics::mub were not in
+  @SRC or @KNOWN+, so they cannot be cited here.
+- The omega_native module split (exact certificates, campaign corpora, float cross-checks) is only described
+  in the target text and was not grounded by a listed declaration.
+- No lemma about stated-region checks was proved, and no Lean skeleton was elaborated.
+- Dimension-6 MUB count remains open.
+- 'near_miss nm_dim6_count_settled unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

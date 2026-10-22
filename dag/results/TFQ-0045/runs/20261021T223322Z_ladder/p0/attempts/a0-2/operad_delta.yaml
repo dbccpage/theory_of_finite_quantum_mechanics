@@ -1,0 +1,38 @@
+add_or_refine_generators:
+- id: gen_exact_invertible_exchange
+  ordered_inputs:
+  - fusion_matrix
+  - braid_limits
+  output: admitted_exchange
+  arity: 2
+  carrier: identity_map
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/quality/l4a_six/scalar_port/linear_algebra/elimination.rs
+    declaration: inverse_with_limits
+    line: 345
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/quality/l4a_six/scalar_port/linear_algebra/elimination.rs
+    decl: inverse_with_limits
+    kind: fn
+    line: 345
+    lang: rust
+  proposed_by:
+    model: qwen/qwen3.8-27b
+    provider: groq
+    tier: 0
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Bottleneck requires r_matrix.rs try_new to verify exact inverse under DEFAULT_BRAID_LIMITS before admission,
+  but r_matrix.rs try_new is not present in @SRC.
+- The fusion space dimension may not be a square; verification of the tensor product structure vs fusion
+  space dimensionality is not fully specified in the provided source signatures.
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

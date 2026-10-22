@@ -1,0 +1,108 @@
+add_or_refine_generators:
+- id: nextConfiguration
+  ordered_inputs:
+  - Configuration
+  output: Configuration
+  arity: 1
+  carrier: Configuration
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeTransition.lean
+    declaration: AuthorizationIncompleteness.TapeTransitionInvariantModels.nextConfiguration
+    line: 62
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeTransition.lean
+    decl: AuthorizationIncompleteness.TapeTransitionInvariantModels.nextConfiguration
+    kind: def
+    line: 62
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: transition
+  ordered_inputs:
+  - Configuration
+  output: TransitionResult
+  arity: 1
+  carrier: TransitionResult
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeTransition.lean
+    declaration: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition
+    line: 50
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeTransition.lean
+    decl: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition
+    kind: def
+    line: 50
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: preserves_def
+  equation_or_predicate: 'Preserves contract means: for every configuration c, contract.accepts c implies
+    contract.accepts (nextConfiguration c)'
+  typing_conditions: 'contract : ConfigurationContract'
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeTransition.lean
+    declaration: AuthorizationIncompleteness.TapeTransitionInvariantModels.Preserves
+    line: 83
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeTransition.lean
+    decl: AuthorizationIncompleteness.TapeTransitionInvariantModels.Preserves
+    kind: def
+    line: 83
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: clean_output_accepted
+  equation_or_predicate: For every configuration c, cleanTerminalContract accepts the next configuration
+    of c
+  typing_conditions: none
+  source_pins:
+  - path: lean4/AuthIncompleteness/TapeTransition.lean
+    declaration: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract
+    line: 119
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/TapeTransition.lean
+    decl: AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract
+    kind: theorem
+    line: 119
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Exact constructor names and accepts definitions not shown in SRC; verify against file
+- Host should confirm the existing theorems are sorry-free; claims_proved left false
+- 'No composition grounded: single-sort unary generators with no listed licensing relation'
+- 'lemma clean_preserved unverified: Lean elaboration disabled'
+- 'lemma marked_not_preserved unverified: Lean elaboration disabled'
+- 'near_miss marked_preserved_claim unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: config_count
+  expr: '4'
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements: []

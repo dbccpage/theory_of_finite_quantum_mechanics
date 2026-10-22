@@ -1,0 +1,209 @@
+{
+  "task_id": "MAJ-NILPOTENCY-REFUSAL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "2869bf6d2487a1ab6731f94c165ed3992a4e0471fb1d265848d900ae9745b157",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_f2_add",
+          "inputs": [
+            "Bool",
+            "Bool"
+          ],
+          "output": "Bool",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_F2Vec_add",
+          "inputs": [
+            "F2Vec n",
+            "F2Vec n"
+          ],
+          "output": "F2Vec n",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_refusal_sound",
+          "equation_or_predicate": "If some v in F2Vec n0 has d1.apply (d0.apply v) different from F2Vec.zero n2, then evaluate_complex_nilpotency d0 d1 is false.",
+          "typing_conditions": "d0 : F2Map n0 n1, d1 : F2Map n1 n2",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "nilpotency_refusal_sound",
+              "line": 76
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "nilpotency_refusal_sound",
+            "kind": "theorem",
+            "line": 76,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The RepresentationInvalid emission and the no-residual-class assignment are procedural and have no Lean declaration in SRC.",
+        "The wrong-length residual refusal is not grounded.",
+        "F2Vec.zero signature not stated, since earlier attempts were refused.",
+        "The converse direction (nilpotency holds when no violating vector exists) is not grounded.",
+        "lemma l_refusal_sound unverified: Lean elaboration disabled",
+        "near_miss nm_wrong_length unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_f2_add",
+        "ordered_inputs": [
+          "Bool",
+          "Bool"
+        ],
+        "output": "Bool",
+        "arity": 2,
+        "carrier": "Bool",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "f2_add",
+            "line": 14
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "f2_add",
+          "kind": "def",
+          "line": 14,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_F2Vec_add",
+        "ordered_inputs": [
+          "F2Vec n",
+          "F2Vec n"
+        ],
+        "output": "F2Vec n",
+        "arity": 2,
+        "carrier": "F2Vec n",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "F2Vec.add",
+            "line": 21
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.add",
+          "kind": "def",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_refusal_sound",
+        "equation_or_predicate": "If some v in F2Vec n0 has d1.apply (d0.apply v) different from F2Vec.zero n2, then evaluate_complex_nilpotency d0 d1 is false.",
+        "typing_conditions": "d0 : F2Map n0 n1, d1 : F2Map n1 n2",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "nilpotency_refusal_sound",
+            "line": 76
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "nilpotency_refusal_sound",
+          "kind": "theorem",
+          "line": 76,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "The RepresentationInvalid emission and the no-residual-class assignment are procedural and have no Lean declaration in SRC.",
+      "The wrong-length residual refusal is not grounded.",
+      "F2Vec.zero signature not stated, since earlier attempts were refused.",
+      "The converse direction (nilpotency holds when no violating vector exists) is not grounded.",
+      "lemma l_refusal_sound unverified: Lean elaboration disabled",
+      "near_miss nm_wrong_length unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

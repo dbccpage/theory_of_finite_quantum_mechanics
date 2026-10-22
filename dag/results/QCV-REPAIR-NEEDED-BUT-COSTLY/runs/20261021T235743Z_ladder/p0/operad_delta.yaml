@@ -1,0 +1,102 @@
+add_or_refine_generators:
+- id: lin
+  ordered_inputs:
+  - Rat
+  - Rat
+  - Nat
+  output: Rat
+  arity: 3
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/QcConcatenation.lean
+    declaration: QcSelfObstruction.lin
+    line: 174
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/QcConcatenation.lean
+    decl: QcSelfObstruction.lin
+    kind: def
+    line: 174
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: pairCount
+  ordered_inputs:
+  - Nat
+  output: Rat
+  arity: 1
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/QcConcatenation.lean
+    declaration: QcSelfObstruction.pairCount
+    line: 198
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/QcConcatenation.lean
+    decl: QcSelfObstruction.pairCount
+    kind: def
+    line: 198
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: lin_closed
+  equation_or_predicate: lin a p k = a^k * p
+  typing_conditions: none
+  source_pins:
+  - path: lean4/QcConcatenation.lean
+    declaration: QcSelfObstruction.lin_closed
+    line: 178
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcConcatenation.lean
+    decl: QcSelfObstruction.lin_closed
+    kind: theorem
+    line: 178
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: pairCount_mono
+  equation_or_predicate: a <= b implies pairCount a <= pairCount b
+  typing_conditions: a <= b, 1 <= a
+  source_pins:
+  - path: lean4/QcConcatenation.lean
+    declaration: QcSelfObstruction.pairCount_mono
+    line: 200
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/QcConcatenation.lean
+    decl: QcSelfObstruction.pairCount_mono
+    kind: theorem
+    line: 200
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Number of repair locations needed by a physical code is not grounded.
+- pairCount definition body not shown, so no numeric values claimed.
+- 'lemma lin_not_zero unverified: Lean elaboration disabled'
+- 'lemma threshold_mono unverified: Lean elaboration disabled'
+- 'near_miss a_below_one unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

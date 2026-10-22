@@ -1,0 +1,305 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0225",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "f2bc2d15e954356528bc75af4885a87ab95c3a1ad0fa90dd3245d2116945fb03",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=TFQ-0225 stage=P0 attempt=a3-1 in=f2bc2d15 guided=yes\n@TARGET [SOURCE_RECORD] A certifier catalog row does not discharge the claim it indexes. mathematical_claim.rs documents one registry and stores AuthorityEffect: None on every record. A row may list a Lean locus, target crates, and a harness name supplied by an author. certificate_boundary.rs marks the boundary around those records and is not a promotion switch. F003.S001 says a catalog scaffold is not a theorem and that crate-local interfaces do not own admission. Citing a row copies an index. It leaves the language triple and the gap register unchanged.\n@BOTTLENECK Index certifier rows without treating the catalog as admission or as a theorem.\n@ASSUME none declared\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.boundary_gluing_curvature_gap | theorem | theorem boundary_gluing_curvature_gap : 0 < epsilon_interface_frac.num\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.boundary_gluing_curvature_gap_val | theorem | theorem boundary_gluing_curvature_gap_val : 0 < margin_val\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.CompositeBoundaryWitness.triple | def | def CompositeBoundaryWitness.triple : CompositeBoundaryWitness → MUTriple | .collar W => W.witness.triple | .exterior W _ _ => W.triple | .interface W\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.certified_base_gap_gt_erosion | theorem | theorem certified_base_gap_gt_erosion : erosion_frac.lt epsilon_d6_frac\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.LocalLipschitzRecord | structure | structure LocalLipschitzRecord {V : Type} (f : CollarSliceFunctional V) (θ₀ θ : Fin 2 → Rat) (v : V)\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.uniform_pointwise_gap_propagation | theorem | theorem uniform_pointwise_gap_propagation {V : Type} (f : CollarSliceFunctional V) (θ₀ θ : Fin 2 → Rat) (v : V) (rec : LocalLipschitzRecord f θ₀ θ v) \n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.uniform_pointwise_gap_strictly_positive | theorem | theorem uniform_pointwise_gap_strictly_positive {V : Type} (f : CollarSliceFunctional V) (θ₀ θ : Fin 2 → Rat) (v : V) (rec : LocalLipschitzRecord f θ₀\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.target4_gap_propagation_grand_synthesis | theorem | theorem target4_gap_propagation_grand_synthesis\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.boundary_interface_margin_pos | theorem\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.CompositeBoundaryPoint | inductive\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.CompositeBoundaryWitness | inductive\n lean4/TargetA8CollarBoundary.lean | MUB6.Gluing.TargetA8.target_a8_collar_boundary_grand_synthesis | theorem\n code/python/src/mub/target_a4_gram_certifier.py | canonical_triple_exact | def\n code/python/src/mub/target_a4_gram_certifier.py | dual_certificate_matrix | def\n code/python/src/mub/target_a4_gram_certifier.py | MubQuadSdpCertificate | class\n code/python/src/mub/target_a4_gram_certifier.py | solve_quad_sdp_certificate | def\n code/rust/src/wdp/authority_gap.rs | AuthorityPacket | struct\n code/rust/src/wdp/authority_gap.rs | test_self_critique_non_authority_violation | fn [test]\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.delta_crit_frac | def\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.delta_crit_exact_ratio | theorem\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.certified_mesh_step_lt_crit | theorem\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.certified_erosion_eq_reduced | theorem\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.certified_lower_margin_pos | theorem\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.certified_margin_equiv_reduced | theorem\n lean4/Target4GapPropagation.lean | MUB6.Gluing.Target4.eps_val | def\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "TFQ-0224",
+      "TFQ-0226"
+    ],
+    "feedback": true,
+    "index_position": 343,
+    "neg_entry_ids": []
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

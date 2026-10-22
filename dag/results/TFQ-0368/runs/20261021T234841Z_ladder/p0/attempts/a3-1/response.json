@@ -1,0 +1,54 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "The numeral 2 in S(2), alphabet size k=2, profile p=2, MSS-2 and H_2 are values in different native sorts, so equality of numerals does not identify the objects.",
+      "hypotheses": "Each quantity is typed by its own native sort (stage, alphabet size, profile, atlas row, homological degree). No crosswalk row is assumed.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "There is no function between the sorts that is forced by numeral equality: the tagged pairs (stage,2) and (atlas,2) are distinct elements of the disjoint sum.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1"
+      ],
+      "lean_skeleton": "theorem tagged_ne : (Sum.inl 2 : Nat ⊕ Nat) ≠ Sum.inr 2 := by simp",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "S(2) = MSS-2 because both carry the numeral 2.",
+      "rejecting_invariant": "The native sorts differ (stage index versus atlas row), and ledger row WDP-P001-001 says the crosswalk does not derive every row."
+    },
+    {
+      "id": "NM2",
+      "claim": "Homology degree H_2 coincides with alphabet size k=2.",
+      "rejecting_invariant": "Degree indexes chain groups, while alphabet size counts symbols; these are distinct sorts."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declaration in SRC grounds the S(n)/alphabet/profile/MSS/H_j sort separation, so all refs are proposed_new.",
+    "No generators are grounded; the SRC items concern degree-1 window checkers and Lean lemmas, not typed operations for this target.",
+    "The Lean skeleton uses a generic Sum type and needs host elaboration.",
+    "Coverage length sort is not modeled.",
+    "The crosswalk rows that are derived versus not derived remain unlisted."
+  ]
+}

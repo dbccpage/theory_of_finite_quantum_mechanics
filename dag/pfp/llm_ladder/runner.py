@@ -22,7 +22,7 @@ import time
 from pathlib import Path
 
 from .budget import BudgetRefused, Ledger, cost_microusd as rate_cost, micro_to_usd
-from .config import DEFAULT_POLICY, PRICES, STAGE_EFFORT
+from .config import ANSWERED_STATUSES, DEFAULT_POLICY, PRICES, STAGE_EFFORT
 from .gateway import Gateway
 from .llm_common import Redactor, sha256_text, utc_iso, utc_stamp
 from .memory import HallucinationIndex, index_path
@@ -77,6 +77,8 @@ class LadderRunner:
                 'staged_prompt_tokens_baseline': staged_baseline_tokens(self.root, node_id), 'tiers': rows,
                 'worst_case_all_paid_tiers_usd': round(micro_to_usd(worst_total), 4),
                 'run_cap_usd': micro_to_usd(run_cap_microusd), 'week': week, 'feedback': feedback,
+                'would_skip_ungroundable': bool(self.policy.get('skip_ungroundable') and packet.meta.get('ungroundable')),
+                'ungroundable_reason': packet.meta.get('ungroundable_reason'),
                 'note': 'Input tokens are a local byte estimate; the live run uses count_tokens for Anthropic. No call was made.'}
 
     # ------------------------------------------------------------------ one request
@@ -89,6 +91,13 @@ class LadderRunner:
     def _accept(self, report: VerifyReport) -> bool:
         return (report.parsed and report.verified_total() >= self.policy['min_verified']
                 and report.failure_rate() <= self.policy['max_failure_rate'])
+
+    def _partial(self, report: VerifyReport) -> bool:
+        """accepted_partial: too few verified claims for `accepted`, but at least `partial_min_verified` and NOT ONE refused claim.
+        An answer with any refused claim keeps the full bar. Never counted as `accepted`, never an abstention."""
+        return (bool(self.policy.get('accept_partial')) and report.parsed and not self._accept(report)
+                and report.failure_total() == 0
+                and report.verified_total() >= max(1, self.policy.get('partial_min_verified', 1)))
 
     # ------------------------------------------------------------------ the run
     def run(self, node_id, *, stage='P0', run_cap_microusd, start_tier=0, max_tier=4, feedback=True, allow_fable=False,
@@ -108,11 +117,19 @@ class LadderRunner:
         gateway = Gateway(self.providers, self.ledger, run_id=run_id, run_cap_microusd=run_cap_microusd, redactor=self.red)
         writer = RunWriter(self.root, node_id, run_name, self.red) if write else None
         attempts, texts = [], {}
-        accepted = None
+        accepted = partial = None
         stop_reason = 'ladder_exhausted'
         dead_providers, cooldown = set(), {}
         first_packet = None
         seq = 0
+        if self.policy.get('skip_ungroundable') and fixed_attempts is None:
+            # Pre-dispatch: nothing the host could verify a claim against. No provider call, no spend.
+            probe_packet = compile_p0(self.root, node_id, attempt_id='a-skip', policy=self.policy, index=self.index,
+                                      feedback=feedback, hallucinations=self.hall)
+            if probe_packet.meta.get('ungroundable'):
+                return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, None,
+                                    'skipped_ungroundable:' + probe_packet.meta['ungroundable_reason'], probe_packet,
+                                    run_cap_microusd, feedback)
         for tier in self.tiers:
             if not start_tier <= tier['id'] <= max_tier or (tier['id'] == 5 and not allow_fable):
                 continue
@@ -170,9 +187,12 @@ class LadderRunner:
                 report, response = self._check(result, packet)
                 texts[aid] = (packet, result.text, response, report, cand, tier)
                 accepted_now = self._accept(report)
+                partial_now = self._partial(report)
                 answered += 1
-                abstained = report.parsed and not report.failures and report.verified_total() < self.policy['min_verified']
-                row.update(status='accepted' if accepted_now else 'rejected', verified_total=report.verified_total(),
+                abstained = (report.parsed and not report.failures and report.verified_total() < self.policy['min_verified']
+                             and not partial_now)
+                row.update(status='accepted' if accepted_now else ('accepted_partial' if partial_now else 'rejected'),
+                           verified_total=report.verified_total(),
                            failures_total=report.failure_total(), failure_rate=round(report.failure_rate(), 4),
                            failures_by_class=report.by_class(), unverifiable=len(report.unverifiable),
                            input_tokens=result.input_tokens, output_tokens=result.output_tokens,
@@ -191,6 +211,13 @@ class LadderRunner:
                     stop_reason = 'accepted_at_tier_%d' % tier['id']
                     return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason,
                                         first_packet, run_cap_microusd, feedback)
+                elif partial_now and fixed_attempts is not None:
+                    partial = partial or aid
+                elif partial_now:
+                    # Terminal, but not an acceptance: it neither escalates nor counts as an abstention.
+                    return self._finish(node_id, run_id, run_name, writer, attempts, texts, gateway, None,
+                                        'accepted_partial_at_tier_%d' % tier['id'], first_packet, run_cap_microusd, feedback,
+                                        partial=aid)
                 host_failures += 1
                 if abstained:
                     abstainers.add(cand['model'])
@@ -220,15 +247,18 @@ class LadderRunner:
 
     # ------------------------------------------------------------------ records
     def _finish(self, node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason, first_packet,
-                run_cap_microusd, feedback):
-        sent = [a for a in attempts if a.get('status') in ('accepted', 'rejected')]
-        best = accepted
+                run_cap_microusd, feedback, partial=None):
+        sent = [a for a in attempts if a.get('status') in ANSWERED_STATUSES]
+        best = accepted or partial
         if best is None and sent:
             best = max(sent, key=lambda a: (a['verified_total'] - a['failures_total'], -a['tier']))['attempt_id']
+        # `accepted_partial` and `skipped_ungroundable` are outcomes of their own and are never folded into `accepted`.
         summary = {'node_id': node_id, 'run_id': run_id, 'stage': 'P0', 'status': 'accepted' if accepted else
+                   ('accepted_partial' if partial else
+                   ('skipped_ungroundable' if stop_reason.startswith('skipped_ungroundable') else
                    ('budget_refused' if stop_reason.startswith('budget_refused') else
-                   ('blocked_abstained' if stop_reason.startswith('blocked_abstained') else 'not_accepted')), 'stop_reason': stop_reason,
-                   'accepted_attempt': accepted, 'best_attempt': best, 'attempts': attempts,
+                   ('blocked_abstained' if stop_reason.startswith('blocked_abstained') else 'not_accepted')))), 'stop_reason': stop_reason,
+                   'accepted_attempt': accepted, 'partial_attempt': partial, 'best_attempt': best, 'attempts': attempts,
                    'totals_by_tier': gateway.totals(), 'feedback': feedback}
         spend = sum(r.get('cost_microusd') or 0 for r in gateway.receipts)
         summary['spend_microusd'] = spend
@@ -246,11 +276,11 @@ class LadderRunner:
             packet, text, response, report, cand, tier = texts[best]
             summary['verified'] = {k: len(v) for k, v in report.verified.items()}
         if writer is not None and first_packet is not None:
-            self._write(writer, summary, texts, gateway, best, accepted, first_packet, run_cap_microusd, run_id)
+            self._write(writer, summary, texts, gateway, best, accepted, first_packet, run_cap_microusd, run_id, partial=partial)
             summary['run_dir'] = writer.dir.relative_to(self.root).as_posix()
         return summary
 
-    def _write(self, writer, summary, texts, gateway, best, accepted, first_packet, run_cap_microusd, run_id):
+    def _write(self, writer, summary, texts, gateway, best, accepted, first_packet, run_cap_microusd, run_id, partial=None):
         ids = {}
         entries = self.hall.load()['entries']
         for entry in entries.values():
@@ -260,7 +290,7 @@ class LadderRunner:
             model, provider = cand['model'], cand['provider']
             delta = build_delta(report, response, model=model, provider=provider, tier=tier['id'], node_id=summary['node_id'], entry_ids=ids)
             deltas[aid] = delta
-            check = host_check_record(report, accepted=(aid == accepted), aid=aid, model=model)
+            check = host_check_record(report, accepted=(aid == accepted), aid=aid, model=model, partial=(aid == partial))
             writer.attempt(packet, aid, raw_text=text, response=response, report=report, delta=delta, host_check=check)
         if best and best in texts:
             packet, text, response, report, cand, tier = texts[best]
@@ -274,7 +304,7 @@ class LadderRunner:
                         if row['id'] not in seen:
                             run_delta[key] = run_delta[key] + [row]
                             seen.add(row['id'])
-            check = host_check_record(report, accepted=(best == accepted), aid=best, model=cand['model'])
+            check = host_check_record(report, accepted=(best == accepted), aid=best, model=cand['model'], partial=(best == partial))
             writer.best(packet, best, raw_text=text, response=response, delta=deltas[best], host_check=check, report=report,
                         run_delta=run_delta)
         else:
@@ -286,7 +316,8 @@ class LadderRunner:
                    'stage': 'P0', 'run_id': run_id, 'finished_utc': utc_iso(), 'provider_calls_policy': POLICY_NOTE,
                    'external_provider_calls': len(sent), 'free_calls': sum(1 for r in sent if r['family'] == 'free'),
                    'paid_calls': sum(1 for r in sent if r['family'] != 'free'),
-                   'policy': {k: self.policy[k] for k in ('min_verified', 'max_failure_rate', 'feedback')} | {'feedback_arm': summary['feedback']},
+                   'policy': {k: self.policy.get(k) for k in ('min_verified', 'max_failure_rate', 'feedback', 'accept_partial',
+                                                              'partial_min_verified', 'skip_ungroundable')} | {'feedback_arm': summary['feedback']},
                    'tiers_configured': [{'id': t['id'], 'name': t['name'], 'attempts_before_escalation': t['attempts_before_escalation'],
                                          'models': [c['model'] for c in t['candidates']]} for t in self.tiers],
                    'run_cap_usd': micro_to_usd(run_cap_microusd), 'summary': summary, 'calls': calls,

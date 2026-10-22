@@ -1,0 +1,82 @@
+{
+  "task_id": "TFQ-0289",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "573f22c97256638297ca7877aa4ae46f711e39757deadb2a211a39e8c8ec64a3",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R1\",\"statement\":\"For a finite residual-weight distribution w_i >= 0 with sum w_i = 1, the diagonal matrix diag(w) has nonnegative diagonal, trace 1, and purity tr(diag(w)^2) = sum w_i^2, computed from the weights alone.\",\"hypotheses\":\"w : Fin n -> Rat, w_i >= 0, sum w_i = 1; off-diagonal entries are zero by construction of the diagonal carrier.\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R2\",\"statement\":\"Existing finite-density unit-trace theorem: trace d = d.denominator for FiniteDensity2, a related trace-one fact on a different carrier (a 2-level density with a denominator), not the n-weight diagonal shadow.\",\"hypotheses\":\"d : FiniteDensity2\",\"ref\":{\"path\":\"lean4/FiniteDensity.lean\",\"decl\":\"FiniteDensity.density_is_positive_unit_trace\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"L1\",\"statement\":\"Purity of the diagonal density built from weights w equals the sum of squared weights, and the weights alone do not determine any off-diagonal coherence; coherence is an imported choice.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R1\"],\"lean_skeleton\":\"theorem diag_purity (n : Nat) (w : Fin n -> Rat) (h0 : forall i, 0 <= w i) (h1 : (Finset.univ.sum w) = 1) : (Finset.univ.sum fun i => w i * w i) = (Finset.univ.sum fun i => w i ^ 2) := by\\n  sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"N1\",\"claim\":\"The residual weights determine a unique density matrix including off-diagonal coherences.\",\"rejecting_invariant\":\"Many density matrices share the same diagonal, e.g. diag(1/2,1/2) and the pure state with off-diagonals 1/2 both have diagonal (1/2,1/2) but purities 1/2 and 1; coherence is not forced by the weights.\"},{\"id\":\"N2\",\"claim\":\"The claim ledger's mechanization name is replayed by this record.\",\"rejecting_invariant\":\"The record does not replay the named mechanization, so it cannot be cited as existing.\"}],\"numeric_claims\":[{\"id\":\"C1\",\"expr\":\"(1/2)^2 + (1/2)^2\",\"value\":\"1/2\"},{\"id\":\"C2\",\"expr\":\"(1/2)^2 + (1/4)^2 + (1/4)^2\",\"value\":\"3/8\"}],\"open_obligations\":[\"Mechanize the diagonal n-weight carrier: nonnegativity, trace 1, and purity = sum of squares; no existing declaration covers it.\",\"Existing FiniteDensity declarations concern FiniteDensity2 and are not a verified match for the diagonal shadow.\",\"Generators not grounded: no existing declaration confirmed as an operation with a verified signature.\",\"Coherence import must be stated as an explicit external hypothesis, not derived from the weights.\",\"The mechanization name in the claim ledger is unresolved.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R1",
+        "statement": "For a finite residual-weight distribution w_i >= 0 with sum w_i = 1, the diagonal matrix diag(w) has nonnegative diagonal, trace 1, and purity tr(diag(w)^2) = sum w_i^2, computed from the weights alone.",
+        "hypotheses": "w : Fin n -> Rat, w_i >= 0, sum w_i = 1; off-diagonal entries are zero by construction of the diagonal carrier.",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R2",
+        "statement": "Existing finite-density unit-trace theorem: trace d = d.denominator for FiniteDensity2, a related trace-one fact on a different carrier (a 2-level density with a denominator), not the n-weight diagonal shadow.",
+        "hypotheses": "d : FiniteDensity2",
+        "ref": {
+          "path": "lean4/FiniteDensity.lean",
+          "decl": "FiniteDensity.density_is_positive_unit_trace",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "L1",
+        "statement": "Purity of the diagonal density built from weights w equals the sum of squared weights, and the weights alone do not determine any off-diagonal coherence; coherence is an imported choice.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1"
+        ],
+        "lean_skeleton": "theorem diag_purity (n : Nat) (w : Fin n -> Rat) (h0 : forall i, 0 <= w i) (h1 : (Finset.univ.sum w) = 1) : (Finset.univ.sum fun i => w i * w i) = (Finset.univ.sum fun i => w i ^ 2) := by\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "N1",
+        "claim": "The residual weights determine a unique density matrix including off-diagonal coherences.",
+        "rejecting_invariant": "Many density matrices share the same diagonal, e.g. diag(1/2,1/2) and the pure state with off-diagonals 1/2 both have diagonal (1/2,1/2) but purities 1/2 and 1; coherence is not forced by the weights."
+      },
+      {
+        "id": "N2",
+        "claim": "The claim ledger's mechanization name is replayed by this record.",
+        "rejecting_invariant": "The record does not replay the named mechanization, so it cannot be cited as existing."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "C1",
+        "expr": "(1/2)^2 + (1/2)^2",
+        "value": "1/2"
+      },
+      {
+        "id": "C2",
+        "expr": "(1/2)^2 + (1/4)^2 + (1/4)^2",
+        "value": "3/8"
+      }
+    ],
+    "open_obligations": [
+      "Mechanize the diagonal n-weight carrier: nonnegativity, trace 1, and purity = sum of squares; no existing declaration covers it.",
+      "Existing FiniteDensity declarations concern FiniteDensity2 and are not a verified match for the diagonal shadow.",
+      "Generators not grounded: no existing declaration confirmed as an operation with a verified signature.",
+      "Coherence import must be stated as an explicit external hypothesis, not derived from the weights.",
+      "The mechanization name in the claim ledger is unresolved."
+    ]
+  }
+}

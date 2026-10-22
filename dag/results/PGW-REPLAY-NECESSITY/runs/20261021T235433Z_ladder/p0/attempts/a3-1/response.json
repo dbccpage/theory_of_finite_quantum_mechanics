@@ -1,0 +1,78 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R_view_collision",
+      "statement": "If pi(h1)=pi(h2) and sigma(h1)!=sigma(h2), then no auditor A factoring through pi satisfies A(pi(h))=sigma(h) for all h.",
+      "hypotheses": "pi and sigma are functions on a type H of histories; A is a function on the codomain of pi.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_fiber_summary",
+      "statement": "On a finite declared population, if sigma is constant on each fiber of a summary map s, then sigma factors through s.",
+      "hypotheses": "H is finite and declared; s: H -> T; for all h1,h2, s(h1)=s(h2) implies sigma(h1)=sigma(h2).",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_no_blind_auditor",
+      "statement": "If pi(h1)=pi(h2) and sigma(h1)!=sigma(h2), there is no A with forall h, A(pi h)=sigma h.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_view_collision"
+      ],
+      "lean_skeleton": "theorem no_blind_auditor {H V S : Type} (sigma : H -> S) (pi : H -> V) (h1 h2 : H) (hp : pi h1 = pi h2) (hs : sigma h1 != sigma h2) : Not (Exists fun A : V -> S => forall h, A (pi h) = sigma h) := by\n  rintro ⟨A, hA⟩\n  apply hs\n  rw [← hA h1, ← hA h2, hp]",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_summary_factors",
+      "statement": "If sigma is constant on fibers of a summary s, there exists f with sigma = f composed with s.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_fiber_summary"
+      ],
+      "lean_skeleton": "theorem summary_factors {H T S : Type} (sigma : H -> S) (s : H -> T) (hc : forall a b, s a = s b -> sigma a = sigma b) [Nonempty S] : Exists fun f : T -> S => forall h, f (s h) = sigma h := by\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_trial_contrast",
+      "claim": "The truncated-window versus full-replay trial contrast is an instance of the theorem.",
+      "rejecting_invariant": "The two trials received different inputs, so they are not a pair with equal auditor views; the pi(h1)=pi(h2) hypothesis is not checked."
+    },
+    {
+      "id": "NM_raw_history_required",
+      "claim": "Raw history retention is mathematically necessary for state certification.",
+      "rejecting_invariant": "A summary on which sigma is constant per fiber of the view suffices; raw retention is a provenance policy."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing SRC declaration grounds the view-collision or fiber-summary statements; all are proposed_new.",
+    "No generators were grounded; the SRC declarations are checkers or unrelated to auditing.",
+    "Lean skeletons are unelaborated by me; the summary-factors lemma still contains sorry.",
+    "Trial results (We, rule, Prompt 14, Result 15) lack a checked pair with equal views."
+  ]
+}

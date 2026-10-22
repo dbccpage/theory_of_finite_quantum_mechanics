@@ -1,0 +1,44 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-9F10079C0CB7
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: Pi_T . slot 0 <- add_A via R_gauge_invariance
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: DFM-ABELIAN-RETRACTION-DIAMOND
+counterexamples: []
+open_obligations:
+- No SRC declaration covers diamond graph, spanning trees, or Pi_T; lambda_graph.py is poset acyclicity,
+  not cited
+- TFQ-0398 and TFQ-0399 are not listed in KNOWN+ so cannot be cited
+- Idempotence and chord-equals-cycle-holonomy need separate proofs
+- Spanning tree count 8 is not given as numeric claim, needs a derivation
+- Lean definitions of diamond, Pi_T, d_0 must be written
+- 'generator Pi_T unverified: no existing declaration cited'
+- 'generator d_0 unverified: no existing declaration cited'
+- 'generator add_A unverified: no existing declaration cited'
+- 'relation R_tree_vanish unverified: no existing declaration cited'
+- 'relation R_gauge_invariance unverified: no existing declaration cited'
+- 'lemma L_diamond_8_trees unverified: Lean elaboration disabled'
+- 'near_miss NM_idempotence_unchecked unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_chord_holonomy_unchecked unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_b1
+  expr: 5 - 4 + 1
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+- id: N_sum_A
+  expr: (3 - 5 + 2 + 11 - 4)/7
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []
