@@ -1,6 +1,6 @@
 # [TFQ-2311] Finite target: quantum pentagon identity at q = exp(i pi/4) on labels 0, 1/2, 1
 
-**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2310](tfq_2310_lqg_turaev_viro_1992_source.md)  
 **DAG node:** `LQG-TV-LEVEL2-PENTAGON-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum 6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner 2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target would discharge only the identity on those labels, not invariance of a state sum on a triangulated manifold.
+Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum 6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott (pentagon) identity across all 3^9 = 19,683 label assignments. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the algebraic identity on those labels, not invariance of a state sum on a triangulated manifold.
 
 ## Governing obligation
 
-Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity to invariance on a triangulation is not part of the target.
+Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9. The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by TFQ-0105.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Exact check of the identity on the admissible labels.
+- The finite target is checked in Lean 4 (`lean4/FrontierTvLevel2Pentagon.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
 At q = exp(i pi/4), labels {0,1/2,1}: quantum Biedenharn-Elliott identity and orthogonality hold exactly for all admissible labels, in Q(sqrt 2).
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-LQG-TV-LEVEL2-PENTAGON-TARGET` (`GAP_NO_DERIVATION`) from `LQG-TURAEV-VIRO-1992-SOURCE`, `TFQ-0198`, `TFQ-0104`: Partial real link: the level-2 amplitudes are computed exactly in the repository, but the pentagon identity is not recorded. Gap until it is.
+- Route `FRO-R-LQG-TV-LEVEL2-PENTAGON-TARGET` (`DERIVED_LEAN`) from `LQG-TURAEV-VIRO-1992-SOURCE`, `TFQ-0198`, `TFQ-0104`: Formalized and checked in Lean 4 (lean4/FrontierTvLevel2Pentagon.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 
@@ -52,6 +52,14 @@ See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 - Repository: `code/rust/src/qm/finite_spinfoam.rs`
 - Repository: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
 - Repository: `lean4/H024FourSimplexSpinfoamS4.lean`
+- Repository: `lean4/FrontierTvLevel2Pentagon.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation`
+- `lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.isingF_nonzero_count_36`
+- `lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible`
+- `lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683`
 
 ## Downstream derivations
 

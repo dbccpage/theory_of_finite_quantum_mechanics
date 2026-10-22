@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Target: a Lean lemma over Finset and an exhaustive check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
+  Formalized finite statement. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  The finite lemma is routine. Whether it deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
+  Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite condition deserves the name "distinguishable attributes" in the source's sense depends on the imported definition, which this repository does not adopt.
 
   Open ../operads/ct_finite_distinguishability_report_fibers.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

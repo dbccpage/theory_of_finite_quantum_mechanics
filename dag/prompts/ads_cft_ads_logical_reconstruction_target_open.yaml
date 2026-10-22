@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. For the [[5,1,3]] code, each of the ten triples T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and their product), and no pair of qubits supports any nontrivial logical operator. Equivalent statement: erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
+  Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact GF(2) check over the normalizer (64 elements). The identification with bulk reconstruction is the picture of the source and is not part of the target.
+  Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
 
   Open ../operads/ads_logical_reconstruction_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

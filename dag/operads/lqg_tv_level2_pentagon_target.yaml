@@ -3,17 +3,18 @@ node_id: LQG-TV-LEVEL2-PENTAGON-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin
-    0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check
-    exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum
-    6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner
-    2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation
-    invariance; this target would discharge only the identity on those labels, not invariance of a state
-    sum on a triangulated manifold.
+  source_statement: 'Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin
+    0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked
+    in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum
+    6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott
+    (pentagon) identity across all 3^9 = 19,683 label assignments. The repository''s fence (TFQ-0105)
+    refuses an admission of triangulation invariance; this target discharges only the algebraic identity
+    on those labels, not invariance of a state sum on a triangulated manifold.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity
-    to invariance on a triangulation is not part of the target.
+  source_bottleneck: Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9.
+    The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by
+    TFQ-0105.
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
   - external:doi:10.1016/0040-9383(92)90015-A
@@ -21,15 +22,17 @@ target:
   - code/rust/src/qm/finite_spinfoam.rs
   - lean4/H023DiscreteSpinfoamAmplitudes.lean
   - lean4/H024FourSimplexSpinfoamS4.lean
+  - lean4/FrontierTvLevel2Pentagon.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
-    sha256: ab834c3c3abc571e41f48c55c6d6422d9eee9f696d03763da9d26c9e8b1d10ca
+    sha256: 8405d28635b0a4c873dcec6f3bf4a6c6ca85c80d595787cdac4cc2242f70df14
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -37,9 +40,236 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/loop_quantum_gravity_lqg_tv_level2_pentagon_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: qDimLevel2
+  line: 119
+  signature_excerpt: |-
+    def qDimLevel2 : Nat → QSqrt2
+      | 0 => one
+      | 1 => sqrt2
+      | 2 => one
+      | _ => zero
+
+    /-- Quantum factorial `[n]_q!` at `q = exp(i π / 4)` for `n ≤ 3`:
+    `[0]_q! = 1`, `[1]_q! = 1`, `[2]_q! = √2`, `[3]_q! = √2`. -/
+    def qFactorialLevel2 : Nat → QSqrt2
+      | 0 => one
+      | 1 => one
+      | 2 => sqrt2
+      | 3 => sqrt2
+      | _ => zero
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: one
+  line: 46
+  signature_excerpt: 'def one : Frac'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sqrt2
+  line: 86
+  signature_excerpt: 'def sqrt2 : QSqrt2'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 45
+  signature_excerpt: 'def zero : Frac'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: QSqrt2
+  line: 76
+  signature_excerpt: structure QSqrt2
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Frac
+  line: 32
+  signature_excerpt: structure Frac
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nonzeroIsingFCount
+  line: 165
+  signature_excerpt: 'def nonzeroIsingFCount : Nat'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isingF
+  line: 150
+  signature_excerpt: 'def isingF (a b c d e f : Nat) : QSqrt2'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isingAdmissible
+  line: 112
+  signature_excerpt: 'def isingAdmissible (a b c : Nat) : Bool'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: negHalfSqrt2
+  line: 88
+  signature_excerpt: 'def negHalfSqrt2 : QSqrt2'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: halfSqrt2
+  line: 87
+  signature_excerpt: 'def halfSqrt2 : QSqrt2'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: negOne
+  line: 47
+  signature_excerpt: 'def negOne : Frac'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkOrthogonalityAt
+  line: 181
+  signature_excerpt: 'def checkOrthogonalityAt (a b c d e ep : Nat) : Bool'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkPentagonAt
+  line: 207
+  signature_excerpt: 'def checkPentagonAt (a b c d e p q s t : Nat) : Bool'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: level2_quantum_dimensions_and_truncation
+  line: 134
+  signature_excerpt: |-
+    theorem level2_quantum_dimensions_and_truncation :
+        qDimLevel2 0 = one ∧
+        qDimLevel2 1 = sqrt2 ∧
+        qDimLevel2 2 = one ∧
+        qDimLevel2 1 * qDimLevel2 1 - qDimLevel2 0 = qDimLevel2 2 ∧
+        qDimLevel2 1 * qDimLevel2 2 - qDimLevel2 1 = zero
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: isingF_nonzero_count_36
+  line: 175
+  signature_excerpt: 'theorem isingF_nonzero_count_36 : nonzeroIsingFCount = 36'
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level2_orthogonality_all_admissible
+  line: 192
+  signature_excerpt: |-
+    theorem level2_orthogonality_all_admissible :
+        (labels3.all fun a =>
+         labels3.all fun b =>
+         labels3.all fun c =>
+         labels3.all fun d =>
+         labels3.all fun e =>
+         labels3.all fun ep =>
+           checkOrthogonalityAt a b c d e ep) = true
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level2_quantum_pentagon_identity_all_19683
+  line: 220
+  signature_excerpt: |-
+    theorem level2_quantum_pentagon_identity_all_19683 :
+        (labels3.all fun a =>
+         labels3.all fun b =>
+         labels3.all fun c =>
+         labels3.all fun d =>
+         labels3.all fun e =>
+         labels3.all fun p =>
+         labels3.all fun q =>
+         labels3.all fun s =>
+         labels3.all fun t =>
+           checkPentagonAt a b c d e p q s t) = true
+  source: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  source_sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation
+  availability: local
+  symbol: FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation
+  path: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  declaration_status: declaration_found_not_proof_checked
+  line: 134
+  role: source_lead_only
+- original_ref: lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.isingF_nonzero_count_36
+  availability: local
+  symbol: FrontierTvLevel2Pentagon.isingF_nonzero_count_36
+  path: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  declaration_status: declaration_found_not_proof_checked
+  line: 175
+  role: source_lead_only
+- original_ref: lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible
+  availability: local
+  symbol: FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible
+  path: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683
+  availability: local
+  symbol: FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683
+  path: lean4/FrontierTvLevel2Pentagon.lean
+  repository: this_repository
+  sha256: a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156
+  declaration_status: declaration_found_not_proof_checked
+  line: 220
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -77,8 +307,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

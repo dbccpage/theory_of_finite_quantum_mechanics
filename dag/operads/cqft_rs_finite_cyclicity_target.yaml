@@ -3,31 +3,32 @@ node_id: CQFT-RS-FINITE-CYCLICITY-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Finite statement to formalize. Let H be the n-qubit space, A a set of sites, A(A)
-    the matrices on A, and Omega a unit vector over Q(i). Then A(A)Omega equals H if and only if the reduced
-    state of Omega on the complement of A has full rank 2^|A^c|, if and only if Omega is separating for
-    A(A^c). Reason: with Schmidt rank r across A and its complement, A(A)Omega equals H_A tensor the range
-    of the complementary marginal, of dimension 2^|A| r. Exact instances: a product vector is cyclic only
-    for A equal to all sites; the three-qubit GHZ vector is not cyclic for any single site and is cyclic
-    for every pair of sites; the three-qubit W vector is not cyclic for any single site and is cyclic
-    for every pair. The finite statement is a rank condition on entanglement, in contrast to the continuum
-    property, which holds for every bounded open region.'
+  source_statement: 'Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space,
+    A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M.
+    Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c}
+    on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit
+    product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors
+    are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites.
+    The finite statement is a rank condition on entanglement, in contrast to the continuum property, which
+    holds for every bounded open region.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Statement and instances are exact rank computations over Q(i). A Lean proof of the
-    equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension
-    has no translation group or spectrum condition.'
+  source_bottleneck: 'Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and
+    W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has
+    no continuous translation group or spectrum condition.'
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md
+  - lean4/FrontierRsCyclicity.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md
-    sha256: 861a18bde25afb0d43feb918e7e9777368e9f012468f8e8428dadcadb9b46647
+    sha256: 0a75c851e0d92141b7e24dcb59f5231903ace034d1e6b9f74434ff4392e1e5eb
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,9 +36,320 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/causal_qft_cqft_rs_finite_cyclicity_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: HasFullComplementaryRank
+  line: 63
+  signature_excerpt: |-
+    def HasFullComplementaryRank {dA dB : Nat} {R : Type*} [Semiring R]
+        (Ω : Fin dA → Fin dB → R) : Prop
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: CyclicForA
+  line: 59
+  signature_excerpt: 'def CyclicForA {dA dB : Nat} {R : Type*} [Semiring R] (Ω : Fin dA → Fin dB → R)
+    : Prop'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: matMul
+  line: 30
+  signature_excerpt: |-
+    def matMul {m n p : Nat} {R : Type*} [Semiring R]
+        (X : Fin m → Fin n → R) (M : Fin n → Fin p → R) : Fin m → Fin p → R
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: matId
+  line: 35
+  signature_excerpt: 'def matId (n : Nat) {R : Type*} [Zero R] [One R] : Fin n → Fin n → R'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SeparatingForAc
+  line: 68
+  signature_excerpt: |-
+    def SeparatingForAc {dA dB : Nat} {R : Type*} [Semiring R]
+        (Ω : Fin dA → Fin dB → R) : Prop
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vecDot4
+  line: 162
+  signature_excerpt: 'def vecDot4 (u v : Fin 4 → Int) : Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: singleSiteMatrix
+  line: 147
+  signature_excerpt: 'def singleSiteMatrix (ψ : Fin 8 → Int) (s : Fin 3) : Fin 2 → Fin 4 → Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: psiProd3
+  line: 131
+  signature_excerpt: 'def psiProd3 (x : Fin 8) : Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: kerVecGHZ
+  line: 152
+  signature_excerpt: |-
+    def kerVecGHZ : Fin 4 → Int
+      | ⟨1, _⟩ => 1
+      | _ => 0
+
+    /-- Explicit nonzero kernel vector `(0, 0, 0, 1)` on `A^c` showing `|W_3⟩` is not separating on `A^c`
+    (hence not cyclic for any single site `s ∈ {0, 1, 2}`). -/
+    def kerVecW : Fin 4 → Int
+      | ⟨3, _⟩ => 1
+      | _ => 0
+
+    def vecDot4 (u v : Fin 4 → Int) : Int
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: psiGHZ3
+  line: 132
+  signature_excerpt: 'def psiGHZ3 (x : Fin 8) : Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: psiW3
+  line: 133
+  signature_excerpt: 'def psiW3 (x : Fin 8) : Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: kerVecW
+  line: 158
+  signature_excerpt: |-
+    def kerVecW : Fin 4 → Int
+      | ⟨3, _⟩ => 1
+      | _ => 0
+
+    def vecDot4 (u v : Fin 4 → Int) : Int
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: combineSingleSite
+  line: 139
+  signature_excerpt: 'def combineSingleSite (s : Fin 3) (a : Fin 2) (b : Fin 4) : Fin 8'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: matMul242
+  line: 196
+  signature_excerpt: 'def matMul242 (L : Fin 2 → Fin 4 → Int) (M : Fin 4 → Fin 2 → Int) (i j : Fin 2)
+    : Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: leftInvGHZ
+  line: 186
+  signature_excerpt: |-
+    def leftInvGHZ : Fin 2 → Fin 4 → Int
+      | ⟨0, _⟩, ⟨0, _⟩ => 1
+      | ⟨1, _⟩, ⟨3, _⟩ => 1
+      | _, _ => 0
+
+    def leftInvW : Fin 2 → Fin 4 → Int
+      | ⟨0, _⟩, ⟨1, _⟩ => 1
+      | ⟨1, _⟩, ⟨0, _⟩ => 1
+      | _, _ => 0
+
+    def matMul242 (L : Fin 2 → Fin 4 → Int) (M : Fin 4 → Fin 2 → Int) (i j : Fin 2) : Int
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pairSiteMatrix
+  line: 183
+  signature_excerpt: 'def pairSiteMatrix (ψ : Fin 8 → Int) (s : Fin 3) : Fin 4 → Fin 2 → Int'
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: cyclic_of_fullComplementaryRank
+  line: 73
+  signature_excerpt: |-
+    theorem cyclic_of_fullComplementaryRank {dA dB : Nat} {R : Type*} [Semiring R]
+        {Ω : Fin dA → Fin dB → R} (h : HasFullComplementaryRank Ω) :
+        CyclicForA Ω
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fullComplementaryRank_of_cyclic
+  line: 83
+  signature_excerpt: |-
+    theorem fullComplementaryRank_of_cyclic {dA dB : Nat} {R : Type*} [Semiring R]
+        {Ω : Fin dA → Fin dB → R} (emb : Fin dB → Fin dA)
+        (hemb : Function.Injective emb) (hcyc : CyclicForA Ω) :
+        HasFullComplementaryRank Ω
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: separating_of_fullComplementaryRank
+  line: 100
+  signature_excerpt: |-
+    theorem separating_of_fullComplementaryRank {dA dB : Nat} {R : Type*} [Semiring R]
+        {Ω : Fin dA → Fin dB → R} (h : HasFullComplementaryRank Ω) :
+        SeparatingForAc Ω
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_separating_of_right_kernel
+  line: 116
+  signature_excerpt: |-
+    theorem not_separating_of_right_kernel {dA dB : Nat} {R : Type*} [Semiring R]
+        {Ω : Fin dA → Fin dB → R} (v : Fin dB → R) (k0 : Fin dB) (hv : v k0 ≠ 0)
+        (hker : ∀ i : Fin dA, (∑ j : Fin dB, Ω i j * v j) = 0) :
+        ¬ SeparatingForAc Ω
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: single_site_not_cyclic_prod_ghz_w
+  line: 165
+  signature_excerpt: |-
+    theorem single_site_not_cyclic_prod_ghz_w :
+        ((List.finRange 3).all fun s =>
+          (List.finRange 2).all fun a =>
+            decide (vecDot4 (singleSiteMatrix psiProd3 s a) kerVecGHZ = 0)) = true ∧
+        ((List.finRange 3).all fun s =>
+          (List.finRange 2).all fun a =>
+            decide (vecDot4 (singleSiteMatrix psiGHZ3 s a) kerVecGHZ = 0)) = true ∧
+        ((List.finRange 3).all fun s =>
+          (List.finRange 2).all fun a =>
+            decide (vecDot4 (singleSiteMatrix psiW3 s a) kerVecW = 0)) = true
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3
+  line: 199
+  signature_excerpt: "theorem pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3 :\n    ((List.finRange 3).all\
+    \ fun s =>\n      (List.finRange 2).all fun i =>\n        (List.finRange 2).all fun j =>\n       \
+    \   decide (matMul242 leftInvGHZ (pairSiteMatrix psiGHZ3 s) i j = matId 2 i j)) = true ∧\n    ((List.finRange\
+    \ 3).all fun s =>\n      (List.finRange 2).all fun i =>\n        (List.finRange 2).all fun j =>\n\
+    \          decide (matMul242 leftInvW (pairSiteMatrix psiW3 s) i j = matId 2 i j)) = true ∧\n    ((List.finRange\
+    \ 3).all fun s =>\n      (List.finRange 4).all fun b =>\n        decide (pairSiteMatrix psiProd3 s\
+    \ b ⟨1, by omega⟩ = "
+  source: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  source_sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+  availability: local
+  symbol: FrontierRsCyclicity.cyclic_of_fullComplementaryRank
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+  availability: local
+  symbol: FrontierRsCyclicity.fullComplementaryRank_of_cyclic
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.separating_of_fullComplementaryRank
+  availability: local
+  symbol: FrontierRsCyclicity.separating_of_fullComplementaryRank
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 100
+  role: source_lead_only
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.not_separating_of_right_kernel
+  availability: local
+  symbol: FrontierRsCyclicity.not_separating_of_right_kernel
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w
+  availability: local
+  symbol: FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 165
+  role: source_lead_only
+- original_ref: lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3
+  availability: local
+  symbol: FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3
+  path: lean4/FrontierRsCyclicity.lean
+  repository: this_repository
+  sha256: b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e
+  declaration_status: declaration_found_not_proof_checked
+  line: 199
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +387,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

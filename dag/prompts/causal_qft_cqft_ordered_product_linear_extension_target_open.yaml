@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P) on a common finite space, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices; and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite counterpart of causal factorization. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
+  Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P) in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser is an analogy.
+  Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting and renormalization have no finite counterpart here.
 
   Open ../operads/cqft_ordered_product_linear_extension_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

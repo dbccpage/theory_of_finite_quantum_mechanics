@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the Gram entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
+  Formalized finite statement over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the off-diagonal entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact linear algebra on Gaussian rationals; statement (c) needs a Lean or Python-Fraction formulation of the fidelity argument for rays. The link to the imported definition of a superinformation medium is a reading of definitions.
+  Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64 subsets. The link to the imported definition of a superinformation medium remains a definitional reading, not a characterization of quantum theory.
 
   Open ../operads/ct_qubit_no_cloning_finite_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

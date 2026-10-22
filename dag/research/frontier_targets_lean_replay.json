@@ -1,0 +1,825 @@
+{
+  "schema_version": "frontier_targets_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "source_base": "b18fae8ab96ff57e27d294ef44432a36738710c2",
+  "result": "All 14 finite frontier target Lean modules compile under Lean 4.35.0 with the pinned Mathlib, built through lake from the FrontierTargets library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound, with zero sorry, admit, axiom or native_decide.",
+  "proof_boundary": "This receipt records that the 14 finite target modules type-check under Lean 4.35.0 and which axioms their #print axioms lines report. Each module establishes only the finite algebraic or combinatorial statement recorded on its target node; external physical interpretations, continuum limits, and asymptotic formulas remain outside these proofs.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "003c036fa33e7f6ac984bdfd9897fbcf849b3811d663d5fa7082d0b1d4ddcc31",
+    "library": "FrontierTargets (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, in target order)",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "FrontierDistinguishability",
+        "dag_node": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
+        "stage": "CONSTRUCTOR_THEORY",
+        "position": 1,
+        "source": "lean4/FrontierDistinguishability.lean",
+        "sha256": "5599a6efaac3ebd3e3006e03464cc71cff77b459ce32207572243e2a7aa496f2",
+        "sha256_after_build": "5599a6efaac3ebd3e3006e03464cc71cff77b459ce32207572243e2a7aa496f2",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 36.65,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierDistinguishability.separatedByTask_imp_disjoint_image",
+          "FrontierDistinguishability.disjoint_image_imp_separatedByTask",
+          "FrontierDistinguishability.separatedByTask_iff_disjoint_image",
+          "FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image",
+          "FrontierDistinguishability.exhaustive_distinguishability_check_le4_le3"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "HistoryReport.selector_exists": [
+            "Classical.choice"
+          ],
+          "HistoryReport.history_report_criterion": [
+            "Classical.choice"
+          ],
+          "HistoryReport.factor_unique_on_image": [
+            "Quot.sound"
+          ],
+          "HistoryReport.extension_unique_of_surjective": [
+            "Quot.sound"
+          ],
+          "HistoryReport.instance_split": [
+            "propext"
+          ],
+          "FrontierDistinguishability.separatedByTask_imp_disjoint_image": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierDistinguishability.disjoint_image_imp_separatedByTask": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierDistinguishability.separatedByTask_iff_disjoint_image": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierDistinguishability.exhaustive_distinguishability_check_le4_le3": [
+            "propext"
+          ],
+          "HistoryReport.fiberConstant_of_factors": [],
+          "HistoryReport.factors_of_fiberConstant_of_selector": [],
+          "HistoryReport.not_factors_of_split": [],
+          "HistoryReport.off_image_not_unique": []
+        },
+        "output": "⚠ [635/636] Replayed HistoryReport\nwarning: HistoryReport.lean: imports `Mathlib.Logic.Function.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: HistoryReport.lean:117:0: 'HistoryReport.fiberConstant_of_factors' does not depend on any axioms\ninfo: HistoryReport.lean:118:0: 'HistoryReport.factors_of_fiberConstant_of_selector' does not depend on any axioms\ninfo: HistoryReport.lean:119:0: 'HistoryReport.selector_exists' depends on axioms: [Classical.choice]\ninfo: HistoryReport.lean:120:0: 'HistoryReport.history_report_criterion' depends on axioms: [Classical.choice]\ninfo: HistoryReport.lean:121:0: 'HistoryReport.factor_unique_on_image' depends on axioms: [Quot.sound]\ninfo: HistoryReport.lean:122:0: 'HistoryReport.not_factors_of_split' does not depend on any axioms\ninfo: HistoryReport.lean:123:0: 'HistoryReport.off_image_not_unique' does not depend on any axioms\ninfo: HistoryReport.lean:124:0: 'HistoryReport.extension_unique_of_surjective' depends on axioms: [Quot.sound]\ninfo: HistoryReport.lean:125:0: 'HistoryReport.instance_split' depends on axioms: [propext]\n⚠ [636/636] Built FrontierDistinguishability (33s)\nwarning: FrontierDistinguishability.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierDistinguishability.lean:134:0: 'FrontierDistinguishability.separatedByTask_imp_disjoint_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierDistinguishability.lean:135:0: 'FrontierDistinguishability.disjoint_image_imp_separatedByTask' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierDistinguishability.lean:136:0: 'FrontierDistinguishability.separatedByTask_iff_disjoint_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierDistinguishability.lean:137:0: 'FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierDistinguishability.lean:138:0: 'FrontierDistinguishability.exhaustive_distinguishability_check_le4_le3' depends on axioms: [propext]\nBuild completed successfully (636 jobs).\n"
+      },
+      {
+        "module": "FrontierNoCloning",
+        "dag_node": "CT-QUBIT-NO-CLONING-FINITE-TARGET",
+        "stage": "CONSTRUCTOR_THEORY",
+        "position": 2,
+        "source": "lean4/FrontierNoCloning.lean",
+        "sha256": "90b5c936198509b785c55fd1483f2e329bc1bee48185b8a3176fba383cff80d1",
+        "sha256_after_build": "90b5c936198509b785c55fd1483f2e329bc1bee48185b8a3176fba383cff80d1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 12.84,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierNoCloning.cloneZ_trace_preserving",
+          "FrontierNoCloning.cloneZ_clones_Z_attribute",
+          "FrontierNoCloning.cloneX_clones_X_attribute",
+          "FrontierNoCloning.cloneY_clones_Y_attribute",
+          "FrontierNoCloning.pauli_Z_X_completeness_identity",
+          "FrontierNoCloning.cloning_defect_ZX_off_diagonal_half",
+          "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+          "FrontierNoCloning.fidelity_monotonicity_forces_zero_or_one",
+          "FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal",
+          "FrontierNoCloning.exhaustive_64_subsets_clonability_classification"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierNoCloning.cloneZ_trace_preserving": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.cloneZ_clones_Z_attribute": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.cloneX_clones_X_attribute": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.cloneY_clones_Y_attribute": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.pauli_Z_X_completeness_identity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.cloning_defect_ZX_off_diagonal_half": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.no_additive_cloner_for_Z_union_X": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.fidelity_monotonicity_forces_zero_or_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierNoCloning.exhaustive_64_subsets_clonability_classification": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [853/853] Built FrontierNoCloning (9.3s)\nwarning: FrontierNoCloning.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierNoCloning.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierNoCloning.lean:308:0: 'FrontierNoCloning.cloneZ_trace_preserving' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:309:0: 'FrontierNoCloning.cloneZ_clones_Z_attribute' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:310:0: 'FrontierNoCloning.cloneX_clones_X_attribute' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:311:0: 'FrontierNoCloning.cloneY_clones_Y_attribute' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:312:0: 'FrontierNoCloning.pauli_Z_X_completeness_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:313:0: 'FrontierNoCloning.cloning_defect_ZX_off_diagonal_half' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:314:0: 'FrontierNoCloning.no_additive_cloner_for_Z_union_X' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:315:0: 'FrontierNoCloning.fidelity_monotonicity_forces_zero_or_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierNoCloning.lean:316:0: 'FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierNoCloning.lean:317:0: 'FrontierNoCloning.exhaustive_64_subsets_clonability_classification' depends on axioms: [propext]\nBuild completed successfully (853 jobs).\n"
+      },
+      {
+        "module": "FrontierEntanglingPhase",
+        "dag_node": "CT-ENTANGLING-PHASE-FINITE-TARGET",
+        "stage": "CONSTRUCTOR_THEORY",
+        "position": 3,
+        "source": "lean4/FrontierEntanglingPhase.lean",
+        "sha256": "94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d",
+        "sha256_after_build": "94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 12.86,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierEntanglingPhase.det_M_u",
+          "FrontierEntanglingPhase.productState2_det_zero",
+          "FrontierEntanglingPhase.psi_u_isProduct_iff",
+          "FrontierEntanglingPhase.concurrenceSq_M_u",
+          "FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence",
+          "FrontierEntanglingPhase.det2_local_action",
+          "FrontierEntanglingPhase.local_op_cannot_raise_product_rank",
+          "FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu",
+          "FrontierEntanglingPhase.schmidtWitness_vanishes_on_product",
+          "FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "Entanglement.product_state_minor_zero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "Entanglement.bell_state_is_entangled": [
+            "Quot.sound",
+            "propext"
+          ],
+          "Entanglement.non_signaling_under_local_b_flip": [
+            "Quot.sound",
+            "propext"
+          ],
+          "Entanglement.non_signaling_under_local_b_phase": [
+            "propext"
+          ],
+          "DualWitness.dual_witness_certifies_trace_distance": [
+            "propext"
+          ],
+          "FrontierEntanglingPhase.det_M_u": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.productState2_det_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.psi_u_isProduct_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.concurrenceSq_M_u": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.det2_local_action": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.local_op_cannot_raise_product_rank": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.schmidtWitness_vanishes_on_product": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "Entanglement.bell_phi_plus_minor_non_zero": [],
+          "DualWitness.total_row_eq_total_col": [],
+          "DualWitness.mermin_peres_parity_obstruction": []
+        },
+        "output": "ℹ [860/862] Replayed Entanglement\ninfo: Entanglement.lean:71:0: 'Entanglement.product_state_minor_zero' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:72:0: 'Entanglement.bell_phi_plus_minor_non_zero' does not depend on any axioms\ninfo: Entanglement.lean:73:0: 'Entanglement.bell_state_is_entangled' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:74:0: 'Entanglement.non_signaling_under_local_b_flip' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:75:0: 'Entanglement.non_signaling_under_local_b_phase' depends on axioms: [propext]\nℹ [861/862] Replayed DualWitness\ninfo: DualWitness.lean:99:0: 'DualWitness.dual_witness_certifies_trace_distance' depends on axioms: [propext]\ninfo: DualWitness.lean:100:0: 'DualWitness.total_row_eq_total_col' does not depend on any axioms\ninfo: DualWitness.lean:101:0: 'DualWitness.mermin_peres_parity_obstruction' does not depend on any axioms\n⚠ [862/862] Built FrontierEntanglingPhase (9.5s)\nwarning: FrontierEntanglingPhase.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierEntanglingPhase.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierEntanglingPhase.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierEntanglingPhase.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierEntanglingPhase.lean:226:0: 'FrontierEntanglingPhase.det_M_u' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:227:0: 'FrontierEntanglingPhase.productState2_det_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:228:0: 'FrontierEntanglingPhase.psi_u_isProduct_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:229:0: 'FrontierEntanglingPhase.concurrenceSq_M_u' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:230:0: 'FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:231:0: 'FrontierEntanglingPhase.det2_local_action' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:232:0: 'FrontierEntanglingPhase.local_op_cannot_raise_product_rank' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:233:0: 'FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:234:0: 'FrontierEntanglingPhase.schmidtWitness_vanishes_on_product' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierEntanglingPhase.lean:235:0: 'FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (862 jobs).\n"
+      },
+      {
+        "module": "FrontierPosetNet",
+        "dag_node": "CQFT-FINITE-POSET-NET-TARGET",
+        "stage": "CAUSAL_QFT",
+        "position": 4,
+        "source": "lean4/FrontierPosetNet.lean",
+        "sha256": "85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d",
+        "sha256_after_build": "85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 9.11,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierPosetNet.isotony",
+          "FrontierPosetNet.disjoint_of_all_spacelike",
+          "FrontierPosetNet.locality_commute_of_spacelike",
+          "FrontierPosetNet.posetN_spacelike_0_1",
+          "FrontierPosetNet.posetN_spacelike_0_3",
+          "FrontierPosetNet.posetN_causal_1_3",
+          "FrontierPosetNet.spacelike_not_transitive_on_posetN"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierPosetNet.isotony": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPosetNet.disjoint_of_all_spacelike": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPosetNet.locality_commute_of_spacelike": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CausalOrder.spacelike_symm": [],
+          "CausalOrder.spacelike_irrefl": [],
+          "CausalOrder.incomparability_not_transitive_c1": [],
+          "CausalOrder.order_independence_witness": [],
+          "CausalOrder.c1_mu_diagonal": [],
+          "CausalOrder.c1_mu_spacelike_vanishes": [],
+          "CausalOrder.c2_mu_top_bottom": [],
+          "FrontierPosetNet.posetN_spacelike_0_1": [],
+          "FrontierPosetNet.posetN_spacelike_0_3": [],
+          "FrontierPosetNet.posetN_causal_1_3": [],
+          "FrontierPosetNet.spacelike_not_transitive_on_posetN": []
+        },
+        "output": "ℹ [640/641] Replayed CausalOrder\ninfo: CausalOrder.lean:185:0: 'CausalOrder.spacelike_symm' does not depend on any axioms\ninfo: CausalOrder.lean:186:0: 'CausalOrder.spacelike_irrefl' does not depend on any axioms\ninfo: CausalOrder.lean:187:0: 'CausalOrder.incomparability_not_transitive_c1' does not depend on any axioms\ninfo: CausalOrder.lean:188:0: 'CausalOrder.order_independence_witness' does not depend on any axioms\ninfo: CausalOrder.lean:189:0: 'CausalOrder.c1_mu_diagonal' does not depend on any axioms\ninfo: CausalOrder.lean:190:0: 'CausalOrder.c1_mu_spacelike_vanishes' does not depend on any axioms\ninfo: CausalOrder.lean:191:0: 'CausalOrder.c2_mu_top_bottom' does not depend on any axioms\n⚠ [641/641] Built FrontierPosetNet (5.8s)\nwarning: FrontierPosetNet.lean: imports `Mathlib.Data.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierPosetNet.lean: imports `Mathlib.Algebra.Group.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierPosetNet.lean:119:0: 'FrontierPosetNet.isotony' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:120:0: 'FrontierPosetNet.disjoint_of_all_spacelike' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:121:0: 'FrontierPosetNet.locality_commute_of_spacelike' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:122:0: 'FrontierPosetNet.posetN_spacelike_0_1' does not depend on any axioms\ninfo: FrontierPosetNet.lean:123:0: 'FrontierPosetNet.posetN_spacelike_0_3' does not depend on any axioms\ninfo: FrontierPosetNet.lean:124:0: 'FrontierPosetNet.posetN_causal_1_3' does not depend on any axioms\ninfo: FrontierPosetNet.lean:125:0: 'FrontierPosetNet.spacelike_not_transitive_on_posetN' does not depend on any axioms\nBuild completed successfully (641 jobs).\n"
+      },
+      {
+        "module": "FrontierRsCyclicity",
+        "dag_node": "CQFT-RS-FINITE-CYCLICITY-TARGET",
+        "stage": "CAUSAL_QFT",
+        "position": 5,
+        "source": "lean4/FrontierRsCyclicity.lean",
+        "sha256": "b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e",
+        "sha256_after_build": "b30a13817f44362f693009c1502a8654a1c090f66fbc5e7cd08df2f8d4be493e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 10.68,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierRsCyclicity.cyclic_of_fullComplementaryRank",
+          "FrontierRsCyclicity.fullComplementaryRank_of_cyclic",
+          "FrontierRsCyclicity.separating_of_fullComplementaryRank",
+          "FrontierRsCyclicity.not_separating_of_right_kernel",
+          "FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w",
+          "FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierRsCyclicity.cyclic_of_fullComplementaryRank": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierRsCyclicity.fullComplementaryRank_of_cyclic": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierRsCyclicity.separating_of_fullComplementaryRank": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierRsCyclicity.not_separating_of_right_kernel": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w": []
+        },
+        "output": "⚠ [913/913] Built FrontierRsCyclicity (7.1s)\nwarning: FrontierRsCyclicity.lean: imports `Mathlib.Data.Fintype.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierRsCyclicity.lean: imports `Mathlib.Algebra.Order.BigOperators.Group.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierRsCyclicity.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierRsCyclicity.lean:215:0: 'FrontierRsCyclicity.cyclic_of_fullComplementaryRank' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierRsCyclicity.lean:216:0: 'FrontierRsCyclicity.fullComplementaryRank_of_cyclic' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierRsCyclicity.lean:217:0: 'FrontierRsCyclicity.separating_of_fullComplementaryRank' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierRsCyclicity.lean:218:0: 'FrontierRsCyclicity.not_separating_of_right_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierRsCyclicity.lean:219:0: 'FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w' does not depend on any axioms\ninfo: FrontierRsCyclicity.lean:220:0: 'FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (913 jobs).\n"
+      },
+      {
+        "module": "FrontierLinearExtension",
+        "dag_node": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
+        "stage": "CAUSAL_QFT",
+        "position": 6,
+        "source": "lean4/FrontierLinearExtension.lean",
+        "sha256": "31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc",
+        "sha256_after_build": "31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 9.18,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierLinearExtension.orderedProd_append",
+          "FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap",
+          "FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain",
+          "FrontierLinearExtension.linear_extensions_of_C2_and_N",
+          "FrontierLinearExtension.c2_extensions_connected_by_swap",
+          "FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierPosetNet.isotony": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPosetNet.disjoint_of_all_spacelike": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPosetNet.locality_commute_of_spacelike": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierLinearExtension.orderedProd_append": [
+            "propext"
+          ],
+          "FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap": [
+            "propext"
+          ],
+          "FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain": [
+            "propext"
+          ],
+          "FrontierLinearExtension.linear_extensions_of_C2_and_N": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products": [
+            "propext"
+          ],
+          "CausalOrder.spacelike_symm": [],
+          "CausalOrder.spacelike_irrefl": [],
+          "CausalOrder.incomparability_not_transitive_c1": [],
+          "CausalOrder.order_independence_witness": [],
+          "CausalOrder.c1_mu_diagonal": [],
+          "CausalOrder.c1_mu_spacelike_vanishes": [],
+          "CausalOrder.c2_mu_top_bottom": [],
+          "FrontierPosetNet.posetN_spacelike_0_1": [],
+          "FrontierPosetNet.posetN_spacelike_0_3": [],
+          "FrontierPosetNet.posetN_causal_1_3": [],
+          "FrontierPosetNet.spacelike_not_transitive_on_posetN": [],
+          "FrontierLinearExtension.c2_extensions_connected_by_swap": []
+        },
+        "output": "ℹ [126/258] Replayed CausalOrder\ninfo: CausalOrder.lean:185:0: 'CausalOrder.spacelike_symm' does not depend on any axioms\ninfo: CausalOrder.lean:186:0: 'CausalOrder.spacelike_irrefl' does not depend on any axioms\ninfo: CausalOrder.lean:187:0: 'CausalOrder.incomparability_not_transitive_c1' does not depend on any axioms\ninfo: CausalOrder.lean:188:0: 'CausalOrder.order_independence_witness' does not depend on any axioms\ninfo: CausalOrder.lean:189:0: 'CausalOrder.c1_mu_diagonal' does not depend on any axioms\ninfo: CausalOrder.lean:190:0: 'CausalOrder.c1_mu_spacelike_vanishes' does not depend on any axioms\ninfo: CausalOrder.lean:191:0: 'CausalOrder.c2_mu_top_bottom' does not depend on any axioms\n⚠ [641/642] Replayed FrontierPosetNet\nwarning: FrontierPosetNet.lean: imports `Mathlib.Data.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierPosetNet.lean: imports `Mathlib.Algebra.Group.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierPosetNet.lean:119:0: 'FrontierPosetNet.isotony' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:120:0: 'FrontierPosetNet.disjoint_of_all_spacelike' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:121:0: 'FrontierPosetNet.locality_commute_of_spacelike' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierPosetNet.lean:122:0: 'FrontierPosetNet.posetN_spacelike_0_1' does not depend on any axioms\ninfo: FrontierPosetNet.lean:123:0: 'FrontierPosetNet.posetN_spacelike_0_3' does not depend on any axioms\ninfo: FrontierPosetNet.lean:124:0: 'FrontierPosetNet.posetN_causal_1_3' does not depend on any axioms\ninfo: FrontierPosetNet.lean:125:0: 'FrontierPosetNet.spacelike_not_transitive_on_posetN' does not depend on any axioms\n⚠ [642/642] Built FrontierLinearExtension (5.8s)\nwarning: FrontierLinearExtension.lean: imports `Mathlib.Algebra.Group.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierLinearExtension.lean:171:0: 'FrontierLinearExtension.orderedProd_append' depends on axioms: [propext]\ninfo: FrontierLinearExtension.lean:172:0: 'FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap' depends on axioms: [propext]\ninfo: FrontierLinearExtension.lean:173:0: 'FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain' depends on axioms: [propext]\ninfo: FrontierLinearExtension.lean:174:0: 'FrontierLinearExtension.linear_extensions_of_C2_and_N' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierLinearExtension.lean:175:0: 'FrontierLinearExtension.c2_extensions_connected_by_swap' does not depend on any axioms\ninfo: FrontierLinearExtension.lean:176:0: 'FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products' depends on axioms: [propext]\nBuild completed successfully (642 jobs).\n"
+      },
+      {
+        "module": "FrontierMyrheimMeyer",
+        "dag_node": "CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET",
+        "stage": "CAUSAL_QFT",
+        "position": 7,
+        "source": "lean4/FrontierMyrheimMeyer.lean",
+        "sha256": "85bc63a2e22cd344072233eb921722db8eb1b10167f23daa55f1cae15f6fece7",
+        "sha256_after_build": "85bc63a2e22cd344072233eb921722db8eb1b10167f23daa55f1cae15f6fece7",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 10.6,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierMyrheimMeyer.gridStrictPairs_factorization",
+          "FrontierMyrheimMeyer.grid_ordering_fraction_closed_form",
+          "FrontierMyrheimMeyer.grid_ordering_fraction_minus_half",
+          "FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement",
+          "FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks",
+          "FrontierMyrheimMeyer.covers_subset_of_generating_subrelation",
+          "FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierMyrheimMeyer.gridStrictPairs_factorization": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierMyrheimMeyer.grid_ordering_fraction_closed_form": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierMyrheimMeyer.grid_ordering_fraction_minus_half": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierMyrheimMeyer.covers_subset_of_generating_subrelation": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2": [
+            "propext"
+          ],
+          "CausalOrder.spacelike_symm": [],
+          "CausalOrder.spacelike_irrefl": [],
+          "CausalOrder.incomparability_not_transitive_c1": [],
+          "CausalOrder.order_independence_witness": [],
+          "CausalOrder.c1_mu_diagonal": [],
+          "CausalOrder.c1_mu_spacelike_vanishes": [],
+          "CausalOrder.c2_mu_top_bottom": [],
+          "FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks": []
+        },
+        "output": "ℹ [860/861] Replayed CausalOrder\ninfo: CausalOrder.lean:185:0: 'CausalOrder.spacelike_symm' does not depend on any axioms\ninfo: CausalOrder.lean:186:0: 'CausalOrder.spacelike_irrefl' does not depend on any axioms\ninfo: CausalOrder.lean:187:0: 'CausalOrder.incomparability_not_transitive_c1' does not depend on any axioms\ninfo: CausalOrder.lean:188:0: 'CausalOrder.order_independence_witness' does not depend on any axioms\ninfo: CausalOrder.lean:189:0: 'CausalOrder.c1_mu_diagonal' does not depend on any axioms\ninfo: CausalOrder.lean:190:0: 'CausalOrder.c1_mu_spacelike_vanishes' does not depend on any axioms\ninfo: CausalOrder.lean:191:0: 'CausalOrder.c2_mu_top_bottom' does not depend on any axioms\n⚠ [861/861] Built FrontierMyrheimMeyer (7.1s)\nwarning: FrontierMyrheimMeyer.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierMyrheimMeyer.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierMyrheimMeyer.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierMyrheimMeyer.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierMyrheimMeyer.lean:184:0: 'FrontierMyrheimMeyer.gridStrictPairs_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierMyrheimMeyer.lean:185:0: 'FrontierMyrheimMeyer.grid_ordering_fraction_closed_form' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierMyrheimMeyer.lean:186:0: 'FrontierMyrheimMeyer.grid_ordering_fraction_minus_half' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierMyrheimMeyer.lean:187:0: 'FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierMyrheimMeyer.lean:188:0: 'FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks' does not depend on any axioms\ninfo: FrontierMyrheimMeyer.lean:189:0: 'FrontierMyrheimMeyer.covers_subset_of_generating_subrelation' depends on axioms: [propext, Quot.sound]\ninfo: FrontierMyrheimMeyer.lean:190:0: 'FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2' depends on axioms: [propext]\nBuild completed successfully (861 jobs).\n"
+      },
+      {
+        "module": "FrontierFiveQubitPerfectTensor",
+        "dag_node": "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
+        "stage": "ADS_CFT",
+        "position": 8,
+        "source": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "sha256": "129bfdeb6503169d4a5cfc277cf71628909dd4abef168722b2f79f60567b152a",
+        "sha256_after_build": "129bfdeb6503169d4a5cfc277cf71628909dd4abef168722b2f79f60567b152a",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 6.69,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64",
+          "FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution",
+          "FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy",
+          "FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64": [
+            "propext"
+          ],
+          "FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution": [
+            "propext"
+          ],
+          "FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy": [
+            "propext"
+          ],
+          "FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3": [
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built FrontierFiveQubitPerfectTensor (3.5s)\ninfo: FrontierFiveQubitPerfectTensor.lean:140:0: 'FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64' depends on axioms: [propext]\ninfo: FrontierFiveQubitPerfectTensor.lean:141:0: 'FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution' depends on axioms: [propext]\ninfo: FrontierFiveQubitPerfectTensor.lean:142:0: 'FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy' depends on axioms: [propext]\ninfo: FrontierFiveQubitPerfectTensor.lean:143:0: 'FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3' depends on axioms: [propext]\nBuild completed successfully (2 jobs).\n"
+      },
+      {
+        "module": "FrontierHappyMincut",
+        "dag_node": "ADS-HAPPY-ENTROPY-MINCUT-TARGET",
+        "stage": "ADS_CFT",
+        "position": 9,
+        "source": "lean4/FrontierHappyMincut.lean",
+        "sha256": "6f58261a079f7be32a18dcc1e0b2a7bceb0c823270e474b89ebbdc33d292a5be",
+        "sha256_after_build": "6f58261a079f7be32a18dcc1e0b2a7bceb0c823270e474b89ebbdc33d292a5be",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 40.27,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20",
+          "FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20": [
+            "propext"
+          ],
+          "FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut": [
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built FrontierHappyMincut (37s)\ninfo: FrontierHappyMincut.lean:156:0: 'FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20' depends on axioms: [propext]\ninfo: FrontierHappyMincut.lean:157:0: 'FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut' depends on axioms: [propext]\nBuild completed successfully (2 jobs).\n"
+      },
+      {
+        "module": "FrontierLogicalReconstruction",
+        "dag_node": "ADS-LOGICAL-RECONSTRUCTION-TARGET",
+        "stage": "ADS_CFT",
+        "position": 10,
+        "source": "lean4/FrontierLogicalReconstruction.lean",
+        "sha256": "d6f5ed40800a8c76ebdd20cd96d7bafedcbd379de3b7abdd9a8821b744e9f76c",
+        "sha256_after_build": "d6f5ed40800a8c76ebdd20cd96d7bafedcbd379de3b7abdd9a8821b744e9f76c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 5.69,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+          "FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class",
+          "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes": [
+            "propext"
+          ],
+          "FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class": [
+            "propext"
+          ],
+          "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105": [
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built FrontierLogicalReconstruction (2.4s)\ninfo: FrontierLogicalReconstruction.lean:102:0: 'FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes' depends on axioms: [propext]\ninfo: FrontierLogicalReconstruction.lean:103:0: 'FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class' depends on axioms: [propext]\ninfo: FrontierLogicalReconstruction.lean:104:0: 'FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105' depends on axioms: [propext]\nBuild completed successfully (2 jobs).\n"
+      },
+      {
+        "module": "FrontierAreaSpectrum",
+        "dag_node": "LQG-AREA-SPECTRUM-EXACT-TARGET",
+        "stage": "LOOP_QUANTUM_GRAVITY",
+        "position": 11,
+        "source": "lean4/FrontierAreaSpectrum.lean",
+        "sha256": "4559931b4f2cdf9b3d83eba2085b3175648b73e99db28b154240f19745cd53df",
+        "sha256_after_build": "4559931b4f2cdf9b3d83eba2085b3175648b73e99db28b154240f19745cd53df",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 69.58,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierAreaSpectrum.casimir_squarefree_factorizations",
+          "FrontierAreaSpectrum.spin3_equals_four_spin_half",
+          "FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy",
+          "FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half",
+          "FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierAreaSpectrum.casimir_squarefree_factorizations": [
+            "propext"
+          ],
+          "FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierAreaSpectrum.spin3_equals_four_spin_half": [],
+          "FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy": []
+        },
+        "output": "⚠ [860/860] Built FrontierAreaSpectrum (63s)\nwarning: FrontierAreaSpectrum.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierAreaSpectrum.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierAreaSpectrum.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FrontierAreaSpectrum.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FrontierAreaSpectrum.lean:170:0: 'FrontierAreaSpectrum.casimir_squarefree_factorizations' depends on axioms: [propext]\ninfo: FrontierAreaSpectrum.lean:171:0: 'FrontierAreaSpectrum.spin3_equals_four_spin_half' does not depend on any axioms\ninfo: FrontierAreaSpectrum.lean:172:0: 'FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy' does not depend on any axioms\ninfo: FrontierAreaSpectrum.lean:173:0: 'FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierAreaSpectrum.lean:174:0: 'FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (860 jobs).\n"
+      },
+      {
+        "module": "FrontierClassical6j",
+        "dag_node": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+        "stage": "LOOP_QUANTUM_GRAVITY",
+        "position": 12,
+        "source": "lean4/FrontierClassical6j.lean",
+        "sha256": "46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a",
+        "sha256_after_build": "46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 95.96,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6",
+          "FrontierClassical6j.classical_6j_orthogonality_all_1928_le6",
+          "FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierClassical6j.classical_6j_orthogonality_all_1928_le6": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built FrontierClassical6j (87s)\ninfo: FrontierClassical6j.lean:263:0: 'FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierClassical6j.lean:264:0: 'FrontierClassical6j.classical_6j_orthogonality_all_1928_le6' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierClassical6j.lean:265:0: 'FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (2 jobs).\n",
+        "scope_note": "Parts (i) and (ii) exhaustively check all 3,418 admissible 6-tuples with 2j <= 6 and all 1,928 orthogonality tuples with 2j <= 6; part (iii) exhaustively checks all 814 admissible 9-tuples of the Biedenharn-Elliott pentagon identity with 2j <= 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid) so that kernel decide finishes within deterministic memory."
+      },
+      {
+        "module": "FrontierPrAllowedRegion",
+        "dag_node": "LQG-PR-ALLOWED-REGION-TARGET",
+        "stage": "LOOP_QUANTUM_GRAVITY",
+        "position": 13,
+        "source": "lean4/FrontierPrAllowedRegion.lean",
+        "sha256": "9005ac46571d0b3b728b37a7edc5ff2e45b201979e92861021251da371910446",
+        "sha256_after_build": "9005ac46571d0b3b728b37a7edc5ff2e45b201979e92861021251da371910446",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 139.43,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+          "FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierClassical6j.classical_6j_orthogonality_all_1928_le6": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8": []
+        },
+        "output": "ℹ [2/3] Replayed FrontierClassical6j\ninfo: FrontierClassical6j.lean:263:0: 'FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierClassical6j.lean:264:0: 'FrontierClassical6j.classical_6j_orthogonality_all_1928_le6' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FrontierClassical6j.lean:265:0: 'FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nℹ [3/3] Built FrontierPrAllowedRegion (131s)\ninfo: FrontierPrAllowedRegion.lean:97:0: 'FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8' does not depend on any axioms\ninfo: FrontierPrAllowedRegion.lean:98:0: 'FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (3 jobs).\n"
+      },
+      {
+        "module": "FrontierTvLevel2Pentagon",
+        "dag_node": "LQG-TV-LEVEL2-PENTAGON-TARGET",
+        "stage": "LOOP_QUANTUM_GRAVITY",
+        "position": 14,
+        "source": "lean4/FrontierTvLevel2Pentagon.lean",
+        "sha256": "a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156",
+        "sha256_after_build": "a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 112.25,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation",
+          "FrontierTvLevel2Pentagon.isingF_nonzero_count_36",
+          "FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible",
+          "FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "FableHilbertWalk20260819.H021.SimplicialDiamondComplex.tau_cubed_is_I": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H021.EvaluationAndSorkin.sorkin_third_order_identically_zero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H021.EvaluationAndSorkin.concrete_I2_nonzero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H021.SignedPermutationAndResidue.signed_perm_preserves_l1": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H021.SignedPermutationAndResidue.signed_perm_preserves_inner": [
+            "propext"
+          ],
+          "FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H021.CyclotomicRing12.i_unit_squared": [],
+          "FableHilbertWalk20260819.H021.CyclotomicRing12.zeta3_cubed": [],
+          "FableHilbertWalk20260819.H021.CyclotomicRing12.zeta12_minimal_poly": [],
+          "FableHilbertWalk20260819.H021.CyclotomicRing12.composite_generator_zeta12": [],
+          "FableHilbertWalk20260819.H021.CyclotomicRing12.declared_holonomy_generator_identities": [],
+          "FableHilbertWalk20260819.H021.SimplicialDiamondComplex.stokes_diamond_boundary_cancellation": [],
+          "FableHilbertWalk20260819.H021.SimplicialDiamondComplex.J_squared_is_neg_I": [],
+          "FableHilbertWalk20260819.H021.EvaluationAndSorkin.cubic_valuation_violates_sorkin": [],
+          "FableHilbertWalk20260819.H021.SignedPermutationAndResidue.irreversible_residue_positive_witness": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_is_i": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_invertible": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_0": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_1": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2_squared_is_3": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_3": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_4": [],
+          "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_6_truncation": [],
+          "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude": [],
+          "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes": [],
+          "FableHilbertWalk20260819.H023.OrientationAndSymmetry.vacuum_orientation_conjugation": [],
+          "FableHilbertWalk20260819.H023.OrientationAndSymmetry.tetrahedral_face_rotation_invariant": [],
+          "FableHilbertWalk20260819.H023.TopologicalGluing.gluing_vacuum_is_one": [],
+          "FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence": [],
+          "FableHilbertWalk20260819.H024.FourSimplexGeometry.simplex4_vacuum_admissible": [],
+          "FableHilbertWalk20260819.H024.FourSimplexGeometry.simplex4_inadmissible_witness": [],
+          "FableHilbertWalk20260819.H024.TenJAmplitude.amplitude10j_vacuum": [],
+          "FableHilbertWalk20260819.H024.TenJAmplitude.amplitude10j_inadmissible_vanishes": [],
+          "FableHilbertWalk20260819.H024.SimplicialSymmetries.amplitude10j_orientation_conjugation": [],
+          "FableHilbertWalk20260819.H024.SimplicialSymmetries.amplitude10j_a5_cyclic_invariant": [],
+          "FableHilbertWalk20260819.H024.MinimalFourSphere.euler_characteristic_s4": [],
+          "FableHilbertWalk20260819.H024.S4PartitionFunction.dim_q_vacuum": [],
+          "FableHilbertWalk20260819.H024.S4PartitionFunction.dim_q_one": [],
+          "FableHilbertWalk20260819.H024.S4PartitionFunction.s4_vacuum_sector_is_one": [],
+          "FableHilbertWalk20260819.H024.S4PartitionFunction.s4_inadmissible_sector_vanishes": [],
+          "FableHilbertWalk20260819.H024.S4PartitionFunction.s4_truncation_bound": [],
+          "FrontierTvLevel2Pentagon.isingF_nonzero_count_36": []
+        },
+        "output": "ℹ [2/5] Replayed H021TriangleNetworkComplexCarrier\ninfo: H021TriangleNetworkComplexCarrier.lean:401:0: 'FableHilbertWalk20260819.H021.CyclotomicRing12.i_unit_squared' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:402:0: 'FableHilbertWalk20260819.H021.CyclotomicRing12.zeta3_cubed' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:403:0: 'FableHilbertWalk20260819.H021.CyclotomicRing12.zeta12_minimal_poly' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:404:0: 'FableHilbertWalk20260819.H021.CyclotomicRing12.composite_generator_zeta12' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:405:0: 'FableHilbertWalk20260819.H021.CyclotomicRing12.declared_holonomy_generator_identities' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:406:0: 'FableHilbertWalk20260819.H021.SimplicialDiamondComplex.stokes_diamond_boundary_cancellation' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:407:0: 'FableHilbertWalk20260819.H021.SimplicialDiamondComplex.J_squared_is_neg_I' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:408:0: 'FableHilbertWalk20260819.H021.SimplicialDiamondComplex.tau_cubed_is_I' depends on axioms: [propext, Quot.sound]\ninfo: H021TriangleNetworkComplexCarrier.lean:409:0: 'FableHilbertWalk20260819.H021.EvaluationAndSorkin.sorkin_third_order_identically_zero' depends on axioms: [propext,\n Quot.sound]\ninfo: H021TriangleNetworkComplexCarrier.lean:410:0: 'FableHilbertWalk20260819.H021.EvaluationAndSorkin.concrete_I2_nonzero' depends on axioms: [propext, Quot.sound]\ninfo: H021TriangleNetworkComplexCarrier.lean:411:0: 'FableHilbertWalk20260819.H021.EvaluationAndSorkin.cubic_valuation_violates_sorkin' does not depend on any axioms\ninfo: H021TriangleNetworkComplexCarrier.lean:412:0: 'FableHilbertWalk20260819.H021.SignedPermutationAndResidue.signed_perm_preserves_l1' depends on axioms: [propext,\n Quot.sound]\ninfo: H021TriangleNetworkComplexCarrier.lean:413:0: 'FableHilbertWalk20260819.H021.SignedPermutationAndResidue.signed_perm_preserves_inner' depends on axioms: [propext]\ninfo: H021TriangleNetworkComplexCarrier.lean:414:0: 'FableHilbertWalk20260819.H021.SignedPermutationAndResidue.irreversible_residue_positive_witness' does not depend on any axioms\nℹ [3/5] Replayed H023DiscreteSpinfoamAmplitudes\ninfo: H023DiscreteSpinfoamAmplitudes.lean:174:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_is_i' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:175:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_invertible' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:176:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_0' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:177:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_1' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:178:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:179:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2_squared_is_3' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:180:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_3' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:181:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_4' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:182:0: 'FableHilbertWalk20260819.H023.QuantumIntegers.q_int_6_truncation' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:183:0: 'FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:184:0: 'FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:185:0: 'FableHilbertWalk20260819.H023.OrientationAndSymmetry.vacuum_orientation_conjugation' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:186:0: 'FableHilbertWalk20260819.H023.OrientationAndSymmetry.tetrahedral_face_rotation_invariant' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:187:0: 'FableHilbertWalk20260819.H023.TopologicalGluing.gluing_vacuum_is_one' does not depend on any axioms\ninfo: H023DiscreteSpinfoamAmplitudes.lean:188:0: 'FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence' does not depend on any axioms\nℹ [4/5] Replayed H024FourSimplexSpinfoamS4\ninfo: H024FourSimplexSpinfoamS4.lean:155:0: 'FableHilbertWalk20260819.H024.FourSimplexGeometry.simplex4_vacuum_admissible' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:156:0: 'FableHilbertWalk20260819.H024.FourSimplexGeometry.simplex4_inadmissible_witness' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:157:0: 'FableHilbertWalk20260819.H024.TenJAmplitude.amplitude10j_vacuum' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:158:0: 'FableHilbertWalk20260819.H024.TenJAmplitude.amplitude10j_inadmissible_vanishes' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:159:0: 'FableHilbertWalk20260819.H024.SimplicialSymmetries.amplitude10j_orientation_conjugation' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:160:0: 'FableHilbertWalk20260819.H024.SimplicialSymmetries.amplitude10j_a5_cyclic_invariant' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:161:0: 'FableHilbertWalk20260819.H024.MinimalFourSphere.euler_characteristic_s4' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:162:0: 'FableHilbertWalk20260819.H024.S4PartitionFunction.dim_q_vacuum' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:163:0: 'FableHilbertWalk20260819.H024.S4PartitionFunction.dim_q_one' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:164:0: 'FableHilbertWalk20260819.H024.S4PartitionFunction.s4_vacuum_sector_is_one' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:165:0: 'FableHilbertWalk20260819.H024.S4PartitionFunction.s4_inadmissible_sector_vanishes' does not depend on any axioms\ninfo: H024FourSimplexSpinfoamS4.lean:166:0: 'FableHilbertWalk20260819.H024.S4PartitionFunction.s4_truncation_bound' does not depend on any axioms\nℹ [5/5] Built FrontierTvLevel2Pentagon (103s)\ninfo: FrontierTvLevel2Pentagon.lean:235:0: 'FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierTvLevel2Pentagon.lean:236:0: 'FrontierTvLevel2Pentagon.isingF_nonzero_count_36' does not depend on any axioms\ninfo: FrontierTvLevel2Pentagon.lean:237:0: 'FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: FrontierTvLevel2Pentagon.lean:238:0: 'FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (5 jobs).\n"
+      }
+    ]
+  },
+  "reproduction": "With Lean 4.35.0 and the Mathlib packages at the recorded revision available under lean4/.lake/packages, run `lake build <Module>` from lean4 for each recorded module. The #print axioms lines at the end of each source must report only propext, Classical.choice and Quot.sound, or no axioms.",
+  "limits": [
+    "Lake prints warnings (Mathlib module-system import notices) where Mathlib tactics are imported; none is an error and the full output of every module is recorded above.",
+    "In FrontierClassical6j (LQG-6J-EXACT-AND-PENTAGON-TARGET), parts (i) and (ii) check all admissible labels with 2j <= 6, while part (iii) checks all 814 admissible Biedenharn-Elliott 9-tuples with 2j <= 3 plus explicit spin <= 6 pentagon configurations."
+  ]
+}

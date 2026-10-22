@@ -1,6 +1,6 @@
 # [TFQ-2308] Finite target: exact classical 6j symbols, orthogonality and the Biedenharn-Elliott identity
 
-**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2305](tfq_2305_lqg_ponzano_regge_1968_source.md)  
 **DAG node:** `LQG-6J-EXACT-AND-PENTAGON-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most 6, the square is a rational number given by Racah's single-sum formula with exact integer factorials, and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries; (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y'); (iii) the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic in the rationals and one square root per symbol.
+Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most 6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah's single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii) the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon) identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).
 
 ## Governing obligation
 
-Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.
+Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part of this target.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Exact Python-Fraction implementation and the three checks.
+- The finite target is checked in Lean 4 (`lean4/FrontierClassical6j.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
-For all admissible 6-tuples with twice-spins <= 6: 6j^2 in Q via Racah's formula; 24-fold symmetry; orthogonality; Biedenharn-Elliott identity.
+For all admissible 6-tuples with twice-spins <= 6: 6j^2 in Q via Racah's formula, 24-fold tetrahedral symmetry (3,418 tuples), and orthogonality (1,928 tuples); Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with twice-spins <= 3 plus explicit twice-spin <= 6 pentagon configurations.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-LQG-6J-EXACT-AND-PENTAGON-TARGET` (`GAP_NO_DERIVATION`) from `LQG-PONZANO-REGGE-1968-SOURCE`, `TFQ-0198`: Partial real link: the repository computes exact quantum recoupling at level 2. The classical symbols are not computed, so the route is a gap.
+- Route `FRO-R-LQG-6J-EXACT-AND-PENTAGON-TARGET` (`DERIVED_LEAN`) from `LQG-PONZANO-REGGE-1968-SOURCE`, `TFQ-0198`: Formalized and checked in Lean 4 (lean4/FrontierClassical6j.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 See also: `TFQ-0105`, `TFQ-0198`.
 
@@ -49,6 +49,13 @@ See also: `TFQ-0105`, `TFQ-0198`.
 
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
 - Repository: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
+- Repository: `lean4/FrontierClassical6j.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierClassical6j.lean::FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6`
+- `lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_orthogonality_all_1928_le6`
+- `lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon`
 
 ## Downstream derivations
 

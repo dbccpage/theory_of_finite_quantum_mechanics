@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most 6, the square is a rational number given by Racah's single-sum formula with exact integer factorials, and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries; (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y'); (iii) the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic in the rationals and one square root per symbol.
+  Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most 6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah's single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii) the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon) identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.
+  Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part of this target.
 
   Open ../operads/lqg_6j_exact_and_pentagon_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

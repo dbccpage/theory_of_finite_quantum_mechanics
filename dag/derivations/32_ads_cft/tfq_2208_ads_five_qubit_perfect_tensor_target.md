@@ -1,6 +1,6 @@
 # [TFQ-2208] Finite target: the five-qubit code gives a six-leg perfect tensor
 
-**Stage:** `ADS_CFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `ADS_CFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2207](tfq_2207_ads_happy_2015_source.md)  
 **DAG node:** `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Claim: this state is a perfect tensor, that is, every bipartition with at most three legs on one side has a maximally mixed marginal, equivalently every non-identity element of its 64-element stabilizer group has weight at least 4. Expected weight distribution: 1 element of weight 0, 45 of weight 4, 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have entropy 3 bits; the minimum weight of a nontrivial logical operator is 3.
+Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4: this state is a perfect tensor; its 64-element stabilizer group has weight distribution 1 element of weight 0, 45 of weight 4, and 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have projective stabilizer rank 3 (entropy 3 bits); and the 192 nontrivial logical operators in the normalizer outside the stabilizer have minimum weight 3.
 
 ## Governing obligation
 
-GF(2) symplectic arithmetic over a 64-element group. The repository has stabilizer-code checks for other codes but not this one.
+Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element stabilizer group and the 20 bipartitions. A finite stabilizer enumeration is not a statement about AdS/CFT.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Exact enumeration in Lean or Python with GF(2) rank for each bipartition.
+- The finite target is checked in Lean 4 (`lean4/FrontierFiveQubitPerfectTensor.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
 Stabilizer group of the Choi state: weight enumerator 1 + 45 z^4 + 18 z^6; every 3|3 bipartition has stabilizer rank giving entropy 3 bits (twenty bipartitions); normalizer minus stabilizer has minimum weight 3.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (`GAP_NO_DERIVATION`) from `ADS-HAPPY-2015-SOURCE`: Partial real link: sister stabilizer-code checks exist in Lean. This code is not among them, so the route is a gap until it is written.
+- Route `FRO-R-ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (`DERIVED_LEAN`) from `ADS-HAPPY-2015-SOURCE`: Formalized and checked in Lean 4 (lean4/FrontierFiveQubitPerfectTensor.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - Authoring check (throwaway GF(2) enumeration, not a repository check) reproduced the weight distribution {0:1, 4:45, 6:18}, the order 64, the 3-bit entropies of all twenty 3|3 bipartitions and the minimum logical weight 3.
 
 See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
@@ -53,6 +53,14 @@ See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 - Repository: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
 - Repository: `lean4/H042ShorNineQubitCode.lean`
 - Repository: `lean4/H044SurfaceCodeToricTopology.lean`
+- Repository: `lean4/FrontierFiveQubitPerfectTensor.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64`
+- `lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution`
+- `lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy`
+- `lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3`
 
 ## Downstream derivations
 

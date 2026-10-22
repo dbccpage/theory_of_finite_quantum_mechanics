@@ -1,6 +1,6 @@
 # [TFQ-2009] Finite target: cloneable and non-cloneable attributes of a qubit
 
-**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CONSTRUCTOR_THEORY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2007](tfq_2007_ct_superinformation_medium_definition.md)  
 **DAG node:** `CT-QUBIT-NO-CLONING-FINITE-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the Gram entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
+Formalized finite statement over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the off-diagonal entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.
 
 ## Governing obligation
 
-Exact linear algebra on Gaussian rationals; statement (c) needs a Lean or Python-Fraction formulation of the fidelity argument for rays. The link to the imported definition of a superinformation medium is a reading of definitions.
+Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64 subsets. The link to the imported definition of a superinformation medium remains a definitional reading, not a characterization of quantum theory.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Lean or exact Python statement and check of (a), (b), (c).
+- The finite target is checked in Lean 4 (`lean4/FrontierNoCloning.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
 Over Q(i): for the six Pauli eigenstate rays, exactly the subsets whose members are pairwise equal or orthogonal are cloneable; the 64 subsets split into those and the rest; the maximal cloneable subsets are the three antipodal pairs; Phi(rho)=rho tensor rho on {|0>,|1>,|+>,|->} is inconsistent with linearity because |0><0|+|1><1|-|+><+|-|-><-| = 0 while the images sum to a nonzero matrix.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CT-QUBIT-NO-CLONING-FINITE-TARGET` (`GAP_NO_DERIVATION`) from `CT-SUPERINFORMATION-MEDIUM-DEFINITION`, `FQ-DECLARED-QUANTUM-INTERFACE`: Partial real link: the declared finite quantum interface supplies the qubit. The target is open, so the route is a gap until the statements are formalized.
+- Route `FRO-R-CT-QUBIT-NO-CLONING-FINITE-TARGET` (`DERIVED_LEAN`) from `CT-SUPERINFORMATION-MEDIUM-DEFINITION`, `FQ-DECLARED-QUANTUM-INTERFACE`: Formalized and checked in Lean 4 (lean4/FrontierNoCloning.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - Authoring check (a throwaway enumeration, not a repository check) confirmed the nonzero image sum with entries of absolute value 1/2.
 
 See also: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`.
@@ -49,6 +49,20 @@ See also: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM060-SUPERPOSITION-QUO
 ## Sources
 
 - Repository: `lean4/Entanglement.lean`
+- Repository: `lean4/FrontierNoCloning.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_trace_preserving`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_clones_Z_attribute`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneX_clones_X_attribute`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneY_clones_Y_attribute`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.pauli_Z_X_completeness_identity`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.cloning_defect_ZX_off_diagonal_half`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.no_additive_cloner_for_Z_union_X`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.fidelity_monotonicity_forces_zero_or_one`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal`
+- `lean4/FrontierNoCloning.lean::FrontierNoCloning.exhaustive_64_subsets_clonability_classification`
 
 ## Downstream derivations
 

@@ -1,6 +1,6 @@
 # [TFQ-2210] Finite target: logical operators of the five-qubit code live on any three qubits
 
-**Stage:** `ADS_CFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `ADS_CFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2208](tfq_2208_ads_five_qubit_perfect_tensor_target.md)  
 **DAG node:** `ADS-LOGICAL-RECONSTRUCTION-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For the [[5,1,3]] code, each of the ten triples T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and their product), and no pair of qubits supports any nontrivial logical operator. Equivalent statement: erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
+Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.
 
 ## Governing obligation
 
-Exact GF(2) check over the normalizer (64 elements). The identification with bulk reconstruction is the picture of the source and is not part of the target.
+Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Lean or exact Python check; Knill-Laflamme condition for two-qubit erasures.
+- The finite target is checked in Lean 4 (`lean4/FrontierLogicalReconstruction.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
 For each of the 10 triples T of {1..5} and each class in {X-bar, Y-bar, Z-bar} some representative has support inside T; for each of the 10 pairs none of the three classes has a representative inside the pair.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-ADS-LOGICAL-RECONSTRUCTION-TARGET` (`GAP_NO_DERIVATION`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-ADH-2015-SOURCE`: Partial real link: the three-qubit code has an exact syndrome-recovery lemma in Lean. The five-qubit statement is not written; gap until formalized.
+- Route `FRO-R-ADS-LOGICAL-RECONSTRUCTION-TARGET` (`DERIVED_LEAN`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-ADH-2015-SOURCE`: Formalized and checked in Lean 4 (lean4/FrontierLogicalReconstruction.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - Authoring check (throwaway enumeration, not a repository check) found representatives of all three classes inside each of the ten triples and none inside any pair.
 
 See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
@@ -51,6 +51,13 @@ See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 - `external:arXiv:1411.7041`: A. Almheiri, X. Dong and D. Harlow, "Bulk Locality and Quantum Error Correction in AdS/CFT", arXiv:1411.7041 (2014); JHEP 04 (2015) 163, doi:10.1007/JHEP04(2015)163.
 - `external:arXiv:quant-ph/9602019`: R. Laflamme, C. Miquel, J. P. Paz and W. H. Zurek, "Perfect Quantum Error Correction Code", arXiv:quant-ph/9602019 (1996).
 - Repository: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
+- Repository: `lean4/FrontierLogicalReconstruction.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes`
+- `lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class`
+- `lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105`
 
 ## Downstream derivations
 

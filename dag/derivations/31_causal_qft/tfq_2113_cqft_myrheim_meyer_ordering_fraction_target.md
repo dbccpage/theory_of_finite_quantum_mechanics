@@ -1,6 +1,6 @@
 # [TFQ-2113] Finite target: ordering fraction, Myrheim-Meyer dimension and Hasse diagrams as exact rationals
 
-**Stage:** `CAUSAL_QFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CAUSAL_QFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2112](tfq_2112_cqft_finite_causet_identification.md)  
 **DAG node:** `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)); n=2 gives 5/6, the value for the diamond C2 of CausalOrder.lean (5 related pairs of 6), and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.
+Formalized finite statement. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n) = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n) - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.
 
 ## Governing obligation
 
-Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.
+Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -27,17 +27,17 @@ Open target stated in this change; no computation of it is recorded in the repos
 
 ## What is open
 
-- Python implementation of the exact estimator and Lean statement of (i) and (iii).
+- The finite target is checked in Lean 4 (`lean4/FrontierMyrheimMeyer.lean`); any extension beyond the declared finite domain or to continuum/physical interpretations remains open.
 
 ## Finite target (precise statement)
 
 r(grid_n) = (n+3)/(2(n+1)) for all n>=2 (r(grid_2)=5/6); f(2)=1/2, f(3)=8/35, f(4)=1/10, f(1)=1; Hasse diagram of C1 has 2 links, of C2 has 4 links; Mobius table of C2 satisfies the recursion with mu(d0,d3)=1.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (`GAP_NO_DERIVATION`) from `CQFT-FINITE-CAUSET-IDENTIFICATION`: Partial real link: ordering fraction and interval abundances exist as exact Python code, and C1, C2 exist in Lean. The estimator and the grid formula are not written, so the route is a gap.
+- Route `FRO-R-CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (`DERIVED_LEAN`) from `CQFT-FINITE-CAUSET-IDENTIFICATION`: Formalized and checked in Lean 4 (lean4/FrontierMyrheimMeyer.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - Authoring check (throwaway enumeration, not a repository check) confirmed r(grid_n) for n=2..6: 5/6, 3/4, 7/10, 2/3, 9/14, and f(2), f(3), f(4) numerically.
 
 See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
@@ -52,6 +52,17 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 - `external:arXiv:gr-qc/0309009`: R. D. Sorkin, "Causal Sets: Discrete Gravity (Notes for the Valdivia Summer School)", arXiv:gr-qc/0309009 (2003).
 - Repository: `lean4/CausalOrder.lean`
 - Repository: `code/python/src/general_relativity/causal_set.py`
+- Repository: `lean4/FrontierMyrheimMeyer.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.gridStrictPairs_factorization`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_ordering_fraction_closed_form`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_ordering_fraction_minus_half`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.covers_subset_of_generating_subrelation`
+- `lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2`
 
 ## Downstream derivations
 

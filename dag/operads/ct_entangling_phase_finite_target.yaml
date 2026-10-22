@@ -3,31 +3,33 @@ node_id: CT-ENTANGLING-PHASE-FINITE-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Finite statement to formalize over Q(i). For u in Q(i) with |u|=1, the two-qubit vector
+  source_statement: Formalized finite statement over Q(i). For u in Q(i) with |u|=1, the two-qubit vector
     psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u
     is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for
-    u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), rank(A M B^T) <= rank(M), so
-    local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to
-    the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 4x4
-    density matrix exists relative to the product family, in the form of DS-QM071. The physical inference
-    from such entanglement to a non-classical mediator is imported, not part of this target.
+    u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M)
+    det(B), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u)
+    applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional
+    on the 2x2 amplitude matrix exists relative to the product family, in the form of DS-QM071. The physical
+    inference from such entanglement to a non-classical mediator is imported, not part of this target.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Statements (a) to (c) are exact determinant and rank facts. Statement (d) needs the
-    witness construction of DS-QM071 specialized to this family. No physical claim is attached.
+  source_bottleneck: Statements (a) to (d) are checked in Lean 4 over Q(i). The physical inference from
+    such entanglement to a non-classical mediator is imported and carries no proof here.
   source_refs:
   - dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md
   - lean4/Entanglement.lean
   - lean4/DualWitness.lean
+  - lean4/FrontierEntanglingPhase.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md
-    sha256: b176ecc0ebaab911ae51a2ab52fee2bf1d73a0a12cc4780cd1af5231401fb158
+    sha256: b038cecb12dade0db312ef950cd7703b56c101839efb19bdb738f3025687ca0c
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,9 +37,345 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/constructor_theory_ct_entangling_phase_finite_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: GaussRat
+  line: 31
+  signature_excerpt: structure GaussRat
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: det2
+  line: 99
+  signature_excerpt: 'def det2 (M : Mat2) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: M_u
+  line: 112
+  signature_excerpt: 'def M_u (u : GaussRat) : Mat2'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: scale
+  line: 47
+  signature_excerpt: 'def scale (q : Rat) (z : GaussRat) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 92
+  signature_excerpt: structure Mat2
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: half
+  line: 40
+  signature_excerpt: 'def half : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsProductState2
+  line: 121
+  signature_excerpt: 'def IsProductState2 (M : Mat2) : Prop'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 38
+  signature_excerpt: 'def zero : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: concurrenceSq
+  line: 150
+  signature_excerpt: 'def concurrenceSq (M : Mat2) : Rat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normSq
+  line: 49
+  signature_excerpt: 'def normSq (z : GaussRat) : Rat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: one
+  line: 39
+  signature_excerpt: 'def one : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: add
+  line: 42
+  signature_excerpt: 'def add (z w : GaussRat) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sub
+  line: 43
+  signature_excerpt: 'def sub (z w : GaussRat) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: neg
+  line: 44
+  signature_excerpt: 'def neg (z : GaussRat) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul
+  line: 45
+  signature_excerpt: 'def mul (z w : GaussRat) : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u_pythagorean
+  line: 160
+  signature_excerpt: 'def u_pythagorean : GaussRat'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: det_M_u
+  line: 116
+  signature_excerpt: |-
+    theorem det_M_u (u : GaussRat) :
+        det2 (M_u u) = scale (1/4) (u - 1)
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: productState2_det_zero
+  line: 126
+  signature_excerpt: 'theorem productState2_det_zero (M : Mat2) (h : IsProductState2 M) : det2 M = 0'
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: psi_u_isProduct_iff
+  line: 133
+  signature_excerpt: |-
+    theorem psi_u_isProduct_iff (u : GaussRat) :
+        IsProductState2 (M_u u) ↔ u = 1
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: concurrenceSq_M_u
+  line: 153
+  signature_excerpt: |-
+    theorem concurrenceSq_M_u (u : GaussRat) :
+        concurrenceSq (M_u u) = normSq (u - 1) / 4
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u_pythagorean_unit_and_concurrence
+  line: 162
+  signature_excerpt: |-
+    theorem u_pythagorean_unit_and_concurrence :
+        normSq u_pythagorean = 1 ∧ concurrenceSq (M_u u_pythagorean) = 1 / 5
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: det2_local_action
+  line: 170
+  signature_excerpt: |-
+    theorem det2_local_action (A M B : Mat2) :
+        det2 (mul2 A (mul2 M (transpose2 B))) = det2 A * det2 M * det2 B
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: local_op_cannot_raise_product_rank
+  line: 176
+  signature_excerpt: |-
+    theorem local_op_cannot_raise_product_rank (A M B : Mat2) (h : det2 M = 0) :
+        det2 (mul2 A (mul2 M (transpose2 B))) = 0
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diag_phase_maps_psi1_to_psiu
+  line: 186
+  signature_excerpt: |-
+    theorem diag_phase_maps_psi1_to_psiu (u : GaussRat) :
+        applyDiagPhase u (M_u 1) = M_u u
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schmidtWitness_vanishes_on_product
+  line: 198
+  signature_excerpt: |-
+    theorem schmidtWitness_vanishes_on_product (M : Mat2) (h : IsProductState2 M) :
+        schmidtWitnessExpectation M = 0
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schmidtWitness_strictly_positive_for_u_ne_one
+  line: 205
+  signature_excerpt: |-
+    theorem schmidtWitness_strictly_positive_for_u_ne_one {u : GaussRat} (hu : u ≠ 1) :
+        0 < schmidtWitnessExpectation (M_u u)
+  source: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  source_sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det_M_u
+  availability: local
+  symbol: FrontierEntanglingPhase.det_M_u
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.productState2_det_zero
+  availability: local
+  symbol: FrontierEntanglingPhase.productState2_det_zero
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.psi_u_isProduct_iff
+  availability: local
+  symbol: FrontierEntanglingPhase.psi_u_isProduct_iff
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.concurrenceSq_M_u
+  availability: local
+  symbol: FrontierEntanglingPhase.concurrenceSq_M_u
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 153
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence
+  availability: local
+  symbol: FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 162
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det2_local_action
+  availability: local
+  symbol: FrontierEntanglingPhase.det2_local_action
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 170
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.local_op_cannot_raise_product_rank
+  availability: local
+  symbol: FrontierEntanglingPhase.local_op_cannot_raise_product_rank
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 176
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu
+  availability: local
+  symbol: FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 186
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_vanishes_on_product
+  availability: local
+  symbol: FrontierEntanglingPhase.schmidtWitness_vanishes_on_product
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 198
+  role: source_lead_only
+- original_ref: lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one
+  availability: local
+  symbol: FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one
+  path: lean4/FrontierEntanglingPhase.lean
+  repository: this_repository
+  sha256: 94bccd3a1bf1ca1b05533ff9b812cdd5089395a731c0257140ae63dccbb87d2d
+  declaration_status: declaration_found_not_proof_checked
+  line: 205
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +413,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -3,30 +3,33 @@ node_id: CQFT-FINITE-POSET-NET-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Finite statement to formalize. For a FiniteStrictPoset P on n points put one qubit
+  source_statement: 'Formalized finite statement. For a FiniteStrictPoset P on n points put one qubit
     at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity
     elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1
-    is spacelike to every point of O2, then A(O1) and A(O2) commute. (c) The spacelike relation is symmetric
-    and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are
-    spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) are immediate for tensor-product
-    nets; the target records that the repository does not yet state them and that the content of Haag-Kastler
-    locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.'
+    is spacelike to every point of O2, then O1 and O2 are disjoint and A(O1) and A(O2) commute. (c) The
+    spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2,
+    1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a)
+    and (b) hold for tensor-product nets; the content of Haag-Kastler locality (commutation forced by
+    causal separation of dynamics) is absent because this net has no dynamics.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: The net is kinematical. Dynamics, a time-slice property and covariance are not modelled,
-    so the statement is the finite shadow of two axioms and nothing more.
+  source_bottleneck: Checked in Lean 4 for finite poset tensor-product nets and the 4-element N poset.
+    Dynamics, a time-slice property and Poincare covariance are not modelled, so the statement is the
+    finite shadow of two axioms and nothing more.
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md
   - lean4/CausalOrder.lean
+  - lean4/FrontierPosetNet.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md
-    sha256: 434210c552512fc4d304cce499b805eb27af63548f155845b523c4b9d1444665
+    sha256: e8b0ed5bf1a6a0de2d2fd6569df64aceb2371eb1479bb9002ac25c952e0a7a29
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -34,9 +37,220 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/causal_qft_cqft_finite_poset_net_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: LocalizedIn
+  line: 29
+  signature_excerpt: 'def LocalizedIn {n : Nat} {M : Type*} [One M] (O : Finset (Fin n)) (A : Fin n →
+    M) : Prop'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mulSiteOp
+  line: 33
+  signature_excerpt: 'def mulSiteOp {n : Nat} {M : Type*} [Mul M] (A B : Fin n → M) : Fin n → M'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: posetN
+  line: 79
+  signature_excerpt: 'def posetN : FiniteStrictPoset 4'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: n0
+  line: 91
+  signature_excerpt: 'def n0 : Fin 4'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: n1
+  line: 92
+  signature_excerpt: 'def n1 : Fin 4'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: n_rel
+  line: 73
+  signature_excerpt: 'def n_rel (i j : Fin 4) : Prop'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: n_rel_bool
+  line: 68
+  signature_excerpt: 'def n_rel_bool (i j : Fin 4) : Bool'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: n3
+  line: 94
+  signature_excerpt: 'def n3 : Fin 4'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: isotony
+  line: 37
+  signature_excerpt: |-
+    theorem isotony {n : Nat} {M : Type*} [One M] {O₁ O₂ : Finset (Fin n)}
+        (hsub : O₁ ⊆ O₂) {A : Fin n → M} (hA : LocalizedIn O₁ A) :
+        LocalizedIn O₂ A
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: disjoint_of_all_spacelike
+  line: 46
+  signature_excerpt: |-
+    theorem disjoint_of_all_spacelike {n : Nat} (P : FiniteStrictPoset n)
+        {O₁ O₂ : Finset (Fin n)} (hsp : ∀ x ∈ O₁, ∀ y ∈ O₂, isSpacelike P x y) :
+        Disjoint O₁ O₂
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: locality_commute_of_spacelike
+  line: 55
+  signature_excerpt: |-
+    theorem locality_commute_of_spacelike {n : Nat} {M : Type*} [MulOneClass M]
+        (P : FiniteStrictPoset n) {O₁ O₂ : Finset (Fin n)}
+        (hsp : ∀ x ∈ O₁, ∀ y ∈ O₂, isSpacelike P x y)
+        {A B : Fin n → M} (hA : LocalizedIn O₁ A) (hB : LocalizedIn O₂ B) :
+        mulSiteOp A B = mulSiteOp B A
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: posetN_spacelike_0_1
+  line: 96
+  signature_excerpt: 'theorem posetN_spacelike_0_1 : isSpacelike posetN n0 n1'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: posetN_spacelike_0_3
+  line: 102
+  signature_excerpt: 'theorem posetN_spacelike_0_3 : isSpacelike posetN n0 n3'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: posetN_causal_1_3
+  line: 105
+  signature_excerpt: 'theorem posetN_causal_1_3 : posetN.rel n1 n3'
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: spacelike_not_transitive_on_posetN
+  line: 113
+  signature_excerpt: |-
+    theorem spacelike_not_transitive_on_posetN :
+        isSpacelike posetN n1 n0 ∧ isSpacelike posetN n0 n3 ∧ ¬ isSpacelike posetN n1 n3
+  source: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  source_sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.isotony
+  availability: local
+  symbol: FrontierPosetNet.isotony
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.disjoint_of_all_spacelike
+  availability: local
+  symbol: FrontierPosetNet.disjoint_of_all_spacelike
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.locality_commute_of_spacelike
+  availability: local
+  symbol: FrontierPosetNet.locality_commute_of_spacelike
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_1
+  availability: local
+  symbol: FrontierPosetNet.posetN_spacelike_0_1
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 96
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_3
+  availability: local
+  symbol: FrontierPosetNet.posetN_spacelike_0_3
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_causal_1_3
+  availability: local
+  symbol: FrontierPosetNet.posetN_causal_1_3
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
+  role: source_lead_only
+- original_ref: lean4/FrontierPosetNet.lean::FrontierPosetNet.spacelike_not_transitive_on_posetN
+  availability: local
+  symbol: FrontierPosetNet.spacelike_not_transitive_on_posetN
+  path: lean4/FrontierPosetNet.lean
+  repository: this_repository
+  sha256: 85e14da33699f6d5fbf4735dca457545e04f0de0f6209e3301b77f695919fb6d
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -74,8 +288,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

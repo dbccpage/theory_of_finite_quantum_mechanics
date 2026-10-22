@@ -15,7 +15,7 @@ Imported definition, as the source describes it: a superinformation medium is an
 
 ## Governing obligation
 
-The definition is an assumption of this branch. Whether the repository's declared finite quantum interface meets it is the content of the qubit target, which is open.
+The definition is an assumption of this branch. Whether the repository's declared finite quantum interface meets its finite linear-algebra part is checked on the six Pauli eigenstates in CT-QUBIT-NO-CLONING-FINITE-TARGET.
 
 ## Source status
 
