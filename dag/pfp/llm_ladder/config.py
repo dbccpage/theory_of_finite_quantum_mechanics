@@ -88,7 +88,11 @@ DEFAULT_TIERS = [
 ANSWERED_STATUSES = ('accepted', 'accepted_partial', 'rejected')
 
 DEFAULT_POLICY = {
-    'min_verified': 2,            # verified generators + relations + numeric + lemma statements for acceptance
+    'min_verified': 2,            # credited generators + relations + compositions + lemma statements for acceptance
+    # numeric_counts: a numeric claim supplies its own expression and value, so its exact recomputation proves arithmetic,
+    # not relevance. False (default): numeric claims are still recomputed and a false one is still a refused claim, but a
+    # correct one earns no credit toward min_verified or partial_min_verified. True restores the old crediting.
+    'numeric_counts': False,
     'max_failure_rate': 0.5,      # failed host-checked claims / (verified + failed) at most this to accept
     # accepted_partial: verified >= partial_min_verified, NO refused claim, but fewer than min_verified verified. A terminal
     # outcome of its own (never counted as `accepted`, never an abstention, no escalation). False restores the old behaviour.
