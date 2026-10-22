@@ -15,7 +15,7 @@ Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp.
 
 ## Governing obligation
 
-The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.
+The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
 
 ## Source status
 
@@ -33,11 +33,19 @@ Declared imported structure:
 ## What is open
 
 - Premises audited against arXiv:1707.06036 pp. 2-3 and arXiv:1707.06050 pp. 1-2.
+- Mixed states, local channels with ancillas, mixtures, classical communication, a mediating system M, the Marletto-Vedral definition of a classical medium and any gravity model are not formalised.
+
+## Finite target (precise statement)
+
+Finite shadow only. (a) For a field K, finite index types and matrices A, M, B, rank(A M B^T) <= rank(M); a single linear local map does not raise the Schmidt rank of a pure bipartite state. (b) For two qubits over Q(i), det(A M B^T) = det(A) det(M) det(B), so no pair (A, B) maps (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. The inference from entanglement to a non-classical mediator is not a target of this node.
+
+No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
 ## Connections to this repository
 
 - Route `FRO-R-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT` (`CONDITIONAL_ON_IMPORT`) from `CT-MARLETTO-VEDRAL-2017-SOURCE`: The inference is the import; the link is reading order.
 - Route `FRO-R-BACK-CT-MEDIATOR-TO-TFQ0084` (`GAP_NO_DERIVATION`) from this node into `TFQ-0084`: The finite gravity shadow TFQ-0084 contains no mediator model and no entanglement statement. No source relates the imported inference to the Regge, spin-foam or relational certificates of that node.
+- Finite shadow in CampaignCtMediatorEntanglement.lean: one linear local map does not raise Schmidt rank (schmidtRank_local_le, any finite dimension) and does not map (1,1,1,1)/2 to the Pythagorean phase state of squared concurrence 1/5 (two qubits over Q(i)); independent check: checks/independent/ct-local-mediator-entanglement-import.py. The statement of this node is not proved.
 
 See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
@@ -49,6 +57,18 @@ See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
 - `external:arXiv:1707.06036`: C. Marletto and V. Vedral, "Gravitationally-induced entanglement between two massive particles is sufficient evidence of quantum effects in gravity", arXiv:1707.06036 (2017); Phys. Rev. Lett. 119, 240402 (2017).
 - `external:arXiv:1707.06050`: S. Bose, A. Mazumdar, G. W. Morley, H. Ulbricht, M. Toros, M. Paternostro, A. Geraci, P. Barker, M. S. Kim and G. Milburn, "A Spin Entanglement Witness for Quantum Gravity", arXiv:1707.06050 (2017); Phys. Rev. Lett. 119, 240401 (2017).
+- Repository: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
+
+## Lean 4 declarations read
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference`
 
 ## Downstream derivations
 
