@@ -85,7 +85,7 @@ NEGATION_FOLLOW = re.compile(r"^\W*(beyond|other than|except|apart from|besides|
 PROOF_VERBS = re.compile(r"\b(proves?|proved|proven|derives?|derived|establish(?:es|ed)|shows? that)\b", re.IGNORECASE)
 HEDGES = re.compile(
     r"\b(not|no|never|cannot|nor|neither|without|yet|unproved|unproven|if|whether|would|could|should|might|may|"
-    r"aims?|goal|target|attempts?|candidate|proposed?|expected|hope\w*|want\w*|until|unless)\b|n't\b",
+    r"aims?|goal|target|attempts?|candidate|proposed?|expected|hope\w*|want\w*|until|unless|rather than)\b|n't\b",
     re.IGNORECASE,
 )
 # Generated boilerplate that says "derived" about a record's parent link, not about a result.
@@ -561,7 +561,8 @@ def node_id_regex(repo: Repo):
     ids = sorted(repo.nodes, key=lambda s: (-len(s), s))
     if not ids:
         return None
-    return re.compile(r"(?<![A-Za-z0-9_-])(" + "|".join(re.escape(i) for i in ids) + r")(?![A-Za-z0-9_-])")
+    # Not inside a path or link target (dag/results/<ID>/runs, ../nodes/<ID>.md): that names a folder, not a claim about the node.
+    return re.compile(r"(?<![A-Za-z0-9_/.-])(" + "|".join(re.escape(i) for i in ids) + r")(?![A-Za-z0-9_/-]|\.md\b)")
 
 
 def sentences(line: str) -> list[str]:

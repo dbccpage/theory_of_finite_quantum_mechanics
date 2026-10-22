@@ -250,7 +250,11 @@ def test_r6_prose_calls_open_node_proved(tmp_path):
             "It shows that N-IMP holds.\n"
             "N-OPEN-EXTENDED is derived.\n"
         ),
-        "docs/note.md": "Lean establishes N-OPEN.\n",
+        "docs/note.md": (
+            "Lean establishes N-OPEN.\n"
+            "Derived part (dag/results/N-OPEN/runs/2026): the sector form is diagonal. See ../nodes/N-OPEN.md for the node.\n"
+            "N-IMP is imported; it is re-expressed rather than derived.\n"
+        ),
         "dag/research/not_scanned.md": "N-OPEN is proved.\n",
     })
     found = rules(oc.scan(root), "R6")
