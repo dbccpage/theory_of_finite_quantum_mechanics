@@ -310,7 +310,7 @@
       "name": "presentation-not-expressive-lift",
       "stage": "PREGENESIS",
       "group": null,
-      "record_status": "PROVED_LEAN",
+      "record_status": "CONDITIONAL",
       "parent_id": "TFQ-0421",
       "pinned_parent": false,
       "prerequisites": [],
@@ -319,9 +319,14 @@
       "imports": [
         "Opaque identity convention: a state is what the regime can tell apart, so internal identity is the quotient by ≈ₙ (assumption)"
       ],
-      "fence": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.",
+      "fence": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of q and the statement that the collapse holds under the opaque convention only are properties of those definitions. Not proved: an observation family O_n and q derived from it, supplying <a> as an operation that leaves O unchanged, P changing to {<a>} as the statement words it (the model has P1 = {<>, <a>}), the link between q and the Genesis regime model of the module, and the opaque identity convention itself, which stays an import.",
       "witnesses": {
         "lean": [
+          {
+            "root": "symbol_game",
+            "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean",
+            "symbol": "empty_profiles_equal"
+          },
           {
             "root": "local",
             "path": "lean4/CampaignPgwPresentationLift.lean",
@@ -364,8 +369,8 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "PROVED_LEAN",
-        "source_status": "CampaignPgwPresentationLift.lean (Lean 4.35.0, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679)"
+        "status": "CONDITIONAL",
+        "source_status": "000_oepregen 03_results_and_arguments.md section 2 (statement 2, holds under one convention); v1 Derivation 3"
       },
       "terminal": false
     },

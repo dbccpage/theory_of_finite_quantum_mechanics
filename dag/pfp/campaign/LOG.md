@@ -2,4 +2,4 @@
 
 One line per target, in order attempted: `<UTC date> | <node id> | <outcome class> | <PR url> | <one-line result>`.
 
-2026-10-22 | PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT | Derived | campaign/pgw-presentation-not-expressive-lift | Formalized distinction map q : P -> N, non-injectivity x ≠ y ∧ q(x) = q(y), and equivalence class collapse holding under opaque convention only
+2026-10-22 | PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/185 | Two-inscription model checked in Lean (q constant empty by definition, conventions defined as equality of profiles or of inscriptions); node stays CONDITIONAL, promotion to PROVED_LEAN reverted in review

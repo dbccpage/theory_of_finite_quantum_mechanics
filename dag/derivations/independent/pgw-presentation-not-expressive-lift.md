@@ -6,7 +6,7 @@ Status: AI-drafted, awaiting human review.
 **Node ID:** `PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT`  
 **TFQ ID:** `TFQ-0422`  
 **Stage:** `PREGENESIS`  
-**Outcome Class:** `Derived`
+**Outcome Class:** `Narrowed` (corrected from `Derived` in the review of PR 185; the node stays `CONDITIONAL`)
 
 ---
 
@@ -15,7 +15,7 @@ Status: AI-drafted, awaiting human review.
 The target statement asserts:
 > "Write $P$ for the presented inscriptions and $O$ for the internal observations. Supplying $\langle a \rangle$ after $\langle\rangle$ changes $P$ from $\{\langle\rangle\}$ to $\{\langle a \rangle\}$ and leaves $O_1 = O_0 = \emptyset$, so no new internal distinction is available. With $q : P \to N$ sending an inscription to the distinctions the regime has, $x \neq y$ in $P$ can hold while $q(x) = q(y)$ in $N$, so a new presentation does not imply a new internal class, and in the other direction $q(x) = q(y)$ does not imply $x = y$. Under the opaque convention $\langle a \rangle$ is a new presentation state in the same internal class as $\langle\rangle$; the statement holds under that convention only."
 
-This note provides an exact, constructive mathematical derivation of this statement, establishing the outcome as **Derived**.
+This note works out a model of this statement on two inscriptions and records what the Lean module checks about that model. It does not derive the statement: in the model the distinction map $q$ is the constant empty map by definition, and the exact-inscription convention is defined as equality of inscriptions, so the facts below are properties of those definitions. The outcome is **Narrowed** and the node stays `CONDITIONAL`; see "What is not proved".
 
 ---
 
@@ -103,18 +103,18 @@ We have proven:
 2. $\mathrm{HasCollapse}(\text{exactInscription})$ is False (since $x \sim_{\text{exact}} y \implies x = y$).
 Therefore, the equivalence:
 $$\mathrm{HasCollapse}(c) \iff c = \text{opaqueConv}$$
-holds unconditionally. The collapse statement holds under the opaque convention **only**.
+holds for the two definitions above, and that is all it says: it unfolds the definition of each convention on a two-element type with a constant observation map. The collapse statement holds under the opaque convention **only**, in that model.
 
 ---
 
 ## 4. Connection to Genesis Regime Replay
 
-In `lean4/GenesisComputation.lean` and `lean4/CampaignPgwPresentationLift.lean`, a regime with 2 data marks and no forms ($r = \langle 2, [], [], [], [] \rangle$) is defined.
+In `lean4/CampaignPgwPresentationLift.lean` (a self-contained copy of a minimal regime record, not an import of `lean4/GenesisComputation.lean`), a regime with 2 data marks and no forms ($r = \langle 2, [], [], [], [] \rangle$) is defined. It is a separate model from the one in Sections 2 and 3: no Lean declaration links $q$ to $\mathrm{UnarySep}$.
 A unary separation between data $i$ and $j$ requires the existence of a form index $f < \mathrm{length}(r.\mathrm{forms}) = 0$. Since no natural number is strictly less than 0, no separating form exists:
 $$\forall i, j, \; \neg \mathrm{UnarySep}(r, i, j)$$
 Thus, both $\mathrm{UnarySep}(r, 0, 1)$ and $\mathrm{UnarySep}(r, 1, 0)$ are false, which proves:
 $$\mathrm{Collapsed}(r, 0, 1)$$
-This constructively confirms the unformed mark collapse theorem (`two_marks_without_forms_collapsed`), verifying that until unary forms are admitted, distinct marks are indistinguishable to the internal regime.
+This constructively confirms the unformed mark collapse theorem (`two_marks_in_unformed_regime_collapsed`), verifying that until unary forms are admitted, distinct marks are indistinguishable to the internal regime.
 
 ---
 
@@ -130,15 +130,23 @@ This constructively confirms the unformed mark collapse theorem (`two_marks_with
 6. **Exact Non-Collapse**: Under `exactInscription`, $x \sim y \implies x = y$, so $[x_0] \neq [x_1]$ and $|N_{\text{exact}}| = 2$.
 7. **Convention Characterization**: Distinct presentations share an internal class if and only if the identity convention is `opaqueConv`.
 8. **Genesis Unformed Regime**: Two marks in an unformed regime ($0$ forms) are constructively proven collapsed.
-9. **Full Lean 4 Formalization**: All above theorems are proved in `lean4/CampaignPgwPresentationLift.lean` and verified under Lean 4.35.0 with zero `sorry`, zero `admit`, zero custom `axiom`, and axioms in $\{propext, Classical.choice, Quot.sound\}$.
-10. **Independent SymPy Verification**: All cardinalities, non-implications, and quotient structures are verified in `checks/independent/pgw-presentation-not-expressive-lift.py` with zero repository imports.
+9. **Lean 4 module**: The model-level facts above are declarations in `lean4/CampaignPgwPresentationLift.lean`, rebuilt under Lean 4.35.0 in the PR 185 review with no `sorry`, `admit`, custom `axiom`, `native_decide` or `unsafe`, and axioms within $\{propext, Classical.choice, Quot.sound\}$.
+10. **Model re-encoding**: `checks/independent/pgw-presentation-not-expressive-lift.py` re-encodes the same two-inscription model in plain Python with no repository imports and recomputes the cardinalities 1, 2, 1 and 2. It checks the model, not the statement: it is the same model in a second language, not a second route to the claim.
 
 ---
 
 ## What is assumed
 
 1. **Declared Identity Convention**: The distinction between opaque and exact-inscription identity is a declared foundational assumption of Pre-Genesis, not derived from prior primitives (consistent with `PGW-IDENTITY-CONVENTION-UNDECIDABLE`).
-2. **Unformed Starting Point**: The initial pre-genesis regime has admitted no discriminating forms ($r.\mathrm{forms} = []$), so observation profiles are initially empty.
+2. **Unformed Starting Point**: The initial pre-genesis regime has admitted no discriminating forms ($r.\mathrm{forms} = []$), so observation profiles are initially empty. In the Lean module this is not derived: `emptyDistinctions` returns $\emptyset$ for every inscription by definition, and $O_0$, $O_1$ and $q$ are all that one definition.
+
+## What is not proved
+
+1. The statement says supplying $\langle a \rangle$ changes $P$ from $\{\langle\rangle\}$ to $\{\langle a \rangle\}$. The module has $P_1 = \{\langle\rangle, \langle a \rangle\}$ (growth, `P0_ssubset_P1`), not $P_1 = \{\langle a \rangle\}$.
+2. $O_n$ as a family of observations at stage $n$, and $q$ defined from that family. The module has no such family; `O0` and `O1` are the constant map evaluated at the two inscriptions, so `O1_eq_O0` and `no_new_internal_distinction` follow from the definition.
+3. Supplying $\langle a \rangle$ as an operation on a regime that leaves $O$ unchanged.
+4. The link between $q$ and the regime model of Section 4: `unformed_not_unarySep` and `two_marks_in_unformed_regime_collapsed` are about a different structure.
+5. The opaque identity convention. `statement_holds_under_opaque_only` is true because `ConvEquiv .exactInscription` is defined as equality and `ConvEquiv .opaqueConv` as equality of profiles; the node still lists the opaque convention under `imported_structure`.
 
 ---
 

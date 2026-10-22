@@ -19,6 +19,11 @@ Verifies:
 8. Discrete unformed regime model verifying collapse of marks 0 and 1.
 
 CRITICAL: ZERO repository imports. Plain Python + SymPy only.
+
+Scope (PR 185 review): this script re-encodes the same two-inscription model as the Lean
+module, with the distinction map q the constant empty map by definition. It checks that
+model's cardinalities and the two conventions; it is not a second route to the node
+statement, and the node PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT stays CONDITIONAL.
 """
 from __future__ import annotations
 

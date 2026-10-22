@@ -1,6 +1,6 @@
 # [TFQ-0422] presentation-not-expressive-lift
 
-> **Stage**: `PREGENESIS` | **Status**: `PROVED_LEAN`  
+> **Stage**: `PREGENESIS` | **Status**: `CONDITIONAL`  
 > **UUID**: `a0fea856-b6d9-5667-93c6-369972539fa7`  
 > **Parent Derivation**: [TFQ-0421](tfq_0421_observational_equivalence.md)
 
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.
+> Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of q and the statement that the collapse holds under the opaque convention only are properties of those definitions. Not proved: an observation family O_n and q derived from it, supplying <a> as an operation that leaves O unchanged, P changing to {<a>} as the statement words it (the model has P1 = {<>, <a>}), the link between q and the Genesis regime model of the module, and the opaque identity convention itself, which stays an import.
 
 ---
 
@@ -34,6 +34,7 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only`](../../../lean4/CampaignPgwPresentationLift.lean)
+- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust record separating presentation state from internal class`

@@ -13,16 +13,24 @@ target:
   declared_assumptions:
   - 'Opaque identity convention: a state is what the regime can tell apart, so internal identity is the
     quotient by ≈ₙ (assumption)'
-  source_bottleneck: Under the exact-inscription convention <a> is a new state; the statement concerns
+  source_bottleneck: 'Under the exact-inscription convention <a> is a new state; the statement concerns
     discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus
-    nonempty payload without assigning a a referent.
+    nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean
+    checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against
+    P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the
+    exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of
+    q and the statement that the collapse holds under the opaque convention only are properties of those
+    definitions. Not proved: an observation family O_n and q derived from it, supplying <a> as an operation
+    that leaves O unchanged, P changing to {<a>} as the statement words it (the model has P1 = {<>, <a>}),
+    the link between q and the Genesis regime model of the module, and the opaque identity convention
+    itself, which stays an import.'
   source_refs:
   - dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md
   - omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:110-135
   - omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:925-975
   - omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:29-43
   paper_refs: []
-  source_claim_label: PROVED_LEAN
+  source_claim_label: CONDITIONAL
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
@@ -48,7 +56,7 @@ operation_candidates:
     def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y : Inscription) : Prop
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 - kind: def
   name: HasCollapsingPresentations
@@ -57,7 +65,7 @@ operation_candidates:
     : Prop'
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 - kind: def
   name: emptyDistinctions
@@ -65,7 +73,7 @@ operation_candidates:
   signature_excerpt: 'def emptyDistinctions (_ : Inscription) : Distinctions'
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 - kind: inductive
   name: Inscription
@@ -79,7 +87,7 @@ operation_candidates:
     instance : Fintype Inscription
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 - kind: abbrev
   name: Distinctions
@@ -87,7 +95,7 @@ operation_candidates:
   signature_excerpt: abbrev Distinctions
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 - kind: def
   name: ConvEquiv
@@ -96,7 +104,7 @@ operation_candidates:
     Inscription) : Prop'
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
@@ -107,17 +115,25 @@ relation_candidates:
         HasCollapsingPresentations c emptyDistinctions ↔ c = IdentityConvention.opaqueConv
   source: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal
+  availability: external
+  symbol: empty_profiles_equal
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean
+  repository: the_symbol_game
+  sha256: null
+  declaration_status: external_source_not_scanned
+  role: source_lead_only
 - original_ref: lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only
   availability: local
   symbol: CampaignPgwPresentationLift.statement_holds_under_opaque_only
   path: lean4/CampaignPgwPresentationLift.lean
   repository: this_repository
-  sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   declaration_status: declaration_found_not_proof_checked
   line: 242
   role: source_lead_only

@@ -9,7 +9,7 @@ import Mathlib.Logic.Function.Basic
 
 Target: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT (TFQ-0422)
 Stage: PREGENESIS
-Outcome: Derived
+Outcome: Narrowed. Model-level only: the distinction map q is the constant empty map by definition (emptyDistinctions), so O = empty, q non-injective and the opaque/exact comparison are properties of that definition on a two-inscription type, not derived from an observation family; the node stays CONDITIONAL (PR 185 review).
 
 Mathematical Statement:
 "Write P for the presented inscriptions and O for the internal observations.

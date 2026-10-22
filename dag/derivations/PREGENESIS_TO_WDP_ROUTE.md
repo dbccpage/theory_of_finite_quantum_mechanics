@@ -42,7 +42,7 @@ Every derivation paper on the route from the inert inscription `<>` (`TFQ-0000`)
 | 25 | [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) (new) | successor-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0418` |
 | 26 | [`TFQ-0420`](./01_pregenesis/tfq_0420_repetition_needs_structure.md) (new) | repetition-needs-structure | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0419` |
 | 27 | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) (new) | observational-equivalence | `PREGENESIS` | `DEFINITION` | `TFQ-0362` |
-| 28 | [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) (new) | presentation-not-expressive-lift | `PREGENESIS` | `PROVED_LEAN` | `TFQ-0421` |
+| 28 | [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) (new) | presentation-not-expressive-lift | `PREGENESIS` | `CONDITIONAL` | `TFQ-0421` |
 | 29 | [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) (new) | identity-convention-undecidable | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0422` |
 | 30 | [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) (new) | absence-of-rule-not-identification | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0423` |
 | 31 | [`TFQ-0425`](./01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) (new) | forced-separation-lift-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0424` |
