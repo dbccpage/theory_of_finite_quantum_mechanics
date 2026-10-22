@@ -583,3 +583,6 @@ lean_lib FrontierTargets where
     `FrontierClassical6j,
     `FrontierPrAllowedRegion
   ]
+
+lean_lib FableGleasonRun2 where
+  roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
