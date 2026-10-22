@@ -940,13 +940,21 @@ class VerifierFixTests(Base):
         packet = compile_p0(self.root, 'N-1', attempt_id='a1', policy=DEFAULT_POLICY, index=self.index, feedback=False)
         self.assertIn(('lean4/Foo.lean', 'FooNS.qBeta'), packet.allowed_refs)
         self.assertIn('lean4/Foo.lean', packet.credited_paths)
-        # Citing a real declaration from an unoffered file (lean4/Bar.lean) is rejected when allowed_refs is enforced
+        # Citing a real, correctly located declaration from an unoffered file (lean4/Bar.lean) earns nothing, but it is not a
+        # hallucination: no failure, no hallucination-index entry, recorded as unverifiable `outside_allowlist`
         unoffered = {'id': 'r_unoffered', 'statement': 'unrelated_thing holds trivially', 'hypotheses': '',
                      'ref': ref('lean4/Bar.lean', 'unrelated_thing', 'existing')}
         rep_unoffered = self.verifier().verify_p0(
             reply(relations=[unoffered]), P0_SCHEMA, target_statement=TARGET,
             allowed_refs=packet.allowed_refs, credited_paths=packet.credited_paths)
-        self.assertEqual(self.classes(rep_unoffered), ['wrong_source_location'])
+        self.assertEqual(rep_unoffered.failures, [])
+        self.assertEqual((rep_unoffered.verified_total(), rep_unoffered.credited_total()), (0, 0))
+        self.assertTrue(rep_unoffered.unverifiable[0]['reason'].startswith('outside_allowlist:'))
+        # a citation that is actually wrong still fails, allowlist or not
+        ghost = {'id': 'r_ghost', 'statement': 'ghost_decl holds', 'hypotheses': '', 'ref': ref('lean4/Bar.lean', 'ghost_decl', 'existing')}
+        rep_ghost = self.verifier().verify_p0(reply(relations=[ghost]), P0_SCHEMA, target_statement=TARGET,
+                                              allowed_refs=packet.allowed_refs, credited_paths=packet.credited_paths)
+        self.assertEqual(self.classes(rep_ghost), ['nonexistent_declaration'])
         # A neighbour-only @KNOWN+ declaration (in allowed_refs, but its path not in credited_paths) is verified without credit
         allowed_with_neighbour = set(packet.allowed_refs) | {('lean4/Bar.lean', 'unrelated_thing')}
         rep_neighbour = self.verifier().verify_p0(

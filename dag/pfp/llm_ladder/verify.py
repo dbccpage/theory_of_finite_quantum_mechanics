@@ -741,8 +741,10 @@ class Verifier:
         if allowed_refs is not None:
             short = decl['full'].split('.')[-1]
             if not ({(relpath, decl['full']), (relpath, decl['name']), (relpath, short)} & set(allowed_refs)):
-                return ('fail', 'wrong_source_location',
-                        '%s::%s is not in the per-task symbol allowlist (@SRC / @KNOWN+)' % (relpath, decl['full']), key)
+                # The declaration exists where it was cited; it was only not offered in this packet. That is not a hallucination:
+                # it earns no credit, is not a refused claim and never enters the hallucination index.
+                return 'unchecked', 'outside_allowlist: %s::%s exists but was not offered in this packet (@SRC / @KNOWN+)' % (
+                    relpath, decl['full'])
         problem = check_arity(self.index, relpath, decl, claimed_arity)
         if problem:
             return 'fail', 'wrong_signature', problem, key
