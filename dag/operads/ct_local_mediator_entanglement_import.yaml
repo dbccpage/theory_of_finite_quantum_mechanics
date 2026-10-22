@@ -15,9 +15,13 @@ target:
   declared_assumptions:
   - locality of the mediated interaction (assumption)
   - information-theoretic definition of a classical mediator (assumption)
-  source_bottleneck: The mediated entanglement inference is reduced to finite-dimensional local quantum
-    channel Schmidt rank preservation in CampaignCtMediatorEntanglement.lean; physical gravity mediation
-    hypotheses remain an external imported assumption.
+  source_bottleneck: 'The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption
+    of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local
+    map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix
+    (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product
+    state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed
+    states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating
+    system M, the definition of a classical medium, or any gravity model.'
   source_refs:
   - dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md
   - dag/derivations/independent/ct-local-mediator-entanglement-import.md
@@ -31,7 +35,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md
-    sha256: b967d553903b56af8e1080f8c322835ca2af5c665c06e44808a5535f21477b1c
+    sha256: 88d3f2e641f0ab786b7af031bc59bba0e286c858e8ba7c6b2243e94f72b3911b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -42,128 +46,156 @@ source_provenance:
 operation_candidates:
 - kind: def
   name: applyLocalOp
-  line: 42
+  line: 41
   signature_excerpt: 'def applyLocalOp (A B M : Mat2) : Mat2'
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 - kind: def
   name: M_entangled
-  line: 77
+  line: 102
   signature_excerpt: 'def M_entangled : Mat2'
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 - kind: def
   name: M_separable
-  line: 74
+  line: 99
   signature_excerpt: 'def M_separable : Mat2'
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: ClassicalMediatorBranch
-  line: 46
+  line: 45
   signature_excerpt: structure ClassicalMediatorBranch
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 - kind: def
   name: applyMediatorBranch
-  line: 52
+  line: 51
   signature_excerpt: 'def applyMediatorBranch (branch : ClassicalMediatorBranch) (M : Mat2) : Mat2'
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: LoccMediatorModel
-  line: 166
+  line: 191
   signature_excerpt: structure LoccMediatorModel
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: schmidtRank_local_le
+  line: 57
+  signature_excerpt: |-
+    theorem schmidtRank_local_le {K : Type*} [Field K] {m n p q : Type*}
+        [Fintype m] [Fintype n] [Fintype p] [Fintype q]
+        (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) :
+        (A * M * B.transpose).rank ≤ M.rank
+  source: lean4/CampaignCtMediatorEntanglement.lean
+  repository: this_repository
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schmidtRank_not_reachable
+  line: 71
+  signature_excerpt: |-
+    theorem schmidtRank_not_reachable {K : Type*} [Field K] {m n p q : Type*}
+        [Fintype m] [Fintype n] [Fintype p] [Fintype q]
+        (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) (T : Matrix m n K)
+        (h : M.rank < T.rank) : A * M * B.transpose ≠ T
+  source: lean4/CampaignCtMediatorEntanglement.lean
+  repository: this_repository
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: applyLocalOp_det
-  line: 56
+  line: 81
   signature_excerpt: |-
     theorem applyLocalOp_det (A B M : Mat2) :
         det2 (applyLocalOp A B M) = det2 A * det2 M * det2 B
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: local_op_preserves_product_det
-  line: 61
+  line: 86
   signature_excerpt: |-
     theorem local_op_preserves_product_det (A B M : Mat2) (h : det2 M = 0) :
         det2 (applyLocalOp A B M) = 0
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: local_op_concurrence_zero_of_separable
-  line: 66
+  line: 91
   signature_excerpt: |-
     theorem local_op_concurrence_zero_of_separable (A B M : Mat2) (h : det2 M = 0) :
         concurrenceSq (applyLocalOp A B M) = 0
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: M_entangled_concurrence
-  line: 101
+  line: 126
   signature_excerpt: |-
     theorem M_entangled_concurrence :
         concurrenceSq M_entangled = 1 / 5
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: no_local_op_produces_entangled_state
-  line: 126
+  line: 151
   signature_excerpt: |-
     theorem no_local_op_produces_entangled_state (A B : Mat2) :
         applyLocalOp A B M_separable ≠ M_entangled
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: classical_mediator_cannot_produce_entangled_state
-  line: 136
+  line: 161
   signature_excerpt: |-
     theorem classical_mediator_cannot_produce_entangled_state (branch : ClassicalMediatorBranch) :
         applyMediatorBranch branch M_separable ≠ M_entangled
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: reduction_of_mediated_entanglement_inference
-  line: 173
+  line: 198
   signature_excerpt: |-
     theorem reduction_of_mediated_entanglement_inference
         (model : LoccMediatorModel)
@@ -173,73 +205,91 @@ relation_candidates:
         model.action M_in ≠ M_out
   source: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  source_sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le
+  availability: local
+  symbol: CampaignCtMediatorEntanglement.schmidtRank_local_le
+  path: lean4/CampaignCtMediatorEntanglement.lean
+  repository: this_repository
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable
+  availability: local
+  symbol: CampaignCtMediatorEntanglement.schmidtRank_not_reachable
+  path: lean4/CampaignCtMediatorEntanglement.lean
+  repository: this_repository
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det
   availability: local
   symbol: CampaignCtMediatorEntanglement.applyLocalOp_det
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 56
+  line: 81
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det
   availability: local
   symbol: CampaignCtMediatorEntanglement.local_op_preserves_product_det
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 61
+  line: 86
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable
   availability: local
   symbol: CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 66
+  line: 91
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence
   availability: local
   symbol: CampaignCtMediatorEntanglement.M_entangled_concurrence
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 101
+  line: 126
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state
   availability: local
   symbol: CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 126
+  line: 151
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
   availability: local
   symbol: CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 136
+  line: 161
   role: source_lead_only
 - original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference
   availability: local
   symbol: CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference
   path: lean4/CampaignCtMediatorEntanglement.lean
   repository: this_repository
-  sha256: 842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126
+  sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
-  line: 173
+  line: 198
   role: source_lead_only
 presentation:
   colours: []

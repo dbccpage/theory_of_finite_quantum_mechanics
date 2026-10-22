@@ -2,35 +2,34 @@ import Mathlib.Data.Rat.Defs
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
+import Mathlib.LinearAlgebra.Matrix.Rank
 import FrontierEntanglingPhase
 
 /-!
-# Local Mediator Entanglement Reduction (CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT)
+# Local operations and Schmidt rank (CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT)
 
 AuthorityEffect: None.
-Outcome: Reduced.
+Outcome: Narrowed (campaign class). The node stays IMPORTED_ASSUMPTION.
 
-This module formalizes the mathematical core of the mediated entanglement inference
-audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al.
-(2017, arXiv:1707.06050, pp. 1-2):
-If two quantum systems Q1 and Q2 start in a separable state and interact only locally
-with a mediating system M (with no direct Q1-Q2 interaction), producing an entangled
-state of Q1 + Q2, then M cannot be a classical medium.
+What this module proves, and nothing more:
 
-Mathematical Reduction:
-In finite dimension over the Gaussian rationals `Q(i)`:
-1. Every pure product state has 2x2 Schmidt determinant `det2 M = 0` and squared concurrence `C^2 = 0`.
-2. Any local operation `A ⊗ B` on Q1 and Q2 transforms the amplitude matrix as `M ↦ A M B^T`,
-   satisfying `det2(A M B^T) = det2(A) * det2(M) * det2(B)`.
-3. Consequently, local operations (and any channel mediated by a classical medium, i.e., LOCC)
-   cannot raise a separable state (`det2 M = 0`) to an entangled state (`det2 M ≠ 0`, `C^2 > 0`).
-4. For the Pythagorean phase gate `u = (3 + 4i)/5`, the target state `ψ_u = (1, 1, 1, u)/2`
-   has exact concurrence `C^2 = 1/5 > 0` and `det2 ≠ 0`.
-5. Therefore, no local operation pair `(A, B)` can map the initial separable state `ψ_1` to `ψ_u`.
-   Any physical medium generating this entanglement without direct Q1-Q2 coupling cannot be modeled
-   by local operations / classical communication.
-6. The physical interpretation of gravity as such a mediator is isolated as an external hypothesis
-   (no gravity model is derived here; TFQ-0084 is a finite shadow only).
+1. For every field `K`, every finite index types and every pair of matrices `A`, `B`, the
+   coefficient matrix `A * M * Bᵀ` of the pure bipartite state `(A ⊗ B) ψ` has rank at most the
+   rank of `M` (`schmidtRank_local_le`). The Schmidt rank of a pure state is the rank of its
+   coefficient matrix. This is arbitrary finite dimension, but only for ONE linear local map
+   `A ⊗ B` applied to ONE pure state.
+2. In the two-qubit case over the Gaussian rationals `Q(i)` (`FrontierEntanglingPhase.Mat2`):
+   `det2 (A M Bᵀ) = det2 A * det2 M * det2 B`, so a zero-determinant (product) state stays
+   zero-determinant, and the state `ψ_u = (1,1,1,u)/2` with `u = (3+4i)/5`, whose squared
+   concurrence is exactly `1/5`, is not of the form `A ⊗ B` applied to `ψ_1`.
+
+What it does NOT prove: anything about mixed states, completely positive maps with ancillas,
+convex combinations of branches, classical communication between the parties, a mediating
+system `M`, the information-theoretic definition of a classical medium used by Marletto and
+Vedral, or gravity. `ClassicalMediatorBranch` is by definition a pair of local operators
+`(A, B)` on `Q1`, `Q2`; calling it a "classical mediator branch" is a label, not a derived
+fact. `LoccMediatorModel` carries the preservation of the zero determinant as a field, so
+`reduction_of_mediated_entanglement_inference` restates its hypothesis.
 -/
 
 namespace CampaignCtMediatorEntanglement
@@ -42,7 +41,7 @@ open FrontierEntanglingPhase.GaussRat
 def applyLocalOp (A B M : Mat2) : Mat2 :=
   mul2 A (mul2 M (transpose2 B))
 
-/-- A classical mediator branch acts locally on `Q1` and `Q2` via a pair of local operators `(A, B)`. -/
+/-- A pair of local operators `(A, B)` on `Q1` and `Q2`. The name "classical mediator branch" is a label: no mediating system and no classical communication is modelled. -/
 structure ClassicalMediatorBranch where
   opA : Mat2
   opB : Mat2
@@ -51,6 +50,32 @@ structure ClassicalMediatorBranch where
 /-- Action of a classical mediator branch on the bipartite state matrix `M`. -/
 def applyMediatorBranch (branch : ClassicalMediatorBranch) (M : Mat2) : Mat2 :=
   applyLocalOp branch.opA branch.opB M
+
+/-- Schmidt rank of a pure bipartite state is the rank of its coefficient matrix. A single
+linear local map `A ⊗ B` acts as `M ↦ A * M * Bᵀ` and cannot raise it, in any finite dimension
+over any field. -/
+theorem schmidtRank_local_le {K : Type*} [Field K] {m n p q : Type*}
+    [Fintype m] [Fintype n] [Fintype p] [Fintype q]
+    (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) :
+    (A * M * B.transpose).rank ≤ M.rank :=
+  (Matrix.rank_mul_le_left (A * M) B.transpose).trans (Matrix.rank_mul_le_right A M)
+
+/-- Consequently a state of Schmidt rank at most one stays of Schmidt rank at most one. -/
+theorem schmidtRank_le_one_preserved {K : Type*} [Field K] {m n p q : Type*}
+    [Fintype m] [Fintype n] [Fintype p] [Fintype q]
+    (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) (h : M.rank ≤ 1) :
+    (A * M * B.transpose).rank ≤ 1 :=
+  (schmidtRank_local_le A M B).trans h
+
+/-- A target of strictly larger Schmidt rank is not the image of `M` under any single local map. -/
+theorem schmidtRank_not_reachable {K : Type*} [Field K] {m n p q : Type*}
+    [Fintype m] [Fintype n] [Fintype p] [Fintype q]
+    (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) (T : Matrix m n K)
+    (h : M.rank < T.rank) : A * M * B.transpose ≠ T := by
+  intro heq
+  have := schmidtRank_local_le A M B
+  rw [heq] at this
+  omega
 
 /-- The determinant multiplicativity identity for local operations over `Q(i)`. -/
 theorem applyLocalOp_det (A B M : Mat2) :
@@ -132,7 +157,7 @@ theorem no_local_op_produces_entangled_state (A B : Mat2) :
   rw [heq] at hdet_lhs
   exact hdet_rhs hdet_lhs
 
-/-- No classical mediator branch can produce the target entangled state from the separable state. -/
+/-- No pair of local operators (a "branch" in the sense of `ClassicalMediatorBranch`) maps `M_separable` to `M_entangled`. -/
 theorem classical_mediator_cannot_produce_entangled_state (branch : ClassicalMediatorBranch) :
     applyMediatorBranch branch M_separable ≠ M_entangled :=
   no_local_op_produces_entangled_state branch.opA branch.opB
@@ -162,14 +187,14 @@ theorem no_local_op_produces_phase_entangled_state (u : GaussRat) (hu : u ≠ 1)
   rw [heq] at hdet_lhs
   exact hdet_rhs hdet_lhs
 
-/-- A mediator model that respects local operations and classical communication (LOCC). -/
+/-- A map on two-qubit coefficient matrices ASSUMED to preserve the zero determinant (a hypothesis packaged as a structure; not a definition of LOCC). -/
 structure LoccMediatorModel where
   action : Mat2 → Mat2
   preserves_zero_det : ∀ M : Mat2, det2 M = 0 → det2 (action M) = 0
 
-/-- Formal reduction: The mediated entanglement inference reduces to Schmidt determinant
-preservation under local channels. Any channel generating non-zero determinant from a product
-state violates the LOCC condition. -/
+/-- Restatement of the hypothesis `preserves_zero_det`: a map assumed to preserve the zero
+determinant does not send a zero-determinant state to a nonzero-determinant state. This is
+logic, not physics: it does not show that any classical mediator satisfies the hypothesis. -/
 theorem reduction_of_mediated_entanglement_inference
     (model : LoccMediatorModel)
     (M_in M_out : Mat2)
@@ -197,3 +222,6 @@ end CampaignCtMediatorEntanglement
 #print axioms CampaignCtMediatorEntanglement.concurrence_gap_under_local_op
 #print axioms CampaignCtMediatorEntanglement.no_local_op_produces_phase_entangled_state
 #print axioms CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference
+#print axioms CampaignCtMediatorEntanglement.schmidtRank_local_le
+#print axioms CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved
+#print axioms CampaignCtMediatorEntanglement.schmidtRank_not_reachable

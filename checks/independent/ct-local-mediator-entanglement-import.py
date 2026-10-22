@@ -2,16 +2,22 @@
 """
 Independent check for Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
 AuthorityEffect: None.
-Outcome: Reduced.
+Outcome: Narrowed (finite shadow; the node stays IMPORTED_ASSUMPTION).
 
-Verifies:
+Verifies (exact arithmetic; no floats):
 1. Exact symbolic multiplicativity of 2x2 determinant under local maps A M B^T.
-2. Product state determinant vanishing: det(a ⊗ b) = 0.
-3. Invariance of zero determinant (Schmidt rank <= 1) under all local maps.
-4. Exact phase family determinant det(M_u) = (u - 1)/4 and concurrence C^2 = |u - 1|^2 / 4.
+2. Product state determinant vanishing: det(a (x) b) = 0, preserved under A (x) B.
+3. The coefficient matrix of (A (x) B) psi is A M B^T (row-major vectorisation, via the
+   Kronecker product), the formula the Lean module takes as its definition of a local map.
+4. Exact phase family determinant det(M_u) = (u - 1)/4 and C^2 = |u - 1|^2 / 4.
 5. Exact Pythagorean unit phase u = (3 + 4i)/5 has |u|^2 = 1 and C^2 = 1/5.
-6. Impossibility of producing C^2 = 1/5 from separable state via any local operation pair (A, B).
-7. LOCC Kraus channel product-state preservation: every local Kraus branch maps product pure states to product pure states.
+6. Product-vector Kraus branch A_i (x) B_j keeps determinant 0.
+7. rank(A M B^T) <= rank(M) on a deterministic family of exact rational matrices of
+   several (non-square) shapes, including rank-deficient M and singular A, B.
+
+Not checked (and not claimed): mixed states, channels with ancillas, mixtures, LOCC, any
+mediating system, gravity. Items 1 to 7 are a finite spot-check and a symbolic identity, not a
+proof of the general rank inequality; that is the Lean theorem schmidtRank_local_le.
 
 Zero repository imports (only standard library and SymPy).
 """
@@ -122,7 +128,7 @@ def check_exact_pythagorean_concurrence():
 
 
 def check_locc_kraus_branch_preservation():
-    """Verify that any LOCC Kraus operator A_i ⊗ B_j preserves product states and cannot raise rank."""
+    """Verify that a product-vector Kraus branch A_i (x) B_j maps a product vector to a product vector."""
     # A generic product state |psi> = |a> ⊗ |b>
     # Under Kraus operator A_i ⊗ B_j:
     # (A_i ⊗ B_j)(|a> ⊗ |b>) = (A_i |a>) ⊗ (B_j |b>)
@@ -140,17 +146,55 @@ def check_locc_kraus_branch_preservation():
     M_prime = a_prime * b_prime.T
     det_M_prime = sp.simplify(M_prime.det())
     assert det_M_prime == 0, f"Kraus branch output determinant not zero: {det_M_prime}"
-    print("  [PASS] LOCC Kraus branch (A_i ⊗ B_j) maps product vector to product vector with det = 0")
+    print("  [PASS] Product-vector branch (A_i ⊗ B_j) maps product vector to product vector with det = 0")
+
+
+def check_kron_vectorisation_matches_AMBT():
+    """(A (x) B) vec(M) = vec(A M B^T) with row-major vec, for symbolic 2x2 A, B, M."""
+    A = sp.Matrix(2, 2, sp.symbols('A0:4'))
+    B = sp.Matrix(2, 2, sp.symbols('B0:4'))
+    M = sp.Matrix(2, 2, sp.symbols('M0:4'))
+    vec = lambda X: sp.Matrix([X[0, 0], X[0, 1], X[1, 0], X[1, 1]])
+    lhs = sp.kronecker_product(A, B) * vec(M)
+    rhs = vec(A * M * B.T)
+    assert (lhs - rhs).applyfunc(sp.expand) == sp.zeros(4, 1), "kron vs A M B^T mismatch"
+    print("  [PASS] (A (x) B) vec(M) = vec(A M B^T): the matrix action used by the Lean module")
+
+
+def check_rank_nonincrease_exact_family():
+    """rank(A M B^T) <= rank(M) over Q for a deterministic family of integer matrices."""
+    seed = 12345
+    def nxt():
+        nonlocal seed
+        seed = (1103515245 * seed + 12345) % (2 ** 31)
+        return (seed >> 8) % 7 - 3  # integers in -3..3
+    def rand(r, c):
+        return sp.Matrix(r, c, lambda i, j: nxt())
+    count = 0
+    strict = 0
+    for (m, p, q, n) in [(2, 2, 2, 2), (3, 2, 4, 3), (4, 3, 3, 2), (2, 4, 3, 5), (3, 3, 3, 3)]:
+        for _ in range(60):
+            A, M, B = rand(m, p), rand(p, q), rand(n, q)
+            if _ % 3 == 0 and p >= 2 and q >= 2:
+                M = rand(p, 1) * rand(1, q)  # rank <= 1
+            r_after = (A * M * B.T).rank()
+            r_before = M.rank()
+            assert r_after <= r_before, (A, M, B, r_after, r_before)
+            count += 1
+            strict += r_after < r_before
+    print(f"  [PASS] rank(A M B^T) <= rank(M) on {count} exact rational cases ({strict} strictly lower)")
 
 
 def main():
     print("=== CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT Independent Verification ===")
     check_symbolic_local_action_determinant()
     check_product_state_zero_determinant()
+    check_kron_vectorisation_matches_AMBT()
     check_phase_family_determinant_and_concurrence()
     check_exact_pythagorean_concurrence()
     check_locc_kraus_branch_preservation()
-    print("=== All 5 independent mathematical checks passed successfully (exit 0) ===")
+    check_rank_nonincrease_exact_family()
+    print("=== All 7 independent mathematical checks passed successfully (exit 0) ===")
     return 0
 
 

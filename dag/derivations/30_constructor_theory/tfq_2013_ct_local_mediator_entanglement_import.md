@@ -15,7 +15,7 @@ Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp.
 
 ## Governing obligation
 
-The mediated entanglement inference is reduced to finite-dimensional local quantum channel Schmidt rank preservation in CampaignCtMediatorEntanglement.lean; physical gravity mediation hypotheses remain an external imported assumption.
+The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
 
 ## Source status
 
@@ -33,10 +33,11 @@ Declared imported structure:
 ## What is open
 
 - Premises audited against arXiv:1707.06036 pp. 2-3 and arXiv:1707.06050 pp. 1-2.
+- Mixed states, local channels with ancillas, mixtures, classical communication, a mediating system M, the Marletto-Vedral definition of a classical medium and any gravity model are not formalised.
 
 ## Finite target (precise statement)
 
-Reduced: local quantum channel Schmidt rank preservation in finite dimension.
+Finite shadow only. (a) For a field K, finite index types and matrices A, M, B, rank(A M B^T) <= rank(M); a single linear local map does not raise the Schmidt rank of a pure bipartite state. (b) For two qubits over Q(i), det(A M B^T) = det(A) det(M) det(B), so no pair (A, B) maps (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. The inference from entanglement to a non-classical mediator is not a target of this node.
 
 No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
@@ -44,7 +45,7 @@ No check of this target is recorded in the repository. A run that mines or check
 
 - Route `FRO-R-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT` (`CONDITIONAL_ON_IMPORT`) from `CT-MARLETTO-VEDRAL-2017-SOURCE`: The inference is the import; the link is reading order.
 - Route `FRO-R-BACK-CT-MEDIATOR-TO-TFQ0084` (`GAP_NO_DERIVATION`) from this node into `TFQ-0084`: The finite gravity shadow TFQ-0084 contains no mediator model and no entanglement statement. No source relates the imported inference to the Regge, spin-foam or relational certificates of that node.
-- Reduced in CampaignCtMediatorEntanglement.lean: local operations preserve zero Schmidt determinant (concurrence C^2 = 0) and cannot produce the Pythagorean phase state C^2 = 1/5; independent check executed symbolically in checks/independent/ct-local-mediator-entanglement-import.py.
+- Finite shadow in CampaignCtMediatorEntanglement.lean: one linear local map does not raise Schmidt rank (schmidtRank_local_le, any finite dimension) and does not map (1,1,1,1)/2 to the Pythagorean phase state of squared concurrence 1/5 (two qubits over Q(i)); independent check: checks/independent/ct-local-mediator-entanglement-import.py. The statement of this node is not proved.
 
 See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
@@ -59,6 +60,8 @@ See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 - Repository: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
 
 ## Lean 4 declarations read
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable`
 - `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det`
 - `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det`
 - `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable`

@@ -2,9 +2,9 @@
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
   "checked_at": "2026-10-22",
-  "source_base": "10be79e94feb20c9926c129afa497525a45d2bbd",
-  "result": "Lean module CampaignCtMediatorEntanglement compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignCtMediatorEntanglement library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
-  "proof_boundary": "This receipt records that lean4/CampaignCtMediatorEntanglement.lean type-checks and which axioms its #print axioms lines report. The outcome is Reduced: it reduces mediated entanglement generation to finite-dimensional local quantum channel Schmidt rank preservation, isolating physical gravity claims as an imported hypothesis.",
+  "source_base": "3ae125daf503792ac276e78a171c723746fdccf8",
+  "result": "Lean module CampaignCtMediatorEntanglement compiles under Lean 4.35.0 with pinned Mathlib, rebuilt by the PR reviewer through lake from the CampaignCtMediatorEntanglement library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
+  "proof_boundary": "This receipt records that lean4/CampaignCtMediatorEntanglement.lean type-checks and which axioms its #print axioms lines report. The declarations state a finite shadow only: one linear local map A (x) B does not raise the rank of the coefficient matrix of a pure bipartite state (any finite dimension over a field), and over Q(i) no 2x2 pair (A, B) carries the product state (1,1,1,1)/2 to the phase state with u=(3+4i)/5 of squared concurrence 1/5. The imported mediated-entanglement inference (Marletto-Vedral, Bose et al.) is not reduced to or proved from them; node status stays IMPORTED_ASSUMPTION.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
@@ -24,8 +24,8 @@
         "module": "CampaignCtMediatorEntanglement",
         "dag_node": "CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT",
         "source": "lean4/CampaignCtMediatorEntanglement.lean",
-        "sha256": "842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126",
-        "sha256_after_build": "842be72075e27b146d1eb8b5e7d52ff67cdb87ddf9ccc48b5fccf17722c9a126",
+        "sha256": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
+        "sha256_after_build": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
         "source_unchanged_during_build": true,
         "exit_code": 0,
         "admission_scan_passed": true,
@@ -44,7 +44,10 @@
           "CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state",
           "CampaignCtMediatorEntanglement.concurrence_gap_under_local_op",
           "CampaignCtMediatorEntanglement.no_local_op_produces_phase_entangled_state",
-          "CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference"
+          "CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference",
+          "CampaignCtMediatorEntanglement.schmidtRank_local_le",
+          "CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved",
+          "CampaignCtMediatorEntanglement.schmidtRank_not_reachable"
         ],
         "anchors_reported": true,
         "axioms": {
@@ -117,9 +120,24 @@
             "Classical.choice",
             "Quot.sound",
             "propext"
+          ],
+          "CampaignCtMediatorEntanglement.schmidtRank_local_le": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignCtMediatorEntanglement.schmidtRank_not_reachable": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
           ]
         },
-        "output": "Build completed successfully (864 jobs)."
+        "output": "Build completed successfully (1894 jobs)."
       }
     ]
   }
