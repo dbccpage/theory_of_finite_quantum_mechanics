@@ -1,0 +1,49 @@
+# Overclaim hunter: mechanical scan for claims that exceed what is proved.
+# Offline and deterministic: no secrets, no network calls beyond checkout, no Lean build, no model.
+# Fails only on a NEW HIGH finding (one not in docs/overclaim/baseline.json).
+# A pass is not a review: nodes whose status or statement changed still need the
+# statement-vs-theorem review in .claude/skills/overclaim-hunter/SKILL.md.
+name: overclaim
+
+on:
+  pull_request:
+  schedule:
+    - cron: "23 5 * * 1"  # weekly, Monday 05:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: overclaim-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The repository's root pytest config only collects code/python/tests, so run the scanner's own tests explicitly.
+      - name: Test the scanner
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest scripts/test_overclaim_scan.py -q -p no:cacheprovider
+
+      - name: Scan the pull request (changes since origin/main)
+        if: github.event_name == 'pull_request'
+        run: python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Scan the whole checkout (weekly or manual)
+        if: github.event_name != 'pull_request'
+        run: python -I -X utf8 scripts/overclaim_scan.py --strict --summary "$GITHUB_STEP_SUMMARY"

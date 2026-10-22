@@ -1,0 +1,28 @@
+# Jekyll configuration for the GitHub Pages site built by .github/workflows/status.yml
+title: Theory of Finite Quantum Mechanics
+description: A priced map of how far finite, exact constructions reach toward quantum mechanics, with the evidence for each step.
+theme: minima
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+relative_links:
+  enabled: true
+  collections: false
+readme_index:
+  enabled: true
+titles_from_headings:
+  enabled: true
+  strip_title: false
+  collections: false
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+# Files that are not part of the site. The existing atlas and maintenance notes stay on GitHub.
+exclude:
+  - maintenance
+  - QM_PROBLEM_AND_PROOF_ATLAS.md
+  - CONTRACT_SCORING_HISTORY.md
