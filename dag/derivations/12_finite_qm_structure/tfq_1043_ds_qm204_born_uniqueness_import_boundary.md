@@ -30,8 +30,8 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
+- `lean4/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

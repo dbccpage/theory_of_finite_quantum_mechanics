@@ -8,12 +8,12 @@ Firewall Line: `stated region only; mints no authority`
 Concrete dephasing, encoding, and selected branch identities are available. Family classification and the concrete global-cover bridge remain open obligations. Target C3 provides a conditional foundation for the MUB(6) research program.
 
 The result is formalized across two tightly coupled Lean 4 modules:
-1. `MUB.MasterClassification` (in `lean4/012_mutually_unbiased_bases/MUB/MasterClassification.lean`):
+1. `MUB.MasterClassification` (in `lean4/MasterClassification.lean`):
    - Formalizes the 5 certified moduli components: `FourierDita`, `SzollosiDeltoid`, `KarlssonVolume`, `TaoConfluence`, and `HaagerupIsolated`.
    - Proves `master_classification_theorem`: Every matrix $H$ with `IsCH6 H` is constructively Hadamard-equivalent to a dephased matrix routing to either a regular corner chart ($P_{\text{corner}} \ne 0$) or a singular Segre cusp ($P_{\text{corner}} = 0$).
    - Proves `comprehensive_moduli_exhaustiveness`: Every $6 \times 6$ complex Hadamard matrix routes to a certified moduli component with zero lost solutions.
    - Proves the constructive exclusion of degenerate subvarieties (`annihilated_entry_empty`, `all_ones_branch_refutation`, `boundary_leaves_excluded`).
-2. `MUB6.Gluing.TargetA11` (in `lean4/gluing/TargetA11OrbitExhaustiveness.lean`):
+2. `MUB6.Gluing.TargetA11` (in `lean4/TargetA11OrbitExhaustiveness.lean`):
    - Proves `target_c3_unconditional_grand_synthesis` conditionally: retains explicit classification premise, Hadamard property, atlas coverage, gauge invariance, G2 variety, and G3 hypotheses.
    - Proves `target_c3_no_fourth_basis_unconditional` conditionally: retains explicit classification premise, Hadamard property, and transition matrix global cover bridge hypotheses.
    - Concrete dephasing, encoding, and selected branch identities are available. Family classification and the concrete global-cover bridge remain open obligations.

@@ -38,11 +38,11 @@ Before beginning your analysis, inspect the following primary entry points:
 - `research/g1_foundation/classification_manifest.json`: Machine-readable manifest cataloging the 5 moduli components and 4 eliminated subvarieties.
 
 ### 2.2 Primary Lean 4 Formalizations
-- **Phase 5 Moduli Classification**: `lean4/012_mutually_unbiased_bases/MUB/MasterClassification.lean` (5 certified components, `master_classification_theorem`, `comprehensive_moduli_exhaustiveness`).
-- **Algebraic Geometry Branches**: `MUB/CaseCoverage.lean` (`master_case_routing`), `MUB/GroebnerBranch.lean` (Nullstellensatz refutations), `MUB/CADBranch.lean` (Stengle Positivstellensatz SOS bounds).
-- **Semantics & Encoding**: `MUB/ConcreteSemantics.lean` (constructive dephasing), `MUB/PolynomialEncoding.lean` (50 real vars, 55 eqns), `MUB/CertificatePilot.lean`.
-- **Discrete & Continuous Gluing**: `lean4/gluing/TargetA11OrbitExhaustiveness.lean` (`target_c3_unconditional_grand_synthesis`, `target_c3_no_fourth_basis_unconditional`).
-- **Global Continuous Moduli Integration**: `lean4/gluing/TargetB3ManifoldIntegration.lean`, `TargetB2GlobalGluing.lean`, `TargetB1ContinuousChaining.lean`, `TargetA13GrandSynthesis.lean`, `TargetA10GlobalCover.lean`, `TargetA12SmaleSentry.lean`.
+- **Phase 5 Moduli Classification**: `lean4/MasterClassification.lean` (5 certified components, `master_classification_theorem`, `comprehensive_moduli_exhaustiveness`).
+- **Algebraic Geometry Branches**: `lean4/CaseCoverage.lean` (`master_case_routing`), `lean4/GroebnerBranch.lean` (Nullstellensatz refutations), `lean4/CADBranch.lean` (Stengle Positivstellensatz SOS bounds).
+- **Semantics & Encoding**: `lean4/ConcreteSemantics.lean` (constructive dephasing), `lean4/PolynomialEncoding.lean` (50 real vars, 55 eqns), `lean4/CertificatePilot.lean`.
+- **Discrete & Continuous Gluing**: `lean4/TargetA11OrbitExhaustiveness.lean` (`target_c3_unconditional_grand_synthesis`, `target_c3_no_fourth_basis_unconditional`).
+- **Global Continuous Moduli Integration**: `lean4/TargetB3ManifoldIntegration.lean`, `TargetB2GlobalGluing.lean`, `TargetB1ContinuousChaining.lean`, `TargetA13GrandSynthesis.lean`, `TargetA10GlobalCover.lean`, `TargetA12SmaleSentry.lean`.
 
 ### 2.3 Exact Computational Engines
 - **Receipt Auditing**: `omega_engine/crates/mub_verify/verify_all_receipts.py` (audits all receipts with zero float tolerance).

@@ -8,14 +8,31 @@ license = "Apache-2.0"
 name = "tfqm_wdp"
 path = "lib.rs"
 
+[features]
+default = []
+external-omega = [
+    "dep:omega_ooutwire_primitives",
+    "dep:omega_policy",
+    "dep:omega_types",
+    "dep:omega_certifiers",
+    "dep:omega_measurement",
+    "dep:omega_homology",
+    "dep:linear_algebra",
+    "dep:omega_kernel",
+    "dep:omega_quantum_physics",
+    "dep:omega_solvers",
+    "dep:omega_replay",
+    "dep:omega_wdp",
+]
+
 [dependencies]
-omega_ooutwire_primitives = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_ooutwire_primitives" }
-omega_policy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy" }
-omega_types = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types" }
-omega_certifiers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_certifiers" }
+omega_ooutwire_primitives = { version = "0.1.0", optional = true }
+omega_policy = { version = "0.1.0", optional = true }
+omega_types = { version = "0.1.0", optional = true }
+omega_certifiers = { version = "0.1.0", optional = true }
 nalgebra = "0.33"
-omega_epk = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_local_green_global_red_lggr" }
-omega_measurement = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_measurement" }
+omega_epk = { package = "tfqm_local_green_global_red_lggr", path = "../local_green_global_red_lggr" }
+omega_measurement = { version = "0.1.0", optional = true }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -25,23 +42,22 @@ thiserror = "2"
 blake3 = "1.8"
 sha2 = "0.10"
 hex = "0.4"
-omega_homotopy_type_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homotopy_type_theory" }
-omega_functional = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional" }
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
-linear_algebra = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
-omega_holonomy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy" }
-omega_kernel = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel" }
-omega_combinatorics = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_combinatorics" }
-omega_quantum_physics = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics" }
-omega_finite_probability = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_finite_probability" }
-omega_number_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_number_theory" }
-omega_solvers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_solvers" }
-omega_category_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_category_theory" }
-omega_general_relativity = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_general_relativity" }
-omega_replay = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_replay" }
-omega_wdp = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_wdp" }
+omega_homotopy_type_theory = { package = "tfqm_homotopy_type_theory", path = "../homotopy_type_theory" }
+omega_functional = { package = "tfqm_functional", path = "../functional" }
+omega_homology = { version = "0.1.0", optional = true }
+linear_algebra = { version = "0.1.0", optional = true }
+omega_holonomy = { package = "tfqm_holonomy", path = "../holonomy" }
+omega_kernel = { version = "0.1.0", optional = true }
+omega_combinatorics = { package = "tfqm_combinatorics", path = "../combinatorics" }
+omega_quantum_physics = { version = "0.1.0", optional = true }
+omega_finite_probability = { package = "tfqm_finite_probability", path = "../finite_probability" }
+omega_number_theory = { package = "tfqm_number_theory", path = "../number_theory" }
+omega_solvers = { version = "0.1.0", optional = true }
+omega_category_theory = { package = "tfqm_category_theory", path = "../category_theory" }
+omega_general_relativity = { package = "tfqm_general_relativity", path = "../general_relativity" }
+omega_replay = { version = "0.1.0", optional = true }
+omega_wdp = { version = "0.1.0", optional = true }
 
 [dev-dependencies]
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
-omega_majorana = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_majorana" }
+omega_majorana = { package = "tfqm_majorana", path = "../majorana" }
 serde_yaml = "0.9"

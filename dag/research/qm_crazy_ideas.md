@@ -14,8 +14,8 @@ This file inherits that fence. Speculative programmes may attack remaining gaps.
 
 In-tree authority shadows used below (not as 19L57G1 text, which was not fetched):
 
-- `lean4/quantum_mechanics/OntologyBasic.lean`: current engine boundary `Real₀ = PrimitiveDifference ∪ Structure`; `ClaimPacket.HasAuthority` requires descent **and** an authoritative terminal status; representation-layer language does not have authority merely by being expressible.
-- `lean4/quantum_mechanics/OntologyPrimitiveBridge.lean`: `primitive_claim_no_authority_without_descent`.
+- `lean4/OntologyBasic.lean`: current engine boundary `Real₀ = PrimitiveDifference ∪ Structure`; `ClaimPacket.HasAuthority` requires descent **and** an authoritative terminal status; representation-layer language does not have authority merely by being expressible.
+- `lean4/OntologyPrimitiveBridge.lean`: `primitive_claim_no_authority_without_descent`.
 - `research/090_interpretations_as_authority_shadows/interpretations_as_authority_shadows.md`: firewall `StructureDerived(x) ⇏ IsAuth(x)` (ENC-1063 cited; encyclopedia Lean path is not in this application lake).
 - `research/004_general_obstruction_management_calculus/general_obstruction_management_calculus.md`: “Physical QM follows from GOMC: REFUSED.”
 - `omega_engine/crates_rs/omega_certifiers/src/authority_minting.rs`: deprecated module seals evidence only; no item constructs authority.
@@ -70,7 +70,7 @@ Paper §7: no result in the finite_qm estate cites, rebuilds, or extends `sealed
 
 Until 19L57G1 is readable, the working reconstruction — labelled **SPECULATIVE** and replaceable if the repo appears — is:
 
-1. **Genesis (distinction before physics).** The only origin of a finite claim is a declared primitive difference. In-tree genesis is **not** `PrimitiveDifference.lean` as `D(x,y)=y-x`. Opened `lean4/quantum_mechanics/PrimitiveDifference.lean` is an **abstract** `δ` with ZeroRel / residual quotient; a later Int kernel `diff x y := y - x` lives in the same file. Concrete coboundary `(d0 α)(u,v) = α(v) - α(u)` is `FiniteCochain.d0` / `omega_engine/crates/finite_qm/use_cases/cochain.py`. Hilbert space, Born, U(1), tensor, CPTP, and continuous time are representation layers, not genesis.
+1. **Genesis (distinction before physics).** The only origin of a finite claim is a declared primitive difference. In-tree genesis is **not** `PrimitiveDifference.lean` as `D(x,y)=y-x`. Opened `lean4/PrimitiveDifference.lean` is an **abstract** `δ` with ZeroRel / residual quotient; a later Int kernel `diff x y := y - x` lives in the same file. Concrete coboundary `(d0 α)(u,v) = α(v) - α(u)` is `FiniteCochain.d0` / `omega_engine/crates/finite_qm/use_cases/cochain.py`. Hilbert space, Born, U(1), tensor, CPTP, and continuous time are representation layers, not genesis.
 2. **Ontology (descent or typed refusal).** A claim packet is representation until it descends to Primitive Difference or Structure, or carries an explicit typed refusal (`OntologyBasic.lean` `ClaimPacket.Terminalized`). Positive authority additionally requires an authoritative terminal status. This application’s `AuthorityEffect` is None; the machine therefore **never** inhabits `HasAuthority` for a finite-QM claim. It may inhabit `refused`, `noRule`, or `budgetUnknown`.
 3. **Alpha Engine law (no silent promotion).** Structure derived is not authority (`research/090_…`; `research/091_…` even demotes a vacuous `AuthorityNonPromotion` lemma). `omega_atlas_reconciliation` governance: a Model may not diagnose authoritatively; enforcement, diagnosis, voting, waiving, and doctrine revision are separated. GOMC explains residual accounting and **refuses** physical QM (`research/004_…`). Interpretations (Copenhagen, Everett, …) are packet-indistinguishable authority shadows unless they make a finite, distinguishable false claim (`research/090_…`).
 
@@ -106,7 +106,7 @@ If a future public 19L57G1 text contradicts this reconstruction, rewrite this se
 
 ### SPECULATIVE idea 1 — Cochain as computational engine
 
-Grounded in: `omega_engine/crates/finite_qm/use_cases/cochain.py`; `lean4/quantum_mechanics/FiniteCochain.lean`; `WorldCycle3Quotient.lean`; `PointedObstructionClassifier.lean`; `omega_engine/crates_rs/omega_wdp/src/solver_of_solvers.rs` / `phi1_l1_boundary_solver.rs`; ledger `000:QMC-T1` ASSERTED; GAP-FQM-003.
+Grounded in: `omega_engine/crates/finite_qm/use_cases/cochain.py`; `lean4/FiniteCochain.lean`; `WorldCycle3Quotient.lean`; `PointedObstructionClassifier.lean`; `omega_engine/crates_rs/omega_wdp/src/solver_of_solvers.rs` / `phi1_l1_boundary_solver.rs`; ledger `000:QMC-T1` ASSERTED; GAP-FQM-003.
 
 **Idea.** Implement the cochain packet directly as an exact computational and verification engine: run exact $\Phi_1 / \Gamma_2$ descent on declared finite 2-complexes: primitive difference → coboundary nilpotence → quotient mass → classifier. `omega_solvers` already implements exact rational network simplex routines; modernize `cochain.phi_1` to exact rational solvers.
 
@@ -126,7 +126,7 @@ Grounded in: `campaigns/{c250,c500,c500_execution,c750,c1000}/`; `check_result_s
 
 ### SPECULATIVE idea 3 — Solver-frontier as the only selector
 
-Grounded in: `lean4/quantum_mechanics/SolverFrontier.lean`; `DualWitness.lean`; GAP-F001-S000-001; `omega_engine/crates_rs/omega_engines/src/obstruction_branch_search.rs` (lexicographic `(Phi_1, Gamma_2, Xi)`, `AuthorityEffect::None`).
+Grounded in: `lean4/SolverFrontier.lean`; `DualWitness.lean`; GAP-F001-S000-001; `omega_engine/crates_rs/omega_engines/src/obstruction_branch_search.rs` (lexicographic `(Phi_1, Gamma_2, Xi)`, `AuthorityEffect::None`).
 
 **Idea.** Replace narrative “next paper” choice with the already-typed finite selector: a caller supplies a batch of plans, a verifier bit, and a strict cost; retain every verified non-dominated plan; choose no representative among ties. Costs would be declared (Lean replay hours, cyclotomic conductor, LP size), not “importance.” Dual-witness work would be exact Φ₁ primal/dual on named graphs, not QM_080 Sion/minimax by renaming.
 

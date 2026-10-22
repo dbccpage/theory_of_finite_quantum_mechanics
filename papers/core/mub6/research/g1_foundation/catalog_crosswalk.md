@@ -12,7 +12,7 @@
 ## 1. Executive Summary
 
 This crosswalk provides an item-by-item comparative analysis across four representations of $6 \times 6$ complex Hadamard matrices:
-1. The user's/local definitions in `lean4/gluing/G1_Orbits.lean` ($F_6, D_6(\alpha), S_6, B_6(\theta)$).
+1. The user's/local definitions in `lean4/G1_Orbits.lean` ($F_6, D_6(\alpha), S_6, B_6(\theta)$).
 2. The local unions in `G1_Orbits.lean` (`InKnownHadamardModuli`) and `TargetA11OrbitExhaustiveness.lean` (`InUnifiedCatalog`).
 3. The classical primary literature:
    - Beauchamp–Nicoară (math/0609076) — self-adjoint subclass only.

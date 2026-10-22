@@ -31,8 +31,8 @@ paper s11.6 (proof in supplement s11.58); rational controls in Rust
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.power_rule_p2_unique_even_exponent`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.power_rule_p2_unique_even_exponent`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs::PowerRuleError`

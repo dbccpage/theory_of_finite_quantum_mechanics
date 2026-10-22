@@ -139,9 +139,9 @@ python -m pytest coda_all_universe/1_the_tower/13_the_problem_of_the_fermion_sig
 python -m pytest coda_all_universe/1_the_tower/13_the_problem_of_the_fermion_sign/normal_forms/ -v
 
 # 4. Lean 4 formalization checks
-lean coda_all_universe/1_the_tower/13_the_problem_of_the_fermion_sign/lean4/FermionSignCore.lean
-lean coda_all_universe/1_the_tower/13_the_problem_of_the_fermion_sign/lean4/MajoranaGinCore.lean
-lean coda_all_universe/1_the_tower/13_the_problem_of_the_fermion_sign/lean4/regge_wdw_core.lean
+lean lean4/FermionSignCore.lean
+lean lean4/MajoranaGinCore.lean
+lean lean4/regge_wdw_core.lean
 ```
 
 ---

@@ -64,7 +64,7 @@ Under the Witnessed Difference Programme Goal DAG (`omega_engine_atlas/coda_atla
 
 ### 3.3 Mechanized Lean 4 Formalization (`Discrete4DBianchiSpectralContraction.lean`)
 
-Module `lean4/research_programs/mub6/Discrete4DBianchiSpectralContraction.lean` (source monorepo; not shipped in this deposit) formalizes the discrete identities listed below. It does not certify external Fourier vanishing (`EXT-OAI-266`). The proofs are:
+Module `lean4/Discrete4DBianchiSpectralContraction.lean` (source monorepo; not shipped in this deposit) formalizes the discrete identities listed below. It does not certify external Fourier vanishing (`EXT-OAI-266`). The proofs are:
 1. **Discrete 4D Bianchi Identity**:
    - For any integer 2-cochain field strength $F \in C^2(\Delta^4; \mathbb{Z})$, the alternating coboundary sum around the boundary tetrahedra of the 4-simplex vanishes identically:
      $$d_3 (d_2 F) = 0 \quad (\text{`discrete_4d_bianchi_identity`})$$

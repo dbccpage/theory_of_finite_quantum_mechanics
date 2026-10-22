@@ -30,9 +30,9 @@ H054 header carries "PR #205 scope correction" demotion; ledger typed LEAN PROVE
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H054GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_assignment`
-- `lean4/quantum_mechanics/H054GleasonCyclotomicObstruction.lean::frame_additivity_not_force_psd`
-- `lean4/quantum_mechanics/H053EverettForkingTree.lean::cabello_parity_obstruction`
+- `lean4/H054GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_assignment`
+- `lean4/H054GleasonCyclotomicObstruction.lean::frame_additivity_not_force_psd`
+- `lean4/H053EverettForkingTree.lean::cabello_parity_obstruction`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs::cabello_18`

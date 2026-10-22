@@ -10,7 +10,7 @@
 
 Round 2 translates the curated Top 50 vectors into concrete formalization artifacts in `lean4/gluing/` and `lean4/sdp/`.
 
-### 1.1 Target G1: `lean4/gluing/TargetG1OrbitExhaustiveness.lean`
+### 1.1 Target G1: `lean4/TargetG1OrbitExhaustiveness.lean`
 - **Module Structure**:
   - `MUB6.Gluing.TargetG1OrbitExhaustiveness`
   - Imports: `Gluing`, `G1_Orbits`, `ModuliReduction`, `TargetA6TaoConfluence`, `TargetA9Haagerup`.
@@ -22,7 +22,7 @@ Round 2 translates the curated Top 50 vectors into concrete formalization artifa
   5. `triad_moduli_pigeonhole_lemma`: Combinatorial theorem proving that in any 7-basis pairwise MU configuration, if at most 1 basis lies in the Tao orbit $\mathcal{O}(S_6)$ and at most 1 in the Szöllősi family $B_6$, then at least 5 bases belong to the Diță/Fourier component, which forces at least $\binom{5}{3} = 10$ purely Diță triples.
   6. `target_g1_orbit_exhaustiveness_theorem`: Master synthesis theorem proving that under `OrbitCatalogExhaustive`, all candidate 7-MUB configurations contain an admissible triple landing in the certified Diță moduli atlas.
 
-### 1.2 Target Q-Soundness: `lean4/sdp/TargetQArchimedeanPositivstellensatz.lean`
+### 1.2 Target Q-Soundness: `lean4/TargetQArchimedeanPositivstellensatz.lean`
 - **Module Structure**:
   - `MUB6.SDP.TargetQArchimedeanPositivstellensatz`
   - Imports: `MomentPositivityObligation`, `CandidateGramPositivity`.

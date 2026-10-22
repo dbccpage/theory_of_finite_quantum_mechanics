@@ -35,11 +35,11 @@ imported (OracleNeeded firewall, GTOC-8)
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H017Gleason.lean::two_label_host_not_gleason_dimension`
-- `lean4/quantum_mechanics/H017Gleason.lean::gleason_pack_uniqueness_still_imported`
-- `lean4/quantum_mechanics/H013SameContract.lean::two_effect_rules_share_unit_total_and_disagree`
-- `lean4/quantum_mechanics/H013FrameAdditivity.lean::fourth_power_dies_under_frame_additivity`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- `lean4/H017Gleason.lean::two_label_host_not_gleason_dimension`
+- `lean4/H017Gleason.lean::gleason_pack_uniqueness_still_imported`
+- `lean4/H013SameContract.lean::two_effect_rules_share_unit_total_and_disagree`
+- `lean4/H013FrameAdditivity.lean::fourth_power_dies_under_frame_additivity`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

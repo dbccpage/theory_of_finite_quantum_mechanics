@@ -4404,7 +4404,7 @@ Obligation: Fix one finite carrier for states, effects, and pairings before dyna
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
 
-Once a Hilbert carrier is already in hand, finite quantum mechanics does not start again from primitive difference. Finite Quantum Mechanics section 1.1 calls the eight rungs an assumption audit: pairing, phase, tensor composition, reversible steps, instruments, and representation hypotheses stay extra structure. Section 5 leaves the continuum Hilbert lift open. Ledger row FQM-F3 separates the general trace identity from the narrower Lean model. The header opened in lean/FiniteQM.lean declares a narrow opening scope, a rational degree-4 readout identity and five 2x2 import-independence countermodels.
+Once a Hilbert carrier is already in hand, finite quantum mechanics does not start again from primitive difference. Finite Quantum Mechanics section 1.1 calls the eight rungs an assumption audit: pairing, phase, tensor composition, reversible steps, instruments, and representation hypotheses stay extra structure. Section 5 leaves the continuum Hilbert lift open. Ledger row FQM-F3 separates the general trace identity from the narrower Lean model. The header opened in lean4/FiniteQM.lean declares a narrow opening scope, a rational degree-4 readout identity and five 2x2 import-independence countermodels.
 
 Obligation: Treat the Hilbert carrier, inner product, and Born pairing as supplied inputs for every later finite step.
 

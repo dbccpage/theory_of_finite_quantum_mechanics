@@ -30,7 +30,7 @@ Where:
 - **Premise $G_2$ (Lossless Wall Transport)**: Decomposed into local finite wall certification (`WallCertified`) and unitary/phase transport invariance (`TransportInvariance`), with Sub-Obligation $G_{2.2}$ (Unitary Invariance) proven sorry-free in Lean 4.
 - **Premise $G_1$ (Moduli Coverage Conjecture)**: Asserts that every admissible complete 7-basis configuration contains at least one triple that lands within a covered class of the certified moduli atlas.
 
-This survey classifies the known orbits of $6 \times 6$ complex Hadamard matrices across the literature, maps their relationships to the current computational coverage in `omega_mub`, formalizes the exact mathematical statements in Lean 4 (`lean4/gluing/G1_Orbits.lean`), and pinpoints the precise algebraic obstruction separating local patch certification from exhaustive moduli coverage.
+This survey classifies the known orbits of $6 \times 6$ complex Hadamard matrices across the literature, maps their relationships to the current computational coverage in `omega_mub`, formalizes the exact mathematical statements in Lean 4 (`lean4/G1_Orbits.lean`), and pinpoints the precise algebraic obstruction separating local patch certification from exhaustive moduli coverage.
 
 ---
 
@@ -64,7 +64,7 @@ For a mutually unbiased triple $T = (B_0, B_1, B_2)$:
   $$H_{12} := H_1^\dagger H_2 \text{ is also a Complex Hadamard Matrix!}$$
 This "triple compatibility condition" is an intense algebraic constraint. The set of admissible MU triples is not the full Cartesian product $\mathcal{M} \times \mathcal{M}$, but an algebraic subvariety defined by the condition that the transition matrix between the two non-standard bases is itself Hadamard.
 
-In `lean4/gluing/G1_Orbits.lean`, this fundamental equivalence is formally proved sorry-free under exact rational arithmetic:
+In `lean4/G1_Orbits.lean`, this fundamental equivalence is formally proved sorry-free under exact rational arithmetic:
 ```lean
 theorem mu_triple_hadamard_transition (H1 H2 : Matrix (Fin 6) (Fin 6) ℂ)
     (h1 : IsHadamard H1) (h2 : IsHadamard H2) :
@@ -143,7 +143,7 @@ The literature identifies four primary orbit classes:
 
 ## 4. Formalization of Premise G1 in Lean 4
 
-In `lean4/gluing/G1_Orbits.lean`, the entire hierarchy of moduli coverage is formalized constructively without `sorry`.
+In `lean4/G1_Orbits.lean`, the entire hierarchy of moduli coverage is formalized constructively without `sorry`.
 
 ### 4.1 Moduli Coverage Hierarchy
 
@@ -203,7 +203,7 @@ Why is Premise $G_1$ currently an open conjecture, and what is required to close
 
 ## 6. Verification and Lean 4 Compilation Receipts
 
-The formalization in `lean4/gluing/G1_Orbits.lean` was verified against the repository toolchain:
+The formalization in `lean4/G1_Orbits.lean` was verified against the repository toolchain:
 - **Lean Toolchain**: `leanprover/lean4:v4.34.0`
 - **Build Tool**: `lake build` (7 targets: `Gluing`, `UnitaryInvariance`, `G1_Orbits`)
 - **Compilation Result**: Clean build with 0 errors, 0 warnings, zero `sorry`.

@@ -31,10 +31,10 @@ LEAN PROVED (RECEIPTED) per ledger; Lean header for the H000..H018 family says C
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/PrimitiveDifference.lean::zeroRel_equivalence`
-- `lean4/quantum_mechanics/H000FinitePresentedCarrier.lean::sameReport_iff`
-- `lean4/quantum_mechanics/H000FinitePresentedCarrier.lean::presented_carrier_separates`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
+- `lean4/PrimitiveDifference.lean::zeroRel_equivalence`
+- `lean4/H000FinitePresentedCarrier.lean::sameReport_iff`
+- `lean4/H000FinitePresentedCarrier.lean::presented_carrier_separates`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

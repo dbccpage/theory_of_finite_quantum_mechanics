@@ -106,7 +106,7 @@ lake env lean --run MubBoundedExport.lean OUTPUT.jsonl
 ```
 
 That command is the checkpoint command. The current wrapper is
-`cli/MubBoundedExport.lean`, because the library module no longer declares
+`lean4/MubBoundedExport.lean`, because the library module no longer declares
 root `main`.
 
 The output directory must already exist. An interrupted file lacks its final

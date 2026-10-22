@@ -31,7 +31,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG validator | `nodes=880 routes=885 records=932 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 932 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
 | Derivation papers | 932 in 33 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 860 resolve to a file in this checkout, 781 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Lean references in DAG nodes | 1325 resolve to a file in this checkout, 318 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 287 resolve to a file in this checkout, 653 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | PFP prompts / indexed operad collections | 880 / 880 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
 | PFP stage per prompt | P0_MINE_OPERAD 703, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |

@@ -27,13 +27,13 @@ MECHANIZED in LggrFiniteResults.lean (B1, B2', B11, B11', and Part 6 LP dual 2/3
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.section_exists_iff_holonomy_zero`
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.no_joint_measure_when_holonomy_one`
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.odd_triangle_lp_dual_defect_pos`
-- `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.lggrCycleGateAdmits_iff_section_or_zero_mass`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.section_exists_iff_holonomy_zero`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.no_joint_measure_when_holonomy_one`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.odd_triangle_lp_dual_defect_pos`
+- `lean4/LggrFiniteResults.lean::LggrFiniteResults.lggrCycleGateAdmits_iff_section_or_zero_mass`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_impl_nf002_thymus_and_lggr_witness`
@@ -51,5 +51,5 @@ MECHANIZED in LggrFiniteResults.lean (B1, B2', B11, B11', and Part 6 LP dual 2/3
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `lean4/quantum_mechanics/LggrFiniteResults.lean`
+  - `lean4/LggrFiniteResults.lean`
   - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`

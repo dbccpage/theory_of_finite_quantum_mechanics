@@ -30,6 +30,26 @@ edition = "2021"
 license = "Apache-2.0"
 description = "Sovereign exact rational algebraic certifiers for the Theory of Finite Quantum Mechanics"
 
+[features]
+default = []
+external-omega = [
+    "dep:linear_algebra",
+    "dep:omega_homology",
+    "dep:omega_policy",
+    "dep:omega_functional",
+    "dep:omega_solvers",
+    "dep:omega_kernel",
+    "dep:omega_combinatorics",
+    "dep:omega_lie_theory",
+    "dep:omega_general_relativity",
+    "dep:omega_engines",
+    "dep:omega_quantum_physics",
+    "dep:omega_number_theory",
+    "dep:omega_holonomy",
+    "dep:omega_types",
+    "dep:finite_qm_native",
+]
+
 [dependencies]
 num-rational = { version = "0.4", features = ["serde"] }
 num-bigint = { version = "0.4", features = ["serde"] }
@@ -42,19 +62,24 @@ blake3 = "1.5"
 hex = "0.4"
 
 nalgebra = { version = "0.33", features = ["serde-serialize"] }
-linear_algebra = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_linear_algebra" }
-omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
-omega_policy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_policy" }
-omega_functional = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_functional" }
-omega_solvers = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_solvers" }
-omega_kernel = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_kernel" }
-omega_combinatorics = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_combinatorics" }
-omega_lie_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_lie_theory" }
-omega_general_relativity = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_general_relativity" }
-omega_engines = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_engines", features = ["strict_invariants"] }
-omega_quantum_physics = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics" }
-omega_number_theory = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_number_theory" }
-omega_holonomy = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_holonomy" }
+# External omega_engine crates (optional; override via gitignored .cargo/config.toml [patch.crates-io]).
+# Note: in-repo counterparts for functional, combinatorics, lie_theory, general_relativity,
+# number_theory, and holonomy are linked below via relative paths as tfqm_<domain>.
+linear_algebra = { version = "0.1.0", optional = true }
+omega_homology = { version = "0.1.0", optional = true }
+omega_policy = { version = "0.1.0", optional = true }
+omega_functional = { version = "0.1.0", optional = true }
+omega_solvers = { version = "0.1.0", optional = true }
+omega_kernel = { version = "0.1.0", optional = true }
+omega_combinatorics = { version = "0.1.0", optional = true }
+omega_lie_theory = { version = "0.1.0", optional = true }
+omega_general_relativity = { version = "0.1.0", optional = true }
+omega_engines = { version = "0.1.0", features = ["strict_invariants"], optional = true }
+omega_quantum_physics = { version = "0.1.0", optional = true }
+omega_number_theory = { version = "0.1.0", optional = true }
+omega_holonomy = { version = "0.1.0", optional = true }
+omega_types = { version = "0.1.0", optional = true }
+finite_qm_native = { version = "0.1.0", optional = true }
 
 tfqm_category_theory = { path = "src/category_theory" }
 tfqm_combinatorics = { path = "src/combinatorics" }
@@ -84,8 +109,6 @@ name = "entropy_cli"
 path = "src/bin/entropy_cli.rs"
 
 [dev-dependencies]
-omega_types = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_types" }
-finite_qm_native = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native" }
 proptest = "1.5"
 
 # Workspace-wide: member-level profiles are ignored by Cargo.

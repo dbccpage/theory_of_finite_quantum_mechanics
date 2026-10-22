@@ -32,9 +32,9 @@ Convergence oracle and generator selection are priced interfaces; no derivation.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H016ContinuousDynamicsFork.lean::continuous_dynamics_fork`
-- `lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- `lean4/H016ContinuousDynamicsFork.lean::continuous_dynamics_fork`
+- `lean4/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

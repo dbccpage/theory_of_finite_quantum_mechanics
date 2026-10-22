@@ -7,7 +7,7 @@
 **Status:** `DONE`  
 **Executable Rust Module:** [`omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs)  
 **Executable Python Module:** [`python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py`](../python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py)  
-**Lean 4 Mechanization:** [`lean4/quantum_mechanics/FiniteQM.lean`](../../../../../lean4/quantum_mechanics/FiniteQM.lean) and [`lean/FiniteQM.lean`](../lean/FiniteQM.lean) (Part III)  
+**Lean 4 Mechanization:** [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) and [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) (Part III)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py`](../tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py)  
 **Fable MCTS Receipt:** [`research/electroweak_dfm_weinberg_fable_receipt.json`](electroweak_dfm_weinberg_fable_receipt.json)
 
@@ -46,7 +46,7 @@ This note records the finite algebraic formulation of the Standard Model electro
 ## 2. Claim Hygiene Summary
 
 1. **What it supports:**
-   - Checked by [`electroweak_dfm_weinberg_control.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs), [`electroweak_dfm_weinberg_control.py`](../python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py), and Lean 4 theorems [`ew_dfm_goldstone_elimination_on_sphere`](../lean/FiniteQM.lean#L517-L527) through [`sm_cubic_anomaly_charge_quantization_polynomial`](../lean/FiniteQM.lean#L675-L681) in [`FiniteQM.lean`](../lean/FiniteQM.lean), the $SU(2)_L$ doublet dressing field $u(\Phi)$, rational Weinberg projectors $\Pi_\gamma, \Pi_Z$, tree-level custodial identity $\rho_{\mathrm{EW}} = 1$, Gell-Mann–Nishijima charges, and $N_c = 3$ cubic $U(1)_Y^3$ anomaly cancellation hold over $\mathbb{Q}$ and $\mathbb{Q}[i]$.
+   - Checked by [`electroweak_dfm_weinberg_control.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs), [`electroweak_dfm_weinberg_control.py`](../python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py), and Lean 4 theorems [`ew_dfm_goldstone_elimination_on_sphere`](../../lean4/FiniteQM.lean#L517-L527) through [`sm_cubic_anomaly_charge_quantization_polynomial`](../../lean4/FiniteQM.lean#L675-L681) in [`FiniteQM.lean`](../../lean4/FiniteQM.lean), the $SU(2)_L$ doublet dressing field $u(\Phi)$, rational Weinberg projectors $\Pi_\gamma, \Pi_Z$, tree-level custodial identity $\rho_{\mathrm{EW}} = 1$, Gell-Mann–Nishijima charges, and $N_c = 3$ cubic $U(1)_Y^3$ anomaly cancellation hold over $\mathbb{Q}$ and $\mathbb{Q}[i]$.
 2. **What it does not support:**
    - These tree-level DFM and 1-loop triangle anomaly polynomial identities over $\mathbb{Q}$ do not compute non-perturbative electroweak sphaleron rates or multi-loop radiative corrections $\Delta \rho$ from top-bottom mass splitting.
 3. **The narrowest defensible claim:**

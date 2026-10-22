@@ -26,16 +26,16 @@
 |---|---|
 | `lean4/gluing/lean-toolchain` | `744874093261C1854638246B978F088EAE15414B0F636AC08481A088A7AAA867` |
 | `lean4/gluing/lakefile.toml` | `784BB10D23F1735497B0FA8A5A417B67800F1BD1EF9815AC027734E72F1F8119` |
-| `lean4/gluing/G1_Orbits.lean` | `32B2924C2E12C75CB69D3B887D5115E98E67B8DD76844FABA791549FDA953EDE` |
-| `lean4/gluing/Gluing.lean` | `586BC339DDE9B850437633225ED95FD91540A81A04D6EC8B8E09288334369823` |
-| `lean4/gluing/ModuliReduction.lean` | `3533389BC4AE821CDF57E8FF1617B52D3614422AD42DBFB176C33AB1A9D4FC0F` |
-| `lean4/gluing/TargetA11OrbitExhaustiveness.lean` | `86B659770EA980E4695D368935FC2B243E9D4244F5118F6895EB872E17AEE313` |
-| `lean4/gluing/TargetA10GlobalCover.lean` | `8610B4905614CE369E5F2BCFD31D73E6BCD16D259D8CBEEAE586D7C216996443` |
-| `lean4/gluing/TargetA9Haagerup.lean` | `D3E980F5A252B93319C2A2C8C45849EE7C23C1D33D6B8F67DF2CDDD2DE9678CC` |
-| `lean4/gluing/SzollosiDeltoid.lean` | `950E662BCA86BB065A31DCFF42411327607EB354D1F0A44C8C053DE58EBA5270` |
-| `lean4/gluing/KarlssonManifold.lean` | `FF0B6B4A67AA40EC57D1E4E7DEE818867AA06627355681E45FF39C6A62BB69D6` |
-| `lean4/gluing/WallTransport.lean` | `8A7CAC87BF636EFBC8A1F6C511BBF5B6F1C34866D74F6A811DB8DA9795F44D46` |
-| `lean4/gluing/ZeroRelVariety.lean` | `446450C192CF575F0E71C125C037C3ADA8AEAC35F2B7CDD901028F7B86C6FC05` |
+| `lean4/G1_Orbits.lean` | `32B2924C2E12C75CB69D3B887D5115E98E67B8DD76844FABA791549FDA953EDE` |
+| `lean4/Gluing.lean` | `586BC339DDE9B850437633225ED95FD91540A81A04D6EC8B8E09288334369823` |
+| `lean4/ModuliReduction.lean` | `3533389BC4AE821CDF57E8FF1617B52D3614422AD42DBFB176C33AB1A9D4FC0F` |
+| `lean4/TargetA11OrbitExhaustiveness.lean` | `86B659770EA980E4695D368935FC2B243E9D4244F5118F6895EB872E17AEE313` |
+| `lean4/TargetA10GlobalCover.lean` | `8610B4905614CE369E5F2BCFD31D73E6BCD16D259D8CBEEAE586D7C216996443` |
+| `lean4/TargetA9Haagerup.lean` | `D3E980F5A252B93319C2A2C8C45849EE7C23C1D33D6B8F67DF2CDDD2DE9678CC` |
+| `lean4/SzollosiDeltoid.lean` | `950E662BCA86BB065A31DCFF42411327607EB354D1F0A44C8C053DE58EBA5270` |
+| `lean4/KarlssonManifold.lean` | `FF0B6B4A67AA40EC57D1E4E7DEE818867AA06627355681E45FF39C6A62BB69D6` |
+| `lean4/WallTransport.lean` | `8A7CAC87BF636EFBC8A1F6C511BBF5B6F1C34866D74F6A811DB8DA9795F44D46` |
+| `lean4/ZeroRelVariety.lean` | `446450C192CF575F0E71C125C037C3ADA8AEAC35F2B7CDD901028F7B86C6FC05` |
 | `lean4/012_mutually_unbiased_bases/lean-toolchain` | `A0ADA3782CD088719516BBFDF37B9E7032230E211BF424B85D952EE650C51091` |
 
 ---
@@ -47,7 +47,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
 ### 2.1 The Eight Audited Declarations
 
 #### 1. `PhaseAngle`
-- **Location**: `lean4/gluing/G1_Orbits.lean:25-36`
+- **Location**: `lean4/G1_Orbits.lean:25-36`
 - **Definition**:
   ```lean
   structure PhaseAngle where
@@ -67,7 +67,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - It does not represent the circle group $U(1)$ or $\mathbb{R}/2\pi\mathbb{Z}$.
 
 #### 2. `ComplexMatrix6`
-- **Location**: `lean4/gluing/G1_Orbits.lean:39-42`
+- **Location**: `lean4/G1_Orbits.lean:39-42`
 - **Definition**:
   ```lean
   structure ComplexMatrix6 where
@@ -79,7 +79,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - No complex numbers $\mathbb{C}$, no real/imaginary parts, no modulus constraint ($|z| = 1$), and no matrix multiplication algebra are defined on this type.
 
 #### 3. `is_complex_hadamard`
-- **Location**: `lean4/gluing/G1_Orbits.lean:45`
+- **Location**: `lean4/G1_Orbits.lean:45`
 - **Definition**:
   ```lean
   opaque is_complex_hadamard : ComplexMatrix6 -> Prop
@@ -90,7 +90,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - In the Lean kernel, it behaves as an uninterpretable atomic predicate.
 
 #### 4. `HadamardEquivalent`
-- **Location**: `lean4/gluing/G1_Orbits.lean:59-83`
+- **Location**: `lean4/G1_Orbits.lean:59-83`
 - **Definition**:
   ```lean
   structure PhaseGauge6 where
@@ -127,7 +127,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
     ```
 
 #### 5. `InKnownHadamardModuli`
-- **Location**: `lean4/gluing/G1_Orbits.lean:227-229`
+- **Location**: `lean4/G1_Orbits.lean:227-229`
 - **Definition**:
   ```lean
   def InKnownHadamardModuli (H : ComplexMatrix6) : Prop :=
@@ -143,7 +143,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - The references `F6_matrix` and `Tao_S6_matrix` are opaque constants, disconnected from `F6_concrete` and `Tao_S6_concrete`.
 
 #### 6. `ClassificationExhaustivenessPremise`
-- **Location**: `lean4/gluing/TargetA11OrbitExhaustiveness.lean:71-72`
+- **Location**: `lean4/TargetA11OrbitExhaustiveness.lean:71-72`
 - **Definition**:
   ```lean
   def ClassificationExhaustivenessPremise : Prop :=
@@ -154,7 +154,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - It carries no connection to matrices over $\mathbb{C}$.
 
 #### 7. `OrbitCatalogExhaustive`
-- **Location**: `lean4/gluing/ModuliReduction.lean:34-35`
+- **Location**: `lean4/ModuliReduction.lean:34-35`
 - **Definition**:
   ```lean
   def OrbitCatalogExhaustive : Prop :=
@@ -164,7 +164,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
   - Definitionally identical to `ClassificationExhaustivenessPremise`.
 
 #### 8. `G1`
-- **Location**: `lean4/gluing/Gluing.lean:88-91`
+- **Location**: `lean4/Gluing.lean:88-91`
 - **Definition**:
   ```lean
   def G1 : Prop :=
@@ -179,7 +179,7 @@ Inspection of `lean4/gluing/` reveals two disconnected sub-models with non-stand
 ---
 
 ### 2.2 Second Disjoint Model: Section 8 Rational Arithmetic
-In `lean4/gluing/G1_Orbits.lean:353-565`, a separate complex model is defined:
+In `lean4/G1_Orbits.lean:353-565`, a separate complex model is defined:
 ```lean
 structure ℂ where
   re : Rat

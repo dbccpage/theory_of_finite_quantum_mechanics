@@ -83,7 +83,7 @@ lake env lean --run MubBoundedExport.lean mu-factors OUTPUT.jsonl
 ```
 
 That command is the checkpoint command. The current wrapper is
-`cli/MubBoundedExport.lean mu-factors`.
+`lean4/MubBoundedExport.lean mu-factors`.
 
 The full-system coefficient export from the previous checkpoint remains an
 unchanged historical artifact. No full new archive or whole-package build is

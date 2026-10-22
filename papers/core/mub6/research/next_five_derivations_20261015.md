@@ -95,7 +95,7 @@ representatives when needed.
 The source construction and its transpose branches are specified in
 [Szöllősi, equations (6)–(14) and Theorem 2.2](https://arxiv.org/pdf/0811.3930v2).
 Reuse the existing
-[SzollosiTwoCirculant.lean](../../../../../lean4/research_programs/mub6/SzollosiTwoCirculant.lean)
+[SzollosiTwoCirculant.lean](../../../../lean4/SzollosiTwoCirculant.lean)
 identities, especially `rawSix_gram`, `phaseRow_surjective`,
 `parameter_equations_iff` and `parameter_covers_intersection`.
 
@@ -325,7 +325,7 @@ checker tied to the actual triple equations. The target is the published
 Conjecture 2 and its use in
 [Matolcsi et al., equation (4.9) and Proposition 4.2](https://link.springer.com/article/10.1007/s10801-026-01506-x).
 The existing
-[Conjecture2GeneralMechanization.lean](../../../../../lean4/research_programs/mub6/Conjecture2GeneralMechanization.lean)
+[Conjecture2GeneralMechanization.lean](../../../../lean4/Conjecture2GeneralMechanization.lean)
 provides finite parity and table calculations, so new matrix identities are
 required at this interface.
 

@@ -27,11 +27,11 @@ H060 2D pure-state Gram total positivity under every real embedding vs conductor
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H060EmbeddingRelativity.lean::pure_state_totally_positive_2d`
-- `lean4/quantum_mechanics/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_real_embedding_conductor5_mixed_witness_sign_flip`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
+- `lean4/H060EmbeddingRelativity.lean::pure_state_totally_positive_2d`
+- `lean4/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_real_embedding_conductor5_mixed_witness_sign_flip`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
 - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
 
 ### Rust Certifiers

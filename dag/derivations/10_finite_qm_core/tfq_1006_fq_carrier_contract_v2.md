@@ -32,10 +32,10 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/quantum_mechanics/H052CyclotomicTowerDirected.lean::cyclotomic_tower_is_directed`
-- `lean4/quantum_mechanics/H057HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`
-- `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
+- `lean4/H052CyclotomicTowerDirected.lean::cyclotomic_tower_is_directed`
+- `lean4/H057HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/tower.rs::CyclotomicTower`

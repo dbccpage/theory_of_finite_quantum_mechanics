@@ -178,7 +178,7 @@ Over $\Gamma=\{0,1\}$ amplitudes: the sign carrier $S=\operatorname{diag}(1,-1)$
 The matrix $J=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$ has $J^2=-I$ and $J^4=I$, generating the cyclic
 order-4 subgroup $\langle J\rangle = \{I, J, -I, -J\}\cong \mathbb{Z}_4$. Iterating $J$ distinguishes a
 quarter-turn from a sign flip; it does not trace the continuous circle or distinguish continuous from discrete
-dynamics (as formalized in `lean4/quantum_mechanics/U1TorsionExclusion.lean`). The algebra $\{aI+bJ\}$ multiplies
+dynamics (as formalized in `lean4/U1TorsionExclusion.lean`). The algebra $\{aI+bJ\}$ multiplies
 as $\mathbb{C}$ (and $\mathbb{Z}[i]$ over the integers), $(aI+bJ)(cI+dJ)=(ac-bd)I+(ad+bc)J$.
 
 However, finding $\mathbb{R}[J]\cong\mathbb{C}$ inside $M_2(\mathbb{R})$ does not select a complex operational theory:
