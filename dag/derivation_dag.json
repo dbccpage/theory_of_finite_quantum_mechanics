@@ -17791,7 +17791,7 @@
       "stage": "FERMION_SIGN",
       "status": "CONDITIONAL",
       "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.",
+      "statement": "For the Trotter auxiliary-field Hubbard determinants, the spin-determinant product d_up d_down is nonnegative under the stated pairing relations (half-filled bipartite: d_down = d_up/det P_up with det P_up > 0; attractive spin-balanced: equal spin determinants with a nonnegative field prefactor), and two exact fields, mask 15721 on the four-site ring at z=2 and mask 1281 on the triangle at z=1, have d_up > 0 > d_down, so the product is not nonnegative for every field.",
       "source": [
         "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
         "dag/derivations/independent/fsp-hubbard-protected-representations.md",
@@ -17808,7 +17808,7 @@
       "imported_structure": [
         "stated Hubbard model and protected symmetry hypotheses"
       ],
-      "bottleneck": "Determinant pairing nonnegativity is narrowed to the stated half-filled bipartite and attractive spin-balanced hypotheses; outside those protections, negative witnesses 15721 and 1281 refute unconditional determinant positivity.",
+      "bottleneck": "Not stated in Lean: (1) that the half-filled bipartite relation d_down = d_up/det P_up with det P_up > 0 and the attractive spin-balanced relation d_up = d_down follow from the Trotter transfer matrices, since the Lean theorems take the first as a hypothesis and the second as the form C d^2; (2) that the stored rational pairs for masks 15721 and 1281 are det(I+P_sigma) of the ring and triangle matrices; (3) any statement that positivity fails on all or generic fields outside the protections. Lean states the arithmetic consequences and the sign of two stored products. The pairing relations are checked exactly only on 256 ring fields and 64 triangle fields at two slices, and the two witnesses by checks/independent/fsp-hubbard-protected-representations.py.",
       "tags": [
         "application-branch",
         "TFQ-0408",

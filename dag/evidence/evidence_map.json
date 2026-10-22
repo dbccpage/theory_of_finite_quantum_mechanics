@@ -9,7 +9,7 @@
   "nodes": 880,
   "path": "dag/derivation_dag.json",
   "routes": 885,
-  "sha256_lf": "fc0aa26d2c06ce932e74ac5eff4f5c7a0a5902a416beb86cc4f982786de5539d"
+  "sha256_lf": "cba4bcf3eb20c701537d662031f537dc5af6bd94f02b3ee1d1587f928c05bbab"
  },
  "files": {
   "code/python/src/fsp/bqnf_sign_evaluator.py": {
@@ -713,9 +713,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "fc0aa26d2c06ce932e74ac5eff4f5c7a0a5902a416beb86cc4f982786de5539d",
+   "sha256": "cba4bcf3eb20c701537d662031f537dc5af6bd94f02b3ee1d1587f928c05bbab",
    "sha256_basis": "lf-normalised",
-   "size": 4356773
+   "size": 4358212
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5377,6 +5377,11 @@
    "sha256_basis": "lf-normalised",
    "size": 2029
   },
+  "dag/derivations/independent/fsp-hubbard-protected-representations.md": {
+   "sha256": "cbc138ed8d9302fac11dc94b96435772faf042807c3289d2dd28fbf288636575",
+   "sha256_basis": "lf-normalised",
+   "size": 13593
+  },
   "dag/research/electroweak_dfm_weinberg_finite_map.md": {
    "sha256": "9085e0b276afee079a11b980fc73e2c76a57d7d9b9d70fe29f97a0bd6f0b7fee",
    "sha256_basis": "lf-normalised",
@@ -5423,9 +5428,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "sha256_basis": "lf-normalised",
-   "size": 75089
+   "size": 77439
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -5656,6 +5661,11 @@
    "sha256": "d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6",
    "sha256_basis": "bytes",
    "size": 3256
+  },
+  "lean4/CampaignFspHubbardProtected.lean": {
+   "sha256": "69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074",
+   "sha256_basis": "bytes",
+   "size": 9941
   },
   "lean4/CausalOrder.lean": {
    "sha256": "f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0",
@@ -11437,6 +11447,15 @@
    "node": "PG-PREGEN-CONSTRUCTIVE-SUMMARY",
    "stage": "PREGENESIS",
    "status": "PROVED_LEAN"
+  },
+  {
+   "dependents": 28,
+   "detail": "a replay receipt names this node for lean4/CampaignFspHubbardProtected.lean, but the node's lean, rust and source fields do not cite it",
+   "grade": "E3",
+   "kind": "receipt_names_uncited_module",
+   "node": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+   "stage": "FERMION_SIGN",
+   "status": "CONDITIONAL"
   },
   {
    "dependents": 19,
@@ -146092,16 +146111,581 @@
    "dependents": 28,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 0,
+    "counted_files": 4,
+    "lean_receipt_backed": 15,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 15
    },
-   "flags": [],
-   "grade": "E1",
+   "flags": [
+    {
+     "detail": "a replay receipt names this node for lean4/CampaignFspHubbardProtected.lean, but the node's lean, rust and source fields do not cite it",
+     "kind": "receipt_names_uncited_module"
+    }
+   ],
+   "grade": "E3",
    "id": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.attractive_pairing_sq_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.attractive_pairing_sq_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.attractive_weight_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.attractive_weight_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.attractive_weight_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.attractive_weight_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_eq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.half_filled_bipartite_weight_eq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.half_filled_bipartite_weight_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.not_unconditional_positivity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.not_unconditional_positivity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.opposite_signs_weight_neg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.opposite_signs_weight_neg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_doped_ring_d_down_neg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_doped_ring_d_down_neg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_doped_ring_d_up_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_doped_ring_d_up_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_doped_ring_weight_neg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_doped_ring_weight_neg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_triangle_d_down_neg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_triangle_d_down_neg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_triangle_d_up_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_triangle_d_up_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspHubbardProtected",
+     "command_note": "then, in a scratch file that imports CampaignFspHubbardProtected: #print axioms CampaignFspHubbardProtected.witness_triangle_weight_neg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspHubbardProtected.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspHubbardProtected.witness_triangle_weight_neg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -146118,6 +146702,29 @@
      "generated": true,
      "kind": "paper",
      "path": "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/fsp-hubbard-protected-representations.md",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -146173,7 +146780,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0408"
    ],
@@ -209940,6 +210547,32 @@
     "Quot.sound",
     "propext"
    ],
+   "built_successfully": null,
+   "checked_at": "2026-10-22",
+   "dag_node": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
+   "decl_count": 15,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json#0:CampaignFspHubbardProtected",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignFspHubbardProtected",
+   "path": "lean4/CampaignFspHubbardProtected.lean",
+   "receipt_file": "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json",
+   "receipt_file_sha256": "b4ddd39181ee572d67f0648be9b86b1691f35d210e34d4ba6e25572f19bf145c",
+   "recorded_sha256": "69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074",
+   "source_unchanged_during_build": null,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
    "built_successfully": true,
    "checked_at": "2026-10-22",
    "dag_node": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
@@ -210983,7 +211616,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211009,7 +211642,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211035,7 +211668,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211061,7 +211694,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211087,7 +211720,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211113,7 +211746,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211139,7 +211772,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211165,7 +211798,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211191,7 +211824,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211217,7 +211850,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211243,7 +211876,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211269,7 +211902,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211295,7 +211928,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211321,7 +211954,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211347,7 +211980,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "fa0f3c6e861f6390e02e15d38dc1ea7a8e4564e93a01886bac7312bdb0518ce5",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211919,9 +212552,9 @@
  "summary": {
   "by_grade": {
    "E0": 285,
-   "E1": 219,
+   "E1": 218,
    "E2": 324,
-   "E3": 52,
+   "E3": 53,
    "E4": 0
   },
   "by_status": {
@@ -211941,30 +212574,30 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 8,
   "e3_nodes_with_test_but_no_review": 4,
   "lean_declarations_in_repo": {
-   "distinct": 990,
+   "distinct": 994,
    "no_receipt": 838,
    "replay_failed": 0,
    "replay_stale": 0,
-   "replay_verified": 152,
-   "replay_verified_and_declaration_itemised": 144,
+   "replay_verified": 156,
+   "replay_verified_and_declaration_itemised": 148,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
    "external_unresolved": 313,
    "missing": 1,
-   "present": 1263
+   "present": 1267
   },
-  "mismatch_nodes": 399,
+  "mismatch_nodes": 400,
   "mismatches_by_kind": {
    "broken_reference": 55,
    "computational_no_runnable_test": 126,
    "proved_lean_below_e3": 219,
    "proved_lean_external_only": 53,
    "proved_prose_no_in_repo_document": 13,
-   "receipt_names_uncited_module": 26,
+   "receipt_names_uncited_module": 27,
    "receipt_not_current": 0
   },
-  "mismatches_total": 492,
+  "mismatches_total": 493,
   "nodes": 880,
   "proved_lean_lean_references": {
    "external_unresolved": 231,
@@ -211976,7 +212609,7 @@
    "with_in_repo_lean": 208,
    "with_some_outside_lean": 83
   },
-  "receipts_indexed": 75,
+  "receipts_indexed": 76,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -212036,9 +212669,9 @@
    },
    "FERMION_SIGN": {
     "E0": 0,
-    "E1": 28,
+    "E1": 27,
     "E2": 11,
-    "E3": 2,
+    "E3": 3,
     "E4": 0
    },
    "FINITE_GAUGE": {
@@ -212220,9 +212853,9 @@
    },
    "CONDITIONAL": {
     "E0": 15,
-    "E1": 1,
+    "E1": 0,
     "E2": 17,
-    "E3": 1,
+    "E3": 2,
     "E4": 0
    },
    "DEFINITION": {

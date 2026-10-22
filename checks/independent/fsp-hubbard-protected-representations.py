@@ -3,6 +3,10 @@
 Independent check for Target 4: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
 Zero repository imports: uses only SymPy and standard library.
 
+Conventions: bonds are applied in lexicographic order (validate_bonds sorts them) and then in reverse
+order, so the 4-site ring is (0,1),(0,3),(1,2),(2,3). The witness values depend on this order.
+The checks 1 and 2 cover the stated parameter sets only (two time slices), not all models.
+
 Recomputes:
 1. Exact attractive spin-balanced Hubbard determinant pairing across all 64 fields of the 3-site triangle (2 slices).
 2. Exact half-filled bipartite particle-hole pairing across all 256 fields of the 4-site ring (2 slices).
@@ -123,9 +127,22 @@ def main() -> None:
     expected_down1 = Rational(-1034021712177776419381618902295, 147573952589676412928)
     assert d_up1 == expected_up1, f"d_up mismatch: {d_up1} != {expected_up1}"
     assert d_down1 == expected_down1, f"d_down mismatch: {d_down1} != {expected_down1}"
+    expected_w1 = Rational(
+        -11448764643788789633389299083665210593647227349065798614587375,
+        340282366920938463463374607431768211456,
+    )
+    assert w1 == d_up1 * d_down1 == expected_w1, f"W mismatch: {w1} != {expected_w1}"
+    assert 340282366920938463463374607431768211456 == 2 ** 128
+    assert (d_up1.q, d_down1.q, w1.q) == (2 ** 61, 2 ** 67, 2 ** 128), "denominators of the ring witness"
     assert d_up1 > 0, "d_up must be strictly positive"
     assert d_down1 < 0, "d_down must be strictly negative"
     assert w1 < 0, "determinant product weight must be strictly negative"
+    # The pairing relation d_down = d_up / h^(sum s) fails here (z = 2), and the same mask at z = 1 is nonnegative.
+    assert d_down1 != d_up1 / (Rational(8) ** s1), "pairing relation unexpectedly holds at z=2"
+    d_up1h, d_down1h, w1h, _ = compute_hubbard_determinants(
+        sites=4, bonds=ring, slices=4, r=Rational(2), hs=Rational(8), fugacity=Rational(1), mask=15721, attractive=False
+    )
+    assert d_down1h == d_up1h / (Rational(8) ** s1) and w1h >= 0, "mask 15721 at z=1 must satisfy the pairing relation"
     print(f"  d_up   = {d_up1} > 0")
     print(f"  d_down = {d_down1} < 0")
     print(f"  W(15721) = {w1} < 0")
@@ -140,9 +157,18 @@ def main() -> None:
     expected_down2 = Rational(-323903084369592224375, 35184372088832)
     assert d_up2 == expected_up2, f"d_up mismatch: {d_up2} != {expected_up2}"
     assert d_down2 == expected_down2, f"d_down mismatch: {d_down2} != {expected_down2}"
+    expected_w2 = Rational(
+        -862091447562875338563475227905478168562109375,
+        324518553658426726783156020576256,
+    )
+    assert w2 == d_up2 * d_down2 == expected_w2, f"W mismatch: {w2} != {expected_w2}"
+    assert 324518553658426726783156020576256 == 2 ** 108
+    assert (d_up2.q, d_down2.q, w2.q) == (2 ** 63, 2 ** 45, 2 ** 108), "denominators of the triangle witness"
     assert d_up2 > 0, "d_up must be strictly positive"
     assert d_down2 < 0, "d_down must be strictly negative"
     assert w2 < 0, "determinant product weight must be strictly negative"
+    # The pairing relation d_down = d_up / h^(sum s) fails on the triangle at z = 1 (odd cycle).
+    assert d_down2 != d_up2 / (Rational(8) ** s2), "pairing relation unexpectedly holds on the triangle"
     print(f"  d_up   = {d_up2} > 0")
     print(f"  d_down = {d_down2} < 0")
     print(f"  W(1281)  = {w2} < 0")

@@ -3,15 +3,22 @@ node_id: FSP-HUBBARD-PROTECTED-REPRESENTATIONS
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Hubbard determinant positivity is restricted to the package stated half-filled bipartite
-    or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct
-    witnesses.
+  source_statement: 'For the Trotter auxiliary-field Hubbard determinants, the spin-determinant product
+    d_up d_down is nonnegative under the stated pairing relations (half-filled bipartite: d_down = d_up/det
+    P_up with det P_up > 0; attractive spin-balanced: equal spin determinants with a nonnegative field
+    prefactor), and two exact fields, mask 15721 on the four-site ring at z=2 and mask 1281 on the triangle
+    at z=1, have d_up > 0 > d_down, so the product is not nonnegative for every field.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - stated Hubbard model and protected symmetry hypotheses
-  source_bottleneck: Determinant pairing nonnegativity is narrowed to the stated half-filled bipartite
-    and attractive spin-balanced hypotheses; outside those protections, negative witnesses 15721 and 1281
-    refute unconditional determinant positivity.
+  source_bottleneck: 'Not stated in Lean: (1) that the half-filled bipartite relation d_down = d_up/det
+    P_up with det P_up > 0 and the attractive spin-balanced relation d_up = d_down follow from the Trotter
+    transfer matrices, since the Lean theorems take the first as a hypothesis and the second as the form
+    C d^2; (2) that the stored rational pairs for masks 15721 and 1281 are det(I+P_sigma) of the ring
+    and triangle matrices; (3) any statement that positivity fails on all or generic fields outside the
+    protections. Lean states the arithmetic consequences and the sign of two stored products. The pairing
+    relations are checked exactly only on 256 ring fields and 64 triangle fields at two slices, and the
+    two witnesses by checks/independent/fsp-hubbard-protected-representations.py.'
   source_refs:
   - dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md
   - dag/derivations/independent/fsp-hubbard-protected-representations.md
@@ -36,16 +43,16 @@ source_provenance:
 operation_candidates:
 - kind: structure
   name: DeterminantPair
-  line: 95
+  line: 107
   signature_excerpt: 'structure DeterminantPair (F : Type*)'
   source: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  source_sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: hubbard_determinant_positivity_is_restricted
-  line: 168
+  line: 184
   signature_excerpt: |-
     theorem hubbard_determinant_positivity_is_restricted :
         (∀ (d_up d_down det_P : ℚ),
@@ -57,44 +64,44 @@ relation_candidates:
         (¬ (∀ (p : DeterminantPair ℚ), 0 ≤ p.weight))
   source: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  source_sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: not_unconditional_positivity
-  line: 158
+  line: 173
   signature_excerpt: |-
     theorem not_unconditional_positivity :
         ¬ (∀ (p : DeterminantPair ℚ), 0 ≤ p.weight)
   source: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  source_sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: half_filled_bipartite_weight_nonneg
-  line: 72
+  line: 84
   signature_excerpt: |-
     theorem half_filled_bipartite_weight_nonneg {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
         (d_up d_down det_P : F) (h_det_pos : 0 < det_P) (h_pair : d_down = d_up / det_P) :
         0 ≤ d_up * d_down
   source: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  source_sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: attractive_weight_nonneg
-  line: 42
+  line: 52
   signature_excerpt: |-
     theorem attractive_weight_nonneg {R : Type*} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
         (C d : R) (hC : 0 ≤ C) : 0 ≤ C * (d * d)
   source: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  source_sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -104,36 +111,36 @@ source_bindings:
   symbol: CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted
   path: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   declaration_status: declaration_found_not_proof_checked
-  line: 168
+  line: 184
   role: source_lead_only
 - original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.not_unconditional_positivity
   availability: local
   symbol: CampaignFspHubbardProtected.not_unconditional_positivity
   path: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   declaration_status: declaration_found_not_proof_checked
-  line: 158
+  line: 173
   role: source_lead_only
 - original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg
   availability: local
   symbol: CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg
   path: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   declaration_status: declaration_found_not_proof_checked
-  line: 72
+  line: 84
   role: source_lead_only
 - original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.attractive_weight_nonneg
   availability: local
   symbol: CampaignFspHubbardProtected.attractive_weight_nonneg
   path: lean4/CampaignFspHubbardProtected.lean
   repository: this_repository
-  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  sha256: 69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074
   declaration_status: declaration_found_not_proof_checked
-  line: 42
+  line: 52
   role: source_lead_only
 presentation:
   colours: []

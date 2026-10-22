@@ -18,11 +18,19 @@ bipartite or attractive spin-balanced hypotheses; exact negative fields outside
 those protections remain distinct witnesses."
 
 Outcome: Narrowed
-- Proved in Lean 4: Algebraic determinant pairing identities (attractive spin-balanced
-  and half-filled bipartite particle-hole symmetric representations produce nonnegative
-  determinant weights W ≥ 0).
-- Proved in Lean 4: Explicit rational negative determinant witnesses outside those
-  protections refute unconditional determinant positivity: ¬ (∀ p, 0 ≤ p.weight).
+- Stated in Lean 4: arithmetic consequences of the pairing relations. A product `C * (d * d)`
+  with `0 ≤ C` is nonnegative, and `d_up * d_down` is nonnegative when `d_down = d_up / det_P`
+  with `0 < det_P`. The pairing relations themselves (`P_up = P_down`, and
+  `d_down = d_up / det P_up` from `η T η = T⁻¹`) are NOT derived from Hubbard transfer matrices
+  here: the attractive case is entered as the form `C * (d * d)` and the half-filled bipartite
+  case as the hypothesis `h_pair`.
+- Stated in Lean 4: two stored rational pairs, `(d_up, d_down)` for masks 15721 and 1281, have
+  `d_up > 0 > d_down`, hence negative product. That these pairs are `det (I + P_σ)` of the
+  stated four-site ring and triangle matrices is NOT derived in Lean; it is recomputed exactly
+  by `checks/independent/fsp-hubbard-protected-representations.py`.
+- `¬ (∀ p : DeterminantPair ℚ, 0 ≤ p.weight)` is a statement about arbitrary pairs of
+  rationals. Any pair of opposite sign refutes it, so it has no Hubbard content beyond the
+  witnesses above.
 -/
 
 namespace CampaignFspHubbardProtected
@@ -32,7 +40,9 @@ namespace CampaignFspHubbardProtected
 /-- In the attractive spin-balanced Hubbard auxiliary representation, the up and down
     single-particle propagators are identical: `P_up = P_down`, hence `d_up = d_down = d`.
     The determinant product is an algebraic square `d * d = d^2`.
-    Over any ordered commutative ring, this product is non-negative. -/
+    Over any ordered commutative ring, this product is non-negative.
+    This theorem states only that arithmetic fact: the equality `P_up = P_down` of the
+    transfer-matrix products is not derived in Lean. -/
 theorem attractive_pairing_sq_nonneg {R : Type*} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
     (d : R) : 0 ≤ d * d := by
   nlinarith
@@ -60,7 +70,9 @@ theorem attractive_weight_pos {R : Type*} [CommRing R] [LinearOrder R] [IsStrict
     `η P_down η = (P_up^T)⁻¹`, which implies the determinant pairing
     `d_down = d_up / det(P_up)`.
     Over any field, the determinant product satisfies
-    `d_up * d_down = (d_up * d_up) / det(P_up)`. -/
+    `d_up * d_down = (d_up * d_up) / det(P_up)`.
+    The relation `h_pair` is a hypothesis here: the sublattice conjugation `η T η = T⁻¹`
+    and the multi-slice product are not formalized. -/
 theorem half_filled_bipartite_weight_eq {F : Type*} [Field F]
     (d_up d_down det_P : F) (h_pair : d_down = d_up / det_P) :
     d_up * d_down = (d_up * d_up) / det_P := by
@@ -111,7 +123,8 @@ theorem opposite_signs_weight_neg {R : Type*} [CommRing R] [LinearOrder R] [IsSt
 /-! ## 4. Explicit Negative Determinant Witnesses Outside Protection -/
 
 /-- Witness 1: 4-site ring with 4 time slices, repulsive U, doped away from half-filling
-    (`r = 2`, `h = 8`, `z = 2`, field mask 15721).
+    (`r = 2`, `h = 8`, `z = 2`, field mask 15721). The two rationals are stored values;
+    Lean does not derive them from the ring transfer matrices.
     From `papers/core/fsp/docs/sql_meron_hubbard.md` §5 and `code/python/src/fsp/sign_sql/exact_models.py`. -/
 def witness_doped_ring : DeterminantPair ℚ := {
   d_up := 11072073737867929807204939234025 / 2305843009213693952,
@@ -131,7 +144,7 @@ theorem witness_doped_ring_weight_neg : witness_doped_ring.weight < 0 := by
   exact opposite_signs_weight_neg witness_doped_ring witness_doped_ring_d_up_pos witness_doped_ring_d_down_neg
 
 /-- Witness 2: 3-site triangle (frustrated / non-bipartite), 4 time slices, repulsive U
-    (`r = 2`, `h = 8`, `z = 1`, field mask 1281).
+    (`r = 2`, `h = 8`, `z = 1`, field mask 1281). Stored values, as for witness 1.
     From `papers/core/fsp/docs/sql_meron_hubbard.md` §5 and `code/python/src/fsp/sign_sql/exact_models.py`. -/
 def witness_triangle : DeterminantPair ℚ := {
   d_up := 2661572208368287551525625 / 9223372036854775808,
@@ -153,8 +166,10 @@ theorem witness_triangle_weight_neg : witness_triangle.weight < 0 := by
 
 /-! ## 5. Refutation of Unconditional Positivity (Narrowing Theorem) -/
 
-/-- Unconditional positivity of Hubbard auxiliary determinant weights fails:
-    there exist concrete field configurations whose determinant product weight is strictly negative. -/
+/-- Nonnegativity of `d_up * d_down` fails for arbitrary rational pairs: the stored witness
+    pair has a strictly negative product. Any opposite-sign pair would do, so this theorem
+    has Hubbard content only through the identification of the witness with masks 15721 and
+    1281, which is checked outside Lean. -/
 theorem not_unconditional_positivity :
     ¬ (∀ (p : DeterminantPair ℚ), 0 ≤ p.weight) := by
   intro h_all
@@ -162,9 +177,10 @@ theorem not_unconditional_positivity :
   have h_neg := witness_doped_ring_weight_neg
   linarith
 
-/-- Summary theorem: Hubbard determinant positivity holds under the protected
-    pairing hypotheses (attractive or half-filled bipartite), but fails unconditionally
-    due to explicit negative witnesses outside those protections. -/
+/-- Summary of the arithmetic statements above: nonnegativity under the pairing relation
+    `d_down = d_up / det_P` with `0 < det_P`, nonnegativity of `C * (d * d)`, and the
+    negative product of the two stored witness pairs. Not a statement about Hubbard
+    transfer matrices. -/
 theorem hubbard_determinant_positivity_is_restricted :
     (∀ (d_up d_down det_P : ℚ),
       0 < det_P → d_down = d_up / det_P → 0 ≤ d_up * d_down) ∧

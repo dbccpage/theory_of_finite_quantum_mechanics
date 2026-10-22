@@ -95,21 +95,36 @@ Two concrete rational witnesses from `papers/core/fsp/docs/sql_meron_hubbard.md`
 - **Product Weight:**
   $$W(1281) = d_\uparrow \, d_\downarrow = \frac{-862091447562875338563475227905478168562109375}{324518553658426726783156020576256} < 0.$$
 
-Both negative witnesses are verified in Lean 4 (`CampaignFspHubbardProtected.lean`, theorems `witness_doped_ring_weight_neg` and `witness_triangle_weight_neg`) and in the standalone check script `checks/independent/fsp-hubbard-protected-representations.py`.
+The determinants and products above are recomputed exactly by the standalone check script `checks/independent/fsp-hubbard-protected-representations.py`, and independently by a second exact-`Fraction` script written for the review (bonds applied in lexicographic order, then reversed: the ring is $(0,1),(0,3),(1,2),(2,3)$; with the listed order $(0,1),(1,2),(2,3),(0,3)$ the numbers differ). The denominators are $2^{61}, 2^{67}, 2^{128}$ (ring) and $2^{63}, 2^{45}, 2^{108}$ (triangle). Lean 4 (`CampaignFspHubbardProtected.lean`, `witness_doped_ring_weight_neg`, `witness_triangle_weight_neg`) states only that the stored rational pairs have a negative product. It does not derive those pairs from the matrices.
+
+The same field mask 15721 on the ring at $z = 1$ satisfies $d_\downarrow = d_\uparrow/\det P_\uparrow$ and has $W \ge 0$, so the sign change at $z = 2$ is due to leaving half filling. On the triangle at $z=1$ and mask 1281 the pairing relation fails (odd cycle).
 
 ---
 
 ## 4. What is proved
 
-1. **Attractive spin-balanced pairing nonnegativity:** For any real or ordered commutative ring representation, when $P_\uparrow = P_\downarrow$, the determinant pairing is an exact square $d^2 \ge 0$, and with $C \ge 0$, $W = C d^2 \ge 0$ (`attractive_pairing_sq_nonneg`, `attractive_weight_nonneg`).
-2. **Half-filled bipartite particle-hole pairing nonnegativity:** When $d_\downarrow = d_\uparrow / \det P_\uparrow$ with $\det P_\uparrow > 0$, the determinant product satisfies $d_\uparrow d_\downarrow = d_\uparrow^2 / \det P_\uparrow \ge 0$ (`half_filled_bipartite_weight_eq`, `half_filled_bipartite_weight_nonneg`).
-3. **Explicit rational negative witnesses:** Exact rational evaluation shows $W(15721) < 0$ for the doped 4-site ring and $W(1281) < 0$ for the frustrated 3-site triangle (`witness_doped_ring_weight_neg`, `witness_triangle_weight_neg`).
-4. **Refutation of unconditional determinant positivity:** Unconditional determinant positivity is refuted in Lean 4: $\neg (\forall p, 0 \le p.\text{weight})$ (`not_unconditional_positivity`, `hubbard_determinant_positivity_is_restricted`).
-5. **Outcome classification:** The node status is honestly classified as `Narrowed` (the claim holds conditionally under stated symmetry hypotheses, and fails unconditionally).
+Sections 2.1 and 2.2 are prose derivations (a mathematician can check them by hand); they are not formalized in Lean. What the Lean module states is narrower, and is listed first.
+
+**In Lean 4 (arithmetic only):**
+1. For $C \ge 0$ in an ordered commutative ring, $C\,(d \cdot d) \ge 0$ (`attractive_pairing_sq_nonneg`, `attractive_weight_nonneg`). The equality $d_\uparrow = d_\downarrow$ is not a hypothesis or a conclusion of this theorem; it is built into the form $d \cdot d$.
+2. In an ordered field, if $d_\downarrow = d_\uparrow / \det P_\uparrow$ and $\det P_\uparrow > 0$, then $d_\uparrow d_\downarrow = d_\uparrow^2/\det P_\uparrow \ge 0$ (`half_filled_bipartite_weight_eq`, `half_filled_bipartite_weight_nonneg`). The pairing relation is a hypothesis.
+3. Two stored rational pairs (masks 15721 and 1281) have $d_\uparrow > 0 > d_\downarrow$, hence a negative product (`witness_doped_ring_weight_neg`, `witness_triangle_weight_neg`).
+4. $\neg (\forall p : \text{DeterminantPair}\ \mathbb{Q},\ 0 \le p.\text{weight})$ (`not_unconditional_positivity`). Any pair with opposite signs refutes it, so by itself it says nothing about Hubbard fields.
+
+**Exact computation (not Lean):**
+5. The pairing relation $d_\downarrow = d_\uparrow/h^{\sum s}$ holds, and $W \ge 0$, on all 256 fields of the 4-site ring at two slices with $r = 3/2$, $h = 2$, $z = 1$. The attractive relation $d_\uparrow = d_\downarrow$ holds on all 64 fields of the triangle at two slices with $r=3/2$, $h=2$, $z=3/2$.
+6. The determinants and products of Section 3 for masks 15721 and 1281.
+
+**By prose derivation only:**
+7. $\eta T \eta = T^{-1}$ and hence the pairing relation for every bipartite graph at $z=1$; equality $P_\uparrow = P_\downarrow$ in the attractive case; $\det P_\uparrow = z^{|V|M} h^{\sum s}$.
+
+**Outcome classification:** `Narrowed`. The status of the node stays `CONDITIONAL`.
 
 ---
 
 ## 5. What is assumed
+
+0. **In the Lean module:** the half-filled bipartite pairing relation $d_\downarrow = d_\uparrow/\det P_\uparrow$ with $\det P_\uparrow>0$ (a hypothesis), the square form $C\,d\cdot d$ for the attractive case, and the two stored rational witness pairs. None of these is derived from the transfer matrices in Lean.
 
 1. **Finite Trotter/Suzuki discretization:** The single-particle transfer matrix $T$ is given by the palindromic product of bond exponentials $R_{xy}(r)$, and imaginary time is discretized into $M$ slices.
 2. **Discrete auxiliary-field transformation:** The discrete Hubbard–Stratonovich decomposition with single-site binary fields $s_{i,t} \in \{-1, +1\}$ is used.
@@ -131,5 +146,5 @@ Both negative witnesses are verified in Lean 4 (`CampaignFspHubbardProtected.lea
 
 - **What it supports:** Supports the restriction of Hubbard auxiliary-field determinant positivity to half-filled bipartite or attractive spin-balanced representations, and provides certified rational countermodels outside those protections.
 - **What it does not support:** Does not support unconditional sign-free Monte Carlo simulation for generic Hubbard models, and does not establish that all possible fermion representations are obstructed.
-- **Narrowest defensible claim:** For the discrete Trotter Hubbard–Stratonovich determinant representation, determinant product weights are algebraically nonnegative under attractive spin-balanced or half-filled bipartite particle-hole symmetry, and acquire strictly negative values outside those protections.
-- **Next test needed:** Formalize the multi-slice Suzuki product and sublattice conjugation $\eta T \eta = T^{-1}$ directly within Lean 4 matrix algebra.
+- **Narrowest defensible claim:** For the discrete Trotter Hubbard–Stratonovich determinant representation, the determinant product is nonnegative under the pairing relations (half-filled bipartite: $d_\downarrow = d_\uparrow/\det P_\uparrow$ with $\det P_\uparrow>0$; attractive spin-balanced: equal spin determinants), by the prose derivation of Section 2 and an arithmetic Lean statement; and at two exact fields (mask 15721 on the 4-site ring at $z=2$, mask 1281 on the 3-site triangle at $z=1$) the product is strictly negative, by exact computation. Positivity is not shown to fail on all or generic fields outside the protections (the same mask 15721 at $z = 1$ is nonnegative).
+- **Next test needed:** Formalize the multi-slice Suzuki product and sublattice conjugation $\eta T \eta = T^{-1}$ directly within Lean 4 matrix algebra, and evaluate the witness determinants $\det(I+P_\sigma)$ of the ring and triangle matrices in Lean, so that the stored pairs are derived rather than stored.
