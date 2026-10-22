@@ -22,9 +22,9 @@ readout. This is the second law under which the inner product is selected up to
 scale; it is supplied, not derived from primitive difference, and sectors with
 distinguished labels would break it (then the diagonal is constant only on orbits)."
 
-## Outcome: Reduced
-The inner product selection theorem reduces the uniqueness of the inner product
-up to scale to two supplied laws on the quadratic readout `qf G x = x ⬝ᵥ (G *ᵥ x)`:
+## Outcome: Narrowed (the symmetry law itself is a hypothesis here, not weakened or derived)
+The selection theorem below takes uniqueness of the inner product up to scale from
+two supplied laws on the quadratic readout `qf G x = x ⬝ᵥ (G *ᵥ x)`:
 1. `SectorAdditive G`: additivity on disjoint sector supports forces all off-diagonal
    entries of a symmetric Gram matrix to vanish (`G i j = 0` for `i ≠ j`).
 2. `Invariant G σ` for all permutations in a set `S` whose generated group acts

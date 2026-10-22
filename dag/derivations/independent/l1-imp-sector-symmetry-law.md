@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 **AuthorityEffect:** None.
 **Target Node:** `L1-IMP-SECTOR-SYMMETRY-LAW`
-**Outcome Classification:** `Reduced`
+**Outcome Classification:** `Narrowed`. The campaign README defines `Reduced` as a proof from a strictly weaker, explicitly named assumption. No such weaker assumption is proved here: the node is the transitive-symmetry law itself, and the Lean takes it (or its orbit-wise form) as a hypothesis. The selection `G = c I_n` from symmetry, sector additivity and transitivity was already proved by `SectorFormUniqueness.eq_smul_one` (run `20261021T013500Z_sector_form`); the module here re-proves it in a separate namespace and adds the orbit-wise form (`diag_const_on_orbit`, valid for every `S`) and the three-sector countermodel. The node stays `IMPORTED_ASSUMPTION`.
 
 ---
 
@@ -14,21 +14,21 @@ In the finite quantum mechanics framework, the pass from $L_1$ sector weights to
 $$q_G(x) = x^T G x = \sum_{i,j=1}^n G_{ij} x_i x_j$$
 with corresponding bilinear pairing $\langle x, y \rangle_G = x^T G y$.
 
-In primitive difference theory, there is no physical postulate forcing the quadratic readout to be invariant under arbitrary relabellings of sectors. Node `L1-IMP-SECTOR-SYMMETRY-LAW` investigates the reduction of inner product uniqueness to two specific mathematical hypotheses on the quadratic readout:
+In primitive difference theory, there is no physical postulate forcing the quadratic readout to be invariant under arbitrary relabellings of sectors. Node `L1-IMP-SECTOR-SYMMETRY-LAW` states one of two supplied hypotheses on the quadratic readout under which the inner product is unique up to scale:
 1. **Sector Additivity on Disjoint Supports:** For any vectors $u, v \in \mathbb{Q}^n$ with disjoint sector supports (meaning for every coordinate $k$, $u_k = 0$ or $v_k = 0$),
    $$q_G(u + v) = q_G(u) + q_G(v)$$
 2. **Transitive Sector Symmetry:** The quadratic readout is invariant under a set of sector permutations $S \subset \mathrm{Perm}(\{1, \dots, n\})$ whose generated group $\langle S \rangle$ acts transitively on sectors:
    $$q_G(P_\sigma x) = q_G(x) \quad \forall \sigma \in S, \forall x \in \mathbb{Q}^n$$
    where $(P_\sigma x)_i = x_{\sigma^{-1}(i)}$, ensuring $P_\sigma e_j = e_{\sigma(j)}$.
 
-The objective is to establish the exact reduction:
+The objective is to record exactly what the two hypotheses give, and what survives when the second one is relaxed to invariance under a non-transitive set:
 - Under both hypotheses together (with symmetry $G^T = G$), $G$ is uniquely forced to be a scalar multiple of the identity, $G = c I_n$ ($c = G_{11}$), selecting the Euclidean dot product up to scale.
 - Neither hypothesis alone suffices: sector additivity without transitive symmetry leaves diagonal weights unconstrained; transitive symmetry without sector additivity allows cross-sector interference.
 - When sectors carry distinguished physical labels that break transitivity, invariance under $\langle S \rangle$ constrains the diagonal of $G$ to be constant only on each orbit of $\langle S \rangle$, breaking global scalar uniqueness.
 
 ---
 
-## 2. Derivation of the Reduction
+## 2. Derivation from the two supplied hypotheses
 
 ### Step 1: Sector Additivity Forces an Orthogonal Basis
 Let $G \in M_n(\mathbb{Q})$ be a symmetric Gram matrix ($G_{ij} = G_{ji}$). For any pair of distinct sectors $i \neq j$, the standard unit basis vectors $e_i$ and $e_j$ have disjoint support. Expanding the quadratic readout of their sum yields:
@@ -121,7 +121,7 @@ Because the off-diagonal entries $G_{12} = G_{21} = 1 \neq 0$ do not vanish, $G 
 ## 4. Summary & Claim Hygiene
 
 ### What is proved
-1. **Reduction Theorem:** For any rational Gram matrix $G \in M_n(\mathbb{Q})$, the conditions of symmetry ($G^T = G$), sector additivity on disjoint supports, and invariance under a permutation set $S$ whose generated group acts transitively reduce the Gram matrix to a single uniform scale factor: $G = c I_n$ where $c = G_{11}$ (`CampaignL1SectorSymmetry.eq_smul_one_generated`).
+1. **Selection theorem (consequence of the supplied laws, not a weakening of them; also in `SectorFormUniqueness.eq_smul_one_generated`):** For any rational Gram matrix $G \in M_n(\mathbb{Q})$, the conditions of symmetry ($G^T = G$), sector additivity on disjoint supports, and invariance under a permutation set $S$ whose generated group acts transitively reduce the Gram matrix to a single uniform scale factor: $G = c I_n$ where $c = G_{11}$ (`CampaignL1SectorSymmetry.eq_smul_one_generated`).
 2. **Orbit-Constant Diagonal:** For any permutation set $S$, readout invariance under $S$ forces the diagonal entries of $G$ to be constant on each orbit of $\langle S \rangle$ (`CampaignL1SectorSymmetry.diag_const_on_orbit`).
 3. **Failure Under Distinguished Labels:** Countermodels on $n = 2$ (`diag12`) and $n = 3$ (`G_dist3 = diag(1, 1, 2)`) prove that when sector labels are distinguished, breaking transitivity, the diagonal is constant only on orbits and $G$ fails to be a scalar multiple of $I_n$.
 4. **Independent Necessity of Sector Additivity:** Countermodel `unif12 = 1 + J` proves that transitive symmetry alone does not force off-diagonal vanishing or select the inner product up to scale.
@@ -133,6 +133,10 @@ Because the off-diagonal entries $G_{12} = G_{21} = 1 \neq 0$ do not vanish, $G 
 3. Transitive sector symmetry is supplied as an imported assumption (the second law of inner product selection).
 4. Finite dimension $n$ and rational scalars $\mathbb{Q}$ (exact arithmetic; no real limits or continuum approximations).
 
-### What is open
+#### What is not proved
+- The node statement itself: that the readout is invariant under sector relabelling by a set whose generated group acts transitively. It is the hypothesis of every theorem above (`Invariant`, `TransitiveOn` and `Generated` are definitions), not a conclusion. The countermodels show that the law is needed for the conclusion `G = c I_n`; they do not show that the law fails to follow from the finite theory's primitives.
+- A strictly weaker replacement for the law. None is stated or proved here.
+
+## What is open
 1. Derivation of transitive sector symmetry from more primitive dynamical or relational principles: within the existing primitive difference theory, sector labels remain potentially distinguishable.
 2. Physical characterization of which physical regimes justify exact permutation symmetry among sectors versus regimes where distinguished boundary or superselection sectors break transitivity.

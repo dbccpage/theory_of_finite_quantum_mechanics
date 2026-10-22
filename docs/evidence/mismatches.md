@@ -10,7 +10,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 55 |
-| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 26 |
+| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
 ## `proved_lean_below_e3` (219)
 
@@ -519,7 +519,7 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0289](nodes/TFQ-0289.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 
-## `receipt_names_uncited_module` (26)
+## `receipt_names_uncited_module` (27)
 
 A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence). Ordered by downstream nodes, most first.
 
@@ -538,6 +538,7 @@ A replay receipt names this node for a Lean module that the node does not cite i
 | [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 496 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
 | [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 461 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 221 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
+| [L1-IMP-SECTOR-SYMMETRY-LAW](nodes/L1-IMP-SECTOR-SYMMETRY-LAW.md) | L1_TO_L2 | `IMPORTED_ASSUMPTION` | E3 | 142 | a replay receipt names this node for lean4/CampaignL1SectorSymmetry.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-ADMISSION-FLOOR](nodes/PG-ADMISSION-FLOOR.md) | PREGENESIS | `PROVED_LEAN` | E3 | 117 | a replay receipt names this node for lean4/AdmissionFloor.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-HISTORY-REPORT-CRITERION](nodes/PG-HISTORY-REPORT-CRITERION.md) | PREGENESIS | `PROVED_LEAN` | E3 | 53 | a replay receipt names this node for lean4/HistoryReport.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-QUOTIENT-EXACT-SEQUENCE](nodes/PG-WDP-QUOTIENT-EXACT-SEQUENCE.md) | WDP | `PROVED_LEAN` | E3 | 40 | a replay receipt names this node for lean4/WdpQuotientSequence.lean, but the node's lean, rust and source fields do not cite it |
