@@ -1,0 +1,98 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "raise_status",
+      "inputs": [
+        "StatusVector"
+      ],
+      "output": "StatusVector",
+      "arity": 1,
+      "carrier": "Fin n → WdpBridgeObligations.Status",
+      "ref": {
+        "path": "lean4/WdpBridgeObligations.lean",
+        "decl": "WdpBridgeObligations.raise",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "discharged_count",
+      "inputs": [
+        "StatusVector"
+      ],
+      "output": "Nat",
+      "arity": 1,
+      "carrier": "Fin n → WdpBridgeObligations.Status",
+      "ref": {
+        "path": "lean4/WdpBridgeObligations.lean",
+        "decl": "WdpBridgeObligations.dischargedCount",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "end_to_end_iff_count",
+      "statement": "EndToEnd v holds iff dischargedCount v = n",
+      "hypotheses": "v : Fin n → Status",
+      "ref": {
+        "path": "lean4/WdpBridgeObligations.lean",
+        "decl": "WdpBridgeObligations.endToEnd_iff_count",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "raise_preserves_end_to_end",
+      "statement": "Raising a status vector preserves EndToEnd",
+      "hypotheses": "EndToEnd v",
+      "ref": {
+        "path": "lean4/WdpBridgeObligations.lean",
+        "decl": "WdpBridgeObligations.raise_preserves_endToEnd",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_control_not_discharge",
+      "statement": "A control-only status is not discharged, so passing the finite controls does not discharge a bridge obligation.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "end_to_end_iff_count"
+      ],
+      "lean_skeleton": "example : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/WdpBridgeObligations.lean",
+        "decl": "WdpBridgeObligations.control_only_not_discharged",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_postnikov",
+      "claim": "The S(n) stages resolve W_n as a discrete Postnikov tower",
+      "rejecting_invariant": "The derivation programme states the S(n) are construction stages, not Postnikov truncations of a single space (TFQ-0520)."
+    },
+    {
+      "id": "nm_controls_discharge",
+      "claim": "Finite checks passing discharges obligations GEN-WDP-O01 to O05",
+      "rejecting_invariant": "Controls passing is not discharge; the obligations stay open (TFQ-0343)."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_bridges",
+      "expr": "10 + 1",
+      "value": "11"
+    }
+  ],
+  "open_obligations": [
+    "GEN-WDP-O01 to O05 remain open (TFQ-0343)",
+    "No generators or relations grounded for bridges 01-10 themselves; only the obligation ledger is in the sources",
+    "Lean proofs for the bridge statements are not written",
+    "The eleven-bridge versus ten-row count needs host clarification"
+  ]
+}

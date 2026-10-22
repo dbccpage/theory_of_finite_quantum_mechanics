@@ -1,0 +1,159 @@
+{
+  "task_id": "PGW-DECLARED-CHALLENGE-IMPORT-PER-LEVEL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "4cb3fac70e9b33c5fbb4bfc98b3fd2cb0ef915539ce9bf3b032a25cbcf9d6e84",
+  "candidate_sha256": "062deac662e02e76a622da4aff8a1f521c1305ccb3b7f739a3b3ae0505b5aa59",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 2,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-21T23:58:49Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_mark2_toDatum",
+        "ordered_inputs": [
+          "Mark2"
+        ],
+        "output": "Datum",
+        "arity": 1,
+        "carrier": "Mark2 to Datum",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.Mark2.toDatum",
+            "line": 193
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum",
+          "kind": "def",
+          "line": 193,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_toDatum_bijective",
+        "equation_or_predicate": "Mark2.toDatum is a bijection from the two marks onto the two data of the first separation regime",
+        "typing_conditions": "none beyond the first separation regime",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.Mark2.toDatum_bijective",
+            "line": 197
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.Mark2.toDatum_bijective",
+          "kind": "theorem",
+          "line": 197,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_allpairs_length",
+        "equation_or_predicate": "The all-pairs requirement list for n data has length n*n",
+        "typing_conditions": "n data",
+        "source_pins": [
+          {
+            "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+            "declaration": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+            "line": 254
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/WorldObserverDirectedColimitNoGo.lean",
+          "decl": "OmegaWorld.ObserverDirectedColimitNoGoW84.allPairs_length",
+          "kind": "theorem",
+          "line": 254,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_admit_gate",
+        "equation_or_predicate": "Only the admit operation changes n among the six pre-generation operations",
+        "typing_conditions": "pre-generation operations",
+        "source_pins": [
+          {
+            "path": "lean4/DerivationDagQMClosure.lean",
+            "declaration": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+            "line": 764
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate",
+          "kind": "theorem",
+          "line": 764,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "OB-1: no endogenous demand generator",
+      "No existing declaration grounds the demand ledger or the one-import rule; the ledger type needs to be proposed new",
+      "Link between the admit gate and the import row is unproved",
+      "Pricing of the import is not formalised",
+      "lemma L-import-row-per-stage-change unverified: Lean elaboration disabled",
+      "near_miss nm-sufficiency unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

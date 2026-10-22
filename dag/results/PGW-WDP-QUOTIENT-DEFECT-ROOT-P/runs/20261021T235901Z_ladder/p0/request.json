@@ -1,0 +1,309 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-WDP-QUOTIENT-DEFECT-ROOT-P",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "324d46602827bd651d73ba55e38244a5c35a1ed9d022242f6ccbb2a527a3190c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-WDP-QUOTIENT-DEFECT-ROOT-P stage=P0 attempt=a3-1 in=324d4660 guided=yes\n@TARGET [DEFINITION] Root P, the evaluation layer: with V a finite-dimensional real space of defects, A a finite-dimensional space of repairs, d: A → V a linear repair map, δ ∈ V an exhibited defect and J a declared seminorm or cost, the quotient defect is Φ_J([δ]) = inf_{α ∈ A} J(δ − dα), where [δ] is the coset of δ modulo im d. The expression is not primitive: it imports a linear carrier, a repair map and a cost, each declared rather than derived. Root P presupposes Root W, the admitted cut with its witnessed irreflexive relation, as carrier and never substitutes for it. This infimum over repairs is the quantity WDP later writes Φ₁.\n@BOTTLENECK A declared construction, not a theorem; it derives none of the carrier, repair map or cost from the admitted cut, and Φ_J([δ]) equals J(δ) or ‖d₀δ‖₁ only where that value is shown to be the infimum.\n@ASSUME Declared defect space V, repair space A, linear repair map d and cost J (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.AdmissibleWitnessedExactRepair | def | def AdmissibleWitnessedExactRepair (C : ObstructionClassifier Q) (S : AdmissibleRepairSystem Q) (zeroClass : Q) (q : Q) : Prop\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.RepairCost | def | def RepairCost (Q : Type u)\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_witnessedExactRepair | theorem | theorem admissibleWitnessedExactRepair_implies_witnessedExactRepair (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQu\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.admissibleWitnessedExactRepair_implies_exact | theorem | theorem admissibleWitnessedExactRepair_implies_exact (C : ObstructionClassifier Q) (S : AdmissibleRepairSystem Q) (zeroClass : Q) (q : Q) : Admissible\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.CertificateRepairsToZero | def | def CertificateRepairsToZero (C : ObstructionClassifier Q) (S : PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q) (zeroClass : Q) (q : Q) (cert : Re\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_admissible_witnessed_exact | theorem | theorem certificate_implies_admissible_witnessed_exact (C : ObstructionClassifier Q) (S : PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q) (zeroCla\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_repairs_to_zero | theorem | theorem certificate_repairs_to_zero (C : ObstructionClassifier Q) (S : PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q) (zeroClass : Q) (q : Q) (ce\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_implies_ordinary_witnessed_exact | theorem | theorem certificate_implies_ordinary_witnessed_exact (P : PointedPrimitiveDifference α β) (C : ObstructionClassifier (PointedResidualQuotient P)) (S :\n lean4/PrimitiveRepairCertificate.lean | OmegaCore.PrimitiveRepairCertificate.certificate_from_admissible_witnessed_exact | theorem\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.RepairsToZero | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.WitnessedExactRepair | def\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.witnessedExactRepair_implies_exact | theorem\n lean4/PrimitiveRepairWitness.lean | OmegaCore.PrimitiveRepairWitness.repairMap_repairs_to_zero_gives_witness | theorem\n lean4/WdpGrowthNoRepair.lean | WdpGrowthNoRepair.cost | def\n lean4/WdpQuotientSequence.lean | WdpQuotientSequence.seminorm_instance | theorem\n lean4/WdpQuotientSequence.lean | WdpQuotientSequence.gamma2_repair | theorem\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem | structure\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepair | def\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairWitness | structure\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.constantZeroRepair | def\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.NoTrivialRepairCollapse | def\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.BudgetAdmissible | def\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.budgetAdmissible_implies_admissible | theorem\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.admissibleRepairWitness_implies_repairWitness | theorem\n lean4/PrimitiveAdmissibleRepair.lean | OmegaCore.PrimitiveAdmissibleRepair.constantZeroRepair_inadmissible_blocks_constant_zero_witness | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] Phi_J . slot 0 <- repair_inf via R_rep_indep -- Do not compose operations whose colours do not match.\n [vacuous_proof] L_weak_dual: Weak duality: for y with d0*y=0 and |y_e|<=w_e, <y,delta> <= weighted l1 J(delta - d0 f) for ever -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 2,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "PGW-WDP-FAILED-SAMENESS",
+      "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
+      "PGW-WDP-SEVEN-WITNESS-ROLES"
+    ],
+    "feedback": true,
+    "index_position": 775,
+    "neg_entry_ids": [
+      "NEG-1ECE9AC8B43E",
+      "NEG-887F982BD274"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

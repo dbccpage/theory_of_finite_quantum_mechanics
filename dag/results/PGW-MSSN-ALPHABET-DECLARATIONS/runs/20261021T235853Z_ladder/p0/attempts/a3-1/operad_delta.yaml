@@ -1,0 +1,82 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-CB0A00A4769A
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_full_alphabet . slot 0 <- gen_word_alphabet via rel_disjoint_union
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-MSSN-ALPHABET-DECLARATIONS
+- id: NEG-B9BD419B43E2
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: gen_full_alphabet . slot 1 <- gen_mark_pair via rel_disjoint_union
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-MSSN-ALPHABET-DECLARATIONS
+- id: NEG-B9649230C7DE
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'lem_marks_no_pairing: In raw_glyphs, < and > carry no balanced-pairing axiom; pairing is not
+    derivable from the alphabet alone'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-MSSN-ALPHABET-DECLARATIONS
+counterexamples:
+- id: NEG-948F0FACD254
+  class: statement_drift
+  claim_kind: lemma
+  claim: 'lem_gamma_card: card Gamma38 = 38, from 26 + 10 + 2'
+  evidence: numerals 2 appear in the claim but in none of the checked sources (heuristic)
+  decl_key: null
+  confidence: heuristic
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: PGW-MSSN-ALPHABET-DECLARATIONS
+open_obligations:
+- No existing declarations were provided, so every reference is proposed_new
+- The eight separate declarations (terminal spellings, tokenization, grammar, public start, layout, identity
+  policy, annotation decoding, manipulation rules) are not yet formalized as generators
+- Role assignment to glyphs needs a grammar, which is not given
+- The Lean skeleton for lem_marks_no_pairing is a placeholder with sorry
+- 'generator gen_word_alphabet unverified: no existing declaration cited'
+- 'generator gen_mark_pair unverified: no existing declaration cited'
+- 'generator gen_full_alphabet unverified: no existing declaration cited'
+- 'relation rel_disjoint_union unverified: no existing declaration cited'
+- 'relation rel_three_relations_distinct unverified: no existing declaration cited'
+- 'near_miss nm_alphabet_is_atlas_row unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_marks_balanced unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_word_uses_gamma unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: n_sigma
+  expr: 26 + 10
+  value: '36'
+  host_evidence:
+    recomputed: '36'
+- id: n_gamma
+  expr: 26 + 10 + 2
+  value: '38'
+  host_evidence:
+    recomputed: '38'
+- id: n_marks_diff
+  expr: 38 - 36
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []

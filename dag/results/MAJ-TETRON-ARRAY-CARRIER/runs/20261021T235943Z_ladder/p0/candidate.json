@@ -1,0 +1,242 @@
+{
+  "task_id": "MAJ-TETRON-ARRAY-CARRIER",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "9d4d97a13f49d2c44447199d9368dce04a61f33558bfd0ec440fe56c5d0e4372",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_f2_add",
+          "inputs": [
+            "F2Vec",
+            "F2Vec"
+          ],
+          "output": "F2Vec",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        },
+        {
+          "catalog_id": "g_cochain_complex",
+          "inputs": [
+            "F2Map",
+            "F2Map"
+          ],
+          "output": "F2CochainComplex",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_d1d0_zero",
+          "equation_or_predicate": "d1 composed with d0 = 0 mod 2",
+          "typing_conditions": "F2CochainComplex structure",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "F2CochainComplex",
+              "line": 41
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "F2CochainComplex",
+            "kind": "structure",
+            "line": 41,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Define WrapKind and the tetron array generator in Lean",
+        "Prove d1 d0 = 0 for the grid carrier for each wrap",
+        "Homology H1 claims were host-refused earlier; not restated",
+        "Idealized corner-shared layout is a combinatorial carrier, not a physical island model",
+        "generator g_tetron_array unverified: no existing declaration cited",
+        "relation r_array_vertex_count unverified: no existing declaration cited",
+        "near_miss nm_wrap_vertex_count unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_f2_add",
+        "ordered_inputs": [
+          "F2Vec",
+          "F2Vec"
+        ],
+        "output": "F2Vec",
+        "arity": 2,
+        "carrier": "F2 vectors",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "F2Vec.add",
+            "line": 21
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.add",
+          "kind": "def",
+          "line": 21,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "g_cochain_complex",
+        "ordered_inputs": [
+          "F2Map",
+          "F2Map"
+        ],
+        "output": "F2CochainComplex",
+        "arity": 2,
+        "carrier": "F2 cochain complex of tetron array carrier",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "F2CochainComplex",
+            "line": 41
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2CochainComplex",
+          "kind": "structure",
+          "line": 41,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_d1d0_zero",
+        "equation_or_predicate": "d1 composed with d0 = 0 mod 2",
+        "typing_conditions": "F2CochainComplex structure",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "F2CochainComplex",
+            "line": 41
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2CochainComplex",
+          "kind": "structure",
+          "line": 41,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-ECA33ECD0FBC",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_array_complex_valid: The tetron array carrier yields an F2CochainComplex, i.e. d1 d0 = 0 mod 2, for each wrap kind",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MAJ-TETRON-ARRAY-CARRIER"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Define WrapKind and the tetron array generator in Lean",
+      "Prove d1 d0 = 0 for the grid carrier for each wrap",
+      "Homology H1 claims were host-refused earlier; not restated",
+      "Idealized corner-shared layout is a combinatorial carrier, not a physical island model",
+      "generator g_tetron_array unverified: no existing declaration cited",
+      "relation r_array_vertex_count unverified: no existing declaration cited",
+      "near_miss nm_wrap_vertex_count unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_disk_3x4_vertices",
+        "expr": "(3+1)*(4+1)",
+        "value": "20",
+        "host_evidence": {
+          "recomputed": "20"
+        }
+      },
+      {
+        "id": "n_torus_3x4_vertices",
+        "expr": "3*4",
+        "value": "12",
+        "host_evidence": {
+          "recomputed": "12"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "3 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

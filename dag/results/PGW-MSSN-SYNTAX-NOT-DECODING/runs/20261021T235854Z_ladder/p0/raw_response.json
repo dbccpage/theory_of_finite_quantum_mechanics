@@ -1,0 +1,123 @@
+{
+  "task_id": "PGW-MSSN-SYNTAX-NOT-DECODING",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "c78cc14b1fc6da588a55404abb2085605f4ef5c0457f4836c4e177997932bac2",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"recognize\",\"inputs\":[\"Grammar\",\"String\"],\"output\":\"Verdict\",\"arity\":2,\"carrier\":\"accept/refuse verdict of grammar membership only\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"build_ast\",\"inputs\":[\"Grammar\",\"String\"],\"output\":\"AST\",\"arity\":2,\"carrier\":\"parse tree option\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"evaluate\",\"inputs\":[\"AST\"],\"output\":\"NumericResult\",\"arity\":1,\"carrier\":\"exact rational or numeric refusal\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"R_recognition_not_eval\",\"statement\":\"recognize(G,s)=accept does not imply evaluate(build_ast(G,s)) is a value; for s=a:1/0>b:2 and G=scalar_path, recognize accepts while evaluate refuses with division by zero\",\"hypotheses\":\"G permits arbitrary digit denominators, so zero is not excluded lexically\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"R_edge_mark_agreement\",\"statement\":\"in edge_weight_path, a step whose two marks disagree (a>2<b) is refused by recognize\",\"hypotheses\":\"G=edge_weight_path requires both marks on a step to agree\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"evaluate\",\"slot\":0,\"inner\":\"build_ast\",\"licensing_relation\":\"R_recognition_not_eval\"}],\"lemmas\":[{\"id\":\"L_syntax_not_decoding\",\"statement\":\"There exists a string s and grammar G with recognize(G,s)=accept and evaluate of its AST refused (a:1/0>b:2 in scalar_path).\",\"relation_to_target\":\"restates\",\"depends_on\":[\"R_recognition_not_eval\"],\"lean_skeleton\":\"theorem syntax_not_decoding : ∃ (recognized : Prop), recognized := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"NM_accept_implies_valid\",\"claim\":\"If the grammar accepts a string then its numeric evaluation succeeds\",\"rejecting_invariant\":\"a:1/0 is accepted by scalar_path but evaluation refuses division by zero\"},{\"id\":\"NM_finite_tests_total\",\"claim\":\"Passing MSSN_020 and MSSN_023 proves the codec correct for all inputs\",\"rejecting_invariant\":\"finite differential tests are not an all-input argument\"}],\"numeric_claims\":[],\"open_obligations\":[\"No SRC declaration concerns the grammar, scalar_path or edge_weight_path; the listed refusal-store declarations are unrelated and not cited\",\"Formal grammar definitions for scalar_path and edge_weight_path are missing\",\"Lean skeleton is a placeholder and does not formalize the target\",\"Real all-input codec argument is not provided\",\"Lexical exclusion of zero denominators and semantic obligations (acyclicity, triangle inequality) are not formalized\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "recognize",
+        "inputs": [
+          "Grammar",
+          "String"
+        ],
+        "output": "Verdict",
+        "arity": 2,
+        "carrier": "accept/refuse verdict of grammar membership only",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "build_ast",
+        "inputs": [
+          "Grammar",
+          "String"
+        ],
+        "output": "AST",
+        "arity": 2,
+        "carrier": "parse tree option",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "evaluate",
+        "inputs": [
+          "AST"
+        ],
+        "output": "NumericResult",
+        "arity": 1,
+        "carrier": "exact rational or numeric refusal",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "R_recognition_not_eval",
+        "statement": "recognize(G,s)=accept does not imply evaluate(build_ast(G,s)) is a value; for s=a:1/0>b:2 and G=scalar_path, recognize accepts while evaluate refuses with division by zero",
+        "hypotheses": "G permits arbitrary digit denominators, so zero is not excluded lexically",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "R_edge_mark_agreement",
+        "statement": "in edge_weight_path, a step whose two marks disagree (a>2<b) is refused by recognize",
+        "hypotheses": "G=edge_weight_path requires both marks on a step to agree",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "evaluate",
+        "slot": 0,
+        "inner": "build_ast",
+        "licensing_relation": "R_recognition_not_eval"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "L_syntax_not_decoding",
+        "statement": "There exists a string s and grammar G with recognize(G,s)=accept and evaluate of its AST refused (a:1/0>b:2 in scalar_path).",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_recognition_not_eval"
+        ],
+        "lean_skeleton": "theorem syntax_not_decoding : ∃ (recognized : Prop), recognized := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "NM_accept_implies_valid",
+        "claim": "If the grammar accepts a string then its numeric evaluation succeeds",
+        "rejecting_invariant": "a:1/0 is accepted by scalar_path but evaluation refuses division by zero"
+      },
+      {
+        "id": "NM_finite_tests_total",
+        "claim": "Passing MSSN_020 and MSSN_023 proves the codec correct for all inputs",
+        "rejecting_invariant": "finite differential tests are not an all-input argument"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "No SRC declaration concerns the grammar, scalar_path or edge_weight_path; the listed refusal-store declarations are unrelated and not cited",
+      "Formal grammar definitions for scalar_path and edge_weight_path are missing",
+      "Lean skeleton is a placeholder and does not formalize the target",
+      "Real all-input codec argument is not provided",
+      "Lexical exclusion of zero denominators and semantic obligations (acyclicity, triangle inequality) are not formalized"
+    ]
+  }
+}

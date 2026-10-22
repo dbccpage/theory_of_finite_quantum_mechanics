@@ -1,0 +1,225 @@
+{
+  "task_id": "PGW-CANDIDATE-EXTENSION-GENERATOR",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cb5e21cd8de6970d76ea777a492b5e2ccdecd69ca29d234a9d2166833d39e626",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_propose",
+          "inputs": [
+            "Residual"
+          ],
+          "output": "Proposal",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_eval_evidence_only",
+          "equation_or_predicate": "EvalResult is evidence only; admission recomputes it and never trusts it as authorization",
+          "typing_conditions": "Alpha harness trust boundary: host's make_license call is the authorization",
+          "source_pins": [
+            {
+              "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+              "declaration": "evaluation_only_decision",
+              "line": 166
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+            "decl": "evaluation_only_decision",
+            "kind": "fn",
+            "line": 166,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No existing declaration for make_license or License was listed in SRC; both are proposed_new",
+        "Binding-field-change refusal proof is unproven and needs real non-vacuous Lean statement",
+        "Endogenous demand generation stays OPEN (AE-DEMAND-OPEN)",
+        "Minimum and iso class are relative to declared bounds; no checked bridge to extensionProposals (S7)",
+        "Host-supplied Residual colour has no grounded generator",
+        "generator g_license unverified: no existing declaration cited",
+        "relation r_license_binding unverified: no existing declaration cited",
+        "near_miss nm_unique_is_authorized unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_passage_bridge unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_propose",
+        "ordered_inputs": [
+          "Residual"
+        ],
+        "output": "Proposal",
+        "arity": 1,
+        "carrier": "Supply-shaped proposal; no offering executed",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+            "declaration": "Proposal",
+            "line": 20
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+          "decl": "Proposal",
+          "kind": "struct",
+          "line": 20,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_eval_evidence_only",
+        "equation_or_predicate": "EvalResult is evidence only; admission recomputes it and never trusts it as authorization",
+        "typing_conditions": "Alpha harness trust boundary: host's make_license call is the authorization",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+            "declaration": "evaluation_only_decision",
+            "line": 166
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/proposal_admission_bridge.rs",
+          "decl": "evaluation_only_decision",
+          "kind": "fn",
+          "line": 166,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-8811EF7AD764",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_evaluate . slot 0 <- g_propose via r_eval_evidence_only",
+        "evidence": "the outer generator is not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CANDIDATE-EXTENSION-GENERATOR"
+      },
+      {
+        "id": "NEG-C4A9C2E6F1DF",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_license . slot 0 <- g_evaluate via r_license_binding",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CANDIDATE-EXTENSION-GENERATOR"
+      },
+      {
+        "id": "NEG-043CCC8B9186",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_eval_not_authorization: Evaluation output does not by itself authorize admission, so uniqueness is not authorization",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CANDIDATE-EXTENSION-GENERATOR"
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "NEG-5D1C0537F971",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_evaluate: (Proposal) -> EvalResult [evaluation_only_decision]",
+        "evidence": "rust fn evaluation_only_decision takes 0 parameters; the claim says 1",
+        "decl_key": "evaluation_only_decision",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "PGW-CANDIDATE-EXTENSION-GENERATOR"
+      }
+    ],
+    "open_obligations": [
+      "No existing declaration for make_license or License was listed in SRC; both are proposed_new",
+      "Binding-field-change refusal proof is unproven and needs real non-vacuous Lean statement",
+      "Endogenous demand generation stays OPEN (AE-DEMAND-OPEN)",
+      "Minimum and iso class are relative to declared bounds; no checked bridge to extensionProposals (S7)",
+      "Host-supplied Residual colour has no grounded generator",
+      "generator g_license unverified: no existing declaration cited",
+      "relation r_license_binding unverified: no existing declaration cited",
+      "near_miss nm_unique_is_authorized unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_passage_bridge unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

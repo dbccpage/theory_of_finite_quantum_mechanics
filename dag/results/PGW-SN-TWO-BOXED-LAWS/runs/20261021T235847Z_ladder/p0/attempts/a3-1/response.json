@@ -1,0 +1,66 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "r_open_obstruction_positive_defect",
+      "statement": "A positive defect Phi_1 > 0 yields Phi_1 ≠ 0, a minimal formal instance of an obstruction that stays open.",
+      "hypotheses": "Phi_1 : Nat, h_pos : Phi_1 > 0",
+      "ref": {
+        "path": "lean4/GenesisFspBridge.lean",
+        "decl": "GenesisFspBridge.open_sign_obstruction_when_defect_positive",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_ground_carrier_empty",
+      "statement": "Carrier 0 has no inhabitant.",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/SnCarrierPfp.lean",
+        "decl": "SnCarrierPfp.ground_carrier_empty",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "l_boxed_laws_not_checked",
+      "statement": "No existing declaration encodes either boxed law, so both laws remain design requirements with no checker. A theorem cannot claim to enforce them.",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "-- no formal statement; both laws are design requirements, not theorems",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_realization_law_proved",
+      "claim": "The realization law is a proved law (archived ledger row SN-C01 label).",
+      "rejecting_invariant": "The archive is superseded and the record does not adopt the label; the law is a design rule with no checker."
+    },
+    {
+      "id": "nm_gate_enforces_laws",
+      "claim": "evaluate_two_boxed_laws_gate enforces the two laws.",
+      "rejecting_invariant": "The gate only tests supplied flags and does not enforce either law."
+    },
+    {
+      "id": "nm_laws_force_next_event",
+      "claim": "The two laws force the next S(n+1) event.",
+      "rejecting_invariant": "sn.md section 1 reads them as design requirements, not theorems that force the next event. An external continuation request and a chosen response grammar are recorded inputs."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No existing declaration formalizes S(n+1) containing only structure forced by an unresolved Genesis obstruction.",
+    "No existing declaration formalizes R(S(n)) lacking authority to extend S(n).",
+    "The reflection bridge from a model property back to Genesis has no cited declaration.",
+    "No generators are grounded, because the source declarations are checkers or definitions and not typed operations for this target."
+  ]
+}

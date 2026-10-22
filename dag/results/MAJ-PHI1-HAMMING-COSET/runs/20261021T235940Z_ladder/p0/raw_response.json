@@ -1,0 +1,107 @@
+{
+  "task_id": "MAJ-PHI1-HAMMING-COSET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "82556ecfe40059507e79cd9c8fd46c0b2e70d115e97df8512a5b73411c079d03",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_weight\",\"inputs\":[\"F2Vec n1\"],\"output\":\"Nat\",\"arity\":1,\"carrier\":\"F2Vec n1\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"F2Vec.weight\",\"status\":\"existing\"}},{\"id\":\"g_add\",\"inputs\":[\"F2Vec n1\",\"F2Vec n1\"],\"output\":\"F2Vec n1\",\"arity\":2,\"carrier\":\"F2Vec n1\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"F2Vec.add\",\"status\":\"existing\"}},{\"id\":\"g_coset_ub\",\"inputs\":[\"F2CochainComplex n0 n1 n2\",\"F2Vec n1\",\"F2Vec n0\"],\"output\":\"Nat\",\"arity\":3,\"carrier\":\"F2Vec\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"coset_weight_upper_bound\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_ub\",\"statement\":\"coset_weight_upper_bound is an upper bound on the true coset-leader weight (gauge candidate bound)\",\"hypotheses\":\"C an F2CochainComplex, w in F2Vec n1, alpha in F2Vec n0\",\"ref\":{\"path\":\"papers/core/majorana/lean4/MajoranaCore.lean\",\"decl\":\"candidate_gauge_is_upper_bound\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_phi1_le_ub\",\"statement\":\"Phi1([r]) <= weight(r + d0 a) for every a in C0, so Phi1 is at most the coset_weight_upper_bound value for the candidate a\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_ub\"],\"lean_skeleton\":\"theorem phi1_le_ub : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_ub_not_min\",\"claim\":\"coset_weight_upper_bound equals Phi1 exactly\",\"rejecting_invariant\":\"It is only a candidate upper bound; the minimum over all a in C0 can be strictly smaller.\"},{\"id\":\"nm_weight_not_seminorm_on_H1\",\"claim\":\"weight on a representative r is well-defined on H1 without minimizing\",\"rejecting_invariant\":\"Weight is not invariant under adding im d0 elements; only the minimum over the coset is class-invariant.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Definition of the min over the coset r + im d0 has no existing Lean declaration; needs a new def of Phi1 over F2CochainComplex.\",\"Well-definedness of Phi1 on H1 (invariance under a change of representative) is not proved.\",\"Compositions are empty since no relation licenses a well-typed plug.\",\"Lean skeleton for l_phi1_le_ub is a placeholder with sorry and is not a proof.\",\"Coefficient change from weighted l1 to F2 Hamming weight is declared, not derived.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_weight",
+        "inputs": [
+          "F2Vec n1"
+        ],
+        "output": "Nat",
+        "arity": 1,
+        "carrier": "F2Vec n1",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.weight",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_add",
+        "inputs": [
+          "F2Vec n1",
+          "F2Vec n1"
+        ],
+        "output": "F2Vec n1",
+        "arity": 2,
+        "carrier": "F2Vec n1",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "F2Vec.add",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_coset_ub",
+        "inputs": [
+          "F2CochainComplex n0 n1 n2",
+          "F2Vec n1",
+          "F2Vec n0"
+        ],
+        "output": "Nat",
+        "arity": 3,
+        "carrier": "F2Vec",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "coset_weight_upper_bound",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_ub",
+        "statement": "coset_weight_upper_bound is an upper bound on the true coset-leader weight (gauge candidate bound)",
+        "hypotheses": "C an F2CochainComplex, w in F2Vec n1, alpha in F2Vec n0",
+        "ref": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "candidate_gauge_is_upper_bound",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_phi1_le_ub",
+        "statement": "Phi1([r]) <= weight(r + d0 a) for every a in C0, so Phi1 is at most the coset_weight_upper_bound value for the candidate a",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_ub"
+        ],
+        "lean_skeleton": "theorem phi1_le_ub : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_ub_not_min",
+        "claim": "coset_weight_upper_bound equals Phi1 exactly",
+        "rejecting_invariant": "It is only a candidate upper bound; the minimum over all a in C0 can be strictly smaller."
+      },
+      {
+        "id": "nm_weight_not_seminorm_on_H1",
+        "claim": "weight on a representative r is well-defined on H1 without minimizing",
+        "rejecting_invariant": "Weight is not invariant under adding im d0 elements; only the minimum over the coset is class-invariant."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Definition of the min over the coset r + im d0 has no existing Lean declaration; needs a new def of Phi1 over F2CochainComplex.",
+      "Well-definedness of Phi1 on H1 (invariance under a change of representative) is not proved.",
+      "Compositions are empty since no relation licenses a well-typed plug.",
+      "Lean skeleton for l_phi1_le_ub is a placeholder with sorry and is not a proof.",
+      "Coefficient change from weighted l1 to F2 Hamming weight is declared, not derived."
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-GENESIS-TO-SN-CROSSWALK",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "95b5a433f3a9cfb8162457d928ce2b3fc38e225e215d3717f54da1319a14e57c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-GENESIS-TO-SN-CROSSWALK stage=P0 attempt=a3-1 in=95b5a433 guided=yes\n@TARGET [DEFINITION] Declared here as the bridge table from the Genesis endpoint to the entry of S(n), taken from the pre-Genesis-to-MSS-N finite-stage crosswalk with its required qualifications: S(0) asks what is received as the opaque ground inscription (<> has no inherited object-language meaning); S(1) whether a newly supplied mark was consumed or admitted (supply alone may be a no-op); S(2) which data are retained and which profiles stay equal; S(3) how a supplied pair-separation task is met (the cost-two result is relative to a response grammar and cost); S(4) whether the relevant pairs are separated under the chosen closure policy; S(5) where the next requirement or fresh datum comes from (external continuation is a declared policy, not an endogenous generator proved by saturation); S(6) how old presentations are represented and recovered after an extension (typed maps and their preservation laws must be supplied and checked). The indices stay distinct: S(n) is a presentation stage in the admission account, MSS-m an externally specified atlas target, and H_j homology in degree j of a declared complex, separate from stage n.\n@BOTTLENECK A presentation crosswalk: it does not claim that the glyphs derive their own semantics, that every row is forced independently of policy, or that a branching set of tied responses is a linear tower.\n@ASSUME Pre-Genesis-to-MSS-N presentation crosswalk S(0)-S(6), a presentation table not claimed forced independently of policy (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.nonunique_equalCost_extension_countermodel | theorem | theorem nonunique_equalCost_extension_countermodel : refinementA.profile .source ≠ refinementA.profile .target ∧ refinementB.profile .source ≠ refinem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.cut_endpoints_distinct | theorem | theorem cut_endpoints_distinct {X : Type u} (C : CarrierCut X) {a b : X} (hwit : C.r a b) : a ≠ b\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.Presentation | structure | structure Presentation (X : Type u) (Sig : Type v) (R : Type w)\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.Presentation.run | def | def run\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.Presentation.run_append | theorem | theorem run_append {X : Type u} {Sig : Type v} {R : Type w} (P : Presentation X Sig R) (left right : List Sig) (x : X) : P.run (left ++ right) x = P.r\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.classifyTerminal_conservativeExtensionProposal_iff | theorem | theorem classifyTerminal_conservativeExtensionProposal_iff (e : TerminalEvidence) : classifyTerminal e = .ConservativeExtensionProposal ↔ e.sameLevelR\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.classifyTerminal_typedRefusal_iff | theorem | theorem classifyTerminal_typedRefusal_iff (e : TerminalEvidence) : classifyTerminal e = .TypedRefusal ↔ e.sameLevelRepairVerified = false ∧ (e.sameLev\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ConservativeExtensionCertificate | structure | structure ConservativeExtensionCertificate {X : Type u} {Sig : Type v} {R : Type w} {Y : Type u'} {Tau : Type v'} {S : Type w'} (oldP : Presentation X\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ConservativeExtensionCertificate.carrierEmbed_injective | theorem\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ConservativeExtensionCertificate.signatureEmbed_injective | theorem\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ConservativeExtensionCertificate.embedded_zeroRel_refines | theorem\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ConservativeExtensionCertificate.embedded_nonzero_preserved | theorem\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.ObserverExtension | structure\n lean4/RetainedProfileCecBridge.lean | RetainedProfileCECBridge.refinement_profiles_not_related_by_postmap | theorem\n code/rust/src/wdp/genesis_marked_result.rs | Source25ResultMark | struct\n code/rust/src/wdp/genesis_marked_result.rs | result_mark | fn\n code/rust/src/wdp/proposal_admission_bridge.rs | apply_declared_admission | fn\n lean4/GenesisFspBridge.lean | GenesisFspBridge.CarrierCut | structure\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2 | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_irrefl | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_witness | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.swap | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.swap_involutive | theorem\n lean4/GenesisFspBridge.lean | GenesisFspBridge.D2_rev | def\n lean4/GenesisFspBridge.lean | GenesisFspBridge.S2 | def\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] g_questions . slot 0 <- g_new_presentation via r_questions_select_nothing -- Do not compose operations whose colours do not match.\n [wrong_signature] new -- Do not state that arity/signature for new.\n [wrong_signature] questions -- Do not state that arity/signature for questions.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 3,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "PGW-CAPABILITY-STAGE-COUNTER",
+      "PGW-FIVE-PRESENTATION-QUESTIONS",
+      "PGW-SN-TWO-BOXED-LAWS",
+      "PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD",
+      "PGW-TYPED-REQUIREMENT-KINDS"
+    ],
+    "feedback": true,
+    "index_position": 765,
+    "neg_entry_ids": [
+      "NEG-6343D1FFCB8D",
+      "NEG-AD01D9466820",
+      "NEG-F09FB35CA381"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

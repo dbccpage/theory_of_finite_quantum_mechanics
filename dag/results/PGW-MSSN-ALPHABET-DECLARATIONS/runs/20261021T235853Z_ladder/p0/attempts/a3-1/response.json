@@ -1,0 +1,152 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "gen_word_alphabet",
+      "inputs": [],
+      "output": "Sigma36",
+      "arity": 0,
+      "carrier": "26 lowercase letters plus 10 digits, size 36",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "gen_mark_pair",
+      "inputs": [],
+      "output": "Marks2",
+      "arity": 0,
+      "carrier": "the two marks < and >",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "gen_full_alphabet",
+      "inputs": [
+        "Sigma36",
+        "Marks2"
+      ],
+      "output": "Gamma38",
+      "arity": 2,
+      "carrier": "disjoint union Sigma36 + Marks2, size 38",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_disjoint_union",
+      "statement": "Gamma38 = Sigma36 ⊔ Marks2 with Sigma36 ∩ Marks2 = ∅, so card Gamma38 = card Sigma36 + card Marks2",
+      "hypotheses": "Sigma36 and Marks2 are finite and disjoint",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "rel_three_relations_distinct",
+      "statement": "An encoded relation E ⊆ V×V, a rewrite relation and an observation map q: V→O are separate data; none is defined from another without an explicit declaration",
+      "hypotheses": "No bridging declaration is given",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "gen_full_alphabet",
+      "slot": 0,
+      "inner": "gen_word_alphabet",
+      "licensing_relation": "rel_disjoint_union"
+    },
+    {
+      "outer": "gen_full_alphabet",
+      "slot": 1,
+      "inner": "gen_mark_pair",
+      "licensing_relation": "rel_disjoint_union"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "lem_gamma_card",
+      "statement": "card Gamma38 = 38, from 26 + 10 + 2",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "rel_disjoint_union"
+      ],
+      "lean_skeleton": "example : 26 + 10 + 2 = 38 := by norm_num",
+      "claims_proved": true,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "lem_marks_no_pairing",
+      "statement": "In raw_glyphs, < and > carry no balanced-pairing axiom; pairing is not derivable from the alphabet alone",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "rel_disjoint_union"
+      ],
+      "lean_skeleton": "theorem marks_no_pairing : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_alphabet_is_atlas_row",
+      "claim": "The alphabet size 38 determines the atlas row or Genesis stage",
+      "rejecting_invariant": "Alphabet size is independent of atlas row and Genesis stage"
+    },
+    {
+      "id": "nm_marks_balanced",
+      "claim": "< and > must be balanced in raw_glyphs",
+      "rejecting_invariant": "raw_glyphs treats the marks as ordinary glyphs, so balance is not an axiom"
+    },
+    {
+      "id": "nm_word_uses_gamma",
+      "claim": "The word production ranges over all 38 symbols",
+      "rejecting_invariant": "The word production uses Sigma36 only, which excludes < and >"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "n_sigma",
+      "expr": "26 + 10",
+      "value": "36"
+    },
+    {
+      "id": "n_gamma",
+      "expr": "26 + 10 + 2",
+      "value": "38"
+    },
+    {
+      "id": "n_marks_diff",
+      "expr": "38 - 36",
+      "value": "2"
+    }
+  ],
+  "open_obligations": [
+    "No existing declarations were provided, so every reference is proposed_new",
+    "The eight separate declarations (terminal spellings, tokenization, grammar, public start, layout, identity policy, annotation decoding, manipulation rules) are not yet formalized as generators",
+    "Role assignment to glyphs needs a grammar, which is not given",
+    "The Lean skeleton for lem_marks_no_pairing is a placeholder with sorry"
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "PGW-WDP-ASYMMETRY-INJECTION-LEDGER",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "b50a73365caaddb3714c44f39991d57bfdcc2dd37f0fc385d6bf7cc2f1036707",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=PGW-WDP-ASYMMETRY-INJECTION-LEDGER stage=P0 attempt=a3-1 in=b50a7336 guided=yes\n@TARGET [DEFINITION] For any proposed selection the injection ledger records the first input that breaks the relevant symmetry: a named element or base point, an orientation, an order or clock, a measure or weighting, a boundary condition, a representation, an observer profile, a stochastic device with its distribution, or a physical law outside the root package. WDP-CH03-D01 defines the asymmetry-price frontier, relative to a specified implementation class and dependency preorder, as the family of inclusion-minimal declared input sets whose removal restores a symmetry that moves the output; a scalar price needs a stated cost function, and frontier elements may tie or be incomparable. In the declare-then-assert search, a refinement can leave a single class made of two responses exchanged by the swap of the data, so choosing one is a further declared input recorded in the ledger.\n@BOTTLENECK Definition only: no uniqueness or global-minimality theorem holds for the frontier in general; it rests on the nonselection row WDP-CH03-P01 (TFQ-0340), and the declare-then-assert separation row CH03-P03 takes no Lean credit.\n@ASSUME Declared implementation class and dependency preorder for the frontier (assumption)\n@SRC path | decl | kind (copy path and decl into ref.path and ref.decl; cite as existing only from here)\n code/rust/src/wdp/derivation_controls/wdp_appx_cost_formalization.rs | evaluate_wdp_appx_cost_formalization | fn | pub fn evaluate_wdp_appx_cost_formalization( candidate: (i64, i64, i64), promote: bool, ) -> Result<AdmittedCarrier, ControlError>\n lean4/FiniteFunctionGtmurLedger.lean | MUB.FiniteFunctionGtmurLedger | structure | structure FiniteFunctionGtmurLedger (α β B L : Type*) [Fintype α] [Fintype β] [Fintype B] [Fintype L] [DecidableEq B] [DecidableEq L]\n lean4/FiniteFunctionGtmurLedger.lean | MUB.coordinateTransportFiniteFunctionGtmurLedger | def | noncomputable def coordinateTransportFiniteFunctionGtmurLedger {α β B L : Type*} [Fintype α] [Fintype β] [Fintype B] [Fintype L] [DecidableEq B] [Deci\n lean4/FiniteFunctionGtmurLossLedger.lean | MUB.FiniteFunctionGtmurLossLedger | structure | structure FiniteFunctionGtmurLossLedger (α β B L : Type*) [Fintype α] [Fintype β] [Fintype B] [Fintype L] [DecidableEq B] [DecidableEq L]\n lean4/FiniteFunctionGtmurLossLedger.lean | MUB.coordinateTransportFiniteFunctionGtmurLossLedger | def | noncomputable def coordinateTransportFiniteFunctionGtmurLossLedger {α β B L : Type*} [Fintype α] [Fintype β] [Fintype B] [Fintype L] [DecidableEq B] [\n code/rust/src/wdp/derivation_controls/wdp_appx_cost_formalization.rs | unit_reduced_declared_carrier | fn | fn unit_reduced_declared_carrier() -> Result<(), String>\n code/rust/src/wdp/derivation_controls/wdp_appx_cost_formalization.rs | integration_parse_then_admit | fn | fn integration_parse_then_admit() -> Result<(), String>\n code/rust/src/wdp/derivation_controls/wdp_o10_signed_measure_positivity.rs | assert_labelled | fn | fn assert_labelled(plaquettes: &[Plaquette; PLAQUETTES])\n code/rust/src/wdp/derivation_controls/wdp_o10_signed_measure_positivity.rs | assert_staggered_bits | fn\n code/rust/src/wdp/stochastic_package.rs | FunctionMixture | type\n code/rust/src/wdp/stochastic_package.rs | StochasticUpdate | struct\n code/rust/src/wdp/stochastic_package.rs | from_function | fn\n code/rust/src/wdp/stochastic_package.rs | as_function | fn\n code/rust/src/wdp/stochastic_package.rs | stochastic_left_inverse | fn\n code/rust/src/wdp/stochastic_package.rs | to_stochastic_map | fn\n code/rust/src/wdp/stochastic_package.rs | from_stochastic_map | fn\n code/rust/src/wdp/stochastic_package.rs | check_input | fn\n code/rust/src/wdp/stochastic_package.rs | law | fn\n code/rust/src/wdp/stochastic_package.rs | law_total | fn\n code/rust/src/wdp/stochastic_package.rs | law_total_with_limit | fn\n lean4/FiniteFunctionGtmurLedger.lean | MUB.finiteFieldCoordinateGtmurLedger | def\n lean4/FiniteFunctionGtmurLedger.lean | MUB.exists_finiteFieldCoordinateGtmurLedger | theorem\n lean4/FiniteFunctionGtmurLossLedger.lean | MUB.finiteFieldCoordinateGtmurLossLedger | def\n lean4/FiniteFunctionGtmurLossLedger.lean | MUB.exists_finiteFieldCoordinateGtmurLossLedger | theorem\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] MUB.coordinateTransportFiniteFunctionGtmurLossLedger -- Do not state that arity/signature for MUB.coordinateTransportFiniteFunctionGtmurLossLedger.\n [wrong_signature] MUB.coordinateTransportFiniteFunctionGtmurLossLedger -- Do not state that arity/signature for MUB.coordinateTransportFiniteFunctionGtmurLossLedger.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 24,
+    "known_neg_injected": 2,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "PG-WDP-PROTECTED-QUESTIONS",
+      "PGW-WDP-FAILED-SAMENESS"
+    ],
+    "feedback": true,
+    "index_position": 777,
+    "neg_entry_ids": [
+      "NEG-4B85395A33D7",
+      "NEG-55989D9A1BFD"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}
