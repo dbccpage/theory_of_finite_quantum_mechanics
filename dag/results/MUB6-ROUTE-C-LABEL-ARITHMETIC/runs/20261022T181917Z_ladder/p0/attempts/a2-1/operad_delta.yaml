@@ -1,0 +1,92 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-ECF439CF3B2E
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'fourier_count: (MUB6OrbitConfiguration) -> Nat [MUB6.RouteC.fourier_count_ge_five]'
+  evidence: 'lean MUB6.RouteC.fourier_count_ge_five has kind theorem, which cannot be cited as a generator
+    (allowed: abbrev, class, def, fn, inductive, struct, structure)'
+  decl_key: MUB6.RouteC.fourier_count_ge_five
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: MUB6-ROUTE-C-LABEL-ARITHMETIC
+- id: NEG-19F37EC423B1
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'pair_combinations: (Nat) -> Nat [MUB6.RouteC.fourier_pairs_ge_ten]'
+  evidence: 'lean MUB6.RouteC.fourier_pairs_ge_ten has kind theorem, which cannot be cited as a generator
+    (allowed: abbrev, class, def, fn, inductive, struct, structure)'
+  decl_key: MUB6.RouteC.fourier_pairs_ge_ten
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: MUB6-ROUTE-C-LABEL-ARITHMETIC
+- id: NEG-36B7F787CEFC
+  class: statement_drift
+  claim_kind: relation
+  claim: 'R1: 6 = n_D + n_T + n_S + n_H with n_T + n_S <= 1 and n_H <= 0 implies 5 <= n_D [MUB6.RouteC.fourier_count_ge_five]'
+  evidence: relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_count_ge_five
+    (heuristic)
+  decl_key: MUB6.RouteC.fourier_count_ge_five
+  confidence: heuristic
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: MUB6-ROUTE-C-LABEL-ARITHMETIC
+- id: NEG-7CB4C462CBC2
+  class: statement_drift
+  claim_kind: relation
+  claim: 'R2: 5 <= n_D implies 10 <= C(n_D,2) and 15 <= n_D + C(n_D,2) [MUB6.RouteC.fourier_landing_edges_lower_bound]'
+  evidence: relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_landing_edges_lower_bound
+    (heuristic)
+  decl_key: MUB6.RouteC.fourier_landing_edges_lower_bound
+  confidence: heuristic
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: MUB6-ROUTE-C-LABEL-ARITHMETIC
+open_obligations:
+- No map from label counts to Fourier transition edges is available; the bottleneck remains open
+- Triad and avoidance declarations are not used because they are outside the target arithmetic
+- 'composition pair_combinations . slot 0 <- fourier_count via R2 unverified: the outer and inner generators
+  are not host-verified (proposed_new, unchecked or refused)'
+- 'near_miss NM1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N1
+  expr: 5*4/2
+  value: '10'
+  host_evidence:
+    recomputed: '10'
+- id: N2
+  expr: 5 + 5*4/2
+  value: '15'
+  host_evidence:
+    recomputed: '15'
+verified_lemma_statements:
+- id: L1
+  statement: For the stated counts, n_D >= 5, C(n_D,2) >= 10 and n_D + C(n_D,2) >= 15
+  relation_to_target: restates
+  depends_on:
+  - R1
+  - R2
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/RouteCFourierLandingBypass.lean
+    decl: MUB6.RouteC.fourier_landing_edges_lower_bound
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/RouteCFourierLandingBypass.lean
+    decl: MUB6.RouteC.fourier_landing_edges_lower_bound
+    kind: theorem
+    line: 113
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

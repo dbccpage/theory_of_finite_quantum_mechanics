@@ -1,0 +1,80 @@
+{
+  "task_id": "L1-IMP-SECTOR-SYMMETRY-LAW",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "06ff9cdf1f8c678b8324c156c5274bb25871fd73d682a57a88bf37c296f43d71",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"permU_sector\",\"inputs\":[\"SectorVec\"],\"output\":\"SectorVec\",\"arity\":1,\"carrier\":\"Vec K Q under a reversible relabelling tau of sectors Q\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permU\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"rel_perm_isometry\",\"statement\":\"The sesquilinear form defined by a star-ring pack and an enum of sectors is preserved by permU for any reversible relabelling.\",\"hypotheses\":\"StarRingPack K, DecidableEq Q, Enum Q, Reversible tau\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permutation_isometry\",\"status\":\"existing\"}},{\"id\":\"rel_diag_const_transitive\",\"statement\":\"If a matrix G is invariant under every permutation in a transitive set S, then its diagonal entries are constant.\",\"hypotheses\":\"hS : every sigma in S leaves G Invariant; hT : TransitiveOn S\",\"ref\":{\"path\":\"lean4/SectorFormUniqueness.lean\",\"decl\":\"InnerProductFable.SectorForm.diag_const_of_transitive\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"lem_diag_const_restates_assumption\",\"statement\":\"Given the imported assumption that the readout is invariant under a transitive permutation set S, the diagonal of the readout matrix is constant.\",\"relation_to_target\":\"implies\",\"depends_on\":[\"rel_diag_const_transitive\"],\"lean_skeleton\":\"\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/SectorFormUniqueness.lean\",\"decl\":\"InnerProductFable.SectorForm.diag_const_of_transitive\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_distinguished_labels\",\"claim\":\"Readout invariance under relabelling holds for all sector sets.\",\"rejecting_invariant\":\"Sectors with distinguished labels break transitivity, so the diagonal is constant only on orbits.\"}],\"numeric_claims\":[],\"open_obligations\":[\"The transitive sector symmetry law is an imported assumption and is not derived from primitive difference.\",\"No grounded derivation of readout invariance under sector relabelling from finite-theory primitives.\",\"Identification of which sector labels are distinguished remains open (run next-steps item 1).\",\"Lean skeleton for the lemma left empty; no existing declaration proves the target law itself.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "permU_sector",
+        "inputs": [
+          "SectorVec"
+        ],
+        "output": "SectorVec",
+        "arity": 1,
+        "carrier": "Vec K Q under a reversible relabelling tau of sectors Q",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permU",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_perm_isometry",
+        "statement": "The sesquilinear form defined by a star-ring pack and an enum of sectors is preserved by permU for any reversible relabelling.",
+        "hypotheses": "StarRingPack K, DecidableEq Q, Enum Q, Reversible tau",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permutation_isometry",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "rel_diag_const_transitive",
+        "statement": "If a matrix G is invariant under every permutation in a transitive set S, then its diagonal entries are constant.",
+        "hypotheses": "hS : every sigma in S leaves G Invariant; hT : TransitiveOn S",
+        "ref": {
+          "path": "lean4/SectorFormUniqueness.lean",
+          "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "lem_diag_const_restates_assumption",
+        "statement": "Given the imported assumption that the readout is invariant under a transitive permutation set S, the diagonal of the readout matrix is constant.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "rel_diag_const_transitive"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/SectorFormUniqueness.lean",
+          "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_distinguished_labels",
+        "claim": "Readout invariance under relabelling holds for all sector sets.",
+        "rejecting_invariant": "Sectors with distinguished labels break transitivity, so the diagonal is constant only on orbits."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "The transitive sector symmetry law is an imported assumption and is not derived from primitive difference.",
+      "No grounded derivation of readout invariance under sector relabelling from finite-theory primitives.",
+      "Identification of which sector labels are distinguished remains open (run next-steps item 1).",
+      "Lean skeleton for the lemma left empty; no existing declaration proves the target law itself."
+    ]
+  }
+}

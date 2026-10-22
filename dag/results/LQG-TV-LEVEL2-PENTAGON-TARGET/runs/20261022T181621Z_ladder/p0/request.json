@@ -1,0 +1,318 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "LQG-TV-LEVEL2-PENTAGON-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "0e0055079e3747a0e846e6f4c8f187c42c700d02ed2eb9706502327e8c0ccf68",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=LQG-TV-LEVEL2-PENTAGON-TARGET stage=P0 attempt=a2-1 in=0e005507 guided=yes\n@TARGET [PROVED_LEAN] Finite statement, checked in Lean 4 for a transcribed table. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the normalized recoupling symbol isingF(a,b,c,d,e,f) is entered in Lean as an explicit case table over Q(sqrt 2) (values 0, +-1, +-sqrt(2)/2, transcribed from ising_f in code/rust/src/general_relativity/spin_foam.rs). On that table Lean checks in exact arithmetic over Q(sqrt 2): the quantum dimensions (1, sqrt 2, 1) with d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0 (truncation); exactly 36 nonzero entries among the 729 label 6-tuples; the orthogonality relation sum over f of isingF(a,b,c,d,e,f) isingF(a,b,c,d,e',f) = delta(e,e') for all admissible labels; and the pentagon identity sum over r of isingF(a,b,c,q,p,r) isingF(a,r,d,e,q,s) isingF(b,c,d,s,r,t) = isingF(p,c,d,e,q,t) isingF(a,b,t,e,p,s) across all 3^9 = 19,683 label assignments in {0,1,2}^9 (both sides zero unless the six boundary triads are admissible). The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the identity on those labels, not invariance of a state sum on a triangulated manifold.\n@BOTTLENECK Not proved in Lean: that the transcribed table equals the quantum 6j symbol at q = exp(i pi/4), neither derived from the q-Racah sum nor linked to the Rust function (the module imports H023 and H024 but uses nothing from them); the Z[zeta_12] data of H023 and H024; the dimension-weighted Turaev-Viro form of the identity (the checks are on the unitary-normalized F-symbols). The step from the local identity to invariance on a triangulation is not part of the target.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.Frac | structure | structure Frac\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.Frac.zero | def | def zero : Frac\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.Frac.one | def | def one : Frac\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.Frac.negOne | def | def negOne : Frac\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2 | structure | structure QSqrt2\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.zero | def | def zero : QSqrt2\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.one | def | def one : QSqrt2\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.negOne | def | def negOne : QSqrt2\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.sqrt2 | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.halfSqrt2 | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.QSqrt2.negHalfSqrt2 | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.isingAdmissible | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.qDimLevel2 | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation | theorem\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.isingF | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.nonzeroIsingFCount | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.isingF_nonzero_count_36 | theorem\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.checkOrthogonalityAt | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible | theorem\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.checkPentagonAt | def\n lean4/FrontierTvLevel2Pentagon.lean | FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683 | theorem\n code/rust/src/fusion_categories/catalog.rs | ising_f | fn\n code/rust/src/general_relativity/lib.rs | spin_foam | mod\n code/rust/src/general_relativity/mod.rs | spin_foam | mod\n code/rust/src/general_relativity/spin_foam.rs | ising_f | fn\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:G_vertexAmplitude (TetSpins)->Cyclo12 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude\n g:G_quantum_dimension (Label)->IsingScalar src=code/rust/src/general_relativity/spin_foam.rs | quantum_dimension\n r:R_pentagon Finite pentagon coherence of recoupling amplitudes, an algebraic identity only src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence\n r:R_inadmissible_vanishes Inadmissible tetrahedral labels give zero amplitude src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes\n g:G_vertexAmplitude (TetSpins)->Cyclo12 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude\n g:G_quantum_dimension (Label)->IsingScalar src=code/rust/src/general_relativity/spin_foam.rs | quantum_dimension\n r:R_pentagon Finite pentagon coherence of recoupling amplitudes holds as an algebraic identity only, with no continuum or s src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence\n r:R_inadmissible_vanishes Inadmissible tetrahedral labels give zero amplitude. src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] tetrahedral_amplitude -- Do not state that arity/signature for tetrahedral_amplitude.\n [vacuous_proof] L_no_continuum: The finite cyclotomic amplitudes (Z[zeta_12], labels 0,1,2) carry no continuum SU(2)/SL(2,C),  -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_orth_finite: Orthogonality of the 6j symbols for all admissible labels in {0,1,2} by exact computation in Z[ -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_pentagon_finite: Biedenharn-Elliott identity holds for all admissible labels in {0,1/2,1} at q=exp(i pi/4);  -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 4,
+    "known_pos_injected": 8,
+    "neighbours": [
+      "LQG-CONTINUUM-LIMIT-GAP",
+      "LQG-TURAEV-VIRO-1992-SOURCE",
+      "TFQ-0104",
+      "TFQ-0198"
+    ],
+    "feedback": true,
+    "index_position": 802,
+    "neg_entry_ids": [
+      "NEG-0689548DABB6",
+      "NEG-67462B6AB8D9",
+      "NEG-7C39DF27FA21",
+      "NEG-AA1A2D4A7879"
+    ],
+    "operation_candidates": 18,
+    "anchors_present": 5,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

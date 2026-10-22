@@ -1,0 +1,113 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "perfect_tensor_6leg",
+      "inputs": [
+        "q",
+        "q",
+        "q",
+        "q",
+        "q",
+        "q"
+      ],
+      "output": "unit",
+      "arity": 6,
+      "carrier": "qubit_6leg_tensor",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "stabilizer_projector_5qubit",
+      "inputs": [
+        "q",
+        "q",
+        "q",
+        "q",
+        "q"
+      ],
+      "output": "q",
+      "arity": 5,
+      "carrier": "qubit_5leg_stabilizer_code",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.fiveQubitStabilizer",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_perfect_bipartition",
+      "statement": "For a 2n-leg perfect tensor, every bipartition into k <= n inputs and 2n-k outputs yields a map proportional to an isometry.",
+      "hypotheses": "Pastawski et al. 2015 Section 2 Def. 2 p. 5; n=3 for the 6-qubit case",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "R_five_qubit_stabilizer_commute",
+      "statement": "Stabilizer generators of the 5-qubit code pairwise commute.",
+      "hypotheses": "Laflamme et al. 1996 Table I; the code is the [[5,1,3]] stabilizer code",
+      "ref": {
+        "path": "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "decl": "FrontierFiveQubitPerfectTensor.commutes",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_source_claim_record",
+      "statement": "The source records a 2n-leg perfect tensor construction from the [[5,1,3]] code placed on the {5,4} tiling giving an isometric bulk-to-boundary code; this is recorded as a source claim and not proved here.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_perfect_bipartition"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_toric_as_generator",
+      "claim": "Citing toric_code_generator as an existing generator.",
+      "rejecting_invariant": "Host-refused nonexistent declaration; not in @SRC or @KNOWN+."
+    },
+    {
+      "id": "NM_perfect_tensor_min_weight_proof",
+      "claim": "Claiming a vacuous proof that every non-identity stabilizer of the Choi state has minimum weight.",
+      "rejecting_invariant": "Host-refused vacuous_proof; no sorry-free proof available."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N_six_leg_legs",
+      "expr": "2*3",
+      "value": "6"
+    },
+    {
+      "id": "N_five_qubit_stabilizers",
+      "expr": "5-1-1*4/4",
+      "value": "3"
+    }
+  ],
+  "open_obligations": [
+    "No Lean formalization of the 2n-leg perfect tensor bipartition isometry property exists in @SRC.",
+    "Construction of the 6-qubit perfect stabilizer tensor from the [[5,1,3]] code is not grounded in any listed declaration.",
+    "Placement on the {5,4} hyperbolic pentagon tiling and the isometric bulk-to-boundary property (Thm. 1) are not formalized.",
+    "Entanglement entropy S_A = |gamma_A| log v (Thm. 2) and greedy-geodesic bound (Thm. 3) are not grounded.",
+    "Numeric claim N_five_qubit_stabilizers is a placeholder arithmetic check, not a source quantity; it earns no credit."
+  ]
+}

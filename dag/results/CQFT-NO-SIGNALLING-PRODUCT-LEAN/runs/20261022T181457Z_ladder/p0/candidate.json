@@ -1,0 +1,238 @@
+{
+  "task_id": "CQFT-NO-SIGNALLING-PRODUCT-LEAN",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "ec90ab99e246fe6368bd6107843ebf4f660f64ea3e3b364655989a3a529df68e",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "product_no_signalling_rel",
+          "equation_or_predicate": "For product tables with each PB y summing to 1 over outcomesB, the A-marginal is independent of y",
+          "typing_conditions": "hPB : forall y, sumList (outcomesB.map (PB y)) = 1",
+          "source_pins": [
+            {
+              "path": "lean4/NoSignallingCore.lean",
+              "declaration": "NoSignallingCore.marginalA_product",
+              "line": 43
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/NoSignallingCore.lean",
+            "decl": "NoSignallingCore.marginalA_product",
+            "kind": "theorem",
+            "line": 43,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "sig_signalling_rel",
+          "equation_or_predicate": "The table sig has setting-dependent A-marginal so NoSignallingBA fails on outcomes [()]",
+          "typing_conditions": "outcomesB = [()]",
+          "source_pins": [
+            {
+              "path": "lean4/NoSignallingCore.lean",
+              "declaration": "NoSignallingCore.Witness.sig_signals",
+              "line": 55
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/NoSignallingCore.lean",
+            "decl": "NoSignallingCore.Witness.sig_signals",
+            "kind": "theorem",
+            "line": 55,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Quantum statement that commuting local measurements at spacelike separated points give setting-independent marginals is not stated or proved in this file (BOTTLENECK)",
+        "Product-table construction product_table_op has no existing declaration; left ungrounded",
+        "Lean skeletons left empty; no sorry-free proofs supplied by this attempt",
+        "generator product_table_op unverified: no existing declaration cited",
+        "near_miss nm_quantum_locality unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_causal_link unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "product_no_signalling_rel",
+        "equation_or_predicate": "For product tables with each PB y summing to 1 over outcomesB, the A-marginal is independent of y",
+        "typing_conditions": "hPB : forall y, sumList (outcomesB.map (PB y)) = 1",
+        "source_pins": [
+          {
+            "path": "lean4/NoSignallingCore.lean",
+            "declaration": "NoSignallingCore.marginalA_product",
+            "line": 43
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.marginalA_product",
+          "kind": "theorem",
+          "line": 43,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "sig_signalling_rel",
+        "equation_or_predicate": "The table sig has setting-dependent A-marginal so NoSignallingBA fails on outcomes [()]",
+        "typing_conditions": "outcomesB = [()]",
+        "source_pins": [
+          {
+            "path": "lean4/NoSignallingCore.lean",
+            "declaration": "NoSignallingCore.Witness.sig_signals",
+            "line": 55
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.Witness.sig_signals",
+          "kind": "theorem",
+          "line": 55,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-FBC652C335B5",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "marginalA_op: (PA_table, outcomesB_list) -> A_marginal [NoSignallingCore.marginalA]",
+        "evidence": "lean def marginalA has 5 explicit binders (5 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "NoSignallingCore.marginalA",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "CQFT-NO-SIGNALLING-PRODUCT-LEAN"
+      }
+    ],
+    "open_obligations": [
+      "Quantum statement that commuting local measurements at spacelike separated points give setting-independent marginals is not stated or proved in this file (BOTTLENECK)",
+      "Product-table construction product_table_op has no existing declaration; left ungrounded",
+      "Lean skeletons left empty; no sorry-free proofs supplied by this attempt",
+      "generator product_table_op unverified: no existing declaration cited",
+      "near_miss nm_quantum_locality unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_causal_link unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "L_product_noSignalling",
+        "statement": "Product tables with normalized PB satisfy NoSignalling",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "product_no_signalling_rel"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.product_noSignalling",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.product_noSignalling",
+          "kind": "theorem",
+          "line": 33,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      },
+      {
+        "id": "L_sig_signals",
+        "statement": "NoSignallingBA fails for sig on outcomes [()]",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "sig_signalling_rel"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.Witness.sig_signals",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/NoSignallingCore.lean",
+          "decl": "NoSignallingCore.Witness.sig_signals",
+          "kind": "theorem",
+          "line": 55,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

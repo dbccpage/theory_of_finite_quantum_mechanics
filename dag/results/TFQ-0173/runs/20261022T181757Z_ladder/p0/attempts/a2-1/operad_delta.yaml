@@ -1,0 +1,74 @@
+add_or_refine_generators:
+- id: plaquette_curvature
+  ordered_inputs:
+  - DiscreteConnection
+  - BoundaryVertexList
+  output: ExactMatrix
+  arity: 2
+  carrier: ExactScalar matrices
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/holonomy/curvature.rs
+    declaration: plaquette_curvature
+    line: 108
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/holonomy/curvature.rs
+    decl: plaquette_curvature
+    kind: fn
+    line: 108
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: commutator_vanishes_iff_exact_zero
+  equation_or_predicate: curvature_commutator_vanishes(m1,m2) returns true exactly when the exact matrix
+    M1 M2 minus M2 M1 is the zero matrix
+  typing_conditions: ExactScalar arithmetic with no float tolerance
+  source_pins:
+  - path: code/rust/src/holonomy/curvature.rs
+    declaration: curvature_commutator_vanishes
+    line: 88
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/holonomy/curvature.rs
+    decl: curvature_commutator_vanishes
+    kind: fn
+    line: 88
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-F66958CBA930
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'curvature_commutator: (ExactMatrix, ExactMatrix) -> ExactMatrix [curvature_commutator]'
+  evidence: rust fn curvature_commutator takes 3 parameters (3 with the receiver); the claim says 2
+  decl_key: curvature_commutator
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: TFQ-0173
+open_obligations:
+- No Lean skeleton for flatness lemma was grounded; a formal statement tying curvature_commutator_vanishes
+  to plaquette_curvature is unproved
+- Discrete Bianchi identity (verify_discrete_bianchi_identity) not yet listed as a generator or relation
+  with a verified statement
+- Einstein equation and Regge deficit angle are out of scope and not grounded by this module
+- 'lemma flatness_only_on_exact_defect unverified: no Lean skeleton; statement consistent with sources
+  but not elaborated'
+- 'near_miss continuum_riemann unverified: semantic near miss; P4 host check decides'
+- 'near_miss float_tolerance_flatness unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

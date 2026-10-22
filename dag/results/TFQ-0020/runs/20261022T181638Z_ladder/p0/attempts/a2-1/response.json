@@ -1,0 +1,96 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "WeightedSU3Gen1",
+      "inputs": [],
+      "output": "Mat3Qi",
+      "arity": 0,
+      "carrier": "Mat3Qi",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "su3_weighted_generators",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "WeightedSU3Gen3",
+      "inputs": [],
+      "output": "Mat3Qi",
+      "arity": 0,
+      "carrier": "Mat3Qi",
+      "ref": {
+        "path": "code/python/src/qm/qcd_confinement.py",
+        "decl": "su3_weighted_generators",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "The sum of the tensor product of fundamental generators equals the scalar 4/3 times the identity matrix.",
+      "hypotheses": "three-dimensional fundamental carrier for SU(3)",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.su3_casimir_and_channel_identities",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R2",
+      "statement": "The adjoint action sum yields 3 times the identity on the adjoint representation.",
+      "hypotheses": "adjoint representation of SU(3)",
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.su3_casimir_and_channel_identities",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "The Lean values C_F(3)=4/3 and C_A(3)=3 are the finite representation labels of the three-dimensional SU(3) carrier, not a completed color group.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R1",
+        "R2"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FiniteQM.lean",
+        "decl": "FiniteQM.su3_casimir_and_channel_identities",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM1",
+      "claim": "The Casimir value 4/3 follows from the arithmetic (4 * (3 - 1)) / (3 * 3).",
+      "rejecting_invariant": "Host-refused false numeric claim N1: the exact recomputation differs."
+    },
+    {
+      "id": "NM2",
+      "claim": "su_n.rs fixes the carrier dimension to three.",
+      "rejecting_invariant": "su_n.rs treats the carrier dimension as an input, so the three-dimensional carrier is not fixed there."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "C_F3",
+      "expr": "4/3",
+      "value": "4/3"
+    }
+  ],
+  "open_obligations": [
+    "Ground the three diagonal slots of T_3 and T-tilde_8 as representation labels in a declared three-dimensional carrier; no existing declaration for those slots was supplied.",
+    "Show su_n.rs with carrier dimension as input yields a finite representation shadow for three colors; no existing citation for that step.",
+    "Ground the weighted generators Gen2, Gen4, Gen5, Gen6 as operations; only Gen1 and Gen3 were cited.",
+    "Derive the 4/3 identity-scalar relation for the weighted generators from the Rust report; the Rust report itself is not in @SRC.",
+    "No composition is licensed because no inner output colour is grounded to match an input slot."
+  ]
+}

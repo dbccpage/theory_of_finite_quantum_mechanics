@@ -1,0 +1,80 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "regge_hinge_area_sq",
+      "inputs": [
+        "hinge"
+      ],
+      "output": "real",
+      "arity": 1,
+      "carrier": "hinge areas (squared) of a Regge complex",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "bond_count",
+      "inputs": [
+        "bond"
+      ],
+      "output": "nat",
+      "arity": 1,
+      "carrier": "bond bits of a HaPPY patch",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "regge_action_is_deficit_sum",
+      "statement": "The Regge action of a hinge complex equals the sum over hinges of squared hinge area weighted by deficit angle, as used by compute_regge_action.",
+      "hypotheses": "hinges given as (f64,f64) pairs with simplex volumes and lambda parameter per the source signature",
+      "ref": {
+        "path": "code/rust/src/general_relativity/regge_action.rs",
+        "decl": "compute_regge_action",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "no_area_bond_dictionary",
+      "statement": "No dictionary identifies Regge hinge areas with HaPPY bond counts; the target gap is open.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_einstein_hilbert_equals_regge",
+      "claim": "The Einstein-Hilbert action equals the TFQ-0100 Regge proxy.",
+      "rejecting_invariant": "The task states the proxy is not the Einstein-Hilbert action."
+    },
+    {
+      "id": "nm_bond_count_is_area",
+      "claim": "A bond count equals a minimal-surface area in the bulk.",
+      "rejecting_invariant": "No source supplies a geometry-to-network dictionary; bonds are one bit each, not area measures."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No source relates Regge hinge areas to HaPPY bond counts.",
+    "No finite minimal-surface statement using the TFQ-0100 proxy has been formalised.",
+    "Regge deficit holonomy declarations were listed but not used; their signatures were not verified for grounding.",
+    "compute_regge_action signature must not be restated per KNOWN- refusal."
+  ]
+}

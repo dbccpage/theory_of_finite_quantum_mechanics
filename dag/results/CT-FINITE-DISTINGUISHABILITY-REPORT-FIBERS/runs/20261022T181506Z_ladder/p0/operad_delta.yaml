@@ -1,0 +1,98 @@
+add_or_refine_generators:
+- id: sepTask
+  ordered_inputs:
+  - Report
+  - Attr
+  - Attr
+  output: Prop
+  arity: 3
+  carrier: 'Finset X x Finset X over report map q : X -> R'
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierDistinguishability.lean
+    declaration: FrontierDistinguishability.SeparatedByTask
+    line: 21
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierDistinguishability.lean
+    decl: FrontierDistinguishability.SeparatedByTask
+    kind: def
+    line: 21
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: sepIffDisjointImage
+  equation_or_predicate: SeparatedByTask q A B iff Disjoint (A.image q) (B.image q)
+  typing_conditions: DecidableEq R
+  source_pins:
+  - path: lean4/FrontierDistinguishability.lean
+    declaration: FrontierDistinguishability.separatedByTask_iff_disjoint_image
+    line: 53
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierDistinguishability.lean
+    decl: FrontierDistinguishability.separatedByTask_iff_disjoint_image
+    kind: theorem
+    line: 53
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: sepImpliesDisjoint
+  equation_or_predicate: SeparatedByTask q A B implies Disjoint (A.image q) (B.image q)
+  typing_conditions: DecidableEq R
+  source_pins:
+  - path: lean4/FrontierDistinguishability.lean
+    declaration: FrontierDistinguishability.separatedByTask_imp_disjoint_image
+    line: 26
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierDistinguishability.lean
+    decl: FrontierDistinguishability.separatedByTask_imp_disjoint_image
+    kind: theorem
+    line: 26
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions:
+- id: NEG-7CDA576E3032
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'targetBiconditional: SeparatedByTask q A B iff Disjoint (A.image q) (B.image q) for finite X
+    and R with DecidableEq R'
+  evidence: claims_proved is true but no Lean text is given
+  decl_key: null
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS
+counterexamples: []
+open_obligations:
+- Imported source definition of distinguishable attributes is not in this repository; the finite condition
+  is not matched to it
+- FiberConstant form for PG-HISTORY-REPORT-CRITERION is not cited because no HistoryReport.FiberConstant
+  declaration is listed in @SRC
+- Exhaustive bitmask check theorem is listed in @SRC but its statement signature was not given; not used
+  as a grounded relation
+- No generator for the report map q or the indicator function was grounded
+- 'near_miss nm1 unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc1
+  expr: 4 - 3/2*2
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+verified_lemma_statements: []

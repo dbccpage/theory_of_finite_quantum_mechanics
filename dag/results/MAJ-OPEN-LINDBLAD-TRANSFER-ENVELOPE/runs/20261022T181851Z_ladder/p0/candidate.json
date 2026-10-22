@@ -1,0 +1,167 @@
+{
+  "task_id": "MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "958252c04ce256421c71a2569d0e1dd7a34cf4c200bd93f587cc5317249d4292",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "open_system_transfer_bound",
+          "inputs": [
+            "GammaQp",
+            "BraidTime"
+          ],
+          "output": "OpenSystemTransferBound",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "poisoning_lower_bound_pos",
+          "equation_or_predicate": "For an OpenSystemTransferBound B, B.gamma_qp * B.braid_time > 0.",
+          "typing_conditions": "B : OpenSystemTransferBound",
+          "source_pins": [
+            {
+              "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+              "declaration": "transfer_defect_lower_bound_pos",
+              "line": 305
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "decl": "transfer_defect_lower_bound_pos",
+            "kind": "theorem",
+            "line": 305,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Derive the transfer envelope from the Lindblad master equation with poisoning and dephasing channels; no source declaration proves this.",
+        "Establish an independent positive physical lower bound on Delta_transfer, as the bottleneck requires; the Lean positivity lemmas are only discrete Nat or structure-field positivity.",
+        "Justify the Landau-Zener leakage asymptotic C_LZ (hbar/(Delta T))^2 and the e^{-L/xi} tunnelling term from an assumed model; not grounded in any listed declaration.",
+        "Prove that the envelope has a positive minimum over the stated regime; no existing lemma covers the min of this combined function.",
+        "near_miss envelope_positive_minimum unverified: semantic near miss; P4 host check decides",
+        "near_miss nat_discrete_positivity unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "open_system_transfer_bound",
+        "ordered_inputs": [
+          "GammaQp",
+          "BraidTime"
+        ],
+        "output": "OpenSystemTransferBound",
+        "arity": 2,
+        "carrier": "OpenSystemTransferBound",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "OpenSystemTransferBound",
+            "line": 296
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "OpenSystemTransferBound",
+          "kind": "structure",
+          "line": 296,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "poisoning_lower_bound_pos",
+        "equation_or_predicate": "For an OpenSystemTransferBound B, B.gamma_qp * B.braid_time > 0.",
+        "typing_conditions": "B : OpenSystemTransferBound",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+            "declaration": "transfer_defect_lower_bound_pos",
+            "line": 305
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaCore.lean",
+          "decl": "transfer_defect_lower_bound_pos",
+          "kind": "theorem",
+          "line": 305,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Derive the transfer envelope from the Lindblad master equation with poisoning and dephasing channels; no source declaration proves this.",
+      "Establish an independent positive physical lower bound on Delta_transfer, as the bottleneck requires; the Lean positivity lemmas are only discrete Nat or structure-field positivity.",
+      "Justify the Landau-Zener leakage asymptotic C_LZ (hbar/(Delta T))^2 and the e^{-L/xi} tunnelling term from an assumed model; not grounded in any listed declaration.",
+      "Prove that the envelope has a positive minimum over the stated regime; no existing lemma covers the min of this combined function.",
+      "near_miss envelope_positive_minimum unverified: semantic near miss; P4 host check decides",
+      "near_miss nat_discrete_positivity unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

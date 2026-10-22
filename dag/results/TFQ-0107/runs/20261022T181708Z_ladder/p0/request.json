@@ -1,0 +1,314 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0107",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "237e30a9c6ca10a553bb09cb94247b5feac053d0c4973088f60ef85603bd1845",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=TFQ-0107 stage=P0 attempt=a2-1 in=237e30a9 guided=yes\n@TARGET [OPEN] field_equation.rs and hamiltonian_constraint.rs write discrete Einstein-Regge and Wheeler-DeWitt formulae, including a Lambda term, over floating edge lengths and dihedral angles. Those comments describe algebraic scaffolds and a vanishing condition for a discrete operator. They do not discharge the Einstein equation, which remains GAP, and they do not select a physical cosmological constant. What is finite is a triangulation with floating edge data when a caller supplies one. What is not discharged is a continuum field equation and any claim that a deficit equals smooth curvature. AuthorityEffect is None.\n@BOTTLENECK GAP: Einstein equation and physical cosmological constant stay unpaid; deficit is not smooth curvature.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/general_relativity/lib.rs | field_equation | mod | pub mod field_equation;\n code/rust/src/general_relativity/lib.rs | hamiltonian_constraint | mod | pub mod hamiltonian_constraint;\n code/rust/src/general_relativity/mod.rs | field_equation | mod | pub mod field_equation;\n code/rust/src/general_relativity/mod.rs | hamiltonian_constraint | mod | pub mod hamiltonian_constraint;\n code/rust/src/general_relativity/field_equation.rs | ReggeFieldEquationResult | struct | pub struct ReggeFieldEquationResult\n code/rust/src/general_relativity/field_equation.rs | test_flat_fan_regge_field_equations_vanish_for_zero_lambda | fn [test] | fn test_flat_fan_regge_field_equations_vanish_for_zero_lambda()\n code/rust/src/general_relativity/field_equation.rs | test_cosmological_term_nonzero_when_lambda_positive | fn [test] | fn test_cosmological_term_nonzero_when_lambda_positive()\n code/rust/src/general_relativity/field_equation.rs | compute_regge_field_equations_4d | fn | pub fn compute_regge_field_equations_4d( triangulation: &ReggeTriangulation4D, lambda: f64, bulk_only: bool, ) -> Result<ReggeFieldEquationResult, Reg\n code/rust/src/general_relativity/field_equation.rs | solve_regge_field_equations_relaxation | fn\n code/rust/src/general_relativity/hamiltonian_constraint.rs | VertexHamiltonianConstraint | struct\n code/rust/src/general_relativity/hamiltonian_constraint.rs | HamiltonianConstraintReport | struct\n code/rust/src/general_relativity/hamiltonian_constraint.rs | test_hamiltonian_constraint_evaluation_single_tetrahedron | fn [test]\n code/rust/src/general_relativity/field_equation.rs | AUTHORITY_FENCE | const\n code/rust/src/general_relativity/field_equation.rs | ReggeRelaxationResult | struct\n code/rust/src/general_relativity/hamiltonian_constraint.rs | AUTHORITY_FENCE | const\n code/rust/src/general_relativity/hamiltonian_constraint.rs | compute_edge_angle_sum | fn\n code/rust/src/general_relativity/hamiltonian_constraint.rs | compute_edge_deficits | fn\n code/rust/src/general_relativity/hamiltonian_constraint.rs | evaluate_vertex_constraint | fn\n code/rust/src/general_relativity/hamiltonian_constraint.rs | evaluate_hamiltonian_constraints | fn\n code/rust/src/general_relativity/dihedral_angles.rs | tetrahedron_dihedral_angle_at_edge | fn\n code/rust/src/general_relativity/dirac_operator_discrete.rs | test_discrete_dirac_operator_hermiticity_on_simplicial_pair | fn [test]\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | ReggeDeficitReceipt | struct\n code/rust/src/general_relativity/regge_deficit_holonomy.rs | authority_effect | fn\n lean4/AlgebraicCoefficientFieldContract.lean | MUB.AlgebraicCoefficientFieldContract | structure\n lean4/AlgebraicCoefficientFieldContract.lean | MUB.AlgebraicCoefficientFieldContract.complex_character_primitive | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n r:r:tfq0107_lambda_nonzero For lambda > 0, the Regge field equation residual is non-zero src=code/rust/src/general_relativity/field_equation.rs | test_cosmological_term_nonzero_when_lambda_positive\n r:r:tfq0107_flat_fan_vanish For a flat fan triangulation and lambda = 0, the Regge field equations vanish src=code/rust/src/general_relativity/field_equation.rs | test_flat_fan_regge_field_equations_vanish_for_zero_lambda\n g:tfq0106_derive_cosmological_residual (n0,tangle_tui__PFP_Maths_gauge_theory__LoopQuantumGravity_Loops,tangle_tui__PFP_Maths_gauge_theory__LoopQuantumGravity_Loops)->tangle_tui__PFP__FRACT__Real__Float src=code/rust/src/general_relativity/loop_quantum_gravity.rs | LoopQuantumGravity\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] compute_regge_field_equations_4d -- Do not state that arity/signature for compute_regge_field_equations_4d.\n [wrong_signature] effective_scalar_curvature -- Do not state that arity/signature for effective_scalar_curvature.\n [wrong_signature] authority_effect -- Do not state that arity/signature for authority_effect.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 3,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "TFQ-0106"
+    ],
+    "feedback": true,
+    "index_position": 241,
+    "neg_entry_ids": [
+      "NEG-65749F0E430A",
+      "NEG-B904FFABB5CC",
+      "NEG-38ABB5903F08"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 2,
+    "src_strong": 19,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

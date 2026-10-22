@@ -1,0 +1,71 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: halting_no_decider
+  equation_or_predicate: No computable total Boolean decider exists for the halting predicate fun c =>
+    (Code.eval c n).Dom
+  typing_conditions: 'fixed n : Nat'
+  source_pins:
+  - path: lean4/AuthIncompleteness/MathlibBridge.lean
+    declaration: AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+    line: 32
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/AuthIncompleteness/MathlibBridge.lean
+    decl: AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider
+    kind: theorem
+    line: 32
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-9E9949A2302B
+  class: wrong_signature
+  claim_kind: relation
+  claim: 'validity_preserved: For all x, hard x <-> valid (f x), where f is the reduction map [AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction]'
+  evidence: 'lean AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction has kind structure,
+    which cannot be cited as a relation (allowed: abbrev, def, fn, lemma, theorem)'
+  decl_key: AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: AUTHF-RICE-GODEL-OPEN
+open_obligations:
+- Instantiate the class-relative transport for a nontrivial extensional property of encoded programs using
+  Mathlib ComputablePred.rice
+- Construct a computable reduction from the DTM0 carrier to the chosen property
+- State and prove Rice's theorem or a halting-problem reduction as a sorry-free Lean declaration
+- Goedel second incompleteness theorem and LLM corollary remain unformalized
+- haltingIdentityReduction is not cited because its signature was refused earlier
+- 'generator halting_identity_reduction unverified: no existing declaration cited'
+- 'near_miss nm_rice_instance unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_goedel_corollary unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements:
+- id: halting_transport_restated
+  statement: Transport of the halting no-decider fact through a computable reduction into an authorizer
+    predicate, via the existing transport lemma
+  relation_to_target: auxiliary
+  depends_on:
+  - halting_no_decider
+  - validity_preserved
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/AuthIncompleteness/MathlibBridge.lean
+    decl: AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/AuthIncompleteness/MathlibBridge.lean
+    decl: AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction
+    kind: theorem
+    line: 51
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

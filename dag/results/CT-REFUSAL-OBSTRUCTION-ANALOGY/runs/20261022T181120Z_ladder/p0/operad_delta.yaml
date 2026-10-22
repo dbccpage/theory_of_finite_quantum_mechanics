@@ -1,0 +1,84 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: refused_iff_off_image
+  equation_or_predicate: r y = inr () iff for all x, s x differs from y
+  typing_conditions: SectionRetraction s r
+  source_pins:
+  - path: lean4/SnOffImageRefusal.lean
+    declaration: SnOffImageRefusal.refused_iff_off_image
+    line: 45
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SnOffImageRefusal.lean
+    decl: SnOffImageRefusal.refused_iff_off_image
+    kind: theorem
+    line: 45
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: roundtrip_iff_in_image
+  equation_or_predicate: a roundtrip through r succeeds at y iff y lies in the image of s
+  typing_conditions: SectionRetraction s r
+  source_pins:
+  - path: lean4/SnOffImageRefusal.lean
+    declaration: SnOffImageRefusal.roundtrip_iff_in_image
+    line: 58
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/SnOffImageRefusal.lean
+    decl: SnOffImageRefusal.roundtrip_iff_in_image
+    kind: theorem
+    line: 58
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-93045E82ECA3
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'refuseOffImage: (Y) -> S_plus_Unit [SnOffImageRefusal.refuseOffImage]'
+  evidence: lean def refuseOffImage has 2 explicit binders (3 with conclusion arrows); the claim says
+    1 (heuristic count)
+  decl_key: SnOffImageRefusal.refuseOffImage
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: CT-REFUSAL-OBSTRUCTION-ANALOGY
+open_obligations:
+- No model of constructors on the Genesis regime is available, so no bridge from the structural refusal
+  predicates to the arbitrary-accuracy notion is grounded.
+- PG-GEN-ONGOING-OBSTRUCTION has no cited declaration in the supplied source list; the xrx-addition obstruction
+  is ungrounded.
+- The analogy remains an analogy; no lemma establishes equivalence of the two refusal notions.
+- 'near_miss constructor_arbitrary_accuracy unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements:
+- id: off_image_refusal_restated
+  statement: the S(n) off-image refusal is exactly the off-image condition for a section retraction
+  relation_to_target: restates
+  depends_on:
+  - refused_iff_off_image
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/SnOffImageRefusal.lean
+    decl: SnOffImageRefusal.refused_iff_off_image
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/SnOffImageRefusal.lean
+    decl: SnOffImageRefusal.refused_iff_off_image
+    kind: theorem
+    line: 45
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

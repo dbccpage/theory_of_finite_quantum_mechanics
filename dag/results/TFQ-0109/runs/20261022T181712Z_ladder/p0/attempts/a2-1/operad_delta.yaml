@@ -1,0 +1,136 @@
+add_or_refine_generators:
+- id: deflectionFactor
+  ordered_inputs:
+  - Rat
+  output: Rat
+  arity: 1
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.deflectionFactor
+    line: 297
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.deflectionFactor
+    kind: abbrev
+    line: 297
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: newtonDeflection
+  ordered_inputs:
+  - Rat
+  - Rat
+  - Rat
+  output: Rat
+  arity: 3
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.newtonDeflection
+    line: 307
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.newtonDeflection
+    kind: abbrev
+    line: 307
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: grDeflection
+  ordered_inputs:
+  - Rat
+  - Rat
+  - Rat
+  output: Rat
+  arity: 3
+  carrier: Rat
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.grDeflection
+    line: 309
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.grDeflection
+    kind: abbrev
+    line: 309
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: gr_twice_newton
+  equation_or_predicate: grDeflection gm c b = 2 * newtonDeflection gm c b for nonzero c and b
+  typing_conditions: c ≠ 0 and b ≠ 0
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.gr_deflection_twice_newton
+    line: 311
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.gr_deflection_twice_newton
+    kind: theorem
+    line: 311
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: deflection_factor_values
+  equation_or_predicate: deflectionFactor 1 = 1 ∧ deflectionFactor 0 = 1/2 ∧ deflectionFactor 1 = 2 *
+    deflectionFactor 0
+  typing_conditions: none
+  source_pins:
+  - path: lean4/FiniteQFTAndGravity.lean
+    declaration: FiniteQFTAndGravity.deflection_factor_values
+    line: 301
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FiniteQFTAndGravity.lean
+    decl: FiniteQFTAndGravity.deflection_factor_values
+    kind: theorem
+    line: 301
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Regge discretization is not implemented in the source; no Regge generator is grounded
+- Einstein field equation is not derived; deflection factors are not obtained from a field equation
+- No continuum limit or quantum gravity claim is discharged
+- Chern table, GHZ, and four-tick history are not cited as generators because the test declarations are
+  checkers only and the Chern theorem is not licensed to a relation here
+- Lemma statements that restate numerals absent from the source were refused earlier and are not repeated
+- 'near_miss nm_gr_newton_slot unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_ppn_ratio
+  expr: 2/1
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []

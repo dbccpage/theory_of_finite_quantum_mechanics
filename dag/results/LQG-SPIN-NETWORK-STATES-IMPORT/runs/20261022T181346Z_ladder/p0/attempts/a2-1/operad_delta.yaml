@@ -1,0 +1,79 @@
+add_or_refine_generators:
+- id: g_vertexAmplitude
+  ordered_inputs:
+  - TetSpins
+  output: Cyclo12
+  arity: 1
+  carrier: TetSpins -> Cyclo12
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude
+    line: 82
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude
+    kind: def
+    line: 82
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r_inadmissible_vanishes
+  equation_or_predicate: Tetrahedral labels violating admissibility give zero vertex amplitude
+  typing_conditions: labels are not admissible
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes
+    line: 95
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes
+    kind: theorem
+    line: 95
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_vacuum
+  equation_or_predicate: vertexAmplitude vacuumSpins = 1
+  typing_conditions: spins are the vacuum configuration
+  source_pins:
+  - path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    declaration: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude
+    line: 92
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H023DiscreteSpinfoamAmplitudes.lean
+    decl: FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude
+    kind: theorem
+    line: 92
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No compact Lie group SU(2) or Haar measure exists in the repository; the imported spin-network Hilbert
+  space is unformalized
+- Peter-Weyl decomposition for SU(2) is assumed, not proved
+- Spin-network state basis is an assumption; no grounded generator for edge spins or vertex intertwiners
+- Bottleneck FQ-GAP-U1-CIRCLE remains open; no SU(2) analogue grounded
+- Spin-foam shadow uses q-deformed cyclotomic labels, not the classical SU(2) labels of the target
+- SpinFoam and CircleHaarError sources were listed but not used because no operation over them was grounded
+- 'near_miss nm_su2_haar_completion unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

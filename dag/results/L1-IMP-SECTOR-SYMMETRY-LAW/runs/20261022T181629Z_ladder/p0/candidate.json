@@ -1,0 +1,212 @@
+{
+  "task_id": "L1-IMP-SECTOR-SYMMETRY-LAW",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "06ff9cdf1f8c678b8324c156c5274bb25871fd73d682a57a88bf37c296f43d71",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "rel_perm_isometry",
+          "equation_or_predicate": "The sesquilinear form defined by a star-ring pack and an enum of sectors is preserved by permU for any reversible relabelling.",
+          "typing_conditions": "StarRingPack K, DecidableEq Q, Enum Q, Reversible tau",
+          "source_pins": [
+            {
+              "path": "lean4/H006PermutationUnitary.lean",
+              "declaration": "FableHilbertWalk20260819.H006.permutation_isometry",
+              "line": 25
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/H006PermutationUnitary.lean",
+            "decl": "FableHilbertWalk20260819.H006.permutation_isometry",
+            "kind": "theorem",
+            "line": 25,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "rel_diag_const_transitive",
+          "equation_or_predicate": "If a matrix G is invariant under every permutation in a transitive set S, then its diagonal entries are constant.",
+          "typing_conditions": "hS : every sigma in S leaves G Invariant; hT : TransitiveOn S",
+          "source_pins": [
+            {
+              "path": "lean4/SectorFormUniqueness.lean",
+              "declaration": "InnerProductFable.SectorForm.diag_const_of_transitive",
+              "line": 203
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/SectorFormUniqueness.lean",
+            "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+            "kind": "theorem",
+            "line": 203,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The transitive sector symmetry law is an imported assumption and is not derived from primitive difference.",
+        "No grounded derivation of readout invariance under sector relabelling from finite-theory primitives.",
+        "Identification of which sector labels are distinguished remains open (run next-steps item 1).",
+        "Lean skeleton for the lemma left empty; no existing declaration proves the target law itself.",
+        "near_miss nm_distinguished_labels unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "rel_perm_isometry",
+        "equation_or_predicate": "The sesquilinear form defined by a star-ring pack and an enum of sectors is preserved by permU for any reversible relabelling.",
+        "typing_conditions": "StarRingPack K, DecidableEq Q, Enum Q, Reversible tau",
+        "source_pins": [
+          {
+            "path": "lean4/H006PermutationUnitary.lean",
+            "declaration": "FableHilbertWalk20260819.H006.permutation_isometry",
+            "line": 25
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permutation_isometry",
+          "kind": "theorem",
+          "line": 25,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "rel_diag_const_transitive",
+        "equation_or_predicate": "If a matrix G is invariant under every permutation in a transitive set S, then its diagonal entries are constant.",
+        "typing_conditions": "hS : every sigma in S leaves G Invariant; hT : TransitiveOn S",
+        "source_pins": [
+          {
+            "path": "lean4/SectorFormUniqueness.lean",
+            "declaration": "InnerProductFable.SectorForm.diag_const_of_transitive",
+            "line": 203
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/SectorFormUniqueness.lean",
+          "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "kind": "theorem",
+          "line": 203,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-F25456BA14A1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "permU_sector: (SectorVec) -> SectorVec [FableHilbertWalk20260819.H006.permU]",
+        "evidence": "lean def permU has 3 explicit binders (3 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "FableHilbertWalk20260819.H006.permU",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "L1-IMP-SECTOR-SYMMETRY-LAW"
+      }
+    ],
+    "open_obligations": [
+      "The transitive sector symmetry law is an imported assumption and is not derived from primitive difference.",
+      "No grounded derivation of readout invariance under sector relabelling from finite-theory primitives.",
+      "Identification of which sector labels are distinguished remains open (run next-steps item 1).",
+      "Lean skeleton for the lemma left empty; no existing declaration proves the target law itself.",
+      "near_miss nm_distinguished_labels unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "lem_diag_const_restates_assumption",
+        "statement": "Given the imported assumption that the readout is invariant under a transitive permutation set S, the diagonal of the readout matrix is constant.",
+        "relation_to_target": "implies",
+        "depends_on": [
+          "rel_diag_const_transitive"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/SectorFormUniqueness.lean",
+          "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/SectorFormUniqueness.lean",
+          "decl": "InnerProductFable.SectorForm.diag_const_of_transitive",
+          "kind": "theorem",
+          "line": 203,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

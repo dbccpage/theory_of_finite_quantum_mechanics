@@ -1,0 +1,200 @@
+{
+  "task_id": "TFQ-0224",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "9691b3c990e2d849cc6bde478dd9d49a01063998835c9cd2a54b04cf032c8fd4",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_continuum_needs_witness",
+          "equation_or_predicate": "A continuum claim without a witness is oracle-needed; with a witness it is finite replay only. Neither is a bridge theorem.",
+          "typing_conditions": "A continuum claim is presented to the finite quantum shadow checker.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+              "declaration": "continuum_without_witness_is_oracle_needed",
+              "line": 613
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+            "decl": "continuum_without_witness_is_oracle_needed",
+            "kind": "fn",
+            "line": 613,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "r_field_names_match",
+          "equation_or_predicate": "Finite QM field name constants match the contract, including carrier, carrier_id and continuum_debt.",
+          "typing_conditions": "The finite QM field name constants are compared against the contract.",
+          "source_pins": [
+            {
+              "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+              "declaration": "finite_qm_field_name_constants_match_contract",
+              "line": 725
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+            "decl": "finite_qm_field_name_constants_match_contract",
+            "kind": "fn",
+            "line": 725,
+            "lang": "rust"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No bridge theorem from finite QM to a circle, Haar measure, Pontryagin dual, or pi normalization is grounded; F002.S001 has an empty books list and GAP-F002-S001-001 remains open.",
+        "named_adjoining.yaml content is not in @SRC or @KNOWN+ and is not cited.",
+        "No witness for continuum_debt is supplied; the bridge shelf remains empty.",
+        "near_miss nm_circle_name_as_carrier unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_witness_discharges_continuum unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "r_continuum_needs_witness",
+        "equation_or_predicate": "A continuum claim without a witness is oracle-needed; with a witness it is finite replay only. Neither is a bridge theorem.",
+        "typing_conditions": "A continuum claim is presented to the finite quantum shadow checker.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+            "declaration": "continuum_without_witness_is_oracle_needed",
+            "line": 613
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+          "decl": "continuum_without_witness_is_oracle_needed",
+          "kind": "fn",
+          "line": 613,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "r_field_names_match",
+        "equation_or_predicate": "Finite QM field name constants match the contract, including carrier, carrier_id and continuum_debt.",
+        "typing_conditions": "The finite QM field name constants are compared against the contract.",
+        "source_pins": [
+          {
+            "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+            "declaration": "finite_qm_field_name_constants_match_contract",
+            "line": 725
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "code/rust/src/wdp/coda/q/finite_shadow_exact.rs",
+          "decl": "finite_qm_field_name_constants_match_contract",
+          "kind": "fn",
+          "line": 725,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-8B466B2DCBDF",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_continuum_debt_field: () -> FieldName [FIELD_CONTINUUM_DEBT]",
+        "evidence": "rust FIELD_CONTINUUM_DEBT has kind const, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "FIELD_CONTINUUM_DEBT",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "TFQ-0224"
+      },
+      {
+        "id": "NEG-96DEACFF373B",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "g_carrier_field: () -> FieldName [FIELD_CARRIER]",
+        "evidence": "rust FIELD_CARRIER has kind const, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "FIELD_CARRIER",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "TFQ-0224"
+      }
+    ],
+    "open_obligations": [
+      "No bridge theorem from finite QM to a circle, Haar measure, Pontryagin dual, or pi normalization is grounded; F002.S001 has an empty books list and GAP-F002-S001-001 remains open.",
+      "named_adjoining.yaml content is not in @SRC or @KNOWN+ and is not cited.",
+      "No witness for continuum_debt is supplied; the bridge shelf remains empty.",
+      "near_miss nm_circle_name_as_carrier unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_witness_discharges_continuum unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,358 @@
+{
+  "task_id": "CQFT-FINITE-POSET-NET-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "b9fe301c66fbc66c18c11fb1ab5490b9353524f0a8148481df6229fdea70b676",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "site_product",
+          "inputs": [
+            "site_op",
+            "site_op"
+          ],
+          "output": "site_op",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "isotony_rel",
+          "equation_or_predicate": "O1 subset O2 and LocalizedIn O1 A imply LocalizedIn O2 A",
+          "typing_conditions": "O1 subset O2 as Finset (Fin n)",
+          "source_pins": [
+            {
+              "path": "lean4/FrontierPosetNet.lean",
+              "declaration": "FrontierPosetNet.isotony",
+              "line": 37
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FrontierPosetNet.lean",
+            "decl": "FrontierPosetNet.isotony",
+            "kind": "theorem",
+            "line": 37,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "spacelike_symm_rel",
+          "equation_or_predicate": "isSpacelike P x y iff isSpacelike P y x",
+          "typing_conditions": "P a FiniteStrictPoset n",
+          "source_pins": [
+            {
+              "path": "lean4/CausalOrder.lean",
+              "declaration": "CausalOrder.spacelike_symm",
+              "line": 30
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/CausalOrder.lean",
+            "decl": "CausalOrder.spacelike_symm",
+            "kind": "theorem",
+            "line": 30,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        },
+        {
+          "id": "spacelike_not_transitive_rel",
+          "equation_or_predicate": "spacelike is not transitive on the four-point N poset",
+          "typing_conditions": "N poset with 0<2, 1<2, 1<3",
+          "source_pins": [
+            {
+              "path": "lean4/FrontierPosetNet.lean",
+              "declaration": "FrontierPosetNet.spacelike_not_transitive_on_posetN",
+              "line": 113
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "lean4/FrontierPosetNet.lean",
+            "decl": "FrontierPosetNet.spacelike_not_transitive_on_posetN",
+            "kind": "theorem",
+            "line": 113,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-haiku-5-5",
+            "provider": "anthropic",
+            "tier": 2
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Locality theorem locality_commute_of_spacelike is listed without a signature; its exact statement is not grounded",
+        "Full matrix algebra A(O) and bilinear extension of commutation are not formalized",
+        "Single-site monoid M is not instantiated at 2x2 matrices",
+        "Time-slice property and covariance are not modelled",
+        "Lemma skeletons left empty; no new lean proofs were supplied and no sorry-free proof is claimed",
+        "Disjoint_of_all_spacelike signature is truncated in the source list",
+        "composition site_product . slot 0 <- localized_op via isotony_rel unverified: the inner generator is not host-verified (proposed_new, unchecked or refused)",
+        "near_miss nm_full_matrix_algebra unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_haag_kastler_locality unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "site_product",
+        "ordered_inputs": [
+          "site_op",
+          "site_op"
+        ],
+        "output": "site_op",
+        "arity": 2,
+        "carrier": "Fin n -> M",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FrontierPosetNet.lean",
+            "declaration": "FrontierPosetNet.mulSiteOp",
+            "line": 33
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierPosetNet.lean",
+          "decl": "FrontierPosetNet.mulSiteOp",
+          "kind": "def",
+          "line": 33,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "isotony_rel",
+        "equation_or_predicate": "O1 subset O2 and LocalizedIn O1 A imply LocalizedIn O2 A",
+        "typing_conditions": "O1 subset O2 as Finset (Fin n)",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierPosetNet.lean",
+            "declaration": "FrontierPosetNet.isotony",
+            "line": 37
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierPosetNet.lean",
+          "decl": "FrontierPosetNet.isotony",
+          "kind": "theorem",
+          "line": 37,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "spacelike_symm_rel",
+        "equation_or_predicate": "isSpacelike P x y iff isSpacelike P y x",
+        "typing_conditions": "P a FiniteStrictPoset n",
+        "source_pins": [
+          {
+            "path": "lean4/CausalOrder.lean",
+            "declaration": "CausalOrder.spacelike_symm",
+            "line": 30
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/CausalOrder.lean",
+          "decl": "CausalOrder.spacelike_symm",
+          "kind": "theorem",
+          "line": 30,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "spacelike_not_transitive_rel",
+        "equation_or_predicate": "spacelike is not transitive on the four-point N poset",
+        "typing_conditions": "N poset with 0<2, 1<2, 1<3",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierPosetNet.lean",
+            "declaration": "FrontierPosetNet.spacelike_not_transitive_on_posetN",
+            "line": 113
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierPosetNet.lean",
+          "decl": "FrontierPosetNet.spacelike_not_transitive_on_posetN",
+          "kind": "theorem",
+          "line": 113,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-88D001C0FFA3",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "localized_op: (site) -> site_op [LocalizedIn]",
+        "evidence": "lean def LocalizedIn has 2 explicit binders (2 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "LocalizedIn",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "CQFT-FINITE-POSET-NET-TARGET"
+      },
+      {
+        "id": "NEG-78E4FF1AB692",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "spacelike_rel: (point, point) -> prop [CausalOrder.isSpacelike]",
+        "evidence": "lean def isSpacelike has 3 explicit binders (3 with conclusion arrows); the claim says 2 (heuristic count)",
+        "decl_key": "CausalOrder.isSpacelike",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "CQFT-FINITE-POSET-NET-TARGET"
+      }
+    ],
+    "open_obligations": [
+      "Locality theorem locality_commute_of_spacelike is listed without a signature; its exact statement is not grounded",
+      "Full matrix algebra A(O) and bilinear extension of commutation are not formalized",
+      "Single-site monoid M is not instantiated at 2x2 matrices",
+      "Time-slice property and covariance are not modelled",
+      "Lemma skeletons left empty; no new lean proofs were supplied and no sorry-free proof is claimed",
+      "Disjoint_of_all_spacelike signature is truncated in the source list",
+      "composition site_product . slot 0 <- localized_op via isotony_rel unverified: the inner generator is not host-verified (proposed_new, unchecked or refused)",
+      "near_miss nm_full_matrix_algebra unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_haag_kastler_locality unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "nc_n_points",
+        "expr": "4 - 1",
+        "value": "3",
+        "host_evidence": {
+          "recomputed": "3"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "L_isotony_target",
+        "statement": "Isotony: O1 subset O2 and LocalizedIn O1 A imply LocalizedIn O2 A",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierPosetNet.lean",
+          "decl": "FrontierPosetNet.isotony",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FrontierPosetNet.lean",
+          "decl": "FrontierPosetNet.isotony",
+          "kind": "theorem",
+          "line": 37,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      },
+      {
+        "id": "L_spacelike_symm_target",
+        "statement": "spacelike relation of CausalOrder is symmetric",
+        "relation_to_target": "restates",
+        "depends_on": [],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/CausalOrder.lean",
+          "decl": "CausalOrder.spacelike_symm",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/CausalOrder.lean",
+          "decl": "CausalOrder.spacelike_symm",
+          "kind": "theorem",
+          "line": 30,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

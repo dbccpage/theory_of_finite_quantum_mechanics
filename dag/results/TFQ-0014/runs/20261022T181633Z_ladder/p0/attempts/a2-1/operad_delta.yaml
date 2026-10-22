@@ -1,0 +1,63 @@
+add_or_refine_generators:
+- id: gen_convolution
+  ordered_inputs:
+  - G
+  output: Q(i)
+  arity: 1
+  carrier: Q(i)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_groupoid_algebra.rs
+    declaration: FiniteGroupoidAlgebra
+    line: 28
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_groupoid_algebra.rs
+    decl: FiniteGroupoidAlgebra
+    kind: struct
+    line: 28
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: rel_assoc_from_operation
+  equation_or_predicate: Associativity holds for the finite groupoid operation used in the convolution
+    generator.
+  typing_conditions: The operation is the finite groupoid operation of a ValidatedFiniteGroupoid G, as
+    used by FiniteGroupoidAlgebra.
+  source_pins:
+  - path: code/rust/src/lie_theory/finite_group.rs
+    declaration: check_associativity_for_pair
+    line: 259
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/lie_theory/finite_group.rs
+    decl: check_associativity_for_pair
+    kind: fn
+    line: 259
+    lang: rust
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- No existing declaration grounds an SU(3) color connection or link-variable store; the color connection
+  for the QCD control remains unsourced.
+- No relation grounds the step from the groupoid convolution generator to any color or gauge structure.
+- The M_2(Q(i)) packet complex in gauge_cochain_complex.rs is not in @SRC or @KNOWN+, so it is not cited
+  and no generator or composition uses it.
+- gen_convolution is recorded as a generator with ref to the existing FiniteGroupoidAlgebra struct, since
+  the bare name gen_convolution is host-refused as a declaration.
+- 'near_miss nm_m2_packet_as_color unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_groupoid_algebra_as_color unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

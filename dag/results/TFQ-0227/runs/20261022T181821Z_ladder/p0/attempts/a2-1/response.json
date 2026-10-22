@@ -1,0 +1,104 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_continuation_evidence",
+      "inputs": [
+        "Bytes"
+      ],
+      "output": "Evidence",
+      "arity": 1,
+      "carrier": "ContinuationEvidence",
+      "ref": {
+        "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+        "decl": "ContinuationEvidence",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_presented_carrier",
+      "inputs": [
+        "X",
+        "Q"
+      ],
+      "output": "PresentedCarrier",
+      "arity": 2,
+      "carrier": "FableHilbertWalk20260819.H000.PresentedCarrier",
+      "ref": {
+        "path": "lean4/H000FinitePresentedCarrier.lean",
+        "decl": "FableHilbertWalk20260819.H000.PresentedCarrier",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_boolean_valuation",
+      "inputs": [],
+      "output": "BooleanValuation",
+      "arity": 0,
+      "carrier": "BooleanValuation",
+      "ref": {
+        "path": "code/rust/src/finite_probability/finite_valuation.rs",
+        "decl": "BooleanValuation",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_authority_none",
+      "statement": "Every evidence emission carries AuthorityEffect::None",
+      "hypotheses": "none",
+      "ref": {
+        "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+        "decl": "AUTHORITY_EFFECT",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_presented_carrier_separates",
+      "statement": "Presented carrier report separates two presentations on the bool fixture",
+      "hypotheses": "bool fixture presentations",
+      "ref": {
+        "path": "lean4/H000FinitePresentedCarrier.lean",
+        "decl": "FableHilbertWalk20260819.H000.presented_carrier_separates",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_evidence_carries_none",
+      "statement": "Scheduling bytes through the continuation host yields evidence whose AuthorityEffect is None; the finite statement is not altered.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_authority_none"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "code/rust/src/wdp/prime_algos/prime_algorithm_2.rs",
+        "decl": "authority_effect_is_none",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_schedule_as_relation",
+      "claim": "Scheduling a finite derivation through the host is itself a new finite relation.",
+      "rejecting_invariant": "Scheduling is custody of execution order, not a new finite relation."
+    },
+    {
+      "id": "nm_host_mints_authority",
+      "claim": "Completion in the pipeline host grants sealed-witness authority.",
+      "rejecting_invariant": "Completion is evidence for a later sealed-witness process, not that process itself; AuthorityEffect is None."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No Lean skeleton for scheduling-preserves-statement was grounded; the vacuous l_schedule_no_authority form is refused and not repeated.",
+    "No composition of g_continuation_evidence with g_presented_carrier is licensed by a listed relation (colours Bytes and X,Q do not match).",
+    "Prime 002 carrier-step predicate has no grounded declaration in the source list."
+  ]
+}

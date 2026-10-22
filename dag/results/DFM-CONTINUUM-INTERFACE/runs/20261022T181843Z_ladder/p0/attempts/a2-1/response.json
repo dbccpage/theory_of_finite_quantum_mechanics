@@ -1,0 +1,66 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_dress",
+      "inputs": [
+        "EdgeLabelling",
+        "VertexGauge",
+        "Edge"
+      ],
+      "output": "GroupElement",
+      "arity": 3,
+      "carrier": "finite graph gauge dressing",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_dress_one_iff",
+      "statement": "dress U u e = 1 iff U e = (u (dst e))⁻¹ * u (src e)",
+      "hypotheses": "finite graph edge labelling U and vertex gauge u",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.dress_eq_one_iff",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "R_neutralizable_closed_walks",
+      "statement": "a vertex gauge neutralizing all edges exists iff transport along every closed walk based at the root is trivial",
+      "hypotheses": "finite graph with root and edge labelling",
+      "ref": {
+        "path": "lean4/FiniteGraphDressing.lean",
+        "decl": "FiniteGraphDressing.neutralizable_iff_closed_walks",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "nm_smooth_existence",
+      "claim": "Finite graph dressing theorem yields smooth gauge field existence and continuum dynamics",
+      "rejecting_invariant": "No refinement family, compatibility maps or convergence theorem is available to transport finite identities to smooth gauge theory"
+    },
+    {
+      "id": "nm_target19_cancel",
+      "claim": "Forest cancellation of target 19 is a finite artifact that removes the continuum interface",
+      "rejecting_invariant": "target19_requires_continuum classifies target 19 as requiring a continuum interface"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Specify refinement family of finite graphs with compatibility maps",
+    "Prove convergence theorem for dressings along the refinement family",
+    "Smooth-field existence and patching across refinements",
+    "Topology and locality of the continuum limit",
+    "Continuum dynamics obligation separate from finite dressing identities",
+    "Lemma stating transport along closed walks is trivial under neutralizability was not formalized as a lemma; no sorry-free proof offered"
+  ]
+}

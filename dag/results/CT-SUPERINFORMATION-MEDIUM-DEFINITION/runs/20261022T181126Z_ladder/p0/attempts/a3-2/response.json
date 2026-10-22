@@ -1,0 +1,91 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g:cloneZ",
+      "inputs": [
+        "qubit"
+      ],
+      "output": "qubit_pair",
+      "arity": 1,
+      "carrier": "qubit",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneZ",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g:cloneX",
+      "inputs": [
+        "qubit"
+      ],
+      "output": "qubit_pair",
+      "arity": 1,
+      "carrier": "qubit",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneX",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r:Z_basis_trace_preserving",
+      "statement": "cloneZ is trace-preserving",
+      "hypotheses": "finite qubit carrier; Z-basis clone map",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneZ_trace_preserving",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r:no_additive_cloner_Z_union_X",
+      "statement": "No additive map clones all of |0>,|1>,|+>,|->",
+      "hypotheses": "additive (linear) map on the finite qubit carrier",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_union_not_clonable_finite_shadow",
+      "statement": "Finite shadow of the Section 8 conclusion: the union of the Z and X attribute sets is not clonable by any additive map, though each of Z and X has an explicit clone map",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "r:no_additive_cloner_Z_union_X",
+        "g:cloneZ",
+        "g:cloneX"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm:cloneability_of_union_from_parts",
+      "claim": "Because Z and X are each cloneable, their union Z union X is cloneable",
+      "rejecting_invariant": "no_additive_cloner_for_Z_union_X: no additive map clones |0>,|1>,|+>,|->"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "The definition of information observable (double-complement closure under distinguishability) is not formalised",
+    "The superinformation medium definition is an imported assumption, not adopted as a primitive",
+    "Principles I-IX are not verified for finite carriers",
+    "Fidelity argument and complete positivity of cloning are not formalised",
+    "No composition is grounded, since the generators have qubit input and qubit_pair output and no listed relation licenses plugging them",
+    "The claim that Z union X is not an information observable is not grounded"
+  ]
+}

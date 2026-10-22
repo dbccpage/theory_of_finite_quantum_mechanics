@@ -1,0 +1,91 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: r_closed
+  equation_or_predicate: The allowed proposal deciders are closed under precomposition with the reduction
+    map (ClosedUnderReduction).
+  typing_conditions: allowedHard and allowedProposal as arbitrary predicates on Bool-valued functions;
+    a ValidityReduction between hard and valid
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    declaration: AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction
+    line: 47
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    decl: AuthorizationIncompleteness.GlobalComputabilityLift.ClosedUnderReduction
+    kind: def
+    line: 47
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_no_total_decider_transport
+  equation_or_predicate: NoTotalDecider for the source predicate under allowedHard transfers to NoTotalDecider
+    for the proposal predicate under allowedProposal, given the reduction and closure.
+  typing_conditions: ValidityReduction preserving hard exactly; ClosedUnderReduction for allowedHard and
+    allowedProposal
+  source_pins:
+  - path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    declaration: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+    line: 79
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    decl: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+    kind: theorem
+    line: 79
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-06990AECEC3D
+  class: wrong_signature
+  claim_kind: relation
+  claim: 'r_reduction: A ValidityReduction maps a source predicate into proposal validity, preserving
+    the predicate exactly. [AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction]'
+  evidence: 'lean AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction has kind structure,
+    which cannot be cited as a relation (allowed: abbrev, def, fn, lemma, theorem)'
+  decl_key: AuthorizationIncompleteness.GlobalComputabilityLift.ValidityReduction
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: AUTH-G5A-CLASS-RELATIVE-TRANSPORT
+open_obligations:
+- Ground a concrete halting-problem source predicate and a ComputablePred instance on a code type; not
+  supplied by the existing declarations.
+- Prove ClosedUnderReduction for ComputablePred classes under a concrete reduction; not established here.
+- Lean skeleton for the transport lemma left empty; no sorry-free proof available, so claims_proved is
+  false.
+- 'near_miss nm_halting_instantiation unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements:
+- id: l_transport_restates
+  statement: If the source predicate has no allowed total decider and the reduction preserves it with
+    closure of allowed deciders, then the proposal predicate has no allowed total decider.
+  relation_to_target: restates
+  depends_on:
+  - r_reduction
+  - r_closed
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    decl: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+    status: existing
+  credited: true
+  host_evidence:
+    path: papers/foundations/authorization_incompleteness/evidence/original/formal/global_computability_lift_models.lean
+    decl: AuthorizationIncompleteness.GlobalComputabilityLift.no_source_decider_blocks_total_authorizer
+    kind: theorem
+    line: 79
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked
