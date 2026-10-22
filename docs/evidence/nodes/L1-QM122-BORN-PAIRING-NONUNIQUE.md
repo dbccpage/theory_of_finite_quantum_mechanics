@@ -1,0 +1,149 @@
+# L1-QM122-BORN-PAIRING-NONUNIQUE
+
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> Reviewed scope: Exact quadratic/quartic/swapped atom values, honest normalization contracts and Gaussian Hadamard/rotated frame countercontrols; literal unit and frame identities in Lean.
+
+## Grade
+
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
+- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 0
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+
+## Flags
+
+- `proved_lean_below_e3`: grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+
+## Imported structure
+
+- Gleason: assumption
+
+## Bottleneck
+
+Unmet after the PFP review: Formalize full source pairing refinement and the additional frame/POVM/Gleason uniqueness hypotheses. These rivals share only their stated weak contracts. The broader source statement is kept in pfp_review.prior_statement.
+
+## Source status
+
+H013BornPairingBoundary: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY (file header)
+
+## Review
+
+- PFP review: [dag/results/L1-QM122-BORN-PAIRING-NONUNIQUE/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-BORN-PAIRING-NONUNIQUE/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+  - narrowest claim: Exact quadratic/quartic/swapped atom values, honest normalization contracts and Gaussian Hadamard/rotated frame countercontrols; literal unit and frame identities in Lean.
+  - does not support: Formalize full source pairing refinement and the additional frame/POVM/Gleason uniqueness hypotheses. These rivals share only their stated weak contracts.
+  - next test: Formalize full source pairing refinement and the additional frame/POVM/Gleason uniqueness hypotheses. These rivals share only their stated weak contracts.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
+- counts toward the grade: yes
+
+### Lean: `lean4/FiniteQM.lean`
+
+- file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
+- sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
+- cited in: record TFQ-0306
+- replay: `none`
+- check: `cd lean4 && lake build FiniteQM`
+- counts toward the grade: yes
+
+### Lean: `lean4/H013BornPairingBoundary.lean`
+
+- file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
+- sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H013BornPairingBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `born_nonuniqueness_open` | yes | yes | yes | - | `#print axioms born_nonuniqueness_open` |
+| `pairing_exists` | yes | yes | yes | - | `#print axioms pairing_exists` |
+| `quartic_rival` | yes | yes | yes | - | `#print axioms quartic_rival` |
+| `uniqueness_not_discharged` | yes | yes | yes | - | `#print axioms uniqueness_not_discharged` |
+- counts toward the grade: yes
+
+### Lean: `lean4/H017Gleason.lean`
+
+- file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
+- sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build H017Gleason`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `two_label_host_not_gleason_dimension` | yes | yes | yes | - | `#print axioms two_label_host_not_gleason_dimension` |
+- counts toward the grade: yes
+
+### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
+
+- file: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+
+- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md`
+
+- file: [dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md](../../../dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md)
+- sha256 (`lf-normalised`): `5f67f96080dc9f7fd4e9d5d0b275beec16cb1b7014ee22bc301ea09a07687cdb`
+- generated view: listed, not counted
+- cited in: record TFQ-0306
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md`
+
+- file: [dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md](../../../dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md)
+- sha256 (`lf-normalised`): `d82577d360b53ddbc9db6555e6d2846e0dff1202830f9b927f60534c64eb562d`
+- generated view: listed, not counted
+- cited in: record TFQ-0312 (shared)
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+## Absences recorded by the TFQ records
+
+- TFQ-0306 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_state.rs
+- TFQ-0312 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+
+## Routes
+
+Incoming (1):
+
+- `L1-R-BORN-PAIRING-BOUNDARY` `DERIVED_LEAN`: [L1-QM020-THM6-P1-SCOPE-FENCE](L1-QM020-THM6-P1-SCOPE-FENCE.md) (PROVED_LEAN), [L1-IMP-ORTHOGONAL-ADDITIVITY](L1-IMP-ORTHOGONAL-ADDITIVITY.md) (CONDITIONAL)
+
+Outgoing (1):
+
+- `L1-R-MNC-LEFTOVER` `DERIVED_LEAN`: [L1-QM122-LEFTOVER-MNC-NOT-RECOVERED](L1-QM122-LEFTOVER-MNC-NOT-RECOVERED.md) (PROVED_LEAN)
